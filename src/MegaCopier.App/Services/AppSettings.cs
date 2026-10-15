@@ -13,10 +13,28 @@ public enum AppTheme
     Dark,
 }
 
+public enum AppBackdrop
+{
+    Mica,
+    MicaAlt,
+    Acrylic,
+    Solid,
+}
+
 /// <summary>Preferencias del usuario, en %LOCALAPPDATA%\MegaCopier\settings.json.</summary>
 public sealed class AppSettings
 {
     public AppTheme Theme { get; set; } = AppTheme.System;
+
+    /// <summary>"system" o un color "#RRGGBB".</summary>
+    public string Accent { get; set; } = "system";
+
+    public AppBackdrop Backdrop { get; set; } = AppBackdrop.Mica;
+
+    public bool AlwaysOnTop { get; set; }
+
+    /// <summary>"" = el de Windows; "es-ES" o "en-US". Se aplica al reiniciar la app.</summary>
+    public string Language { get; set; } = "";
 
     public bool VerifyAfterCopy { get; set; }
 

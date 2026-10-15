@@ -1,0 +1,141 @@
+clave	es-ES	en-US
+JobsSection.Text	Copias	Transfers
+SettingsSection.Text	Ajustes	Settings
+FinishButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Qué hacer cuando terminen todas las copias	What to do when all transfers finish
+FinishNothing.Text	No hacer nada	Do nothing
+FinishSleep.Text	Suspender el equipo	Sleep
+FinishShutdown.Text	Apagar el equipo	Shut down
+NewCopyText.Text	Nueva copia	New copy
+CopyFilesItem.Text	Copiar archivos…	Copy files…
+CopyFolderItem.Text	Copiar una carpeta…	Copy a folder…
+EmptyTitle.Text	No hay copias	No transfers
+EmptyDescription.Text	Las copias que inicies aparecerán aquí. Si se corta la luz, al volver podrás continuarlas desde donde quedaron.	Transfers you start will show up here. If the power goes out, you can resume them right where they stopped.
+PauseButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Pausar	Pause
+StopButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Detener (se podrá continuar más tarde)	Stop (you can resume it later)
+OpenFolderButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Abrir la carpeta de destino	Open the destination folder
+ClearButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Quitar de la lista	Remove from the list
+DiscardButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Descartar y borrar lo copiado a medias	Discard and delete the partial copy
+ConflictDialog.Title	El archivo ya existe	The file already exists
+ConflictDialog.PrimaryButtonText	Reemplazar	Replace
+ConflictDialog.SecondaryButtonText	Conservar ambos	Keep both
+ConflictDialog.CloseButtonText	Omitir	Skip
+ConflictExistingTitle.Text	El que ya está	The existing one
+ConflictApplyAll.Content	Hacer lo mismo con los demás conflictos de esta copia	Do the same for the other conflicts in this transfer
+RestartInfo.Title	Reinicia MegaCopier para aplicar el cambio	Restart MegaCopier to apply the change
+RestartInfo.Message	Las copias en curso se detendrán y podrás continuarlas al volver.	Running transfers will stop and you can resume them afterwards.
+RestartButton.Content	Reiniciar ahora	Restart now
+AppearanceHeader.Text	Apariencia	Appearance
+ThemeTitle.Text	Tema	Theme
+ThemeDescription.Text	Claro, oscuro o el mismo que Windows	Light, dark or the same as Windows
+ThemeSystem.Content	Usar el de Windows	Use Windows setting
+ThemeLight.Content	Claro	Light
+ThemeDark.Content	Oscuro	Dark
+AccentTitle.Text	Color de acento	Accent color
+AccentDescription.Text	Color de los botones, barras de progreso y elementos destacados	Color of buttons, progress bars and highlights
+BackdropTitle.Text	Fondo de la ventana	Window background
+BackdropDescription.Text	Los materiales de Windows 11 dejan entrever el escritorio	Windows 11 materials let the desktop show through
+BackdropMica.Content	Mica	Mica
+BackdropMicaAlt.Content	Mica Alt (más tono)	Mica Alt (more tint)
+BackdropAcrylic.Content	Acrílico	Acrylic
+BackdropSolid.Content	Sólido	Solid
+LanguageTitle.Text	Idioma	Language
+LanguageDescription.Text	Idioma de MegaCopier y de sus opciones en el Explorador	Language of MegaCopier and its File Explorer options
+LanguageAuto.Content	Usar el de Windows	Use Windows setting
+OnTopTitle.Text	Siempre visible	Always on top
+OnTopDescription.Text	La ventana queda por encima de las demás mientras copias	The window stays above others while copying
+CopyHeader.Text	Copia	Copying
+VerifyTitle.Text	Verificar después de copiar	Verify after copying
+VerifyDescription.Text	Relee el destino sin caché y repara cualquier bloque que no coincida con el origen	Re-reads the destination without cache and repairs any block that doesn't match the source
+ConflictTitle.Text	Si el archivo ya existe	If the file already exists
+ConflictDescription.Text	Los archivos idénticos (mismo tamaño y fecha) siempre se omiten	Identical files (same size and date) are always skipped
+ConflictAsk.Content	Preguntar	Ask
+ConflictReplace.Content	Reemplazar	Replace
+ConflictSkip.Content	Omitir	Skip
+ConflictNewer.Content	Reemplazar si es más nuevo	Replace if newer
+ConflictKeepBoth.Content	Conservar ambos	Keep both
+SpeedTitle.Text	Límite de velocidad	Speed limit
+SpeedDescription.Text	Deja ancho de banda del disco o de la red para otras tareas (se aplica a las copias nuevas)	Leaves disk or network bandwidth for other tasks (applies to new transfers)
+SpeedUnlimited.Content	Sin límite	Unlimited
+AutoResumeTitle.Text	Continuar automáticamente las copias interrumpidas	Resume interrupted transfers automatically
+AutoResumeDescription.Text	Tras un apagón o un reinicio, sigue sin preguntar al abrir MegaCopier	After a power cut or restart, continue without asking when MegaCopier opens
+ExplorerHeader.Text	Explorador de archivos	File Explorer
+PasteTitle.Text	Copiar y mover con MegaCopier al pegar (Ctrl+V)	Copy and move with MegaCopier when pasting (Ctrl+V)
+PasteDescription.Text	Al pegar en el Explorador o el Escritorio archivos copiados (Ctrl+C) o cortados (Ctrl+X), lo hace MegaCopier. Pegar en la misma carpeta sigue con el Explorador	When you paste copied (Ctrl+C) or cut (Ctrl+X) files in File Explorer or on the Desktop, MegaCopier does it. Pasting into the same folder is still handled by File Explorer
+ShellMenuTitle.Text	Opciones en el menú contextual	Context menu options
+ShellMenuDescription.Text	«Pegar con MegaCopier» (en Mostrar más opciones) y «Copiar / Mover aquí con MegaCopier» al arrastrar con el botón derecho	"Paste with MegaCopier" (under Show more options) and "Copy / Move here with MegaCopier" when right-dragging
+SystemHeader.Text	Sistema	System
+StartupTitle.Text	Iniciar con Windows	Start with Windows
+StartupDescription.Text	Se queda en la bandeja para que las copias empiecen al instante	Stays in the notification area so transfers start instantly
+NotifyTitle.Text	Avisar al terminar	Notify when finished
+NotifyDescription.Text	Notificación del sistema cuando acaba una copia y la ventana no está a la vista	System notification when a transfer ends and the window isn't visible
+Accent_System	Usar el de Windows	Use Windows setting
+Accent_Blue	Azul	Blue
+Accent_Violet	Violeta	Violet
+Accent_Teal	Turquesa	Teal
+Accent_Green	Verde	Green
+Accent_Orange	Naranja	Orange
+Accent_Pink	Rosa	Pink
+Accent_Red	Rojo	Red
+About	MegaCopier {0} · copias que sobreviven a los cortes de luz	MegaCopier {0} · transfers that survive power cuts
+Picker_CopyHere	Copiar aquí	Copy here
+Finish_Label	Al terminar	When finished
+Finish_LabelSleep	Al terminar: suspender	When finished: sleep
+Finish_LabelShutdown	Al terminar: apagar	When finished: shut down
+Conflict_Message	Ya hay un archivo llamado «{0}» en «{1}».	There's already a file named "{0}" in "{1}".
+Conflict_SourceCopy	El que vas a copiar	The one you're copying
+Conflict_SourceMove	El que vas a mover	The one you're moving
+Conflict_Newer	 · más reciente	 · newer
+Job_OneItem	«{0}»	"{0}"
+Job_ManyItems	{0} elementos	{0} items
+Job_TitleCopying	Copiando {0}	Copying {0}
+Job_TitleMoving	Moviendo {0}	Moving {0}
+Job_TitleCopied	Copiado {0}	Copied {0}
+Job_TitleMoved	Movido {0}	Moved {0}
+Job_TitleQueued	En espera: {0}	Waiting: {0}
+Job_Destination	a {0}	to {0}
+Job_StateQueued	En cola · espera a que el disco quede libre	Queued · waiting for the disk to be free
+Job_StateVerifying	Verificando	Verifying
+Job_StateValidating	Comprobando lo ya copiado	Checking what was already copied
+Job_StateWaiting	Esperando tu decisión: el archivo ya existe	Waiting for you: the file already exists
+Job_StateCopying	Copiando	Copying
+Job_StateMoving	Moviendo	Moving
+Job_StatePaused	En pausa	Paused
+Job_StateCompleted	Completado	Completed
+Job_StateCompletedErrors	Completado con errores	Completed with errors
+Job_StateFailed	Error	Error
+Job_StateInterrupted	Interrumpido · se puede continuar desde donde quedó	Interrupted · can resume where it stopped
+Job_ResumeHint	Pulsa Continuar para seguir	Press Resume to continue
+Job_Preparing	Preparando…	Preparing…
+Job_Progress	{0} de {1}	{0} of {1}
+Job_Remaining	quedan {0}	{0} left
+Job_Files	{0} de {1} archivos	{0} of {1} files
+Job_FilesCopiedOne	{0} archivo copiado	{0} file copied
+Job_FilesCopiedMany	{0} archivos copiados	{0} files copied
+Job_FilesMovedOne	{0} archivo movido	{0} file moved
+Job_FilesMovedMany	{0} archivos movidos	{0} files moved
+Job_TransferredIn	{0} en {1}	{0} in {1}
+Job_Recovered	{0} recuperados	{0} recovered
+Job_Skipped	{0} omitidos	{0} skipped
+Job_Verified	verificado	verified
+Job_Repaired	({0} bloques reparados)	({0} blocks repaired)
+Job_FailedFiles	{0} archivos con errores	{0} files with errors
+Job_Resume	Continuar	Resume
+Job_Retry	Reintentar	Retry
+Job_FailuresHeader	Ver los {0} archivos con problemas	Show the {0} files with problems
+Job_FailuresMore	… y {0} más	… and {0} more
+Tray_Open	Abrir MegaCopier	Open MegaCopier
+Tray_PauseAll	Pausar todo	Pause all
+Tray_ResumeAll	Reanudar todo	Resume all
+Tray_Startup	Iniciar con Windows	Start with Windows
+Tray_Exit	Salir	Exit
+Tray_OneJob	1 copia	1 transfer
+Tray_ManyJobs	{0} copias	{0} transfers
+Notify_InterruptedTitle	Hay copias interrumpidas	Some transfers were interrupted
+Notify_InterruptedOne	Una copia quedó a medias. Ábrela para continuarla desde donde quedó.	A transfer was left unfinished. Open it to resume where it stopped.
+Notify_InterruptedMany	{0} copias quedaron a medias. Ábrelas para continuarlas.	{0} transfers were left unfinished. Open them to resume.
+Notify_DoneTitle	Copia terminada	Transfer finished
+Notify_ProblemTitle	La copia tuvo problemas	The transfer had problems
+Notify_AllDoneTitle	Copias terminadas	Transfers finished
+Notify_Shutdown	El equipo se apagará en 1 minuto (cancelar: shutdown /a).	The computer will shut down in 1 minute (cancel: shutdown /a).
+Notify_Sleep	Suspendiendo el equipo…	Going to sleep…
+Error_NeedsPaths	La petición de copia necesita orígenes y un destino.	A copy request needs sources and a destination.

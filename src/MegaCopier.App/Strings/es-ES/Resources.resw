@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generado por tools/Strings/gen.cs a partir de strings.tsv: no editar a mano. -->
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="JobsSection.Text" xml:space="preserve"><value>Copias</value></data>
+  <data name="SettingsSection.Text" xml:space="preserve"><value>Ajustes</value></data>
+  <data name="FinishButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Qué hacer cuando terminen todas las copias</value></data>
+  <data name="FinishNothing.Text" xml:space="preserve"><value>No hacer nada</value></data>
+  <data name="FinishSleep.Text" xml:space="preserve"><value>Suspender el equipo</value></data>
+  <data name="FinishShutdown.Text" xml:space="preserve"><value>Apagar el equipo</value></data>
+  <data name="NewCopyText.Text" xml:space="preserve"><value>Nueva copia</value></data>
+  <data name="CopyFilesItem.Text" xml:space="preserve"><value>Copiar archivos…</value></data>
+  <data name="CopyFolderItem.Text" xml:space="preserve"><value>Copiar una carpeta…</value></data>
+  <data name="EmptyTitle.Text" xml:space="preserve"><value>No hay copias</value></data>
+  <data name="EmptyDescription.Text" xml:space="preserve"><value>Las copias que inicies aparecerán aquí. Si se corta la luz, al volver podrás continuarlas desde donde quedaron.</value></data>
+  <data name="PauseButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Pausar</value></data>
+  <data name="StopButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Detener (se podrá continuar más tarde)</value></data>
+  <data name="OpenFolderButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Abrir la carpeta de destino</value></data>
+  <data name="ClearButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Quitar de la lista</value></data>
+  <data name="DiscardButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Descartar y borrar lo copiado a medias</value></data>
+  <data name="ConflictDialog.Title" xml:space="preserve"><value>El archivo ya existe</value></data>
+  <data name="ConflictDialog.PrimaryButtonText" xml:space="preserve"><value>Reemplazar</value></data>
+  <data name="ConflictDialog.SecondaryButtonText" xml:space="preserve"><value>Conservar ambos</value></data>
+  <data name="ConflictDialog.CloseButtonText" xml:space="preserve"><value>Omitir</value></data>
+  <data name="ConflictExistingTitle.Text" xml:space="preserve"><value>El que ya está</value></data>
+  <data name="ConflictApplyAll.Content" xml:space="preserve"><value>Hacer lo mismo con los demás conflictos de esta copia</value></data>
+  <data name="RestartInfo.Title" xml:space="preserve"><value>Reinicia MegaCopier para aplicar el cambio</value></data>
+  <data name="RestartInfo.Message" xml:space="preserve"><value>Las copias en curso se detendrán y podrás continuarlas al volver.</value></data>
+  <data name="RestartButton.Content" xml:space="preserve"><value>Reiniciar ahora</value></data>
+  <data name="AppearanceHeader.Text" xml:space="preserve"><value>Apariencia</value></data>
+  <data name="ThemeTitle.Text" xml:space="preserve"><value>Tema</value></data>
+  <data name="ThemeDescription.Text" xml:space="preserve"><value>Claro, oscuro o el mismo que Windows</value></data>
+  <data name="ThemeSystem.Content" xml:space="preserve"><value>Usar el de Windows</value></data>
+  <data name="ThemeLight.Content" xml:space="preserve"><value>Claro</value></data>
+  <data name="ThemeDark.Content" xml:space="preserve"><value>Oscuro</value></data>
+  <data name="AccentTitle.Text" xml:space="preserve"><value>Color de acento</value></data>
+  <data name="AccentDescription.Text" xml:space="preserve"><value>Color de los botones, barras de progreso y elementos destacados</value></data>
+  <data name="BackdropTitle.Text" xml:space="preserve"><value>Fondo de la ventana</value></data>
+  <data name="BackdropDescription.Text" xml:space="preserve"><value>Los materiales de Windows 11 dejan entrever el escritorio</value></data>
+  <data name="BackdropMica.Content" xml:space="preserve"><value>Mica</value></data>
+  <data name="BackdropMicaAlt.Content" xml:space="preserve"><value>Mica Alt (más tono)</value></data>
+  <data name="BackdropAcrylic.Content" xml:space="preserve"><value>Acrílico</value></data>
+  <data name="BackdropSolid.Content" xml:space="preserve"><value>Sólido</value></data>
+  <data name="LanguageTitle.Text" xml:space="preserve"><value>Idioma</value></data>
+  <data name="LanguageDescription.Text" xml:space="preserve"><value>Idioma de MegaCopier y de sus opciones en el Explorador</value></data>
+  <data name="LanguageAuto.Content" xml:space="preserve"><value>Usar el de Windows</value></data>
+  <data name="OnTopTitle.Text" xml:space="preserve"><value>Siempre visible</value></data>
+  <data name="OnTopDescription.Text" xml:space="preserve"><value>La ventana queda por encima de las demás mientras copias</value></data>
+  <data name="CopyHeader.Text" xml:space="preserve"><value>Copia</value></data>
+  <data name="VerifyTitle.Text" xml:space="preserve"><value>Verificar después de copiar</value></data>
+  <data name="VerifyDescription.Text" xml:space="preserve"><value>Relee el destino sin caché y repara cualquier bloque que no coincida con el origen</value></data>
+  <data name="ConflictTitle.Text" xml:space="preserve"><value>Si el archivo ya existe</value></data>
+  <data name="ConflictDescription.Text" xml:space="preserve"><value>Los archivos idénticos (mismo tamaño y fecha) siempre se omiten</value></data>
+  <data name="ConflictAsk.Content" xml:space="preserve"><value>Preguntar</value></data>
+  <data name="ConflictReplace.Content" xml:space="preserve"><value>Reemplazar</value></data>
+  <data name="ConflictSkip.Content" xml:space="preserve"><value>Omitir</value></data>
+  <data name="ConflictNewer.Content" xml:space="preserve"><value>Reemplazar si es más nuevo</value></data>
+  <data name="ConflictKeepBoth.Content" xml:space="preserve"><value>Conservar ambos</value></data>
+  <data name="SpeedTitle.Text" xml:space="preserve"><value>Límite de velocidad</value></data>
+  <data name="SpeedDescription.Text" xml:space="preserve"><value>Deja ancho de banda del disco o de la red para otras tareas (se aplica a las copias nuevas)</value></data>
+  <data name="SpeedUnlimited.Content" xml:space="preserve"><value>Sin límite</value></data>
+  <data name="AutoResumeTitle.Text" xml:space="preserve"><value>Continuar automáticamente las copias interrumpidas</value></data>
+  <data name="AutoResumeDescription.Text" xml:space="preserve"><value>Tras un apagón o un reinicio, sigue sin preguntar al abrir MegaCopier</value></data>
+  <data name="ExplorerHeader.Text" xml:space="preserve"><value>Explorador de archivos</value></data>
+  <data name="PasteTitle.Text" xml:space="preserve"><value>Copiar y mover con MegaCopier al pegar (Ctrl+V)</value></data>
+  <data name="PasteDescription.Text" xml:space="preserve"><value>Al pegar en el Explorador o el Escritorio archivos copiados (Ctrl+C) o cortados (Ctrl+X), lo hace MegaCopier. Pegar en la misma carpeta sigue con el Explorador</value></data>
+  <data name="ShellMenuTitle.Text" xml:space="preserve"><value>Opciones en el menú contextual</value></data>
+  <data name="ShellMenuDescription.Text" xml:space="preserve"><value>«Pegar con MegaCopier» (en Mostrar más opciones) y «Copiar / Mover aquí con MegaCopier» al arrastrar con el botón derecho</value></data>
+  <data name="SystemHeader.Text" xml:space="preserve"><value>Sistema</value></data>
+  <data name="StartupTitle.Text" xml:space="preserve"><value>Iniciar con Windows</value></data>
+  <data name="StartupDescription.Text" xml:space="preserve"><value>Se queda en la bandeja para que las copias empiecen al instante</value></data>
+  <data name="NotifyTitle.Text" xml:space="preserve"><value>Avisar al terminar</value></data>
+  <data name="NotifyDescription.Text" xml:space="preserve"><value>Notificación del sistema cuando acaba una copia y la ventana no está a la vista</value></data>
+  <data name="Accent_System" xml:space="preserve"><value>Usar el de Windows</value></data>
+  <data name="Accent_Blue" xml:space="preserve"><value>Azul</value></data>
+  <data name="Accent_Violet" xml:space="preserve"><value>Violeta</value></data>
+  <data name="Accent_Teal" xml:space="preserve"><value>Turquesa</value></data>
+  <data name="Accent_Green" xml:space="preserve"><value>Verde</value></data>
+  <data name="Accent_Orange" xml:space="preserve"><value>Naranja</value></data>
+  <data name="Accent_Pink" xml:space="preserve"><value>Rosa</value></data>
+  <data name="Accent_Red" xml:space="preserve"><value>Rojo</value></data>
+  <data name="About" xml:space="preserve"><value>MegaCopier {0} · copias que sobreviven a los cortes de luz</value></data>
+  <data name="Picker_CopyHere" xml:space="preserve"><value>Copiar aquí</value></data>
+  <data name="Finish_Label" xml:space="preserve"><value>Al terminar</value></data>
+  <data name="Finish_LabelSleep" xml:space="preserve"><value>Al terminar: suspender</value></data>
+  <data name="Finish_LabelShutdown" xml:space="preserve"><value>Al terminar: apagar</value></data>
+  <data name="Conflict_Message" xml:space="preserve"><value>Ya hay un archivo llamado «{0}» en «{1}».</value></data>
+  <data name="Conflict_SourceCopy" xml:space="preserve"><value>El que vas a copiar</value></data>
+  <data name="Conflict_SourceMove" xml:space="preserve"><value>El que vas a mover</value></data>
+  <data name="Conflict_Newer" xml:space="preserve"><value> · más reciente</value></data>
+  <data name="Job_OneItem" xml:space="preserve"><value>«{0}»</value></data>
+  <data name="Job_ManyItems" xml:space="preserve"><value>{0} elementos</value></data>
+  <data name="Job_TitleCopying" xml:space="preserve"><value>Copiando {0}</value></data>
+  <data name="Job_TitleMoving" xml:space="preserve"><value>Moviendo {0}</value></data>
+  <data name="Job_TitleCopied" xml:space="preserve"><value>Copiado {0}</value></data>
+  <data name="Job_TitleMoved" xml:space="preserve"><value>Movido {0}</value></data>
+  <data name="Job_TitleQueued" xml:space="preserve"><value>En espera: {0}</value></data>
+  <data name="Job_Destination" xml:space="preserve"><value>a {0}</value></data>
+  <data name="Job_StateQueued" xml:space="preserve"><value>En cola · espera a que el disco quede libre</value></data>
+  <data name="Job_StateVerifying" xml:space="preserve"><value>Verificando</value></data>
+  <data name="Job_StateValidating" xml:space="preserve"><value>Comprobando lo ya copiado</value></data>
+  <data name="Job_StateWaiting" xml:space="preserve"><value>Esperando tu decisión: el archivo ya existe</value></data>
+  <data name="Job_StateCopying" xml:space="preserve"><value>Copiando</value></data>
+  <data name="Job_StateMoving" xml:space="preserve"><value>Moviendo</value></data>
+  <data name="Job_StatePaused" xml:space="preserve"><value>En pausa</value></data>
+  <data name="Job_StateCompleted" xml:space="preserve"><value>Completado</value></data>
+  <data name="Job_StateCompletedErrors" xml:space="preserve"><value>Completado con errores</value></data>
+  <data name="Job_StateFailed" xml:space="preserve"><value>Error</value></data>
+  <data name="Job_StateInterrupted" xml:space="preserve"><value>Interrumpido · se puede continuar desde donde quedó</value></data>
+  <data name="Job_ResumeHint" xml:space="preserve"><value>Pulsa Continuar para seguir</value></data>
+  <data name="Job_Preparing" xml:space="preserve"><value>Preparando…</value></data>
+  <data name="Job_Progress" xml:space="preserve"><value>{0} de {1}</value></data>
+  <data name="Job_Remaining" xml:space="preserve"><value>quedan {0}</value></data>
+  <data name="Job_Files" xml:space="preserve"><value>{0} de {1} archivos</value></data>
+  <data name="Job_FilesCopiedOne" xml:space="preserve"><value>{0} archivo copiado</value></data>
+  <data name="Job_FilesCopiedMany" xml:space="preserve"><value>{0} archivos copiados</value></data>
+  <data name="Job_FilesMovedOne" xml:space="preserve"><value>{0} archivo movido</value></data>
+  <data name="Job_FilesMovedMany" xml:space="preserve"><value>{0} archivos movidos</value></data>
+  <data name="Job_TransferredIn" xml:space="preserve"><value>{0} en {1}</value></data>
+  <data name="Job_Recovered" xml:space="preserve"><value>{0} recuperados</value></data>
+  <data name="Job_Skipped" xml:space="preserve"><value>{0} omitidos</value></data>
+  <data name="Job_Verified" xml:space="preserve"><value>verificado</value></data>
+  <data name="Job_Repaired" xml:space="preserve"><value>({0} bloques reparados)</value></data>
+  <data name="Job_FailedFiles" xml:space="preserve"><value>{0} archivos con errores</value></data>
+  <data name="Job_Resume" xml:space="preserve"><value>Continuar</value></data>
+  <data name="Job_Retry" xml:space="preserve"><value>Reintentar</value></data>
+  <data name="Job_FailuresHeader" xml:space="preserve"><value>Ver los {0} archivos con problemas</value></data>
+  <data name="Job_FailuresMore" xml:space="preserve"><value>… y {0} más</value></data>
+  <data name="Tray_Open" xml:space="preserve"><value>Abrir MegaCopier</value></data>
+  <data name="Tray_PauseAll" xml:space="preserve"><value>Pausar todo</value></data>
+  <data name="Tray_ResumeAll" xml:space="preserve"><value>Reanudar todo</value></data>
+  <data name="Tray_Startup" xml:space="preserve"><value>Iniciar con Windows</value></data>
+  <data name="Tray_Exit" xml:space="preserve"><value>Salir</value></data>
+  <data name="Tray_OneJob" xml:space="preserve"><value>1 copia</value></data>
+  <data name="Tray_ManyJobs" xml:space="preserve"><value>{0} copias</value></data>
+  <data name="Notify_InterruptedTitle" xml:space="preserve"><value>Hay copias interrumpidas</value></data>
+  <data name="Notify_InterruptedOne" xml:space="preserve"><value>Una copia quedó a medias. Ábrela para continuarla desde donde quedó.</value></data>
+  <data name="Notify_InterruptedMany" xml:space="preserve"><value>{0} copias quedaron a medias. Ábrelas para continuarlas.</value></data>
+  <data name="Notify_DoneTitle" xml:space="preserve"><value>Copia terminada</value></data>
+  <data name="Notify_ProblemTitle" xml:space="preserve"><value>La copia tuvo problemas</value></data>
+  <data name="Notify_AllDoneTitle" xml:space="preserve"><value>Copias terminadas</value></data>
+  <data name="Notify_Shutdown" xml:space="preserve"><value>El equipo se apagará en 1 minuto (cancelar: shutdown /a).</value></data>
+  <data name="Notify_Sleep" xml:space="preserve"><value>Suspendiendo el equipo…</value></data>
+  <data name="Error_NeedsPaths" xml:space="preserve"><value>La petición de copia necesita orígenes y un destino.</value></data>
+</root>

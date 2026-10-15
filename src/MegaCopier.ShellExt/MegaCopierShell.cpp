@@ -30,6 +30,27 @@ static LONG g_locks = 0;
 namespace {
 
 // ---------------------------------------------------------------------------------------------------------------
+// Idioma: el que publica la app en HKCU\Software\MegaCopier\Language, o el de Windows.
+
+// Se lee cada vez (es instantáneo): el Explorador mantiene la DLL cargada y el usuario puede cambiar el idioma.
+bool UseSpanish()
+{
+    wchar_t value[16] = {};
+    DWORD size = sizeof(value);
+    if (RegGetValueW(HKEY_CURRENT_USER, L"Software\\MegaCopier", L"Language", RRF_RT_REG_SZ, nullptr, value, &size) == ERROR_SUCCESS && value[0] != L'\0')
+    {
+        return _wcsnicmp(value, L"es", 2) == 0;
+    }
+
+    return PRIMARYLANGID(GetUserDefaultUILanguage()) == LANG_SPANISH;
+}
+
+const wchar_t* T(const wchar_t* spanish, const wchar_t* english)
+{
+    return UseSpanish() ? spanish : english;
+}
+
+// ---------------------------------------------------------------------------------------------------------------
 // Utilidades
 
 std::wstring ModuleDirectory()
@@ -338,7 +359,7 @@ bool StartCopy(HWND owner, const std::vector<std::wstring>& sources, const std::
         return true;
     }
 
-    std::wstring message = L"No se pudo entregar la copia a MegaCopier.";
+    std::wstring message = T(L"No se pudo entregar la copia a MegaCopier.", L"Couldn't hand the transfer over to MegaCopier.");
     if (!error.empty())
     {
         int size = MultiByteToWideChar(CP_UTF8, 0, error.data(), static_cast<int>(error.size()), nullptr, 0);
@@ -463,8 +484,8 @@ public:
             // Arrastre con el botón derecho: lo arrastrado va a la carpeta destino.
             m_sources = m_items;
             m_destination = m_folder;
-            m_commands.push_back({ L"Copiar aquí con MegaCopier", false });
-            m_commands.push_back({ L"Mover aquí con MegaCopier", true });
+            m_commands.push_back({ T(L"Copiar aquí con MegaCopier", L"Copy here with MegaCopier"), false });
+            m_commands.push_back({ T(L"Mover aquí con MegaCopier", L"Move here with MegaCopier"), true });
         }
         else
         {
@@ -479,12 +500,14 @@ public:
             if (m_items.empty())
             {
                 m_destination = m_folder; // fondo de una carpeta o del Escritorio
-                m_commands.push_back({ clipboard.cut ? L"Mover aquí con MegaCopier" : L"Pegar con MegaCopier", clipboard.cut });
+                m_commands.push_back({ clipboard.cut ? T(L"Mover aquí con MegaCopier", L"Move here with MegaCopier")
+                                                     : T(L"Pegar con MegaCopier", L"Paste with MegaCopier"), clipboard.cut });
             }
             else if (attributes != INVALID_FILE_ATTRIBUTES && (attributes & FILE_ATTRIBUTE_DIRECTORY))
             {
                 m_destination = m_items[0]; // sobre una carpeta o una unidad
-                m_commands.push_back({ clipboard.cut ? L"Mover a esta carpeta con MegaCopier" : L"Pegar en esta carpeta con MegaCopier", clipboard.cut });
+                m_commands.push_back({ clipboard.cut ? T(L"Mover a esta carpeta con MegaCopier", L"Move into this folder with MegaCopier")
+                                                     : T(L"Pegar en esta carpeta con MegaCopier", L"Paste into this folder with MegaCopier"), clipboard.cut });
             }
 
             m_sources = clipboard.files;
@@ -567,7 +590,7 @@ public:
             lstrcpynW(reinterpret_cast<LPWSTR>(name), command == 1 ? L"megacopier-move" : L"megacopier", maxLength);
             return S_OK;
         case GCS_HELPTEXTW:
-            lstrcpynW(reinterpret_cast<LPWSTR>(name), L"Copia con MegaCopier: reanudable tras un corte de luz", maxLength);
+            lstrcpynW(reinterpret_cast<LPWSTR>(name), T(L"Copia con MegaCopier: reanudable tras un corte de luz", L"Copy with MegaCopier: resumes after a power cut"), maxLength);
             return S_OK;
         default:
             return E_NOTIMPL;

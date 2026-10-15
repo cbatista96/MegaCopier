@@ -6,10 +6,6 @@
     xmlns:vm="using:MegaCopier.App.ViewModels"
     Title="MegaCopier">
 
-    <Window.SystemBackdrop>
-        <MicaBackdrop />
-    </Window.SystemBackdrop>
-
     <Grid x:Name="Root">
         <Grid.RowDefinitions>
             <RowDefinition Height="48" />
@@ -17,7 +13,10 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <!-- Barra de título propia (se integra con Mica) -->
+        <!-- Fondo opaco para la opción "Sólido" (con Mica/Acrílico queda oculto) -->
+        <Border x:Name="SolidBackground" Grid.RowSpan="3" Background="{ThemeResource SolidBackgroundFillColorBaseBrush}" Visibility="Collapsed" />
+
+        <!-- Barra de título propia (se integra con el fondo Mica) -->
         <Grid x:Name="AppTitleBar" Padding="16,0,0,0">
             <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
                 <Image Source="ms-appx:///Assets/MegaCopier.ico" Width="18" Height="18" />
@@ -25,51 +24,51 @@
             </StackPanel>
         </Grid>
 
-        <!-- Cabecera: secciones + acción principal -->
-        <Grid Grid.Row="1" Padding="20,4,20,8" ColumnSpacing="12">
+        <!-- Cabecera: secciones + acciones -->
+        <Grid Grid.Row="1" Padding="20,4,20,8" ColumnSpacing="8">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <DropDownButton x:Name="FinishButton" Grid.Column="1" VerticalAlignment="Center" ToolTipService.ToolTip="Qué hacer cuando terminen todas las copias">
-                <StackPanel Orientation="Horizontal" Spacing="8">
-                    <FontIcon x:Name="FinishIcon" Glyph="&#xE7E8;" FontSize="14" />
-                    <TextBlock x:Name="FinishText" Text="Al terminar" />
-                </StackPanel>
-                <DropDownButton.Flyout>
-                    <MenuFlyout Placement="BottomEdgeAlignedRight">
-                        <RadioMenuFlyoutItem x:Name="FinishNothing" Text="No hacer nada" GroupName="Finish" IsChecked="True" Click="Finish_Click" />
-                        <RadioMenuFlyoutItem x:Name="FinishSleep" Text="Suspender el equipo" GroupName="Finish" Click="Finish_Click" />
-                        <RadioMenuFlyoutItem x:Name="FinishShutdown" Text="Apagar el equipo" GroupName="Finish" Click="Finish_Click" />
-                    </MenuFlyout>
-                </DropDownButton.Flyout>
-            </DropDownButton>
             <SelectorBar x:Name="Sections" SelectionChanged="Sections_SelectionChanged">
-                <SelectorBarItem x:Name="JobsSection" Text="Copias" IsSelected="True">
+                <SelectorBarItem x:Name="JobsSection" x:Uid="JobsSection" IsSelected="True">
                     <SelectorBarItem.Icon>
                         <FontIcon Glyph="&#xE8C8;" />
                     </SelectorBarItem.Icon>
                 </SelectorBarItem>
-                <SelectorBarItem x:Name="SettingsSection" Text="Ajustes">
+                <SelectorBarItem x:Name="SettingsSection" x:Uid="SettingsSection">
                     <SelectorBarItem.Icon>
                         <FontIcon Glyph="&#xE713;" />
                     </SelectorBarItem.Icon>
                 </SelectorBarItem>
             </SelectorBar>
-            <DropDownButton Grid.Column="2" Style="{StaticResource AccentButtonStyle}" VerticalAlignment="Center">
+            <DropDownButton x:Name="FinishButton" x:Uid="FinishButton" Grid.Column="1" VerticalAlignment="Center">
                 <StackPanel Orientation="Horizontal" Spacing="8">
-                    <FontIcon Glyph="&#xE710;" FontSize="14" />
-                    <TextBlock Text="Nueva copia" />
+                    <FontIcon x:Name="FinishIcon" Glyph="&#xE823;" FontSize="14" />
+                    <TextBlock x:Name="FinishText" />
                 </StackPanel>
                 <DropDownButton.Flyout>
                     <MenuFlyout Placement="BottomEdgeAlignedRight">
-                        <MenuFlyoutItem Text="Copiar archivos…" Click="CopyFiles_Click">
+                        <RadioMenuFlyoutItem x:Name="FinishNothing" x:Uid="FinishNothing" GroupName="Finish" IsChecked="True" Click="Finish_Click" />
+                        <RadioMenuFlyoutItem x:Name="FinishSleep" x:Uid="FinishSleep" GroupName="Finish" Click="Finish_Click" />
+                        <RadioMenuFlyoutItem x:Name="FinishShutdown" x:Uid="FinishShutdown" GroupName="Finish" Click="Finish_Click" />
+                    </MenuFlyout>
+                </DropDownButton.Flyout>
+            </DropDownButton>
+            <DropDownButton Grid.Column="2" Style="{StaticResource AccentButtonStyle}" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <FontIcon Glyph="&#xE710;" FontSize="14" />
+                    <TextBlock x:Uid="NewCopyText" />
+                </StackPanel>
+                <DropDownButton.Flyout>
+                    <MenuFlyout Placement="BottomEdgeAlignedRight">
+                        <MenuFlyoutItem x:Uid="CopyFilesItem" Click="CopyFiles_Click">
                             <MenuFlyoutItem.Icon>
                                 <FontIcon Glyph="&#xE8A5;" />
                             </MenuFlyoutItem.Icon>
                         </MenuFlyoutItem>
-                        <MenuFlyoutItem Text="Copiar una carpeta…" Click="CopyFolder_Click">
+                        <MenuFlyoutItem x:Uid="CopyFolderItem" Click="CopyFolder_Click">
                             <MenuFlyoutItem.Icon>
                                 <FontIcon Glyph="&#xE8B7;" />
                             </MenuFlyoutItem.Icon>
@@ -83,9 +82,9 @@
         <Grid x:Name="JobsView" Grid.Row="2">
             <StackPanel x:Name="EmptyState" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="8" Margin="24,0,24,48">
                 <FontIcon Glyph="&#xE8C8;" FontSize="44" Foreground="{ThemeResource TextFillColorTertiaryBrush}" />
-                <TextBlock Text="No hay copias" Style="{StaticResource SubtitleTextBlockStyle}" HorizontalAlignment="Center" />
+                <TextBlock x:Uid="EmptyTitle" Style="{StaticResource SubtitleTextBlockStyle}" HorizontalAlignment="Center" />
                 <TextBlock
-                    Text="Las copias que inicies aparecerán aquí. Si se corta la luz, al volver podrás continuarlas desde donde quedaron."
+                    x:Uid="EmptyDescription"
                     Style="{StaticResource BodyTextBlockStyle}"
                     Foreground="{ThemeResource TextFillColorSecondaryBrush}"
                     TextAlignment="Center" MaxWidth="380" TextWrapping="Wrap" />
@@ -128,7 +127,7 @@
                                     </StackPanel>
 
                                     <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="4" VerticalAlignment="Top">
-                                        <Button Visibility="{x:Bind CanPause, Mode=OneWay}" Click="{x:Bind Pause}" ToolTipService.ToolTip="Pausar" Style="{StaticResource SubtleButtonStyle}">
+                                        <Button x:Uid="PauseButton" Visibility="{x:Bind CanPause, Mode=OneWay}" Click="{x:Bind Pause}" Style="{StaticResource SubtleButtonStyle}">
                                             <FontIcon Glyph="&#xE769;" FontSize="14" />
                                         </Button>
                                         <Button Visibility="{x:Bind CanResume, Mode=OneWay}" Click="{x:Bind Resume}" Style="{StaticResource AccentButtonStyle}">
@@ -137,16 +136,16 @@
                                                 <TextBlock Text="{x:Bind ResumeLabel, Mode=OneWay}" />
                                             </StackPanel>
                                         </Button>
-                                        <Button Visibility="{x:Bind CanStop, Mode=OneWay}" Click="{x:Bind Stop}" ToolTipService.ToolTip="Detener (se podrá continuar más tarde)" Style="{StaticResource SubtleButtonStyle}">
+                                        <Button x:Uid="StopButton" Visibility="{x:Bind CanStop, Mode=OneWay}" Click="{x:Bind Stop}" Style="{StaticResource SubtleButtonStyle}">
                                             <FontIcon Glyph="&#xE71A;" FontSize="14" />
                                         </Button>
-                                        <Button Visibility="{x:Bind CanClear, Mode=OneWay}" Click="{x:Bind OpenDestination}" ToolTipService.ToolTip="Abrir la carpeta de destino" Style="{StaticResource SubtleButtonStyle}">
+                                        <Button x:Uid="OpenFolderButton" Visibility="{x:Bind CanClear, Mode=OneWay}" Click="{x:Bind OpenDestination}" Style="{StaticResource SubtleButtonStyle}">
                                             <FontIcon Glyph="&#xE838;" FontSize="14" />
                                         </Button>
-                                        <Button Visibility="{x:Bind CanClear, Mode=OneWay}" Click="{x:Bind Clear}" ToolTipService.ToolTip="Quitar de la lista" Style="{StaticResource SubtleButtonStyle}">
+                                        <Button x:Uid="ClearButton" Visibility="{x:Bind CanClear, Mode=OneWay}" Click="{x:Bind Clear}" Style="{StaticResource SubtleButtonStyle}">
                                             <FontIcon Glyph="&#xE711;" FontSize="14" />
                                         </Button>
-                                        <Button Visibility="{x:Bind CanDiscard, Mode=OneWay}" Click="{x:Bind Discard}" ToolTipService.ToolTip="Descartar y borrar lo copiado a medias" Style="{StaticResource SubtleButtonStyle}">
+                                        <Button x:Uid="DiscardButton" Visibility="{x:Bind CanDiscard, Mode=OneWay}" Click="{x:Bind Discard}" Style="{StaticResource SubtleButtonStyle}">
                                             <FontIcon Glyph="&#xE74D;" FontSize="14" />
                                         </Button>
                                     </StackPanel>
@@ -193,12 +192,9 @@
         <!-- Conflicto: el archivo ya existe -->
         <ContentDialog
             x:Name="ConflictDialog"
+            x:Uid="ConflictDialog"
             Grid.RowSpan="3"
             Style="{StaticResource DefaultContentDialogStyle}"
-            Title="El archivo ya existe"
-            PrimaryButtonText="Reemplazar"
-            SecondaryButtonText="Conservar ambos"
-            CloseButtonText="Omitir"
             DefaultButton="Primary">
             <StackPanel Spacing="12" MaxWidth="460">
                 <TextBlock x:Name="ConflictMessage" TextWrapping="Wrap" />
@@ -216,20 +212,27 @@
                     </Border>
                     <Border Grid.Column="1" Style="{StaticResource SettingCard}" MinHeight="0">
                         <StackPanel Spacing="2">
-                            <TextBlock Text="El que ya está" Style="{StaticResource BodyStrongTextBlockStyle}" />
+                            <TextBlock x:Uid="ConflictExistingTitle" Style="{StaticResource BodyStrongTextBlockStyle}" />
                             <TextBlock x:Name="ConflictDestinationSize" Style="{StaticResource CaptionTextBlockStyle}" />
                             <TextBlock x:Name="ConflictDestinationDate" Style="{StaticResource CaptionTextBlockStyle}" />
                         </StackPanel>
                     </Border>
                 </Grid>
-                <CheckBox x:Name="ConflictApplyAll" Content="Hacer lo mismo con los demás conflictos de esta copia" />
+                <CheckBox x:Name="ConflictApplyAll" x:Uid="ConflictApplyAll" />
             </StackPanel>
         </ContentDialog>
 
         <!-- Ajustes -->
         <ScrollViewer x:Name="SettingsView" Grid.Row="2" Visibility="Collapsed" Padding="20,0,20,20">
             <StackPanel Spacing="4" MaxWidth="760" HorizontalAlignment="Stretch">
-                <TextBlock Text="Apariencia" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="2,8,0,4" />
+
+                <InfoBar x:Name="RestartInfo" x:Uid="RestartInfo" Severity="Informational" IsClosable="False" IsOpen="False" Margin="0,8,0,0">
+                    <InfoBar.ActionButton>
+                        <Button x:Uid="RestartButton" Click="Restart_Click" />
+                    </InfoBar.ActionButton>
+                </InfoBar>
+
+                <TextBlock x:Uid="AppearanceHeader" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="2,8,0,4" />
                 <Border Style="{StaticResource SettingCard}">
                     <Grid ColumnSpacing="12">
                         <Grid.ColumnDefinitions>
@@ -237,18 +240,16 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <StackPanel>
-                            <TextBlock Text="Tema" />
-                            <TextBlock Text="Claro, oscuro o el mismo que Windows" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                            <TextBlock x:Uid="ThemeTitle" />
+                            <TextBlock x:Uid="ThemeDescription" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" />
                         </StackPanel>
-                        <ComboBox x:Name="ThemeBox" Grid.Column="1" MinWidth="200" SelectionChanged="ThemeBox_SelectionChanged" VerticalAlignment="Center">
-                            <ComboBoxItem Content="Usar el de Windows" />
-                            <ComboBoxItem Content="Claro" />
-                            <ComboBoxItem Content="Oscuro" />
+                        <ComboBox x:Name="ThemeBox" Grid.Column="1" MinWidth="220" SelectionChanged="ThemeBox_SelectionChanged" VerticalAlignment="Center">
+                            <ComboBoxItem x:Uid="ThemeSystem" />
+                            <ComboBoxItem x:Uid="ThemeLight" />
+                            <ComboBoxItem x:Uid="ThemeDark" />
                         </ComboBox>
                     </Grid>
                 </Border>
-
-                <TextBlock Text="Copia" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="2,16,0,4" />
                 <Border Style="{StaticResource SettingCard}">
                     <Grid ColumnSpacing="12">
                         <Grid.ColumnDefinitions>
@@ -256,8 +257,71 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <StackPanel>
-                            <TextBlock Text="Verificar después de copiar" />
-                            <TextBlock Text="Relee el destino sin caché y repara cualquier bloque que no coincida con el origen" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" />
+                            <TextBlock x:Uid="AccentTitle" />
+                            <TextBlock x:Uid="AccentDescription" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" />
+                        </StackPanel>
+                        <ComboBox x:Name="AccentBox" Grid.Column="1" MinWidth="220" SelectionChanged="AccentBox_SelectionChanged" VerticalAlignment="Center" />
+                    </Grid>
+                </Border>
+                <Border Style="{StaticResource SettingCard}">
+                    <Grid ColumnSpacing="12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel>
+                            <TextBlock x:Uid="BackdropTitle" />
+                            <TextBlock x:Uid="BackdropDescription" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" />
+                        </StackPanel>
+                        <ComboBox x:Name="BackdropBox" Grid.Column="1" MinWidth="220" SelectionChanged="BackdropBox_SelectionChanged" VerticalAlignment="Center">
+                            <ComboBoxItem x:Uid="BackdropMica" />
+                            <ComboBoxItem x:Uid="BackdropMicaAlt" />
+                            <ComboBoxItem x:Uid="BackdropAcrylic" />
+                            <ComboBoxItem x:Uid="BackdropSolid" />
+                        </ComboBox>
+                    </Grid>
+                </Border>
+                <Border Style="{StaticResource SettingCard}">
+                    <Grid ColumnSpacing="12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel>
+                            <TextBlock x:Uid="LanguageTitle" />
+                            <TextBlock x:Uid="LanguageDescription" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" />
+                        </StackPanel>
+                        <ComboBox x:Name="LanguageBox" Grid.Column="1" MinWidth="220" SelectionChanged="LanguageBox_SelectionChanged" VerticalAlignment="Center">
+                            <ComboBoxItem x:Uid="LanguageAuto" Tag="" />
+                            <ComboBoxItem Content="Español" Tag="es-ES" />
+                            <ComboBoxItem Content="English" Tag="en-US" />
+                        </ComboBox>
+                    </Grid>
+                </Border>
+                <Border Style="{StaticResource SettingCard}">
+                    <Grid ColumnSpacing="12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel>
+                            <TextBlock x:Uid="OnTopTitle" />
+                            <TextBlock x:Uid="OnTopDescription" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" />
+                        </StackPanel>
+                        <ToggleSwitch x:Name="OnTopToggle" Grid.Column="1" OnContent="" OffContent="" MinWidth="0" Toggled="OnTopToggle_Toggled" />
+                    </Grid>
+                </Border>
+
+                <TextBlock x:Uid="CopyHeader" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="2,16,0,4" />
+                <Border Style="{StaticResource SettingCard}">
+                    <Grid ColumnSpacing="12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel>
+                            <TextBlock x:Uid="VerifyTitle" />
+                            <TextBlock x:Uid="VerifyDescription" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" />
                         </StackPanel>
                         <ToggleSwitch x:Name="VerifyToggle" Grid.Column="1" OnContent="" OffContent="" MinWidth="0" Toggled="VerifyToggle_Toggled" />
                     </Grid>
@@ -269,15 +333,15 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <StackPanel>
-                            <TextBlock Text="Si el archivo ya existe" />
-                            <TextBlock Text="Los archivos idénticos (mismo tamaño y fecha) siempre se omiten" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" />
+                            <TextBlock x:Uid="ConflictTitle" />
+                            <TextBlock x:Uid="ConflictDescription" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" />
                         </StackPanel>
-                        <ComboBox x:Name="ConflictBox" Grid.Column="1" MinWidth="200" SelectionChanged="ConflictBox_SelectionChanged" VerticalAlignment="Center">
-                            <ComboBoxItem Content="Preguntar" />
-                            <ComboBoxItem Content="Reemplazar" />
-                            <ComboBoxItem Content="Omitir" />
-                            <ComboBoxItem Content="Reemplazar si es más nuevo" />
-                            <ComboBoxItem Content="Conservar ambos" />
+                        <ComboBox x:Name="ConflictBox" Grid.Column="1" MinWidth="220" SelectionChanged="ConflictBox_SelectionChanged" VerticalAlignment="Center">
+                            <ComboBoxItem x:Uid="ConflictAsk" />
+                            <ComboBoxItem x:Uid="ConflictReplace" />
+                            <ComboBoxItem x:Uid="ConflictSkip" />
+                            <ComboBoxItem x:Uid="ConflictNewer" />
+                            <ComboBoxItem x:Uid="ConflictKeepBoth" />
                         </ComboBox>
                     </Grid>
                 </Border>
@@ -288,11 +352,11 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <StackPanel>
-                            <TextBlock Text="Límite de velocidad" />
-                            <TextBlock Text="Deja ancho de banda del disco o de la red para otras tareas (se aplica a las copias nuevas)" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" />
+                            <TextBlock x:Uid="SpeedTitle" />
+                            <TextBlock x:Uid="SpeedDescription" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" />
                         </StackPanel>
-                        <ComboBox x:Name="SpeedBox" Grid.Column="1" MinWidth="200" SelectionChanged="SpeedBox_SelectionChanged" VerticalAlignment="Center">
-                            <ComboBoxItem Content="Sin límite" Tag="0" />
+                        <ComboBox x:Name="SpeedBox" Grid.Column="1" MinWidth="220" SelectionChanged="SpeedBox_SelectionChanged" VerticalAlignment="Center">
+                            <ComboBoxItem x:Uid="SpeedUnlimited" Tag="0" />
                             <ComboBoxItem Content="10 MB/s" Tag="10" />
                             <ComboBoxItem Content="25 MB/s" Tag="25" />
                             <ComboBoxItem Content="50 MB/s" Tag="50" />
@@ -309,14 +373,14 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <StackPanel>
-                            <TextBlock Text="Continuar automáticamente las copias interrumpidas" />
-                            <TextBlock Text="Tras un apagón o un reinicio, sigue sin preguntar al abrir MegaCopier" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" />
+                            <TextBlock x:Uid="AutoResumeTitle" />
+                            <TextBlock x:Uid="AutoResumeDescription" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" />
                         </StackPanel>
                         <ToggleSwitch x:Name="AutoResumeToggle" Grid.Column="1" OnContent="" OffContent="" MinWidth="0" Toggled="AutoResumeToggle_Toggled" />
                     </Grid>
                 </Border>
 
-                <TextBlock Text="Explorador de archivos" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="2,16,0,4" />
+                <TextBlock x:Uid="ExplorerHeader" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="2,16,0,4" />
                 <Border Style="{StaticResource SettingCard}">
                     <Grid ColumnSpacing="12">
                         <Grid.ColumnDefinitions>
@@ -324,8 +388,8 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <StackPanel>
-                            <TextBlock Text="Copiar y mover con MegaCopier al pegar (Ctrl+V)" />
-                            <TextBlock Text="Al pegar en el Explorador o el Escritorio archivos copiados (Ctrl+C) o cortados (Ctrl+X), lo hace MegaCopier. Pegar en la misma carpeta sigue con el Explorador" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" />
+                            <TextBlock x:Uid="PasteTitle" />
+                            <TextBlock x:Uid="PasteDescription" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" />
                         </StackPanel>
                         <ToggleSwitch x:Name="PasteToggle" Grid.Column="1" OnContent="" OffContent="" MinWidth="0" Toggled="PasteToggle_Toggled" />
                     </Grid>
@@ -337,14 +401,14 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <StackPanel>
-                            <TextBlock Text="Opciones en el menú contextual" />
-                            <TextBlock Text="«Pegar con MegaCopier» (en Mostrar más opciones) y «Copiar / Mover aquí con MegaCopier» al arrastrar con el botón derecho" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" />
+                            <TextBlock x:Uid="ShellMenuTitle" />
+                            <TextBlock x:Uid="ShellMenuDescription" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" />
                         </StackPanel>
                         <ToggleSwitch x:Name="ShellMenuToggle" Grid.Column="1" OnContent="" OffContent="" MinWidth="0" Toggled="ShellMenuToggle_Toggled" />
                     </Grid>
                 </Border>
 
-                <TextBlock Text="Sistema" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="2,16,0,4" />
+                <TextBlock x:Uid="SystemHeader" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="2,16,0,4" />
                 <Border Style="{StaticResource SettingCard}">
                     <Grid ColumnSpacing="12">
                         <Grid.ColumnDefinitions>
@@ -352,8 +416,8 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <StackPanel>
-                            <TextBlock Text="Iniciar con Windows" />
-                            <TextBlock Text="Se queda en la bandeja para que las copias empiecen al instante" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" />
+                            <TextBlock x:Uid="StartupTitle" />
+                            <TextBlock x:Uid="StartupDescription" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" />
                         </StackPanel>
                         <ToggleSwitch x:Name="StartupToggle" Grid.Column="1" OnContent="" OffContent="" MinWidth="0" Toggled="StartupToggle_Toggled" />
                     </Grid>
@@ -365,8 +429,8 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <StackPanel>
-                            <TextBlock Text="Avisar al terminar" />
-                            <TextBlock Text="Notificación del sistema cuando acaba una copia y la ventana no está a la vista" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" />
+                            <TextBlock x:Uid="NotifyTitle" />
+                            <TextBlock x:Uid="NotifyDescription" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" />
                         </StackPanel>
                         <ToggleSwitch x:Name="NotifyToggle" Grid.Column="1" OnContent="" OffContent="" MinWidth="0" Toggled="NotifyToggle_Toggled" />
                     </Grid>

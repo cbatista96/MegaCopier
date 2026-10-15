@@ -2,10 +2,12 @@ using System.Globalization;
 
 namespace MegaCopier.App.ViewModels;
 
+/// <summary>Tamaños, velocidades, duraciones y fechas con el formato regional del usuario.</summary>
 internal static class Format
 {
-    private static readonly CultureInfo Culture = CultureInfo.GetCultureInfo("es-ES");
     private static readonly string[] Units = ["B", "KB", "MB", "GB", "TB"];
+
+    private static CultureInfo Culture => CultureInfo.CurrentCulture;
 
     public static string Bytes(double bytes)
     {
@@ -42,4 +44,6 @@ internal static class Format
 
         return $"{(int)span.TotalHours} h {span.Minutes:00} min";
     }
+
+    public static string Date(DateTime utc) => utc.ToLocalTime().ToString("g", Culture);
 }
