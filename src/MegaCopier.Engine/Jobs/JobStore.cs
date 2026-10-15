@@ -24,8 +24,14 @@ public sealed class CopyJobRecord
 
     public int QueueDepth { get; set; }
 
+    public bool Move { get; set; }
+
+    public long MaxBytesPerSecond { get; set; }
+
     public static CopyJobRecord New(IEnumerable<string> sources, string destination, CopyOptions options) => new()
     {
+        Move = options.Move,
+        MaxBytesPerSecond = options.MaxBytesPerSecond,
         Id = Guid.NewGuid().ToString("N")[..8],
         Sources = [.. sources],
         Destination = destination,
@@ -40,7 +46,7 @@ public sealed class CopyJobRecord
     public CopyOptions ToOptions()
     {
         // El bloque se guarda junto al tamaño de confirmación: ambos deben seguir encajando al reanudar.
-        var options = new CopyOptions { Conflict = Conflict, Verify = Verify };
+        var options = new CopyOptions { Conflict = Conflict, Verify = Verify, Move = Move, MaxBytesPerSecond = MaxBytesPerSecond };
         if (ChunkSize > 0 && BlockSize > 0)
         {
             options.ChunkSize = ChunkSize;

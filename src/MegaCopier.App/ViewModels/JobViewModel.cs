@@ -38,11 +38,12 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
         {
             var sources = Job.Record.Sources;
             string what = sources.Count == 1 ? $"«{Path.GetFileName(sources[0].TrimEnd('\\'))}»" : $"{sources.Count} elementos";
+            bool move = Job.Record.Move;
             return State switch
             {
-                CopyJobState.Completed => $"Copiado {what}",
+                CopyJobState.Completed => move ? $"Movido {what}" : $"Copiado {what}",
                 CopyJobState.Queued => $"{Capitalize(what)} en espera",
-                _ => $"Copiando {what}",
+                _ => move ? $"Moviendo {what}" : $"Copiando {what}",
             };
         }
     }
@@ -54,7 +55,8 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
         CopyJobState.Queued => "En cola · espera a que el disco quede libre",
         CopyJobState.Running when Progress?.Phase == CopyPhase.Verifying => "Verificando",
         CopyJobState.Running when Progress?.Phase == CopyPhase.Validating => "Comprobando lo ya copiado",
-        CopyJobState.Running => "Copiando",
+        CopyJobState.Running when Progress?.Phase == CopyPhase.WaitingForUser => "Esperando tu decisión: el archivo ya existe",
+        CopyJobState.Running => Job.Record.Move ? "Moviendo" : "Copiando",
         CopyJobState.Paused => "En pausa",
         CopyJobState.Completed => "Completado",
         CopyJobState.CompletedWithErrors => "Completado con errores",
@@ -75,12 +77,24 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
 
             if (State == CopyJobState.Completed && Job.Result is { } result)
             {
-                string speed = result.Elapsed.TotalSeconds > 0.05 ? $" · {Format.Speed(result.BytesTransferred / result.Elapsed.TotalSeconds)}" : "";
+                // La velocidad solo tiene sentido con un volumen apreciable (y sin esperas largas del usuario de por medio).
+                string speed = result.Elapsed.TotalSeconds > 0.05 && result.BytesTransferred >= 8 * 1024 * 1024
+                    ? $" · {Format.Speed(result.BytesTransferred / result.Elapsed.TotalSeconds)}"
+                    : "";
                 string resumed = result.BytesResumed > 0 ? $" · {Format.Bytes(result.BytesResumed)} recuperados" : "";
                 string skipped = result.FilesSkipped > 0 ? $" · {result.FilesSkipped} omitidos" : "";
                 string verified = Job.Record.Verify ? " · verificado" : "";
                 string repaired = result.ChunksRepaired > 0 ? $" ({result.ChunksRepaired} bloques reparados)" : "";
-                return $"{result.FilesCopied} archivos · {Format.Bytes(result.BytesTransferred)} en {Format.Duration(result.Elapsed)}{speed}{resumed}{skipped}{verified}{repaired}";
+                bool one = result.FilesCopied == 1;
+                string verb = (Job.Record.Move, one) switch
+                {
+                    (true, true) => "archivo movido",
+                    (true, false) => "archivos movidos",
+                    (false, true) => "archivo copiado",
+                    _ => "archivos copiados",
+                };
+                string transferred = result.BytesTransferred > 0 ? $" · {Format.Bytes(result.BytesTransferred)} en {Format.Duration(result.Elapsed)}{speed}" : "";
+                return $"{result.FilesCopied} {verb}{transferred}{resumed}{skipped}{verified}{repaired}";
             }
 
             if (Progress is not { } p)
@@ -130,6 +144,16 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
     public bool CanDiscard => State is CopyJobState.Interrupted or CopyJobState.Failed or CopyJobState.CompletedWithErrors;
 
     public bool CanClear => State == CopyJobState.Completed;
+
+    public bool HasFailures => Job.Result is { Failures.Count: > 0 };
+
+    public string FailuresHeader => Job.Result is { } r ? $"Ver los {r.Failures.Count} archivos con problemas" : "";
+
+    /// <summary>Un archivo por línea: nombre y motivo.</summary>
+    public string FailuresText => Job.Result is { } result
+        ? string.Join("\n", result.Failures.Take(200).Select(f => $"{Path.GetFileName(f.Source)} — {f.Message}"))
+          + (result.Failures.Count > 200 ? $"\n… y {result.Failures.Count - 200} más" : "")
+        : "";
 
     public string Glyph => State switch
     {

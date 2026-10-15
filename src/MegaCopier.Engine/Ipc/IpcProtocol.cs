@@ -23,6 +23,9 @@ public sealed class IpcRequest
     public bool? Verify { get; set; }
 
     public ConflictPolicy? Conflict { get; set; }
+
+    /// <summary>Mover en lugar de copiar (pegar tras Ctrl+X).</summary>
+    public bool? Move { get; set; }
 }
 
 public sealed class IpcResponse

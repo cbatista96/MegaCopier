@@ -154,6 +154,12 @@ public sealed class CopyQueue
         _optionsFor = optionsFor ?? (record => record.ToOptions());
     }
 
+    /// <summary>
+    /// Responde a los conflictos de los trabajos con <see cref="ConflictPolicy.Ask"/>. Se llama desde el hilo de copia
+    /// y puede bloquear hasta que el usuario decida. Sin él, los conflictos se omiten.
+    /// </summary>
+    public Func<CopyJob, ConflictInfo, CancellationToken, ConflictAnswer>? ConflictResolver { get; set; }
+
     public event Action<CopyJob>? JobAdded;
 
     public event Action<CopyJob>? JobRemoved;
@@ -356,6 +362,8 @@ public sealed class CopyQueue
         var cancellation = new CancellationTokenSource();
         job.Attach(engine, cancellation);
         engine.ProgressChanged += job.SetProgress;
+        engine.ConflictResolver = (info, token) =>
+            ConflictResolver?.Invoke(job, info, token) ?? new ConflictAnswer(ConflictDecision.Skip, ApplyToAll: false);
 
         _ = engine.RunAsync(new CopyJobRequest(job.Record.Sources, job.Record.Destination), cancellation.Token)
             .ContinueWith(

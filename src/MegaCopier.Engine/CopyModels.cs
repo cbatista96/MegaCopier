@@ -10,8 +10,30 @@ public enum CopyPhase
     Validating,
     Copying,
     Verifying,
+
+    /// <summary>Esperando a que el usuario decida un conflicto.</summary>
+    WaitingForUser,
     Completed,
 }
+
+public enum ConflictDecision
+{
+    Replace,
+    Skip,
+    KeepBoth,
+}
+
+/// <summary>Un archivo de destino ya existe y es distinto del origen.</summary>
+public sealed record ConflictInfo(
+    string Source,
+    string Destination,
+    long SourceLength,
+    DateTime SourceLastWriteUtc,
+    long DestinationLength,
+    DateTime DestinationLastWriteUtc);
+
+/// <param name="ApplyToAll">Usar la misma respuesta en el resto de conflictos de este trabajo.</param>
+public sealed record ConflictAnswer(ConflictDecision Decision, bool ApplyToAll);
 
 public readonly record struct CopyProgress(
     CopyPhase Phase,

@@ -27,7 +27,8 @@ internal static class Cli
         {
             return args[0] switch
             {
-                "copy" => Copy(args[1..]),
+                "copy" => Copy(args[1..], move: false),
+                "move" => Copy(args[1..], move: true),
                 "send" => Send(args[1..]),
                 "resume" => Resume(args.Length > 1 ? args[1] : null),
                 "jobs" => Jobs(),
@@ -40,9 +41,9 @@ internal static class Cli
         }
     }
 
-    private static int Copy(string[] args)
+    private static int Copy(string[] args, bool move)
     {
-        var options = new CopyOptions();
+        var options = new CopyOptions { Move = move };
         var paths = new List<string>();
         long? crashAfter = null;
 
@@ -67,8 +68,12 @@ internal static class Cli
                         "newer" => ConflictPolicy.OverwriteIfNewer,
                         "rename" => ConflictPolicy.KeepBoth,
                         "fail" => ConflictPolicy.Fail,
+                        "ask" => ConflictPolicy.Ask,
                         var other => throw new UsageException($"Modo de conflicto desconocido: {other}"),
                     };
+                    break;
+                case "--limit-mb":
+                    options.MaxBytesPerSecond = NextInt(args, ref i) * (long)CopyOptions.MiB;
                     break;
                 case "--chunk-mb":
                     options.ChunkSize = NextInt(args, ref i) * (long)CopyOptions.MiB;
@@ -118,11 +123,16 @@ internal static class Cli
     {
         var paths = new List<string>();
         bool verify = false;
+        bool move = false;
         foreach (string arg in args)
         {
             if (arg == "--verify")
             {
                 verify = true;
+            }
+            else if (arg == "--move")
+            {
+                move = true;
             }
             else if (arg.StartsWith("--", StringComparison.Ordinal))
             {
@@ -145,6 +155,7 @@ internal static class Cli
             Sources = paths[..^1],
             Destination = paths[^1],
             Verify = verify ? true : null,
+            Move = move ? true : null,
         };
 
         var watch = Stopwatch.StartNew();
@@ -175,6 +186,11 @@ internal static class Cli
         if (verify)
         {
             start.ArgumentList.Add("--verify");
+        }
+
+        if (move)
+        {
+            start.ArgumentList.Add("--move");
         }
 
         foreach (string source in request.Sources)
@@ -266,6 +282,10 @@ internal static class Cli
         var engine = new CopyEngine(options);
         var renderer = new ProgressRenderer();
         engine.ProgressChanged += renderer.Render;
+        if (options.Conflict == ConflictPolicy.Ask && !Console.IsInputRedirected)
+        {
+            engine.ConflictResolver = (conflict, _) => AskInConsole(conflict, renderer);
+        }
 
         if (crashAfter is long limit)
         {
@@ -322,6 +342,39 @@ internal static class Cli
         }
     }
 
+    private static ConflictAnswer AskInConsole(ConflictInfo conflict, ProgressRenderer renderer)
+    {
+        lock (renderer)
+        {
+            renderer.Clear();
+            Console.WriteLine($"Ya existe: {conflict.Destination}");
+            Console.WriteLine($"  nuevo:     {Format.Bytes(conflict.SourceLength),10}  {conflict.SourceLastWriteUtc.ToLocalTime():dd/MM/yyyy HH:mm}");
+            Console.WriteLine($"  existente: {Format.Bytes(conflict.DestinationLength),10}  {conflict.DestinationLastWriteUtc.ToLocalTime():dd/MM/yyyy HH:mm}");
+            while (true)
+            {
+                Console.Write("[r]eemplazar, [o]mitir, [c]onservar ambos (mayúscula = para todos): ");
+                string answer = (Console.ReadLine() ?? "o").Trim();
+                if (answer.Length == 0)
+                {
+                    continue;
+                }
+
+                bool all = char.IsUpper(answer[0]);
+                ConflictDecision? decision = char.ToLowerInvariant(answer[0]) switch
+                {
+                    'r' => ConflictDecision.Replace,
+                    'o' => ConflictDecision.Skip,
+                    'c' => ConflictDecision.KeepBoth,
+                    _ => null,
+                };
+                if (decision is { } chosen)
+                {
+                    return new ConflictAnswer(chosen, all);
+                }
+            }
+        }
+    }
+
     private static void PrintSummary(CopyJobResult result)
     {
         double seconds = Math.Max(result.Elapsed.TotalSeconds, 0.001);
@@ -374,14 +427,16 @@ internal static class Cli
 
             Uso:
               mcopy copy <origen>... <carpeta-destino> [opciones]
-              mcopy send <origen>... <carpeta-destino> [--verify]
+              mcopy move <origen>... <carpeta-destino> [opciones]   Mueve (instantáneo en el mismo disco)
+              mcopy send <origen>... <carpeta-destino> [--verify] [--move]
                                           Entrega la copia a la app MegaCopier (ventana y bandeja)
               mcopy resume [id]      Continúa los trabajos interrumpidos (o solo uno)
               mcopy jobs             Lista los trabajos pendientes
 
             Opciones de copy:
               --verify               Relee el destino sin caché, compara hashes y repara bloques dañados
-              --conflict <modo>      overwrite (por defecto) | skip | newer | rename | fail
+              --conflict <modo>      overwrite (por defecto) | skip | newer | rename | fail | ask
+              --limit-mb <n>         Limita la velocidad a n MB/s
               --force                Copia aunque el destino sea idéntico
               --chunk-mb <n>         Cada cuántos MB se confirma en disco (por defecto 64)
               --block-mb <n>         Tamaño de cada lectura/escritura en MB

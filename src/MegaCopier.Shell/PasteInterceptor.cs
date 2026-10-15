@@ -167,6 +167,12 @@ public sealed unsafe partial class PasteInterceptor : IDisposable
                 {
                     if (_handler(request))
                     {
+                        // Como el Explorador: tras pegar algo cortado, el portapapeles se vacía (ya no está en su sitio).
+                        if (request.Operation == ClipboardOperation.Move)
+                        {
+                            ClipboardFiles.ClearIfSame(request.Sources);
+                        }
+
                         continue;
                     }
 
@@ -192,11 +198,6 @@ public sealed unsafe partial class PasteInterceptor : IDisposable
             return "el portapapeles no contiene archivos";
         }
 
-        if (clipboard.Operation == ClipboardOperation.Move)
-        {
-            return "mover (Ctrl+X) todavía lo hace el Explorador";
-        }
-
         string? folder = ExplorerLocator.GetFolderPath(focus);
         if (folder is null)
         {
@@ -206,7 +207,7 @@ public sealed unsafe partial class PasteInterceptor : IDisposable
         string normalized = Path.TrimEndingDirectorySeparator(folder);
         if (clipboard.Paths.All(p => string.Equals(Path.GetDirectoryName(Path.TrimEndingDirectorySeparator(p)), normalized, StringComparison.OrdinalIgnoreCase)))
         {
-            return "pegar en la misma carpeta crea \"- copia\": lo hace el Explorador";
+            return "pegar en la misma carpeta (copia \"- copia\" o mover sobre sí mismo): lo hace el Explorador";
         }
 
         if (clipboard.Paths.Any(p => !File.Exists(p) && !Directory.Exists(p)))
