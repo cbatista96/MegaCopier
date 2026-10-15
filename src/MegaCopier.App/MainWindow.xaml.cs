@@ -4,6 +4,7 @@ using MegaCopier.App.Services;
 using MegaCopier.App.ViewModels;
 using MegaCopier.Engine;
 using MegaCopier.Engine.Jobs;
+using MegaCopier.Shell;
 using Microsoft.UI;
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Windowing;
@@ -72,7 +73,22 @@ public sealed partial class MainWindow : Window
     {
         AppWindow.Show(activateWindow: true);
         Activate();
-        SetForegroundWindow(Handle);
+        if (SetForegroundWindow(Handle))
+        {
+            return;
+        }
+
+        // Tras un Ctrl+V interceptado nadie nos cedió el primer plano: se comparte un instante la cola de
+        // entrada con la ventana activa (el Explorador) para poder pasar al frente en lugar de solo parpadear.
+        nint foreground = GetForegroundWindow();
+        uint foregroundThread = GetWindowThreadProcessId(foreground, out _);
+        uint ownThread = GetCurrentThreadId();
+        if (foregroundThread != 0 && foregroundThread != ownThread && AttachThreadInput(ownThread, foregroundThread, true))
+        {
+            SetForegroundWindow(Handle);
+            BringWindowToTop(Handle);
+            AttachThreadInput(ownThread, foregroundThread, false);
+        }
     }
 
     internal void ShowJobs() => Sections.SelectedItem = JobsSection;
@@ -179,6 +195,9 @@ public sealed partial class MainWindow : Window
         AutoResumeToggle.IsOn = settings.AutoResumeInterrupted;
         NotifyToggle.IsOn = settings.NotifyOnFinish;
         StartupToggle.IsOn = StartupRegistration.IsEnabled;
+        PasteToggle.IsOn = settings.InterceptExplorerPaste;
+        ShellMenuToggle.IsOn = ShellExtensionRegistration.IsRegistered;
+        ShellMenuToggle.IsEnabled = File.Exists(App.ShellExtensionPath);
         AboutText.Text = $"MegaCopier {typeof(App).Assembly.GetName().Version?.ToString(3)} · motor con reanudación tras apagón";
         _loadingSettings = false;
     }
@@ -233,6 +252,44 @@ public sealed partial class MainWindow : Window
         SaveSettings();
     }
 
+    private void PasteToggle_Toggled(object sender, RoutedEventArgs e)
+    {
+        if (_loadingSettings)
+        {
+            return;
+        }
+
+        _app.Settings.InterceptExplorerPaste = PasteToggle.IsOn;
+        _app.SetExplorerPaste(PasteToggle.IsOn);
+        SaveSettings();
+    }
+
+    private void ShellMenuToggle_Toggled(object sender, RoutedEventArgs e)
+    {
+        if (_loadingSettings || ShellMenuToggle.IsOn == ShellExtensionRegistration.IsRegistered)
+        {
+            return;
+        }
+
+        try
+        {
+            if (ShellMenuToggle.IsOn)
+            {
+                ShellExtensionRegistration.Register(App.ShellExtensionPath);
+            }
+            else
+            {
+                ShellExtensionRegistration.Unregister();
+            }
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+        {
+            _loadingSettings = true;
+            ShellMenuToggle.IsOn = ShellExtensionRegistration.IsRegistered;
+            _loadingSettings = false;
+        }
+    }
+
     private void StartupToggle_Toggled(object sender, RoutedEventArgs e)
     {
         if (!_loadingSettings && StartupToggle.IsOn != StartupRegistration.IsEnabled)
@@ -258,4 +315,18 @@ public sealed partial class MainWindow : Window
     [DllImport("user32.dll")]
     [return: MarshalAs(UnmanagedType.Bool)]
     private static extern bool SetForegroundWindow(nint hwnd);
+
+    [DllImport("user32.dll")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static extern bool BringWindowToTop(nint hwnd);
+
+    [DllImport("user32.dll")]
+    private static extern uint GetWindowThreadProcessId(nint hwnd, out uint processId);
+
+    [DllImport("kernel32.dll")]
+    private static extern uint GetCurrentThreadId();
+
+    [DllImport("user32.dll")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static extern bool AttachThreadInput(uint attach, uint attachTo, [MarshalAs(UnmanagedType.Bool)] bool doAttach);
 }

@@ -233,6 +233,34 @@
                     </Grid>
                 </Border>
 
+                <TextBlock Text="Explorador de archivos" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="2,16,0,4" />
+                <Border Style="{StaticResource SettingCard}">
+                    <Grid ColumnSpacing="12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel>
+                            <TextBlock Text="Copiar con MegaCopier al pegar (Ctrl+V)" />
+                            <TextBlock Text="Al pegar archivos copiados en el Explorador o el Escritorio, la copia la hace MegaCopier. Mover (Ctrl+X) y pegar en la misma carpeta siguen con el Explorador" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" />
+                        </StackPanel>
+                        <ToggleSwitch x:Name="PasteToggle" Grid.Column="1" OnContent="" OffContent="" MinWidth="0" Toggled="PasteToggle_Toggled" />
+                    </Grid>
+                </Border>
+                <Border Style="{StaticResource SettingCard}">
+                    <Grid ColumnSpacing="12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel>
+                            <TextBlock Text="Opciones en el menú contextual" />
+                            <TextBlock Text="«Pegar con MegaCopier» (en Mostrar más opciones) y «Copiar aquí con MegaCopier» al arrastrar con el botón derecho" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" />
+                        </StackPanel>
+                        <ToggleSwitch x:Name="ShellMenuToggle" Grid.Column="1" OnContent="" OffContent="" MinWidth="0" Toggled="ShellMenuToggle_Toggled" />
+                    </Grid>
+                </Border>
+
                 <TextBlock Text="Sistema" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="2,16,0,4" />
                 <Border Style="{StaticResource SettingCard}">
                     <Grid ColumnSpacing="12">

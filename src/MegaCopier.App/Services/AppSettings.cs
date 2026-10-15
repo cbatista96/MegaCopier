@@ -31,6 +31,9 @@ public sealed class AppSettings
     /// <summary>Aviso del sistema al terminar una copia si la ventana no está a la vista.</summary>
     public bool NotifyOnFinish { get; set; } = true;
 
+    /// <summary>Al pegar archivos con Ctrl+V en el Explorador, copiar con MegaCopier.</summary>
+    public bool InterceptExplorerPaste { get; set; } = true;
+
     [JsonIgnore]
     public static string FilePath { get; } = Path.Combine(
         Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MegaCopier", "settings.json");

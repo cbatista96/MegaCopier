@@ -1,4 +1,4 @@
-# Compila, prueba y publica MegaCopier sin necesidad de abrir Visual Studio.
+﻿# Compila, prueba y publica MegaCopier sin necesidad de abrir Visual Studio.
 #   .\build.ps1            -> pruebas + app (artifacts\app) + herramienta de consola (artifacts\cli)
 #   .\build.ps1 -SkipTests -> solo publica
 param([switch]$SkipTests)
@@ -23,7 +23,9 @@ if (Get-Process -Name MegaCopier -ErrorAction SilentlyContinue | Where-Object { 
 dotnet publish src/MegaCopier.App -c Release -o artifacts/app -nologo
 if ($LASTEXITCODE -ne 0) { throw 'La publicación de la app falló.' }
 
+& (Join-Path $PSScriptRoot 'src\MegaCopier.ShellExt\build.ps1') -Output (Join-Path $PSScriptRoot 'artifacts\app')
+
 dotnet publish src/MegaCopier.Cli -c Release -o artifacts/cli -nologo
 if ($LASTEXITCODE -ne 0) { throw 'La publicación de la consola falló.' }
 
-Write-Host "Listo: artifacts\app\MegaCopier.exe y artifacts\cli\mcopy.exe"
+Write-Host "Listo: artifacts\app\MegaCopier.exe (+ MegaCopierShell.dll) y artifacts\cli\mcopy.exe"

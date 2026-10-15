@@ -44,6 +44,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MegaCopier.Engine\MegaCopier.Engine.csproj" />
+    <ProjectReference Include="..\MegaCopier.Shell\MegaCopier.Shell.csproj" />
   </ItemGroup>
 
 </Project>
