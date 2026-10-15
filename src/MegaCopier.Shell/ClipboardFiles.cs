@@ -46,6 +46,32 @@ public static unsafe partial class ClipboardFiles
         return null;
     }
 
+    /// <summary>Vacía el portapapeles si sigue conteniendo exactamente esos archivos.</summary>
+    public static void ClearIfSame(IReadOnlyList<string> paths)
+    {
+        for (int attempt = 0; attempt < 10; attempt++)
+        {
+            if (OpenClipboard(0))
+            {
+                try
+                {
+                    if (ReadOpen() is { } current && current.Paths.SequenceEqual(paths, StringComparer.OrdinalIgnoreCase))
+                    {
+                        EmptyClipboard();
+                    }
+                }
+                finally
+                {
+                    CloseClipboard();
+                }
+
+                return;
+            }
+
+            Thread.Sleep(15);
+        }
+    }
+
     private static ClipboardFileList? ReadOpen()
     {
         nint drop = GetClipboardData(CfHDrop);
@@ -102,6 +128,10 @@ public static unsafe partial class ClipboardFiles
 
     [LibraryImport("user32.dll")]
     private static partial nint GetClipboardData(uint format);
+
+    [LibraryImport("user32.dll")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static partial bool EmptyClipboard();
 
     [LibraryImport("shell32.dll")]
     private static partial uint DragQueryFileW(nint drop, uint index, char* file, uint length);

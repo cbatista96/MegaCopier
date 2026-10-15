@@ -30,7 +30,21 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
+            <DropDownButton x:Name="FinishButton" Grid.Column="1" VerticalAlignment="Center" ToolTipService.ToolTip="Qué hacer cuando terminen todas las copias">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <FontIcon x:Name="FinishIcon" Glyph="&#xE7E8;" FontSize="14" />
+                    <TextBlock x:Name="FinishText" Text="Al terminar" />
+                </StackPanel>
+                <DropDownButton.Flyout>
+                    <MenuFlyout Placement="BottomEdgeAlignedRight">
+                        <RadioMenuFlyoutItem x:Name="FinishNothing" Text="No hacer nada" GroupName="Finish" IsChecked="True" Click="Finish_Click" />
+                        <RadioMenuFlyoutItem x:Name="FinishSleep" Text="Suspender el equipo" GroupName="Finish" Click="Finish_Click" />
+                        <RadioMenuFlyoutItem x:Name="FinishShutdown" Text="Apagar el equipo" GroupName="Finish" Click="Finish_Click" />
+                    </MenuFlyout>
+                </DropDownButton.Flyout>
+            </DropDownButton>
             <SelectorBar x:Name="Sections" SelectionChanged="Sections_SelectionChanged">
                 <SelectorBarItem x:Name="JobsSection" Text="Copias" IsSelected="True">
                     <SelectorBarItem.Icon>
@@ -43,7 +57,7 @@
                     </SelectorBarItem.Icon>
                 </SelectorBarItem>
             </SelectorBar>
-            <DropDownButton Grid.Column="1" Style="{StaticResource AccentButtonStyle}" VerticalAlignment="Center">
+            <DropDownButton Grid.Column="2" Style="{StaticResource AccentButtonStyle}" VerticalAlignment="Center">
                 <StackPanel Orientation="Horizontal" Spacing="8">
                     <FontIcon Glyph="&#xE710;" FontSize="14" />
                     <TextBlock Text="Nueva copia" />
@@ -97,6 +111,7 @@
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
                                     <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />
@@ -157,6 +172,16 @@
                                         <TextBlock Text="{x:Bind DetailText, Mode=OneWay}" Style="{StaticResource CaptionTextBlockStyle}"
                                                    Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" />
                                     </StackPanel>
+
+                                    <Expander Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,4,0,0"
+                                              HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+                                              Visibility="{x:Bind HasFailures, Mode=OneWay}"
+                                              Header="{x:Bind FailuresHeader, Mode=OneWay}">
+                                        <ScrollViewer MaxHeight="180">
+                                            <TextBlock Text="{x:Bind FailuresText, Mode=OneWay}" Style="{StaticResource CaptionTextBlockStyle}"
+                                                       IsTextSelectionEnabled="True" TextWrapping="Wrap" />
+                                        </ScrollViewer>
+                                    </Expander>
                                 </Grid>
                             </Border>
                         </DataTemplate>
@@ -164,6 +189,42 @@
                 </ItemsRepeater>
             </ScrollViewer>
         </Grid>
+
+        <!-- Conflicto: el archivo ya existe -->
+        <ContentDialog
+            x:Name="ConflictDialog"
+            Grid.RowSpan="3"
+            Style="{StaticResource DefaultContentDialogStyle}"
+            Title="El archivo ya existe"
+            PrimaryButtonText="Reemplazar"
+            SecondaryButtonText="Conservar ambos"
+            CloseButtonText="Omitir"
+            DefaultButton="Primary">
+            <StackPanel Spacing="12" MaxWidth="460">
+                <TextBlock x:Name="ConflictMessage" TextWrapping="Wrap" />
+                <Grid ColumnSpacing="12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Border Style="{StaticResource SettingCard}" MinHeight="0">
+                        <StackPanel Spacing="2">
+                            <TextBlock x:Name="ConflictSourceTitle" Style="{StaticResource BodyStrongTextBlockStyle}" />
+                            <TextBlock x:Name="ConflictSourceSize" Style="{StaticResource CaptionTextBlockStyle}" />
+                            <TextBlock x:Name="ConflictSourceDate" Style="{StaticResource CaptionTextBlockStyle}" />
+                        </StackPanel>
+                    </Border>
+                    <Border Grid.Column="1" Style="{StaticResource SettingCard}" MinHeight="0">
+                        <StackPanel Spacing="2">
+                            <TextBlock Text="El que ya está" Style="{StaticResource BodyStrongTextBlockStyle}" />
+                            <TextBlock x:Name="ConflictDestinationSize" Style="{StaticResource CaptionTextBlockStyle}" />
+                            <TextBlock x:Name="ConflictDestinationDate" Style="{StaticResource CaptionTextBlockStyle}" />
+                        </StackPanel>
+                    </Border>
+                </Grid>
+                <CheckBox x:Name="ConflictApplyAll" Content="Hacer lo mismo con los demás conflictos de esta copia" />
+            </StackPanel>
+        </ContentDialog>
 
         <!-- Ajustes -->
         <ScrollViewer x:Name="SettingsView" Grid.Row="2" Visibility="Collapsed" Padding="20,0,20,20">
@@ -212,10 +273,32 @@
                             <TextBlock Text="Los archivos idénticos (mismo tamaño y fecha) siempre se omiten" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" />
                         </StackPanel>
                         <ComboBox x:Name="ConflictBox" Grid.Column="1" MinWidth="200" SelectionChanged="ConflictBox_SelectionChanged" VerticalAlignment="Center">
+                            <ComboBoxItem Content="Preguntar" />
                             <ComboBoxItem Content="Reemplazar" />
                             <ComboBoxItem Content="Omitir" />
                             <ComboBoxItem Content="Reemplazar si es más nuevo" />
                             <ComboBoxItem Content="Conservar ambos" />
+                        </ComboBox>
+                    </Grid>
+                </Border>
+                <Border Style="{StaticResource SettingCard}">
+                    <Grid ColumnSpacing="12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel>
+                            <TextBlock Text="Límite de velocidad" />
+                            <TextBlock Text="Deja ancho de banda del disco o de la red para otras tareas (se aplica a las copias nuevas)" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" />
+                        </StackPanel>
+                        <ComboBox x:Name="SpeedBox" Grid.Column="1" MinWidth="200" SelectionChanged="SpeedBox_SelectionChanged" VerticalAlignment="Center">
+                            <ComboBoxItem Content="Sin límite" Tag="0" />
+                            <ComboBoxItem Content="10 MB/s" Tag="10" />
+                            <ComboBoxItem Content="25 MB/s" Tag="25" />
+                            <ComboBoxItem Content="50 MB/s" Tag="50" />
+                            <ComboBoxItem Content="100 MB/s" Tag="100" />
+                            <ComboBoxItem Content="250 MB/s" Tag="250" />
+                            <ComboBoxItem Content="500 MB/s" Tag="500" />
                         </ComboBox>
                     </Grid>
                 </Border>
@@ -241,8 +324,8 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <StackPanel>
-                            <TextBlock Text="Copiar con MegaCopier al pegar (Ctrl+V)" />
-                            <TextBlock Text="Al pegar archivos copiados en el Explorador o el Escritorio, la copia la hace MegaCopier. Mover (Ctrl+X) y pegar en la misma carpeta siguen con el Explorador" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" />
+                            <TextBlock Text="Copiar y mover con MegaCopier al pegar (Ctrl+V)" />
+                            <TextBlock Text="Al pegar en el Explorador o el Escritorio archivos copiados (Ctrl+C) o cortados (Ctrl+X), lo hace MegaCopier. Pegar en la misma carpeta sigue con el Explorador" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" />
                         </StackPanel>
                         <ToggleSwitch x:Name="PasteToggle" Grid.Column="1" OnContent="" OffContent="" MinWidth="0" Toggled="PasteToggle_Toggled" />
                     </Grid>
@@ -255,7 +338,7 @@
                         </Grid.ColumnDefinitions>
                         <StackPanel>
                             <TextBlock Text="Opciones en el menú contextual" />
-                            <TextBlock Text="«Pegar con MegaCopier» (en Mostrar más opciones) y «Copiar aquí con MegaCopier» al arrastrar con el botón derecho" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" />
+                            <TextBlock Text="«Pegar con MegaCopier» (en Mostrar más opciones) y «Copiar / Mover aquí con MegaCopier» al arrastrar con el botón derecho" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" />
                         </StackPanel>
                         <ToggleSwitch x:Name="ShellMenuToggle" Grid.Column="1" OnContent="" OffContent="" MinWidth="0" Toggled="ShellMenuToggle_Toggled" />
                     </Grid>

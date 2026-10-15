@@ -20,7 +20,11 @@ public sealed class AppSettings
 
     public bool VerifyAfterCopy { get; set; }
 
-    public ConflictPolicy Conflict { get; set; } = ConflictPolicy.Overwrite;
+    /// <summary>Por defecto pregunta, como el Explorador.</summary>
+    public ConflictPolicy Conflict { get; set; } = ConflictPolicy.Ask;
+
+    /// <summary>Límite de velocidad de las copias nuevas en MB/s (0 = sin límite).</summary>
+    public int SpeedLimitMBps { get; set; }
 
     /// <summary>Al arrancar, continuar sin preguntar las copias que quedaron a medias.</summary>
     public bool AutoResumeInterrupted { get; set; }
@@ -42,6 +46,8 @@ public sealed class AppSettings
     {
         Verify = request.Verify ?? VerifyAfterCopy,
         Conflict = request.Conflict ?? Conflict,
+        Move = request.Move ?? false,
+        MaxBytesPerSecond = SpeedLimitMBps * (long)CopyOptions.MiB,
     };
 
     public static AppSettings Load()

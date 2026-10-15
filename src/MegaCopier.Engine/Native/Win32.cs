@@ -78,6 +78,28 @@ internal static partial class Win32
             DateTime.FromFileTimeUtc(lastWrite));
     }
 
+    [LibraryImport("kernel32.dll", EntryPoint = "GetVolumePathNameW", SetLastError = true)]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static unsafe partial bool GetVolumePathName([MarshalAs(UnmanagedType.LPWStr)] string fileName, char* volumePath, uint length);
+
+    /// <summary>Raíz del volumen (unidad, punto de montaje o recurso de red) que contiene la ruta, o null.</summary>
+    public static unsafe string? VolumeRoot(string path)
+    {
+        string? existing = path;
+        while (existing is not null && !File.Exists(existing) && !Directory.Exists(existing))
+        {
+            existing = Path.GetDirectoryName(existing);
+        }
+
+        if (existing is null)
+        {
+            return null;
+        }
+
+        char* buffer = stackalloc char[1024];
+        return GetVolumePathName(existing, buffer, 1024) ? new string(buffer) : null;
+    }
+
     /// <summary>Espacio libre para el usuario en el volumen que contiene <paramref name="path"/> (o su ancestro existente).</summary>
     public static long? GetFreeBytes(string path)
     {

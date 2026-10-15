@@ -191,9 +191,9 @@ std::string JsonString(const std::wstring& text)
     return out + "\"";
 }
 
-std::string CopyRequestJson(const std::vector<std::wstring>& sources, const std::wstring& destination)
+std::string CopyRequestJson(const std::vector<std::wstring>& sources, const std::wstring& destination, bool move)
 {
-    std::string json = "{\"Command\":\"copy\",\"Sources\":[";
+    std::string json = std::string("{\"Command\":\"copy\",") + (move ? "\"Move\":true," : "") + "\"Sources\":[";
     for (size_t i = 0; i < sources.size(); i++)
     {
         json += (i > 0 ? "," : "") + JsonString(sources[i]);
@@ -303,10 +303,10 @@ std::wstring QuoteArgument(const std::wstring& argument)
     return quoted + L"\"";
 }
 
-bool LaunchApp(const std::vector<std::wstring>& sources, const std::wstring& destination)
+bool LaunchApp(const std::vector<std::wstring>& sources, const std::wstring& destination, bool move)
 {
     std::wstring exe = ModuleDirectory() + L"\\MegaCopier.exe";
-    std::wstring commandLine = QuoteArgument(exe) + L" copy --dest " + QuoteArgument(destination);
+    std::wstring commandLine = QuoteArgument(exe) + L" copy " + (move ? L"--move " : L"") + L"--dest " + QuoteArgument(destination);
     for (const auto& source : sources)
     {
         commandLine += L" " + QuoteArgument(source);
@@ -330,12 +330,12 @@ bool LaunchApp(const std::vector<std::wstring>& sources, const std::wstring& des
     return true;
 }
 
-void StartCopy(HWND owner, const std::vector<std::wstring>& sources, const std::wstring& destination)
+bool StartCopy(HWND owner, const std::vector<std::wstring>& sources, const std::wstring& destination, bool move)
 {
     std::string error;
-    if (SendToApp(CopyRequestJson(sources, destination), error) || LaunchApp(sources, destination))
+    if (SendToApp(CopyRequestJson(sources, destination, move), error) || LaunchApp(sources, destination, move))
     {
-        return;
+        return true;
     }
 
     std::wstring message = L"No se pudo entregar la copia a MegaCopier.";
@@ -348,6 +348,17 @@ void StartCopy(HWND owner, const std::vector<std::wstring>& sources, const std::
     }
 
     MessageBoxW(owner, message.c_str(), L"MegaCopier", MB_OK | MB_ICONWARNING);
+    return false;
+}
+
+// Tras pegar algo cortado, el portapapeles se vacía (como hace el Explorador).
+void ClearClipboard()
+{
+    if (OpenClipboard(nullptr))
+    {
+        EmptyClipboard();
+        CloseClipboard();
+    }
 }
 
 /// Icono de 16 px del menú (mapa de bits ARGB, como piden los menús de Windows).
@@ -444,36 +455,40 @@ public:
         m_items = FilesFromDataObject(data);
         m_sources.clear();
         m_destination.clear();
+        m_commands.clear();
+        m_fromClipboard = false;
 
         if (m_mode == Mode::DragDrop)
         {
             // Arrastre con el botón derecho: lo arrastrado va a la carpeta destino.
             m_sources = m_items;
             m_destination = m_folder;
-            m_text = L"Copiar aquí con MegaCopier";
+            m_commands.push_back({ L"Copiar aquí con MegaCopier", false });
+            m_commands.push_back({ L"Mover aquí con MegaCopier", true });
         }
         else
         {
-            // Menú contextual: pegar lo que hay en el portapapeles (solo copias; mover aún lo hace el Explorador).
+            // Menú contextual: pegar lo que hay en el portapapeles (copiado con Ctrl+C o cortado con Ctrl+X).
             ClipboardFiles clipboard = ReadClipboard();
-            if (clipboard.files.empty() || clipboard.cut)
+            if (clipboard.files.empty())
             {
                 return S_OK;
             }
 
+            DWORD attributes = m_items.size() == 1 ? GetFileAttributesW(m_items[0].c_str()) : INVALID_FILE_ATTRIBUTES;
             if (m_items.empty())
             {
                 m_destination = m_folder; // fondo de una carpeta o del Escritorio
-                m_text = L"Pegar con MegaCopier";
+                m_commands.push_back({ clipboard.cut ? L"Mover aquí con MegaCopier" : L"Pegar con MegaCopier", clipboard.cut });
             }
-            else if (m_items.size() == 1 && (GetFileAttributesW(m_items[0].c_str()) & FILE_ATTRIBUTE_DIRECTORY) &&
-                     GetFileAttributesW(m_items[0].c_str()) != INVALID_FILE_ATTRIBUTES)
+            else if (attributes != INVALID_FILE_ATTRIBUTES && (attributes & FILE_ATTRIBUTE_DIRECTORY))
             {
                 m_destination = m_items[0]; // sobre una carpeta o una unidad
-                m_text = L"Pegar en esta carpeta con MegaCopier";
+                m_commands.push_back({ clipboard.cut ? L"Mover a esta carpeta con MegaCopier" : L"Pegar en esta carpeta con MegaCopier", clipboard.cut });
             }
 
             m_sources = clipboard.files;
+            m_fromClipboard = true;
         }
 
         return S_OK;
@@ -482,42 +497,66 @@ public:
     // IContextMenu
     IFACEMETHODIMP QueryContextMenu(HMENU menu, UINT index, UINT firstCommand, UINT lastCommand, UINT flags) override
     {
-        if ((flags & CMF_DEFAULTONLY) || m_sources.empty() || m_destination.empty() || firstCommand > lastCommand)
+        if ((flags & CMF_DEFAULTONLY) || m_sources.empty() || m_destination.empty() || m_commands.empty() ||
+            firstCommand + m_commands.size() - 1 > lastCommand)
         {
             return MAKE_HRESULT(SEVERITY_SUCCESS, 0, 0);
         }
 
-        MENUITEMINFOW item = { sizeof(item) };
-        item.fMask = MIIM_STRING | MIIM_ID | MIIM_BITMAP;
-        item.wID = firstCommand;
-        item.dwTypeData = m_text.data();
-        item.hbmpItem = MenuBitmap();
-        InsertMenuItemW(menu, index, TRUE, &item);
-        return MAKE_HRESULT(SEVERITY_SUCCESS, 0, 1);
+        for (UINT i = 0; i < m_commands.size(); i++)
+        {
+            MENUITEMINFOW item = { sizeof(item) };
+            item.fMask = MIIM_STRING | MIIM_ID | MIIM_BITMAP;
+            item.wID = firstCommand + i;
+            item.dwTypeData = m_commands[i].text.data();
+            item.hbmpItem = MenuBitmap();
+            InsertMenuItemW(menu, index + i, TRUE, &item);
+        }
+
+        return MAKE_HRESULT(SEVERITY_SUCCESS, 0, static_cast<USHORT>(m_commands.size()));
     }
 
     IFACEMETHODIMP InvokeCommand(CMINVOKECOMMANDINFO* info) override
     {
+        size_t index;
         if (HIWORD(info->lpVerb) != 0)
         {
             // Invocación por verbo de texto.
-            if (lstrcmpiA(info->lpVerb, "megacopier") != 0)
+            if (lstrcmpiA(info->lpVerb, "megacopier") == 0)
+            {
+                index = 0;
+            }
+            else if (lstrcmpiA(info->lpVerb, "megacopier-move") == 0 && m_commands.size() > 1)
+            {
+                index = 1;
+            }
+            else
             {
                 return E_FAIL;
             }
         }
-        else if (LOWORD(info->lpVerb) != 0)
+        else
+        {
+            index = LOWORD(info->lpVerb);
+        }
+
+        if (index >= m_commands.size())
         {
             return E_FAIL;
         }
 
-        StartCopy(info->hwnd, m_sources, m_destination);
+        bool move = m_commands[index].move;
+        if (StartCopy(info->hwnd, m_sources, m_destination, move) && move && m_fromClipboard)
+        {
+            ClearClipboard();
+        }
+
         return S_OK;
     }
 
     IFACEMETHODIMP GetCommandString(UINT_PTR command, UINT type, UINT*, CHAR* name, UINT maxLength) override
     {
-        if (command != 0)
+        if (command >= m_commands.size())
         {
             return E_INVALIDARG;
         }
@@ -525,7 +564,7 @@ public:
         switch (type)
         {
         case GCS_VERBW:
-            lstrcpynW(reinterpret_cast<LPWSTR>(name), L"megacopier", maxLength);
+            lstrcpynW(reinterpret_cast<LPWSTR>(name), command == 1 ? L"megacopier-move" : L"megacopier", maxLength);
             return S_OK;
         case GCS_HELPTEXTW:
             lstrcpynW(reinterpret_cast<LPWSTR>(name), L"Copia con MegaCopier: reanudable tras un corte de luz", maxLength);
@@ -540,9 +579,16 @@ private:
     Mode m_mode;
     std::wstring m_folder;
     std::vector<std::wstring> m_items;
+    struct Command
+    {
+        std::wstring text;
+        bool move;
+    };
+
     std::vector<std::wstring> m_sources;
     std::wstring m_destination;
-    std::wstring m_text;
+    std::vector<Command> m_commands;
+    bool m_fromClipboard = false;
 };
 
 class ClassFactory final : public IClassFactory

@@ -16,6 +16,9 @@ public enum ConflictPolicy
 
     /// <summary>Marca el archivo como error.</summary>
     Fail,
+
+    /// <summary>Pregunta al usuario (con "hacer lo mismo con todos"). Sin quien responda, omite.</summary>
+    Ask,
 }
 
 public enum ErrorPolicy
@@ -65,6 +68,15 @@ public sealed class CopyOptions
     public bool PreserveAttributes { get; set; } = true;
 
     public ConflictPolicy Conflict { get; set; } = ConflictPolicy.Overwrite;
+
+    /// <summary>
+    /// Mover en lugar de copiar. En el mismo volumen es un renombrado instantáneo; entre volúmenes se copia (reanudable)
+    /// y el original se borra solo cuando su copia está completa.
+    /// </summary>
+    public bool Move { get; set; }
+
+    /// <summary>Límite de velocidad de escritura en bytes por segundo (0 = sin límite).</summary>
+    public long MaxBytesPerSecond { get; set; }
 
     /// <summary>Copia incluso si el destino parece idéntico (mismo tamaño y fecha).</summary>
     public bool ForceRecopy { get; set; }

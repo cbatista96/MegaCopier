@@ -33,6 +33,11 @@ public partial class App : Application
 
     internal MainWindow Window => _window!;
 
+    /// <summary>Acción al terminar todas las copias (solo para esta sesión; vuelve a "nada" al ejecutarse).</summary>
+    internal FinishAction FinishAction { get; set; }
+
+    private TaskbarProgress? _taskbar;
+
     protected override void OnLaunched(LaunchActivatedEventArgs args)
     {
         // Sin ventanas visibles la app sigue viva en la bandeja hasta que el usuario elige "Salir".
@@ -41,14 +46,16 @@ public partial class App : Application
 
         var interrupted = Queue.LoadInterrupted();
         _window = new MainWindow(this);
+        Queue.ConflictResolver = (job, conflict, cancellation) => Window.AskConflict(job, conflict, cancellation);
 
         _tray = new TrayIcon(Path.Combine(AppContext.BaseDirectory, "Assets", "MegaCopier.ico"), "MegaCopier", BuildTrayMenu);
         _tray.Activated += () => ShowWindow();
         Queue.JobFinished += job => Dispatcher.TryEnqueue(() => OnJobFinished(job));
 
+        _taskbar = new TaskbarProgress(Window.Handle);
         _trayTimer = Dispatcher.CreateTimer();
-        _trayTimer.Interval = TimeSpan.FromSeconds(1);
-        _trayTimer.Tick += (_, _) => UpdateTrayTooltip();
+        _trayTimer.Interval = TimeSpan.FromMilliseconds(500);
+        _trayTimer.Tick += (_, _) => UpdateStatus();
         _trayTimer.Start();
 
         _server = new IpcServer(HandleRequestAsync);
@@ -115,7 +122,13 @@ public partial class App : Application
         {
             try
             {
-                Handle(new IpcRequest { Command = "copy", Sources = [.. paste.Sources], Destination = paste.Destination });
+                Handle(new IpcRequest
+                {
+                    Command = "copy",
+                    Sources = [.. paste.Sources],
+                    Destination = paste.Destination,
+                    Move = paste.Operation == ClipboardOperation.Move,
+                });
                 completion.SetResult(true);
             }
             catch
@@ -192,17 +205,23 @@ public partial class App : Application
         ];
     }
 
-    private void UpdateTrayTooltip()
+    /// <summary>Progreso global en el icono de la bandeja y en el botón de la barra de tareas.</summary>
+    private void UpdateStatus()
     {
         var running = Queue.Jobs.Where(j => j.State is CopyJobState.Running or CopyJobState.Paused).ToList();
         if (running.Count == 0)
         {
             _tray?.SetTooltip("MegaCopier");
+            _taskbar?.Update(TaskbarProgress.NoProgress, 0, 0);
             return;
         }
 
         long done = running.Sum(j => j.Progress?.CompletedBytes ?? 0);
         long total = running.Sum(j => j.Progress?.TotalBytes ?? 0);
+        int state = running.All(j => j.State == CopyJobState.Paused) ? TaskbarProgress.Paused
+            : total == 0 ? TaskbarProgress.Indeterminate
+            : TaskbarProgress.Normal;
+        _taskbar?.Update(state, (ulong)done, (ulong)total);
         double speed = running.Where(j => j.State == CopyJobState.Running).Sum(j => j.Progress?.BytesPerSecond ?? 0);
         string percent = total > 0 ? $"{100.0 * done / total:0}%" : "…";
         string copies = running.Count == 1 ? "1 copia" : $"{running.Count} copias";
@@ -211,6 +230,16 @@ public partial class App : Application
 
     private void OnJobFinished(CopyJob job)
     {
+        // "Al terminar": cuando ya no queda nada en marcha y la última copia acabó (no si el usuario la detuvo).
+        if (FinishAction != FinishAction.None && !Queue.HasActiveJobs && job.State is CopyJobState.Completed or CopyJobState.CompletedWithErrors)
+        {
+            var action = FinishAction;
+            FinishAction = FinishAction.None;
+            Window.UpdateFinishButton();
+            _tray?.ShowNotification("Copias terminadas", action == FinishAction.Shutdown ? "El equipo se apagará en 1 minuto (cancelar: shutdown /a)." : "Suspendiendo el equipo…");
+            SystemActions.Run(action);
+        }
+
         if (!Settings.NotifyOnFinish || Window.IsVisibleToUser || job.State == CopyJobState.Interrupted)
         {
             return;
@@ -235,6 +264,7 @@ public partial class App : Application
         _paste?.Dispose();
         await Task.Run(() => Queue.StopAll(TimeSpan.FromSeconds(5)));
         _trayTimer?.Stop();
+        _taskbar?.Dispose();
         _tray?.Dispose();
         if (_server is not null)
         {

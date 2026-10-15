@@ -61,6 +61,7 @@ public sealed partial class MainWindow : Window
         UpdateEmptyState();
         LoadSettings();
         ApplyTheme(_app.Settings.Theme);
+        UpdateFinishButton();
     }
 
     public ObservableCollection<JobViewModel> Jobs { get; } = [];
@@ -187,11 +188,14 @@ public sealed partial class MainWindow : Window
         VerifyToggle.IsOn = settings.VerifyAfterCopy;
         ConflictBox.SelectedIndex = settings.Conflict switch
         {
-            ConflictPolicy.Skip => 1,
-            ConflictPolicy.OverwriteIfNewer => 2,
-            ConflictPolicy.KeepBoth => 3,
+            ConflictPolicy.Overwrite => 1,
+            ConflictPolicy.Skip => 2,
+            ConflictPolicy.OverwriteIfNewer => 3,
+            ConflictPolicy.KeepBoth => 4,
             _ => 0,
         };
+        SpeedBox.SelectedItem = SpeedBox.Items.OfType<ComboBoxItem>().FirstOrDefault(i => (string)i.Tag == settings.SpeedLimitMBps.ToString())
+            ?? SpeedBox.Items[0];
         AutoResumeToggle.IsOn = settings.AutoResumeInterrupted;
         NotifyToggle.IsOn = settings.NotifyOnFinish;
         StartupToggle.IsOn = StartupRegistration.IsEnabled;
@@ -232,12 +236,104 @@ public sealed partial class MainWindow : Window
     {
         _app.Settings.Conflict = ConflictBox.SelectedIndex switch
         {
-            1 => ConflictPolicy.Skip,
-            2 => ConflictPolicy.OverwriteIfNewer,
-            3 => ConflictPolicy.KeepBoth,
-            _ => ConflictPolicy.Overwrite,
+            1 => ConflictPolicy.Overwrite,
+            2 => ConflictPolicy.Skip,
+            3 => ConflictPolicy.OverwriteIfNewer,
+            4 => ConflictPolicy.KeepBoth,
+            _ => ConflictPolicy.Ask,
         };
         SaveSettings();
+    }
+
+    private void SpeedBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (SpeedBox.SelectedItem is ComboBoxItem { Tag: string tag } && int.TryParse(tag, out int limit))
+        {
+            _app.Settings.SpeedLimitMBps = limit;
+            SaveSettings();
+        }
+    }
+
+    private void Finish_Click(object sender, RoutedEventArgs e)
+    {
+        _app.FinishAction = ReferenceEquals(sender, FinishSleep) ? FinishAction.Sleep
+            : ReferenceEquals(sender, FinishShutdown) ? FinishAction.Shutdown
+            : FinishAction.None;
+        UpdateFinishButton();
+    }
+
+    internal void UpdateFinishButton()
+    {
+        FinishNothing.IsChecked = _app.FinishAction == FinishAction.None;
+        FinishSleep.IsChecked = _app.FinishAction == FinishAction.Sleep;
+        FinishShutdown.IsChecked = _app.FinishAction == FinishAction.Shutdown;
+        (FinishIcon.Glyph, FinishText.Text) = _app.FinishAction switch
+        {
+            FinishAction.Sleep => ("", "Al terminar: suspender"),
+            FinishAction.Shutdown => ("", "Al terminar: apagar"),
+            _ => ("", "Al terminar"),
+        };
+    }
+
+    private readonly SemaphoreSlim _dialogGate = new(1, 1);
+
+    /// <summary>
+    /// Pregunta qué hacer con un archivo que ya existe. Se llama desde el hilo de copia y lo bloquea hasta que el
+    /// usuario responde; los diálogos de varias copias se muestran de uno en uno.
+    /// </summary>
+    internal ConflictAnswer AskConflict(CopyJob job, ConflictInfo conflict, CancellationToken cancellation)
+    {
+        _dialogGate.Wait(cancellation);
+        try
+        {
+            var answer = new TaskCompletionSource<ConflictAnswer>(TaskCreationOptions.RunContinuationsAsynchronously);
+            _dispatcher.TryEnqueue(async () =>
+            {
+                try
+                {
+                    ShowJobs();
+                    ShowAndActivate();
+                    FillConflictDialog(conflict, job.Record.Move);
+                    ConflictDialog.XamlRoot = Root.XamlRoot;
+                    ConflictDialog.RequestedTheme = Root.RequestedTheme;
+                    using var registration = cancellation.Register(() => _dispatcher.TryEnqueue(ConflictDialog.Hide));
+                    var result = await ConflictDialog.ShowAsync();
+                    var decision = result switch
+                    {
+                        ContentDialogResult.Primary => ConflictDecision.Replace,
+                        ContentDialogResult.Secondary => ConflictDecision.KeepBoth,
+                        _ => ConflictDecision.Skip,
+                    };
+                    answer.TrySetResult(new ConflictAnswer(decision, ConflictApplyAll.IsChecked == true));
+                }
+                catch (Exception ex)
+                {
+                    answer.TrySetException(ex);
+                }
+            });
+
+            return answer.Task.WaitAsync(cancellation).GetAwaiter().GetResult();
+        }
+        finally
+        {
+            _dialogGate.Release();
+        }
+    }
+
+    private void FillConflictDialog(ConflictInfo conflict, bool move)
+    {
+        string name = Path.GetFileName(conflict.Destination);
+        string folder = Path.GetDirectoryName(conflict.Destination) ?? "";
+        bool sourceNewer = conflict.SourceLastWriteUtc > conflict.DestinationLastWriteUtc;
+        bool destinationNewer = conflict.DestinationLastWriteUtc > conflict.SourceLastWriteUtc;
+
+        ConflictMessage.Text = $"Ya hay un archivo llamado «{name}» en «{folder}».";
+        ConflictSourceTitle.Text = move ? "El que vas a mover" : "El que vas a copiar";
+        ConflictSourceSize.Text = ViewModels.Format.Bytes(conflict.SourceLength);
+        ConflictSourceDate.Text = conflict.SourceLastWriteUtc.ToLocalTime().ToString("dd/MM/yyyy HH:mm") + (sourceNewer ? " · más reciente" : "");
+        ConflictDestinationSize.Text = ViewModels.Format.Bytes(conflict.DestinationLength);
+        ConflictDestinationDate.Text = conflict.DestinationLastWriteUtc.ToLocalTime().ToString("dd/MM/yyyy HH:mm") + (destinationNewer ? " · más reciente" : "");
+        ConflictApplyAll.IsChecked = false;
     }
 
     private void AutoResumeToggle_Toggled(object sender, RoutedEventArgs e)

@@ -12,7 +12,7 @@ internal sealed record StartupArgs(bool Background, IpcRequest? Request)
     /// <summary>
     /// MegaCopier.exe                                → abrir la ventana
     /// MegaCopier.exe --background                   → solo bandeja (arranque con Windows)
-    /// MegaCopier.exe copy --dest D:\x [--verify] a b → copiar a y b a D:\x
+    /// MegaCopier.exe copy --dest D:\x [--verify] [--move] a b → copiar (o mover) a y b a D:\x
     /// </summary>
     public static StartupArgs Parse(string[] args)
     {
@@ -38,6 +38,9 @@ internal sealed record StartupArgs(bool Background, IpcRequest? Request)
                         break;
                     case "--verify":
                         request.Verify = true;
+                        break;
+                    case "--move":
+                        request.Move = true;
                         break;
                     default:
                         request.Sources.Add(args[i]);

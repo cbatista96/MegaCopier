@@ -44,6 +44,7 @@ internal sealed class FileTransfer
     private readonly ProgressTracker _progress;
     private readonly IFaultInjector? _faults;
     private readonly Action<string, long>? _chunkCommitted;
+    private readonly Throttle? _throttle;
 
     public FileTransfer(
         CopyOptions options,
@@ -59,6 +60,7 @@ internal sealed class FileTransfer
         _progress = progress;
         _faults = faults;
         _chunkCommitted = chunkCommitted;
+        _throttle = options.MaxBytesPerSecond > 0 ? new Throttle(options.MaxBytesPerSecond) : null;
     }
 
     /// <summary>Búferes que necesita una transferencia: uno por cada lectura y escritura en vuelo.</summary>
@@ -556,6 +558,11 @@ internal sealed class FileTransfer
             {
                 await owner._controller.WaitIfPausedAsync(cancellationToken).ConfigureAwait(false);
                 cancellationToken.ThrowIfCancellationRequested();
+                if (owner._throttle is { } throttle)
+                {
+                    await throttle.WaitAsync(count, cancellationToken).ConfigureAwait(false);
+                }
+
                 _hasher.Append(buffer.Span[..count]);
                 _inFlight.Enqueue((IoHelpers.WriteFullAsync(io.Destination, io.DestinationUnbuffered, buffer, count, offset).AsTask(), buffer));
             }
