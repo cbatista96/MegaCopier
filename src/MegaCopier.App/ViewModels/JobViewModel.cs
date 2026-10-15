@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using System.Diagnostics;
+using MegaCopier.App.Services;
 using MegaCopier.Engine;
 using MegaCopier.Engine.Jobs;
 using Microsoft.UI.Dispatching;
@@ -32,36 +33,39 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
 
     private CopyProgress? Progress => Job.Progress;
 
+    private bool IsMove => Job.Record.Move;
+
     public string Title
     {
         get
         {
             var sources = Job.Record.Sources;
-            string what = sources.Count == 1 ? $"«{Path.GetFileName(sources[0].TrimEnd('\\'))}»" : $"{sources.Count} elementos";
-            bool move = Job.Record.Move;
+            string what = sources.Count == 1
+                ? L.F("Job_OneItem", Path.GetFileName(sources[0].TrimEnd('\\')))
+                : L.F("Job_ManyItems", sources.Count);
             return State switch
             {
-                CopyJobState.Completed => move ? $"Movido {what}" : $"Copiado {what}",
-                CopyJobState.Queued => $"{Capitalize(what)} en espera",
-                _ => move ? $"Moviendo {what}" : $"Copiando {what}",
+                CopyJobState.Completed => L.F(IsMove ? "Job_TitleMoved" : "Job_TitleCopied", what),
+                CopyJobState.Queued => L.F("Job_TitleQueued", what),
+                _ => L.F(IsMove ? "Job_TitleMoving" : "Job_TitleCopying", what),
             };
         }
     }
 
-    public string DestinationText => $"a {Job.Record.Destination}";
+    public string DestinationText => L.F("Job_Destination", Job.Record.Destination);
 
     public string StateText => State switch
     {
-        CopyJobState.Queued => "En cola · espera a que el disco quede libre",
-        CopyJobState.Running when Progress?.Phase == CopyPhase.Verifying => "Verificando",
-        CopyJobState.Running when Progress?.Phase == CopyPhase.Validating => "Comprobando lo ya copiado",
-        CopyJobState.Running when Progress?.Phase == CopyPhase.WaitingForUser => "Esperando tu decisión: el archivo ya existe",
-        CopyJobState.Running => Job.Record.Move ? "Moviendo" : "Copiando",
-        CopyJobState.Paused => "En pausa",
-        CopyJobState.Completed => "Completado",
-        CopyJobState.CompletedWithErrors => "Completado con errores",
-        CopyJobState.Failed => "Error",
-        CopyJobState.Interrupted => "Interrumpido · se puede continuar desde donde quedó",
+        CopyJobState.Queued => L.Get("Job_StateQueued"),
+        CopyJobState.Running when Progress?.Phase == CopyPhase.Verifying => L.Get("Job_StateVerifying"),
+        CopyJobState.Running when Progress?.Phase == CopyPhase.Validating => L.Get("Job_StateValidating"),
+        CopyJobState.Running when Progress?.Phase == CopyPhase.WaitingForUser => L.Get("Job_StateWaiting"),
+        CopyJobState.Running => L.Get(IsMove ? "Job_StateMoving" : "Job_StateCopying"),
+        CopyJobState.Paused => L.Get("Job_StatePaused"),
+        CopyJobState.Completed => L.Get("Job_StateCompleted"),
+        CopyJobState.CompletedWithErrors => L.Get("Job_StateCompletedErrors"),
+        CopyJobState.Failed => L.Get("Job_StateFailed"),
+        CopyJobState.Interrupted => L.Get("Job_StateInterrupted"),
         _ => "",
     };
 
@@ -69,50 +73,37 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
     {
         get
         {
-            if (State is CopyJobState.Failed or CopyJobState.CompletedWithErrors && Job.Error is { } error)
+            if (State == CopyJobState.CompletedWithErrors && Job.Result is { } partial)
             {
-                var failures = Job.Result?.Failures;
-                return failures is { Count: > 0 } ? $"{error}: {failures[0].Message}" : error;
+                return L.F("Job_FailedFiles", partial.Failures.Count);
+            }
+
+            if (State == CopyJobState.Failed)
+            {
+                return Job.Error ?? "";
             }
 
             if (State == CopyJobState.Completed && Job.Result is { } result)
             {
-                // La velocidad solo tiene sentido con un volumen apreciable (y sin esperas largas del usuario de por medio).
-                string speed = result.Elapsed.TotalSeconds > 0.05 && result.BytesTransferred >= 8 * 1024 * 1024
-                    ? $" · {Format.Speed(result.BytesTransferred / result.Elapsed.TotalSeconds)}"
-                    : "";
-                string resumed = result.BytesResumed > 0 ? $" · {Format.Bytes(result.BytesResumed)} recuperados" : "";
-                string skipped = result.FilesSkipped > 0 ? $" · {result.FilesSkipped} omitidos" : "";
-                string verified = Job.Record.Verify ? " · verificado" : "";
-                string repaired = result.ChunksRepaired > 0 ? $" ({result.ChunksRepaired} bloques reparados)" : "";
-                bool one = result.FilesCopied == 1;
-                string verb = (Job.Record.Move, one) switch
-                {
-                    (true, true) => "archivo movido",
-                    (true, false) => "archivos movidos",
-                    (false, true) => "archivo copiado",
-                    _ => "archivos copiados",
-                };
-                string transferred = result.BytesTransferred > 0 ? $" · {Format.Bytes(result.BytesTransferred)} en {Format.Duration(result.Elapsed)}{speed}" : "";
-                return $"{result.FilesCopied} {verb}{transferred}{resumed}{skipped}{verified}{repaired}";
+                return CompletedSummary(result);
             }
 
             if (Progress is not { } p)
             {
-                return State == CopyJobState.Interrupted ? "Pulsa Continuar para seguir copiando" : "Preparando…";
+                return State == CopyJobState.Interrupted ? L.Get("Job_ResumeHint") : L.Get("Job_Preparing");
             }
 
-            string text = $"{Format.Bytes(p.CompletedBytes)} de {Format.Bytes(p.TotalBytes)}";
+            string text = L.F("Job_Progress", Format.Bytes(p.CompletedBytes), Format.Bytes(p.TotalBytes));
             if (State == CopyJobState.Running && p.BytesPerSecond > 0)
             {
                 text += $" · {Format.Speed(p.BytesPerSecond)}";
                 if (p.Remaining is { } remaining)
                 {
-                    text += $" · quedan {Format.Duration(remaining)}";
+                    text += " · " + L.F("Job_Remaining", Format.Duration(remaining));
                 }
             }
 
-            return text + $" · {p.FilesCompleted} de {p.TotalFiles} archivos";
+            return text + " · " + L.F("Job_Files", p.FilesCompleted, p.TotalFiles);
         }
     }
 
@@ -137,7 +128,7 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
 
     public bool CanResume => State is CopyJobState.Paused or CopyJobState.Interrupted or CopyJobState.CompletedWithErrors;
 
-    public string ResumeLabel => State == CopyJobState.CompletedWithErrors ? "Reintentar" : "Continuar";
+    public string ResumeLabel => L.Get(State == CopyJobState.CompletedWithErrors ? "Job_Retry" : "Job_Resume");
 
     public bool CanStop => State is CopyJobState.Running or CopyJobState.Paused or CopyJobState.Queued;
 
@@ -147,12 +138,12 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
 
     public bool HasFailures => Job.Result is { Failures.Count: > 0 };
 
-    public string FailuresHeader => Job.Result is { } r ? $"Ver los {r.Failures.Count} archivos con problemas" : "";
+    public string FailuresHeader => Job.Result is { } r ? L.F("Job_FailuresHeader", r.Failures.Count) : "";
 
     /// <summary>Un archivo por línea: nombre y motivo.</summary>
     public string FailuresText => Job.Result is { } result
         ? string.Join("\n", result.Failures.Take(200).Select(f => $"{Path.GetFileName(f.Source)} — {f.Message}"))
-          + (result.Failures.Count > 200 ? $"\n… y {result.Failures.Count - 200} más" : "")
+          + (result.Failures.Count > 200 ? "\n" + L.F("Job_FailuresMore", result.Failures.Count - 200) : "")
         : "";
 
     public string Glyph => State switch
@@ -161,7 +152,7 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
         CopyJobState.Failed or CopyJobState.CompletedWithErrors => "", // Error
         CopyJobState.Paused or CopyJobState.Interrupted => "",         // Pause
         CopyJobState.Queued => "",            // Recent
-        _ => "",                               // Copy
+        _ => IsMove ? "" : "",           // MoveToFolder / Copy
     };
 
     public void Pause() => _queue.Pause(Job);
@@ -182,6 +173,49 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
         }
     }
 
+    private string CompletedSummary(CopyJobResult result)
+    {
+        int files = result.FilesCopied;
+        string key = (IsMove, files == 1) switch
+        {
+            (true, true) => "Job_FilesMovedOne",
+            (true, false) => "Job_FilesMovedMany",
+            (false, true) => "Job_FilesCopiedOne",
+            _ => "Job_FilesCopiedMany",
+        };
+
+        var parts = new List<string> { L.F(key, files) };
+        if (result.BytesTransferred > 0)
+        {
+            string transferred = L.F("Job_TransferredIn", Format.Bytes(result.BytesTransferred), Format.Duration(result.Elapsed));
+
+            // La velocidad solo tiene sentido con un volumen apreciable (y sin esperas largas del usuario de por medio).
+            if (result.Elapsed.TotalSeconds > 0.05 && result.BytesTransferred >= 8 * 1024 * 1024)
+            {
+                transferred += $" · {Format.Speed(result.BytesTransferred / result.Elapsed.TotalSeconds)}";
+            }
+
+            parts.Add(transferred);
+        }
+
+        if (result.BytesResumed > 0)
+        {
+            parts.Add(L.F("Job_Recovered", Format.Bytes(result.BytesResumed)));
+        }
+
+        if (result.FilesSkipped > 0)
+        {
+            parts.Add(L.F("Job_Skipped", result.FilesSkipped));
+        }
+
+        if (Job.Record.Verify)
+        {
+            parts.Add(L.Get("Job_Verified") + (result.ChunksRepaired > 0 ? " " + L.F("Job_Repaired", result.ChunksRepaired) : ""));
+        }
+
+        return string.Join(" · ", parts);
+    }
+
     private void ScheduleRefresh()
     {
         if (Interlocked.Exchange(ref _refreshPending, 1) == 0)
@@ -193,6 +227,4 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
             });
         }
     }
-
-    private static string Capitalize(string text) => text.Length == 0 ? text : char.ToUpperInvariant(text[0]) + text[1..];
 }

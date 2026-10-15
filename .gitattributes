@@ -1,0 +1,7 @@
+# Finales de línea normalizados en el repositorio; en Windows se trabaja con CRLF.
+* text=auto
+
+*.png binary
+*.ico binary
+*.exe binary
+*.dll binary

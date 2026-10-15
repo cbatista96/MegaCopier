@@ -5,11 +5,12 @@ using MegaCopier.App.ViewModels;
 using MegaCopier.Engine;
 using MegaCopier.Engine.Jobs;
 using MegaCopier.Shell;
-using Microsoft.UI;
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Shapes;
 using Microsoft.Windows.Storage.Pickers;
 using WinRT.Interop;
 
@@ -19,18 +20,23 @@ public sealed partial class MainWindow : Window
 {
     private readonly App _app;
     private readonly DispatcherQueue _dispatcher;
+    private readonly SemaphoreSlim _dialogGate = new(1, 1);
+    private readonly string _startupLanguage;
+    private readonly string _startupAccent;
     private bool _loadingSettings;
 
     internal MainWindow(App app)
     {
         _app = app;
         _dispatcher = DispatcherQueue.GetForCurrentThread();
+        _startupLanguage = app.Settings.Language;
+        _startupAccent = app.Settings.Accent;
         InitializeComponent();
 
         Handle = WindowNative.GetWindowHandle(this);
         ExtendsContentIntoTitleBar = true;
         SetTitleBar(AppTitleBar);
-        AppWindow.SetIcon(Path.Combine(AppContext.BaseDirectory, "Assets", "MegaCopier.ico"));
+        AppWindow.SetIcon(System.IO.Path.Combine(AppContext.BaseDirectory, "Assets", "MegaCopier.ico"));
         AppWindow.TitleBar.PreferredHeightOption = TitleBarHeightOption.Tall;
 
         double scale = GetDpiForWindow(Handle) / 96.0;
@@ -61,6 +67,8 @@ public sealed partial class MainWindow : Window
         UpdateEmptyState();
         LoadSettings();
         ApplyTheme(_app.Settings.Theme);
+        ApplyBackdrop(_app.Settings.Backdrop);
+        ApplyAlwaysOnTop(_app.Settings.AlwaysOnTop);
         UpdateFinishButton();
     }
 
@@ -111,6 +119,20 @@ public sealed partial class MainWindow : Window
         TrayIcon.SetMenuTheme(theme switch { AppTheme.Dark => true, AppTheme.Light => false, _ => null });
     }
 
+    private void ApplyBackdrop(AppBackdrop backdrop)
+    {
+        SystemBackdrop = Appearance.CreateBackdrop(backdrop);
+        SolidBackground.Visibility = backdrop == AppBackdrop.Solid ? Visibility.Visible : Visibility.Collapsed;
+    }
+
+    private void ApplyAlwaysOnTop(bool onTop)
+    {
+        if (AppWindow.Presenter is OverlappedPresenter presenter)
+        {
+            presenter.IsAlwaysOnTop = onTop;
+        }
+    }
+
     private void AddJob(CopyJob job)
     {
         if (Jobs.Any(j => j.Job == job))
@@ -144,7 +166,10 @@ public sealed partial class MainWindow : Window
         SettingsView.Visibility = settings ? Visibility.Visible : Visibility.Collapsed;
         if (settings)
         {
+            _loadingSettings = true;
             StartupToggle.IsOn = StartupRegistration.IsEnabled;
+            ShellMenuToggle.IsOn = ShellExtensionRegistration.IsRegistered;
+            _loadingSettings = false;
         }
     }
 
@@ -170,7 +195,7 @@ public sealed partial class MainWindow : Window
 
     private async Task PickDestinationAndCopy(List<string> sources)
     {
-        var destination = await new FolderPicker(AppWindow.Id) { CommitButtonText = "Copiar aquí" }.PickSingleFolderAsync();
+        var destination = await new FolderPicker(AppWindow.Id) { CommitButtonText = L.Get("Picker_CopyHere") }.PickSingleFolderAsync();
         if (destination is null)
         {
             return;
@@ -180,11 +205,29 @@ public sealed partial class MainWindow : Window
         ShowJobs();
     }
 
+    // ---------------------------------------------------------------------------------------------------------
+    // Ajustes
+
     private void LoadSettings()
     {
         _loadingSettings = true;
         var settings = _app.Settings;
         ThemeBox.SelectedIndex = (int)settings.Theme;
+        BackdropBox.SelectedIndex = (int)settings.Backdrop;
+        OnTopToggle.IsOn = settings.AlwaysOnTop;
+        LanguageBox.SelectedItem = LanguageBox.Items.OfType<ComboBoxItem>().FirstOrDefault(i => (string)i.Tag == settings.Language) ?? LanguageBox.Items[0];
+
+        AccentBox.Items.Clear();
+        AccentBox.Items.Add(AccentItem("system", L.Get("Accent_System"), null));
+        foreach (var (key, hex) in Appearance.AccentPresets)
+        {
+            Appearance.TryParse(hex, out var color);
+            AccentBox.Items.Add(AccentItem(hex, L.Get("Accent_" + key), color));
+        }
+
+        AccentBox.SelectedItem = AccentBox.Items.OfType<ComboBoxItem>().FirstOrDefault(i => string.Equals((string)i.Tag, settings.Accent, StringComparison.OrdinalIgnoreCase))
+            ?? AccentBox.Items[0];
+
         VerifyToggle.IsOn = settings.VerifyAfterCopy;
         ConflictBox.SelectedIndex = settings.Conflict switch
         {
@@ -201,9 +244,27 @@ public sealed partial class MainWindow : Window
         StartupToggle.IsOn = StartupRegistration.IsEnabled;
         PasteToggle.IsOn = settings.InterceptExplorerPaste;
         ShellMenuToggle.IsOn = ShellExtensionRegistration.IsRegistered;
-        ShellMenuToggle.IsEnabled = File.Exists(App.ShellExtensionPath);
-        AboutText.Text = $"MegaCopier {typeof(App).Assembly.GetName().Version?.ToString(3)} · motor con reanudación tras apagón";
+        ShellMenuToggle.IsEnabled = App.ShellExtensionPath is not null;
+        AboutText.Text = L.F("About", typeof(App).Assembly.GetName().Version?.ToString(3) ?? "");
         _loadingSettings = false;
+    }
+
+    private static ComboBoxItem AccentItem(string tag, string name, Windows.UI.Color? color)
+    {
+        var row = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 10 };
+        if (color is { } c)
+        {
+            row.Children.Add(new Ellipse { Width = 14, Height = 14, Fill = new SolidColorBrush(c), VerticalAlignment = VerticalAlignment.Center });
+        }
+        else
+        {
+            row.Children.Add(new FontIcon { Glyph = "", FontSize = 14 });
+        }
+
+        row.Children.Add(new TextBlock { Text = name, VerticalAlignment = VerticalAlignment.Center });
+        var item = new ComboBoxItem { Content = row, Tag = tag };
+        Microsoft.UI.Xaml.Automation.AutomationProperties.SetName(item, name); // lectores de pantalla
+        return item;
     }
 
     private void SaveSettings()
@@ -223,6 +284,62 @@ public sealed partial class MainWindow : Window
 
         _app.Settings.Theme = (AppTheme)ThemeBox.SelectedIndex;
         ApplyTheme(_app.Settings.Theme);
+        SaveSettings();
+    }
+
+    private void AccentBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (_loadingSettings || AccentBox.SelectedItem is not ComboBoxItem { Tag: string accent })
+        {
+            return;
+        }
+
+        // WinUI calcula los pinceles de acento al crear los controles: el color nuevo se aplica al reiniciar.
+        _app.Settings.Accent = accent;
+        SaveSettings();
+        UpdateRestartInfo();
+    }
+
+    private void UpdateRestartInfo() =>
+        RestartInfo.IsOpen = _app.Settings.Language != _startupLanguage
+            || !string.Equals(_app.Settings.Accent, _startupAccent, StringComparison.OrdinalIgnoreCase);
+
+    private void BackdropBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (_loadingSettings || BackdropBox.SelectedIndex < 0)
+        {
+            return;
+        }
+
+        _app.Settings.Backdrop = (AppBackdrop)BackdropBox.SelectedIndex;
+        ApplyBackdrop(_app.Settings.Backdrop);
+        SaveSettings();
+    }
+
+    private void LanguageBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (_loadingSettings || LanguageBox.SelectedItem is not ComboBoxItem { Tag: string language })
+        {
+            return;
+        }
+
+        _app.Settings.Language = language;
+        SaveSettings();
+        LanguageSetting.Save(language);
+        UpdateRestartInfo();
+    }
+
+    private void Restart_Click(object sender, RoutedEventArgs e) => _app.Restart();
+
+    private void OnTopToggle_Toggled(object sender, RoutedEventArgs e)
+    {
+        if (_loadingSettings)
+        {
+            return;
+        }
+
+        _app.Settings.AlwaysOnTop = OnTopToggle.IsOn;
+        ApplyAlwaysOnTop(OnTopToggle.IsOn);
         SaveSettings();
     }
 
@@ -254,6 +371,67 @@ public sealed partial class MainWindow : Window
         }
     }
 
+    private void AutoResumeToggle_Toggled(object sender, RoutedEventArgs e)
+    {
+        _app.Settings.AutoResumeInterrupted = AutoResumeToggle.IsOn;
+        SaveSettings();
+    }
+
+    private void NotifyToggle_Toggled(object sender, RoutedEventArgs e)
+    {
+        _app.Settings.NotifyOnFinish = NotifyToggle.IsOn;
+        SaveSettings();
+    }
+
+    private void PasteToggle_Toggled(object sender, RoutedEventArgs e)
+    {
+        if (_loadingSettings)
+        {
+            return;
+        }
+
+        _app.Settings.InterceptExplorerPaste = PasteToggle.IsOn;
+        _app.SetExplorerPaste(PasteToggle.IsOn);
+        SaveSettings();
+    }
+
+    private void ShellMenuToggle_Toggled(object sender, RoutedEventArgs e)
+    {
+        if (_loadingSettings || ShellMenuToggle.IsOn == ShellExtensionRegistration.IsRegistered)
+        {
+            return;
+        }
+
+        try
+        {
+            if (ShellMenuToggle.IsOn && App.ShellExtensionPath is { } dll)
+            {
+                ShellExtensionRegistration.Register(dll);
+            }
+            else
+            {
+                ShellExtensionRegistration.Unregister();
+            }
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+        {
+            _loadingSettings = true;
+            ShellMenuToggle.IsOn = ShellExtensionRegistration.IsRegistered;
+            _loadingSettings = false;
+        }
+    }
+
+    private void StartupToggle_Toggled(object sender, RoutedEventArgs e)
+    {
+        if (!_loadingSettings && StartupToggle.IsOn != StartupRegistration.IsEnabled)
+        {
+            StartupRegistration.Set(StartupToggle.IsOn);
+        }
+    }
+
+    // ---------------------------------------------------------------------------------------------------------
+    // Al terminar
+
     private void Finish_Click(object sender, RoutedEventArgs e)
     {
         _app.FinishAction = ReferenceEquals(sender, FinishSleep) ? FinishAction.Sleep
@@ -269,13 +447,14 @@ public sealed partial class MainWindow : Window
         FinishShutdown.IsChecked = _app.FinishAction == FinishAction.Shutdown;
         (FinishIcon.Glyph, FinishText.Text) = _app.FinishAction switch
         {
-            FinishAction.Sleep => ("", "Al terminar: suspender"),
-            FinishAction.Shutdown => ("", "Al terminar: apagar"),
-            _ => ("", "Al terminar"),
+            FinishAction.Sleep => ("", L.Get("Finish_LabelSleep")),
+            FinishAction.Shutdown => ("", L.Get("Finish_LabelShutdown")),
+            _ => ("", L.Get("Finish_Label")),
         };
     }
 
-    private readonly SemaphoreSlim _dialogGate = new(1, 1);
+    // ---------------------------------------------------------------------------------------------------------
+    // Conflictos
 
     /// <summary>
     /// Pregunta qué hacer con un archivo que ya existe. Se llama desde el hilo de copia y lo bloquea hasta que el
@@ -322,76 +501,18 @@ public sealed partial class MainWindow : Window
 
     private void FillConflictDialog(ConflictInfo conflict, bool move)
     {
-        string name = Path.GetFileName(conflict.Destination);
-        string folder = Path.GetDirectoryName(conflict.Destination) ?? "";
+        string name = System.IO.Path.GetFileName(conflict.Destination);
+        string folder = System.IO.Path.GetDirectoryName(conflict.Destination) ?? "";
         bool sourceNewer = conflict.SourceLastWriteUtc > conflict.DestinationLastWriteUtc;
         bool destinationNewer = conflict.DestinationLastWriteUtc > conflict.SourceLastWriteUtc;
 
-        ConflictMessage.Text = $"Ya hay un archivo llamado «{name}» en «{folder}».";
-        ConflictSourceTitle.Text = move ? "El que vas a mover" : "El que vas a copiar";
-        ConflictSourceSize.Text = ViewModels.Format.Bytes(conflict.SourceLength);
-        ConflictSourceDate.Text = conflict.SourceLastWriteUtc.ToLocalTime().ToString("dd/MM/yyyy HH:mm") + (sourceNewer ? " · más reciente" : "");
-        ConflictDestinationSize.Text = ViewModels.Format.Bytes(conflict.DestinationLength);
-        ConflictDestinationDate.Text = conflict.DestinationLastWriteUtc.ToLocalTime().ToString("dd/MM/yyyy HH:mm") + (destinationNewer ? " · más reciente" : "");
+        ConflictMessage.Text = L.F("Conflict_Message", name, folder);
+        ConflictSourceTitle.Text = L.Get(move ? "Conflict_SourceMove" : "Conflict_SourceCopy");
+        ConflictSourceSize.Text = Format.Bytes(conflict.SourceLength);
+        ConflictSourceDate.Text = Format.Date(conflict.SourceLastWriteUtc) + (sourceNewer ? L.Get("Conflict_Newer") : "");
+        ConflictDestinationSize.Text = Format.Bytes(conflict.DestinationLength);
+        ConflictDestinationDate.Text = Format.Date(conflict.DestinationLastWriteUtc) + (destinationNewer ? L.Get("Conflict_Newer") : "");
         ConflictApplyAll.IsChecked = false;
-    }
-
-    private void AutoResumeToggle_Toggled(object sender, RoutedEventArgs e)
-    {
-        _app.Settings.AutoResumeInterrupted = AutoResumeToggle.IsOn;
-        SaveSettings();
-    }
-
-    private void NotifyToggle_Toggled(object sender, RoutedEventArgs e)
-    {
-        _app.Settings.NotifyOnFinish = NotifyToggle.IsOn;
-        SaveSettings();
-    }
-
-    private void PasteToggle_Toggled(object sender, RoutedEventArgs e)
-    {
-        if (_loadingSettings)
-        {
-            return;
-        }
-
-        _app.Settings.InterceptExplorerPaste = PasteToggle.IsOn;
-        _app.SetExplorerPaste(PasteToggle.IsOn);
-        SaveSettings();
-    }
-
-    private void ShellMenuToggle_Toggled(object sender, RoutedEventArgs e)
-    {
-        if (_loadingSettings || ShellMenuToggle.IsOn == ShellExtensionRegistration.IsRegistered)
-        {
-            return;
-        }
-
-        try
-        {
-            if (ShellMenuToggle.IsOn)
-            {
-                ShellExtensionRegistration.Register(App.ShellExtensionPath);
-            }
-            else
-            {
-                ShellExtensionRegistration.Unregister();
-            }
-        }
-        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
-        {
-            _loadingSettings = true;
-            ShellMenuToggle.IsOn = ShellExtensionRegistration.IsRegistered;
-            _loadingSettings = false;
-        }
-    }
-
-    private void StartupToggle_Toggled(object sender, RoutedEventArgs e)
-    {
-        if (!_loadingSettings && StartupToggle.IsOn != StartupRegistration.IsEnabled)
-        {
-            StartupRegistration.Set(StartupToggle.IsOn);
-        }
     }
 
     private void CenterOnScreen()

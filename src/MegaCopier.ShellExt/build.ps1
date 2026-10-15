@@ -1,6 +1,8 @@
-﻿# Compila MegaCopierShell.dll con las Build Tools de C++ (sin abrir Visual Studio).
-#   .\build.ps1 -Output <carpeta>
-param([Parameter(Mandatory)][string]$Output)
+﻿# Compila la extensión del Explorador con las Build Tools de C++ (sin abrir Visual Studio).
+#   .\build.ps1 -Output <carpeta> [-Version 1.0.0]
+# La DLL lleva la versión en el nombre (MegaCopierShell-1.0.0.dll): el Explorador mantiene cargada la anterior,
+# así que una versión nueva se instala al lado sin tener que reiniciar el Explorador.
+param([Parameter(Mandatory)][string]$Output, [string]$Version = '0.0.0')
 
 $ErrorActionPreference = 'Stop'
 $here = $PSScriptRoot
@@ -22,11 +24,12 @@ $compile = "cl /nologo /utf-8 /LD /EHsc /O2 /W4 /permissive- /std:c++20 /DUNICOD
 cmd /c "`"$vcvars`" >nul && $compile"
 if ($LASTEXITCODE -ne 0) { throw 'La compilación de la extensión del shell falló.' }
 
-# El Explorador mantiene cargada la DLL si ya se usó: no se puede sobrescribir, pero sí renombrar.
-$target = Join-Path $Output 'MegaCopierShell.dll'
-if (Test-Path $target) {
-    try { Remove-Item $target -Force -ErrorAction Stop }
-    catch { Rename-Item $target ("MegaCopierShell.dll.old-" + [DateTime]::Now.Ticks) }
+# Versiones anteriores: se borran si se puede; si el Explorador las tiene cargadas, se quedan hasta el próximo inicio.
+Get-ChildItem $Output -Filter 'MegaCopierShell*.dll*' | ForEach-Object {
+    try { Remove-Item $_.FullName -Force -ErrorAction Stop } catch { }
 }
+
+$target = Join-Path $Output "MegaCopierShell-$Version.dll"
+if (Test-Path $target) { Rename-Item $target ("MegaCopierShell-$Version.dll.old-" + [DateTime]::Now.Ticks) }
 Copy-Item $dll $target
 Write-Host "Extensión del shell: $target"

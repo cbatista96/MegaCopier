@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using MegaCopier.App.Services;
 using MegaCopier.App.ViewModels;
 using MegaCopier.Engine.Ipc;
@@ -17,8 +18,10 @@ public partial class App : Application
     private TrayIcon? _tray;
     private IpcServer? _server;
     private PasteInterceptor? _paste;
-    private DispatcherQueueTimer? _trayTimer;
+    private TaskbarProgress? _taskbar;
+    private DispatcherQueueTimer? _statusTimer;
     private MainWindow? _window;
+    private bool _exiting;
 
     public App()
     {
@@ -36,13 +39,21 @@ public partial class App : Application
     /// <summary>Acción al terminar todas las copias (solo para esta sesión; vuelve a "nada" al ejecutarse).</summary>
     internal FinishAction FinishAction { get; set; }
 
-    private TaskbarProgress? _taskbar;
+    /// <summary>
+    /// La extensión del Explorador que acompaña a esta app. Lleva la versión en el nombre (MegaCopierShell-1.0.0.dll):
+    /// el Explorador mantiene cargada la anterior, así que una actualización instala la nueva al lado.
+    /// </summary>
+    internal static string? ShellExtensionPath =>
+        Directory.EnumerateFiles(AppContext.BaseDirectory, "MegaCopierShell*.dll")
+            .OrderByDescending(File.GetLastWriteTimeUtc)
+            .FirstOrDefault();
 
     protected override void OnLaunched(LaunchActivatedEventArgs args)
     {
         // Sin ventanas visibles la app sigue viva en la bandeja hasta que el usuario elige "Salir".
         DispatcherShutdownMode = DispatcherShutdownMode.OnExplicitShutdown;
         Dispatcher = DispatcherQueue.GetForCurrentThread();
+        Appearance.ApplyAccent(Settings.Accent);
 
         var interrupted = Queue.LoadInterrupted();
         _window = new MainWindow(this);
@@ -53,16 +64,16 @@ public partial class App : Application
         Queue.JobFinished += job => Dispatcher.TryEnqueue(() => OnJobFinished(job));
 
         _taskbar = new TaskbarProgress(Window.Handle);
-        _trayTimer = Dispatcher.CreateTimer();
-        _trayTimer.Interval = TimeSpan.FromMilliseconds(500);
-        _trayTimer.Tick += (_, _) => UpdateStatus();
-        _trayTimer.Start();
+        _statusTimer = Dispatcher.CreateTimer();
+        _statusTimer.Interval = TimeSpan.FromMilliseconds(500);
+        _statusTimer.Tick += (_, _) => UpdateStatus();
+        _statusTimer.Start();
 
         _server = new IpcServer(HandleRequestAsync);
         _server.Start();
 
         _paste = new PasteInterceptor(OnExplorerPaste);
-        _paste.PassedThrough += reason => System.Diagnostics.Debug.WriteLine($"Ctrl+V devuelto al Explorador: {reason}");
+        _paste.PassedThrough += reason => Debug.WriteLine($"Ctrl+V devuelto al Explorador: {reason}");
         SetExplorerPaste(Settings.InterceptExplorerPaste);
 
         if (Settings.AutoResumeInterrupted)
@@ -82,8 +93,8 @@ public partial class App : Application
         {
             // Arranque tras un apagón: avisar de que hay copias que se pueden continuar.
             _tray.ShowNotification(
-                "Hay copias interrumpidas",
-                interrupted.Count == 1 ? "Una copia quedó a medias. Ábrela para continuarla desde donde quedó." : $"{interrupted.Count} copias quedaron a medias. Ábrelas para continuarlas.");
+                L.Get("Notify_InterruptedTitle"),
+                interrupted.Count == 1 ? L.Get("Notify_InterruptedOne") : L.F("Notify_InterruptedMany", interrupted.Count));
         }
     }
 
@@ -92,7 +103,7 @@ public partial class App : Application
     {
         if (request.Sources.Count == 0 || string.IsNullOrWhiteSpace(request.Destination))
         {
-            throw new ArgumentException("La petición de copia necesita orígenes y un destino.");
+            throw new ArgumentException(L.Get("Error_NeedsPaths"));
         }
 
         return Queue.Submit(request.Sources, request.Destination, Settings.NewJobOptions(request));
@@ -111,8 +122,12 @@ public partial class App : Application
         }
     }
 
-    /// <summary>Ruta de la extensión del Explorador que acompaña a esta app.</summary>
-    internal static string ShellExtensionPath => Path.Combine(AppContext.BaseDirectory, ShellExtensionRegistration.DllName);
+    /// <summary>Reinicia la app (para aplicar el idioma). Las copias en curso quedan reanudables.</summary>
+    internal void Restart()
+    {
+        Process.Start(new ProcessStartInfo(Environment.ProcessPath!, "--restart") { UseShellExecute = false });
+        ExitApp();
+    }
 
     /// <summary>Un Ctrl+V del Explorador (llega desde el hilo del gancho).</summary>
     private bool OnExplorerPaste(PasteRequest paste)
@@ -157,7 +172,7 @@ public partial class App : Application
 
         if (!queued)
         {
-            completion.SetResult(new IpcResponse { Ok = false, Error = "La aplicación se está cerrando." });
+            completion.SetResult(new IpcResponse { Ok = false, Error = "MegaCopier is closing." });
         }
 
         return completion.Task;
@@ -181,8 +196,13 @@ public partial class App : Application
                 ShowWindow();
                 return new IpcResponse { Ok = true };
 
+            case "exit":
+                // Lo usa el desinstalador.
+                Dispatcher.TryEnqueue(ExitApp);
+                return new IpcResponse { Ok = true };
+
             default:
-                return new IpcResponse { Ok = false, Error = $"Comando desconocido: {request.Command}" };
+                return new IpcResponse { Ok = false, Error = $"Unknown command: {request.Command}" };
         }
     }
 
@@ -194,14 +214,14 @@ public partial class App : Application
         bool anyPaused = Queue.Jobs.Any(j => j.State == CopyJobState.Paused);
         return
         [
-            new("Abrir MegaCopier", ShowWindow),
+            new(L.Get("Tray_Open"), ShowWindow),
             TrayMenuItem.Separator,
-            new("Pausar todo", Queue.PauseAll, Enabled: anyRunning),
-            new("Reanudar todo", Queue.ResumeAll, Enabled: anyPaused),
+            new(L.Get("Tray_PauseAll"), Queue.PauseAll, Enabled: anyRunning),
+            new(L.Get("Tray_ResumeAll"), Queue.ResumeAll, Enabled: anyPaused),
             TrayMenuItem.Separator,
-            new("Iniciar con Windows", () => StartupRegistration.Set(!StartupRegistration.IsEnabled), Checked: StartupRegistration.IsEnabled),
+            new(L.Get("Tray_Startup"), () => StartupRegistration.Set(!StartupRegistration.IsEnabled), Checked: StartupRegistration.IsEnabled),
             TrayMenuItem.Separator,
-            new("Salir", ExitApp),
+            new(L.Get("Tray_Exit"), ExitApp),
         ];
     }
 
@@ -222,9 +242,10 @@ public partial class App : Application
             : total == 0 ? TaskbarProgress.Indeterminate
             : TaskbarProgress.Normal;
         _taskbar?.Update(state, (ulong)done, (ulong)total);
+
         double speed = running.Where(j => j.State == CopyJobState.Running).Sum(j => j.Progress?.BytesPerSecond ?? 0);
         string percent = total > 0 ? $"{100.0 * done / total:0}%" : "…";
-        string copies = running.Count == 1 ? "1 copia" : $"{running.Count} copias";
+        string copies = running.Count == 1 ? L.Get("Tray_OneJob") : L.F("Tray_ManyJobs", running.Count);
         _tray?.SetTooltip($"MegaCopier · {copies} · {percent} · {Format.Speed(speed)}");
     }
 
@@ -236,7 +257,7 @@ public partial class App : Application
             var action = FinishAction;
             FinishAction = FinishAction.None;
             Window.UpdateFinishButton();
-            _tray?.ShowNotification("Copias terminadas", action == FinishAction.Shutdown ? "El equipo se apagará en 1 minuto (cancelar: shutdown /a)." : "Suspendiendo el equipo…");
+            _tray?.ShowNotification(L.Get("Notify_AllDoneTitle"), L.Get(action == FinishAction.Shutdown ? "Notify_Shutdown" : "Notify_Sleep"));
             SystemActions.Run(action);
         }
 
@@ -245,25 +266,34 @@ public partial class App : Application
             return;
         }
 
-        string what = job.Record.Sources.Count == 1 ? Path.GetFileName(job.Record.Sources[0].TrimEnd('\\')) : $"{job.Record.Sources.Count} elementos";
+        string what = job.Record.Sources.Count == 1 ? Path.GetFileName(job.Record.Sources[0].TrimEnd('\\')) : L.F("Job_ManyItems", job.Record.Sources.Count);
         switch (job.State)
         {
             case CopyJobState.Completed when job.Result is { } result:
-                _tray?.ShowNotification("Copia terminada", $"{what} → {job.Record.Destination}\n{Format.Bytes(result.BytesTransferred)} en {Format.Duration(result.Elapsed)}");
+                _tray?.ShowNotification(
+                    L.Get("Notify_DoneTitle"),
+                    $"{what} → {job.Record.Destination}\n{L.F("Job_TransferredIn", Format.Bytes(result.BytesTransferred), Format.Duration(result.Elapsed))}");
                 break;
             case CopyJobState.CompletedWithErrors:
             case CopyJobState.Failed:
-                _tray?.ShowNotification("La copia tuvo problemas", $"{what}: {job.Error}");
+                _tray?.ShowNotification(L.Get("Notify_ProblemTitle"), $"{what}: {job.Error}");
                 break;
         }
     }
 
     private async void ExitApp()
     {
+        if (_exiting)
+        {
+            return;
+        }
+
+        _exiting = true;
+
         // Las copias en curso se detienen conservando lo copiado: al volver se continúan.
         _paste?.Dispose();
         await Task.Run(() => Queue.StopAll(TimeSpan.FromSeconds(5)));
-        _trayTimer?.Stop();
+        _statusTimer?.Stop();
         _taskbar?.Dispose();
         _tray?.Dispose();
         if (_server is not null)
