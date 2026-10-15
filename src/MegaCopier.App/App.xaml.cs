@@ -2,6 +2,7 @@ using MegaCopier.App.Services;
 using MegaCopier.App.ViewModels;
 using MegaCopier.Engine.Ipc;
 using MegaCopier.Engine.Jobs;
+using MegaCopier.Shell;
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
 
@@ -15,6 +16,7 @@ public partial class App : Application
 {
     private TrayIcon? _tray;
     private IpcServer? _server;
+    private PasteInterceptor? _paste;
     private DispatcherQueueTimer? _trayTimer;
     private MainWindow? _window;
 
@@ -52,6 +54,10 @@ public partial class App : Application
         _server = new IpcServer(HandleRequestAsync);
         _server.Start();
 
+        _paste = new PasteInterceptor(OnExplorerPaste);
+        _paste.PassedThrough += reason => System.Diagnostics.Debug.WriteLine($"Ctrl+V devuelto al Explorador: {reason}");
+        SetExplorerPaste(Settings.InterceptExplorerPaste);
+
         if (Settings.AutoResumeInterrupted)
         {
             foreach (var job in interrupted)
@@ -83,6 +89,42 @@ public partial class App : Application
         }
 
         return Queue.Submit(request.Sources, request.Destination, Settings.NewJobOptions(request));
+    }
+
+    /// <summary>Activa o desactiva la sustitución del Ctrl+V del Explorador.</summary>
+    internal void SetExplorerPaste(bool enabled)
+    {
+        if (enabled)
+        {
+            _paste?.Enable();
+        }
+        else
+        {
+            _paste?.Disable();
+        }
+    }
+
+    /// <summary>Ruta de la extensión del Explorador que acompaña a esta app.</summary>
+    internal static string ShellExtensionPath => Path.Combine(AppContext.BaseDirectory, ShellExtensionRegistration.DllName);
+
+    /// <summary>Un Ctrl+V del Explorador (llega desde el hilo del gancho).</summary>
+    private bool OnExplorerPaste(PasteRequest paste)
+    {
+        var completion = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
+        bool queued = Dispatcher.TryEnqueue(DispatcherQueuePriority.High, () =>
+        {
+            try
+            {
+                Handle(new IpcRequest { Command = "copy", Sources = [.. paste.Sources], Destination = paste.Destination });
+                completion.SetResult(true);
+            }
+            catch
+            {
+                completion.SetResult(false);
+            }
+        });
+
+        return queued && completion.Task.Wait(TimeSpan.FromSeconds(5)) && completion.Task.Result;
     }
 
     private Task<IpcResponse> HandleRequestAsync(IpcRequest request)
@@ -190,6 +232,7 @@ public partial class App : Application
     private async void ExitApp()
     {
         // Las copias en curso se detienen conservando lo copiado: al volver se continúan.
+        _paste?.Dispose();
         await Task.Run(() => Queue.StopAll(TimeSpan.FromSeconds(5)));
         _trayTimer?.Stop();
         _tray?.Dispose();

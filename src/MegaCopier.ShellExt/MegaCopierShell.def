@@ -1,0 +1,4 @@
+LIBRARY MegaCopierShell
+EXPORTS
+    DllGetClassObject PRIVATE
+    DllCanUnloadNow PRIVATE
