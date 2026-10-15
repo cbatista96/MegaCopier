@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+    x:Class="MegaCopier.App.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vm="using:MegaCopier.App.ViewModels"
+    Title="MegaCopier">
+
+    <Window.SystemBackdrop>
+        <MicaBackdrop />
+    </Window.SystemBackdrop>
+
+    <Grid x:Name="Root">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Barra de título propia (se integra con Mica) -->
+        <Grid x:Name="AppTitleBar" Padding="16,0,0,0">
+            <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                <Image Source="ms-appx:///Assets/MegaCopier.ico" Width="18" Height="18" />
+                <TextBlock Text="MegaCopier" Style="{StaticResource CaptionTextBlockStyle}" VerticalAlignment="Center" />
+            </StackPanel>
+        </Grid>
+
+        <!-- Cabecera: secciones + acción principal -->
+        <Grid Grid.Row="1" Padding="20,4,20,8" ColumnSpacing="12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <SelectorBar x:Name="Sections" SelectionChanged="Sections_SelectionChanged">
+                <SelectorBarItem x:Name="JobsSection" Text="Copias" IsSelected="True">
+                    <SelectorBarItem.Icon>
+                        <FontIcon Glyph="&#xE8C8;" />
+                    </SelectorBarItem.Icon>
+                </SelectorBarItem>
+                <SelectorBarItem x:Name="SettingsSection" Text="Ajustes">
+                    <SelectorBarItem.Icon>
+                        <FontIcon Glyph="&#xE713;" />
+                    </SelectorBarItem.Icon>
+                </SelectorBarItem>
+            </SelectorBar>
+            <DropDownButton Grid.Column="1" Style="{StaticResource AccentButtonStyle}" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <FontIcon Glyph="&#xE710;" FontSize="14" />
+                    <TextBlock Text="Nueva copia" />
+                </StackPanel>
+                <DropDownButton.Flyout>
+                    <MenuFlyout Placement="BottomEdgeAlignedRight">
+                        <MenuFlyoutItem Text="Copiar archivos…" Click="CopyFiles_Click">
+                            <MenuFlyoutItem.Icon>
+                                <FontIcon Glyph="&#xE8A5;" />
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
+                        <MenuFlyoutItem Text="Copiar una carpeta…" Click="CopyFolder_Click">
+                            <MenuFlyoutItem.Icon>
+                                <FontIcon Glyph="&#xE8B7;" />
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
+                    </MenuFlyout>
+                </DropDownButton.Flyout>
+            </DropDownButton>
+        </Grid>
+
+        <!-- Copias -->
+        <Grid x:Name="JobsView" Grid.Row="2">
+            <StackPanel x:Name="EmptyState" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="8" Margin="24,0,24,48">
+                <FontIcon Glyph="&#xE8C8;" FontSize="44" Foreground="{ThemeResource TextFillColorTertiaryBrush}" />
+                <TextBlock Text="No hay copias" Style="{StaticResource SubtitleTextBlockStyle}" HorizontalAlignment="Center" />
+                <TextBlock
+                    Text="Las copias que inicies aparecerán aquí. Si se corta la luz, al volver podrás continuarlas desde donde quedaron."
+                    Style="{StaticResource BodyTextBlockStyle}"
+                    Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                    TextAlignment="Center" MaxWidth="380" TextWrapping="Wrap" />
+            </StackPanel>
+
+            <ScrollViewer x:Name="JobsScroll" Padding="20,0,20,20">
+                <ItemsRepeater ItemsSource="{x:Bind Jobs}">
+                    <ItemsRepeater.Layout>
+                        <StackLayout Spacing="8" />
+                    </ItemsRepeater.Layout>
+                    <ItemsRepeater.ItemTemplate>
+                        <DataTemplate x:DataType="vm:JobViewModel">
+                            <Border
+                                Padding="16,14"
+                                CornerRadius="8"
+                                Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                                BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                                BorderThickness="1">
+                                <Grid RowSpacing="6" ColumnSpacing="14">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+
+                                    <FontIcon Grid.RowSpan="2" Glyph="{x:Bind Glyph, Mode=OneWay}" FontSize="22"
+                                              Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" VerticalAlignment="Top" Margin="0,2,0,0" />
+
+                                    <StackPanel Grid.Column="1" Spacing="1">
+                                        <TextBlock Text="{x:Bind Title, Mode=OneWay}" Style="{StaticResource BodyStrongTextBlockStyle}" TextTrimming="CharacterEllipsis" />
+                                        <TextBlock Text="{x:Bind DestinationText}" Style="{StaticResource CaptionTextBlockStyle}"
+                                                   Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextTrimming="CharacterEllipsis" />
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="4" VerticalAlignment="Top">
+                                        <Button Visibility="{x:Bind CanPause, Mode=OneWay}" Click="{x:Bind Pause}" ToolTipService.ToolTip="Pausar" Style="{StaticResource SubtleButtonStyle}">
+                                            <FontIcon Glyph="&#xE769;" FontSize="14" />
+                                        </Button>
+                                        <Button Visibility="{x:Bind CanResume, Mode=OneWay}" Click="{x:Bind Resume}" Style="{StaticResource AccentButtonStyle}">
+                                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                                <FontIcon Glyph="&#xE768;" FontSize="12" />
+                                                <TextBlock Text="{x:Bind ResumeLabel, Mode=OneWay}" />
+                                            </StackPanel>
+                                        </Button>
+                                        <Button Visibility="{x:Bind CanStop, Mode=OneWay}" Click="{x:Bind Stop}" ToolTipService.ToolTip="Detener (se podrá continuar más tarde)" Style="{StaticResource SubtleButtonStyle}">
+                                            <FontIcon Glyph="&#xE71A;" FontSize="14" />
+                                        </Button>
+                                        <Button Visibility="{x:Bind CanClear, Mode=OneWay}" Click="{x:Bind OpenDestination}" ToolTipService.ToolTip="Abrir la carpeta de destino" Style="{StaticResource SubtleButtonStyle}">
+                                            <FontIcon Glyph="&#xE838;" FontSize="14" />
+                                        </Button>
+                                        <Button Visibility="{x:Bind CanClear, Mode=OneWay}" Click="{x:Bind Clear}" ToolTipService.ToolTip="Quitar de la lista" Style="{StaticResource SubtleButtonStyle}">
+                                            <FontIcon Glyph="&#xE711;" FontSize="14" />
+                                        </Button>
+                                        <Button Visibility="{x:Bind CanDiscard, Mode=OneWay}" Click="{x:Bind Discard}" ToolTipService.ToolTip="Descartar y borrar lo copiado a medias" Style="{StaticResource SubtleButtonStyle}">
+                                            <FontIcon Glyph="&#xE74D;" FontSize="14" />
+                                        </Button>
+                                    </StackPanel>
+
+                                    <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" ColumnSpacing="10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <ProgressBar Value="{x:Bind Percent, Mode=OneWay}" Maximum="100" VerticalAlignment="Center"
+                                                     IsIndeterminate="{x:Bind IsIndeterminate, Mode=OneWay}"
+                                                     ShowPaused="{x:Bind ShowPaused, Mode=OneWay}"
+                                                     ShowError="{x:Bind ShowError, Mode=OneWay}" />
+                                        <TextBlock Grid.Column="1" Text="{x:Bind PercentText, Mode=OneWay}" Style="{StaticResource CaptionTextBlockStyle}" MinWidth="32" TextAlignment="Right" />
+                                    </Grid>
+
+                                    <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Spacing="2">
+                                        <TextBlock Style="{StaticResource CaptionTextBlockStyle}" TextTrimming="CharacterEllipsis">
+                                            <Run Text="{x:Bind StateText, Mode=OneWay}" Foreground="{ThemeResource TextFillColorPrimaryBrush}" />
+                                            <Run Text="  " />
+                                            <Run Text="{x:Bind CurrentFileText, Mode=OneWay}" Foreground="{ThemeResource TextFillColorTertiaryBrush}" />
+                                        </TextBlock>
+                                        <TextBlock Text="{x:Bind DetailText, Mode=OneWay}" Style="{StaticResource CaptionTextBlockStyle}"
+                                                   Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" />
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsRepeater.ItemTemplate>
+                </ItemsRepeater>
+            </ScrollViewer>
+        </Grid>
+
+        <!-- Ajustes -->
+        <ScrollViewer x:Name="SettingsView" Grid.Row="2" Visibility="Collapsed" Padding="20,0,20,20">
+            <StackPanel Spacing="4" MaxWidth="760" HorizontalAlignment="Stretch">
+                <TextBlock Text="Apariencia" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="2,8,0,4" />
+                <Border Style="{StaticResource SettingCard}">
+                    <Grid ColumnSpacing="12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel>
+                            <TextBlock Text="Tema" />
+                            <TextBlock Text="Claro, oscuro o el mismo que Windows" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                        </StackPanel>
+                        <ComboBox x:Name="ThemeBox" Grid.Column="1" MinWidth="200" SelectionChanged="ThemeBox_SelectionChanged" VerticalAlignment="Center">
+                            <ComboBoxItem Content="Usar el de Windows" />
+                            <ComboBoxItem Content="Claro" />
+                            <ComboBoxItem Content="Oscuro" />
+                        </ComboBox>
+                    </Grid>
+                </Border>
+
+                <TextBlock Text="Copia" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="2,16,0,4" />
+                <Border Style="{StaticResource SettingCard}">
+                    <Grid ColumnSpacing="12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel>
+                            <TextBlock Text="Verificar después de copiar" />
+                            <TextBlock Text="Relee el destino sin caché y repara cualquier bloque que no coincida con el origen" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" />
+                        </StackPanel>
+                        <ToggleSwitch x:Name="VerifyToggle" Grid.Column="1" OnContent="" OffContent="" MinWidth="0" Toggled="VerifyToggle_Toggled" />
+                    </Grid>
+                </Border>
+                <Border Style="{StaticResource SettingCard}">
+                    <Grid ColumnSpacing="12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel>
+                            <TextBlock Text="Si el archivo ya existe" />
+                            <TextBlock Text="Los archivos idénticos (mismo tamaño y fecha) siempre se omiten" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" />
+                        </StackPanel>
+                        <ComboBox x:Name="ConflictBox" Grid.Column="1" MinWidth="200" SelectionChanged="ConflictBox_SelectionChanged" VerticalAlignment="Center">
+                            <ComboBoxItem Content="Reemplazar" />
+                            <ComboBoxItem Content="Omitir" />
+                            <ComboBoxItem Content="Reemplazar si es más nuevo" />
+                            <ComboBoxItem Content="Conservar ambos" />
+                        </ComboBox>
+                    </Grid>
+                </Border>
+                <Border Style="{StaticResource SettingCard}">
+                    <Grid ColumnSpacing="12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel>
+                            <TextBlock Text="Continuar automáticamente las copias interrumpidas" />
+                            <TextBlock Text="Tras un apagón o un reinicio, sigue sin preguntar al abrir MegaCopier" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" />
+                        </StackPanel>
+                        <ToggleSwitch x:Name="AutoResumeToggle" Grid.Column="1" OnContent="" OffContent="" MinWidth="0" Toggled="AutoResumeToggle_Toggled" />
+                    </Grid>
+                </Border>
+
+                <TextBlock Text="Sistema" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="2,16,0,4" />
+                <Border Style="{StaticResource SettingCard}">
+                    <Grid ColumnSpacing="12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel>
+                            <TextBlock Text="Iniciar con Windows" />
+                            <TextBlock Text="Se queda en la bandeja para que las copias empiecen al instante" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" />
+                        </StackPanel>
+                        <ToggleSwitch x:Name="StartupToggle" Grid.Column="1" OnContent="" OffContent="" MinWidth="0" Toggled="StartupToggle_Toggled" />
+                    </Grid>
+                </Border>
+                <Border Style="{StaticResource SettingCard}">
+                    <Grid ColumnSpacing="12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel>
+                            <TextBlock Text="Avisar al terminar" />
+                            <TextBlock Text="Notificación del sistema cuando acaba una copia y la ventana no está a la vista" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" />
+                        </StackPanel>
+                        <ToggleSwitch x:Name="NotifyToggle" Grid.Column="1" OnContent="" OffContent="" MinWidth="0" Toggled="NotifyToggle_Toggled" />
+                    </Grid>
+                </Border>
+
+                <TextBlock x:Name="AboutText" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorTertiaryBrush}" Margin="2,16,0,0" />
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>

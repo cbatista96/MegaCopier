@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/MegaCopier.App/MegaCopier.App.csproj">
+      <Platform Project="x64" />
+    </Project>
+    <Project Path="src/MegaCopier.Cli/MegaCopier.Cli.csproj" />
+    <Project Path="src/MegaCopier.Engine/MegaCopier.Engine.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/MegaCopier.Engine.Tests/MegaCopier.Engine.Tests.csproj" />
+  </Folder>
+</Solution>

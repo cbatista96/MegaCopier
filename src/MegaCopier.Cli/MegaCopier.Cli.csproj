@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <!-- "mcopy" y no "megacopier": Windows no distingue mayúsculas y chocaría con la app MegaCopier.exe. -->
+    <AssemblyName>mcopy</AssemblyName>
+    <RootNamespace>MegaCopier.Cli</RootNamespace>
+    <PublishAot>true</PublishAot>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MegaCopier.Engine\MegaCopier.Engine.csproj" />
+  </ItemGroup>
+
+</Project>
