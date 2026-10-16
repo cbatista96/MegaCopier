@@ -72,6 +72,7 @@ public sealed partial class CopyEngine
         var result = new CopyJobResult();
         var lists = ChecksumLists.Find(request.Sources);
         var expected = new Dictionary<int, ChecksumEntry>();
+        var edited = new HashSet<int>();
         foreach (string list in lists)
         {
             foreach (var entry in ChecksumLists.Parse(list))
@@ -93,6 +94,17 @@ public sealed partial class CopyEngine
                 {
                     var item = Files.Add(file.Source, file.Source, file.Length, file.LastWriteUtc);
                     expected[item.Id] = new ChecksumEntry(file.Source, stored.Hash, stored.Algorithm);
+                    if (stored.LastWriteUtc is { } stamp && Math.Abs((file.LastWriteUtc - stamp).TotalSeconds) > 2)
+                    {
+                        edited.Add(item.Id); // se modificó después: no es corrupción
+                    }
+                }
+                else if (_options.SaveHashStream)
+                {
+                    // Renovar: lo que no tiene hash (nuevo o guardado de nuevo por otro programa) queda protegido.
+                    var item = Files.Add(file.Source, file.Source, file.Length, file.LastWriteUtc);
+                    expected[item.Id] = new ChecksumEntry(file.Source, "", _options.HashAlgorithm == FileHashAlgorithm.None ? FileHashAlgorithm.Sha256 : _options.HashAlgorithm);
+                    edited.Add(item.Id);
                 }
             }
 
@@ -123,6 +135,21 @@ public sealed partial class CopyEngine
                 if (!File.Exists(item.Source))
                 {
                     Fail(item, result, $"No existe: {item.Source}", FileErrorKind.NotFound);
+                }
+                else if (edited.Contains(item.Id))
+                {
+                    // Editado después de guardar su hash: se omite; con "guardar el hash en el archivo", se renueva.
+                    bool unprotected = entry.Hash.Length == 0;
+                    string message = unprotected ? "Sin hash guardado: no se comprueba" : "Modificado después de guardar su hash: no se comprueba";
+                    if (_options.SaveHashStream)
+                    {
+                        string fresh = HashWithProgress(item.Source, entry.Algorithm, buffer, progress, cancellationToken);
+                        WriteHashStream(item.Source, fresh, item.LastWriteUtc, entry.Algorithm);
+                        message = unprotected ? "Sin hash guardado: ahora protegido" : "Modificado después de guardar su hash: hash renovado";
+                    }
+
+                    result.FilesSkipped++;
+                    Files.Update(item, FileState.Skipped, message);
                 }
                 else
                 {

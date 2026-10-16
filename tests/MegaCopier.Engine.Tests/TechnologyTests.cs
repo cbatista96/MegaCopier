@@ -292,6 +292,55 @@ public sealed class TechnologyTests : IDisposable
         Assert.False(File.Exists(_temp.Combine("dst/video.mp4")));
     }
 
+    /// <summary>Cambia el contenido sin reescribir el archivo (así se conservan sus flujos alternativos).</summary>
+    private static void Overwrite(string path, string text)
+    {
+        using var stream = new FileStream(path, FileMode.Open, FileAccess.Write);
+        stream.SetLength(0);
+        stream.Write(System.Text.Encoding.UTF8.GetBytes(text));
+    }
+
+    [Fact]
+    public void IntegrityGuardTellsEditsFromCorruption()
+    {
+        string edited = Write("fotos/editada.jpg", "original");
+        string rotten = Write("fotos/podrida.jpg", "intacta");
+        Write("fotos/buena.jpg", "buena");
+        var protect = Options();
+        protect.Operation = JobOperation.Hash;
+        protect.SaveHashStream = true;
+        protect.HashAlgorithm = FileHashAlgorithm.Sha256;
+        Assert.Equal(3, new CopyEngine(protect).Run(new CopyJobRequest([_temp.Combine("fotos")], _temp.Combine("fotos"))).FilesCopied);
+        Assert.Empty(Directory.GetFiles(_temp.Combine("fotos"), "*.sha256")); // sin lista: el hash va dentro
+
+        Overwrite(edited, "retocada"); // edición normal: cambia la fecha
+        File.SetLastWriteTimeUtc(edited, DateTime.UtcNow.AddMinutes(5));
+        var stamp = File.GetLastWriteTimeUtc(rotten);
+        Overwrite(rotten, "dañada!"); // corrupción silenciosa: misma fecha
+        File.SetLastWriteTimeUtc(rotten, stamp);
+
+        var check = Options();
+        check.Operation = JobOperation.Test;
+        var first = new CopyEngine(check);
+        var result = first.Run(new CopyJobRequest([_temp.Combine("fotos")], _temp.Combine("fotos")));
+        Assert.Single(result.Failures);
+        Assert.Equal(Path.GetFullPath(rotten), result.Failures[0].Source);
+        Assert.Equal(FileErrorKind.ChecksumMismatch, result.Failures[0].Kind);
+        Assert.Equal(1, result.FilesSkipped);
+        Assert.Equal(1, result.FilesCopied);
+
+        string added = Write("fotos/nueva.jpg", "nueva"); // sin hash todavía
+
+        // Comprobar renovando los hashes de lo editado: la próxima vez la editada ya está protegida.
+        check.SaveHashStream = true;
+        new CopyEngine(check).Run(new CopyJobRequest([_temp.Combine("fotos")], _temp.Combine("fotos")));
+        check.SaveHashStream = false;
+        var again = new CopyEngine(check).Run(new CopyJobRequest([_temp.Combine("fotos")], _temp.Combine("fotos")));
+        Assert.Equal(3, again.FilesCopied);
+        Assert.NotNull(CopyEngine.ReadHashStream(added));
+        Assert.Equal(0, again.FilesSkipped);
+    }
+
     [Fact]
     public void SystemCopyCanBeCancelled()
     {
