@@ -673,3 +673,8 @@ Job_StatePausedFullScreen	En pausa: pantalla completa	Paused: full screen
 Job_SlowedSchedule	Más despacio por el horario elegido	Slower because of the chosen schedule
 Rules_Delta.Content	Al reemplazar archivos grandes, escribir solo lo que cambió	When replacing large files, write only what changed
 Rules_Delta.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Copia diferencial para archivos de 16 MB o más (discos virtuales, correo, proyectos): solo se escriben los bloques distintos. Si se cancela o se va la luz, el archivo vuelve a su versión anterior.	Delta copy for files of 16 MB or more (virtual disks, mail, projects): only different blocks are written. If cancelled or power is lost, the file returns to its previous version.
+Panel_CopyLocked.Text	Copiar los archivos en uso	Copy files in use
+Locked_Title	Archivos en uso	Files in use
+Locked_Cancelled	No se dio permiso de administrador: los archivos en uso no se copiaron.	Administrator permission was not given: the files in use were not copied.
+Locked_Done	{0} archivos en uso copiados desde una instantánea del disco.	{0} files in use copied from a snapshot of the drive.
+Locked_Partial	{0} copiados desde una instantánea; los demás no se pudieron copiar: {1}	{0} copied from a snapshot; the rest could not be copied: {1}

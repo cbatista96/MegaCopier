@@ -163,6 +163,58 @@ public partial class App : Application
     /// Lanza una lista guardada (.mclist) con todas sus opciones: "Cargar lista", tareas programadas y
     /// "MegaCopier.exe run lista.mclist". Si no tiene un destino completo, se pide.
     /// </summary>
+    /// <summary>
+    /// Copia los archivos que fallaron por estar en uso leyéndolos de una instantánea de volumen: un proceso aparte pide
+    /// permiso de administrador (el aviso de Windows), los copia, y después se reintenta la copia (ya los encuentra).
+    /// </summary>
+    internal async Task CopyLockedFilesAsync(CopyJob job)
+    {
+        var locked = job.Files?.Snapshot().Where(i => i.State == FileState.Failed && i.ErrorKind == FileErrorKind.InUse)
+            .Select(i => new LockedFile(i.Source, i.Destination)).ToList() ?? [];
+        if (locked.Count == 0)
+        {
+            return;
+        }
+
+        string requestPath = DataFolder.Combine($"vss-{job.Id}.json");
+        LockedFiles.Save(new LockedFilesRequest { Files = locked }, requestPath);
+        int exit;
+        try
+        {
+            var info = new ProcessStartInfo(Environment.ProcessPath!, $"--vss \"{requestPath}\"") { UseShellExecute = !TestMode };
+            if (!TestMode)
+            {
+                info.Verb = "runas"; // aviso de control de cuentas de Windows
+            }
+
+            using var process = Process.Start(info)!;
+            await process.WaitForExitAsync();
+            exit = process.ExitCode;
+        }
+        catch (System.ComponentModel.Win32Exception)
+        {
+            Notify(L.Get("Locked_Title"), L.Get("Locked_Cancelled")); // no se dio permiso
+            return;
+        }
+
+        var result = LockedFiles.Load(requestPath);
+        File.Delete(requestPath);
+        int copied = locked.Count - (result?.Errors.Count ?? locked.Count);
+        if (TestMode)
+        {
+            TestLog("vss.log", $"salida={exit} copiados={copied} errores={result?.Errors.Count} {string.Join(" | ", result?.Errors.Values.ToList() ?? [])}");
+        }
+
+        if (copied > 0)
+        {
+            Queue.Resume(job); // reintentar: los copiados ya están y se omiten como idénticos
+        }
+
+        Notify(L.Get("Locked_Title"), result is { Errors.Count: 0 }
+            ? L.F("Locked_Done", copied)
+            : L.F("Locked_Partial", copied, result?.Errors.Values.FirstOrDefault() ?? ""));
+    }
+
     internal CopyJob? RunList(string path, string? destination = null)
     {
         if (Reports.LoadList(path) is not { Sources.Count: > 0 } list)

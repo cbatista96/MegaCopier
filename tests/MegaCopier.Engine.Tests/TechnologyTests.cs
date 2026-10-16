@@ -469,6 +469,54 @@ public sealed class TechnologyTests : IDisposable
         Assert.False(File.Exists(target + ".mcundo"));
     }
 
+    /// <summary>Instantánea simulada: una carpeta con el mismo árbol que el volumen.</summary>
+    private sealed class FakeSnapshots(string root) : ISnapshotProvider
+    {
+        public List<string> Deleted { get; } = [];
+
+        public (string Root, string Id) Create(string volume) => (root, "instantanea-1");
+
+        public void Delete(string id) => Deleted.Add(id);
+    }
+
+    [Fact]
+    public void LockedFilesAreCopiedFromASnapshotAndTheJobThenSucceeds()
+    {
+        string source = Write("src/correo.pst", "buzón entero");
+        Write("src/libre.txt", "libre");
+        string fullSource = Path.GetFullPath(source);
+        string snapshotRoot = _temp.Combine("instantanea");
+        string inSnapshot = Path.Combine(snapshotRoot, fullSource[Path.GetPathRoot(fullSource)!.Length..]);
+        Directory.CreateDirectory(Path.GetDirectoryName(inSnapshot)!);
+        File.Copy(source, inSnapshot);
+        File.SetLastWriteTimeUtc(inSnapshot, File.GetLastWriteTimeUtc(source));
+        var options = Options();
+        options.RetryCount = 0;
+        options.Conflict = ConflictPolicy.Overwrite;
+
+        using (File.Open(source, FileMode.Open, FileAccess.ReadWrite, FileShare.None)) // Outlook abierto
+        {
+            var first = new CopyEngine(options).Run(new CopyJobRequest([_temp.Combine("src")], _temp.Combine("dst")));
+            Assert.Equal(FileErrorKind.InUse, Assert.Single(first.Failures).Kind);
+
+            var request = new LockedFilesRequest { Files = [new LockedFile(fullSource, _temp.Combine("dst/src/correo.pst"))] };
+            string requestPath = LockedFiles.Save(request, _temp.Combine("peticion.json"));
+            var fake = new FakeSnapshots(snapshotRoot);
+            var loaded = LockedFiles.Load(requestPath)!;
+            LockedFiles.Copy(loaded, fake, options);
+            LockedFiles.Save(loaded, requestPath);
+
+            Assert.True(LockedFiles.Load(requestPath)!.Done);
+            Assert.Empty(loaded.Errors);
+            Assert.Equal(["instantanea-1"], fake.Deleted);
+            Assert.Equal("buzón entero", File.ReadAllText(_temp.Combine("dst/src/correo.pst")));
+
+            // Reintentar la copia: el archivo ya está (idéntico) y el trabajo termina bien, aunque siga bloqueado.
+            var retry = new CopyEngine(options).Run(new CopyJobRequest([_temp.Combine("src")], _temp.Combine("dst")) { Resumed = true });
+            Assert.True(retry.Success);
+        }
+    }
+
     [Fact]
     public void SystemCopyCanBeCancelled()
     {

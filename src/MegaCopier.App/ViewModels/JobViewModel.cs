@@ -358,6 +358,11 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
 
     public void RunForReal() => _queue.RunForReal(Job);
 
+    /// <summary>Terminó con archivos que otro programa tenía en uso: se pueden copiar desde una instantánea.</summary>
+    public bool CanCopyLocked => State == CopyJobState.CompletedWithErrors && Job.Result is { } r && r.Failures.Any(f => f.Kind == FileErrorKind.InUse);
+
+    public void CopyLocked() => _ = ((App)Microsoft.UI.Xaml.Application.Current).CopyLockedFilesAsync(Job);
+
     public void TogglePause()
     {
         if (CanPause)

@@ -83,6 +83,12 @@ public static class Program
             return Setup(args);
         }
 
+        // Archivos en uso: este proceso (con permisos de administrador) los copia desde una instantánea y sale.
+        if (args.Length > 1 && args[0] == "--vss")
+        {
+            return CopyLockedFiles(args[1]);
+        }
+
         var startup = StartupArgs.Parse(args);
 
         // Instancia única: el primer proceso se queda residente; los siguientes le pasan su petición y salen.
@@ -122,6 +128,34 @@ public static class Program
         });
 
         return 0;
+    }
+
+    /// <summary>"--vss petición.json": instantánea, copia de los archivos en uso y resultado en la misma petición.</summary>
+    private static int CopyLockedFiles(string requestPath)
+    {
+        if (Engine.LockedFiles.Load(requestPath) is not { } request)
+        {
+            return 2;
+        }
+
+        // En pruebas, una carpeta hace de instantánea (sin pedir permisos de administrador).
+        Engine.ISnapshotProvider snapshots = App.TestMode && Environment.GetEnvironmentVariable("MEGACOPIER_TEST_SNAPSHOT") is { Length: > 0 } fake
+            ? new FolderSnapshot(fake)
+            : new Engine.WmiSnapshotProvider();
+        var settings = AppSettings.Load();
+        var options = settings.NewJobOptions(new IpcRequest { Command = "copy" });
+        Engine.LockedFiles.Copy(request, snapshots, options);
+        Engine.LockedFiles.Save(request, requestPath);
+        return request.Errors.Count == 0 ? 0 : 1;
+    }
+
+    private sealed class FolderSnapshot(string root) : Engine.ISnapshotProvider
+    {
+        public (string Root, string Id) Create(string volume) => (root, "prueba");
+
+        public void Delete(string id)
+        {
+        }
     }
 
     /// <summary>
