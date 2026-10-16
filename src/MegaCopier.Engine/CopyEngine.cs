@@ -401,6 +401,11 @@ public sealed partial class CopyEngine
                 Log(LogLevel.Warning, $"La verificación reparó {outcome.ChunksRepaired} bloques dañados.", item.Source);
             }
 
+            if (outcome.Cloned)
+            {
+                Log(LogLevel.Info, "Bloques clonados al instante (ReFS/Dev Drive): no ocupa más espacio hasta que se modifique.", item.Source);
+            }
+
             if (outcome.BytesResumed > 0)
             {
                 Log(LogLevel.Info, $"Reanudado desde {FormatBytes(outcome.BytesResumed)}.", item.Source);

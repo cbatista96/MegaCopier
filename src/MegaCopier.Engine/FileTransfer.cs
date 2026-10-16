@@ -25,6 +25,9 @@ internal sealed class FileTransferResult
 
     /// <summary>Avisos que no impiden la copia (streams o permisos que no se pudieron copiar).</summary>
     public List<string> Warnings { get; } = [];
+
+    /// <summary>Se clonaron los bloques (ReFS/Dev Drive) en lugar de copiar los datos.</summary>
+    public bool Cloned { get; set; }
 }
 
 /// <summary>
@@ -93,6 +96,12 @@ internal sealed class FileTransfer
         {
             IoHelpers.DeleteIfExists(journalPath);
             IoHelpers.DeleteIfExists(partialPath);
+        }
+
+        if (journal is null && _options.BlockClone && length > 0
+            && await TryCloneAsync(source, sourceUnbuffered, info, sourcePath, partialPath, destinationPath, cancellationToken).ConfigureAwait(false) is { } cloned)
+        {
+            return cloned;
         }
 
         var result = new FileTransferResult();
@@ -180,6 +189,53 @@ internal sealed class FileTransfer
         destination.Dispose();
         Finalize(sourcePath, partialPath, destinationPath, info, result);
         journal?.Delete();
+        return result;
+    }
+
+    /// <summary>
+    /// ReFS y Dev Drive: el destino comparte los bloques del origen (instantáneo). Null si no se puede (otro volumen, otro
+    /// sistema de archivos o el clonado falla): entonces se copia de la forma normal.
+    /// </summary>
+    private async Task<FileTransferResult?> TryCloneAsync(
+        SafeFileHandle source, bool sourceUnbuffered, SourceInfo info, string sourcePath, string partialPath, string destinationPath, CancellationToken cancellationToken)
+    {
+        string folder = Path.GetDirectoryName(Path.GetFullPath(destinationPath))!;
+        try
+        {
+            if (!BlockClone.CanClone(source, folder) || Win32.VolumeRoot(folder) is not { } volume)
+            {
+                return null;
+            }
+
+            using var destination = File.OpenHandle(partialPath, FileMode.Create, FileAccess.ReadWrite, FileShare.Read);
+            BlockClone.Clone(source, destination, volume, info.Identity.Length, (info.Attributes & FileAttributes.SparseFile) != 0);
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+        {
+            IoHelpers.DeleteIfExists(partialPath);
+            return null;
+        }
+
+        long length = info.Identity.Length;
+        var result = new FileTransferResult { Cloned = true, BytesTransferred = length };
+        _progress.AddTransferred(length);
+
+        // Las sumas se siguen calculando (archivo de sumas, verificación) leyendo los datos.
+        if (FileHasher.Create(_options.HashAlgorithm) is { } sourceHasher)
+        {
+            await ReadSequentialAsync(source, sourceUnbuffered, 0, length, (data, _) => sourceHasher.Append(data), cancellationToken).ConfigureAwait(false);
+            result.SourceHash = sourceHasher.Finish();
+            if (_options.Verify && FileHasher.Create(_options.HashAlgorithm) is { } destinationHasher)
+            {
+                _progress.SetPhase(CopyPhase.Verifying);
+                using var copy = File.OpenHandle(partialPath, FileMode.Open, FileAccess.Read, FileShare.Read, FileOptions.Asynchronous | FileOptions.SequentialScan);
+                await ReadSequentialAsync(copy, false, 0, length, (data, _) => destinationHasher.Append(data), cancellationToken).ConfigureAwait(false);
+                result.DestinationHash = destinationHasher.Finish();
+                _progress.SetPhase(CopyPhase.Copying);
+            }
+        }
+
+        Finalize(sourcePath, partialPath, destinationPath, info, result);
         return result;
     }
 

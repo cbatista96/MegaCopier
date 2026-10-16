@@ -29,7 +29,7 @@ internal static partial class Win32
         return full.StartsWith(@"\\", StringComparison.Ordinal) ? @"\\?\UNC\" + full[2..] : @"\\?\" + full;
     }
 
-    /// <SUMMARY>FILE_FLAG_NO_BUFFERING: E/S DIRECTA AL DISPOSITIVO, SIN PASAR POR LA CACHé DE WINDOWS.</SUMMARY>
+    /// <summary>FILE_FLAG_NO_BUFFERING: E/S directa al dispositivo, sin pasar por la caché de Windows.</summary>
     public const FileOptions NoBuffering = (FileOptions)0x20000000;
 
     [StructLayout(LayoutKind.Sequential)]

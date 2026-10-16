@@ -126,6 +126,9 @@ public sealed class CopyOptions
     /// <summary>Vacía al disco también los archivos pequeños antes de renombrarlos (evita archivos "completos" con ceros tras un apagón).</summary>
     public bool FlushSmallFiles { get; set; } = true;
 
+    /// <summary>En ReFS y Dev Drive, dentro del mismo volumen, clonar bloques en lugar de copiarlos (instantáneo).</summary>
+    public bool BlockClone { get; set; } = true;
+
     public bool PreserveTimestamps { get; set; } = true;
 
     public bool PreserveAttributes { get; set; } = true;
