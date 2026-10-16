@@ -202,6 +202,37 @@ public sealed class TechnologyTests : IDisposable
     }
 
     [Fact]
+    public void AllOrNothingFolderOnlyAppearsWhenComplete()
+    {
+        Write("src/a.txt", "a");
+        string locked = Write("src/sub/b.txt", "b");
+        var options = Options();
+        options.AllOrNothing = true;
+        options.RetryCount = 0;
+        string final = _temp.Combine("dst/src");
+        string staging = final + CopyEngine.StagingSuffix;
+
+        using (File.Open(locked, FileMode.Open, FileAccess.ReadWrite, FileShare.None))
+        {
+            var failed = new CopyEngine(options).Run(new CopyJobRequest([_temp.Combine("src")], _temp.Combine("dst")));
+            Assert.False(failed.Success);
+        }
+
+        Assert.False(Directory.Exists(final)); // nunca a medias
+        Assert.True(Directory.Exists(staging));
+        Assert.True((File.GetAttributes(staging) & FileAttributes.Hidden) != 0);
+        Assert.True(File.Exists(Path.Combine(staging, "a.txt")));
+
+        var retry = new CopyEngine(options).Run(new CopyJobRequest([_temp.Combine("src")], _temp.Combine("dst")) { Resumed = true });
+
+        Assert.True(retry.Success);
+        Assert.Equal(1, retry.FilesSkipped); // a.txt ya estaba en la carpeta oculta
+        Assert.Equal("b", File.ReadAllText(Path.Combine(final, "sub/b.txt")));
+        Assert.False(Directory.Exists(staging));
+        Assert.Equal(0, (int)(File.GetAttributes(final) & FileAttributes.Hidden));
+    }
+
+    [Fact]
     public void SystemCopyCanBeCancelled()
     {
         string source = Write("src/enorme.bin", "");

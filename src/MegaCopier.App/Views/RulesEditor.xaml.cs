@@ -38,6 +38,8 @@ public sealed class CopyRules
 
     public bool WaitForSpace { get; set; } = true;
 
+    public bool AllOrNothing { get; set; }
+
     public static CopyRules From(Engine.Jobs.CopyJobRecord r) => new()
     {
         Filter = r.Filter,
@@ -55,6 +57,7 @@ public sealed class CopyRules
         WipeSource = r.WipeSource,
         WaitForDevice = r.WaitForDevice,
         WaitForSpace = r.WaitForSpace,
+        AllOrNothing = r.AllOrNothing,
     };
 
     public void ApplyTo(Engine.Jobs.CopyJobRecord r)
@@ -74,6 +77,7 @@ public sealed class CopyRules
         r.WipeSource = WipeSource;
         r.WaitForDevice = WaitForDevice;
         r.WaitForSpace = WaitForSpace;
+        r.AllOrNothing = AllOrNothing;
     }
 }
 
@@ -136,6 +140,7 @@ public sealed partial class RulesEditor : UserControl
         WipeBox.IsChecked = rules.WipeSource;
         WaitDeviceBox.IsChecked = rules.WaitForDevice;
         WaitSpaceBox.IsChecked = rules.WaitForSpace;
+        AllOrNothingBox.IsChecked = rules.AllOrNothing;
         UpdatePreview();
         _loading = false;
     }
@@ -170,6 +175,7 @@ public sealed partial class RulesEditor : UserControl
         WipeSource = WipeBox.IsChecked == true,
         WaitForDevice = WaitDeviceBox.IsChecked == true,
         WaitForSpace = WaitSpaceBox.IsChecked == true,
+        AllOrNothing = AllOrNothingBox.IsChecked == true,
     };
 
     private static List<string> Masks(string text) =>

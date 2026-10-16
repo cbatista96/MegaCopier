@@ -641,4 +641,6 @@
   <data name="Settings_SmbCompression.Content" xml:space="preserve"><value>Comprimir al copiar por red (SMB, redes lentas)</value></data>
   <data name="Settings_SmbCompression.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Pide al servidor que comprima los datos por el camino (Windows 11 y Windows Server 2022 o posterior). Si el origen y el destino están en el mismo servidor, la copia la hace el propio servidor siempre, sin pasar por este equipo.</value></data>
   <data name="Error_TooLargeForFileSystem" xml:space="preserve"><value>No cabe en este disco: FAT32 no admite archivos de 4 GB o más. Formatéalo como exFAT o NTFS.</value></data>
+  <data name="Rules_AllOrNothing.Content" xml:space="preserve"><value>Carpetas «todo o nada»</value></data>
+  <data name="Rules_AllOrNothing.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Cada carpeta nueva se copia oculta y solo aparece con su nombre cuando todo salió bien: nunca queda una carpeta a medias que parezca completa.</value></data>
 </root>
