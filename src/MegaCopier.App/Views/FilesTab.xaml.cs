@@ -277,4 +277,181 @@ public sealed partial class FilesTab : UserControl
             _files.Filter = (FileFilter)FilterBox.SelectedIndex;
         }
     }
+
+    // ---------------------------------------------------------------------------------------------------------
+    // Arrastrar: reordenar los pendientes y soltar archivos del Explorador en la posición elegida.
+
+    private List<FileRowViewModel>? _dragged;
+
+    private void List_DragItemsStarting(object sender, DragItemsStartingEventArgs e)
+    {
+        // Solo se mueven los que aún no han empezado.
+        _dragged = e.Items.OfType<FileRowViewModel>().Where(r => r.IsPending).ToList();
+        if (_dragged.Count == 0)
+        {
+            _dragged = null;
+            e.Cancel = true;
+            return;
+        }
+
+        e.Data.SetText("megacopier-rows");
+        e.Data.RequestedOperation = Windows.ApplicationModel.DataTransfer.DataPackageOperation.Move;
+    }
+
+    private void List_DragItemsCompleted(ListViewBase sender, DragItemsCompletedEventArgs args)
+    {
+        _dragged = null;
+        HideDropFeedback();
+    }
+
+    private void List_DragOver(object sender, DragEventArgs e)
+    {
+        bool files = e.DataView.Contains(Windows.ApplicationModel.DataTransfer.StandardDataFormats.StorageItems);
+        if (_dragged is null && !files)
+        {
+            return;
+        }
+
+        e.Handled = true; // que no lo trate la ventana como una copia nueva
+        if (Job is null)
+        {
+            return;
+        }
+
+        bool moving = _dragged is not null;
+        e.AcceptedOperation = moving
+            ? Windows.ApplicationModel.DataTransfer.DataPackageOperation.Move
+            : Windows.ApplicationModel.DataTransfer.DataPackageOperation.Copy;
+        e.DragUIOverride.Caption = ShowDropFeedback(e.GetPosition(List), moving);
+        e.DragUIOverride.IsGlyphVisible = false;
+    }
+
+    /// <summary>Línea en la posición de destino y aviso de lo que va a pasar. Devuelve el texto del aviso.</summary>
+    private string ShowDropFeedback(Windows.Foundation.Point pointer, bool moving)
+    {
+        var spot = DropTarget.Find(List, pointer, DropLayer, FirstPendingIndex());
+        DropTarget.ShowLine(DropLine, spot.LineY, 4, DropLayer.ActualWidth - 8);
+        int position = spot.Index + 1;
+        if (moving)
+        {
+            ShowHint("", L.F("Drop_MoveTo", position));
+        }
+        else
+        {
+            ShowHint("", _files is null ? L.Get("Drop_AddToJob") : L.F("Drop_InsertAt", position));
+        }
+
+        return DropHintText.Text;
+    }
+
+    private int? BeforeIdAt(Windows.Foundation.Point pointer)
+    {
+        var spot = DropTarget.Find(List, pointer, DropLayer, FirstPendingIndex());
+        return spot.Index < List.Items.Count && List.Items[spot.Index] is FileRowViewModel before ? before.Id : null;
+    }
+
+    private void MoveRows(IReadOnlyList<FileRowViewModel> rows, int? beforeId)
+    {
+        // En el orden de la lista: A y B soltados antes de X quedan A, B, X.
+        foreach (var row in rows.Where(r => r.Id != beforeId))
+        {
+            Job?.Job.MoveFile(row.Id, beforeId);
+        }
+    }
+
+    // Solo pruebas (modo de prueba): lo mismo que un arrastre real, sin ratón.
+
+    internal string SimulateDragOver(double y, bool moving) => ShowDropFeedback(new Windows.Foundation.Point(40, y), moving);
+
+    internal void SimulateDrop(double y, int[] rowIndexes, IReadOnlyList<string> paths)
+    {
+        var pointer = new Windows.Foundation.Point(40, y);
+        int? beforeId = BeforeIdAt(pointer);
+        HideDropFeedback();
+        if (Job is null)
+        {
+            return;
+        }
+
+        if (rowIndexes.Length > 0)
+        {
+            MoveRows([.. rowIndexes.Where(i => i < List.Items.Count).Select(i => (FileRowViewModel)List.Items[i]).Where(r => r.IsPending)], beforeId);
+        }
+        else if (paths.Count > 0)
+        {
+            ((App)Application.Current).Queue.AddToJob(Job.Job, paths, beforeId);
+        }
+    }
+
+    private void List_DragLeave(object sender, DragEventArgs e) => HideDropFeedback();
+
+    private async void List_Drop(object sender, DragEventArgs e)
+    {
+        int? beforeId = BeforeIdAt(e.GetPosition(List));
+        HideDropFeedback();
+        if (Job is null)
+        {
+            return;
+        }
+
+        e.Handled = true;
+        if (_dragged is { } rows)
+        {
+            MoveRows(rows, beforeId);
+            _dragged = null;
+            return;
+        }
+
+        if (!e.DataView.Contains(Windows.ApplicationModel.DataTransfer.StandardDataFormats.StorageItems))
+        {
+            return;
+        }
+
+        var deferral = e.GetDeferral();
+        try
+        {
+            var items = await e.DataView.GetStorageItemsAsync();
+            var paths = items.Select(i => i.Path).Where(p => !string.IsNullOrEmpty(p)).ToList();
+            if (paths.Count > 0)
+            {
+                ((App)Application.Current).Queue.AddToJob(Job.Job, paths, beforeId);
+                Refresh();
+            }
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or InvalidOperationException or MegaCopier.Engine.CopyPlanException)
+        {
+            ((App)Application.Current).Notify(L.Get("Files_AddFailed"), ex.Message);
+        }
+        finally
+        {
+            deferral.Complete();
+        }
+    }
+
+    /// <summary>Primera fila que aún no ha empezado: nada puede colocarse delante.</summary>
+    private int FirstPendingIndex()
+    {
+        for (int i = 0; i < List.Items.Count; i++)
+        {
+            if (List.Items[i] is FileRowViewModel { IsPending: true })
+            {
+                return i;
+            }
+        }
+
+        return List.Items.Count;
+    }
+
+    private void ShowHint(string glyph, string text)
+    {
+        DropHintIcon.Glyph = glyph;
+        DropHintText.Text = text;
+        DropHint.Visibility = Visibility.Visible;
+    }
+
+    private void HideDropFeedback()
+    {
+        DropLine.Visibility = Visibility.Collapsed;
+        DropHint.Visibility = Visibility.Collapsed;
+    }
 }

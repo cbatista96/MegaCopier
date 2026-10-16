@@ -83,7 +83,9 @@
             <TextBlock Grid.Column="4" x:Uid="Files_Size" Style="{StaticResource McSecondary}" TextAlignment="Right" />
         </Grid>
 
-        <ListView x:Name="List" Grid.Row="2" SelectionMode="Extended" IsItemClickEnabled="False">
+        <ListView x:Name="List" Grid.Row="2" SelectionMode="Extended" IsItemClickEnabled="False"
+                  CanDragItems="True" AllowDrop="True" DragItemsStarting="List_DragItemsStarting" DragItemsCompleted="List_DragItemsCompleted"
+                  DragOver="List_DragOver" DragLeave="List_DragLeave" Drop="List_Drop">
             <ListView.ItemContainerTransitions>
                 <TransitionCollection>
                     <AddDeleteThemeTransition />
@@ -135,6 +137,20 @@
             </ListView.ItemTemplate>
         </ListView>
 
+        <!-- Capa del arrastre: línea de inserción y aviso de lo que va a pasar -->
+        <Canvas x:Name="DropLayer" Grid.Row="2" IsHitTestVisible="False">
+            <Grid x:Name="DropLine" Height="10" Visibility="Collapsed">
+                <Border Height="3" CornerRadius="1.5" VerticalAlignment="Center" Margin="6,0,0,0" Background="{StaticResource McAccentBrush}" />
+                <Ellipse Width="10" Height="10" HorizontalAlignment="Left" Stroke="{StaticResource McAccentBrush}" StrokeThickness="2.5" Fill="{StaticResource McBackgroundBrush}" />
+            </Grid>
+        </Canvas>
+        <Border x:Name="DropHint" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,12" Padding="14,8" CornerRadius="8"
+                Background="{StaticResource McAccentBrush}" IsHitTestVisible="False" Visibility="Collapsed">
+            <StackPanel Orientation="Horizontal" Spacing="8">
+                <FontIcon x:Name="DropHintIcon" VerticalAlignment="Center" Glyph="&#xE8DE;" FontSize="14" Foreground="{StaticResource McAccentTextBrush}" />
+                <TextBlock x:Name="DropHintText" VerticalAlignment="Center" Foreground="{StaticResource McAccentTextBrush}" FontWeight="SemiBold" />
+            </StackPanel>
+        </Border>
         <TextBlock x:Name="EmptyText" x:Uid="Files_Empty" Grid.Row="2" Style="{StaticResource McSecondary}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" />
     </Grid>
 </UserControl>

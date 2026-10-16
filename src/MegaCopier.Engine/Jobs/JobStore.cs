@@ -73,6 +73,9 @@ public sealed class CopyJobRecord
 
     public bool CheckFreeSpace { get; set; } = true;
 
+    /// <summary>Orden de los pendientes elegido arrastrando (rutas de origen).</summary>
+    public List<string> FileOrder { get; set; } = [];
+
     /// <summary>Hora programada de inicio (la cola no lo empieza antes).</summary>
     public DateTime? StartAtUtc { get; set; }
 

@@ -471,3 +471,8 @@ Error_ChecksumMismatch	El contenido no coincide con la suma guardada: el archivo
 Job_FilteredOut	Ningún archivo pasa los filtros de esta copia	No files match this transfer's filters
 Rules_After.PlaceholderText	Cualquier fecha	Any date
 Rules_Before.PlaceholderText	Cualquier fecha	Any date
+Drop_MoveTo	Mover a la posición {0}	Move to position {0}
+Drop_InsertAt	Añadir en la posición {0}	Add at position {0}
+Drop_AddToJob	Añadir a esta copia	Add to this transfer
+Drop_AddToNamedJob	Añadir a {0}	Add to {0}
+Drop_JobOrder	Poner en el puesto {0} de la cola	Put in place {0} of the queue

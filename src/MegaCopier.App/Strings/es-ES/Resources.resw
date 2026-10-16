@@ -477,4 +477,9 @@
   <data name="Job_FilteredOut" xml:space="preserve"><value>Ningún archivo pasa los filtros de esta copia</value></data>
   <data name="Rules_After.PlaceholderText" xml:space="preserve"><value>Cualquier fecha</value></data>
   <data name="Rules_Before.PlaceholderText" xml:space="preserve"><value>Cualquier fecha</value></data>
+  <data name="Drop_MoveTo" xml:space="preserve"><value>Mover a la posición {0}</value></data>
+  <data name="Drop_InsertAt" xml:space="preserve"><value>Añadir en la posición {0}</value></data>
+  <data name="Drop_AddToJob" xml:space="preserve"><value>Añadir a esta copia</value></data>
+  <data name="Drop_AddToNamedJob" xml:space="preserve"><value>Añadir a {0}</value></data>
+  <data name="Drop_JobOrder" xml:space="preserve"><value>Poner en el puesto {0} de la cola</value></data>
 </root>

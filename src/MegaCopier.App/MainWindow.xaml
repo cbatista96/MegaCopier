@@ -113,7 +113,9 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <TextBlock x:Name="JobsHeader" Style="{StaticResource McSecondary}" Margin="6,2,0,0" />
-                <ListView x:Name="JobList" Grid.Row="1" SelectionMode="Single" SelectionChanged="JobList_SelectionChanged" Padding="0">
+                <ListView x:Name="JobList" Grid.Row="1" SelectionMode="Single" SelectionChanged="JobList_SelectionChanged" Padding="0"
+                          CanDragItems="True" AllowDrop="True" DragItemsStarting="JobList_DragItemsStarting" DragItemsCompleted="JobList_DragItemsCompleted"
+                          DragOver="JobList_DragOver" DragLeave="JobList_DragLeave" Drop="JobList_Drop">
                     <ListView.ItemContainerTransitions>
                         <TransitionCollection>
                             <AddDeleteThemeTransition />
@@ -155,6 +157,13 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+                <Canvas x:Name="JobDropLayer" Grid.Row="1" IsHitTestVisible="False">
+                    <Grid x:Name="JobDropLine" Height="10" Visibility="Collapsed">
+                        <Border Height="3" CornerRadius="1.5" VerticalAlignment="Center" Margin="6,0,0,0" Background="{StaticResource McAccentBrush}" />
+                        <Ellipse Width="10" Height="10" HorizontalAlignment="Left" Stroke="{StaticResource McAccentBrush}" StrokeThickness="2.5" Fill="{StaticResource McBackgroundBrush}" />
+                    </Grid>
+                    <Border x:Name="JobDropBox" CornerRadius="8" BorderThickness="2" BorderBrush="{StaticResource McAccentBrush}" Visibility="Collapsed" />
+                </Canvas>
             </Grid>
 
             <!-- Detalle del trabajo elegido -->
@@ -165,7 +174,8 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <Border x:Name="PanelCard" Margin="10,0,10,0" CornerRadius="10" Background="{StaticResource McSurfaceBrush}" BorderBrush="{StaticResource McBorderBrush}" BorderThickness="1">
+                <Border x:Name="PanelCard" Margin="10,0,10,0" CornerRadius="10" Background="{StaticResource McSurfaceBrush}" BorderBrush="{StaticResource McBorderBrush}" BorderThickness="1"
+                        AllowDrop="True" DragOver="PanelCard_DragOver" DragLeave="PanelCard_DragLeave" Drop="PanelCard_Drop">
                     <views:CopyPanel x:Name="Panel" />
                 </Border>
 

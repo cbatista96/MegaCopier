@@ -477,4 +477,9 @@
   <data name="Job_FilteredOut" xml:space="preserve"><value>No files match this transfer&apos;s filters</value></data>
   <data name="Rules_After.PlaceholderText" xml:space="preserve"><value>Any date</value></data>
   <data name="Rules_Before.PlaceholderText" xml:space="preserve"><value>Any date</value></data>
+  <data name="Drop_MoveTo" xml:space="preserve"><value>Move to position {0}</value></data>
+  <data name="Drop_InsertAt" xml:space="preserve"><value>Add at position {0}</value></data>
+  <data name="Drop_AddToJob" xml:space="preserve"><value>Add to this transfer</value></data>
+  <data name="Drop_AddToNamedJob" xml:space="preserve"><value>Add to {0}</value></data>
+  <data name="Drop_JobOrder" xml:space="preserve"><value>Put in place {0} of the queue</value></data>
 </root>
