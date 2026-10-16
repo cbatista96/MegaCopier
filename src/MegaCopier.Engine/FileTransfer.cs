@@ -272,8 +272,16 @@ internal sealed class FileTransfer
         try
         {
             bool resuming = journal is not null;
-            destination = OpenWrite(partialPath, resuming ? FileMode.Open : FileMode.Create, out bool destinationUnbuffered);
-            var io = new IoContext(source, sourceUnbuffered, destination, destinationUnbuffered);
+            // Archivo disperso (con huecos): el destino también lo es y los bloques que son todo ceros no se escriben.
+            bool sparse = _options.PreserveSparse && (info.Attributes & FileAttributes.SparseFile) != 0;
+            if (sparse && !resuming)
+            {
+                using var created = File.OpenHandle(partialPath, FileMode.Create, FileAccess.ReadWrite, FileShare.None);
+                sparse = Win32.SetSparse(created);
+            }
+
+            destination = OpenWrite(partialPath, resuming || sparse ? FileMode.Open : FileMode.Create, out bool destinationUnbuffered);
+            var io = new IoContext(source, sourceUnbuffered, destination, destinationUnbuffered, sparse);
 
             if (!resuming)
             {
@@ -842,7 +850,8 @@ internal sealed class FileTransfer
         SafeFileHandle Source,
         bool SourceUnbuffered,
         SafeFileHandle Destination,
-        bool DestinationUnbuffered);
+        bool DestinationUnbuffered,
+        bool Sparse = false);
 
     private readonly record struct PendingRead(Task<int> Task, AlignedBuffer Buffer, long Offset, int Want);
 
@@ -878,7 +887,11 @@ internal sealed class FileTransfer
 
                 _hasher.Append(buffer.Span[..count]);
                 fileHasher?.Append(buffer.Span[..count]);
-                _inFlight.Enqueue((IoHelpers.WriteFullAsync(io.Destination, io.DestinationUnbuffered, buffer, count, offset).AsTask(), buffer));
+                // En un archivo disperso, un bloque de ceros se queda como hueco (se lee como ceros sin ocupar disco).
+                var write = io.Sparse && !buffer.Span[..count].ContainsAnyExcept((byte)0)
+                    ? Task.CompletedTask
+                    : IoHelpers.WriteFullAsync(io.Destination, io.DestinationUnbuffered, buffer, count, offset).AsTask();
+                _inFlight.Enqueue((write, buffer));
             }
             catch
             {

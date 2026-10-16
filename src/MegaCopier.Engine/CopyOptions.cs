@@ -129,6 +129,9 @@ public sealed class CopyOptions
     /// <summary>En ReFS y Dev Drive, dentro del mismo volumen, clonar bloques en lugar de copiarlos (instantáneo).</summary>
     public bool BlockClone { get; set; } = true;
 
+    /// <summary>Archivos dispersos (con huecos): el destino también lo es, sin escribir los huecos.</summary>
+    public bool PreserveSparse { get; set; } = true;
+
     /// <summary>Origen y destino en el mismo servidor de red: que copie el servidor (los datos no viajan por la red).</summary>
     /// <summary>
     /// Archivos pequeños (de un solo bloque) que se copian a la vez, como robocopy /MT: con miles de archivos pequeños
