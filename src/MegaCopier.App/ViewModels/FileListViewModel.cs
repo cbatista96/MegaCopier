@@ -28,6 +28,9 @@ public sealed partial class FileRowViewModel(TransferItem item, string root) : I
 
     public string Name => Path.GetFileName(Item.Source);
 
+    /// <summary>Nombre accesible de la fila (lectores de pantalla).</summary>
+    public override string ToString() => $"{Name}, {StateText}";
+
     /// <summary>Carpeta relativa al origen del trabajo (para no repetir la ruta completa en cada fila).</summary>
     public string Folder
     {
@@ -49,11 +52,17 @@ public sealed partial class FileRowViewModel(TransferItem item, string root) : I
     public string DestinationHash => Short(Item.DestinationHash);
 
     /// <summary>Motivo claro y traducido; el texto técnico original queda en <see cref="TechnicalMessage"/>.</summary>
-    public string Message => Item.ErrorKind == FileErrorKind.Other ? Item.Message ?? "" : L.Get("Error_" + Item.ErrorKind);
+    public string Message => Item.State switch
+    {
+        FileState.Planned => L.Get("Plan_" + Item.Action),
+        FileState.Deleted => L.Get("File_RemovedExtra"),
+        FileState.Skipped when Item.Action != PlannedAction.None => L.Get("Skip_" + Item.Action),
+        _ => Item.ErrorKind == FileErrorKind.Other ? Item.Message ?? "" : L.Get("Error_" + Item.ErrorKind),
+    };
 
     public string TechnicalMessage => Item.Message ?? "";
 
-    public bool HasMessage => !string.IsNullOrEmpty(Item.Message) && Item.State is FileState.Failed or FileState.Skipped;
+    public bool HasMessage => !string.IsNullOrEmpty(Item.Message) && Item.State is FileState.Failed or FileState.Skipped or FileState.Planned or FileState.Deleted;
 
     public bool IsCurrent => Item.State is FileState.Copying or FileState.Verifying;
 
@@ -69,6 +78,13 @@ public sealed partial class FileRowViewModel(TransferItem item, string root) : I
 
     public bool IsFailed => Item.State == FileState.Failed;
 
+    public bool IsPlanned => Item.State == FileState.Planned;
+
+    public bool IsDeleted => Item.State == FileState.Deleted;
+
+    /// <summary>Errores en ámbar; simulaciones, omitidos y borrados del destino en gris.</summary>
+    public Microsoft.UI.Xaml.Media.Brush MessageBrush => Item.State == FileState.Failed ? Theming.ThemeManager.WarningBrush : Theming.ThemeManager.TextSecondaryBrush;
+
     public string StateText => Item.State switch
     {
         FileState.Pending => L.Get("File_Pending"),
@@ -77,6 +93,8 @@ public sealed partial class FileRowViewModel(TransferItem item, string root) : I
         FileState.Copied => L.Get("File_Copied"),
         FileState.Verified => L.Get("File_Verified"),
         FileState.Skipped => L.Get("File_Skipped"),
+        FileState.Planned => L.Get("File_Planned"),
+        FileState.Deleted => L.Get("File_Deleted"),
         _ => L.Get("File_Failed"),
     };
 

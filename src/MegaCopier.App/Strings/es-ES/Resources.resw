@@ -494,4 +494,86 @@
   <data name="Sound_None" xml:space="preserve"><value>Sin sonido</value></data>
   <data name="Sound_Default" xml:space="preserve"><value>El de Windows</value></data>
   <data name="Sound_Choose" xml:space="preserve"><value>Elegir un archivo…</value></data>
+  <data name="File_Planned" xml:space="preserve"><value>Simulado</value></data>
+  <data name="File_Deleted" xml:space="preserve"><value>Quitado</value></data>
+  <data name="File_RemovedExtra" xml:space="preserve"><value>Quitado del destino: ya no estaba en el origen</value></data>
+  <data name="Plan_Copy" xml:space="preserve"><value>Se copiaría</value></data>
+  <data name="Plan_Replace" xml:space="preserve"><value>Reemplazaría el del destino</value></data>
+  <data name="Plan_ReplaceNewer" xml:space="preserve"><value>Reemplazaría el del destino: el original es más nuevo</value></data>
+  <data name="Plan_ReplaceSize" xml:space="preserve"><value>Reemplazaría el del destino: tiene otro tamaño</value></data>
+  <data name="Plan_KeepBoth" xml:space="preserve"><value>Ya existe: se copiaría con otro nombre</value></data>
+  <data name="Plan_RenameExisting" xml:space="preserve"><value>Ya existe: renombraría el del destino y copiaría este</value></data>
+  <data name="Plan_Ask" xml:space="preserve"><value>Ya existe: te preguntaría qué hacer</value></data>
+  <data name="Plan_SkipIdentical" xml:space="preserve"><value>Se omitiría: ya está igual en el destino</value></data>
+  <data name="Plan_SkipExists" xml:space="preserve"><value>Se omitiría: ya existe</value></data>
+  <data name="Plan_SkipOlder" xml:space="preserve"><value>Se omitiría: el del destino es igual o más nuevo</value></data>
+  <data name="Plan_SkipSameSize" xml:space="preserve"><value>Se omitiría: mismo tamaño</value></data>
+  <data name="Plan_SkipNotInDestination" xml:space="preserve"><value>Se omitiría: no está en el destino (solo actualizar)</value></data>
+  <data name="Plan_SkipSamePath" xml:space="preserve"><value>Se omitiría: el origen y el destino son el mismo</value></data>
+  <data name="Plan_Delete" xml:space="preserve"><value>Se quitaría del destino: ya no está en el origen</value></data>
+  <data name="Plan_Fail" xml:space="preserve"><value>Fallaría: el destino ya existe</value></data>
+  <data name="Plan_None" xml:space="preserve"><value>Simulado</value></data>
+  <data name="Skip_SkipIdentical" xml:space="preserve"><value>Ya estaba igual en el destino</value></data>
+  <data name="Skip_SkipExists" xml:space="preserve"><value>Ya existía: omitido</value></data>
+  <data name="Skip_SkipOlder" xml:space="preserve"><value>El del destino es igual o más nuevo</value></data>
+  <data name="Skip_SkipSameSize" xml:space="preserve"><value>Mismo tamaño que el del destino</value></data>
+  <data name="Skip_SkipNotInDestination" xml:space="preserve"><value>No está en el destino (solo se actualizan los existentes)</value></data>
+  <data name="Skip_SkipSamePath" xml:space="preserve"><value>El origen y el destino son el mismo archivo</value></data>
+  <data name="Skip_SkipByUser" xml:space="preserve"><value>Saltado por ti</value></data>
+  <data name="Job_TitleSync" xml:space="preserve"><value>Sincronizar {0}</value></data>
+  <data name="Job_TitleSyncing" xml:space="preserve"><value>Sincronizando {0}</value></data>
+  <data name="Job_TitleSynced" xml:space="preserve"><value>Sincronizado {0}</value></data>
+  <data name="Job_StateSyncing" xml:space="preserve"><value>Sincronizando</value></data>
+  <data name="Job_FilesSyncedOne" xml:space="preserve"><value>{0} archivo actualizado</value></data>
+  <data name="Job_FilesSyncedMany" xml:space="preserve"><value>{0} archivos actualizados</value></data>
+  <data name="Job_TitleSimulate" xml:space="preserve"><value>Simular {0}</value></data>
+  <data name="Job_TitleSimulating" xml:space="preserve"><value>Simulando {0}</value></data>
+  <data name="Job_TitleSimulated" xml:space="preserve"><value>Simulación: {0}</value></data>
+  <data name="Job_StateSimulating" xml:space="preserve"><value>Simulando</value></data>
+  <data name="Job_FilesSimulatedOne" xml:space="preserve"><value>Se copiaría {0} archivo</value></data>
+  <data name="Job_FilesSimulatedMany" xml:space="preserve"><value>Se copiarían {0} archivos</value></data>
+  <data name="Job_WouldTransfer" xml:space="preserve"><value>{0} en total</value></data>
+  <data name="Job_TitleHash" xml:space="preserve"><value>Crear sumas de {0}</value></data>
+  <data name="Job_TitleHashing" xml:space="preserve"><value>Calculando sumas de {0}</value></data>
+  <data name="Job_TitleHashed" xml:space="preserve"><value>Sumas de {0}</value></data>
+  <data name="Job_StateHashing" xml:space="preserve"><value>Calculando sumas</value></data>
+  <data name="Job_FilesHashedOne" xml:space="preserve"><value>{0} archivo en la lista de sumas</value></data>
+  <data name="Job_FilesHashedMany" xml:space="preserve"><value>{0} archivos en la lista de sumas</value></data>
+  <data name="Job_StateWaitingDevice" xml:space="preserve"><value>Esperando a que vuelva el disco o la red…</value></data>
+  <data name="Job_StateWaitingSpace" xml:space="preserve"><value>Esperando a que haya espacio en el destino…</value></data>
+  <data name="Job_RemovedOne" xml:space="preserve"><value>1 quitado del destino</value></data>
+  <data name="Job_Removed" xml:space="preserve"><value>{0} quitados del destino</value></data>
+  <data name="Job_WouldRemove" xml:space="preserve"><value>se quitarían {0} del destino</value></data>
+  <data name="Panel_RunForReal.Text" xml:space="preserve"><value>Hacerlo de verdad</value></data>
+  <data name="Options_Mode.Header" xml:space="preserve"><value>Modo</value></data>
+  <data name="Mode_Copy.Content" xml:space="preserve"><value>Copiar</value></data>
+  <data name="Mode_Mirror.Content" xml:space="preserve"><value>Sincronizar (espejo)</value></data>
+  <data name="Mode_Update.Content" xml:space="preserve"><value>Solo actualizar los que ya existen</value></data>
+  <data name="Mode_Folders.Content" xml:space="preserve"><value>Solo la estructura de carpetas</value></data>
+  <data name="Options_MirrorInfo.Title" xml:space="preserve"><value>Sincronizar quita del destino lo que ya no está en el origen</value></data>
+  <data name="Options_MirrorInfo.Message" xml:space="preserve"><value>Lo que excluyen los filtros no se toca. Indica una carpeta de versiones para guardar lo quitado o reemplazado.</value></data>
+  <data name="Options_DryRun.Content" xml:space="preserve"><value>Simular: decir qué se haría sin cambiar nada</value></data>
+  <data name="Destinations_DryRun.Content" xml:space="preserve"><value>Simular primero (no cambia nada)</value></data>
+  <data name="Tool_HashFolder.Text" xml:space="preserve"><value>Crear archivo de sumas de una carpeta…</value></data>
+  <data name="Tool_HashFiles.Text" xml:space="preserve"><value>Crear archivo de sumas de archivos…</value></data>
+  <data name="Rules_SkipJunk.Content" xml:space="preserve"><value>Omitir archivos basura (Thumbs.db, desktop.ini, .DS_Store, ~$…)</value></data>
+  <data name="Rules_OnErrorEnd.Content" xml:space="preserve"><value>Reintentarlo al final de la cola</value></data>
+  <data name="Rules_Safety.Text" xml:space="preserve"><value>Sincronización y seguridad</value></data>
+  <data name="Rules_FolderConflict.Header" xml:space="preserve"><value>Si una carpeta ya existe en el destino</value></data>
+  <data name="Rules_FolderMerge.Content" xml:space="preserve"><value>Combinar su contenido</value></data>
+  <data name="Rules_FolderSkip.Content" xml:space="preserve"><value>Omitirla entera</value></data>
+  <data name="Rules_Versions.Header" xml:space="preserve"><value>Guardar lo reemplazado o quitado en la carpeta</value></data>
+  <data name="Rules_Versions.PlaceholderText" xml:space="preserve"><value>Vacío: no guardar (por ejemplo .versiones)</value></data>
+  <data name="Rules_Tolerance.Header" xml:space="preserve"><value>Margen de fecha para «iguales» (segundos)</value></data>
+  <data name="Rules_VerifySource.Content" xml:space="preserve"><value>Releer el original al terminar</value></data>
+  <data name="Rules_HashStream.Content" xml:space="preserve"><value>Guardar el hash dentro de cada archivo</value></data>
+  <data name="Rules_HardLinks.Content" xml:space="preserve"><value>Conservar enlaces duros</value></data>
+  <data name="Rules_Wipe.Content" xml:space="preserve"><value>Al mover, borrar los originales de forma segura</value></data>
+  <data name="Rules_WaitDevice.Content" xml:space="preserve"><value>Esperar si se desconecta el disco o la red</value></data>
+  <data name="Rules_WaitSpace.Content" xml:space="preserve"><value>Esperar si falta espacio</value></data>
+  <data name="Rules_VerifySource.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Calcula de nuevo el hash del original: detecta si cambió mientras se copiaba o si el disco de origen lee mal.</value></data>
+  <data name="Rules_HashStream.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Lo guarda en un flujo oculto del propio archivo (NTFS). «Comprobar sumas de una carpeta» detectará después cualquier daño, aunque no haya archivo de sumas.</value></data>
+  <data name="Rules_HardLinks.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Si varios nombres son el mismo archivo, en el destino también lo serán (no ocupa el doble).</value></data>
+  <data name="Rules_Tolerance.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>FAT32 y exFAT guardan la hora con 2 segundos de precisión: con este margen no se vuelven a copiar archivos iguales.</value></data>
+  <data name="Rules_Versions.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Antes de reemplazar o quitar un archivo, se mueve a esta carpeta del destino con la fecha en el nombre.</value></data>
 </root>

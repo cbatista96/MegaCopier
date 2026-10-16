@@ -998,6 +998,8 @@ public sealed partial class MainWindow : Window
             ? L.F("Destinations_SummaryOne", Path.GetFileName(Path.TrimEndingDirectorySeparator(sources[0])))
             : L.F("Destinations_SummaryMany", sources.Count);
         DestinationsMove.IsChecked = move;
+        DestinationsMode.SelectedIndex = 0;
+        DestinationsDryRun.IsChecked = false;
         DestinationsSchedule.IsChecked = false;
         DestinationsWhen.Visibility = Visibility.Collapsed;
         var later = DateTime.Now.AddHours(1);
@@ -1036,7 +1038,17 @@ public sealed partial class MainWindow : Window
             startAt = when > DateTime.Now ? when.ToUniversalTime() : null;
         }
 
-        Submit(sources, chosen[0], DestinationsMove.IsChecked == true, chosen.Skip(1).ToList(), startAt);
+        Submit(new IpcRequest
+        {
+            Command = "copy",
+            Sources = [.. sources],
+            Destination = chosen[0],
+            Move = DestinationsMove.IsChecked == true ? true : null,
+            ExtraDestinations = chosen.Count > 1 ? chosen.Skip(1).ToList() : null,
+            StartAtUtc = startAt,
+            Mode = (Engine.CopyMode)Math.Max(0, DestinationsMode.SelectedIndex),
+            DryRun = DestinationsDryRun.IsChecked == true ? true : null,
+        });
     }
 
     private static ListViewItem DestinationItem(string folder, bool favorite)
@@ -1064,6 +1076,22 @@ public sealed partial class MainWindow : Window
         }
 
         DestinationsList.SelectedItems.Add(existing);
+    }
+
+    /// <summary>Sincronizar borra en el destino: se avisa y, por prudencia, se propone simular primero.</summary>
+    private void DestinationsMode_Changed(object sender, SelectionChangedEventArgs e)
+    {
+        if (DestinationsMirrorInfo is null)
+        {
+            return;
+        }
+
+        bool mirror = DestinationsMode.SelectedIndex == (int)Engine.CopyMode.Mirror;
+        DestinationsMirrorInfo.IsOpen = mirror;
+        if (mirror)
+        {
+            DestinationsDryRun.IsChecked = true;
+        }
     }
 
     private void DestinationsSchedule_Click(object sender, RoutedEventArgs e) =>
@@ -1144,7 +1172,7 @@ public sealed partial class MainWindow : Window
 
     private async void TestFiles_Click(object sender, RoutedEventArgs e)
     {
-        var lists = await Pickers.PickFilesAsync(".sha256", ".sha1", ".sha512", ".md5", ".sfv", ".xxh3", ".xxh64", ".xxh128");
+        var lists = await Pickers.PickFilesAsync(".sha256", ".sha1", ".sha512", ".md5", ".sfv", ".xxh3", ".xxh64", ".xxh128", ".sha3-256", ".sha3-512");
         if (lists.Count > 0)
         {
             Submit(new IpcRequest { Command = "copy", Operation = Engine.JobOperation.Test, Sources = [.. lists] });
@@ -1156,6 +1184,25 @@ public sealed partial class MainWindow : Window
         if (await Pickers.PickFolderAsync() is { } folder)
         {
             Submit(new IpcRequest { Command = "copy", Operation = Engine.JobOperation.Test, Sources = [folder] });
+        }
+    }
+
+    // Crear archivo de sumas (con el algoritmo de Ajustes; SHA-256 si no hay ninguno)
+
+    private async void HashFolder_Click(object sender, RoutedEventArgs e)
+    {
+        if (await Pickers.PickFolderAsync() is { } folder)
+        {
+            Submit(new IpcRequest { Command = "copy", Operation = Engine.JobOperation.Hash, Sources = [folder] });
+        }
+    }
+
+    private async void HashFiles_Click(object sender, RoutedEventArgs e)
+    {
+        var files = await Pickers.PickFilesAsync();
+        if (files.Count > 0)
+        {
+            Submit(new IpcRequest { Command = "copy", Operation = Engine.JobOperation.Hash, Sources = [.. files] });
         }
     }
 

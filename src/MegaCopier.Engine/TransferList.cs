@@ -39,6 +39,12 @@ public enum PlannedAction
     SkipNotInDestination,
     Delete,
     Fail,
+
+    /// <summary>El origen y el destino son el mismo archivo.</summary>
+    SkipSamePath,
+
+    /// <summary>El usuario pulsó «Saltar» durante la copia.</summary>
+    SkipByUser,
 }
 
 /// <summary>Un archivo del trabajo, observable desde la interfaz.</summary>

@@ -41,6 +41,14 @@
                 <!-- Cómo se copia -->
                 <StackPanel x:Name="HowColumn" Grid.Column="1" Spacing="8">
                     <TextBlock x:Uid="Options_TransferOptions" Style="{StaticResource McStrong}" />
+                    <ComboBox x:Name="ModeBox" x:Uid="Options_Mode" HorizontalAlignment="Stretch" SelectionChanged="Changed">
+                        <ComboBoxItem x:Uid="Mode_Copy" />
+                        <ComboBoxItem x:Uid="Mode_Mirror" />
+                        <ComboBoxItem x:Uid="Mode_Update" />
+                        <ComboBoxItem x:Uid="Mode_Folders" />
+                    </ComboBox>
+                    <InfoBar x:Name="MirrorInfo" x:Uid="Options_MirrorInfo" Severity="Warning" IsClosable="False" IsOpen="False" />
+                    <CheckBox x:Name="DryRunBox" x:Uid="Options_DryRun" Click="Changed" />
                     <ComboBox x:Name="ConflictBox" HorizontalAlignment="Stretch" SelectionChanged="Changed">
                         <ComboBoxItem x:Uid="ConflictAsk" />
                         <ComboBoxItem x:Uid="ConflictReplace" />

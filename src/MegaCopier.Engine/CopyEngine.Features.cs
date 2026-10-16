@@ -84,7 +84,19 @@ public sealed partial class CopyEngine
         PlannedAction.SkipNotInDestination => "Se omitiría: no existe en el destino",
         PlannedAction.Delete => _options.DryRun ? "Se borraría del destino: no está en el origen" : "Borrado del destino: no estaba en el origen",
         PlannedAction.Fail => "Se marcaría como error",
+        PlannedAction.SkipSamePath => "Se omitiría: el origen y el destino son el mismo",
         _ => "",
+    };
+
+    /// <summary>Por qué se omitió un archivo (registro e informes); la interfaz lo traduce con <see cref="TransferItem.Action"/>.</summary>
+    private static string SkipText(PlannedAction action) => action switch
+    {
+        PlannedAction.SkipIdentical => "Idéntico al existente",
+        PlannedAction.SkipOlder => "El destino es igual o más reciente",
+        PlannedAction.SkipSameSize => "Mismo tamaño que el existente",
+        PlannedAction.SkipNotInDestination => "No existe en el destino (solo se actualizan los existentes)",
+        PlannedAction.SkipSamePath => "El origen y el destino son el mismo archivo",
+        _ => "Ya existía: omitido",
     };
 
     // -------------------------------------------------------------------------------------------------------------

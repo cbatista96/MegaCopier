@@ -18,6 +18,7 @@ public sealed partial class OptionsTab : UserControl
     [
         FileHashAlgorithm.None, FileHashAlgorithm.Crc32, FileHashAlgorithm.XxHash3, FileHashAlgorithm.XxHash64, FileHashAlgorithm.XxHash128,
         FileHashAlgorithm.Md5, FileHashAlgorithm.Sha1, FileHashAlgorithm.Sha256, FileHashAlgorithm.Sha512,
+        .. (System.Security.Cryptography.SHA3_256.IsSupported ? new[] { FileHashAlgorithm.Sha3_256, FileHashAlgorithm.Sha3_512 } : []),
     ];
 
     private bool _loading;
@@ -54,6 +55,8 @@ public sealed partial class OptionsTab : UserControl
         FileHashAlgorithm.Md5 => "Hash: MD5",
         FileHashAlgorithm.Sha1 => "Hash: SHA-1",
         FileHashAlgorithm.Sha256 => "Hash: SHA-256",
+        FileHashAlgorithm.Sha3_256 => "Hash: SHA3-256",
+        FileHashAlgorithm.Sha3_512 => "Hash: SHA3-512",
         _ => "Hash: SHA-512",
     };
 
@@ -124,15 +127,10 @@ public sealed partial class OptionsTab : UserControl
         ChecksumBox.IsChecked = r.SaveChecksumFile;
         ReportBox.IsChecked = r.ExportReport;
         ScriptsBox.Text = string.Join("\r", r.Scripts);
-        Rules.Load(new CopyRules
-        {
-            Filter = r.Filter,
-            Links = r.Links,
-            KeepBothPattern = r.KeepBothPattern,
-            RetryCount = r.RetryCount,
-            RetryDelaySeconds = r.RetryDelaySeconds,
-            OnError = r.OnError,
-        });
+        Rules.Load(CopyRules.From(r));
+        ModeBox.SelectedIndex = (int)r.Mode;
+        DryRunBox.IsChecked = r.DryRun;
+        MirrorInfo.IsOpen = r.Mode == CopyMode.Mirror;
         var start = r.StartAtUtc?.ToLocalTime() ?? DateTime.Now.AddHours(1);
         ScheduleDate.Date = new DateTimeOffset(start.Date);
         ScheduleTime.Time = new TimeSpan(start.Hour, start.Minute, 0);
@@ -173,13 +171,10 @@ public sealed partial class OptionsTab : UserControl
         r.SaveChecksumFile = ChecksumBox.IsChecked == true;
         r.ExportReport = ReportBox.IsChecked == true;
         r.Scripts = ScriptsBox.Text.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).ToList();
-        var rules = Rules.Read();
-        r.Filter = rules.Filter;
-        r.Links = rules.Links;
-        r.KeepBothPattern = rules.KeepBothPattern;
-        r.RetryCount = rules.RetryCount;
-        r.RetryDelaySeconds = rules.RetryDelaySeconds;
-        r.OnError = rules.OnError;
+        Rules.Read().ApplyTo(r);
+        r.Mode = (CopyMode)Math.Max(0, ModeBox.SelectedIndex);
+        r.DryRun = DryRunBox.IsChecked == true;
+        MirrorInfo.IsOpen = r.Mode == CopyMode.Mirror;
         job.SetLiveOptions(verify: VerifyBox.IsChecked == true);
     }
 

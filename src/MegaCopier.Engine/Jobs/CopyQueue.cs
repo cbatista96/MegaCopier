@@ -475,6 +475,18 @@ public sealed class CopyQueue
         return job;
     }
 
+    /// <summary>Tras una simulación: la misma copia, con las mismas opciones, pero de verdad.</summary>
+    public CopyJob RunForReal(CopyJob simulation)
+    {
+        var options = simulation.Record.ToOptions();
+        options.DryRun = false;
+        var job = Submit(simulation.Record.Sources, simulation.Record.Destination, options);
+        job.Record.ExportReport = simulation.Record.ExportReport;
+        job.Record.Scripts = [.. simulation.Record.Scripts];
+        job.SaveRecord();
+        return job;
+    }
+
     public void Resume(CopyJob job)
     {
         if (job.State is CopyJobState.Paused)

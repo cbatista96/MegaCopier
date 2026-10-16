@@ -19,6 +19,62 @@ public sealed class CopyRules
     public double RetryDelaySeconds { get; set; } = 1;
 
     public ErrorPolicy OnError { get; set; }
+
+    public string VersionsFolder { get; set; } = "";
+
+    public FolderConflictPolicy FolderConflict { get; set; }
+
+    public double TimeToleranceSeconds { get; set; } = 2;
+
+    public bool VerifySource { get; set; }
+
+    public bool SaveHashStream { get; set; }
+
+    public bool PreserveHardLinks { get; set; }
+
+    public bool WipeSource { get; set; }
+
+    public bool WaitForDevice { get; set; } = true;
+
+    public bool WaitForSpace { get; set; } = true;
+
+    public static CopyRules From(Engine.Jobs.CopyJobRecord r) => new()
+    {
+        Filter = r.Filter,
+        Links = r.Links,
+        KeepBothPattern = r.KeepBothPattern,
+        RetryCount = r.RetryCount,
+        RetryDelaySeconds = r.RetryDelaySeconds,
+        OnError = r.OnError,
+        VersionsFolder = r.VersionsFolder ?? "",
+        FolderConflict = r.FolderConflict,
+        TimeToleranceSeconds = r.TimeToleranceSeconds,
+        VerifySource = r.VerifySource,
+        SaveHashStream = r.SaveHashStream,
+        PreserveHardLinks = r.PreserveHardLinks,
+        WipeSource = r.WipeSource,
+        WaitForDevice = r.WaitForDevice,
+        WaitForSpace = r.WaitForSpace,
+    };
+
+    public void ApplyTo(Engine.Jobs.CopyJobRecord r)
+    {
+        r.Filter = Filter;
+        r.Links = Links;
+        r.KeepBothPattern = KeepBothPattern;
+        r.RetryCount = RetryCount;
+        r.RetryDelaySeconds = RetryDelaySeconds;
+        r.OnError = OnError;
+        r.VersionsFolder = VersionsFolder;
+        r.FolderConflict = FolderConflict;
+        r.TimeToleranceSeconds = TimeToleranceSeconds;
+        r.VerifySource = VerifySource;
+        r.SaveHashStream = SaveHashStream;
+        r.PreserveHardLinks = PreserveHardLinks;
+        r.WipeSource = WipeSource;
+        r.WaitForDevice = WaitForDevice;
+        r.WaitForSpace = WaitForSpace;
+    }
 }
 
 /// <summary>
@@ -41,6 +97,12 @@ public sealed partial class RulesEditor : UserControl
             Grid.SetRow(RulesColumn, one ? 1 : 0);
             Grid.SetColumn(RulesColumn, one ? 0 : 1);
             Grid.SetColumnSpan(RulesColumn, one ? 2 : 1);
+            Grid.SetRow(SafetyHeader, one ? 2 : 1);
+            Grid.SetRow(SafetyLeft, one ? 3 : 2);
+            Grid.SetColumnSpan(SafetyLeft, one ? 2 : 1);
+            Grid.SetRow(SafetyRight, one ? 4 : 2);
+            Grid.SetColumn(SafetyRight, one ? 0 : 1);
+            Grid.SetColumnSpan(SafetyRight, one ? 2 : 1);
         };
     }
 
@@ -64,6 +126,16 @@ public sealed partial class RulesEditor : UserControl
         RetriesBox.Value = rules.RetryCount;
         DelayBox.Value = rules.RetryDelaySeconds;
         OnErrorBox.SelectedIndex = (int)rules.OnError;
+        SkipJunkBox.IsChecked = f.SkipJunk;
+        FolderConflictBox.SelectedIndex = (int)rules.FolderConflict;
+        VersionsBox.Text = rules.VersionsFolder;
+        ToleranceBox.Value = rules.TimeToleranceSeconds;
+        VerifySourceBox.IsChecked = rules.VerifySource;
+        HashStreamBox.IsChecked = rules.SaveHashStream;
+        HardLinksBox.IsChecked = rules.PreserveHardLinks;
+        WipeBox.IsChecked = rules.WipeSource;
+        WaitDeviceBox.IsChecked = rules.WaitForDevice;
+        WaitSpaceBox.IsChecked = rules.WaitForSpace;
         UpdatePreview();
         _loading = false;
     }
@@ -82,12 +154,22 @@ public sealed partial class RulesEditor : UserControl
             ModifiedBeforeUtc = BeforeBox.Date?.Date.AddDays(1).AddTicks(-1).ToUniversalTime(),
             SkipHidden = SkipHiddenBox.IsChecked == true,
             SkipSystem = SkipSystemBox.IsChecked == true,
+            SkipJunk = SkipJunkBox.IsChecked == true,
         },
         Links = (LinkHandling)Math.Max(0, LinksBox.SelectedIndex),
         KeepBothPattern = string.IsNullOrWhiteSpace(PatternBox.Text) ? CopyOptions.DefaultKeepBothPattern : PatternBox.Text.Trim(),
         RetryCount = double.IsNaN(RetriesBox.Value) ? 2 : (int)RetriesBox.Value,
         RetryDelaySeconds = double.IsNaN(DelayBox.Value) ? 1 : DelayBox.Value,
         OnError = (ErrorPolicy)Math.Max(0, OnErrorBox.SelectedIndex),
+        FolderConflict = (FolderConflictPolicy)Math.Max(0, FolderConflictBox.SelectedIndex),
+        VersionsFolder = VersionsBox.Text.Trim(),
+        TimeToleranceSeconds = double.IsNaN(ToleranceBox.Value) ? 2 : ToleranceBox.Value,
+        VerifySource = VerifySourceBox.IsChecked == true,
+        SaveHashStream = HashStreamBox.IsChecked == true,
+        PreserveHardLinks = HardLinksBox.IsChecked == true,
+        WipeSource = WipeBox.IsChecked == true,
+        WaitForDevice = WaitDeviceBox.IsChecked == true,
+        WaitForSpace = WaitSpaceBox.IsChecked == true,
     };
 
     private static List<string> Masks(string text) =>

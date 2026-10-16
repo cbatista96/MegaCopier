@@ -25,13 +25,19 @@ public sealed class FileFilter
 
     public bool SkipSystem { get; set; }
 
+    /// <summary>Omitir archivos "basura" que crean Windows, macOS y Office (<see cref="JunkMasks"/>).</summary>
+    public bool SkipJunk { get; set; }
+
+    /// <summary>Miniaturas, configuración de carpetas, metadatos de macOS y archivos de bloqueo de Office.</summary>
+    public static readonly string[] JunkMasks = ["Thumbs.db", "ehthumbs.db", "desktop.ini", ".DS_Store", "._*", "~$*", "$RECYCLE.BIN", "System Volume Information"];
+
     public bool IsEmpty => Include.Count == 0 && Exclude.Count == 0 && MinSize is null && MaxSize is null
-        && ModifiedAfterUtc is null && ModifiedBeforeUtc is null && !SkipHidden && !SkipSystem;
+        && ModifiedAfterUtc is null && ModifiedBeforeUtc is null && !SkipHidden && !SkipSystem && !SkipJunk;
 
     public bool AcceptsFile(string relativePath, FileInfo file)
     {
         string name = Path.GetFileName(relativePath);
-        if (Exclude.Any(mask => Matches(mask, name, relativePath)))
+        if (Exclude.Any(mask => Matches(mask, name, relativePath)) || IsJunk(name))
         {
             return false;
         }
@@ -57,8 +63,10 @@ public sealed class FileFilter
     public bool AcceptsDirectory(string relativePath, FileAttributes attributes)
     {
         string name = Path.GetFileName(relativePath);
-        return !Exclude.Any(mask => Matches(mask, name, relativePath)) && !HasSkippedAttributes(attributes);
+        return !Exclude.Any(mask => Matches(mask, name, relativePath)) && !IsJunk(name) && !HasSkippedAttributes(attributes);
     }
+
+    private bool IsJunk(string name) => SkipJunk && JunkMasks.Any(mask => FileSystemName.MatchesSimpleExpression(mask, name));
 
     private bool HasSkippedAttributes(FileAttributes attributes) =>
         (SkipHidden && (attributes & FileAttributes.Hidden) != 0) || (SkipSystem && (attributes & FileAttributes.System) != 0);
