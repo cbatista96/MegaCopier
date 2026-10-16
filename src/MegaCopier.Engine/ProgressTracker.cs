@@ -29,6 +29,26 @@ internal sealed class ProgressTracker
         _interval = (long)(interval.TotalSeconds * Stopwatch.Frequency);
     }
 
+    private readonly List<float> _speedHistory = [];
+    private long _lastHistorySample = Stopwatch.GetTimestamp();
+
+    /// <summary>Velocidad en bytes/s, una muestra por segundo (para la gráfica de la pestaña Estado).</summary>
+    public float[] SpeedHistory()
+    {
+        lock (_speedHistory)
+        {
+            return [.. _speedHistory];
+        }
+    }
+
+    /// <summary>La lista cambió (se añadieron o quitaron archivos).</summary>
+    public void SetTotals(long totalBytes, int totalFiles)
+    {
+        _totalBytes = totalBytes;
+        _totalFiles = totalFiles;
+        Emit(force: true);
+    }
+
     public void Start(long totalBytes, int totalFiles)
     {
         _totalBytes = totalBytes;
@@ -114,6 +134,18 @@ internal sealed class ProgressTracker
         }
 
         long now = Stopwatch.GetTimestamp();
+        if (now - _lastHistorySample >= Stopwatch.Frequency)
+        {
+            _lastHistorySample = now;
+            lock (_speedHistory)
+            {
+                if (_speedHistory.Count < 24 * 3600)
+                {
+                    _speedHistory.Add((float)CurrentSpeed());
+                }
+            }
+        }
+
         if (!force && now - _lastEmit < _interval)
         {
             return;

@@ -27,11 +27,115 @@ public sealed class CopyJob
     private CancellationTokenSource? _cancellation;
     private CopyEngine? _engine;
 
-    internal CopyJob(CopyJobRecord record, CopyJobState state)
+    private readonly List<LogEntry> _log = [];
+    private readonly Action<CopyJobRecord> _save;
+    private CopyEngine? _lastEngine;
+
+    internal CopyJob(CopyJobRecord record, CopyJobState state, Action<CopyJobRecord> save)
     {
         Record = record;
         State = state;
+        _save = save;
         Devices = record.Sources.Append(record.Destination).Select(VolumeInfo.DeviceKey).ToHashSet(StringComparer.OrdinalIgnoreCase);
+    }
+
+    /// <summary>Lista de archivos (existe desde que el trabajo empieza y se conserva al terminar).</summary>
+    public TransferList? Files { get; private set; }
+
+    /// <summary>Opciones del trabajo en curso; verificar y desatendido se pueden cambiar en caliente.</summary>
+    public CopyOptions? Options => _lastEngine?.Options;
+
+    public float[] SpeedHistory => _lastEngine?.SpeedHistory ?? [];
+
+    public string? ChecksumFile => _lastEngine?.ChecksumFile;
+
+    public DateTime? StartedAt { get; private set; }
+
+    public DateTime? FinishedAt { get; internal set; }
+
+    /// <summary>Nueva entrada en el registro del trabajo (desde hilos de copia).</summary>
+    public event Action<CopyJob, LogEntry>? Logged;
+
+    public IReadOnlyList<LogEntry> LogSnapshot()
+    {
+        lock (_log)
+        {
+            return [.. _log];
+        }
+    }
+
+    /// <summary>Salta el archivo que se está copiando.</summary>
+    public void SkipCurrent() => _engine?.SkipCurrent();
+
+    /// <summary>Quita un archivo pendiente; se recuerda aunque el trabajo se reanude más tarde.</summary>
+    public bool RemoveFile(int id)
+    {
+        var item = Files?.Snapshot().FirstOrDefault(i => i.Id == id);
+        if (item is null || Files?.Remove(id) != true)
+        {
+            return false;
+        }
+
+        Record.Excluded.Add(item.Source);
+        SaveIfPending();
+        return true;
+    }
+
+    /// <summary>Añade orígenes a un trabajo en curso.</summary>
+    public int AddSources(IReadOnlyList<string> sources)
+    {
+        var engine = _engine ?? throw new InvalidOperationException("El trabajo no está en marcha.");
+        int added = engine.AddSources(sources);
+        Record.Sources.AddRange(sources);
+        SaveIfPending();
+        return added;
+    }
+
+    /// <summary>Cambia en caliente "desatendido" y "verificar" (y lo guarda para los reintentos).</summary>
+    public void SetLiveOptions(bool? unattended = null, bool? verify = null)
+    {
+        if (unattended is { } u)
+        {
+            Record.Unattended = u;
+            if (_lastEngine is { } engine)
+            {
+                engine.Options.Unattended = u;
+            }
+        }
+
+        if (verify is { } v)
+        {
+            Record.Verify = v;
+            if (_lastEngine is { } engine)
+            {
+                engine.Options.Verify = v;
+            }
+        }
+
+        SaveIfPending();
+        Changed?.Invoke(this);
+    }
+
+    /// <summary>Solo se guarda lo que sigue pendiente: un trabajo terminado ya no está en el almacén.</summary>
+    private void SaveIfPending()
+    {
+        if (State is not (CopyJobState.Completed or CopyJobState.Failed))
+        {
+            _save(Record);
+        }
+    }
+
+    internal void AddLog(LogEntry entry)
+    {
+        lock (_log)
+        {
+            if (_log.Count < 20_000)
+            {
+                _log.Add(entry);
+            }
+        }
+
+        Logged?.Invoke(this, entry);
     }
 
     public string Id => Record.Id;
@@ -80,7 +184,10 @@ public sealed class CopyJob
         lock (_lock)
         {
             _engine = engine;
+            _lastEngine = engine;
             _cancellation = cancellation;
+            Files = engine.Files;
+            StartedAt ??= DateTime.Now;
         }
     }
 
@@ -160,6 +267,25 @@ public sealed class CopyQueue
     /// </summary>
     public Func<CopyJob, ConflictInfo, CancellationToken, ConflictAnswer>? ConflictResolver { get; set; }
 
+    /// <summary>Máximo de trabajos en marcha a la vez (0 = sin límite; siempre de uno en uno por disco).</summary>
+    public int MaxActiveJobs { get; set; }
+
+    /// <summary>
+    /// Rutas de dispositivos "rápidos" (SSD NVMe, RAID...): admiten varios trabajos a la vez en lugar de esperar turno.
+    /// </summary>
+    public IReadOnlyList<string> FastDevices
+    {
+        get => _fastDevices;
+        set
+        {
+            _fastDevices = value;
+            _fastKeys = value.Where(v => !string.IsNullOrWhiteSpace(v)).Select(VolumeInfo.DeviceKey).ToHashSet(StringComparer.OrdinalIgnoreCase);
+        }
+    }
+
+    private IReadOnlyList<string> _fastDevices = [];
+    private HashSet<string> _fastKeys = new(StringComparer.OrdinalIgnoreCase);
+
     public event Action<CopyJob>? JobAdded;
 
     public event Action<CopyJob>? JobRemoved;
@@ -203,7 +329,7 @@ public sealed class CopyQueue
                 }
             }
 
-            loaded.Add(Add(new CopyJob(record, CopyJobState.Interrupted)));
+            loaded.Add(Add(new CopyJob(record, CopyJobState.Interrupted, _store.Save)));
         }
 
         return loaded;
@@ -213,7 +339,7 @@ public sealed class CopyQueue
     {
         var record = CopyJobRecord.New(sources, destination, options);
         _store.Save(record);
-        var job = Add(new CopyJob(record, CopyJobState.Queued));
+        var job = Add(new CopyJob(record, CopyJobState.Queued, _store.Save));
         Schedule();
         return job;
     }
@@ -332,19 +458,30 @@ public sealed class CopyQueue
         lock (_lock)
         {
             var busy = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            int active = 0;
             foreach (var running in _jobs.Where(j => j.State is CopyJobState.Running or CopyJobState.Paused))
             {
                 busy.UnionWith(running.Devices);
+                active++;
             }
+
+            // Los dispositivos marcados como rápidos no obligan a esperar turno.
+            busy.ExceptWith(_fastKeys);
 
             foreach (var job in _jobs.Where(j => j.State == CopyJobState.Queued))
             {
+                if (MaxActiveJobs > 0 && active >= MaxActiveJobs)
+                {
+                    break;
+                }
+
                 if (job.Devices.Overlaps(busy))
                 {
                     continue;
                 }
 
-                busy.UnionWith(job.Devices);
+                active++;
+                busy.UnionWith(job.Devices.Except(_fastKeys, StringComparer.OrdinalIgnoreCase));
                 job.SetState(CopyJobState.Running);
                 toStart.Add(job);
             }
@@ -364,12 +501,15 @@ public sealed class CopyQueue
         engine.ProgressChanged += job.SetProgress;
         engine.ConflictResolver = (info, token) =>
             ConflictResolver?.Invoke(job, info, token) ?? new ConflictAnswer(ConflictDecision.Skip, ApplyToAll: false);
+        engine.Logged += job.AddLog;
 
-        _ = engine.RunAsync(new CopyJobRequest(job.Record.Sources, job.Record.Destination), cancellation.Token)
+        var request = new CopyJobRequest(job.Record.Sources, job.Record.Destination) { Excluded = job.Record.Excluded };
+        _ = engine.RunAsync(request, cancellation.Token)
             .ContinueWith(
                 task =>
                 {
                     job.Detach();
+                    job.FinishedAt = DateTime.Now;
                     if (task.IsCanceled || task.Exception?.InnerException is OperationCanceledException)
                     {
                         job.SetState(CopyJobState.Interrupted);

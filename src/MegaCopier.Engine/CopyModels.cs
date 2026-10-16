@@ -2,7 +2,11 @@ using Microsoft.Win32.SafeHandles;
 
 namespace MegaCopier.Engine;
 
-public sealed record CopyJobRequest(IReadOnlyList<string> Sources, string Destination);
+public sealed record CopyJobRequest(IReadOnlyList<string> Sources, string Destination)
+{
+    /// <summary>Archivos que el usuario quitó de la lista: no se copian (también al reanudar).</summary>
+    public IReadOnlyCollection<string> Excluded { get; init; } = [];
+}
 
 public enum CopyPhase
 {
