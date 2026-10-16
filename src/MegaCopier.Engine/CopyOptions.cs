@@ -129,6 +129,9 @@ public sealed class CopyOptions
     /// <summary>En ReFS y Dev Drive, dentro del mismo volumen, clonar bloques en lugar de copiarlos (instantáneo).</summary>
     public bool BlockClone { get; set; } = true;
 
+    /// <summary>Carpetas "todo o nada": se copian ocultas y solo aparecen con su nombre cuando todo salió bien.</summary>
+    public bool AllOrNothing { get; set; }
+
     /// <summary>Archivos dispersos (con huecos): el destino también lo es, sin escribir los huecos.</summary>
     public bool PreserveSparse { get; set; } = true;
 

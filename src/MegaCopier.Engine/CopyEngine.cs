@@ -145,6 +145,8 @@ public sealed partial class CopyEngine
             plan = SkipExistingFolders(request, plan);
         }
 
+        (plan, var staged) = StageFolders(request, plan);
+
         var progress = new ProgressTracker(p => ProgressChanged?.Invoke(p), _options.ProgressInterval);
         var result = new CopyJobResult();
 
@@ -263,6 +265,8 @@ public sealed partial class CopyEngine
         {
             CopyDirectoryMetadata(directory);
         }
+
+        PublishStaged(staged, result);
 
         // Al mover, las carpetas de origen que quedaron vacías desaparecen (si algo se omitió, se conservan).
         if (_options.Move)
