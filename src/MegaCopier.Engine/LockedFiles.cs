@@ -134,10 +134,54 @@ public static class LockedFiles
     };
 }
 
-/// <summary>Instantáneas reales con WMI (Win32_ShadowCopy) a través de PowerShell. Necesita administrador.</summary>
+/// <summary>
+/// Instantáneas reales con WMI (Win32_ShadowCopy, lo mismo que "wmic shadowcopy call create" en Windows 10 y 11) a través
+/// de PowerShell. Necesita administrador.
+/// </summary>
 public sealed class WmiSnapshotProvider : ISnapshotProvider
 {
+    /// <summary>Enlace temporal de cada instantánea (por id), para borrarlo con ella.</summary>
+    private readonly Dictionary<string, string> _links = [];
+
     public (string Root, string Id) Create(string volume)
+    {
+        var (device, id) = CreateShadow(volume);
+
+        // La instantánea es un dispositivo (\\?\GLOBALROOT\Device\HarddiskVolumeShadowCopyN\). Se lee a través de un
+        // enlace simbólico temporal, como hacen los programas de copia de seguridad: así el motor ve una ruta local
+        // normal (C:\...) y no una ruta de dispositivo que algunas partes tomarían por una de red.
+        string link = Path.Combine(Path.GetTempPath(), "MegaCopier-VSS-" + Guid.NewGuid().ToString("N")[..8]);
+        try
+        {
+            Directory.CreateSymbolicLink(link, device);
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+        {
+            Delete(id);
+            throw new IOException($"No se pudo abrir la instantánea ({ex.Message}).", ex);
+        }
+
+        _links[id] = link;
+        return (link + "\\", id);
+    }
+
+    public void Delete(string id)
+    {
+        if (_links.Remove(id, out string? link))
+        {
+            try
+            {
+                Directory.Delete(link); // solo el enlace, nunca lo que hay detrás
+            }
+            catch (IOException)
+            {
+            }
+        }
+
+        PowerShell($"Get-CimInstance Win32_ShadowCopy -Filter \"ID='{id.Replace("'", "''")}'\" | Remove-CimInstance");
+    }
+
+    private static (string Device, string Id) CreateShadow(string volume)
     {
         string script =
             $"$r = Invoke-CimMethod -ClassName Win32_ShadowCopy -MethodName Create -Arguments @{{ Volume = '{volume.Replace("'", "''")}'; Context = 'ClientAccessible' }}; " +
@@ -151,12 +195,9 @@ public sealed class WmiSnapshotProvider : ISnapshotProvider
             throw new InvalidOperationException(output.Length > 0 ? output : "Sin respuesta de Win32_ShadowCopy.");
         }
 
-        // \\?\GLOBALROOT\Device\HarddiskVolumeShadowCopyN\ se lee como cualquier carpeta.
-        return (output[..bar] + "\\", output[(bar + 1)..]);
+        // El destino del enlace necesita la barra final (sin ella, Windows no lo trata como la raíz del volumen).
+        return (output[..bar].Trim() + "\\", output[(bar + 1)..].Trim());
     }
-
-    public void Delete(string id) =>
-        PowerShell($"Get-CimInstance Win32_ShadowCopy -Filter \"ID='{id.Replace("'", "''")}'\" | Remove-CimInstance");
 
     private static string PowerShell(string script)
     {

@@ -394,13 +394,13 @@ internal sealed partial class FileTransfer
         return result;
     }
 
+    /// <summary>Volúmenes (por número de serie) que saben clonar bloques: se pregunta una vez, no con cada archivo.</summary>
+    private static readonly System.Collections.Concurrent.ConcurrentDictionary<uint, bool> CloneVolumes = new();
+
     /// <summary>
     /// ReFS y Dev Drive: el destino comparte los bloques del origen (instantáneo). Null si no se puede (otro volumen, otro
     /// sistema de archivos o el clonado falla): entonces se copia de la forma normal.
     /// </summary>
-    /// <summary>Volúmenes (por número de serie) que saben clonar bloques: se pregunta una vez, no con cada archivo.</summary>
-    private static readonly System.Collections.Concurrent.ConcurrentDictionary<uint, bool> CloneVolumes = new();
-
     private async Task<FileTransferResult?> TryCloneAsync(
         SafeFileHandle source, bool sourceUnbuffered, SourceInfo info, string sourcePath, string partialPath, string destinationPath, CancellationToken cancellationToken)
     {
@@ -415,7 +415,7 @@ internal sealed partial class FileTransfer
             using var destination = File.OpenHandle(partialPath, FileMode.Create, FileAccess.ReadWrite, FileShare.Read);
             BlockClone.Clone(source, destination, volume, info.Identity.Length, (info.Attributes & FileAttributes.SparseFile) != 0);
         }
-        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or ArgumentException or NotSupportedException)
         {
             IoHelpers.DeleteIfExists(partialPath);
             return null;
@@ -460,8 +460,11 @@ internal sealed partial class FileTransfer
         SafeFileHandle source, bool sourceUnbuffered, SourceInfo info, string sourcePath, string partialPath, string destinationPath,
         FileTransferResult result, CancellationToken cancellationToken)
     {
+        // Clonar o copiar en el servidor no mueve los datos por aquí: leerlo todo solo para mostrar su hash quitaría la
+        // ventaja (50 GB clonados al instante tardarían lo que tarda leerlos). Se lee si de verdad hace falta.
         long length = info.Identity.Length;
-        if (FileHasher.Create(_options.HashAlgorithm) is { } sourceHasher)
+        bool hashNeeded = _options.Verify || _options.VerifySource || _options.SaveChecksumFile || _options.SaveHashStream;
+        if (hashNeeded && FileHasher.Create(_options.HashAlgorithm) is { } sourceHasher)
         {
             await ReadSequentialAsync(source, sourceUnbuffered, 0, length, (data, _) => sourceHasher.Append(data), cancellationToken).ConfigureAwait(false);
             result.SourceHash = sourceHasher.Finish();

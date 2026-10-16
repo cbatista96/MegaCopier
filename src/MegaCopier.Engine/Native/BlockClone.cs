@@ -53,14 +53,17 @@ internal static unsafe partial class BlockClone
             throw Error("FSCTL_SET_SPARSE");
         }
 
-        // Origen y destino deben tener la misma configuración de flujos de integridad.
+        // Origen y destino deben tener la misma configuración de flujos de integridad. La respuesta trae además el tamaño
+        // de clúster, como en el ejemplo de Microsoft (más fiable que preguntarlo por la ruta del volumen).
         var integrity = stackalloc byte[16];
+        long cluster = 0;
         if (DeviceIoControl(source, FsctlGetIntegrityInformation, null, 0, integrity, 16, out _, null))
         {
             var set = stackalloc byte[8];
             *(ushort*)set = *(ushort*)integrity; // ChecksumAlgorithm
             *(uint*)(set + 4) = *(uint*)(integrity + 4); // Flags
             DeviceIoControl(destination, FsctlSetIntegrityInformation, set, 8, null, 0, out _, null);
+            cluster = *(uint*)(integrity + 12); // ClusterSizeInBytes
         }
 
         RandomAccess.SetLength(destination, length);
@@ -69,7 +72,11 @@ internal static unsafe partial class BlockClone
             return;
         }
 
-        long cluster = ClusterSize(volumePath);
+        if (cluster <= 0 || (cluster & (cluster - 1)) != 0)
+        {
+            cluster = ClusterSize(volumePath);
+        }
+
         long rounded = (length + cluster - 1) / cluster * cluster; // la última región puede pasar del final, como en el ejemplo de Microsoft
         var data = new DuplicateExtentsData { FileHandle = source.DangerousGetHandle() };
         for (long offset = 0; offset < rounded; offset += MaxChunk)
