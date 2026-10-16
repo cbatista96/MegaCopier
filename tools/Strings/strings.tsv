@@ -488,3 +488,85 @@ Sound_Test	Probar el sonido	Test the sound
 Sound_None	Sin sonido	No sound
 Sound_Default	El de Windows	Windows default
 Sound_Choose	Elegir un archivo…	Choose a file…
+File_Planned	Simulado	Simulated
+File_Deleted	Quitado	Removed
+File_RemovedExtra	Quitado del destino: ya no estaba en el origen	Removed from the destination: no longer in the source
+Plan_Copy	Se copiaría	Would be copied
+Plan_Replace	Reemplazaría el del destino	Would replace the one in the destination
+Plan_ReplaceNewer	Reemplazaría el del destino: el original es más nuevo	Would replace the one in the destination: the original is newer
+Plan_ReplaceSize	Reemplazaría el del destino: tiene otro tamaño	Would replace the one in the destination: different size
+Plan_KeepBoth	Ya existe: se copiaría con otro nombre	Already exists: would be copied with another name
+Plan_RenameExisting	Ya existe: renombraría el del destino y copiaría este	Already exists: would rename the existing one and copy this one
+Plan_Ask	Ya existe: te preguntaría qué hacer	Already exists: you would be asked what to do
+Plan_SkipIdentical	Se omitiría: ya está igual en el destino	Would be skipped: already identical in the destination
+Plan_SkipExists	Se omitiría: ya existe	Would be skipped: already exists
+Plan_SkipOlder	Se omitiría: el del destino es igual o más nuevo	Would be skipped: the destination is the same or newer
+Plan_SkipSameSize	Se omitiría: mismo tamaño	Would be skipped: same size
+Plan_SkipNotInDestination	Se omitiría: no está en el destino (solo actualizar)	Would be skipped: not in the destination (update only)
+Plan_SkipSamePath	Se omitiría: el origen y el destino son el mismo	Would be skipped: source and destination are the same
+Plan_Delete	Se quitaría del destino: ya no está en el origen	Would be removed from the destination: no longer in the source
+Plan_Fail	Fallaría: el destino ya existe	Would fail: the destination already exists
+Plan_None	Simulado	Simulated
+Skip_SkipIdentical	Ya estaba igual en el destino	Already identical in the destination
+Skip_SkipExists	Ya existía: omitido	Already existed: skipped
+Skip_SkipOlder	El del destino es igual o más nuevo	The destination is the same or newer
+Skip_SkipSameSize	Mismo tamaño que el del destino	Same size as the destination
+Skip_SkipNotInDestination	No está en el destino (solo se actualizan los existentes)	Not in the destination (only existing files are updated)
+Skip_SkipSamePath	El origen y el destino son el mismo archivo	Source and destination are the same file
+Skip_SkipByUser	Saltado por ti	Skipped by you
+Job_TitleSync	Sincronizar {0}	Sync {0}
+Job_TitleSyncing	Sincronizando {0}	Syncing {0}
+Job_TitleSynced	Sincronizado {0}	Synced {0}
+Job_StateSyncing	Sincronizando	Syncing
+Job_FilesSyncedOne	{0} archivo actualizado	{0} file updated
+Job_FilesSyncedMany	{0} archivos actualizados	{0} files updated
+Job_TitleSimulate	Simular {0}	Simulate {0}
+Job_TitleSimulating	Simulando {0}	Simulating {0}
+Job_TitleSimulated	Simulación: {0}	Simulation: {0}
+Job_StateSimulating	Simulando	Simulating
+Job_FilesSimulatedOne	Se copiaría {0} archivo	{0} file would be copied
+Job_FilesSimulatedMany	Se copiarían {0} archivos	{0} files would be copied
+Job_WouldTransfer	{0} en total	{0} in total
+Job_TitleHash	Crear sumas de {0}	Create checksums for {0}
+Job_TitleHashing	Calculando sumas de {0}	Calculating checksums for {0}
+Job_TitleHashed	Sumas de {0}	Checksums for {0}
+Job_StateHashing	Calculando sumas	Calculating checksums
+Job_FilesHashedOne	{0} archivo en la lista de sumas	{0} file in the checksum list
+Job_FilesHashedMany	{0} archivos en la lista de sumas	{0} files in the checksum list
+Job_StateWaitingDevice	Esperando a que vuelva el disco o la red…	Waiting for the drive or network to come back…
+Job_StateWaitingSpace	Esperando a que haya espacio en el destino…	Waiting for free space on the destination…
+Job_RemovedOne	1 quitado del destino	1 removed from the destination
+Job_Removed	{0} quitados del destino	{0} removed from the destination
+Job_WouldRemove	se quitarían {0} del destino	{0} would be removed from the destination
+Panel_RunForReal.Text	Hacerlo de verdad	Do it for real
+Options_Mode.Header	Modo	Mode
+Mode_Copy.Content	Copiar	Copy
+Mode_Mirror.Content	Sincronizar (espejo)	Sync (mirror)
+Mode_Update.Content	Solo actualizar los que ya existen	Only update existing files
+Mode_Folders.Content	Solo la estructura de carpetas	Folder structure only
+Options_MirrorInfo.Title	Sincronizar quita del destino lo que ya no está en el origen	Sync removes from the destination what is no longer in the source
+Options_MirrorInfo.Message	Lo que excluyen los filtros no se toca. Indica una carpeta de versiones para guardar lo quitado o reemplazado.	Anything excluded by the filters is left alone. Set a versions folder to keep what is removed or replaced.
+Options_DryRun.Content	Simular: decir qué se haría sin cambiar nada	Simulate: show what would happen without changing anything
+Destinations_DryRun.Content	Simular primero (no cambia nada)	Simulate first (changes nothing)
+Tool_HashFolder.Text	Crear archivo de sumas de una carpeta…	Create a checksum file for a folder…
+Tool_HashFiles.Text	Crear archivo de sumas de archivos…	Create a checksum file for files…
+Rules_SkipJunk.Content	Omitir archivos basura (Thumbs.db, desktop.ini, .DS_Store, ~$…)	Skip junk files (Thumbs.db, desktop.ini, .DS_Store, ~$…)
+Rules_OnErrorEnd.Content	Reintentarlo al final de la cola	Retry it at the end of the queue
+Rules_Safety.Text	Sincronización y seguridad	Sync and safety
+Rules_FolderConflict.Header	Si una carpeta ya existe en el destino	If a folder already exists in the destination
+Rules_FolderMerge.Content	Combinar su contenido	Merge its contents
+Rules_FolderSkip.Content	Omitirla entera	Skip it entirely
+Rules_Versions.Header	Guardar lo reemplazado o quitado en la carpeta	Keep replaced or removed files in the folder
+Rules_Versions.PlaceholderText	Vacío: no guardar (por ejemplo .versiones)	Empty: don't keep (for example .versions)
+Rules_Tolerance.Header	Margen de fecha para «iguales» (segundos)	Date margin for “identical” (seconds)
+Rules_VerifySource.Content	Releer el original al terminar	Re-read the original when done
+Rules_HashStream.Content	Guardar el hash dentro de cada archivo	Store the hash inside each file
+Rules_HardLinks.Content	Conservar enlaces duros	Keep hard links
+Rules_Wipe.Content	Al mover, borrar los originales de forma segura	When moving, securely wipe the originals
+Rules_WaitDevice.Content	Esperar si se desconecta el disco o la red	Wait if the drive or network disconnects
+Rules_WaitSpace.Content	Esperar si falta espacio	Wait if out of space
+Rules_VerifySource.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Calcula de nuevo el hash del original: detecta si cambió mientras se copiaba o si el disco de origen lee mal.	Hashes the original again: detects if it changed during the copy or if the source drive reads badly.
+Rules_HashStream.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Lo guarda en un flujo oculto del propio archivo (NTFS). «Comprobar sumas de una carpeta» detectará después cualquier daño, aunque no haya archivo de sumas.	Stored in a hidden stream of the file itself (NTFS). "Test checksums in a folder" will later detect any damage, even without a checksum file.
+Rules_HardLinks.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Si varios nombres son el mismo archivo, en el destino también lo serán (no ocupa el doble).	If several names are the same file, they will be in the destination too (no double space).
+Rules_Tolerance.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	FAT32 y exFAT guardan la hora con 2 segundos de precisión: con este margen no se vuelven a copiar archivos iguales.	FAT32 and exFAT store times with 2-second precision: with this margin identical files are not copied again.
+Rules_Versions.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Antes de reemplazar o quitar un archivo, se mueve a esta carpeta del destino con la fecha en el nombre.	Before a file is replaced or removed, it is moved to this destination folder with the date in its name.

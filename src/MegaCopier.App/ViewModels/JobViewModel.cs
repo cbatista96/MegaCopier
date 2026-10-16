@@ -85,12 +85,21 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
     {
         JobOperation.Test => "Test",
         JobOperation.Delete => "Delete",
+        JobOperation.Hash => "Hash",
+        _ when Job.Record.DryRun => "Simulate",
+        _ when Job.Record.Mode == CopyMode.Mirror && !IsMove => "Sync",
         _ => IsMove ? "Move" : "Copy",
     };
 
-    private string Past => Kind switch { "Copy" => "Copied", "Move" => "Moved", "Test" => "Tested", _ => "Deleted" };
+    private string Past => Kind switch
+    {
+        "Copy" => "Copied", "Move" => "Moved", "Test" => "Tested", "Hash" => "Hashed", "Simulate" => "Simulated", "Sync" => "Synced", _ => "Deleted",
+    };
 
-    private string Progressive => Kind switch { "Copy" => "Copying", "Move" => "Moving", "Test" => "Testing", _ => "Deleting" };
+    private string Progressive => Kind switch
+    {
+        "Copy" => "Copying", "Move" => "Moving", "Test" => "Testing", "Hash" => "Hashing", "Simulate" => "Simulating", "Sync" => "Syncing", _ => "Deleting",
+    };
 
     /// <summary>Programada para más tarde.</summary>
     public bool IsScheduled => Job.Record.StartAtUtc is { } at && at > DateTime.UtcNow;
@@ -135,6 +144,9 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
         CopyJobState.Queued => "\uE823",                                       // reloj
         _ when Job.Record.Operation == JobOperation.Test => "\uE9D5",           // comprobar
         _ when Job.Record.Operation == JobOperation.Delete => "\uE74D",         // borrar
+        _ when Job.Record.Operation == JobOperation.Hash => "\uE8EF",           // crear sumas
+        _ when Job.Record.DryRun => "\uE7B3",                                   // simular
+        _ when Kind == "Sync" => "\uE895",                                      // sincronizar
         _ => IsMove ? "\uE8DE" : "\uE8C8",                                      // mover / copiar
     };
 
@@ -183,6 +195,8 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
         CopyJobState.Running when Progress?.Phase == CopyPhase.Verifying => L.Get("Job_StateVerifying"),
         CopyJobState.Running when Progress?.Phase == CopyPhase.Validating => L.Get("Job_StateValidating"),
         CopyJobState.Running when Progress?.Phase == CopyPhase.WaitingForUser => L.Get("Job_StateWaiting"),
+        CopyJobState.Running when Progress?.Phase == CopyPhase.WaitingForDevice => L.Get("Job_StateWaitingDevice"),
+        CopyJobState.Running when Progress?.Phase == CopyPhase.WaitingForSpace => L.Get("Job_StateWaitingSpace"),
         CopyJobState.Running => L.Get("Job_State" + Progressive),
         CopyJobState.Paused => L.Get("Job_StatePaused"),
         CopyJobState.Completed => L.Get("Job_StateCompleted"),
@@ -191,6 +205,8 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
         CopyJobState.Interrupted => L.Get("Job_StateInterrupted"),
         _ => "",
     };
+
+    public bool HasDetail => DetailText.Length > 0;
 
     public string DetailText
     {
@@ -330,6 +346,11 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
 
     public void Resume() => _queue.Resume(Job);
 
+    /// <summary>La simulación terminó: hacer la misma copia de verdad.</summary>
+    public bool CanRunForReal => Job.Record.DryRun && State is CopyJobState.Completed or CopyJobState.CompletedWithErrors;
+
+    public void RunForReal() => _queue.RunForReal(Job);
+
     public void TogglePause()
     {
         if (CanPause)
@@ -403,7 +424,14 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
         string key = "Job_Files" + Past + (files == 1 ? "One" : "Many");
 
         var parts = new List<string> { L.F(key, files) };
-        if (result.BytesTransferred > 0)
+        if (Job.Record.DryRun)
+        {
+            if (result.BytesTransferred > 0)
+            {
+                parts.Add(L.F("Job_WouldTransfer", Format.Bytes(result.BytesTransferred)));
+            }
+        }
+        else if (result.BytesTransferred > 0)
         {
             string transferred = L.F("Job_TransferredIn", Format.Bytes(result.BytesTransferred), Format.Duration(result.Elapsed));
             if (result.Elapsed.TotalSeconds > 0.05 && result.BytesTransferred >= 8 * 1024 * 1024)
@@ -422,6 +450,12 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
         if (result.FilesSkipped > 0)
         {
             parts.Add(result.FilesSkipped == 1 ? L.Get("Job_SkippedOne") : L.F("Job_Skipped", result.FilesSkipped));
+        }
+
+        if (result.FilesDeleted > 0)
+        {
+            parts.Add(Job.Record.DryRun ? L.F("Job_WouldRemove", result.FilesDeleted)
+                : result.FilesDeleted == 1 ? L.Get("Job_RemovedOne") : L.F("Job_Removed", result.FilesDeleted));
         }
 
         if (Job.Record.Verify)

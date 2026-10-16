@@ -116,6 +116,25 @@ public sealed class AppSettings
 
     public ErrorPolicy OnError { get; set; }
 
+    /// <summary>Carpeta (dentro del destino) donde guardar lo reemplazado o borrado; vacío = no guardar.</summary>
+    public string VersionsFolder { get; set; } = "";
+
+    public FolderConflictPolicy FolderConflict { get; set; }
+
+    public double TimeToleranceSeconds { get; set; } = 2;
+
+    public bool VerifySource { get; set; }
+
+    public bool SaveHashStream { get; set; }
+
+    public bool PreserveHardLinks { get; set; }
+
+    public bool WipeSource { get; set; }
+
+    public bool WaitForDevice { get; set; } = true;
+
+    public bool WaitForSpace { get; set; } = true;
+
     /// <summary>Carpetas de destino favoritas (menú "Copiar a" y diálogo de destinos).</summary>
     public List<string> FavoriteFolders { get; set; } = [];
 
@@ -136,7 +155,12 @@ public sealed class AppSettings
     [JsonIgnore]
     public Views.CopyRules Rules
     {
-        get => new() { Filter = Filter, Links = Links, KeepBothPattern = KeepBothPattern, RetryCount = RetryCount, RetryDelaySeconds = RetryDelaySeconds, OnError = OnError };
+        get => new()
+        {
+            Filter = Filter, Links = Links, KeepBothPattern = KeepBothPattern, RetryCount = RetryCount, RetryDelaySeconds = RetryDelaySeconds, OnError = OnError,
+            VersionsFolder = VersionsFolder, FolderConflict = FolderConflict, TimeToleranceSeconds = TimeToleranceSeconds, VerifySource = VerifySource,
+            SaveHashStream = SaveHashStream, PreserveHardLinks = PreserveHardLinks, WipeSource = WipeSource, WaitForDevice = WaitForDevice, WaitForSpace = WaitForSpace,
+        };
         set
         {
             Filter = value.Filter;
@@ -145,6 +169,15 @@ public sealed class AppSettings
             RetryCount = value.RetryCount;
             RetryDelaySeconds = value.RetryDelaySeconds;
             OnError = value.OnError;
+            VersionsFolder = value.VersionsFolder;
+            FolderConflict = value.FolderConflict;
+            TimeToleranceSeconds = value.TimeToleranceSeconds;
+            VerifySource = value.VerifySource;
+            SaveHashStream = value.SaveHashStream;
+            PreserveHardLinks = value.PreserveHardLinks;
+            WipeSource = value.WipeSource;
+            WaitForDevice = value.WaitForDevice;
+            WaitForSpace = value.WaitForSpace;
         }
     }
 
@@ -219,6 +252,17 @@ public sealed class AppSettings
             RetryCount = Math.Clamp(RetryCount, 0, 100),
             RetryDelay = TimeSpan.FromSeconds(Math.Clamp(RetryDelaySeconds, 0, 3600)),
             OnError = OnError,
+            Mode = request.Mode ?? CopyMode.Copy,
+            DryRun = request.DryRun ?? false,
+            VersionsFolder = VersionsFolder.Trim(),
+            FolderConflict = FolderConflict,
+            TimeTolerance = TimeSpan.FromSeconds(Math.Clamp(TimeToleranceSeconds, 0, 3600)),
+            VerifySource = VerifySource,
+            SaveHashStream = SaveHashStream,
+            PreserveHardLinks = PreserveHardLinks,
+            WipeSource = WipeSource,
+            WaitForDevice = WaitForDevice,
+            WaitForSpace = WaitForSpace,
         };
 
         int block = Math.Clamp(BlockSizeMB, 1, 16) * CopyOptions.MiB;
@@ -251,12 +295,7 @@ public sealed class AppSettings
         SaveChecksumFile = r.SaveChecksumFile;
         ExportReport = r.ExportReport;
         Scripts = [.. r.Scripts];
-        Filter = r.Filter;
-        Links = r.Links;
-        KeepBothPattern = r.KeepBothPattern;
-        RetryCount = r.RetryCount;
-        RetryDelaySeconds = r.RetryDelaySeconds;
-        OnError = r.OnError;
+        Rules = Views.CopyRules.From(r);
     }
 
     /// <summary>"Restablecer": devuelve el trabajo a las opciones predeterminadas.</summary>
@@ -277,12 +316,7 @@ public sealed class AppSettings
         r.SaveChecksumFile = SaveChecksumFile;
         r.ExportReport = ExportReport;
         r.Scripts = [.. Scripts];
-        r.Filter = Filter;
-        r.Links = Links;
-        r.KeepBothPattern = KeepBothPattern;
-        r.RetryCount = RetryCount;
-        r.RetryDelaySeconds = RetryDelaySeconds;
-        r.OnError = OnError;
+        Rules.ApplyTo(r);
     }
 
     public static AppSettings Load()

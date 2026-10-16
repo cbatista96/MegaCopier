@@ -265,6 +265,22 @@ public sealed class MoreFeatureTests : IDisposable
     }
 
     [Fact]
+    public void JunkFilesAreSkipped()
+    {
+        Write("src/foto.jpg", "f");
+        Write("src/Thumbs.db", "t");
+        Write("src/desktop.ini", "d");
+        Write("src/~$informe.docx", "lock");
+        Write("src/.DS_Store", "m");
+        var options = Options();
+        options.Filter = new FileFilter { SkipJunk = true };
+
+        new CopyEngine(options).Run(new CopyJobRequest([_temp.Combine("src")], _temp.Combine("dst")));
+
+        Assert.Equal(["foto.jpg"], Directory.GetFiles(_temp.Combine("dst/src")).Select(Path.GetFileName));
+    }
+
+    [Fact]
     public void Sha3IsAvailableWhenTheSystemSupportsIt()
     {
         if (!System.Security.Cryptography.SHA3_256.IsSupported)

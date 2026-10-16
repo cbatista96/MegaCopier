@@ -38,6 +38,12 @@ public sealed class IpcRequest
 
     /// <summary>Hora de inicio programada (UTC).</summary>
     public DateTime? StartAtUtc { get; set; }
+
+    /// <summary>Copiar, sincronizar (espejo), solo actualizar o solo carpetas.</summary>
+    public CopyMode? Mode { get; set; }
+
+    /// <summary>Simular: decir qué se haría sin cambiar nada.</summary>
+    public bool? DryRun { get; set; }
 }
 
 public sealed class IpcResponse

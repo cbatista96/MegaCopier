@@ -52,6 +52,8 @@
                             <MenuFlyoutSeparator />
                             <MenuFlyoutItem x:Uid="Tool_TestFiles" Click="TestFiles_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE9D5;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
                             <MenuFlyoutItem x:Uid="Tool_TestFolder" Click="TestFolder_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE9D5;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
+                            <MenuFlyoutItem x:Uid="Tool_HashFolder" Click="HashFolder_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8EF;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
+                            <MenuFlyoutItem x:Uid="Tool_HashFiles" Click="HashFiles_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8EF;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
                             <MenuFlyoutSeparator />
                             <MenuFlyoutItem x:Uid="Tool_Delete" Click="Delete_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE74D;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
                             <MenuFlyoutItem x:Uid="Tool_Wipe" Click="Wipe_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE72E;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
@@ -295,7 +297,15 @@
                 <Button Click="AddDestination_Click">
                     <StackPanel Orientation="Horizontal" Spacing="8"><FontIcon VerticalAlignment="Center" Glyph="&#xE710;" FontSize="12" /><TextBlock x:Uid="Destinations_Add" /></StackPanel>
                 </Button>
+                <ComboBox x:Name="DestinationsMode" x:Uid="Options_Mode" HorizontalAlignment="Stretch" SelectionChanged="DestinationsMode_Changed">
+                    <ComboBoxItem x:Uid="Mode_Copy" />
+                    <ComboBoxItem x:Uid="Mode_Mirror" />
+                    <ComboBoxItem x:Uid="Mode_Update" />
+                    <ComboBoxItem x:Uid="Mode_Folders" />
+                </ComboBox>
+                <InfoBar x:Name="DestinationsMirrorInfo" x:Uid="Options_MirrorInfo" Severity="Warning" IsClosable="False" IsOpen="False" />
                 <CheckBox x:Name="DestinationsMove" x:Uid="Destinations_Move" />
+                <CheckBox x:Name="DestinationsDryRun" x:Uid="Destinations_DryRun" />
                 <CheckBox x:Name="DestinationsSchedule" x:Uid="Destinations_Schedule" Click="DestinationsSchedule_Click" />
                 <StackPanel x:Name="DestinationsWhen" Orientation="Horizontal" Spacing="8" Visibility="Collapsed">
                     <CalendarDatePicker x:Name="DestinationsDate" MinWidth="160" />

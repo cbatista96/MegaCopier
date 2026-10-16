@@ -65,7 +65,14 @@ public sealed partial class CopyPanel : UserControl
         }
         TotalBytesBlock.Visibility = narrow ? Visibility.Collapsed : Visibility.Visible;
         FileBytesBlock.Visibility = narrow ? Visibility.Collapsed : Visibility.Visible;
-        DetailBlock.Visibility = narrow ? Visibility.Collapsed : Visibility.Visible;
+        DetailHost.Visibility = narrow ? Visibility.Collapsed : Visibility.Visible;
+
+        // Si no cabe junto a los botones, el resumen pasa a su propia línea debajo.
+        bool below = width < 900;
+        Grid.SetRow(DetailHost, below ? 1 : 0);
+        Grid.SetColumn(DetailHost, below ? 0 : 1);
+        Grid.SetColumnSpan(DetailHost, below ? 3 : 1);
+        DetailBlock.Margin = below ? new Thickness(0, 6, 0, 0) : new Thickness(8, 0, 8, 0);
         FilesCountBlock.Visibility = tiny ? Visibility.Collapsed : Visibility.Visible;
         SpeedBlock.Visibility = tiny ? Visibility.Collapsed : Visibility.Visible;
         int keep = width < 560 ? 1 : 2;

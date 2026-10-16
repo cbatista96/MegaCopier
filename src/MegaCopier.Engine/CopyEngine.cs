@@ -330,7 +330,8 @@ public sealed partial class CopyEngine
         if (resolution.Target is not { } target)
         {
             result.FilesSkipped++;
-            Files.Update(item, FileState.Skipped, resolution.Reason ?? (resolution.Identical ? "Idéntico al existente" : "Ya existía: omitido"));
+            item.Action = resolution.Skip;
+            Files.Update(item, FileState.Skipped, SkipText(resolution.Skip));
 
             if (resolution.Identical && _options.VerifySkipped)
             {
@@ -436,6 +437,7 @@ public sealed partial class CopyEngine
             // Saltado por el usuario: se descarta lo copiado de este archivo.
             DeletePartials(target);
             result.FilesSkipped++;
+            item.Action = PlannedAction.SkipByUser;
             Files.Update(item, FileState.Skipped, "Saltado por el usuario");
             Log(LogLevel.Info, "Saltado por el usuario.", item.Source);
         }
@@ -738,7 +740,10 @@ public sealed partial class CopyEngine
         }
     }
 
-    private readonly record struct Resolution(string? Target, bool Identical = false, string? Reason = null);
+    private readonly record struct Resolution(string? Target, PlannedAction Skip = PlannedAction.None)
+    {
+        public bool Identical => Skip == PlannedAction.SkipIdentical;
+    }
 
     private readonly HashSet<int> _requeued = [];
 
@@ -747,7 +752,7 @@ public sealed partial class CopyEngine
     {
         if (string.Equals(file.Source, file.Destination, StringComparison.OrdinalIgnoreCase))
         {
-            return new Resolution(null);
+            return new Resolution(null, PlannedAction.SkipSamePath);
         }
 
         var existing = new FileInfo(file.Destination);
@@ -755,13 +760,13 @@ public sealed partial class CopyEngine
         {
             // "Solo actualizar los existentes": lo que no está en el destino no se añade.
             return _options.Mode == CopyMode.UpdateExisting
-                ? new Resolution(null, Reason: "No existe en el destino (solo se actualizan los existentes)")
+                ? new Resolution(null, PlannedAction.SkipNotInDestination)
                 : new Resolution(file.Destination);
         }
 
         if (!_options.ForceRecopy && IsIdentical(existing, file))
         {
-            return new Resolution(null, Identical: true);
+            return new Resolution(null, PlannedAction.SkipIdentical);
         }
 
         var policy = _options.Conflict;
@@ -783,9 +788,9 @@ public sealed partial class CopyEngine
         return policy switch
         {
             ConflictPolicy.Overwrite => new Resolution(file.Destination),
-            ConflictPolicy.Skip => new Resolution(null),
-            ConflictPolicy.OverwriteIfNewer => new Resolution(file.LastWriteUtc > existing.LastWriteTimeUtc + _options.TimeTolerance ? file.Destination : null),
-            ConflictPolicy.OverwriteIfDifferentSize => new Resolution(file.Length != existing.Length ? file.Destination : null),
+            ConflictPolicy.Skip => new Resolution(null, PlannedAction.SkipExists),
+            ConflictPolicy.OverwriteIfNewer => file.LastWriteUtc > existing.LastWriteTimeUtc + _options.TimeTolerance ? new Resolution(file.Destination) : new Resolution(null, PlannedAction.SkipOlder),
+            ConflictPolicy.OverwriteIfDifferentSize => file.Length != existing.Length ? new Resolution(file.Destination) : new Resolution(null, PlannedAction.SkipSameSize),
             ConflictPolicy.KeepBoth => UniqueTarget(file),
             ConflictPolicy.RenameExisting => RenameExisting(file),
             ConflictPolicy.Fail => throw new IOException($"El destino ya existe: {file.Destination}"),
@@ -857,7 +862,7 @@ public sealed partial class CopyEngine
 
             return false;
         });
-        return identical ? new Resolution(null, Identical: true) : new Resolution(reuse);
+        return identical ? new Resolution(null, PlannedAction.SkipIdentical) : new Resolution(reuse);
     }
 
     /// <summary>
