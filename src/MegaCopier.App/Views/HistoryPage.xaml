@@ -8,6 +8,7 @@
     <Grid Padding="20,8,20,20" RowSpacing="12">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid>
@@ -31,7 +32,8 @@
             </StackPanel>
         </Grid>
 
-        <ListView x:Name="List" Grid.Row="1" SelectionMode="None">
+        <InfoBar x:Name="ResultInfo" x:Uid="History_UndoTitleBar" Grid.Row="1" Severity="Success" IsOpen="False" />
+        <ListView x:Name="List" Grid.Row="2" SelectionMode="None">
             <ListView.ItemContainerTransitions>
                 <TransitionCollection>
                     <EntranceThemeTransition IsStaggeringEnabled="True" />
@@ -58,6 +60,12 @@
                                 <Button Style="{StaticResource McToolButton}" Click="{x:Bind Repeat}" x:Uid="History_Repeat">
                                     <FontIcon VerticalAlignment="Center" Glyph="&#xE72C;" FontSize="14" />
                                 </Button>
+                                <Button Style="{StaticResource McToolButton}" Click="{x:Bind Undo}" x:Uid="History_Undo" Visibility="{x:Bind CanUndo}">
+                                    <FontIcon VerticalAlignment="Center" Glyph="&#xE7A7;" FontSize="14" />
+                                </Button>
+                                <Button Style="{StaticResource McToolButton}" Click="{x:Bind CopyBack}" x:Uid="History_CopyBack" Visibility="{x:Bind IsCopy}">
+                                    <FontIcon VerticalAlignment="Center" Glyph="&#xE8EE;" FontSize="14" />
+                                </Button>
                                 <Button Style="{StaticResource McToolButton}" Click="{x:Bind OpenDestination}" x:Uid="History_Open">
                                     <FontIcon VerticalAlignment="Center" Glyph="&#xE838;" FontSize="14" />
                                 </Button>
@@ -67,6 +75,10 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <TextBlock x:Name="EmptyText" x:Uid="History_Empty" Grid.Row="1" Style="{StaticResource McSecondary}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <TextBlock x:Name="EmptyText" x:Uid="History_Empty" Grid.Row="2" Style="{StaticResource McSecondary}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+        <ContentDialog x:Name="UndoDialog" x:Uid="History_UndoDialog" Grid.RowSpan="3" Style="{StaticResource DefaultContentDialogStyle}" DefaultButton="Close">
+            <TextBlock x:Name="UndoMessage" TextWrapping="Wrap" MaxWidth="440" />
+        </ContentDialog>
     </Grid>
 </UserControl>

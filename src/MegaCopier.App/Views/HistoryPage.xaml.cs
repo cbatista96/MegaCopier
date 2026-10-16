@@ -8,8 +8,12 @@ using Microsoft.UI.Xaml.Controls;
 namespace MegaCopier.App.Views;
 
 /// <summary>Una fila del historial.</summary>
-public sealed class HistoryRow(HistoryEntry entry)
+public sealed class HistoryRow(HistoryEntry entry, Action<HistoryRow> undo)
 {
+    public HistoryEntry Entry => entry;
+
+    public override string ToString() => Title;
+
     public string Glyph => entry.State switch
     {
         "Completed" => "",
@@ -31,7 +35,14 @@ public sealed class HistoryRow(HistoryEntry entry)
             string what = entry.Sources.Count == 1
                 ? L.F("Job_OneItem", Path.GetFileName(entry.Sources[0].TrimEnd('\\')))
                 : L.F("Job_ManyItems", entry.Sources.Count);
-            return L.F(entry.Move ? "Job_TitleMoved" : "Job_TitleCopied", what);
+            string title = L.F(entry.Operation switch
+            {
+                Engine.JobOperation.Test => "Job_TitleTested",
+                Engine.JobOperation.Delete => "Job_TitleDeleted",
+                Engine.JobOperation.Hash => "Job_TitleHashed",
+                _ => entry.Move ? "Job_TitleMoved" : "Job_TitleCopied",
+            }, what);
+            return entry.Undone ? $"{title} · {L.Get("History_Undone")}" : title;
         }
     }
 
@@ -53,6 +64,15 @@ public sealed class HistoryRow(HistoryEntry entry)
         Destination = entry.Destination,
         Move = entry.Move ? true : null,
     });
+
+    public bool IsCopy => entry.Operation == Engine.JobOperation.Copy;
+
+    public bool CanUndo => HistoryActions.CanUndo(entry);
+
+    public void Undo() => undo(this);
+
+    /// <summary>Lo copiado vuelve a la carpeta de donde salió (restaurar).</summary>
+    public void CopyBack() => HistoryActions.Reverse(entry, move: false);
 
     public void OpenDestination()
     {
@@ -76,9 +96,35 @@ public sealed partial class HistoryPage : UserControl
 
     public void Reload()
     {
-        var rows = History.Load().Select(e => new HistoryRow(e)).ToList();
+        var rows = History.Load().Select(e => new HistoryRow(e, row => _ = UndoAsync(row))).ToList();
         List.ItemsSource = rows;
         EmptyText.Visibility = rows.Count == 0 ? Visibility.Visible : Visibility.Collapsed;
+    }
+
+    /// <summary>Deshacer siempre pide confirmación y luego dice qué se hizo.</summary>
+    private async Task UndoAsync(HistoryRow row)
+    {
+        var entry = row.Entry;
+        UndoDialog.XamlRoot = XamlRoot;
+        UndoDialog.RequestedTheme = ActualTheme;
+        UndoMessage.Text = entry.Move ? L.F("History_UndoMoveConfirm", entry.Destination) : L.F("History_UndoCopyConfirm", entry.Files);
+        if (await UndoDialog.ShowAsync() != ContentDialogResult.Primary)
+        {
+            return;
+        }
+
+        var result = HistoryActions.Undo(entry);
+        if (!entry.Move)
+        {
+            string text = L.F("History_UndoDone", result.Removed);
+            if (result.Changed + result.Replaced + result.Missing > 0)
+            {
+                text += " " + L.F("History_UndoKept", result.Changed, result.Replaced);
+            }
+
+            ResultInfo.Message = text;
+            ResultInfo.IsOpen = true;
+        }
     }
 
     private void Clear_Click(object sender, RoutedEventArgs e) => History.Clear();

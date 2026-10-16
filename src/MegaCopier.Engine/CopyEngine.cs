@@ -355,6 +355,9 @@ public sealed partial class CopyEngine
 
         Directory.CreateDirectory(Path.GetDirectoryName(target)!);
 
+        // Para "Deshacer": lo que reemplazó a otro archivo no se borra al deshacer (se perdería el anterior).
+        item.Action = File.Exists(target) ? PlannedAction.Replace : PlannedAction.Copy;
+
         if (_options.Move && SameVolume(item.Source, target))
         {
             MoveByRename(item, target, result);

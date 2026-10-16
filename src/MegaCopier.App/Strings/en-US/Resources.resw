@@ -604,4 +604,19 @@
   <data name="Finish_CountdownSignOut" xml:space="preserve"><value>You will be signed out in {0} s.</value></data>
   <data name="Finish_CountdownExitApp" xml:space="preserve"><value>MegaCopier will close in {0} s.</value></data>
   <data name="Job_SlowedDown" xml:space="preserve"><value>Slower while you use the PC</value></data>
+  <data name="History_Undone" xml:space="preserve"><value>undone</value></data>
+  <data name="History_Undo.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Undo: move things back, or send what was copied to the Recycle Bin</value></data>
+  <data name="History_CopyBack.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Copy back to the source folder (restore)</value></data>
+  <data name="History_UndoDialog.Title" xml:space="preserve"><value>Undo this transfer?</value></data>
+  <data name="History_UndoDialog.PrimaryButtonText" xml:space="preserve"><value>Undo</value></data>
+  <data name="History_UndoDialog.CloseButtonText" xml:space="preserve"><value>Cancel</value></data>
+  <data name="History_UndoMoveConfirm" xml:space="preserve"><value>Everything that was moved will go back to its original folder from &quot;{0}&quot;.</value></data>
+  <data name="History_UndoCopyConfirm" xml:space="preserve"><value>The {0} copied files will go to the Recycle Bin (they can be restored). Files changed afterwards, or that replaced another file, are left alone.</value></data>
+  <data name="History_UndoDone" xml:space="preserve"><value>{0} files sent to the Recycle Bin.</value></data>
+  <data name="History_UndoKept" xml:space="preserve"><value>Kept {0} changed afterwards and {1} that replaced others.</value></data>
+  <data name="History_UndoTitleBar.Title" xml:space="preserve"><value>Transfer undone</value></data>
+  <data name="History_Undo.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Undo: move things back, or send what was copied to the Recycle Bin</value></data>
+  <data name="History_CopyBack.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Copy back to the source folder (restore)</value></data>
+  <data name="History_Open.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Open destination</value></data>
+  <data name="History_Repeat.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Repeat (copies only what is new or changed)</value></data>
 </root>
