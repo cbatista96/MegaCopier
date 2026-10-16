@@ -1445,7 +1445,7 @@ public sealed partial class MainWindow : Window
                     bool grow = !_expanded;
                     if (grow)
                     {
-                        AnimateResizeTo(CompactWidth + 40, 500);
+                        AnimateResizeTo(CompactWidth + 40, 640); // con sitio para las miniaturas
                     }
 
                     using var registration = cancellation.Register(() => _dispatcher.TryEnqueue(ConflictDialog.Hide));
@@ -1492,6 +1492,32 @@ public sealed partial class MainWindow : Window
         ConflictDestinationSize.Text = Format.Bytes(conflict.DestinationLength);
         ConflictDestinationDate.Text = Format.Date(conflict.DestinationLastWriteUtc) + (destinationNewer ? L.Get("Conflict_Newer") : "");
         ConflictApplyAll.IsChecked = false;
+        _ = ShowThumbnailAsync(ConflictSourceThumb, conflict.Source);
+        _ = ShowThumbnailAsync(ConflictDestinationThumb, conflict.Destination);
+    }
+
+    /// <summary>Miniatura de Windows (como en el Explorador): fotos, vídeos, PDF...; si no hay, el icono del tipo.</summary>
+    private static async Task ShowThumbnailAsync(Image image, string path)
+    {
+        image.Source = null;
+        image.Visibility = Visibility.Collapsed;
+        try
+        {
+            var file = await Windows.Storage.StorageFile.GetFileFromPathAsync(path);
+            using var thumbnail = await file.GetThumbnailAsync(Windows.Storage.FileProperties.ThumbnailMode.SingleItem, 192);
+            if (thumbnail is null)
+            {
+                return;
+            }
+
+            var bitmap = new Microsoft.UI.Xaml.Media.Imaging.BitmapImage();
+            await bitmap.SetSourceAsync(thumbnail);
+            image.Source = bitmap;
+            image.Visibility = Visibility.Visible;
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or ArgumentException or System.Runtime.InteropServices.COMException)
+        {
+        }
     }
 
     // ---------------------------------------------------------------------------------------------------------
