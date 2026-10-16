@@ -414,6 +414,9 @@ public partial class App : Application
                 return new IpcResponse { Ok = true, Status = Window.DebugDrag(request.Destination ?? "files", y, rows, paths, drop) };
             }
 
+            case "debug-explorer" when TestMode:
+                return new IpcResponse { Ok = true, Status = string.Join(" | ", ExplorerFolders.Open()) };
+
             case "debug-finish" when TestMode:
                 // Solo pruebas: elegir "Al terminar" (Destination = Sleep, Shutdown...) sin abrir el menú.
                 FinishAction = Enum.Parse<FinishAction>(request.Destination ?? "None");
