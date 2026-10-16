@@ -87,6 +87,24 @@ internal static class Cli
                 case "--queue":
                     options.ReadQueueDepth = options.WriteQueueDepth = NextInt(args, ref i);
                     break;
+                case "--mirror":
+                    options.Mode = CopyMode.Mirror;
+                    break;
+                case "--update-only":
+                    options.Mode = CopyMode.UpdateExisting;
+                    break;
+                case "--folders-only":
+                    options.Mode = CopyMode.FoldersOnly;
+                    break;
+                case "--dry-run":
+                    options.DryRun = true;
+                    break;
+                case "--versions":
+                    options.VersionsFolder = Next(args, ref i);
+                    break;
+                case "--skip-junk":
+                    options.Filter.SkipJunk = true;
+                    break;
                 case "--crash-after-mb":
                     crashAfter = NextInt(args, ref i) * (long)CopyOptions.MiB;
                     break;
@@ -131,6 +149,8 @@ internal static class Cli
         bool secure = false;
         JobOperation operation = JobOperation.Copy;
         DateTime? startAt = null;
+        CopyMode? mode = null;
+        bool dryRun = false;
         for (int i = 0; i < args.Length; i++)
         {
             string arg = args[i];
@@ -150,6 +170,21 @@ internal static class Cli
                     break;
                 case "--secure":
                     secure = true;
+                    break;
+                case "--hash":
+                    operation = JobOperation.Hash;
+                    break;
+                case "--mirror":
+                    mode = CopyMode.Mirror;
+                    break;
+                case "--update-only":
+                    mode = CopyMode.UpdateExisting;
+                    break;
+                case "--folders-only":
+                    mode = CopyMode.FoldersOnly;
+                    break;
+                case "--dry-run":
+                    dryRun = true;
                     break;
                 case "--also" when i + 1 < args.Length:
                     also.Add(Path.GetFullPath(args[++i]));
@@ -185,6 +220,8 @@ internal static class Cli
             SecureDelete = secure ? true : null,
             ExtraDestinations = also.Count > 0 ? also : null,
             StartAtUtc = startAt?.ToUniversalTime(),
+            Mode = mode,
+            DryRun = dryRun ? true : null,
         };
 
         var watch = Stopwatch.StartNew();
@@ -193,7 +230,7 @@ internal static class Cli
         var response = IpcClient.IsAppRunning()
             ? IpcClient.TrySendAsync(request, connectTimeoutMs: 3000).GetAwaiter().GetResult()
             : null;
-        if (response is null && (operation != JobOperation.Copy || also.Count > 0 || startAt is not null))
+        if (response is null && (operation != JobOperation.Copy || also.Count > 0 || startAt is not null || mode is not null || dryRun))
         {
             // Lo que no cabe en la línea de comandos de la app: se arranca en la bandeja y se le envía la petición.
             if (FindApp() is { } exe)
@@ -427,7 +464,23 @@ internal static class Cli
         {
             var result = engine.Run(new CopyJobRequest(job.Sources, job.Destination), cancellation.Token);
             renderer.Clear();
+            if (options.DryRun)
+            {
+                // Simulación: qué se haría con cada archivo.
+                foreach (var item in engine.Files.Snapshot())
+                {
+                    Console.WriteLine($"{item.Message,-48} {item.Source}");
+                }
+            }
+
             PrintSummary(result);
+            if (options.DryRun)
+            {
+                Console.WriteLine("  Simulación: no se ha cambiado nada. Quita --dry-run para hacerlo de verdad.");
+                store.Delete(job.Id);
+                return ExitOk;
+            }
+
 
             if (result.Success)
             {
@@ -554,6 +607,8 @@ internal static class Cli
                                           Entrega la copia a la app MegaCopier (ventana y bandeja)
               mcopy send --test <sumas|carpeta>...         Comprueba archivos de sumas en la app
               mcopy send --delete [--secure] <ruta>...     Borra (de forma segura) desde la app
+              mcopy send --hash <carpeta|archivos>...      Crea un archivo de sumas en la app
+              mcopy send ... [--mirror|--update-only|--folders-only] [--dry-run]
               mcopy test <sumas|carpeta>...   Comprueba .sha256, .md5, .sfv, .xxh3... sin la app
               mcopy delete [--secure] --yes <ruta>...   Borra sin la app (--secure: sobrescribe antes)
               mcopy resume [id]      Continúa los trabajos interrumpidos (o solo uno)
@@ -568,6 +623,12 @@ internal static class Cli
               --block-mb <n>         Tamaño de cada lectura/escritura en MB
               --queue <n>            Lecturas y escrituras simultáneas en vuelo
               --no-unbuffered        Usa la caché de Windows en lugar de E/S directa
+              --mirror               Sincroniza: quita del destino lo que ya no está en el origen
+              --update-only          Solo actualiza los archivos que ya existen en el destino
+              --folders-only         Solo crea la estructura de carpetas
+              --dry-run              Simula: dice qué haría con cada archivo sin cambiar nada
+              --versions <carpeta>   Guarda lo reemplazado o quitado en esa carpeta del destino
+              --skip-junk            Omite Thumbs.db, desktop.ini, .DS_Store, ~$...
               --crash-after-mb <n>   [prueba] Mata el proceso tras confirmar n MB de un archivo
 
             Ctrl+C pausa la copia; 'resume' continúa desde el último bloque confirmado.

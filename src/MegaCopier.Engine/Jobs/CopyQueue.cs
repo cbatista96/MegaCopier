@@ -117,12 +117,20 @@ public sealed class CopyJob
         }
     }
 
-    /// <summary>Cambia en caliente "desatendido" y "verificar" (y lo guarda para los reintentos).</summary>
     /// <summary>
     /// Límite temporal (no se guarda): "más lento mientras usas el equipo". null = volver al límite del trabajo.
     /// El más restrictivo de los dos manda.
     /// </summary>
     public void SetSpeedOverride(long? bytesPerSecond)
+    {
+        SpeedOverride = bytesPerSecond;
+        ApplySpeed();
+    }
+
+    /// <summary>Límite temporal en vigor (null = ninguno).</summary>
+    public long? SpeedOverride { get; private set; }
+
+    private void ApplySpeed()
     {
         if (_lastEngine is not { } engine)
         {
@@ -130,7 +138,7 @@ public sealed class CopyJob
         }
 
         long own = Record.MaxBytesPerSecond;
-        engine.Options.MaxBytesPerSecond = bytesPerSecond is not { } temporary ? own
+        engine.Options.MaxBytesPerSecond = SpeedOverride is not { } temporary ? own
             : own > 0 ? Math.Min(own, temporary)
             : temporary;
     }
@@ -139,15 +147,12 @@ public sealed class CopyJob
     public void SetSpeedLimit(long bytesPerSecond)
     {
         Record.MaxBytesPerSecond = Math.Max(0, bytesPerSecond);
-        if (_lastEngine is { } engine)
-        {
-            engine.Options.MaxBytesPerSecond = Record.MaxBytesPerSecond;
-        }
-
+        ApplySpeed();
         SaveIfPending();
         Changed?.Invoke(this);
     }
 
+    /// <summary>Cambia en caliente "desatendido" y "verificar" (y lo guarda para los reintentos).</summary>
     public void SetLiveOptions(bool? unattended = null, bool? verify = null)
     {
         if (unattended is { } u)
@@ -250,6 +255,8 @@ public sealed class CopyJob
             Files = engine.Files;
             StartedAt ??= DateTime.Now;
         }
+
+        ApplySpeed();
     }
 
     internal void Detach()

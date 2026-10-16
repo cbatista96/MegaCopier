@@ -213,6 +213,10 @@ public partial class App : Application
     {
         Queue.MaxActiveJobs = Math.Max(0, Settings.MaxActiveJobs);
         Queue.FastDevices = Settings.FastDevices.Split([',', ';'], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+        Format.SizeUnits = Settings.Units;
+        // Primero el modo de segundo plano (al entrar o salir, Windows deja la clase en Normal) y después la clase.
+        SystemActions.SetBackgroundMode(Settings.Priority == ProcessPriority.Low);
+
         try
         {
             Process.GetCurrentProcess().PriorityClass = Settings.Priority switch
@@ -410,6 +414,12 @@ public partial class App : Application
                 return new IpcResponse { Ok = true, Status = Window.DebugDrag(request.Destination ?? "files", y, rows, paths, drop) };
             }
 
+            case "debug-finish" when TestMode:
+                // Solo pruebas: elegir "Al terminar" (Destination = Sleep, Shutdown...) sin abrir el menú.
+                FinishAction = Enum.Parse<FinishAction>(request.Destination ?? "None");
+                Window.UpdateFinishButton();
+                return new IpcResponse { Ok = true, Status = FinishAction.ToString() };
+
             case "status":
                 return new IpcResponse
                 {
@@ -452,6 +462,7 @@ public partial class App : Application
     {
         var running = Queue.Jobs.Where(j => j.State is CopyJobState.Running or CopyJobState.Paused).ToList();
         SystemActions.KeepAwake(running.Any(j => j.State == CopyJobState.Running));
+        SlowDownWhileUserIsActive(running);
         if (running.Count == 0)
         {
             _tray?.SetTooltip(Settings.Enabled ? "MegaCopier" : L.Get("Tray_TooltipDisabled"));
@@ -470,6 +481,40 @@ public partial class App : Application
         string percent = total > 0 ? $"{100.0 * done / total:0}%" : "…";
         string copies = running.Count == 1 ? L.Get("Tray_OneJob") : L.F("Tray_ManyJobs", running.Count);
         _tray?.SetTooltip($"MegaCopier · {copies} · {percent} · {Format.Speed(speed)}");
+    }
+
+    /// <summary>
+    /// "Ir más despacio mientras usas el equipo": si hubo teclado o ratón en los últimos segundos, las copias no pasan del
+    /// límite elegido; cuando el equipo queda libre recuperan su velocidad.
+    /// </summary>
+    private void SlowDownWhileUserIsActive(List<CopyJob> running)
+    {
+        long? limit = null;
+        if (Settings.SlowWhenActiveMBps > 0 && SystemActions.IdleTime() < TimeSpan.FromSeconds(10))
+        {
+            limit = Settings.SlowWhenActiveMBps * (long)CopyOptions.MiB;
+        }
+
+        foreach (var job in running.Where(j => j.SpeedOverride != limit))
+        {
+            job.SetSpeedOverride(limit);
+            if (TestMode)
+            {
+                TestLog("slow.log", $"{job.Id} {limit?.ToString() ?? "libre"}");
+            }
+        }
+    }
+
+    /// <summary>Solo en modo de prueba: deja constancia de lo que haría (apagar, avisar...) sin hacerlo.</summary>
+    internal static void TestLog(string file, string line)
+    {
+        try
+        {
+            File.AppendAllText(Path.Combine(Path.GetDirectoryName(AppSettings.FilePath)!, file), $"{DateTime.Now:HH:mm:ss} {line}{Environment.NewLine}");
+        }
+        catch (IOException)
+        {
+        }
     }
 
     private void OnJobFinished(CopyJob job)
@@ -500,14 +545,7 @@ public partial class App : Application
             var action = FinishAction;
             FinishAction = FinishAction.None;
             Window.UpdateFinishButton();
-            _tray?.ShowNotification(L.Get("Notify_AllDoneTitle"), L.Get("Notify_Finish" + action));
-            if (action == FinishAction.ExitApp)
-            {
-                ExitApp();
-                return;
-            }
-
-            SystemActions.Run(action);
+            _ = RunFinishActionAsync(action);
         }
 
         if (!Settings.NotifyOnFinish || Window.IsVisibleToUser || job.State == CopyJobState.Interrupted)
@@ -530,6 +568,30 @@ public partial class App : Application
         }
     }
 
+    /// <summary>Apagar, suspender... tras una cuenta atrás de 30 s que se puede cancelar (como TeraCopy).</summary>
+    private async Task RunFinishActionAsync(FinishAction action)
+    {
+        if (!await Window.ConfirmFinishAsync(action))
+        {
+            return;
+        }
+
+        _tray?.ShowNotification(L.Get("Notify_AllDoneTitle"), L.Get("Notify_Finish" + action));
+        if (action == FinishAction.ExitApp)
+        {
+            if (TestMode)
+            {
+                TestLog("finish.log", action.ToString());
+                return;
+            }
+
+            ExitApp();
+            return;
+        }
+
+        SystemActions.Run(action);
+    }
+
     /// <summary>Informe HTML automático y comandos "al terminar" de un trabajo.</summary>
     private void AfterJob(CopyJob job)
     {
@@ -547,6 +609,18 @@ public partial class App : Application
             }
         }
 
+        if (Settings.SaveLogs)
+        {
+            JobNotices.SaveLog(job, Settings.LogRetentionDays);
+        }
+
+        if (Settings.WebhookUrl.Length > 0)
+        {
+            string url = Settings.WebhookUrl;
+            string text = JobNotices.Summary(job);
+            _ = Task.Run(() => JobNotices.SendWebhookAsync(url, text, job));
+        }
+
         if (job.Record.Scripts.Count > 0)
         {
             var environment = new Dictionary<string, string>
@@ -559,7 +633,7 @@ public partial class App : Application
                 ["MEGACOPIER_FAILED"] = (job.Result?.Failures.Count ?? 0).ToString(),
                 ["MEGACOPIER_CHECKSUM"] = job.ChecksumFile ?? "",
             };
-            SystemActions.RunScripts(job.Record.Scripts, environment);
+            SystemActions.RunScripts(job.Record.Scripts, environment, job.State == CopyJobState.Completed);
         }
     }
 

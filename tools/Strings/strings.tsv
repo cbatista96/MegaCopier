@@ -201,7 +201,7 @@ Options_RunningInfo.Message	La copia está en marcha: estos cambios se aplican a
 Options_SaveChecksum.Content	Guardar archivo de sumas	Save checksum file
 Options_SaveDefault.Text	Guardar como predeterminado	Save as default
 Options_Scripts.Text	Comandos al terminar	Commands when finished
-Options_ScriptsHelp.Text	Uno por línea; se ejecutan con cmd.exe. Variables: %MEGACOPIER_STATE%, %MEGACOPIER_DESTINATION%, %MEGACOPIER_SOURCES%, %MEGACOPIER_FILES%, %MEGACOPIER_BYTES%, %MEGACOPIER_FAILED%, %MEGACOPIER_CHECKSUM%.	One per line, run with cmd.exe. Variables: %MEGACOPIER_STATE%, %MEGACOPIER_DESTINATION%, %MEGACOPIER_SOURCES%, %MEGACOPIER_FILES%, %MEGACOPIER_BYTES%, %MEGACOPIER_FAILED%, %MEGACOPIER_CHECKSUM%.
+Options_ScriptsHelp.Text	Uno por línea; se ejecutan con cmd.exe. Empieza con «ok:» para que solo se ejecute si fue bien o con «error:» si falló. Variables: %MEGACOPIER_STATE%, %MEGACOPIER_DESTINATION%, %MEGACOPIER_SOURCES%, %MEGACOPIER_FILES%, %MEGACOPIER_BYTES%, %MEGACOPIER_FAILED%, %MEGACOPIER_CHECKSUM%.	One per line, run with cmd.exe. Start with "ok:" to run only on success or "error:" to run only on failure. Variables: %MEGACOPIER_STATE%, %MEGACOPIER_DESTINATION%, %MEGACOPIER_SOURCES%, %MEGACOPIER_FILES%, %MEGACOPIER_BYTES%, %MEGACOPIER_FAILED%, %MEGACOPIER_CHECKSUM%.
 Options_Security.Text	Seguridad (NTFS)	Security (NTFS)
 Options_Streams.Content	Secuencias alternativas (ADS)	Alternate data streams (ADS)
 Options_SystemCache.Content	Usar la caché del sistema	Use system cache
@@ -570,3 +570,31 @@ Rules_HashStream.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Lo gua
 Rules_HardLinks.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Si varios nombres son el mismo archivo, en el destino también lo serán (no ocupa el doble).	If several names are the same file, they will be in the destination too (no double space).
 Rules_Tolerance.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	FAT32 y exFAT guardan la hora con 2 segundos de precisión: con este margen no se vuelven a copiar archivos iguales.	FAT32 and exFAT store times with 2-second precision: with this margin identical files are not copied again.
 Rules_Versions.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Antes de reemplazar o quitar un archivo, se mueve a esta carpeta del destino con la fecha en el nombre.	Before a file is replaced or removed, it is moved to this destination folder with the date in its name.
+Settings_UnitsTitle.Text	Unidades de tamaño	Size units
+Settings_UnitsDescription.Text	Cómo se muestran los tamaños y las velocidades.	How sizes and speeds are shown.
+Units_Classic.Content	KB, MB, GB (como el Explorador)	KB, MB, GB (like File Explorer)
+Units_Iec.Content	KiB, MiB, GiB (binarias)	KiB, MiB, GiB (binary)
+Units_Decimal.Content	kB, MB, GB de 1000 (como el fabricante)	kB, MB, GB of 1000 (like the maker)
+Settings_SlowTitle.Text	Ir más despacio mientras usas el equipo	Go slower while you use the PC
+Settings_SlowDescription.Text	Si usas el teclado o el ratón, las copias no pasan de esta velocidad; cuando dejas el equipo, recuperan la suya.	While you use the keyboard or mouse, transfers stay under this speed; when you leave the PC, they speed up again.
+Slow_Off.Content	No	No
+Settings_LogsTitle.Text	Guardar el registro de cada copia	Save the log of every transfer
+Settings_LogsDescription.Text	Un archivo por copia en la carpeta de registros; se borran solos a los 30 días.	One file per transfer in the logs folder; they are deleted after 30 days.
+Settings_LogsOpen.Text	Abrir la carpeta	Open the folder
+Settings_WebhookTitle.Text	Avisar a una dirección web al terminar	Notify a web address when done
+Settings_WebhookDescription.Text	Para recibir el aviso en el móvil o en el chat: Discord, Slack, Teams, ntfy.sh, Home Assistant… Se envía un POST con JSON.	To get the notice on your phone or in chat: Discord, Slack, Teams, ntfy.sh, Home Assistant… A POST with JSON is sent.
+Settings_WebhookBox.PlaceholderText	https://ntfy.sh/mi-tema-secreto	https://ntfy.sh/my-secret-topic
+Settings_WebhookTest.Text	Probar	Test
+Settings_WebhookSending	Enviando…	Sending…
+Settings_WebhookOk	Aviso enviado correctamente.	Notice sent successfully.
+Settings_WebhookFailed	No se pudo enviar: revisa la dirección y la conexión.	Could not send it: check the address and the connection.
+Settings_WebhookTestMessage	✔ MegaCopier: aviso de prueba	✔ MegaCopier: test notice
+FinishDialog.Title	Todas las copias terminaron	All transfers finished
+FinishDialog.PrimaryButtonText	Hacerlo ya	Do it now
+FinishDialog.CloseButtonText	Cancelar	Cancel
+Finish_CountdownSleep	El equipo se suspenderá en {0} s.	The PC will sleep in {0} s.
+Finish_CountdownHibernate	El equipo se hibernará en {0} s.	The PC will hibernate in {0} s.
+Finish_CountdownShutdown	El equipo se apagará en {0} s.	The PC will shut down in {0} s.
+Finish_CountdownSignOut	Se cerrará la sesión en {0} s.	You will be signed out in {0} s.
+Finish_CountdownExitApp	MegaCopier se cerrará en {0} s.	MegaCopier will close in {0} s.
+Job_SlowedDown	Más despacio mientras usas el equipo	Slower while you use the PC
