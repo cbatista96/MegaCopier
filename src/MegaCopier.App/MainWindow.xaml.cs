@@ -1252,6 +1252,7 @@ public sealed partial class MainWindow : Window
                     Select(Jobs.FirstOrDefault(j => j.Job == job) ?? _selected);
                     ShowAndActivate();
                     FillConflictDialog(conflict, job.Record.Move);
+                    Sounds.Play(_app.Settings.Sounds, SoundEvent.Attention);
                     _renameExisting = false;
                     ConflictDialog.XamlRoot = Root.XamlRoot;
                     ConflictDialog.RequestedTheme = Root.RequestedTheme;

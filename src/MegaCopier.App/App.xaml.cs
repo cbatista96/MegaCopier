@@ -479,10 +479,14 @@ public partial class App : Application
         {
             History.Add(job);
             AfterJob(job);
-            if (Settings.PlaySound)
-            {
-                SystemActions.PlayFinishSound(job.State == CopyJobState.Completed);
-            }
+            // Con errores suena siempre su aviso; si era la última copia y fue bien, el de "todo terminado"
+            // (si no hay uno elegido, el de copia terminada).
+            bool ok = job.State == CopyJobState.Completed;
+            bool last = !Queue.HasActiveJobs;
+            var sound = !ok ? SoundEvent.Errors
+                : last && Settings.Sounds.AllDone.Length > 0 ? SoundEvent.AllDone
+                : SoundEvent.Done;
+            Sounds.Play(Settings.Sounds, sound);
         }
 
         if (!Queue.HasActiveJobs && finished)
