@@ -139,3 +139,10 @@ Notify_AllDoneTitle	Copias terminadas	Transfers finished
 Notify_Shutdown	El equipo se apagará en 1 minuto (cancelar: shutdown /a).	The computer will shut down in 1 minute (cancel: shutdown /a).
 Notify_Sleep	Suspendiendo el equipo…	Going to sleep…
 Error_NeedsPaths	La petición de copia necesita orígenes y un destino.	A copy request needs sources and a destination.
+Tray_Disable	Desactivar (usar el copiador de Windows)	Disable (use the Windows copier)
+Tray_Enable	Activar MegaCopier	Enable MegaCopier
+Tray_TooltipDisabled	MegaCopier · desactivado (copia Windows)	MegaCopier · disabled (Windows copies)
+Notify_DisabledTitle	MegaCopier desactivado	MegaCopier disabled
+Notify_DisabledBody	Las copias las hará el copiador de Windows. Doble clic en el icono para volver a activarlo.	The Windows copier will handle transfers. Double-click the icon to enable it again.
+Notify_EnabledTitle	MegaCopier activado	MegaCopier enabled
+Notify_EnabledBody	Las copias y movimientos del Explorador los hará MegaCopier.	File Explorer copies and moves will be handled by MegaCopier.

@@ -145,4 +145,11 @@
   <data name="Notify_Shutdown" xml:space="preserve"><value>El equipo se apagará en 1 minuto (cancelar: shutdown /a).</value></data>
   <data name="Notify_Sleep" xml:space="preserve"><value>Suspendiendo el equipo…</value></data>
   <data name="Error_NeedsPaths" xml:space="preserve"><value>La petición de copia necesita orígenes y un destino.</value></data>
+  <data name="Tray_Disable" xml:space="preserve"><value>Desactivar (usar el copiador de Windows)</value></data>
+  <data name="Tray_Enable" xml:space="preserve"><value>Activar MegaCopier</value></data>
+  <data name="Tray_TooltipDisabled" xml:space="preserve"><value>MegaCopier · desactivado (copia Windows)</value></data>
+  <data name="Notify_DisabledTitle" xml:space="preserve"><value>MegaCopier desactivado</value></data>
+  <data name="Notify_DisabledBody" xml:space="preserve"><value>Las copias las hará el copiador de Windows. Doble clic en el icono para volver a activarlo.</value></data>
+  <data name="Notify_EnabledTitle" xml:space="preserve"><value>MegaCopier activado</value></data>
+  <data name="Notify_EnabledBody" xml:space="preserve"><value>Las copias y movimientos del Explorador los hará MegaCopier.</value></data>
 </root>

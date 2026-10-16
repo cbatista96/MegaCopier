@@ -35,6 +35,9 @@ public sealed class IpcResponse
     public string? JobId { get; set; }
 
     public string? Error { get; set; }
+
+    /// <summary>Respuesta a "status": estado de la app en texto clave=valor (diagnóstico y pruebas).</summary>
+    public string? Status { get; set; }
 }
 
 [JsonSourceGenerationOptions(UseStringEnumConverter = true, DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull)]

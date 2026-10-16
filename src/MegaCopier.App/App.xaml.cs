@@ -59,8 +59,13 @@ public partial class App : Application
         _window = new MainWindow(this);
         Queue.ConflictResolver = (job, conflict, cancellation) => Window.AskConflict(job, conflict, cancellation);
 
-        _tray = new TrayIcon(Path.Combine(AppContext.BaseDirectory, "Assets", "MegaCopier.ico"), "MegaCopier", BuildTrayMenu);
+        _tray = new TrayIcon(
+            Path.Combine(AppContext.BaseDirectory, "Assets", "MegaCopier.ico"),
+            Path.Combine(AppContext.BaseDirectory, "Assets", "MegaCopier-off.ico"),
+            "MegaCopier",
+            BuildTrayMenu);
         _tray.Activated += () => ShowWindow();
+        _tray.DoubleClicked += () => SetEnabled(!Settings.Enabled, notify: true);
         Queue.JobFinished += job => Dispatcher.TryEnqueue(() => OnJobFinished(job));
 
         _taskbar = new TaskbarProgress(Window.Handle);
@@ -74,7 +79,7 @@ public partial class App : Application
 
         _paste = new PasteInterceptor(OnExplorerPaste);
         _paste.PassedThrough += reason => Debug.WriteLine($"Ctrl+V devuelto al Explorador: {reason}");
-        SetExplorerPaste(Settings.InterceptExplorerPaste);
+        SetEnabled(Settings.Enabled, notify: false);
 
         if (Settings.AutoResumeInterrupted)
         {
@@ -109,10 +114,39 @@ public partial class App : Application
         return Queue.Submit(request.Sources, request.Destination, Settings.NewJobOptions(request));
     }
 
-    /// <summary>Activa o desactiva la sustitución del Ctrl+V del Explorador.</summary>
+    /// <summary>
+    /// Interruptor general. Desactivado: el Ctrl+V vuelve a ser del Explorador, la extensión deja de ofrecer sus
+    /// opciones y el icono de la bandeja pasa a gris con una X roja.
+    /// </summary>
+    internal void SetEnabled(bool enabled, bool notify)
+    {
+        Settings.Enabled = enabled;
+        if (notify)
+        {
+            Settings.Save();
+        }
+
+        ShellState.SetEnabled(enabled);
+        SetExplorerPaste(Settings.InterceptExplorerPaste);
+        _tray?.SetDisabled(!enabled);
+        _tray?.SetTooltip(enabled ? "MegaCopier" : L.Get("Tray_TooltipDisabled"));
+        if (notify)
+        {
+            _tray?.ShowNotification(
+                L.Get(enabled ? "Notify_EnabledTitle" : "Notify_DisabledTitle"),
+                L.Get(enabled ? "Notify_EnabledBody" : "Notify_DisabledBody"));
+        }
+
+        EnabledChanged?.Invoke();
+    }
+
+    /// <summary>Cambió el interruptor general (para refrescar la ventana).</summary>
+    internal event Action? EnabledChanged;
+
+    /// <summary>Activa o desactiva la sustitución del Ctrl+V del Explorador (solo si MegaCopier está activado).</summary>
     internal void SetExplorerPaste(bool enabled)
     {
-        if (enabled)
+        if (enabled && Settings.Enabled)
         {
             _paste?.Enable();
         }
@@ -196,6 +230,13 @@ public partial class App : Application
                 ShowWindow();
                 return new IpcResponse { Ok = true };
 
+            case "status":
+                return new IpcResponse
+                {
+                    Ok = true,
+                    Status = $"enabled={Settings.Enabled};pasteHook={_paste?.IsEnabled == true};jobs={Queue.Jobs.Count};active={Queue.HasActiveJobs}",
+                };
+
             case "exit":
                 // Lo usa el desinstalador.
                 Dispatcher.TryEnqueue(ExitApp);
@@ -215,6 +256,7 @@ public partial class App : Application
         return
         [
             new(L.Get("Tray_Open"), ShowWindow),
+            new(L.Get(Settings.Enabled ? "Tray_Disable" : "Tray_Enable"), () => SetEnabled(!Settings.Enabled, notify: true)),
             TrayMenuItem.Separator,
             new(L.Get("Tray_PauseAll"), Queue.PauseAll, Enabled: anyRunning),
             new(L.Get("Tray_ResumeAll"), Queue.ResumeAll, Enabled: anyPaused),
@@ -231,7 +273,7 @@ public partial class App : Application
         var running = Queue.Jobs.Where(j => j.State is CopyJobState.Running or CopyJobState.Paused).ToList();
         if (running.Count == 0)
         {
-            _tray?.SetTooltip("MegaCopier");
+            _tray?.SetTooltip(Settings.Enabled ? "MegaCopier" : L.Get("Tray_TooltipDisabled"));
             _taskbar?.Update(TaskbarProgress.NoProgress, 0, 0);
             return;
         }

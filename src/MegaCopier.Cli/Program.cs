@@ -32,6 +32,7 @@ internal static class Cli
                 "send" => Send(args[1..]),
                 "resume" => Resume(args.Length > 1 ? args[1] : null),
                 "jobs" => Jobs(),
+                "status" => Status(),
                 _ => Usage($"Comando desconocido: {args[0]}"),
             };
         }
@@ -250,6 +251,20 @@ internal static class Cli
         }
 
         return worst;
+    }
+
+    /// <summary>Estado de la app residente (si está abierta).</summary>
+    private static int Status()
+    {
+        if (!IpcClient.IsAppRunning())
+        {
+            Console.WriteLine("running=False");
+            return ExitOk;
+        }
+
+        var response = IpcClient.TrySendAsync(new IpcRequest { Command = "status" }, connectTimeoutMs: 3000).GetAwaiter().GetResult();
+        Console.WriteLine($"running=True;{response?.Status}");
+        return ExitOk;
     }
 
     private static int Jobs()

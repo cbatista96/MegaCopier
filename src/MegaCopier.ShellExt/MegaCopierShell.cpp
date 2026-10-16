@@ -50,6 +50,15 @@ const wchar_t* T(const wchar_t* spanish, const wchar_t* english)
     return UseSpanish() ? spanish : english;
 }
 
+// Interruptor general de la app (doble clic en el icono de la bandeja). Sin valor: activado.
+bool MegaCopierEnabled()
+{
+    DWORD value = 1;
+    DWORD size = sizeof(value);
+    RegGetValueW(HKEY_CURRENT_USER, L"Software\\MegaCopier", L"Enabled", RRF_RT_REG_DWORD, nullptr, &value, &size);
+    return value != 0;
+}
+
 // ---------------------------------------------------------------------------------------------------------------
 // Utilidades
 
@@ -478,6 +487,11 @@ public:
         m_destination.clear();
         m_commands.clear();
         m_fromClipboard = false;
+
+        if (!MegaCopierEnabled())
+        {
+            return S_OK; // desactivado desde la bandeja: el Explorador trabaja solo
+        }
 
         if (m_mode == Mode::DragDrop)
         {

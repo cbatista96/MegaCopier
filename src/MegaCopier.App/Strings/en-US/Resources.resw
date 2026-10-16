@@ -145,4 +145,11 @@
   <data name="Notify_Shutdown" xml:space="preserve"><value>The computer will shut down in 1 minute (cancel: shutdown /a).</value></data>
   <data name="Notify_Sleep" xml:space="preserve"><value>Going to sleep…</value></data>
   <data name="Error_NeedsPaths" xml:space="preserve"><value>A copy request needs sources and a destination.</value></data>
+  <data name="Tray_Disable" xml:space="preserve"><value>Disable (use the Windows copier)</value></data>
+  <data name="Tray_Enable" xml:space="preserve"><value>Enable MegaCopier</value></data>
+  <data name="Tray_TooltipDisabled" xml:space="preserve"><value>MegaCopier · disabled (Windows copies)</value></data>
+  <data name="Notify_DisabledTitle" xml:space="preserve"><value>MegaCopier disabled</value></data>
+  <data name="Notify_DisabledBody" xml:space="preserve"><value>The Windows copier will handle transfers. Double-click the icon to enable it again.</value></data>
+  <data name="Notify_EnabledTitle" xml:space="preserve"><value>MegaCopier enabled</value></data>
+  <data name="Notify_EnabledBody" xml:space="preserve"><value>File Explorer copies and moves will be handled by MegaCopier.</value></data>
 </root>
