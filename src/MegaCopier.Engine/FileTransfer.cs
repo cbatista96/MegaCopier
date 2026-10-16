@@ -81,8 +81,157 @@ internal sealed class FileTransfer
     /// <summary>Búferes que necesita una transferencia: uno por cada lectura y escritura en vuelo.</summary>
     public static int RequiredBuffers(CopyOptions options) => options.ReadQueueDepth + options.WriteQueueDepth;
 
-    public FileTransferResult Copy(string sourcePath, string destinationPath, CancellationToken cancellationToken) =>
-        CopyAsync(sourcePath, destinationPath, cancellationToken).GetAwaiter().GetResult();
+    /// <summary>Hasta este tamaño, la copia va por el camino rápido síncrono (<see cref="CopySmall"/>).</summary>
+    public const long SmallFileLimit = 1024 * 1024;
+
+    public FileTransferResult Copy(string sourcePath, string destinationPath, CancellationToken cancellationToken, long lengthHint = -1)
+    {
+        if (lengthHint is >= 0 and <= SmallFileLimit && _faults is null && _options.MaxBytesPerSecond <= 0
+            && CopySmall(sourcePath, destinationPath, cancellationToken) is { } small)
+        {
+            return small;
+        }
+
+        return CopyAsync(sourcePath, destinationPath, cancellationToken).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Archivo pequeño: se lee entero, se escribe de una vez y se verifica releyendo del disco (sin caché). En un
+    /// archivo de pocos KB, la E/S asíncrona por bloques cuesta más que los datos; así es varias veces más rápido.
+    /// Null si el archivo ya no es pequeño (creció desde que se planificó): entonces se copia por el camino normal.
+    /// </summary>
+    private FileTransferResult? CopySmall(string sourcePath, string destinationPath, CancellationToken cancellationToken)
+    {
+        string partialPath = destinationPath + PartialSuffix;
+        using var source = File.OpenHandle(sourcePath, FileMode.Open, FileAccess.Read, FileShare.Read, FileOptions.SequentialScan);
+        var info = Win32.GetSourceInfo(source);
+        long length = info.Identity.Length;
+        if (length > SmallFileLimit)
+        {
+            return null;
+        }
+
+        _controller.WaitIfPaused(cancellationToken);
+        cancellationToken.ThrowIfCancellationRequested();
+        byte[] data = ArrayPool<byte>.Shared.Rent((int)Math.Max(1, length));
+        try
+        {
+            var span = data.AsSpan(0, (int)length);
+            int total = 0;
+            while (total < length)
+            {
+                int read = RandomAccess.Read(source, span[total..], total);
+                if (read == 0)
+                {
+                    throw SourceChanged();
+                }
+
+                total += read;
+            }
+
+            var result = new FileTransferResult { BytesTransferred = length };
+            if (FileHasher.Create(_options.HashAlgorithm) is { } hasher)
+            {
+                hasher.Append(span);
+                result.SourceHash = hasher.Finish();
+            }
+
+            using (var destination = SmallFile.Create(partialPath, _options.FlushSmallFiles))
+            {
+                RandomAccess.Write(destination, span, 0);
+                _progress.AddTransferred(length);
+
+                if (_options.Verify && result.SourceHash is { } expected)
+                {
+                    _progress.SetPhase(CopyPhase.Verifying);
+                    result.DestinationHash = HashFromDisk(partialPath, length);
+                    if (result.DestinationHash != expected)
+                    {
+                        // Se reescribe una vez (como la reparación por bloques de los archivos grandes).
+                        RandomAccess.Write(destination, span, 0);
+                        result.DestinationHash = HashFromDisk(partialPath, length);
+                        result.ChunksRepaired = result.DestinationHash == expected ? 1 : 0;
+                    }
+
+                    _progress.SetPhase(CopyPhase.Copying);
+                }
+
+                // Streams alternativos antes de las fechas (escribirlos cambia la fecha de modificación).
+                if (_options.CopyStreams)
+                {
+                    try
+                    {
+                        FileMetadata.CopyAlternateStreams(sourcePath, partialPath);
+                    }
+                    catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+                    {
+                        result.Warnings.Add($"No se copiaron los streams alternativos: {ex.Message}");
+                    }
+                }
+
+                // Fechas, atributos y nombre final con el mismo identificador: sin volver a abrir el archivo.
+                SmallFile.SetBasicInfo(
+                    destination,
+                    _options.PreserveTimestamps ? info.CreationUtc : null,
+                    _options.PreserveTimestamps ? info.LastWriteUtc : null,
+                    _options.PreserveAttributes ? info.Attributes & PreservedAttributes : null);
+                SmallFile.Rename(destination, destinationPath);
+            }
+
+            if (_options.CopySecurity != SecurityParts.None)
+            {
+                try
+                {
+                    FileMetadata.CopySecurity(sourcePath, destinationPath, _options.CopySecurity);
+                }
+                catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+                {
+                    result.Warnings.Add(ex.Message);
+                }
+            }
+
+            return result;
+        }
+        catch
+        {
+            IoHelpers.DeleteIfExists(partialPath);
+            throw;
+        }
+        finally
+        {
+            ArrayPool<byte>.Shared.Return(data);
+        }
+    }
+
+    /// <summary>Hash de lo escrito leyéndolo del disco, sin la caché de Windows (si el disco lo permite).</summary>
+    private string? HashFromDisk(string path, long length)
+    {
+        var hasher = FileHasher.Create(_options.HashAlgorithm)!;
+        long rounded = (length + 4095) / 4096 * 4096;
+        if (_options.UseUnbufferedIo && IoHelpers.SupportsUnbuffered(path) && rounded <= _pool.BufferSize && _pool.TryRent(out var buffer))
+        {
+            try
+            {
+                using var handle = File.OpenHandle(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite | FileShare.Delete, Win32.NoBuffering);
+                int read = RandomAccess.Read(handle, buffer.Span[..(int)rounded], 0);
+                hasher.Append(buffer.Span[..Math.Min(read, (int)length)]);
+                return hasher.Finish();
+            }
+            finally
+            {
+                _pool.Return(buffer);
+            }
+        }
+
+        using (var stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite | FileShare.Delete))
+        {
+            byte[] bytes = new byte[length];
+            stream.ReadExactly(bytes);
+            hasher.Append(bytes);
+        }
+
+        return hasher.Finish();
+    }
 
     private async Task<FileTransferResult> CopyAsync(string sourcePath, string destinationPath, CancellationToken cancellationToken)
     {
@@ -95,7 +244,9 @@ internal sealed class FileTransfer
         bool resumable = length >= _options.ResumableThreshold;
 
         TransferJournal? journal = resumable ? TryOpenJournal(journalPath, partialPath, info.Identity) : null;
-        if (journal is null)
+
+        // Un archivo pequeño no deja diario y su .mcpart se crea encima: no hace falta buscar restos (dos llamadas menos).
+        if (journal is null && resumable)
         {
             IoHelpers.DeleteIfExists(journalPath);
             IoHelpers.DeleteIfExists(partialPath);
@@ -208,13 +359,16 @@ internal sealed class FileTransfer
     /// ReFS y Dev Drive: el destino comparte los bloques del origen (instantáneo). Null si no se puede (otro volumen, otro
     /// sistema de archivos o el clonado falla): entonces se copia de la forma normal.
     /// </summary>
+    /// <summary>Volúmenes (por número de serie) que saben clonar bloques: se pregunta una vez, no con cada archivo.</summary>
+    private static readonly System.Collections.Concurrent.ConcurrentDictionary<uint, bool> CloneVolumes = new();
+
     private async Task<FileTransferResult?> TryCloneAsync(
         SafeFileHandle source, bool sourceUnbuffered, SourceInfo info, string sourcePath, string partialPath, string destinationPath, CancellationToken cancellationToken)
     {
         string folder = Path.GetDirectoryName(Path.GetFullPath(destinationPath))!;
         try
         {
-            if (!BlockClone.CanClone(source, folder) || Win32.VolumeRoot(folder) is not { } volume)
+            if (!CloneVolumes.GetOrAdd(info.Identity.VolumeSerial, _ => BlockClone.SupportsCloning(source)) || !BlockClone.CanClone(source, folder) || Win32.VolumeRoot(folder) is not { } volume)
             {
                 return null;
             }
@@ -632,8 +786,7 @@ internal sealed class FileTransfer
 
         if (_options.PreserveTimestamps)
         {
-            File.SetCreationTimeUtc(partialPath, info.CreationUtc);
-            File.SetLastWriteTimeUtc(partialPath, info.LastWriteUtc);
+            Win32.SetTimes(partialPath, info.CreationUtc, info.LastWriteUtc); // las dos de una vez
         }
 
         if (File.Exists(destinationPath))

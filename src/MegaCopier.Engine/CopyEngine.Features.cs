@@ -13,7 +13,7 @@ public sealed partial class CopyEngine
     /// <summary>Nombre del flujo alternativo donde se guarda el hash del archivo copiado ("sha256:...").</summary>
     public const string HashStreamName = "MegaCopier.hash";
 
-    private readonly Dictionary<(uint Volume, ulong Index), string> _hardLinks = [];
+    private readonly System.Collections.Concurrent.ConcurrentDictionary<(uint Volume, ulong Index), string> _hardLinks = new();
 
     // -------------------------------------------------------------------------------------------------------------
     // Simular

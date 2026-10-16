@@ -19,6 +19,13 @@ internal static unsafe partial class BlockClone
     /// <summary>Máximo por llamada: menos de 4 GB y múltiplo de cualquier tamaño de clúster.</summary>
     private const long MaxChunk = 1L << 30;
 
+    /// <summary>El volumen del archivo sabe clonar bloques (ReFS, Dev Drive).</summary>
+    public static bool SupportsCloning(SafeFileHandle file)
+    {
+        uint flags;
+        return GetVolumeInformationByHandleW(file, null, 0, null, null, &flags, null, 0) && (flags & FileSupportsBlockRefcounting) != 0;
+    }
+
     /// <summary>Origen y carpeta de destino en el mismo volumen, y ese volumen sabe clonar bloques.</summary>
     public static bool CanClone(SafeFileHandle source, string destinationFolder)
     {

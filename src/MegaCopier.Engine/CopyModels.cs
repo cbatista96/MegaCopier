@@ -103,6 +103,20 @@ public sealed class CopyJobResult
     public TimeSpan Elapsed { get; internal set; }
 
     public bool Success => Failures.Count == 0;
+
+    /// <summary>Suma lo que hizo otro hilo de copia del mismo trabajo.</summary>
+    internal void Add(CopyJobResult other)
+    {
+        FilesCopied += other.FilesCopied;
+        FilesResumed += other.FilesResumed;
+        FilesSkipped += other.FilesSkipped;
+        FilesDeleted += other.FilesDeleted;
+        Failures.AddRange(other.Failures);
+        BytesTransferred += other.BytesTransferred;
+        BytesResumed += other.BytesResumed;
+        ChunksRejectedOnResume += other.ChunksRejectedOnResume;
+        ChunksRepaired += other.ChunksRepaired;
+    }
 }
 
 /// <summary>Error al preparar el trabajo (origen inexistente, copia recursiva, sin espacio...). No se reintenta.</summary>

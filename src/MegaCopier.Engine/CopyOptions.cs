@@ -130,6 +130,12 @@ public sealed class CopyOptions
     public bool BlockClone { get; set; } = true;
 
     /// <summary>Origen y destino en el mismo servidor de red: que copie el servidor (los datos no viajan por la red).</summary>
+    /// <summary>
+    /// Archivos pequeños (de un solo bloque) que se copian a la vez, como robocopy /MT: con miles de archivos pequeños
+    /// es varias veces más rápido. 1 = de uno en uno. Con un límite de velocidad, siempre de uno en uno.
+    /// </summary>
+    public int ParallelSmallFiles { get; set; } = 4;
+
     public bool ServerSideCopy { get; set; } = true;
 
     /// <summary>Pedir compresión SMB al copiar por red (Windows 11 / Server 2022): ayuda en redes lentas.</summary>

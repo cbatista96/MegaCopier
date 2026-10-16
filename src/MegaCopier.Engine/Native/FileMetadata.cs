@@ -48,7 +48,7 @@ internal static unsafe partial class FileMetadata
 
                 string stream = name[..^":$DATA".Length];
                 using var input = new FileStream(source + stream, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-                using var output = new FileStream(destination + stream, FileMode.Create, FileAccess.Write, FileShare.None);
+                using var output = new FileStream(destination + stream, FileMode.Create, FileAccess.Write, FileShare.ReadWrite | FileShare.Delete);
                 input.CopyTo(output);
                 copied++;
             }
