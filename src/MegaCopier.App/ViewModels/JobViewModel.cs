@@ -23,6 +23,7 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
     private TransferList? _watched;
     private FileListViewModel? _files;
     private bool _selected;
+    private string? _estimate;
 
     internal JobViewModel(CopyJob job, CopyQueue queue, DispatcherQueue dispatcher, Func<bool> hideFinished)
     {
@@ -191,7 +192,7 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
     {
         CopyJobState.Queued when IsScheduled => L.F("Job_StateScheduled", Job.Record.StartAtUtc!.Value.ToLocalTime().ToString("g")),
         CopyJobState.Paused when IsScheduled => L.F("Job_StateScheduled", Job.Record.StartAtUtc!.Value.ToLocalTime().ToString("g")),
-        CopyJobState.Queued => L.Get("Job_StateQueued"),
+        CopyJobState.Queued => L.Get("Job_StateQueued") + QueuedEstimate(),
         CopyJobState.Running when Progress?.Phase == CopyPhase.Verifying => L.Get("Job_StateVerifying"),
         CopyJobState.Running when Progress?.Phase == CopyPhase.Validating => L.Get("Job_StateValidating"),
         CopyJobState.Running when Progress?.Phase == CopyPhase.WaitingForUser => L.Get("Job_StateWaiting"),
@@ -469,6 +470,63 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
         }
 
         return string.Join(" · ", parts);
+    }
+
+    /// <summary>
+    /// En cola, antes de empezar: " · 5,2 GB, unos 3 min". El tamaño se calcula aparte (una vez) y la velocidad sale de
+    /// las últimas copias al mismo disco en el Historial (o de cualquier copia, si no hay ninguna a ese disco).
+    /// </summary>
+    private string QueuedEstimate()
+    {
+        if (_estimate is not null)
+        {
+            return _estimate;
+        }
+
+        _estimate = "";
+        var sources = Job.Record.Sources.ToList();
+        string destination = Job.Record.Destination;
+        _ = Task.Run(() =>
+        {
+            long bytes = 0;
+            int files = 0;
+            var options = new EnumerationOptions { RecurseSubdirectories = true, IgnoreInaccessible = true, AttributesToSkip = FileAttributes.ReparsePoint };
+            foreach (string source in sources)
+            {
+                if (File.Exists(source))
+                {
+                    bytes += new FileInfo(source).Length;
+                    files++;
+                    continue;
+                }
+
+                if (!Directory.Exists(source))
+                {
+                    continue;
+                }
+
+                foreach (var file in new DirectoryInfo(source).EnumerateFiles("*", options))
+                {
+                    bytes += file.Length;
+                    if (++files > 200_000)
+                    {
+                        return; // demasiado grande para estimarlo sin retrasar nada
+                    }
+                }
+            }
+
+            string root = Path.GetPathRoot(destination) ?? "";
+            var past = Services.History.Load().Where(h => h.Bytes > 16 * 1024 * 1024 && h.Seconds > 0.5 && h.Operation == JobOperation.Copy).ToList();
+            var sameDisk = past.Where(h => string.Equals(Path.GetPathRoot(h.Destination), root, StringComparison.OrdinalIgnoreCase)).Take(20).ToList();
+            var sample = sameDisk.Count > 0 ? sameDisk : past.Take(20).ToList();
+            string size = Format.Bytes(bytes);
+            string text = sample.Count > 0 && bytes > 0
+                ? L.F("Job_Estimate", size, Format.Duration(TimeSpan.FromSeconds(bytes / (sample.Sum(h => (double)h.Bytes) / sample.Sum(h => h.Seconds)))))
+                : bytes > 0 ? L.F("Job_EstimateSize", size) : "";
+            _estimate = text.Length > 0 ? " · " + text : "";
+            ScheduleRefresh();
+        });
+        return _estimate;
     }
 
     private void ScheduleRefresh()
