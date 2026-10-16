@@ -657,3 +657,17 @@ Guard_DamagedTitle	Guardián de integridad	Integrity guard
 Guard_DamagedOne	Un archivo de «{0}» se ha dañado en el disco.	A file in "{0}" got damaged on the drive.
 Guard_DamagedMany	{0} archivos de «{1}» se han dañado en el disco.	{0} files in "{1}" got damaged on the drive.
 Guard_LastDamagedOne	Comprobada el {0}: un archivo dañado (mira el Historial)	Checked on {0}: one damaged file (see History)
+Settings_ScheduleLimitTitle.Text	Límite de velocidad por horario	Speed limit by time of day
+Settings_ScheduleLimitDescription.Text	Por ejemplo, en horas de trabajo: las copias no pasan de esta velocidad entre las horas elegidas.	For example during work hours: transfers stay under this speed between the chosen times.
+Settings_ScheduleFrom.Text	De	From
+Settings_ScheduleTo.Text	a	to
+Settings_PauseBatteryTitle.Text	Pausar con batería	Pause on battery
+Settings_PauseBatteryDescription.Text	En un portátil desenchufado, las copias esperan y siguen solas al enchufarlo.	On an unplugged laptop, transfers wait and continue by themselves when you plug it in.
+Settings_PauseFullTitle.Text	Pausar en juegos y presentaciones	Pause during games and presentations
+Settings_PauseFullDescription.Text	Con un juego o una presentación a pantalla completa, las copias esperan para no quitarle velocidad.	With a full-screen game or presentation, transfers wait so they do not slow it down.
+Comfort_PausedTitle	Copias en pausa	Transfers paused
+Comfort_PausedBattery	El equipo funciona con batería: las copias seguirán al enchufarlo.	The PC is on battery: transfers will continue when you plug it in.
+Comfort_PausedFullScreen	Hay un juego o una presentación a pantalla completa: las copias seguirán al salir.	A full-screen game or presentation is running: transfers will continue when you leave it.
+Job_StatePausedBattery	En pausa: con batería	Paused: on battery
+Job_StatePausedFullScreen	En pausa: pantalla completa	Paused: full screen
+Job_SlowedSchedule	Más despacio por el horario elegido	Slower because of the chosen schedule

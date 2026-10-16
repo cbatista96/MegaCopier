@@ -373,6 +373,40 @@
                         </ComboBox>
                     </Grid>
                 </Border>
+                <Border Style="{StaticResource McSettingCard}">
+                    <Grid Style="{StaticResource Row}" RowSpacing="8">
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
+                        <FontIcon VerticalAlignment="Center" Glyph="&#xE823;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
+                        <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_ScheduleLimitTitle" Style="{StaticResource McBody}" /><TextBlock x:Uid="Settings_ScheduleLimitDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                        <ComboBox x:Name="ScheduleLimitBox" Grid.Column="2" MinWidth="160" SelectionChanged="Selection_Changed">
+                            <ComboBoxItem x:Uid="Slow_Off" Tag="0" /><ComboBoxItem Content="5 MB/s" Tag="5" /><ComboBoxItem Content="20 MB/s" Tag="20" />
+                            <ComboBoxItem Content="50 MB/s" Tag="50" /><ComboBoxItem Content="100 MB/s" Tag="100" />
+                        </ComboBox>
+                        <StackPanel x:Name="ScheduleLimitTimes" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" Spacing="8">
+                            <TextBlock x:Uid="Settings_ScheduleFrom" VerticalAlignment="Center" Style="{StaticResource McSecondary}" />
+                            <TimePicker x:Name="ScheduleFromBox" ClockIdentifier="24HourClock" MinWidth="120" TimeChanged="Time_Changed" />
+                            <TextBlock x:Uid="Settings_ScheduleTo" VerticalAlignment="Center" Style="{StaticResource McSecondary}" />
+                            <TimePicker x:Name="ScheduleToBox" ClockIdentifier="24HourClock" MinWidth="120" TimeChanged="Time_Changed" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+                <Border Style="{StaticResource McSettingCard}">
+                    <Grid Style="{StaticResource Row}">
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                        <FontIcon VerticalAlignment="Center" Glyph="&#xE83F;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
+                        <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_PauseBatteryTitle" Style="{StaticResource McBody}" /><TextBlock x:Uid="Settings_PauseBatteryDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                        <ToggleSwitch x:Name="PauseBatteryToggle" Grid.Column="3" OnContent="" OffContent="" MinWidth="0" Toggled="Changed" />
+                    </Grid>
+                </Border>
+                <Border Style="{StaticResource McSettingCard}">
+                    <Grid Style="{StaticResource Row}">
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                        <FontIcon VerticalAlignment="Center" Glyph="&#xE7FC;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
+                        <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_PauseFullTitle" Style="{StaticResource McBody}" /><TextBlock x:Uid="Settings_PauseFullDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                        <ToggleSwitch x:Name="PauseFullToggle" Grid.Column="3" OnContent="" OffContent="" MinWidth="0" Toggled="Changed" />
+                    </Grid>
+                </Border>
 
                 <!-- Avanzado -->
                 <TextBlock x:Uid="Settings_Advanced" Style="{StaticResource McSection}" />

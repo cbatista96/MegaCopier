@@ -24,6 +24,8 @@ public partial class App : Application
     private DispatcherQueueTimer? _statusTimer;
 
     internal IntegrityGuard? Guard { get; private set; }
+
+    internal Comfort? Comfort { get; private set; }
     private MainWindow? _window;
     private bool _exiting;
 
@@ -115,6 +117,7 @@ public partial class App : Application
         _tray.DoubleClicked += () => SetEnabled(!Settings.Enabled, notify: true);
         Queue.JobFinished += job => Dispatcher.TryEnqueue(() => OnJobFinished(job));
         Guard = new IntegrityGuard(this);
+        Comfort = new Comfort(this);
 
         _taskbar = new TaskbarProgress(Window.Handle);
         _statusTimer = Dispatcher.CreateTimer();
@@ -551,11 +554,8 @@ public partial class App : Application
     /// </summary>
     private void SlowDownWhileUserIsActive(List<CopyJob> running)
     {
-        long? limit = null;
-        if (Settings.SlowWhenActiveMBps > 0 && SystemActions.IdleTime() < TimeSpan.FromSeconds(10))
-        {
-            limit = Settings.SlowWhenActiveMBps * (long)CopyOptions.MiB;
-        }
+        Comfort?.Tick(running);
+        long? limit = Comfort?.SpeedLimit();
 
         foreach (var job in running.Where(j => j.SpeedOverride != limit))
         {

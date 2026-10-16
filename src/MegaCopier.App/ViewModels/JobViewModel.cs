@@ -199,6 +199,7 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
         CopyJobState.Running when Progress?.Phase == CopyPhase.WaitingForDevice => L.Get("Job_StateWaitingDevice"),
         CopyJobState.Running when Progress?.Phase == CopyPhase.WaitingForSpace => L.Get("Job_StateWaitingSpace"),
         CopyJobState.Running => L.Get("Job_State" + Progressive),
+        CopyJobState.Paused when ((App)Microsoft.UI.Xaml.Application.Current).Comfort?.PausedBy(Job) is { } why && why != AutoPauseReason.None => L.Get("Job_StatePaused" + why),
         CopyJobState.Paused => L.Get("Job_StatePaused"),
         CopyJobState.Completed => L.Get("Job_StateCompleted"),
         CopyJobState.CompletedWithErrors => L.Get("Job_StateCompletedErrors"),
@@ -230,7 +231,7 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
 
             if (State == CopyJobState.Running && Job.SpeedOverride is not null)
             {
-                return L.Get("Job_SlowedDown");
+                return L.Get(((App)Microsoft.UI.Xaml.Application.Current).Comfort?.SlowReason == "Schedule" ? "Job_SlowedSchedule" : "Job_SlowedDown");
             }
 
             return State == CopyJobState.Interrupted ? L.Get("Job_ResumeHint") : "";

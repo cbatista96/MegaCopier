@@ -148,6 +148,11 @@ public sealed partial class SettingsPage : UserControl
         LoadFavorites();
         LoadTasks();
         LoadGuard();
+        ScheduleLimitBox.SelectedItem = ScheduleLimitBox.Items.OfType<ComboBoxItem>().FirstOrDefault(i => (string)i.Tag == s.ScheduleLimitMBps.ToString()) ?? ScheduleLimitBox.Items[0];
+        ScheduleFromBox.Time = s.ScheduleFrom;
+        ScheduleToBox.Time = s.ScheduleTo;
+        PauseBatteryToggle.IsOn = s.PauseOnBattery;
+        PauseFullToggle.IsOn = s.PauseOnFullScreen;
         GuardIntervalBox.SelectedItem = GuardIntervalBox.Items.OfType<ComboBoxItem>().FirstOrDefault(i => (string)i.Tag == s.GuardIntervalDays.ToString()) ?? GuardIntervalBox.Items[1];
 
         LoadThemes();
@@ -163,6 +168,8 @@ public sealed partial class SettingsPage : UserControl
     private void Selection_Changed(object sender, SelectionChangedEventArgs e) => Store();
 
     private void Number_Changed(NumberBox sender, NumberBoxValueChangedEventArgs args) => Store();
+
+    private void Time_Changed(object sender, TimePickerValueChangedEventArgs e) => Store();
 
     private void Store()
     {
@@ -236,6 +243,15 @@ public sealed partial class SettingsPage : UserControl
 
         s.SaveLogs = LogsToggle.IsOn;
         s.WebhookUrl = WebhookBox.Text.Trim();
+        if (ScheduleLimitBox.SelectedItem is ComboBoxItem { Tag: string scheduleTag } && int.TryParse(scheduleTag, out int scheduleLimit))
+        {
+            s.ScheduleLimitMBps = scheduleLimit;
+        }
+
+        s.ScheduleFrom = ScheduleFromBox.Time;
+        s.ScheduleTo = ScheduleToBox.Time;
+        s.PauseOnBattery = PauseBatteryToggle.IsOn;
+        s.PauseOnFullScreen = PauseFullToggle.IsOn;
         if (GuardIntervalBox.SelectedItem is ComboBoxItem { Tag: string days } && int.TryParse(days, out int interval))
         {
             s.GuardIntervalDays = interval;
