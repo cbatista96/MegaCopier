@@ -107,6 +107,9 @@ public sealed class CopyOptions
 
     public bool CheckFreeSpace { get; set; } = true;
 
+    /// <summary>Filtros de inclusión y exclusión (vacío = todo).</summary>
+    public FileFilter Filter { get; set; } = new();
+
     public TimeSpan ProgressInterval { get; set; } = TimeSpan.FromMilliseconds(100);
 
     internal void Validate()
