@@ -1030,6 +1030,14 @@ public sealed partial class MainWindow : Window
         }
 
         DestinationsList.Items.Clear();
+
+        // Primero, las carpetas abiertas ahora en el Explorador (salvo las que se van a copiar).
+        foreach (string folder in ExplorerFolders.Open().Where(f => !IsInsideAny(f, sources)))
+        {
+            options.RemoveAll(o => string.Equals(o, folder, StringComparison.OrdinalIgnoreCase));
+            DestinationsList.Items.Add(DestinationItem(folder, favorite: false, explorer: true));
+        }
+
         foreach (string folder in options)
         {
             DestinationsList.Items.Add(DestinationItem(folder, _app.Settings.FavoriteFolders.Contains(folder, StringComparer.OrdinalIgnoreCase)));
@@ -1092,10 +1100,17 @@ public sealed partial class MainWindow : Window
         });
     }
 
-    private static ListViewItem DestinationItem(string folder, bool favorite)
+    /// <summary>La carpeta es uno de los orígenes o está dentro de uno (no tiene sentido copiar ahí).</summary>
+    private static bool IsInsideAny(string folder, IEnumerable<string> sources)
+    {
+        string candidate = Path.TrimEndingDirectorySeparator(folder) + Path.DirectorySeparatorChar;
+        return sources.Any(s => candidate.StartsWith(Path.TrimEndingDirectorySeparator(s) + Path.DirectorySeparatorChar, StringComparison.OrdinalIgnoreCase));
+    }
+
+    private static ListViewItem DestinationItem(string folder, bool favorite, bool explorer = false)
     {
         var row = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 8 };
-        row.Children.Add(new FontIcon { Glyph = favorite ? "" : "", FontSize = 14, VerticalAlignment = VerticalAlignment.Center });
+        row.Children.Add(new FontIcon { Glyph = explorer ? "" : favorite ? "" : "", FontSize = 14, VerticalAlignment = VerticalAlignment.Center });
         row.Children.Add(new TextBlock { Text = folder, VerticalAlignment = VerticalAlignment.Center, TextTrimming = TextTrimming.CharacterEllipsis });
         var item = new ListViewItem { Content = row, Tag = folder };
         Microsoft.UI.Xaml.Automation.AutomationProperties.SetName(item, folder);
@@ -1166,6 +1181,17 @@ public sealed partial class MainWindow : Window
     private void NewMenu_Opening(object sender, object e)
     {
         CopyToMenu.Items.Clear();
+        var open = ExplorerFolders.Open();
+        foreach (string folder in open)
+        {
+            CopyToMenu.Items.Add(CopyToItem(folder, ""));
+        }
+
+        if (open.Count > 0)
+        {
+            CopyToMenu.Items.Add(new MenuFlyoutSeparator());
+        }
+
         var favorites = _app.Settings.FavoriteFolders;
         var recents = _app.Settings.RecentDestinations.Where(r => !favorites.Contains(r, StringComparer.OrdinalIgnoreCase)).Take(8).ToList();
         foreach (string folder in favorites)
