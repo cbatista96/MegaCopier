@@ -260,7 +260,7 @@ public sealed class CopyEngine
         }
         catch (IOException ex)
         {
-            Fail(item, result, ex.Message);
+            Fail(item, result, ex.Message, FileErrors.Classify(ex));
             return;
         }
 
@@ -330,7 +330,7 @@ public sealed class CopyEngine
             bool verified = outcome.DestinationHash is not null;
             if (verified && outcome.SourceHash != outcome.DestinationHash)
             {
-                Fail(item, result, "Los hashes no coinciden");
+                Fail(item, result, "Los hashes no coinciden", FileErrorKind.HashMismatch);
                 return;
             }
 
@@ -425,10 +425,10 @@ public sealed class CopyEngine
         Log(LogLevel.Info, $"Archivo de sumas guardado: {path}");
     }
 
-    private void Fail(TransferItem item, CopyJobResult result, string message)
+    private void Fail(TransferItem item, CopyJobResult result, string message, FileErrorKind kind = FileErrorKind.Other)
     {
-        result.Failures.Add(new FileFailure(item.Source, message));
-        Files.Update(item, FileState.Failed, message);
+        result.Failures.Add(new FileFailure(item.Source, message, kind));
+        Files.Update(item, FileState.Failed, message, kind);
         Log(LogLevel.Error, message, item.Source);
     }
 
@@ -502,7 +502,7 @@ public sealed class CopyEngine
         }
         catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
         {
-            Fail(item, result, ex.Message);
+            Fail(item, result, ex.Message, FileErrors.Classify(ex));
         }
     }
 
@@ -515,7 +515,7 @@ public sealed class CopyEngine
         }
         catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
         {
-            Fail(item, result, $"Se copió, pero no se pudo borrar el original: {ex.Message}");
+            Fail(item, result, ex.Message, FileErrorKind.DeleteFailed);
         }
     }
 
@@ -612,7 +612,7 @@ public sealed class CopyEngine
                         throw;
                     }
 
-                    Fail(item, result, ex.Message);
+                    Fail(item, result, ex.Message, FileErrors.Classify(ex));
                     return null;
                 }
 

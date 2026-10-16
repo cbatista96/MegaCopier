@@ -93,9 +93,24 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
 
     public bool IsInterrupted => State == CopyJobState.Interrupted;
 
+    public bool IsFailed => State == CopyJobState.Failed;
+
+    /// <summary>Terminó, pero con archivos fallidos o se interrumpió.</summary>
+    public bool HasWarnings => State is CopyJobState.CompletedWithErrors or CopyJobState.Interrupted;
+
     public bool HasProblem => State is CopyJobState.Failed or CopyJobState.CompletedWithErrors;
 
     public bool IsActive => Job.IsActive;
+
+    /// <summary>Color del icono de estado: verde terminado, ámbar con avisos, rojo fallido, acento en curso.</summary>
+    public Microsoft.UI.Xaml.Media.Brush StateBrush => State switch
+    {
+        CopyJobState.Completed => Theming.ThemeManager.SuccessBrush,
+        CopyJobState.CompletedWithErrors or CopyJobState.Interrupted => Theming.ThemeManager.WarningBrush,
+        CopyJobState.Failed => Theming.ThemeManager.ErrorBrush,
+        CopyJobState.Queued or CopyJobState.Paused => Theming.ThemeManager.TextSecondaryBrush,
+        _ => Theming.ThemeManager.AccentBrush,
+    };
 
     public string Glyph => State switch
     {
@@ -116,9 +131,10 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
                 : L.F("Job_ManyItems", sources.Count);
             return State switch
             {
-                CopyJobState.Completed => L.F(IsMove ? "Job_TitleMoved" : "Job_TitleCopied", what),
+                CopyJobState.Completed or CopyJobState.CompletedWithErrors => L.F(IsMove ? "Job_TitleMoved" : "Job_TitleCopied", what),
                 CopyJobState.Queued => L.F("Job_TitleQueued", what),
-                _ => L.F(IsMove ? "Job_TitleMoving" : "Job_TitleCopying", what),
+                CopyJobState.Running or CopyJobState.Paused => L.F(IsMove ? "Job_TitleMoving" : "Job_TitleCopying", what),
+                _ => L.F(IsMove ? "Job_TitleMove" : "Job_TitleCopy", what),
             };
         }
     }
@@ -162,7 +178,7 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
         {
             if (State == CopyJobState.CompletedWithErrors && Job.Result is { } partial)
             {
-                return L.F("Job_FailedFiles", partial.Failures.Count);
+                return partial.Failures.Count == 1 ? L.Get("Job_FailedOne") : L.F("Job_FailedFiles", partial.Failures.Count);
             }
 
             if (State == CopyJobState.Failed)
@@ -203,7 +219,7 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
 
     public double FileFraction => Progress is { CurrentFileLength: > 0 } p && IsActive
         ? Math.Clamp((double)p.CurrentFileBytes / p.CurrentFileLength, 0, 1)
-        : IsDone ? 1 : 0;
+        : IsDone || State == CopyJobState.CompletedWithErrors ? 1 : 0;
 
     public string FilePercentText => $"{FileFraction * 100:0.0} %";
 
@@ -374,7 +390,7 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
 
         if (result.FilesSkipped > 0)
         {
-            parts.Add(L.F("Job_Skipped", result.FilesSkipped));
+            parts.Add(result.FilesSkipped == 1 ? L.Get("Job_SkippedOne") : L.F("Job_Skipped", result.FilesSkipped));
         }
 
         if (Job.Record.Verify)

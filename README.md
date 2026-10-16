@@ -65,13 +65,14 @@ Tras un apagón se pierde como máximo un bloque. Al volver a abrir MegaCopier, 
   máximo de copias a la vez y «dispositivos rápidos» configurables).
 - **Si el archivo ya existe**: pregunta con un diálogo que compara ambos archivos (reemplazar / conservar ambos /
   omitir, con «hacer lo mismo con todos»), o una política fija.
-- Verificación opcional sin caché con **reparación** de bloques dañados; lista de archivos con errores y «Reintentar».
-- Límite de velocidad; **al terminar**: suspender o apagar el equipo.
+- Verificación opcional sin caché con **reparación** de bloques dañados; los errores se explican en lenguaje claro
+  («otro programa tiene el archivo abierto», «no queda espacio»…) con «Reintentar»; el detalle técnico va en el tooltip.
+- Límite de velocidad; el equipo no se suspende mientras copia; **al terminar**: suspender o apagar el equipo.
 
 **Temas**: 11 temas completos que cambian toda la interfaz al momento (Fluent como Windows, Fluent oscuro/claro,
 Medianoche, Grafito, Océano, Bosque, Atardecer, SuperCopier clásico, Ultracopier clásico y Alto contraste): colores,
 degradado de cada barra, alto de las barras, redondeo y fondo Mica / Mica Alt / Acrílico / sólido. Un editor permite
-cambiar los 16 colores con selector, guardar temas propios e importarlos/exportarlos (.json).
+cambiar los 16 colores (se ve el resultado al momento en toda la interfaz, también en casillas e interruptores), guardar temas propios e importarlos/exportarlos (.json).
 
 **Más ajustes**: «siempre visible», prioridad del proceso, **idioma español / inglés** (también en las opciones del
 Explorador), y un `crash.log` en `%LOCALAPPDATA%\MegaCopier` si algo falla.

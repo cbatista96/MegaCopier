@@ -134,6 +134,10 @@ public sealed class AppSettings
     /// </summary>
     public bool Enabled { get; set; } = true;
 
+    /// <summary>settings.json no se pudo leer (se guardó una copia en settings.json.bad).</summary>
+    [JsonIgnore]
+    public bool LoadFailed { get; private init; }
+
     [JsonIgnore]
     public static string FilePath { get; } = Path.Combine(
         Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MegaCopier", "settings.json");
@@ -214,9 +218,21 @@ public sealed class AppSettings
                 return JsonSerializer.Deserialize(stream, SettingsJsonContext.Default.AppSettings) ?? new AppSettings();
             }
         }
-        catch (Exception ex) when (ex is IOException or JsonException or UnauthorizedAccessException)
+        catch (JsonException)
         {
-            // Preferencias dañadas: se usan las de fábrica.
+            // Preferencias dañadas: se usan las de fábrica, pero el archivo se aparta (no se pisa) para poder recuperarlo.
+            try
+            {
+                File.Copy(FilePath, FilePath + ".bad", overwrite: true);
+            }
+            catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+            {
+            }
+
+            return new AppSettings { LoadFailed = true };
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+        {
         }
 
         return new AppSettings();

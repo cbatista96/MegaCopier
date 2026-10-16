@@ -47,6 +47,8 @@ public sealed class TransferItem
     /// <summary>Motivo del error, o explicación de por qué se omitió.</summary>
     public string? Message { get; internal set; }
 
+    public FileErrorKind ErrorKind { get; internal set; }
+
     public bool IsFinished => State is FileState.Copied or FileState.Verified or FileState.Skipped or FileState.Failed;
 }
 
@@ -166,12 +168,13 @@ public sealed class TransferList
         return item;
     }
 
-    internal void Update(TransferItem item, FileState state, string? message = null)
+    internal void Update(TransferItem item, FileState state, string? message = null, FileErrorKind kind = FileErrorKind.Other)
     {
         int index;
         lock (_lock)
         {
             item.State = state;
+            item.ErrorKind = kind;
             if (message is not null)
             {
                 item.Message = message;

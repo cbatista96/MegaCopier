@@ -19,8 +19,8 @@
                 <StackPanel Spacing="2">
                     <TextBlock x:Uid="Options_Transfer" Style="{StaticResource McStrong}" Margin="0,0,0,6" />
                     <StackPanel Orientation="Horizontal" Spacing="6">
-                        <FontIcon Glyph="&#xE8B7;" FontSize="14" Foreground="{StaticResource McWarningBrush}" />
-                        <FontIcon Glyph="&#xE8A5;" FontSize="14" Foreground="{StaticResource McTextSecondaryBrush}" />
+                        <FontIcon VerticalAlignment="Center" Glyph="&#xE8B7;" FontSize="14" Foreground="{StaticResource McWarningBrush}" />
+                        <FontIcon VerticalAlignment="Center" Glyph="&#xE8A5;" FontSize="14" Foreground="{StaticResource McTextSecondaryBrush}" />
                         <TextBlock x:Uid="Options_FilesFolders" Style="{StaticResource McStrong}" />
                     </StackPanel>
                     <CheckBox x:Uid="Options_Data" IsChecked="True" IsEnabled="False" />
@@ -28,7 +28,7 @@
                     <CheckBox x:Name="AttributesBox" x:Uid="Options_Attributes" Click="Changed" />
                     <CheckBox x:Name="StreamsBox" x:Uid="Options_Streams" Click="Changed" />
                     <StackPanel Orientation="Horizontal" Spacing="6" Margin="0,10,0,0">
-                        <FontIcon Glyph="&#xE72E;" FontSize="14" Foreground="{StaticResource McWarningBrush}" />
+                        <FontIcon VerticalAlignment="Center" Glyph="&#xE72E;" FontSize="14" Foreground="{StaticResource McWarningBrush}" />
                         <TextBlock x:Uid="Options_Security" Style="{StaticResource McStrong}" />
                     </StackPanel>
                     <CheckBox x:Name="AclBox" x:Uid="Options_Acl" Click="Changed" />

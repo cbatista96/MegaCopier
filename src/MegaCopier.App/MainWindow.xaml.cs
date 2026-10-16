@@ -195,9 +195,16 @@ public sealed partial class MainWindow : Window
     }
 
     /// <summary>Aplica el tema: claro/oscuro de los controles, fondo de la ventana y barra de título.</summary>
-    internal void ApplyTheme(ThemeDefinition theme)
+    internal void ApplyTheme(ThemeDefinition theme, bool reloadResources = false)
     {
-        Root.RequestedTheme = theme.Dark ? ElementTheme.Dark : ElementTheme.Light;
+        var requested = theme.Dark ? ElementTheme.Dark : ElementTheme.Light;
+        if (reloadResources && Root.RequestedTheme == requested)
+        {
+            // Cambiar de modo y volver obliga a todos los controles a releer sus recursos (el acento nuevo).
+            Root.RequestedTheme = requested == ElementTheme.Dark ? ElementTheme.Light : ElementTheme.Dark;
+        }
+
+        Root.RequestedTheme = requested;
         AppWindow.TitleBar.PreferredTheme = theme.Dark ? TitleBarTheme.Dark : TitleBarTheme.Light;
         SystemBackdrop = Appearance.CreateBackdrop(theme.Backdrop);
         TrayIcon.SetMenuTheme(theme.Dark);

@@ -350,7 +350,7 @@
   <data name="Files_ListType" xml:space="preserve"><value>Lista de copia de MegaCopier</value></data>
   <data name="Files_LoadFailed" xml:space="preserve"><value>No se pudo cargar la lista</value></data>
   <data name="Hash_None" xml:space="preserve"><value>Hash: ninguno</value></data>
-  <data name="Jobs_Header" xml:space="preserve"><value>{0} COPIAS · {1} ACTIVAS</value></data>
+  <data name="Jobs_Header" xml:space="preserve"><value>COPIAS: {0} · ACTIVAS: {1}</value></data>
   <data name="Language_Auto" xml:space="preserve"><value>Usar el de Windows</value></data>
   <data name="Log_FileType" xml:space="preserve"><value>Texto</value></data>
   <data name="Picker_MoveHere" xml:space="preserve"><value>Mover aquí</value></data>
@@ -360,4 +360,30 @@
   <data name="Panel_VerifyItem.Text" xml:space="preserve"><value>Verificar al terminar</value></data>
   <data name="Panel_OpenFolderItem.Text" xml:space="preserve"><value>Abrir la carpeta de destino</value></data>
   <data name="Status_ExactBytes" xml:space="preserve"><value>{0} bytes</value></data>
+  <data name="Notify_SettingsResetTitle" xml:space="preserve"><value>Ajustes restablecidos</value></data>
+  <data name="Notify_SettingsResetBody" xml:space="preserve"><value>No se pudieron leer tus ajustes y se usan los de fábrica. El archivo original está en settings.json.bad.</value></data>
+  <data name="Job_TitleCopy" xml:space="preserve"><value>Copiar {0}</value></data>
+  <data name="Job_TitleMove" xml:space="preserve"><value>Mover {0}</value></data>
+  <data name="Job_FailedOne" xml:space="preserve"><value>1 archivo con errores</value></data>
+  <data name="Error_InUse" xml:space="preserve"><value>Otro programa tiene el archivo abierto. Ciérralo y pulsa «Reintentar».</value></data>
+  <data name="Error_AccessDenied" xml:space="preserve"><value>Acceso denegado: no tienes permiso para leer o escribir este archivo.</value></data>
+  <data name="Error_DiskFull" xml:space="preserve"><value>No queda espacio en el disco de destino.</value></data>
+  <data name="Error_NotFound" xml:space="preserve"><value>El archivo o la carpeta ya no existe (¿se movió, se borró o se desconectó la unidad?).</value></data>
+  <data name="Error_PathTooLong" xml:space="preserve"><value>La ruta es demasiado larga para el destino.</value></data>
+  <data name="Error_NetworkLost" xml:space="preserve"><value>Se perdió la conexión de red. Al volver, pulsa «Reintentar» y seguirá donde se quedó.</value></data>
+  <data name="Error_HashMismatch" xml:space="preserve"><value>La copia no coincide con el original (verificación fallida).</value></data>
+  <data name="Error_DeleteFailed" xml:space="preserve"><value>Se copió bien, pero no se pudo borrar el original.</value></data>
+  <data name="Report_State" xml:space="preserve"><value>Estado</value></data>
+  <data name="Report_File" xml:space="preserve"><value>Archivo</value></data>
+  <data name="Report_Source" xml:space="preserve"><value>Origen</value></data>
+  <data name="Report_Destination" xml:space="preserve"><value>Destino</value></data>
+  <data name="Report_Size" xml:space="preserve"><value>Tamaño</value></data>
+  <data name="Report_SourceHash" xml:space="preserve"><value>Hash origen</value></data>
+  <data name="Report_TargetHash" xml:space="preserve"><value>Hash destino</value></data>
+  <data name="Report_Message" xml:space="preserve"><value>Mensaje</value></data>
+  <data name="Report_Copied" xml:space="preserve"><value>Copiados</value></data>
+  <data name="Report_Verified" xml:space="preserve"><value>Verificados</value></data>
+  <data name="Report_Skipped" xml:space="preserve"><value>Omitidos</value></data>
+  <data name="Report_Failed" xml:space="preserve"><value>Con errores</value></data>
+  <data name="Job_SkippedOne" xml:space="preserve"><value>1 omitido</value></data>
 </root>

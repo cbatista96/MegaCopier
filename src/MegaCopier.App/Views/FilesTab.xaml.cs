@@ -202,8 +202,12 @@ public sealed partial class FilesTab : UserControl
     private void HideFinished_Changed(object sender, RoutedEventArgs e)
     {
         var app = (App)Application.Current;
-        app.Settings.HideFinishedFiles = HideFinishedBox.IsChecked == true;
-        app.Settings.Save();
+        if (app.Settings.HideFinishedFiles != (HideFinishedBox.IsChecked == true))
+        {
+            app.Settings.HideFinishedFiles = HideFinishedBox.IsChecked == true;
+            app.Settings.Save();
+        }
+
         if (_files is not null)
         {
             _files.HideFinished = HideFinishedBox.IsChecked == true;

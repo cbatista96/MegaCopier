@@ -17,6 +17,13 @@ public sealed class HistoryRow(HistoryEntry entry)
         _ => "",
     };
 
+    public Microsoft.UI.Xaml.Media.Brush StateBrush => entry.State switch
+    {
+        "Completed" => Theming.ThemeManager.SuccessBrush,
+        "Failed" => Theming.ThemeManager.ErrorBrush,
+        _ => Theming.ThemeManager.WarningBrush,
+    };
+
     public string Title
     {
         get
@@ -34,9 +41,9 @@ public sealed class HistoryRow(HistoryEntry entry)
     public string FullRoute => $"{string.Join("; ", entry.Sources)} → {entry.Destination}";
 
     public string Summary =>
-        $"{entry.Finished:g} · {L.F(entry.Move ? "Job_FilesMovedMany" : "Job_FilesCopiedMany", entry.Files)} · {Format.Bytes(entry.Bytes)} · {Format.Duration(TimeSpan.FromSeconds(entry.Seconds))}"
-        + (entry.Skipped > 0 ? " · " + L.F("Job_Skipped", entry.Skipped) : "")
-        + (entry.Failed > 0 ? " · " + L.F("Job_FailedFiles", entry.Failed) : "");
+        $"{entry.Finished:g} · {L.F((entry.Move ? "Job_FilesMoved" : "Job_FilesCopied") + (entry.Files == 1 ? "One" : "Many"), entry.Files)} · {Format.Bytes(entry.Bytes)} · {Format.Duration(TimeSpan.FromSeconds(entry.Seconds))}"
+        + (entry.Skipped > 0 ? " · " + (entry.Skipped == 1 ? L.Get("Job_SkippedOne") : L.F("Job_Skipped", entry.Skipped)) : "")
+        + (entry.Failed > 0 ? " · " + (entry.Failed == 1 ? L.Get("Job_FailedOne") : L.F("Job_FailedFiles", entry.Failed)) : "");
 
     /// <summary>Vuelve a lanzar la misma copia (lo idéntico se omite: solo copia lo nuevo o lo que cambió).</summary>
     public void Repeat() => ((App)Application.Current).Submit(new IpcRequest
