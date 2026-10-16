@@ -17,6 +17,9 @@ public enum FileHashAlgorithm
     Sha512,
     Sha3_256,
     Sha3_512,
+
+    /// <summary>BLAKE3: criptográfico y muy rápido (compatible con b3sum).</summary>
+    Blake3,
 }
 
 /// <summary>Hash incremental de un archivo completo con el algoritmo elegido.</summary>
@@ -39,6 +42,7 @@ internal abstract class FileHasher
         FileHashAlgorithm.Sha512 => new Cryptographic(HashAlgorithmName.SHA512),
         FileHashAlgorithm.Sha3_256 when SHA3_256.IsSupported => new Cryptographic(HashAlgorithmName.SHA3_256),
         FileHashAlgorithm.Sha3_512 when SHA3_512.IsSupported => new Cryptographic(HashAlgorithmName.SHA3_512),
+        FileHashAlgorithm.Blake3 => new Blake3Hasher(),
         _ => null,
     };
 
@@ -55,6 +59,7 @@ internal abstract class FileHasher
         FileHashAlgorithm.Sha512 => "sha512",
         FileHashAlgorithm.Sha3_256 => "sha3-256",
         FileHashAlgorithm.Sha3_512 => "sha3-512",
+        FileHashAlgorithm.Blake3 => "b3",
         _ => "txt",
     };
 
@@ -64,6 +69,21 @@ internal abstract class FileHasher
         public override void Append(ReadOnlySpan<byte> data) => hash.Append(data);
 
         public override string Finish() => format(hash);
+    }
+
+    /// <summary>BLAKE3 (implementación administrada con SIMD de Blake3.NET).</summary>
+    private sealed class Blake3Hasher : FileHasher
+    {
+        private global::Blake3.Hasher _hasher = global::Blake3.Hasher.New();
+
+        public override void Append(ReadOnlySpan<byte> data) => _hasher.Update(data);
+
+        public override string Finish()
+        {
+            string hash = _hasher.Finalize().ToString();
+            _hasher.Dispose();
+            return hash;
+        }
     }
 
     private sealed class Cryptographic(HashAlgorithmName name) : FileHasher

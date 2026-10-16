@@ -18,6 +18,7 @@ public sealed partial class OptionsTab : UserControl
     [
         FileHashAlgorithm.None, FileHashAlgorithm.Crc32, FileHashAlgorithm.XxHash3, FileHashAlgorithm.XxHash64, FileHashAlgorithm.XxHash128,
         FileHashAlgorithm.Md5, FileHashAlgorithm.Sha1, FileHashAlgorithm.Sha256, FileHashAlgorithm.Sha512,
+        FileHashAlgorithm.Blake3,
         .. (System.Security.Cryptography.SHA3_256.IsSupported ? new[] { FileHashAlgorithm.Sha3_256, FileHashAlgorithm.Sha3_512 } : []),
     ];
 
@@ -57,6 +58,7 @@ public sealed partial class OptionsTab : UserControl
         FileHashAlgorithm.Sha256 => "Hash: SHA-256",
         FileHashAlgorithm.Sha3_256 => "Hash: SHA3-256",
         FileHashAlgorithm.Sha3_512 => "Hash: SHA3-512",
+        FileHashAlgorithm.Blake3 => "Hash: BLAKE3",
         _ => "Hash: SHA-512",
     };
 
