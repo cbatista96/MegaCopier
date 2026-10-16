@@ -646,4 +646,21 @@
   <data name="Rules_Rescue.Content" xml:space="preserve"><value>Modo rescate para discos dañados</value></data>
   <data name="Rules_Rescue.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Si el origen tiene sectores dañados, se lee sector a sector y se salva todo lo legible; lo ilegible queda en ceros y se anota en el registro. El original no se borra al mover.</value></data>
   <data name="Error_PartlyUnreadable" xml:space="preserve"><value>Rescatado en parte: algunos sectores del origen estaban dañados y quedaron en ceros (detalle en el Registro).</value></data>
+  <data name="Settings_Guard.Text" xml:space="preserve"><value>Guardián de integridad</value></data>
+  <data name="Settings_GuardTitle.Text" xml:space="preserve"><value>Vigilar que tus archivos no se dañen con el tiempo</value></data>
+  <data name="Settings_GuardDescription.Text" xml:space="preserve"><value>Cada archivo guarda su hash dentro. Con el equipo libre, MegaCopier los comprueba: si uno cambió sin que nadie lo editara (el disco lo dañó), te avisa. Lo que edites se renueva solo. Necesita NTFS.</value></data>
+  <data name="Guard_Daily.Content" xml:space="preserve"><value>Cada día</value></data>
+  <data name="Guard_Weekly.Content" xml:space="preserve"><value>Cada semana</value></data>
+  <data name="Guard_Monthly.Content" xml:space="preserve"><value>Cada mes</value></data>
+  <data name="Settings_GuardAdd.Text" xml:space="preserve"><value>Vigilar una carpeta…</value></data>
+  <data name="Settings_GuardEmpty" xml:space="preserve"><value>Todavía no vigilas ninguna carpeta.</value></data>
+  <data name="Settings_GuardCheck" xml:space="preserve"><value>Comprobar «{0}» ahora</value></data>
+  <data name="Settings_GuardRemove" xml:space="preserve"><value>Dejar de vigilar «{0}»</value></data>
+  <data name="Guard_NotYet" xml:space="preserve"><value>Pendiente de la primera comprobación</value></data>
+  <data name="Guard_LastOk" xml:space="preserve"><value>Comprobada el {0}: todo bien</value></data>
+  <data name="Guard_LastDamaged" xml:space="preserve"><value>Comprobada el {0}: {1} archivos dañados (mira el Historial)</value></data>
+  <data name="Guard_DamagedTitle" xml:space="preserve"><value>Guardián de integridad</value></data>
+  <data name="Guard_DamagedOne" xml:space="preserve"><value>Un archivo de «{0}» se ha dañado en el disco.</value></data>
+  <data name="Guard_DamagedMany" xml:space="preserve"><value>{0} archivos de «{1}» se han dañado en el disco.</value></data>
+  <data name="Guard_LastDamagedOne" xml:space="preserve"><value>Comprobada el {0}: un archivo dañado (mira el Historial)</value></data>
 </root>

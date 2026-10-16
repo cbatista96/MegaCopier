@@ -234,6 +234,12 @@ public sealed class AppSettings
     /// <summary>Dirección a la que avisar (POST con JSON) al terminar cada copia: Discord, Slack, Teams, ntfy, Home Assistant...</summary>
     public string WebhookUrl { get; set; } = "";
 
+    /// <summary>Carpetas vigiladas por el guardián de integridad.</summary>
+    public List<GuardedFolder> GuardedFolders { get; set; } = [];
+
+    /// <summary>Cada cuántos días se comprueba cada carpeta vigilada.</summary>
+    public int GuardIntervalDays { get; set; } = 7;
+
     /// <summary>Al arrancar, continuar sin preguntar las copias que quedaron a medias.</summary>
     public bool AutoResumeInterrupted { get; set; }
 

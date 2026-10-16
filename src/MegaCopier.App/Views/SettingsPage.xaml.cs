@@ -147,6 +147,8 @@ public sealed partial class SettingsPage : UserControl
         Rules.Load(s.Rules);
         LoadFavorites();
         LoadTasks();
+        LoadGuard();
+        GuardIntervalBox.SelectedItem = GuardIntervalBox.Items.OfType<ComboBoxItem>().FirstOrDefault(i => (string)i.Tag == s.GuardIntervalDays.ToString()) ?? GuardIntervalBox.Items[1];
 
         LoadThemes();
         UpdateRestartInfo();
@@ -234,6 +236,10 @@ public sealed partial class SettingsPage : UserControl
 
         s.SaveLogs = LogsToggle.IsOn;
         s.WebhookUrl = WebhookBox.Text.Trim();
+        if (GuardIntervalBox.SelectedItem is ComboBoxItem { Tag: string days } && int.TryParse(days, out int interval))
+        {
+            s.GuardIntervalDays = interval;
+        }
         s.Scripts = [.. ScriptsBox.Text.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)];
         s.Rules = Rules.Read();
         s.Save();
@@ -445,6 +451,72 @@ public sealed partial class SettingsPage : UserControl
         {
             TasksList.Children.Add(new TextBlock { Text = L.Get("Settings_TasksEmpty"), FontSize = 12, Foreground = ThemeManager.TextSecondaryBrush, TextWrapping = TextWrapping.Wrap });
         }
+    }
+
+    /// <summary>Carpetas vigiladas: estado de la última comprobación, "Comprobar ahora" y "Dejar de vigilar".</summary>
+    private void LoadGuard()
+    {
+        GuardList.Children.Clear();
+        foreach (var folder in _app.Settings.GuardedFolders.ToList())
+        {
+            var row = new Grid { ColumnSpacing = 8 };
+            row.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+            row.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+            row.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+            row.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+            bool damaged = folder.Damaged > 0;
+            row.Children.Add(new FontIcon
+            {
+                Glyph = damaged ? "" : "",
+                FontSize = 14,
+                VerticalAlignment = VerticalAlignment.Center,
+                Foreground = damaged ? ThemeManager.WarningBrush : ThemeManager.AccentBrush,
+            });
+            var text = new StackPanel { VerticalAlignment = VerticalAlignment.Center };
+            text.Children.Add(new TextBlock { Text = folder.Path, TextTrimming = TextTrimming.CharacterEllipsis });
+            string state = folder.LastCheckUtc is not { } last ? L.Get("Guard_NotYet")
+                : damaged ? (folder.Damaged == 1 ? L.F("Guard_LastDamagedOne", ViewModels.Format.Date(last)) : L.F("Guard_LastDamaged", ViewModels.Format.Date(last), folder.Damaged))
+                : L.F("Guard_LastOk", ViewModels.Format.Date(last));
+            text.Children.Add(new TextBlock { Text = state, FontSize = 12, Foreground = damaged ? ThemeManager.WarningBrush : ThemeManager.TextSecondaryBrush, TextWrapping = TextWrapping.Wrap });
+            ToolTipService.SetToolTip(text, folder.Path);
+            Grid.SetColumn(text, 1);
+            row.Children.Add(text);
+            var captured = folder;
+            var check = IconButton("", L.F("Settings_GuardCheck", folder.Path));
+            check.Click += (_, _) => _app.Guard?.Check(captured);
+            Grid.SetColumn(check, 2);
+            row.Children.Add(check);
+            var remove = IconButton("", L.F("Settings_GuardRemove", folder.Path));
+            remove.Click += (_, _) =>
+            {
+                _app.Settings.GuardedFolders.Remove(captured);
+                _app.Settings.Save();
+                LoadGuard();
+            };
+            Grid.SetColumn(remove, 3);
+            row.Children.Add(remove);
+            GuardList.Children.Add(row);
+        }
+
+        if (GuardList.Children.Count == 0)
+        {
+            GuardList.Children.Add(new TextBlock { Text = L.Get("Settings_GuardEmpty"), FontSize = 12, Foreground = ThemeManager.TextSecondaryBrush, TextWrapping = TextWrapping.Wrap });
+        }
+    }
+
+    private async void AddGuarded_Click(object sender, RoutedEventArgs e)
+    {
+        if (await Pickers.PickFolderAsync() is not { } path
+            || _app.Settings.GuardedFolders.Any(f => string.Equals(f.Path, path, StringComparison.OrdinalIgnoreCase)))
+        {
+            return;
+        }
+
+        var folder = new GuardedFolder { Path = path };
+        _app.Settings.GuardedFolders.Add(folder);
+        _app.Settings.Save();
+        _app.Guard?.Check(folder); // la primera vez se protege en seguida
+        LoadGuard();
     }
 
     private static Button IconButton(string glyph, string name)

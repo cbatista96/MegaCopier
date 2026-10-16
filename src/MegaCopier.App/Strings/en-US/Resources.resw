@@ -646,4 +646,21 @@
   <data name="Rules_Rescue.Content" xml:space="preserve"><value>Rescue mode for damaged drives</value></data>
   <data name="Rules_Rescue.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>If the source has bad sectors, it is read sector by sector and everything readable is saved; unreadable parts become zeros and are logged. The original is not deleted when moving.</value></data>
   <data name="Error_PartlyUnreadable" xml:space="preserve"><value>Partly rescued: some source sectors were damaged and became zeros (details in the Log).</value></data>
+  <data name="Settings_Guard.Text" xml:space="preserve"><value>Integrity guard</value></data>
+  <data name="Settings_GuardTitle.Text" xml:space="preserve"><value>Watch that your files do not get damaged over time</value></data>
+  <data name="Settings_GuardDescription.Text" xml:space="preserve"><value>Each file keeps its hash inside. When the PC is idle, MegaCopier checks them: if one changed without anyone editing it (the drive damaged it), you are warned. What you edit is renewed automatically. Needs NTFS.</value></data>
+  <data name="Guard_Daily.Content" xml:space="preserve"><value>Every day</value></data>
+  <data name="Guard_Weekly.Content" xml:space="preserve"><value>Every week</value></data>
+  <data name="Guard_Monthly.Content" xml:space="preserve"><value>Every month</value></data>
+  <data name="Settings_GuardAdd.Text" xml:space="preserve"><value>Watch a folder…</value></data>
+  <data name="Settings_GuardEmpty" xml:space="preserve"><value>You are not watching any folder yet.</value></data>
+  <data name="Settings_GuardCheck" xml:space="preserve"><value>Check &quot;{0}&quot; now</value></data>
+  <data name="Settings_GuardRemove" xml:space="preserve"><value>Stop watching &quot;{0}&quot;</value></data>
+  <data name="Guard_NotYet" xml:space="preserve"><value>Waiting for the first check</value></data>
+  <data name="Guard_LastOk" xml:space="preserve"><value>Checked on {0}: all good</value></data>
+  <data name="Guard_LastDamaged" xml:space="preserve"><value>Checked on {0}: {1} damaged files (see History)</value></data>
+  <data name="Guard_DamagedTitle" xml:space="preserve"><value>Integrity guard</value></data>
+  <data name="Guard_DamagedOne" xml:space="preserve"><value>A file in &quot;{0}&quot; got damaged on the drive.</value></data>
+  <data name="Guard_DamagedMany" xml:space="preserve"><value>{0} files in &quot;{1}&quot; got damaged on the drive.</value></data>
+  <data name="Guard_LastDamagedOne" xml:space="preserve"><value>Checked on {0}: one damaged file (see History)</value></data>
 </root>
