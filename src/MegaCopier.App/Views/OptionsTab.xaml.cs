@@ -90,6 +90,7 @@ public sealed partial class OptionsTab : UserControl
         Place(HowColumn, columns == 1 ? 1 : 0, columns == 1 ? 0 : 1, columns == 1 ? 3 : 1);
         Place(FinishColumn, columns == 3 ? 0 : columns == 2 ? 1 : 2, columns == 3 ? 2 : 0, columns == 3 ? 1 : 3);
         ScheduleRow.Orientation = width < 760 ? Orientation.Vertical : Orientation.Horizontal;
+        TaskRow.Orientation = ScheduleRow.Orientation;
         ScheduleRow.HorizontalAlignment = HorizontalAlignment.Left;
     }
 
@@ -197,6 +198,26 @@ public sealed partial class OptionsTab : UserControl
 
         _job.Schedule(when);
         Load();
+    }
+
+    /// <summary>Guarda esta copia como tarea del Programador de tareas, a la hora elegida arriba.</summary>
+    private void SaveTask_Click(object sender, RoutedEventArgs e)
+    {
+        if (_job?.Job.Record is not { } record || ScheduleDate.Date is not { } date)
+        {
+            return;
+        }
+
+        Save();
+        string name = TaskNameBox.Text.Trim().Length > 0
+            ? TaskNameBox.Text
+            : $"{Path.GetFileName(Path.TrimEndingDirectorySeparator(record.Sources[0]))} → {Path.GetFileName(Path.TrimEndingDirectorySeparator(record.Destination))}";
+        var frequency = (TaskFrequency)Math.Max(0, TaskFrequencyBox.SelectedIndex);
+        var start = date.Date + ScheduleTime.Time;
+        string? error = ScheduledTasks.Create(record, name, frequency, start);
+        TaskInfo.Text = error is null
+            ? L.F("Task_Saved" + frequency, ScheduledTasks.CleanName(name), start.ToString("t"), start.ToString("d"))
+            : L.F("Task_Failed", error);
     }
 
     private void StartNow_Click(object sender, RoutedEventArgs e)

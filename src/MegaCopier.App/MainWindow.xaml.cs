@@ -679,19 +679,13 @@ public sealed partial class MainWindow : Window
             return;
         }
 
-        if (Reports.LoadList(path) is { } list && list.Sources.Count > 0)
+        // Con todas las opciones guardadas (modo, filtros, verificar...); si la lista no trae destino, se pide.
+        string? destination = Reports.LoadList(path) is { } list && !Path.IsPathFullyQualified(list.Destination)
+            ? await Pickers.PickFolderAsync(L.Get("Picker_CopyHere"))
+            : null;
+        if (_app.RunList(path, destination) is not null)
         {
-            string? destination = Path.IsPathFullyQualified(list.Destination)
-                ? list.Destination
-                : await Pickers.PickFolderAsync(L.Get("Picker_CopyHere"));
-            if (destination is not null)
-            {
-                Submit(list.Sources, destination, list.Move);
-            }
-        }
-        else
-        {
-            _app.Notify(L.Get("Files_LoadFailed"), path);
+            ShowJobs();
         }
     }
 

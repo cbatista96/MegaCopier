@@ -82,7 +82,8 @@ public sealed partial class SettingsPage : UserControl
             HashBox.Items.Add(new ComboBoxItem { Content = OptionsTab.HashName(hash) });
         }
 
-        AboutText.Text = L.F("About", typeof(App).Assembly.GetName().Version?.ToString(3) ?? "");
+        AboutText.Text = L.F("About", typeof(App).Assembly.GetName().Version?.ToString(3) ?? "")
+            + (Engine.DataFolder.IsPortable ? " · " + L.F("About_Portable", Engine.DataFolder.Path) : "");
         _app.EnabledChanged += () => DispatcherQueue.TryEnqueue(Load);
         Rules.RulesChanged += Store;
         SizeChanged += (_, e) =>
@@ -144,6 +145,7 @@ public sealed partial class SettingsPage : UserControl
         ScriptsBox.Text = string.Join(Environment.NewLine, s.Scripts);
         Rules.Load(s.Rules);
         LoadFavorites();
+        LoadTasks();
 
         LoadThemes();
         UpdateRestartInfo();
@@ -399,6 +401,61 @@ public sealed partial class SettingsPage : UserControl
         {
             FavoritesList.Children.Add(new TextBlock { Text = L.Get("Settings_FavoritesEmpty"), FontSize = 12, Foreground = ThemeManager.TextSecondaryBrush });
         }
+    }
+
+    /// <summary>Tareas guardadas: una fila con "Ejecutar ahora" y "Borrar" (también del Programador de tareas).</summary>
+    private void LoadTasks()
+    {
+        TasksList.Children.Clear();
+        foreach (string name in ScheduledTasks.List())
+        {
+            var row = new Grid { ColumnSpacing = 8 };
+            row.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+            row.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+            row.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+            row.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+            row.Children.Add(new FontIcon { Glyph = "", FontSize = 14, VerticalAlignment = VerticalAlignment.Center, Foreground = ThemeManager.AccentBrush });
+            var text = new TextBlock { Text = name, VerticalAlignment = VerticalAlignment.Center, TextTrimming = TextTrimming.CharacterEllipsis };
+            ToolTipService.SetToolTip(text, ScheduledTasks.PathOf(name));
+            Grid.SetColumn(text, 1);
+            row.Children.Add(text);
+            string captured = name;
+            var run = IconButton("", L.F("Settings_TaskRun", name));
+            run.Click += (_, _) => _app.RunList(ScheduledTasks.PathOf(captured));
+            Grid.SetColumn(run, 2);
+            row.Children.Add(run);
+            var remove = IconButton("", L.F("Settings_TaskDelete", name));
+            remove.Click += (_, _) =>
+            {
+                if (ScheduledTasks.Delete(captured) is { } error)
+                {
+                    _app.Notify(L.Get("Notify_ProblemTitle"), error);
+                }
+
+                LoadTasks();
+            };
+            Grid.SetColumn(remove, 3);
+            row.Children.Add(remove);
+            TasksList.Children.Add(row);
+        }
+
+        if (TasksList.Children.Count == 0)
+        {
+            TasksList.Children.Add(new TextBlock { Text = L.Get("Settings_TasksEmpty"), FontSize = 12, Foreground = ThemeManager.TextSecondaryBrush, TextWrapping = TextWrapping.Wrap });
+        }
+    }
+
+    private static Button IconButton(string glyph, string name)
+    {
+        var button = new Button
+        {
+            Content = new FontIcon { Glyph = glyph, FontSize = 12 },
+            Background = new SolidColorBrush(Microsoft.UI.Colors.Transparent),
+            BorderThickness = new Thickness(0),
+        };
+        Microsoft.UI.Xaml.Automation.AutomationProperties.SetName(button, name);
+        ToolTipService.SetToolTip(button, name);
+        return button;
     }
 
     private async void AddFavorite_Click(object sender, RoutedEventArgs e)

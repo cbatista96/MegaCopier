@@ -217,7 +217,7 @@ public sealed class JobStore
     public JobStore(string? directory = null)
     {
         Directory = directory ?? System.IO.Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MegaCopier", "jobs");
+            DataFolder.Path, "jobs");
     }
 
     public string Directory { get; }

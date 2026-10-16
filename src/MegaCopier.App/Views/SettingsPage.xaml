@@ -313,6 +313,18 @@
                     </StackPanel>
                 </Border>
 
+                <!-- Tareas programadas -->
+                <TextBlock x:Uid="Settings_Tasks" Style="{StaticResource McSection}" />
+                <Border Style="{StaticResource McSettingCard}">
+                    <StackPanel Spacing="8">
+                        <Grid Style="{StaticResource Row}">
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+                            <FontIcon VerticalAlignment="Center" Glyph="&#xE823;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
+                            <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_TasksTitle" Style="{StaticResource McBody}" /><TextBlock x:Uid="Settings_TasksDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                        </Grid>
+                        <StackPanel x:Name="TasksList" Spacing="4" Margin="30,0,0,0" />
+                    </StackPanel>
+                </Border>
                 <!-- Cola -->
                 <TextBlock x:Uid="Settings_Queue" Style="{StaticResource McSection}" />
                 <Border Style="{StaticResource McSettingCard}">

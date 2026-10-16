@@ -613,3 +613,20 @@ History_Undo.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Desha
 History_CopyBack.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Copiar de vuelta a la carpeta de origen (restaurar)	Copy back to the source folder (restore)
 History_Open.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Abrir el destino	Open destination
 History_Repeat.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Repetir (solo copia lo nuevo o lo que cambió)	Repeat (copies only what is new or changed)
+Task_Header.Text	O guárdala como tarea para que Windows la repita sola a la hora elegida arriba:	Or save it as a task so Windows repeats it at the time chosen above:
+Task_Name.PlaceholderText	Nombre de la tarea	Task name
+Task_Once.Content	Una vez	Once
+Task_Daily.Content	Cada día	Every day
+Task_Weekly.Content	Cada semana	Every week
+Task_Save.Text	Guardar como tarea	Save as task
+Task_SavedOnce	Tarea «{0}» guardada: se hará el {2} a las {1}.	Task "{0}" saved: it will run on {2} at {1}.
+Task_SavedDaily	Tarea «{0}» guardada: se hará cada día a las {1}.	Task "{0}" saved: it will run every day at {1}.
+Task_SavedWeekly	Tarea «{0}» guardada: se hará cada semana, el mismo día que el {2}, a las {1}.	Task "{0}" saved: it will run every week, on the same weekday as {2}, at {1}.
+Task_Failed	No se pudo programar: {0}	Could not schedule it: {0}
+Settings_Tasks.Text	Tareas programadas	Scheduled tasks
+Settings_TasksTitle.Text	Copias que se repiten solas	Transfers that repeat on their own
+Settings_TasksDescription.Text	Se crean desde la pestaña Opciones de una copia («Guardar como tarea») y las lanza el Programador de tareas de Windows, aunque MegaCopier esté cerrado.	Create them from a transfer's Options tab ("Save as task"); the Windows Task Scheduler runs them, even when MegaCopier is closed.
+Settings_TasksEmpty	Todavía no hay tareas.	No tasks yet.
+Settings_TaskRun	Ejecutar «{0}» ahora	Run "{0}" now
+Settings_TaskDelete	Borrar la tarea «{0}»	Delete the task "{0}"
+About_Portable	portátil (datos en {0})	portable (data in {0})

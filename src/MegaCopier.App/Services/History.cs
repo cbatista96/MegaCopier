@@ -55,7 +55,7 @@ internal static class History
     private static readonly Lock Gate = new();
 
     private static string FilePath { get; } = Path.Combine(
-        Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MegaCopier", "history.json");
+        Engine.DataFolder.Path, "history.json");
 
     private static string ListsFolder { get; } = Path.Combine(Path.GetDirectoryName(FilePath)!, "history");
 
