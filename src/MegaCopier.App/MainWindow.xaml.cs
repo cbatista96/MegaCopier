@@ -1233,7 +1233,7 @@ public sealed partial class MainWindow : Window
 
     private async void TestFiles_Click(object sender, RoutedEventArgs e)
     {
-        var lists = await Pickers.PickFilesAsync(".sha256", ".sha1", ".sha512", ".md5", ".sfv", ".xxh3", ".xxh64", ".xxh128", ".sha3-256", ".sha3-512");
+        var lists = await Pickers.PickFilesAsync(".sha256", ".sha1", ".sha512", ".md5", ".sfv", ".xxh3", ".xxh64", ".xxh128", ".sha3-256", ".sha3-512", ".b3", ".blake3");
         if (lists.Count > 0)
         {
             Submit(new IpcRequest { Command = "copy", Operation = Engine.JobOperation.Test, Sources = [.. lists] });

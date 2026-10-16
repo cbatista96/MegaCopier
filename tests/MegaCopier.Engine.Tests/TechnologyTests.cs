@@ -341,6 +341,36 @@ public sealed class TechnologyTests : IDisposable
         Assert.Equal(0, again.FilesSkipped);
     }
 
+    [Theory]
+    [InlineData(0, "af1349b9f5f9a1a6a0404dea36dcc9499bcb25c9adc112b7cc9a93cae41f3262")]
+    [InlineData(1025, "d00278ae47eb27b34faecf67b4fe263f82d5412916c1ffd97c8cb7fb814b8444")]
+    [InlineData(1_000_003, "cd5a3272e01b1a2f47bb4565d8d202db0f95704d32550a2da61a0fd363d4c90d")]
+    public void Blake3MatchesTheOfficialImplementation(int length, string expected)
+    {
+        // Valores de la implementación oficial en Rust (Blake3.Native) para bytes i % 251.
+        var data = new byte[length];
+        for (int i = 0; i < length; i++)
+        {
+            data[i] = (byte)(i % 251);
+        }
+
+        string source = _temp.Combine("src/datos.bin");
+        Directory.CreateDirectory(Path.GetDirectoryName(source)!);
+        File.WriteAllBytes(source, data);
+        var options = Options();
+        options.HashAlgorithm = FileHashAlgorithm.Blake3;
+        options.SaveChecksumFile = true;
+        options.Verify = true;
+        var engine = new CopyEngine(options);
+        engine.Run(new CopyJobRequest([source], _temp.Combine("dst")));
+
+        Assert.Equal(expected, engine.Files.Snapshot().Single().SourceHash);
+        Assert.EndsWith(".b3", engine.ChecksumFile);
+        var test = Options();
+        test.Operation = JobOperation.Test;
+        Assert.True(new CopyEngine(test).Run(new CopyJobRequest([engine.ChecksumFile!], _temp.Combine("dst"))).Success);
+    }
+
     [Fact]
     public void SystemCopyCanBeCancelled()
     {
