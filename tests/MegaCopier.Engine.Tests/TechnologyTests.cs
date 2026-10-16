@@ -166,6 +166,42 @@ public sealed class TechnologyTests : IDisposable
     }
 
     [Fact]
+    public void PreflightRejectsFilesTooLargeForFat32BeforeCopying()
+    {
+        string huge = _temp.Combine("src/pelicula.mkv");
+        Directory.CreateDirectory(Path.GetDirectoryName(huge)!);
+        using (var handle = File.OpenHandle(huge, FileMode.Create, FileAccess.ReadWrite))
+        {
+            Win32.SetSparse(handle);
+            RandomAccess.SetLength(handle, 5L * 1024 * 1024 * 1024);
+        }
+
+        Write("src/foto.jpg", "foto");
+        Write("src/CON .txt", "x");
+        var engine = new CopyEngine(Options()) { FileSystemOverride = _ => "FAT32" };
+        var log = new List<LogEntry>();
+        engine.Logged += log.Add;
+        var started = new List<string>();
+        engine.Files.Changed += c =>
+        {
+            if (c.Kind == TransferListChangeKind.Updated && c.Item.State == FileState.Copying)
+            {
+                started.Add(Path.GetFileName(c.Item.Source));
+            }
+        };
+
+        var result = engine.Run(new CopyJobRequest([_temp.Combine("src")], _temp.Combine("dst")));
+
+        Assert.DoesNotContain("pelicula.mkv", started); // ni lo intentó
+        Assert.Single(result.Failures);
+        Assert.Equal(FileErrorKind.TooLargeForFileSystem, result.Failures[0].Kind);
+        Assert.True(File.Exists(_temp.Combine("dst/src/foto.jpg")));
+        Assert.False(File.Exists(_temp.Combine("dst/src/pelicula.mkv")));
+        Assert.Contains(log, l => l.Level == LogLevel.Warning && l.Message.Contains("FAT32", StringComparison.Ordinal));
+        Assert.Contains(log, l => l.Level == LogLevel.Warning && l.Message.Contains("Nombre problemático", StringComparison.Ordinal));
+    }
+
+    [Fact]
     public void SystemCopyCanBeCancelled()
     {
         string source = Write("src/enorme.bin", "");

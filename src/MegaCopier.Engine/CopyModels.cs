@@ -188,6 +188,9 @@ public enum FileErrorKind
 
     /// <summary>Comprobar sumas: el archivo no coincide con la suma guardada.</summary>
     ChecksumMismatch,
+
+    /// <summary>El archivo es demasiado grande para el sistema de archivos del destino (FAT32: 4 GB).</summary>
+    TooLargeForFileSystem,
     DeleteFailed,
 }
 
