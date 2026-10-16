@@ -134,6 +134,38 @@ public sealed class TechnologyTests : IDisposable
     }
 
     [Fact]
+    public void SparseFilesStaySparse()
+    {
+        string source = _temp.Combine("src/disco.vhd");
+        Directory.CreateDirectory(Path.GetDirectoryName(source)!);
+        const long size = 200L * 1024 * 1024;
+        var data = Enumerable.Range(0, 1024 * 1024).Select(i => (byte)(i * 7 + 1)).ToArray();
+        using (var handle = File.OpenHandle(source, FileMode.Create, FileAccess.ReadWrite))
+        {
+            Assert.True(Win32.SetSparse(handle));
+            RandomAccess.SetLength(handle, size);
+            RandomAccess.Write(handle, data, 0);
+            RandomAccess.Write(handle, data, size - data.Length);
+        }
+
+        Assert.True(Win32.AllocatedSize(source) < 16L * 1024 * 1024);
+        var options = Options();
+        options.Verify = true;
+        options.HashAlgorithm = FileHashAlgorithm.Sha256;
+        var engine = new CopyEngine(options);
+        var result = engine.Run(new CopyJobRequest([source], _temp.Combine("dst")));
+
+        string copy = _temp.Combine("dst/disco.vhd");
+        Assert.True(result.Success);
+        Assert.Equal(size, new FileInfo(copy).Length);
+        Assert.True((File.GetAttributes(copy) & FileAttributes.SparseFile) != 0);
+        Assert.True(Win32.AllocatedSize(copy) < 16L * 1024 * 1024, $"ocupa {Win32.AllocatedSize(copy)} bytes");
+        var item = engine.Files.Snapshot().Single();
+        Assert.Equal(FileState.Verified, item.State);
+        Assert.Equal(item.SourceHash, item.DestinationHash);
+    }
+
+    [Fact]
     public void SystemCopyCanBeCancelled()
     {
         string source = Write("src/enorme.bin", "");

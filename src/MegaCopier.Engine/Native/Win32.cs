@@ -40,6 +40,25 @@ internal static partial class Win32
         }
     }
 
+    /// <summary>Marca el archivo como disperso (FSCTL_SET_SPARSE). False si el sistema de archivos no lo admite.</summary>
+    public static unsafe bool SetSparse(SafeFileHandle file) =>
+        DeviceIoControl(file, 0x000900C4, null, 0, null, 0, out _, null);
+
+    /// <summary>Lo que ocupa de verdad un archivo en el disco (menos que su tamaño si es disperso o comprimido).</summary>
+    public static unsafe long AllocatedSize(string path)
+    {
+        uint high;
+        uint low = GetCompressedFileSizeW(LongPath(path), &high);
+        return low == uint.MaxValue && Marshal.GetLastPInvokeError() != 0 ? -1 : ((long)high << 32) | low;
+    }
+
+    [LibraryImport("kernel32.dll", SetLastError = true, StringMarshalling = StringMarshalling.Utf16)]
+    private static unsafe partial uint GetCompressedFileSizeW(string path, uint* high);
+
+    [LibraryImport("kernel32.dll", SetLastError = true)]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static unsafe partial bool DeviceIoControl(SafeFileHandle device, uint code, void* input, int inputSize, void* output, int outputSize, out int returned, void* overlapped);
+
     [LibraryImport("kernel32.dll", SetLastError = true)]
     [return: MarshalAs(UnmanagedType.Bool)]
     private static unsafe partial bool SetFileTime(SafeFileHandle file, long* creation, long* access, long* lastWrite);
