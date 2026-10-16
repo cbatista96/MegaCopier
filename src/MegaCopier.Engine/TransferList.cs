@@ -13,6 +13,32 @@ public enum FileState
     Verified,
     Skipped,
     Failed,
+
+    /// <summary>Simulación: lo que se haría (en el mensaje), sin hacerlo.</summary>
+    Planned,
+
+    /// <summary>Borrado del destino al sincronizar (no estaba en el origen).</summary>
+    Deleted,
+}
+
+/// <summary>Lo que se hace (o se haría, al simular) con un archivo.</summary>
+public enum PlannedAction
+{
+    None,
+    Copy,
+    Replace,
+    ReplaceNewer,
+    ReplaceSize,
+    KeepBoth,
+    RenameExisting,
+    Ask,
+    SkipIdentical,
+    SkipExists,
+    SkipOlder,
+    SkipSameSize,
+    SkipNotInDestination,
+    Delete,
+    Fail,
 }
 
 /// <summary>Un archivo del trabajo, observable desde la interfaz.</summary>
@@ -49,7 +75,10 @@ public sealed class TransferItem
 
     public FileErrorKind ErrorKind { get; internal set; }
 
-    public bool IsFinished => State is FileState.Copied or FileState.Verified or FileState.Skipped or FileState.Failed;
+    /// <summary>Al simular (o al sincronizar): qué se hace o se haría con este archivo.</summary>
+    public PlannedAction Action { get; internal set; }
+
+    public bool IsFinished => State is FileState.Copied or FileState.Verified or FileState.Skipped or FileState.Failed or FileState.Planned or FileState.Deleted;
 }
 
 public enum TransferListChangeKind
@@ -197,6 +226,22 @@ public sealed class TransferList
 
         Changed?.Invoke(new TransferListChange(TransferListChangeKind.Added, item, index));
         return item;
+    }
+
+    /// <summary>Vuelve a dejar un archivo pendiente, al final de la lista (regla "al final de la cola").</summary>
+    internal void Requeue(TransferItem item)
+    {
+        int index;
+        lock (_lock)
+        {
+            _items.Remove(item);
+            item.State = FileState.Pending;
+            item.Message = null;
+            _items.Add(item);
+            index = _items.Count - 1;
+        }
+
+        Changed?.Invoke(new TransferListChange(TransferListChangeKind.Moved, item, index));
     }
 
     /// <summary>El siguiente pendiente en el orden actual (o null si no queda ninguno), ya marcado como en curso.</summary>

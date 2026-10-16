@@ -9,6 +9,9 @@ public sealed record CopyJobRequest(IReadOnlyList<string> Sources, string Destin
 
     /// <summary>Orden elegido por el usuario para los pendientes (rutas de origen); lo demás va detrás.</summary>
     public IReadOnlyList<string> Order { get; init; } = [];
+
+    /// <summary>El trabajo ya empezó antes (se está reanudando): la regla de carpetas existentes no se vuelve a aplicar.</summary>
+    public bool Resumed { get; init; }
 }
 
 public enum CopyPhase
@@ -20,6 +23,12 @@ public enum CopyPhase
 
     /// <summary>Esperando a que el usuario decida un conflicto.</summary>
     WaitingForUser,
+
+    /// <summary>Esperando a que vuelva la red o la unidad.</summary>
+    WaitingForDevice,
+
+    /// <summary>Esperando a que haya espacio en el destino.</summary>
+    WaitingForSpace,
     Completed,
 }
 
@@ -73,6 +82,9 @@ public sealed class CopyJobResult
     public int FilesResumed { get; internal set; }
 
     public int FilesSkipped { get; internal set; }
+
+    /// <summary>Archivos borrados del destino por sincronizar (o que se borrarían, al simular).</summary>
+    public int FilesDeleted { get; internal set; }
 
     public List<FileFailure> Failures { get; } = [];
 

@@ -89,6 +89,60 @@ internal static partial class Links
         }
     }
 
+    /// <summary>Cuántos nombres tiene el archivo y su identidad (volumen + índice): iguales = mismo archivo.</summary>
+    public static (uint Count, uint Volume, ulong Index)? GetLinkInfo(string path)
+    {
+        try
+        {
+            using var handle = File.OpenHandle(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite | FileShare.Delete);
+            if (!GetFileInformationByHandle(handle, out var info))
+            {
+                return null;
+            }
+
+            return (info.NumberOfLinks, info.VolumeSerialNumber, ((ulong)info.FileIndexHigh << 32) | info.FileIndexLow);
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+        {
+            return null;
+        }
+    }
+
+    public static void CreateHardLink(string link, string existing)
+    {
+        if (!CreateHardLinkW(Win32.LongPath(link), Win32.LongPath(existing), 0))
+        {
+            throw new IOException($"No se pudo crear el enlace duro {link}.", Marshal.GetHRForLastWin32Error());
+        }
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    private struct ByHandleInfo
+    {
+        public uint FileAttributes;
+        // FILETIME son dos DWORD: con long la estructura se alinearía a 8 y los campos quedarían desplazados.
+        public uint CreationLow;
+        public uint CreationHigh;
+        public uint AccessLow;
+        public uint AccessHigh;
+        public uint WriteLow;
+        public uint WriteHigh;
+        public uint VolumeSerialNumber;
+        public uint FileSizeHigh;
+        public uint FileSizeLow;
+        public uint NumberOfLinks;
+        public uint FileIndexHigh;
+        public uint FileIndexLow;
+    }
+
+    [LibraryImport("kernel32.dll", SetLastError = true)]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static partial bool GetFileInformationByHandle(SafeFileHandle file, out ByHandleInfo info);
+
+    [LibraryImport("kernel32.dll", SetLastError = true, StringMarshalling = StringMarshalling.Utf16)]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static partial bool CreateHardLinkW(string link, string existing, nint security);
+
     [LibraryImport("kernel32.dll", SetLastError = true, StringMarshalling = StringMarshalling.Utf16)]
     private static partial SafeFileHandle CreateFileW(string name, uint access, uint share, nint security, uint disposition, uint flags, nint template);
 

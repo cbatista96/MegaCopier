@@ -114,6 +114,8 @@ public sealed partial class CopyEngine
                 return RunTest(request, stopwatch, cancellationToken);
             case JobOperation.Delete:
                 return RunDelete(request, stopwatch, cancellationToken);
+            case JobOperation.Hash:
+                return RunHash(request, stopwatch, cancellationToken);
         }
 
         _destinationRoot = Path.TrimEndingDirectorySeparator(Path.GetFullPath(request.Destination));
@@ -138,13 +140,18 @@ public sealed partial class CopyEngine
         }
 
         var excluded = new HashSet<string>(request.Excluded, StringComparer.OrdinalIgnoreCase);
+        if (_options.FolderConflict == FolderConflictPolicy.Skip && !request.Resumed)
+        {
+            plan = SkipExistingFolders(request, plan);
+        }
+
         var progress = new ProgressTracker(p => ProgressChanged?.Invoke(p), _options.ProgressInterval);
         var result = new CopyJobResult();
 
         // Mover dentro del mismo volumen: cada elemento de primer nivel se renombra de una vez, sin copiar nada.
-        var renamed = _options.Move ? RenameWholeSources(request, plan, result) : [];
+        var renamed = _options.Move && !_options.DryRun ? RenameWholeSources(request, plan, result) : [];
 
-        if (_options.CheckFreeSpace)
+        if (_options.CheckFreeSpace && !_options.DryRun && _options.Mode != CopyMode.FoldersOnly)
         {
             EnsureFreeSpace(plan, request.Destination, renamed);
         }
@@ -153,7 +160,7 @@ public sealed partial class CopyEngine
 
         var renamedItems = new List<TransferItem>();
         // El orden que el usuario eligió arrastrando (se guarda en el trabajo) se respeta al reanudar.
-        var files = plan.Files.Where(f => !excluded.Contains(f.Source));
+        var files = plan.Files.Where(f => !excluded.Contains(f.Source) && _options.Mode != CopyMode.FoldersOnly);
         if (request.Order.Count > 0)
         {
             var rank = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
@@ -185,13 +192,19 @@ public sealed partial class CopyEngine
             progress.EndFile();
         }
 
-        Directory.CreateDirectory(request.Destination);
-        foreach (var directory in plan.Directories.Where(d => !renamed.Contains(d.Source)))
+        if (!_options.DryRun)
         {
-            Directory.CreateDirectory(directory.Destination);
-        }
+            Directory.CreateDirectory(request.Destination);
+            foreach (var directory in plan.Directories.Where(d => !renamed.Contains(d.Source) && (_options.Mode != CopyMode.UpdateExisting || Directory.Exists(d.Destination))))
+            {
+                Directory.CreateDirectory(directory.Destination);
+            }
 
-        CreateLinks(plan.Links.Where(l => !renamed.Contains(l.Source)), result);
+            if (_options.Mode != CopyMode.FoldersOnly)
+            {
+                CreateLinks(plan.Links.Where(l => !renamed.Contains(l.Source)), result);
+            }
+        }
 
         using (var pool = new BufferPool(_options.BlockSize, FileTransfer.RequiredBuffers(_options)))
         {
@@ -202,9 +215,30 @@ public sealed partial class CopyEngine
                 cancellationToken.ThrowIfCancellationRequested();
                 Controller.WaitIfPaused(cancellationToken);
                 progress.BeginFile(item.Destination, item.Length);
-                ProcessFile(transfer, progress, item, result, cancellationToken);
+                if (_options.DryRun)
+                {
+                    SimulateFile(item, result);
+                }
+                else
+                {
+                    ProcessFile(transfer, progress, item, result, cancellationToken);
+                }
+
                 progress.EndFile();
             }
+        }
+
+        if (_options.Mode == CopyMode.Mirror)
+        {
+            MirrorExtras(request, plan, result, cancellationToken);
+        }
+
+        if (_options.DryRun)
+        {
+            progress.Finish();
+            result.Elapsed = stopwatch.Elapsed;
+            Log(LogLevel.Info, $"Simulación: se copiarían {result.FilesCopied}, se omitirían {result.FilesSkipped} y se borrarían {result.FilesDeleted}.");
+            return result;
         }
 
         // Las fechas de las carpetas se aplican al final (crear archivos dentro las cambia), de la más profunda a la raíz.
@@ -296,7 +330,7 @@ public sealed partial class CopyEngine
         if (resolution.Target is not { } target)
         {
             result.FilesSkipped++;
-            Files.Update(item, FileState.Skipped, resolution.Identical ? "Idéntico al existente" : "Ya existía: omitido");
+            Files.Update(item, FileState.Skipped, resolution.Reason ?? (resolution.Identical ? "Idéntico al existente" : "Ya existía: omitido"));
 
             if (resolution.Identical && _options.VerifySkipped)
             {
@@ -323,6 +357,18 @@ public sealed partial class CopyEngine
         if (_options.Move && SameVolume(item.Source, target))
         {
             MoveByRename(item, target, result);
+            return;
+        }
+
+        // Lo que se va a reemplazar se guarda antes en la carpeta de versiones.
+        if (_options.VersionsFolder.Length > 0 && File.Exists(target))
+        {
+            KeepVersion(target);
+        }
+
+        // Enlaces duros: si este archivo es el mismo que otro ya copiado, se enlaza en lugar de copiarlo otra vez.
+        if (_options.PreserveHardLinks && TryHardLink(item, target, result))
+        {
             return;
         }
 
@@ -362,6 +408,20 @@ public sealed partial class CopyEngine
                 Fail(item, result, "Los hashes no coinciden", FileErrorKind.HashMismatch);
                 return;
             }
+
+            // Verificación completa: también se relee el origen (detecta una lectura defectuosa del disco de origen).
+            if (verified && _options.VerifySource && outcome.SourceHash is { } expected && HashFile(item.Source) != expected)
+            {
+                Fail(item, result, "El origen releído no coincide con lo copiado (lectura defectuosa o cambió durante la copia)", FileErrorKind.HashMismatch);
+                return;
+            }
+
+            if (_options.SaveHashStream && outcome.SourceHash is { } hash)
+            {
+                WriteHashStream(target, hash, item.LastWriteUtc);
+            }
+
+            RememberHardLink(item, target);
 
             Files.Update(item, verified ? FileState.Verified : FileState.Copied);
 
@@ -540,7 +600,14 @@ public sealed partial class CopyEngine
         try
         {
             ClearReadOnly(item.Source);
-            File.Delete(item.Source);
+            if (_options.WipeSource)
+            {
+                Wipe(item.Source, new byte[CopyOptions.MiB], new ProgressTracker(null, TimeSpan.FromSeconds(1)), CancellationToken.None);
+            }
+            else
+            {
+                File.Delete(item.Source);
+            }
         }
         catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
         {
@@ -634,6 +701,15 @@ public sealed partial class CopyEngine
             }
             catch (Exception ex) when (ex is IOException or UnauthorizedAccessException && !cancellationToken.IsCancellationRequested)
             {
+                // Red o unidad desconectada, o disco lleno: se espera a que se arregle sin gastar reintentos.
+                var kind = FileErrors.Classify(ex);
+                if (WaitForRecovery(kind, item, target, progress, cancellationToken))
+                {
+                    attempt--;
+                    progress.RestartFile();
+                    continue;
+                }
+
                 if (attempt >= _options.RetryCount)
                 {
                     if (_options.OnError == ErrorPolicy.Stop)
@@ -641,7 +717,15 @@ public sealed partial class CopyEngine
                         throw;
                     }
 
-                    Fail(item, result, ex.Message, FileErrors.Classify(ex));
+                    // "Al final de la cola": se vuelve a intentar una vez cuando acabe todo lo demás.
+                    if (_options.OnError == ErrorPolicy.MoveToEnd && _requeued.Add(item.Id))
+                    {
+                        Log(LogLevel.Warning, $"Se reintentará al final: {ex.Message}", item.Source);
+                        Files.Requeue(item);
+                        return null;
+                    }
+
+                    Fail(item, result, ex.Message, kind);
                     return null;
                 }
 
@@ -654,7 +738,9 @@ public sealed partial class CopyEngine
         }
     }
 
-    private readonly record struct Resolution(string? Target, bool Identical = false);
+    private readonly record struct Resolution(string? Target, bool Identical = false, string? Reason = null);
+
+    private readonly HashSet<int> _requeued = [];
 
     /// <summary>Decide el nombre final del archivo, o ninguno si hay que omitirlo.</summary>
     private Resolution ResolveTarget(PlannedFile file, ProgressTracker progress, CancellationToken cancellationToken)
@@ -667,7 +753,10 @@ public sealed partial class CopyEngine
         var existing = new FileInfo(file.Destination);
         if (!existing.Exists)
         {
-            return new Resolution(file.Destination);
+            // "Solo actualizar los existentes": lo que no está en el destino no se añade.
+            return _options.Mode == CopyMode.UpdateExisting
+                ? new Resolution(null, Reason: "No existe en el destino (solo se actualizan los existentes)")
+                : new Resolution(file.Destination);
         }
 
         if (!_options.ForceRecopy && IsIdentical(existing, file))
@@ -695,7 +784,7 @@ public sealed partial class CopyEngine
         {
             ConflictPolicy.Overwrite => new Resolution(file.Destination),
             ConflictPolicy.Skip => new Resolution(null),
-            ConflictPolicy.OverwriteIfNewer => new Resolution(file.LastWriteUtc > existing.LastWriteTimeUtc ? file.Destination : null),
+            ConflictPolicy.OverwriteIfNewer => new Resolution(file.LastWriteUtc > existing.LastWriteTimeUtc + _options.TimeTolerance ? file.Destination : null),
             ConflictPolicy.OverwriteIfDifferentSize => new Resolution(file.Length != existing.Length ? file.Destination : null),
             ConflictPolicy.KeepBoth => UniqueTarget(file),
             ConflictPolicy.RenameExisting => RenameExisting(file),
@@ -810,8 +899,9 @@ public sealed partial class CopyEngine
         }
     }
 
-    private static bool IsIdentical(FileInfo existing, PlannedFile file) =>
-        existing.Length == file.Length && existing.LastWriteTimeUtc == file.LastWriteUtc;
+    /// <summary>Mismo tamaño y fecha (con la tolerancia de FAT/exFAT/NAS, que guardan la hora con menos precisión).</summary>
+    private bool IsIdentical(FileInfo existing, PlannedFile file) =>
+        existing.Length == file.Length && (existing.LastWriteTimeUtc - file.LastWriteUtc).Duration() <= _options.TimeTolerance;
 
     private void EnsureFreeSpace(CopyPlan plan, string destination, HashSet<string> renamed)
     {

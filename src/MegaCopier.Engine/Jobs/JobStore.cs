@@ -73,6 +73,31 @@ public sealed class CopyJobRecord
 
     public bool CheckFreeSpace { get; set; } = true;
 
+    public CopyMode Mode { get; set; }
+
+    public bool DryRun { get; set; }
+
+    public string VersionsFolder { get; set; } = "";
+
+    public FolderConflictPolicy FolderConflict { get; set; }
+
+    public double TimeToleranceSeconds { get; set; } = 2;
+
+    public bool VerifySource { get; set; }
+
+    public bool SaveHashStream { get; set; }
+
+    public bool PreserveHardLinks { get; set; }
+
+    public bool WipeSource { get; set; }
+
+    public bool WaitForDevice { get; set; } = true;
+
+    public bool WaitForSpace { get; set; } = true;
+
+    /// <summary>Ya se ejecutó alguna vez (al reanudar no se vuelve a aplicar la regla de carpetas existentes).</summary>
+    public bool Started { get; set; }
+
     /// <summary>Orden de los pendientes elegido arrastrando (rutas de origen).</summary>
     public List<string> FileOrder { get; set; } = [];
 
@@ -110,6 +135,17 @@ public sealed class CopyJobRecord
         RetryDelaySeconds = options.RetryDelay.TotalSeconds,
         OnError = options.OnError,
         CheckFreeSpace = options.CheckFreeSpace,
+        Mode = options.Mode,
+        DryRun = options.DryRun,
+        VersionsFolder = options.VersionsFolder,
+        FolderConflict = options.FolderConflict,
+        TimeToleranceSeconds = options.TimeTolerance.TotalSeconds,
+        VerifySource = options.VerifySource,
+        SaveHashStream = options.SaveHashStream,
+        PreserveHardLinks = options.PreserveHardLinks,
+        WipeSource = options.WipeSource,
+        WaitForDevice = options.WaitForDevice,
+        WaitForSpace = options.WaitForSpace,
     };
 
     /// <summary>Lista de copia guardada (.mclist): orígenes, destino, opciones y archivos excluidos.</summary>
@@ -144,6 +180,17 @@ public sealed class CopyJobRecord
             RetryDelay = TimeSpan.FromSeconds(Math.Clamp(RetryDelaySeconds, 0, 3600)),
             OnError = OnError,
             CheckFreeSpace = CheckFreeSpace,
+            Mode = Mode,
+            DryRun = DryRun,
+            VersionsFolder = VersionsFolder ?? "",
+            FolderConflict = FolderConflict,
+            TimeTolerance = TimeSpan.FromSeconds(Math.Clamp(TimeToleranceSeconds, 0, 3600)),
+            VerifySource = VerifySource,
+            SaveHashStream = SaveHashStream,
+            PreserveHardLinks = PreserveHardLinks,
+            WipeSource = WipeSource,
+            WaitForDevice = WaitForDevice,
+            WaitForSpace = WaitForSpace,
         };
         if (ChunkSize > 0 && BlockSize > 0)
         {
