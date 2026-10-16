@@ -57,6 +57,7 @@
                             <MenuFlyoutSeparator />
                             <MenuFlyoutItem x:Uid="Tool_SendFiles" Click="SendFiles_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE724;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
                             <MenuFlyoutItem x:Uid="Tool_SendFolder" Click="SendFolder_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE724;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
+                            <MenuFlyoutItem x:Uid="Tool_Decrypt" Click="Decrypt_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE785;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
                             <MenuFlyoutSeparator />
                             <MenuFlyoutItem x:Uid="Tool_Delete" Click="Delete_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE74D;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
                             <MenuFlyoutItem x:Uid="Tool_Wipe" Click="Wipe_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE72E;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
@@ -293,6 +294,7 @@
         <ContentDialog
             x:Name="DestinationsDialog"
             x:Uid="DestinationsDialog"
+            PrimaryButtonClick="Destinations_PrimaryClick"
             Grid.RowSpan="3"
             Style="{StaticResource DefaultContentDialogStyle}"
             DefaultButton="Primary">
@@ -312,6 +314,12 @@
                 <InfoBar x:Name="DestinationsMirrorInfo" x:Uid="Options_MirrorInfo" Severity="Warning" IsClosable="False" IsOpen="False" />
                 <CheckBox x:Name="DestinationsMove" x:Uid="Destinations_Move" />
                 <CheckBox x:Name="DestinationsDryRun" x:Uid="Destinations_DryRun" />
+                <CheckBox x:Name="DestinationsEncrypt" x:Uid="Destinations_Encrypt" Click="DestinationsEncrypt_Click" />
+                <StackPanel x:Name="DestinationsEncryptPanel" Spacing="6" Visibility="Collapsed" Margin="28,0,0,0">
+                    <PasswordBox x:Name="DestinationsPassword" x:Uid="Destinations_Password" />
+                    <PasswordBox x:Name="DestinationsPassword2" x:Uid="Destinations_Password2" />
+                    <TextBlock x:Name="DestinationsPasswordInfo" Style="{StaticResource McSecondary}" TextWrapping="Wrap" />
+                </StackPanel>
                 <CheckBox x:Name="DestinationsSchedule" x:Uid="Destinations_Schedule" Click="DestinationsSchedule_Click" />
                 <StackPanel x:Name="DestinationsWhen" Orientation="Horizontal" Spacing="8" Visibility="Collapsed">
                     <CalendarDatePicker x:Name="DestinationsDate" MinWidth="160" />
@@ -349,6 +357,14 @@
                 <TextBox x:Name="SendCodeBox" x:Uid="Send_Code" FontFamily="Consolas" CharacterCasing="Upper" />
             </StackPanel>
         </ContentDialog>
+        <!-- Contraseña (descifrar, o volver a darla tras reiniciar) -->
+        <ContentDialog x:Name="PasswordDialog" x:Uid="PasswordDialog" Grid.RowSpan="3" Style="{StaticResource DefaultContentDialogStyle}" DefaultButton="Primary">
+            <StackPanel Spacing="8" MaxWidth="420">
+                <TextBlock x:Name="PasswordMessage" TextWrapping="Wrap" />
+                <PasswordBox x:Name="PasswordBox" x:Uid="Destinations_Password" />
+            </StackPanel>
+        </ContentDialog>
+
         <!-- Cuenta atrás antes de apagar, suspender... -->
         <ContentDialog
             x:Name="FinishDialog"

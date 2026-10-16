@@ -44,6 +44,9 @@ public enum JobOperation
 
     /// <summary>Enviar a otro equipo con MegaCopier por la red (destino "equipo:puerto", con <see cref="CopyOptions.PeerCode"/>).</summary>
     Send,
+
+    /// <summary>Descifrar archivos .mcenc (con <see cref="CopyOptions.EncryptionPassword"/>) en el destino.</summary>
+    Decrypt,
 }
 
 /// <summary>Qué copia el trabajo.</summary>
@@ -149,6 +152,19 @@ public sealed class CopyOptions
 
     /// <summary>No copiar lo que ya está en el destino con otro nombre o en otra carpeta (mismo contenido).</summary>
     public bool SkipDuplicates { get; set; }
+
+    /// <summary>
+    /// Copia cifrada (AES-256-GCM, archivos .mcenc) con esta contraseña; vacío = sin cifrar. Nunca se guarda en disco: si
+    /// la copia se interrumpe, hay que volver a escribirla.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonIgnore]
+    public string EncryptionPassword { get; set; } = "";
+
+    /// <summary>Esta copia va cifrada (se guarda en el trabajo; la contraseña no): sin contraseña, no se copia nada.</summary>
+    public bool Encrypt { get; set; }
+
+    /// <summary>Sal de este trabajo (la clave se deriva una vez para todos sus archivos).</summary>
+    internal byte[] EncryptionSalt { get; } = EncryptedFile.NewSalt();
 
     /// <summary>Carpetas al organizar por fecha: {yyyy}, {MM}, {dd} (por defecto "{yyyy}\{yyyy}-{MM}").</summary>
     public string OrganizePattern { get; set; } = DefaultOrganizePattern;

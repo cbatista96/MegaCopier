@@ -105,6 +105,8 @@ public sealed class CopyJobRecord
 
     public bool SkipDuplicates { get; set; }
 
+    public bool Encrypt { get; set; }
+
     public string OrganizePattern { get; set; } = CopyOptions.DefaultOrganizePattern;
 
     public string PeerCode { get; set; } = "";
@@ -165,6 +167,7 @@ public sealed class CopyJobRecord
         RescueMode = options.RescueMode,
         DeltaCopy = options.DeltaCopy,
         SkipDuplicates = options.SkipDuplicates,
+        Encrypt = options.Encrypt,
         OrganizePattern = options.OrganizePattern,
         PeerCode = options.PeerCode,
     };
@@ -217,6 +220,7 @@ public sealed class CopyJobRecord
             RescueMode = RescueMode,
             DeltaCopy = DeltaCopy,
             SkipDuplicates = SkipDuplicates,
+            Encrypt = Encrypt,
             OrganizePattern = string.IsNullOrWhiteSpace(OrganizePattern) ? CopyOptions.DefaultOrganizePattern : OrganizePattern,
             PeerCode = PeerCode ?? "",
         };

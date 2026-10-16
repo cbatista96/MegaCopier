@@ -28,6 +28,7 @@ internal static class Cli
             return args[0] switch
             {
                 "copy" => Copy(args[1..], move: false),
+                "decrypt" => Copy(args[1..], move: false, decrypt: true),
                 "move" => Copy(args[1..], move: true),
                 "send" => Send(args[1..]),
                 "test" => Test(args[1..]),
@@ -44,9 +45,9 @@ internal static class Cli
         }
     }
 
-    private static int Copy(string[] args, bool move)
+    private static int Copy(string[] args, bool move, bool decrypt = false)
     {
-        var options = new CopyOptions { Move = move };
+        var options = new CopyOptions { Move = move, Operation = decrypt ? JobOperation.Decrypt : JobOperation.Copy };
         var paths = new List<string>();
         long? crashAfter = null;
 
@@ -123,6 +124,9 @@ internal static class Cli
                 case "--skip-duplicates":
                     options.SkipDuplicates = true;
                     break;
+                case "--encrypt":
+                    options.Encrypt = true;
+                    break;
                 case "--crash-after-mb":
                     crashAfter = NextInt(args, ref i) * (long)CopyOptions.MiB;
                     break;
@@ -137,6 +141,11 @@ internal static class Cli
         if (paths.Count < 2)
         {
             throw new UsageException("Indica al menos un origen y una carpeta de destino.");
+        }
+
+        if (options.Encrypt || decrypt)
+        {
+            options.EncryptionPassword = ReadPassword(confirm: options.Encrypt);
         }
 
         try
@@ -405,7 +414,13 @@ internal static class Cli
         foreach (var job in jobs)
         {
             Console.WriteLine($"Reanudando {job.Id}: {string.Join(", ", job.Sources)} → {job.Destination}");
-            worst = Math.Max(worst, Execute(job, job.ToOptions(), store, crashAfter: null));
+            var options = job.ToOptions();
+            if (options.Encrypt || options.Operation == JobOperation.Decrypt)
+            {
+                options.EncryptionPassword = ReadPassword(confirm: false); // la contraseña no se guarda en el trabajo
+            }
+
+            worst = Math.Max(worst, Execute(job, options, store, crashAfter: null));
             if (worst >= ExitPaused)
             {
                 break;
@@ -613,6 +628,43 @@ internal static class Cli
         return ExitUsage;
     }
 
+    /// <summary>De MEGACOPIER_PASSWORD o preguntada sin mostrarla (al cifrar, dos veces).</summary>
+    private static string ReadPassword(bool confirm)
+    {
+        if (Environment.GetEnvironmentVariable("MEGACOPIER_PASSWORD") is { Length: > 0 } fromEnvironment)
+        {
+            return fromEnvironment;
+        }
+
+        string first = Prompt("Contraseña: ");
+        if (confirm && (first.Length < 8 || Prompt("Repítela: ") != first))
+        {
+            throw new UsageException(first.Length < 8 ? "La contraseña debe tener al menos 8 caracteres." : "Las contraseñas no coinciden.");
+        }
+
+        return first;
+
+        static string Prompt(string label)
+        {
+            Console.Write(label);
+            var text = new System.Text.StringBuilder();
+            while (Console.ReadKey(intercept: true) is var key && key.Key != ConsoleKey.Enter)
+            {
+                if (key.Key == ConsoleKey.Backspace && text.Length > 0)
+                {
+                    text.Length--;
+                }
+                else if (!char.IsControl(key.KeyChar))
+                {
+                    text.Append(key.KeyChar);
+                }
+            }
+
+            Console.WriteLine();
+            return text.ToString();
+        }
+    }
+
     private static void PrintUsage()
     {
         Console.WriteLine("""
@@ -628,6 +680,7 @@ internal static class Cli
               mcopy send --hash <carpeta|archivos>...      Crea un archivo de sumas en la app
               mcopy send ... [--mirror|--update-only|--folders-only] [--dry-run]
               mcopy test <sumas|carpeta>...   Comprueba .sha256, .md5, .sfv, .xxh3... sin la app
+              mcopy decrypt <cifrados|carpeta>... <carpeta-destino>   Descifra archivos .mcenc
               mcopy delete [--secure] --yes <ruta>...   Borra sin la app (--secure: sobrescribe antes)
               mcopy resume [id]      Continúa los trabajos interrumpidos (o solo uno)
               mcopy jobs             Lista los trabajos pendientes
@@ -653,6 +706,7 @@ internal static class Cli
               --delta                Al reemplazar archivos grandes, escribe solo los bloques que cambiaron
               --organize             Organiza fotos y vídeos en carpetas añoño-mes por la fecha de toma
               --skip-duplicates      No copia lo que ya está en el destino (mismo contenido, cualquier nombre)
+              --encrypt              Copia cifrada con contraseña (AES-256, archivos .mcenc)
               --crash-after-mb <n>   [prueba] Mata el proceso tras confirmar n MB de un archivo
 
             Ctrl+C pausa la copia; 'resume' continúa desde el último bloque confirmado.

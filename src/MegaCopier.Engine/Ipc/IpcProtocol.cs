@@ -47,6 +47,12 @@ public sealed class IpcRequest
 
     /// <summary>Al enviar a otro equipo: el código que muestra su MegaCopier.</summary>
     public string? PeerCode { get; set; }
+
+    /// <summary>Copia cifrada (con <see cref="Password"/>).</summary>
+    public bool? Encrypt { get; set; }
+
+    /// <summary>Contraseña para cifrar o descifrar (solo viaja por la tubería local; nunca se guarda).</summary>
+    public string? Password { get; set; }
 }
 
 public sealed class IpcResponse
