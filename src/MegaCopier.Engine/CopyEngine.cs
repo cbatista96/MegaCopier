@@ -192,6 +192,8 @@ public sealed partial class CopyEngine
             progress.EndFile();
         }
 
+        Preflight(request.Destination, result);
+
         if (!_options.DryRun)
         {
             Directory.CreateDirectory(request.Destination);

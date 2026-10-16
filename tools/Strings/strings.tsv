@@ -634,3 +634,4 @@ Job_Estimate	{0}, unos {1}	{0}, about {1}
 Job_EstimateSize	{0} en total	{0} in total
 Settings_SmbCompression.Content	Comprimir al copiar por red (SMB, redes lentas)	Compress when copying over the network (SMB, slow networks)
 Settings_SmbCompression.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Pide al servidor que comprima los datos por el camino (Windows 11 y Windows Server 2022 o posterior). Si el origen y el destino están en el mismo servidor, la copia la hace el propio servidor siempre, sin pasar por este equipo.	Asks the server to compress data on the way (Windows 11 and Windows Server 2022 or later). If source and destination are on the same server, the server always does the copy itself, without going through this PC.
+Error_TooLargeForFileSystem	No cabe en este disco: FAT32 no admite archivos de 4 GB o más. Formatéalo como exFAT o NTFS.	Does not fit on this drive: FAT32 does not allow files of 4 GB or more. Format it as exFAT or NTFS.
