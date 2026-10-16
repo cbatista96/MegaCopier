@@ -34,6 +34,12 @@ internal sealed class FileTransferResult
 
     /// <summary>Modo rescate: bytes del origen que no se pudieron leer (quedaron en ceros).</summary>
     public long UnreadableBytes { get; set; }
+
+    /// <summary>Copia diferencial: solo se escribieron los bloques distintos.</summary>
+    public bool Delta { get; set; }
+
+    /// <summary>Copia diferencial: bytes que ya eran iguales y no se escribieron.</summary>
+    public long BytesUnchanged { get; set; }
 }
 
 /// <summary>
@@ -48,7 +54,7 @@ internal sealed class FileTransferResult
 /// (<see cref="CopyOptions.ReadQueueDepth"/> / <see cref="CopyOptions.WriteQueueDepth"/>); un NVMe necesita
 /// varias peticiones simultáneas para rendir. El hash se calcula en orden mientras las escrituras siguen en curso.
 /// </summary>
-internal sealed class FileTransfer
+internal sealed partial class FileTransfer
 {
     public const string PartialSuffix = ".mcpart";
     public const string JournalSuffix = ".mcjournal";
@@ -87,8 +93,14 @@ internal sealed class FileTransfer
     /// <summary>Hasta este tamaño, la copia va por el camino rápido síncrono (<see cref="CopySmall"/>).</summary>
     public const long SmallFileLimit = 1024 * 1024;
 
-    public FileTransferResult Copy(string sourcePath, string destinationPath, CancellationToken cancellationToken, long lengthHint = -1)
+    public FileTransferResult Copy(string sourcePath, string destinationPath, CancellationToken cancellationToken, long lengthHint = -1, bool delta = false)
     {
+        if (delta && lengthHint >= DeltaThreshold && _faults is null
+            && CopyDelta(sourcePath, destinationPath, cancellationToken) is { } updated)
+        {
+            return updated;
+        }
+
         if (lengthHint is >= 0 and <= SmallFileLimit && _faults is null && _options.MaxBytesPerSecond <= 0
             && CopySmall(sourcePath, destinationPath, cancellationToken) is { } small)
         {

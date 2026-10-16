@@ -677,4 +677,6 @@
   <data name="Job_StatePausedBattery" xml:space="preserve"><value>Paused: on battery</value></data>
   <data name="Job_StatePausedFullScreen" xml:space="preserve"><value>Paused: full screen</value></data>
   <data name="Job_SlowedSchedule" xml:space="preserve"><value>Slower because of the chosen schedule</value></data>
+  <data name="Rules_Delta.Content" xml:space="preserve"><value>When replacing large files, write only what changed</value></data>
+  <data name="Rules_Delta.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Delta copy for files of 16 MB or more (virtual disks, mail, projects): only different blocks are written. If cancelled or power is lost, the file returns to its previous version.</value></data>
 </root>

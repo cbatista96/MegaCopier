@@ -677,4 +677,6 @@
   <data name="Job_StatePausedBattery" xml:space="preserve"><value>En pausa: con batería</value></data>
   <data name="Job_StatePausedFullScreen" xml:space="preserve"><value>En pausa: pantalla completa</value></data>
   <data name="Job_SlowedSchedule" xml:space="preserve"><value>Más despacio por el horario elegido</value></data>
+  <data name="Rules_Delta.Content" xml:space="preserve"><value>Al reemplazar archivos grandes, escribir solo lo que cambió</value></data>
+  <data name="Rules_Delta.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Copia diferencial para archivos de 16 MB o más (discos virtuales, correo, proyectos): solo se escriben los bloques distintos. Si se cancela o se va la luz, el archivo vuelve a su versión anterior.</value></data>
 </root>

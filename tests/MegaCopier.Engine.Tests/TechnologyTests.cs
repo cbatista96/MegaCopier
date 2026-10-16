@@ -371,6 +371,104 @@ public sealed class TechnologyTests : IDisposable
         Assert.True(new CopyEngine(test).Run(new CopyJobRequest([engine.ChecksumFile!], _temp.Combine("dst"))).Success);
     }
 
+    private (string Source, string Target, byte[] Old, byte[] New) DeltaFiles(int newLength)
+    {
+        var old = new byte[40 * 1024 * 1024];
+        new Random(7).NextBytes(old);
+        var fresh = old.Take(Math.Min(old.Length, newLength)).Concat(new byte[Math.Max(0, newLength - old.Length)]).ToArray();
+        foreach (int at in new[] { 1_000_000, 20_000_000, Math.Min(newLength, old.Length) - 10 })
+        {
+            fresh[at] ^= 0xFF; // tres cambios pequeños
+        }
+
+        string source = _temp.Combine("src/disco.vhdx");
+        string target = _temp.Combine("dst/disco.vhdx");
+        Directory.CreateDirectory(Path.GetDirectoryName(source)!);
+        Directory.CreateDirectory(Path.GetDirectoryName(target)!);
+        File.WriteAllBytes(target, old);
+        File.WriteAllBytes(source, fresh);
+        File.SetLastWriteTimeUtc(source, DateTime.UtcNow.AddMinutes(5));
+        return (source, target, old, fresh);
+    }
+
+    private static CopyOptions DeltaOptions()
+    {
+        var options = Options();
+        options.DeltaCopy = true;
+        options.Conflict = ConflictPolicy.Overwrite;
+        options.Verify = true;
+        options.HashAlgorithm = FileHashAlgorithm.Sha256;
+        return options;
+    }
+
+    [Theory]
+    [InlineData(40 * 1024 * 1024 + 700_000)] // crece
+    [InlineData(30 * 1024 * 1024)] // encoge
+    public void DeltaCopyWritesOnlyChangedBlocks(int newLength)
+    {
+        var (source, target, _, fresh) = DeltaFiles(newLength);
+        var engine = new CopyEngine(DeltaOptions());
+        var log = new List<LogEntry>();
+        engine.Logged += log.Add;
+
+        var result = engine.Run(new CopyJobRequest([source], Path.GetDirectoryName(target)!));
+
+        Assert.True(result.Success);
+        Assert.True(File.ReadAllBytes(target).SequenceEqual(fresh));
+        Assert.Equal(File.GetLastWriteTimeUtc(source), File.GetLastWriteTimeUtc(target));
+        Assert.Equal(FileState.Verified, engine.Files.Snapshot().Single().State);
+        Assert.True(result.BytesTransferred <= 5L * 1024 * 1024, $"escribió {result.BytesTransferred} bytes");
+        Assert.Contains(log, l => l.Message.StartsWith("Copia diferencial", StringComparison.Ordinal));
+        Assert.Empty(Directory.GetFiles(Path.GetDirectoryName(target)!, "*.mc*"));
+    }
+
+    [Fact]
+    public void CancelledDeltaCopyRestoresThePreviousVersion()
+    {
+        var (source, target, old, _) = DeltaFiles(40 * 1024 * 1024);
+        using var cancellation = new CancellationTokenSource();
+        var engine = new CopyEngine(DeltaOptions());
+        engine.ProgressChanged += p =>
+        {
+            if (p.CompletedBytes > 25L * 1024 * 1024)
+            {
+                cancellation.Cancel(); // ya se sobrescribió el bloque del primer cambio
+            }
+        };
+
+        Assert.ThrowsAny<OperationCanceledException>(() => engine.Run(new CopyJobRequest([source], Path.GetDirectoryName(target)!), cancellation.Token));
+
+        Assert.True(File.ReadAllBytes(target).SequenceEqual(old));
+        Assert.Empty(Directory.GetFiles(Path.GetDirectoryName(target)!, "*.mc*"));
+    }
+
+    [Fact]
+    public void PowerCutDuringDeltaCopyIsUndone()
+    {
+        // Estado tras un apagón: el archivo antiguo es el .mcpart, un bloque ya sobrescrito y su copia en el .mcundo.
+        var (_, target, old, _) = DeltaFiles(40 * 1024 * 1024);
+        File.Move(target, target + ".mcpart");
+        using (var undo = new FileStream(target + ".mcundo", FileMode.Create))
+        {
+            undo.Write(BitConverter.GetBytes((long)old.Length));
+            undo.Write(BitConverter.GetBytes(1_048_576L));
+            undo.Write(BitConverter.GetBytes(1_048_576));
+            undo.Write(old, 1_048_576, 1_048_576);
+            undo.Write(new byte[7]); // registro cortado a medias por el corte
+        }
+
+        using (var partial = new FileStream(target + ".mcpart", FileMode.Open))
+        {
+            partial.Position = 1_048_576;
+            partial.Write(new byte[1_048_576]); // el bloque nuevo que llegó a escribirse
+            partial.SetLength(old.Length + 5_000);
+        }
+
+        Assert.True(FileTransfer.RestoreDelta(target));
+        Assert.True(File.ReadAllBytes(target).SequenceEqual(old));
+        Assert.False(File.Exists(target + ".mcundo"));
+    }
+
     [Fact]
     public void SystemCopyCanBeCancelled()
     {

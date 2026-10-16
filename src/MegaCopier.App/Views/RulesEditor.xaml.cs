@@ -42,6 +42,8 @@ public sealed class CopyRules
 
     public bool RescueMode { get; set; }
 
+    public bool DeltaCopy { get; set; }
+
     public static CopyRules From(Engine.Jobs.CopyJobRecord r) => new()
     {
         Filter = r.Filter,
@@ -61,6 +63,7 @@ public sealed class CopyRules
         WaitForSpace = r.WaitForSpace,
         AllOrNothing = r.AllOrNothing,
         RescueMode = r.RescueMode,
+        DeltaCopy = r.DeltaCopy,
     };
 
     public void ApplyTo(Engine.Jobs.CopyJobRecord r)
@@ -82,6 +85,7 @@ public sealed class CopyRules
         r.WaitForSpace = WaitForSpace;
         r.AllOrNothing = AllOrNothing;
         r.RescueMode = RescueMode;
+        r.DeltaCopy = DeltaCopy;
     }
 }
 
@@ -146,6 +150,7 @@ public sealed partial class RulesEditor : UserControl
         WaitSpaceBox.IsChecked = rules.WaitForSpace;
         AllOrNothingBox.IsChecked = rules.AllOrNothing;
         RescueBox.IsChecked = rules.RescueMode;
+        DeltaBox.IsChecked = rules.DeltaCopy;
         UpdatePreview();
         _loading = false;
     }
@@ -182,6 +187,7 @@ public sealed partial class RulesEditor : UserControl
         WaitForSpace = WaitSpaceBox.IsChecked == true,
         AllOrNothing = AllOrNothingBox.IsChecked == true,
         RescueMode = RescueBox.IsChecked == true,
+        DeltaCopy = DeltaBox.IsChecked == true,
     };
 
     private static List<string> Masks(string text) =>

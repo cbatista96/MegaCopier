@@ -119,6 +119,7 @@ public sealed partial class CopyEngine
         }
 
         _destinationRoot = Path.TrimEndingDirectorySeparator(Path.GetFullPath(request.Destination));
+        _resumed = request.Resumed;
         _conflictForAll = null;
 
         // Al reanudar un movimiento, un origen que ya no existe pero cuyo destino sí, es que ya se movió entero.
@@ -315,6 +316,13 @@ public sealed partial class CopyEngine
     private static int DeletePartials(string destination)
     {
         int deleted = 0;
+
+        // Una actualización diferencial a medias se deshace (vuelve el archivo anterior), no se borra.
+        if (FileTransfer.RestoreDelta(destination))
+        {
+            deleted++;
+        }
+
         foreach (string path in (string[])[destination + FileTransfer.PartialSuffix, destination + FileTransfer.JournalSuffix])
         {
             try
@@ -431,6 +439,11 @@ public sealed partial class CopyEngine
             if (outcome.ChunksRepaired > 0)
             {
                 Log(LogLevel.Warning, $"La verificación reparó {outcome.ChunksRepaired} bloques dañados.", item.Source);
+            }
+
+            if (outcome.Delta)
+            {
+                Log(LogLevel.Info, $"Copia diferencial: escritos {FormatBytes(outcome.BytesTransferred)}; {FormatBytes(outcome.BytesUnchanged)} ya eran iguales.", item.Source);
             }
 
             if (outcome.Cloned)
@@ -736,7 +749,7 @@ public sealed partial class CopyEngine
         {
             try
             {
-                var outcome = transfer.Copy(item.Source, target, cancellationToken, item.Length);
+                var outcome = transfer.Copy(item.Source, target, cancellationToken, item.Length, delta: _options.DeltaCopy && !_options.Move && item.Action == PlannedAction.Replace);
                 result.FilesCopied++;
                 result.BytesTransferred += outcome.BytesTransferred;
                 result.BytesResumed += outcome.BytesResumed;
@@ -794,6 +807,7 @@ public sealed partial class CopyEngine
     }
 
     private readonly HashSet<int> _requeued = [];
+    private bool _resumed;
     private readonly Lock _askLock = new();
 
     /// <summary>Hilo de archivos pequeños (no es el del archivo "actual": el botón Saltar no le afecta).</summary>
@@ -826,6 +840,11 @@ public sealed partial class CopyEngine
         }
 
         var existing = new FileInfo(file.Destination);
+        if (!existing.Exists && _resumed && FileTransfer.RestoreDelta(file.Destination))
+        {
+            existing.Refresh(); // un apagón cortó una actualización diferencial: vuelve el archivo anterior
+        }
+
         if (!existing.Exists)
         {
             // "Solo actualizar los existentes": lo que no está en el destino no se añade.

@@ -671,3 +671,5 @@ Comfort_PausedFullScreen	Hay un juego o una presentación a pantalla completa: l
 Job_StatePausedBattery	En pausa: con batería	Paused: on battery
 Job_StatePausedFullScreen	En pausa: pantalla completa	Paused: full screen
 Job_SlowedSchedule	Más despacio por el horario elegido	Slower because of the chosen schedule
+Rules_Delta.Content	Al reemplazar archivos grandes, escribir solo lo que cambió	When replacing large files, write only what changed
+Rules_Delta.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Copia diferencial para archivos de 16 MB o más (discos virtuales, correo, proyectos): solo se escriben los bloques distintos. Si se cancela o se va la luz, el archivo vuelve a su versión anterior.	Delta copy for files of 16 MB or more (virtual disks, mail, projects): only different blocks are written. If cancelled or power is lost, the file returns to its previous version.
