@@ -101,6 +101,39 @@ public sealed partial class FilesTab : UserControl
 
     private void Remove_Click(object sender, RoutedEventArgs e) => Selected().ForEach(r => _files?.Remove(r));
 
+    private void SelectAll_Click(object sender, RoutedEventArgs e) => List.SelectAll();
+
+    /// <summary>Selecciona todos los archivos con la extensión de los elegidos (como TeraCopy Pro).</summary>
+    private void SelectSameExtension_Click(object sender, RoutedEventArgs e) =>
+        SelectWhere(Selected().Select(r => Path.GetExtension(r.Name)).ToHashSet(StringComparer.OrdinalIgnoreCase), r => Path.GetExtension(r.Name));
+
+    /// <summary>Selecciona todos los archivos de las carpetas de los elegidos.</summary>
+    private void SelectSameFolder_Click(object sender, RoutedEventArgs e) =>
+        SelectWhere(Selected().Select(r => r.Folder).ToHashSet(StringComparer.OrdinalIgnoreCase), r => r.Folder);
+
+    private void InvertSelection_Click(object sender, RoutedEventArgs e)
+    {
+        var selected = Selected().ToHashSet();
+        List.SelectedItems.Clear();
+        foreach (var row in List.Items.OfType<FileRowViewModel>().Where(r => !selected.Contains(r)))
+        {
+            List.SelectedItems.Add(row);
+        }
+    }
+
+    private void SelectWhere(HashSet<string> keys, Func<FileRowViewModel, string> key)
+    {
+        if (keys.Count == 0)
+        {
+            return;
+        }
+
+        foreach (var row in List.Items.OfType<FileRowViewModel>().Where(r => keys.Contains(key(r)) && !List.SelectedItems.Contains(r)))
+        {
+            List.SelectedItems.Add(row);
+        }
+    }
+
     private async void AddFiles_Click(object sender, RoutedEventArgs e)
     {
         var files = await Pickers.PickFilesAsync();

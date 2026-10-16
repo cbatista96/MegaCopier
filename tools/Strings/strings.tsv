@@ -136,8 +136,6 @@ Notify_InterruptedMany	{0} copias quedaron a medias. Ábrelas para continuarlas.
 Notify_DoneTitle	Copia terminada	Transfer finished
 Notify_ProblemTitle	La copia tuvo problemas	The transfer had problems
 Notify_AllDoneTitle	Copias terminadas	Transfers finished
-Notify_Shutdown	El equipo se apagará en 1 minuto (cancelar: shutdown /a).	The computer will shut down in 1 minute (cancel: shutdown /a).
-Notify_Sleep	Suspendiendo el equipo…	Going to sleep…
 Error_NeedsPaths	La petición de copia necesita orígenes y un destino.	A copy request needs sources and a destination.
 Tray_Disable	Desactivar (usar el copiador de Windows)	Disable (use the Windows copier)
 Tray_Enable	Activar MegaCopier	Enable MegaCopier
@@ -194,13 +192,13 @@ Options_Attributes.Content	Atributos	Attributes
 Options_Audit.Content	Auditoría (SACL)	Auditing (SACL)
 Options_BufferSize.Text	Tamaño del búfer	Buffer size
 Options_Data.Content	Datos	Data
-Options_ExportReport.Content	Guardar un informe HTML al terminar	Save an HTML report when finished
+Options_ExportReport.Content	Guardar informe HTML	Save HTML report
 Options_FilesFolders.Text	Archivos y carpetas	Files and folders
 Options_OnFinish.Text	Al terminar	When finished
 Options_Owner.Content	Propietario	Owner
 Options_ResetDefault.Text	Restablecer	Reset
 Options_RunningInfo.Message	La copia está en marcha: estos cambios se aplican al reanudarla (Verificar y Desatendido, al momento).	The transfer is running: these changes apply when it resumes (Verify and Unattended apply now).
-Options_SaveChecksum.Content	Guardar un archivo de sumas (.sha256, .md5, .sfv…)	Save a checksum file (.sha256, .md5, .sfv…)
+Options_SaveChecksum.Content	Guardar archivo de sumas	Save checksum file
 Options_SaveDefault.Text	Guardar como predeterminado	Save as default
 Options_Scripts.Text	Comandos al terminar	Commands when finished
 Options_ScriptsHelp.Text	Uno por línea; se ejecutan con cmd.exe. Variables: %MEGACOPIER_STATE%, %MEGACOPIER_DESTINATION%, %MEGACOPIER_SOURCES%, %MEGACOPIER_FILES%, %MEGACOPIER_BYTES%, %MEGACOPIER_FAILED%, %MEGACOPIER_CHECKSUM%.	One per line, run with cmd.exe. Variables: %MEGACOPIER_STATE%, %MEGACOPIER_DESTINATION%, %MEGACOPIER_SOURCES%, %MEGACOPIER_FILES%, %MEGACOPIER_BYTES%, %MEGACOPIER_FAILED%, %MEGACOPIER_CHECKSUM%.
@@ -348,7 +346,7 @@ Jobs_Header	COPIAS: {0} · ACTIVAS: {1}	TRANSFERS: {0} · ACTIVE: {1}
 Language_Auto	Usar el de Windows	Use Windows setting
 Log_FileType	Texto	Text
 Picker_MoveHere	Mover aquí	Move here
-Settings_AutoResume.Content	Continuar solas las copias interrumpidas al arrancar	Resume interrupted transfers automatically at startup
+Settings_AutoResume.Content	Reanudar solas al arrancar	Resume automatically at startup
 Panel_Options.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Opciones de esta copia	Options for this transfer
 Panel_UnattendedItem.Text	Desatendido (no preguntar: omite los que ya existen)	Unattended (never ask: skips existing files)
 Panel_VerifyItem.Text	Verificar al terminar	Verify when finished
@@ -380,3 +378,94 @@ Report_Verified	Verificados	Verified
 Report_Skipped	Omitidos	Skipped
 Report_Failed	Con errores	Failed
 Job_SkippedOne	1 omitido	1 skipped
+Rules_Filters.Text	Filtros	Filters
+Rules_Include.Header	Incluir solo (máscaras separadas por ;)	Include only (masks separated by ;)
+Rules_Include.PlaceholderText	*.jpg; *.png; Fotos\*	*.jpg; *.png; Photos\*
+Rules_Exclude.Header	Excluir	Exclude
+Rules_Exclude.PlaceholderText	node_modules; *.tmp; Thumbs.db	node_modules; *.tmp; Thumbs.db
+Rules_MinSize.Header	Tamaño mínimo (MB)	Minimum size (MB)
+Rules_MaxSize.Header	Tamaño máximo (MB)	Maximum size (MB)
+Rules_After.Header	Modificados desde	Modified from
+Rules_Before.Header	Modificados hasta	Modified until
+Rules_SkipHidden.Content	Omitir ocultos	Skip hidden
+Rules_SkipSystem.Content	Omitir de sistema	Skip system files
+Rules_Rules.Text	Reglas	Rules
+Rules_Links.Header	Enlaces simbólicos y uniones	Symbolic links and junctions
+Rules_LinksCopy.Content	Copiarlos como enlace	Copy them as links
+Rules_LinksFollow.Content	Copiar lo que hay detrás	Copy what they point to
+Rules_LinksSkip.Content	Omitirlos	Skip them
+Rules_Pattern.Header	Nombre al conservar ambos ({name}, {n}, {ext}, {date})	Name when keeping both ({name}, {n}, {ext}, {date})
+Rules_PatternPreview	Ejemplo: {0}	Example: {0}
+Rules_Retries.Header	Reintentos	Retries
+Rules_Delay.Header	Espera entre reintentos (s)	Wait between retries (s)
+Rules_OnError.Header	Si un archivo sigue fallando	If a file keeps failing
+Rules_OnErrorSkip.Content	Anotarlo y seguir con el siguiente	Log it and continue with the next
+Rules_OnErrorStop.Content	Detener la copia (se podrá reanudar)	Stop the transfer (it can be resumed)
+ConflictDifferentSize.Content	Reemplazar si cambia el tamaño	Replace if the size differs
+ConflictRenameExisting.Content	Renombrar el que ya está	Rename the existing one
+Conflict_RenameExisting.Text	Renombrar el que ya está y copiar este	Rename the existing one and copy this one
+Schedule_Title.Text	Programar el inicio	Schedule the start
+Schedule_Set.Text	Programar	Schedule
+Schedule_Now.Text	Empezar ahora	Start now
+Schedule_InThePast	Elige una hora futura.	Pick a time in the future.
+Job_StateScheduled	Programada para {0}	Scheduled for {0}
+Settings_Favorites.Text	Carpetas favoritas	Favorite folders
+Settings_FavoritesTitle.Text	Destinos favoritos	Favorite destinations
+Settings_FavoritesDescription.Text	Aparecen en «Nueva > Copiar a» y en el diálogo de destinos para copiar a varias carpetas a la vez.	They appear in "New > Copy to" and in the destinations dialog to copy to several folders at once.
+Settings_FavoritesAdd.Text	Añadir carpeta	Add folder
+Settings_FavoritesRemove	Quitar {0}	Remove {0}
+Settings_FavoritesEmpty	Todavía no hay favoritos.	No favorites yet.
+Tool_CopyTo.Text	Copiar a	Copy to
+Tool_CopyToEmpty	Sin favoritos ni recientes	No favorites or recent folders
+Tool_CopyToManage	Gestionar favoritos…	Manage favorites…
+Tool_TestFiles.Text	Comprobar archivos de sumas…	Test checksum files…
+Tool_TestFolder.Text	Comprobar sumas de una carpeta…	Test checksums in a folder…
+Tool_Delete.Text	Borrar…	Delete…
+Tool_Wipe.Text	Borrar de forma segura…	Securely delete…
+DestinationsDialog.Title	¿Adónde?	Where to?
+DestinationsDialog.PrimaryButtonText	Empezar	Start
+DestinationsDialog.CloseButtonText	Cancelar	Cancel
+Destinations_SummaryOne	Elige uno o varios destinos para «{0}».	Choose one or more destinations for "{0}".
+Destinations_SummaryMany	Elige uno o varios destinos para {0} elementos.	Choose one or more destinations for {0} items.
+Destinations_Add.Text	Añadir carpeta…	Add folder…
+Destinations_Move.Content	Mover en lugar de copiar	Move instead of copy
+Destinations_Schedule.Content	Empezar más tarde	Start later
+DeleteDialog.Title	Borrar	Delete
+DeleteDialog.PrimaryButtonText	Borrar	Delete
+DeleteDialog.CloseButtonText	Cancelar	Cancel
+Delete_ConfirmOne	¿Borrar «{0}»? No va a la papelera.	Delete "{0}"? It does not go to the Recycle Bin.
+Delete_ConfirmMany	¿Borrar {0} elementos? No van a la papelera.	Delete {0} items? They do not go to the Recycle Bin.
+Delete_ConfirmSecureOne	¿Borrar de forma segura «{0}»?	Securely delete "{0}"?
+Delete_ConfirmSecureMany	¿Borrar de forma segura {0} elementos?	Securely delete {0} items?
+Delete_SecureWarning.Title	No se podrá recuperar	It cannot be recovered
+Delete_SecureWarning.Message	El contenido se sobrescribe antes de borrar. En discos SSD el propio disco puede conservar restos; para máxima seguridad, usa el cifrado de BitLocker.	The content is overwritten before deleting. On SSDs the drive itself may keep remnants; for maximum security, use BitLocker encryption.
+FinishHibernate.Text	Hibernar	Hibernate
+FinishSignOut.Text	Cerrar sesión	Sign out
+FinishExit.Text	Cerrar MegaCopier	Close MegaCopier
+Finish_LabelHibernate	Al terminar: hibernar	When finished: hibernate
+Finish_LabelSignOut	Al terminar: cerrar sesión	When finished: sign out
+Finish_LabelExit	Al terminar: cerrar MegaCopier	When finished: close MegaCopier
+Notify_FinishSleep	Suspendiendo el equipo…	Going to sleep…
+Notify_FinishHibernate	Hibernando el equipo…	Hibernating…
+Notify_FinishShutdown	El equipo se apagará en 1 minuto (cancelar: shutdown /a).	The computer will shut down in 1 minute (cancel: shutdown /a).
+Notify_FinishSignOut	Cerrando la sesión…	Signing out…
+Notify_FinishExitApp	MegaCopier se cierra.	MegaCopier is closing.
+Files_SelectAll.Text	Seleccionar todo	Select all
+Files_SelectSameExtension.Text	Seleccionar los de la misma extensión	Select files with the same extension
+Files_SelectSameFolder.Text	Seleccionar los de la misma carpeta	Select files in the same folder
+Files_InvertSelection.Text	Invertir la selección	Invert selection
+Job_TitleTest	Comprobar {0}	Test {0}
+Job_TitleTesting	Comprobando {0}	Testing {0}
+Job_TitleTested	Comprobado {0}	Tested {0}
+Job_TitleDelete	Borrar {0}	Delete {0}
+Job_TitleDeleting	Borrando {0}	Deleting {0}
+Job_TitleDeleted	Borrado {0}	Deleted {0}
+Job_StateTesting	Comprobando	Testing
+Job_StateDeleting	Borrando	Deleting
+Job_FilesTestedOne	{0} archivo correcto	{0} file OK
+Job_FilesTestedMany	{0} archivos correctos	{0} files OK
+Job_FilesDeletedOne	{0} archivo borrado	{0} file deleted
+Job_FilesDeletedMany	{0} archivos borrados	{0} files deleted
+Job_TitleScheduled	Programada: {0}	Scheduled: {0}
+Error_ChecksumMismatch	El contenido no coincide con la suma guardada: el archivo cambió o está dañado.	The content does not match the saved checksum: the file changed or is damaged.
+Job_FilteredOut	Ningún archivo pasa los filtros de esta copia	No files match this transfer's filters

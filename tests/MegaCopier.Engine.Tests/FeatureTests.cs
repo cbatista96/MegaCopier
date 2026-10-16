@@ -100,7 +100,7 @@ public sealed class FeatureTests : IDisposable
         var items = engine.Files.Snapshot().ToDictionary(i => Path.GetFileName(i.Source) + "|" + i.DestinationHash![..4]);
         Assert.Equal(2, result.FilesCopied); // a.bin por SHA-256 y por MD5
         Assert.Equal(2, result.Failures.Count);
-        Assert.Contains(result.Failures, f => f.Kind == FileErrorKind.HashMismatch && f.Source.EndsWith("b.bin"));
+        Assert.Contains(result.Failures, f => f.Kind == FileErrorKind.ChecksumMismatch && f.Source.EndsWith("b.bin"));
         Assert.Contains(result.Failures, f => f.Kind == FileErrorKind.NotFound && f.Source.EndsWith("falta.bin"));
         Assert.All(engine.Files.Snapshot().Where(i => Path.GetFileName(i.Source) == "a.bin"), i => Assert.Equal(FileState.Verified, i.State));
     }
@@ -210,6 +210,26 @@ public sealed class FeatureTests : IDisposable
         Assert.Null(atajo.LinkTarget); // carpeta normal, no enlace
         Assert.True(File.Exists(_temp.Combine("dst/src/atajo/x.txt")));
         Assert.False(Directory.Exists(_temp.Combine("dst/src/real/bucle/real"))); // el bucle se cortó
+    }
+
+    [Fact]
+    public void FileSymlinkIsCopiedAsLinkOrContent()
+    {
+        string real = Write("real.txt", "contenido real");
+        Directory.CreateDirectory(_temp.Combine("src"));
+        try
+        {
+            File.CreateSymbolicLink(_temp.Combine("src/enlace.txt"), real);
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+        {
+            return; // sin modo de desarrollador ni administrador no se puede preparar la prueba
+        }
+
+        var result = new CopyEngine(Options()).Run(new CopyJobRequest([_temp.Combine("src")], _temp.Combine("dst")));
+
+        Assert.True(result.Success);
+        Assert.Equal("contenido real", File.ReadAllText(_temp.Combine("dst/src/enlace.txt")));
     }
 
     [Fact]

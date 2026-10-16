@@ -44,10 +44,17 @@
                         <TextBlock x:Uid="Tool_NewCopyText" Style="{StaticResource McBody}" />
                     </StackPanel>
                     <DropDownButton.Flyout>
-                        <MenuFlyout Placement="BottomEdgeAlignedLeft">
+                        <MenuFlyout x:Name="NewMenu" Placement="BottomEdgeAlignedLeft" Opening="NewMenu_Opening">
                             <MenuFlyoutItem x:Uid="CopyFiles" Click="CopyFiles_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8A5;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
                             <MenuFlyoutItem x:Uid="CopyFolder" Click="CopyFolder_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8B7;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
                             <MenuFlyoutItem x:Uid="Tool_MoveFiles" Click="MoveFiles_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8DE;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
+                            <MenuFlyoutSubItem x:Name="CopyToMenu" x:Uid="Tool_CopyTo"><MenuFlyoutSubItem.Icon><FontIcon Glyph="&#xE734;" /></MenuFlyoutSubItem.Icon></MenuFlyoutSubItem>
+                            <MenuFlyoutSeparator />
+                            <MenuFlyoutItem x:Uid="Tool_TestFiles" Click="TestFiles_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE9D5;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
+                            <MenuFlyoutItem x:Uid="Tool_TestFolder" Click="TestFolder_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE9D5;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
+                            <MenuFlyoutSeparator />
+                            <MenuFlyoutItem x:Uid="Tool_Delete" Click="Delete_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE74D;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
+                            <MenuFlyoutItem x:Uid="Tool_Wipe" Click="Wipe_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE72E;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
                             <MenuFlyoutSeparator />
                             <MenuFlyoutItem x:Uid="Tool_LoadList" Click="LoadList_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8E5;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
                         </MenuFlyout>
@@ -83,7 +90,10 @@
                     <MenuFlyout Placement="BottomEdgeAlignedRight">
                         <RadioMenuFlyoutItem x:Name="FinishNothing" x:Uid="FinishNothing" GroupName="Finish" IsChecked="True" Click="Finish_Click" />
                         <RadioMenuFlyoutItem x:Name="FinishSleep" x:Uid="FinishSleep" GroupName="Finish" Click="Finish_Click" />
+                        <RadioMenuFlyoutItem x:Name="FinishHibernate" x:Uid="FinishHibernate" GroupName="Finish" Click="Finish_Click" />
                         <RadioMenuFlyoutItem x:Name="FinishShutdown" x:Uid="FinishShutdown" GroupName="Finish" Click="Finish_Click" />
+                        <RadioMenuFlyoutItem x:Name="FinishSignOut" x:Uid="FinishSignOut" GroupName="Finish" Click="Finish_Click" />
+                        <RadioMenuFlyoutItem x:Name="FinishExit" x:Uid="FinishExit" GroupName="Finish" Click="Finish_Click" />
                     </MenuFlyout>
                 </DropDownButton.Flyout>
             </DropDownButton>
@@ -256,6 +266,44 @@
                     </Border>
                 </Grid>
                 <CheckBox x:Name="ConflictApplyAll" x:Uid="ConflictApplyAll" />
+                <HyperlinkButton x:Name="ConflictRenameExisting" Click="ConflictRename_Click" Padding="0">
+                    <StackPanel Orientation="Horizontal" Spacing="6"><FontIcon VerticalAlignment="Center" Glyph="&#xE8AC;" FontSize="12" /><TextBlock x:Uid="Conflict_RenameExisting" /></StackPanel>
+                </HyperlinkButton>
+            </StackPanel>
+        </ContentDialog>
+
+        <!-- Destinos de una copia nueva: varios a la vez, favoritos, recientes, mover y programar -->
+        <ContentDialog
+            x:Name="DestinationsDialog"
+            x:Uid="DestinationsDialog"
+            Grid.RowSpan="3"
+            Style="{StaticResource DefaultContentDialogStyle}"
+            DefaultButton="Primary">
+            <StackPanel Spacing="10" MinWidth="440" MaxWidth="520">
+                <TextBlock x:Name="DestinationsSummary" TextWrapping="Wrap" />
+                <ListView x:Name="DestinationsList" SelectionMode="Multiple" MaxHeight="240" BorderThickness="1" BorderBrush="{StaticResource McBorderBrush}" CornerRadius="6" />
+                <Button Click="AddDestination_Click">
+                    <StackPanel Orientation="Horizontal" Spacing="8"><FontIcon VerticalAlignment="Center" Glyph="&#xE710;" FontSize="12" /><TextBlock x:Uid="Destinations_Add" /></StackPanel>
+                </Button>
+                <CheckBox x:Name="DestinationsMove" x:Uid="Destinations_Move" />
+                <CheckBox x:Name="DestinationsSchedule" x:Uid="Destinations_Schedule" Click="DestinationsSchedule_Click" />
+                <StackPanel x:Name="DestinationsWhen" Orientation="Horizontal" Spacing="8" Visibility="Collapsed">
+                    <CalendarDatePicker x:Name="DestinationsDate" MinWidth="160" />
+                    <TimePicker x:Name="DestinationsTime" ClockIdentifier="24HourClock" />
+                </StackPanel>
+            </StackPanel>
+        </ContentDialog>
+
+        <!-- Confirmar el borrado -->
+        <ContentDialog
+            x:Name="DeleteDialog"
+            x:Uid="DeleteDialog"
+            Grid.RowSpan="3"
+            Style="{StaticResource DefaultContentDialogStyle}"
+            DefaultButton="Close">
+            <StackPanel Spacing="10" MaxWidth="460">
+                <TextBlock x:Name="DeleteMessage" TextWrapping="Wrap" />
+                <InfoBar x:Name="DeleteWarning" x:Uid="Delete_SecureWarning" Severity="Warning" IsClosable="False" IsOpen="False" />
             </StackPanel>
         </ContentDialog>
 

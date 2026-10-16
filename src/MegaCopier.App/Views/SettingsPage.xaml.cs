@@ -84,6 +84,7 @@ public sealed partial class SettingsPage : UserControl
 
         AboutText.Text = L.F("About", typeof(App).Assembly.GetName().Version?.ToString(3) ?? "");
         _app.EnabledChanged += () => DispatcherQueue.TryEnqueue(Load);
+        Rules.RulesChanged += Store;
     }
 
     public event Action? CloseRequested;
@@ -128,6 +129,8 @@ public sealed partial class SettingsPage : UserControl
         FastBox.Text = s.FastDevices;
         PriorityBox.SelectedIndex = (int)s.Priority;
         ScriptsBox.Text = string.Join(Environment.NewLine, s.Scripts);
+        Rules.Load(s.Rules);
+        LoadFavorites();
 
         LoadThemes();
         UpdateRestartInfo();
@@ -206,8 +209,61 @@ public sealed partial class SettingsPage : UserControl
         s.FastDevices = FastBox.Text.Trim();
         s.Priority = (ProcessPriority)Math.Max(0, PriorityBox.SelectedIndex);
         s.Scripts = [.. ScriptsBox.Text.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)];
+        s.Rules = Rules.Read();
         s.Save();
         _app.ApplySettings();
+    }
+
+    // ---------------------------------------------------------------------------------------------------------
+    // Carpetas favoritas
+
+    private void LoadFavorites()
+    {
+        FavoritesList.Children.Clear();
+        foreach (string folder in _app.Settings.FavoriteFolders)
+        {
+            var row = new Grid { ColumnSpacing = 8 };
+            row.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+            row.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+            row.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+            row.Children.Add(new FontIcon { Glyph = "", FontSize = 14, VerticalAlignment = VerticalAlignment.Center, Foreground = ThemeManager.AccentBrush });
+            var text = new TextBlock { Text = folder, VerticalAlignment = VerticalAlignment.Center, TextTrimming = TextTrimming.CharacterEllipsis };
+            Grid.SetColumn(text, 1);
+            row.Children.Add(text);
+            var remove = new Button
+            {
+                Content = new FontIcon { Glyph = "", FontSize = 12 },
+                Background = new SolidColorBrush(Microsoft.UI.Colors.Transparent),
+                BorderThickness = new Thickness(0),
+            };
+            Microsoft.UI.Xaml.Automation.AutomationProperties.SetName(remove, L.F("Settings_FavoritesRemove", folder));
+            ToolTipService.SetToolTip(remove, L.F("Settings_FavoritesRemove", folder));
+            string captured = folder;
+            remove.Click += (_, _) =>
+            {
+                _app.Settings.FavoriteFolders.Remove(captured);
+                _app.Settings.Save();
+                LoadFavorites();
+            };
+            Grid.SetColumn(remove, 2);
+            row.Children.Add(remove);
+            FavoritesList.Children.Add(row);
+        }
+
+        if (_app.Settings.FavoriteFolders.Count == 0)
+        {
+            FavoritesList.Children.Add(new TextBlock { Text = L.Get("Settings_FavoritesEmpty"), FontSize = 12, Foreground = ThemeManager.TextSecondaryBrush });
+        }
+    }
+
+    private async void AddFavorite_Click(object sender, RoutedEventArgs e)
+    {
+        if (await Pickers.PickFolderAsync() is { } folder && !_app.Settings.FavoriteFolders.Contains(folder, StringComparer.OrdinalIgnoreCase))
+        {
+            _app.Settings.FavoriteFolders.Add(folder);
+            _app.Settings.Save();
+            LoadFavorites();
+        }
     }
 
     private void Language_Changed(object sender, SelectionChangedEventArgs e)

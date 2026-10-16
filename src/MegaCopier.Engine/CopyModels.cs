@@ -156,6 +156,9 @@ public enum FileErrorKind
     PathTooLong,
     NetworkLost,
     HashMismatch,
+
+    /// <summary>Comprobar sumas: el archivo no coincide con la suma guardada.</summary>
+    ChecksumMismatch,
     DeleteFailed,
 }
 

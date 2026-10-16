@@ -26,6 +26,7 @@ public sealed partial class OptionsTab : UserControl
     public OptionsTab()
     {
         InitializeComponent();
+        Rules.RulesChanged += Rules_Changed;
         foreach (var hash in Hashes)
         {
             HashBox.Items.Add(new ComboBoxItem { Content = HashName(hash) });
@@ -61,6 +62,8 @@ public sealed partial class OptionsTab : UserControl
         ConflictPolicy.Skip => 2,
         ConflictPolicy.OverwriteIfNewer => 3,
         ConflictPolicy.KeepBoth => 4,
+        ConflictPolicy.OverwriteIfDifferentSize => 5,
+        ConflictPolicy.RenameExisting => 6,
         _ => 0,
     };
 
@@ -70,6 +73,8 @@ public sealed partial class OptionsTab : UserControl
         2 => ConflictPolicy.Skip,
         3 => ConflictPolicy.OverwriteIfNewer,
         4 => ConflictPolicy.KeepBoth,
+        5 => ConflictPolicy.OverwriteIfDifferentSize,
+        6 => ConflictPolicy.RenameExisting,
         _ => ConflictPolicy.Ask,
     };
 
@@ -100,6 +105,19 @@ public sealed partial class OptionsTab : UserControl
         ChecksumBox.IsChecked = r.SaveChecksumFile;
         ReportBox.IsChecked = r.ExportReport;
         ScriptsBox.Text = string.Join("\r", r.Scripts);
+        Rules.Load(new CopyRules
+        {
+            Filter = r.Filter,
+            Links = r.Links,
+            KeepBothPattern = r.KeepBothPattern,
+            RetryCount = r.RetryCount,
+            RetryDelaySeconds = r.RetryDelaySeconds,
+            OnError = r.OnError,
+        });
+        var start = r.StartAtUtc?.ToLocalTime() ?? DateTime.Now.AddHours(1);
+        ScheduleDate.Date = new DateTimeOffset(start.Date);
+        ScheduleTime.Time = new TimeSpan(start.Hour, start.Minute, 0);
+        ScheduleInfo.Text = r.StartAtUtc is { } at ? L.F("Job_StateScheduled", at.ToLocalTime().ToString("g")) : "";
         _loading = false;
         Refresh();
     }
@@ -136,7 +154,41 @@ public sealed partial class OptionsTab : UserControl
         r.SaveChecksumFile = ChecksumBox.IsChecked == true;
         r.ExportReport = ReportBox.IsChecked == true;
         r.Scripts = ScriptsBox.Text.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).ToList();
+        var rules = Rules.Read();
+        r.Filter = rules.Filter;
+        r.Links = rules.Links;
+        r.KeepBothPattern = rules.KeepBothPattern;
+        r.RetryCount = rules.RetryCount;
+        r.RetryDelaySeconds = rules.RetryDelaySeconds;
+        r.OnError = rules.OnError;
         job.SetLiveOptions(verify: VerifyBox.IsChecked == true);
+    }
+
+    private void Rules_Changed() => Save();
+
+    /// <summary>Programar el inicio para el día y la hora elegidos.</summary>
+    private void Schedule_Click(object sender, RoutedEventArgs e)
+    {
+        if (_job is null || ScheduleDate.Date is not { } date)
+        {
+            return;
+        }
+
+        var when = date.Date + ScheduleTime.Time;
+        if (when <= DateTime.Now)
+        {
+            ScheduleInfo.Text = L.Get("Schedule_InThePast");
+            return;
+        }
+
+        _job.Schedule(when);
+        Load();
+    }
+
+    private void StartNow_Click(object sender, RoutedEventArgs e)
+    {
+        _job?.Schedule(null);
+        Load();
     }
 
     private void SaveDefault_Click(object sender, RoutedEventArgs e)
