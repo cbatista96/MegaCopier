@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using MegaCopier.App.Services;
+using MegaCopier.App.Theming;
 using MegaCopier.App.ViewModels;
 using MegaCopier.Engine.Ipc;
 using MegaCopier.Engine.Jobs;
@@ -26,7 +27,29 @@ public partial class App : Application
     public App()
     {
         InitializeComponent();
+        UnhandledException += (_, e) => LogCrash(e.Exception, e.Message);
+        AppDomain.CurrentDomain.UnhandledException += (_, e) => LogCrash(e.ExceptionObject as Exception, null);
     }
+
+    /// <summary>Deja constancia de un fallo inesperado en %LOCALAPPDATA%\MegaCopier\crash.log (las copias se reanudan al volver).</summary>
+    internal static void LogCrash(Exception? exception, string? message)
+    {
+        try
+        {
+            string path = Path.Combine(Path.GetDirectoryName(AppSettings.FilePath)!, "crash.log");
+            Directory.CreateDirectory(Path.GetDirectoryName(path)!);
+            File.AppendAllText(path, $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] {message}{Environment.NewLine}{exception}{Environment.NewLine}{Environment.NewLine}");
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+        {
+        }
+    }
+
+    /// <summary>
+    /// Modo de prueba (MEGACOPIER_TEST=1): no intercepta el Ctrl+V del Explorador, no toca el registro y muestra la
+    /// ventana sin quitar el foco. Para probar la interfaz mientras se usa el equipo.
+    /// </summary>
+    internal static bool TestMode { get; } = Environment.GetEnvironmentVariable("MEGACOPIER_TEST") == "1";
 
     internal AppSettings Settings { get; } = AppSettings.Load();
 
@@ -50,13 +73,34 @@ public partial class App : Application
 
     protected override void OnLaunched(LaunchActivatedEventArgs args)
     {
+        try
+        {
+            Launch();
+        }
+        catch (Exception ex)
+        {
+            LogCrash(ex, "OnLaunched");
+            throw;
+        }
+    }
+
+    private void Launch()
+    {
+        // Primero los pinceles del tema, luego los estilos que los usan (Resources no existe aún en el constructor).
+        ThemeManager.Register(Resources);
+        Resources.MergedDictionaries.Add(new ResourceDictionary { Source = new Uri("ms-appx:///Themes/Styles.xaml") });
+
         // Sin ventanas visibles la app sigue viva en la bandeja hasta que el usuario elige "Salir".
         DispatcherShutdownMode = DispatcherShutdownMode.OnExplicitShutdown;
         Dispatcher = DispatcherQueue.GetForCurrentThread();
-        Appearance.ApplyAccent(Settings.Accent);
+        var theme = ThemeManager.Find(Settings.ThemeId);
+        ThemeManager.Apply(theme);
+        Appearance.ApplyAccent(Appearance.ToRgbHex(theme.Accent));
 
         var interrupted = Queue.LoadInterrupted();
         _window = new MainWindow(this);
+        _window.ApplyTheme(theme);
+        ApplySettings();
         Queue.ConflictResolver = (job, conflict, cancellation) => Window.AskConflict(job, conflict, cancellation);
 
         _tray = new TrayIcon(
@@ -111,8 +155,52 @@ public partial class App : Application
             throw new ArgumentException(L.Get("Error_NeedsPaths"));
         }
 
-        return Queue.Submit(request.Sources, request.Destination, Settings.NewJobOptions(request));
+        var job = Queue.Submit(request.Sources, request.Destination, Settings.NewJobOptions(request));
+        if (Settings.ExportReport || Settings.Scripts.Count > 0)
+        {
+            job.Record.ExportReport = Settings.ExportReport;
+            job.Record.Scripts = [.. Settings.Scripts];
+            job.SaveRecord();
+        }
+
+        return job;
     }
+
+    /// <summary>Preferencias que no son de cada copia: cola, prioridad del proceso y ventana siempre visible.</summary>
+    internal void ApplySettings()
+    {
+        Queue.MaxActiveJobs = Math.Max(0, Settings.MaxActiveJobs);
+        Queue.FastDevices = Settings.FastDevices.Split([',', ';'], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+        try
+        {
+            Process.GetCurrentProcess().PriorityClass = Settings.Priority switch
+            {
+                ProcessPriority.Low => ProcessPriorityClass.Idle,
+                ProcessPriority.BelowNormal => ProcessPriorityClass.BelowNormal,
+                ProcessPriority.AboveNormal => ProcessPriorityClass.AboveNormal,
+                ProcessPriority.High => ProcessPriorityClass.High,
+                _ => ProcessPriorityClass.Normal,
+            };
+        }
+        catch (Exception ex) when (ex is System.ComponentModel.Win32Exception or InvalidOperationException)
+        {
+        }
+
+        _window?.ApplyAlwaysOnTop(Settings.AlwaysOnTop);
+    }
+
+    /// <summary>Aplica el tema elegido en las preferencias.</summary>
+    internal void ApplyTheme() => ApplyTheme(ThemeManager.Find(Settings.ThemeId));
+
+    /// <summary>Aplica un tema (también la vista previa del editor, sin guardarlo).</summary>
+    internal void ApplyTheme(ThemeDefinition theme)
+    {
+        ThemeManager.Apply(theme);
+        _window?.ApplyTheme(theme);
+    }
+
+    /// <summary>Aviso del sistema desde el icono de la bandeja.</summary>
+    internal void Notify(string title, string body) => _tray?.ShowNotification(title, body);
 
     /// <summary>
     /// Interruptor general. Desactivado: el Ctrl+V vuelve a ser del Explorador, la extensión deja de ofrecer sus
@@ -126,7 +214,11 @@ public partial class App : Application
             Settings.Save();
         }
 
-        ShellState.SetEnabled(enabled);
+        if (!TestMode)
+        {
+            ShellState.SetEnabled(enabled);
+        }
+
         SetExplorerPaste(Settings.InterceptExplorerPaste);
         _tray?.SetDisabled(!enabled);
         _tray?.SetTooltip(enabled ? "MegaCopier" : L.Get("Tray_TooltipDisabled"));
@@ -146,7 +238,7 @@ public partial class App : Application
     /// <summary>Activa o desactiva la sustitución del Ctrl+V del Explorador (solo si MegaCopier está activado).</summary>
     internal void SetExplorerPaste(bool enabled)
     {
-        if (enabled && Settings.Enabled)
+        if (enabled && Settings.Enabled && !TestMode)
         {
             _paste?.Enable();
         }
@@ -293,6 +385,22 @@ public partial class App : Application
 
     private void OnJobFinished(CopyJob job)
     {
+        bool finished = job.State is CopyJobState.Completed or CopyJobState.CompletedWithErrors or CopyJobState.Failed;
+        if (finished)
+        {
+            History.Add(job);
+            AfterJob(job);
+            if (Settings.PlaySound)
+            {
+                SystemActions.PlayFinishSound(job.State == CopyJobState.Completed);
+            }
+        }
+
+        if (!Queue.HasActiveJobs && finished)
+        {
+            Window.OnAllFinished();
+        }
+
         // "Al terminar": cuando ya no queda nada en marcha y la última copia acabó (no si el usuario la detuvo).
         if (FinishAction != FinishAction.None && !Queue.HasActiveJobs && job.State is CopyJobState.Completed or CopyJobState.CompletedWithErrors)
         {
@@ -320,6 +428,39 @@ public partial class App : Application
             case CopyJobState.Failed:
                 _tray?.ShowNotification(L.Get("Notify_ProblemTitle"), $"{what}: {job.Error}");
                 break;
+        }
+    }
+
+    /// <summary>Informe HTML automático y comandos "al terminar" de un trabajo.</summary>
+    private void AfterJob(CopyJob job)
+    {
+        if (job.Record.ExportReport && Window.Jobs.FirstOrDefault(j => j.Job == job) is { } model)
+        {
+            try
+            {
+                string folder = Path.Combine(Path.GetDirectoryName(AppSettings.FilePath)!, "reports");
+                Directory.CreateDirectory(folder);
+                Reports.ExportHtml(model, Path.Combine(folder, $"MegaCopier-{DateTime.Now:yyyyMMdd-HHmmss}-{job.Id.ToString()[..8]}.html"));
+            }
+            catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+            {
+                Debug.WriteLine($"Informe no guardado: {ex.Message}");
+            }
+        }
+
+        if (job.Record.Scripts.Count > 0)
+        {
+            var environment = new Dictionary<string, string>
+            {
+                ["MEGACOPIER_STATE"] = job.State.ToString(),
+                ["MEGACOPIER_SOURCES"] = string.Join(";", job.Record.Sources),
+                ["MEGACOPIER_DESTINATION"] = job.Record.Destination,
+                ["MEGACOPIER_FILES"] = (job.Result?.FilesCopied ?? 0).ToString(),
+                ["MEGACOPIER_BYTES"] = (job.Result?.BytesTransferred ?? 0).ToString(),
+                ["MEGACOPIER_FAILED"] = (job.Result?.Failures.Count ?? 0).ToString(),
+                ["MEGACOPIER_CHECKSUM"] = job.ChecksumFile ?? "",
+            };
+            SystemActions.RunScripts(job.Record.Scripts, environment);
         }
     }
 

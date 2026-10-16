@@ -4,18 +4,22 @@ Copiador de archivos para Windows 11 cuya prioridad es que **una copia interrump
 continúe desde donde quedó, sin corromper el archivo**. Sustituye al Ctrl+V del Explorador, arranca al instante y es
 más rápido que el Explorador y robocopy entre discos NVMe.
 
-![Copiando](docs/capturas/copiando.png)
+![Copiando](docs/capturas/compacta.png)
 
 ## Instalar
 
-Ejecuta `artifacts\installer\MegaCopier-Setup-1.0.0.exe` (≈17 MB). Se instala **solo para tu usuario** en
+Ejecuta `artifacts\installer\MegaCopier-Setup-1.0.0.exe` (≈18 MB). Se instala **solo para tu usuario** en
 `%LOCALAPPDATA%\Programs\MegaCopier`, sin pedir permisos de administrador y sin instalar nada más (lleva su propio runtime).
 Durante la instalación puedes elegir:
 
 - Añadir «Pegar con MegaCopier» y «Copiar / Mover aquí» al Explorador.
 - Iniciar con Windows (recomendado: queda en la bandeja y las copias empiezan al instante).
 
-Se desinstala desde *Configuración > Aplicaciones* y no deja nada en el registro.
+Se desinstala desde *Configuración > Aplicaciones* y no deja nada en el registro. Al final pregunta si borrar también
+los ajustes, temas e historial (`%LOCALAPPDATA%\MegaCopier`); por defecto se conservan para una reinstalación.
+
+**Activar / desactivar**: doble clic en el icono de la bandeja. Desactivado, el icono se pone gris con una X roja y
+copia el Explorador de Windows como siempre; otro doble clic lo devuelve a su color y MegaCopier vuelve a encargarse.
 
 > El instalador no está firmado: Windows mostrará el aviso de SmartScreen («Más información» → «Ejecutar de todas
 > formas»). Firmarlo (p. ej. con Azure Trusted Signing) elimina el aviso.
@@ -41,19 +45,39 @@ Se desinstala desde *Configuración > Aplicaciones* y no deja nada en el registr
 Tras un apagón se pierde como máximo un bloque. Al volver a abrir MegaCopier, las copias a medias aparecen como
 *interrumpidas* (con aviso del sistema) y se continúan con un clic, o solas si se activa en Ajustes.
 
+**La ventana**
+- **Compacta** al empezar: barra del progreso total arriba y del archivo actual abajo, unidades de origen y destino
+  (letra, nombre, tipo) y Pausa / Saltar / Detener. Con varias copias, un paginador «Copia 1 de 3».
+- **«Más»** la despliega (con animación) a la **vista completa**: barra de herramientas, lista de todas las copias a la
+  izquierda y, de la elegida, las pestañas **Archivos** (lista viva; lo ya copiado desaparece si se elige, con filtros,
+  búsqueda, hashes de origen y destino, reordenar, quitar, añadir archivos, guardar/cargar la lista, exportar CSV/HTML),
+  **Destino** (espacio libre de cada unidad), **Opciones** (qué se copia: fechas, atributos, ADS, permisos, propietario,
+  auditoría; hash; búfer; verificación; sumas; informe; comandos al terminar), **Estado** (gráfica de velocidad y
+  totales) y **Registro**. En modo automático pasa sola a la vista completa cuando hay dos copias a la vez.
+- **Historial** con «Repetir» y «Abrir destino»; arrastrar archivos a la ventana para copiarlos.
+- Al terminar: se cierra si todo fue bien, se queda abierta o siempre se cierra (a elegir); sonido y aviso opcionales.
+
+![Vista completa](docs/capturas/completa.png)
+
 **Durante la copia**
-- Ventana de progreso con velocidad, tiempo restante y archivo actual; progreso también en la barra de tareas y la bandeja.
-- Pausar, detener (reanudable) y descartar; cola por **disco físico** (dos copias en el mismo disco esperan turno; en
-  discos distintos van en paralelo).
+- Progreso también en la barra de tareas y la bandeja; pausar, saltar el archivo actual, detener (reanudable) y
+  descartar; cola por **disco físico** (dos copias en el mismo disco esperan turno; en discos distintos van en paralelo;
+  máximo de copias a la vez y «dispositivos rápidos» configurables).
 - **Si el archivo ya existe**: pregunta con un diálogo que compara ambos archivos (reemplazar / conservar ambos /
   omitir, con «hacer lo mismo con todos»), o una política fija.
 - Verificación opcional sin caché con **reparación** de bloques dañados; lista de archivos con errores y «Reintentar».
 - Límite de velocidad; **al terminar**: suspender o apagar el equipo.
 
-**Personalización**: tema claro/oscuro/sistema, 7 colores de acento, fondo Mica / Mica Alt / Acrílico / sólido,
-«siempre visible» e **idioma español / inglés** (también en las opciones del Explorador).
+**Temas**: 11 temas completos que cambian toda la interfaz al momento (Fluent como Windows, Fluent oscuro/claro,
+Medianoche, Grafito, Océano, Bosque, Atardecer, SuperCopier clásico, Ultracopier clásico y Alto contraste): colores,
+degradado de cada barra, alto de las barras, redondeo y fondo Mica / Mica Alt / Acrílico / sólido. Un editor permite
+cambiar los 16 colores con selector, guardar temas propios e importarlos/exportarlos (.json).
+
+**Más ajustes**: «siempre visible», prioridad del proceso, **idioma español / inglés** (también en las opciones del
+Explorador), y un `crash.log` en `%LOCALAPPDATA%\MegaCopier` si algo falla.
 
 ![Conflicto](docs/capturas/conflicto.png)
+![Tema SuperCopier clásico](docs/capturas/tema-supercopier.png)
 
 ## Rendimiento
 

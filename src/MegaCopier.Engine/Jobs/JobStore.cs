@@ -49,6 +49,12 @@ public sealed class CopyJobRecord
 
     public bool UseSystemCache { get; set; }
 
+    /// <summary>Al terminar, guardar un informe HTML junto al destino.</summary>
+    public bool ExportReport { get; set; }
+
+    /// <summary>Comandos o scripts a ejecutar al terminar (reciben las variables MEGACOPIER_*).</summary>
+    public List<string> Scripts { get; set; } = [];
+
     public static CopyJobRecord New(IEnumerable<string> sources, string destination, CopyOptions options) => new()
     {
         Move = options.Move,
@@ -72,6 +78,11 @@ public sealed class CopyJobRecord
         BlockSize = options.BlockSize,
         QueueDepth = options.WriteQueueDepth,
     };
+
+    /// <summary>Lista de copia guardada (.mclist): orígenes, destino, opciones y archivos excluidos.</summary>
+    public string ToJson() => JsonSerializer.Serialize(this, JobJsonContext.Default.CopyJobRecord);
+
+    public static CopyJobRecord? FromJson(string json) => JsonSerializer.Deserialize(json, JobJsonContext.Default.CopyJobRecord);
 
     public CopyOptions ToOptions()
     {

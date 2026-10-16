@@ -46,6 +46,8 @@ es.Startup=Iniciar con Windows (recomendado: las copias empiezan al instante)
 en.Startup=Start with Windows (recommended: transfers start instantly)
 es.Integration=Integración:
 en.Integration=Integration:
+es.DeleteData=¿Borrar también tus ajustes, temas, historial y copias pendientes de MegaCopier?%n%nSi vas a reinstalarlo, elige «No» para conservarlos.
+en.DeleteData=Also delete your MegaCopier settings, themes, history and pending transfers?%n%nIf you plan to reinstall it, choose "No" to keep them.
 
 [Tasks]
 Name: "shellmenu"; Description: "{cm:ShellMenu}"; GroupDescription: "{cm:Integration}"
@@ -97,4 +99,12 @@ begin
   Existing := ExpandConstant('{app}\MegaCopier.exe');
   if FileExists(Existing) then
     Exec(Existing, '--exit', '', SW_HIDE, ewWaitUntilTerminated, ResultCode);
+end;
+
+// Al desinstalar: los datos del usuario (%LOCALAPPDATA%\MegaCopier) se conservan salvo que pida borrarlos.
+procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
+begin
+  if (CurUninstallStep = usPostUninstall) and not UninstallSilent then
+    if MsgBox(CustomMessage('DeleteData'), mbConfirmation, MB_YESNO or MB_DEFBUTTON2) = IDYES then
+      DelTree(ExpandConstant('{localappdata}\MegaCopier'), True, True, True);
 end;

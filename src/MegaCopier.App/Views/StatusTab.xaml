@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserControl
+    x:Class="MegaCopier.App.Views.StatusTab"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:c="using:MegaCopier.App.Controls">
+
+    <Grid RowSpacing="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" MinHeight="140" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <c:SpeedGraph x:Name="Graph" />
+
+        <Border Grid.Row="1" Style="{StaticResource McCard}" Padding="16,10">
+            <Grid x:Name="Table" RowSpacing="6" ColumnSpacing="16">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <TextBlock x:Uid="Status_Category" Style="{StaticResource McStrong}" />
+                <TextBlock x:Uid="Status_Files" Grid.Column="1" Style="{StaticResource McStrong}" TextAlignment="Right" MinWidth="90" />
+                <TextBlock x:Uid="Status_Bytes" Grid.Column="2" Style="{StaticResource McStrong}" TextAlignment="Right" MinWidth="150" />
+
+                <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="8"><FontIcon Glyph="&#xE73E;" FontSize="13" Foreground="{StaticResource McSuccessBrush}" /><TextBlock x:Uid="Status_Copied" Style="{StaticResource McBody}" /></StackPanel>
+                <TextBlock x:Name="CopiedFiles" Grid.Row="1" Grid.Column="1" Style="{StaticResource McBody}" TextAlignment="Right" FontFamily="Consolas" />
+                <TextBlock x:Name="CopiedBytes" Grid.Row="1" Grid.Column="2" Style="{StaticResource McBody}" TextAlignment="Right" FontFamily="Consolas" />
+
+                <StackPanel Grid.Row="2" Orientation="Horizontal" Spacing="8"><FontIcon Glyph="&#xE73E;" FontSize="13" Foreground="{StaticResource McSuccessBrush}" /><TextBlock x:Uid="Status_Verified" Style="{StaticResource McBody}" /></StackPanel>
+                <TextBlock x:Name="VerifiedFiles" Grid.Row="2" Grid.Column="1" Style="{StaticResource McBody}" TextAlignment="Right" FontFamily="Consolas" />
+                <TextBlock x:Name="VerifiedBytes" Grid.Row="2" Grid.Column="2" Style="{StaticResource McBody}" TextAlignment="Right" FontFamily="Consolas" />
+
+                <StackPanel Grid.Row="3" Orientation="Horizontal" Spacing="8"><FontIcon Glyph="&#xE893;" FontSize="13" Foreground="{StaticResource McTextSecondaryBrush}" /><TextBlock x:Uid="Status_Skipped" Style="{StaticResource McBody}" /></StackPanel>
+                <TextBlock x:Name="SkippedFiles" Grid.Row="3" Grid.Column="1" Style="{StaticResource McBody}" TextAlignment="Right" FontFamily="Consolas" />
+                <TextBlock x:Name="SkippedBytes" Grid.Row="3" Grid.Column="2" Style="{StaticResource McBody}" TextAlignment="Right" FontFamily="Consolas" />
+
+                <StackPanel Grid.Row="4" Orientation="Horizontal" Spacing="8"><FontIcon Glyph="&#xE7BA;" FontSize="13" Foreground="{StaticResource McWarningBrush}" /><TextBlock x:Uid="Status_Failed" Style="{StaticResource McBody}" /></StackPanel>
+                <TextBlock x:Name="FailedFiles" Grid.Row="4" Grid.Column="1" Style="{StaticResource McBody}" TextAlignment="Right" FontFamily="Consolas" />
+                <TextBlock x:Name="FailedBytes" Grid.Row="4" Grid.Column="2" Style="{StaticResource McBody}" TextAlignment="Right" FontFamily="Consolas" />
+
+                <StackPanel Grid.Row="5" Orientation="Horizontal" Spacing="8"><FontIcon Glyph="&#xE823;" FontSize="13" Foreground="{StaticResource McTextSecondaryBrush}" /><TextBlock x:Uid="Status_Pending" Style="{StaticResource McBody}" /></StackPanel>
+                <TextBlock x:Name="PendingFiles" Grid.Row="5" Grid.Column="1" Style="{StaticResource McBody}" TextAlignment="Right" FontFamily="Consolas" />
+                <TextBlock x:Name="PendingBytes" Grid.Row="5" Grid.Column="2" Style="{StaticResource McBody}" TextAlignment="Right" FontFamily="Consolas" />
+
+                <Rectangle Grid.Row="6" Grid.ColumnSpan="3" Height="1" Fill="{StaticResource McBorderBrush}" Margin="0,2" />
+                <TextBlock x:Uid="Status_Total" Grid.Row="7" Style="{StaticResource McStrong}" />
+                <TextBlock x:Name="TotalFiles" Grid.Row="7" Grid.Column="1" Style="{StaticResource McStrong}" TextAlignment="Right" FontFamily="Consolas" />
+                <TextBlock x:Name="TotalBytes" Grid.Row="7" Grid.Column="2" Style="{StaticResource McStrong}" TextAlignment="Right" FontFamily="Consolas" />
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

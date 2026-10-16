@@ -21,9 +21,81 @@ public enum AppBackdrop
     Solid,
 }
 
+/// <summary>Cómo se abre la ventana de copia.</summary>
+public enum WindowMode
+{
+    /// <summary>Compacta con una copia; completa cuando hay varias a la vez.</summary>
+    Auto,
+    Compact,
+    Expanded,
+}
+
+/// <summary>Qué hace la ventana cuando terminan las copias.</summary>
+public enum FinishWindow
+{
+    /// <summary>Se cierra si todo fue bien; se queda abierta si hubo problemas.</summary>
+    Auto,
+    Close,
+    KeepOpen,
+}
+
+public enum ProcessPriority
+{
+    Low,
+    BelowNormal,
+    Normal,
+    AboveNormal,
+    High,
+}
+
 /// <summary>Preferencias del usuario, en %LOCALAPPDATA%\MegaCopier\settings.json.</summary>
 public sealed class AppSettings
 {
+    /// <summary>Tema completo de la interfaz ("fluent-auto" sigue el modo claro/oscuro de Windows).</summary>
+    public string ThemeId { get; set; } = "fluent-auto";
+
+    public WindowMode WindowMode { get; set; } = WindowMode.Auto;
+
+    public FinishWindow FinishWindow { get; set; } = FinishWindow.Auto;
+
+    public bool PlaySound { get; set; } = true;
+
+    /// <summary>Máximo de trabajos activos a la vez (0 = sin límite).</summary>
+    public int MaxActiveJobs { get; set; } = 3;
+
+    /// <summary>Rutas de dispositivos rápidos separadas por comas ("C:, D:\Datos, \\servidor\recurso").</summary>
+    public string FastDevices { get; set; } = "";
+
+    public ProcessPriority Priority { get; set; } = ProcessPriority.Normal;
+
+    public bool CheckFreeSpace { get; set; } = true;
+
+    public bool UseSystemCache { get; set; }
+
+    public bool HideFinishedFiles { get; set; } = true;
+
+    public bool VerifySkipped { get; set; }
+
+    public FileHashAlgorithm HashAlgorithm { get; set; } = FileHashAlgorithm.XxHash3;
+
+    public bool CopyStreams { get; set; } = true;
+
+    public Engine.Native.SecurityParts CopySecurity { get; set; }
+
+    public bool PreserveTimestamps { get; set; } = true;
+
+    public bool PreserveAttributes { get; set; } = true;
+
+    public bool SaveChecksumFile { get; set; }
+
+    public bool ExportReport { get; set; }
+
+    public int BlockSizeMB { get; set; } = 4;
+
+    public int QueueDepth { get; set; } = 4;
+
+    public List<string> Scripts { get; set; } = [];
+
     public AppTheme Theme { get; set; } = AppTheme.System;
 
     /// <summary>"system" o un color "#RRGGBB".</summary>
@@ -66,13 +138,71 @@ public sealed class AppSettings
     public static string FilePath { get; } = Path.Combine(
         Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MegaCopier", "settings.json");
 
-    public CopyOptions NewJobOptions(IpcRequest request) => new()
+    public CopyOptions NewJobOptions(IpcRequest request)
     {
-        Verify = request.Verify ?? VerifyAfterCopy,
-        Conflict = request.Conflict ?? Conflict,
-        Move = request.Move ?? false,
-        MaxBytesPerSecond = SpeedLimitMBps * (long)CopyOptions.MiB,
-    };
+        var options = new CopyOptions
+        {
+            Verify = request.Verify ?? VerifyAfterCopy,
+            Conflict = request.Conflict ?? Conflict,
+            Move = request.Move ?? false,
+            MaxBytesPerSecond = SpeedLimitMBps * (long)CopyOptions.MiB,
+            CheckFreeSpace = CheckFreeSpace,
+            UseUnbufferedIo = !UseSystemCache,
+            VerifySkipped = VerifySkipped,
+            HashAlgorithm = HashAlgorithm,
+            CopyStreams = CopyStreams,
+            CopySecurity = CopySecurity,
+            PreserveTimestamps = PreserveTimestamps,
+            PreserveAttributes = PreserveAttributes,
+            SaveChecksumFile = SaveChecksumFile,
+            ReadQueueDepth = Math.Clamp(QueueDepth, 1, 16),
+            WriteQueueDepth = Math.Clamp(QueueDepth, 1, 16),
+        };
+
+        int block = Math.Clamp(BlockSizeMB, 1, 16) * CopyOptions.MiB;
+        options.BlockSize = block;
+        options.ChunkSize = 64L * CopyOptions.MiB / block * block;
+        return options;
+    }
+
+    /// <summary>"Guardar como predeterminado" desde la pestaña Opciones de un trabajo.</summary>
+    public void CopyDefaultsFrom(Engine.Jobs.CopyJobRecord r)
+    {
+        PreserveTimestamps = r.PreserveTimestamps;
+        PreserveAttributes = r.PreserveAttributes;
+        CopyStreams = r.CopyStreams;
+        CopySecurity = r.CopySecurity;
+        Conflict = r.Conflict;
+        HashAlgorithm = r.HashAlgorithm;
+        BlockSizeMB = r.BlockSize > 0 ? r.BlockSize / CopyOptions.MiB : 4;
+        QueueDepth = r.QueueDepth > 0 ? r.QueueDepth : 4;
+        VerifyAfterCopy = r.Verify;
+        VerifySkipped = r.VerifySkipped;
+        UseSystemCache = r.UseSystemCache;
+        SaveChecksumFile = r.SaveChecksumFile;
+        ExportReport = r.ExportReport;
+        Scripts = [.. r.Scripts];
+    }
+
+    /// <summary>"Restablecer": devuelve el trabajo a las opciones predeterminadas.</summary>
+    public void ApplyDefaultsTo(Engine.Jobs.CopyJobRecord r)
+    {
+        r.PreserveTimestamps = PreserveTimestamps;
+        r.PreserveAttributes = PreserveAttributes;
+        r.CopyStreams = CopyStreams;
+        r.CopySecurity = CopySecurity;
+        r.Conflict = Conflict;
+        r.HashAlgorithm = HashAlgorithm;
+        r.BlockSize = BlockSizeMB * CopyOptions.MiB;
+        r.ChunkSize = 64L * CopyOptions.MiB / r.BlockSize * r.BlockSize;
+        r.QueueDepth = QueueDepth;
+        r.Verify = VerifyAfterCopy;
+        r.VerifySkipped = VerifySkipped;
+        r.UseSystemCache = UseSystemCache;
+        r.SaveChecksumFile = SaveChecksumFile;
+        r.ExportReport = ExportReport;
+        r.Scripts = [.. Scripts];
+    }
 
     public static AppSettings Load()
     {
