@@ -46,6 +46,7 @@
                         <ComboBoxItem x:Uid="Mode_Mirror" />
                         <ComboBoxItem x:Uid="Mode_Update" />
                         <ComboBoxItem x:Uid="Mode_Folders" />
+                        <ComboBoxItem x:Uid="Mode_Organize" />
                     </ComboBox>
                     <InfoBar x:Name="MirrorInfo" x:Uid="Options_MirrorInfo" Severity="Warning" IsClosable="False" IsOpen="False" />
                     <CheckBox x:Name="DryRunBox" x:Uid="Options_DryRun" Click="Changed" />

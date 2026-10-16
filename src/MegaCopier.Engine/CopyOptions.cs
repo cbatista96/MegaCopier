@@ -60,6 +60,9 @@ public enum CopyMode
 
     /// <summary>Solo crear la estructura de carpetas, sin archivos.</summary>
     FoldersOnly,
+
+    /// <summary>Organizar fotos y vídeos en carpetas por fecha (añoño-mes) según el EXIF o la fecha de grabación.</summary>
+    OrganizeByDate,
 }
 
 /// <summary>Qué hacer si una carpeta de primer nivel ya existe en el destino.</summary>
@@ -143,6 +146,14 @@ public sealed class CopyOptions
 
     /// <summary>Al enviar a otro equipo: el código que muestra su MegaCopier.</summary>
     public string PeerCode { get; set; } = "";
+
+    /// <summary>No copiar lo que ya está en el destino con otro nombre o en otra carpeta (mismo contenido).</summary>
+    public bool SkipDuplicates { get; set; }
+
+    /// <summary>Carpetas al organizar por fecha: {yyyy}, {MM}, {dd} (por defecto "{yyyy}\{yyyy}-{MM}").</summary>
+    public string OrganizePattern { get; set; } = DefaultOrganizePattern;
+
+    public const string DefaultOrganizePattern = @"{yyyy}\{yyyy}-{MM}";
 
     /// <summary>
     /// Modo rescate (como ddrescue): ante sectores dañados del origen se lee sector a sector, se reintenta y lo

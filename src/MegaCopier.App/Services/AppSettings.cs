@@ -152,6 +152,8 @@ public sealed class AppSettings
 
     public bool DeltaCopy { get; set; }
 
+    public bool SkipDuplicates { get; set; }
+
     /// <summary>Carpetas de destino favoritas (menú "Copiar a" y diálogo de destinos).</summary>
     public List<string> FavoriteFolders { get; set; } = [];
 
@@ -180,6 +182,7 @@ public sealed class AppSettings
             AllOrNothing = AllOrNothing,
             RescueMode = RescueMode,
             DeltaCopy = DeltaCopy,
+            SkipDuplicates = SkipDuplicates,
         };
         set
         {
@@ -201,6 +204,7 @@ public sealed class AppSettings
             AllOrNothing = value.AllOrNothing;
             RescueMode = value.RescueMode;
             DeltaCopy = value.DeltaCopy;
+            SkipDuplicates = value.SkipDuplicates;
         }
     }
 
@@ -337,6 +341,7 @@ public sealed class AppSettings
             AllOrNothing = AllOrNothing,
             RescueMode = RescueMode,
             DeltaCopy = DeltaCopy,
+            SkipDuplicates = SkipDuplicates,
         };
 
         int block = Math.Clamp(BlockSizeMB, 1, 16) * CopyOptions.MiB;

@@ -725,4 +725,9 @@
   <data name="Rules_DescribeUnderstood" xml:space="preserve"><value>Understood: {0}.</value></data>
   <data name="Rules_DescribeNothing" xml:space="preserve"><value>Nothing to filter was understood.</value></data>
   <data name="Rules_DescribeUnknown" xml:space="preserve"><value>Not understood: {0}.</value></data>
+  <data name="Mode_Organize.Content" xml:space="preserve"><value>Organize photos by date</value></data>
+  <data name="Rules_Duplicates.Content" xml:space="preserve"><value>Do not copy what is already in the destination (duplicates)</value></data>
+  <data name="Rules_Duplicates.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Compares content, not names: a photo already in any destination folder, even with another name, is not copied again.</value></data>
+  <data name="Skip_SkipDuplicate" xml:space="preserve"><value>Already in the destination under another name or folder</value></data>
+  <data name="Plan_SkipDuplicate" xml:space="preserve"><value>Would be skipped: already in the destination (duplicate)</value></data>
 </root>

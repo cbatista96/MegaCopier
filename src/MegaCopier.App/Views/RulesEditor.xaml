@@ -99,6 +99,7 @@
             <CheckBox x:Name="AllOrNothingBox" x:Uid="Rules_AllOrNothing" Click="Changed" />
             <CheckBox x:Name="RescueBox" x:Uid="Rules_Rescue" Click="Changed" />
             <CheckBox x:Name="DeltaBox" x:Uid="Rules_Delta" Click="Changed" />
+            <CheckBox x:Name="DuplicatesBox" x:Uid="Rules_Duplicates" Click="Changed" />
         </StackPanel>
     </Grid>
 </UserControl>

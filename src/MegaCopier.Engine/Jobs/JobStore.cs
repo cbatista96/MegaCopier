@@ -103,6 +103,10 @@ public sealed class CopyJobRecord
 
     public bool DeltaCopy { get; set; }
 
+    public bool SkipDuplicates { get; set; }
+
+    public string OrganizePattern { get; set; } = CopyOptions.DefaultOrganizePattern;
+
     public string PeerCode { get; set; } = "";
 
     /// <summary>Ya se ejecutó alguna vez (al reanudar no se vuelve a aplicar la regla de carpetas existentes).</summary>
@@ -160,6 +164,8 @@ public sealed class CopyJobRecord
         AllOrNothing = options.AllOrNothing,
         RescueMode = options.RescueMode,
         DeltaCopy = options.DeltaCopy,
+        SkipDuplicates = options.SkipDuplicates,
+        OrganizePattern = options.OrganizePattern,
         PeerCode = options.PeerCode,
     };
 
@@ -210,6 +216,8 @@ public sealed class CopyJobRecord
             AllOrNothing = AllOrNothing,
             RescueMode = RescueMode,
             DeltaCopy = DeltaCopy,
+            SkipDuplicates = SkipDuplicates,
+            OrganizePattern = string.IsNullOrWhiteSpace(OrganizePattern) ? CopyOptions.DefaultOrganizePattern : OrganizePattern,
             PeerCode = PeerCode ?? "",
         };
         if (ChunkSize > 0 && BlockSize > 0)

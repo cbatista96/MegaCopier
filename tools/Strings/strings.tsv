@@ -719,3 +719,8 @@ Rules_DescribeApply.Text	Aplicar	Apply
 Rules_DescribeUnderstood	Entendido: {0}.	Understood: {0}.
 Rules_DescribeNothing	No entendí nada que filtrar.	Nothing to filter was understood.
 Rules_DescribeUnknown	No entendí: {0}.	Not understood: {0}.
+Mode_Organize.Content	Organizar fotos por fecha	Organize photos by date
+Rules_Duplicates.Content	No copiar lo que ya está en el destino (duplicados)	Do not copy what is already in the destination (duplicates)
+Rules_Duplicates.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Compara el contenido, no el nombre: una foto que ya está en cualquier carpeta del destino, aunque se llame distinto, no se copia otra vez.	Compares content, not names: a photo already in any destination folder, even with another name, is not copied again.
+Skip_SkipDuplicate	Ya está en el destino con otro nombre o en otra carpeta	Already in the destination under another name or folder
+Plan_SkipDuplicate	Se omitiría: ya está en el destino (duplicado)	Would be skipped: already in the destination (duplicate)

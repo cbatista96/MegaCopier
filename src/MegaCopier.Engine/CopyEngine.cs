@@ -149,6 +149,10 @@ public sealed partial class CopyEngine
         }
 
         (plan, var staged) = StageFolders(request, plan);
+        if (_options.Mode == CopyMode.OrganizeByDate)
+        {
+            plan = OrganizeByDate(plan);
+        }
 
         var progress = new ProgressTracker(p => ProgressChanged?.Invoke(p), _options.ProgressInterval);
         var result = new CopyJobResult();
@@ -346,6 +350,14 @@ public sealed partial class CopyEngine
 
     private void ProcessFile(FileTransfer transfer, ProgressTracker progress, TransferItem item, CopyJobResult result, CancellationToken cancellationToken)
     {
+        if (_options.SkipDuplicates && FindDuplicate(item) is { } duplicate)
+        {
+            result.FilesSkipped++;
+            item.Action = PlannedAction.SkipDuplicate;
+            Files.Update(item, FileState.Skipped, $"Ya está en el destino: {duplicate}");
+            return;
+        }
+
         var file = new PlannedFile(item.Source, item.Destination, item.Length, item.LastWriteUtc);
         Resolution resolution;
         try
@@ -483,6 +495,7 @@ public sealed partial class CopyEngine
             }
 
             RememberHardLink(item, target);
+            RememberForDuplicates(item, target);
 
             Files.Update(item, verified ? FileState.Verified : FileState.Copied);
 
