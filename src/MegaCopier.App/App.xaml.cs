@@ -431,6 +431,12 @@ public partial class App : Application
 
                 return new IpcResponse { Ok = true, JobId = job.Id };
 
+            case "confirm-delete" when request.Sources.Count > 0:
+                // Borrar desde el Explorador: siempre se confirma en la ventana.
+                ShowWindow();
+                _ = Window.ConfirmAndDeleteAsync(request.Sources, request.SecureDelete ?? false);
+                return new IpcResponse { Ok = true };
+
             case "run-list" when request.Sources.Count == 1:
                 return RunList(request.Sources[0]) is { } listJob
                     ? new IpcResponse { Ok = true, JobId = listJob.Id }

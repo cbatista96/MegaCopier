@@ -16,6 +16,7 @@ internal sealed record StartupArgs(bool Background, IpcRequest? Request, bool Re
     /// MegaCopier.exe copy --dest D:\x [--verify] [--move] a b → copiar (o mover) a y b a D:\x
     /// MegaCopier.exe --restart                               → esperar a que se cierre la instancia anterior y abrir
     /// MegaCopier.exe run lista.mclist                         → lanzar una lista guardada (tareas programadas)
+    /// MegaCopier.exe test|hash|wipe rutas...                → comprobar sumas, crear sumas, borrar de forma segura
     /// </summary>
     public static StartupArgs Parse(string[] args)
     {
@@ -30,6 +31,12 @@ internal sealed record StartupArgs(bool Background, IpcRequest? Request, bool Re
                 return new StartupArgs(true, null);
             case "--restart":
                 return new StartupArgs(false, new IpcRequest { Command = "show" }, Restart: true);
+            case "test" or "hash" or "wipe" when args.Length > 1:
+                // Desde el submenú MegaCopier del Explorador con la app cerrada.
+                var paths = args[1..].Select(Path.GetFullPath).ToList();
+                return new StartupArgs(false, args[0] == "wipe"
+                    ? new IpcRequest { Command = "confirm-delete", SecureDelete = true, Sources = paths }
+                    : new IpcRequest { Command = "copy", Operation = args[0] == "test" ? Engine.JobOperation.Test : Engine.JobOperation.Hash, Sources = paths });
             case "run" when args.Length > 1:
                 // Tarea programada: MegaCopier.exe run "lista.mclist"
                 return new StartupArgs(false, new IpcRequest { Command = "run-list", Sources = [Path.GetFullPath(args[1])] });

@@ -23,6 +23,9 @@ public static partial class ShellExtensionRegistration
         @"DesktopBackground\shellex\ContextMenuHandlers",
         @"Directory\shellex\ContextMenuHandlers",
         @"Drive\shellex\ContextMenuHandlers",
+
+        // Sobre archivos: el submenú MegaCopier (comprobar sumas, crear sumas, borrar de forma segura).
+        @"*\shellex\ContextMenuHandlers",
     ];
 
     private static readonly string[] DragDropTargets =
