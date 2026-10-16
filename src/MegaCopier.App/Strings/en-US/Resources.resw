@@ -719,4 +719,10 @@
   <data name="Job_StateSending" xml:space="preserve"><value>Sending</value></data>
   <data name="Job_FilesSentOne" xml:space="preserve"><value>{0} file sent</value></data>
   <data name="Job_FilesSentMany" xml:space="preserve"><value>{0} files sent</value></data>
+  <data name="Rules_Describe.Header" xml:space="preserve"><value>Say it in your own words</value></data>
+  <data name="Rules_Describe.PlaceholderText" xml:space="preserve"><value>photos larger than 2 MB from last month except .tmp</value></data>
+  <data name="Rules_DescribeApply.Text" xml:space="preserve"><value>Apply</value></data>
+  <data name="Rules_DescribeUnderstood" xml:space="preserve"><value>Understood: {0}.</value></data>
+  <data name="Rules_DescribeNothing" xml:space="preserve"><value>Nothing to filter was understood.</value></data>
+  <data name="Rules_DescribeUnknown" xml:space="preserve"><value>Not understood: {0}.</value></data>
 </root>
