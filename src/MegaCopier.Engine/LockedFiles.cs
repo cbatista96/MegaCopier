@@ -96,7 +96,7 @@ public static class LockedFiles
             {
                 foreach (var file in group)
                 {
-                    request.Errors[file.Source] = $"No se pudo crear la instantánea de {group.Key}: {ex.Message}";
+                    request.Errors[file.Source] = Texts.F("E_SnapshotFailed", group.Key, ex.Message);
                 }
             }
             finally
@@ -158,7 +158,7 @@ public sealed class WmiSnapshotProvider : ISnapshotProvider
         catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
         {
             Delete(id);
-            throw new IOException($"No se pudo abrir la instantánea ({ex.Message}).", ex);
+            throw new IOException(Texts.F("E_SnapshotOpenFailed", ex.Message), ex);
         }
 
         _links[id] = link;
@@ -192,7 +192,7 @@ public sealed class WmiSnapshotProvider : ISnapshotProvider
         int bar = output.LastIndexOf('|');
         if (bar <= 0)
         {
-            throw new InvalidOperationException(output.Length > 0 ? output : "Sin respuesta de Win32_ShadowCopy.");
+            throw new InvalidOperationException(output.Length > 0 ? output : Texts.Get("E_NoWmiAnswer"));
         }
 
         // El destino del enlace necesita la barra final (sin ella, Windows no lo trata como la raíz del volumen).
@@ -218,7 +218,7 @@ public sealed class WmiSnapshotProvider : ISnapshotProvider
         process.WaitForExit();
         if (process.ExitCode != 0)
         {
-            throw new InvalidOperationException(error.Trim().Length > 0 ? error.Trim() : $"PowerShell terminó con {process.ExitCode}");
+            throw new InvalidOperationException(error.Trim().Length > 0 ? error.Trim() : Texts.F("E_PowerShellExit", process.ExitCode));
         }
 
         return output;

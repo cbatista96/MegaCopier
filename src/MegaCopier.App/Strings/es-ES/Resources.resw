@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Generado por tools/Strings/gen.cs a partir de strings.tsv: no editar a mano. -->
+<!-- Generado por tools/Strings/gen.cs: no editar a mano. -->
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
@@ -798,4 +798,5 @@
   <data name="Shelf_Many" xml:space="preserve"><value>{0} elementos</value></data>
   <data name="Shelf_RemoveNamed" xml:space="preserve"><value>Quitar «{0}» de la bandeja</value></data>
   <data name="Destinations_NoneChosen.Text" xml:space="preserve"><value>Marca al menos un destino (o añade una carpeta).</value></data>
+  <data name="Finish_ShutdownMessage" xml:space="preserve"><value>MegaCopier terminó las copias. El equipo se apagará en 1 minuto.</value></data>
 </root>

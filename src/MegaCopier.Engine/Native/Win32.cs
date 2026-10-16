@@ -104,7 +104,7 @@ internal static partial class Win32
     {
         if (!FlushFileBuffers(handle))
         {
-            throw new IOException("No se pudieron vaciar los datos al disco.", Marshal.GetHRForLastWin32Error());
+            throw new IOException(Texts.Get("E_FlushFailed"), Marshal.GetHRForLastWin32Error());
         }
     }
 
@@ -112,7 +112,7 @@ internal static partial class Win32
     {
         if (!GetFileInformationByHandle(handle, out var info))
         {
-            throw new IOException("No se pudo leer la información del archivo de origen.", Marshal.GetHRForLastWin32Error());
+            throw new IOException(Texts.Get("E_SourceInfoFailed"), Marshal.GetHRForLastWin32Error());
         }
 
         long length = ((long)info.FileSizeHigh << 32) | info.FileSizeLow;

@@ -5,6 +5,20 @@ using MegaCopier.Engine.Ipc;
 using MegaCopier.Engine.Jobs;
 
 Console.OutputEncoding = Encoding.UTF8;
+
+// El mismo idioma que la app (lo publica en el registro); si no hay ninguno elegido, el de Windows.
+if (Microsoft.Win32.Registry.GetValue(@"HKEY_CURRENT_USER\Software\MegaCopier", "Language", null) is string { Length: > 0 } language)
+{
+    try
+    {
+        System.Globalization.CultureInfo.DefaultThreadCurrentUICulture = System.Globalization.CultureInfo.GetCultureInfo(language);
+        System.Globalization.CultureInfo.CurrentUICulture = System.Globalization.CultureInfo.GetCultureInfo(language);
+    }
+    catch (System.Globalization.CultureNotFoundException)
+    {
+    }
+}
+
 return Cli.Run(args);
 
 internal static class Cli
@@ -36,7 +50,7 @@ internal static class Cli
                 "resume" => Resume(args.Length > 1 ? args[1] : null),
                 "jobs" => Jobs(),
                 "status" => Status(),
-                _ => Usage($"Comando desconocido: {args[0]}"),
+                _ => Usage(Texts.F("C_UnknownCommand", args[0])),
             };
         }
         catch (UsageException ex)
@@ -73,7 +87,7 @@ internal static class Cli
                         "rename" => ConflictPolicy.KeepBoth,
                         "fail" => ConflictPolicy.Fail,
                         "ask" => ConflictPolicy.Ask,
-                        var other => throw new UsageException($"Modo de conflicto desconocido: {other}"),
+                        var other => throw new UsageException(Texts.F("C_UnknownConflict", other)),
                     };
                     break;
                 case "--limit-mb":
@@ -131,7 +145,7 @@ internal static class Cli
                     crashAfter = NextInt(args, ref i) * (long)CopyOptions.MiB;
                     break;
                 case var flag when flag.StartsWith("--", StringComparison.Ordinal):
-                    throw new UsageException($"Opción desconocida: {flag}");
+                    throw new UsageException(Texts.F("C_UnknownOption", flag));
                 default:
                     paths.Add(args[i]);
                     break;
@@ -140,7 +154,7 @@ internal static class Cli
 
         if (paths.Count < 2)
         {
-            throw new UsageException("Indica al menos un origen y una carpeta de destino.");
+            throw new UsageException(Texts.Get("C_NeedSourceAndDestination"));
         }
 
         if (options.Encrypt || decrypt)
@@ -222,7 +236,7 @@ internal static class Cli
                 default:
                     if (arg.StartsWith("--", StringComparison.Ordinal))
                     {
-                        throw new UsageException($"Opción desconocida para send: {arg}");
+                        throw new UsageException(Texts.F("C_UnknownSendOption", arg));
                     }
 
                     paths.Add(Path.GetFullPath(arg));
@@ -233,7 +247,7 @@ internal static class Cli
         bool needsDestination = operation == JobOperation.Copy;
         if (paths.Count < (needsDestination ? 2 : 1))
         {
-            throw new UsageException(needsDestination ? "Indica al menos un origen y una carpeta de destino." : "Indica al menos un archivo o carpeta.");
+            throw new UsageException(Texts.Get(needsDestination ? "C_NeedSourceAndDestination" : "C_NeedItem"));
         }
 
         var request = new IpcRequest
@@ -274,15 +288,15 @@ internal static class Cli
         if (response is not null)
         {
             Console.WriteLine(response.Ok
-                ? $"Copia entregada a MegaCopier (trabajo {response.JobId}) en {watch.Elapsed.TotalMilliseconds:F0} ms."
-                : $"MegaCopier rechazó la copia: {response.Error}");
+                ? Texts.F("C_Delivered", response.JobId, watch.Elapsed.TotalMilliseconds)
+                : Texts.F("C_Rejected", response.Error));
             return response.Ok ? ExitOk : ExitFatal;
         }
 
         string? app = FindApp();
         if (app is null || !needsDestination)
         {
-            Console.Error.WriteLine("MegaCopier no está abierto y no se encontró MegaCopier.exe (define MEGACOPIER_APP con su ruta).");
+            Console.Error.WriteLine(Texts.Get("C_AppNotFound"));
             return ExitFatal;
         }
 
@@ -306,7 +320,7 @@ internal static class Cli
         }
 
         Process.Start(start);
-        Console.WriteLine("MegaCopier no estaba abierto: se ha iniciado con la copia.");
+        Console.WriteLine(Texts.Get("C_AppStarted"));
         return ExitOk;
     }
 
@@ -324,7 +338,7 @@ internal static class Cli
             return when;
         }
 
-        throw new UsageException($"Hora no válida: {text} (usa HH:mm o una fecha y hora).");
+        throw new UsageException(Texts.F("C_BadTime", text));
     }
 
     /// <summary>mcopy test: comprueba archivos de sumas sin la app.</summary>
@@ -332,7 +346,7 @@ internal static class Cli
     {
         if (args.Length == 0)
         {
-            throw new UsageException("Indica archivos de sumas o carpetas que los contengan.");
+            throw new UsageException(Texts.Get("C_NeedChecksums"));
         }
 
         var sources = args.Select(Path.GetFullPath).ToList();
@@ -340,11 +354,11 @@ internal static class Cli
         var result = engine.Run(new CopyJobRequest(sources, sources[0]));
         foreach (var item in engine.Files.Snapshot())
         {
-            string mark = item.State == FileState.Verified ? "OK   " : "FALLO";
+            string mark = item.State == FileState.Verified ? Texts.Get("C_Ok") : Texts.Get("C_Failed");
             Console.WriteLine($"{mark} {item.Source}{(item.Message is { } m ? "  (" + m + ")" : "")}");
         }
 
-        Console.WriteLine($"{result.FilesCopied} correctos, {result.Failures.Count} con errores en {result.Elapsed.TotalSeconds:F1} s.");
+        Console.WriteLine(Texts.F("C_TestDone", result.FilesCopied, result.Failures.Count, result.Elapsed.TotalSeconds));
         return result.Success ? ExitOk : ExitFailures;
     }
 
@@ -356,22 +370,22 @@ internal static class Cli
         var paths = args.Where(a => !a.StartsWith("--", StringComparison.Ordinal)).Select(Path.GetFullPath).ToList();
         if (paths.Count == 0)
         {
-            throw new UsageException("Indica qué borrar.");
+            throw new UsageException(Texts.Get("C_NeedDelete"));
         }
 
         if (!confirmed)
         {
-            throw new UsageException("Borrar no se puede deshacer: añade --yes para confirmarlo.");
+            throw new UsageException(Texts.Get("C_NeedYes"));
         }
 
         var engine = new CopyEngine(new CopyOptions { Operation = JobOperation.Delete, SecureDelete = secure });
         var result = engine.Run(new CopyJobRequest(paths, Path.GetDirectoryName(paths[0]) ?? paths[0]));
         foreach (var failure in result.Failures)
         {
-            Console.Error.WriteLine($"FALLO {failure.Source}: {failure.Message}");
+            Console.Error.WriteLine($"{Texts.Get("C_Failed")} {failure.Source}: {failure.Message}");
         }
 
-        Console.WriteLine($"{result.FilesCopied} archivos borrados{(secure ? " de forma segura" : "")}, {result.Failures.Count} con errores.");
+        Console.WriteLine(Texts.F(secure ? "C_WipeDone" : "C_DeleteDone", result.FilesCopied, result.Failures.Count));
         return result.Success ? ExitOk : ExitFailures;
     }
 
@@ -400,7 +414,7 @@ internal static class Cli
         }
         else
         {
-            var job = store.Get(id) ?? throw new UsageException($"No existe el trabajo {id}.");
+            var job = store.Get(id) ?? throw new UsageException(Texts.F("C_NoJob", id));
             jobs = [job];
         }
 
@@ -413,7 +427,7 @@ internal static class Cli
         int worst = ExitOk;
         foreach (var job in jobs)
         {
-            Console.WriteLine($"Reanudando {job.Id}: {string.Join(", ", job.Sources)} → {job.Destination}");
+            Console.WriteLine(Texts.F("C_Resuming", job.Id, string.Join(", ", job.Sources), job.Destination));
             var options = job.ToOptions();
             if (options.Encrypt || options.Operation == JobOperation.Decrypt)
             {
@@ -486,8 +500,8 @@ internal static class Cli
                 if (bytes >= limit)
                 {
                     renderer.Clear();
-                    Console.WriteLine($"[prueba] Matando el proceso tras confirmar {Format.Bytes(bytes)} de {Path.GetFileName(path)}.");
-                    Console.WriteLine($"[prueba] Continúa con: mcopy resume {job.Id}");
+                    Console.WriteLine(Texts.F("C_TestKill", Format.Bytes(bytes), Path.GetFileName(path)));
+                    Console.WriteLine(Texts.F("C_TestContinue", job.Id));
                     Process.GetCurrentProcess().Kill();
                 }
             };
@@ -509,7 +523,7 @@ internal static class Cli
             PrintSummary(result);
             if (options.DryRun)
             {
-                Console.WriteLine("  Simulación: no se ha cambiado nada. Quita --dry-run para hacerlo de verdad.");
+                Console.WriteLine("  " + Texts.Get("C_DryRunNote"));
                 store.Delete(job.Id);
                 return ExitOk;
             }
@@ -521,13 +535,13 @@ internal static class Cli
                 return ExitOk;
             }
 
-            Console.WriteLine($"Hay archivos con errores. Reintenta con: mcopy resume {job.Id}");
+            Console.WriteLine(Texts.F("C_RetryHint", job.Id));
             return ExitFailures;
         }
         catch (OperationCanceledException)
         {
             renderer.Clear();
-            Console.WriteLine($"Copia en pausa. Continúa desde donde quedó con: mcopy resume {job.Id}");
+            Console.WriteLine(Texts.F("C_PausedHint", job.Id));
             return ExitPaused;
         }
         catch (CopyPlanException ex)
@@ -541,7 +555,7 @@ internal static class Cli
         {
             renderer.Clear();
             Console.Error.WriteLine($"Error: {ex.Message}");
-            Console.Error.WriteLine($"El trabajo queda pendiente: mcopy resume {job.Id}");
+            Console.Error.WriteLine(Texts.F("C_JobPending", job.Id));
             return ExitFatal;
         }
         finally
@@ -555,24 +569,28 @@ internal static class Cli
         lock (renderer)
         {
             renderer.Clear();
-            Console.WriteLine($"Ya existe: {conflict.Destination}");
-            Console.WriteLine($"  nuevo:     {Format.Bytes(conflict.SourceLength),10}  {conflict.SourceLastWriteUtc.ToLocalTime():dd/MM/yyyy HH:mm}");
-            Console.WriteLine($"  existente: {Format.Bytes(conflict.DestinationLength),10}  {conflict.DestinationLastWriteUtc.ToLocalTime():dd/MM/yyyy HH:mm}");
+            Console.WriteLine(Texts.F("C_Exists", conflict.Destination));
+            string newLabel = Texts.Get("C_New") + ":", existingLabel = Texts.Get("C_Existing") + ":";
+            int labelWidth = Math.Max(newLabel.Length, existingLabel.Length) + 1;
+            Console.WriteLine($"  {newLabel.PadRight(labelWidth)}{Format.Bytes(conflict.SourceLength),10}  {conflict.SourceLastWriteUtc.ToLocalTime():g}");
+            Console.WriteLine($"  {existingLabel.PadRight(labelWidth)}{Format.Bytes(conflict.DestinationLength),10}  {conflict.DestinationLastWriteUtc.ToLocalTime():g}");
+            string keys = Texts.Get("C_ConflictKeys"); // reemplazar, omitir, conservar ambos (una letra cada uno, en este idioma)
             while (true)
             {
-                Console.Write("[r]eemplazar, [o]mitir, [c]onservar ambos (mayúscula = para todos): ");
-                string answer = (Console.ReadLine() ?? "o").Trim();
+                Console.Write(Texts.Get("C_ConflictPrompt") + " ");
+                string answer = (Console.ReadLine() ?? keys[1].ToString()).Trim();
                 if (answer.Length == 0)
                 {
                     continue;
                 }
 
                 bool all = char.IsUpper(answer[0]);
-                ConflictDecision? decision = char.ToLowerInvariant(answer[0]) switch
+                int choice = keys.IndexOf(char.ToLowerInvariant(answer[0]));
+                ConflictDecision? decision = choice switch
                 {
-                    'r' => ConflictDecision.Replace,
-                    'o' => ConflictDecision.Skip,
-                    'c' => ConflictDecision.KeepBoth,
+                    0 => ConflictDecision.Replace,
+                    1 => ConflictDecision.Skip,
+                    2 => ConflictDecision.KeepBoth,
                     _ => null,
                 };
                 if (decision is { } chosen)
@@ -586,14 +604,14 @@ internal static class Cli
     private static void PrintSummary(CopyJobResult result)
     {
         double seconds = Math.Max(result.Elapsed.TotalSeconds, 0.001);
-        Console.WriteLine($"Terminado en {result.Elapsed:hh\\:mm\\:ss\\.f}");
-        Console.WriteLine($"  Copiados: {result.FilesCopied} (reanudados: {result.FilesResumed})   Omitidos: {result.FilesSkipped}   Errores: {result.Failures.Count}");
-        Console.WriteLine($"  Transferido: {Format.Bytes(result.BytesTransferred)}   Sin recopiar gracias a la reanudación: {Format.Bytes(result.BytesResumed)}");
-        Console.WriteLine($"  Velocidad media: {Format.Bytes((long)(result.BytesTransferred / seconds))}/s");
+        Console.WriteLine(Texts.F("C_DoneIn", result.Elapsed.ToString(@"hh\:mm\:ss\.f")));
+        Console.WriteLine("  " + Texts.F("C_Summary", result.FilesCopied, result.FilesResumed, result.FilesSkipped, result.Failures.Count));
+        Console.WriteLine("  " + Texts.F("C_Transferred", Format.Bytes(result.BytesTransferred), Format.Bytes(result.BytesResumed)));
+        Console.WriteLine("  " + Texts.F("C_AverageSpeed", Format.Bytes((long)(result.BytesTransferred / seconds))));
 
         if (result.ChunksRejectedOnResume > 0 || result.ChunksRepaired > 0)
         {
-            Console.WriteLine($"  Bloques descartados al reanudar: {result.ChunksRejectedOnResume}   Bloques reparados en la verificación: {result.ChunksRepaired}");
+            Console.WriteLine("  " + Texts.F("C_Blocks", result.ChunksRejectedOnResume, result.ChunksRepaired));
         }
 
         foreach (var failure in result.Failures)
@@ -606,7 +624,7 @@ internal static class Cli
     {
         if (i + 1 >= args.Length)
         {
-            throw new UsageException($"Falta el valor de {args[i]}.");
+            throw new UsageException(Texts.F("C_MissingValue", args[i]));
         }
 
         return args[++i];
@@ -617,7 +635,7 @@ internal static class Cli
         string flag = args[i];
         return int.TryParse(Next(args, ref i), out int value) && value > 0
             ? value
-            : throw new UsageException($"{flag} necesita un número positivo.");
+            : throw new UsageException(Texts.F("C_NeedPositive", flag));
     }
 
     private static int Usage(string message)
@@ -636,10 +654,10 @@ internal static class Cli
             return fromEnvironment;
         }
 
-        string first = Prompt("Contraseña: ");
-        if (confirm && (first.Length < 8 || Prompt("Repítela: ") != first))
+        string first = Prompt(Texts.Get("C_Password") + " ");
+        if (confirm && (first.Length < 8 || Prompt(Texts.Get("C_Repeat") + " ") != first))
         {
-            throw new UsageException(first.Length < 8 ? "La contraseña debe tener al menos 8 caracteres." : "Las contraseñas no coinciden.");
+            throw new UsageException(Texts.Get(first.Length < 8 ? "C_PasswordShort" : "C_PasswordMismatch"));
         }
 
         return first;
@@ -667,50 +685,7 @@ internal static class Cli
 
     private static void PrintUsage()
     {
-        Console.WriteLine("""
-            MegaCopier — copia que sobrevive a apagones
-
-            Uso:
-              mcopy copy <origen>... <carpeta-destino> [opciones]
-              mcopy move <origen>... <carpeta-destino> [opciones]   Mueve (instantáneo en el mismo disco)
-              mcopy send <origen>... <carpeta-destino> [--verify] [--move] [--also <otra-carpeta>]... [--at HH:mm]
-                                          Entrega la copia a la app MegaCopier (ventana y bandeja)
-              mcopy send --test <sumas|carpeta>...         Comprueba archivos de sumas en la app
-              mcopy send --delete [--secure] <ruta>...     Borra (de forma segura) desde la app
-              mcopy send --hash <carpeta|archivos>...      Crea un archivo de sumas en la app
-              mcopy send ... [--mirror|--update-only|--folders-only] [--dry-run]
-              mcopy test <sumas|carpeta>...   Comprueba .sha256, .md5, .sfv, .xxh3... sin la app
-              mcopy decrypt <cifrados|carpeta>... <carpeta-destino>   Descifra archivos .mcenc
-              mcopy delete [--secure] --yes <ruta>...   Borra sin la app (--secure: sobrescribe antes)
-              mcopy resume [id]      Continúa los trabajos interrumpidos (o solo uno)
-              mcopy jobs             Lista los trabajos pendientes
-
-            Opciones de copy:
-              --verify               Relee el destino sin caché, compara hashes y repara bloques dañados
-              --conflict <modo>      overwrite (por defecto) | skip | newer | rename | fail | ask
-              --limit-mb <n>         Limita la velocidad a n MB/s
-              --force                Copia aunque el destino sea idéntico
-              --chunk-mb <n>         Cada cuántos MB se confirma en disco (por defecto 64)
-              --block-mb <n>         Tamaño de cada lectura/escritura en MB
-              --queue <n>            Lecturas y escrituras simultáneas en vuelo
-              --no-unbuffered        Usa la caché de Windows en lugar de E/S directa
-              --mirror               Sincroniza: quita del destino lo que ya no está en el origen
-              --update-only          Solo actualiza los archivos que ya existen en el destino
-              --folders-only         Solo crea la estructura de carpetas
-              --dry-run              Simula: dice qué haría con cada archivo sin cambiar nada
-              --versions <carpeta>   Guarda lo reemplazado o quitado en esa carpeta del destino
-              --skip-junk            Omite Thumbs.db, desktop.ini, .DS_Store, ~$...
-              --smb-compress         Pide compresión SMB al copiar por red (redes lentas)
-              --atomic               Todo o nada: la carpeta solo aparece cuando está completa
-              --rescue               Modo rescate: salva lo legible de un disco dañado (lo ilegible en ceros)
-              --delta                Al reemplazar archivos grandes, escribe solo los bloques que cambiaron
-              --organize             Organiza fotos y vídeos en carpetas añoño-mes por la fecha de toma
-              --skip-duplicates      No copia lo que ya está en el destino (mismo contenido, cualquier nombre)
-              --encrypt              Copia cifrada con contraseña (AES-256, archivos .mcenc)
-              --crash-after-mb <n>   [prueba] Mata el proceso tras confirmar n MB de un archivo
-
-            Ctrl+C pausa la copia; 'resume' continúa desde el último bloque confirmado.
-            """);
+        Console.WriteLine(Texts.Get("C_Usage"));
     }
 
     private sealed class UsageException(string message) : Exception(message);
@@ -734,12 +709,12 @@ internal sealed class ProgressRenderer
         _lastTicks = now;
         string phase = p.Phase switch
         {
-            CopyPhase.Validating => "comprobando",
-            CopyPhase.Verifying => "verificando",
+            CopyPhase.Validating => Texts.Get("C_Checking"),
+            CopyPhase.Verifying => Texts.Get("C_Verifying"),
             _ => "",
         };
-        string remaining = p.Remaining is { } r ? $"quedan {r:hh\\:mm\\:ss}" : "";
-        string line = $"{p.Fraction * 100,5:F1}% │ {Format.Bytes(p.CompletedBytes)} de {Format.Bytes(p.TotalBytes)} │ "
+        string remaining = p.Remaining is { } r ? Texts.F("C_Left", r.ToString(@"hh\:mm\:ss")) : "";
+        string line = $"{p.Fraction * 100,5:F1}% │ {Texts.F("C_Of", Format.Bytes(p.CompletedBytes), Format.Bytes(p.TotalBytes))} │ "
             + $"{Format.Bytes((long)p.BytesPerSecond)}/s │ {remaining} │ {phase} {Path.GetFileName(p.CurrentFile)}";
 
         if (!_interactive)

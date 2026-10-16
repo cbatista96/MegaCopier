@@ -154,7 +154,7 @@ public sealed class PeerReceiver : IDisposable
         string[] parts = header.Split('\t');
         if (parts.Length < 5 || parts[0] != "FILE" || PeerProtocol.SafeRelative(parts[1]) is not { } relative)
         {
-            throw new IOException("Cabecera de archivo no válida.");
+            throw new IOException(Texts.Get("E_BadFileHeader"));
         }
 
         long length = long.Parse(parts[2], CultureInfo.InvariantCulture);
@@ -185,7 +185,7 @@ public sealed class PeerReceiver : IDisposable
                 int read = await file.ReadAsync(buffer.AsMemory(0, (int)Math.Min(buffer.Length, offset - done)), cancellationToken).ConfigureAwait(false);
                 if (read == 0)
                 {
-                    throw new IOException("El archivo parcial cambió.");
+                    throw new IOException(Texts.Get("E_PartialChanged"));
                 }
 
                 hash.Append(buffer.AsSpan(0, read));

@@ -3,6 +3,18 @@ using Microsoft.Win32.SafeHandles;
 
 namespace MegaCopier.Engine.Tests;
 
+/// <summary>Las pruebas comprueban los mensajes en español: el motor habla en el idioma de la interfaz.</summary>
+internal static class TestCulture
+{
+    [System.Runtime.CompilerServices.ModuleInitializer]
+    internal static void UseSpanish()
+    {
+        var spanish = System.Globalization.CultureInfo.GetCultureInfo("es-ES");
+        System.Globalization.CultureInfo.DefaultThreadCurrentUICulture = spanish;
+        System.Globalization.CultureInfo.CurrentUICulture = spanish;
+    }
+}
+
 internal sealed class TempDir : IDisposable
 {
     public TempDir()

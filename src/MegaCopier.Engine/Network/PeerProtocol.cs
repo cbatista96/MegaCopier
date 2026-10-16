@@ -84,7 +84,7 @@ public static class PeerProtocol
         int size = BinaryPrimitives.ReadInt32LittleEndian(length);
         if (size is < 0 or > 1 << 20)
         {
-            throw new IOException("Mensaje no válido del otro equipo.");
+            throw new IOException(Texts.Get("E_BadPeerMessage"));
         }
 
         byte[] data = new byte[size];

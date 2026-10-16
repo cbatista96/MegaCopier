@@ -792,3 +792,4 @@ Shelf_One	1 elemento	1 item
 Shelf_Many	{0} elementos	{0} items
 Shelf_RemoveNamed	Quitar «{0}» de la bandeja	Remove "{0}" from the shelf
 Destinations_NoneChosen.Text	Marca al menos un destino (o añade una carpeta).	Tick at least one destination (or add a folder).
+Finish_ShutdownMessage	MegaCopier terminó las copias. El equipo se apagará en 1 minuto.	MegaCopier has finished the transfers. The PC will shut down in 1 minute.

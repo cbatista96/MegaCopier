@@ -57,7 +57,7 @@ public sealed partial class CopyEngine
         }
         catch (Exception ex) when (ex is SocketException or AuthenticationException)
         {
-            throw new IOException($"No se pudo conectar con {host}:{port} (¿está MegaCopier recibiendo y el cortafuegos lo permite?): {ex.Message}", ex);
+            throw new IOException(Texts.F("E_ConnectFailed", host, port, ex.Message), ex);
         }
 
         progress.Finish();
@@ -95,10 +95,10 @@ public sealed partial class CopyEngine
                     case PeerFileResult.AlreadyThere:
                         result.FilesSkipped++;
                         item.Action = PlannedAction.SkipIdentical;
-                        Files.Update(item, FileState.Skipped, "Ya estaba en el otro equipo");
+                        Files.Update(item, FileState.Skipped, Texts.Get("E_AlreadyOnPeer"));
                         break;
                     default:
-                        Fail(item, result, "Llegó dañado dos veces al otro equipo", FileErrorKind.HashMismatch);
+                        Fail(item, result, Texts.Get("E_DamagedTwice"), FileErrorKind.HashMismatch);
                         break;
                 }
 

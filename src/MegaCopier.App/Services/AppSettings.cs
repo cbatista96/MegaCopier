@@ -217,7 +217,7 @@ public sealed class AppSettings
 
     public bool AlwaysOnTop { get; set; }
 
-    /// <summary>"" = el de Windows; "es-ES" o "en-US". Se aplica al reiniciar la app.</summary>
+    /// <summary>"" = el de Windows; si no, un código de Texts.Languages ("fr-FR"...). Se aplica al reiniciar la app.</summary>
     public string Language { get; set; } = "";
 
     public bool VerifyAfterCopy { get; set; }

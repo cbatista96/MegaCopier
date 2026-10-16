@@ -36,7 +36,7 @@ public sealed partial class CopyEngine
 
         if (withoutDate > 0)
         {
-            Log(LogLevel.Info, $"{withoutDate} archivos sin fecha de toma ni de grabación: se ordenan por su fecha de modificación.");
+            Log(LogLevel.Info, Texts.F("E_NoPhotoDate", withoutDate));
         }
 
         return new CopyPlan(files, [], [], plan.Warnings);

@@ -195,7 +195,7 @@ internal sealed partial class FileTransfer
                     }
                     catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
                     {
-                        result.Warnings.Add($"No se copiaron los streams alternativos: {ex.Message}");
+                        result.Warnings.Add(Texts.F("E_StreamsFailed", ex.Message));
                     }
                 }
 
@@ -598,7 +598,7 @@ internal sealed partial class FileTransfer
             result.UnreadableBytes += unreadable;
             foreach (var (start, end) in ranges)
             {
-                result.Warnings.Add($"Modo rescate: no se pudieron leer los bytes {start:N0}–{end:N0} ({end - start:N0} bytes); quedaron en ceros.");
+                result.Warnings.Add(Texts.F("E_RescueGap", start, end, end - start));
             }
         }
 
@@ -706,7 +706,7 @@ internal sealed partial class FileTransfer
                 var still = await FindBadChunksAsync(io.Destination, io.DestinationUnbuffered, chunks, chunkSize, index, index + 1, cancellationToken).ConfigureAwait(false);
                 if (still.Count > 0)
                 {
-                    throw new CopyVerificationException($"El bloque {index} de \"{destinationPath}\" no coincide con el origen ni siquiera tras repararlo.");
+                    throw new CopyVerificationException(Texts.F("E_BlockUnrepairable", index, destinationPath));
                 }
             }
         }
@@ -788,7 +788,7 @@ internal sealed partial class FileTransfer
 
         if (hasher.GetCurrentHashAsUInt128() != record.Hash)
         {
-            throw new CopyVerificationException("El archivo de origen ya no coincide con lo que se copió al principio.");
+            throw new CopyVerificationException(Texts.Get("E_SourceChangedSinceStart"));
         }
 
         Win32.Flush(io.Destination);
@@ -905,7 +905,7 @@ internal sealed partial class FileTransfer
             }
             catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
             {
-                result.Warnings.Add($"No se copiaron los streams alternativos: {ex.Message}");
+                result.Warnings.Add(Texts.F("E_StreamsFailed", ex.Message));
             }
         }
 
@@ -961,7 +961,7 @@ internal sealed partial class FileTransfer
     }
 
     private static IOException SourceChanged() =>
-        new("El archivo de origen cambió de tamaño durante la copia.");
+        new(Texts.Get("E_SourceSizeChanged"));
 
     private readonly record struct IoContext(
         SafeFileHandle Source,

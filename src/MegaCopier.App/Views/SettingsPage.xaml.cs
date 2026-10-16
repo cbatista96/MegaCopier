@@ -75,8 +75,10 @@ public sealed partial class SettingsPage : UserControl
         _startupLanguage = _app.Settings.Language;
 
         LanguageBox.Items.Add(new ComboBoxItem { Content = L.Get("Language_Auto"), Tag = "" });
-        LanguageBox.Items.Add(new ComboBoxItem { Content = "Español", Tag = "es-ES" });
-        LanguageBox.Items.Add(new ComboBoxItem { Content = "English", Tag = "en-US" });
+        foreach (var (code, name) in Engine.Texts.Languages)
+        {
+            LanguageBox.Items.Add(new ComboBoxItem { Content = name, Tag = code });
+        }
         foreach (var hash in OptionsTab.Hashes)
         {
             HashBox.Items.Add(new ComboBoxItem { Content = OptionsTab.HashName(hash) });

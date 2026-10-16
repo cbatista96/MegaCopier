@@ -29,7 +29,7 @@ public sealed partial class CopyEngine
 
             if (Directory.Exists(final) || File.Exists(final))
             {
-                Log(LogLevel.Warning, "Ya existe en el destino: se copia dentro de la carpeta existente (sin «todo o nada»).", source);
+                Log(LogLevel.Warning, Texts.Get("E_AtomicExists"), source);
                 continue;
             }
 
@@ -79,7 +79,7 @@ public sealed partial class CopyEngine
         {
             if (result.Failures.Count > 0)
             {
-                Log(LogLevel.Warning, $"Hubo errores: la carpeta no se publica todavía (sigue en {Path.GetFileName(staging)}, oculta). Reintenta y aparecerá completa.", final);
+                Log(LogLevel.Warning, Texts.F("E_AtomicNotPublished", Path.GetFileName(staging)), final);
                 continue;
             }
 
@@ -88,11 +88,11 @@ public sealed partial class CopyEngine
                 var folder = new DirectoryInfo(staging);
                 folder.Attributes &= ~FileAttributes.Hidden;
                 folder.MoveTo(final);
-                Log(LogLevel.Info, "Carpeta completa: publicada con su nombre.", final);
+                Log(LogLevel.Info, Texts.Get("E_AtomicPublished"), final);
             }
             catch (IOException ex)
             {
-                result.Failures.Add(new FileFailure(staging, $"No se pudo dar a la carpeta su nombre final: {ex.Message}"));
+                result.Failures.Add(new FileFailure(staging, Texts.F("E_AtomicRenameFailed", ex.Message)));
             }
         }
     }
