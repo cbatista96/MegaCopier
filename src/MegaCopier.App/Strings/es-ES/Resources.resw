@@ -643,4 +643,7 @@
   <data name="Error_TooLargeForFileSystem" xml:space="preserve"><value>No cabe en este disco: FAT32 no admite archivos de 4 GB o más. Formatéalo como exFAT o NTFS.</value></data>
   <data name="Rules_AllOrNothing.Content" xml:space="preserve"><value>Carpetas «todo o nada»</value></data>
   <data name="Rules_AllOrNothing.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Cada carpeta nueva se copia oculta y solo aparece con su nombre cuando todo salió bien: nunca queda una carpeta a medias que parezca completa.</value></data>
+  <data name="Rules_Rescue.Content" xml:space="preserve"><value>Modo rescate para discos dañados</value></data>
+  <data name="Rules_Rescue.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Si el origen tiene sectores dañados, se lee sector a sector y se salva todo lo legible; lo ilegible queda en ceros y se anota en el registro. El original no se borra al mover.</value></data>
+  <data name="Error_PartlyUnreadable" xml:space="preserve"><value>Rescatado en parte: algunos sectores del origen estaban dañados y quedaron en ceros (detalle en el Registro).</value></data>
 </root>

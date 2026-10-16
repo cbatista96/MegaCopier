@@ -172,6 +172,11 @@ internal enum FaultPoint
 internal interface IFaultInjector
 {
     void Hit(FaultPoint point, long chunkIndex, SafeFileHandle destination);
+
+    /// <summary>Antes de leer del origen (para simular sectores dañados).</summary>
+    void BeforeRead(long offset, int length)
+    {
+    }
 }
 
 /// <summary>Por qué falló un archivo, para mostrar un mensaje claro y traducido (el texto técnico va aparte).</summary>
@@ -191,6 +196,9 @@ public enum FileErrorKind
 
     /// <summary>El archivo es demasiado grande para el sistema de archivos del destino (FAT32: 4 GB).</summary>
     TooLargeForFileSystem,
+
+    /// <summary>Modo rescate: se copió todo lo legible; partes ilegibles del origen quedaron en ceros.</summary>
+    PartlyUnreadable,
     DeleteFailed,
 }
 

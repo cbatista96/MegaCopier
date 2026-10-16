@@ -420,6 +420,14 @@ public sealed partial class CopyEngine
                 Log(LogLevel.Warning, warning, item.Source);
             }
 
+            // Modo rescate: la copia queda en el destino (es todo lo que se pudo salvar), pero no cuenta como buena y, al
+            // mover, el original no se borra.
+            if (outcome.UnreadableBytes > 0)
+            {
+                Fail(item, result, $"Rescatado: {FormatBytes(outcome.UnreadableBytes)} ilegibles del origen quedaron en ceros (detalle en el registro).", FileErrorKind.PartlyUnreadable);
+                return;
+            }
+
             if (outcome.ChunksRepaired > 0)
             {
                 Log(LogLevel.Warning, $"La verificación reparó {outcome.ChunksRepaired} bloques dañados.", item.Source);

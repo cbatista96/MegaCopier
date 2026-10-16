@@ -643,4 +643,7 @@
   <data name="Error_TooLargeForFileSystem" xml:space="preserve"><value>Does not fit on this drive: FAT32 does not allow files of 4 GB or more. Format it as exFAT or NTFS.</value></data>
   <data name="Rules_AllOrNothing.Content" xml:space="preserve"><value>All-or-nothing folders</value></data>
   <data name="Rules_AllOrNothing.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Each new folder is copied hidden and only appears under its name when everything went well: there is never a half-copied folder that looks complete.</value></data>
+  <data name="Rules_Rescue.Content" xml:space="preserve"><value>Rescue mode for damaged drives</value></data>
+  <data name="Rules_Rescue.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>If the source has bad sectors, it is read sector by sector and everything readable is saved; unreadable parts become zeros and are logged. The original is not deleted when moving.</value></data>
+  <data name="Error_PartlyUnreadable" xml:space="preserve"><value>Partly rescued: some source sectors were damaged and became zeros (details in the Log).</value></data>
 </root>

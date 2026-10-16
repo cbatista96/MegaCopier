@@ -111,6 +111,9 @@ internal static class Cli
                 case "--atomic":
                     options.AllOrNothing = true;
                     break;
+                case "--rescue":
+                    options.RescueMode = true;
+                    break;
                 case "--crash-after-mb":
                     crashAfter = NextInt(args, ref i) * (long)CopyOptions.MiB;
                     break;
@@ -637,6 +640,7 @@ internal static class Cli
               --skip-junk            Omite Thumbs.db, desktop.ini, .DS_Store, ~$...
               --smb-compress         Pide compresión SMB al copiar por red (redes lentas)
               --atomic               Todo o nada: la carpeta solo aparece cuando está completa
+              --rescue               Modo rescate: salva lo legible de un disco dañado (lo ilegible en ceros)
               --crash-after-mb <n>   [prueba] Mata el proceso tras confirmar n MB de un archivo
 
             Ctrl+C pausa la copia; 'resume' continúa desde el último bloque confirmado.

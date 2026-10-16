@@ -31,6 +31,9 @@ internal sealed class FileTransferResult
 
     /// <summary>Lo copió Windows (CopyFile2): en el servidor o con compresión SMB.</summary>
     public bool SystemCopied { get; set; }
+
+    /// <summary>Modo rescate: bytes del origen que no se pudieron leer (quedaron en ceros).</summary>
+    public long UnreadableBytes { get; set; }
 }
 
 /// <summary>
@@ -117,10 +120,21 @@ internal sealed class FileTransfer
         try
         {
             var span = data.AsSpan(0, (int)length);
+            var result = new FileTransferResult { BytesTransferred = length };
+            _current = result;
             int total = 0;
             while (total < length)
             {
-                int read = RandomAccess.Read(source, span[total..], total);
+                int read;
+                try
+                {
+                    read = RandomAccess.Read(source, span[total..], total);
+                }
+                catch (IOException ex) when (_options.RescueMode && IsMediaError(ex))
+                {
+                    read = Rescue(source, false, span[total..], total, (int)length - total, cancellationToken);
+                }
+
                 if (read == 0)
                 {
                     throw SourceChanged();
@@ -129,7 +143,6 @@ internal sealed class FileTransfer
                 total += read;
             }
 
-            var result = new FileTransferResult { BytesTransferred = length };
             if (FileHasher.Create(_options.HashAlgorithm) is { } hasher)
             {
                 hasher.Append(span);
@@ -268,6 +281,7 @@ internal sealed class FileTransfer
         }
 
         var result = new FileTransferResult();
+        _current = result;
         SafeFileHandle? destination = null;
         try
         {
@@ -501,6 +515,76 @@ internal sealed class FileTransfer
     /// Canalización de copia: mantiene hasta <see cref="CopyOptions.ReadQueueDepth"/> lecturas en vuelo y entrega los
     /// bloques en orden al <see cref="ChunkWriter"/>, que a su vez mantiene varias escrituras en vuelo.
     /// </summary>
+    /// <summary>Resultado del archivo en curso (el modo rescate anota ahí lo que no se pudo leer).</summary>
+    private FileTransferResult? _current;
+
+    private async Task<int> ReadSourceAsync(IoContext io, AlignedBuffer buffer, int want, long offset, CancellationToken cancellationToken)
+    {
+        _faults?.BeforeRead(offset, want);
+        return await IoHelpers.ReadFullAsync(io.Source, io.SourceUnbuffered, buffer, want, offset, cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <summary>Errores de un disco dañado (no de un disco desconectado, que se espera a que vuelva).</summary>
+    private static bool IsMediaError(IOException ex) =>
+        (ex.HResult & 0xFFFF) is 23 or 25 or 27 or 30 or 483 or 1117; // CRC, SEEK, SECTOR_NOT_FOUND, READ_FAULT, DEVICE_HARDWARE_ERROR, IO_DEVICE
+
+    /// <summary>
+    /// Modo rescate: lee <paramref name="length"/> bytes de 4 KB en 4 KB, con 3 intentos por trozo; lo que no se puede
+    /// leer queda en ceros y se anota. Devuelve siempre <paramref name="length"/>.
+    /// </summary>
+    private int Rescue(SafeFileHandle source, bool unbuffered, Span<byte> target, long offset, int length, CancellationToken cancellationToken)
+    {
+        const int Piece = 4096;
+        long unreadable = 0;
+        var ranges = new List<(long Start, long End)>();
+        for (int done = 0; done < length; done += Piece)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            int piece = Math.Min(Piece, length - done);
+            bool read = false;
+            for (int attempt = 0; attempt < 3 && !read; attempt++)
+            {
+                try
+                {
+                    _faults?.BeforeRead(offset + done, piece);
+
+                    // Sin caché hay que leer sectores enteros (el búfer alineado tiene sitio).
+                    int got = RandomAccess.Read(source, target.Slice(done, unbuffered ? Piece : piece), offset + done);
+                    read = got >= piece || offset + done + got >= RandomAccess.GetLength(source);
+                }
+                catch (IOException ex) when (IsMediaError(ex))
+                {
+                }
+            }
+
+            if (!read)
+            {
+                target.Slice(done, piece).Clear();
+                unreadable += piece;
+                long start = offset + done;
+                if (ranges.Count > 0 && ranges[^1].End == start)
+                {
+                    ranges[^1] = (ranges[^1].Start, start + piece);
+                }
+                else
+                {
+                    ranges.Add((start, start + piece));
+                }
+            }
+        }
+
+        if (unreadable > 0 && _current is { } result)
+        {
+            result.UnreadableBytes += unreadable;
+            foreach (var (start, end) in ranges)
+            {
+                result.Warnings.Add($"Modo rescate: no se pudieron leer los bytes {start:N0}–{end:N0} ({end - start:N0} bytes); quedaron en ceros.");
+            }
+        }
+
+        return length;
+    }
+
     private async Task CopyRangeAsync(IoContext io, long start, long length, ChunkWriter writer, CancellationToken cancellationToken)
     {
         var pending = new Queue<PendingRead>();
@@ -513,7 +597,7 @@ internal sealed class FileTransfer
                 {
                     int want = (int)Math.Min(_pool.BufferSize, length - next);
                     pending.Enqueue(new PendingRead(
-                        IoHelpers.ReadFullAsync(io.Source, io.SourceUnbuffered, buffer, want, next, cancellationToken),
+                        ReadSourceAsync(io, buffer, want, next, cancellationToken),
                         buffer,
                         next,
                         want));
@@ -537,6 +621,19 @@ internal sealed class FileTransfer
                     if (count != read.Want)
                     {
                         throw SourceChanged();
+                    }
+                }
+                catch (IOException ex) when (_options.RescueMode && IsMediaError(ex))
+                {
+                    // Modo rescate: el bloque dañado se lee sector a sector y lo ilegible queda en ceros.
+                    try
+                    {
+                        count = Rescue(io.Source, io.SourceUnbuffered, read.Buffer.Span, read.Offset, read.Want, cancellationToken);
+                    }
+                    catch
+                    {
+                        _pool.Return(read.Buffer);
+                        throw;
                     }
                 }
                 catch
