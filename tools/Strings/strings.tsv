@@ -630,3 +630,5 @@ Settings_TasksEmpty	Todavía no hay tareas.	No tasks yet.
 Settings_TaskRun	Ejecutar «{0}» ahora	Run "{0}" now
 Settings_TaskDelete	Borrar la tarea «{0}»	Delete the task "{0}"
 About_Portable	portátil (datos en {0})	portable (data in {0})
+Job_Estimate	{0}, unos {1}	{0}, about {1}
+Job_EstimateSize	{0} en total	{0} in total

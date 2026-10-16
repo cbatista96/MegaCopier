@@ -636,4 +636,6 @@
   <data name="Settings_TaskRun" xml:space="preserve"><value>Ejecutar «{0}» ahora</value></data>
   <data name="Settings_TaskDelete" xml:space="preserve"><value>Borrar la tarea «{0}»</value></data>
   <data name="About_Portable" xml:space="preserve"><value>portátil (datos en {0})</value></data>
+  <data name="Job_Estimate" xml:space="preserve"><value>{0}, unos {1}</value></data>
+  <data name="Job_EstimateSize" xml:space="preserve"><value>{0} en total</value></data>
 </root>
