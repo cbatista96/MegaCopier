@@ -28,6 +28,9 @@ internal sealed class FileTransferResult
 
     /// <summary>Se clonaron los bloques (ReFS/Dev Drive) en lugar de copiar los datos.</summary>
     public bool Cloned { get; set; }
+
+    /// <summary>Lo copió Windows (CopyFile2): en el servidor o con compresión SMB.</summary>
+    public bool SystemCopied { get; set; }
 }
 
 /// <summary>
@@ -102,6 +105,15 @@ internal sealed class FileTransfer
             && await TryCloneAsync(source, sourceUnbuffered, info, sourcePath, partialPath, destinationPath, cancellationToken).ConfigureAwait(false) is { } cloned)
         {
             return cloned;
+        }
+
+        bool systemCopy = _options.ForceSystemCopy
+            || (_options.ServerSideCopy && SystemCopy.SameServer(sourcePath, destinationPath))
+            || (_options.SmbCompression && SystemCopy.OnNetwork(sourcePath, destinationPath));
+        if (journal is null && systemCopy
+            && await TrySystemCopyAsync(source, sourceUnbuffered, info, sourcePath, partialPath, destinationPath, cancellationToken).ConfigureAwait(false) is { } copied)
+        {
+            return copied;
         }
 
         var result = new FileTransferResult();
@@ -219,8 +231,43 @@ internal sealed class FileTransfer
         long length = info.Identity.Length;
         var result = new FileTransferResult { Cloned = true, BytesTransferred = length };
         _progress.AddTransferred(length);
+        return await FinishShortcutAsync(source, sourceUnbuffered, info, sourcePath, partialPath, destinationPath, result, cancellationToken).ConfigureAwait(false);
+    }
 
-        // Las sumas se siguen calculando (archivo de sumas, verificación) leyendo los datos.
+    /// <summary>
+    /// Copia del sistema (CopyFile2): en el mismo servidor la hace el propio servidor; con compresión SMB, comprimida.
+    /// Null si falla por algo que la copia normal puede resolver.
+    /// </summary>
+    private async Task<FileTransferResult?> TrySystemCopyAsync(
+        SafeFileHandle source, bool sourceUnbuffered, SourceInfo info, string sourcePath, string partialPath, string destinationPath, CancellationToken cancellationToken)
+    {
+        var result = new FileTransferResult { SystemCopied = true, BytesTransferred = info.Identity.Length };
+        try
+        {
+            IoHelpers.DeleteIfExists(partialPath);
+            bool network = SystemCopy.OnNetwork(sourcePath, destinationPath);
+            SystemCopy.Copy(sourcePath, partialPath, _options.SmbCompression && network, _options.UseUnbufferedIo && !network, _progress.AddTransferred, cancellationToken);
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException && !cancellationToken.IsCancellationRequested)
+        {
+            IoHelpers.DeleteIfExists(partialPath);
+            return null;
+        }
+        catch (OperationCanceledException)
+        {
+            IoHelpers.DeleteIfExists(partialPath);
+            throw;
+        }
+
+        return await FinishShortcutAsync(source, sourceUnbuffered, info, sourcePath, partialPath, destinationPath, result, cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <summary>Tras clonar o copiar con el sistema: sumas (archivo de sumas, verificación) y metadatos, como siempre.</summary>
+    private async Task<FileTransferResult> FinishShortcutAsync(
+        SafeFileHandle source, bool sourceUnbuffered, SourceInfo info, string sourcePath, string partialPath, string destinationPath,
+        FileTransferResult result, CancellationToken cancellationToken)
+    {
+        long length = info.Identity.Length;
         if (FileHasher.Create(_options.HashAlgorithm) is { } sourceHasher)
         {
             await ReadSequentialAsync(source, sourceUnbuffered, 0, length, (data, _) => sourceHasher.Append(data), cancellationToken).ConfigureAwait(false);

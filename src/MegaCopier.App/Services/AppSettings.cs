@@ -88,6 +88,9 @@ public sealed class AppSettings
 
     public bool UseSystemCache { get; set; }
 
+    /// <summary>Pedir compresión SMB al copiar por red.</summary>
+    public bool SmbCompression { get; set; }
+
     public bool HideFinishedFiles { get; set; } = true;
 
     public bool VerifySkipped { get; set; }
@@ -259,6 +262,7 @@ public sealed class AppSettings
             MaxBytesPerSecond = SpeedLimitMBps * (long)CopyOptions.MiB,
             CheckFreeSpace = CheckFreeSpace,
             UseUnbufferedIo = !UseSystemCache,
+            SmbCompression = SmbCompression,
             VerifySkipped = VerifySkipped,
             HashAlgorithm = HashAlgorithm,
             CopyStreams = CopyStreams,

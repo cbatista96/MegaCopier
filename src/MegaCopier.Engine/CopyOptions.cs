@@ -129,6 +129,15 @@ public sealed class CopyOptions
     /// <summary>En ReFS y Dev Drive, dentro del mismo volumen, clonar bloques en lugar de copiarlos (instantáneo).</summary>
     public bool BlockClone { get; set; } = true;
 
+    /// <summary>Origen y destino en el mismo servidor de red: que copie el servidor (los datos no viajan por la red).</summary>
+    public bool ServerSideCopy { get; set; } = true;
+
+    /// <summary>Pedir compresión SMB al copiar por red (Windows 11 / Server 2022): ayuda en redes lentas.</summary>
+    public bool SmbCompression { get; set; }
+
+    /// <summary>Pruebas: usar siempre la copia del sistema (CopyFile2).</summary>
+    internal bool ForceSystemCopy { get; set; }
+
     public bool PreserveTimestamps { get; set; } = true;
 
     public bool PreserveAttributes { get; set; } = true;

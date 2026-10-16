@@ -95,6 +95,8 @@ public sealed class CopyJobRecord
 
     public bool WaitForSpace { get; set; } = true;
 
+    public bool SmbCompression { get; set; }
+
     /// <summary>Ya se ejecutó alguna vez (al reanudar no se vuelve a aplicar la regla de carpetas existentes).</summary>
     public bool Started { get; set; }
 
@@ -146,6 +148,7 @@ public sealed class CopyJobRecord
         WipeSource = options.WipeSource,
         WaitForDevice = options.WaitForDevice,
         WaitForSpace = options.WaitForSpace,
+        SmbCompression = options.SmbCompression,
     };
 
     /// <summary>Lista de copia guardada (.mclist): orígenes, destino, opciones y archivos excluidos.</summary>
@@ -191,6 +194,7 @@ public sealed class CopyJobRecord
             WipeSource = WipeSource,
             WaitForDevice = WaitForDevice,
             WaitForSpace = WaitForSpace,
+            SmbCompression = SmbCompression,
         };
         if (ChunkSize > 0 && BlockSize > 0)
         {

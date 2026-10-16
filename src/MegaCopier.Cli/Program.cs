@@ -105,6 +105,9 @@ internal static class Cli
                 case "--skip-junk":
                     options.Filter.SkipJunk = true;
                     break;
+                case "--smb-compress":
+                    options.SmbCompression = true;
+                    break;
                 case "--crash-after-mb":
                     crashAfter = NextInt(args, ref i) * (long)CopyOptions.MiB;
                     break;
@@ -629,6 +632,7 @@ internal static class Cli
               --dry-run              Simula: dice qué haría con cada archivo sin cambiar nada
               --versions <carpeta>   Guarda lo reemplazado o quitado en esa carpeta del destino
               --skip-junk            Omite Thumbs.db, desktop.ini, .DS_Store, ~$...
+              --smb-compress         Pide compresión SMB al copiar por red (redes lentas)
               --crash-after-mb <n>   [prueba] Mata el proceso tras confirmar n MB de un archivo
 
             Ctrl+C pausa la copia; 'resume' continúa desde el último bloque confirmado.

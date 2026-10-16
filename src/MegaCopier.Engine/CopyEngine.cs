@@ -406,6 +406,11 @@ public sealed partial class CopyEngine
                 Log(LogLevel.Info, "Bloques clonados al instante (ReFS/Dev Drive): no ocupa más espacio hasta que se modifique.", item.Source);
             }
 
+            if (outcome.SystemCopied)
+            {
+                Log(LogLevel.Info, _options.SmbCompression ? "Copiado por Windows con compresión SMB." : "Copiado en el propio servidor (sin pasar los datos por este equipo).", item.Source);
+            }
+
             if (outcome.BytesResumed > 0)
             {
                 Log(LogLevel.Info, $"Reanudado desde {FormatBytes(outcome.BytesResumed)}.", item.Source);
