@@ -5,7 +5,12 @@ namespace MegaCopier.App.ViewModels;
 /// <summary>Tamaños, velocidades, duraciones y fechas con el formato regional del usuario.</summary>
 internal static class Format
 {
-    private static readonly string[] Units = ["B", "KB", "MB", "GB", "TB"];
+    private static readonly string[] Classic = ["B", "KB", "MB", "GB", "TB"];
+    private static readonly string[] Iec = ["B", "KiB", "MiB", "GiB", "TiB"];
+    private static readonly string[] DecimalUnits = ["B", "kB", "MB", "GB", "TB"];
+
+    /// <summary>Unidades elegidas en Ajustes.</summary>
+    public static Services.SizeUnits SizeUnits { get; set; }
 
     private static CultureInfo Culture => CultureInfo.CurrentCulture;
 
@@ -24,16 +29,18 @@ internal static class Format
 
     public static string Bytes(double bytes)
     {
+        var units = SizeUnits switch { Services.SizeUnits.Iec => Iec, Services.SizeUnits.Decimal => DecimalUnits, _ => Classic };
+        double step = SizeUnits == Services.SizeUnits.Decimal ? 1000 : 1024;
         int unit = 0;
-        while (bytes >= 1024 && unit < Units.Length - 1)
+        while (bytes >= step && unit < units.Length - 1)
         {
-            bytes /= 1024;
+            bytes /= step;
             unit++;
         }
 
         return unit == 0
-            ? string.Format(Culture, "{0:0} {1}", bytes, Units[unit])
-            : string.Format(Culture, bytes >= 100 ? "{0:0} {1}" : "{0:0.0#} {1}", bytes, Units[unit]);
+            ? string.Format(Culture, "{0:0} {1}", bytes, units[unit])
+            : string.Format(Culture, bytes >= 100 ? "{0:0} {1}" : "{0:0.0#} {1}", bytes, units[unit]);
     }
 
     public static string Speed(double bytesPerSecond) => Bytes(bytesPerSecond) + "/s";

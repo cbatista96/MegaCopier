@@ -39,6 +39,14 @@ public enum FinishWindow
     KeepOpen,
 }
 
+/// <summary>Unidades de tamaño: binarias con nombre clásico (como el Explorador), binarias IEC o decimales (como el fabricante del disco).</summary>
+public enum SizeUnits
+{
+    Classic,
+    Iec,
+    Decimal,
+}
+
 public enum ProcessPriority
 {
     Low,
@@ -200,6 +208,20 @@ public sealed class AppSettings
 
     /// <summary>Límite de velocidad de las copias nuevas en MB/s (0 = sin límite).</summary>
     public int SpeedLimitMBps { get; set; }
+
+    /// <summary>Mientras usas el teclado o el ratón, las copias no pasan de esta velocidad (0 = sin límite).</summary>
+    public int SlowWhenActiveMBps { get; set; }
+
+    /// <summary>Cómo se muestran los tamaños.</summary>
+    public SizeUnits Units { get; set; }
+
+    /// <summary>Guardar el registro de cada copia en disco (carpeta "logs"), los últimos <see cref="LogRetentionDays"/> días.</summary>
+    public bool SaveLogs { get; set; } = true;
+
+    public int LogRetentionDays { get; set; } = 30;
+
+    /// <summary>Dirección a la que avisar (POST con JSON) al terminar cada copia: Discord, Slack, Teams, ntfy, Home Assistant...</summary>
+    public string WebhookUrl { get; set; } = "";
 
     /// <summary>Al arrancar, continuar sin preguntar las copias que quedaron a medias.</summary>
     public bool AutoResumeInterrupted { get; set; }

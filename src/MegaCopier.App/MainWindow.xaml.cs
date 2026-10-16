@@ -191,6 +191,47 @@ public sealed partial class MainWindow : Window
 
     internal void Hide() => AppWindow.Hide();
 
+    /// <summary>Cuenta atrás antes de apagar, suspender... Devuelve false si el usuario la cancela.</summary>
+    internal async Task<bool> ConfirmFinishAsync(FinishAction action)
+    {
+        const int Seconds = 30;
+        ShowAndActivate();
+        ShowJobs();
+        int left = Seconds;
+        bool timedOut = false;
+        void Update()
+        {
+            FinishMessage.Text = L.F("Finish_Countdown" + action, left);
+            FinishProgress.Value = 100.0 * left / Seconds;
+        }
+
+        Update();
+        var timer = _dispatcher.CreateTimer();
+        timer.Interval = TimeSpan.FromSeconds(1);
+        timer.Tick += (_, _) =>
+        {
+            left--;
+            Update();
+            if (left <= 0)
+            {
+                timedOut = true;
+                FinishDialog.Hide();
+            }
+        };
+        timer.Start();
+        FinishDialog.XamlRoot = Root.XamlRoot;
+        FinishDialog.RequestedTheme = Root.RequestedTheme;
+        try
+        {
+            var result = await FinishDialog.ShowAsync();
+            return timedOut || result == ContentDialogResult.Primary;
+        }
+        finally
+        {
+            timer.Stop();
+        }
+    }
+
     /// <summary>Vuelve a la copia (cierra Historial o Ajustes si estaban abiertos).</summary>
     internal void ShowJobs()
     {

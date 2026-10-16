@@ -137,6 +137,10 @@ public sealed partial class SettingsPage : UserControl
         MaxJobsBox.Value = s.MaxActiveJobs;
         FastBox.Text = s.FastDevices;
         PriorityBox.SelectedIndex = (int)s.Priority;
+        UnitsBox.SelectedIndex = (int)s.Units;
+        SlowBox.SelectedItem = SlowBox.Items.OfType<ComboBoxItem>().FirstOrDefault(i => (string)i.Tag == s.SlowWhenActiveMBps.ToString()) ?? SlowBox.Items[0];
+        LogsToggle.IsOn = s.SaveLogs;
+        WebhookBox.Text = s.WebhookUrl;
         ScriptsBox.Text = string.Join(Environment.NewLine, s.Scripts);
         Rules.Load(s.Rules);
         LoadFavorites();
@@ -218,10 +222,32 @@ public sealed partial class SettingsPage : UserControl
 
         s.FastDevices = FastBox.Text.Trim();
         s.Priority = (ProcessPriority)Math.Max(0, PriorityBox.SelectedIndex);
+        s.Units = (SizeUnits)Math.Max(0, UnitsBox.SelectedIndex);
+        if (SlowBox.SelectedItem is ComboBoxItem { Tag: string slow } && int.TryParse(slow, out int slowLimit))
+        {
+            s.SlowWhenActiveMBps = slowLimit;
+        }
+
+        s.SaveLogs = LogsToggle.IsOn;
+        s.WebhookUrl = WebhookBox.Text.Trim();
         s.Scripts = [.. ScriptsBox.Text.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)];
         s.Rules = Rules.Read();
         s.Save();
         _app.ApplySettings();
+    }
+
+    private void OpenLogs_Click(object sender, RoutedEventArgs e)
+    {
+        Directory.CreateDirectory(JobNotices.LogFolder);
+        System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo("explorer.exe", $"\"{JobNotices.LogFolder}\"") { UseShellExecute = true });
+    }
+
+    private async void TestWebhook_Click(object sender, RoutedEventArgs e)
+    {
+        Store();
+        WebhookResult.Text = L.Get("Settings_WebhookSending");
+        bool ok = await JobNotices.SendWebhookAsync(_app.Settings.WebhookUrl, L.Get("Settings_WebhookTestMessage"), null);
+        WebhookResult.Text = L.Get(ok ? "Settings_WebhookOk" : "Settings_WebhookFailed");
     }
 
     // ---------------------------------------------------------------------------------------------------------

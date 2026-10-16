@@ -124,6 +124,16 @@
                         <ComboBox x:Name="LanguageBox" Grid.Column="2" MinWidth="220" SelectionChanged="Language_Changed" />
                     </Grid>
                 </Border>
+                <Border Style="{StaticResource McSettingCard}">
+                    <Grid Style="{StaticResource Row}">
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                        <FontIcon VerticalAlignment="Center" Glyph="&#xE9D9;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
+                        <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_UnitsTitle" Style="{StaticResource McBody}" /><TextBlock x:Uid="Settings_UnitsDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                        <ComboBox x:Name="UnitsBox" Grid.Column="2" MinWidth="220" SelectionChanged="Selection_Changed">
+                            <ComboBoxItem x:Uid="Units_Classic" /><ComboBoxItem x:Uid="Units_Iec" /><ComboBoxItem x:Uid="Units_Decimal" />
+                        </ComboBox>
+                    </Grid>
+                </Border>
 
                 <!-- Sonidos -->
                 <TextBlock x:Uid="Settings_Sounds" Style="{StaticResource McSection}" />
@@ -321,6 +331,17 @@
                         <TextBox x:Name="FastBox" Grid.Column="2" MinWidth="220" PlaceholderText="C:, D:\Datos" LostFocus="Changed" />
                     </Grid>
                 </Border>
+                <Border Style="{StaticResource McSettingCard}">
+                    <Grid Style="{StaticResource Row}">
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                        <FontIcon VerticalAlignment="Center" Glyph="&#xE7F4;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
+                        <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_SlowTitle" Style="{StaticResource McBody}" /><TextBlock x:Uid="Settings_SlowDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                        <ComboBox x:Name="SlowBox" Grid.Column="2" MinWidth="220" SelectionChanged="Selection_Changed">
+                            <ComboBoxItem x:Uid="Slow_Off" Tag="0" /><ComboBoxItem Content="5 MB/s" Tag="5" /><ComboBoxItem Content="20 MB/s" Tag="20" />
+                            <ComboBoxItem Content="50 MB/s" Tag="50" /><ComboBoxItem Content="100 MB/s" Tag="100" />
+                        </ComboBox>
+                    </Grid>
+                </Border>
 
                 <!-- Avanzado -->
                 <TextBlock x:Uid="Settings_Advanced" Style="{StaticResource McSection}" />
@@ -341,6 +362,30 @@
                         <FontIcon VerticalAlignment="Center" Glyph="&#xE756;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
                         <StackPanel Grid.Column="1"><TextBlock x:Uid="Options_Scripts" Style="{StaticResource McBody}" /><TextBlock x:Uid="Options_ScriptsHelp" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
                         <TextBox x:Name="ScriptsBox" Grid.Row="1" Grid.Column="1" AcceptsReturn="True" MinHeight="80" FontFamily="Consolas" LostFocus="Changed" />
+                    </Grid>
+                </Border>
+
+                <Border Style="{StaticResource McSettingCard}">
+                    <Grid Style="{StaticResource Row}">
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                        <FontIcon VerticalAlignment="Center" Glyph="&#xE9F9;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
+                        <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_LogsTitle" Style="{StaticResource McBody}" /><TextBlock x:Uid="Settings_LogsDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                        <Button Grid.Column="2" Style="{StaticResource McButton}" Click="OpenLogs_Click"><TextBlock x:Uid="Settings_LogsOpen" /></Button>
+                        <ToggleSwitch x:Name="LogsToggle" Grid.Column="3" OnContent="" OffContent="" MinWidth="0" Toggled="Changed" />
+                    </Grid>
+                </Border>
+                <Border Style="{StaticResource McSettingCard}">
+                    <Grid Style="{StaticResource Row}" RowSpacing="8">
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
+                        <FontIcon VerticalAlignment="Center" Glyph="&#xE774;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
+                        <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_WebhookTitle" Style="{StaticResource McBody}" /><TextBlock x:Uid="Settings_WebhookDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                        <Grid Grid.Row="1" Grid.Column="1" ColumnSpacing="8">
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                            <TextBox x:Name="WebhookBox" x:Uid="Settings_WebhookBox" LostFocus="Changed" />
+                            <Button Grid.Column="1" Style="{StaticResource McButton}" Click="TestWebhook_Click"><TextBlock x:Uid="Settings_WebhookTest" /></Button>
+                        </Grid>
+                        <TextBlock x:Name="WebhookResult" Grid.Row="2" Grid.Column="1" Style="{StaticResource McSecondary}" TextWrapping="Wrap" />
                     </Grid>
                 </Border>
 

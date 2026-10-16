@@ -20,6 +20,13 @@ internal static partial class SystemActions
 {
     public static void Run(FinishAction action)
     {
+        if (App.TestMode)
+        {
+            // En pruebas nunca se apaga ni se suspende el equipo: solo se anota.
+            App.TestLog("finish.log", action.ToString());
+            return;
+        }
+
         switch (action)
         {
             case FinishAction.Sleep:
@@ -48,12 +55,18 @@ internal static partial class SystemActions
     /// <summary>
     /// Ejecuta los comandos "al terminar" de un trabajo (uno por línea) con cmd.exe, sin ventana. Reciben el trabajo en
     /// variables de entorno: MEGACOPIER_STATE, MEGACOPIER_SOURCES, MEGACOPIER_DESTINATION, MEGACOPIER_FILES,
-    /// MEGACOPIER_BYTES, MEGACOPIER_FAILED y MEGACOPIER_CHECKSUM.
+    /// MEGACOPIER_BYTES, MEGACOPIER_FAILED y MEGACOPIER_CHECKSUM. Con "ok:" delante, solo si fue bien; con "error:", solo si no.
     /// </summary>
-    public static void RunScripts(IReadOnlyList<string> scripts, IReadOnlyDictionary<string, string> environment)
+    public static void RunScripts(IReadOnlyList<string> scripts, IReadOnlyDictionary<string, string> environment, bool succeeded)
     {
-        foreach (string script in scripts.Where(s => !string.IsNullOrWhiteSpace(s)))
+        foreach (string line in scripts.Where(s => !string.IsNullOrWhiteSpace(s)))
         {
+            if (ScriptFor(line, succeeded) is not { } script)
+            {
+                continue;
+            }
+
+
             try
             {
                 var info = new ProcessStartInfo(Path.Combine(Environment.SystemDirectory, "cmd.exe"), $"/d /c {script}")
@@ -77,6 +90,67 @@ internal static partial class SystemActions
             }
         }
     }
+
+    /// <summary>El comando de una línea si toca ejecutarlo ("ok:" solo si fue bien, "error:" solo si no; sin prefijo, siempre).</summary>
+    internal static string? ScriptFor(string line, bool succeeded)
+    {
+        string trimmed = line.Trim();
+        foreach (var (prefix, when) in new[] { ("ok:", true), ("error:", false) })
+        {
+            if (trimmed.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
+            {
+                return succeeded == when ? trimmed[prefix.Length..].Trim() : null;
+            }
+        }
+
+        return trimmed;
+    }
+
+    private static bool _background;
+
+    /// <summary>
+    /// Prioridad baja de verdad: además de la CPU, el disco y la memoria pasan a prioridad de segundo plano
+    /// (PROCESS_MODE_BACKGROUND), así la copia no entorpece lo que esté haciendo el usuario.
+    /// </summary>
+    public static void SetBackgroundMode(bool background)
+    {
+        if (background != _background)
+        {
+            _background = background;
+            SetPriorityClass(GetCurrentProcess(), background ? 0x00100000u /* PROCESS_MODE_BACKGROUND_BEGIN */ : 0x00200000u /* _END */);
+        }
+    }
+
+    /// <summary>Tiempo desde la última vez que el usuario tocó el teclado o el ratón.</summary>
+    public static TimeSpan IdleTime()
+    {
+        // Pruebas: simular que el usuario está (o no) usando el equipo sin tocar el teclado ni el ratón.
+        if (App.TestMode && double.TryParse(Environment.GetEnvironmentVariable("MEGACOPIER_TEST_IDLE"), System.Globalization.CultureInfo.InvariantCulture, out double seconds))
+        {
+            return TimeSpan.FromSeconds(seconds);
+        }
+
+        var info = new LastInputInfo { Size = 8 };
+        return GetLastInputInfo(ref info) ? TimeSpan.FromMilliseconds(unchecked((uint)Environment.TickCount - info.Time)) : TimeSpan.MaxValue;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    private struct LastInputInfo
+    {
+        public uint Size;
+        public uint Time;
+    }
+
+    [LibraryImport("user32.dll")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static partial bool GetLastInputInfo(ref LastInputInfo info);
+
+    [LibraryImport("kernel32.dll")]
+    private static partial nint GetCurrentProcess();
+
+    [LibraryImport("kernel32.dll")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static partial bool SetPriorityClass(nint process, uint priorityClass);
 
     private static bool _keepingAwake;
 

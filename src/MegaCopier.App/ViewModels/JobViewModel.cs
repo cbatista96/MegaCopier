@@ -227,6 +227,11 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
                 return CompletedSummary(result);
             }
 
+            if (State == CopyJobState.Running && Job.SpeedOverride is not null)
+            {
+                return L.Get("Job_SlowedDown");
+            }
+
             return State == CopyJobState.Interrupted ? L.Get("Job_ResumeHint") : "";
         }
     }

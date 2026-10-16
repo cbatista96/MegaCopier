@@ -327,6 +327,19 @@
             </StackPanel>
         </ContentDialog>
 
+        <!-- Cuenta atrás antes de apagar, suspender... -->
+        <ContentDialog
+            x:Name="FinishDialog"
+            x:Uid="FinishDialog"
+            Grid.RowSpan="3"
+            Style="{StaticResource DefaultContentDialogStyle}"
+            DefaultButton="Close">
+            <StackPanel Spacing="12" MaxWidth="420">
+                <TextBlock x:Name="FinishMessage" TextWrapping="Wrap" />
+                <ProgressBar x:Name="FinishProgress" Maximum="100" />
+            </StackPanel>
+        </ContentDialog>
+
         <!-- Acerca de -->
         <ContentDialog
             x:Name="AboutDialog"

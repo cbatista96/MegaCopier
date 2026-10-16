@@ -207,7 +207,7 @@
   <data name="Options_SaveChecksum.Content" xml:space="preserve"><value>Save checksum file</value></data>
   <data name="Options_SaveDefault.Text" xml:space="preserve"><value>Save as default</value></data>
   <data name="Options_Scripts.Text" xml:space="preserve"><value>Commands when finished</value></data>
-  <data name="Options_ScriptsHelp.Text" xml:space="preserve"><value>One per line, run with cmd.exe. Variables: %MEGACOPIER_STATE%, %MEGACOPIER_DESTINATION%, %MEGACOPIER_SOURCES%, %MEGACOPIER_FILES%, %MEGACOPIER_BYTES%, %MEGACOPIER_FAILED%, %MEGACOPIER_CHECKSUM%.</value></data>
+  <data name="Options_ScriptsHelp.Text" xml:space="preserve"><value>One per line, run with cmd.exe. Start with &quot;ok:&quot; to run only on success or &quot;error:&quot; to run only on failure. Variables: %MEGACOPIER_STATE%, %MEGACOPIER_DESTINATION%, %MEGACOPIER_SOURCES%, %MEGACOPIER_FILES%, %MEGACOPIER_BYTES%, %MEGACOPIER_FAILED%, %MEGACOPIER_CHECKSUM%.</value></data>
   <data name="Options_Security.Text" xml:space="preserve"><value>Security (NTFS)</value></data>
   <data name="Options_Streams.Content" xml:space="preserve"><value>Alternate data streams (ADS)</value></data>
   <data name="Options_SystemCache.Content" xml:space="preserve"><value>Use system cache</value></data>
@@ -576,4 +576,32 @@
   <data name="Rules_HardLinks.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>If several names are the same file, they will be in the destination too (no double space).</value></data>
   <data name="Rules_Tolerance.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>FAT32 and exFAT store times with 2-second precision: with this margin identical files are not copied again.</value></data>
   <data name="Rules_Versions.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Before a file is replaced or removed, it is moved to this destination folder with the date in its name.</value></data>
+  <data name="Settings_UnitsTitle.Text" xml:space="preserve"><value>Size units</value></data>
+  <data name="Settings_UnitsDescription.Text" xml:space="preserve"><value>How sizes and speeds are shown.</value></data>
+  <data name="Units_Classic.Content" xml:space="preserve"><value>KB, MB, GB (like File Explorer)</value></data>
+  <data name="Units_Iec.Content" xml:space="preserve"><value>KiB, MiB, GiB (binary)</value></data>
+  <data name="Units_Decimal.Content" xml:space="preserve"><value>kB, MB, GB of 1000 (like the maker)</value></data>
+  <data name="Settings_SlowTitle.Text" xml:space="preserve"><value>Go slower while you use the PC</value></data>
+  <data name="Settings_SlowDescription.Text" xml:space="preserve"><value>While you use the keyboard or mouse, transfers stay under this speed; when you leave the PC, they speed up again.</value></data>
+  <data name="Slow_Off.Content" xml:space="preserve"><value>No</value></data>
+  <data name="Settings_LogsTitle.Text" xml:space="preserve"><value>Save the log of every transfer</value></data>
+  <data name="Settings_LogsDescription.Text" xml:space="preserve"><value>One file per transfer in the logs folder; they are deleted after 30 days.</value></data>
+  <data name="Settings_LogsOpen.Text" xml:space="preserve"><value>Open the folder</value></data>
+  <data name="Settings_WebhookTitle.Text" xml:space="preserve"><value>Notify a web address when done</value></data>
+  <data name="Settings_WebhookDescription.Text" xml:space="preserve"><value>To get the notice on your phone or in chat: Discord, Slack, Teams, ntfy.sh, Home Assistant… A POST with JSON is sent.</value></data>
+  <data name="Settings_WebhookBox.PlaceholderText" xml:space="preserve"><value>https://ntfy.sh/my-secret-topic</value></data>
+  <data name="Settings_WebhookTest.Text" xml:space="preserve"><value>Test</value></data>
+  <data name="Settings_WebhookSending" xml:space="preserve"><value>Sending…</value></data>
+  <data name="Settings_WebhookOk" xml:space="preserve"><value>Notice sent successfully.</value></data>
+  <data name="Settings_WebhookFailed" xml:space="preserve"><value>Could not send it: check the address and the connection.</value></data>
+  <data name="Settings_WebhookTestMessage" xml:space="preserve"><value>✔ MegaCopier: test notice</value></data>
+  <data name="FinishDialog.Title" xml:space="preserve"><value>All transfers finished</value></data>
+  <data name="FinishDialog.PrimaryButtonText" xml:space="preserve"><value>Do it now</value></data>
+  <data name="FinishDialog.CloseButtonText" xml:space="preserve"><value>Cancel</value></data>
+  <data name="Finish_CountdownSleep" xml:space="preserve"><value>The PC will sleep in {0} s.</value></data>
+  <data name="Finish_CountdownHibernate" xml:space="preserve"><value>The PC will hibernate in {0} s.</value></data>
+  <data name="Finish_CountdownShutdown" xml:space="preserve"><value>The PC will shut down in {0} s.</value></data>
+  <data name="Finish_CountdownSignOut" xml:space="preserve"><value>You will be signed out in {0} s.</value></data>
+  <data name="Finish_CountdownExitApp" xml:space="preserve"><value>MegaCopier will close in {0} s.</value></data>
+  <data name="Job_SlowedDown" xml:space="preserve"><value>Slower while you use the PC</value></data>
 </root>
