@@ -259,7 +259,6 @@
   <data name="Settings_PriorityTitle.Text" xml:space="preserve"><value>Prioridad del proceso</value></data>
   <data name="Settings_PriorityDescription.Text" xml:space="preserve"><value>Baja deja el equipo más ágil mientras copia</value></data>
   <data name="Settings_Queue.Text" xml:space="preserve"><value>Cola</value></data>
-  <data name="Settings_Sound.Content" xml:space="preserve"><value>Sonido</value></data>
   <data name="Settings_Themes.Text" xml:space="preserve"><value>Temas</value></data>
   <data name="Settings_WhatToCopy.Text" xml:space="preserve"><value>Qué se copia y qué se hace después</value></data>
   <data name="Settings_Window.Text" xml:space="preserve"><value>Ventana</value></data>
@@ -482,4 +481,17 @@
   <data name="Drop_AddToJob" xml:space="preserve"><value>Añadir a esta copia</value></data>
   <data name="Drop_AddToNamedJob" xml:space="preserve"><value>Añadir a {0}</value></data>
   <data name="Drop_JobOrder" xml:space="preserve"><value>Poner en el puesto {0} de la cola</value></data>
+  <data name="Settings_Sounds.Text" xml:space="preserve"><value>Sonidos</value></data>
+  <data name="Settings_SoundsTitle.Text" xml:space="preserve"><value>Avisos con sonido</value></data>
+  <data name="Settings_SoundsDescription.Text" xml:space="preserve"><value>Elige un sonido para cada momento: uno de Windows, el que quieras de tu equipo o ninguno.</value></data>
+  <data name="Settings_Volume.Header" xml:space="preserve"><value>Volumen</value></data>
+  <data name="Settings_SoundsQuiet.Content" xml:space="preserve"><value>No sonar con juegos o presentaciones a pantalla completa ni con «No molestar»</value></data>
+  <data name="Sound_Done" xml:space="preserve"><value>Una copia terminó bien</value></data>
+  <data name="Sound_Errors" xml:space="preserve"><value>Una copia terminó con errores</value></data>
+  <data name="Sound_AllDone" xml:space="preserve"><value>Terminaron todas las copias</value></data>
+  <data name="Sound_Attention" xml:space="preserve"><value>Hace falta tu decisión (el archivo ya existe)</value></data>
+  <data name="Sound_Test" xml:space="preserve"><value>Probar el sonido</value></data>
+  <data name="Sound_None" xml:space="preserve"><value>Sin sonido</value></data>
+  <data name="Sound_Default" xml:space="preserve"><value>El de Windows</value></data>
+  <data name="Sound_Choose" xml:space="preserve"><value>Elegir un archivo…</value></data>
 </root>

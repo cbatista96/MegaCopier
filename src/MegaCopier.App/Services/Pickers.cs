@@ -20,10 +20,14 @@ internal static class Pickers
         return files?.Select(f => f.Path).ToList() ?? [];
     }
 
-    public static async Task<string?> PickFileAsync(string extension)
+    public static async Task<string?> PickFileAsync(params string[] extensions)
     {
         var picker = new FileOpenPicker(WindowId) { ViewMode = PickerViewMode.List };
-        picker.FileTypeFilter.Add(extension);
+        foreach (string extension in extensions)
+        {
+            picker.FileTypeFilter.Add(extension);
+        }
+
         return (await picker.PickSingleFileAsync())?.Path;
     }
 

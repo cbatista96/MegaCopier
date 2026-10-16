@@ -58,7 +58,15 @@ public sealed class AppSettings
 
     public FinishWindow FinishWindow { get; set; } = FinishWindow.Auto;
 
-    public bool PlaySound { get; set; } = true;
+    /// <summary>Sonidos por momento, volumen y silencio con pantalla completa.</summary>
+    public SoundSettings Sounds { get; set; } = new();
+
+    /// <summary>Ajuste antiguo (activar sonidos); equivale a Sounds.Enabled.</summary>
+    public bool PlaySound
+    {
+        get => Sounds.Enabled;
+        set => Sounds.Enabled = value;
+    }
 
     /// <summary>Máximo de trabajos activos a la vez (0 = sin límite).</summary>
     public int MaxActiveJobs { get; set; } = 3;

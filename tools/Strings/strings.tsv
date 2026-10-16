@@ -253,7 +253,6 @@ Settings_PerformanceDescription.Text	Límite de velocidad, tamaño del búfer y 
 Settings_PriorityTitle.Text	Prioridad del proceso	Process priority
 Settings_PriorityDescription.Text	Baja deja el equipo más ágil mientras copia	Low keeps the PC more responsive while copying
 Settings_Queue.Text	Cola	Queue
-Settings_Sound.Content	Sonido	Sound
 Settings_Themes.Text	Temas	Themes
 Settings_WhatToCopy.Text	Qué se copia y qué se hace después	What is copied and what happens afterwards
 Settings_Window.Text	Ventana	Window
@@ -476,3 +475,16 @@ Drop_InsertAt	Añadir en la posición {0}	Add at position {0}
 Drop_AddToJob	Añadir a esta copia	Add to this transfer
 Drop_AddToNamedJob	Añadir a {0}	Add to {0}
 Drop_JobOrder	Poner en el puesto {0} de la cola	Put in place {0} of the queue
+Settings_Sounds.Text	Sonidos	Sounds
+Settings_SoundsTitle.Text	Avisos con sonido	Sound alerts
+Settings_SoundsDescription.Text	Elige un sonido para cada momento: uno de Windows, el que quieras de tu equipo o ninguno.	Choose a sound for each moment: a Windows one, any file on your PC, or none.
+Settings_Volume.Header	Volumen	Volume
+Settings_SoundsQuiet.Content	No sonar con juegos o presentaciones a pantalla completa ni con «No molestar»	Stay quiet during full-screen games or presentations and in Do Not Disturb
+Sound_Done	Una copia terminó bien	A transfer finished successfully
+Sound_Errors	Una copia terminó con errores	A transfer finished with errors
+Sound_AllDone	Terminaron todas las copias	All transfers finished
+Sound_Attention	Hace falta tu decisión (el archivo ya existe)	Your decision is needed (file already exists)
+Sound_Test	Probar el sonido	Test the sound
+Sound_None	Sin sonido	No sound
+Sound_Default	El de Windows	Windows default
+Sound_Choose	Elegir un archivo…	Choose a file…

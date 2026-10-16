@@ -113,7 +113,6 @@
                         <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
                         <FontIcon VerticalAlignment="Center" Glyph="&#xEA8F;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
                         <StackPanel Grid.Column="1"><TextBlock x:Uid="NotifyTitle" Style="{StaticResource McBody}" /><TextBlock x:Uid="NotifyDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
-                        <CheckBox x:Name="SoundBox" x:Uid="Settings_Sound" Grid.Column="2" Click="Changed" MinWidth="0" />
                         <ToggleSwitch x:Name="NotifyToggle" Grid.Column="3" OnContent="" OffContent="" MinWidth="0" Toggled="Changed" />
                     </Grid>
                 </Border>
@@ -124,6 +123,29 @@
                         <StackPanel Grid.Column="1"><TextBlock x:Uid="LanguageTitle" Style="{StaticResource McBody}" /><TextBlock x:Uid="LanguageDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
                         <ComboBox x:Name="LanguageBox" Grid.Column="2" MinWidth="220" SelectionChanged="Language_Changed" />
                     </Grid>
+                </Border>
+
+                <!-- Sonidos -->
+                <TextBlock x:Uid="Settings_Sounds" Style="{StaticResource McSection}" />
+                <Border Style="{StaticResource McSettingCard}">
+                    <Grid Style="{StaticResource Row}">
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                        <FontIcon VerticalAlignment="Center" Glyph="&#xE995;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
+                        <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_SoundsTitle" Style="{StaticResource McBody}" /><TextBlock x:Uid="Settings_SoundsDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                        <ToggleSwitch x:Name="SoundBox" Grid.Column="2" OnContent="" OffContent="" MinWidth="0" Toggled="Changed" />
+                    </Grid>
+                </Border>
+                <Border Style="{StaticResource McSettingCard}">
+                    <StackPanel Spacing="8">
+                        <Grid ColumnSpacing="12">
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                            <FontIcon VerticalAlignment="Center" Glyph="&#xE767;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
+                            <Slider x:Name="VolumeSlider" x:Uid="Settings_Volume" Grid.Column="1" Minimum="0" Maximum="100" StepFrequency="5" ValueChanged="Volume_Changed" />
+                            <TextBlock x:Name="VolumeText" Grid.Column="2" Style="{StaticResource McSecondary}" VerticalAlignment="Bottom" Margin="0,0,0,8" MinWidth="40" TextAlignment="Right" />
+                        </Grid>
+                        <CheckBox x:Name="QuietBox" x:Uid="Settings_SoundsQuiet" Click="Changed" Margin="30,0,0,0" />
+                        <StackPanel x:Name="SoundRows" Spacing="6" Margin="30,4,0,0" />
+                    </StackPanel>
                 </Border>
 
                 <!-- Temas -->

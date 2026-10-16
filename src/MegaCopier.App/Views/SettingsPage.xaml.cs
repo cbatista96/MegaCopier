@@ -113,7 +113,7 @@ public sealed partial class SettingsPage : UserControl
         FinishWindowBox.SelectedIndex = (int)s.FinishWindow;
         OnTopToggle.IsOn = s.AlwaysOnTop;
         NotifyToggle.IsOn = s.NotifyOnFinish;
-        SoundBox.IsChecked = s.PlaySound;
+        LoadSounds();
         LanguageBox.SelectedItem = LanguageBox.Items.OfType<ComboBoxItem>().FirstOrDefault(i => (string)i.Tag == s.Language) ?? LanguageBox.Items[0];
 
         VerifyToggle.IsOn = s.VerifyAfterCopy;
@@ -178,7 +178,8 @@ public sealed partial class SettingsPage : UserControl
         s.FinishWindow = (FinishWindow)Math.Max(0, FinishWindowBox.SelectedIndex);
         s.AlwaysOnTop = OnTopToggle.IsOn;
         s.NotifyOnFinish = NotifyToggle.IsOn;
-        s.PlaySound = SoundBox.IsChecked == true;
+        s.Sounds.Enabled = SoundBox.IsOn;
+        s.Sounds.QuietWhenBusy = QuietBox.IsChecked == true;
 
         s.VerifyAfterCopy = VerifyToggle.IsOn;
         s.Conflict = OptionsTab.ConflictAt(ConflictBox.SelectedIndex);
@@ -221,6 +222,115 @@ public sealed partial class SettingsPage : UserControl
         s.Rules = Rules.Read();
         s.Save();
         _app.ApplySettings();
+    }
+
+    // ---------------------------------------------------------------------------------------------------------
+    // Sonidos
+
+    private const string ChooseFileTag = "\u0001elegir";
+
+    /// <summary>Una fila por momento: nombre, lista (sin sonido, el de Windows, los de C:\Windows\Media, uno propio) y ▶.</summary>
+    private void LoadSounds()
+    {
+        var s = _app.Settings.Sounds;
+        SoundBox.IsOn = s.Enabled;
+        VolumeSlider.Value = s.Volume;
+        VolumeText.Text = $"{s.Volume} %";
+        QuietBox.IsChecked = s.QuietWhenBusy;
+
+        SoundRows.Children.Clear();
+        foreach (var e in Enum.GetValues<SoundEvent>())
+        {
+            var row = new Grid { ColumnSpacing = 10 };
+            row.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+            row.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(260) });
+            row.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+
+            var label = new TextBlock { Text = L.Get("Sound_" + e), VerticalAlignment = VerticalAlignment.Center, TextWrapping = TextWrapping.Wrap };
+            row.Children.Add(label);
+
+            var box = new ComboBox { HorizontalAlignment = HorizontalAlignment.Stretch };
+            Microsoft.UI.Xaml.Automation.AutomationProperties.SetName(box, label.Text);
+            FillSoundChoices(box, s.Get(e));
+            var captured = e;
+            box.SelectionChanged += async (_, _) => await SoundChosen(box, captured);
+            Grid.SetColumn(box, 1);
+            row.Children.Add(box);
+
+            var play = new Button
+            {
+                Content = new FontIcon { Glyph = "\uE768", FontSize = 12 },
+                Background = new SolidColorBrush(Microsoft.UI.Colors.Transparent),
+                BorderThickness = new Thickness(0),
+            };
+            ToolTipService.SetToolTip(play, L.Get("Sound_Test"));
+            Microsoft.UI.Xaml.Automation.AutomationProperties.SetName(play, L.Get("Sound_Test") + ": " + label.Text);
+            play.Click += (_, _) => Sounds.Preview(_app.Settings.Sounds.Get(captured), captured, (int)VolumeSlider.Value);
+            Grid.SetColumn(play, 2);
+            row.Children.Add(play);
+            SoundRows.Children.Add(row);
+        }
+    }
+
+    private static void FillSoundChoices(ComboBox box, string current)
+    {
+        box.Items.Clear();
+        box.Items.Add(new ComboBoxItem { Content = L.Get("Sound_None"), Tag = "" });
+        box.Items.Add(new ComboBoxItem { Content = L.Get("Sound_Default"), Tag = "default" });
+        foreach (string path in Sounds.WindowsSounds)
+        {
+            box.Items.Add(new ComboBoxItem { Content = Path.GetFileNameWithoutExtension(path), Tag = path });
+        }
+
+        // Un archivo propio que no está en la lista de Windows.
+        if (current.Length > 0 && current != "default" && !Sounds.WindowsSounds.Contains(current, StringComparer.OrdinalIgnoreCase))
+        {
+            box.Items.Add(new ComboBoxItem { Content = Path.GetFileName(current), Tag = current });
+        }
+
+        box.Items.Add(new ComboBoxItem { Content = L.Get("Sound_Choose"), Tag = ChooseFileTag });
+        box.SelectedItem = box.Items.OfType<ComboBoxItem>().FirstOrDefault(i => string.Equals((string)i.Tag, current, StringComparison.OrdinalIgnoreCase))
+            ?? box.Items[1];
+    }
+
+    private async Task SoundChosen(ComboBox box, SoundEvent e)
+    {
+        if (_loading || box.SelectedItem is not ComboBoxItem { Tag: string tag })
+        {
+            return;
+        }
+
+        var s = _app.Settings.Sounds;
+        if (tag == ChooseFileTag)
+        {
+            // Sonido propio: cualquier formato que reproduzca Windows.
+            string? file = await Pickers.PickFileAsync(".wav", ".mp3", ".wma", ".m4a", ".aac", ".flac", ".ogg");
+            _loading = true;
+            if (file is not null)
+            {
+                s.Set(e, file);
+            }
+
+            FillSoundChoices(box, s.Get(e));
+            _loading = false;
+        }
+        else
+        {
+            s.Set(e, tag);
+        }
+
+        _app.Settings.Save();
+        Sounds.Preview(s.Get(e), e, s.Volume);
+    }
+
+    private void Volume_Changed(object sender, RangeBaseValueChangedEventArgs e)
+    {
+        VolumeText.Text = $"{(int)e.NewValue} %";
+        if (!_loading)
+        {
+            _app.Settings.Sounds.Volume = (int)e.NewValue;
+            _app.Settings.Save();
+        }
     }
 
     // ---------------------------------------------------------------------------------------------------------
