@@ -51,6 +51,31 @@ public sealed class TechnologyTests : IDisposable
     public void ServerSideCopyNeedsTheSameServer(string source, string destination, bool same) =>
         Assert.Equal(same, SystemCopy.SameServer(source, destination));
 
+    [Theory]
+    [InlineData(@"C:\Windows\notepad.exe")]
+    [InlineData(@"\\?\C:\Windows\notepad.exe")]
+    [InlineData(@"\\.\PhysicalDrive0")]
+    public void LocalPathsAreNotNetwork(string path) => Assert.Null(SystemCopy.Server(path));
+
+    [Fact]
+    public void SystemCopyRereadsOnlyWhenAHashIsNeeded()
+    {
+        string source = Write("src/grande.bin", new string('g', 2_000_000));
+        var options = Options();
+        options.ForceSystemCopy = true;
+        var engine = new CopyEngine(options);
+        Assert.True(engine.Run(new CopyJobRequest([source], _temp.Combine("a"))).Success);
+        Assert.Null(engine.Files.Snapshot().Single().SourceHash); // ni verificar ni sumas: no se relee
+
+        options = Options();
+        options.ForceSystemCopy = true;
+        options.SaveChecksumFile = true;
+        engine = new CopyEngine(options);
+        Assert.True(engine.Run(new CopyJobRequest([source], _temp.Combine("b"))).Success);
+        Assert.NotNull(engine.Files.Snapshot().Single().SourceHash);
+        Assert.True(File.Exists(engine.ChecksumFile));
+    }
+
     [Fact]
     public void SystemCopyKeepsHashesVerificationAndDates()
     {

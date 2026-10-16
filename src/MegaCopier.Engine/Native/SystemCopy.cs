@@ -17,10 +17,25 @@ internal static unsafe partial class SystemCopy
     private const int CancelCopy = 1;
     private static readonly int Cancelled = unchecked((int)0x800704C7); // HRESULT_FROM_WIN32(ERROR_CANCELLED)
 
-    /// <summary>Servidor de una ruta UNC ("\\servidor\recurso\..."), o null si es local.</summary>
+    /// <summary>Unidades de red con letra ("Z:" → "\\nas\datos"), resueltas una vez.</summary>
+    private static readonly System.Collections.Concurrent.ConcurrentDictionary<char, string?> MappedDrives = new();
+
+    /// <summary>
+    /// Servidor de una ruta de red ("\\servidor\recurso\..." o una unidad de red con letra), o null si es local.
+    /// </summary>
     public static string? Server(string path)
     {
         string full = path.StartsWith(@"\\?\UNC\", StringComparison.OrdinalIgnoreCase) ? @"\\" + path[8..] : path;
+        if (full.StartsWith(@"\\?\", StringComparison.Ordinal) && full.Length > 6 && full[5] == ':')
+        {
+            full = full[4..]; // \\?\Z:\... → Z:\...
+        }
+
+        if (full.Length >= 2 && full[1] == ':' && char.IsAsciiLetter(full[0]) && MappedDrives.GetOrAdd(char.ToUpperInvariant(full[0]), Unc) is { } unc)
+        {
+            full = unc + full[2..];
+        }
+
         if (!full.StartsWith(@"\\", StringComparison.Ordinal) || full.StartsWith(@"\\?\", StringComparison.Ordinal) || full.StartsWith(@"\\.\", StringComparison.Ordinal))
         {
             return null;
@@ -76,20 +91,29 @@ internal static unsafe partial class SystemCopy
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
     private static int OnProgress(byte* message, nint context)
     {
-        var state = (State)GCHandle.FromIntPtr(context).Target!;
-        if (*(int*)message == ChunkFinished)
+        // Una excepción no puede salir de aquí (lo llama Windows: cerraría el programa); si algo falla, se cancela la
+        // copia y quien llama copia de la forma normal.
+        try
         {
-            // COPYFILE2_MESSAGE.Info.ChunkFinished.uliTotalBytesTransferred (x64: desplazamiento 72).
-            long total = *(long*)(message + 72);
-            long delta = total - state.Reported;
-            state.Reported = total;
-            if (delta > 0)
+            var state = (State)GCHandle.FromIntPtr(context).Target!;
+            if (*(int*)message == ChunkFinished)
             {
-                state.Progress(delta);
+                // COPYFILE2_MESSAGE.Info.ChunkFinished.uliTotalBytesTransferred (x64: desplazamiento 72).
+                long total = *(long*)(message + 72);
+                long delta = total - state.Reported;
+                state.Reported = total;
+                if (delta > 0)
+                {
+                    state.Progress(delta);
+                }
             }
-        }
 
-        return state.Token.IsCancellationRequested ? CancelCopy : ContinueCopy;
+            return state.Token.IsCancellationRequested ? CancelCopy : ContinueCopy;
+        }
+        catch (Exception)
+        {
+            return CancelCopy;
+        }
     }
 
     private sealed class State(Action<long> progress, CancellationToken token)
@@ -110,6 +134,18 @@ internal static unsafe partial class SystemCopy
         public delegate* unmanaged[Stdcall]<byte*, nint, int> ProgressRoutine;
         public nint CallbackContext;
     }
+
+    /// <summary>"\\servidor\recurso" de una unidad de red con letra, o null si la unidad es local.</summary>
+    private static string? Unc(char drive)
+    {
+        string name = drive + ":";
+        char* buffer = stackalloc char[512];
+        int length = 512;
+        return WNetGetConnectionW(name, buffer, ref length) == 0 ? new string(buffer).TrimEnd('\\') : null;
+    }
+
+    [LibraryImport("mpr.dll", StringMarshalling = StringMarshalling.Utf16)]
+    private static partial int WNetGetConnectionW(string localName, char* remoteName, ref int length);
 
     [LibraryImport("kernel32.dll", StringMarshalling = StringMarshalling.Utf16)]
     private static partial int CopyFile2(string existing, string target, ExtendedParameters* parameters);
