@@ -223,6 +223,19 @@ public sealed class AppSettings
     /// <summary>Mientras usas el teclado o el ratón, las copias no pasan de esta velocidad (0 = sin límite).</summary>
     public int SlowWhenActiveMBps { get; set; }
 
+    /// <summary>Límite por horario (0 = sin límite), entre <see cref="ScheduleFrom"/> y <see cref="ScheduleTo"/>.</summary>
+    public int ScheduleLimitMBps { get; set; }
+
+    public TimeSpan ScheduleFrom { get; set; } = new(8, 0, 0);
+
+    public TimeSpan ScheduleTo { get; set; } = new(18, 0, 0);
+
+    /// <summary>Pausar las copias con el portátil desenchufado (y seguir al enchufarlo).</summary>
+    public bool PauseOnBattery { get; set; }
+
+    /// <summary>Pausar durante juegos y presentaciones a pantalla completa.</summary>
+    public bool PauseOnFullScreen { get; set; }
+
     /// <summary>Cómo se muestran los tamaños.</summary>
     public SizeUnits Units { get; set; }
 

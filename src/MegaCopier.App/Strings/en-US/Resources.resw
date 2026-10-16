@@ -663,4 +663,18 @@
   <data name="Guard_DamagedOne" xml:space="preserve"><value>A file in &quot;{0}&quot; got damaged on the drive.</value></data>
   <data name="Guard_DamagedMany" xml:space="preserve"><value>{0} files in &quot;{1}&quot; got damaged on the drive.</value></data>
   <data name="Guard_LastDamagedOne" xml:space="preserve"><value>Checked on {0}: one damaged file (see History)</value></data>
+  <data name="Settings_ScheduleLimitTitle.Text" xml:space="preserve"><value>Speed limit by time of day</value></data>
+  <data name="Settings_ScheduleLimitDescription.Text" xml:space="preserve"><value>For example during work hours: transfers stay under this speed between the chosen times.</value></data>
+  <data name="Settings_ScheduleFrom.Text" xml:space="preserve"><value>From</value></data>
+  <data name="Settings_ScheduleTo.Text" xml:space="preserve"><value>to</value></data>
+  <data name="Settings_PauseBatteryTitle.Text" xml:space="preserve"><value>Pause on battery</value></data>
+  <data name="Settings_PauseBatteryDescription.Text" xml:space="preserve"><value>On an unplugged laptop, transfers wait and continue by themselves when you plug it in.</value></data>
+  <data name="Settings_PauseFullTitle.Text" xml:space="preserve"><value>Pause during games and presentations</value></data>
+  <data name="Settings_PauseFullDescription.Text" xml:space="preserve"><value>With a full-screen game or presentation, transfers wait so they do not slow it down.</value></data>
+  <data name="Comfort_PausedTitle" xml:space="preserve"><value>Transfers paused</value></data>
+  <data name="Comfort_PausedBattery" xml:space="preserve"><value>The PC is on battery: transfers will continue when you plug it in.</value></data>
+  <data name="Comfort_PausedFullScreen" xml:space="preserve"><value>A full-screen game or presentation is running: transfers will continue when you leave it.</value></data>
+  <data name="Job_StatePausedBattery" xml:space="preserve"><value>Paused: on battery</value></data>
+  <data name="Job_StatePausedFullScreen" xml:space="preserve"><value>Paused: full screen</value></data>
+  <data name="Job_SlowedSchedule" xml:space="preserve"><value>Slower because of the chosen schedule</value></data>
 </root>

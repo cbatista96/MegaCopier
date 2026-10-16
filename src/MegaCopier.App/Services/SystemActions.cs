@@ -118,6 +118,10 @@ internal static partial class SystemActions
         {
             _background = background;
             SetPriorityClass(GetCurrentProcess(), background ? 0x00100000u /* PROCESS_MODE_BACKGROUND_BEGIN */ : 0x00200000u /* _END */);
+
+            // Modo eficiencia (EcoQoS, la hoja verde del Administrador de tareas): menos consumo y calor.
+            var throttling = new PowerThrottling { Version = 1, ControlMask = 1, StateMask = background ? 1u : 0u };
+            SetProcessInformation(GetCurrentProcess(), 4 /* ProcessPowerThrottling */, ref throttling, 12);
         }
     }
 
@@ -147,6 +151,18 @@ internal static partial class SystemActions
 
     [LibraryImport("kernel32.dll")]
     private static partial nint GetCurrentProcess();
+
+    [StructLayout(LayoutKind.Sequential)]
+    private struct PowerThrottling
+    {
+        public uint Version;
+        public uint ControlMask;
+        public uint StateMask;
+    }
+
+    [LibraryImport("kernel32.dll")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static partial bool SetProcessInformation(nint process, int infoClass, ref PowerThrottling info, int size);
 
     [LibraryImport("kernel32.dll")]
     [return: MarshalAs(UnmanagedType.Bool)]

@@ -663,4 +663,18 @@
   <data name="Guard_DamagedOne" xml:space="preserve"><value>Un archivo de «{0}» se ha dañado en el disco.</value></data>
   <data name="Guard_DamagedMany" xml:space="preserve"><value>{0} archivos de «{1}» se han dañado en el disco.</value></data>
   <data name="Guard_LastDamagedOne" xml:space="preserve"><value>Comprobada el {0}: un archivo dañado (mira el Historial)</value></data>
+  <data name="Settings_ScheduleLimitTitle.Text" xml:space="preserve"><value>Límite de velocidad por horario</value></data>
+  <data name="Settings_ScheduleLimitDescription.Text" xml:space="preserve"><value>Por ejemplo, en horas de trabajo: las copias no pasan de esta velocidad entre las horas elegidas.</value></data>
+  <data name="Settings_ScheduleFrom.Text" xml:space="preserve"><value>De</value></data>
+  <data name="Settings_ScheduleTo.Text" xml:space="preserve"><value>a</value></data>
+  <data name="Settings_PauseBatteryTitle.Text" xml:space="preserve"><value>Pausar con batería</value></data>
+  <data name="Settings_PauseBatteryDescription.Text" xml:space="preserve"><value>En un portátil desenchufado, las copias esperan y siguen solas al enchufarlo.</value></data>
+  <data name="Settings_PauseFullTitle.Text" xml:space="preserve"><value>Pausar en juegos y presentaciones</value></data>
+  <data name="Settings_PauseFullDescription.Text" xml:space="preserve"><value>Con un juego o una presentación a pantalla completa, las copias esperan para no quitarle velocidad.</value></data>
+  <data name="Comfort_PausedTitle" xml:space="preserve"><value>Copias en pausa</value></data>
+  <data name="Comfort_PausedBattery" xml:space="preserve"><value>El equipo funciona con batería: las copias seguirán al enchufarlo.</value></data>
+  <data name="Comfort_PausedFullScreen" xml:space="preserve"><value>Hay un juego o una presentación a pantalla completa: las copias seguirán al salir.</value></data>
+  <data name="Job_StatePausedBattery" xml:space="preserve"><value>En pausa: con batería</value></data>
+  <data name="Job_StatePausedFullScreen" xml:space="preserve"><value>En pausa: pantalla completa</value></data>
+  <data name="Job_SlowedSchedule" xml:space="preserve"><value>Más despacio por el horario elegido</value></data>
 </root>
