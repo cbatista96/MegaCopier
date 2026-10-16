@@ -14,7 +14,22 @@ internal readonly record struct SourceInfo(
 
 internal static partial class Win32
 {
-    /// <summary>FILE_FLAG_NO_BUFFERING: E/S directa al dispositivo, sin pasar por la caché de Windows.</summary>
+    /// <summary>
+    /// Ruta con el prefijo \\?\ para las llamadas nativas que no lo añaden solas (las de .NET sí): sin él, más de 260
+    /// caracteres fallan.
+    /// </summary>
+    public static string LongPath(string path)
+    {
+        if (path.Length < 248 || path.StartsWith(@"\\?\", StringComparison.Ordinal) || path.StartsWith(@"\\.\", StringComparison.Ordinal))
+        {
+            return path;
+        }
+
+        string full = Path.GetFullPath(path);
+        return full.StartsWith(@"\\", StringComparison.Ordinal) ? @"\\?\UNC\" + full[2..] : @"\\?\" + full;
+    }
+
+    /// <SUMMARY>FILE_FLAG_NO_BUFFERING: E/S DIRECTA AL DISPOSITIVO, SIN PASAR POR LA CACHé DE WINDOWS.</SUMMARY>
     public const FileOptions NoBuffering = (FileOptions)0x20000000;
 
     [StructLayout(LayoutKind.Sequential)]
@@ -97,7 +112,7 @@ internal static partial class Win32
         }
 
         char* buffer = stackalloc char[1024];
-        return GetVolumePathName(existing, buffer, 1024) ? new string(buffer) : null;
+        return GetVolumePathName(LongPath(existing), buffer, 1024) ? new string(buffer) : null;
     }
 
     /// <summary>Espacio libre para el usuario en el volumen que contiene <paramref name="path"/> (o su ancestro existente).</summary>
@@ -114,6 +129,6 @@ internal static partial class Win32
             return null;
         }
 
-        return GetDiskFreeSpaceEx(directory, out ulong available, out _, out _) ? (long)available : null;
+        return GetDiskFreeSpaceEx(LongPath(directory), out ulong available, out _, out _) ? (long)available : null;
     }
 }

@@ -29,7 +29,7 @@ internal static unsafe partial class FileMetadata
     {
         int copied = 0;
         var data = new Win32FindStreamData();
-        nint find = FindFirstStreamW(source, 0, &data, 0);
+        nint find = FindFirstStreamW(Win32.LongPath(source), 0, &data, 0);
         if (find == -1)
         {
             return 0; // sin streams (o el volumen no los admite)
@@ -87,7 +87,7 @@ internal static unsafe partial class FileMetadata
         }
 
         nint owner, group, dacl, sacl, descriptor;
-        uint error = GetNamedSecurityInfoW(source, SeFileObject, info, &owner, &group, &dacl, &sacl, &descriptor);
+        uint error = GetNamedSecurityInfoW(Win32.LongPath(source), SeFileObject, info, &owner, &group, &dacl, &sacl, &descriptor);
         if (error != 0)
         {
             throw Failure(error, "leer la seguridad del origen");
@@ -101,7 +101,7 @@ internal static unsafe partial class FileMetadata
                 info |= (control & SeDaclProtected) != 0 ? ProtectedDaclSecurityInformation : UnprotectedDaclSecurityInformation;
             }
 
-            error = SetNamedSecurityInfoW(destination, SeFileObject, info, owner, group, dacl, sacl);
+            error = SetNamedSecurityInfoW(Win32.LongPath(destination), SeFileObject, info, owner, group, dacl, sacl);
             if (error != 0)
             {
                 throw Failure(error, "aplicar la seguridad en el destino");

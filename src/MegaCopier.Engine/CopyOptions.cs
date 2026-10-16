@@ -19,6 +19,37 @@ public enum ConflictPolicy
 
     /// <summary>Pregunta al usuario (con "hacer lo mismo con todos"). Sin quien responda, omite.</summary>
     Ask,
+
+    /// <summary>Reemplaza solo si el tamaño es distinto.</summary>
+    OverwriteIfDifferentSize,
+
+    /// <summary>Renombra el archivo que ya estaba ("nombre (2).ext") y copia con el nombre original.</summary>
+    RenameExisting,
+}
+
+/// <summary>Qué hace el trabajo con sus orígenes.</summary>
+public enum JobOperation
+{
+    /// <summary>Copiar (o mover, con <see cref="CopyOptions.Move"/>).</summary>
+    Copy,
+
+    /// <summary>Comprobar archivos de sumas (.sha256, .md5, .sfv...) contra los archivos que describen.</summary>
+    Test,
+
+    /// <summary>Borrar los orígenes (con <see cref="CopyOptions.SecureDelete"/>, sobrescribiéndolos antes).</summary>
+    Delete,
+}
+
+/// <summary>Qué hacer con los enlaces simbólicos y las uniones de carpetas.</summary>
+public enum LinkHandling
+{
+    /// <summary>Crear en el destino un enlace igual (apunta al mismo sitio).</summary>
+    CopyLink,
+
+    /// <summary>Copiar el contenido al que apunta el enlace.</summary>
+    FollowTarget,
+
+    Skip,
 }
 
 public enum ErrorPolicy
@@ -109,6 +140,18 @@ public sealed class CopyOptions
 
     /// <summary>Filtros de inclusión y exclusión (vacío = todo).</summary>
     public FileFilter Filter { get; set; } = new();
+
+    public JobOperation Operation { get; set; }
+
+    /// <summary>Al borrar: sobrescribir el contenido, cambiar el nombre y entonces borrar (no se puede recuperar).</summary>
+    public bool SecureDelete { get; set; }
+
+    public LinkHandling Links { get; set; } = LinkHandling.CopyLink;
+
+    /// <summary>Nombre de "conservar ambos": {name}, {n}, {ext} y {date} (aaaa-mm-dd).</summary>
+    public string KeepBothPattern { get; set; } = DefaultKeepBothPattern;
+
+    public const string DefaultKeepBothPattern = "{name} ({n}){ext}";
 
     public TimeSpan ProgressInterval { get; set; } = TimeSpan.FromMilliseconds(100);
 
