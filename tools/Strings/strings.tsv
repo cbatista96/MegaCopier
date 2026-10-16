@@ -713,3 +713,9 @@ Job_TitleSent	Enviado {0}	Sent {0}
 Job_StateSending	Enviando	Sending
 Job_FilesSentOne	{0} archivo enviado	{0} file sent
 Job_FilesSentMany	{0} archivos enviados	{0} files sent
+Rules_Describe.Header	Dilo con tus palabras	Say it in your own words
+Rules_Describe.PlaceholderText	fotos de más de 2 MB del último mes sin los .tmp	photos larger than 2 MB from last month except .tmp
+Rules_DescribeApply.Text	Aplicar	Apply
+Rules_DescribeUnderstood	Entendido: {0}.	Understood: {0}.
+Rules_DescribeNothing	No entendí nada que filtrar.	Nothing to filter was understood.
+Rules_DescribeUnknown	No entendí: {0}.	Not understood: {0}.

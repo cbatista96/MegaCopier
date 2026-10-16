@@ -203,6 +203,39 @@ public sealed partial class RulesEditor : UserControl
 
     private void Pattern_TextChanged(object sender, TextChangedEventArgs e) => UpdatePreview();
 
+    private void Describe_Click(object sender, RoutedEventArgs e) => ApplyDescription();
+
+    private void Describe_KeyDown(object sender, Microsoft.UI.Xaml.Input.KeyRoutedEventArgs e)
+    {
+        if (e.Key == Windows.System.VirtualKey.Enter)
+        {
+            ApplyDescription();
+            e.Handled = true;
+        }
+    }
+
+    /// <summary>"Fotos de más de 2 MB del último mes sin los .tmp" → los campos de los filtros.</summary>
+    internal void ApplyDescription()
+    {
+        if (DescribeBox.Text.Trim().Length == 0)
+        {
+            return;
+        }
+
+        var result = FilterParser.Parse(DescribeBox.Text, DateTime.Now);
+        var current = Read();
+        var f = result.Filter;
+        f.SkipHidden |= current.Filter.SkipHidden;
+        f.SkipSystem |= current.Filter.SkipSystem;
+        f.SkipJunk |= current.Filter.SkipJunk;
+        current.Filter = f;
+        Load(current);
+        DescribeResult.Text = (result.Understood.Count > 0 ? L.F("Rules_DescribeUnderstood", string.Join(" · ", result.Understood)) : L.Get("Rules_DescribeNothing"))
+            + (result.Unknown.Count > 0 ? "  " + L.F("Rules_DescribeUnknown", string.Join(", ", result.Unknown)) : "");
+        DescribeResult.Visibility = Visibility.Visible;
+        Raise();
+    }
+
     private void Changed(object sender, RoutedEventArgs e) => Raise();
 
     private void Selection_Changed(object sender, SelectionChangedEventArgs e) => Raise();
