@@ -15,6 +15,8 @@ public enum FileHashAlgorithm
     Sha1,
     Sha256,
     Sha512,
+    Sha3_256,
+    Sha3_512,
 }
 
 /// <summary>Hash incremental de un archivo completo con el algoritmo elegido.</summary>
@@ -35,6 +37,8 @@ internal abstract class FileHasher
         FileHashAlgorithm.Sha1 => new Cryptographic(HashAlgorithmName.SHA1),
         FileHashAlgorithm.Sha256 => new Cryptographic(HashAlgorithmName.SHA256),
         FileHashAlgorithm.Sha512 => new Cryptographic(HashAlgorithmName.SHA512),
+        FileHashAlgorithm.Sha3_256 when SHA3_256.IsSupported => new Cryptographic(HashAlgorithmName.SHA3_256),
+        FileHashAlgorithm.Sha3_512 when SHA3_512.IsSupported => new Cryptographic(HashAlgorithmName.SHA3_512),
         _ => null,
     };
 
@@ -49,6 +53,8 @@ internal abstract class FileHasher
         FileHashAlgorithm.Sha1 => "sha1",
         FileHashAlgorithm.Sha256 => "sha256",
         FileHashAlgorithm.Sha512 => "sha512",
+        FileHashAlgorithm.Sha3_256 => "sha3-256",
+        FileHashAlgorithm.Sha3_512 => "sha3-512",
         _ => "txt",
     };
 

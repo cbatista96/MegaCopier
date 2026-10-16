@@ -118,6 +118,36 @@ public sealed class CopyJob
     }
 
     /// <summary>Cambia en caliente "desatendido" y "verificar" (y lo guarda para los reintentos).</summary>
+    /// <summary>
+    /// Límite temporal (no se guarda): "más lento mientras usas el equipo". null = volver al límite del trabajo.
+    /// El más restrictivo de los dos manda.
+    /// </summary>
+    public void SetSpeedOverride(long? bytesPerSecond)
+    {
+        if (_lastEngine is not { } engine)
+        {
+            return;
+        }
+
+        long own = Record.MaxBytesPerSecond;
+        engine.Options.MaxBytesPerSecond = bytesPerSecond is not { } temporary ? own
+            : own > 0 ? Math.Min(own, temporary)
+            : temporary;
+    }
+
+    /// <summary>Cambia el límite de velocidad del trabajo en caliente (y lo guarda).</summary>
+    public void SetSpeedLimit(long bytesPerSecond)
+    {
+        Record.MaxBytesPerSecond = Math.Max(0, bytesPerSecond);
+        if (_lastEngine is { } engine)
+        {
+            engine.Options.MaxBytesPerSecond = Record.MaxBytesPerSecond;
+        }
+
+        SaveIfPending();
+        Changed?.Invoke(this);
+    }
+
     public void SetLiveOptions(bool? unattended = null, bool? verify = null)
     {
         if (unattended is { } u)
@@ -658,7 +688,14 @@ public sealed class CopyQueue
             ConflictResolver?.Invoke(job, info, token) ?? new ConflictAnswer(ConflictDecision.Skip, ApplyToAll: false);
         engine.Logged += job.AddLog;
 
-        var request = new CopyJobRequest(job.Record.Sources, job.Record.Destination) { Excluded = job.Record.Excluded, Order = job.Record.FileOrder };
+        bool resumed = job.Record.Started;
+        if (!resumed)
+        {
+            job.Record.Started = true;
+            _store.Save(job.Record);
+        }
+
+        var request = new CopyJobRequest(job.Record.Sources, job.Record.Destination) { Excluded = job.Record.Excluded, Order = job.Record.FileOrder, Resumed = resumed };
         _ = engine.RunAsync(request, cancellation.Token)
             .ContinueWith(
                 task =>

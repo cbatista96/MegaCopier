@@ -69,7 +69,7 @@ internal sealed class FileTransfer
         _progress = progress;
         _faults = faults;
         _chunkCommitted = chunkCommitted;
-        _throttle = options.MaxBytesPerSecond > 0 ? new Throttle(options.MaxBytesPerSecond) : null;
+        _throttle = new Throttle(() => options.MaxBytesPerSecond);
     }
 
     /// <summary>Búferes que necesita una transferencia: uno por cada lectura y escritura en vuelo.</summary>

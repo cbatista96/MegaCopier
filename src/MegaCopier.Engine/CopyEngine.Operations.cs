@@ -71,11 +71,6 @@ public sealed partial class CopyEngine
     {
         var result = new CopyJobResult();
         var lists = ChecksumLists.Find(request.Sources);
-        if (lists.Count == 0)
-        {
-            throw new CopyPlanException("No se encontró ningún archivo de sumas (.sha256, .sha1, .sha512, .md5, .sfv, .xxh3...).");
-        }
-
         var expected = new Dictionary<int, ChecksumEntry>();
         foreach (string list in lists)
         {
@@ -84,6 +79,26 @@ public sealed partial class CopyEngine
                 var info = new FileInfo(entry.Path);
                 var item = Files.Add(entry.Path, entry.Path, info.Exists ? info.Length : 0, info.Exists ? info.LastWriteTimeUtc : default);
                 expected[item.Id] = entry;
+            }
+        }
+
+        if (lists.Count == 0)
+        {
+            // Sin archivos de sumas: se comprueban los archivos que guardan su hash dentro (copiados por MegaCopier
+            // con "guardar el hash en el archivo"). Detecta la corrupción silenciosa del disco con el tiempo.
+            string dummy = Path.Combine(Path.GetTempPath(), "MegaCopier-test-" + Guid.NewGuid().ToString("N"));
+            foreach (var file in CopyPlanner.Build(request.Sources, dummy, _options.Filter, LinkHandling.Skip).Files)
+            {
+                if (ReadHashStream(file.Source) is { } stored)
+                {
+                    var item = Files.Add(file.Source, file.Source, file.Length, file.LastWriteUtc);
+                    expected[item.Id] = new ChecksumEntry(file.Source, stored.Hash, stored.Algorithm);
+                }
+            }
+
+            if (expected.Count == 0)
+            {
+                throw new CopyPlanException("No se encontró ningún archivo de sumas (.sha256, .md5, .sfv, .xxh3...) ni archivos con su hash guardado.");
             }
         }
 
@@ -285,6 +300,8 @@ public static class ChecksumLists
         [".sha1"] = FileHashAlgorithm.Sha1,
         [".sha256"] = FileHashAlgorithm.Sha256,
         [".sha512"] = FileHashAlgorithm.Sha512,
+        [".sha3-256"] = FileHashAlgorithm.Sha3_256,
+        [".sha3-512"] = FileHashAlgorithm.Sha3_512,
         [".sfv"] = FileHashAlgorithm.Crc32,
         [".xxh3"] = FileHashAlgorithm.XxHash3,
         [".xxh64"] = FileHashAlgorithm.XxHash64,
@@ -340,6 +357,8 @@ public static class ChecksumLists
                     "SHA1" => FileHashAlgorithm.Sha1,
                     "SHA256" => FileHashAlgorithm.Sha256,
                     "SHA512" => FileHashAlgorithm.Sha512,
+                    "SHA3-256" => FileHashAlgorithm.Sha3_256,
+                    "SHA3-512" => FileHashAlgorithm.Sha3_512,
                     "XXH3" or "XXH3_64" => FileHashAlgorithm.XxHash3,
                     "XXH64" => FileHashAlgorithm.XxHash64,
                     "XXH128" => FileHashAlgorithm.XxHash128,

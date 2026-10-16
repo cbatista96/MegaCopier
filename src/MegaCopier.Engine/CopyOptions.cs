@@ -38,6 +38,35 @@ public enum JobOperation
 
     /// <summary>Borrar los orígenes (con <see cref="CopyOptions.SecureDelete"/>, sobrescribiéndolos antes).</summary>
     Delete,
+
+    /// <summary>Crear un archivo de sumas de los orígenes, sin copiar.</summary>
+    Hash,
+}
+
+/// <summary>Qué copia el trabajo.</summary>
+public enum CopyMode
+{
+    /// <summary>Copiar (lo idéntico se omite).</summary>
+    Copy,
+
+    /// <summary>Sincronizar: copiar y además borrar del destino lo que ya no está en el origen (espejo).</summary>
+    Mirror,
+
+    /// <summary>Solo actualizar los archivos que ya existen en el destino (no añade nuevos).</summary>
+    UpdateExisting,
+
+    /// <summary>Solo crear la estructura de carpetas, sin archivos.</summary>
+    FoldersOnly,
+}
+
+/// <summary>Qué hacer si una carpeta de primer nivel ya existe en el destino.</summary>
+public enum FolderConflictPolicy
+{
+    /// <summary>Mezclar: copiar dentro (cada archivo sigue su regla de conflicto).</summary>
+    Merge,
+
+    /// <summary>Omitir esa carpeta entera.</summary>
+    Skip,
 }
 
 /// <summary>Qué hacer con los enlaces simbólicos y las uniones de carpetas.</summary>
@@ -59,6 +88,9 @@ public enum ErrorPolicy
 
     /// <summary>Tras agotar los reintentos, detiene todo el trabajo.</summary>
     Stop,
+
+    /// <summary>Tras agotar los reintentos, se vuelve a intentar una vez al final de la cola (como Ultracopier).</summary>
+    MoveToEnd,
 }
 
 public sealed class CopyOptions
@@ -142,6 +174,42 @@ public sealed class CopyOptions
     public FileFilter Filter { get; set; } = new();
 
     public JobOperation Operation { get; set; }
+
+    public CopyMode Mode { get; set; }
+
+    /// <summary>Simular: calcula y muestra qué se haría (copiar, reemplazar, omitir, borrar) sin tocar nada.</summary>
+    public bool DryRun { get; set; }
+
+    /// <summary>Carpeta de versiones ("" = no): lo que se va a reemplazar o borrar se guarda ahí con fecha. Relativa al destino o absoluta.</summary>
+    public string VersionsFolder { get; set; } = "";
+
+    public FolderConflictPolicy FolderConflict { get; set; }
+
+    /// <summary>Diferencia de fecha que se considera igual (FAT/exFAT guardan la hora cada 2 s; algunos NAS redondean).</summary>
+    public TimeSpan TimeTolerance { get; set; } = TimeSpan.FromSeconds(2);
+
+    /// <summary>Verificación completa: además del destino, relee el origen y compara (detecta lecturas erróneas).</summary>
+    public bool VerifySource { get; set; }
+
+    /// <summary>Guarda el hash dentro del propio archivo copiado (flujo :MegaCopier.hash) para comprobar su integridad más adelante.</summary>
+    public bool SaveHashStream { get; set; }
+
+    /// <summary>Conservar los enlaces duros: los archivos que en el origen son el mismo se enlazan en el destino en vez de copiarse dos veces.</summary>
+    public bool PreserveHardLinks { get; set; }
+
+    /// <summary>Al mover entre discos, borrar los originales de forma segura (sobrescritos).</summary>
+    public bool WipeSource { get; set; }
+
+    /// <summary>Si se desconecta la red o la unidad, esperar a que vuelva (hasta <see cref="DeviceWaitTimeout"/>) en lugar de fallar.</summary>
+    public bool WaitForDevice { get; set; } = true;
+
+    public TimeSpan DeviceWaitTimeout { get; set; } = TimeSpan.FromHours(1);
+
+    /// <summary>Si el destino se llena, esperar a que haya espacio en lugar de marcar error.</summary>
+    public bool WaitForSpace { get; set; } = true;
+
+    /// <summary>Cada cuánto se comprueba si volvió la unidad o hay espacio.</summary>
+    public TimeSpan WaitPollInterval { get; set; } = TimeSpan.FromSeconds(2);
 
     /// <summary>Al borrar: sobrescribir el contenido, cambiar el nombre y entonces borrar (no se puede recuperar).</summary>
     public bool SecureDelete { get; set; }
