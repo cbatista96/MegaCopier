@@ -352,8 +352,9 @@ public sealed partial class CopyEngine
     // Hash guardado en el propio archivo
 
     /// <summary>Guarda "algoritmo:hash" en el flujo :MegaCopier.hash sin cambiar la fecha del archivo.</summary>
-    private void WriteHashStream(string path, string hash, DateTime lastWriteUtc)
+    private void WriteHashStream(string path, string hash, DateTime lastWriteUtc, FileHashAlgorithm? algorithmOverride = null)
     {
+        var algorithm = algorithmOverride ?? _options.HashAlgorithm;
         try
         {
             var attributes = File.GetAttributes(path);
@@ -362,7 +363,8 @@ public sealed partial class CopyEngine
                 File.SetAttributes(path, attributes & ~FileAttributes.ReadOnly);
             }
 
-            File.WriteAllText($"{path}:{HashStreamName}", $"{FileHasher.Extension(_options.HashAlgorithm)}:{hash}", new UTF8Encoding(false));
+            // Con la fecha de modificación: así se distingue un archivo que se editó (fecha nueva) de uno que se dañó (misma fecha).
+            File.WriteAllText($"{path}:{HashStreamName}", $"{FileHasher.Extension(algorithm)}:{hash}:{lastWriteUtc.Ticks}", new UTF8Encoding(false));
             File.SetLastWriteTimeUtc(path, lastWriteUtc);
             File.SetAttributes(path, attributes);
         }
@@ -373,7 +375,7 @@ public sealed partial class CopyEngine
     }
 
     /// <summary>El hash guardado en un archivo por MegaCopier, o null.</summary>
-    public static (FileHashAlgorithm Algorithm, string Hash)? ReadHashStream(string path)
+    public static (FileHashAlgorithm Algorithm, string Hash, DateTime? LastWriteUtc)? ReadHashStream(string path)
     {
         try
         {
@@ -389,7 +391,10 @@ public sealed partial class CopyEngine
             {
                 if (algorithm != FileHashAlgorithm.None && FileHasher.Extension(algorithm) == extension)
                 {
-                    return (algorithm, text[(colon + 1)..].ToLowerInvariant());
+                    // "sha256:hash:fecha" (la fecha falta en los guardados por versiones anteriores).
+                    string[] rest = text[(colon + 1)..].Split(':');
+                    DateTime? stamp = rest.Length > 1 && long.TryParse(rest[1], out long ticks) ? new DateTime(ticks, DateTimeKind.Utc) : null;
+                    return (algorithm, rest[0].ToLowerInvariant(), stamp);
                 }
             }
         }
@@ -495,6 +500,12 @@ public sealed partial class CopyEngine
             {
                 string hash = HashWithProgress(item.Source, algorithm, buffer, progress, cancellationToken);
                 item.SourceHash = hash;
+                if (_options.SaveHashStream)
+                {
+                    // Proteger la carpeta: el hash va dentro de cada archivo (el guardián de integridad lo comprueba).
+                    WriteHashStream(item.Source, hash, item.LastWriteUtc, algorithm);
+                }
+
                 string relative = Path.GetRelativePath(folder, item.Source);
                 lines.Append(algorithm == FileHashAlgorithm.Crc32 ? $"{relative} {hash.ToUpperInvariant()}\n" : $"{hash} *{relative}\n");
                 result.FilesCopied++;
@@ -509,10 +520,16 @@ public sealed partial class CopyEngine
             progress.EndFile();
         }
 
-        File.WriteAllText(listPath, lines.ToString(), new UTF8Encoding(false));
-        ChecksumFile = listPath;
         progress.Finish();
         result.Elapsed = stopwatch.Elapsed;
+        if (_options.SaveHashStream)
+        {
+            Log(LogLevel.Info, $"Hash guardado dentro de {result.FilesCopied} archivos.");
+            return result;
+        }
+
+        File.WriteAllText(listPath, lines.ToString(), new UTF8Encoding(false));
+        ChecksumFile = listPath;
         Log(LogLevel.Info, $"Archivo de sumas guardado: {listPath}");
         return result;
     }
