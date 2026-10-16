@@ -28,6 +28,9 @@ public sealed partial class FlowBar : UserControl
     public static readonly DependencyProperty IsErrorProperty =
         DependencyProperty.Register(nameof(IsError), typeof(bool), typeof(FlowBar), new PropertyMetadata(false, (d, _) => ((FlowBar)d).UpdateLook()));
 
+    public static readonly DependencyProperty IsWarningProperty =
+        DependencyProperty.Register(nameof(IsWarning), typeof(bool), typeof(FlowBar), new PropertyMetadata(false, (d, _) => ((FlowBar)d).UpdateLook()));
+
     public static readonly DependencyProperty IsIndeterminateProperty =
         DependencyProperty.Register(nameof(IsIndeterminate), typeof(bool), typeof(FlowBar), new PropertyMetadata(false, (d, _) => ((FlowBar)d).UpdateIndeterminate()));
 
@@ -108,6 +111,13 @@ public sealed partial class FlowBar : UserControl
         set => SetValue(IsErrorProperty, value);
     }
 
+    /// <summary>Terminó con avisos: color de aviso (ámbar).</summary>
+    public bool IsWarning
+    {
+        get => (bool)GetValue(IsWarningProperty);
+        set => SetValue(IsWarningProperty, value);
+    }
+
     public bool IsIndeterminate
     {
         get => (bool)GetValue(IsIndeterminateProperty);
@@ -134,6 +144,10 @@ public sealed partial class FlowBar : UserControl
         {
             _fill.SetValue(Border.BackgroundProperty, Theming.ThemeManager.ErrorBrush);
         }
+        else if (IsWarning)
+        {
+            _fill.SetValue(Border.BackgroundProperty, Theming.ThemeManager.WarningBrush);
+        }
         else if (Fill is { } fill)
         {
             _fill.Background = fill;
@@ -145,7 +159,7 @@ public sealed partial class FlowBar : UserControl
 
     private void UpdateShimmer()
     {
-        bool run = IsActive && !IsPaused && !IsError && !IsIndeterminate;
+        bool run = IsActive && !IsPaused && !IsError && !IsWarning && !IsIndeterminate;
         if (run && _shimmerAnimation is null)
         {
             var animation = new DoubleAnimation

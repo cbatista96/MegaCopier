@@ -48,7 +48,10 @@ public sealed partial class FileRowViewModel(TransferItem item, string root) : I
 
     public string DestinationHash => Short(Item.DestinationHash);
 
-    public string Message => Item.Message ?? "";
+    /// <summary>Motivo claro y traducido; el texto técnico original queda en <see cref="TechnicalMessage"/>.</summary>
+    public string Message => Item.ErrorKind == FileErrorKind.Other ? Item.Message ?? "" : L.Get("Error_" + Item.ErrorKind);
+
+    public string TechnicalMessage => Item.Message ?? "";
 
     public bool HasMessage => !string.IsNullOrEmpty(Item.Message) && Item.State is FileState.Failed or FileState.Skipped;
 

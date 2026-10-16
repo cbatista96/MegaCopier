@@ -27,11 +27,12 @@ internal static class Reports
     public static void ExportCsv(JobViewModel job, string path)
     {
         var text = new StringBuilder();
-        text.AppendLine("Estado;Origen;Destino;Bytes;Hash origen;Hash destino;Mensaje");
+        text.AppendLine(string.Join(';', L.Get("Report_State"), L.Get("Report_Source"), L.Get("Report_Destination"), "Bytes",
+            L.Get("Report_SourceHash"), L.Get("Report_TargetHash"), L.Get("Report_Message")));
         foreach (var item in job.Job.Files?.Snapshot() ?? [])
         {
-            text.AppendLine(string.Join(';', item.State, Csv(item.Source), Csv(item.Destination), item.Length,
-                item.SourceHash ?? "", item.DestinationHash ?? "", Csv(item.Message ?? "")));
+            text.AppendLine(string.Join(';', StateName(item.State), Csv(item.Source), Csv(item.Destination), item.Length,
+                item.SourceHash ?? "", item.DestinationHash ?? "", Csv(MessageText(item))));
         }
 
         File.WriteAllText(path, text.ToString(), new UTF8Encoding(true)); // con BOM: Excel lo abre bien
@@ -43,7 +44,7 @@ internal static class Reports
         var stats = TransferStatistics.From(items);
         var html = new StringBuilder();
         html.Append("""
-            <!doctype html><html lang="es"><head><meta charset="utf-8"><title>MegaCopier</title>
+            <!doctype html><html><head><meta charset="utf-8"><title>MegaCopier</title>
             <style>
             body{font:14px "Segoe UI",system-ui,sans-serif;margin:32px;color:#1b1f24;background:#f6f7fb}
             h1{font-size:22px;margin:0 0 4px} .sub{color:#5b6472;margin-bottom:20px}
@@ -56,15 +57,15 @@ internal static class Reports
             """);
         html.Append($"<h1>{Enc(job.Title)}</h1><div class=\"sub\">{Enc(job.SourceFolder)} → {Enc(job.DestinationFolder)} · {DateTime.Now:g}</div>");
         html.Append("<div class=\"cards\">");
-        Card(html, "Copiados", stats.CopiedFiles, stats.CopiedBytes);
-        Card(html, "Verificados", stats.VerifiedFiles, stats.VerifiedBytes);
-        Card(html, "Omitidos", stats.SkippedFiles, stats.SkippedBytes);
-        Card(html, "Con errores", stats.FailedFiles, stats.FailedBytes);
-        html.Append("</div><table><tr><th>Estado</th><th>Archivo</th><th>Tamaño</th><th>Hash origen</th><th>Hash destino</th><th>Mensaje</th></tr>");
+        Card(html, L.Get("Report_Copied"), stats.CopiedFiles, stats.CopiedBytes);
+        Card(html, L.Get("Report_Verified"), stats.VerifiedFiles, stats.VerifiedBytes);
+        Card(html, L.Get("Report_Skipped"), stats.SkippedFiles, stats.SkippedBytes);
+        Card(html, L.Get("Report_Failed"), stats.FailedFiles, stats.FailedBytes);
+        html.Append($"</div><table><tr><th>{L.Get("Report_State")}</th><th>{L.Get("Report_File")}</th><th>{L.Get("Report_Size")}</th><th>{L.Get("Report_SourceHash")}</th><th>{L.Get("Report_TargetHash")}</th><th>{L.Get("Report_Message")}</th></tr>");
         foreach (var item in items)
         {
-            html.Append($"<tr><td class=\"{item.State}\">{item.State}</td><td>{Enc(item.Source)}</td><td>{Format.Bytes(item.Length)}</td>")
-                .Append($"<td class=\"mono\">{Enc(item.SourceHash ?? "")}</td><td class=\"mono\">{Enc(item.DestinationHash ?? "")}</td><td>{Enc(item.Message ?? "")}</td></tr>");
+            html.Append($"<tr><td class=\"{item.State}\">{StateName(item.State)}</td><td>{Enc(item.Source)}</td><td>{Format.Bytes(item.Length)}</td>")
+                .Append($"<td class=\"mono\">{Enc(item.SourceHash ?? "")}</td><td class=\"mono\">{Enc(item.DestinationHash ?? "")}</td><td>{Enc(MessageText(item))}</td></tr>");
         }
 
         html.Append("</table></body></html>");
@@ -73,6 +74,11 @@ internal static class Reports
 
     private static void Card(StringBuilder html, string title, int files, long bytes) =>
         html.Append($"<div class=\"card\">{title}<b>{files:N0}</b>{Format.Bytes(bytes)}</div>");
+
+    private static string StateName(FileState state) => L.Get("File_" + state);
+
+    private static string MessageText(TransferItem item) =>
+        item.ErrorKind == FileErrorKind.Other ? item.Message ?? "" : $"{L.Get("Error_" + item.ErrorKind)} ({item.Message})";
 
     private static string Enc(string text) => WebUtility.HtmlEncode(text);
 

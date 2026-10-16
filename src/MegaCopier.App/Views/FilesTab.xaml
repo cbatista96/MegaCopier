@@ -23,7 +23,7 @@
             </Grid.ColumnDefinitions>
             <DropDownButton Style="{StaticResource DefaultButtonStyle}" CornerRadius="6">
                 <StackPanel Orientation="Horizontal" Spacing="8">
-                    <FontIcon Glyph="&#xE700;" FontSize="13" />
+                    <FontIcon VerticalAlignment="Center" Glyph="&#xE700;" FontSize="13" />
                     <TextBlock x:Uid="Files_Menu" />
                 </StackPanel>
                 <DropDownButton.Flyout>
@@ -104,20 +104,17 @@
                             <ColumnDefinition Width="84" />
                         </Grid.ColumnDefinitions>
                         <Grid ToolTipService.ToolTip="{x:Bind StateText, Mode=OneWay}">
-                            <FontIcon Glyph="&#xE71A;" FontSize="9" Foreground="{StaticResource McTextSecondaryBrush}" Visibility="{x:Bind IsPending, Mode=OneWay}" />
-                            <ProgressRing Width="16" Height="16" IsActive="{x:Bind IsCurrent, Mode=OneWay}" Visibility="{x:Bind IsCurrent, Mode=OneWay}" Foreground="{StaticResource McAccentBrush}" />
-                            <FontIcon Glyph="&#xE73E;" FontSize="14" Foreground="{StaticResource McSuccessBrush}" Visibility="{x:Bind IsCopiedOnly, Mode=OneWay}" />
-                            <StackPanel Orientation="Horizontal" Spacing="-6" Visibility="{x:Bind IsVerified, Mode=OneWay}">
-                                <FontIcon Glyph="&#xE73E;" FontSize="14" Foreground="{StaticResource McSuccessBrush}" />
-                                <FontIcon Glyph="&#xE73E;" FontSize="14" Foreground="{StaticResource McSuccessBrush}" />
-                            </StackPanel>
-                            <FontIcon Glyph="&#xE893;" FontSize="14" Foreground="{StaticResource McTextSecondaryBrush}" Visibility="{x:Bind IsSkipped, Mode=OneWay}" />
-                            <FontIcon Glyph="&#xE7BA;" FontSize="14" Foreground="{StaticResource McWarningBrush}" Visibility="{x:Bind IsFailed, Mode=OneWay}" />
+                            <FontIcon HorizontalAlignment="Center" VerticalAlignment="Center" Glyph="&#xEA3A;" FontSize="11" Foreground="{StaticResource McTextSecondaryBrush}" Visibility="{x:Bind IsPending, Mode=OneWay}" />
+                            <ProgressRing HorizontalAlignment="Center" VerticalAlignment="Center" Width="16" Height="16" IsActive="{x:Bind IsCurrent, Mode=OneWay}" Visibility="{x:Bind IsCurrent, Mode=OneWay}" Foreground="{StaticResource McAccentBrush}" />
+                            <FontIcon HorizontalAlignment="Center" VerticalAlignment="Center" Glyph="&#xE73E;" FontSize="14" Foreground="{StaticResource McSuccessBrush}" Visibility="{x:Bind IsCopiedOnly, Mode=OneWay}" />
+                            <FontIcon HorizontalAlignment="Center" VerticalAlignment="Center" Glyph="&#xE930;" FontSize="15" Foreground="{StaticResource McSuccessBrush}" Visibility="{x:Bind IsVerified, Mode=OneWay}" />
+                            <FontIcon HorizontalAlignment="Center" VerticalAlignment="Center" Glyph="&#xE893;" FontSize="14" Foreground="{StaticResource McTextSecondaryBrush}" Visibility="{x:Bind IsSkipped, Mode=OneWay}" />
+                            <FontIcon HorizontalAlignment="Center" VerticalAlignment="Center" Glyph="&#xE7BA;" FontSize="14" Foreground="{StaticResource McWarningBrush}" Visibility="{x:Bind IsFailed, Mode=OneWay}" />
                         </Grid>
                         <StackPanel Grid.Column="1" VerticalAlignment="Center">
                             <TextBlock Text="{x:Bind Name}" Style="{StaticResource McBody}" TextTrimming="CharacterEllipsis" ToolTipService.ToolTip="{x:Bind SourcePath}" />
                             <TextBlock Text="{x:Bind Folder}" Style="{StaticResource McSecondary}" TextTrimming="CharacterEllipsis" />
-                            <TextBlock Text="{x:Bind Message, Mode=OneWay}" Style="{StaticResource McSecondary}" Foreground="{StaticResource McWarningBrush}"
+                            <TextBlock Text="{x:Bind Message, Mode=OneWay}" ToolTipService.ToolTip="{x:Bind TechnicalMessage, Mode=OneWay}" Style="{StaticResource McSecondary}" Foreground="{StaticResource McWarningBrush}"
                                        Visibility="{x:Bind HasMessage, Mode=OneWay}" TextWrapping="Wrap" />
                         </StackPanel>
                         <TextBlock Grid.Column="2" Text="{x:Bind SourceHash, Mode=OneWay}" Style="{StaticResource McSecondary}" FontFamily="Consolas" VerticalAlignment="Center" />

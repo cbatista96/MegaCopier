@@ -329,12 +329,21 @@ public sealed partial class SettingsPage : UserControl
         ("Theme_ColorError", () => _editing.Error, v => _editing.Error = v),
     ];
 
-    /// <summary>Un botón por color: muestra la muestra y abre un selector de color con transparencia.</summary>
+    private readonly List<(Button Button, Border Swatch)> _slotViews = [];
+    private int _slot = -1;
+
+    /// <summary>
+    /// Un botón por color con su muestra. Al pulsarlo se edita en el selector de debajo (sin ventanas emergentes: se
+    /// pueden ir cambiando colores seguidos viendo el resultado en toda la interfaz).
+    /// </summary>
     private void BuildColorSlots()
     {
         ColorSlots.Children.Clear();
-        foreach (var (key, get, set) in Slots())
+        _slotViews.Clear();
+        var slots = Slots();
+        for (int i = 0; i < slots.Length; i++)
         {
+            var (key, get, _) = slots[i];
             var swatch = new Border
             {
                 Width = 22,
@@ -343,48 +352,94 @@ public sealed partial class SettingsPage : UserControl
                 BorderThickness = new Thickness(1),
                 BorderBrush = ThemeManager.BorderBrush,
                 Background = new SolidColorBrush(ThemeManager.Parse(get())),
+                VerticalAlignment = VerticalAlignment.Center,
             };
             var label = new TextBlock { Text = L.Get(key), VerticalAlignment = VerticalAlignment.Center, TextTrimming = TextTrimming.CharacterEllipsis };
             var row = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 10 };
             row.Children.Add(swatch);
             row.Children.Add(label);
 
-            var picker = new ColorPicker
-            {
-                IsAlphaEnabled = true,
-                IsMoreButtonVisible = true,
-                IsColorSliderVisible = true,
-                IsHexInputVisible = true,
-                Color = ThemeManager.Parse(get()),
-            };
-            picker.ColorChanged += (_, args) =>
-            {
-                string hex = ThemeManager.ToHex(args.NewColor);
-                set(hex);
-                swatch.Background = new SolidColorBrush(args.NewColor);
-                PreviewEditing();
-            };
-
+            int index = i;
             var button = new Button
             {
                 Content = row,
                 Width = 200,
                 HorizontalContentAlignment = HorizontalAlignment.Left,
-                Flyout = new Flyout { Content = picker, Placement = FlyoutPlacementMode.Bottom },
+                BorderThickness = new Thickness(1),
             };
+            button.Click += (_, _) => SelectSlot(index);
             Microsoft.UI.Xaml.Automation.AutomationProperties.SetName(button, L.Get(key));
             ColorSlots.Children.Add(button);
+            _slotViews.Add((button, swatch));
         }
+
+        SelectSlot(_slot < 0 ? -1 : Math.Min(_slot, slots.Length - 1));
+    }
+
+    private void SelectSlot(int index)
+    {
+        _slot = index;
+        for (int i = 0; i < _slotViews.Count; i++)
+        {
+            _slotViews[i].Button.BorderBrush = i == index ? ThemeManager.AccentBrush : ThemeManager.BorderBrush;
+        }
+
+        SlotEditor.Visibility = index < 0 ? Visibility.Collapsed : Visibility.Visible;
+        if (index >= 0)
+        {
+            var (key, get, _) = Slots()[index];
+            SlotTitle.Text = L.Get(key);
+            bool wasLoading = _loading;
+            _loading = true;
+            SlotPicker.Color = ThemeManager.Parse(get());
+            _loading = wasLoading;
+        }
+    }
+
+    private void SlotPicker_ColorChanged(ColorPicker sender, ColorChangedEventArgs args)
+    {
+        if (_loading || _slot < 0)
+        {
+            return;
+        }
+
+        var color = args.NewColor;
+        if (color.A == 0 && args.OldColor.A >= 64)
+        {
+            // Un hex de 6 cifras escrito a mano llega sin opacidad (transparente): se entiende como opaco.
+            color = Windows.UI.Color.FromArgb(args.OldColor.A, color.R, color.G, color.B);
+            _loading = true;
+            sender.Color = color;
+            _loading = false;
+        }
+
+        Slots()[_slot].Set(ThemeManager.ToHex(color));
+        _slotViews[_slot].Swatch.Background = new SolidColorBrush(color);
+        PreviewEditing();
     }
 
     /// <summary>Aplica el tema en edición a toda la interfaz para verlo al momento (sin guardar).</summary>
     private void PreviewEditing()
     {
-        if (!_loading)
+        if (_loading)
         {
-            _app.ApplyTheme(_editing);
+            return;
         }
+
+        // El selector de color avisa en cada movimiento: se aplica como mucho cada 150 ms.
+        if (_previewTimer is null)
+        {
+            _previewTimer = DispatcherQueue.CreateTimer();
+            _previewTimer.Interval = TimeSpan.FromMilliseconds(150);
+            _previewTimer.IsRepeating = false;
+            _previewTimer.Tick += (_, _) => _app.ApplyTheme(_editing.Clone());
+        }
+
+        _previewTimer.Stop();
+        _previewTimer.Start();
     }
+
+    private Microsoft.UI.Dispatching.DispatcherQueueTimer? _previewTimer;
 
     private void ThemeName_Changed(object sender, TextChangedEventArgs e) => _editing.Name = ThemeNameBox.Text.Trim();
 

@@ -67,6 +67,24 @@ internal static partial class SystemActions
         }
     }
 
+    private static bool _keepingAwake;
+
+    /// <summary>
+    /// Mientras hay copias en marcha el equipo no se suspende por inactividad (la pantalla sí puede apagarse).
+    /// Debe llamarse siempre desde el mismo hilo.
+    /// </summary>
+    public static void KeepAwake(bool awake)
+    {
+        if (awake != _keepingAwake)
+        {
+            _keepingAwake = awake;
+            SetThreadExecutionState(awake ? 0x80000001u /* ES_CONTINUOUS | ES_SYSTEM_REQUIRED */ : 0x80000000u /* ES_CONTINUOUS */);
+        }
+    }
+
+    [LibraryImport("kernel32.dll")]
+    private static partial uint SetThreadExecutionState(uint flags);
+
     [LibraryImport("user32.dll")]
     [return: MarshalAs(UnmanagedType.Bool)]
     private static partial bool MessageBeep(uint type);

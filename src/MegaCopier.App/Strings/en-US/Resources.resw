@@ -350,7 +350,7 @@
   <data name="Files_ListType" xml:space="preserve"><value>MegaCopier transfer list</value></data>
   <data name="Files_LoadFailed" xml:space="preserve"><value>The list could not be loaded</value></data>
   <data name="Hash_None" xml:space="preserve"><value>Hash: none</value></data>
-  <data name="Jobs_Header" xml:space="preserve"><value>{0} TRANSFERS · {1} ACTIVE</value></data>
+  <data name="Jobs_Header" xml:space="preserve"><value>TRANSFERS: {0} · ACTIVE: {1}</value></data>
   <data name="Language_Auto" xml:space="preserve"><value>Use Windows setting</value></data>
   <data name="Log_FileType" xml:space="preserve"><value>Text</value></data>
   <data name="Picker_MoveHere" xml:space="preserve"><value>Move here</value></data>
@@ -360,4 +360,30 @@
   <data name="Panel_VerifyItem.Text" xml:space="preserve"><value>Verify when finished</value></data>
   <data name="Panel_OpenFolderItem.Text" xml:space="preserve"><value>Open the destination folder</value></data>
   <data name="Status_ExactBytes" xml:space="preserve"><value>{0} bytes</value></data>
+  <data name="Notify_SettingsResetTitle" xml:space="preserve"><value>Settings reset</value></data>
+  <data name="Notify_SettingsResetBody" xml:space="preserve"><value>Your settings could not be read, so defaults are used. The original file is in settings.json.bad.</value></data>
+  <data name="Job_TitleCopy" xml:space="preserve"><value>Copy {0}</value></data>
+  <data name="Job_TitleMove" xml:space="preserve"><value>Move {0}</value></data>
+  <data name="Job_FailedOne" xml:space="preserve"><value>1 file with errors</value></data>
+  <data name="Error_InUse" xml:space="preserve"><value>Another program has the file open. Close it and press &quot;Retry&quot;.</value></data>
+  <data name="Error_AccessDenied" xml:space="preserve"><value>Access denied: you are not allowed to read or write this file.</value></data>
+  <data name="Error_DiskFull" xml:space="preserve"><value>The destination disk is full.</value></data>
+  <data name="Error_NotFound" xml:space="preserve"><value>The file or folder no longer exists (moved, deleted, or the drive was disconnected?).</value></data>
+  <data name="Error_PathTooLong" xml:space="preserve"><value>The path is too long for the destination.</value></data>
+  <data name="Error_NetworkLost" xml:space="preserve"><value>The network connection was lost. When it is back, press &quot;Retry&quot; to continue where it stopped.</value></data>
+  <data name="Error_HashMismatch" xml:space="preserve"><value>The copy does not match the original (verification failed).</value></data>
+  <data name="Error_DeleteFailed" xml:space="preserve"><value>Copied correctly, but the original could not be deleted.</value></data>
+  <data name="Report_State" xml:space="preserve"><value>State</value></data>
+  <data name="Report_File" xml:space="preserve"><value>File</value></data>
+  <data name="Report_Source" xml:space="preserve"><value>Source</value></data>
+  <data name="Report_Destination" xml:space="preserve"><value>Destination</value></data>
+  <data name="Report_Size" xml:space="preserve"><value>Size</value></data>
+  <data name="Report_SourceHash" xml:space="preserve"><value>Source hash</value></data>
+  <data name="Report_TargetHash" xml:space="preserve"><value>Target hash</value></data>
+  <data name="Report_Message" xml:space="preserve"><value>Message</value></data>
+  <data name="Report_Copied" xml:space="preserve"><value>Copied</value></data>
+  <data name="Report_Verified" xml:space="preserve"><value>Verified</value></data>
+  <data name="Report_Skipped" xml:space="preserve"><value>Skipped</value></data>
+  <data name="Report_Failed" xml:space="preserve"><value>Failed</value></data>
+  <data name="Job_SkippedOne" xml:space="preserve"><value>1 skipped</value></data>
 </root>

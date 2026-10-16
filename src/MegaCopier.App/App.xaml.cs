@@ -95,7 +95,7 @@ public partial class App : Application
         Dispatcher = DispatcherQueue.GetForCurrentThread();
         var theme = ThemeManager.Find(Settings.ThemeId);
         ThemeManager.Apply(theme);
-        Appearance.ApplyAccent(Appearance.ToRgbHex(theme.Accent));
+        ApplyControlAccent(theme);
 
         var interrupted = Queue.LoadInterrupted();
         _window = new MainWindow(this);
@@ -131,6 +131,11 @@ public partial class App : Application
             {
                 Queue.Resume(job);
             }
+        }
+
+        if (Settings.LoadFailed)
+        {
+            _tray.ShowNotification(L.Get("Notify_SettingsResetTitle"), L.Get("Notify_SettingsResetBody"));
         }
 
         var startup = Program.Startup;
@@ -196,7 +201,43 @@ public partial class App : Application
     internal void ApplyTheme(ThemeDefinition theme)
     {
         ThemeManager.Apply(theme);
-        _window?.ApplyTheme(theme);
+        bool accentChanged = ApplyControlAccent(theme);
+        _window?.ApplyTheme(theme, accentChanged);
+    }
+
+    private string _controlAccent = "";
+
+    /// <summary>
+    /// Acento de los controles estándar (casillas, interruptores, botón principal, pestañas). WinUI lo lee al cargar sus
+    /// recursos: se vuelven a cargar con el color nuevo y la ventana fuerza que los controles los vuelvan a leer.
+    /// </summary>
+    private bool ApplyControlAccent(ThemeDefinition theme)
+    {
+        string accent = Appearance.ToRgbHex(theme.Accent);
+        if (accent == _controlAccent)
+        {
+            return false;
+        }
+
+        bool first = _controlAccent.Length == 0;
+        _controlAccent = accent;
+        Appearance.ApplyAccent(accent);
+        if (first)
+        {
+            return false;
+        }
+
+        var merged = Resources.MergedDictionaries;
+        for (int i = 0; i < merged.Count; i++)
+        {
+            if (merged[i] is Microsoft.UI.Xaml.Controls.XamlControlsResources)
+            {
+                merged[i] = new Microsoft.UI.Xaml.Controls.XamlControlsResources();
+                break;
+            }
+        }
+
+        return true;
     }
 
     /// <summary>Aviso del sistema desde el icono de la bandeja.</summary>
@@ -363,6 +404,7 @@ public partial class App : Application
     private void UpdateStatus()
     {
         var running = Queue.Jobs.Where(j => j.State is CopyJobState.Running or CopyJobState.Paused).ToList();
+        SystemActions.KeepAwake(running.Any(j => j.State == CopyJobState.Running));
         if (running.Count == 0)
         {
             _tray?.SetTooltip(Settings.Enabled ? "MegaCopier" : L.Get("Tray_TooltipDisabled"));

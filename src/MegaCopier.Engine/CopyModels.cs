@@ -58,7 +58,7 @@ public readonly record struct CopyProgress(
         : null;
 }
 
-public sealed record FileFailure(string Source, string Message);
+public sealed record FileFailure(string Source, string Message, FileErrorKind Kind = FileErrorKind.Other);
 
 public sealed class CopyJobResult
 {
@@ -140,4 +140,39 @@ internal enum FaultPoint
 internal interface IFaultInjector
 {
     void Hit(FaultPoint point, long chunkIndex, SafeFileHandle destination);
+}
+
+/// <summary>Por qué falló un archivo, para mostrar un mensaje claro y traducido (el texto técnico va aparte).</summary>
+public enum FileErrorKind
+{
+    Other,
+    InUse,
+    AccessDenied,
+    DiskFull,
+    NotFound,
+    PathTooLong,
+    NetworkLost,
+    HashMismatch,
+    DeleteFailed,
+}
+
+public static class FileErrors
+{
+    public static FileErrorKind Classify(Exception exception) => exception switch
+    {
+        UnauthorizedAccessException => FileErrorKind.AccessDenied,
+        PathTooLongException => FileErrorKind.PathTooLong,
+        FileNotFoundException or DirectoryNotFoundException => FileErrorKind.NotFound,
+        IOException io => (io.HResult & 0xFFFF) switch
+        {
+            32 or 33 => FileErrorKind.InUse,                        // ERROR_SHARING_VIOLATION, ERROR_LOCK_VIOLATION
+            5 => FileErrorKind.AccessDenied,
+            39 or 112 => FileErrorKind.DiskFull,                     // ERROR_HANDLE_DISK_FULL, ERROR_DISK_FULL
+            2 or 3 or 15 or 21 => FileErrorKind.NotFound,            // archivo, ruta, unidad, unidad no lista
+            206 => FileErrorKind.PathTooLong,
+            53 or 59 or 64 or 67 or 1231 or 1236 => FileErrorKind.NetworkLost,
+            _ => FileErrorKind.Other,
+        },
+        _ => FileErrorKind.Other,
+    };
 }

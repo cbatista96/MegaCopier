@@ -344,7 +344,7 @@ Files_Count	{0} de {1} archivos	{0} of {1} files
 Files_ListType	Lista de copia de MegaCopier	MegaCopier transfer list
 Files_LoadFailed	No se pudo cargar la lista	The list could not be loaded
 Hash_None	Hash: ninguno	Hash: none
-Jobs_Header	{0} COPIAS · {1} ACTIVAS	{0} TRANSFERS · {1} ACTIVE
+Jobs_Header	COPIAS: {0} · ACTIVAS: {1}	TRANSFERS: {0} · ACTIVE: {1}
 Language_Auto	Usar el de Windows	Use Windows setting
 Log_FileType	Texto	Text
 Picker_MoveHere	Mover aquí	Move here
@@ -354,3 +354,29 @@ Panel_UnattendedItem.Text	Desatendido (no preguntar: omite los que ya existen)	U
 Panel_VerifyItem.Text	Verificar al terminar	Verify when finished
 Panel_OpenFolderItem.Text	Abrir la carpeta de destino	Open the destination folder
 Status_ExactBytes	{0} bytes	{0} bytes
+Notify_SettingsResetTitle	Ajustes restablecidos	Settings reset
+Notify_SettingsResetBody	No se pudieron leer tus ajustes y se usan los de fábrica. El archivo original está en settings.json.bad.	Your settings could not be read, so defaults are used. The original file is in settings.json.bad.
+Job_TitleCopy	Copiar {0}	Copy {0}
+Job_TitleMove	Mover {0}	Move {0}
+Job_FailedOne	1 archivo con errores	1 file with errors
+Error_InUse	Otro programa tiene el archivo abierto. Ciérralo y pulsa «Reintentar».	Another program has the file open. Close it and press "Retry".
+Error_AccessDenied	Acceso denegado: no tienes permiso para leer o escribir este archivo.	Access denied: you are not allowed to read or write this file.
+Error_DiskFull	No queda espacio en el disco de destino.	The destination disk is full.
+Error_NotFound	El archivo o la carpeta ya no existe (¿se movió, se borró o se desconectó la unidad?).	The file or folder no longer exists (moved, deleted, or the drive was disconnected?).
+Error_PathTooLong	La ruta es demasiado larga para el destino.	The path is too long for the destination.
+Error_NetworkLost	Se perdió la conexión de red. Al volver, pulsa «Reintentar» y seguirá donde se quedó.	The network connection was lost. When it is back, press "Retry" to continue where it stopped.
+Error_HashMismatch	La copia no coincide con el original (verificación fallida).	The copy does not match the original (verification failed).
+Error_DeleteFailed	Se copió bien, pero no se pudo borrar el original.	Copied correctly, but the original could not be deleted.
+Report_State	Estado	State
+Report_File	Archivo	File
+Report_Source	Origen	Source
+Report_Destination	Destino	Destination
+Report_Size	Tamaño	Size
+Report_SourceHash	Hash origen	Source hash
+Report_TargetHash	Hash destino	Target hash
+Report_Message	Mensaje	Message
+Report_Copied	Copiados	Copied
+Report_Verified	Verificados	Verified
+Report_Skipped	Omitidos	Skipped
+Report_Failed	Con errores	Failed
+Job_SkippedOne	1 omitido	1 skipped
