@@ -97,14 +97,14 @@ public static class DiskHealth
 
     private static string Describe(int code) => code switch
     {
-        3 => "degradado",
-        5 => "fallo previsto (SMART)",
-        6 => "error",
-        7 => "irrecuperable",
-        10 => "detenido",
-        13 => "comunicación perdida",
-        0xD00B => "errores pasajeros",
-        0xD00D => "metadatos no reconocidos",
+        3 => Texts.Get("E_Disk_Degraded"),
+        5 => Texts.Get("E_Disk_Predictive"),
+        6 => Texts.Get("E_Disk_Error"),
+        7 => Texts.Get("E_Disk_Unrecoverable"),
+        10 => Texts.Get("E_Disk_Stopped"),
+        13 => Texts.Get("E_Disk_Lost"),
+        0xD00B => Texts.Get("E_Disk_Transient"),
+        0xD00D => Texts.Get("E_Disk_Metadata"),
         _ => "",
     };
 
@@ -118,6 +118,6 @@ public static class DiskHealth
             return disks;
         }
 
-        return [.. disks.Select(d => d.Number == number ? d with { Health = (DiskHealthState)state, Detail = "fallo previsto (SMART)" } : d)];
+        return [.. disks.Select(d => d.Number == number ? d with { Health = (DiskHealthState)state, Detail = Texts.Get("E_Disk_Predictive") } : d)];
     }
 }

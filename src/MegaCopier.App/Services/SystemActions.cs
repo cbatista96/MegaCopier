@@ -40,7 +40,7 @@ internal static partial class SystemActions
                 break;
             case FinishAction.Shutdown:
                 // Con un minuto de margen: se puede cancelar con "shutdown /a".
-                Process.Start(new ProcessStartInfo("shutdown.exe", "/s /t 60 /c \"MegaCopier terminó las copias. El equipo se apagará en 1 minuto.\"")
+                Process.Start(new ProcessStartInfo("shutdown.exe", $"/s /t 60 /c \"{L.Get("Finish_ShutdownMessage").Replace('"', '\'')}\"")
                 {
                     CreateNoWindow = true,
                     UseShellExecute = false,

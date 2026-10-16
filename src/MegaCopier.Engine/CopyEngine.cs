@@ -101,7 +101,7 @@ public sealed partial class CopyEngine
             Files.Insert(file.Source, file.Destination, file.Length, file.LastWriteUtc, beforeId);
         }
 
-        Log(LogLevel.Info, $"Añadidos {plan.Files.Count} archivos ({FormatBytes(plan.TotalBytes)}).");
+        Log(LogLevel.Info, Texts.F("E_Added", plan.Files.Count, FormatBytes(plan.TotalBytes)));
         return plan.Files.Count;
     }
 
@@ -158,7 +158,7 @@ public sealed partial class CopyEngine
 
         if (_options.Encrypt && _options.EncryptionPassword.Length == 0)
         {
-            throw new CopyPlanException("Esta copia va cifrada: vuelve a escribir la contraseña para continuar.");
+            throw new CopyPlanException(Texts.Get("E_NeedPassword"));
         }
 
         if (_options.Encrypt)
@@ -276,7 +276,7 @@ public sealed partial class CopyEngine
         {
             progress.Finish();
             result.Elapsed = stopwatch.Elapsed;
-            Log(LogLevel.Info, $"Simulación: se copiarían {result.FilesCopied}, se omitirían {result.FilesSkipped} y se borrarían {result.FilesDeleted}.");
+            Log(LogLevel.Info, Texts.F("E_DryRunSummary", result.FilesCopied, result.FilesSkipped, result.FilesDeleted));
             return result;
         }
 
@@ -306,7 +306,7 @@ public sealed partial class CopyEngine
         result.Elapsed = stopwatch.Elapsed;
         Log(
             result.Success ? LogLevel.Info : LogLevel.Warning,
-            $"Terminado en {result.Elapsed:hh\\:mm\\:ss}: {result.FilesCopied} copiados, {result.FilesSkipped} omitidos, {result.Failures.Count} con errores.");
+            Texts.F("E_DoneCopy", result.Elapsed.ToString(@"hh\:mm\:ss"), result.FilesCopied, result.FilesSkipped, result.Failures.Count));
         return result;
     }
 
@@ -367,7 +367,7 @@ public sealed partial class CopyEngine
         {
             result.FilesSkipped++;
             item.Action = PlannedAction.SkipDuplicate;
-            Files.Update(item, FileState.Skipped, $"Ya está en el destino: {duplicate}");
+            Files.Update(item, FileState.Skipped, Texts.F("E_DuplicateInDestination", duplicate));
             return;
         }
 
@@ -459,46 +459,46 @@ public sealed partial class CopyEngine
             // mover, el original no se borra.
             if (outcome.UnreadableBytes > 0)
             {
-                Fail(item, result, $"Rescatado: {FormatBytes(outcome.UnreadableBytes)} ilegibles del origen quedaron en ceros (detalle en el registro).", FileErrorKind.PartlyUnreadable);
+                Fail(item, result, Texts.F("E_RescuedZeros", FormatBytes(outcome.UnreadableBytes)), FileErrorKind.PartlyUnreadable);
                 return;
             }
 
             if (outcome.ChunksRepaired > 0)
             {
-                Log(LogLevel.Warning, $"La verificación reparó {outcome.ChunksRepaired} bloques dañados.", item.Source);
+                Log(LogLevel.Warning, Texts.F("E_Repaired", outcome.ChunksRepaired), item.Source);
             }
 
             if (outcome.Delta)
             {
-                Log(LogLevel.Info, $"Copia diferencial: escritos {FormatBytes(outcome.BytesTransferred)}; {FormatBytes(outcome.BytesUnchanged)} ya eran iguales.", item.Source);
+                Log(LogLevel.Info, Texts.F("E_DeltaCopy", FormatBytes(outcome.BytesTransferred), FormatBytes(outcome.BytesUnchanged)), item.Source);
             }
 
             if (outcome.Cloned)
             {
-                Log(LogLevel.Info, "Bloques clonados al instante (ReFS/Dev Drive): no ocupa más espacio hasta que se modifique.", item.Source);
+                Log(LogLevel.Info, Texts.Get("E_Cloned"), item.Source);
             }
 
             if (outcome.SystemCopied)
             {
-                Log(LogLevel.Info, _options.SmbCompression ? "Copiado por Windows con compresión SMB." : "Copiado en el propio servidor (sin pasar los datos por este equipo).", item.Source);
+                Log(LogLevel.Info, Texts.Get(_options.SmbCompression ? "E_SmbCompressed" : "E_ServerSide"), item.Source);
             }
 
             if (outcome.BytesResumed > 0)
             {
-                Log(LogLevel.Info, $"Reanudado desde {FormatBytes(outcome.BytesResumed)}.", item.Source);
+                Log(LogLevel.Info, Texts.F("E_Resumed", FormatBytes(outcome.BytesResumed)), item.Source);
             }
 
             bool verified = outcome.DestinationHash is not null;
             if (verified && outcome.SourceHash != outcome.DestinationHash)
             {
-                Fail(item, result, "Los hashes no coinciden", FileErrorKind.HashMismatch);
+                Fail(item, result, Texts.Get("E_HashMismatch"), FileErrorKind.HashMismatch);
                 return;
             }
 
             // Verificación completa: también se relee el origen (detecta una lectura defectuosa del disco de origen).
             if (verified && _options.VerifySource && outcome.SourceHash is { } expected && HashFile(item.Source) != expected)
             {
-                Fail(item, result, "El origen releído no coincide con lo copiado (lectura defectuosa o cambió durante la copia)", FileErrorKind.HashMismatch);
+                Fail(item, result, Texts.Get("E_SourceChanged"), FileErrorKind.HashMismatch);
                 return;
             }
 
@@ -524,8 +524,8 @@ public sealed partial class CopyEngine
             DeletePartials(target);
             result.FilesSkipped++;
             item.Action = PlannedAction.SkipByUser;
-            Files.Update(item, FileState.Skipped, "Saltado por el usuario");
-            Log(LogLevel.Info, "Saltado por el usuario.", item.Source);
+            Files.Update(item, FileState.Skipped, Texts.Get("E_SkippedByUser"));
+            Log(LogLevel.Info, Texts.Get("E_SkippedByUserLog"), item.Source);
         }
         finally
         {
@@ -549,17 +549,17 @@ public sealed partial class CopyEngine
             item.DestinationHash = destinationHash;
             if (sourceHash != destinationHash)
             {
-                Files.Update(item, FileState.Failed, "El archivo existente no coincide con el origen");
-                Log(LogLevel.Error, "El archivo existente tiene el mismo tamaño y fecha pero distinto contenido.", item.Source);
+                Files.Update(item, FileState.Failed, Texts.Get("E_ExistingDiffers"));
+                Log(LogLevel.Error, Texts.Get("E_ExistingDiffersLog"), item.Source);
             }
             else
             {
-                Files.Update(item, FileState.Skipped, "Idéntico (verificado por hash)");
+                Files.Update(item, FileState.Skipped, Texts.Get("E_IdenticalVerified"));
             }
         }
         catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
         {
-            Log(LogLevel.Warning, $"No se pudo verificar el archivo omitido: {ex.Message}", item.Source);
+            Log(LogLevel.Warning, Texts.F("E_SkippedNotVerified", ex.Message), item.Source);
         }
     }
 
@@ -602,7 +602,7 @@ public sealed partial class CopyEngine
 
         File.WriteAllText(path, text.ToString(), new UTF8Encoding(false));
         ChecksumFile = path;
-        Log(LogLevel.Info, $"Archivo de sumas guardado: {path}");
+        Log(LogLevel.Info, Texts.F("E_ChecksumSaved", path));
     }
 
     private void Fail(TransferItem item, CopyJobResult result, string message, FileErrorKind kind = FileErrorKind.Other)
@@ -811,7 +811,7 @@ public sealed partial class CopyEngine
                     // "Al final de la cola": se vuelve a intentar una vez cuando acabe todo lo demás.
                     if (_options.OnError == ErrorPolicy.MoveToEnd && Requeue(item.Id))
                     {
-                        Log(LogLevel.Warning, $"Se reintentará al final: {ex.Message}", item.Source);
+                        Log(LogLevel.Warning, Texts.F("E_RetryAtEnd", ex.Message), item.Source);
                         Files.Requeue(item);
                         return null;
                     }
@@ -910,7 +910,7 @@ public sealed partial class CopyEngine
             ConflictPolicy.OverwriteIfDifferentSize => file.Length != existing.Length ? new Resolution(file.Destination, Existed: true) : new Resolution(null, PlannedAction.SkipSameSize),
             ConflictPolicy.KeepBoth => UniqueTarget(file),
             ConflictPolicy.RenameExisting => RenameExisting(file),
-            ConflictPolicy.Fail => throw new IOException($"El destino ya existe: {file.Destination}"),
+            ConflictPolicy.Fail => throw new IOException(Texts.F("E_DestinationExists", file.Destination)),
             _ => throw new ArgumentOutOfRangeException(nameof(file)),
         };
     }
@@ -920,7 +920,7 @@ public sealed partial class CopyEngine
     {
         string renamed = FreeName(file.Destination, path => !File.Exists(path) && !Directory.Exists(path));
         File.Move(file.Destination, renamed);
-        Log(LogLevel.Info, $"El archivo que ya existía se renombró a {Path.GetFileName(renamed)}.", file.Destination);
+        Log(LogLevel.Info, Texts.F("E_ExistingRenamed", Path.GetFileName(renamed)), file.Destination);
         return new Resolution(file.Destination);
     }
 
@@ -1070,7 +1070,7 @@ public sealed partial class CopyEngine
         if (needed > free)
         {
             throw new CopyPlanException(
-                $"No hay espacio suficiente en el destino: se necesitan {needed / (double)(1L << 30):F2} GB y hay {free.Value / (double)(1L << 30):F2} GB libres.");
+                Texts.F("E_NoSpace", needed / (double)(1L << 30), free.Value / (double)(1L << 30)));
         }
     }
 

@@ -7,7 +7,6 @@
     <AssemblyName>mcopy</AssemblyName>
     <RootNamespace>MegaCopier.Cli</RootNamespace>
     <PublishAot>true</PublishAot>
-    <InvariantGlobalization>true</InvariantGlobalization>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
   </PropertyGroup>
 

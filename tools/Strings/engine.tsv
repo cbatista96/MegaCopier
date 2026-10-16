@@ -1,0 +1,217 @@
+clave	es-ES	en-US
+E_WouldMove	Se movería	Would be moved
+E_WouldCopy	Se copiaría	Would be copied
+E_WouldReplace	Se reemplazaría el existente	Would replace the existing file
+E_WouldReplaceNewer	Se reemplazaría: el origen es más reciente	Would replace it: the source is newer
+E_WouldReplaceSize	Se reemplazaría: cambió el tamaño	Would replace it: the size changed
+E_WouldKeepBoth	Se copiaría con otro nombre (se conservan ambos)	Would be copied with another name (both are kept)
+E_WouldRenameExisting	Se renombraría el existente y se copiaría	The existing file would be renamed and this one copied
+E_WouldAsk	Se preguntaría qué hacer	You would be asked what to do
+E_WouldSkipIdentical	Se omitiría: idéntico	Would be skipped: identical
+E_WouldSkipExists	Se omitiría: ya existe	Would be skipped: already exists
+E_WouldSkipOlder	Se omitiría: el destino es igual o más reciente	Would be skipped: the destination is the same or newer
+E_WouldSkipSameSize	Se omitiría: mismo tamaño	Would be skipped: same size
+E_WouldSkipNotInDestination	Se omitiría: no existe en el destino	Would be skipped: not in the destination
+E_WouldDelete	Se borraría del destino: no está en el origen	Would be deleted from the destination: not in the source
+E_Deleted	Borrado del destino: no estaba en el origen	Deleted from the destination: not in the source
+E_WouldFail	Se marcaría como error	Would be marked as an error
+E_WouldSkipSamePath	Se omitiría: el origen y el destino son el mismo	Would be skipped: source and destination are the same
+E_SkipIdentical	Idéntico al existente	Identical to the existing file
+E_SkipOlder	El destino es igual o más reciente	The destination is the same or newer
+E_SkipSameSize	Mismo tamaño que el existente	Same size as the existing file
+E_SkipNotInDestination	No existe en el destino (solo se actualizan los existentes)	Not in the destination (only existing files are updated)
+E_SkipSamePath	El origen y el destino son el mismo archivo	Source and destination are the same file
+E_SkipExisted	Ya existía: omitido	Already existed: skipped
+E_DeletedLog	Borrado del destino (no está en el origen).	Deleted from the destination (not in the source).
+E_FolderExistsSkipped	La carpeta ya existe en el destino: omitida.	The folder already exists in the destination: skipped.
+E_VersionSaved	Versión anterior guardada en {0}	Previous version saved in {0}
+E_HardLinkTo	Enlace duro a {0}	Hard link to {0}
+E_HardLinkCreated	Enlace duro creado (mismo archivo que {0}).	Hard link created (same file as {0}).
+E_HardLinkFailed	No se pudo crear el enlace duro ({0}); se copia el archivo.	Could not create the hard link ({0}); copying the file instead.
+E_HashStreamFailed	No se pudo guardar el hash en el archivo (¿el destino no es NTFS?): {0}	Could not store the hash in the file (is the destination not NTFS?): {0}
+E_DeviceLost	Se perdió la red o la unidad: la copia espera a que vuelva y seguirá sola.	The network or drive was lost: the transfer waits for it to come back and will continue on its own.
+E_DeviceBack	La unidad volvió: se continúa desde donde se quedó.	The drive is back: continuing where it left off.
+E_DiskFull	El destino está lleno: libera espacio y la copia seguirá sola.	The destination is full: free up space and the transfer will continue on its own.
+E_SpaceBack	Ya hay espacio: se continúa.	There is space again: continuing.
+E_HashStreamsSaved	Hash guardado dentro de {0} archivos.	Hash stored inside {0} files.
+E_ChecksumSaved	Archivo de sumas guardado: {0}	Checksum file saved: {0}
+E_HashStart	Calcular {0} de {1} archivos ({2}).	Compute {0} for {1} files ({2}).
+E_Added	Añadidos {0} archivos ({1}).	Added {0} files ({1}).
+E_NeedPassword	Esta copia va cifrada: vuelve a escribir la contraseña para continuar.	This transfer is encrypted: enter the password again to continue.
+E_DryRunSummary	Simulación: se copiarían {0}, se omitirían {1} y se borrarían {2}.	Simulation: {0} would be copied, {1} skipped and {2} deleted.
+E_DoneCopy	Terminado en {0}: {1} copiados, {2} omitidos, {3} con errores.	Finished in {0}: {1} copied, {2} skipped, {3} with errors.
+E_DuplicateInDestination	Ya está en el destino: {0}	Already in the destination: {0}
+E_Repaired	La verificación reparó {0} bloques dañados.	Verification repaired {0} damaged blocks.
+E_DeltaCopy	Copia diferencial: escritos {0}; {1} ya eran iguales.	Differential copy: {0} written; {1} were already identical.
+E_Cloned	Bloques clonados al instante (ReFS/Dev Drive): no ocupa más espacio hasta que se modifique.	Blocks cloned instantly (ReFS/Dev Drive): it takes no extra space until it is modified.
+E_SmbCompressed	Copiado por Windows con compresión SMB.	Copied by Windows with SMB compression.
+E_ServerSide	Copiado en el propio servidor (sin pasar los datos por este equipo).	Copied on the server itself (the data did not pass through this PC).
+E_Resumed	Reanudado desde {0}.	Resumed from {0}.
+E_HashMismatch	Los hashes no coinciden	The hashes do not match
+E_SourceChanged	El origen releído no coincide con lo copiado (lectura defectuosa o cambió durante la copia)	The re-read source does not match what was copied (faulty read, or it changed during the copy)
+E_SkippedByUser	Saltado por el usuario	Skipped by the user
+E_SkippedByUserLog	Saltado por el usuario.	Skipped by the user.
+E_ExistingDiffers	El archivo existente no coincide con el origen	The existing file does not match the source
+E_ExistingDiffersLog	El archivo existente tiene el mismo tamaño y fecha pero distinto contenido.	The existing file has the same size and date but different content.
+E_IdenticalVerified	Idéntico (verificado por hash)	Identical (verified by hash)
+E_SkippedNotVerified	No se pudo verificar el archivo omitido: {0}	Could not verify the skipped file: {0}
+E_RetryAtEnd	Se reintentará al final: {0}	Will retry at the end: {0}
+E_DestinationExists	El destino ya existe: {0}	The destination already exists: {0}
+E_ExistingRenamed	El archivo que ya existía se renombró a {0}.	The existing file was renamed to {0}.
+E_NoSpace	No hay espacio suficiente en el destino: se necesitan {0:F2} GB y hay {1:F2} GB libres.	Not enough space in the destination: {0:F2} GB needed and {1:F2} GB free.
+E_RescuedZeros	Rescatado: {0} ilegibles del origen quedaron en ceros (detalle en el registro).	Rescued: {0} of the source could not be read and were left as zeros (details in the log).
+E_LinkExists	Ya existe en el destino; el enlace no se recreó: {0}	Already exists in the destination; the link was not recreated: {0}
+E_LinkCreated	Enlace creado: {0} → {1}	Link created: {0} → {1}
+E_JunctionCreated	Unión creada: {0} → {1}	Junction created: {0} → {1}
+E_LinkFallback	No se pudo crear el enlace ({0}); se copió el archivo al que apunta.	Could not create the link ({0}); the file it points to was copied.
+E_LinkFailed	No se pudo crear el enlace: {0}	Could not create the link: {0}
+E_NoChecksums	No se encontró ningún archivo de sumas (.sha256, .md5, .sfv, .xxh3...) ni archivos con su hash guardado.	No checksum files (.sha256, .md5, .sfv, .xxh3...) or files with a stored hash were found.
+E_TestStart	Comprobar {0} archivos de {1} listas de sumas ({2}).	Check {0} files from {1} checksum lists ({2}).
+E_NotFound	No existe: {0}	Not found: {0}
+E_NoStoredHash	Sin hash guardado: no se comprueba	No stored hash: not checked
+E_ModifiedAfterHash	Modificado después de guardar su hash: no se comprueba	Modified after its hash was stored: not checked
+E_NowProtected	Sin hash guardado: ahora protegido	No stored hash: now protected
+E_HashRenewed	Modificado después de guardar su hash: hash renovado	Modified after its hash was stored: hash renewed
+E_ChecksumMismatch	El contenido no coincide con la suma guardada	The content does not match the stored checksum
+E_DoneTest	Comprobados en {0}: {1} correctos, {2} con errores.	Checked in {0}: {1} OK, {2} with errors.
+E_UnsupportedAlgorithm	Algoritmo no soportado: {0}	Unsupported algorithm: {0}
+E_DeleteStart	Borrar {0} archivos ({1}).	Delete {0} files ({1}).
+E_WipeStart	Borrar de forma segura {0} archivos ({1}).	Securely delete {0} files ({1}).
+E_DoneDelete	Terminado en {0}: {1} borrados, {2} con errores.	Finished in {0}: {1} deleted, {2} with errors.
+E_NoSources	No se indicó ningún origen.	No source was given.
+E_WholeDrive	Copiar una unidad completa todavía no está soportado: {0}	Copying a whole drive is not supported yet: {0}
+E_SourceMissing	No existe el origen: {0}	The source does not exist: {0}
+E_IntoItself	No se puede copiar una carpeta dentro de sí misma: {0}	A folder cannot be copied into itself: {0}
+E_SourceUnreadable	No se pudo leer el origen: {0}	Could not read the source: {0}
+E_LinkSkipped	Enlace omitido: {0}	Link skipped: {0}
+E_BrokenLinkSkipped	Enlace roto omitido: {0} → {1}	Broken link skipped: {0} → {1}
+E_LinkLoop	Bucle de enlaces evitado: {0}	Link loop avoided: {0}
+E_StreamsFailed	No se copiaron los flujos alternativos: {0}	Alternate data streams were not copied: {0}
+E_RescueGap	Modo rescate: no se pudieron leer los bytes {0:N0}–{1:N0} ({2:N0} bytes); quedaron en ceros.	Rescue mode: bytes {0:N0}–{1:N0} ({2:N0} bytes) could not be read; they were left as zeros.
+E_BlockUnrepairable	El bloque {0} de «{1}» no coincide con el origen ni siquiera tras repararlo.	Block {0} of “{1}” does not match the source even after repairing it.
+E_SourceChangedSinceStart	El archivo de origen ya no coincide con lo que se copió al principio.	The source file no longer matches what was copied at the start.
+E_SourceSizeChanged	El archivo de origen cambió de tamaño durante la copia.	The source file changed size during the copy.
+E_Disk_Degraded	degradado	degraded
+E_Disk_Predictive	fallo previsto (SMART)	predicted failure (SMART)
+E_Disk_Error	error	error
+E_Disk_Unrecoverable	irrecuperable	unrecoverable
+E_Disk_Stopped	detenido	stopped
+E_Disk_Lost	comunicación perdida	lost communication
+E_Disk_Transient	errores pasajeros	transient errors
+E_Disk_Metadata	metadatos no reconocidos	unrecognized metadata
+E_JunctionOpenFailed	No se pudo abrir {0} para crear la unión.	Could not open {0} to create the junction.
+E_JunctionFailed	No se pudo crear la unión {0} → {1}.	Could not create the junction {0} → {1}.
+E_HardLinkCreateFailed	No se pudo crear el enlace duro {0}.	Could not create the hard link {0}.
+E_SnapshotFailed	No se pudo crear la instantánea de {0}: {1}	Could not create the snapshot of {0}: {1}
+E_SnapshotOpenFailed	No se pudo abrir la instantánea ({0}).	Could not open the snapshot ({0}).
+E_NoWmiAnswer	Sin respuesta de Win32_ShadowCopy.	No answer from Win32_ShadowCopy.
+E_PowerShellExit	PowerShell terminó con el código {0}.	PowerShell ended with code {0}.
+E_ReadSecurityAdmin	No se pudo leer la seguridad del origen: hacen falta privilegios de administrador.	Could not read the source's security: administrator privileges are needed.
+E_ReadSecurityFailed	No se pudo leer la seguridad del origen (error {0}).	Could not read the source's security (error {0}).
+E_WriteSecurityAdmin	No se pudo aplicar la seguridad en el destino: hacen falta privilegios de administrador.	Could not apply the security to the destination: administrator privileges are needed.
+E_WriteSecurityFailed	No se pudo aplicar la seguridad en el destino (error {0}).	Could not apply the security to the destination (error {0}).
+E_AtomicExists	Ya existe en el destino: se copia dentro de la carpeta existente (sin «todo o nada»).	Already exists in the destination: copying into the existing folder (without “all or nothing”).
+E_AtomicNotPublished	Hubo errores: la carpeta no se publica todavía (sigue en {0}, oculta). Reintenta y aparecerá completa.	There were errors: the folder is not published yet (it stays hidden as {0}). Retry and it will appear complete.
+E_AtomicPublished	Carpeta completa: publicada con su nombre.	Folder complete: published with its name.
+E_AtomicRenameFailed	No se pudo dar a la carpeta su nombre final: {0}	Could not give the folder its final name: {0}
+E_BadFileHeader	Cabecera de archivo no válida.	Invalid file header.
+E_PartialChanged	El archivo parcial cambió.	The partial file changed.
+E_NotEncrypted	No es un archivo cifrado por MegaCopier.	This is not a file encrypted by MegaCopier.
+E_BadEncryptedHeader	Cabecera de archivo cifrado no válida.	Invalid encrypted file header.
+E_EncryptedExtra	El archivo cifrado tiene datos de más.	The encrypted file has extra data.
+E_ConnectFailed	No se pudo conectar con {0}:{1} (¿está MegaCopier recibiendo y el cortafuegos lo permite?): {2}	Could not connect to {0}:{1} (is MegaCopier receiving there, and does the firewall allow it?): {2}
+E_AlreadyOnPeer	Ya estaba en el otro equipo	Already on the other PC
+E_DamagedTwice	Llegó dañado dos veces al otro equipo	Arrived damaged at the other PC twice
+E_Fat32	No cabe en FAT32 (máximo 4 GB por archivo); formatea el disco como exFAT o NTFS.	Does not fit on FAT32 (4 GB maximum per file); format the drive as exFAT or NTFS.
+E_FatLimits	El destino es {0}: no guarda flujos alternativos ni permisos, y las fechas tienen 2 s de precisión.	The destination is {0}: it does not keep alternate streams or permissions, and dates have 2-second precision.
+E_CaseCollisions	{0} nombres se repiten en el destino (solo se diferencian en mayúsculas): se tratarán como conflictos.	{0} names repeat in the destination (they differ only in upper or lower case): they will be treated as conflicts.
+E_BadName	Nombre problemático en Windows (reservado o acabado en punto o espacio): algunos programas no podrán abrirlo.	Problematic name on Windows (reserved, or ending in a dot or space): some programs will not be able to open it.
+E_LongPaths	{0} archivos tendrán rutas de más de 260 caracteres: el Explorador y otros programas podrían no abrirlos.	{0} files will have paths longer than 260 characters: File Explorer and other programs may not open them.
+E_WrongCode	El código no es el que muestra el otro equipo.	The code is not the one shown on the other PC.
+E_PeerUnknownCode	El otro equipo no conoce el código: la conexión no es segura.	The other PC does not know the code: the connection is not secure.
+E_FlushFailed	No se pudieron vaciar los datos al disco.	Could not flush the data to the disk.
+E_SourceInfoFailed	No se pudo leer la información del archivo de origen.	Could not read the source file's information.
+E_JobNotRunning	El trabajo no está en marcha.	The job is not running.
+E_StopBeforeDiscard	Detén el trabajo antes de descartarlo.	Stop the job before discarding it.
+E_JobErrors	{0} archivo(s) con errores	{0} file(s) with errors
+E_NoEncryptedFiles	No hay archivos cifrados por MegaCopier (.mcenc) en lo elegido.	There are no MegaCopier-encrypted files (.mcenc) in the selection.
+E_WrongPassword	Contraseña incorrecta, o el archivo cifrado está dañado o se manipuló.	Wrong password, or the encrypted file is damaged or was tampered with.
+E_BadPeerMessage	Mensaje no válido del otro equipo.	Invalid message from the other PC.
+E_NoPhotoDate	{0} archivos sin fecha de toma ni de grabación: se ordenan por su fecha de modificación.	{0} files have no capture or recording date: they are sorted by their modified date.
+E_F_NoHidden	sin ocultos	no hidden files
+E_F_NoSystem	sin archivos de sistema	no system files
+E_F_NoJunk	sin basura	no junk files
+E_F_Without	sin {0}	without {0}
+E_F_Today	de hoy	from today
+E_F_Yesterday	desde ayer	since yesterday
+E_F_ThisWeek	de esta semana	from this week
+E_F_ThisMonth	de este mes	from this month
+E_F_ThisYear	de este año	from this year
+E_F_LastDay	último día	last day
+E_F_LastWeek	última semana	last week
+E_F_LastMonth	último mes	last month
+E_F_LastYear	último año	last year
+E_F_LastDays	últimos {0} días	last {0} days
+E_F_LastWeeks	últimas {0} semanas	last {0} weeks
+E_F_LastMonths	últimos {0} meses	last {0} months
+E_F_LastYears	últimos {0} años	last {0} years
+E_F_Before	antes de {0}	before {0}
+E_F_Since	desde {0}	since {0}
+E_F_InYear	de {0}	from {0}
+E_Kind_fotos	fotos	photos
+E_Kind_videos	vídeos	videos
+E_Kind_musica	música	music
+E_Kind_documentos	documentos	documents
+E_Kind_comprimidos	comprimidos	archives
+E_Kind_programas	programas	programs
+E_Kind_temporales	temporales	temporary files
+C_UnknownCommand	Comando desconocido: {0}	Unknown command: {0}
+C_UnknownConflict	Modo de conflicto desconocido: {0}	Unknown conflict mode: {0}
+C_UnknownOption	Opción desconocida: {0}	Unknown option: {0}
+C_NeedSourceAndDestination	Indica al menos un origen y una carpeta de destino.	Give at least one source and a destination folder.
+C_UnknownSendOption	Opción desconocida para send: {0}	Unknown option for send: {0}
+C_NeedItem	Indica al menos un archivo o carpeta.	Give at least one file or folder.
+C_Delivered	Copia entregada a MegaCopier (trabajo {0}) en {1:F0} ms.	Transfer handed to MegaCopier (job {0}) in {1:F0} ms.
+C_Rejected	MegaCopier rechazó la copia: {0}	MegaCopier rejected the transfer: {0}
+C_AppNotFound	MegaCopier no está abierto y no se encontró MegaCopier.exe (define MEGACOPIER_APP con su ruta).	MegaCopier is not running and MegaCopier.exe was not found (set MEGACOPIER_APP to its path).
+C_AppStarted	MegaCopier no estaba abierto: se ha iniciado con la copia.	MegaCopier was not running: it was started with the transfer.
+C_BadTime	Hora no válida: {0} (usa HH:mm o una fecha y hora).	Invalid time: {0} (use HH:mm or a date and time).
+C_NeedChecksums	Indica archivos de sumas o carpetas que los contengan.	Give checksum files or folders that contain them.
+C_Ok	OK	OK
+C_Failed	FALLO	FAILED
+C_TestDone	{0} correctos, {1} con errores en {2:F1} s.	{0} OK, {1} with errors in {2:F1} s.
+C_NeedDelete	Indica qué borrar.	Say what to delete.
+C_NeedYes	Borrar no se puede deshacer: añade --yes para confirmarlo.	Deleting cannot be undone: add --yes to confirm.
+C_DeleteDone	{0} archivos borrados, {1} con errores.	{0} files deleted, {1} with errors.
+C_WipeDone	{0} archivos borrados de forma segura, {1} con errores.	{0} files securely deleted, {1} with errors.
+C_NoJob	No existe el trabajo {0}.	Job {0} does not exist.
+C_NoPendingJobs	No hay trabajos pendientes.	No pending jobs.
+C_Resuming	Reanudando {0}: {1} → {2}	Resuming {0}: {1} → {2}
+C_TestKill	[prueba] Matando el proceso tras confirmar {0} de {1}.	[test] Killing the process after confirming {0} of {1}.
+C_TestContinue	[prueba] Continúa con: mcopy resume {0}	[test] Continue with: mcopy resume {0}
+C_DryRunNote	Simulación: no se ha cambiado nada. Quita --dry-run para hacerlo de verdad.	Simulation: nothing was changed. Remove --dry-run to do it for real.
+C_RetryHint	Hay archivos con errores. Reintenta con: mcopy resume {0}	Some files have errors. Retry with: mcopy resume {0}
+C_PausedHint	Copia en pausa. Continúa desde donde quedó con: mcopy resume {0}	Transfer paused. Continue where it left off with: mcopy resume {0}
+C_Error	Error: {0}	Error: {0}
+C_JobPending	El trabajo queda pendiente: mcopy resume {0}	The job remains pending: mcopy resume {0}
+C_Exists	Ya existe: {0}	Already exists: {0}
+C_New	nuevo	new
+C_Existing	existente	existing
+C_ConflictPrompt	[r]eemplazar, [o]mitir, [c]onservar ambos (mayúscula = para todos):	[r]eplace, [s]kip, [k]eep both (capital letter = for all):
+C_ConflictKeys	roc	rsk
+C_DoneIn	Terminado en {0}	Finished in {0}
+C_Summary	Copiados: {0} (reanudados: {1})   Omitidos: {2}   Errores: {3}	Copied: {0} (resumed: {1})   Skipped: {2}   Errors: {3}
+C_Transferred	Transferido: {0}   Sin recopiar gracias a la reanudación: {1}	Transferred: {0}   Not copied again thanks to resuming: {1}
+C_AverageSpeed	Velocidad media: {0}/s	Average speed: {0}/s
+C_Blocks	Bloques descartados al reanudar: {0}   Bloques reparados en la verificación: {1}	Blocks discarded on resume: {0}   Blocks repaired by verification: {1}
+C_MissingValue	Falta el valor de {0}.	Missing value for {0}.
+C_NeedPositive	{0} necesita un número positivo.	{0} needs a positive number.
+C_Password	Contraseña:	Password:
+C_Repeat	Repítela:	Repeat it:
+C_PasswordShort	La contraseña debe tener al menos 8 caracteres.	The password must be at least 8 characters long.
+C_PasswordMismatch	Las contraseñas no coinciden.	The passwords do not match.
+C_Checking	comprobando	checking
+C_Verifying	verificando	verifying
+C_Left	quedan {0}	{0} left
+C_Of	{0} de {1}	{0} of {1}
+C_Usage	MegaCopier — copia que sobrevive a apagones\n\nUso:\n  mcopy copy <origen>... <carpeta-destino> [opciones]\n  mcopy move <origen>... <carpeta-destino> [opciones]   Mueve (instantáneo en el mismo disco)\n  mcopy send <origen>... <carpeta-destino> [--verify] [--move] [--also <otra-carpeta>]... [--at HH:mm]\n                              Entrega la copia a la app MegaCopier (ventana y bandeja)\n  mcopy send --test <sumas|carpeta>...         Comprueba archivos de sumas en la app\n  mcopy send --delete [--secure] <ruta>...     Borra (de forma segura) desde la app\n  mcopy send --hash <carpeta|archivos>...      Crea un archivo de sumas en la app\n  mcopy send ... [--mirror|--update-only|--folders-only] [--dry-run]\n  mcopy test <sumas|carpeta>...   Comprueba .sha256, .md5, .sfv, .xxh3... sin la app\n  mcopy decrypt <cifrados|carpeta>... <carpeta-destino>   Descifra archivos .mcenc\n  mcopy delete [--secure] --yes <ruta>...   Borra sin la app (--secure: sobrescribe antes)\n  mcopy resume [id]      Continúa los trabajos interrumpidos (o solo uno)\n  mcopy jobs             Lista los trabajos pendientes\n\nOpciones de copy:\n  --verify               Relee el destino sin caché, compara hashes y repara bloques dañados\n  --conflict <modo>      overwrite (por defecto) | skip | newer | rename | fail | ask\n  --limit-mb <n>         Limita la velocidad a n MB/s\n  --force                Copia aunque el destino sea idéntico\n  --chunk-mb <n>         Cada cuántos MB se confirma en disco (por defecto 64)\n  --block-mb <n>         Tamaño de cada lectura/escritura en MB\n  --queue <n>            Lecturas y escrituras simultáneas en vuelo\n  --no-unbuffered        Usa la caché de Windows en lugar de E/S directa\n  --mirror               Sincroniza: quita del destino lo que ya no está en el origen\n  --update-only          Solo actualiza los archivos que ya existen en el destino\n  --folders-only         Solo crea la estructura de carpetas\n  --dry-run              Simula: dice qué haría con cada archivo sin cambiar nada\n  --versions <carpeta>   Guarda lo reemplazado o quitado en esa carpeta del destino\n  --skip-junk            Omite Thumbs.db, desktop.ini, .DS_Store, ~$...\n  --smb-compress         Pide compresión SMB al copiar por red (redes lentas)\n  --atomic               Todo o nada: la carpeta solo aparece cuando está completa\n  --rescue               Modo rescate: salva lo legible de un disco dañado (lo ilegible en ceros)\n  --delta                Al reemplazar archivos grandes, escribe solo los bloques que cambiaron\n  --organize             Organiza fotos y vídeos en carpetas año-mes por la fecha de toma\n  --skip-duplicates      No copia lo que ya está en el destino (mismo contenido, cualquier nombre)\n  --encrypt              Copia cifrada con contraseña (AES-256, archivos .mcenc)\n  --crash-after-mb <n>   [prueba] Mata el proceso tras confirmar n MB de un archivo\n\nCtrl+C pausa la copia; 'resume' continúa desde el último bloque confirmado.	MegaCopier — copying that survives power cuts\n\nUsage:\n  mcopy copy <source>... <destination-folder> [options]\n  mcopy move <source>... <destination-folder> [options]   Move (instant on the same disk)\n  mcopy send <source>... <destination-folder> [--verify] [--move] [--also <other-folder>]... [--at HH:mm]\n                              Hand the transfer to the MegaCopier app (window and tray)\n  mcopy send --test <checksums|folder>...      Check checksum files in the app\n  mcopy send --delete [--secure] <path>...     Delete (securely) from the app\n  mcopy send --hash <folder|files>...          Create a checksum file in the app\n  mcopy send ... [--mirror|--update-only|--folders-only] [--dry-run]\n  mcopy test <checksums|folder>...   Check .sha256, .md5, .sfv, .xxh3... without the app\n  mcopy decrypt <encrypted|folder>... <destination-folder>   Decrypt .mcenc files\n  mcopy delete [--secure] --yes <path>...   Delete without the app (--secure: overwrite first)\n  mcopy resume [id]      Continue interrupted jobs (or just one)\n  mcopy jobs             List pending jobs\n\nOptions for copy:\n  --verify               Re-read the destination without cache, compare hashes and repair damaged blocks\n  --conflict <mode>      overwrite (default) | skip | newer | rename | fail | ask\n  --limit-mb <n>         Limit the speed to n MB/s\n  --force                Copy even if the destination is identical\n  --chunk-mb <n>         How often (in MB) progress is committed to disk (default 64)\n  --block-mb <n>         Size of each read/write in MB\n  --queue <n>            Simultaneous reads and writes in flight\n  --no-unbuffered        Use the Windows cache instead of direct I/O\n  --mirror               Sync: remove from the destination what is no longer in the source\n  --update-only          Only update files that already exist in the destination\n  --folders-only         Only create the folder structure\n  --dry-run              Simulate: say what would happen to each file without changing anything\n  --versions <folder>    Keep replaced or removed files in that destination folder\n  --skip-junk            Skip Thumbs.db, desktop.ini, .DS_Store, ~$...\n  --smb-compress         Ask for SMB compression when copying over the network (slow networks)\n  --atomic               All or nothing: the folder only appears when it is complete\n  --rescue               Rescue mode: save what is readable from a damaged disk (unreadable parts as zeros)\n  --delta                When replacing large files, write only the blocks that changed\n  --organize             Organize photos and videos into year-month folders by capture date\n  --skip-duplicates      Do not copy what is already in the destination (same content, any name)\n  --encrypt              Encrypted copy with a password (AES-256, .mcenc files)\n  --crash-after-mb <n>   [test] Kill the process after confirming n MB of a file\n\nCtrl+C pauses the transfer; 'resume' continues from the last confirmed block.

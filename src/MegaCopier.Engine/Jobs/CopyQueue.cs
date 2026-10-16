@@ -84,7 +84,7 @@ public sealed class CopyJob
     /// <summary>Añade orígenes a un trabajo en curso.</summary>
     public int AddSources(IReadOnlyList<string> sources, int? beforeId = null)
     {
-        var engine = _engine ?? throw new InvalidOperationException("El trabajo no está en marcha.");
+        var engine = _engine ?? throw new InvalidOperationException(Texts.Get("E_JobNotRunning"));
         int added = engine.AddSources(sources, beforeId);
         Record.Sources.AddRange(sources);
         SaveIfPending();
@@ -587,7 +587,7 @@ public sealed class CopyQueue
     {
         if (job.IsActive)
         {
-            throw new InvalidOperationException("Detén el trabajo antes de descartarlo.");
+            throw new InvalidOperationException(Texts.Get("E_StopBeforeDiscard"));
         }
 
         _store.Delete(job.Id);
@@ -757,7 +757,7 @@ public sealed class CopyQueue
                         }
                         else
                         {
-                            job.SetState(CopyJobState.CompletedWithErrors, $"{result.Failures.Count} archivo(s) con errores");
+                            job.SetState(CopyJobState.CompletedWithErrors, Texts.F("E_JobErrors", result.Failures.Count));
                         }
                     }
 

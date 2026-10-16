@@ -68,14 +68,14 @@ public static class EncryptedFile
         input.ReadExactly(header);
         if (!header.AsSpan(0, 8).SequenceEqual(Magic))
         {
-            throw new CryptographicException("No es un archivo cifrado por MegaCopier.");
+            throw new CryptographicException(Texts.Get("E_NotEncrypted"));
         }
 
         int iterations = BinaryPrimitives.ReadInt32LittleEndian(header.AsSpan(24));
         long length = BinaryPrimitives.ReadInt64LittleEndian(header.AsSpan(36));
         if (iterations is < 100_000 or > 10_000_000 || length < 0)
         {
-            throw new CryptographicException("Cabecera de archivo cifrado no válida.");
+            throw new CryptographicException(Texts.Get("E_BadEncryptedHeader"));
         }
 
         byte[] key = Key(password, header.AsSpan(8, 16).ToArray(), iterations);
@@ -97,7 +97,7 @@ public static class EncryptedFile
 
         if (input.ReadByte() != -1)
         {
-            throw new CryptographicException("El archivo cifrado tiene datos de más.");
+            throw new CryptographicException(Texts.Get("E_EncryptedExtra"));
         }
 
         return length;

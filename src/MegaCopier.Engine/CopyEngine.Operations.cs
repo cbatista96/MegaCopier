@@ -21,12 +21,12 @@ public sealed partial class CopyEngine
                         continue; // ya está (por ejemplo, al reanudar)
                     }
 
-                    Log(LogLevel.Warning, $"Ya existe en el destino; el enlace no se recreó: {link.Destination}", link.Source);
+                    Log(LogLevel.Warning, Texts.F("E_LinkExists", link.Destination), link.Source);
                     continue;
                 }
 
                 string kind = Links.Create(link.Destination, link.Target, link.IsDirectory);
-                Log(LogLevel.Info, $"Creado {kind}: {link.Destination} → {link.Target}", link.Source);
+                Log(LogLevel.Info, Texts.F(kind == "junction" ? "E_JunctionCreated" : "E_LinkCreated", link.Destination, link.Target), link.Source);
                 if (_options.Move)
                 {
                     if (link.IsDirectory)
@@ -42,12 +42,12 @@ public sealed partial class CopyEngine
             catch (Exception ex) when (ex is IOException or UnauthorizedAccessException && !link.IsDirectory && CopyLinkedFileInstead(link))
             {
                 // Sin permiso para enlaces de archivo (falta el modo de desarrollador): se copia su contenido.
-                Log(LogLevel.Warning, $"No se pudo crear el enlace ({ex.Message}); se copió el archivo al que apunta.", link.Source);
+                Log(LogLevel.Warning, Texts.F("E_LinkFallback", ex.Message), link.Source);
             }
             catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
             {
                 result.Failures.Add(new FileFailure(link.Source, ex.Message, FileErrors.Classify(ex)));
-                Log(LogLevel.Error, $"No se pudo crear el enlace: {ex.Message}", link.Source);
+                Log(LogLevel.Error, Texts.F("E_LinkFailed", ex.Message), link.Source);
             }
         }
     }
@@ -110,7 +110,7 @@ public sealed partial class CopyEngine
 
             if (expected.Count == 0)
             {
-                throw new CopyPlanException("No se encontró ningún archivo de sumas (.sha256, .md5, .sfv, .xxh3...) ni archivos con su hash guardado.");
+                throw new CopyPlanException(Texts.Get("E_NoChecksums"));
             }
         }
 
@@ -119,7 +119,7 @@ public sealed partial class CopyEngine
         progress.Start(totalBytes, totalFiles);
         progress.SetPhase(CopyPhase.Verifying);
         _progress = progress;
-        Log(LogLevel.Info, $"Comprobar {totalFiles} archivos de {lists.Count} listas de sumas ({FormatBytes(totalBytes)}).");
+        Log(LogLevel.Info, Texts.F("E_TestStart", totalFiles, lists.Count, FormatBytes(totalBytes)));
 
         byte[] buffer = new byte[CopyOptions.MiB];
         using var readAhead = ReadAhead.TryCreate(Files, _options);
@@ -135,18 +135,18 @@ public sealed partial class CopyEngine
             {
                 if (!File.Exists(item.Source))
                 {
-                    Fail(item, result, $"No existe: {item.Source}", FileErrorKind.NotFound);
+                    Fail(item, result, Texts.F("E_NotFound", item.Source), FileErrorKind.NotFound);
                 }
                 else if (edited.Contains(item.Id))
                 {
                     // Editado después de guardar su hash: se omite; con "guardar el hash en el archivo", se renueva.
                     bool unprotected = entry.Hash.Length == 0;
-                    string message = unprotected ? "Sin hash guardado: no se comprueba" : "Modificado después de guardar su hash: no se comprueba";
+                    string message = Texts.Get(unprotected ? "E_NoStoredHash" : "E_ModifiedAfterHash");
                     if (_options.SaveHashStream)
                     {
                         string fresh = HashWithProgress(item, entry.Algorithm, buffer, progress, readAhead, cancellationToken);
                         WriteHashStream(item.Source, fresh, item.LastWriteUtc, entry.Algorithm);
-                        message = unprotected ? "Sin hash guardado: ahora protegido" : "Modificado después de guardar su hash: hash renovado";
+                        message = Texts.Get(unprotected ? "E_NowProtected" : "E_HashRenewed");
                     }
 
                     result.FilesSkipped++;
@@ -164,7 +164,7 @@ public sealed partial class CopyEngine
                     }
                     else
                     {
-                        Fail(item, result, "El contenido no coincide con la suma guardada", FileErrorKind.ChecksumMismatch);
+                        Fail(item, result, Texts.Get("E_ChecksumMismatch"), FileErrorKind.ChecksumMismatch);
                     }
                 }
             }
@@ -180,13 +180,13 @@ public sealed partial class CopyEngine
         result.Elapsed = stopwatch.Elapsed;
         Log(
             result.Success ? LogLevel.Info : LogLevel.Warning,
-            $"Comprobados en {result.Elapsed:hh\\:mm\\:ss}: {result.FilesCopied} correctos, {result.Failures.Count} con errores.");
+            Texts.F("E_DoneTest", result.Elapsed.ToString(@"hh\:mm\:ss"), result.FilesCopied, result.Failures.Count));
         return result;
     }
 
     private string HashWithProgress(TransferItem item, FileHashAlgorithm algorithm, byte[] buffer, ProgressTracker progress, ReadAhead? readAhead, CancellationToken cancellationToken)
     {
-        var hasher = FileHasher.Create(algorithm) ?? throw new CryptographicException($"Algoritmo no soportado: {algorithm}");
+        var hasher = FileHasher.Create(algorithm) ?? throw new CryptographicException(Texts.F("E_UnsupportedAlgorithm", algorithm));
         if (readAhead?.Take(item, cancellationToken) is { } data)
         {
             // Ya leído en lote (IoRing) mientras se calculaban los anteriores.
@@ -230,7 +230,7 @@ public sealed partial class CopyEngine
         // El borrado normal no escribe: la barra avanza por archivos; el seguro sí sobrescribe todo el contenido.
         progress.Start(_options.SecureDelete ? totalBytes : 0, totalFiles);
         _progress = progress;
-        Log(LogLevel.Info, $"{(_options.SecureDelete ? "Borrar de forma segura" : "Borrar")} {totalFiles} archivos ({FormatBytes(totalBytes)}).");
+        Log(LogLevel.Info, Texts.F(_options.SecureDelete ? "E_WipeStart" : "E_DeleteStart", totalFiles, FormatBytes(totalBytes)));
 
         byte[] zeros = new byte[CopyOptions.MiB];
         while (Files.TakeNext() is { } item)
@@ -291,7 +291,7 @@ public sealed partial class CopyEngine
         result.Elapsed = stopwatch.Elapsed;
         Log(
             result.Success ? LogLevel.Info : LogLevel.Warning,
-            $"Terminado en {result.Elapsed:hh\\:mm\\:ss}: {result.FilesCopied} borrados, {result.Failures.Count} con errores.");
+            Texts.F("E_DoneDelete", result.Elapsed.ToString(@"hh\:mm\:ss"), result.FilesCopied, result.Failures.Count));
         return result;
     }
 

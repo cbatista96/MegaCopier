@@ -23,7 +23,7 @@ public sealed partial class CopyEngine
 
         if (Files.Count == 0)
         {
-            throw new CopyPlanException("No hay archivos cifrados por MegaCopier (.mcenc) en lo elegido.");
+            throw new CopyPlanException(Texts.Get("E_NoEncryptedFiles"));
         }
 
         var progress = new ProgressTracker(p => ProgressChanged?.Invoke(p), _options.ProgressInterval);
@@ -63,7 +63,7 @@ public sealed partial class CopyEngine
             catch (CryptographicException)
             {
                 IoHelpers.DeleteIfExists(partial);
-                Fail(item, result, "Contraseña incorrecta, o el archivo cifrado está dañado o se manipuló.", FileErrorKind.ChecksumMismatch);
+                Fail(item, result, Texts.Get("E_WrongPassword"), FileErrorKind.ChecksumMismatch);
             }
             catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
             {

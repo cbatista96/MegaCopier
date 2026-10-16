@@ -49,13 +49,13 @@ public sealed class PeerSender : IAsyncDisposable
             await PeerProtocol.WriteBytesAsync(ssl, PeerProtocol.Proof(code, challenge, certificateHash, "client"), cancellationToken).ConfigureAwait(false);
             if (await PeerProtocol.ReadMessageAsync(ssl, cancellationToken).ConfigureAwait(false) != "OK")
             {
-                throw new UnauthorizedAccessException("El código no es el que muestra el otro equipo.");
+                throw new UnauthorizedAccessException(Texts.Get("E_WrongCode"));
             }
 
             byte[] proof = await PeerProtocol.ReadBytesAsync(ssl, cancellationToken).ConfigureAwait(false);
             if (!CryptographicOperations.FixedTimeEquals(proof, PeerProtocol.Proof(code, challenge, certificateHash, "server")))
             {
-                throw new UnauthorizedAccessException("El otro equipo no conoce el código: la conexión no es segura.");
+                throw new UnauthorizedAccessException(Texts.Get("E_PeerUnknownCode"));
             }
 
             return new PeerSender(client, ssl);

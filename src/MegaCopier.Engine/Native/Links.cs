@@ -18,7 +18,7 @@ internal static partial class Links
     /// Recrea un enlace. Primero como enlace simbólico (necesita el modo de desarrollador o permisos de administrador);
     /// si no se puede y es una carpeta, como unión, que cualquier usuario puede crear.
     /// </summary>
-    /// <returns>Qué se creó: "enlace" o "unión".</returns>
+    /// <returns>Qué se creó: "link" (enlace simbólico) o "junction" (unión).</returns>
     public static string Create(string link, string target, bool isDirectory)
     {
         try
@@ -32,20 +32,20 @@ internal static partial class Links
                 File.CreateSymbolicLink(link, target);
             }
 
-            return "enlace";
+            return "link";
         }
         catch (IOException) when (isDirectory)
         {
             // Las uniones necesitan una ruta absoluta.
             string absolute = Path.IsPathFullyQualified(target) ? target : Path.GetFullPath(Path.Combine(Path.GetDirectoryName(link)!, target));
             CreateJunction(link, absolute);
-            return "unión";
+            return "junction";
         }
         catch (UnauthorizedAccessException) when (isDirectory)
         {
             string absolute = Path.IsPathFullyQualified(target) ? target : Path.GetFullPath(Path.Combine(Path.GetDirectoryName(link)!, target));
             CreateJunction(link, absolute);
-            return "unión";
+            return "junction";
         }
     }
 
@@ -77,7 +77,7 @@ internal static partial class Links
         using var handle = CreateFileW(Win32.LongPath(link), GenericWrite, 0, 0, OpenExisting, FlagBackupSemantics | FlagOpenReparsePoint, 0);
         if (handle.IsInvalid)
         {
-            throw new IOException($"No se pudo abrir {link} para crear la unión.", Marshal.GetHRForLastWin32Error());
+            throw new IOException(Texts.F("E_JunctionOpenFailed", link), Marshal.GetHRForLastWin32Error());
         }
 
         if (!DeviceIoControl(handle, FsctlSetReparsePoint, buffer, buffer.Length, 0, 0, out _, 0))
@@ -85,7 +85,7 @@ internal static partial class Links
             int error = Marshal.GetHRForLastWin32Error();
             handle.Dispose();
             Directory.Delete(link);
-            throw new IOException($"No se pudo crear la unión {link} → {target}.", error);
+            throw new IOException(Texts.F("E_JunctionFailed", link, target), error);
         }
     }
 
@@ -112,7 +112,7 @@ internal static partial class Links
     {
         if (!CreateHardLinkW(Win32.LongPath(link), Win32.LongPath(existing), 0))
         {
-            throw new IOException($"No se pudo crear el enlace duro {link}.", Marshal.GetHRForLastWin32Error());
+            throw new IOException(Texts.F("E_HardLinkCreateFailed", link), Marshal.GetHRForLastWin32Error());
         }
     }
 

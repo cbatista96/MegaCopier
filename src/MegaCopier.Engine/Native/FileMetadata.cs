@@ -90,7 +90,7 @@ internal static unsafe partial class FileMetadata
         uint error = GetNamedSecurityInfoW(Win32.LongPath(source), SeFileObject, info, &owner, &group, &dacl, &sacl, &descriptor);
         if (error != 0)
         {
-            throw Failure(error, "leer la seguridad del origen");
+            throw Failure(error, read: true);
         }
 
         try
@@ -104,7 +104,7 @@ internal static unsafe partial class FileMetadata
             error = SetNamedSecurityInfoW(Win32.LongPath(destination), SeFileObject, info, owner, group, dacl, sacl);
             if (error != 0)
             {
-                throw Failure(error, "aplicar la seguridad en el destino");
+                throw Failure(error, read: false);
             }
         }
         finally
@@ -113,9 +113,9 @@ internal static unsafe partial class FileMetadata
         }
     }
 
-    private static Exception Failure(uint error, string what) => error is 5 or 1314
-        ? new UnauthorizedAccessException($"No se pudo {what}: hacen falta privilegios de administrador.")
-        : new IOException($"No se pudo {what} (error {error}).");
+    private static Exception Failure(uint error, bool read) => error is 5 or 1314
+        ? new UnauthorizedAccessException(Texts.Get(read ? "E_ReadSecurityAdmin" : "E_WriteSecurityAdmin"))
+        : new IOException(Texts.F(read ? "E_ReadSecurityFailed" : "E_WriteSecurityFailed", error));
 
     private const uint SeFileObject = 1;
     private const uint OwnerSecurityInformation = 0x1, GroupSecurityInformation = 0x2, DaclSecurityInformation = 0x4, SaclSecurityInformation = 0x8;

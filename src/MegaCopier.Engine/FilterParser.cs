@@ -81,19 +81,19 @@ public static partial class FilterParser
         if (Remove(ref work, @"(sin|excepto|without|no|ni|nor) (los |las )?(archivos )?(ocultos|hidden)( files)?"))
         {
             filter.SkipHidden = true;
-            understood.Add("sin ocultos");
+            understood.Add(Texts.Get("E_F_NoHidden"));
         }
 
         if (Remove(ref work, @"(sin|excepto|without|no|ni|nor) (los |las )?(archivos )?(de sistema|del sistema|system)( files)?"))
         {
             filter.SkipSystem = true;
-            understood.Add("sin archivos de sistema");
+            understood.Add(Texts.Get("E_F_NoSystem"));
         }
 
         if (Remove(ref work, @"(sin|excepto|without|no|ni|nor) (la )?(basura|junk)"))
         {
             filter.SkipJunk = true;
-            understood.Add("sin basura");
+            understood.Add(Texts.Get("E_F_NoJunk"));
         }
 
         // Palabras sueltas: tipos, extensiones y nombres; tras "sin/excepto" van a excluir.
@@ -116,7 +116,7 @@ public static partial class FilterParser
             if (KindWords.TryGetValue(word, out string? kind))
             {
                 target.AddRange(Kinds[kind].Where(k => !target.Contains(k)));
-                understood.Add((exclude ? "sin " : "") + kind);
+                understood.Add(exclude ? Texts.F("E_F_Without", Texts.Get("E_Kind_" + kind)) : Texts.Get("E_Kind_" + kind));
             }
             else if (ExtensionRegex().IsMatch(word) && (word.Contains('.') || IsKnownExtension(word)))
             {
@@ -126,12 +126,12 @@ public static partial class FilterParser
                     target.Add(mask);
                 }
 
-                understood.Add((exclude ? "sin " : "") + mask);
+                understood.Add(exclude ? Texts.F("E_F_Without", mask) : mask);
             }
             else if (exclude && word.Length > 1)
             {
                 target.Add(word); // un nombre de carpeta o de archivo: "sin node_modules"
-                understood.Add("sin " + word);
+                understood.Add(Texts.F("E_F_Without", word));
             }
             else
             {
@@ -153,23 +153,23 @@ public static partial class FilterParser
 
         if (Remove(ref work, @"(de |del )?(hoy|today)"))
         {
-            Since(today, "de hoy");
+            Since(today, Texts.Get("E_F_Today"));
         }
         else if (Remove(ref work, @"(de |desde )?(ayer|yesterday)"))
         {
-            Since(today.AddDays(-1), "desde ayer");
+            Since(today.AddDays(-1), Texts.Get("E_F_Yesterday"));
         }
         else if (Remove(ref work, @"(de |del )?(esta semana|this week)"))
         {
-            Since(today.AddDays(-(((int)today.DayOfWeek + 6) % 7)), "de esta semana");
+            Since(today.AddDays(-(((int)today.DayOfWeek + 6) % 7)), Texts.Get("E_F_ThisWeek"));
         }
         else if (Remove(ref work, @"(de |del )?(este mes|this month)"))
         {
-            Since(new DateTime(today.Year, today.Month, 1), "de este mes");
+            Since(new DateTime(today.Year, today.Month, 1), Texts.Get("E_F_ThisMonth"));
         }
         else if (Remove(ref work, @"(de |del )?(este año|este ano|this year)"))
         {
-            Since(new DateTime(today.Year, 1, 1), "de este año");
+            Since(new DateTime(today.Year, 1, 1), Texts.Get("E_F_ThisYear"));
         }
 
         var last = Regex.Match(work, @"(de |del |de los |de las |en los |en las |in the )?(ultim[oa]s?|last|past) ?(?<n>\d+)? ?(?<u>dias?|semanas?|mes(es)?|años?|anos?|days?|weeks?|months?|years?)");
@@ -181,7 +181,8 @@ public static partial class FilterParser
                 : unit.StartsWith("s", StringComparison.Ordinal) || unit.StartsWith("w", StringComparison.Ordinal) ? today.AddDays(-7 * n)
                 : unit.StartsWith("m", StringComparison.Ordinal) ? today.AddMonths(-n)
                 : today.AddYears(-n);
-            Since(from, n == 1 ? $"último {unit}" : $"últimos {n} {unit}");
+            string period = unit[0] switch { 'd' => "Day", 's' or 'w' => "Week", 'm' => "Month", _ => "Year" };
+            Since(from, n == 1 ? Texts.Get("E_F_Last" + period) : Texts.F("E_F_Last" + period + "s", n));
             work = work.Replace(last.Value, " ");
         }
 
@@ -189,7 +190,7 @@ public static partial class FilterParser
         if (before.Success)
         {
             filter.ModifiedBeforeUtc = new DateTime(int.Parse(before.Groups["y"].Value, CultureInfo.InvariantCulture), 1, 1).ToUniversalTime().AddTicks(-1);
-            understood.Add($"antes de {before.Groups["y"].Value}");
+            understood.Add(Texts.F("E_F_Before", before.Groups["y"].Value));
             work = work.Replace(before.Value, " ");
         }
 
@@ -197,7 +198,7 @@ public static partial class FilterParser
         if (after.Success)
         {
             filter.ModifiedAfterUtc = new DateTime(int.Parse(after.Groups["y"].Value, CultureInfo.InvariantCulture), 1, 1).ToUniversalTime();
-            understood.Add($"desde {after.Groups["y"].Value}");
+            understood.Add(Texts.F("E_F_Since", after.Groups["y"].Value));
             work = work.Replace(after.Value, " ");
         }
 
@@ -207,7 +208,7 @@ public static partial class FilterParser
             int y = int.Parse(year.Groups["y"].Value, CultureInfo.InvariantCulture);
             filter.ModifiedAfterUtc = new DateTime(y, 1, 1).ToUniversalTime();
             filter.ModifiedBeforeUtc = new DateTime(y + 1, 1, 1).ToUniversalTime().AddTicks(-1);
-            understood.Add($"de {y}");
+            understood.Add(Texts.F("E_F_InYear", y));
             work = work.Replace(year.Value, " ");
         }
     }

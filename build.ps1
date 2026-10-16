@@ -18,8 +18,8 @@ Write-Host "MegaCopier $version"
 $installer = Join-Path ${env:ProgramFiles(x86)} 'Microsoft Visual Studio\Installer'
 if (Test-Path $installer) { $env:PATH = "$installer;$env:PATH" }
 
-# Textos de la interfaz (español / inglés) a partir de tools\Strings\strings.tsv.
-dotnet run tools/Strings/gen.cs -- tools/Strings/strings.tsv src/MegaCopier.App/Strings
+# Textos traducidos de la app y del motor a partir de tools\Strings (strings.tsv, engine.tsv e i18n\).
+dotnet run tools/Strings/gen.cs -- tools/Strings src/MegaCopier.App/Strings src/MegaCopier.Engine/Texts.g.cs
 if ($LASTEXITCODE -ne 0) { throw 'La generación de textos falló.' }
 
 if (-not $SkipTests) {

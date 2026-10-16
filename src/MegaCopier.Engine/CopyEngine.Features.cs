@@ -70,33 +70,33 @@ public sealed partial class CopyEngine
     /// <summary>Texto (en el registro y los informes); la interfaz lo traduce a partir de <see cref="TransferItem.Action"/>.</summary>
     private string ActionText(PlannedAction action) => action switch
     {
-        PlannedAction.Copy => _options.Move ? "Se movería" : "Se copiaría",
-        PlannedAction.Replace => "Se reemplazaría el existente",
-        PlannedAction.ReplaceNewer => "Se reemplazaría: el origen es más reciente",
-        PlannedAction.ReplaceSize => "Se reemplazaría: cambió el tamaño",
-        PlannedAction.KeepBoth => "Se copiaría con otro nombre (se conservan ambos)",
-        PlannedAction.RenameExisting => "Se renombraría el existente y se copiaría",
-        PlannedAction.Ask => "Se preguntaría qué hacer",
-        PlannedAction.SkipIdentical => "Se omitiría: idéntico",
-        PlannedAction.SkipExists => "Se omitiría: ya existe",
-        PlannedAction.SkipOlder => "Se omitiría: el destino es igual o más reciente",
-        PlannedAction.SkipSameSize => "Se omitiría: mismo tamaño",
-        PlannedAction.SkipNotInDestination => "Se omitiría: no existe en el destino",
-        PlannedAction.Delete => _options.DryRun ? "Se borraría del destino: no está en el origen" : "Borrado del destino: no estaba en el origen",
-        PlannedAction.Fail => "Se marcaría como error",
-        PlannedAction.SkipSamePath => "Se omitiría: el origen y el destino son el mismo",
+        PlannedAction.Copy => Texts.Get(_options.Move ? "E_WouldMove" : "E_WouldCopy"),
+        PlannedAction.Replace => Texts.Get("E_WouldReplace"),
+        PlannedAction.ReplaceNewer => Texts.Get("E_WouldReplaceNewer"),
+        PlannedAction.ReplaceSize => Texts.Get("E_WouldReplaceSize"),
+        PlannedAction.KeepBoth => Texts.Get("E_WouldKeepBoth"),
+        PlannedAction.RenameExisting => Texts.Get("E_WouldRenameExisting"),
+        PlannedAction.Ask => Texts.Get("E_WouldAsk"),
+        PlannedAction.SkipIdentical => Texts.Get("E_WouldSkipIdentical"),
+        PlannedAction.SkipExists => Texts.Get("E_WouldSkipExists"),
+        PlannedAction.SkipOlder => Texts.Get("E_WouldSkipOlder"),
+        PlannedAction.SkipSameSize => Texts.Get("E_WouldSkipSameSize"),
+        PlannedAction.SkipNotInDestination => Texts.Get("E_WouldSkipNotInDestination"),
+        PlannedAction.Delete => Texts.Get(_options.DryRun ? "E_WouldDelete" : "E_Deleted"),
+        PlannedAction.Fail => Texts.Get("E_WouldFail"),
+        PlannedAction.SkipSamePath => Texts.Get("E_WouldSkipSamePath"),
         _ => "",
     };
 
     /// <summary>Por qué se omitió un archivo (registro e informes); la interfaz lo traduce con <see cref="TransferItem.Action"/>.</summary>
     private static string SkipText(PlannedAction action) => action switch
     {
-        PlannedAction.SkipIdentical => "Idéntico al existente",
-        PlannedAction.SkipOlder => "El destino es igual o más reciente",
-        PlannedAction.SkipSameSize => "Mismo tamaño que el existente",
-        PlannedAction.SkipNotInDestination => "No existe en el destino (solo se actualizan los existentes)",
-        PlannedAction.SkipSamePath => "El origen y el destino son el mismo archivo",
-        _ => "Ya existía: omitido",
+        PlannedAction.SkipIdentical => Texts.Get("E_SkipIdentical"),
+        PlannedAction.SkipOlder => Texts.Get("E_SkipOlder"),
+        PlannedAction.SkipSameSize => Texts.Get("E_SkipSameSize"),
+        PlannedAction.SkipNotInDestination => Texts.Get("E_SkipNotInDestination"),
+        PlannedAction.SkipSamePath => Texts.Get("E_SkipSamePath"),
+        _ => Texts.Get("E_SkipExisted"),
     };
 
     // -------------------------------------------------------------------------------------------------------------
@@ -224,7 +224,7 @@ public sealed partial class CopyEngine
                 }
 
                 Files.Update(item, FileState.Deleted, ActionText(PlannedAction.Delete));
-                Log(LogLevel.Info, "Borrado del destino (no está en el origen).", entry.FullName);
+                Log(LogLevel.Info, Texts.Get("E_DeletedLog"), entry.FullName);
             }
             catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
             {
@@ -244,7 +244,7 @@ public sealed partial class CopyEngine
             if (Directory.Exists(source) && Directory.Exists(Path.Combine(_destinationRoot, Path.GetFileName(source))))
             {
                 skipped.Add(source);
-                Log(LogLevel.Warning, "La carpeta ya existe en el destino: omitida.", source);
+                Log(LogLevel.Warning, Texts.Get("E_FolderExistsSkipped"), source);
             }
         }
 
@@ -299,7 +299,7 @@ public sealed partial class CopyEngine
 
         ClearReadOnly(path);
         File.Move(path, target);
-        Log(LogLevel.Info, $"Versión anterior guardada en {target}", path);
+        Log(LogLevel.Info, Texts.F("E_VersionSaved", target), path);
     }
 
     // -------------------------------------------------------------------------------------------------------------
@@ -324,8 +324,8 @@ public sealed partial class CopyEngine
 
             Links.CreateHardLink(target, first);
             result.FilesCopied++;
-            Files.Update(item, FileState.Copied, $"Enlace duro a {Path.GetFileName(first)}");
-            Log(LogLevel.Info, $"Enlace duro creado (mismo archivo que {first}).", item.Source);
+            Files.Update(item, FileState.Copied, Texts.F("E_HardLinkTo", Path.GetFileName(first)));
+            Log(LogLevel.Info, Texts.F("E_HardLinkCreated", first), item.Source);
             if (_options.Move)
             {
                 TryDeleteSource(item, result);
@@ -335,7 +335,7 @@ public sealed partial class CopyEngine
         }
         catch (IOException ex)
         {
-            Log(LogLevel.Warning, $"No se pudo crear el enlace duro ({ex.Message}); se copia el archivo.", item.Source);
+            Log(LogLevel.Warning, Texts.F("E_HardLinkFailed", ex.Message), item.Source);
             return false;
         }
     }
@@ -370,7 +370,7 @@ public sealed partial class CopyEngine
         }
         catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or NotSupportedException)
         {
-            Log(LogLevel.Warning, $"No se pudo guardar el hash en el archivo (¿el destino no es NTFS?): {ex.Message}", path);
+            Log(LogLevel.Warning, Texts.F("E_HashStreamFailed", ex.Message), path);
         }
     }
 
@@ -414,7 +414,7 @@ public sealed partial class CopyEngine
         if (_options.WaitForDevice && kind is FileErrorKind.NetworkLost or FileErrorKind.NotFound && !Reachable(item.Source))
         {
             progress.SetPhase(CopyPhase.WaitingForDevice);
-            Log(LogLevel.Warning, "Se perdió la red o la unidad: la copia espera a que vuelva y seguirá sola.", item.Source);
+            Log(LogLevel.Warning, Texts.Get("E_DeviceLost"), item.Source);
             var deadline = DateTime.UtcNow + _options.DeviceWaitTimeout;
             while (!Reachable(item.Source))
             {
@@ -429,7 +429,7 @@ public sealed partial class CopyEngine
                 Controller.WaitIfPaused(cancellationToken);
             }
 
-            Log(LogLevel.Info, "La unidad volvió: se continúa desde donde se quedó.", item.Source);
+            Log(LogLevel.Info, Texts.Get("E_DeviceBack"), item.Source);
             progress.SetPhase(CopyPhase.Copying);
             return true;
         }
@@ -437,7 +437,7 @@ public sealed partial class CopyEngine
         if (_options.WaitForSpace && kind == FileErrorKind.DiskFull)
         {
             progress.SetPhase(CopyPhase.WaitingForSpace);
-            Log(LogLevel.Warning, "El destino está lleno: libera espacio y la copia seguirá sola.", target);
+            Log(LogLevel.Warning, Texts.Get("E_DiskFull"), target);
             long needed = item.Length + (16L << 20);
             while ((Win32.GetFreeBytes(target) ?? long.MaxValue) < needed)
             {
@@ -446,7 +446,7 @@ public sealed partial class CopyEngine
                 Controller.WaitIfPaused(cancellationToken);
             }
 
-            Log(LogLevel.Info, "Ya hay espacio: se continúa.", target);
+            Log(LogLevel.Info, Texts.Get("E_SpaceBack"), target);
             progress.SetPhase(CopyPhase.Copying);
             return true;
         }
@@ -487,7 +487,7 @@ public sealed partial class CopyEngine
 
         string name = single.Length > 0 ? Path.GetFileName(single) : $"MegaCopier_{DateTime.Now:yyyyMMdd_HHmmss}";
         string listPath = Path.Combine(folder, $"{name}.{FileHasher.Extension(algorithm)}");
-        Log(LogLevel.Info, $"Calcular {FileHasher.Extension(algorithm).ToUpperInvariant()} de {totalFiles} archivos ({FormatBytes(totalBytes)}).");
+        Log(LogLevel.Info, Texts.F("E_HashStart", FileHasher.Extension(algorithm).ToUpperInvariant(), totalFiles, FormatBytes(totalBytes)));
 
         byte[] buffer = new byte[CopyOptions.MiB];
         using var readAhead = ReadAhead.TryCreate(Files, _options);
@@ -525,13 +525,13 @@ public sealed partial class CopyEngine
         result.Elapsed = stopwatch.Elapsed;
         if (_options.SaveHashStream)
         {
-            Log(LogLevel.Info, $"Hash guardado dentro de {result.FilesCopied} archivos.");
+            Log(LogLevel.Info, Texts.F("E_HashStreamsSaved", result.FilesCopied));
             return result;
         }
 
         File.WriteAllText(listPath, lines.ToString(), new UTF8Encoding(false));
         ChecksumFile = listPath;
-        Log(LogLevel.Info, $"Archivo de sumas guardado: {listPath}");
+        Log(LogLevel.Info, Texts.F("E_ChecksumSaved", listPath));
         return result;
     }
 }

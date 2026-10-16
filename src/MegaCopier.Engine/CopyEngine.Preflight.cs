@@ -38,7 +38,7 @@ public sealed partial class CopyEngine
         {
             foreach (var item in pending.Where(i => i.Length > Fat32MaxFile))
             {
-                string message = $"No cabe en FAT32 (máximo 4 GB por archivo); formatea el disco como exFAT o NTFS.";
+                string message = Texts.Get("E_Fat32");
                 result.Failures.Add(new FileFailure(item.Source, message, FileErrorKind.TooLargeForFileSystem));
                 Files.Update(item, FileState.Failed, message, FileErrorKind.TooLargeForFileSystem);
                 Log(LogLevel.Error, message, item.Source);
@@ -47,27 +47,27 @@ public sealed partial class CopyEngine
 
         if (fat && (_options.CopyStreams || _options.CopySecurity != Native.SecurityParts.None))
         {
-            Log(LogLevel.Warning, $"El destino es {fileSystem}: no guarda flujos alternativos ni permisos, y las fechas tienen 2 s de precisión.");
+            Log(LogLevel.Warning, Texts.F("E_FatLimits", fileSystem));
         }
 
         // Dos archivos que en el destino serían el mismo (solo cambian mayúsculas, de carpetas sensibles a mayúsculas o WSL).
         int collisions = pending.GroupBy(i => i.Destination, StringComparer.OrdinalIgnoreCase).Count(g => g.Count() > 1);
         if (collisions > 0)
         {
-            Log(LogLevel.Warning, $"{collisions} nombres se repiten en el destino (solo se diferencian en mayúsculas): se tratarán como conflictos.");
+            Log(LogLevel.Warning, Texts.F("E_CaseCollisions", collisions));
         }
 
         // Nombres que Windows no maneja bien (CON, NUL...) o que acaban en punto o espacio.
         foreach (var item in pending.Where(i => HasProblematicName(Path.GetFileName(i.Destination))).Take(20))
         {
-            Log(LogLevel.Warning, "Nombre problemático en Windows (reservado o acabado en punto o espacio): algunos programas no podrán abrirlo.", item.Source);
+            Log(LogLevel.Warning, Texts.Get("E_BadName"), item.Source);
         }
 
         // Rutas largas: MegaCopier las copia, pero sin la opción de rutas largas de Windows otros programas no las abren.
         int longPaths = pending.Count(i => i.Destination.Length >= 260);
         if (longPaths > 0 && !LongPathsEnabled())
         {
-            Log(LogLevel.Warning, $"{longPaths} archivos tendrán rutas de más de 260 caracteres: el Explorador y otros programas podrían no abrirlos.");
+            Log(LogLevel.Warning, Texts.F("E_LongPaths", longPaths));
         }
     }
 

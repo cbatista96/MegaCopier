@@ -39,6 +39,12 @@ internal static class LanguageSetting
             // Si no se puede fijar, se usa el idioma de Windows.
         }
 
+        // Los textos del motor (registro, errores) siguen el mismo idioma que la ventana, en todos los hilos. Sin idioma
+        // elegido, el de Windows; si no hay traducción para él, inglés (lo mismo que hacen los recursos de la ventana).
+        var culture = System.Globalization.CultureInfo.GetCultureInfo(language.Length > 0 ? language : Engine.Texts.LanguageFor(System.Globalization.CultureInfo.CurrentUICulture));
+        System.Globalization.CultureInfo.DefaultThreadCurrentUICulture = culture;
+        System.Globalization.CultureInfo.CurrentUICulture = culture;
+
         if (!App.TestMode)
         {
             Save(language);

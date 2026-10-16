@@ -40,7 +40,7 @@ internal static class CopyPlanner
         filter = filter is { IsEmpty: false } ? filter : null;
         if (sources.Count == 0)
         {
-            throw new CopyPlanException("No se indicó ningún origen.");
+            throw new CopyPlanException(Texts.Get("E_NoSources"));
         }
 
         string destinationRoot = Path.TrimEndingDirectorySeparator(Path.GetFullPath(destinationDirectory));
@@ -54,19 +54,19 @@ internal static class CopyPlanner
                 string name = Path.GetFileName(source);
                 if (string.IsNullOrEmpty(name))
                 {
-                    throw new CopyPlanException($"Copiar una unidad completa todavía no está soportado: {raw}");
+                    throw new CopyPlanException(Texts.F("E_WholeDrive", raw));
                 }
 
                 string target = Path.Combine(destinationRoot, name);
                 FileSystemInfo info = Directory.Exists(source) ? new DirectoryInfo(source) : new FileInfo(source);
                 if (!info.Exists && info.LinkTarget is null)
                 {
-                    throw new CopyPlanException($"No existe el origen: {raw}");
+                    throw new CopyPlanException(Texts.F("E_SourceMissing", raw));
                 }
 
                 if (info is DirectoryInfo && IsSameOrInside(target, source))
                 {
-                    throw new CopyPlanException($"No se puede copiar una carpeta dentro de sí misma: {source}");
+                    throw new CopyPlanException(Texts.F("E_IntoItself", source));
                 }
 
                 // Un origen elegido a mano se copia siempre, aunque los filtros no lo aceptaran.
@@ -75,7 +75,7 @@ internal static class CopyPlanner
         }
         catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
         {
-            throw new CopyPlanException($"No se pudo leer el origen: {ex.Message}", ex);
+            throw new CopyPlanException(Texts.F("E_SourceUnreadable", ex.Message), ex);
         }
 
         return new CopyPlan(walk.Files, walk.Directories, walk.Links, walk.Warnings);
@@ -130,7 +130,7 @@ internal static class CopyPlanner
                 switch (links)
                 {
                     case LinkHandling.Skip:
-                        Warnings.Add($"Enlace omitido: {info.FullName}");
+                        Warnings.Add(Texts.F("E_LinkSkipped", info.FullName));
                         return;
                     case LinkHandling.CopyLink:
                         Links.Add(new PlannedLink(info.FullName, target, linkTarget, isDirectory));
@@ -143,7 +143,7 @@ internal static class CopyPlanner
                     var resolved = new FileInfo(info.FullName).ResolveLinkTarget(returnFinalTarget: true) as FileInfo;
                     if (resolved is not { Exists: true })
                     {
-                        Warnings.Add($"Enlace roto omitido: {info.FullName} → {linkTarget}");
+                        Warnings.Add(Texts.F("E_BrokenLinkSkipped", info.FullName, linkTarget));
                         return;
                     }
 
@@ -162,7 +162,7 @@ internal static class CopyPlanner
             string real = RealPath((DirectoryInfo)info);
             if (!_ancestors.Add(real))
             {
-                Warnings.Add($"Bucle de enlaces evitado: {info.FullName}");
+                Warnings.Add(Texts.F("E_LinkLoop", info.FullName));
                 return;
             }
 
