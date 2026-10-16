@@ -55,6 +55,27 @@ public sealed class CopyJobRecord
     /// <summary>Comandos o scripts a ejecutar al terminar (reciben las variables MEGACOPIER_*).</summary>
     public List<string> Scripts { get; set; } = [];
 
+    public JobOperation Operation { get; set; }
+
+    public bool SecureDelete { get; set; }
+
+    public LinkHandling Links { get; set; } = LinkHandling.CopyLink;
+
+    public string KeepBothPattern { get; set; } = CopyOptions.DefaultKeepBothPattern;
+
+    public FileFilter Filter { get; set; } = new();
+
+    public int RetryCount { get; set; } = 2;
+
+    public double RetryDelaySeconds { get; set; } = 1;
+
+    public ErrorPolicy OnError { get; set; }
+
+    public bool CheckFreeSpace { get; set; } = true;
+
+    /// <summary>Hora programada de inicio (la cola no lo empieza antes).</summary>
+    public DateTime? StartAtUtc { get; set; }
+
     public static CopyJobRecord New(IEnumerable<string> sources, string destination, CopyOptions options) => new()
     {
         Move = options.Move,
@@ -77,6 +98,15 @@ public sealed class CopyJobRecord
         ChunkSize = options.ChunkSize,
         BlockSize = options.BlockSize,
         QueueDepth = options.WriteQueueDepth,
+        Operation = options.Operation,
+        SecureDelete = options.SecureDelete,
+        Links = options.Links,
+        KeepBothPattern = options.KeepBothPattern,
+        Filter = options.Filter,
+        RetryCount = options.RetryCount,
+        RetryDelaySeconds = options.RetryDelay.TotalSeconds,
+        OnError = options.OnError,
+        CheckFreeSpace = options.CheckFreeSpace,
     };
 
     /// <summary>Lista de copia guardada (.mclist): orígenes, destino, opciones y archivos excluidos.</summary>
@@ -102,6 +132,15 @@ public sealed class CopyJobRecord
             PreserveTimestamps = PreserveTimestamps,
             PreserveAttributes = PreserveAttributes,
             UseUnbufferedIo = !UseSystemCache,
+            Operation = Operation,
+            SecureDelete = SecureDelete,
+            Links = Links,
+            KeepBothPattern = KeepBothPattern,
+            Filter = Filter ?? new FileFilter(),
+            RetryCount = Math.Clamp(RetryCount, 0, 100),
+            RetryDelay = TimeSpan.FromSeconds(Math.Clamp(RetryDelaySeconds, 0, 3600)),
+            OnError = OnError,
+            CheckFreeSpace = CheckFreeSpace,
         };
         if (ChunkSize > 0 && BlockSize > 0)
         {

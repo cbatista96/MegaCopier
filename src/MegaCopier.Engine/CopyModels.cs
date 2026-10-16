@@ -25,6 +25,9 @@ public enum ConflictDecision
     Replace,
     Skip,
     KeepBoth,
+
+    /// <summary>Renombrar el que ya estaba y copiar con el nombre original.</summary>
+    RenameExisting,
 }
 
 /// <summary>Un archivo de destino ya existe y es distinto del origen.</summary>

@@ -19,15 +19,34 @@ internal sealed class TempDir : IDisposable
     {
         try
         {
-            foreach (var file in Directory.EnumerateFiles(Path, "*", SearchOption.AllDirectories))
+            // Sin seguir enlaces ni uniones: algunas pruebas crean bucles a propósito.
+            var options = new EnumerationOptions { RecurseSubdirectories = true, AttributesToSkip = FileAttributes.ReparsePoint };
+            foreach (var file in Directory.EnumerateFiles(Path, "*", options))
             {
                 File.SetAttributes(file, FileAttributes.Normal);
             }
 
+            RemoveLinks(Path);
             Directory.Delete(Path, recursive: true);
         }
-        catch (IOException)
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
         {
+        }
+    }
+
+    /// <summary>Quita los enlaces (solo el enlace) antes de borrar, sin entrar en ellos.</summary>
+    private static void RemoveLinks(string directory)
+    {
+        foreach (string child in Directory.EnumerateDirectories(directory, "*", new EnumerationOptions { AttributesToSkip = 0 }))
+        {
+            if ((File.GetAttributes(child) & FileAttributes.ReparsePoint) != 0)
+            {
+                Directory.Delete(child);
+            }
+            else
+            {
+                RemoveLinks(child);
+            }
         }
     }
 }

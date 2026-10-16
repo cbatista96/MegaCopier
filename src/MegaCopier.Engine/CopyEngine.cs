@@ -11,7 +11,7 @@ namespace MegaCopier.Engine;
 /// Es reanudable sin estado propio: al volver a lanzar el mismo trabajo, los archivos ya terminados se reconocen
 /// como idénticos y los grandes a medias continúan desde su journal.
 /// </summary>
-public sealed class CopyEngine
+public sealed partial class CopyEngine
 {
     private readonly CopyOptions _options;
     private readonly Lock _lock = new();
@@ -89,7 +89,7 @@ public sealed class CopyEngine
     /// <summary>Añade más orígenes al trabajo en curso (por ejemplo, arrastrados a la ventana).</summary>
     public int AddSources(IReadOnlyList<string> sources)
     {
-        var plan = CopyPlanner.Build(sources, _destinationRoot);
+        var plan = CopyPlanner.Build(sources, _destinationRoot, _options.Filter, _options.Links);
         foreach (var directory in plan.Directories)
         {
             Directory.CreateDirectory(directory.Destination);
@@ -107,6 +107,14 @@ public sealed class CopyEngine
     public CopyJobResult Run(CopyJobRequest request, CancellationToken cancellationToken = default)
     {
         var stopwatch = Stopwatch.StartNew();
+        switch (_options.Operation)
+        {
+            case JobOperation.Test:
+                return RunTest(request, stopwatch, cancellationToken);
+            case JobOperation.Delete:
+                return RunDelete(request, stopwatch, cancellationToken);
+        }
+
         _destinationRoot = Path.TrimEndingDirectorySeparator(Path.GetFullPath(request.Destination));
         _conflictForAll = null;
 
@@ -122,7 +130,12 @@ public sealed class CopyEngine
             request = request with { Sources = pending };
         }
 
-        var plan = CopyPlanner.Build(request.Sources, request.Destination, _options.Filter);
+        var plan = CopyPlanner.Build(request.Sources, request.Destination, _options.Filter, _options.Links);
+        foreach (string warning in plan.Warnings)
+        {
+            Log(LogLevel.Warning, warning);
+        }
+
         var excluded = new HashSet<string>(request.Excluded, StringComparer.OrdinalIgnoreCase);
         var progress = new ProgressTracker(p => ProgressChanged?.Invoke(p), _options.ProgressInterval);
         var result = new CopyJobResult();
@@ -163,6 +176,8 @@ public sealed class CopyEngine
         {
             Directory.CreateDirectory(directory.Destination);
         }
+
+        CreateLinks(plan.Links.Where(l => !renamed.Contains(l.Source)), result);
 
         using (var pool = new BufferPool(_options.BlockSize, FileTransfer.RequiredBuffers(_options)))
         {
@@ -657,6 +672,7 @@ public sealed class CopyEngine
             {
                 ConflictDecision.Replace => ConflictPolicy.Overwrite,
                 ConflictDecision.KeepBoth => ConflictPolicy.KeepBoth,
+                ConflictDecision.RenameExisting => ConflictPolicy.RenameExisting,
                 _ => ConflictPolicy.Skip,
             };
         }
@@ -666,10 +682,21 @@ public sealed class CopyEngine
             ConflictPolicy.Overwrite => new Resolution(file.Destination),
             ConflictPolicy.Skip => new Resolution(null),
             ConflictPolicy.OverwriteIfNewer => new Resolution(file.LastWriteUtc > existing.LastWriteTimeUtc ? file.Destination : null),
+            ConflictPolicy.OverwriteIfDifferentSize => new Resolution(file.Length != existing.Length ? file.Destination : null),
             ConflictPolicy.KeepBoth => UniqueTarget(file),
+            ConflictPolicy.RenameExisting => RenameExisting(file),
             ConflictPolicy.Fail => throw new IOException($"El destino ya existe: {file.Destination}"),
             _ => throw new ArgumentOutOfRangeException(nameof(file)),
         };
+    }
+
+    /// <summary>Aparta el archivo que ya estaba con el patrón de nombres y deja libre el nombre original.</summary>
+    private Resolution RenameExisting(PlannedFile file)
+    {
+        string renamed = FreeName(file.Destination, path => !File.Exists(path) && !Directory.Exists(path));
+        File.Move(file.Destination, renamed);
+        Log(LogLevel.Info, $"El archivo que ya existía se renombró a {Path.GetFileName(renamed)}.", file.Destination);
+        return new Resolution(file.Destination);
     }
 
     private ConflictAnswer AskUser(PlannedFile file, FileInfo existing, ProgressTracker progress, CancellationToken cancellationToken)
@@ -700,29 +727,71 @@ public sealed class CopyEngine
     }
 
     /// <summary>"nombre (2).ext", "nombre (3).ext"... reutilizando uno a medias o ya idéntico (para que reanudar no duplique).</summary>
-    private static Resolution UniqueTarget(PlannedFile file)
+    private Resolution UniqueTarget(PlannedFile file)
     {
-        string directory = Path.GetDirectoryName(file.Destination)!;
-        string name = Path.GetFileNameWithoutExtension(file.Destination);
-        string extension = Path.GetExtension(file.Destination);
-
-        for (int n = 2; ; n++)
+        string? reuse = null;
+        bool identical = false;
+        FreeName(file.Destination, candidate =>
         {
-            string candidate = Path.Combine(directory, $"{name} ({n}){extension}");
             if (File.Exists(candidate + FileTransfer.PartialSuffix))
             {
-                return new Resolution(candidate);
+                reuse = candidate;
+                return true;
             }
 
             var info = new FileInfo(candidate);
             if (!info.Exists)
             {
-                return new Resolution(candidate);
+                reuse = candidate;
+                return true;
             }
 
             if (IsIdentical(info, file))
             {
-                return new Resolution(null, Identical: true);
+                identical = true;
+                return true;
+            }
+
+            return false;
+        });
+        return identical ? new Resolution(null, Identical: true) : new Resolution(reuse);
+    }
+
+    /// <summary>
+    /// Primer nombre del patrón ({name}, {n}, {ext}, {date}) que <paramref name="accept"/> acepta, empezando por n = 2.
+    /// </summary>
+    private string FreeName(string path, Func<string, bool> accept)
+    {
+        string directory = Path.GetDirectoryName(path)!;
+        string name = Path.GetFileNameWithoutExtension(path);
+        string extension = Path.GetExtension(path);
+        string pattern = string.IsNullOrWhiteSpace(_options.KeepBothPattern) ? CopyOptions.DefaultKeepBothPattern : _options.KeepBothPattern;
+        if (!pattern.Contains("{n}", StringComparison.Ordinal))
+        {
+            pattern = pattern.Replace("{ext}", " ({n}){ext}", StringComparison.Ordinal);
+            if (!pattern.Contains("{n}", StringComparison.Ordinal))
+            {
+                pattern += " ({n})";
+            }
+        }
+
+        string date = DateTime.Now.ToString("yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+        for (int n = 2; ; n++)
+        {
+            string fileName = pattern
+                .Replace("{name}", name, StringComparison.Ordinal)
+                .Replace("{ext}", extension, StringComparison.Ordinal)
+                .Replace("{date}", date, StringComparison.Ordinal)
+                .Replace("{n}", n.ToString(System.Globalization.CultureInfo.InvariantCulture), StringComparison.Ordinal);
+            foreach (char invalid in Path.GetInvalidFileNameChars())
+            {
+                fileName = fileName.Replace(invalid, '_');
+            }
+
+            string candidate = Path.Combine(directory, fileName);
+            if (accept(candidate))
+            {
+                return candidate;
             }
         }
     }

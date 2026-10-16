@@ -119,6 +119,8 @@ public sealed class CopyJob
     /// <summary>Guarda el registro tras cambiarlo desde fuera (informe, scripts...).</summary>
     public void SaveRecord() => SaveIfPending();
 
+    internal void NotifyChanged() => Changed?.Invoke(this);
+
     /// <summary>Solo se guarda lo que sigue pendiente: un trabajo terminado ya no está en el almacén.</summary>
     private void SaveIfPending()
     {
@@ -264,6 +266,62 @@ public sealed class CopyQueue
         _optionsFor = optionsFor ?? (record => record.ToOptions());
     }
 
+    private Timer? _scheduleTimer;
+
+    /// <summary>
+    /// Programa el inicio de un trabajo (null = ahora). Uno en marcha se pausa hasta esa hora; uno detenido se reanuda
+    /// a esa hora.
+    /// </summary>
+    public void ScheduleAt(CopyJob job, DateTime? startAtUtc)
+    {
+        job.Record.StartAtUtc = startAtUtc;
+        job.SaveRecord();
+        if (startAtUtc is null)
+        {
+            Resume(job);
+            Schedule();
+            return;
+        }
+
+        if (job.State == CopyJobState.Running)
+        {
+            job.Pause();
+        }
+        else if (job.State is CopyJobState.Interrupted or CopyJobState.Failed or CopyJobState.CompletedWithErrors)
+        {
+            _store.Save(job.Record);
+            job.SetState(CopyJobState.Queued);
+        }
+
+        EnsureScheduleTimer();
+        job.NotifyChanged();
+    }
+
+    private void EnsureScheduleTimer() =>
+        _scheduleTimer ??= new Timer(_ => CheckSchedules(), null, TimeSpan.FromSeconds(5), TimeSpan.FromSeconds(5));
+
+    /// <summary>Arranca (o reanuda) lo que tenía hora programada y ya le toca.</summary>
+    private void CheckSchedules()
+    {
+        var due = Jobs.Where(j => j.Record.StartAtUtc is { } at && at <= DateTime.UtcNow).ToList();
+        foreach (var job in due)
+        {
+            job.Record.StartAtUtc = null;
+            job.SaveRecord();
+            if (job.State == CopyJobState.Paused)
+            {
+                job.Unpause();
+            }
+
+            job.NotifyChanged();
+        }
+
+        if (due.Count > 0)
+        {
+            Schedule();
+        }
+    }
+
     /// <summary>
     /// Responde a los conflictos de los trabajos con <see cref="ConflictPolicy.Ask"/>. Se llama desde el hilo de copia
     /// y puede bloquear hasta que el usuario decida. Sin él, los conflictos se omiten.
@@ -332,15 +390,29 @@ public sealed class CopyQueue
                 }
             }
 
+            if (record.StartAtUtc is not null)
+            {
+                // Una copia programada sigue esperando su hora tras reiniciar.
+                Add(new CopyJob(record, CopyJobState.Queued, _store.Save));
+                EnsureScheduleTimer();
+                continue;
+            }
+
             loaded.Add(Add(new CopyJob(record, CopyJobState.Interrupted, _store.Save)));
         }
 
         return loaded;
     }
 
-    public CopyJob Submit(IEnumerable<string> sources, string destination, CopyOptions options)
+    public CopyJob Submit(IEnumerable<string> sources, string destination, CopyOptions options, DateTime? startAtUtc = null)
     {
         var record = CopyJobRecord.New(sources, destination, options);
+        record.StartAtUtc = startAtUtc;
+        if (startAtUtc is not null)
+        {
+            EnsureScheduleTimer();
+        }
+
         _store.Save(record);
         var job = Add(new CopyJob(record, CopyJobState.Queued, _store.Save));
         Schedule();
@@ -473,6 +545,11 @@ public sealed class CopyQueue
 
             foreach (var job in _jobs.Where(j => j.State == CopyJobState.Queued))
             {
+                if (job.Record.StartAtUtc is { } at && at > DateTime.UtcNow)
+                {
+                    continue; // programado para más tarde
+                }
+
                 if (MaxActiveJobs > 0 && active >= MaxActiveJobs)
                 {
                     break;
