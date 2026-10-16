@@ -217,6 +217,7 @@ public sealed partial class FileListViewModel : INotifyPropertyChanged, IDisposa
 
         bool rebuild = false;
         var updated = new HashSet<FileRowViewModel>();
+        var placed = new List<FileRowViewModel>();
         FileRowViewModel? current = null;
         while (_changes.TryDequeue(out var change))
         {
@@ -227,8 +228,16 @@ public sealed partial class FileListViewModel : INotifyPropertyChanged, IDisposa
                     _rows[change.Item.Id] = row;
                     if (Matches(row))
                     {
-                        Items.Add(row);
                         _visible.Add(row);
+                        if (change.Index >= _list.Count - 1)
+                        {
+                            Items.Add(row);
+                        }
+                        else
+                        {
+                            // Insertado en medio (soltado en una posición concreta).
+                            placed.Add(row);
+                        }
                     }
 
                     break;
@@ -241,8 +250,13 @@ public sealed partial class FileListViewModel : INotifyPropertyChanged, IDisposa
 
                     break;
 
-                case TransferListChangeKind.Moved:
-                    rebuild = true;
+                case TransferListChangeKind.Moved when _rows.TryGetValue(change.Item.Id, out var moved):
+                    if (_visible.Contains(moved))
+                    {
+                        Items.Remove(moved);
+                        placed.Add(moved);
+                    }
+
                     break;
 
                 case TransferListChangeKind.Updated when _rows.TryGetValue(change.Item.Id, out var existing):
@@ -253,6 +267,20 @@ public sealed partial class FileListViewModel : INotifyPropertyChanged, IDisposa
                     }
 
                     break;
+            }
+        }
+
+        // Pocos movimientos: cada fila a su sitio exacto; muchos: se rehace la lista de una vez.
+        if (placed.Count > 50)
+        {
+            rebuild = true;
+        }
+        else
+        {
+            foreach (var row in placed)
+            {
+                Items.Remove(row);
+                InsertInOrder(row);
             }
         }
 

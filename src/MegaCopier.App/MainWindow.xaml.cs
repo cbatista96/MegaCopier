@@ -87,6 +87,7 @@ public sealed partial class MainWindow : Window
 
         _app.Queue.JobAdded += job => OnUi(() => AddJob(job, select: true), "AddJob");
         _app.Queue.JobRemoved += job => OnUi(() => RemoveJob(job), "RemoveJob");
+        _app.Queue.JobsReordered += () => OnUi(SyncJobOrder, "SyncJobOrder");
         foreach (var job in _app.Queue.Jobs)
         {
             AddJob(job, select: false);
@@ -253,9 +254,9 @@ public sealed partial class MainWindow : Window
             return;
         }
 
-        // Lo más reciente arriba.
+        // En el orden de la cola: arrastrando las tarjetas se cambia qué copia va antes.
         var item = new JobViewModel(job, _app.Queue, _dispatcher, () => _app.Settings.HideFinishedFiles);
-        Jobs.Insert(0, item);
+        Jobs.Add(item);
         if (select || _selected is null)
         {
             Select(item);
@@ -741,6 +742,233 @@ public sealed partial class MainWindow : Window
         if (paths.Count > 0)
         {
             await PickDestinationAndCopy(paths, move: false);
+        }
+    }
+
+    /// <summary>
+    /// Solo pruebas (MEGACOPIER_TEST=1): ejecuta la misma lógica que un arrastre real sobre la lista de archivos
+    /// ("files") o de copias ("jobs"), sin ratón: <paramref name="drop"/> = false muestra la línea y el aviso.
+    /// </summary>
+    internal string DebugDrag(string target, double y, int[] rows, List<string> paths, bool drop)
+    {
+        if (target == "files")
+        {
+            if (drop)
+            {
+                _filesTab.SimulateDrop(y, rows, paths);
+                return "ok";
+            }
+
+            return _filesTab.SimulateDragOver(y, rows.Length > 0);
+        }
+
+        var spot = DropTarget.Find(JobList, new Windows.Foundation.Point(40, y), JobDropLayer);
+        if (rows.Length > 0)
+        {
+            if (!drop)
+            {
+                DropTarget.ShowLine(JobDropLine, spot.LineY, 2, JobDropLayer.ActualWidth - 4);
+                return L.F("Drop_JobOrder", spot.Index + 1);
+            }
+
+            HideJobDropFeedback();
+            var dragged = Jobs[rows[0]];
+            var before = spot.Index < Jobs.Count ? Jobs[spot.Index] : null;
+            if (before != dragged)
+            {
+                _app.Queue.MoveJob(dragged.Job, before?.Job);
+            }
+
+            return "ok";
+        }
+
+        if (spot.OverIndex < 0)
+        {
+            return "fuera";
+        }
+
+        if (!drop)
+        {
+            DropTarget.ShowBox(JobDropBox, spot.OverBounds);
+            return L.F("Drop_AddToNamedJob", Jobs[spot.OverIndex].Title);
+        }
+
+        HideJobDropFeedback();
+        _app.Queue.AddToJob(Jobs[spot.OverIndex].Job, paths);
+        return "ok";
+    }
+
+    // ---------------------------------------------------------------------------------------------------------
+    // Arrastrar en la lista de copias: reordenar la cola y soltar archivos sobre la copia que se quiera.
+
+    private JobViewModel? _draggedJob;
+
+    private void JobList_DragItemsStarting(object sender, DragItemsStartingEventArgs e)
+    {
+        _draggedJob = e.Items.OfType<JobViewModel>().FirstOrDefault();
+        e.Data.SetText("megacopier-job");
+        e.Data.RequestedOperation = DataPackageOperation.Move;
+    }
+
+    private void JobList_DragItemsCompleted(ListViewBase sender, DragItemsCompletedEventArgs args)
+    {
+        _draggedJob = null;
+        HideJobDropFeedback();
+    }
+
+    private void JobList_DragOver(object sender, DragEventArgs e)
+    {
+        bool files = e.DataView.Contains(StandardDataFormats.StorageItems);
+        if (_draggedJob is null && !files)
+        {
+            return;
+        }
+
+        var spot = DropTarget.Find(JobList, e.GetPosition(JobList), JobDropLayer);
+        if (_draggedJob is not null)
+        {
+            e.Handled = true;
+            JobDropBox.Visibility = Visibility.Collapsed;
+            DropTarget.ShowLine(JobDropLine, spot.LineY, 2, JobDropLayer.ActualWidth - 4);
+            e.AcceptedOperation = DataPackageOperation.Move;
+            e.DragUIOverride.Caption = L.F("Drop_JobOrder", spot.Index + 1);
+            e.DragUIOverride.IsGlyphVisible = false;
+            return;
+        }
+
+        // Archivos del Explorador sobre una copia: se añaden a ella.
+        if (spot.OverIndex >= 0 && Jobs[spot.OverIndex] is { } job)
+        {
+            e.Handled = true;
+            JobDropLine.Visibility = Visibility.Collapsed;
+            DropTarget.ShowBox(JobDropBox, spot.OverBounds);
+            e.AcceptedOperation = DataPackageOperation.Copy;
+            e.DragUIOverride.Caption = L.F("Drop_AddToNamedJob", job.Title);
+            e.DragUIOverride.IsGlyphVisible = false;
+        }
+        else
+        {
+            HideJobDropFeedback(); // fuera de las tarjetas: la ventana lo trata como una copia nueva
+        }
+    }
+
+    private void JobList_DragLeave(object sender, DragEventArgs e) => HideJobDropFeedback();
+
+    private async void JobList_Drop(object sender, DragEventArgs e)
+    {
+        var spot = DropTarget.Find(JobList, e.GetPosition(JobList), JobDropLayer);
+        HideJobDropFeedback();
+        if (_draggedJob is { } dragged)
+        {
+            e.Handled = true;
+            var before = spot.Index < Jobs.Count ? Jobs[spot.Index] : null;
+            if (before != dragged)
+            {
+                _app.Queue.MoveJob(dragged.Job, before?.Job);
+            }
+
+            _draggedJob = null;
+            return;
+        }
+
+        if (spot.OverIndex < 0 || !e.DataView.Contains(StandardDataFormats.StorageItems))
+        {
+            return;
+        }
+
+        e.Handled = true;
+        await AddDroppedFiles(e, Jobs[spot.OverIndex]);
+    }
+
+    private void HideJobDropFeedback()
+    {
+        JobDropLine.Visibility = Visibility.Collapsed;
+        JobDropBox.Visibility = Visibility.Collapsed;
+    }
+
+    /// <summary>La cola cambió de orden: la lista sigue el orden de ejecución.</summary>
+    private void SyncJobOrder()
+    {
+        var order = _app.Queue.Jobs;
+        for (int i = 0; i < order.Count; i++)
+        {
+            int current = -1;
+            for (int j = 0; j < Jobs.Count; j++)
+            {
+                if (Jobs[j].Job == order[i])
+                {
+                    current = j;
+                    break;
+                }
+            }
+
+            if (current >= 0 && current != i && i < Jobs.Count)
+            {
+                Jobs.Move(current, i);
+            }
+        }
+    }
+
+    // Soltar sobre el panel (también en la ventana compacta): se añade a la copia que se está viendo.
+
+    private void PanelCard_DragOver(object sender, DragEventArgs e)
+    {
+        if (_selected is null || !e.DataView.Contains(StandardDataFormats.StorageItems))
+        {
+            return;
+        }
+
+        e.Handled = true;
+        e.AcceptedOperation = DataPackageOperation.Copy;
+        e.DragUIOverride.Caption = L.F("Drop_AddToNamedJob", _selected.Title);
+        e.DragUIOverride.IsGlyphVisible = false;
+        PanelCard.BorderBrush = ThemeManager.AccentBrush;
+        PanelCard.BorderThickness = new Thickness(2);
+    }
+
+    private void PanelCard_DragLeave(object sender, DragEventArgs e) => RestorePanelCard();
+
+    private async void PanelCard_Drop(object sender, DragEventArgs e)
+    {
+        RestorePanelCard();
+        if (_selected is null || !e.DataView.Contains(StandardDataFormats.StorageItems))
+        {
+            return;
+        }
+
+        e.Handled = true;
+        await AddDroppedFiles(e, _selected);
+    }
+
+    private void RestorePanelCard()
+    {
+        PanelCard.BorderBrush = ThemeManager.BorderBrush;
+        PanelCard.BorderThickness = new Thickness(1);
+    }
+
+    private async Task AddDroppedFiles(DragEventArgs e, JobViewModel job)
+    {
+        var deferral = e.GetDeferral();
+        try
+        {
+            var items = await e.DataView.GetStorageItemsAsync();
+            var paths = items.Select(i => i.Path).Where(p => !string.IsNullOrEmpty(p)).ToList();
+            if (paths.Count > 0)
+            {
+                var target = _app.Queue.AddToJob(job.Job, paths);
+                if (Jobs.FirstOrDefault(j => j.Job == target) is { } shown)
+                {
+                    Select(shown);
+                }
+            }
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or InvalidOperationException or CopyPlanException)
+        {
+            _app.Notify(L.Get("Files_AddFailed"), ex.Message);
+        }
+        finally
+        {
+            deferral.Complete();
         }
     }
 

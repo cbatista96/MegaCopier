@@ -214,6 +214,13 @@ public sealed class AppSettings
         };
 
         int block = Math.Clamp(BlockSizeMB, 1, 16) * CopyOptions.MiB;
+        if (options.MaxBytesPerSecond > 0)
+        {
+            // Con límite de velocidad, bloques de ~1/8 de segundo: avance y velocidad suaves en lugar de ráfagas.
+            int smooth = (int)Math.Clamp(options.MaxBytesPerSecond / 8 / 65536 * 65536, 65536, block);
+            block = smooth;
+        }
+
         options.BlockSize = block;
         options.ChunkSize = 64L * CopyOptions.MiB / block * block;
         return options;

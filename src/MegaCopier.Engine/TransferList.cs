@@ -111,6 +111,58 @@ public sealed class TransferList
 
     public bool MoveDown(int id) => Move(id, (index, _) => Math.Min(_items.Count - 1, index + 1));
 
+    /// <summary>
+    /// Arrastrar en la lista: coloca el pendiente <paramref name="id"/> justo antes de <paramref name="beforeId"/>
+    /// (null = al final). Nunca por delante de lo que ya empezó.
+    /// </summary>
+    public bool MoveBefore(int id, int? beforeId) => Move(id, (from, _) =>
+    {
+        int target = beforeId is { } before ? _items.FindIndex(i => i.Id == before) : -1;
+        if (target < 0)
+        {
+            return _items.Count - 1;
+        }
+
+        // Al quitar el elemento de su sitio, los que estaban detrás suben una posición.
+        int to = target > from ? target - 1 : target;
+        return Math.Max(to, FirstPendingIndex());
+    });
+
+    /// <summary>Orden actual de los pendientes (para guardarlo y respetarlo al reanudar).</summary>
+    public IReadOnlyList<string> PendingOrder()
+    {
+        lock (_lock)
+        {
+            return [.. _items.Where(i => i.State == FileState.Pending).Select(i => i.Source)];
+        }
+    }
+
+    /// <summary>Añade un archivo antes de <paramref name="beforeId"/> (null = al final), nunca delante de lo ya empezado.</summary>
+    internal TransferItem Insert(string source, string destination, long length, DateTime lastWriteUtc, int? beforeId)
+    {
+        TransferItem item;
+        int index;
+        lock (_lock)
+        {
+            item = new TransferItem(++_nextId, source, destination, length, lastWriteUtc);
+            index = beforeId is { } before ? _items.FindIndex(i => i.Id == before) : -1;
+            if (index < 0)
+            {
+                index = _items.Count;
+            }
+            else
+            {
+                int firstPending = _items.FindIndex(i => i.State == FileState.Pending);
+                index = Math.Max(index, firstPending < 0 ? _items.Count : firstPending);
+            }
+
+            _items.Insert(index, item);
+        }
+
+        Changed?.Invoke(new TransferListChange(TransferListChangeKind.Added, item, index));
+        return item;
+    }
+
     /// <summary>Quita un archivo pendiente (no se copiará).</summary>
     public bool Remove(int id)
     {

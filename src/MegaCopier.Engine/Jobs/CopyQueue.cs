@@ -82,13 +82,39 @@ public sealed class CopyJob
     }
 
     /// <summary>Añade orígenes a un trabajo en curso.</summary>
-    public int AddSources(IReadOnlyList<string> sources)
+    public int AddSources(IReadOnlyList<string> sources, int? beforeId = null)
     {
         var engine = _engine ?? throw new InvalidOperationException("El trabajo no está en marcha.");
-        int added = engine.AddSources(sources);
+        int added = engine.AddSources(sources, beforeId);
         Record.Sources.AddRange(sources);
         SaveIfPending();
+        if (beforeId is not null)
+        {
+            SaveOrder();
+        }
         return added;
+    }
+
+    /// <summary>Arrastrar en la lista: coloca un pendiente antes de otro (null = al final) y guarda el orden.</summary>
+    public bool MoveFile(int id, int? beforeId)
+    {
+        if (Files?.MoveBefore(id, beforeId) != true)
+        {
+            return false;
+        }
+
+        SaveOrder();
+        return true;
+    }
+
+    /// <summary>Guarda el orden actual de los pendientes para que reanudar lo respete (hasta 100 000 archivos).</summary>
+    public void SaveOrder()
+    {
+        if (Files is { } files && files.Count <= 100_000)
+        {
+            Record.FileOrder = [.. files.PendingOrder()];
+            SaveIfPending();
+        }
     }
 
     /// <summary>Cambia en caliente "desatendido" y "verificar" (y lo guarda para los reintentos).</summary>
@@ -435,6 +461,55 @@ public sealed class CopyQueue
         }
     }
 
+    /// <summary>
+    /// Archivos soltados sobre una copia: en marcha se añaden a su lista (en la posición indicada); en cola o detenida
+    /// se suman a sus orígenes; si ya terminó, se copian al mismo destino con las mismas opciones en una copia nueva.
+    /// </summary>
+    public CopyJob AddToJob(CopyJob job, IReadOnlyList<string> sources, int? beforeId = null)
+    {
+        if (job.State is CopyJobState.Running or CopyJobState.Paused && job.Files is not null)
+        {
+            job.AddSources(sources, beforeId);
+            return job;
+        }
+
+        if (job.State is CopyJobState.Queued or CopyJobState.Interrupted or CopyJobState.Failed or CopyJobState.CompletedWithErrors)
+        {
+            job.Record.Sources.AddRange(sources.Where(s => !job.Record.Sources.Contains(s, StringComparer.OrdinalIgnoreCase)));
+            _store.Save(job.Record);
+            if (job.State != CopyJobState.Queued)
+            {
+                Resume(job);
+            }
+
+            job.NotifyChanged();
+            return job;
+        }
+
+        return Submit(sources, job.Record.Destination, _optionsFor(job.Record));
+    }
+
+    /// <summary>Cambia el orden de la cola: <paramref name="job"/> pasa delante de <paramref name="before"/> (null = al final).</summary>
+    public void MoveJob(CopyJob job, CopyJob? before)
+    {
+        lock (_lock)
+        {
+            if (!_jobs.Remove(job))
+            {
+                return;
+            }
+
+            int index = before is null ? -1 : _jobs.IndexOf(before);
+            _jobs.Insert(index < 0 ? _jobs.Count : index, job);
+        }
+
+        JobsReordered?.Invoke();
+        Schedule();
+    }
+
+    /// <summary>Cambió el orden de la cola.</summary>
+    public event Action? JobsReordered;
+
     public void Pause(CopyJob job) => job.Pause();
 
     /// <summary>Detiene el trabajo conservando lo copiado: se puede reanudar más tarde.</summary>
@@ -583,7 +658,7 @@ public sealed class CopyQueue
             ConflictResolver?.Invoke(job, info, token) ?? new ConflictAnswer(ConflictDecision.Skip, ApplyToAll: false);
         engine.Logged += job.AddLog;
 
-        var request = new CopyJobRequest(job.Record.Sources, job.Record.Destination) { Excluded = job.Record.Excluded };
+        var request = new CopyJobRequest(job.Record.Sources, job.Record.Destination) { Excluded = job.Record.Excluded, Order = job.Record.FileOrder };
         _ = engine.RunAsync(request, cancellation.Token)
             .ContinueWith(
                 task =>

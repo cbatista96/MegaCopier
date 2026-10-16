@@ -87,7 +87,7 @@ public sealed partial class CopyEngine
     }
 
     /// <summary>Añade más orígenes al trabajo en curso (por ejemplo, arrastrados a la ventana).</summary>
-    public int AddSources(IReadOnlyList<string> sources)
+    public int AddSources(IReadOnlyList<string> sources, int? beforeId = null)
     {
         var plan = CopyPlanner.Build(sources, _destinationRoot, _options.Filter, _options.Links);
         foreach (var directory in plan.Directories)
@@ -95,9 +95,10 @@ public sealed partial class CopyEngine
             Directory.CreateDirectory(directory.Destination);
         }
 
+        // Soltados en una posición concreta de la lista: se insertan ahí, en su orden.
         foreach (var file in plan.Files)
         {
-            Files.Add(file.Source, file.Destination, file.Length, file.LastWriteUtc);
+            Files.Insert(file.Source, file.Destination, file.Length, file.LastWriteUtc, beforeId);
         }
 
         Log(LogLevel.Info, $"Añadidos {plan.Files.Count} archivos ({FormatBytes(plan.TotalBytes)}).");
@@ -151,7 +152,20 @@ public sealed partial class CopyEngine
         Log(LogLevel.Info, $"{(_options.Move ? "Mover" : "Copiar")} {plan.Files.Count} archivos ({FormatBytes(plan.TotalBytes)}) a {request.Destination}");
 
         var renamedItems = new List<TransferItem>();
-        foreach (var file in plan.Files.Where(f => !excluded.Contains(f.Source)))
+        // El orden que el usuario eligió arrastrando (se guarda en el trabajo) se respeta al reanudar.
+        var files = plan.Files.Where(f => !excluded.Contains(f.Source));
+        if (request.Order.Count > 0)
+        {
+            var rank = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+            for (int i = 0; i < request.Order.Count; i++)
+            {
+                rank.TryAdd(request.Order[i], i);
+            }
+
+            files = files.Select((f, i) => (f, i)).OrderBy(x => rank.GetValueOrDefault(x.f.Source, int.MaxValue)).ThenBy(x => x.i).Select(x => x.f);
+        }
+
+        foreach (var file in files)
         {
             var item = Files.Add(file.Source, file.Destination, file.Length, file.LastWriteUtc);
             if (renamed.Contains(file.Source))

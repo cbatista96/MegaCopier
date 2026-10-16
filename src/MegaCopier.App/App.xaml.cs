@@ -400,6 +400,16 @@ public partial class App : Application
                 ShowWindow();
                 return new IpcResponse { Ok = true };
 
+            case "debug-drag" when TestMode:
+            {
+                // Solo pruebas: Destination = "files" o "jobs"; Sources = "y=N", "row=N", "drop" y rutas.
+                double y = request.Sources.Where(s => s.StartsWith("y=", StringComparison.Ordinal)).Select(s => double.Parse(s[2..], System.Globalization.CultureInfo.InvariantCulture)).FirstOrDefault();
+                int[] rows = [.. request.Sources.Where(s => s.StartsWith("row=", StringComparison.Ordinal)).Select(s => int.Parse(s[4..], System.Globalization.CultureInfo.InvariantCulture))];
+                bool drop = request.Sources.Contains("drop");
+                var paths = request.Sources.Where(s => !s.StartsWith("y=", StringComparison.Ordinal) && !s.StartsWith("row=", StringComparison.Ordinal) && s != "drop").ToList();
+                return new IpcResponse { Ok = true, Status = Window.DebugDrag(request.Destination ?? "files", y, rows, paths, drop) };
+            }
+
             case "status":
                 return new IpcResponse
                 {

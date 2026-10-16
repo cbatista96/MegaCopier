@@ -6,6 +6,9 @@ public sealed record CopyJobRequest(IReadOnlyList<string> Sources, string Destin
 {
     /// <summary>Archivos que el usuario quitó de la lista: no se copian (también al reanudar).</summary>
     public IReadOnlyCollection<string> Excluded { get; init; } = [];
+
+    /// <summary>Orden elegido por el usuario para los pendientes (rutas de origen); lo demás va detrás.</summary>
+    public IReadOnlyList<string> Order { get; init; } = [];
 }
 
 public enum CopyPhase
