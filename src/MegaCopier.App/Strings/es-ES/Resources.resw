@@ -772,4 +772,30 @@
   <data name="Settings_TuneDisk" xml:space="preserve"><value>Disco </value></data>
   <data name="Settings_TuneProfile" xml:space="preserve"><value>{0}: bloques de {1} MB, {2} a la vez ({3:N0} MB/s)</value></data>
   <data name="Settings_TuneMeasuring" xml:space="preserve"><value>Midiendo {0} ({1} de {2})…</value></data>
+  <data name="Tool_Timeline.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Línea de tiempo de la cola</value></data>
+  <data name="Timeline_Title.Text" xml:space="preserve"><value>Línea de tiempo</value></data>
+  <data name="Timeline_Info.Text" xml:space="preserve"><value>Previsión con la velocidad de cada disco. Las copias que usan el mismo disco van de una en una.</value></data>
+  <data name="Timeline_Empty.Text" xml:space="preserve"><value>No hay copias en marcha ni en cola.</value></data>
+  <data name="Timeline_Summary" xml:space="preserve"><value>Todo habrá terminado hacia {0} (dentro de {1}).</value></data>
+  <data name="Timeline_Now" xml:space="preserve"><value>Ahora</value></data>
+  <data name="Timeline_Tomorrow" xml:space="preserve"><value>mañana {0}</value></data>
+  <data name="Timeline_Running" xml:space="preserve"><value>En marcha · fin previsto: {0} (quedan {1})</value></data>
+  <data name="Timeline_Paused" xml:space="preserve"><value>En pausa · si continúa ahora, fin previsto: {0}</value></data>
+  <data name="Timeline_Queued" xml:space="preserve"><value>En cola · empieza: {0} · fin previsto: {1} (dura {2})</value></data>
+  <data name="Timeline_Scheduled" xml:space="preserve"><value>Programada · empieza: {0} · fin previsto: {1} (dura {2})</value></data>
+  <data name="Timeline_Measuring" xml:space="preserve"><value>aún se está midiendo su tamaño</value></data>
+  <data name="Tool_Shelf.Text" xml:space="preserve"><value>Bandeja de arrastre</value></data>
+  <data name="Tray_Shelf" xml:space="preserve"><value>Bandeja de arrastre</value></data>
+  <data name="Shelf_WindowTitle" xml:space="preserve"><value>Bandeja de arrastre de MegaCopier</value></data>
+  <data name="Shelf_Title.Text" xml:space="preserve"><value>Bandeja de arrastre</value></data>
+  <data name="Shelf_Empty.Text" xml:space="preserve"><value>Suelta aquí archivos y carpetas de cualquier sitio. Luego cópialos o muévelos todos juntos, o arrástralos fuera.</value></data>
+  <data name="Shelf_DropCaption" xml:space="preserve"><value>Añadir a la bandeja</value></data>
+  <data name="Shelf_CopyTo.Text" xml:space="preserve"><value>Copiar a…</value></data>
+  <data name="Shelf_MoveTo.Text" xml:space="preserve"><value>Mover a…</value></data>
+  <data name="Shelf_Clear.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Vaciar la bandeja</value></data>
+  <data name="Shelf_Remove.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Quitar de la bandeja</value></data>
+  <data name="Shelf_One" xml:space="preserve"><value>1 elemento</value></data>
+  <data name="Shelf_Many" xml:space="preserve"><value>{0} elementos</value></data>
+  <data name="Shelf_RemoveNamed" xml:space="preserve"><value>Quitar «{0}» de la bandeja</value></data>
+  <data name="Destinations_NoneChosen.Text" xml:space="preserve"><value>Marca al menos un destino (o añade una carpeta).</value></data>
 </root>

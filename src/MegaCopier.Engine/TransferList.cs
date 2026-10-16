@@ -279,6 +279,15 @@ public sealed class TransferList
         return item;
     }
 
+    /// <summary>Los siguientes pendientes (como mucho <paramref name="max"/>) que cumplen <paramref name="accept"/>, sin tomarlos.</summary>
+    internal List<TransferItem> PeekPending(int max, Func<TransferItem, bool> accept)
+    {
+        lock (_lock)
+        {
+            return [.. _items.Where(i => i.State == FileState.Pending).Take(max * 4).Where(accept).Take(max)];
+        }
+    }
+
     /// <summary>Quedan pendientes.</summary>
     internal bool HasPending()
     {

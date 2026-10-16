@@ -212,6 +212,9 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
         _ => "",
     };
 
+    /// <summary>El chip del panel: el estado sin la estimación (que va en el detalle, con sitio).</summary>
+    public string ChipText => State == CopyJobState.Queued && !IsScheduled ? L.Get("Job_StateQueued") : StateText;
+
     public bool HasDetail => DetailText.Length > 0;
 
     public string DetailText
@@ -236,6 +239,11 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
             if (State == CopyJobState.Running && Job.SpeedOverride is not null)
             {
                 return L.Get(((App)Microsoft.UI.Xaml.Application.Current).Comfort?.SlowReason == "Schedule" ? "Job_SlowedSchedule" : "Job_SlowedDown");
+            }
+
+            if (State == CopyJobState.Queued && !IsScheduled && QueuedEstimate() is { Length: > 3 } estimate)
+            {
+                return estimate[3..]; // sin el " · " del principio
             }
 
             return State == CopyJobState.Interrupted ? L.Get("Job_ResumeHint") : "";

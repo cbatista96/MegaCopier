@@ -19,7 +19,7 @@
             </StackPanel>
             <Grid ColumnSpacing="8">
                 <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
-                <TextBox x:Name="DescribeBox" x:Uid="Rules_Describe" KeyDown="Describe_KeyDown" />
+                <TextBox x:Name="DescribeBox" x:Uid="Rules_Describe" KeyDown="Describe_KeyDown" TextWrapping="Wrap" />
                 <Button Grid.Column="1" VerticalAlignment="Bottom" Style="{StaticResource McButton}" Click="Describe_Click"><TextBlock x:Uid="Rules_DescribeApply" /></Button>
             </Grid>
             <TextBlock x:Name="DescribeResult" Style="{StaticResource McSecondary}" TextWrapping="Wrap" Visibility="Collapsed" />

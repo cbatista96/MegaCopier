@@ -403,7 +403,7 @@ public sealed partial class SettingsPage : UserControl
             row.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
             row.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
             row.Children.Add(new FontIcon { Glyph = "", FontSize = 14, VerticalAlignment = VerticalAlignment.Center, Foreground = ThemeManager.AccentBrush });
-            var text = new TextBlock { Text = folder, VerticalAlignment = VerticalAlignment.Center, TextTrimming = TextTrimming.CharacterEllipsis };
+            var text = new TextBlock { Text = folder, VerticalAlignment = VerticalAlignment.Center, TextWrapping = TextWrapping.Wrap }; // entera, aunque sea larga
             Grid.SetColumn(text, 1);
             row.Children.Add(text);
             var remove = new Button
@@ -650,7 +650,7 @@ public sealed partial class SettingsPage : UserControl
         int done = 0;
         foreach (string folder in folders)
         {
-            TuneResult.Text = L.F("Settings_TuneMeasuring", Path.GetPathRoot(folder), ++done, folders.Count);
+            TuneResult.Text = L.F("Settings_TuneMeasuring", Path.GetPathRoot(folder) ?? folder, ++done, folders.Count);
             await Task.Run(() => DeviceTuner.Measure(folder, App.TestMode ? 64 : 256));
         }
 

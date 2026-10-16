@@ -132,6 +132,12 @@ public sealed class CopyOptions
     /// <summary>Usa E/S sin caché en discos locales: más rápida en archivos grandes y verificación honesta.</summary>
     public bool UseUnbufferedIo { get; set; } = true;
 
+    /// <summary>
+    /// Al calcular o comprobar sumas, leer los archivos pequeños en lote con IoRing (Windows 11): muchas lecturas en una
+    /// sola petición al sistema. Si el sistema no lo tiene, se leen de uno en uno como siempre.
+    /// </summary>
+    public bool BatchedReads { get; set; } = true;
+
     /// <summary>Vacía al disco también los archivos pequeños antes de renombrarlos (evita archivos "completos" con ceros tras un apagón).</summary>
     public bool FlushSmallFiles { get; set; } = true;
 
