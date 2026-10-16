@@ -27,7 +27,7 @@
             <Border x:Name="StateChip" Style="{StaticResource McChip}">
                 <StackPanel Orientation="Horizontal" Spacing="6">
                     <FontIcon VerticalAlignment="Center" Glyph="{x:Bind Job.Glyph, Mode=OneWay}" FontSize="12" Foreground="{StaticResource McAccentBrush}" />
-                    <TextBlock x:Name="StateChipText" Text="{x:Bind Job.StateText, Mode=OneWay}" Style="{StaticResource McChipText}" MaxWidth="220" TextTrimming="CharacterEllipsis" ToolTipService.ToolTip="{x:Bind Job.StateText, Mode=OneWay}" />
+                    <TextBlock x:Name="StateChipText" Text="{x:Bind Job.ChipText, Mode=OneWay}" Style="{StaticResource McChipText}" MaxWidth="220" TextTrimming="CharacterEllipsis" ToolTipService.ToolTip="{x:Bind Job.StateText, Mode=OneWay}" />
                 </StackPanel>
             </Border>
             <TextBlock Grid.Column="1" Text="{x:Bind Job.Title, Mode=OneWay}" Style="{StaticResource McStrong}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" ToolTipService.ToolTip="{x:Bind Job.Title, Mode=OneWay}" />

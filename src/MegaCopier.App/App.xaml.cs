@@ -31,6 +31,7 @@ public partial class App : Application
 
     internal DiskWatcher? Disks { get; private set; }
     private MainWindow? _window;
+    private Views.ShelfWindow? _shelf;
     private bool _exiting;
 
     public App()
@@ -345,6 +346,7 @@ public partial class App : Application
         ThemeManager.Apply(theme);
         bool accentChanged = ApplyControlAccent(theme);
         _window?.ApplyTheme(theme, accentChanged);
+        _shelf?.ApplyTheme();
     }
 
     private string _controlAccent = "";
@@ -512,6 +514,16 @@ public partial class App : Application
                     ? new IpcResponse { Ok = true, JobId = listJob.Id }
                     : new IpcResponse { Ok = false, Error = L.Get("Files_LoadFailed") };
 
+            case "shelf":
+                // Abrir la bandeja de arrastre (y dejar en ella estos archivos y carpetas).
+                ShowShelf(request.Sources);
+                return new IpcResponse { Ok = true, Status = string.Join(" | ", _shelf!.Paths) };
+
+            case "debug-shelf" when TestMode:
+                // Solo pruebas: "copiar a…" (Destination = "copy") o "mover a…" ("move") de la bandeja.
+                _ = _shelf?.SendAsync(request.Destination == "move");
+                return new IpcResponse { Ok = _shelf is not null };
+
             case "show":
                 ShowWindow();
                 return new IpcResponse { Ok = true };
@@ -573,6 +585,23 @@ public partial class App : Application
 
     private void ShowWindow() => Window.ShowAndActivate();
 
+    /// <summary>Abre la bandeja de arrastre (una sola, a la derecha de la pantalla) y añade lo que se le pase.</summary>
+    internal void ShowShelf(IEnumerable<string>? add = null)
+    {
+        if (_shelf is null)
+        {
+            _shelf = new Views.ShelfWindow(this);
+            _shelf.Closed += (_, _) => _shelf = null;
+        }
+
+        if (add is not null)
+        {
+            _shelf.Add(add);
+        }
+
+        _shelf.ShowWindow();
+    }
+
     private IReadOnlyList<TrayMenuItem> BuildTrayMenu()
     {
         bool anyRunning = Queue.Jobs.Any(j => j.State == CopyJobState.Running);
@@ -580,6 +609,7 @@ public partial class App : Application
         return
         [
             new(L.Get("Tray_Open"), ShowWindow),
+            new(L.Get("Tray_Shelf"), () => ShowShelf()),
             new(L.Get(Settings.Enabled ? "Tray_Disable" : "Tray_Enable"), () => SetEnabled(!Settings.Enabled, notify: true)),
             TrayMenuItem.Separator,
             new(L.Get("Tray_PauseAll"), Queue.PauseAll, Enabled: anyRunning),

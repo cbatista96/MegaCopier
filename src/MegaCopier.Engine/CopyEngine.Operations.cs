@@ -122,6 +122,7 @@ public sealed partial class CopyEngine
         Log(LogLevel.Info, $"Comprobar {totalFiles} archivos de {lists.Count} listas de sumas ({FormatBytes(totalBytes)}).");
 
         byte[] buffer = new byte[CopyOptions.MiB];
+        using var readAhead = ReadAhead.TryCreate(Files, _options);
         while (Files.TakeNext() is { } item)
         {
             cancellationToken.ThrowIfCancellationRequested();
@@ -143,7 +144,7 @@ public sealed partial class CopyEngine
                     string message = unprotected ? "Sin hash guardado: no se comprueba" : "Modificado después de guardar su hash: no se comprueba";
                     if (_options.SaveHashStream)
                     {
-                        string fresh = HashWithProgress(item.Source, entry.Algorithm, buffer, progress, cancellationToken);
+                        string fresh = HashWithProgress(item, entry.Algorithm, buffer, progress, readAhead, cancellationToken);
                         WriteHashStream(item.Source, fresh, item.LastWriteUtc, entry.Algorithm);
                         message = unprotected ? "Sin hash guardado: ahora protegido" : "Modificado después de guardar su hash: hash renovado";
                     }
@@ -153,7 +154,7 @@ public sealed partial class CopyEngine
                 }
                 else
                 {
-                    string actual = HashWithProgress(item.Source, entry.Algorithm, buffer, progress, cancellationToken);
+                    string actual = HashWithProgress(item, entry.Algorithm, buffer, progress, readAhead, cancellationToken);
                     item.SourceHash = actual;
                     if (string.Equals(actual, entry.Hash, StringComparison.OrdinalIgnoreCase))
                     {
@@ -183,10 +184,18 @@ public sealed partial class CopyEngine
         return result;
     }
 
-    private string HashWithProgress(string path, FileHashAlgorithm algorithm, byte[] buffer, ProgressTracker progress, CancellationToken cancellationToken)
+    private string HashWithProgress(TransferItem item, FileHashAlgorithm algorithm, byte[] buffer, ProgressTracker progress, ReadAhead? readAhead, CancellationToken cancellationToken)
     {
         var hasher = FileHasher.Create(algorithm) ?? throw new CryptographicException($"Algoritmo no soportado: {algorithm}");
-        using var stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read, 1, FileOptions.SequentialScan);
+        if (readAhead?.Take(item, cancellationToken) is { } data)
+        {
+            // Ya leído en lote (IoRing) mientras se calculaban los anteriores.
+            hasher.Append(data);
+            progress.AddTransferred(data.Length);
+            return hasher.Finish();
+        }
+
+        using var stream = new FileStream(item.Source, FileMode.Open, FileAccess.Read, FileShare.Read, 1, FileOptions.SequentialScan);
         int read;
         while ((read = stream.Read(buffer)) > 0)
         {

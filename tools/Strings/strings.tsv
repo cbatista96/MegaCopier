@@ -766,3 +766,29 @@ Settings_TuneNone	Todavía no se ha medido ningún disco.	No drive has been meas
 Settings_TuneDisk	Disco 	Disk 
 Settings_TuneProfile	{0}: bloques de {1} MB, {2} a la vez ({3:N0} MB/s)	{0}: {1} MB blocks, {2} at a time ({3:N0} MB/s)
 Settings_TuneMeasuring	Midiendo {0} ({1} de {2})…	Measuring {0} ({1} of {2})…
+Tool_Timeline.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Línea de tiempo de la cola	Queue timeline
+Timeline_Title.Text	Línea de tiempo	Timeline
+Timeline_Info.Text	Previsión con la velocidad de cada disco. Las copias que usan el mismo disco van de una en una.	Forecast from each disk's speed. Transfers that use the same disk run one at a time.
+Timeline_Empty.Text	No hay copias en marcha ni en cola.	No transfers running or queued.
+Timeline_Summary	Todo habrá terminado hacia {0} (dentro de {1}).	Everything should be done by {0} (in {1}).
+Timeline_Now	Ahora	Now
+Timeline_Tomorrow	mañana {0}	tomorrow {0}
+Timeline_Running	En marcha · fin previsto: {0} (quedan {1})	Running · expected to end: {0} ({1} left)
+Timeline_Paused	En pausa · si continúa ahora, fin previsto: {0}	Paused · if resumed now, expected to end: {0}
+Timeline_Queued	En cola · empieza: {0} · fin previsto: {1} (dura {2})	Queued · starts: {0} · expected to end: {1} (takes {2})
+Timeline_Scheduled	Programada · empieza: {0} · fin previsto: {1} (dura {2})	Scheduled · starts: {0} · expected to end: {1} (takes {2})
+Timeline_Measuring	aún se está midiendo su tamaño	its size is still being measured
+Tool_Shelf.Text	Bandeja de arrastre	Drop shelf
+Tray_Shelf	Bandeja de arrastre	Drop shelf
+Shelf_WindowTitle	Bandeja de arrastre de MegaCopier	MegaCopier drop shelf
+Shelf_Title.Text	Bandeja de arrastre	Drop shelf
+Shelf_Empty.Text	Suelta aquí archivos y carpetas de cualquier sitio. Luego cópialos o muévelos todos juntos, o arrástralos fuera.	Drop files and folders here from anywhere. Then copy or move them all together, or drag them out.
+Shelf_DropCaption	Añadir a la bandeja	Add to the shelf
+Shelf_CopyTo.Text	Copiar a…	Copy to…
+Shelf_MoveTo.Text	Mover a…	Move to…
+Shelf_Clear.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Vaciar la bandeja	Empty the shelf
+Shelf_Remove.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Quitar de la bandeja	Remove from the shelf
+Shelf_One	1 elemento	1 item
+Shelf_Many	{0} elementos	{0} items
+Shelf_RemoveNamed	Quitar «{0}» de la bandeja	Remove "{0}" from the shelf
+Destinations_NoneChosen.Text	Marca al menos un destino (o añade una carpeta).	Tick at least one destination (or add a folder).

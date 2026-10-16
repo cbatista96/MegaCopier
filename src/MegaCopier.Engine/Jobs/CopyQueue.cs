@@ -219,7 +219,8 @@ public sealed class CopyJob
 
     public string? Error { get; private set; }
 
-    internal IReadOnlySet<string> Devices { get; }
+    /// <summary>Discos físicos que usa (claves de <see cref="Native.VolumeInfo"/>): en el mismo disco, de uno en uno.</summary>
+    public IReadOnlySet<string> Devices { get; }
 
     public bool IsActive => State is CopyJobState.Queued or CopyJobState.Running or CopyJobState.Paused;
 
@@ -411,6 +412,10 @@ public sealed class CopyQueue
     }
 
     private IReadOnlyList<string> _fastDevices = [];
+
+    /// <summary>Claves de disco de <see cref="FastDevices"/> (para prever la cola con sus mismas reglas).</summary>
+    public IReadOnlySet<string> FastDeviceKeys => _fastKeys;
+
     private HashSet<string> _fastKeys = new(StringComparer.OrdinalIgnoreCase);
 
     public event Action<CopyJob>? JobAdded;

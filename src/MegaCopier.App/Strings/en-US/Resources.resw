@@ -772,4 +772,30 @@
   <data name="Settings_TuneDisk" xml:space="preserve"><value>Disk </value></data>
   <data name="Settings_TuneProfile" xml:space="preserve"><value>{0}: {1} MB blocks, {2} at a time ({3:N0} MB/s)</value></data>
   <data name="Settings_TuneMeasuring" xml:space="preserve"><value>Measuring {0} ({1} of {2})…</value></data>
+  <data name="Tool_Timeline.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Queue timeline</value></data>
+  <data name="Timeline_Title.Text" xml:space="preserve"><value>Timeline</value></data>
+  <data name="Timeline_Info.Text" xml:space="preserve"><value>Forecast from each disk&apos;s speed. Transfers that use the same disk run one at a time.</value></data>
+  <data name="Timeline_Empty.Text" xml:space="preserve"><value>No transfers running or queued.</value></data>
+  <data name="Timeline_Summary" xml:space="preserve"><value>Everything should be done by {0} (in {1}).</value></data>
+  <data name="Timeline_Now" xml:space="preserve"><value>Now</value></data>
+  <data name="Timeline_Tomorrow" xml:space="preserve"><value>tomorrow {0}</value></data>
+  <data name="Timeline_Running" xml:space="preserve"><value>Running · expected to end: {0} ({1} left)</value></data>
+  <data name="Timeline_Paused" xml:space="preserve"><value>Paused · if resumed now, expected to end: {0}</value></data>
+  <data name="Timeline_Queued" xml:space="preserve"><value>Queued · starts: {0} · expected to end: {1} (takes {2})</value></data>
+  <data name="Timeline_Scheduled" xml:space="preserve"><value>Scheduled · starts: {0} · expected to end: {1} (takes {2})</value></data>
+  <data name="Timeline_Measuring" xml:space="preserve"><value>its size is still being measured</value></data>
+  <data name="Tool_Shelf.Text" xml:space="preserve"><value>Drop shelf</value></data>
+  <data name="Tray_Shelf" xml:space="preserve"><value>Drop shelf</value></data>
+  <data name="Shelf_WindowTitle" xml:space="preserve"><value>MegaCopier drop shelf</value></data>
+  <data name="Shelf_Title.Text" xml:space="preserve"><value>Drop shelf</value></data>
+  <data name="Shelf_Empty.Text" xml:space="preserve"><value>Drop files and folders here from anywhere. Then copy or move them all together, or drag them out.</value></data>
+  <data name="Shelf_DropCaption" xml:space="preserve"><value>Add to the shelf</value></data>
+  <data name="Shelf_CopyTo.Text" xml:space="preserve"><value>Copy to…</value></data>
+  <data name="Shelf_MoveTo.Text" xml:space="preserve"><value>Move to…</value></data>
+  <data name="Shelf_Clear.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Empty the shelf</value></data>
+  <data name="Shelf_Remove.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Remove from the shelf</value></data>
+  <data name="Shelf_One" xml:space="preserve"><value>1 item</value></data>
+  <data name="Shelf_Many" xml:space="preserve"><value>{0} items</value></data>
+  <data name="Shelf_RemoveNamed" xml:space="preserve"><value>Remove &quot;{0}&quot; from the shelf</value></data>
+  <data name="Destinations_NoneChosen.Text" xml:space="preserve"><value>Tick at least one destination (or add a folder).</value></data>
 </root>

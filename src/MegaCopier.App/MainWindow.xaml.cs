@@ -96,6 +96,12 @@ public sealed partial class MainWindow : Window
         Panel.ExpandRequested += () => SetExpanded(!_expanded, userChoice: true);
         HistoryView.CloseRequested += ShowJobs;
         SettingsView.CloseRequested += ShowJobs;
+        TimelineView.CloseRequested += ShowJobs;
+        TimelineView.JobChosen += job =>
+        {
+            ShowJobs();
+            Select(job);
+        };
         JobList.ItemsSource = Jobs;
         Root.Loaded += (_, _) => NameIconButtons(Root);
         Jobs.CollectionChanged += (_, _) => UpdateLayoutState();
@@ -237,8 +243,13 @@ public sealed partial class MainWindow : Window
     {
         HistoryView.Visibility = Visibility.Collapsed;
         SettingsView.Visibility = Visibility.Collapsed;
+        TimelineView.Visibility = Visibility.Collapsed;
         UpdateLayoutState();
     }
+
+    /// <summary>Hay una página (Historial, Ajustes, Línea de tiempo) encima de las copias.</summary>
+    private bool PageOpen => HistoryView.Visibility == Visibility.Visible || SettingsView.Visibility == Visibility.Visible
+        || TimelineView.Visibility == Visibility.Visible;
 
     /// <summary>Aplica el tema: claro/oscuro de los controles, fondo de la ventana y barra de título.</summary>
     internal void ApplyTheme(ThemeDefinition theme, bool reloadResources = false)
@@ -269,8 +280,7 @@ public sealed partial class MainWindow : Window
     {
         var mode = _app.Settings.FinishWindow;
         bool problems = Jobs.Any(j => j.HasProblem || j.IsInterrupted);
-        if (mode == FinishWindow.KeepOpen || (mode == FinishWindow.Auto && problems) || HistoryView.Visibility == Visibility.Visible
-            || SettingsView.Visibility == Visibility.Visible)
+        if (mode == FinishWindow.KeepOpen || (mode == FinishWindow.Auto && problems) || PageOpen)
         {
             return;
         }
@@ -507,7 +517,7 @@ public sealed partial class MainWindow : Window
 
     private void ApplySidebar()
     {
-        bool page = HistoryView.Visibility == Visibility.Visible || SettingsView.Visibility == Visibility.Visible;
+        bool page = PageOpen;
         bool show = _expanded && !page && (_narrow ? _sidebarOverlayOpen : _sidebarWide);
         Sidebar.Visibility = show ? Visibility.Visible : Visibility.Collapsed;
         if (_narrow)
@@ -553,7 +563,7 @@ public sealed partial class MainWindow : Window
     /// <summary>Sin copias, con copias, o una página (Historial, Ajustes) encima.</summary>
     private void UpdateLayoutState()
     {
-        bool page = HistoryView.Visibility == Visibility.Visible || SettingsView.Visibility == Visibility.Visible;
+        bool page = PageOpen;
         bool empty = Jobs.Count == 0;
         EmptyState.Visibility = !page && empty ? Visibility.Visible : Visibility.Collapsed;
         Detail.Visibility = !page && !empty ? Visibility.Visible : Visibility.Collapsed;
@@ -614,6 +624,7 @@ public sealed partial class MainWindow : Window
         {
             string where = HistoryView.Visibility == Visibility.Visible ? "Historial"
                 : SettingsView.Visibility == Visibility.Visible ? "Ajustes"
+                : TimelineView.Visibility == Visibility.Visible ? "Línea de tiempo"
                 : _expanded ? "Completa/" + (Tabs.SelectedItem as SelectorBarItem)?.Text : "Compacta";
             TextAudit.Run(Root, $"{where} {AppWindow.Size.Width}px");
         }
@@ -701,9 +712,22 @@ public sealed partial class MainWindow : Window
         }
     }
 
+    private void Shelf_Click(object sender, RoutedEventArgs e) => _app.ShowShelf();
+
+    private void Timeline_Click(object sender, RoutedEventArgs e)
+    {
+        HistoryView.Visibility = Visibility.Collapsed;
+        SettingsView.Visibility = Visibility.Collapsed;
+        TimelineView.Show(Jobs);
+        TimelineView.Visibility = Visibility.Visible;
+        EnsureRoomForPage();
+        UpdateLayoutState();
+    }
+
     private void History_Click(object sender, RoutedEventArgs e)
     {
         SettingsView.Visibility = Visibility.Collapsed;
+        TimelineView.Visibility = Visibility.Collapsed;
         HistoryView.Reload();
         HistoryView.Visibility = Visibility.Visible;
         EnsureRoomForPage();
@@ -713,6 +737,7 @@ public sealed partial class MainWindow : Window
     private void Settings_Click(object sender, RoutedEventArgs e)
     {
         HistoryView.Visibility = Visibility.Collapsed;
+        TimelineView.Visibility = Visibility.Collapsed;
         SettingsView.Load();
         SettingsView.Visibility = Visibility.Visible;
         EnsureRoomForPage();
@@ -1011,7 +1036,7 @@ public sealed partial class MainWindow : Window
     // Al terminar
 
 
-    private async Task PickDestinationAndCopy(IReadOnlyList<string> sources, bool move)
+    internal async Task<bool> PickDestinationAndCopy(IReadOnlyList<string> sources, bool move)
     {
         // Diálogo de destinos: favoritos y recientes marcables, añadir carpetas, mover y programar.
         var options = new List<string>();
@@ -1048,6 +1073,7 @@ public sealed partial class MainWindow : Window
         DestinationsPassword.Password = "";
         DestinationsPassword2.Password = "";
         DestinationsPasswordInfo.Text = L.Get("Destinations_PasswordHint");
+        DestinationsNone.Visibility = Visibility.Collapsed;
         DestinationsSchedule.IsChecked = false;
         DestinationsWhen.Visibility = Visibility.Collapsed;
         var later = DateTime.Now.AddHours(1);
@@ -1059,7 +1085,7 @@ public sealed partial class MainWindow : Window
         {
             if (await Pickers.PickFolderAsync(L.Get(move ? "Picker_MoveHere" : "Picker_CopyHere")) is not { } first)
             {
-                return;
+                return false;
             }
 
             DestinationsList.Items.Add(DestinationItem(first, favorite: false));
@@ -1070,13 +1096,13 @@ public sealed partial class MainWindow : Window
         DestinationsDialog.RequestedTheme = Root.RequestedTheme;
         if (await DestinationsDialog.ShowAsync() != ContentDialogResult.Primary)
         {
-            return;
+            return false;
         }
 
         var chosen = DestinationsList.SelectedItems.OfType<ListViewItem>().Select(i => (string)i.Tag).ToList();
         if (chosen.Count == 0)
         {
-            return;
+            return false;
         }
 
         DateTime? startAt = null;
@@ -1099,6 +1125,8 @@ public sealed partial class MainWindow : Window
             Encrypt = DestinationsEncrypt.IsChecked == true ? true : null,
             Password = DestinationsEncrypt.IsChecked == true ? DestinationsPassword.Password : null,
         });
+
+        return true;
     }
 
     /// <summary>La carpeta es uno de los orígenes o está dentro de uno (no tiene sentido copiar ahí).</summary>
@@ -1110,10 +1138,15 @@ public sealed partial class MainWindow : Window
 
     private static ListViewItem DestinationItem(string folder, bool favorite, bool explorer = false)
     {
-        var row = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 8 };
+        // Rutas enteras (en varias líneas si hace falta): para elegir destino hay que verlas completas.
+        var row = new Grid { ColumnSpacing = 8 };
+        row.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+        row.ColumnDefinitions.Add(new ColumnDefinition());
         row.Children.Add(new FontIcon { Glyph = explorer ? "" : favorite ? "" : "", FontSize = 14, VerticalAlignment = VerticalAlignment.Center });
-        row.Children.Add(new TextBlock { Text = folder, VerticalAlignment = VerticalAlignment.Center, TextTrimming = TextTrimming.CharacterEllipsis });
-        var item = new ListViewItem { Content = row, Tag = folder };
+        var text = new TextBlock { Text = folder, VerticalAlignment = VerticalAlignment.Center, TextWrapping = TextWrapping.Wrap };
+        Grid.SetColumn(text, 1);
+        row.Children.Add(text);
+        var item = new ListViewItem { Content = row, Tag = folder, HorizontalContentAlignment = HorizontalAlignment.Stretch };
         Microsoft.UI.Xaml.Automation.AutomationProperties.SetName(item, folder);
         return item;
     }
@@ -1265,6 +1298,16 @@ public sealed partial class MainWindow : Window
     /// <summary>Con cifrado, la contraseña debe tener 8 caracteres o más y repetirse igual (si no, el diálogo sigue abierto).</summary>
     private void Destinations_PrimaryClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
     {
+        // Sin destino marcado, "Empezar" no puede cerrar el diálogo sin hacer nada.
+        if (DestinationsList.SelectedItems.Count == 0)
+        {
+            args.Cancel = true;
+            DestinationsNone.Foreground = ThemeManager.ErrorBrush;
+            DestinationsNone.Visibility = Visibility.Visible;
+            return;
+        }
+
+        DestinationsNone.Visibility = Visibility.Collapsed;
         if (DestinationsEncrypt.IsChecked != true)
         {
             return;

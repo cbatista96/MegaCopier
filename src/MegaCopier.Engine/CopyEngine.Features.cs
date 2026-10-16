@@ -490,6 +490,7 @@ public sealed partial class CopyEngine
         Log(LogLevel.Info, $"Calcular {FileHasher.Extension(algorithm).ToUpperInvariant()} de {totalFiles} archivos ({FormatBytes(totalBytes)}).");
 
         byte[] buffer = new byte[CopyOptions.MiB];
+        using var readAhead = ReadAhead.TryCreate(Files, _options);
         var lines = new StringBuilder();
         while (Files.TakeNext() is { } item)
         {
@@ -498,7 +499,7 @@ public sealed partial class CopyEngine
             progress.BeginFile(item.Source, item.Length);
             try
             {
-                string hash = HashWithProgress(item.Source, algorithm, buffer, progress, cancellationToken);
+                string hash = HashWithProgress(item, algorithm, buffer, progress, readAhead, cancellationToken);
                 item.SourceHash = hash;
                 if (_options.SaveHashStream)
                 {
