@@ -117,6 +117,12 @@ internal static class Cli
                 case "--delta":
                     options.DeltaCopy = true;
                     break;
+                case "--organize":
+                    options.Mode = CopyMode.OrganizeByDate;
+                    break;
+                case "--skip-duplicates":
+                    options.SkipDuplicates = true;
+                    break;
                 case "--crash-after-mb":
                     crashAfter = NextInt(args, ref i) * (long)CopyOptions.MiB;
                     break;
@@ -645,6 +651,8 @@ internal static class Cli
               --atomic               Todo o nada: la carpeta solo aparece cuando está completa
               --rescue               Modo rescate: salva lo legible de un disco dañado (lo ilegible en ceros)
               --delta                Al reemplazar archivos grandes, escribe solo los bloques que cambiaron
+              --organize             Organiza fotos y vídeos en carpetas añoño-mes por la fecha de toma
+              --skip-duplicates      No copia lo que ya está en el destino (mismo contenido, cualquier nombre)
               --crash-after-mb <n>   [prueba] Mata el proceso tras confirmar n MB de un archivo
 
             Ctrl+C pausa la copia; 'resume' continúa desde el último bloque confirmado.

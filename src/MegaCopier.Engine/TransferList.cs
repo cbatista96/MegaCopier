@@ -45,6 +45,9 @@ public enum PlannedAction
 
     /// <summary>El usuario pulsó «Saltar» durante la copia.</summary>
     SkipByUser,
+
+    /// <summary>El mismo contenido ya está en el destino (con otro nombre o en otra carpeta).</summary>
+    SkipDuplicate,
 }
 
 /// <summary>Un archivo del trabajo, observable desde la interfaz.</summary>

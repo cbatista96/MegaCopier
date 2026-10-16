@@ -44,6 +44,8 @@ public sealed class CopyRules
 
     public bool DeltaCopy { get; set; }
 
+    public bool SkipDuplicates { get; set; }
+
     public static CopyRules From(Engine.Jobs.CopyJobRecord r) => new()
     {
         Filter = r.Filter,
@@ -64,6 +66,7 @@ public sealed class CopyRules
         AllOrNothing = r.AllOrNothing,
         RescueMode = r.RescueMode,
         DeltaCopy = r.DeltaCopy,
+        SkipDuplicates = r.SkipDuplicates,
     };
 
     public void ApplyTo(Engine.Jobs.CopyJobRecord r)
@@ -86,6 +89,7 @@ public sealed class CopyRules
         r.AllOrNothing = AllOrNothing;
         r.RescueMode = RescueMode;
         r.DeltaCopy = DeltaCopy;
+        r.SkipDuplicates = SkipDuplicates;
     }
 }
 
@@ -151,6 +155,7 @@ public sealed partial class RulesEditor : UserControl
         AllOrNothingBox.IsChecked = rules.AllOrNothing;
         RescueBox.IsChecked = rules.RescueMode;
         DeltaBox.IsChecked = rules.DeltaCopy;
+        DuplicatesBox.IsChecked = rules.SkipDuplicates;
         UpdatePreview();
         _loading = false;
     }
@@ -188,6 +193,7 @@ public sealed partial class RulesEditor : UserControl
         AllOrNothing = AllOrNothingBox.IsChecked == true,
         RescueMode = RescueBox.IsChecked == true,
         DeltaCopy = DeltaBox.IsChecked == true,
+        SkipDuplicates = DuplicatesBox.IsChecked == true,
     };
 
     private static List<string> Masks(string text) =>

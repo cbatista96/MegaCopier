@@ -40,7 +40,7 @@ public sealed partial class CopyEngine
             _result = result;
             _token = token;
             // Enlaces duros: el segundo nombre de un archivo debe ver que el primero ya se copió, así que de uno en uno.
-            int count = engine._options.DryRun || engine._options.PreserveHardLinks ? 0 : Math.Clamp(engine._options.ParallelSmallFiles, 1, 16) - 1;
+            int count = engine._options.DryRun || engine._options.PreserveHardLinks || engine._options.SkipDuplicates ? 0 : Math.Clamp(engine._options.ParallelSmallFiles, 1, 16) - 1;
             for (int i = 0; i < count; i++)
             {
                 var thread = new Thread(Work) { IsBackground = true, Name = $"MegaCopier: archivos pequeños {i + 1}" };
