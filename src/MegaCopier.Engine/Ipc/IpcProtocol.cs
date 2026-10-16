@@ -44,6 +44,9 @@ public sealed class IpcRequest
 
     /// <summary>Simular: decir qué se haría sin cambiar nada.</summary>
     public bool? DryRun { get; set; }
+
+    /// <summary>Al enviar a otro equipo: el código que muestra su MegaCopier.</summary>
+    public string? PeerCode { get; set; }
 }
 
 public sealed class IpcResponse

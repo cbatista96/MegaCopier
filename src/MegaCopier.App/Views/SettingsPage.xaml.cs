@@ -148,6 +148,7 @@ public sealed partial class SettingsPage : UserControl
         LoadFavorites();
         LoadTasks();
         LoadGuard();
+        LoadReceive();
         ScheduleLimitBox.SelectedItem = ScheduleLimitBox.Items.OfType<ComboBoxItem>().FirstOrDefault(i => (string)i.Tag == s.ScheduleLimitMBps.ToString()) ?? ScheduleLimitBox.Items[0];
         ScheduleFromBox.Time = s.ScheduleFrom;
         ScheduleToBox.Time = s.ScheduleTo;
@@ -533,6 +534,53 @@ public sealed partial class SettingsPage : UserControl
         _app.Settings.Save();
         _app.Guard?.Check(folder); // la primera vez se protege en seguida
         LoadGuard();
+    }
+
+    /// <summary>Recibir de otros equipos: interruptor, código, estado y carpeta.</summary>
+    private void LoadReceive()
+    {
+        bool loading = _loading;
+        _loading = true;
+        ReceiveToggle.IsOn = _app.Settings.ReceiveEnabled;
+        _loading = loading;
+        var peers = _app.Peers;
+        ReceivePanel.Visibility = _app.Settings.ReceiveEnabled ? Visibility.Visible : Visibility.Collapsed;
+        ReceiveCodeText.Text = peers?.Code ?? "";
+        ReceiveFolderText.Text = L.F("Settings_PeerFolderIs", peers?.Folder ?? "");
+        ToolTipService.SetToolTip(ReceiveFolderText, peers?.Folder);
+        ReceiveInfo.Text = peers is { Error: { } error } ? L.F("Settings_PeerError", error)
+            : peers?.IsRunning == true ? L.F("Settings_PeerListening", Environment.MachineName, peers.Port)
+            : "";
+    }
+
+    private void Receive_Toggled(object sender, RoutedEventArgs e)
+    {
+        if (_loading)
+        {
+            return;
+        }
+
+        _app.Settings.ReceiveEnabled = ReceiveToggle.IsOn;
+        _app.Settings.Save();
+        _app.Peers?.Apply();
+        LoadReceive();
+    }
+
+    private void NewCode_Click(object sender, RoutedEventArgs e)
+    {
+        _app.Peers?.NewCode();
+        LoadReceive();
+    }
+
+    private async void ReceiveFolder_Click(object sender, RoutedEventArgs e)
+    {
+        if (await Pickers.PickFolderAsync() is { } folder)
+        {
+            _app.Settings.ReceiveFolder = folder;
+            _app.Settings.Save();
+            _app.Peers?.Apply();
+            LoadReceive();
+        }
     }
 
     private static Button IconButton(string glyph, string name)

@@ -678,3 +678,38 @@ Locked_Title	Archivos en uso	Files in use
 Locked_Cancelled	No se dio permiso de administrador: los archivos en uso no se copiaron.	Administrator permission was not given: the files in use were not copied.
 Locked_Done	{0} archivos en uso copiados desde una instantánea del disco.	{0} files in use copied from a snapshot of the drive.
 Locked_Partial	{0} copiados desde una instantánea; los demás no se pudieron copiar: {1}	{0} copied from a snapshot; the rest could not be copied: {1}
+Settings_Peer.Text	Recibir de otros equipos	Receive from other PCs
+Settings_PeerTitle.Text	Recibir archivos de otros equipos con MegaCopier	Receive files from other PCs with MegaCopier
+Settings_PeerDescription.Text	Por la red de casa o de la oficina, sin carpetas compartidas. Quien envía necesita el código de abajo; la conexión va cifrada y cada archivo se comprueba al llegar. La primera vez, Windows puede pedir permiso en el cortafuegos.	Over your home or office network, without shared folders. The sender needs the code below; the connection is encrypted and every file is checked on arrival. The first time, Windows may ask for firewall permission.
+Settings_PeerCode.Text	Código para enviarte archivos:	Code to send you files:
+Settings_PeerNewCode.Text	Nuevo código	New code
+Settings_PeerFolder.Text	Cambiar carpeta…	Change folder…
+Settings_PeerFolderIs	Se guardan en {0}	Saved in {0}
+Settings_PeerListening	Esperando envíos en «{0}» (puerto {1}).	Waiting for transfers on "{0}" (port {1}).
+Settings_PeerError	No se pudo empezar a recibir: {0}	Could not start receiving: {0}
+Peer_ReceivingTitle	Recibiendo archivos	Receiving files
+Peer_Receiving	{0} te envía {1} archivos ({2}).	{0} is sending you {1} files ({2}).
+Peer_ReceivedTitle	Archivos recibidos	Files received
+Peer_Received	{0} archivos de {1}, en {2}.	{0} files from {1}, in {2}.
+Peer_RejectedTitle	Envío rechazado	Transfer rejected
+Peer_Rejected	{0} intentó enviarte archivos con un código equivocado.	{0} tried to send you files with a wrong code.
+Tool_SendFiles.Text	Enviar archivos a otro equipo…	Send files to another PC…
+Tool_SendFolder.Text	Enviar una carpeta a otro equipo…	Send a folder to another PC…
+SendDialog.Title	Enviar a otro equipo	Send to another PC
+SendDialog.PrimaryButtonText	Enviar	Send
+SendDialog.CloseButtonText	Cancelar	Cancel
+Send_SummaryOne	Enviar «{0}» a otro equipo que tenga MegaCopier recibiendo.	Send "{0}" to another PC that has MegaCopier receiving.
+Send_SummaryMany	Enviar {0} elementos a otro equipo que tenga MegaCopier recibiendo.	Send {0} items to another PC that has MegaCopier receiving.
+Send_Found.Text	Equipos encontrados en la red:	PCs found on the network:
+Send_Searching	Buscando…	Searching…
+Send_NoneFound	No se encontró ninguno: escribe su nombre o su IP.	None found: type its name or IP.
+Send_Host.Header	Equipo (nombre o IP)	PC (name or IP)
+Send_Host.PlaceholderText	PC-SALON o 192.168.1.20	LIVINGROOM-PC or 192.168.1.20
+Send_Code.Header	Código que muestra ese equipo en Ajustes	Code shown by that PC in Settings
+Send_Code.PlaceholderText	XXXX-XXXX-XXXX	XXXX-XXXX-XXXX
+Job_TitleSend	Enviar {0}	Send {0}
+Job_TitleSending	Enviando {0}	Sending {0}
+Job_TitleSent	Enviado {0}	Sent {0}
+Job_StateSending	Enviando	Sending
+Job_FilesSentOne	{0} archivo enviado	{0} file sent
+Job_FilesSentMany	{0} archivos enviados	{0} files sent

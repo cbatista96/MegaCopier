@@ -46,12 +46,15 @@ public static class PeerProtocol
         new([.. code.ToUpperInvariant().Where(char.IsLetterOrDigit).Select(c => c switch { 'O' => '0', 'I' or 'L' => '1', _ => c })]);
 
     /// <summary>Certificado propio (autofirmado) del receptor; la confianza la da el código, no una autoridad.</summary>
-    public static X509Certificate2 CreateCertificate(string name)
+    public static X509Certificate2 CreateCertificate(string name) => X509CertificateLoader.LoadPkcs12(CreateCertificatePfx(name), null);
+
+    /// <summary>El mismo certificado como archivo .pfx (para guardarlo y usar siempre el mismo).</summary>
+    public static byte[] CreateCertificatePfx(string name)
     {
         using var key = ECDsa.Create(ECCurve.NamedCurves.nistP256);
         var request = new CertificateRequest($"CN=MegaCopier {name}", key, HashAlgorithmName.SHA256);
         using var certificate = request.CreateSelfSigned(DateTimeOffset.UtcNow.AddDays(-1), DateTimeOffset.UtcNow.AddYears(10));
-        return X509CertificateLoader.LoadPkcs12(certificate.Export(X509ContentType.Pkcs12), null);
+        return certificate.Export(X509ContentType.Pkcs12);
     }
 
     /// <summary>Prueba de que se conoce el código, ligada a esta conexión (reto + certificado) y a un lado.</summary>

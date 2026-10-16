@@ -87,6 +87,7 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
         JobOperation.Test => "Test",
         JobOperation.Delete => "Delete",
         JobOperation.Hash => "Hash",
+        JobOperation.Send => "Send",
         _ when Job.Record.DryRun => "Simulate",
         _ when Job.Record.Mode == CopyMode.Mirror && !IsMove => "Sync",
         _ => IsMove ? "Move" : "Copy",
@@ -94,12 +95,12 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
 
     private string Past => Kind switch
     {
-        "Copy" => "Copied", "Move" => "Moved", "Test" => "Tested", "Hash" => "Hashed", "Simulate" => "Simulated", "Sync" => "Synced", _ => "Deleted",
+        "Copy" => "Copied", "Move" => "Moved", "Test" => "Tested", "Hash" => "Hashed", "Send" => "Sent", "Simulate" => "Simulated", "Sync" => "Synced", _ => "Deleted",
     };
 
     private string Progressive => Kind switch
     {
-        "Copy" => "Copying", "Move" => "Moving", "Test" => "Testing", "Hash" => "Hashing", "Simulate" => "Simulating", "Sync" => "Syncing", _ => "Deleting",
+        "Copy" => "Copying", "Move" => "Moving", "Test" => "Testing", "Hash" => "Hashing", "Send" => "Sending", "Simulate" => "Simulating", "Sync" => "Syncing", _ => "Deleting",
     };
 
     /// <summary>Programada para más tarde.</summary>
@@ -146,6 +147,7 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
         _ when Job.Record.Operation == JobOperation.Test => "\uE9D5",           // comprobar
         _ when Job.Record.Operation == JobOperation.Delete => "\uE74D",         // borrar
         _ when Job.Record.Operation == JobOperation.Hash => "\uE8EF",           // crear sumas
+        _ when Job.Record.Operation == JobOperation.Send => "\uE724",           // enviar a otro equipo
         _ when Job.Record.DryRun => "\uE7B3",                                   // simular
         _ when Kind == "Sync" => "\uE895",                                      // sincronizar
         _ => IsMove ? "\uE8DE" : "\uE8C8",                                      // mover / copiar

@@ -257,6 +257,20 @@ public sealed class AppSettings
     /// <summary>Cada cuántos días se comprueba cada carpeta vigilada.</summary>
     public int GuardIntervalDays { get; set; } = 7;
 
+    /// <summary>Recibir archivos de otros equipos con MegaCopier.</summary>
+    public bool ReceiveEnabled { get; set; }
+
+    /// <summary>Dónde se guardan (vacío = DescargasMegaCopier).</summary>
+    public string ReceiveFolder { get; set; } = "";
+
+    /// <summary>Código que hay que dar a quien envía.</summary>
+    public string ReceiveCode { get; set; } = "";
+
+    public int ReceivePort { get; set; } = Engine.Network.PeerProtocol.DefaultPort;
+
+    /// <summary>Último equipo al que se envió (para proponerlo la próxima vez).</summary>
+    public string LastPeer { get; set; } = "";
+
     /// <summary>Al arrancar, continuar sin preguntar las copias que quedaron a medias.</summary>
     public bool AutoResumeInterrupted { get; set; }
 

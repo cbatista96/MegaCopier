@@ -26,6 +26,8 @@ public partial class App : Application
     internal IntegrityGuard? Guard { get; private set; }
 
     internal Comfort? Comfort { get; private set; }
+
+    internal PeerService? Peers { get; private set; }
     private MainWindow? _window;
     private bool _exiting;
 
@@ -118,6 +120,8 @@ public partial class App : Application
         Queue.JobFinished += job => Dispatcher.TryEnqueue(() => OnJobFinished(job));
         Guard = new IntegrityGuard(this);
         Comfort = new Comfort(this);
+        Peers = new PeerService(this);
+        Peers.Apply();
 
         _taskbar = new TaskbarProgress(Window.Handle);
         _statusTimer = Dispatcher.CreateTimer();
@@ -267,6 +271,7 @@ public partial class App : Application
             var options = Settings.NewJobOptions(request);
             options.Operation = operation;
             options.SecureDelete = request.SecureDelete ?? false;
+            options.PeerCode = request.PeerCode ?? "";
             if (operation != JobOperation.Copy)
             {
                 options.CheckFreeSpace = false;
@@ -529,6 +534,12 @@ public partial class App : Application
 
                 return new IpcResponse { Ok = true, JobId = Guard?.Check(folder)?.Id };
             }
+
+            case "debug-send" when TestMode:
+                // Solo pruebas: abrir el diálogo de enviar a otro equipo con estos orígenes.
+                _ = Window.SendToPeerAsync(request.Sources);
+                ShowWindow();
+                return new IpcResponse { Ok = true };
 
             case "debug-finish" when TestMode:
                 // Solo pruebas: elegir "Al terminar" (Destination = Sleep, Shutdown...) sin abrir el menú.
