@@ -116,6 +116,8 @@ public sealed partial class CopyEngine
                 return RunDelete(request, stopwatch, cancellationToken);
             case JobOperation.Hash:
                 return RunHash(request, stopwatch, cancellationToken);
+            case JobOperation.Send:
+                return RunSend(request, stopwatch, cancellationToken);
         }
 
         _destinationRoot = Path.TrimEndingDirectorySeparator(Path.GetFullPath(request.Destination));

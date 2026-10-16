@@ -41,6 +41,9 @@ public enum JobOperation
 
     /// <summary>Crear un archivo de sumas de los orígenes, sin copiar.</summary>
     Hash,
+
+    /// <summary>Enviar a otro equipo con MegaCopier por la red (destino "equipo:puerto", con <see cref="CopyOptions.PeerCode"/>).</summary>
+    Send,
 }
 
 /// <summary>Qué copia el trabajo.</summary>
@@ -137,6 +140,9 @@ public sealed class CopyOptions
     /// deshacer). Ideal para actualizar discos virtuales o archivos de correo en un disco lento.
     /// </summary>
     public bool DeltaCopy { get; set; }
+
+    /// <summary>Al enviar a otro equipo: el código que muestra su MegaCopier.</summary>
+    public string PeerCode { get; set; } = "";
 
     /// <summary>
     /// Modo rescate (como ddrescue): ante sectores dañados del origen se lee sector a sector, se reintenta y lo
