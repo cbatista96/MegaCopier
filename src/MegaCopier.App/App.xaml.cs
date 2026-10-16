@@ -272,6 +272,8 @@ public partial class App : Application
             options.Operation = operation;
             options.SecureDelete = request.SecureDelete ?? false;
             options.PeerCode = request.PeerCode ?? "";
+            options.Encrypt = request.Encrypt ?? false;
+            options.EncryptionPassword = request.Password ?? "";
             if (operation != JobOperation.Copy)
             {
                 options.CheckFreeSpace = false;

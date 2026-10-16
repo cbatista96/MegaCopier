@@ -118,6 +118,8 @@ public sealed partial class CopyEngine
                 return RunHash(request, stopwatch, cancellationToken);
             case JobOperation.Send:
                 return RunSend(request, stopwatch, cancellationToken);
+            case JobOperation.Decrypt:
+                return RunDecrypt(request, stopwatch, cancellationToken);
         }
 
         _destinationRoot = Path.TrimEndingDirectorySeparator(Path.GetFullPath(request.Destination));
@@ -154,11 +156,22 @@ public sealed partial class CopyEngine
             plan = OrganizeByDate(plan);
         }
 
+        if (_options.Encrypt && _options.EncryptionPassword.Length == 0)
+        {
+            throw new CopyPlanException("Esta copia va cifrada: vuelve a escribir la contraseña para continuar.");
+        }
+
+        if (_options.Encrypt)
+        {
+            plan = plan with { Files = [.. plan.Files.Select(f => f with { Destination = f.Destination + EncryptedFile.Extension })] };
+        }
+
         var progress = new ProgressTracker(p => ProgressChanged?.Invoke(p), _options.ProgressInterval);
         var result = new CopyJobResult();
 
         // Mover dentro del mismo volumen: cada elemento de primer nivel se renombra de una vez, sin copiar nada.
-        var renamed = _options.Move && !_options.DryRun ? RenameWholeSources(request, plan, result) : [];
+        // (Con cifrado nunca: renombrar dejaría los archivos sin cifrar.)
+        var renamed = _options.Move && !_options.DryRun && !_options.Encrypt ? RenameWholeSources(request, plan, result) : [];
 
         if (_options.CheckFreeSpace && !_options.DryRun && _options.Mode != CopyMode.FoldersOnly)
         {
@@ -401,7 +414,7 @@ public sealed partial class CopyEngine
         // Para "Deshacer": lo que reemplazó a otro archivo no se borra al deshacer (se perdería el anterior).
         item.Action = resolution.Existed ? PlannedAction.Replace : PlannedAction.Copy;
 
-        if (_options.Move && SameVolume(item.Source, target))
+        if (_options.Move && !_options.Encrypt && SameVolume(item.Source, target))
         {
             MoveByRename(item, target, result);
             return;
@@ -1010,7 +1023,8 @@ public sealed partial class CopyEngine
 
     /// <summary>Mismo tamaño y fecha (con la tolerancia de FAT/exFAT/NAS, que guardan la hora con menos precisión).</summary>
     private bool IsIdentical(FileInfo existing, PlannedFile file) =>
-        existing.Length == file.Length && (existing.LastWriteTimeUtc - file.LastWriteUtc).Duration() <= _options.TimeTolerance;
+        existing.Length == (_options.Encrypt && _options.Operation == JobOperation.Copy ? EncryptedFile.EncryptedLength(file.Length) : file.Length)
+        && (existing.LastWriteTimeUtc - file.LastWriteUtc).Duration() <= _options.TimeTolerance;
 
     private void EnsureFreeSpace(CopyPlan plan, string destination, HashSet<string> renamed)
     {

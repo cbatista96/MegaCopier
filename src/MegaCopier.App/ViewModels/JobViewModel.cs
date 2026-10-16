@@ -88,6 +88,8 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
         JobOperation.Delete => "Delete",
         JobOperation.Hash => "Hash",
         JobOperation.Send => "Send",
+        JobOperation.Decrypt => "Decrypt",
+        _ when Job.Record.Encrypt && !IsMove => "Encrypt",
         _ when Job.Record.DryRun => "Simulate",
         _ when Job.Record.Mode == CopyMode.Mirror && !IsMove => "Sync",
         _ => IsMove ? "Move" : "Copy",
@@ -95,12 +97,12 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
 
     private string Past => Kind switch
     {
-        "Copy" => "Copied", "Move" => "Moved", "Test" => "Tested", "Hash" => "Hashed", "Send" => "Sent", "Simulate" => "Simulated", "Sync" => "Synced", _ => "Deleted",
+        "Copy" => "Copied", "Move" => "Moved", "Test" => "Tested", "Hash" => "Hashed", "Send" => "Sent", "Decrypt" => "Decrypted", "Encrypt" => "Encrypted", "Simulate" => "Simulated", "Sync" => "Synced", _ => "Deleted",
     };
 
     private string Progressive => Kind switch
     {
-        "Copy" => "Copying", "Move" => "Moving", "Test" => "Testing", "Hash" => "Hashing", "Send" => "Sending", "Simulate" => "Simulating", "Sync" => "Syncing", _ => "Deleting",
+        "Copy" => "Copying", "Move" => "Moving", "Test" => "Testing", "Hash" => "Hashing", "Send" => "Sending", "Decrypt" => "Decrypting", "Encrypt" => "Encrypting", "Simulate" => "Simulating", "Sync" => "Syncing", _ => "Deleting",
     };
 
     /// <summary>Programada para más tarde.</summary>
@@ -353,7 +355,22 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
 
     public void Pause() => _queue.Pause(Job);
 
-    public void Resume() => _queue.Resume(Job);
+    /// <summary>Continuar. Una copia cifrada (o un descifrado) que perdió la contraseña al reiniciar la pide antes.</summary>
+    public async void Resume()
+    {
+        if ((Job.Record.Encrypt || Job.Record.Operation == JobOperation.Decrypt) && Job.Password.Length == 0)
+        {
+            var app = (App)Microsoft.UI.Xaml.Application.Current;
+            if (await app.Window.AskPasswordAsync(L.Get("Resume_PasswordAsk")) is not { } password)
+            {
+                return;
+            }
+
+            Job.Password = password;
+        }
+
+        _queue.Resume(Job);
+    }
 
     /// <summary>La simulación terminó: hacer la misma copia de verdad.</summary>
     public bool CanRunForReal => Job.Record.DryRun && State is CopyJobState.Completed or CopyJobState.CompletedWithErrors;

@@ -724,3 +724,28 @@ Rules_Duplicates.Content	No copiar lo que ya está en el destino (duplicados)	Do
 Rules_Duplicates.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Compara el contenido, no el nombre: una foto que ya está en cualquier carpeta del destino, aunque se llame distinto, no se copia otra vez.	Compares content, not names: a photo already in any destination folder, even with another name, is not copied again.
 Skip_SkipDuplicate	Ya está en el destino con otro nombre o en otra carpeta	Already in the destination under another name or folder
 Plan_SkipDuplicate	Se omitiría: ya está en el destino (duplicado)	Would be skipped: already in the destination (duplicate)
+Destinations_Encrypt.Content	Cifrar con contraseña (para un USB o un disco que puedas perder)	Encrypt with a password (for a USB or a drive you could lose)
+Destinations_Password.Header	Contraseña	Password
+Destinations_Password2.Header	Repítela	Repeat it
+Destinations_PasswordHint	Se cifra con AES-256. Si olvidas la contraseña, no hay forma de recuperar los archivos. Para leerlos: menú Nueva > Descifrar.	Encrypted with AES-256. If you forget the password, the files cannot be recovered. To read them: New menu > Decrypt.
+Destinations_PasswordShort	La contraseña debe tener al menos 8 caracteres.	The password must have at least 8 characters.
+Destinations_PasswordMismatch	Las dos contraseñas no coinciden.	The two passwords do not match.
+PasswordDialog.Title	Contraseña	Password
+PasswordDialog.PrimaryButtonText	Aceptar	OK
+PasswordDialog.CloseButtonText	Cancelar	Cancel
+Tool_Decrypt.Text	Descifrar archivos cifrados…	Decrypt encrypted files…
+Picker_DecryptHere	Descifrar aquí	Decrypt here
+Decrypt_Ask	Contraseña de los archivos cifrados de «{0}»:	Password of the encrypted files in "{0}":
+Resume_PasswordAsk	Esta copia va cifrada y la contraseña no se guarda: escríbela para continuar.	This transfer is encrypted and the password is not saved: type it to continue.
+Job_TitleEncrypt	Cifrar {0}	Encrypt {0}
+Job_TitleEncrypting	Cifrando {0}	Encrypting {0}
+Job_TitleEncrypted	Cifrado {0}	Encrypted {0}
+Job_StateEncrypting	Cifrando	Encrypting
+Job_FilesEncryptedOne	{0} archivo cifrado	{0} file encrypted
+Job_FilesEncryptedMany	{0} archivos cifrados	{0} files encrypted
+Job_TitleDecrypt	Descifrar {0}	Decrypt {0}
+Job_TitleDecrypting	Descifrando {0}	Decrypting {0}
+Job_TitleDecrypted	Descifrado {0}	Decrypted {0}
+Job_StateDecrypting	Descifrando	Decrypting
+Job_FilesDecryptedOne	{0} archivo descifrado	{0} file decrypted
+Job_FilesDecryptedMany	{0} archivos descifrados	{0} files decrypted

@@ -730,4 +730,29 @@
   <data name="Rules_Duplicates.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Compares content, not names: a photo already in any destination folder, even with another name, is not copied again.</value></data>
   <data name="Skip_SkipDuplicate" xml:space="preserve"><value>Already in the destination under another name or folder</value></data>
   <data name="Plan_SkipDuplicate" xml:space="preserve"><value>Would be skipped: already in the destination (duplicate)</value></data>
+  <data name="Destinations_Encrypt.Content" xml:space="preserve"><value>Encrypt with a password (for a USB or a drive you could lose)</value></data>
+  <data name="Destinations_Password.Header" xml:space="preserve"><value>Password</value></data>
+  <data name="Destinations_Password2.Header" xml:space="preserve"><value>Repeat it</value></data>
+  <data name="Destinations_PasswordHint" xml:space="preserve"><value>Encrypted with AES-256. If you forget the password, the files cannot be recovered. To read them: New menu &gt; Decrypt.</value></data>
+  <data name="Destinations_PasswordShort" xml:space="preserve"><value>The password must have at least 8 characters.</value></data>
+  <data name="Destinations_PasswordMismatch" xml:space="preserve"><value>The two passwords do not match.</value></data>
+  <data name="PasswordDialog.Title" xml:space="preserve"><value>Password</value></data>
+  <data name="PasswordDialog.PrimaryButtonText" xml:space="preserve"><value>OK</value></data>
+  <data name="PasswordDialog.CloseButtonText" xml:space="preserve"><value>Cancel</value></data>
+  <data name="Tool_Decrypt.Text" xml:space="preserve"><value>Decrypt encrypted files…</value></data>
+  <data name="Picker_DecryptHere" xml:space="preserve"><value>Decrypt here</value></data>
+  <data name="Decrypt_Ask" xml:space="preserve"><value>Password of the encrypted files in &quot;{0}&quot;:</value></data>
+  <data name="Resume_PasswordAsk" xml:space="preserve"><value>This transfer is encrypted and the password is not saved: type it to continue.</value></data>
+  <data name="Job_TitleEncrypt" xml:space="preserve"><value>Encrypt {0}</value></data>
+  <data name="Job_TitleEncrypting" xml:space="preserve"><value>Encrypting {0}</value></data>
+  <data name="Job_TitleEncrypted" xml:space="preserve"><value>Encrypted {0}</value></data>
+  <data name="Job_StateEncrypting" xml:space="preserve"><value>Encrypting</value></data>
+  <data name="Job_FilesEncryptedOne" xml:space="preserve"><value>{0} file encrypted</value></data>
+  <data name="Job_FilesEncryptedMany" xml:space="preserve"><value>{0} files encrypted</value></data>
+  <data name="Job_TitleDecrypt" xml:space="preserve"><value>Decrypt {0}</value></data>
+  <data name="Job_TitleDecrypting" xml:space="preserve"><value>Decrypting {0}</value></data>
+  <data name="Job_TitleDecrypted" xml:space="preserve"><value>Decrypted {0}</value></data>
+  <data name="Job_StateDecrypting" xml:space="preserve"><value>Decrypting</value></data>
+  <data name="Job_FilesDecryptedOne" xml:space="preserve"><value>{0} file decrypted</value></data>
+  <data name="Job_FilesDecryptedMany" xml:space="preserve"><value>{0} files decrypted</value></data>
 </root>

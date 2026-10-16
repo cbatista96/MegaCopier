@@ -730,4 +730,29 @@
   <data name="Rules_Duplicates.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Compara el contenido, no el nombre: una foto que ya está en cualquier carpeta del destino, aunque se llame distinto, no se copia otra vez.</value></data>
   <data name="Skip_SkipDuplicate" xml:space="preserve"><value>Ya está en el destino con otro nombre o en otra carpeta</value></data>
   <data name="Plan_SkipDuplicate" xml:space="preserve"><value>Se omitiría: ya está en el destino (duplicado)</value></data>
+  <data name="Destinations_Encrypt.Content" xml:space="preserve"><value>Cifrar con contraseña (para un USB o un disco que puedas perder)</value></data>
+  <data name="Destinations_Password.Header" xml:space="preserve"><value>Contraseña</value></data>
+  <data name="Destinations_Password2.Header" xml:space="preserve"><value>Repítela</value></data>
+  <data name="Destinations_PasswordHint" xml:space="preserve"><value>Se cifra con AES-256. Si olvidas la contraseña, no hay forma de recuperar los archivos. Para leerlos: menú Nueva &gt; Descifrar.</value></data>
+  <data name="Destinations_PasswordShort" xml:space="preserve"><value>La contraseña debe tener al menos 8 caracteres.</value></data>
+  <data name="Destinations_PasswordMismatch" xml:space="preserve"><value>Las dos contraseñas no coinciden.</value></data>
+  <data name="PasswordDialog.Title" xml:space="preserve"><value>Contraseña</value></data>
+  <data name="PasswordDialog.PrimaryButtonText" xml:space="preserve"><value>Aceptar</value></data>
+  <data name="PasswordDialog.CloseButtonText" xml:space="preserve"><value>Cancelar</value></data>
+  <data name="Tool_Decrypt.Text" xml:space="preserve"><value>Descifrar archivos cifrados…</value></data>
+  <data name="Picker_DecryptHere" xml:space="preserve"><value>Descifrar aquí</value></data>
+  <data name="Decrypt_Ask" xml:space="preserve"><value>Contraseña de los archivos cifrados de «{0}»:</value></data>
+  <data name="Resume_PasswordAsk" xml:space="preserve"><value>Esta copia va cifrada y la contraseña no se guarda: escríbela para continuar.</value></data>
+  <data name="Job_TitleEncrypt" xml:space="preserve"><value>Cifrar {0}</value></data>
+  <data name="Job_TitleEncrypting" xml:space="preserve"><value>Cifrando {0}</value></data>
+  <data name="Job_TitleEncrypted" xml:space="preserve"><value>Cifrado {0}</value></data>
+  <data name="Job_StateEncrypting" xml:space="preserve"><value>Cifrando</value></data>
+  <data name="Job_FilesEncryptedOne" xml:space="preserve"><value>{0} archivo cifrado</value></data>
+  <data name="Job_FilesEncryptedMany" xml:space="preserve"><value>{0} archivos cifrados</value></data>
+  <data name="Job_TitleDecrypt" xml:space="preserve"><value>Descifrar {0}</value></data>
+  <data name="Job_TitleDecrypting" xml:space="preserve"><value>Descifrando {0}</value></data>
+  <data name="Job_TitleDecrypted" xml:space="preserve"><value>Descifrado {0}</value></data>
+  <data name="Job_StateDecrypting" xml:space="preserve"><value>Descifrando</value></data>
+  <data name="Job_FilesDecryptedOne" xml:space="preserve"><value>{0} archivo descifrado</value></data>
+  <data name="Job_FilesDecryptedMany" xml:space="preserve"><value>{0} archivos descifrados</value></data>
 </root>

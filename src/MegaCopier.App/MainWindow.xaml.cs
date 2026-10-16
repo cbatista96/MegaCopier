@@ -1043,6 +1043,11 @@ public sealed partial class MainWindow : Window
         DestinationsMove.IsChecked = move;
         DestinationsMode.SelectedIndex = 0;
         DestinationsDryRun.IsChecked = false;
+        DestinationsEncrypt.IsChecked = false;
+        DestinationsEncryptPanel.Visibility = Visibility.Collapsed;
+        DestinationsPassword.Password = "";
+        DestinationsPassword2.Password = "";
+        DestinationsPasswordInfo.Text = L.Get("Destinations_PasswordHint");
         DestinationsSchedule.IsChecked = false;
         DestinationsWhen.Visibility = Visibility.Collapsed;
         var later = DateTime.Now.AddHours(1);
@@ -1091,6 +1096,8 @@ public sealed partial class MainWindow : Window
             StartAtUtc = startAt,
             Mode = (Engine.CopyMode)Math.Max(0, DestinationsMode.SelectedIndex),
             DryRun = DestinationsDryRun.IsChecked == true ? true : null,
+            Encrypt = DestinationsEncrypt.IsChecked == true ? true : null,
+            Password = DestinationsEncrypt.IsChecked == true ? DestinationsPassword.Password : null,
         });
     }
 
@@ -1249,6 +1256,54 @@ public sealed partial class MainWindow : Window
     }
 
     // Crear archivo de sumas (con el algoritmo de Ajustes; SHA-256 si no hay ninguno)
+
+    // Cifrar y descifrar
+
+    private void DestinationsEncrypt_Click(object sender, RoutedEventArgs e) =>
+        DestinationsEncryptPanel.Visibility = DestinationsEncrypt.IsChecked == true ? Visibility.Visible : Visibility.Collapsed;
+
+    /// <summary>Con cifrado, la contraseña debe tener 8 caracteres o más y repetirse igual (si no, el diálogo sigue abierto).</summary>
+    private void Destinations_PrimaryClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+    {
+        if (DestinationsEncrypt.IsChecked != true)
+        {
+            return;
+        }
+
+        string? problem = DestinationsPassword.Password.Length < 8 ? L.Get("Destinations_PasswordShort")
+            : DestinationsPassword.Password != DestinationsPassword2.Password ? L.Get("Destinations_PasswordMismatch")
+            : null;
+        if (problem is not null)
+        {
+            args.Cancel = true;
+            DestinationsPasswordInfo.Text = problem;
+            DestinationsPasswordInfo.Foreground = ThemeManager.ErrorBrush;
+        }
+    }
+
+    /// <summary>Pide una contraseña (descifrar, o volver a darla tras reiniciar). Null si se cancela.</summary>
+    internal async Task<string?> AskPasswordAsync(string message)
+    {
+        PasswordMessage.Text = message;
+        PasswordBox.Password = "";
+        PasswordDialog.XamlRoot = Root.XamlRoot;
+        PasswordDialog.RequestedTheme = Root.RequestedTheme;
+        ShowAndActivate();
+        return await PasswordDialog.ShowAsync() == ContentDialogResult.Primary && PasswordBox.Password.Length > 0 ? PasswordBox.Password : null;
+    }
+
+    /// <summary>Descifrar los .mcenc de una carpeta (por ejemplo, un USB) en otra.</summary>
+    private async void Decrypt_Click(object sender, RoutedEventArgs e)
+    {
+        if (await Pickers.PickFolderAsync() is not { } from
+            || await Pickers.PickFolderAsync(L.Get("Picker_DecryptHere")) is not { } to
+            || await AskPasswordAsync(L.F("Decrypt_Ask", from)) is not { } password)
+        {
+            return;
+        }
+
+        Submit(new IpcRequest { Command = "copy", Operation = Engine.JobOperation.Decrypt, Sources = [from], Destination = to, Password = password });
+    }
 
     // Enviar a otro equipo con MegaCopier
 

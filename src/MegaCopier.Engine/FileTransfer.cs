@@ -95,6 +95,11 @@ internal sealed partial class FileTransfer
 
     public FileTransferResult Copy(string sourcePath, string destinationPath, CancellationToken cancellationToken, long lengthHint = -1, bool delta = false)
     {
+        if (_options.Encrypt)
+        {
+            return CopyEncrypted(sourcePath, destinationPath, cancellationToken);
+        }
+
         if (delta && lengthHint >= DeltaThreshold && _faults is null
             && CopyDelta(sourcePath, destinationPath, cancellationToken) is { } updated)
         {

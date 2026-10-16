@@ -127,6 +127,9 @@ public sealed class CopyJob
         ApplySpeed();
     }
 
+    /// <summary>Contraseña de una copia cifrada o de un descifrado: solo en memoria (tras reiniciar hay que volver a darla).</summary>
+    public string Password { get; set; } = "";
+
     /// <summary>Límite temporal en vigor (null = ninguno).</summary>
     public long? SpeedOverride { get; private set; }
 
@@ -478,6 +481,7 @@ public sealed class CopyQueue
 
         _store.Save(record);
         var job = Add(new CopyJob(record, CopyJobState.Queued, _store.Save));
+        job.Password = options.EncryptionPassword;
         Schedule();
         return job;
     }
@@ -699,7 +703,9 @@ public sealed class CopyQueue
 
     private void Start(CopyJob job)
     {
-        var engine = new CopyEngine(_optionsFor(job.Record));
+        var options = _optionsFor(job.Record);
+        options.EncryptionPassword = job.Password; // solo en memoria: no está en el trabajo guardado
+        var engine = new CopyEngine(options);
         var cancellation = new CancellationTokenSource();
         job.Attach(engine, cancellation);
         engine.ProgressChanged += job.SetProgress;
