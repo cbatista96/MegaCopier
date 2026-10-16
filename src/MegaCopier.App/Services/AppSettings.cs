@@ -247,7 +247,7 @@ public sealed class AppSettings
 
     [JsonIgnore]
     public static string FilePath { get; } = Path.Combine(
-        Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MegaCopier", "settings.json");
+        Engine.DataFolder.Path, "settings.json");
 
     public CopyOptions NewJobOptions(IpcRequest request)
     {

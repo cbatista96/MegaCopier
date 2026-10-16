@@ -153,6 +153,37 @@ public partial class App : Application
         }
     }
 
+    /// <summary>
+    /// Lanza una lista guardada (.mclist) con todas sus opciones: "Cargar lista", tareas programadas y
+    /// "MegaCopier.exe run lista.mclist". Si no tiene un destino completo, se pide.
+    /// </summary>
+    internal CopyJob? RunList(string path, string? destination = null)
+    {
+        if (Reports.LoadList(path) is not { Sources.Count: > 0 } list)
+        {
+            Notify(L.Get("Files_LoadFailed"), path);
+            return null;
+        }
+
+        destination ??= list.Destination;
+        if (!Path.IsPathFullyQualified(destination))
+        {
+            return null;
+        }
+
+        var job = Queue.Submit(list.Sources, destination, list.ToOptions());
+        job.Record.ExportReport = list.ExportReport;
+        job.Record.Scripts = [.. list.Scripts];
+        job.SaveRecord();
+        if (Settings.ShowWindowOnNewCopy)
+        {
+            Window.ShowJobs();
+            ShowWindow();
+        }
+
+        return job;
+    }
+
     /// <summary>Encola una copia (desde la ventana o desde otro proceso).</summary>
     internal CopyJob Submit(IpcRequest request)
     {
@@ -399,6 +430,11 @@ public partial class App : Application
                 }
 
                 return new IpcResponse { Ok = true, JobId = job.Id };
+
+            case "run-list" when request.Sources.Count == 1:
+                return RunList(request.Sources[0]) is { } listJob
+                    ? new IpcResponse { Ok = true, JobId = listJob.Id }
+                    : new IpcResponse { Ok = false, Error = L.Get("Files_LoadFailed") };
 
             case "show":
                 ShowWindow();

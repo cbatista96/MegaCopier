@@ -15,6 +15,7 @@ internal sealed record StartupArgs(bool Background, IpcRequest? Request, bool Re
     /// MegaCopier.exe --background                            → solo bandeja (arranque con Windows)
     /// MegaCopier.exe copy --dest D:\x [--verify] [--move] a b → copiar (o mover) a y b a D:\x
     /// MegaCopier.exe --restart                               → esperar a que se cierre la instancia anterior y abrir
+    /// MegaCopier.exe run lista.mclist                         → lanzar una lista guardada (tareas programadas)
     /// </summary>
     public static StartupArgs Parse(string[] args)
     {
@@ -29,6 +30,9 @@ internal sealed record StartupArgs(bool Background, IpcRequest? Request, bool Re
                 return new StartupArgs(true, null);
             case "--restart":
                 return new StartupArgs(false, new IpcRequest { Command = "show" }, Restart: true);
+            case "run" when args.Length > 1:
+                // Tarea programada: MegaCopier.exe run "lista.mclist"
+                return new StartupArgs(false, new IpcRequest { Command = "run-list", Sources = [Path.GetFullPath(args[1])] });
             case "copy":
                 var request = new IpcRequest { Command = "copy" };
                 for (int i = 1; i < args.Length; i++)

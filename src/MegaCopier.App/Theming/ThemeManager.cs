@@ -90,7 +90,7 @@ internal static class ThemeManager
     public static readonly LinearGradientBrush FileBrush = Gradient();
 
     public static string Folder { get; } = Path.Combine(
-        Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MegaCopier", "themes");
+        Engine.DataFolder.Path, "themes");
 
     /// <summary>Cambió el tema (para lo que no se pinta con los pinceles compartidos: fondo, radio, altura).</summary>
     public static event Action<ThemeDefinition>? Changed;

@@ -619,4 +619,21 @@
   <data name="History_CopyBack.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Copiar de vuelta a la carpeta de origen (restaurar)</value></data>
   <data name="History_Open.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Abrir el destino</value></data>
   <data name="History_Repeat.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Repetir (solo copia lo nuevo o lo que cambió)</value></data>
+  <data name="Task_Header.Text" xml:space="preserve"><value>O guárdala como tarea para que Windows la repita sola a la hora elegida arriba:</value></data>
+  <data name="Task_Name.PlaceholderText" xml:space="preserve"><value>Nombre de la tarea</value></data>
+  <data name="Task_Once.Content" xml:space="preserve"><value>Una vez</value></data>
+  <data name="Task_Daily.Content" xml:space="preserve"><value>Cada día</value></data>
+  <data name="Task_Weekly.Content" xml:space="preserve"><value>Cada semana</value></data>
+  <data name="Task_Save.Text" xml:space="preserve"><value>Guardar como tarea</value></data>
+  <data name="Task_SavedOnce" xml:space="preserve"><value>Tarea «{0}» guardada: se hará el {2} a las {1}.</value></data>
+  <data name="Task_SavedDaily" xml:space="preserve"><value>Tarea «{0}» guardada: se hará cada día a las {1}.</value></data>
+  <data name="Task_SavedWeekly" xml:space="preserve"><value>Tarea «{0}» guardada: se hará cada semana, el mismo día que el {2}, a las {1}.</value></data>
+  <data name="Task_Failed" xml:space="preserve"><value>No se pudo programar: {0}</value></data>
+  <data name="Settings_Tasks.Text" xml:space="preserve"><value>Tareas programadas</value></data>
+  <data name="Settings_TasksTitle.Text" xml:space="preserve"><value>Copias que se repiten solas</value></data>
+  <data name="Settings_TasksDescription.Text" xml:space="preserve"><value>Se crean desde la pestaña Opciones de una copia («Guardar como tarea») y las lanza el Programador de tareas de Windows, aunque MegaCopier esté cerrado.</value></data>
+  <data name="Settings_TasksEmpty" xml:space="preserve"><value>Todavía no hay tareas.</value></data>
+  <data name="Settings_TaskRun" xml:space="preserve"><value>Ejecutar «{0}» ahora</value></data>
+  <data name="Settings_TaskDelete" xml:space="preserve"><value>Borrar la tarea «{0}»</value></data>
+  <data name="About_Portable" xml:space="preserve"><value>portátil (datos en {0})</value></data>
 </root>

@@ -107,6 +107,17 @@
                         <Button Style="{StaticResource McButton}" Click="StartNow_Click"><TextBlock x:Uid="Schedule_Now" /></Button>
                     </StackPanel>
                     <TextBlock x:Name="ScheduleInfo" Style="{StaticResource McSecondary}" />
+                    <TextBlock x:Uid="Task_Header" Style="{StaticResource McSecondary}" TextWrapping="Wrap" Margin="0,6,0,0" />
+                    <StackPanel x:Name="TaskRow" Orientation="Horizontal" Spacing="8">
+                        <TextBox x:Name="TaskNameBox" x:Uid="Task_Name" MinWidth="200" />
+                        <ComboBox x:Name="TaskFrequencyBox" MinWidth="150" SelectedIndex="1">
+                            <ComboBoxItem x:Uid="Task_Once" />
+                            <ComboBoxItem x:Uid="Task_Daily" />
+                            <ComboBoxItem x:Uid="Task_Weekly" />
+                        </ComboBox>
+                        <Button Style="{StaticResource McButton}" Click="SaveTask_Click"><TextBlock x:Uid="Task_Save" /></Button>
+                    </StackPanel>
+                    <TextBlock x:Name="TaskInfo" Style="{StaticResource McSecondary}" TextWrapping="Wrap" />
                 </StackPanel>
             </Border>
 

@@ -619,4 +619,21 @@
   <data name="History_CopyBack.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Copy back to the source folder (restore)</value></data>
   <data name="History_Open.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Open destination</value></data>
   <data name="History_Repeat.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Repeat (copies only what is new or changed)</value></data>
+  <data name="Task_Header.Text" xml:space="preserve"><value>Or save it as a task so Windows repeats it at the time chosen above:</value></data>
+  <data name="Task_Name.PlaceholderText" xml:space="preserve"><value>Task name</value></data>
+  <data name="Task_Once.Content" xml:space="preserve"><value>Once</value></data>
+  <data name="Task_Daily.Content" xml:space="preserve"><value>Every day</value></data>
+  <data name="Task_Weekly.Content" xml:space="preserve"><value>Every week</value></data>
+  <data name="Task_Save.Text" xml:space="preserve"><value>Save as task</value></data>
+  <data name="Task_SavedOnce" xml:space="preserve"><value>Task &quot;{0}&quot; saved: it will run on {2} at {1}.</value></data>
+  <data name="Task_SavedDaily" xml:space="preserve"><value>Task &quot;{0}&quot; saved: it will run every day at {1}.</value></data>
+  <data name="Task_SavedWeekly" xml:space="preserve"><value>Task &quot;{0}&quot; saved: it will run every week, on the same weekday as {2}, at {1}.</value></data>
+  <data name="Task_Failed" xml:space="preserve"><value>Could not schedule it: {0}</value></data>
+  <data name="Settings_Tasks.Text" xml:space="preserve"><value>Scheduled tasks</value></data>
+  <data name="Settings_TasksTitle.Text" xml:space="preserve"><value>Transfers that repeat on their own</value></data>
+  <data name="Settings_TasksDescription.Text" xml:space="preserve"><value>Create them from a transfer&apos;s Options tab (&quot;Save as task&quot;); the Windows Task Scheduler runs them, even when MegaCopier is closed.</value></data>
+  <data name="Settings_TasksEmpty" xml:space="preserve"><value>No tasks yet.</value></data>
+  <data name="Settings_TaskRun" xml:space="preserve"><value>Run &quot;{0}&quot; now</value></data>
+  <data name="Settings_TaskDelete" xml:space="preserve"><value>Delete the task &quot;{0}&quot;</value></data>
+  <data name="About_Portable" xml:space="preserve"><value>portable (data in {0})</value></data>
 </root>
