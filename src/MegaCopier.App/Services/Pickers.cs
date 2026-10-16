@@ -8,10 +8,14 @@ internal static class Pickers
 {
     private static Microsoft.UI.WindowId WindowId => ((App)Application.Current).Window.AppWindow.Id;
 
-    public static async Task<IReadOnlyList<string>> PickFilesAsync()
+    public static async Task<IReadOnlyList<string>> PickFilesAsync(params string[] extensions)
     {
         var picker = new FileOpenPicker(WindowId) { ViewMode = PickerViewMode.List };
-        picker.FileTypeFilter.Add("*");
+        foreach (string extension in extensions.Length == 0 ? ["*"] : extensions)
+        {
+            picker.FileTypeFilter.Add(extension);
+        }
+
         var files = await picker.PickMultipleFilesAsync();
         return files?.Select(f => f.Path).ToList() ?? [];
     }

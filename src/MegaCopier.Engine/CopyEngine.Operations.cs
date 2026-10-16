@@ -39,12 +39,29 @@ public sealed partial class CopyEngine
                     }
                 }
             }
+            catch (Exception ex) when (ex is IOException or UnauthorizedAccessException && !link.IsDirectory && CopyLinkedFileInstead(link))
+            {
+                // Sin permiso para enlaces de archivo (falta el modo de desarrollador): se copia su contenido.
+                Log(LogLevel.Warning, $"No se pudo crear el enlace ({ex.Message}); se copió el archivo al que apunta.", link.Source);
+            }
             catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
             {
                 result.Failures.Add(new FileFailure(link.Source, ex.Message, FileErrors.Classify(ex)));
                 Log(LogLevel.Error, $"No se pudo crear el enlace: {ex.Message}", link.Source);
             }
         }
+    }
+
+    /// <summary>Añade a la lista el archivo al que apunta el enlace (se copia en el bucle normal).</summary>
+    private bool CopyLinkedFileInstead(PlannedLink link)
+    {
+        if (new FileInfo(link.Source).ResolveLinkTarget(returnFinalTarget: true) is not FileInfo { Exists: true } target)
+        {
+            return false;
+        }
+
+        Files.Add(link.Source, link.Destination, target.Length, target.LastWriteTimeUtc);
+        return true;
     }
 
     // -------------------------------------------------------------------------------------------------------------
@@ -104,7 +121,7 @@ public sealed partial class CopyEngine
                     }
                     else
                     {
-                        Fail(item, result, "El contenido no coincide con la suma guardada", FileErrorKind.HashMismatch);
+                        Fail(item, result, "El contenido no coincide con la suma guardada", FileErrorKind.ChecksumMismatch);
                     }
                 }
             }

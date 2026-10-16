@@ -9,6 +9,11 @@ public enum FinishAction
     None,
     Sleep,
     Shutdown,
+    Hibernate,
+    SignOut,
+
+    /// <summary>Cerrar MegaCopier (la bandeja también).</summary>
+    ExitApp,
 }
 
 internal static partial class SystemActions
@@ -19,6 +24,12 @@ internal static partial class SystemActions
         {
             case FinishAction.Sleep:
                 SetSuspendState(hibernate: false, force: false, disableWakeEvent: false);
+                break;
+            case FinishAction.Hibernate:
+                SetSuspendState(hibernate: true, force: false, disableWakeEvent: false);
+                break;
+            case FinishAction.SignOut:
+                ExitWindowsEx(0 /* EWX_LOGOFF */, 0x00040000 /* SHTDN_REASON_FLAG_PLANNED */);
                 break;
             case FinishAction.Shutdown:
                 // Con un minuto de margen: se puede cancelar con "shutdown /a".
@@ -88,6 +99,10 @@ internal static partial class SystemActions
     [LibraryImport("user32.dll")]
     [return: MarshalAs(UnmanagedType.Bool)]
     private static partial bool MessageBeep(uint type);
+
+    [LibraryImport("user32.dll")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static partial bool ExitWindowsEx(uint flags, uint reason);
 
     [LibraryImport("powrprof.dll")]
     [return: MarshalAs(UnmanagedType.Bool)]

@@ -96,6 +96,50 @@ public sealed class AppSettings
 
     public List<string> Scripts { get; set; } = [];
 
+    public FileFilter Filter { get; set; } = new();
+
+    public LinkHandling Links { get; set; }
+
+    public string KeepBothPattern { get; set; } = CopyOptions.DefaultKeepBothPattern;
+
+    public int RetryCount { get; set; } = 2;
+
+    public double RetryDelaySeconds { get; set; } = 1;
+
+    public ErrorPolicy OnError { get; set; }
+
+    /// <summary>Carpetas de destino favoritas (menú "Copiar a" y diálogo de destinos).</summary>
+    public List<string> FavoriteFolders { get; set; } = [];
+
+    /// <summary>Últimos destinos usados (los 10 más recientes primero).</summary>
+    public List<string> RecentDestinations { get; set; } = [];
+
+    /// <summary>Anota un destino como el más reciente.</summary>
+    public void RememberDestination(string folder)
+    {
+        RecentDestinations.RemoveAll(d => string.Equals(d, folder, StringComparison.OrdinalIgnoreCase));
+        RecentDestinations.Insert(0, folder);
+        if (RecentDestinations.Count > 10)
+        {
+            RecentDestinations.RemoveRange(10, RecentDestinations.Count - 10);
+        }
+    }
+
+    [JsonIgnore]
+    public Views.CopyRules Rules
+    {
+        get => new() { Filter = Filter, Links = Links, KeepBothPattern = KeepBothPattern, RetryCount = RetryCount, RetryDelaySeconds = RetryDelaySeconds, OnError = OnError };
+        set
+        {
+            Filter = value.Filter;
+            Links = value.Links;
+            KeepBothPattern = value.KeepBothPattern;
+            RetryCount = value.RetryCount;
+            RetryDelaySeconds = value.RetryDelaySeconds;
+            OnError = value.OnError;
+        }
+    }
+
     public AppTheme Theme { get; set; } = AppTheme.System;
 
     /// <summary>"system" o un color "#RRGGBB".</summary>
@@ -161,6 +205,12 @@ public sealed class AppSettings
             SaveChecksumFile = SaveChecksumFile,
             ReadQueueDepth = Math.Clamp(QueueDepth, 1, 16),
             WriteQueueDepth = Math.Clamp(QueueDepth, 1, 16),
+            Filter = Filter,
+            Links = Links,
+            KeepBothPattern = KeepBothPattern,
+            RetryCount = Math.Clamp(RetryCount, 0, 100),
+            RetryDelay = TimeSpan.FromSeconds(Math.Clamp(RetryDelaySeconds, 0, 3600)),
+            OnError = OnError,
         };
 
         int block = Math.Clamp(BlockSizeMB, 1, 16) * CopyOptions.MiB;
@@ -186,6 +236,12 @@ public sealed class AppSettings
         SaveChecksumFile = r.SaveChecksumFile;
         ExportReport = r.ExportReport;
         Scripts = [.. r.Scripts];
+        Filter = r.Filter;
+        Links = r.Links;
+        KeepBothPattern = r.KeepBothPattern;
+        RetryCount = r.RetryCount;
+        RetryDelaySeconds = r.RetryDelaySeconds;
+        OnError = r.OnError;
     }
 
     /// <summary>"Restablecer": devuelve el trabajo a las opciones predeterminadas.</summary>
@@ -206,6 +262,12 @@ public sealed class AppSettings
         r.SaveChecksumFile = SaveChecksumFile;
         r.ExportReport = ExportReport;
         r.Scripts = [.. Scripts];
+        r.Filter = Filter;
+        r.Links = Links;
+        r.KeepBothPattern = KeepBothPattern;
+        r.RetryCount = RetryCount;
+        r.RetryDelaySeconds = RetryDelaySeconds;
+        r.OnError = OnError;
     }
 
     public static AppSettings Load()

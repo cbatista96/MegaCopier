@@ -211,7 +211,7 @@
                         <FontIcon VerticalAlignment="Center" Glyph="&#xE8C8;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
                         <StackPanel Grid.Column="1"><TextBlock x:Uid="ConflictTitle" Style="{StaticResource McBody}" /><TextBlock x:Uid="ConflictDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
                         <ComboBox x:Name="ConflictBox" Grid.Column="2" MinWidth="220" SelectionChanged="Selection_Changed">
-                            <ComboBoxItem x:Uid="ConflictAsk" /><ComboBoxItem x:Uid="ConflictReplace" /><ComboBoxItem x:Uid="ConflictSkip" /><ComboBoxItem x:Uid="ConflictNewer" /><ComboBoxItem x:Uid="ConflictKeepBoth" />
+                            <ComboBoxItem x:Uid="ConflictAsk" /><ComboBoxItem x:Uid="ConflictReplace" /><ComboBoxItem x:Uid="ConflictSkip" /><ComboBoxItem x:Uid="ConflictNewer" /><ComboBoxItem x:Uid="ConflictKeepBoth" /><ComboBoxItem x:Uid="ConflictDifferentSize" /><ComboBoxItem x:Uid="ConflictRenameExisting" />
                         </ComboBox>
                     </Grid>
                 </Border>
@@ -229,7 +229,7 @@
                             <FontIcon VerticalAlignment="Center" Glyph="&#xE8B7;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
                             <TextBlock x:Uid="Settings_WhatToCopy" Style="{StaticResource McBody}" VerticalAlignment="Center" />
                         </StackPanel>
-                        <VariableSizedWrapGrid Orientation="Horizontal" ItemWidth="250" Margin="30,4,0,0">
+                        <VariableSizedWrapGrid Orientation="Horizontal" ItemWidth="300" ItemHeight="40" Margin="30,4,0,0">
                             <CheckBox x:Name="TimestampsBox" x:Uid="Options_Timestamps" Click="Changed" />
                             <CheckBox x:Name="AttributesBox" x:Uid="Options_Attributes" Click="Changed" />
                             <CheckBox x:Name="StreamsBox" x:Uid="Options_Streams" Click="Changed" />
@@ -259,6 +259,26 @@
                         </ComboBox>
                         <NumberBox x:Name="ThreadsBox" x:Uid="Options_ThreadsShort" Grid.Column="4" Minimum="1" Maximum="16" SpinButtonPlacementMode="Compact" MinWidth="110" ValueChanged="Number_Changed" />
                     </Grid>
+                </Border>
+
+                <Border Style="{StaticResource McSettingCard}">
+                    <views:RulesEditor x:Name="Rules" />
+                </Border>
+
+                <!-- Favoritos -->
+                <TextBlock x:Uid="Settings_Favorites" Style="{StaticResource McSection}" />
+                <Border Style="{StaticResource McSettingCard}">
+                    <StackPanel Spacing="8">
+                        <Grid ColumnSpacing="12">
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                            <FontIcon VerticalAlignment="Center" Glyph="&#xE734;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
+                            <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_FavoritesTitle" Style="{StaticResource McBody}" /><TextBlock x:Uid="Settings_FavoritesDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                            <Button Grid.Column="2" Style="{StaticResource McButton}" Click="AddFavorite_Click">
+                                <StackPanel Orientation="Horizontal" Spacing="8"><FontIcon VerticalAlignment="Center" Glyph="&#xE710;" FontSize="12" /><TextBlock x:Uid="Settings_FavoritesAdd" /></StackPanel>
+                            </Button>
+                        </Grid>
+                        <StackPanel x:Name="FavoritesList" Spacing="4" Margin="30,0,0,0" />
+                    </StackPanel>
                 </Border>
 
                 <!-- Cola -->

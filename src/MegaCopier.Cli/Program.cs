@@ -30,6 +30,8 @@ internal static class Cli
                 "copy" => Copy(args[1..], move: false),
                 "move" => Copy(args[1..], move: true),
                 "send" => Send(args[1..]),
+                "test" => Test(args[1..]),
+                "delete" => Delete(args[1..]),
                 "resume" => Resume(args.Length > 1 ? args[1] : null),
                 "jobs" => Jobs(),
                 "status" => Status(),
@@ -123,40 +125,66 @@ internal static class Cli
     private static int Send(string[] args)
     {
         var paths = new List<string>();
+        var also = new List<string>();
         bool verify = false;
         bool move = false;
-        foreach (string arg in args)
+        bool secure = false;
+        JobOperation operation = JobOperation.Copy;
+        DateTime? startAt = null;
+        for (int i = 0; i < args.Length; i++)
         {
-            if (arg == "--verify")
+            string arg = args[i];
+            switch (arg)
             {
-                verify = true;
-            }
-            else if (arg == "--move")
-            {
-                move = true;
-            }
-            else if (arg.StartsWith("--", StringComparison.Ordinal))
-            {
-                throw new UsageException($"Opción desconocida para send: {arg}");
-            }
-            else
-            {
-                paths.Add(Path.GetFullPath(arg));
+                case "--verify":
+                    verify = true;
+                    break;
+                case "--move":
+                    move = true;
+                    break;
+                case "--test":
+                    operation = JobOperation.Test;
+                    break;
+                case "--delete":
+                    operation = JobOperation.Delete;
+                    break;
+                case "--secure":
+                    secure = true;
+                    break;
+                case "--also" when i + 1 < args.Length:
+                    also.Add(Path.GetFullPath(args[++i]));
+                    break;
+                case "--at" when i + 1 < args.Length:
+                    startAt = ParseTime(args[++i]);
+                    break;
+                default:
+                    if (arg.StartsWith("--", StringComparison.Ordinal))
+                    {
+                        throw new UsageException($"Opción desconocida para send: {arg}");
+                    }
+
+                    paths.Add(Path.GetFullPath(arg));
+                    break;
             }
         }
 
-        if (paths.Count < 2)
+        bool needsDestination = operation == JobOperation.Copy;
+        if (paths.Count < (needsDestination ? 2 : 1))
         {
-            throw new UsageException("Indica al menos un origen y una carpeta de destino.");
+            throw new UsageException(needsDestination ? "Indica al menos un origen y una carpeta de destino." : "Indica al menos un archivo o carpeta.");
         }
 
         var request = new IpcRequest
         {
             Command = "copy",
-            Sources = paths[..^1],
-            Destination = paths[^1],
+            Sources = needsDestination ? paths[..^1] : paths,
+            Destination = needsDestination ? paths[^1] : null,
             Verify = verify ? true : null,
             Move = move ? true : null,
+            Operation = operation == JobOperation.Copy ? null : operation,
+            SecureDelete = secure ? true : null,
+            ExtraDestinations = also.Count > 0 ? also : null,
+            StartAtUtc = startAt?.ToUniversalTime(),
         };
 
         var watch = Stopwatch.StartNew();
@@ -165,6 +193,20 @@ internal static class Cli
         var response = IpcClient.IsAppRunning()
             ? IpcClient.TrySendAsync(request, connectTimeoutMs: 3000).GetAwaiter().GetResult()
             : null;
+        if (response is null && (operation != JobOperation.Copy || also.Count > 0 || startAt is not null))
+        {
+            // Lo que no cabe en la línea de comandos de la app: se arranca en la bandeja y se le envía la petición.
+            if (FindApp() is { } exe)
+            {
+                Process.Start(new ProcessStartInfo(exe, "--background") { UseShellExecute = true });
+                for (int attempt = 0; attempt < 50 && response is null; attempt++)
+                {
+                    Thread.Sleep(100);
+                    response = IpcClient.IsAppRunning() ? IpcClient.TrySendAsync(request, connectTimeoutMs: 1000).GetAwaiter().GetResult() : null;
+                }
+            }
+        }
+
         if (response is not null)
         {
             Console.WriteLine(response.Ok
@@ -174,7 +216,7 @@ internal static class Cli
         }
 
         string? app = FindApp();
-        if (app is null)
+        if (app is null || !needsDestination)
         {
             Console.Error.WriteLine("MegaCopier no está abierto y no se encontró MegaCopier.exe (define MEGACOPIER_APP con su ruta).");
             return ExitFatal;
@@ -183,7 +225,7 @@ internal static class Cli
         var start = new ProcessStartInfo(app) { UseShellExecute = true };
         start.ArgumentList.Add("copy");
         start.ArgumentList.Add("--dest");
-        start.ArgumentList.Add(request.Destination);
+        start.ArgumentList.Add(request.Destination!);
         if (verify)
         {
             start.ArgumentList.Add("--verify");
@@ -202,6 +244,71 @@ internal static class Cli
         Process.Start(start);
         Console.WriteLine("MegaCopier no estaba abierto: se ha iniciado con la copia.");
         return ExitOk;
+    }
+
+    /// <summary>"HH:mm" (hoy, o mañana si ya pasó) o una fecha y hora completas.</summary>
+    private static DateTime ParseTime(string text)
+    {
+        if (TimeSpan.TryParse(text, System.Globalization.CultureInfo.InvariantCulture, out var time) && time < TimeSpan.FromDays(1))
+        {
+            var today = DateTime.Today + time;
+            return today > DateTime.Now ? today : today.AddDays(1);
+        }
+
+        if (DateTime.TryParse(text, System.Globalization.CultureInfo.CurrentCulture, System.Globalization.DateTimeStyles.AssumeLocal, out var when))
+        {
+            return when;
+        }
+
+        throw new UsageException($"Hora no válida: {text} (usa HH:mm o una fecha y hora).");
+    }
+
+    /// <summary>mcopy test: comprueba archivos de sumas sin la app.</summary>
+    private static int Test(string[] args)
+    {
+        if (args.Length == 0)
+        {
+            throw new UsageException("Indica archivos de sumas o carpetas que los contengan.");
+        }
+
+        var sources = args.Select(Path.GetFullPath).ToList();
+        var engine = new CopyEngine(new CopyOptions { Operation = JobOperation.Test });
+        var result = engine.Run(new CopyJobRequest(sources, sources[0]));
+        foreach (var item in engine.Files.Snapshot())
+        {
+            string mark = item.State == FileState.Verified ? "OK   " : "FALLO";
+            Console.WriteLine($"{mark} {item.Source}{(item.Message is { } m ? "  (" + m + ")" : "")}");
+        }
+
+        Console.WriteLine($"{result.FilesCopied} correctos, {result.Failures.Count} con errores en {result.Elapsed.TotalSeconds:F1} s.");
+        return result.Success ? ExitOk : ExitFailures;
+    }
+
+    /// <summary>mcopy delete [--secure] --yes: borra (o borra de forma segura) sin la app.</summary>
+    private static int Delete(string[] args)
+    {
+        bool secure = args.Contains("--secure");
+        bool confirmed = args.Contains("--yes");
+        var paths = args.Where(a => !a.StartsWith("--", StringComparison.Ordinal)).Select(Path.GetFullPath).ToList();
+        if (paths.Count == 0)
+        {
+            throw new UsageException("Indica qué borrar.");
+        }
+
+        if (!confirmed)
+        {
+            throw new UsageException("Borrar no se puede deshacer: añade --yes para confirmarlo.");
+        }
+
+        var engine = new CopyEngine(new CopyOptions { Operation = JobOperation.Delete, SecureDelete = secure });
+        var result = engine.Run(new CopyJobRequest(paths, Path.GetDirectoryName(paths[0]) ?? paths[0]));
+        foreach (var failure in result.Failures)
+        {
+            Console.Error.WriteLine($"FALLO {failure.Source}: {failure.Message}");
+        }
+
+        Console.WriteLine($"{result.FilesCopied} archivos borrados{(secure ? " de forma segura" : "")}, {result.Failures.Count} con errores.");
+        return result.Success ? ExitOk : ExitFailures;
     }
 
     private static string? FindApp()
@@ -443,8 +550,12 @@ internal static class Cli
             Uso:
               mcopy copy <origen>... <carpeta-destino> [opciones]
               mcopy move <origen>... <carpeta-destino> [opciones]   Mueve (instantáneo en el mismo disco)
-              mcopy send <origen>... <carpeta-destino> [--verify] [--move]
+              mcopy send <origen>... <carpeta-destino> [--verify] [--move] [--also <otra-carpeta>]... [--at HH:mm]
                                           Entrega la copia a la app MegaCopier (ventana y bandeja)
+              mcopy send --test <sumas|carpeta>...         Comprueba archivos de sumas en la app
+              mcopy send --delete [--secure] <ruta>...     Borra (de forma segura) desde la app
+              mcopy test <sumas|carpeta>...   Comprueba .sha256, .md5, .sfv, .xxh3... sin la app
+              mcopy delete [--secure] --yes <ruta>...   Borra sin la app (--secure: sobrescribe antes)
               mcopy resume [id]      Continúa los trabajos interrumpidos (o solo uno)
               mcopy jobs             Lista los trabajos pendientes
 

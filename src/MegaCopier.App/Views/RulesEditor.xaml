@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserControl
+    x:Class="MegaCopier.App.Views.RulesEditor"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Grid ColumnSpacing="24" RowSpacing="8">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Filtros -->
+        <StackPanel Spacing="8">
+            <StackPanel Orientation="Horizontal" Spacing="8">
+                <FontIcon VerticalAlignment="Center" Glyph="&#xE71C;" FontSize="14" Foreground="{StaticResource McAccentBrush}" />
+                <TextBlock x:Uid="Rules_Filters" Style="{StaticResource McStrong}" />
+            </StackPanel>
+            <TextBox x:Name="IncludeBox" x:Uid="Rules_Include" LostFocus="Changed" />
+            <TextBox x:Name="ExcludeBox" x:Uid="Rules_Exclude" LostFocus="Changed" />
+            <Grid ColumnSpacing="8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <NumberBox x:Name="MinSizeBox" x:Uid="Rules_MinSize" Minimum="0" SpinButtonPlacementMode="Compact" ValueChanged="Number_Changed" />
+                <NumberBox x:Name="MaxSizeBox" x:Uid="Rules_MaxSize" Grid.Column="1" Minimum="0" SpinButtonPlacementMode="Compact" ValueChanged="Number_Changed" />
+            </Grid>
+            <Grid ColumnSpacing="8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <CalendarDatePicker x:Name="AfterBox" x:Uid="Rules_After" HorizontalAlignment="Stretch" DateChanged="Date_Changed" />
+                <CalendarDatePicker x:Name="BeforeBox" x:Uid="Rules_Before" Grid.Column="1" HorizontalAlignment="Stretch" DateChanged="Date_Changed" />
+            </Grid>
+            <StackPanel Orientation="Horizontal" Spacing="12">
+                <CheckBox x:Name="SkipHiddenBox" x:Uid="Rules_SkipHidden" Click="Changed" />
+                <CheckBox x:Name="SkipSystemBox" x:Uid="Rules_SkipSystem" Click="Changed" />
+            </StackPanel>
+        </StackPanel>
+
+        <!-- Reglas -->
+        <StackPanel Grid.Column="1" Spacing="8">
+            <StackPanel Orientation="Horizontal" Spacing="8">
+                <FontIcon VerticalAlignment="Center" Glyph="&#xE71B;" FontSize="14" Foreground="{StaticResource McAccentBrush}" />
+                <TextBlock x:Uid="Rules_Rules" Style="{StaticResource McStrong}" />
+            </StackPanel>
+            <ComboBox x:Name="LinksBox" x:Uid="Rules_Links" HorizontalAlignment="Stretch" SelectionChanged="Selection_Changed">
+                <ComboBoxItem x:Uid="Rules_LinksCopy" />
+                <ComboBoxItem x:Uid="Rules_LinksFollow" />
+                <ComboBoxItem x:Uid="Rules_LinksSkip" />
+            </ComboBox>
+            <TextBox x:Name="PatternBox" x:Uid="Rules_Pattern" TextChanged="Pattern_TextChanged" LostFocus="Changed" />
+            <TextBlock x:Name="PatternPreview" Style="{StaticResource McSecondary}" />
+            <Grid ColumnSpacing="8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <NumberBox x:Name="RetriesBox" x:Uid="Rules_Retries" Minimum="0" Maximum="100" SpinButtonPlacementMode="Compact" ValueChanged="Number_Changed" />
+                <NumberBox x:Name="DelayBox" x:Uid="Rules_Delay" Grid.Column="1" Minimum="0" Maximum="3600" SpinButtonPlacementMode="Compact" ValueChanged="Number_Changed" />
+            </Grid>
+            <ComboBox x:Name="OnErrorBox" x:Uid="Rules_OnError" HorizontalAlignment="Stretch" SelectionChanged="Selection_Changed">
+                <ComboBoxItem x:Uid="Rules_OnErrorSkip" />
+                <ComboBoxItem x:Uid="Rules_OnErrorStop" />
+            </ComboBox>
+        </StackPanel>
+    </Grid>
+</UserControl>

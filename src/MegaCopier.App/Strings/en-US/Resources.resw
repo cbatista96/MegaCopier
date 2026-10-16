@@ -142,8 +142,6 @@
   <data name="Notify_DoneTitle" xml:space="preserve"><value>Transfer finished</value></data>
   <data name="Notify_ProblemTitle" xml:space="preserve"><value>The transfer had problems</value></data>
   <data name="Notify_AllDoneTitle" xml:space="preserve"><value>Transfers finished</value></data>
-  <data name="Notify_Shutdown" xml:space="preserve"><value>The computer will shut down in 1 minute (cancel: shutdown /a).</value></data>
-  <data name="Notify_Sleep" xml:space="preserve"><value>Going to sleep…</value></data>
   <data name="Error_NeedsPaths" xml:space="preserve"><value>A copy request needs sources and a destination.</value></data>
   <data name="Tray_Disable" xml:space="preserve"><value>Disable (use the Windows copier)</value></data>
   <data name="Tray_Enable" xml:space="preserve"><value>Enable MegaCopier</value></data>
@@ -200,13 +198,13 @@
   <data name="Options_Audit.Content" xml:space="preserve"><value>Auditing (SACL)</value></data>
   <data name="Options_BufferSize.Text" xml:space="preserve"><value>Buffer size</value></data>
   <data name="Options_Data.Content" xml:space="preserve"><value>Data</value></data>
-  <data name="Options_ExportReport.Content" xml:space="preserve"><value>Save an HTML report when finished</value></data>
+  <data name="Options_ExportReport.Content" xml:space="preserve"><value>Save HTML report</value></data>
   <data name="Options_FilesFolders.Text" xml:space="preserve"><value>Files and folders</value></data>
   <data name="Options_OnFinish.Text" xml:space="preserve"><value>When finished</value></data>
   <data name="Options_Owner.Content" xml:space="preserve"><value>Owner</value></data>
   <data name="Options_ResetDefault.Text" xml:space="preserve"><value>Reset</value></data>
   <data name="Options_RunningInfo.Message" xml:space="preserve"><value>The transfer is running: these changes apply when it resumes (Verify and Unattended apply now).</value></data>
-  <data name="Options_SaveChecksum.Content" xml:space="preserve"><value>Save a checksum file (.sha256, .md5, .sfv…)</value></data>
+  <data name="Options_SaveChecksum.Content" xml:space="preserve"><value>Save checksum file</value></data>
   <data name="Options_SaveDefault.Text" xml:space="preserve"><value>Save as default</value></data>
   <data name="Options_Scripts.Text" xml:space="preserve"><value>Commands when finished</value></data>
   <data name="Options_ScriptsHelp.Text" xml:space="preserve"><value>One per line, run with cmd.exe. Variables: %MEGACOPIER_STATE%, %MEGACOPIER_DESTINATION%, %MEGACOPIER_SOURCES%, %MEGACOPIER_FILES%, %MEGACOPIER_BYTES%, %MEGACOPIER_FAILED%, %MEGACOPIER_CHECKSUM%.</value></data>
@@ -354,7 +352,7 @@
   <data name="Language_Auto" xml:space="preserve"><value>Use Windows setting</value></data>
   <data name="Log_FileType" xml:space="preserve"><value>Text</value></data>
   <data name="Picker_MoveHere" xml:space="preserve"><value>Move here</value></data>
-  <data name="Settings_AutoResume.Content" xml:space="preserve"><value>Resume interrupted transfers automatically at startup</value></data>
+  <data name="Settings_AutoResume.Content" xml:space="preserve"><value>Resume automatically at startup</value></data>
   <data name="Panel_Options.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Options for this transfer</value></data>
   <data name="Panel_UnattendedItem.Text" xml:space="preserve"><value>Unattended (never ask: skips existing files)</value></data>
   <data name="Panel_VerifyItem.Text" xml:space="preserve"><value>Verify when finished</value></data>
@@ -386,4 +384,95 @@
   <data name="Report_Skipped" xml:space="preserve"><value>Skipped</value></data>
   <data name="Report_Failed" xml:space="preserve"><value>Failed</value></data>
   <data name="Job_SkippedOne" xml:space="preserve"><value>1 skipped</value></data>
+  <data name="Rules_Filters.Text" xml:space="preserve"><value>Filters</value></data>
+  <data name="Rules_Include.Header" xml:space="preserve"><value>Include only (masks separated by ;)</value></data>
+  <data name="Rules_Include.PlaceholderText" xml:space="preserve"><value>*.jpg; *.png; Photos\*</value></data>
+  <data name="Rules_Exclude.Header" xml:space="preserve"><value>Exclude</value></data>
+  <data name="Rules_Exclude.PlaceholderText" xml:space="preserve"><value>node_modules; *.tmp; Thumbs.db</value></data>
+  <data name="Rules_MinSize.Header" xml:space="preserve"><value>Minimum size (MB)</value></data>
+  <data name="Rules_MaxSize.Header" xml:space="preserve"><value>Maximum size (MB)</value></data>
+  <data name="Rules_After.Header" xml:space="preserve"><value>Modified from</value></data>
+  <data name="Rules_Before.Header" xml:space="preserve"><value>Modified until</value></data>
+  <data name="Rules_SkipHidden.Content" xml:space="preserve"><value>Skip hidden</value></data>
+  <data name="Rules_SkipSystem.Content" xml:space="preserve"><value>Skip system files</value></data>
+  <data name="Rules_Rules.Text" xml:space="preserve"><value>Rules</value></data>
+  <data name="Rules_Links.Header" xml:space="preserve"><value>Symbolic links and junctions</value></data>
+  <data name="Rules_LinksCopy.Content" xml:space="preserve"><value>Copy them as links</value></data>
+  <data name="Rules_LinksFollow.Content" xml:space="preserve"><value>Copy what they point to</value></data>
+  <data name="Rules_LinksSkip.Content" xml:space="preserve"><value>Skip them</value></data>
+  <data name="Rules_Pattern.Header" xml:space="preserve"><value>Name when keeping both ({name}, {n}, {ext}, {date})</value></data>
+  <data name="Rules_PatternPreview" xml:space="preserve"><value>Example: {0}</value></data>
+  <data name="Rules_Retries.Header" xml:space="preserve"><value>Retries</value></data>
+  <data name="Rules_Delay.Header" xml:space="preserve"><value>Wait between retries (s)</value></data>
+  <data name="Rules_OnError.Header" xml:space="preserve"><value>If a file keeps failing</value></data>
+  <data name="Rules_OnErrorSkip.Content" xml:space="preserve"><value>Log it and continue with the next</value></data>
+  <data name="Rules_OnErrorStop.Content" xml:space="preserve"><value>Stop the transfer (it can be resumed)</value></data>
+  <data name="ConflictDifferentSize.Content" xml:space="preserve"><value>Replace if the size differs</value></data>
+  <data name="ConflictRenameExisting.Content" xml:space="preserve"><value>Rename the existing one</value></data>
+  <data name="Conflict_RenameExisting.Text" xml:space="preserve"><value>Rename the existing one and copy this one</value></data>
+  <data name="Schedule_Title.Text" xml:space="preserve"><value>Schedule the start</value></data>
+  <data name="Schedule_Set.Text" xml:space="preserve"><value>Schedule</value></data>
+  <data name="Schedule_Now.Text" xml:space="preserve"><value>Start now</value></data>
+  <data name="Schedule_InThePast" xml:space="preserve"><value>Pick a time in the future.</value></data>
+  <data name="Job_StateScheduled" xml:space="preserve"><value>Scheduled for {0}</value></data>
+  <data name="Settings_Favorites.Text" xml:space="preserve"><value>Favorite folders</value></data>
+  <data name="Settings_FavoritesTitle.Text" xml:space="preserve"><value>Favorite destinations</value></data>
+  <data name="Settings_FavoritesDescription.Text" xml:space="preserve"><value>They appear in &quot;New &gt; Copy to&quot; and in the destinations dialog to copy to several folders at once.</value></data>
+  <data name="Settings_FavoritesAdd.Text" xml:space="preserve"><value>Add folder</value></data>
+  <data name="Settings_FavoritesRemove" xml:space="preserve"><value>Remove {0}</value></data>
+  <data name="Settings_FavoritesEmpty" xml:space="preserve"><value>No favorites yet.</value></data>
+  <data name="Tool_CopyTo.Text" xml:space="preserve"><value>Copy to</value></data>
+  <data name="Tool_CopyToEmpty" xml:space="preserve"><value>No favorites or recent folders</value></data>
+  <data name="Tool_CopyToManage" xml:space="preserve"><value>Manage favorites…</value></data>
+  <data name="Tool_TestFiles.Text" xml:space="preserve"><value>Test checksum files…</value></data>
+  <data name="Tool_TestFolder.Text" xml:space="preserve"><value>Test checksums in a folder…</value></data>
+  <data name="Tool_Delete.Text" xml:space="preserve"><value>Delete…</value></data>
+  <data name="Tool_Wipe.Text" xml:space="preserve"><value>Securely delete…</value></data>
+  <data name="DestinationsDialog.Title" xml:space="preserve"><value>Where to?</value></data>
+  <data name="DestinationsDialog.PrimaryButtonText" xml:space="preserve"><value>Start</value></data>
+  <data name="DestinationsDialog.CloseButtonText" xml:space="preserve"><value>Cancel</value></data>
+  <data name="Destinations_SummaryOne" xml:space="preserve"><value>Choose one or more destinations for &quot;{0}&quot;.</value></data>
+  <data name="Destinations_SummaryMany" xml:space="preserve"><value>Choose one or more destinations for {0} items.</value></data>
+  <data name="Destinations_Add.Text" xml:space="preserve"><value>Add folder…</value></data>
+  <data name="Destinations_Move.Content" xml:space="preserve"><value>Move instead of copy</value></data>
+  <data name="Destinations_Schedule.Content" xml:space="preserve"><value>Start later</value></data>
+  <data name="DeleteDialog.Title" xml:space="preserve"><value>Delete</value></data>
+  <data name="DeleteDialog.PrimaryButtonText" xml:space="preserve"><value>Delete</value></data>
+  <data name="DeleteDialog.CloseButtonText" xml:space="preserve"><value>Cancel</value></data>
+  <data name="Delete_ConfirmOne" xml:space="preserve"><value>Delete &quot;{0}&quot;? It does not go to the Recycle Bin.</value></data>
+  <data name="Delete_ConfirmMany" xml:space="preserve"><value>Delete {0} items? They do not go to the Recycle Bin.</value></data>
+  <data name="Delete_ConfirmSecureOne" xml:space="preserve"><value>Securely delete &quot;{0}&quot;?</value></data>
+  <data name="Delete_ConfirmSecureMany" xml:space="preserve"><value>Securely delete {0} items?</value></data>
+  <data name="Delete_SecureWarning.Title" xml:space="preserve"><value>It cannot be recovered</value></data>
+  <data name="Delete_SecureWarning.Message" xml:space="preserve"><value>The content is overwritten before deleting. On SSDs the drive itself may keep remnants; for maximum security, use BitLocker encryption.</value></data>
+  <data name="FinishHibernate.Text" xml:space="preserve"><value>Hibernate</value></data>
+  <data name="FinishSignOut.Text" xml:space="preserve"><value>Sign out</value></data>
+  <data name="FinishExit.Text" xml:space="preserve"><value>Close MegaCopier</value></data>
+  <data name="Finish_LabelHibernate" xml:space="preserve"><value>When finished: hibernate</value></data>
+  <data name="Finish_LabelSignOut" xml:space="preserve"><value>When finished: sign out</value></data>
+  <data name="Finish_LabelExit" xml:space="preserve"><value>When finished: close MegaCopier</value></data>
+  <data name="Notify_FinishSleep" xml:space="preserve"><value>Going to sleep…</value></data>
+  <data name="Notify_FinishHibernate" xml:space="preserve"><value>Hibernating…</value></data>
+  <data name="Notify_FinishShutdown" xml:space="preserve"><value>The computer will shut down in 1 minute (cancel: shutdown /a).</value></data>
+  <data name="Notify_FinishSignOut" xml:space="preserve"><value>Signing out…</value></data>
+  <data name="Notify_FinishExitApp" xml:space="preserve"><value>MegaCopier is closing.</value></data>
+  <data name="Files_SelectAll.Text" xml:space="preserve"><value>Select all</value></data>
+  <data name="Files_SelectSameExtension.Text" xml:space="preserve"><value>Select files with the same extension</value></data>
+  <data name="Files_SelectSameFolder.Text" xml:space="preserve"><value>Select files in the same folder</value></data>
+  <data name="Files_InvertSelection.Text" xml:space="preserve"><value>Invert selection</value></data>
+  <data name="Job_TitleTest" xml:space="preserve"><value>Test {0}</value></data>
+  <data name="Job_TitleTesting" xml:space="preserve"><value>Testing {0}</value></data>
+  <data name="Job_TitleTested" xml:space="preserve"><value>Tested {0}</value></data>
+  <data name="Job_TitleDelete" xml:space="preserve"><value>Delete {0}</value></data>
+  <data name="Job_TitleDeleting" xml:space="preserve"><value>Deleting {0}</value></data>
+  <data name="Job_TitleDeleted" xml:space="preserve"><value>Deleted {0}</value></data>
+  <data name="Job_StateTesting" xml:space="preserve"><value>Testing</value></data>
+  <data name="Job_StateDeleting" xml:space="preserve"><value>Deleting</value></data>
+  <data name="Job_FilesTestedOne" xml:space="preserve"><value>{0} file OK</value></data>
+  <data name="Job_FilesTestedMany" xml:space="preserve"><value>{0} files OK</value></data>
+  <data name="Job_FilesDeletedOne" xml:space="preserve"><value>{0} file deleted</value></data>
+  <data name="Job_FilesDeletedMany" xml:space="preserve"><value>{0} files deleted</value></data>
+  <data name="Job_TitleScheduled" xml:space="preserve"><value>Scheduled: {0}</value></data>
+  <data name="Error_ChecksumMismatch" xml:space="preserve"><value>The content does not match the saved checksum: the file changed or is damaged.</value></data>
+  <data name="Job_FilteredOut" xml:space="preserve"><value>No files match this transfer&apos;s filters</value></data>
 </root>

@@ -80,6 +80,21 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
 
     private bool IsMove => Job.Record.Move;
 
+    /// <summary>Copy, Move, Test o Delete: parte de las claves de texto ("Job_TitleCopying", "Job_FilesDeletedOne"...).</summary>
+    private string Kind => Job.Record.Operation switch
+    {
+        JobOperation.Test => "Test",
+        JobOperation.Delete => "Delete",
+        _ => IsMove ? "Move" : "Copy",
+    };
+
+    private string Past => Kind switch { "Copy" => "Copied", "Move" => "Moved", "Test" => "Tested", _ => "Deleted" };
+
+    private string Progressive => Kind switch { "Copy" => "Copying", "Move" => "Moving", "Test" => "Testing", _ => "Deleting" };
+
+    /// <summary>Programada para más tarde.</summary>
+    public bool IsScheduled => Job.Record.StartAtUtc is { } at && at > DateTime.UtcNow;
+
     // ---------------------------------------------------------------------------------------------------------
     // Estado
 
@@ -118,6 +133,8 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
         CopyJobState.Failed or CopyJobState.CompletedWithErrors => "\uE7BA",   // ⚠
         CopyJobState.Paused or CopyJobState.Interrupted => "\uE769",           // ❚❚
         CopyJobState.Queued => "\uE823",                                       // reloj
+        _ when Job.Record.Operation == JobOperation.Test => "\uE9D5",           // comprobar
+        _ when Job.Record.Operation == JobOperation.Delete => "\uE74D",         // borrar
         _ => IsMove ? "\uE8DE" : "\uE8C8",                                      // mover / copiar
     };
 
@@ -131,10 +148,11 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
                 : L.F("Job_ManyItems", sources.Count);
             return State switch
             {
-                CopyJobState.Completed or CopyJobState.CompletedWithErrors => L.F(IsMove ? "Job_TitleMoved" : "Job_TitleCopied", what),
+                CopyJobState.Completed or CopyJobState.CompletedWithErrors => L.F("Job_Title" + Past, what),
+                CopyJobState.Queued when IsScheduled => L.F("Job_TitleScheduled", what),
                 CopyJobState.Queued => L.F("Job_TitleQueued", what),
-                CopyJobState.Running or CopyJobState.Paused => L.F(IsMove ? "Job_TitleMoving" : "Job_TitleCopying", what),
-                _ => L.F(IsMove ? "Job_TitleMove" : "Job_TitleCopy", what),
+                CopyJobState.Running or CopyJobState.Paused => L.F("Job_Title" + Progressive, what),
+                _ => L.F("Job_Title" + Kind, what),
             };
         }
     }
@@ -142,7 +160,7 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
     /// <summary>Título de la ventana y de la tarjeta lateral: "Copiando (51,8 %)".</summary>
     public string ShortTitle => State switch
     {
-        CopyJobState.Running or CopyJobState.Paused => $"{L.Get(IsMove ? "Job_StateMoving" : "Job_StateCopying")} ({TotalFraction * 100:0.0} %)",
+        CopyJobState.Running or CopyJobState.Paused => $"{L.Get("Job_State" + Progressive)} ({TotalFraction * 100:0.0} %)",
         _ => StateText,
     };
 
@@ -159,11 +177,13 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
 
     public string StateText => State switch
     {
+        CopyJobState.Queued when IsScheduled => L.F("Job_StateScheduled", Job.Record.StartAtUtc!.Value.ToLocalTime().ToString("g")),
+        CopyJobState.Paused when IsScheduled => L.F("Job_StateScheduled", Job.Record.StartAtUtc!.Value.ToLocalTime().ToString("g")),
         CopyJobState.Queued => L.Get("Job_StateQueued"),
         CopyJobState.Running when Progress?.Phase == CopyPhase.Verifying => L.Get("Job_StateVerifying"),
         CopyJobState.Running when Progress?.Phase == CopyPhase.Validating => L.Get("Job_StateValidating"),
         CopyJobState.Running when Progress?.Phase == CopyPhase.WaitingForUser => L.Get("Job_StateWaiting"),
-        CopyJobState.Running => L.Get(IsMove ? "Job_StateMoving" : "Job_StateCopying"),
+        CopyJobState.Running => L.Get("Job_State" + Progressive),
         CopyJobState.Paused => L.Get("Job_StatePaused"),
         CopyJobState.Completed => L.Get("Job_StateCompleted"),
         CopyJobState.CompletedWithErrors => L.Get("Job_StateCompletedErrors"),
@@ -212,7 +232,7 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
 
     public string TotalFilesText => Progress is { } p ? p.TotalFiles.ToString("N0") : "";
 
-    public bool BarIndeterminate => State == CopyJobState.Queued || (IsRunning && Progress is null);
+    public bool BarIndeterminate => (State == CopyJobState.Queued && !IsScheduled) || (IsRunning && Progress is null);
 
     // ---------------------------------------------------------------------------------------------------------
     // Archivo actual (barra inferior)
@@ -321,6 +341,15 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
 
     public void Skip() => Job.SkipCurrent();
 
+    /// <summary>Programa el inicio (hora local; null = empezar ahora).</summary>
+    public void Schedule(DateTime? startLocal)
+    {
+        _queue.ScheduleAt(Job, startLocal?.ToUniversalTime());
+        Refresh();
+    }
+
+    public bool CanSchedule => State is CopyJobState.Queued or CopyJobState.Running or CopyJobState.Paused or CopyJobState.Interrupted;
+
     public void Stop() => _queue.Stop(Job);
 
     public void Discard() => _queue.Discard(Job);
@@ -363,13 +392,12 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
     private string CompletedSummary(CopyJobResult result)
     {
         int files = result.FilesCopied;
-        string key = (IsMove, files == 1) switch
+        if (files == 0 && result.FilesSkipped == 0 && result.Failures.Count == 0 && !Job.Record.Filter.IsEmpty)
         {
-            (true, true) => "Job_FilesMovedOne",
-            (true, false) => "Job_FilesMovedMany",
-            (false, true) => "Job_FilesCopiedOne",
-            _ => "Job_FilesCopiedMany",
-        };
+            return L.Get("Job_FilteredOut");
+        }
+
+        string key = "Job_Files" + Past + (files == 1 ? "One" : "Many");
 
         var parts = new List<string> { L.F(key, files) };
         if (result.BytesTransferred > 0)

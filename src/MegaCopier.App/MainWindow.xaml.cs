@@ -539,29 +539,6 @@ public sealed partial class MainWindow : Window
         }
     }
 
-    private async Task PickDestinationAndCopy(IReadOnlyList<string> sources, bool move)
-    {
-        if (await Pickers.PickFolderAsync(L.Get(move ? "Picker_MoveHere" : "Picker_CopyHere")) is not { } destination)
-        {
-            return;
-        }
-
-        Submit(sources, destination, move);
-    }
-
-    private void Submit(IReadOnlyList<string> sources, string destination, bool move)
-    {
-        try
-        {
-            _app.Submit(new IpcRequest { Command = "copy", Sources = [.. sources], Destination = destination, Move = move ? true : null });
-            ShowJobs();
-        }
-        catch (Exception ex) when (ex is ArgumentException or IOException or UnauthorizedAccessException)
-        {
-            _app.Notify(L.Get("Notify_ProblemTitle"), ex.Message);
-        }
-    }
-
     /// <summary>Carga una lista guardada (.mclist) y la copia de nuevo a su destino.</summary>
     private async void LoadList_Click(object sender, RoutedEventArgs e)
     {
@@ -680,11 +657,231 @@ public sealed partial class MainWindow : Window
     // ---------------------------------------------------------------------------------------------------------
     // Al terminar
 
+
+    private async Task PickDestinationAndCopy(IReadOnlyList<string> sources, bool move)
+    {
+        // Diálogo de destinos: favoritos y recientes marcables, añadir carpetas, mover y programar.
+        var options = new List<string>();
+        foreach (string folder in _app.Settings.FavoriteFolders.Concat(_app.Settings.RecentDestinations))
+        {
+            if (!options.Contains(folder, StringComparer.OrdinalIgnoreCase))
+            {
+                options.Add(folder);
+            }
+        }
+
+        DestinationsList.Items.Clear();
+        foreach (string folder in options)
+        {
+            DestinationsList.Items.Add(DestinationItem(folder, _app.Settings.FavoriteFolders.Contains(folder, StringComparer.OrdinalIgnoreCase)));
+        }
+
+        DestinationsSummary.Text = sources.Count == 1
+            ? L.F("Destinations_SummaryOne", Path.GetFileName(Path.TrimEndingDirectorySeparator(sources[0])))
+            : L.F("Destinations_SummaryMany", sources.Count);
+        DestinationsMove.IsChecked = move;
+        DestinationsSchedule.IsChecked = false;
+        DestinationsWhen.Visibility = Visibility.Collapsed;
+        var later = DateTime.Now.AddHours(1);
+        DestinationsDate.Date = new DateTimeOffset(later.Date);
+        DestinationsTime.Time = new TimeSpan(later.Hour, 0, 0);
+
+        // Sin favoritos ni recientes, primero se pide una carpeta.
+        if (options.Count == 0)
+        {
+            if (await Pickers.PickFolderAsync(L.Get(move ? "Picker_MoveHere" : "Picker_CopyHere")) is not { } first)
+            {
+                return;
+            }
+
+            DestinationsList.Items.Add(DestinationItem(first, favorite: false));
+            DestinationsList.SelectedItems.Add(DestinationsList.Items[^1]);
+        }
+
+        DestinationsDialog.XamlRoot = Root.XamlRoot;
+        DestinationsDialog.RequestedTheme = Root.RequestedTheme;
+        if (await DestinationsDialog.ShowAsync() != ContentDialogResult.Primary)
+        {
+            return;
+        }
+
+        var chosen = DestinationsList.SelectedItems.OfType<ListViewItem>().Select(i => (string)i.Tag).ToList();
+        if (chosen.Count == 0)
+        {
+            return;
+        }
+
+        DateTime? startAt = null;
+        if (DestinationsSchedule.IsChecked == true && DestinationsDate.Date is { } date)
+        {
+            var when = date.Date + DestinationsTime.Time;
+            startAt = when > DateTime.Now ? when.ToUniversalTime() : null;
+        }
+
+        Submit(sources, chosen[0], DestinationsMove.IsChecked == true, chosen.Skip(1).ToList(), startAt);
+    }
+
+    private static ListViewItem DestinationItem(string folder, bool favorite)
+    {
+        var row = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 8 };
+        row.Children.Add(new FontIcon { Glyph = favorite ? "" : "", FontSize = 14, VerticalAlignment = VerticalAlignment.Center });
+        row.Children.Add(new TextBlock { Text = folder, VerticalAlignment = VerticalAlignment.Center, TextTrimming = TextTrimming.CharacterEllipsis });
+        var item = new ListViewItem { Content = row, Tag = folder };
+        Microsoft.UI.Xaml.Automation.AutomationProperties.SetName(item, folder);
+        return item;
+    }
+
+    private async void AddDestination_Click(object sender, RoutedEventArgs e)
+    {
+        if (await Pickers.PickFolderAsync() is not { } folder)
+        {
+            return;
+        }
+
+        var existing = DestinationsList.Items.OfType<ListViewItem>().FirstOrDefault(i => string.Equals((string)i.Tag, folder, StringComparison.OrdinalIgnoreCase));
+        if (existing is null)
+        {
+            existing = DestinationItem(folder, favorite: false);
+            DestinationsList.Items.Add(existing);
+        }
+
+        DestinationsList.SelectedItems.Add(existing);
+    }
+
+    private void DestinationsSchedule_Click(object sender, RoutedEventArgs e) =>
+        DestinationsWhen.Visibility = DestinationsSchedule.IsChecked == true ? Visibility.Visible : Visibility.Collapsed;
+
+    private void Submit(IReadOnlyList<string> sources, string destination, bool move, List<string>? extra = null, DateTime? startAtUtc = null) =>
+        Submit(new IpcRequest
+        {
+            Command = "copy",
+            Sources = [.. sources],
+            Destination = destination,
+            Move = move ? true : null,
+            ExtraDestinations = extra is { Count: > 0 } ? extra : null,
+            StartAtUtc = startAtUtc,
+        });
+
+    private void Submit(IpcRequest request)
+    {
+        try
+        {
+            _app.Submit(request);
+            ShowJobs();
+        }
+        catch (Exception ex) when (ex is ArgumentException or IOException or UnauthorizedAccessException)
+        {
+            _app.Notify(L.Get("Notify_ProblemTitle"), ex.Message);
+        }
+    }
+
+    /// <summary>"Copiar a": favoritos y recientes, se rehace cada vez que se abre el menú.</summary>
+    private void NewMenu_Opening(object sender, object e)
+    {
+        CopyToMenu.Items.Clear();
+        var favorites = _app.Settings.FavoriteFolders;
+        var recents = _app.Settings.RecentDestinations.Where(r => !favorites.Contains(r, StringComparer.OrdinalIgnoreCase)).Take(8).ToList();
+        foreach (string folder in favorites)
+        {
+            CopyToMenu.Items.Add(CopyToItem(folder, ""));
+        }
+
+        if (favorites.Count > 0 && recents.Count > 0)
+        {
+            CopyToMenu.Items.Add(new MenuFlyoutSeparator());
+        }
+
+        foreach (string folder in recents)
+        {
+            CopyToMenu.Items.Add(CopyToItem(folder, ""));
+        }
+
+        if (CopyToMenu.Items.Count == 0)
+        {
+            CopyToMenu.Items.Add(new MenuFlyoutItem { Text = L.Get("Tool_CopyToEmpty"), IsEnabled = false });
+        }
+
+        CopyToMenu.Items.Add(new MenuFlyoutSeparator());
+        var manage = new MenuFlyoutItem { Text = L.Get("Tool_CopyToManage"), Icon = new FontIcon { Glyph = "" } };
+        manage.Click += Settings_Click;
+        CopyToMenu.Items.Add(manage);
+    }
+
+    private MenuFlyoutItem CopyToItem(string folder, string glyph)
+    {
+        var item = new MenuFlyoutItem { Text = Format.ShortPath(folder, 2), Icon = new FontIcon { Glyph = glyph } };
+        ToolTipService.SetToolTip(item, folder);
+        item.Click += async (_, _) =>
+        {
+            var files = await Pickers.PickFilesAsync();
+            if (files.Count > 0)
+            {
+                Submit(files, folder, move: false);
+            }
+        };
+        return item;
+    }
+
+    // Comprobar sumas
+
+    private async void TestFiles_Click(object sender, RoutedEventArgs e)
+    {
+        var lists = await Pickers.PickFilesAsync(".sha256", ".sha1", ".sha512", ".md5", ".sfv", ".xxh3", ".xxh64", ".xxh128");
+        if (lists.Count > 0)
+        {
+            Submit(new IpcRequest { Command = "copy", Operation = Engine.JobOperation.Test, Sources = [.. lists] });
+        }
+    }
+
+    private async void TestFolder_Click(object sender, RoutedEventArgs e)
+    {
+        if (await Pickers.PickFolderAsync() is { } folder)
+        {
+            Submit(new IpcRequest { Command = "copy", Operation = Engine.JobOperation.Test, Sources = [folder] });
+        }
+    }
+
+    // Borrar
+
+    private void Delete_Click(object sender, RoutedEventArgs e) => _ = DeleteAsync(secure: false);
+
+    private void Wipe_Click(object sender, RoutedEventArgs e) => _ = DeleteAsync(secure: true);
+
+    private async Task DeleteAsync(bool secure)
+    {
+        var paths = await Pickers.PickFilesAsync();
+        if (paths.Count > 0)
+        {
+            await ConfirmAndDeleteAsync(paths, secure);
+        }
+    }
+
+    /// <summary>Borrar siempre pide confirmación (el borrado seguro no se puede deshacer de ningún modo).</summary>
+    internal async Task ConfirmAndDeleteAsync(IReadOnlyList<string> paths, bool secure)
+    {
+        DeleteMessage.Text = paths.Count == 1
+            ? L.F(secure ? "Delete_ConfirmSecureOne" : "Delete_ConfirmOne", paths[0])
+            : L.F(secure ? "Delete_ConfirmSecureMany" : "Delete_ConfirmMany", paths.Count);
+        DeleteWarning.IsOpen = secure;
+        DeleteDialog.XamlRoot = Root.XamlRoot;
+        DeleteDialog.RequestedTheme = Root.RequestedTheme;
+        if (await DeleteDialog.ShowAsync() == ContentDialogResult.Primary)
+        {
+            Submit(new IpcRequest { Command = "copy", Operation = Engine.JobOperation.Delete, SecureDelete = secure, Sources = [.. paths] });
+        }
+    }
+
     private void Finish_Click(object sender, RoutedEventArgs e)
     {
-        _app.FinishAction = ReferenceEquals(sender, FinishSleep) ? FinishAction.Sleep
-            : ReferenceEquals(sender, FinishShutdown) ? FinishAction.Shutdown
-            : FinishAction.None;
+        _app.FinishAction = sender switch
+        {
+            _ when ReferenceEquals(sender, FinishSleep) => FinishAction.Sleep,
+            _ when ReferenceEquals(sender, FinishHibernate) => FinishAction.Hibernate,
+            _ when ReferenceEquals(sender, FinishShutdown) => FinishAction.Shutdown,
+            _ when ReferenceEquals(sender, FinishSignOut) => FinishAction.SignOut,
+            _ when ReferenceEquals(sender, FinishExit) => FinishAction.ExitApp,
+            _ => FinishAction.None,
+        };
         UpdateFinishButton();
     }
 
@@ -692,13 +889,28 @@ public sealed partial class MainWindow : Window
     {
         FinishNothing.IsChecked = _app.FinishAction == FinishAction.None;
         FinishSleep.IsChecked = _app.FinishAction == FinishAction.Sleep;
+        FinishHibernate.IsChecked = _app.FinishAction == FinishAction.Hibernate;
         FinishShutdown.IsChecked = _app.FinishAction == FinishAction.Shutdown;
+        FinishSignOut.IsChecked = _app.FinishAction == FinishAction.SignOut;
+        FinishExit.IsChecked = _app.FinishAction == FinishAction.ExitApp;
         (FinishIcon.Glyph, FinishText.Text) = _app.FinishAction switch
         {
             FinishAction.Sleep => ("", L.Get("Finish_LabelSleep")),
+            FinishAction.Hibernate => ("", L.Get("Finish_LabelHibernate")),
             FinishAction.Shutdown => ("", L.Get("Finish_LabelShutdown")),
+            FinishAction.SignOut => ("", L.Get("Finish_LabelSignOut")),
+            FinishAction.ExitApp => ("", L.Get("Finish_LabelExit")),
             _ => ("", L.Get("Finish_Label")),
         };
+    }
+
+    private bool _renameExisting;
+
+    /// <summary>"Renombrar el que ya está": cierra el diálogo con esa decisión.</summary>
+    private void ConflictRename_Click(object sender, RoutedEventArgs e)
+    {
+        _renameExisting = true;
+        ConflictDialog.Hide();
     }
 
     // ---------------------------------------------------------------------------------------------------------
@@ -722,6 +934,7 @@ public sealed partial class MainWindow : Window
                     Select(Jobs.FirstOrDefault(j => j.Job == job) ?? _selected);
                     ShowAndActivate();
                     FillConflictDialog(conflict, job.Record.Move);
+                    _renameExisting = false;
                     ConflictDialog.XamlRoot = Root.XamlRoot;
                     ConflictDialog.RequestedTheme = Root.RequestedTheme;
                     bool grow = !_expanded;
@@ -737,7 +950,7 @@ public sealed partial class MainWindow : Window
                         AnimateResize();
                     }
 
-                    var decision = result switch
+                    var decision = _renameExisting ? ConflictDecision.RenameExisting : result switch
                     {
                         ContentDialogResult.Primary => ConflictDecision.Replace,
                         ContentDialogResult.Secondary => ConflictDecision.KeepBoth,

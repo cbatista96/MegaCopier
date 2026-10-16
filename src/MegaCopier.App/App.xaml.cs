@@ -2,6 +2,7 @@ using System.Diagnostics;
 using MegaCopier.App.Services;
 using MegaCopier.App.Theming;
 using MegaCopier.App.ViewModels;
+using MegaCopier.Engine;
 using MegaCopier.Engine.Ipc;
 using MegaCopier.Engine.Jobs;
 using MegaCopier.Shell;
@@ -155,20 +156,56 @@ public partial class App : Application
     /// <summary>Encola una copia (desde la ventana o desde otro proceso).</summary>
     internal CopyJob Submit(IpcRequest request)
     {
+        var operation = request.Operation ?? JobOperation.Copy;
+        if (operation != JobOperation.Copy && request.Sources.Count > 0 && string.IsNullOrWhiteSpace(request.Destination))
+        {
+            // Comprobar y borrar no tienen destino: se muestra la carpeta de los orígenes.
+            string first = Path.TrimEndingDirectorySeparator(Path.GetFullPath(request.Sources[0]));
+            request.Destination = File.Exists(first) || operation == JobOperation.Delete ? Path.GetDirectoryName(first) ?? first : first;
+        }
+
         if (request.Sources.Count == 0 || string.IsNullOrWhiteSpace(request.Destination))
         {
             throw new ArgumentException(L.Get("Error_NeedsPaths"));
         }
 
-        var job = Queue.Submit(request.Sources, request.Destination, Settings.NewJobOptions(request));
-        if (Settings.ExportReport || Settings.Scripts.Count > 0)
+        var destinations = new List<string> { request.Destination };
+        destinations.AddRange((request.ExtraDestinations ?? []).Where(d => !destinations.Contains(d, StringComparer.OrdinalIgnoreCase)));
+
+        CopyJob? firstJob = null;
+        foreach (string destination in destinations)
         {
-            job.Record.ExportReport = Settings.ExportReport;
-            job.Record.Scripts = [.. Settings.Scripts];
-            job.SaveRecord();
+            var options = Settings.NewJobOptions(request);
+            options.Operation = operation;
+            options.SecureDelete = request.SecureDelete ?? false;
+            if (operation != JobOperation.Copy)
+            {
+                options.CheckFreeSpace = false;
+                options.Move = false;
+            }
+
+            var job = Queue.Submit(request.Sources, destination, options, request.StartAtUtc);
+            if (operation == JobOperation.Copy && (Settings.ExportReport || Settings.Scripts.Count > 0))
+            {
+                job.Record.ExportReport = Settings.ExportReport;
+                job.Record.Scripts = [.. Settings.Scripts];
+                job.SaveRecord();
+            }
+
+            if (operation == JobOperation.Copy)
+            {
+                Settings.RememberDestination(destination);
+            }
+
+            firstJob ??= job;
         }
 
-        return job;
+        if (operation == JobOperation.Copy)
+        {
+            Settings.Save();
+        }
+
+        return firstJob!;
     }
 
     /// <summary>Preferencias que no son de cada copia: cola, prioridad del proceso y ventana siempre visible.</summary>
@@ -449,7 +486,13 @@ public partial class App : Application
             var action = FinishAction;
             FinishAction = FinishAction.None;
             Window.UpdateFinishButton();
-            _tray?.ShowNotification(L.Get("Notify_AllDoneTitle"), L.Get(action == FinishAction.Shutdown ? "Notify_Shutdown" : "Notify_Sleep"));
+            _tray?.ShowNotification(L.Get("Notify_AllDoneTitle"), L.Get("Notify_Finish" + action));
+            if (action == FinishAction.ExitApp)
+            {
+                ExitApp();
+                return;
+            }
+
             SystemActions.Run(action);
         }
 

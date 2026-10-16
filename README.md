@@ -69,6 +69,23 @@ Tras un apagón se pierde como máximo un bloque. Al volver a abrir MegaCopier, 
   («otro programa tiene el archivo abierto», «no queda espacio»…) con «Reintentar»; el detalle técnico va en el tooltip.
 - Límite de velocidad; el equipo no se suspende mientras copia; **al terminar**: suspender o apagar el equipo.
 
+**Más que copiar** (lo que TeraCopy Pro, Ultracopier y FastCopy ofrecen, y algo más)
+- **Varios destinos a la vez**, **carpetas favoritas** y **destinos recientes** («Nueva > Copiar a» y el diálogo de destinos).
+- **Programar el inicio** de una copia (sigue programada aunque se reinicie el equipo) o pausar una en marcha hasta una hora.
+- **Filtros**: incluir y excluir por máscara (`*.jpg; node_modules`), tamaño, fechas, ocultos y de sistema.
+- **Conflictos**: preguntar, reemplazar, omitir, reemplazar si es más reciente o si cambia el tamaño, conservar ambos o
+  renombrar el que ya estaba, con un patrón de nombres propio (`{name} ({n}){ext}`, `{date}`).
+- **Comprobar sumas** (como el modo Test de TeraCopy): `.sha256`, `.sha1`, `.sha512`, `.md5`, `.sfv` y `.xxh*`, en formato
+  sha256sum, BSD y xxhsum.
+- **Borrar** y **borrar de forma segura** (sobrescribe, renombra y borra), siempre con confirmación; los enlaces se borran
+  como enlaces, sin tocar lo que hay detrás.
+- **Enlaces simbólicos y uniones**: copiarlos como enlace, copiar su contenido u omitirlos, cortando bucles. Los archivos
+  de OneDrive en la nube se copian como archivos normales.
+- **Rutas de más de 260 caracteres**, también con flujos ADS y permisos.
+- Reintentos y espera configurables, y qué hacer si un archivo sigue fallando (seguir o detener).
+- En la lista: seleccionar todo, los de la misma extensión o carpeta, invertir la selección.
+- **Al terminar**: suspender, hibernar, apagar, cerrar sesión o cerrar MegaCopier.
+
 **Temas**: 11 temas completos que cambian toda la interfaz al momento (Fluent como Windows, Fluent oscuro/claro,
 Medianoche, Grafito, Océano, Bosque, Atardecer, SuperCopier clásico, Ultracopier clásico y Alto contraste): colores,
 degradado de cada barra, alto de las barras, redondeo y fondo Mica / Mica Alt / Acrílico / sólido. Un editor permite
@@ -128,7 +145,12 @@ el código con `L.Get("Clave")`. Para añadir un idioma, añade una columna al `
 ```text
 mcopy copy <origen>... <destino> [--verify] [--conflict overwrite|skip|newer|rename|fail|ask] [--force] [--limit-mb n]
 mcopy move <origen>... <destino> [mismas opciones]
-mcopy send <origen>... <destino> [--verify] [--move]     entrega la copia a la app (la arranca si está cerrada)
+mcopy send <origen>... <destino> [--verify] [--move] [--also <otro-destino>]... [--at HH:mm]
+                                                         entrega la copia a la app (la arranca si está cerrada)
+mcopy send --test <sumas|carpeta>...                     comprobar sumas en la app
+mcopy send --delete [--secure] <ruta>...                 borrar (de forma segura) en la app
+mcopy test <sumas|carpeta>...                            comprobar sumas sin la app
+mcopy delete [--secure] --yes <ruta>...                  borrar sin la app
 mcopy resume [id]                                        continúa trabajos interrumpidos
 mcopy jobs
 ```
@@ -158,6 +180,8 @@ un segundo `MegaCopier.exe`) le entrega la petición por la tubería `\\.\pipe\M
   el Explorador. Arrastrar con el botón derecho sí ofrece «Copiar / Mover aquí con MegaCopier».
 - En el **menú contextual compacto** de Windows 11 las opciones aparecen bajo «Mostrar más opciones»: el menú compacto
   exige que la app esté empaquetada y firmada.
-- Cambiar el **color de acento** o el **idioma** requiere reiniciar MegaCopier (la app lo ofrece con un botón).
-- Los mensajes de error internos del motor están en español.
+- Cambiar el **idioma** requiere reiniciar MegaCopier (la app lo ofrece con un botón).
+- Los errores de los archivos se muestran traducidos; el detalle técnico y el registro del motor están en español.
+- El **borrado seguro** sobrescribe el contenido una vez; en discos SSD el propio disco puede conservar restos (para eso, BitLocker).
+- Crear **enlaces simbólicos** de archivo en el destino requiere el modo de desarrollador o permisos de administrador; las carpetas enlazadas se recrean como uniones, que no lo requieren.
 - No se ha probado todavía un **apagón real** (solo procesos matados y fallos simulados en las pruebas).

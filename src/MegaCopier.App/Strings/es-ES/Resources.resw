@@ -142,8 +142,6 @@
   <data name="Notify_DoneTitle" xml:space="preserve"><value>Copia terminada</value></data>
   <data name="Notify_ProblemTitle" xml:space="preserve"><value>La copia tuvo problemas</value></data>
   <data name="Notify_AllDoneTitle" xml:space="preserve"><value>Copias terminadas</value></data>
-  <data name="Notify_Shutdown" xml:space="preserve"><value>El equipo se apagará en 1 minuto (cancelar: shutdown /a).</value></data>
-  <data name="Notify_Sleep" xml:space="preserve"><value>Suspendiendo el equipo…</value></data>
   <data name="Error_NeedsPaths" xml:space="preserve"><value>La petición de copia necesita orígenes y un destino.</value></data>
   <data name="Tray_Disable" xml:space="preserve"><value>Desactivar (usar el copiador de Windows)</value></data>
   <data name="Tray_Enable" xml:space="preserve"><value>Activar MegaCopier</value></data>
@@ -200,13 +198,13 @@
   <data name="Options_Audit.Content" xml:space="preserve"><value>Auditoría (SACL)</value></data>
   <data name="Options_BufferSize.Text" xml:space="preserve"><value>Tamaño del búfer</value></data>
   <data name="Options_Data.Content" xml:space="preserve"><value>Datos</value></data>
-  <data name="Options_ExportReport.Content" xml:space="preserve"><value>Guardar un informe HTML al terminar</value></data>
+  <data name="Options_ExportReport.Content" xml:space="preserve"><value>Guardar informe HTML</value></data>
   <data name="Options_FilesFolders.Text" xml:space="preserve"><value>Archivos y carpetas</value></data>
   <data name="Options_OnFinish.Text" xml:space="preserve"><value>Al terminar</value></data>
   <data name="Options_Owner.Content" xml:space="preserve"><value>Propietario</value></data>
   <data name="Options_ResetDefault.Text" xml:space="preserve"><value>Restablecer</value></data>
   <data name="Options_RunningInfo.Message" xml:space="preserve"><value>La copia está en marcha: estos cambios se aplican al reanudarla (Verificar y Desatendido, al momento).</value></data>
-  <data name="Options_SaveChecksum.Content" xml:space="preserve"><value>Guardar un archivo de sumas (.sha256, .md5, .sfv…)</value></data>
+  <data name="Options_SaveChecksum.Content" xml:space="preserve"><value>Guardar archivo de sumas</value></data>
   <data name="Options_SaveDefault.Text" xml:space="preserve"><value>Guardar como predeterminado</value></data>
   <data name="Options_Scripts.Text" xml:space="preserve"><value>Comandos al terminar</value></data>
   <data name="Options_ScriptsHelp.Text" xml:space="preserve"><value>Uno por línea; se ejecutan con cmd.exe. Variables: %MEGACOPIER_STATE%, %MEGACOPIER_DESTINATION%, %MEGACOPIER_SOURCES%, %MEGACOPIER_FILES%, %MEGACOPIER_BYTES%, %MEGACOPIER_FAILED%, %MEGACOPIER_CHECKSUM%.</value></data>
@@ -354,7 +352,7 @@
   <data name="Language_Auto" xml:space="preserve"><value>Usar el de Windows</value></data>
   <data name="Log_FileType" xml:space="preserve"><value>Texto</value></data>
   <data name="Picker_MoveHere" xml:space="preserve"><value>Mover aquí</value></data>
-  <data name="Settings_AutoResume.Content" xml:space="preserve"><value>Continuar solas las copias interrumpidas al arrancar</value></data>
+  <data name="Settings_AutoResume.Content" xml:space="preserve"><value>Reanudar solas al arrancar</value></data>
   <data name="Panel_Options.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Opciones de esta copia</value></data>
   <data name="Panel_UnattendedItem.Text" xml:space="preserve"><value>Desatendido (no preguntar: omite los que ya existen)</value></data>
   <data name="Panel_VerifyItem.Text" xml:space="preserve"><value>Verificar al terminar</value></data>
@@ -386,4 +384,95 @@
   <data name="Report_Skipped" xml:space="preserve"><value>Omitidos</value></data>
   <data name="Report_Failed" xml:space="preserve"><value>Con errores</value></data>
   <data name="Job_SkippedOne" xml:space="preserve"><value>1 omitido</value></data>
+  <data name="Rules_Filters.Text" xml:space="preserve"><value>Filtros</value></data>
+  <data name="Rules_Include.Header" xml:space="preserve"><value>Incluir solo (máscaras separadas por ;)</value></data>
+  <data name="Rules_Include.PlaceholderText" xml:space="preserve"><value>*.jpg; *.png; Fotos\*</value></data>
+  <data name="Rules_Exclude.Header" xml:space="preserve"><value>Excluir</value></data>
+  <data name="Rules_Exclude.PlaceholderText" xml:space="preserve"><value>node_modules; *.tmp; Thumbs.db</value></data>
+  <data name="Rules_MinSize.Header" xml:space="preserve"><value>Tamaño mínimo (MB)</value></data>
+  <data name="Rules_MaxSize.Header" xml:space="preserve"><value>Tamaño máximo (MB)</value></data>
+  <data name="Rules_After.Header" xml:space="preserve"><value>Modificados desde</value></data>
+  <data name="Rules_Before.Header" xml:space="preserve"><value>Modificados hasta</value></data>
+  <data name="Rules_SkipHidden.Content" xml:space="preserve"><value>Omitir ocultos</value></data>
+  <data name="Rules_SkipSystem.Content" xml:space="preserve"><value>Omitir de sistema</value></data>
+  <data name="Rules_Rules.Text" xml:space="preserve"><value>Reglas</value></data>
+  <data name="Rules_Links.Header" xml:space="preserve"><value>Enlaces simbólicos y uniones</value></data>
+  <data name="Rules_LinksCopy.Content" xml:space="preserve"><value>Copiarlos como enlace</value></data>
+  <data name="Rules_LinksFollow.Content" xml:space="preserve"><value>Copiar lo que hay detrás</value></data>
+  <data name="Rules_LinksSkip.Content" xml:space="preserve"><value>Omitirlos</value></data>
+  <data name="Rules_Pattern.Header" xml:space="preserve"><value>Nombre al conservar ambos ({name}, {n}, {ext}, {date})</value></data>
+  <data name="Rules_PatternPreview" xml:space="preserve"><value>Ejemplo: {0}</value></data>
+  <data name="Rules_Retries.Header" xml:space="preserve"><value>Reintentos</value></data>
+  <data name="Rules_Delay.Header" xml:space="preserve"><value>Espera entre reintentos (s)</value></data>
+  <data name="Rules_OnError.Header" xml:space="preserve"><value>Si un archivo sigue fallando</value></data>
+  <data name="Rules_OnErrorSkip.Content" xml:space="preserve"><value>Anotarlo y seguir con el siguiente</value></data>
+  <data name="Rules_OnErrorStop.Content" xml:space="preserve"><value>Detener la copia (se podrá reanudar)</value></data>
+  <data name="ConflictDifferentSize.Content" xml:space="preserve"><value>Reemplazar si cambia el tamaño</value></data>
+  <data name="ConflictRenameExisting.Content" xml:space="preserve"><value>Renombrar el que ya está</value></data>
+  <data name="Conflict_RenameExisting.Text" xml:space="preserve"><value>Renombrar el que ya está y copiar este</value></data>
+  <data name="Schedule_Title.Text" xml:space="preserve"><value>Programar el inicio</value></data>
+  <data name="Schedule_Set.Text" xml:space="preserve"><value>Programar</value></data>
+  <data name="Schedule_Now.Text" xml:space="preserve"><value>Empezar ahora</value></data>
+  <data name="Schedule_InThePast" xml:space="preserve"><value>Elige una hora futura.</value></data>
+  <data name="Job_StateScheduled" xml:space="preserve"><value>Programada para {0}</value></data>
+  <data name="Settings_Favorites.Text" xml:space="preserve"><value>Carpetas favoritas</value></data>
+  <data name="Settings_FavoritesTitle.Text" xml:space="preserve"><value>Destinos favoritos</value></data>
+  <data name="Settings_FavoritesDescription.Text" xml:space="preserve"><value>Aparecen en «Nueva &gt; Copiar a» y en el diálogo de destinos para copiar a varias carpetas a la vez.</value></data>
+  <data name="Settings_FavoritesAdd.Text" xml:space="preserve"><value>Añadir carpeta</value></data>
+  <data name="Settings_FavoritesRemove" xml:space="preserve"><value>Quitar {0}</value></data>
+  <data name="Settings_FavoritesEmpty" xml:space="preserve"><value>Todavía no hay favoritos.</value></data>
+  <data name="Tool_CopyTo.Text" xml:space="preserve"><value>Copiar a</value></data>
+  <data name="Tool_CopyToEmpty" xml:space="preserve"><value>Sin favoritos ni recientes</value></data>
+  <data name="Tool_CopyToManage" xml:space="preserve"><value>Gestionar favoritos…</value></data>
+  <data name="Tool_TestFiles.Text" xml:space="preserve"><value>Comprobar archivos de sumas…</value></data>
+  <data name="Tool_TestFolder.Text" xml:space="preserve"><value>Comprobar sumas de una carpeta…</value></data>
+  <data name="Tool_Delete.Text" xml:space="preserve"><value>Borrar…</value></data>
+  <data name="Tool_Wipe.Text" xml:space="preserve"><value>Borrar de forma segura…</value></data>
+  <data name="DestinationsDialog.Title" xml:space="preserve"><value>¿Adónde?</value></data>
+  <data name="DestinationsDialog.PrimaryButtonText" xml:space="preserve"><value>Empezar</value></data>
+  <data name="DestinationsDialog.CloseButtonText" xml:space="preserve"><value>Cancelar</value></data>
+  <data name="Destinations_SummaryOne" xml:space="preserve"><value>Elige uno o varios destinos para «{0}».</value></data>
+  <data name="Destinations_SummaryMany" xml:space="preserve"><value>Elige uno o varios destinos para {0} elementos.</value></data>
+  <data name="Destinations_Add.Text" xml:space="preserve"><value>Añadir carpeta…</value></data>
+  <data name="Destinations_Move.Content" xml:space="preserve"><value>Mover en lugar de copiar</value></data>
+  <data name="Destinations_Schedule.Content" xml:space="preserve"><value>Empezar más tarde</value></data>
+  <data name="DeleteDialog.Title" xml:space="preserve"><value>Borrar</value></data>
+  <data name="DeleteDialog.PrimaryButtonText" xml:space="preserve"><value>Borrar</value></data>
+  <data name="DeleteDialog.CloseButtonText" xml:space="preserve"><value>Cancelar</value></data>
+  <data name="Delete_ConfirmOne" xml:space="preserve"><value>¿Borrar «{0}»? No va a la papelera.</value></data>
+  <data name="Delete_ConfirmMany" xml:space="preserve"><value>¿Borrar {0} elementos? No van a la papelera.</value></data>
+  <data name="Delete_ConfirmSecureOne" xml:space="preserve"><value>¿Borrar de forma segura «{0}»?</value></data>
+  <data name="Delete_ConfirmSecureMany" xml:space="preserve"><value>¿Borrar de forma segura {0} elementos?</value></data>
+  <data name="Delete_SecureWarning.Title" xml:space="preserve"><value>No se podrá recuperar</value></data>
+  <data name="Delete_SecureWarning.Message" xml:space="preserve"><value>El contenido se sobrescribe antes de borrar. En discos SSD el propio disco puede conservar restos; para máxima seguridad, usa el cifrado de BitLocker.</value></data>
+  <data name="FinishHibernate.Text" xml:space="preserve"><value>Hibernar</value></data>
+  <data name="FinishSignOut.Text" xml:space="preserve"><value>Cerrar sesión</value></data>
+  <data name="FinishExit.Text" xml:space="preserve"><value>Cerrar MegaCopier</value></data>
+  <data name="Finish_LabelHibernate" xml:space="preserve"><value>Al terminar: hibernar</value></data>
+  <data name="Finish_LabelSignOut" xml:space="preserve"><value>Al terminar: cerrar sesión</value></data>
+  <data name="Finish_LabelExit" xml:space="preserve"><value>Al terminar: cerrar MegaCopier</value></data>
+  <data name="Notify_FinishSleep" xml:space="preserve"><value>Suspendiendo el equipo…</value></data>
+  <data name="Notify_FinishHibernate" xml:space="preserve"><value>Hibernando el equipo…</value></data>
+  <data name="Notify_FinishShutdown" xml:space="preserve"><value>El equipo se apagará en 1 minuto (cancelar: shutdown /a).</value></data>
+  <data name="Notify_FinishSignOut" xml:space="preserve"><value>Cerrando la sesión…</value></data>
+  <data name="Notify_FinishExitApp" xml:space="preserve"><value>MegaCopier se cierra.</value></data>
+  <data name="Files_SelectAll.Text" xml:space="preserve"><value>Seleccionar todo</value></data>
+  <data name="Files_SelectSameExtension.Text" xml:space="preserve"><value>Seleccionar los de la misma extensión</value></data>
+  <data name="Files_SelectSameFolder.Text" xml:space="preserve"><value>Seleccionar los de la misma carpeta</value></data>
+  <data name="Files_InvertSelection.Text" xml:space="preserve"><value>Invertir la selección</value></data>
+  <data name="Job_TitleTest" xml:space="preserve"><value>Comprobar {0}</value></data>
+  <data name="Job_TitleTesting" xml:space="preserve"><value>Comprobando {0}</value></data>
+  <data name="Job_TitleTested" xml:space="preserve"><value>Comprobado {0}</value></data>
+  <data name="Job_TitleDelete" xml:space="preserve"><value>Borrar {0}</value></data>
+  <data name="Job_TitleDeleting" xml:space="preserve"><value>Borrando {0}</value></data>
+  <data name="Job_TitleDeleted" xml:space="preserve"><value>Borrado {0}</value></data>
+  <data name="Job_StateTesting" xml:space="preserve"><value>Comprobando</value></data>
+  <data name="Job_StateDeleting" xml:space="preserve"><value>Borrando</value></data>
+  <data name="Job_FilesTestedOne" xml:space="preserve"><value>{0} archivo correcto</value></data>
+  <data name="Job_FilesTestedMany" xml:space="preserve"><value>{0} archivos correctos</value></data>
+  <data name="Job_FilesDeletedOne" xml:space="preserve"><value>{0} archivo borrado</value></data>
+  <data name="Job_FilesDeletedMany" xml:space="preserve"><value>{0} archivos borrados</value></data>
+  <data name="Job_TitleScheduled" xml:space="preserve"><value>Programada: {0}</value></data>
+  <data name="Error_ChecksumMismatch" xml:space="preserve"><value>El contenido no coincide con la suma guardada: el archivo cambió o está dañado.</value></data>
+  <data name="Job_FilteredOut" xml:space="preserve"><value>Ningún archivo pasa los filtros de esta copia</value></data>
 </root>

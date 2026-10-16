@@ -26,6 +26,18 @@ public sealed class IpcRequest
 
     /// <summary>Mover en lugar de copiar (pegar tras Ctrl+X).</summary>
     public bool? Move { get; set; }
+
+    /// <summary>Copiar (por defecto), comprobar sumas o borrar.</summary>
+    public JobOperation? Operation { get; set; }
+
+    /// <summary>Al borrar: sobrescribir antes.</summary>
+    public bool? SecureDelete { get; set; }
+
+    /// <summary>Más destinos: la misma copia a cada uno (un trabajo por destino).</summary>
+    public List<string>? ExtraDestinations { get; set; }
+
+    /// <summary>Hora de inicio programada (UTC).</summary>
+    public DateTime? StartAtUtc { get; set; }
 }
 
 public sealed class IpcResponse
