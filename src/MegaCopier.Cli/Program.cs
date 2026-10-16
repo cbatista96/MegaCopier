@@ -114,6 +114,9 @@ internal static class Cli
                 case "--rescue":
                     options.RescueMode = true;
                     break;
+                case "--delta":
+                    options.DeltaCopy = true;
+                    break;
                 case "--crash-after-mb":
                     crashAfter = NextInt(args, ref i) * (long)CopyOptions.MiB;
                     break;
@@ -641,6 +644,7 @@ internal static class Cli
               --smb-compress         Pide compresión SMB al copiar por red (redes lentas)
               --atomic               Todo o nada: la carpeta solo aparece cuando está completa
               --rescue               Modo rescate: salva lo legible de un disco dañado (lo ilegible en ceros)
+              --delta                Al reemplazar archivos grandes, escribe solo los bloques que cambiaron
               --crash-after-mb <n>   [prueba] Mata el proceso tras confirmar n MB de un archivo
 
             Ctrl+C pausa la copia; 'resume' continúa desde el último bloque confirmado.

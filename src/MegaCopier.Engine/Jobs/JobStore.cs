@@ -101,6 +101,8 @@ public sealed class CopyJobRecord
 
     public bool RescueMode { get; set; }
 
+    public bool DeltaCopy { get; set; }
+
     /// <summary>Ya se ejecutó alguna vez (al reanudar no se vuelve a aplicar la regla de carpetas existentes).</summary>
     public bool Started { get; set; }
 
@@ -155,6 +157,7 @@ public sealed class CopyJobRecord
         SmbCompression = options.SmbCompression,
         AllOrNothing = options.AllOrNothing,
         RescueMode = options.RescueMode,
+        DeltaCopy = options.DeltaCopy,
     };
 
     /// <summary>Lista de copia guardada (.mclist): orígenes, destino, opciones y archivos excluidos.</summary>
@@ -203,6 +206,7 @@ public sealed class CopyJobRecord
             SmbCompression = SmbCompression,
             AllOrNothing = AllOrNothing,
             RescueMode = RescueMode,
+            DeltaCopy = DeltaCopy,
         };
         if (ChunkSize > 0 && BlockSize > 0)
         {

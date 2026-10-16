@@ -92,6 +92,7 @@
             <CheckBox x:Name="WaitSpaceBox" x:Uid="Rules_WaitSpace" Click="Changed" />
             <CheckBox x:Name="AllOrNothingBox" x:Uid="Rules_AllOrNothing" Click="Changed" />
             <CheckBox x:Name="RescueBox" x:Uid="Rules_Rescue" Click="Changed" />
+            <CheckBox x:Name="DeltaBox" x:Uid="Rules_Delta" Click="Changed" />
         </StackPanel>
     </Grid>
 </UserControl>

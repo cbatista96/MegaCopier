@@ -133,6 +133,12 @@ public sealed class CopyOptions
     public bool AllOrNothing { get; set; }
 
     /// <summary>
+    /// Copia diferencial: al reemplazar un archivo grande, escribir solo los bloques que cambiaron (con registro para
+    /// deshacer). Ideal para actualizar discos virtuales o archivos de correo en un disco lento.
+    /// </summary>
+    public bool DeltaCopy { get; set; }
+
+    /// <summary>
     /// Modo rescate (como ddrescue): ante sectores dañados del origen se lee sector a sector, se reintenta y lo
     /// ilegible se rellena con ceros, en vez de abandonar el archivo. Se anota exactamente qué se perdió.
     /// </summary>
