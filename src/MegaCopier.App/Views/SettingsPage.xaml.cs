@@ -131,6 +131,7 @@ public sealed partial class SettingsPage : UserControl
         ReportBox.IsChecked = s.ExportReport;
         FreeSpaceBox.IsChecked = s.CheckFreeSpace;
         CacheBox.IsChecked = s.UseSystemCache;
+        SmbBox.IsChecked = s.SmbCompression;
         AutoResumeBox.IsChecked = s.AutoResumeInterrupted;
         SpeedBox.SelectedItem = SpeedBox.Items.OfType<ComboBoxItem>().FirstOrDefault(i => (string)i.Tag == s.SpeedLimitMBps.ToString()) ?? SpeedBox.Items[0];
         BufferBox.SelectedItem = BufferBox.Items.OfType<ComboBoxItem>().FirstOrDefault(i => (string)i.Tag == s.BlockSizeMB.ToString()) ?? BufferBox.Items[2];
@@ -201,6 +202,7 @@ public sealed partial class SettingsPage : UserControl
         s.ExportReport = ReportBox.IsChecked == true;
         s.CheckFreeSpace = FreeSpaceBox.IsChecked == true;
         s.UseSystemCache = CacheBox.IsChecked == true;
+        s.SmbCompression = SmbBox.IsChecked == true;
         s.AutoResumeInterrupted = AutoResumeBox.IsChecked == true;
         if (SpeedBox.SelectedItem is ComboBoxItem { Tag: string speed } && int.TryParse(speed, out int limit))
         {

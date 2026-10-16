@@ -273,6 +273,7 @@
                             <CheckBox x:Name="ReportBox" x:Uid="Options_ExportReport" Click="Changed" />
                             <CheckBox x:Name="FreeSpaceBox" x:Uid="Settings_FreeSpace" Click="Changed" />
                             <CheckBox x:Name="CacheBox" x:Uid="Options_SystemCache" Click="Changed" />
+                            <CheckBox x:Name="SmbBox" x:Uid="Settings_SmbCompression" Click="Changed" />
                             <CheckBox x:Name="AutoResumeBox" x:Uid="Settings_AutoResume" Click="Changed" />
                         </VariableSizedWrapGrid>
                     </StackPanel>

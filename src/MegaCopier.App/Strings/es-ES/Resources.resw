@@ -638,4 +638,6 @@
   <data name="About_Portable" xml:space="preserve"><value>portátil (datos en {0})</value></data>
   <data name="Job_Estimate" xml:space="preserve"><value>{0}, unos {1}</value></data>
   <data name="Job_EstimateSize" xml:space="preserve"><value>{0} en total</value></data>
+  <data name="Settings_SmbCompression.Content" xml:space="preserve"><value>Comprimir al copiar por red (SMB, redes lentas)</value></data>
+  <data name="Settings_SmbCompression.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Pide al servidor que comprima los datos por el camino (Windows 11 y Windows Server 2022 o posterior). Si el origen y el destino están en el mismo servidor, la copia la hace el propio servidor siempre, sin pasar por este equipo.</value></data>
 </root>
