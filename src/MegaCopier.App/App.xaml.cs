@@ -28,6 +28,8 @@ public partial class App : Application
     internal Comfort? Comfort { get; private set; }
 
     internal PeerService? Peers { get; private set; }
+
+    internal DiskWatcher? Disks { get; private set; }
     private MainWindow? _window;
     private bool _exiting;
 
@@ -120,6 +122,8 @@ public partial class App : Application
         Queue.JobFinished += job => Dispatcher.TryEnqueue(() => OnJobFinished(job));
         Guard = new IntegrityGuard(this);
         Comfort = new Comfort(this);
+        Disks = new DiskWatcher(this);
+        Disks.Refresh(force: true);
         Peers = new PeerService(this);
         Peers.Apply();
 
@@ -281,6 +285,7 @@ public partial class App : Application
             }
 
             var job = Queue.Submit(request.Sources, destination, options, request.StartAtUtc);
+            Disks?.Check(request.Sources.Append(destination));
             if (operation == JobOperation.Copy && (Settings.ExportReport || Settings.Scripts.Count > 0))
             {
                 job.Record.ExportReport = Settings.ExportReport;

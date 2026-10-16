@@ -543,3 +543,29 @@ public sealed class TechnologyTests : IDisposable
         Assert.False(File.Exists(_temp.Combine("dst/enorme.bin")));
     }
 }
+
+public sealed class DiskHealthTests
+{
+    [Fact]
+    public void ParsesWindowsDiskStatus()
+    {
+        var disks = DiskHealth.Parse("""[{"DeviceId":"0","FriendlyName":"SSD bueno","HealthStatus":0,"Status":[2]},{"DeviceId":"1","FriendlyName":"HDD viejo","HealthStatus":0,"Status":[2,5]},{"DeviceId":"2","FriendlyName":"Roto","HealthStatus":2,"Status":[6]}]""");
+        Assert.Equal(DiskHealthState.Healthy, disks[0].Health);
+        Assert.Equal(DiskHealthState.Warning, disks[1].Health); // fallo previsto aunque diga "correcto"
+        Assert.Contains("SMART", disks[1].Detail);
+        Assert.True(disks[2].IsBad);
+
+        var single = DiskHealth.Parse("""{"DeviceId":"3","FriendlyName":"Único","HealthStatus":1,"Status":3}""");
+        Assert.Equal(DiskHealthState.Warning, Assert.Single(single).Health);
+    }
+
+    [Fact]
+    public void QueriesThisComputer()
+    {
+        var disks = DiskHealth.Query();
+        Assert.NotEmpty(disks);
+        Assert.All(disks, d => Assert.False(string.IsNullOrEmpty(d.Name)));
+        int? system = DiskHealth.DiskOf(Environment.SystemDirectory);
+        Assert.Contains(disks, d => d.Number == system);
+    }
+}

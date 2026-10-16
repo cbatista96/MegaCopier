@@ -149,6 +149,7 @@ public sealed partial class SettingsPage : UserControl
         LoadTasks();
         LoadGuard();
         LoadReceive();
+        LoadDisks();
         ScheduleLimitBox.SelectedItem = ScheduleLimitBox.Items.OfType<ComboBoxItem>().FirstOrDefault(i => (string)i.Tag == s.ScheduleLimitMBps.ToString()) ?? ScheduleLimitBox.Items[0];
         ScheduleFromBox.Time = s.ScheduleFrom;
         ScheduleToBox.Time = s.ScheduleTo;
@@ -582,6 +583,45 @@ public sealed partial class SettingsPage : UserControl
             LoadReceive();
         }
     }
+
+    private bool _disksHooked;
+
+    /// <summary>Estado de cada disco (SMART, según Windows).</summary>
+    private void LoadDisks()
+    {
+        if (_app.Disks is not { } watcher)
+        {
+            return;
+        }
+
+        if (!_disksHooked)
+        {
+            _disksHooked = true;
+            watcher.Changed += LoadDisks;
+        }
+
+        DiskList.Children.Clear();
+        foreach (var disk in watcher.Disks.OrderBy(d => d.Number))
+        {
+            var row = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 8 };
+            (string glyph, Brush brush, string state) = disk.Health switch
+            {
+                DiskHealthState.Healthy => ("", ThemeManager.SuccessBrush, L.Get("Disk_Healthy")),
+                DiskHealthState.Unknown => ("", ThemeManager.TextSecondaryBrush, L.Get("Disk_Unknown")),
+                _ => ("", ThemeManager.WarningBrush, disk.Detail.Length > 0 ? disk.Detail : L.Get("Disk_HealthWarning")),
+            };
+            row.Children.Add(new FontIcon { Glyph = glyph, FontSize = 14, Foreground = brush, VerticalAlignment = VerticalAlignment.Center });
+            row.Children.Add(new TextBlock { Text = L.F("Disk_Row", disk.Number, disk.Name, state), VerticalAlignment = VerticalAlignment.Center, TextWrapping = TextWrapping.Wrap });
+            DiskList.Children.Add(row);
+        }
+
+        if (DiskList.Children.Count == 0)
+        {
+            DiskList.Children.Add(new TextBlock { Text = L.Get("Disk_Checking"), FontSize = 12, Foreground = ThemeManager.TextSecondaryBrush });
+        }
+    }
+
+    private void CheckDisks_Click(object sender, RoutedEventArgs e) => _app.Disks?.Refresh(force: true);
 
     private static Button IconButton(string glyph, string name)
     {
