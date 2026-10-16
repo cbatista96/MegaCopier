@@ -250,6 +250,41 @@ public sealed class TransferList
         Changed?.Invoke(new TransferListChange(TransferListChangeKind.Moved, item, index));
     }
 
+    /// <summary>
+    /// Como <see cref="TakeNext"/>, pero solo si el siguiente pendiente cumple <paramref name="accept"/> (los hilos de
+    /// archivos pequeños no se saltan el orden: si lo siguiente es grande, esperan).
+    /// </summary>
+    internal TransferItem? TakeNextIf(Func<TransferItem, bool> accept)
+    {
+        TransferItem? item;
+        int index;
+        lock (_lock)
+        {
+            index = _items.FindIndex(i => i.State == FileState.Pending);
+            if (index < 0 || !accept(_items[index]))
+            {
+                return null;
+            }
+
+            item = _items[index];
+            item.State = FileState.Copying;
+
+            // Dentro del cerrojo: con varios hilos copiando, los avisos de inicio llegan en el orden en que se tomaron.
+            Changed?.Invoke(new TransferListChange(TransferListChangeKind.Updated, item, index));
+        }
+
+        return item;
+    }
+
+    /// <summary>Quedan pendientes.</summary>
+    internal bool HasPending()
+    {
+        lock (_lock)
+        {
+            return _items.Exists(i => i.State == FileState.Pending);
+        }
+    }
+
     /// <summary>El siguiente pendiente en el orden actual (o null si no queda ninguno), ya marcado como en curso.</summary>
     internal TransferItem? TakeNext()
     {
@@ -265,9 +300,11 @@ public sealed class TransferList
 
             item = _items[index];
             item.State = FileState.Copying;
+
+            // Dentro del cerrojo: con varios hilos copiando, los avisos de inicio llegan en el orden en que se tomaron.
+            Changed?.Invoke(new TransferListChange(TransferListChangeKind.Updated, item, index));
         }
 
-        Changed?.Invoke(new TransferListChange(TransferListChangeKind.Updated, item, index));
         return item;
     }
 

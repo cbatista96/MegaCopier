@@ -29,6 +29,21 @@ internal static partial class Win32
         return full.StartsWith(@"\\", StringComparison.Ordinal) ? @"\\?\UNC\" + full[2..] : @"\\?\" + full;
     }
 
+    /// <summary>Fecha de creación y de modificación con una sola apertura del archivo (en vez de una por fecha).</summary>
+    public static unsafe void SetTimes(string path, DateTime creationUtc, DateTime lastWriteUtc)
+    {
+        using var handle = File.OpenHandle(path, FileMode.Open, FileAccess.Write, FileShare.ReadWrite | FileShare.Delete);
+        long creation = creationUtc.ToFileTimeUtc(), lastWrite = lastWriteUtc.ToFileTimeUtc();
+        if (!SetFileTime(handle, &creation, null, &lastWrite))
+        {
+            throw new IOException(Marshal.GetPInvokeErrorMessage(Marshal.GetLastPInvokeError()), Marshal.GetHRForLastWin32Error());
+        }
+    }
+
+    [LibraryImport("kernel32.dll", SetLastError = true)]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static unsafe partial bool SetFileTime(SafeFileHandle file, long* creation, long* access, long* lastWrite);
+
     /// <summary>FILE_FLAG_NO_BUFFERING: E/S directa al dispositivo, sin pasar por la caché de Windows.</summary>
     public const FileOptions NoBuffering = (FileOptions)0x20000000;
 

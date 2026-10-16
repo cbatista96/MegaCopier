@@ -209,10 +209,23 @@ public sealed partial class CopyEngine
         using (var pool = new BufferPool(_options.BlockSize, FileTransfer.RequiredBuffers(_options)))
         {
             var transfer = new FileTransfer(_options, pool, Controller, progress, FaultInjector, (path, bytes) => ChunkCommitted?.Invoke(path, bytes));
-
-            while (Files.TakeNext() is { } item)
+            using var helpers = new SmallFileHelpers(this, progress, result, cancellationToken);
+            while (true)
             {
                 cancellationToken.ThrowIfCancellationRequested();
+                helpers.ThrowIfFailed();
+                if (Files.TakeNext() is not { } item)
+                {
+                    // La lista se vació: se espera a los hilos de archivos pequeños (pueden devolver alguno al final).
+                    helpers.WaitIdle();
+                    if (Files.HasPending())
+                    {
+                        continue;
+                    }
+
+                    break;
+                }
+
                 Controller.WaitIfPaused(cancellationToken);
                 progress.BeginFile(item.Destination, item.Length);
                 if (_options.DryRun)
@@ -226,6 +239,8 @@ public sealed partial class CopyEngine
 
                 progress.EndFile();
             }
+
+            helpers.Stop();
         }
 
         if (_options.Mode == CopyMode.Mirror)
@@ -356,7 +371,7 @@ public sealed partial class CopyEngine
         Directory.CreateDirectory(Path.GetDirectoryName(target)!);
 
         // Para "Deshacer": lo que reemplazó a otro archivo no se borra al deshacer (se perdería el anterior).
-        item.Action = File.Exists(target) ? PlannedAction.Replace : PlannedAction.Copy;
+        item.Action = resolution.Existed ? PlannedAction.Replace : PlannedAction.Copy;
 
         if (_options.Move && SameVolume(item.Source, target))
         {
@@ -365,7 +380,7 @@ public sealed partial class CopyEngine
         }
 
         // Lo que se va a reemplazar se guarda antes en la carpeta de versiones.
-        if (_options.VersionsFolder.Length > 0 && File.Exists(target))
+        if (_options.VersionsFolder.Length > 0 && resolution.Existed)
         {
             KeepVersion(target);
         }
@@ -377,9 +392,12 @@ public sealed partial class CopyEngine
         }
 
         using var fileCancellation = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
-        lock (_lock)
+        if (!t_helper)
         {
-            _currentFile = fileCancellation;
+            lock (_lock)
+            {
+                _currentFile = fileCancellation;
+            }
         }
 
         try
@@ -456,9 +474,12 @@ public sealed partial class CopyEngine
         }
         finally
         {
-            lock (_lock)
+            if (!t_helper)
             {
-                _currentFile = null;
+                lock (_lock)
+                {
+                    _currentFile = null;
+                }
             }
         }
     }
@@ -701,7 +722,7 @@ public sealed partial class CopyEngine
         {
             try
             {
-                var outcome = transfer.Copy(item.Source, target, cancellationToken);
+                var outcome = transfer.Copy(item.Source, target, cancellationToken, item.Length);
                 result.FilesCopied++;
                 result.BytesTransferred += outcome.BytesTransferred;
                 result.BytesResumed += outcome.BytesResumed;
@@ -733,7 +754,7 @@ public sealed partial class CopyEngine
                     }
 
                     // "Al final de la cola": se vuelve a intentar una vez cuando acabe todo lo demás.
-                    if (_options.OnError == ErrorPolicy.MoveToEnd && _requeued.Add(item.Id))
+                    if (_options.OnError == ErrorPolicy.MoveToEnd && Requeue(item.Id))
                     {
                         Log(LogLevel.Warning, $"Se reintentará al final: {ex.Message}", item.Source);
                         Files.Requeue(item);
@@ -753,12 +774,34 @@ public sealed partial class CopyEngine
         }
     }
 
-    private readonly record struct Resolution(string? Target, PlannedAction Skip = PlannedAction.None)
+    private readonly record struct Resolution(string? Target, PlannedAction Skip = PlannedAction.None, bool Existed = false)
     {
         public bool Identical => Skip == PlannedAction.SkipIdentical;
     }
 
     private readonly HashSet<int> _requeued = [];
+    private readonly Lock _askLock = new();
+
+    /// <summary>Hilo de archivos pequeños (no es el del archivo "actual": el botón Saltar no le afecta).</summary>
+    [ThreadStatic]
+    private static bool t_helper;
+
+    private bool Requeue(int id)
+    {
+        lock (_requeued)
+        {
+            return _requeued.Add(id);
+        }
+    }
+
+    /// <summary>Una pregunta cada vez, aunque copien varios hilos; "para todos" vale para los demás.</summary>
+    private ConflictAnswer AskOnce(PlannedFile file, FileInfo existing, ProgressTracker progress, CancellationToken cancellationToken)
+    {
+        lock (_askLock)
+        {
+            return _conflictForAll ?? AskUser(file, existing, progress, cancellationToken);
+        }
+    }
 
     /// <summary>Decide el nombre final del archivo, o ninguno si hay que omitirlo.</summary>
     private Resolution ResolveTarget(PlannedFile file, ProgressTracker progress, CancellationToken cancellationToken)
@@ -788,7 +831,7 @@ public sealed partial class CopyEngine
             // Desatendido: nunca se pregunta y lo dudoso se omite.
             var answer = _options.Unattended
                 ? new ConflictAnswer(ConflictDecision.Skip, ApplyToAll: false)
-                : _conflictForAll ?? AskUser(file, existing, progress, cancellationToken);
+                : AskOnce(file, existing, progress, cancellationToken);
             policy = answer.Decision switch
             {
                 ConflictDecision.Replace => ConflictPolicy.Overwrite,
@@ -800,10 +843,10 @@ public sealed partial class CopyEngine
 
         return policy switch
         {
-            ConflictPolicy.Overwrite => new Resolution(file.Destination),
+            ConflictPolicy.Overwrite => new Resolution(file.Destination, Existed: true),
             ConflictPolicy.Skip => new Resolution(null, PlannedAction.SkipExists),
-            ConflictPolicy.OverwriteIfNewer => file.LastWriteUtc > existing.LastWriteTimeUtc + _options.TimeTolerance ? new Resolution(file.Destination) : new Resolution(null, PlannedAction.SkipOlder),
-            ConflictPolicy.OverwriteIfDifferentSize => file.Length != existing.Length ? new Resolution(file.Destination) : new Resolution(null, PlannedAction.SkipSameSize),
+            ConflictPolicy.OverwriteIfNewer => file.LastWriteUtc > existing.LastWriteTimeUtc + _options.TimeTolerance ? new Resolution(file.Destination, Existed: true) : new Resolution(null, PlannedAction.SkipOlder),
+            ConflictPolicy.OverwriteIfDifferentSize => file.Length != existing.Length ? new Resolution(file.Destination, Existed: true) : new Resolution(null, PlannedAction.SkipSameSize),
             ConflictPolicy.KeepBoth => UniqueTarget(file),
             ConflictPolicy.RenameExisting => RenameExisting(file),
             ConflictPolicy.Fail => throw new IOException($"El destino ya existe: {file.Destination}"),
@@ -930,11 +973,25 @@ public sealed partial class CopyEngine
         }
 
         long needed = 0;
+        var folders = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
         foreach (var file in plan.Files)
         {
             if (renamed.Contains(file.Source) || (_options.Move && SameVolume(file.Source, destination)))
             {
                 continue; // mover en el mismo volumen no ocupa espacio
+            }
+
+            // Carpeta de destino nueva: nada de lo de dentro existe todavía (sin preguntar archivo por archivo).
+            string folder = Path.GetDirectoryName(file.Destination) ?? "";
+            if (!folders.TryGetValue(folder, out bool exists))
+            {
+                folders[folder] = exists = Directory.Exists(folder);
+            }
+
+            if (!exists)
+            {
+                needed += file.Length;
+                continue;
             }
 
             var existing = new FileInfo(file.Destination);

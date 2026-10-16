@@ -22,12 +22,23 @@ internal sealed class ProgressTracker
     private long _currentLength;
     private long _currentDone;
     private CopyPhase _phase = CopyPhase.Preparing;
+    private readonly Lock _gate = new();
 
     public ProgressTracker(Action<CopyProgress>? sink, TimeSpan interval)
     {
         _sink = sink;
         _interval = (long)(interval.TotalSeconds * Stopwatch.Frequency);
     }
+
+    /// <summary>Para un hilo de archivos pequeños: no publica nada, pero las esperas (disco, espacio, tu decisión) sí se ven.</summary>
+    public ProgressTracker(ProgressTracker parent)
+        : this(null, TimeSpan.Zero)
+    {
+        _parent = parent;
+    }
+
+    private readonly ProgressTracker? _parent;
+    private bool _parentWaiting;
 
     private readonly List<float> _speedHistory = [];
     private long _lastHistorySample = Stopwatch.GetTimestamp();
@@ -44,40 +55,121 @@ internal sealed class ProgressTracker
     /// <summary>La lista cambió (se añadieron o quitaron archivos).</summary>
     public void SetTotals(long totalBytes, int totalFiles)
     {
-        _totalBytes = totalBytes;
-        _totalFiles = totalFiles;
-        Emit(force: true);
+        lock (_gate)
+        {
+            _totalBytes = totalBytes;
+            _totalFiles = totalFiles;
+            Emit(force: true);
+        }
     }
 
     public void Start(long totalBytes, int totalFiles)
     {
-        _totalBytes = totalBytes;
-        _totalFiles = totalFiles;
-        _phase = CopyPhase.Copying;
-        Emit(force: true);
+        lock (_gate)
+        {
+            _totalBytes = totalBytes;
+            _totalFiles = totalFiles;
+            _phase = CopyPhase.Copying;
+            Emit(force: true);
+        }
     }
 
     public void BeginFile(string path, long length)
     {
-        _currentFile = path;
-        _currentLength = length;
-        _currentDone = 0;
-        _phase = CopyPhase.Copying;
-        Emit(force: true);
+        lock (_gate)
+        {
+            _currentFile = path;
+            _currentLength = length;
+            _currentDone = 0;
+            _phase = CopyPhase.Copying;
+            Emit(force: true);
+        }
     }
 
     /// <summary>Reinicia el avance del archivo actual (antes de un reintento).</summary>
-    public void RestartFile() => _currentDone = 0;
+    public void RestartFile()
+    {
+        lock (_gate)
+        {
+            _currentDone = 0;
+        }
+    }
+
+    /// <summary>Un archivo pequeño que copió otro hilo (en paralelo con el actual): cuenta como terminado.</summary>
+    public void AddFinishedFile(long length)
+    {
+        lock (_gate)
+        {
+            _completedFilesBytes += length;
+            _filesCompleted++;
+            AddSample(length);
+            Emit(force: false);
+        }
+    }
 
     public void SetFileResumed(long bytes)
     {
-        _currentDone = bytes;
-        Emit(force: true);
+        lock (_gate)
+        {
+            _currentDone = bytes;
+            Emit(force: true);
+        }
     }
 
     public void AddTransferred(long bytes)
     {
-        _currentDone += bytes;
+        lock (_gate)
+        {
+            _currentDone += bytes;
+            AddSample(bytes);
+            Emit(force: false);
+        }
+    }
+
+    public void SetPhase(CopyPhase phase)
+    {
+        if (_parent is not null)
+        {
+            bool waiting = phase is CopyPhase.WaitingForDevice or CopyPhase.WaitingForSpace or CopyPhase.WaitingForUser;
+            if (waiting || _parentWaiting)
+            {
+                _parentWaiting = waiting;
+                _parent.SetPhase(waiting ? phase : CopyPhase.Copying);
+            }
+
+            return;
+        }
+
+        lock (_gate)
+        {
+            _phase = phase;
+            Emit(force: true);
+        }
+    }
+
+    public void EndFile()
+    {
+        lock (_gate)
+        {
+            _completedFilesBytes += _currentLength;
+            _filesCompleted++;
+            _currentDone = 0;
+            _currentLength = 0;
+            Emit(force: true);
+        }
+    }
+
+    public void Finish()
+    {
+        lock (_gate)
+        {
+            _phase = CopyPhase.Completed;
+            Emit(force: true);
+        }
+    }
+
+    private void AddSample(long bytes)
+    {
         long now = Stopwatch.GetTimestamp();
         _samples.Enqueue((now, bytes));
         _windowBytes += bytes;
@@ -85,29 +177,6 @@ internal sealed class ProgressTracker
         {
             _windowBytes -= _samples.Dequeue().Bytes;
         }
-
-        Emit(force: false);
-    }
-
-    public void SetPhase(CopyPhase phase)
-    {
-        _phase = phase;
-        Emit(force: true);
-    }
-
-    public void EndFile()
-    {
-        _completedFilesBytes += _currentLength;
-        _filesCompleted++;
-        _currentDone = 0;
-        _currentLength = 0;
-        Emit(force: true);
-    }
-
-    public void Finish()
-    {
-        _phase = CopyPhase.Completed;
-        Emit(force: true);
     }
 
     private double CurrentSpeed()
