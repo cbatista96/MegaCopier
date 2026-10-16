@@ -759,3 +759,10 @@ Disk_HealthWarning	avisa de fallo	reports a problem
 Disk_Checking	Comprobando los discos…	Checking the drives…
 Disk_WarningTitle	Un disco avisa de fallo	A drive reports a failure
 Disk_Warning	«{0}» (disco {1}): {2}. Copia lo importante a otro disco cuanto antes.	"{0}" (disk {1}): {2}. Copy what matters to another drive as soon as possible.
+Settings_TuneTitle.Text	Ajuste automático para cada disco	Automatic tuning for each drive
+Settings_TuneDescription.Text	Mide cada disco con varios tamaños de bloque y operaciones a la vez, y usa lo más rápido al copiar hacia él (si no cambiaste a mano el rendimiento).	Measures each drive with several block sizes and parallel operations, and uses the fastest when copying to it (unless you changed performance by hand).
+Settings_TuneMeasure.Text	Medir los discos	Measure drives
+Settings_TuneNone	Todavía no se ha medido ningún disco.	No drive has been measured yet.
+Settings_TuneDisk	Disco 	Disk 
+Settings_TuneProfile	{0}: bloques de {1} MB, {2} a la vez ({3:N0} MB/s)	{0}: {1} MB blocks, {2} at a time ({3:N0} MB/s)
+Settings_TuneMeasuring	Midiendo {0} ({1} de {2})…	Measuring {0} ({1} of {2})…

@@ -765,4 +765,11 @@
   <data name="Disk_Checking" xml:space="preserve"><value>Checking the drives…</value></data>
   <data name="Disk_WarningTitle" xml:space="preserve"><value>A drive reports a failure</value></data>
   <data name="Disk_Warning" xml:space="preserve"><value>&quot;{0}&quot; (disk {1}): {2}. Copy what matters to another drive as soon as possible.</value></data>
+  <data name="Settings_TuneTitle.Text" xml:space="preserve"><value>Automatic tuning for each drive</value></data>
+  <data name="Settings_TuneDescription.Text" xml:space="preserve"><value>Measures each drive with several block sizes and parallel operations, and uses the fastest when copying to it (unless you changed performance by hand).</value></data>
+  <data name="Settings_TuneMeasure.Text" xml:space="preserve"><value>Measure drives</value></data>
+  <data name="Settings_TuneNone" xml:space="preserve"><value>No drive has been measured yet.</value></data>
+  <data name="Settings_TuneDisk" xml:space="preserve"><value>Disk </value></data>
+  <data name="Settings_TuneProfile" xml:space="preserve"><value>{0}: {1} MB blocks, {2} at a time ({3:N0} MB/s)</value></data>
+  <data name="Settings_TuneMeasuring" xml:space="preserve"><value>Measuring {0} ({1} of {2})…</value></data>
 </root>

@@ -231,6 +231,9 @@ public sealed class AppSettings
     /// <summary>Mientras usas el teclado o el ratón, las copias no pasan de esta velocidad (0 = sin límite).</summary>
     public int SlowWhenActiveMBps { get; set; }
 
+    /// <summary>Usar los valores medidos para cada disco (tamaño de bloque y operaciones a la vez).</summary>
+    public bool AutoTune { get; set; } = true;
+
     /// <summary>Límite por horario (0 = sin límite), entre <see cref="ScheduleFrom"/> y <see cref="ScheduleTo"/>.</summary>
     public int ScheduleLimitMBps { get; set; }
 
@@ -344,7 +347,16 @@ public sealed class AppSettings
             SkipDuplicates = SkipDuplicates,
         };
 
-        int block = Math.Clamp(BlockSizeMB, 1, 16) * CopyOptions.MiB;
+        // Autoajuste: si se midió el disco de destino y no se cambiaron a mano los valores de rendimiento, se usan los medidos.
+        int blockMB = BlockSizeMB;
+        if (AutoTune && BlockSizeMB == 4 && QueueDepth == 4 && request.Destination is { Length: > 0 } target
+            && request.Operation is null or JobOperation.Copy && DeviceTuner.ProfileFor(target) is { } profile)
+        {
+            blockMB = profile.BlockSizeMB;
+            options.ReadQueueDepth = options.WriteQueueDepth = Math.Clamp(profile.QueueDepth, 1, 16);
+        }
+
+        int block = Math.Clamp(blockMB, 1, 16) * CopyOptions.MiB;
         if (options.MaxBytesPerSecond > 0)
         {
             // Con límite de velocidad, bloques de ~1/8 de segundo: avance y velocidad suaves en lugar de ráfagas.
