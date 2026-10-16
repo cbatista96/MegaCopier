@@ -13,6 +13,15 @@ public sealed partial class TargetTab : UserControl
     public TargetTab()
     {
         InitializeComponent();
+        SizeChanged += (_, e) =>
+        {
+            // Origen y destino lado a lado si caben; si no, uno encima del otro.
+            bool one = e.NewSize.Width < 560;
+            Grid.SetColumnSpan(SourceCard, one ? 2 : 1);
+            Grid.SetRow(TargetCard, one ? 1 : 0);
+            Grid.SetColumn(TargetCard, one ? 0 : 1);
+            Grid.SetColumnSpan(TargetCard, one ? 2 : 1);
+        };
     }
 
     public JobViewModel? Job { get; set; }

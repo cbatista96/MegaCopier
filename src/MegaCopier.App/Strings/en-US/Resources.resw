@@ -99,7 +99,7 @@
   <data name="Job_TitleMoved" xml:space="preserve"><value>Moved {0}</value></data>
   <data name="Job_TitleQueued" xml:space="preserve"><value>Waiting: {0}</value></data>
   <data name="Job_Destination" xml:space="preserve"><value>to {0}</value></data>
-  <data name="Job_StateQueued" xml:space="preserve"><value>Queued · waiting for the disk to be free</value></data>
+  <data name="Job_StateQueued" xml:space="preserve"><value>Queued: disk busy</value></data>
   <data name="Job_StateVerifying" xml:space="preserve"><value>Verifying</value></data>
   <data name="Job_StateValidating" xml:space="preserve"><value>Checking what was already copied</value></data>
   <data name="Job_StateWaiting" xml:space="preserve"><value>Waiting for you: the file already exists</value></data>
@@ -475,4 +475,6 @@
   <data name="Job_TitleScheduled" xml:space="preserve"><value>Scheduled: {0}</value></data>
   <data name="Error_ChecksumMismatch" xml:space="preserve"><value>The content does not match the saved checksum: the file changed or is damaged.</value></data>
   <data name="Job_FilteredOut" xml:space="preserve"><value>No files match this transfer&apos;s filters</value></data>
+  <data name="Rules_After.PlaceholderText" xml:space="preserve"><value>Any date</value></data>
+  <data name="Rules_Before.PlaceholderText" xml:space="preserve"><value>Any date</value></data>
 </root>

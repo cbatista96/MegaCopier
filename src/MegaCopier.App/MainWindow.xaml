@@ -100,7 +100,7 @@
         </Grid>
 
         <!-- Contenido -->
-        <Grid x:Name="Body" Grid.Row="2">
+        <Grid x:Name="Body" Grid.Row="2" SizeChanged="Body_SizeChanged">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition x:Name="SidebarColumn" Width="0" />
                 <ColumnDefinition Width="*" />
@@ -144,13 +144,13 @@
                                 <Border Grid.RowSpan="3" Width="36" Height="36" CornerRadius="9" VerticalAlignment="Center" Background="{StaticResource McSurfaceStrongBrush}">
                                     <FontIcon Glyph="{x:Bind Glyph, Mode=OneWay}" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{x:Bind StateBrush, Mode=OneWay}" />
                                 </Border>
-                                <TextBlock Grid.Column="1" Text="{x:Bind Title, Mode=OneWay}" Style="{StaticResource McStrong}" TextTrimming="CharacterEllipsis" />
-                                <TextBlock Grid.Column="2" Text="{x:Bind TotalPercentText, Mode=OneWay}" Style="{StaticResource McSecondary}" />
+                                <TextBlock Grid.Column="1" Text="{x:Bind Title, Mode=OneWay}" Style="{StaticResource McStrong}" TextTrimming="CharacterEllipsis" ToolTipService.ToolTip="{x:Bind Title, Mode=OneWay}" />
+                                <TextBlock Grid.Column="2" Text="{x:Bind TotalPercentText, Mode=OneWay}" Style="{StaticResource McSecondary}" MinWidth="50" TextAlignment="Right" />
                                 <c:FlowBar Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" FixedHeight="4" Fill="{StaticResource McTotalBrush}"
                                            Value="{x:Bind TotalFraction, Mode=OneWay}" IsActive="{x:Bind IsRunning, Mode=OneWay}"
                                            IsPaused="{x:Bind IsPaused, Mode=OneWay}" IsError="{x:Bind IsFailed, Mode=OneWay}" IsWarning="{x:Bind HasWarnings, Mode=OneWay}"
                                            IsIndeterminate="{x:Bind BarIndeterminate, Mode=OneWay}" />
-                                <TextBlock Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="{x:Bind CardSubtitle, Mode=OneWay}" Style="{StaticResource McSecondary}" TextTrimming="CharacterEllipsis" />
+                                <TextBlock Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="{x:Bind CardSubtitle, Mode=OneWay}" Style="{StaticResource McSecondary}" TextWrapping="Wrap" MaxLines="2" TextTrimming="CharacterEllipsis" ToolTipService.ToolTip="{x:Bind CardSubtitle, Mode=OneWay}" />
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -158,7 +158,7 @@
             </Grid>
 
             <!-- Detalle del trabajo elegido -->
-            <Grid x:Name="Detail" Grid.Column="1" RowSpacing="0">
+            <Grid x:Name="Detail" Grid.Column="1" RowSpacing="0" PointerPressed="Detail_PointerPressed">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />

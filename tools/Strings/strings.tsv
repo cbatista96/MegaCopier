@@ -93,7 +93,7 @@ Job_TitleCopied	Copiado {0}	Copied {0}
 Job_TitleMoved	Movido {0}	Moved {0}
 Job_TitleQueued	En espera: {0}	Waiting: {0}
 Job_Destination	a {0}	to {0}
-Job_StateQueued	En cola · espera a que el disco quede libre	Queued · waiting for the disk to be free
+Job_StateQueued	En cola: disco ocupado	Queued: disk busy
 Job_StateVerifying	Verificando	Verifying
 Job_StateValidating	Comprobando lo ya copiado	Checking what was already copied
 Job_StateWaiting	Esperando tu decisión: el archivo ya existe	Waiting for you: the file already exists
@@ -469,3 +469,5 @@ Job_FilesDeletedMany	{0} archivos borrados	{0} files deleted
 Job_TitleScheduled	Programada: {0}	Scheduled: {0}
 Error_ChecksumMismatch	El contenido no coincide con la suma guardada: el archivo cambió o está dañado.	The content does not match the saved checksum: the file changed or is damaged.
 Job_FilteredOut	Ningún archivo pasa los filtros de esta copia	No files match this transfer's filters
+Rules_After.PlaceholderText	Cualquier fecha	Any date
+Rules_Before.PlaceholderText	Cualquier fecha	Any date

@@ -5,15 +5,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:c="using:MegaCopier.App.Controls">
 
-    <Grid RowSpacing="12">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" MinHeight="140" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+    <!-- Con poca altura se desplaza en lugar de cortar la tabla. -->
+    <ScrollViewer x:Name="Scroller">
+    <StackPanel Spacing="12">
+        <c:SpeedGraph x:Name="Graph" Height="200" />
 
-        <c:SpeedGraph x:Name="Graph" />
-
-        <Border Grid.Row="1" Style="{StaticResource McCard}" Padding="16,10">
+        <Border x:Name="TableCard" Style="{StaticResource McCard}" Padding="16,10">
             <Grid x:Name="Table" RowSpacing="6" ColumnSpacing="16">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -61,5 +58,6 @@
                 <TextBlock x:Name="TotalBytes" Grid.Row="7" Grid.Column="2" Style="{StaticResource McStrong}" TextAlignment="Right" FontFamily="Consolas" />
             </Grid>
         </Border>
-    </Grid>
+    </StackPanel>
+    </ScrollViewer>
 </UserControl>

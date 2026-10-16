@@ -18,6 +18,7 @@ public sealed partial class FilesTab : UserControl
     public FilesTab()
     {
         InitializeComponent();
+        SizeChanged += (_, e) => Adapt(e.NewSize.Width);
         FilterBox.SelectedIndex = 0;
         HideFinishedBox.IsChecked = ((App)Application.Current).Settings.HideFinishedFiles;
     }
@@ -29,6 +30,28 @@ public sealed partial class FilesTab : UserControl
     }
 
     public FileListViewModel? Files => _files;
+
+    /// <summary>Estrecha: las casillas bajan a una segunda fila; muy estrecha: se ocultan las columnas de hash.</summary>
+    private void Adapt(double width)
+    {
+        bool twoRows = width < 760;
+        Grid.SetRow(ListToggles, twoRows ? 1 : 0);
+        Grid.SetColumn(ListToggles, twoRows ? 0 : 2);
+        Grid.SetColumnSpan(ListToggles, twoRows ? 4 : 1);
+
+        bool hashes = width >= 640;
+        if (hashes != FileRowViewModel.ShowHashes)
+        {
+            FileRowViewModel.ShowHashes = hashes;
+            foreach (var row in _files?.Items ?? [])
+            {
+                row.Refresh();
+            }
+        }
+
+        SourceHashHeader.Visibility = hashes ? Visibility.Visible : Visibility.Collapsed;
+        TargetHashHeader.Visibility = hashes ? Visibility.Visible : Visibility.Collapsed;
+    }
 
     private void OnJobChanged()
     {

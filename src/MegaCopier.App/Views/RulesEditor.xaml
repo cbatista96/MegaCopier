@@ -4,14 +4,15 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <Grid ColumnSpacing="24" RowSpacing="8">
+    <Grid x:Name="RulesGrid" ColumnSpacing="24" RowSpacing="16">
+        <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
         <!-- Filtros -->
-        <StackPanel Spacing="8">
+        <StackPanel x:Name="FiltersColumn" Spacing="8">
             <StackPanel Orientation="Horizontal" Spacing="8">
                 <FontIcon VerticalAlignment="Center" Glyph="&#xE71C;" FontSize="14" Foreground="{StaticResource McAccentBrush}" />
                 <TextBlock x:Uid="Rules_Filters" Style="{StaticResource McStrong}" />
@@ -41,7 +42,7 @@
         </StackPanel>
 
         <!-- Reglas -->
-        <StackPanel Grid.Column="1" Spacing="8">
+        <StackPanel x:Name="RulesColumn" Grid.Column="1" Spacing="8">
             <StackPanel Orientation="Horizontal" Spacing="8">
                 <FontIcon VerticalAlignment="Center" Glyph="&#xE71B;" FontSize="14" Foreground="{StaticResource McAccentBrush}" />
                 <TextBlock x:Uid="Rules_Rules" Style="{StaticResource McStrong}" />

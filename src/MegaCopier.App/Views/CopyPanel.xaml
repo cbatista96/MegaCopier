@@ -24,15 +24,15 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Border Style="{StaticResource McChip}">
+            <Border x:Name="StateChip" Style="{StaticResource McChip}">
                 <StackPanel Orientation="Horizontal" Spacing="6">
                     <FontIcon VerticalAlignment="Center" Glyph="{x:Bind Job.Glyph, Mode=OneWay}" FontSize="12" Foreground="{StaticResource McAccentBrush}" />
-                    <TextBlock Text="{x:Bind Job.StateText, Mode=OneWay}" Style="{StaticResource McChipText}" MaxWidth="220" TextTrimming="CharacterEllipsis" />
+                    <TextBlock x:Name="StateChipText" Text="{x:Bind Job.StateText, Mode=OneWay}" Style="{StaticResource McChipText}" MaxWidth="220" TextTrimming="CharacterEllipsis" ToolTipService.ToolTip="{x:Bind Job.StateText, Mode=OneWay}" />
                 </StackPanel>
             </Border>
-            <TextBlock Grid.Column="1" Text="{x:Bind Job.Title, Mode=OneWay}" Style="{StaticResource McStrong}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
-            <TextBlock Grid.Column="2" Text="{x:Bind Job.FilesCountText, Mode=OneWay}" Style="{StaticResource McSecondary}" VerticalAlignment="Center" />
-            <TextBlock Grid.Column="3" Text="{x:Bind Job.TotalBytesText, Mode=OneWay}" Style="{StaticResource McSecondary}" VerticalAlignment="Center" />
+            <TextBlock Grid.Column="1" Text="{x:Bind Job.Title, Mode=OneWay}" Style="{StaticResource McStrong}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" ToolTipService.ToolTip="{x:Bind Job.Title, Mode=OneWay}" />
+            <TextBlock x:Name="FilesCountBlock" Grid.Column="2" Text="{x:Bind Job.FilesCountText, Mode=OneWay}" Style="{StaticResource McSecondary}" VerticalAlignment="Center" />
+            <TextBlock x:Name="TotalBytesBlock" Grid.Column="3" Text="{x:Bind Job.TotalBytesText, Mode=OneWay}" Style="{StaticResource McSecondary}" VerticalAlignment="Center" />
             <TextBlock Grid.Column="4" Text="{x:Bind Job.TotalPercentText, Mode=OneWay}" Style="{StaticResource McStrong}" VerticalAlignment="Center" MinWidth="56" TextAlignment="Right" />
         </Grid>
         <c:FlowBar Grid.Row="1" Fill="{StaticResource McTotalBrush}"
@@ -51,16 +51,16 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Border Style="{StaticResource McChip}">
+            <Border x:Name="FileChip" Style="{StaticResource McChip}">
                 <StackPanel Orientation="Horizontal" Spacing="6">
                     <FontIcon VerticalAlignment="Center" Glyph="&#xE8A5;" FontSize="12" Foreground="{StaticResource McAccentBrush}" />
-                    <TextBlock x:Uid="Panel_File" Style="{StaticResource McChipText}" />
+                    <TextBlock x:Name="FileChipText" x:Uid="Panel_File" Style="{StaticResource McChipText}" />
                 </StackPanel>
             </Border>
             <TextBlock Grid.Column="1" Text="{x:Bind Job.CurrentFileName, Mode=OneWay}" Style="{StaticResource McBody}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"
                        ToolTipService.ToolTip="{x:Bind Job.CurrentSourcePath, Mode=OneWay}" />
-            <TextBlock Grid.Column="2" Text="{x:Bind Job.FileBytesText, Mode=OneWay}" Style="{StaticResource McSecondary}" VerticalAlignment="Center" />
-            <TextBlock Grid.Column="3" Text="{x:Bind Job.SpeedAndRemaining, Mode=OneWay}" Style="{StaticResource McSecondary}" VerticalAlignment="Center" />
+            <TextBlock x:Name="FileBytesBlock" Grid.Column="2" Text="{x:Bind Job.FileBytesText, Mode=OneWay}" Style="{StaticResource McSecondary}" VerticalAlignment="Center" />
+            <TextBlock x:Name="SpeedBlock" Grid.Column="3" Text="{x:Bind Job.SpeedAndRemaining, Mode=OneWay}" Style="{StaticResource McSecondary}" VerticalAlignment="Center" />
             <TextBlock Grid.Column="4" Text="{x:Bind Job.FilePercentText, Mode=OneWay}" Style="{StaticResource McStrong}" VerticalAlignment="Center" MinWidth="56" TextAlignment="Right" />
         </Grid>
         <c:FlowBar Grid.Row="3" Fill="{StaticResource McFileBrush}"
@@ -97,7 +97,7 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <StackPanel Orientation="Horizontal" Spacing="8">
+            <StackPanel x:Name="ButtonsPanel" Orientation="Horizontal" Spacing="8">
                 <Button x:Name="ExpandButton" Style="{StaticResource McButton}" Click="Expand_Click">
                     <StackPanel Orientation="Horizontal" Spacing="8">
                         <FontIcon VerticalAlignment="Center" x:Name="ExpandGlyph" Glyph="&#xE70D;" FontSize="12" />
@@ -110,7 +110,7 @@
                         <TextBlock x:Uid="Panel_Pause" />
                     </StackPanel>
                 </Button>
-                <Button Style="{StaticResource McAccentButton}" Click="{x:Bind Job.Resume}" Visibility="{x:Bind Job.CanResume, Mode=OneWay}">
+                <Button Style="{StaticResource McAccentButton}" Click="{x:Bind Job.Resume}" Visibility="{x:Bind Job.CanResume, Mode=OneWay}" ToolTipService.ToolTip="{x:Bind Job.ResumeLabel, Mode=OneWay}">
                     <StackPanel Orientation="Horizontal" Spacing="8">
                         <FontIcon VerticalAlignment="Center" Glyph="&#xE768;" FontSize="12" />
                         <TextBlock Text="{x:Bind Job.ResumeLabel, Mode=OneWay}" />
@@ -141,7 +141,7 @@
                     </StackPanel>
                 </Button>
             </StackPanel>
-            <TextBlock Grid.Column="1" Text="{x:Bind Job.DetailText, Mode=OneWay}" Style="{StaticResource McSecondary}" VerticalAlignment="Center" Margin="8,0" TextTrimming="CharacterEllipsis" />
+            <TextBlock x:Name="DetailBlock" Grid.Column="1" Text="{x:Bind Job.DetailText, Mode=OneWay}" ToolTipService.ToolTip="{x:Bind Job.DetailText, Mode=OneWay}" Style="{StaticResource McSecondary}" VerticalAlignment="Center" Margin="8,0" TextTrimming="CharacterEllipsis" />
             <Button Grid.Column="2" x:Uid="Panel_Options" Style="{StaticResource McToolButton}">
                 <FontIcon VerticalAlignment="Center" Glyph="&#xE712;" FontSize="14" />
                 <Button.Flyout>

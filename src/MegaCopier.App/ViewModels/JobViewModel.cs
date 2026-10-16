@@ -272,9 +272,12 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
         }
     }
 
-    public string SourceFolderShort => Format.ShortPath(SourceFolder);
+    /// <summary>Carpetas finales que se ven en las rutas del panel (1 si la ventana es muy estrecha).</summary>
+    public static int PathKeep { get; set; } = 2;
 
-    public string DestinationFolderShort => Format.ShortPath(Job.Record.Destination);
+    public string SourceFolderShort => Format.ShortPath(SourceFolder, PathKeep);
+
+    public string DestinationFolderShort => Format.ShortPath(Job.Record.Destination, PathKeep);
 
     public string DestinationFolder => Path.TrimEndingDirectorySeparator(Job.Record.Destination) + "\\";
 

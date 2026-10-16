@@ -99,7 +99,7 @@
   <data name="Job_TitleMoved" xml:space="preserve"><value>Movido {0}</value></data>
   <data name="Job_TitleQueued" xml:space="preserve"><value>En espera: {0}</value></data>
   <data name="Job_Destination" xml:space="preserve"><value>a {0}</value></data>
-  <data name="Job_StateQueued" xml:space="preserve"><value>En cola · espera a que el disco quede libre</value></data>
+  <data name="Job_StateQueued" xml:space="preserve"><value>En cola: disco ocupado</value></data>
   <data name="Job_StateVerifying" xml:space="preserve"><value>Verificando</value></data>
   <data name="Job_StateValidating" xml:space="preserve"><value>Comprobando lo ya copiado</value></data>
   <data name="Job_StateWaiting" xml:space="preserve"><value>Esperando tu decisión: el archivo ya existe</value></data>
@@ -475,4 +475,6 @@
   <data name="Job_TitleScheduled" xml:space="preserve"><value>Programada: {0}</value></data>
   <data name="Error_ChecksumMismatch" xml:space="preserve"><value>El contenido no coincide con la suma guardada: el archivo cambió o está dañado.</value></data>
   <data name="Job_FilteredOut" xml:space="preserve"><value>Ningún archivo pasa los filtros de esta copia</value></data>
+  <data name="Rules_After.PlaceholderText" xml:space="preserve"><value>Cualquier fecha</value></data>
+  <data name="Rules_Before.PlaceholderText" xml:space="preserve"><value>Cualquier fecha</value></data>
 </root>

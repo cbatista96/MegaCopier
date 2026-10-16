@@ -7,12 +7,13 @@
 
     <ScrollViewer>
         <Grid ColumnSpacing="12" RowSpacing="12">
+            <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Border Style="{StaticResource McCard}">
+            <Border x:Name="SourceCard" Style="{StaticResource McCard}">
                 <StackPanel Spacing="8">
                     <TextBlock x:Uid="Target_Source" Style="{StaticResource McSecondary}" />
                     <StackPanel Orientation="Horizontal" Spacing="12">
@@ -34,7 +35,7 @@
                 </StackPanel>
             </Border>
 
-            <Border Grid.Column="1" Style="{StaticResource McCard}">
+            <Border x:Name="TargetCard" Grid.Column="1" Style="{StaticResource McCard}">
                 <StackPanel Spacing="8">
                     <TextBlock x:Uid="Target_Destination" Style="{StaticResource McSecondary}" />
                     <StackPanel Orientation="Horizontal" Spacing="12">

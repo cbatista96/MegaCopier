@@ -27,6 +27,7 @@ public sealed partial class OptionsTab : UserControl
     {
         InitializeComponent();
         Rules.RulesChanged += Rules_Changed;
+        SizeChanged += (_, e) => Adapt(e.NewSize.Width);
         foreach (var hash in Hashes)
         {
             HashBox.Items.Add(new ComboBoxItem { Content = HashName(hash) });
@@ -77,6 +78,24 @@ public sealed partial class OptionsTab : UserControl
         6 => ConflictPolicy.RenameExisting,
         _ => ConflictPolicy.Ask,
     };
+
+    /// <summary>Tres columnas si caben; dos o una si la ventana es estrecha (nada se corta).</summary>
+    private void Adapt(double width)
+    {
+        int columns = width >= 980 ? 3 : width >= 640 ? 2 : 1;
+        Place(WhatColumn, 0, 0, columns == 1 ? 3 : 1);
+        Place(HowColumn, columns == 1 ? 1 : 0, columns == 1 ? 0 : 1, columns == 1 ? 3 : 1);
+        Place(FinishColumn, columns == 3 ? 0 : columns == 2 ? 1 : 2, columns == 3 ? 2 : 0, columns == 3 ? 1 : 3);
+        ScheduleRow.Orientation = width < 760 ? Orientation.Vertical : Orientation.Horizontal;
+        ScheduleRow.HorizontalAlignment = HorizontalAlignment.Left;
+    }
+
+    private static void Place(FrameworkElement element, int row, int column, int span)
+    {
+        Grid.SetRow(element, row);
+        Grid.SetColumn(element, column);
+        Grid.SetColumnSpan(element, span);
+    }
 
     public void Refresh() => RunningInfo.IsOpen = _job?.IsRunning == true || _job?.IsPaused == true;
 

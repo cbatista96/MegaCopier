@@ -12,6 +12,7 @@ using Microsoft.UI.Dispatching;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
 using Windows.ApplicationModel.DataTransfer;
 using WinRT.Interop;
 
@@ -43,7 +44,10 @@ public sealed partial class MainWindow : Window
     private readonly LogTab _logTab = new();
     private JobViewModel? _selected;
     private bool _expanded;
-    private bool _sidebarOpen = true;
+    private const double NarrowWidth = 900;
+    private bool _narrow;
+    private bool _sidebarWide = true;
+    private bool _sidebarOverlayOpen;
 
     /// <summary>El usuario eligió compacta o completa en esta sesión: el modo automático ya no cambia por su cuenta.</summary>
     private bool _userChoseMode;
@@ -313,6 +317,11 @@ public sealed partial class MainWindow : Window
         if (JobList.SelectedItem is JobViewModel job && job != _selected)
         {
             Select(job);
+            if (_narrow && _sidebarOverlayOpen)
+            {
+                _sidebarOverlayOpen = false;
+                ApplySidebar();
+            }
         }
     }
 
@@ -335,6 +344,12 @@ public sealed partial class MainWindow : Window
     {
         PagerText.Text = _selected is null ? "" : L.F("Pager_Text", Jobs.IndexOf(_selected) + 1, Jobs.Count);
         var pager = !_expanded && Jobs.Count > 1 ? Visibility.Visible : Visibility.Collapsed;
+        if (AppWindow.Presenter is OverlappedPresenter overlapped)
+        {
+            // La ventana no puede encogerse tanto que tape el paginador o los botones.
+            overlapped.PreferredMinimumHeight = Scaled(_expanded ? 480 : CompactHeight + (pager == Visibility.Visible ? PagerHeight : 0));
+        }
+
         if (Pager.Visibility != pager)
         {
             Pager.Visibility = pager;
@@ -362,13 +377,17 @@ public sealed partial class MainWindow : Window
 
     private void ApplyLayout(bool animate)
     {
+        if (AppWindow.Presenter is OverlappedPresenter overlapped)
+        {
+            // La vista completa necesita algo más de ancho que la compacta para no apretar sus pestañas.
+            overlapped.PreferredMinimumWidth = Scaled(_expanded ? 640 : 460);
+        }
+
         Panel.SetExpanded(_expanded);
         Toolbar.Visibility = _expanded ? Visibility.Visible : Visibility.Collapsed;
         Tabs.Visibility = _expanded ? Visibility.Visible : Visibility.Collapsed;
         TabHost.Visibility = _expanded ? Visibility.Visible : Visibility.Collapsed;
-        bool sidebar = _expanded && _sidebarOpen;
-        Sidebar.Visibility = sidebar ? Visibility.Visible : Visibility.Collapsed;
-        SidebarColumn.Width = new GridLength(sidebar ? SidebarWidth : 0);
+        ApplySidebar();
         UpdatePager();
         UpdateLayoutState();
         RefreshTabs();
@@ -420,10 +439,73 @@ public sealed partial class MainWindow : Window
 
     private void Sidebar_Click(object sender, RoutedEventArgs e)
     {
-        _sidebarOpen = !_sidebarOpen;
-        ApplyLayout(animate: false);
-        var (width, height) = TargetSize(true);
-        AppWindow.Resize(new Windows.Graphics.SizeInt32(Math.Max(AppWindow.Size.Width, Scaled(width - (_sidebarOpen ? 0 : SidebarWidth))), Math.Max(AppWindow.Size.Height, Scaled(height))));
+        if (_narrow)
+        {
+            _sidebarOverlayOpen = !_sidebarOverlayOpen;
+        }
+        else
+        {
+            _sidebarWide = !_sidebarWide;
+        }
+
+        ApplySidebar();
+    }
+
+    /// <summary>Con la ventana estrecha la lista de copias flota sobre el contenido en lugar de apretarlo.</summary>
+    private void Body_SizeChanged(object sender, SizeChangedEventArgs e)
+    {
+        bool narrow = e.NewSize.Width < NarrowWidth;
+        if (narrow != _narrow)
+        {
+            _narrow = narrow;
+            _sidebarOverlayOpen = false;
+            ApplySidebar();
+        }
+    }
+
+    private void ApplySidebar()
+    {
+        bool page = HistoryView.Visibility == Visibility.Visible || SettingsView.Visibility == Visibility.Visible;
+        bool show = _expanded && !page && (_narrow ? _sidebarOverlayOpen : _sidebarWide);
+        Sidebar.Visibility = show ? Visibility.Visible : Visibility.Collapsed;
+        if (_narrow)
+        {
+            SidebarColumn.Width = new GridLength(0);
+            Grid.SetColumnSpan(Sidebar, 2);
+            Sidebar.Width = SidebarWidth;
+            Sidebar.HorizontalAlignment = HorizontalAlignment.Left;
+            Sidebar.Background = new AcrylicBrush
+            {
+                TintColor = ThemeManager.Current.Dark ? Windows.UI.Color.FromArgb(255, 32, 32, 36) : Windows.UI.Color.FromArgb(255, 243, 243, 243),
+                TintOpacity = 0.85,
+                FallbackColor = ThemeManager.Current.Dark ? Windows.UI.Color.FromArgb(255, 32, 32, 36) : Windows.UI.Color.FromArgb(255, 243, 243, 243),
+            };
+            Sidebar.CornerRadius = new CornerRadius(0, 8, 8, 0);
+            Canvas.SetZIndex(Sidebar, 10);
+            Sidebar.Shadow ??= new ThemeShadow();
+            Sidebar.Translation = new System.Numerics.Vector3(0, 0, 32);
+        }
+        else
+        {
+            SidebarColumn.Width = new GridLength(show ? SidebarWidth : 0);
+            Grid.SetColumnSpan(Sidebar, 1);
+            Sidebar.Width = double.NaN;
+            Sidebar.HorizontalAlignment = HorizontalAlignment.Stretch;
+            Sidebar.Background = null;
+            Sidebar.CornerRadius = new CornerRadius(0);
+            Canvas.SetZIndex(Sidebar, 0);
+            Sidebar.Translation = default;
+        }
+    }
+
+    /// <summary>Tocar fuera de la lista flotante la cierra.</summary>
+    private void Detail_PointerPressed(object sender, Microsoft.UI.Xaml.Input.PointerRoutedEventArgs e)
+    {
+        if (_narrow && _sidebarOverlayOpen)
+        {
+            _sidebarOverlayOpen = false;
+            ApplySidebar();
+        }
     }
 
     /// <summary>Sin copias, con copias, o una página (Historial, Ajustes) encima.</summary>
@@ -433,7 +515,7 @@ public sealed partial class MainWindow : Window
         bool empty = Jobs.Count == 0;
         EmptyState.Visibility = !page && empty ? Visibility.Visible : Visibility.Collapsed;
         Detail.Visibility = !page && !empty ? Visibility.Visible : Visibility.Collapsed;
-        Sidebar.Visibility = !page && _expanded && _sidebarOpen ? Visibility.Visible : Visibility.Collapsed;
+        ApplySidebar();
         JobsHeader.Text = L.F("Jobs_Header", Jobs.Count, Jobs.Count(j => j.IsActive));
         UpdatePager();
     }
@@ -484,6 +566,14 @@ public sealed partial class MainWindow : Window
         if (!AppWindow.IsVisible)
         {
             return;
+        }
+
+        if (TextAudit.Enabled)
+        {
+            string where = HistoryView.Visibility == Visibility.Visible ? "Historial"
+                : SettingsView.Visibility == Visibility.Visible ? "Ajustes"
+                : _expanded ? "Completa/" + (Tabs.SelectedItem as SelectorBarItem)?.Text : "Compacta";
+            TextAudit.Run(Root, $"{where} {AppWindow.Size.Width}px");
         }
 
         var running = Jobs.Where(j => j.IsRunning || j.IsPaused).ToList();
