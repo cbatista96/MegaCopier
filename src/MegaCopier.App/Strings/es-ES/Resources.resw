@@ -755,4 +755,14 @@
   <data name="Job_StateDecrypting" xml:space="preserve"><value>Descifrando</value></data>
   <data name="Job_FilesDecryptedOne" xml:space="preserve"><value>{0} archivo descifrado</value></data>
   <data name="Job_FilesDecryptedMany" xml:space="preserve"><value>{0} archivos descifrados</value></data>
+  <data name="Settings_DisksTitle.Text" xml:space="preserve"><value>Estado de los discos</value></data>
+  <data name="Settings_DisksDescription.Text" xml:space="preserve"><value>Lo que dice Windows de cada disco (SMART). Si uno avisa de fallo, MegaCopier te lo dirá al copiar desde él o hacia él.</value></data>
+  <data name="Settings_DisksCheck.Text" xml:space="preserve"><value>Comprobar ahora</value></data>
+  <data name="Disk_Row" xml:space="preserve"><value>Disco {0} · {1}: {2}</value></data>
+  <data name="Disk_Healthy" xml:space="preserve"><value>correcto</value></data>
+  <data name="Disk_Unknown" xml:space="preserve"><value>estado desconocido</value></data>
+  <data name="Disk_HealthWarning" xml:space="preserve"><value>avisa de fallo</value></data>
+  <data name="Disk_Checking" xml:space="preserve"><value>Comprobando los discos…</value></data>
+  <data name="Disk_WarningTitle" xml:space="preserve"><value>Un disco avisa de fallo</value></data>
+  <data name="Disk_Warning" xml:space="preserve"><value>«{0}» (disco {1}): {2}. Copia lo importante a otro disco cuanto antes.</value></data>
 </root>

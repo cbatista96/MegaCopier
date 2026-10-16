@@ -749,3 +749,13 @@ Job_TitleDecrypted	Descifrado {0}	Decrypted {0}
 Job_StateDecrypting	Descifrando	Decrypting
 Job_FilesDecryptedOne	{0} archivo descifrado	{0} file decrypted
 Job_FilesDecryptedMany	{0} archivos descifrados	{0} files decrypted
+Settings_DisksTitle.Text	Estado de los discos	Drive health
+Settings_DisksDescription.Text	Lo que dice Windows de cada disco (SMART). Si uno avisa de fallo, MegaCopier te lo dirá al copiar desde él o hacia él.	What Windows reports for each drive (SMART). If one warns of failure, MegaCopier tells you when copying from or to it.
+Settings_DisksCheck.Text	Comprobar ahora	Check now
+Disk_Row	Disco {0} · {1}: {2}	Disk {0} · {1}: {2}
+Disk_Healthy	correcto	healthy
+Disk_Unknown	estado desconocido	unknown state
+Disk_HealthWarning	avisa de fallo	reports a problem
+Disk_Checking	Comprobando los discos…	Checking the drives…
+Disk_WarningTitle	Un disco avisa de fallo	A drive reports a failure
+Disk_Warning	«{0}» (disco {1}): {2}. Copia lo importante a otro disco cuanto antes.	"{0}" (disk {1}): {2}. Copy what matters to another drive as soon as possible.

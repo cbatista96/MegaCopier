@@ -26,11 +26,25 @@ internal static partial class VolumeInfo
         return TryGetDiskNumber(drive) is uint disk ? $"DISK{disk}" : drive.ToUpperInvariant();
     }
 
+    /// <summary>Número del disco físico de una ruta local (el de "Administración de discos"), o null.</summary>
+    public static uint? DiskNumber(string path)
+    {
+        string root = Path.GetPathRoot(Path.GetFullPath(path)) ?? "";
+        return root.StartsWith(@"\\", StringComparison.Ordinal) || root.Length == 0 ? null : TryGetDiskNumber(root.TrimEnd('\\'));
+    }
+
     private static uint? TryGetDiskNumber(string drive)
     {
         try
         {
-            using SafeFileHandle volume = File.OpenHandle(@"\\.\" + drive, FileMode.Open, (FileAccess)0, FileShare.ReadWrite);
+            // Sin derechos de lectura ni escritura (basta para preguntar y no exige ser administrador). File.OpenHandle no
+            // acepta "ningún acceso" (lanzaba ArgumentException y nunca se sabía el disco), así que se abre con CreateFileW.
+            using SafeFileHandle volume = CreateFileW(@"\\.\" + drive, 0, 3 /* FILE_SHARE_READ | FILE_SHARE_WRITE */, 0, 3 /* OPEN_EXISTING */, 0, 0);
+            if (volume.IsInvalid)
+            {
+                return null;
+            }
+
             Span<byte> buffer = stackalloc byte[64];
             unsafe
             {
@@ -51,6 +65,9 @@ internal static partial class VolumeInfo
             return null;
         }
     }
+
+    [LibraryImport("kernel32.dll", SetLastError = true, StringMarshalling = StringMarshalling.Utf16)]
+    private static partial SafeFileHandle CreateFileW(string name, uint access, uint share, nint security, uint creation, uint flags, nint template);
 
     [LibraryImport("kernel32.dll", SetLastError = true)]
     [return: MarshalAs(UnmanagedType.Bool)]
