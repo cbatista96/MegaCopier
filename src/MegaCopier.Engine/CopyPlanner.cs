@@ -20,8 +20,9 @@ internal static class CopyPlanner
         ReturnSpecialDirectories = false,
     };
 
-    public static CopyPlan Build(IReadOnlyList<string> sources, string destinationDirectory)
+    public static CopyPlan Build(IReadOnlyList<string> sources, string destinationDirectory, FileFilter? filter = null)
     {
+        filter = filter is { IsEmpty: false } ? filter : null;
         if (sources.Count == 0)
         {
             throw new CopyPlanException("No se indicó ningún origen.");
@@ -59,9 +60,17 @@ internal static class CopyPlanner
                     directories.Add(new PlannedDirectory(source, target, 0));
                     var root = new DirectoryInfo(source);
 
+                    var skipped = new List<string>();
                     foreach (var directory in root.EnumerateDirectories("*", Recursive))
                     {
                         string relative = Path.GetRelativePath(source, directory.FullName);
+                        if (filter is not null && (skipped.Any(s => relative.StartsWith(s + Path.DirectorySeparatorChar, StringComparison.OrdinalIgnoreCase))
+                            || !filter.AcceptsDirectory(relative, directory.Attributes)))
+                        {
+                            skipped.Add(relative);
+                            continue;
+                        }
+
                         directories.Add(new PlannedDirectory(directory.FullName, Path.Combine(target, relative), Depth(relative)));
                     }
 
@@ -73,6 +82,12 @@ internal static class CopyPlanner
                         }
 
                         string relative = Path.GetRelativePath(source, file.FullName);
+                        if (filter is not null && (skipped.Any(s => relative.StartsWith(s + Path.DirectorySeparatorChar, StringComparison.OrdinalIgnoreCase))
+                            || !filter.AcceptsFile(relative, file)))
+                        {
+                            continue;
+                        }
+
                         files.Add(new PlannedFile(file.FullName, Path.Combine(target, relative), file.Length, file.LastWriteTimeUtc));
                     }
                 }

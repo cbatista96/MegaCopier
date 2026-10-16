@@ -122,7 +122,7 @@ public sealed class CopyEngine
             request = request with { Sources = pending };
         }
 
-        var plan = CopyPlanner.Build(request.Sources, request.Destination);
+        var plan = CopyPlanner.Build(request.Sources, request.Destination, _options.Filter);
         var excluded = new HashSet<string>(request.Excluded, StringComparer.OrdinalIgnoreCase);
         var progress = new ProgressTracker(p => ProgressChanged?.Invoke(p), _options.ProgressInterval);
         var result = new CopyJobResult();
