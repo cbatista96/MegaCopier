@@ -221,6 +221,24 @@ std::string JsonString(const std::wstring& text)
     return out + "\"";
 }
 
+/// Comprobar sumas, crear sumas o borrar de forma segura: lo que se eligió en el submenú MegaCopier.
+std::string ToolRequestJson(const char* command, const char* operation, const std::vector<std::wstring>& sources)
+{
+    std::string json = std::string("{\"Command\":\"") + command + "\",";
+    if (operation != nullptr)
+    {
+        json += std::string("\"Operation\":\"") + operation + "\",";
+    }
+
+    json += "\"SecureDelete\":true,\"Sources\":[";
+    for (size_t i = 0; i < sources.size(); i++)
+    {
+        json += (i > 0 ? "," : "") + JsonString(sources[i]);
+    }
+
+    return json + "]}";
+}
+
 std::string CopyRequestJson(const std::vector<std::wstring>& sources, const std::wstring& destination, bool move)
 {
     std::string json = std::string("{\"Command\":\"copy\",") + (move ? "\"Move\":true," : "") + "\"Sources\":[";
@@ -381,6 +399,29 @@ bool StartCopy(HWND owner, const std::vector<std::wstring>& sources, const std::
     return false;
 }
 
+/// Con la app cerrada: "MegaCopier.exe test|hash|wipe <rutas>".
+bool LaunchTool(const wchar_t* verb, const std::vector<std::wstring>& sources)
+{
+    std::wstring exe = ModuleDirectory() + L"\\MegaCopier.exe";
+    std::wstring commandLine = QuoteArgument(exe) + L" " + verb;
+    for (const auto& source : sources)
+    {
+        commandLine += L" " + QuoteArgument(source);
+    }
+
+    STARTUPINFOW startup = { sizeof(startup) };
+    PROCESS_INFORMATION process = {};
+    if (commandLine.size() >= 32000 || !CreateProcessW(exe.c_str(), commandLine.data(), nullptr, nullptr, FALSE, 0, nullptr, nullptr, &startup, &process))
+    {
+        return false;
+    }
+
+    AllowSetForegroundWindow(process.dwProcessId);
+    CloseHandle(process.hThread);
+    CloseHandle(process.hProcess);
+    return true;
+}
+
 // Tras pegar algo cortado, el portapapeles se vacía (como hace el Explorador).
 void ClearClipboard()
 {
@@ -486,6 +527,7 @@ public:
         m_sources.clear();
         m_destination.clear();
         m_commands.clear();
+        m_tools.clear();
         m_fromClipboard = false;
 
         if (!MegaCopierEnabled())
@@ -505,13 +547,12 @@ public:
         {
             // Menú contextual: pegar lo que hay en el portapapeles (copiado con Ctrl+C o cortado con Ctrl+X).
             ClipboardFiles clipboard = ReadClipboard();
+            DWORD attributes = m_items.size() == 1 ? GetFileAttributesW(m_items[0].c_str()) : INVALID_FILE_ATTRIBUTES;
             if (clipboard.files.empty())
             {
-                return S_OK;
+                // Nada que pegar.
             }
-
-            DWORD attributes = m_items.size() == 1 ? GetFileAttributesW(m_items[0].c_str()) : INVALID_FILE_ATTRIBUTES;
-            if (m_items.empty())
+            else if (m_items.empty())
             {
                 m_destination = m_folder; // fondo de una carpeta o del Escritorio
                 m_commands.push_back({ clipboard.cut ? T(L"Mover aquí con MegaCopier", L"Move here with MegaCopier")
@@ -524,8 +565,19 @@ public:
                                                      : T(L"Pegar en esta carpeta con MegaCopier", L"Paste into this folder with MegaCopier"), clipboard.cut });
             }
 
-            m_sources = clipboard.files;
-            m_fromClipboard = true;
+            if (!clipboard.files.empty())
+            {
+                m_sources = clipboard.files;
+                m_fromClipboard = true;
+            }
+
+            // Sobre archivos o carpetas: el submenú MegaCopier (comprobar sumas, crear sumas, borrar de forma segura).
+            if (!m_items.empty())
+            {
+                m_tools.push_back({ T(L"Comprobar sumas", L"Test checksums"), Action::Test });
+                m_tools.push_back({ T(L"Crear archivo de sumas", L"Create checksum file"), Action::Hash });
+                m_tools.push_back({ T(L"Borrar de forma segura…", L"Securely delete…"), Action::Wipe });
+            }
         }
 
         return S_OK;
@@ -534,23 +586,51 @@ public:
     // IContextMenu
     IFACEMETHODIMP QueryContextMenu(HMENU menu, UINT index, UINT firstCommand, UINT lastCommand, UINT flags) override
     {
-        if ((flags & CMF_DEFAULTONLY) || m_sources.empty() || m_destination.empty() || m_commands.empty() ||
-            firstCommand + m_commands.size() - 1 > lastCommand)
+        // Pegar (si hay algo que pegar) y, debajo, el submenú MegaCopier con las herramientas.
+        bool paste = !m_sources.empty() && !m_destination.empty() && !m_commands.empty();
+        UINT pasteCount = paste ? static_cast<UINT>(m_commands.size()) : 0;
+        UINT total = pasteCount + static_cast<UINT>(m_tools.size());
+        if ((flags & CMF_DEFAULTONLY) || total == 0 || firstCommand + total - (m_tools.empty() ? 1 : 0) > lastCommand)
         {
             return MAKE_HRESULT(SEVERITY_SUCCESS, 0, 0);
         }
 
-        for (UINT i = 0; i < m_commands.size(); i++)
+        m_pasteCount = pasteCount;
+        UINT position = index;
+        for (UINT i = 0; i < pasteCount; i++)
         {
             MENUITEMINFOW item = { sizeof(item) };
             item.fMask = MIIM_STRING | MIIM_ID | MIIM_BITMAP;
             item.wID = firstCommand + i;
             item.dwTypeData = m_commands[i].text.data();
             item.hbmpItem = MenuBitmap();
-            InsertMenuItemW(menu, index + i, TRUE, &item);
+            InsertMenuItemW(menu, position++, TRUE, &item);
         }
 
-        return MAKE_HRESULT(SEVERITY_SUCCESS, 0, static_cast<USHORT>(m_commands.size()));
+        if (!m_tools.empty())
+        {
+            HMENU submenu = CreatePopupMenu();
+            for (UINT i = 0; i < m_tools.size(); i++)
+            {
+                MENUITEMINFOW item = { sizeof(item) };
+                item.fMask = MIIM_STRING | MIIM_ID;
+                item.wID = firstCommand + pasteCount + i;
+                item.dwTypeData = m_tools[i].text.data();
+                InsertMenuItemW(submenu, i, TRUE, &item);
+            }
+
+            static std::wstring title = L"MegaCopier";
+            MENUITEMINFOW item = { sizeof(item) };
+            item.fMask = MIIM_STRING | MIIM_SUBMENU | MIIM_BITMAP | MIIM_ID;
+            item.wID = firstCommand + total; // no se invoca: solo abre el submenú
+            item.hSubMenu = submenu;
+            item.dwTypeData = title.data();
+            item.hbmpItem = MenuBitmap();
+            InsertMenuItemW(menu, position++, TRUE, &item);
+            return MAKE_HRESULT(SEVERITY_SUCCESS, 0, static_cast<USHORT>(total + 1));
+        }
+
+        return MAKE_HRESULT(SEVERITY_SUCCESS, 0, static_cast<USHORT>(total));
     }
 
     IFACEMETHODIMP InvokeCommand(CMINVOKECOMMANDINFO* info) override
@@ -559,11 +639,11 @@ public:
         if (HIWORD(info->lpVerb) != 0)
         {
             // Invocación por verbo de texto.
-            if (lstrcmpiA(info->lpVerb, "megacopier") == 0)
+            if (lstrcmpiA(info->lpVerb, "megacopier") == 0 && m_pasteCount > 0)
             {
                 index = 0;
             }
-            else if (lstrcmpiA(info->lpVerb, "megacopier-move") == 0 && m_commands.size() > 1)
+            else if (lstrcmpiA(info->lpVerb, "megacopier-move") == 0 && m_pasteCount > 1)
             {
                 index = 1;
             }
@@ -577,15 +657,32 @@ public:
             index = LOWORD(info->lpVerb);
         }
 
-        if (index >= m_commands.size())
+        if (index < m_pasteCount)
+        {
+            bool move = m_commands[index].move;
+            if (StartCopy(info->hwnd, m_sources, m_destination, move) && move && m_fromClipboard)
+            {
+                ClearClipboard();
+            }
+
+            return S_OK;
+        }
+
+        index -= m_pasteCount;
+        if (index >= m_tools.size())
         {
             return E_FAIL;
         }
 
-        bool move = m_commands[index].move;
-        if (StartCopy(info->hwnd, m_sources, m_destination, move) && move && m_fromClipboard)
+        // Borrar siempre lo confirma la app (con su aviso de que no se puede deshacer).
+        Action action = m_tools[index].action;
+        const char* command = action == Action::Wipe ? "confirm-delete" : "copy";
+        const char* operation = action == Action::Test ? "Test" : action == Action::Hash ? "Hash" : nullptr;
+        const wchar_t* verb = action == Action::Test ? L"test" : action == Action::Hash ? L"hash" : L"wipe";
+        std::string error;
+        if (!SendToApp(ToolRequestJson(command, operation, m_items), error) && !LaunchTool(verb, m_items))
         {
-            ClearClipboard();
+            MessageBoxW(info->hwnd, T(L"No se pudo abrir MegaCopier.", L"Couldn't open MegaCopier."), L"MegaCopier", MB_OK | MB_ICONWARNING);
         }
 
         return S_OK;
@@ -593,18 +690,26 @@ public:
 
     IFACEMETHODIMP GetCommandString(UINT_PTR command, UINT type, UINT*, CHAR* name, UINT maxLength) override
     {
-        if (command >= m_commands.size())
+        if (command >= m_pasteCount + m_tools.size())
         {
             return E_INVALIDARG;
         }
 
+        bool tool = command >= m_pasteCount;
         switch (type)
         {
         case GCS_VERBW:
-            lstrcpynW(reinterpret_cast<LPWSTR>(name), command == 1 ? L"megacopier-move" : L"megacopier", maxLength);
+            lstrcpynW(reinterpret_cast<LPWSTR>(name),
+                      tool ? (m_tools[command - m_pasteCount].action == Action::Test ? L"megacopier-test"
+                              : m_tools[command - m_pasteCount].action == Action::Hash ? L"megacopier-hash" : L"megacopier-wipe")
+                           : command == 1 ? L"megacopier-move" : L"megacopier",
+                      maxLength);
             return S_OK;
         case GCS_HELPTEXTW:
-            lstrcpynW(reinterpret_cast<LPWSTR>(name), T(L"Copia con MegaCopier: reanudable tras un corte de luz", L"Copy with MegaCopier: resumes after a power cut"), maxLength);
+            lstrcpynW(reinterpret_cast<LPWSTR>(name),
+                      tool ? m_tools[command - m_pasteCount].text.c_str()
+                           : T(L"Copia con MegaCopier: reanudable tras un corte de luz", L"Copy with MegaCopier: resumes after a power cut"),
+                      maxLength);
             return S_OK;
         default:
             return E_NOTIMPL;
@@ -622,9 +727,24 @@ private:
         bool move;
     };
 
+    enum class Action
+    {
+        Test,
+        Hash,
+        Wipe,
+    };
+
+    struct Tool
+    {
+        std::wstring text;
+        Action action;
+    };
+
     std::vector<std::wstring> m_sources;
     std::wstring m_destination;
     std::vector<Command> m_commands;
+    std::vector<Tool> m_tools;
+    UINT m_pasteCount = 0;
     bool m_fromClipboard = false;
 };
 
