@@ -261,6 +261,7 @@
                     </Grid.ColumnDefinitions>
                     <Border Style="{StaticResource McCard}">
                         <StackPanel Spacing="2">
+                            <Image x:Name="ConflictSourceThumb" Height="96" Stretch="Uniform" HorizontalAlignment="Center" Margin="0,0,0,6" Visibility="Collapsed" />
                             <StackPanel Orientation="Horizontal" Spacing="6">
                                 <FontIcon VerticalAlignment="Center" Glyph="&#xE8A5;" FontSize="13" Foreground="{StaticResource McAccentBrush}" />
                                 <TextBlock x:Name="ConflictSourceTitle" Style="{StaticResource BodyStrongTextBlockStyle}" />
@@ -271,6 +272,7 @@
                     </Border>
                     <Border Grid.Column="1" Style="{StaticResource McCard}">
                         <StackPanel Spacing="2">
+                            <Image x:Name="ConflictDestinationThumb" Height="96" Stretch="Uniform" HorizontalAlignment="Center" Margin="0,0,0,6" Visibility="Collapsed" />
                             <StackPanel Orientation="Horizontal" Spacing="6">
                                 <FontIcon VerticalAlignment="Center" Glyph="&#xE7C3;" FontSize="13" Foreground="{StaticResource McWarningBrush}" />
                                 <TextBlock x:Uid="ConflictExistingTitle" Style="{StaticResource BodyStrongTextBlockStyle}" />
