@@ -18,6 +18,7 @@ public sealed partial class CopyPanel : UserControl
     {
         InitializeComponent();
         SetExpanded(false);
+        SizeChanged += (_, e) => Adapt(e.NewSize.Width);
     }
 
     /// <summary>"Más" / "Menos": pasar entre la ventana compacta y la completa.</summary>
@@ -33,6 +34,46 @@ public sealed partial class CopyPanel : UserControl
     {
         ExpandGlyph.Glyph = expanded ? "" : "";
         ExpandText.Text = L.Get(expanded ? "Panel_Less" : "Panel_More");
+        ToolTipService.SetToolTip(ExpandButton, ExpandText.Text);
+        Microsoft.UI.Xaml.Automation.AutomationProperties.SetName(ExpandButton, ExpandText.Text);
+    }
+
+    /// <summary>
+    /// Ancho disponible: con menos de 640 px los botones pasan a solo icono y se ocultan los datos secundarios; con
+    /// menos de 460, también el número de archivos y la velocidad (siguen en el título de la ventana y en Estado).
+    /// </summary>
+    private void Adapt(double width)
+    {
+        bool narrow = width < 640;
+        bool tiny = width < 460;
+        Responsive.IconOnly(ButtonsPanel, narrow);
+        ExpandText.Visibility = narrow ? Visibility.Collapsed : Visibility.Visible;
+        StateChipText.Visibility = narrow ? Visibility.Collapsed : Visibility.Visible;
+        FileChipText.Visibility = narrow ? Visibility.Collapsed : Visibility.Visible;
+        foreach (var chip in new[] { StateChip, FileChip })
+        {
+            if (narrow)
+            {
+                chip.MinWidth = 0;
+                chip.Padding = new Thickness(7, 4, 7, 4);
+            }
+            else
+            {
+                chip.ClearValue(FrameworkElement.MinWidthProperty);
+                chip.ClearValue(Border.PaddingProperty);
+            }
+        }
+        TotalBytesBlock.Visibility = narrow ? Visibility.Collapsed : Visibility.Visible;
+        FileBytesBlock.Visibility = narrow ? Visibility.Collapsed : Visibility.Visible;
+        DetailBlock.Visibility = narrow ? Visibility.Collapsed : Visibility.Visible;
+        FilesCountBlock.Visibility = tiny ? Visibility.Collapsed : Visibility.Visible;
+        SpeedBlock.Visibility = tiny ? Visibility.Collapsed : Visibility.Visible;
+        int keep = width < 560 ? 1 : 2;
+        if (keep != JobViewModel.PathKeep)
+        {
+            JobViewModel.PathKeep = keep;
+            Job?.Refresh();
+        }
     }
 
     private void Expand_Click(object sender, RoutedEventArgs e) => ExpandRequested?.Invoke();

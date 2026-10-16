@@ -82,6 +82,11 @@ public sealed partial class FileRowViewModel(TransferItem item, string root) : I
 
     public void Refresh() => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(string.Empty));
 
+    /// <summary>Columnas de hash visibles (se ocultan si la lista es estrecha).</summary>
+    public static bool ShowHashes { get; set; } = true;
+
+    public bool HashesVisible => ShowHashes;
+
     /// <summary>"AE9D:90F6": principio y final del hash, como TeraCopy.</summary>
     private static string Short(string? hash) => hash is { Length: >= 8 } h ? $"{h[..4]}:{h[^4..]}".ToUpperInvariant() : (hash ?? "").ToUpperInvariant();
 }

@@ -85,6 +85,15 @@ public sealed partial class SettingsPage : UserControl
         AboutText.Text = L.F("About", typeof(App).Assembly.GetName().Version?.ToString(3) ?? "");
         _app.EnabledChanged += () => DispatcherQueue.TryEnqueue(Load);
         Rules.RulesChanged += Store;
+        SizeChanged += (_, e) =>
+        {
+            // Filas de ajuste "icono · texto · control": si no cabe, el control baja bajo el texto.
+            bool stacked = e.NewSize.Width < 720;
+            foreach (var row in Responsive.Descendants<Grid>(this).Where(g => g.ColumnDefinitions.Count >= 3 && g.Parent is Border).ToList())
+            {
+                Responsive.StackSettingRow(row, stacked);
+            }
+        };
     }
 
     public event Action? CloseRequested;

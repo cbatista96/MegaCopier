@@ -33,6 +33,15 @@ public sealed partial class RulesEditor : UserControl
     public RulesEditor()
     {
         InitializeComponent();
+        SizeChanged += (_, e) =>
+        {
+            // Dos columnas si caben; si no, los filtros encima de las reglas.
+            bool one = e.NewSize.Width < 600;
+            Grid.SetColumnSpan(FiltersColumn, one ? 2 : 1);
+            Grid.SetRow(RulesColumn, one ? 1 : 0);
+            Grid.SetColumn(RulesColumn, one ? 0 : 1);
+            Grid.SetColumnSpan(RulesColumn, one ? 2 : 1);
+        };
     }
 
     /// <summary>El usuario cambió algo (ya está en <see cref="Read"/>).</summary>

@@ -11,6 +11,9 @@ public sealed partial class StatusTab : UserControl
     public StatusTab()
     {
         InitializeComponent();
+        // La gráfica ocupa el sitio que deja la tabla (mínimo 140 px; si no cabe, se desplaza).
+        SizeChanged += (_, e) => Graph.Height = Math.Max(140, e.NewSize.Height - TableCard.ActualHeight - 12);
+        TableCard.SizeChanged += (_, _) => Graph.Height = Math.Max(140, ActualHeight - TableCard.ActualHeight - 12);
     }
 
     public JobViewModel? Job { get; set; }
