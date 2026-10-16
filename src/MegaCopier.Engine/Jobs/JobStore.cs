@@ -28,10 +28,40 @@ public sealed class CopyJobRecord
 
     public long MaxBytesPerSecond { get; set; }
 
+    /// <summary>Archivos que el usuario quitó de la lista.</summary>
+    public List<string> Excluded { get; set; } = [];
+
+    public bool Unattended { get; set; }
+
+    public FileHashAlgorithm HashAlgorithm { get; set; } = FileHashAlgorithm.XxHash3;
+
+    public bool CopyStreams { get; set; } = true;
+
+    public Native.SecurityParts CopySecurity { get; set; }
+
+    public bool SaveChecksumFile { get; set; }
+
+    public bool VerifySkipped { get; set; }
+
+    public bool PreserveTimestamps { get; set; } = true;
+
+    public bool PreserveAttributes { get; set; } = true;
+
+    public bool UseSystemCache { get; set; }
+
     public static CopyJobRecord New(IEnumerable<string> sources, string destination, CopyOptions options) => new()
     {
         Move = options.Move,
         MaxBytesPerSecond = options.MaxBytesPerSecond,
+        Unattended = options.Unattended,
+        HashAlgorithm = options.HashAlgorithm,
+        CopyStreams = options.CopyStreams,
+        CopySecurity = options.CopySecurity,
+        SaveChecksumFile = options.SaveChecksumFile,
+        VerifySkipped = options.VerifySkipped,
+        PreserveTimestamps = options.PreserveTimestamps,
+        PreserveAttributes = options.PreserveAttributes,
+        UseSystemCache = !options.UseUnbufferedIo,
         Id = Guid.NewGuid().ToString("N")[..8],
         Sources = [.. sources],
         Destination = destination,
@@ -46,7 +76,22 @@ public sealed class CopyJobRecord
     public CopyOptions ToOptions()
     {
         // El bloque se guarda junto al tamaño de confirmación: ambos deben seguir encajando al reanudar.
-        var options = new CopyOptions { Conflict = Conflict, Verify = Verify, Move = Move, MaxBytesPerSecond = MaxBytesPerSecond };
+        var options = new CopyOptions
+        {
+            Conflict = Conflict,
+            Verify = Verify,
+            Move = Move,
+            MaxBytesPerSecond = MaxBytesPerSecond,
+            Unattended = Unattended,
+            HashAlgorithm = HashAlgorithm,
+            CopyStreams = CopyStreams,
+            CopySecurity = CopySecurity,
+            SaveChecksumFile = SaveChecksumFile,
+            VerifySkipped = VerifySkipped,
+            PreserveTimestamps = PreserveTimestamps,
+            PreserveAttributes = PreserveAttributes,
+            UseUnbufferedIo = !UseSystemCache,
+        };
         if (ChunkSize > 0 && BlockSize > 0)
         {
             options.ChunkSize = ChunkSize;

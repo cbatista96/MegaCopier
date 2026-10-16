@@ -16,6 +16,15 @@ internal sealed class FileTransferResult
     public int ChunksRejectedOnResume { get; set; }
 
     public int ChunksRepaired { get; set; }
+
+    /// <summary>Hash completo del origen con el algoritmo elegido (null si no se calcula).</summary>
+    public string? SourceHash { get; set; }
+
+    /// <summary>Hash completo del destino releído sin caché (solo al verificar).</summary>
+    public string? DestinationHash { get; set; }
+
+    /// <summary>Avisos que no impiden la copia (streams o permisos que no se pudieron copiar).</summary>
+    public List<string> Warnings { get; } = [];
 }
 
 /// <summary>
@@ -129,9 +138,17 @@ internal sealed class FileTransfer
             result.BytesResumed = start;
             _progress.SetFileResumed(start);
 
-            var writer = new ChunkWriter(this, io, destinationPath, chunkSize, length, chunks, journal);
+            // Hash completo del archivo: al reanudar, la parte ya copiada se hashea leyendo el origen.
+            var fileHasher = FileHasher.Create(_options.HashAlgorithm);
+            if (fileHasher is not null && start > 0)
+            {
+                await ReadSequentialAsync(io.Source, io.SourceUnbuffered, 0, start, (data, _) => fileHasher.Append(data), cancellationToken).ConfigureAwait(false);
+            }
+
+            var writer = new ChunkWriter(this, io, destinationPath, chunkSize, length, chunks, journal, fileHasher);
             await CopyRangeAsync(io, start, length, writer, cancellationToken).ConfigureAwait(false);
             result.BytesTransferred = length - start;
+            result.SourceHash = fileHasher?.Finish();
 
             if (destinationUnbuffered || RandomAccess.GetLength(destination) != length)
             {
@@ -145,7 +162,11 @@ internal sealed class FileTransfer
 
             if (_options.Verify)
             {
-                result.ChunksRepaired = await VerifyAndRepairAsync(io, chunks, chunkSize, length, destinationPath, cancellationToken).ConfigureAwait(false);
+                var destinationHasher = FileHasher.Create(_options.HashAlgorithm);
+                result.ChunksRepaired = await VerifyAndRepairAsync(io, chunks, chunkSize, length, destinationPath, destinationHasher, cancellationToken).ConfigureAwait(false);
+
+                // Tras reparar, cada bloque coincide con el origen: el hash del destino es el del origen.
+                result.DestinationHash = result.ChunksRepaired > 0 ? result.SourceHash : destinationHasher?.Finish();
             }
         }
         catch
@@ -157,7 +178,7 @@ internal sealed class FileTransfer
         }
 
         destination.Dispose();
-        Finalize(partialPath, destinationPath, info);
+        Finalize(sourcePath, partialPath, destinationPath, info, result);
         journal?.Delete();
         return result;
     }
@@ -275,12 +296,19 @@ internal sealed class FileTransfer
     /// Los bloques dañados se vuelven a copiar desde el origen; si siguen sin coincidir, la copia falla.
     /// En discos locales la lectura es sin caché, así que se comprueba lo que de verdad hay en el disco.
     /// </summary>
-    private async Task<int> VerifyAndRepairAsync(IoContext io, List<ChunkRecord> chunks, long chunkSize, long length, string destinationPath, CancellationToken cancellationToken)
+    private async Task<int> VerifyAndRepairAsync(
+        IoContext io,
+        List<ChunkRecord> chunks,
+        long chunkSize,
+        long length,
+        string destinationPath,
+        FileHasher? destinationHasher,
+        CancellationToken cancellationToken)
     {
         _faults?.Hit(FaultPoint.BeforeVerify, -1, io.Destination);
         _progress.SetPhase(CopyPhase.Verifying);
 
-        var bad = await FindBadChunksAsync(io.Destination, io.DestinationUnbuffered, chunks, chunkSize, 0, chunks.Count, cancellationToken).ConfigureAwait(false);
+        var bad = await FindBadChunksAsync(io.Destination, io.DestinationUnbuffered, chunks, chunkSize, 0, chunks.Count, cancellationToken, destinationHasher).ConfigureAwait(false);
         if (bad.Count > 0)
         {
             foreach (int index in bad)
@@ -313,7 +341,8 @@ internal sealed class FileTransfer
         long chunkSize,
         int first,
         int end,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken,
+        FileHasher? fileHasher = null)
     {
         var bad = new List<int>();
         if (first >= end)
@@ -330,6 +359,7 @@ internal sealed class FileTransfer
 
         await ReadSequentialAsync(handle, unbuffered, offset, length, (data, _) =>
         {
+            fileHasher?.Append(data);
             while (!data.IsEmpty && current < end)
             {
                 int take = Math.Min(data.Length, chunks[current].Length - filled);
@@ -482,8 +512,21 @@ internal sealed class FileTransfer
         }
     }
 
-    private void Finalize(string partialPath, string destinationPath, SourceInfo info)
+    private void Finalize(string sourcePath, string partialPath, string destinationPath, SourceInfo info, FileTransferResult result)
     {
+        // Streams alternativos antes de renombrar: el archivo final aparece ya completo.
+        if (_options.CopyStreams)
+        {
+            try
+            {
+                FileMetadata.CopyAlternateStreams(sourcePath, partialPath);
+            }
+            catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+            {
+                result.Warnings.Add($"No se copiaron los streams alternativos: {ex.Message}");
+            }
+        }
+
         if (_options.PreserveTimestamps)
         {
             File.SetCreationTimeUtc(partialPath, info.CreationUtc);
@@ -501,6 +544,19 @@ internal sealed class FileTransfer
 
         // El renombrado es atómico: el archivo final nunca existe a medio copiar.
         File.Move(partialPath, destinationPath, overwrite: true);
+
+        // Permisos antes que atributos: un archivo de solo lectura sigue aceptando cambios de seguridad.
+        if (_options.CopySecurity != SecurityParts.None)
+        {
+            try
+            {
+                FileMetadata.CopySecurity(sourcePath, destinationPath, _options.CopySecurity);
+            }
+            catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+            {
+                result.Warnings.Add(ex.Message);
+            }
+        }
 
         if (_options.PreserveAttributes)
         {
@@ -546,7 +602,8 @@ internal sealed class FileTransfer
         long chunkSize,
         long length,
         List<ChunkRecord> chunks,
-        TransferJournal? journal)
+        TransferJournal? journal,
+        FileHasher? fileHasher)
     {
         private readonly XxHash128 _hasher = new();
         private readonly Queue<(Task Write, AlignedBuffer Buffer)> _inFlight = new();
@@ -564,6 +621,7 @@ internal sealed class FileTransfer
                 }
 
                 _hasher.Append(buffer.Span[..count]);
+                fileHasher?.Append(buffer.Span[..count]);
                 _inFlight.Enqueue((IoHelpers.WriteFullAsync(io.Destination, io.DestinationUnbuffered, buffer, count, offset).AsTask(), buffer));
             }
             catch

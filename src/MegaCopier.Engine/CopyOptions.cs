@@ -78,6 +78,24 @@ public sealed class CopyOptions
     /// <summary>Límite de velocidad de escritura en bytes por segundo (0 = sin límite).</summary>
     public long MaxBytesPerSecond { get; set; }
 
+    /// <summary>Hash completo de cada archivo (lista, verificación y archivo de sumas). xxHash3 es casi gratis.</summary>
+    public FileHashAlgorithm HashAlgorithm { get; set; } = FileHashAlgorithm.XxHash3;
+
+    /// <summary>Copiar los streams alternativos (Zone.Identifier y otros), como hace el Explorador.</summary>
+    public bool CopyStreams { get; set; } = true;
+
+    /// <summary>Copiar permisos, propietario y/o auditoría (Native.SecurityParts).</summary>
+    public Native.SecurityParts CopySecurity { get; set; }
+
+    /// <summary>Al terminar, guardar un archivo de sumas (formato estándar) en la carpeta de destino.</summary>
+    public bool SaveChecksumFile { get; set; }
+
+    /// <summary>Comparar también por hash los archivos omitidos por idénticos.</summary>
+    public bool VerifySkipped { get; set; }
+
+    /// <summary>Desatendido: nunca pregunta (los conflictos se omiten). Se puede cambiar durante la copia.</summary>
+    public bool Unattended { get; set; }
+
     /// <summary>Copia incluso si el destino parece idéntico (mismo tamaño y fecha).</summary>
     public bool ForceRecopy { get; set; }
 
