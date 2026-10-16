@@ -640,3 +640,20 @@ Rules_AllOrNothing.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Cada
 Rules_Rescue.Content	Modo rescate para discos dañados	Rescue mode for damaged drives
 Rules_Rescue.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Si el origen tiene sectores dañados, se lee sector a sector y se salva todo lo legible; lo ilegible queda en ceros y se anota en el registro. El original no se borra al mover.	If the source has bad sectors, it is read sector by sector and everything readable is saved; unreadable parts become zeros and are logged. The original is not deleted when moving.
 Error_PartlyUnreadable	Rescatado en parte: algunos sectores del origen estaban dañados y quedaron en ceros (detalle en el Registro).	Partly rescued: some source sectors were damaged and became zeros (details in the Log).
+Settings_Guard.Text	Guardián de integridad	Integrity guard
+Settings_GuardTitle.Text	Vigilar que tus archivos no se dañen con el tiempo	Watch that your files do not get damaged over time
+Settings_GuardDescription.Text	Cada archivo guarda su hash dentro. Con el equipo libre, MegaCopier los comprueba: si uno cambió sin que nadie lo editara (el disco lo dañó), te avisa. Lo que edites se renueva solo. Necesita NTFS.	Each file keeps its hash inside. When the PC is idle, MegaCopier checks them: if one changed without anyone editing it (the drive damaged it), you are warned. What you edit is renewed automatically. Needs NTFS.
+Guard_Daily.Content	Cada día	Every day
+Guard_Weekly.Content	Cada semana	Every week
+Guard_Monthly.Content	Cada mes	Every month
+Settings_GuardAdd.Text	Vigilar una carpeta…	Watch a folder…
+Settings_GuardEmpty	Todavía no vigilas ninguna carpeta.	You are not watching any folder yet.
+Settings_GuardCheck	Comprobar «{0}» ahora	Check "{0}" now
+Settings_GuardRemove	Dejar de vigilar «{0}»	Stop watching "{0}"
+Guard_NotYet	Pendiente de la primera comprobación	Waiting for the first check
+Guard_LastOk	Comprobada el {0}: todo bien	Checked on {0}: all good
+Guard_LastDamaged	Comprobada el {0}: {1} archivos dañados (mira el Historial)	Checked on {0}: {1} damaged files (see History)
+Guard_DamagedTitle	Guardián de integridad	Integrity guard
+Guard_DamagedOne	Un archivo de «{0}» se ha dañado en el disco.	A file in "{0}" got damaged on the drive.
+Guard_DamagedMany	{0} archivos de «{1}» se han dañado en el disco.	{0} files in "{1}" got damaged on the drive.
+Guard_LastDamagedOne	Comprobada el {0}: un archivo dañado (mira el Historial)	Checked on {0}: one damaged file (see History)

@@ -22,6 +22,8 @@ public partial class App : Application
     private PasteInterceptor? _paste;
     private TaskbarProgress? _taskbar;
     private DispatcherQueueTimer? _statusTimer;
+
+    internal IntegrityGuard? Guard { get; private set; }
     private MainWindow? _window;
     private bool _exiting;
 
@@ -112,6 +114,7 @@ public partial class App : Application
         _tray.Activated += () => ShowWindow();
         _tray.DoubleClicked += () => SetEnabled(!Settings.Enabled, notify: true);
         Queue.JobFinished += job => Dispatcher.TryEnqueue(() => OnJobFinished(job));
+        Guard = new IntegrityGuard(this);
 
         _taskbar = new TaskbarProgress(Window.Handle);
         _statusTimer = Dispatcher.CreateTimer();
@@ -459,6 +462,19 @@ public partial class App : Application
             case "debug-explorer" when TestMode:
                 return new IpcResponse { Ok = true, Status = string.Join(" | ", ExplorerFolders.Open()) };
 
+            case "debug-guard" when TestMode && request.Destination is { } guarded:
+            {
+                // Solo pruebas: vigilar una carpeta y comprobarla ya.
+                var folder = Settings.GuardedFolders.FirstOrDefault(f => string.Equals(f.Path, guarded, StringComparison.OrdinalIgnoreCase));
+                if (folder is null)
+                {
+                    Settings.GuardedFolders.Add(folder = new GuardedFolder { Path = guarded });
+                    Settings.Save();
+                }
+
+                return new IpcResponse { Ok = true, JobId = Guard?.Check(folder)?.Id };
+            }
+
             case "debug-finish" when TestMode:
                 // Solo pruebas: elegir "Al terminar" (Destination = Sleep, Shutdown...) sin abrir el menú.
                 FinishAction = Enum.Parse<FinishAction>(request.Destination ?? "None");
@@ -508,6 +524,7 @@ public partial class App : Application
         var running = Queue.Jobs.Where(j => j.State is CopyJobState.Running or CopyJobState.Paused).ToList();
         SystemActions.KeepAwake(running.Any(j => j.State == CopyJobState.Running));
         SlowDownWhileUserIsActive(running);
+        Guard?.Tick(Queue.HasActiveJobs);
         if (running.Count == 0)
         {
             _tray?.SetTooltip(Settings.Enabled ? "MegaCopier" : L.Get("Tray_TooltipDisabled"));
@@ -565,6 +582,11 @@ public partial class App : Application
     private void OnJobFinished(CopyJob job)
     {
         bool finished = job.State is CopyJobState.Completed or CopyJobState.CompletedWithErrors or CopyJobState.Failed;
+        if (finished)
+        {
+            Guard?.OnFinished(job);
+        }
+
         if (finished)
         {
             History.Add(job);
