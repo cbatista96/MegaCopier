@@ -14,7 +14,7 @@ public sealed class PeerTests : IDisposable
     public PeerTests()
     {
         Directory.CreateDirectory(_temp.Combine("recibidos"));
-        _receiver = new PeerReceiver(_temp.Combine("recibidos"), _code, PeerProtocol.CreateCertificate("prueba"), port: 0);
+        _receiver = new PeerReceiver(_temp.Combine("recibidos"), _code, PeerProtocol.CreateCertificate("prueba"), port: 0, loopbackOnly: true);
         _receiver.Event += _events.Enqueue;
         _receiver.Start();
     }
@@ -25,7 +25,7 @@ public sealed class PeerTests : IDisposable
         _temp.Dispose();
     }
 
-    private string Destination => $"localhost:{_receiver.Port}";
+    private string Destination => $"127.0.0.1:{_receiver.Port}";
 
     private CopyEngine Sender(string? code = null) => new(new CopyOptions
     {
@@ -131,6 +131,14 @@ public sealed class PeerTests : IDisposable
     [InlineData(@"fotos\a.jpg:oculto", false)]
     public void OnlySafeRelativePathsAreAccepted(string relative, bool accepted) =>
         Assert.Equal(accepted, PeerProtocol.SafeRelative(relative) is not null);
+
+    [Fact]
+    public async Task ReceiversCanBeFoundOnTheNetwork()
+    {
+        using var discovery = new PeerDiscovery("PC-PRUEBA", _receiver.Port, discoveryPort: 47912, loopbackOnly: true);
+        var found = await PeerDiscovery.SearchAsync(TimeSpan.FromSeconds(1), discoveryPort: 47912);
+        Assert.Contains(found, p => p.Name == "PC-PRUEBA" && p.Port == _receiver.Port);
+    }
 
     [Fact]
     public void PeerAddressesAreParsed()

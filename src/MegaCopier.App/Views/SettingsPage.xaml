@@ -314,6 +314,31 @@
                     </StackPanel>
                 </Border>
 
+                <!-- Recibir de otros equipos -->
+                <TextBlock x:Uid="Settings_Peer" Style="{StaticResource McSection}" />
+                <Border Style="{StaticResource McSettingCard}">
+                    <StackPanel Spacing="10">
+                        <Grid Style="{StaticResource Row}">
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                            <FontIcon VerticalAlignment="Center" Glyph="&#xE968;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
+                            <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_PeerTitle" Style="{StaticResource McBody}" /><TextBlock x:Uid="Settings_PeerDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                            <ToggleSwitch x:Name="ReceiveToggle" Grid.Column="3" OnContent="" OffContent="" MinWidth="0" Toggled="Receive_Toggled" />
+                        </Grid>
+                        <StackPanel x:Name="ReceivePanel" Spacing="8" Margin="30,0,0,0">
+                            <StackPanel Orientation="Horizontal" Spacing="12">
+                                <TextBlock x:Uid="Settings_PeerCode" Style="{StaticResource McSecondary}" VerticalAlignment="Center" />
+                                <TextBlock x:Name="ReceiveCodeText" FontFamily="Consolas" FontSize="20" IsTextSelectionEnabled="True" VerticalAlignment="Center" />
+                                <Button Style="{StaticResource McButton}" Click="NewCode_Click"><TextBlock x:Uid="Settings_PeerNewCode" /></Button>
+                            </StackPanel>
+                            <TextBlock x:Name="ReceiveInfo" Style="{StaticResource McSecondary}" TextWrapping="Wrap" />
+                            <Grid ColumnSpacing="8">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                                <TextBlock x:Name="ReceiveFolderText" Style="{StaticResource McSecondary}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+                                <Button Grid.Column="1" Style="{StaticResource McButton}" Click="ReceiveFolder_Click"><TextBlock x:Uid="Settings_PeerFolder" /></Button>
+                            </Grid>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
                 <!-- Tareas programadas -->
                 <TextBlock x:Uid="Settings_Tasks" Style="{StaticResource McSection}" />
                 <Border Style="{StaticResource McSettingCard}">

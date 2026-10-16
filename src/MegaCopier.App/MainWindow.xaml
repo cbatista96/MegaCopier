@@ -55,6 +55,9 @@
                             <MenuFlyoutItem x:Uid="Tool_HashFolder" Click="HashFolder_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8EF;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
                             <MenuFlyoutItem x:Uid="Tool_HashFiles" Click="HashFiles_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8EF;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
                             <MenuFlyoutSeparator />
+                            <MenuFlyoutItem x:Uid="Tool_SendFiles" Click="SendFiles_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE724;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
+                            <MenuFlyoutItem x:Uid="Tool_SendFolder" Click="SendFolder_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE724;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
+                            <MenuFlyoutSeparator />
                             <MenuFlyoutItem x:Uid="Tool_Delete" Click="Delete_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE74D;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
                             <MenuFlyoutItem x:Uid="Tool_Wipe" Click="Wipe_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE72E;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
                             <MenuFlyoutSeparator />
@@ -327,6 +330,22 @@
             </StackPanel>
         </ContentDialog>
 
+        <!-- Enviar a otro equipo -->
+        <ContentDialog
+            x:Name="SendDialog"
+            x:Uid="SendDialog"
+            Grid.RowSpan="3"
+            Style="{StaticResource DefaultContentDialogStyle}"
+            DefaultButton="Primary">
+            <StackPanel Spacing="10" MinWidth="400" MaxWidth="480">
+                <TextBlock x:Name="SendSummary" TextWrapping="Wrap" />
+                <TextBlock x:Uid="Send_Found" Style="{StaticResource McSecondary}" />
+                <ListView x:Name="SendPeers" SelectionMode="Single" MaxHeight="160" BorderThickness="1" BorderBrush="{StaticResource McBorderBrush}" CornerRadius="6" SelectionChanged="SendPeers_SelectionChanged" />
+                <TextBlock x:Name="SendSearching" Style="{StaticResource McSecondary}" TextWrapping="Wrap" />
+                <TextBox x:Name="SendHostBox" x:Uid="Send_Host" />
+                <TextBox x:Name="SendCodeBox" x:Uid="Send_Code" FontFamily="Consolas" CharacterCasing="Upper" />
+            </StackPanel>
+        </ContentDialog>
         <!-- Cuenta atrás antes de apagar, suspender... -->
         <ContentDialog
             x:Name="FinishDialog"

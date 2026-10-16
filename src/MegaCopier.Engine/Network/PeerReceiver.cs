@@ -29,13 +29,20 @@ public sealed class PeerReceiver : IDisposable
     private readonly TcpListener _listener;
     private readonly CancellationTokenSource _stop = new();
 
-    public PeerReceiver(string folder, string code, X509Certificate2 certificate, int port = PeerProtocol.DefaultPort)
+    public PeerReceiver(string folder, string code, X509Certificate2 certificate, int port = PeerProtocol.DefaultPort, bool loopbackOnly = false)
     {
         _folder = Path.GetFullPath(folder);
         _code = code;
         _certificate = certificate;
-        _listener = new TcpListener(IPAddress.IPv6Any, port);
-        _listener.Server.DualMode = true; // IPv4 e IPv6
+        if (loopbackOnly)
+        {
+            _listener = new TcpListener(IPAddress.Loopback, port); // pruebas: solo este equipo (sin aviso del cortafuegos)
+        }
+        else
+        {
+            _listener = new TcpListener(IPAddress.IPv6Any, port);
+            _listener.Server.DualMode = true; // IPv4 e IPv6
+        }
     }
 
     public event Action<PeerEvent>? Event;

@@ -684,4 +684,39 @@
   <data name="Locked_Cancelled" xml:space="preserve"><value>Administrator permission was not given: the files in use were not copied.</value></data>
   <data name="Locked_Done" xml:space="preserve"><value>{0} files in use copied from a snapshot of the drive.</value></data>
   <data name="Locked_Partial" xml:space="preserve"><value>{0} copied from a snapshot; the rest could not be copied: {1}</value></data>
+  <data name="Settings_Peer.Text" xml:space="preserve"><value>Receive from other PCs</value></data>
+  <data name="Settings_PeerTitle.Text" xml:space="preserve"><value>Receive files from other PCs with MegaCopier</value></data>
+  <data name="Settings_PeerDescription.Text" xml:space="preserve"><value>Over your home or office network, without shared folders. The sender needs the code below; the connection is encrypted and every file is checked on arrival. The first time, Windows may ask for firewall permission.</value></data>
+  <data name="Settings_PeerCode.Text" xml:space="preserve"><value>Code to send you files:</value></data>
+  <data name="Settings_PeerNewCode.Text" xml:space="preserve"><value>New code</value></data>
+  <data name="Settings_PeerFolder.Text" xml:space="preserve"><value>Change folder…</value></data>
+  <data name="Settings_PeerFolderIs" xml:space="preserve"><value>Saved in {0}</value></data>
+  <data name="Settings_PeerListening" xml:space="preserve"><value>Waiting for transfers on &quot;{0}&quot; (port {1}).</value></data>
+  <data name="Settings_PeerError" xml:space="preserve"><value>Could not start receiving: {0}</value></data>
+  <data name="Peer_ReceivingTitle" xml:space="preserve"><value>Receiving files</value></data>
+  <data name="Peer_Receiving" xml:space="preserve"><value>{0} is sending you {1} files ({2}).</value></data>
+  <data name="Peer_ReceivedTitle" xml:space="preserve"><value>Files received</value></data>
+  <data name="Peer_Received" xml:space="preserve"><value>{0} files from {1}, in {2}.</value></data>
+  <data name="Peer_RejectedTitle" xml:space="preserve"><value>Transfer rejected</value></data>
+  <data name="Peer_Rejected" xml:space="preserve"><value>{0} tried to send you files with a wrong code.</value></data>
+  <data name="Tool_SendFiles.Text" xml:space="preserve"><value>Send files to another PC…</value></data>
+  <data name="Tool_SendFolder.Text" xml:space="preserve"><value>Send a folder to another PC…</value></data>
+  <data name="SendDialog.Title" xml:space="preserve"><value>Send to another PC</value></data>
+  <data name="SendDialog.PrimaryButtonText" xml:space="preserve"><value>Send</value></data>
+  <data name="SendDialog.CloseButtonText" xml:space="preserve"><value>Cancel</value></data>
+  <data name="Send_SummaryOne" xml:space="preserve"><value>Send &quot;{0}&quot; to another PC that has MegaCopier receiving.</value></data>
+  <data name="Send_SummaryMany" xml:space="preserve"><value>Send {0} items to another PC that has MegaCopier receiving.</value></data>
+  <data name="Send_Found.Text" xml:space="preserve"><value>PCs found on the network:</value></data>
+  <data name="Send_Searching" xml:space="preserve"><value>Searching…</value></data>
+  <data name="Send_NoneFound" xml:space="preserve"><value>None found: type its name or IP.</value></data>
+  <data name="Send_Host.Header" xml:space="preserve"><value>PC (name or IP)</value></data>
+  <data name="Send_Host.PlaceholderText" xml:space="preserve"><value>LIVINGROOM-PC or 192.168.1.20</value></data>
+  <data name="Send_Code.Header" xml:space="preserve"><value>Code shown by that PC in Settings</value></data>
+  <data name="Send_Code.PlaceholderText" xml:space="preserve"><value>XXXX-XXXX-XXXX</value></data>
+  <data name="Job_TitleSend" xml:space="preserve"><value>Send {0}</value></data>
+  <data name="Job_TitleSending" xml:space="preserve"><value>Sending {0}</value></data>
+  <data name="Job_TitleSent" xml:space="preserve"><value>Sent {0}</value></data>
+  <data name="Job_StateSending" xml:space="preserve"><value>Sending</value></data>
+  <data name="Job_FilesSentOne" xml:space="preserve"><value>{0} file sent</value></data>
+  <data name="Job_FilesSentMany" xml:space="preserve"><value>{0} files sent</value></data>
 </root>

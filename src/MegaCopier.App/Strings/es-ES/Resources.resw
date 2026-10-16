@@ -684,4 +684,39 @@
   <data name="Locked_Cancelled" xml:space="preserve"><value>No se dio permiso de administrador: los archivos en uso no se copiaron.</value></data>
   <data name="Locked_Done" xml:space="preserve"><value>{0} archivos en uso copiados desde una instantánea del disco.</value></data>
   <data name="Locked_Partial" xml:space="preserve"><value>{0} copiados desde una instantánea; los demás no se pudieron copiar: {1}</value></data>
+  <data name="Settings_Peer.Text" xml:space="preserve"><value>Recibir de otros equipos</value></data>
+  <data name="Settings_PeerTitle.Text" xml:space="preserve"><value>Recibir archivos de otros equipos con MegaCopier</value></data>
+  <data name="Settings_PeerDescription.Text" xml:space="preserve"><value>Por la red de casa o de la oficina, sin carpetas compartidas. Quien envía necesita el código de abajo; la conexión va cifrada y cada archivo se comprueba al llegar. La primera vez, Windows puede pedir permiso en el cortafuegos.</value></data>
+  <data name="Settings_PeerCode.Text" xml:space="preserve"><value>Código para enviarte archivos:</value></data>
+  <data name="Settings_PeerNewCode.Text" xml:space="preserve"><value>Nuevo código</value></data>
+  <data name="Settings_PeerFolder.Text" xml:space="preserve"><value>Cambiar carpeta…</value></data>
+  <data name="Settings_PeerFolderIs" xml:space="preserve"><value>Se guardan en {0}</value></data>
+  <data name="Settings_PeerListening" xml:space="preserve"><value>Esperando envíos en «{0}» (puerto {1}).</value></data>
+  <data name="Settings_PeerError" xml:space="preserve"><value>No se pudo empezar a recibir: {0}</value></data>
+  <data name="Peer_ReceivingTitle" xml:space="preserve"><value>Recibiendo archivos</value></data>
+  <data name="Peer_Receiving" xml:space="preserve"><value>{0} te envía {1} archivos ({2}).</value></data>
+  <data name="Peer_ReceivedTitle" xml:space="preserve"><value>Archivos recibidos</value></data>
+  <data name="Peer_Received" xml:space="preserve"><value>{0} archivos de {1}, en {2}.</value></data>
+  <data name="Peer_RejectedTitle" xml:space="preserve"><value>Envío rechazado</value></data>
+  <data name="Peer_Rejected" xml:space="preserve"><value>{0} intentó enviarte archivos con un código equivocado.</value></data>
+  <data name="Tool_SendFiles.Text" xml:space="preserve"><value>Enviar archivos a otro equipo…</value></data>
+  <data name="Tool_SendFolder.Text" xml:space="preserve"><value>Enviar una carpeta a otro equipo…</value></data>
+  <data name="SendDialog.Title" xml:space="preserve"><value>Enviar a otro equipo</value></data>
+  <data name="SendDialog.PrimaryButtonText" xml:space="preserve"><value>Enviar</value></data>
+  <data name="SendDialog.CloseButtonText" xml:space="preserve"><value>Cancelar</value></data>
+  <data name="Send_SummaryOne" xml:space="preserve"><value>Enviar «{0}» a otro equipo que tenga MegaCopier recibiendo.</value></data>
+  <data name="Send_SummaryMany" xml:space="preserve"><value>Enviar {0} elementos a otro equipo que tenga MegaCopier recibiendo.</value></data>
+  <data name="Send_Found.Text" xml:space="preserve"><value>Equipos encontrados en la red:</value></data>
+  <data name="Send_Searching" xml:space="preserve"><value>Buscando…</value></data>
+  <data name="Send_NoneFound" xml:space="preserve"><value>No se encontró ninguno: escribe su nombre o su IP.</value></data>
+  <data name="Send_Host.Header" xml:space="preserve"><value>Equipo (nombre o IP)</value></data>
+  <data name="Send_Host.PlaceholderText" xml:space="preserve"><value>PC-SALON o 192.168.1.20</value></data>
+  <data name="Send_Code.Header" xml:space="preserve"><value>Código que muestra ese equipo en Ajustes</value></data>
+  <data name="Send_Code.PlaceholderText" xml:space="preserve"><value>XXXX-XXXX-XXXX</value></data>
+  <data name="Job_TitleSend" xml:space="preserve"><value>Enviar {0}</value></data>
+  <data name="Job_TitleSending" xml:space="preserve"><value>Enviando {0}</value></data>
+  <data name="Job_TitleSent" xml:space="preserve"><value>Enviado {0}</value></data>
+  <data name="Job_StateSending" xml:space="preserve"><value>Enviando</value></data>
+  <data name="Job_FilesSentOne" xml:space="preserve"><value>{0} archivo enviado</value></data>
+  <data name="Job_FilesSentMany" xml:space="preserve"><value>{0} archivos enviados</value></data>
 </root>

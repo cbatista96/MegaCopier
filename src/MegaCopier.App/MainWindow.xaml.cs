@@ -1250,6 +1250,84 @@ public sealed partial class MainWindow : Window
 
     // Crear archivo de sumas (con el algoritmo de Ajustes; SHA-256 si no hay ninguno)
 
+    // Enviar a otro equipo con MegaCopier
+
+    private async void SendFiles_Click(object sender, RoutedEventArgs e)
+    {
+        var files = await Pickers.PickFilesAsync();
+        if (files.Count > 0)
+        {
+            await SendToPeerAsync(files);
+        }
+    }
+
+    private async void SendFolder_Click(object sender, RoutedEventArgs e)
+    {
+        if (await Pickers.PickFolderAsync() is { } folder)
+        {
+            await SendToPeerAsync([folder]);
+        }
+    }
+
+    /// <summary>Elegir el equipo (los que se encuentran en la red, o su nombre o IP) y el código que muestra.</summary>
+    internal async Task SendToPeerAsync(IReadOnlyList<string> sources)
+    {
+        SendSummary.Text = sources.Count == 1
+            ? L.F("Send_SummaryOne", Path.GetFileName(Path.TrimEndingDirectorySeparator(sources[0])))
+            : L.F("Send_SummaryMany", sources.Count);
+        SendPeers.Items.Clear();
+        SendHostBox.Text = _app.Settings.LastPeer;
+        SendCodeBox.Text = "";
+        SendSearching.Text = L.Get("Send_Searching");
+        SendDialog.XamlRoot = Root.XamlRoot;
+        SendDialog.RequestedTheme = Root.RequestedTheme;
+        _ = SearchPeersAsync();
+        if (await SendDialog.ShowAsync() != ContentDialogResult.Primary
+            || SendHostBox.Text.Trim().Length == 0 || SendCodeBox.Text.Trim().Length == 0)
+        {
+            return;
+        }
+
+        _app.Settings.LastPeer = SendHostBox.Text.Trim();
+        _app.Settings.Save();
+        Submit(new IpcRequest
+        {
+            Command = "copy",
+            Operation = Engine.JobOperation.Send,
+            Sources = [.. sources],
+            Destination = SendHostBox.Text.Trim(),
+            PeerCode = SendCodeBox.Text.Trim(),
+        });
+    }
+
+    private async Task SearchPeersAsync()
+    {
+        try
+        {
+            var found = await Engine.Network.PeerDiscovery.SearchAsync(TimeSpan.FromSeconds(1.5));
+            foreach (var peer in found.Where(p => p.Name != Environment.MachineName || App.TestMode))
+            {
+                var item = new ListViewItem { Content = $"{peer.Name}  ({peer.Address})", Tag = $"{peer.Address}:{peer.Port}" };
+                Microsoft.UI.Xaml.Automation.AutomationProperties.SetName(item, peer.Name);
+                SendPeers.Items.Add(item);
+            }
+
+            SendSearching.Text = SendPeers.Items.Count == 0 ? L.Get("Send_NoneFound") : "";
+        }
+        catch (Exception ex) when (ex is System.Net.Sockets.SocketException or InvalidOperationException)
+        {
+            SendSearching.Text = L.Get("Send_NoneFound");
+        }
+    }
+
+    private void SendPeers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (SendPeers.SelectedItem is ListViewItem { Tag: string address })
+        {
+            SendHostBox.Text = address;
+        }
+    }
+
     private async void HashFolder_Click(object sender, RoutedEventArgs e)
     {
         if (await Pickers.PickFolderAsync() is { } folder)
