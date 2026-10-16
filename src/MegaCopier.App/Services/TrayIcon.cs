@@ -19,6 +19,9 @@ internal sealed unsafe partial class TrayIcon : IDisposable
     private const uint WmTray = WmApp + 1;
     private const uint WmNull = 0x0000;
     private const uint WmLButtonUp = 0x0202;
+    private const uint WmLButtonDblClk = 0x0203;
+    private const uint WmTimer = 0x0113;
+    private const nuint ClickTimerId = 1;
     private const uint WmRButtonUp = 0x0205;
     private const uint WmContextMenu = 0x007B;
     private const uint NinSelect = 0x0400;
@@ -35,13 +38,17 @@ internal sealed unsafe partial class TrayIcon : IDisposable
 
     private readonly Func<IReadOnlyList<TrayMenuItem>> _buildMenu;
     private readonly nint _hwnd;
-    private readonly nint _icon;
+    private readonly nint _normalIcon;
+    private readonly nint _disabledIcon;
     private readonly nint _largeIcon;
+    private nint _icon;
     private GCHandle _self;
     private string _tooltip;
     private bool _disposed;
+    private long _ignoreSelectUntil;
 
-    public TrayIcon(string iconPath, string tooltip, Func<IReadOnlyList<TrayMenuItem>> buildMenu)
+    /// <param name="disabledIconPath">Icono para cuando MegaCopier está desactivado (gris con una X roja).</param>
+    public TrayIcon(string iconPath, string disabledIconPath, string tooltip, Func<IReadOnlyList<TrayMenuItem>> buildMenu)
     {
         _buildMenu = buildMenu;
         _tooltip = tooltip;
@@ -68,13 +75,32 @@ internal sealed unsafe partial class TrayIcon : IDisposable
         _self = GCHandle.Alloc(this);
         SetWindowLongPtrW(_hwnd, -21 /* GWLP_USERDATA */, GCHandle.ToIntPtr(_self));
 
-        _icon = LoadImageW(0, iconPath, 1 /* IMAGE_ICON */, GetSystemMetrics(49), GetSystemMetrics(50), 0x10 /* LR_LOADFROMFILE */);
+        _normalIcon = LoadImageW(0, iconPath, 1 /* IMAGE_ICON */, GetSystemMetrics(49), GetSystemMetrics(50), 0x10 /* LR_LOADFROMFILE */);
+        _disabledIcon = LoadImageW(0, disabledIconPath, 1, GetSystemMetrics(49), GetSystemMetrics(50), 0x10);
         _largeIcon = LoadImageW(0, iconPath, 1, GetSystemMetrics(11), GetSystemMetrics(12), 0x10);
+        _icon = _normalIcon;
         Add();
     }
 
-    /// <summary>Clic izquierdo (o Intro) sobre el icono.</summary>
+    /// <summary>Clic izquierdo (o Intro) sobre el icono. Se espera al tiempo de doble clic para no confundirlos.</summary>
     public event Action? Activated;
+
+    /// <summary>Doble clic sobre el icono.</summary>
+    public event Action? DoubleClicked;
+
+    /// <summary>Muestra el icono normal o el de "desactivado".</summary>
+    public void SetDisabled(bool disabled)
+    {
+        nint icon = disabled && _disabledIcon != 0 ? _disabledIcon : _normalIcon;
+        if (icon == _icon)
+        {
+            return;
+        }
+
+        _icon = icon;
+        var data = NewData(NifIcon);
+        Shell_NotifyIconW(NimModify, &data);
+    }
 
     public void SetTooltip(string text)
     {
@@ -133,9 +159,14 @@ internal sealed unsafe partial class TrayIcon : IDisposable
         var data = NewData(0);
         Shell_NotifyIconW(NimDelete, &data);
         DestroyWindow(_hwnd);
-        if (_icon != 0)
+        if (_normalIcon != 0)
         {
-            DestroyIcon(_icon);
+            DestroyIcon(_normalIcon);
+        }
+
+        if (_disabledIcon != 0)
+        {
+            DestroyIcon(_disabledIcon);
         }
 
         if (_largeIcon != 0)
@@ -222,15 +253,36 @@ internal sealed unsafe partial class TrayIcon : IDisposable
                 if (message == WmTray)
                 {
                     uint trayEvent = (uint)(lParam & 0xFFFF);
-                    if (trayEvent is WmLButtonUp or NinSelect or NinKeySelect)
+                    if (trayEvent == WmLButtonDblClk)
                     {
-                        tray.Activated?.Invoke();
+                        // Doble clic: anula el clic simple pendiente y el que llega justo después.
+                        KillTimer(hwnd, ClickTimerId);
+                        tray._ignoreSelectUntil = Environment.TickCount64 + GetDoubleClickTime();
+                        tray.DoubleClicked?.Invoke();
+                    }
+                    else if (trayEvent is NinSelect or NinKeySelect)
+                    {
+                        if (trayEvent == NinKeySelect)
+                        {
+                            tray.Activated?.Invoke();
+                        }
+                        else if (Environment.TickCount64 >= tray._ignoreSelectUntil)
+                        {
+                            SetTimer(hwnd, ClickTimerId, GetDoubleClickTime(), 0);
+                        }
                     }
                     else if (trayEvent is WmContextMenu or WmRButtonUp)
                     {
                         tray.ShowMenu();
                     }
 
+                    return 0;
+                }
+
+                if (message == WmTimer && wParam == (nint)ClickTimerId)
+                {
+                    KillTimer(hwnd, ClickTimerId);
+                    tray.Activated?.Invoke();
                     return 0;
                 }
 
@@ -337,6 +389,16 @@ internal sealed unsafe partial class TrayIcon : IDisposable
     [LibraryImport("shell32.dll")]
     [return: MarshalAs(UnmanagedType.Bool)]
     private static partial bool Shell_NotifyIconW(uint message, NotifyIconDataW* data);
+
+    [LibraryImport("user32.dll")]
+    private static partial nuint SetTimer(nint hwnd, nuint id, uint elapse, nint callback);
+
+    [LibraryImport("user32.dll")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static partial bool KillTimer(nint hwnd, nuint id);
+
+    [LibraryImport("user32.dll")]
+    private static partial uint GetDoubleClickTime();
 
     [LibraryImport("user32.dll")]
     private static partial nint CreatePopupMenu();

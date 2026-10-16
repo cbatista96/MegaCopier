@@ -1,9 +1,11 @@
 // Genera el icono de MegaCopier (ICO con varios tamaños) sin dependencias externas.
-// Uso: dotnet run tools/IconGen/icongen.cs -- <salida.ico> [preview.png-no-soportado]
+// Uso: dotnet run tools/IconGen/icongen.cs -- <salida.ico> [--disabled]
+//   --disabled: variante para la bandeja cuando MegaCopier está desactivado (gris con una X roja).
 using System.Buffers.Binary;
 
 int[] sizes = [16, 20, 24, 32, 40, 48, 64, 256];
 string output = args.Length > 0 ? args[0] : "MegaCopier.ico";
+Style.Disabled = args.Contains("--disabled");
 
 var images = sizes.Select(s => (Size: s, Data: EncodeBmp(Render(s), s))).ToList();
 
@@ -49,7 +51,7 @@ static float[] Render(int n)
                 {
                     float u = (x + (sx + 0.5f) / ss) / n;
                     float v = (y + (sy + 0.5f) / ss) / n;
-                    var c = Sample(u, v, n);
+                    var c = Style.Disabled ? SampleDisabled(u, v, n) : Sample(u, v, n);
                     // composición "sobre" acumulando premultiplicado
                     r += c.R * c.A; g += c.G * c.A; b += c.B * c.A; a += c.A;
                 }
@@ -66,6 +68,32 @@ static float[] Render(int n)
     }
 
     return px;
+}
+
+// Icono en escala de grises con una insignia roja y una X blanca abajo a la derecha.
+static (float R, float G, float B, float A) SampleDisabled(float u, float v, int n)
+{
+    const float cx = 0.73f, cy = 0.73f, radius = 0.26f, ring = 0.05f;
+    float dx = u - cx, dy = v - cy;
+    float distance = MathF.Sqrt((dx * dx) + (dy * dy));
+
+    if (distance < radius - ring)
+    {
+        // Aspa: dos diagonales recortadas por un círculo interior.
+        float stroke = n <= 20 ? 0.055f : 0.04f;
+        bool onCross = distance < radius * 0.55f && (MathF.Abs(dx - dy) < stroke || MathF.Abs(dx + dy) < stroke);
+        return onCross ? (1, 1, 1, 1) : (0.85f, 0.16f, 0.16f, 1);
+    }
+
+    if (distance < radius)
+    {
+        return (0, 0, 0, 0); // separación transparente entre el icono y la insignia
+    }
+
+    var c = Sample(u, v, n);
+    float gray = (0.3f * c.R) + (0.59f * c.G) + (0.11f * c.B);
+    gray = 0.25f + (gray * 0.6f);
+    return (gray, gray, gray, c.A);
 }
 
 static (float R, float G, float B, float A) Sample(float u, float v, int n)
@@ -150,3 +178,8 @@ static byte[] EncodeBmp(float[] px, int n)
 }
 
 static byte ToByte(float value) => (byte)Math.Clamp(MathF.Round(value * 255f), 0, 255);
+
+static class Style
+{
+    public static bool Disabled;
+}

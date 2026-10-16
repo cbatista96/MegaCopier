@@ -56,6 +56,12 @@ public sealed class AppSettings
     /// <summary>Al pegar archivos con Ctrl+V en el Explorador, copiar con MegaCopier.</summary>
     public bool InterceptExplorerPaste { get; set; } = true;
 
+    /// <summary>
+    /// Interruptor general (doble clic en el icono de la bandeja). Desactivado, MegaCopier no intercepta nada
+    /// y copia el Explorador de Windows como siempre.
+    /// </summary>
+    public bool Enabled { get; set; } = true;
+
     [JsonIgnore]
     public static string FilePath { get; } = Path.Combine(
         Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MegaCopier", "settings.json");
