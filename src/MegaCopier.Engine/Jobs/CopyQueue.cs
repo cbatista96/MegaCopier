@@ -116,6 +116,9 @@ public sealed class CopyJob
         Changed?.Invoke(this);
     }
 
+    /// <summary>Guarda el registro tras cambiarlo desde fuera (informe, scripts...).</summary>
+    public void SaveRecord() => SaveIfPending();
+
     /// <summary>Solo se guarda lo que sigue pendiente: un trabajo terminado ya no está en el almacén.</summary>
     private void SaveIfPending()
     {

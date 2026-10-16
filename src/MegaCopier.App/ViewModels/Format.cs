@@ -9,6 +9,19 @@ internal static class Format
 
     private static CultureInfo Culture => CultureInfo.CurrentCulture;
 
+    /// <summary>
+    /// Ruta acortada por el medio para que se vea la carpeta final: "C:\Users\…\scratchpad\dest1". La completa va en el tooltip.
+    /// </summary>
+    public static string ShortPath(string path, int keep = 2)
+    {
+        string trimmed = Path.TrimEndingDirectorySeparator(path);
+        string root = Path.GetPathRoot(trimmed) ?? "";
+        string[] parts = trimmed[root.Length..].Split(Path.DirectorySeparatorChar, StringSplitOptions.RemoveEmptyEntries);
+        return parts.Length <= keep + 1
+            ? trimmed
+            : root + parts[0] + Path.DirectorySeparatorChar + "…" + Path.DirectorySeparatorChar + string.Join(Path.DirectorySeparatorChar, parts[^keep..]);
+    }
+
     public static string Bytes(double bytes)
     {
         int unit = 0;

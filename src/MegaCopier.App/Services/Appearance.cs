@@ -59,6 +59,13 @@ internal static class Appearance
         _ => null,
     };
 
+    /// <summary>"#AARRGGBB" o "#RRGGBB" → "#RRGGBB" (el acento de los controles no lleva transparencia).</summary>
+    public static string ToRgbHex(string color)
+    {
+        var c = Theming.ThemeManager.Parse(color);
+        return $"#{c.R:X2}{c.G:X2}{c.B:X2}";
+    }
+
     public static bool TryParse(string text, out Color color)
     {
         color = default;

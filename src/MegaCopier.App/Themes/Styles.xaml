@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Estilos de MegaCopier. Usan los pinceles del tema (Mc*Brush), que se registran por código antes de cargar este
+    diccionario: así cambiar de tema recolorea toda la interfaz al instante.
+-->
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style x:Key="McStrong" TargetType="TextBlock">
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="Foreground" Value="{StaticResource McTextBrush}" />
+    </Style>
+
+    <Style x:Key="McBody" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="Foreground" Value="{StaticResource McTextBrush}" />
+    </Style>
+
+    <Style x:Key="McSecondary" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="Foreground" Value="{StaticResource McTextSecondaryBrush}" />
+    </Style>
+
+    <Style x:Key="McTitle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Foreground" Value="{StaticResource McTextBrush}" />
+    </Style>
+
+    <Style x:Key="McSection" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Margin" Value="2,18,0,6" />
+        <Setter Property="Foreground" Value="{StaticResource McTextBrush}" />
+    </Style>
+
+    <Style x:Key="McChip" TargetType="Border">
+        <Setter Property="Padding" Value="10,4" />
+        <Setter Property="CornerRadius" Value="6" />
+        <Setter Property="MinWidth" Value="92" />
+        <Setter Property="Background" Value="{StaticResource McSurfaceStrongBrush}" />
+    </Style>
+
+    <Style x:Key="McChipText" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Foreground" Value="{StaticResource McTextSecondaryBrush}" />
+    </Style>
+
+    <Style x:Key="McCard" TargetType="Border">
+        <Setter Property="Padding" Value="16,12" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Background" Value="{StaticResource McSurfaceBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource McBorderBrush}" />
+    </Style>
+
+    <Style x:Key="McSettingCard" TargetType="Border" BasedOn="{StaticResource McCard}">
+        <Setter Property="MinHeight" Value="60" />
+        <Setter Property="Margin" Value="0,0,0,4" />
+    </Style>
+
+    <Style x:Key="McButton" TargetType="Button" BasedOn="{StaticResource DefaultButtonStyle}">
+        <Setter Property="Padding" Value="14,6" />
+        <Setter Property="MinWidth" Value="84" />
+        <Setter Property="CornerRadius" Value="6" />
+    </Style>
+
+    <Style x:Key="McAccentButton" TargetType="Button" BasedOn="{StaticResource AccentButtonStyle}">
+        <Setter Property="Padding" Value="14,6" />
+        <Setter Property="MinWidth" Value="84" />
+        <Setter Property="CornerRadius" Value="6" />
+        <Setter Property="Background" Value="{StaticResource McAccentBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource McAccentTextBrush}" />
+    </Style>
+
+    <!-- Botón de icono de la barra de herramientas -->
+    <Style x:Key="McToolButton" TargetType="Button" BasedOn="{StaticResource SubtleButtonStyle}">
+        <Setter Property="Width" Value="38" />
+        <Setter Property="Height" Value="34" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="CornerRadius" Value="6" />
+        <Setter Property="Foreground" Value="{StaticResource McTextBrush}" />
+    </Style>
+</ResourceDictionary>

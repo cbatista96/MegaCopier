@@ -39,7 +39,10 @@ internal static class LanguageSetting
             // Si no se puede fijar, se usa el idioma de Windows.
         }
 
-        Save(language);
+        if (!App.TestMode)
+        {
+            Save(language);
+        }
     }
 
     /// <summary>Publica el idioma ("" = el de Windows) para la extensión del Explorador.</summary>

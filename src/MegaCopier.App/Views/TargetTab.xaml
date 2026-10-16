@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserControl
+    x:Class="MegaCopier.App.Views.TargetTab"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:c="using:MegaCopier.App.Controls">
+
+    <ScrollViewer>
+        <Grid ColumnSpacing="12" RowSpacing="12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Border Style="{StaticResource McCard}">
+                <StackPanel Spacing="8">
+                    <TextBlock x:Uid="Target_Source" Style="{StaticResource McSecondary}" />
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <FontIcon x:Name="SourceGlyph" FontSize="32" Foreground="{StaticResource McAccentBrush}" />
+                        <StackPanel>
+                            <TextBlock x:Name="SourceName" Style="{StaticResource McTitle}" />
+                            <TextBlock x:Name="SourceKind" Style="{StaticResource McSecondary}" />
+                        </StackPanel>
+                    </StackPanel>
+                    <c:FlowBar x:Name="SourceUsage" Fill="{StaticResource McTotalBrush}" FixedHeight="6" />
+                    <TextBlock x:Name="SourceSpace" Style="{StaticResource McSecondary}" />
+                    <TextBlock x:Name="SourcePath" Style="{StaticResource McBody}" TextWrapping="Wrap" IsTextSelectionEnabled="True" />
+                    <Button Style="{StaticResource McButton}" Click="OpenSource_Click" HorizontalAlignment="Left">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <FontIcon Glyph="&#xE838;" FontSize="12" />
+                            <TextBlock x:Uid="Panel_OpenFolder" />
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Column="1" Style="{StaticResource McCard}">
+                <StackPanel Spacing="8">
+                    <TextBlock x:Uid="Target_Destination" Style="{StaticResource McSecondary}" />
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <FontIcon x:Name="TargetGlyph" FontSize="32" Foreground="{StaticResource McAccentBrush}" />
+                        <StackPanel>
+                            <TextBlock x:Name="TargetName" Style="{StaticResource McTitle}" />
+                            <TextBlock x:Name="TargetKind" Style="{StaticResource McSecondary}" />
+                        </StackPanel>
+                    </StackPanel>
+                    <c:FlowBar x:Name="TargetUsage" Fill="{StaticResource McFileBrush}" FixedHeight="6" />
+                    <TextBlock x:Name="TargetSpace" Style="{StaticResource McSecondary}" />
+                    <TextBlock x:Name="TargetPath" Style="{StaticResource McBody}" TextWrapping="Wrap" IsTextSelectionEnabled="True" />
+                    <Button Style="{StaticResource McButton}" Click="OpenTarget_Click" HorizontalAlignment="Left">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <FontIcon Glyph="&#xE838;" FontSize="12" />
+                            <TextBlock x:Uid="Panel_OpenFolder" />
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

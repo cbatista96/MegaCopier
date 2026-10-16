@@ -146,3 +146,211 @@ Notify_DisabledTitle	MegaCopier desactivado	MegaCopier disabled
 Notify_DisabledBody	Las copias las hará el copiador de Windows. Doble clic en el icono para volver a activarlo.	The Windows copier will handle transfers. Double-click the icon to enable it again.
 Notify_EnabledTitle	MegaCopier activado	MegaCopier enabled
 Notify_EnabledBody	Las copias y movimientos del Explorador los hará MegaCopier.	File Explorer copies and moves will be handled by MegaCopier.
+AboutDialog.Title	Acerca de MegaCopier	About MegaCopier
+AboutDialog.CloseButtonText	Cerrar	Close
+About_DataFolder.Content	Abrir la carpeta de datos (ajustes, temas, historial, informes)	Open the data folder (settings, themes, history, reports)
+About_Description.Text	Copiador de archivos para Windows 11 que continúa incluso un único archivo enorme tras un corte de luz, verificando lo ya copiado.	File copier for Windows 11 that resumes even a single huge file after a power cut, verifying what was already copied.
+About_Features.Text	E/S asíncrona sin caché · varias lecturas y escrituras en paralelo · verificación con hash (CRC32, xxHash, MD5, SHA) · cola por disco · pausa y reanudación · mover · conflictos · límite de velocidad · listas de copia · informes · temas.	Unbuffered async I/O · parallel reads and writes · hash verification (CRC32, xxHash, MD5, SHA) · per-disk queue · pause and resume · move · conflicts · speed limit · copy lists · reports · themes.
+CopyFiles.Text	Copiar archivos…	Copy files…
+CopyFolder.Text	Copiar una carpeta…	Copy a folder…
+CopyFilesText.Text	Copiar archivos	Copy files
+CopyFolderText.Text	Copiar carpeta	Copy folder
+Files_AddFiles.Text	Añadir archivos…	Add files…
+Files_AddFolder.Text	Añadir carpeta…	Add folder…
+Files_AutoScroll.Content	Seguir al actual	Follow current
+Files_CopyHashes.Text	Copiar los hashes	Copy hashes
+Files_CopyPath.Text	Copiar la ruta	Copy path
+Files_Empty.Text	No hay archivos que mostrar	No files to show
+Files_ExportCsv.Text	Exportar a CSV…	Export to CSV…
+Files_ExportHtml.Text	Exportar informe HTML…	Export HTML report…
+Files_FilterAll.Content	Todos	All
+Files_FilterDone.Content	Copiados	Copied
+Files_FilterErrors.Content	Con errores	With errors
+Files_FilterPending.Content	Pendientes	Pending
+Files_FilterSkipped.Content	Omitidos	Skipped
+Files_HideFinished.Content	Ocultar los terminados	Hide finished
+Files_Menu.Text	Lista	List
+Files_MoveBottom.Text	Mover al final	Move to bottom
+Files_MoveDown.Text	Bajar	Move down
+Files_MoveTop.Text	Mover al principio	Move to top
+Files_MoveUp.Text	Subir	Move up
+Files_OpenSource.Text	Mostrar el origen	Show source
+Files_OpenTarget.Text	Mostrar el destino	Show destination
+Files_Remove.Text	Quitar de la copia	Remove from transfer
+Files_Retry.Text	Reintentar los fallidos	Retry failed
+Files_SaveList.Text	Guardar la lista de copia…	Save transfer list…
+Files_Search.PlaceholderText	Buscar archivos	Search files
+Files_Size.Text	Tamaño	Size
+Files_SourceHash.Text	Hash origen	Source hash
+Files_TargetHash.Text	Hash destino	Target hash
+History_Clear.Text	Vaciar	Clear
+History_Empty.Text	Todavía no hay copias terminadas	No finished transfers yet
+History_Open.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Abrir el destino	Open destination
+History_Repeat.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Repetir (solo copia lo nuevo o lo que cambió)	Repeat (copies only what is new or changed)
+History_Title.Text	Historial	History
+Log_Export.Text	Exportar el registro	Export log
+Options_Acl.Content	Permisos (ACL)	Permissions (ACL)
+Options_Attributes.Content	Atributos	Attributes
+Options_Audit.Content	Auditoría (SACL)	Auditing (SACL)
+Options_BufferSize.Text	Tamaño del búfer	Buffer size
+Options_Data.Content	Datos	Data
+Options_ExportReport.Content	Guardar un informe HTML al terminar	Save an HTML report when finished
+Options_FilesFolders.Text	Archivos y carpetas	Files and folders
+Options_OnFinish.Text	Al terminar	When finished
+Options_Owner.Content	Propietario	Owner
+Options_ResetDefault.Text	Restablecer	Reset
+Options_RunningInfo.Message	La copia está en marcha: estos cambios se aplican al reanudarla (Verificar y Desatendido, al momento).	The transfer is running: these changes apply when it resumes (Verify and Unattended apply now).
+Options_SaveChecksum.Content	Guardar un archivo de sumas (.sha256, .md5, .sfv…)	Save a checksum file (.sha256, .md5, .sfv…)
+Options_SaveDefault.Text	Guardar como predeterminado	Save as default
+Options_Scripts.Text	Comandos al terminar	Commands when finished
+Options_ScriptsHelp.Text	Uno por línea; se ejecutan con cmd.exe. Variables: %MEGACOPIER_STATE%, %MEGACOPIER_DESTINATION%, %MEGACOPIER_SOURCES%, %MEGACOPIER_FILES%, %MEGACOPIER_BYTES%, %MEGACOPIER_FAILED%, %MEGACOPIER_CHECKSUM%.	One per line, run with cmd.exe. Variables: %MEGACOPIER_STATE%, %MEGACOPIER_DESTINATION%, %MEGACOPIER_SOURCES%, %MEGACOPIER_FILES%, %MEGACOPIER_BYTES%, %MEGACOPIER_FAILED%, %MEGACOPIER_CHECKSUM%.
+Options_Security.Text	Seguridad (NTFS)	Security (NTFS)
+Options_Streams.Content	Secuencias alternativas (ADS)	Alternate data streams (ADS)
+Options_SystemCache.Content	Usar la caché del sistema	Use system cache
+Options_Threads.Text	En paralelo	In parallel
+Options_ThreadsShort.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Lecturas y escrituras simultáneas	Parallel reads and writes
+Options_Timestamps.Content	Fechas	Timestamps
+Options_Transfer.Text	Qué se copia	What is copied
+Options_TransferOptions.Text	Transferencia	Transfer
+Options_Verify.Content	Verificar tras copiar	Verify after copying
+Options_VerifySkipped.Content	Verificar también los omitidos	Also verify skipped files
+Page_Back.Text	Volver	Back
+Pager_Next.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Siguiente copia	Next transfer
+Pager_Previous.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Copia anterior	Previous transfer
+Pager_Text	Copia {0} de {1}	Transfer {0} of {1}
+Panel_Discard.Text	Descartar	Discard
+Panel_File.Text	Archivo	File
+Panel_OpenFolder.Text	Abrir carpeta	Open folder
+Panel_Pause.Text	Pausa	Pause
+Panel_Skip.Text	Saltar	Skip
+Panel_Stop.Text	Detener	Stop
+Panel_More	Más	More
+Panel_Less	Menos	Less
+Priority_Low.Content	Baja	Low
+Priority_BelowNormal.Content	Inferior a lo normal	Below normal
+Priority_Normal.Content	Normal	Normal
+Priority_AboveNormal.Content	Superior a lo normal	Above normal
+Priority_High.Content	Alta	High
+Settings_Advanced.Text	Avanzado	Advanced
+Settings_EnabledTitle.Text	Usar MegaCopier en lugar del copiador de Windows	Use MegaCopier instead of the Windows copier
+Settings_EnabledDescription.Text	También con doble clic en el icono de la bandeja. Desactivado, el icono se pone gris con una X roja y copia el Explorador.	Also with a double-click on the tray icon. When off, the icon turns grey with a red X and Explorer copies.
+Settings_FastTitle.Text	Dispositivos rápidos	Fast devices
+Settings_FastDescription.Text	Unidades o rutas (SSD NVMe, RAID) que admiten varias copias a la vez; el resto va de una en una por disco.	Drives or paths (NVMe SSD, RAID) that accept several transfers at once; others go one at a time per disk.
+Settings_FinishTitle.Text	Al terminar las copias	When transfers finish
+Settings_FinishDescription.Text	Qué hace la ventana cuando ya no queda nada en marcha	What the window does when nothing is left running
+Settings_FinishAuto.Content	Cerrar si todo fue bien	Close if all went well
+Settings_FinishClose.Content	Cerrar siempre	Always close
+Settings_FinishKeep.Content	Dejar abierta	Keep open
+Settings_FreeSpace.Content	Comprobar el espacio libre antes	Check free space first
+Settings_General.Text	General	General
+Settings_HashTitle.Text	Algoritmo de hash	Hash algorithm
+Settings_HashDescription.Text	Para verificar y para las sumas guardadas. xxHash3 es el más rápido; SHA-256 el más compatible.	For verification and saved checksums. xxHash3 is the fastest; SHA-256 the most compatible.
+Settings_MaxJobsTitle.Text	Copias a la vez	Simultaneous transfers
+Settings_MaxJobsDescription.Text	Máximo de copias en marcha a la vez (0 = sin límite). Las que usan el mismo disco siempre esperan su turno.	Maximum transfers running at once (0 = no limit). Transfers on the same disk always wait their turn.
+Settings_ModeAuto.Content	Automática	Automatic
+Settings_ModeCompact.Content	Compacta	Compact
+Settings_ModeExpanded.Content	Completa	Full
+Settings_PerformanceTitle.Text	Rendimiento	Performance
+Settings_PerformanceDescription.Text	Límite de velocidad, tamaño del búfer y operaciones simultáneas	Speed limit, buffer size and parallel operations
+Settings_PriorityTitle.Text	Prioridad del proceso	Process priority
+Settings_PriorityDescription.Text	Baja deja el equipo más ágil mientras copia	Low keeps the PC more responsive while copying
+Settings_Queue.Text	Cola	Queue
+Settings_Sound.Content	Sonido	Sound
+Settings_Themes.Text	Temas	Themes
+Settings_WhatToCopy.Text	Qué se copia y qué se hace después	What is copied and what happens afterwards
+Settings_Window.Text	Ventana	Window
+Settings_WindowModeTitle.Text	Ventana de copia	Transfer window
+Settings_WindowModeDescription.Text	Automática: compacta con una copia y completa cuando hay varias. "Más" y "Menos" la cambian en cualquier momento.	Automatic: compact with one transfer, full when there are several. "More" and "Less" switch it at any time.
+Status_Bytes.Text	Tamaño	Size
+Status_Category.Text	Estado	State
+Status_Copied.Text	Copiados	Copied
+Status_Failed.Text	Con errores	Failed
+Status_Files.Text	Archivos	Files
+Status_Pending.Text	Pendientes	Pending
+Status_Skipped.Text	Omitidos	Skipped
+Status_Total.Text	Total	Total
+Status_Verified.Text	Verificados	Verified
+Tab_Files.Text	Archivos	Files
+Tab_Log.Text	Registro	Log
+Tab_Options.Text	Opciones	Options
+Tab_Status.Text	Estado	Status
+Tab_Target.Text	Destino	Target
+Target_Destination.Text	Destino	Destination
+Target_Source.Text	Origen	Source
+Target_Space	{0} libres de {1}	{0} free of {1}
+Theme_BarHeight.Header	Alto de las barras	Bar height
+Theme_Radius.Header	Redondeo	Corner radius
+Theme_Customize.Text	Personalizar el tema (colores, barras, fondo)	Customize the theme (colors, bars, background)
+Theme_Delete.Text	Eliminar	Delete
+Theme_Export.Text	Exportar…	Export…
+Theme_Import.Text	Importar…	Import…
+Theme_Name.Header	Nombre	Name
+Theme_Save	Guardar	Save
+Theme_SaveAsNew	Guardar como tema nuevo	Save as new theme
+Theme_Auto	Fluent (como Windows)	Fluent (like Windows)
+Theme_CopyOf	{0} (personalizado)	{0} (custom)
+Theme_Custom	Mi tema	My theme
+Theme_FileType	Tema de MegaCopier	MegaCopier theme
+Theme_ImportFailed	No se pudo importar el tema	The theme could not be imported
+Theme_ColorBackground	Fondo	Background
+Theme_ColorSurface	Tarjetas	Cards
+Theme_ColorSurfaceStrong	Tarjetas resaltadas	Highlighted cards
+Theme_ColorBorder	Bordes	Borders
+Theme_ColorText	Texto	Text
+Theme_ColorTextSecondary	Texto secundario	Secondary text
+Theme_ColorAccent	Acento	Accent
+Theme_ColorAccentText	Texto sobre acento	Text on accent
+Theme_ColorTotalStart	Barra total: inicio	Total bar: start
+Theme_ColorTotalEnd	Barra total: fin	Total bar: end
+Theme_ColorFileStart	Barra de archivo: inicio	File bar: start
+Theme_ColorFileEnd	Barra de archivo: fin	File bar: end
+Theme_ColorTrack	Fondo de las barras	Bar track
+Theme_ColorSuccess	Correcto	Success
+Theme_ColorWarning	Aviso	Warning
+Theme_ColorError	Error	Error
+Theme_fluent-dark	Fluent oscuro	Fluent dark
+Theme_fluent-light	Fluent claro	Fluent light
+Theme_midnight	Medianoche	Midnight
+Theme_graphite	Grafito	Graphite
+Theme_ocean	Océano	Ocean
+Theme_forest	Bosque	Forest
+Theme_sunset	Atardecer	Sunset
+Theme_supercopier	SuperCopier clásico	Classic SuperCopier
+Theme_ultracopier	Ultracopier clásico	Classic Ultracopier
+Theme_contrast	Alto contraste	High contrast
+Tool_About.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Acerca de	About
+Tool_ClearDone.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Quitar las copias terminadas	Remove finished transfers
+Tool_History.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Historial	History
+Tool_HistoryText.Text	Historial	History
+Tool_LoadList.Text	Cargar una lista de copia…	Load a transfer list…
+Tool_LoadListText.Text	Cargar lista	Load list
+Tool_MoveFiles.Text	Mover archivos…	Move files…
+Tool_NewCopy.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Nueva copia	New transfer
+Tool_NewCopyText.Text	Nueva	New
+Tool_PauseAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Pausar todas	Pause all
+Tool_ResumeAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Reanudar todas	Resume all
+Tool_Settings.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Ajustes	Settings
+Tool_Sidebar.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Mostrar u ocultar la lista de copias	Show or hide the transfer list
+Drop_Caption	Copiar con MegaCopier	Copy with MegaCopier
+File_Pending	Pendiente	Pending
+File_Copying	Copiando	Copying
+File_Verifying	Verificando	Verifying
+File_Copied	Copiado	Copied
+File_Verified	Verificado	Verified
+File_Skipped	Omitido	Skipped
+File_Failed	Error	Failed
+Files_AddFailed	No se pudieron añadir	Could not add
+Files_Count	{0} de {1} archivos	{0} of {1} files
+Files_ListType	Lista de copia de MegaCopier	MegaCopier transfer list
+Files_LoadFailed	No se pudo cargar la lista	The list could not be loaded
+Hash_None	Hash: ninguno	Hash: none
+Jobs_Header	{0} COPIAS · {1} ACTIVAS	{0} TRANSFERS · {1} ACTIVE
+Language_Auto	Usar el de Windows	Use Windows setting
+Log_FileType	Texto	Text
+Picker_MoveHere	Mover aquí	Move here
+Settings_AutoResume.Content	Continuar solas las copias interrumpidas al arrancar	Resume interrupted transfers automatically at startup
+Panel_Options.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Opciones de esta copia	Options for this transfer
+Panel_UnattendedItem.Text	Desatendido (no preguntar: omite los que ya existen)	Unattended (never ask: skips existing files)
+Panel_VerifyItem.Text	Verificar al terminar	Verify when finished
+Panel_OpenFolderItem.Text	Abrir la carpeta de destino	Open the destination folder
+Status_ExactBytes	{0} bytes	{0} bytes

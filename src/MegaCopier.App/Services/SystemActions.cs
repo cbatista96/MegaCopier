@@ -31,6 +31,46 @@ internal static partial class SystemActions
         }
     }
 
+    /// <summary>Sonido del sistema al terminar: el de información si fue bien, el de error si no.</summary>
+    public static void PlayFinishSound(bool ok) => MessageBeep(ok ? 0x40u /* MB_ICONASTERISK */ : 0x10u /* MB_ICONHAND */);
+
+    /// <summary>
+    /// Ejecuta los comandos "al terminar" de un trabajo (uno por línea) con cmd.exe, sin ventana. Reciben el trabajo en
+    /// variables de entorno: MEGACOPIER_STATE, MEGACOPIER_SOURCES, MEGACOPIER_DESTINATION, MEGACOPIER_FILES,
+    /// MEGACOPIER_BYTES, MEGACOPIER_FAILED y MEGACOPIER_CHECKSUM.
+    /// </summary>
+    public static void RunScripts(IReadOnlyList<string> scripts, IReadOnlyDictionary<string, string> environment)
+    {
+        foreach (string script in scripts.Where(s => !string.IsNullOrWhiteSpace(s)))
+        {
+            try
+            {
+                var info = new ProcessStartInfo(Path.Combine(Environment.SystemDirectory, "cmd.exe"), $"/d /c {script}")
+                {
+                    CreateNoWindow = true,
+                    UseShellExecute = false,
+                    WorkingDirectory = environment.TryGetValue("MEGACOPIER_DESTINATION", out string? folder) && Directory.Exists(folder)
+                        ? folder
+                        : Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
+                };
+                foreach (var (key, value) in environment)
+                {
+                    info.Environment[key] = value;
+                }
+
+                Process.Start(info)?.Dispose();
+            }
+            catch (Exception ex) when (ex is System.ComponentModel.Win32Exception or InvalidOperationException)
+            {
+                Debug.WriteLine($"Script fallido: {script}: {ex.Message}");
+            }
+        }
+    }
+
+    [LibraryImport("user32.dll")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static partial bool MessageBeep(uint type);
+
     [LibraryImport("powrprof.dll")]
     [return: MarshalAs(UnmanagedType.Bool)]
     private static partial bool SetSuspendState(

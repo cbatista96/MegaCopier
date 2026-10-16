@@ -4,20 +4,11 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Application.Resources>
+        <!-- Los pinceles del tema (Mc*Brush) y Themes/Styles.xaml se añaden por código en el constructor de App. -->
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
             </ResourceDictionary.MergedDictionaries>
-
-            <!-- Tarjeta de ajuste al estilo de la app Configuración de Windows 11 -->
-            <Style x:Key="SettingCard" TargetType="Border">
-                <Setter Property="Padding" Value="16,12" />
-                <Setter Property="MinHeight" Value="64" />
-                <Setter Property="CornerRadius" Value="6" />
-                <Setter Property="BorderThickness" Value="1" />
-                <Setter Property="Background" Value="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
-                <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
-            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
