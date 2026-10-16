@@ -232,6 +232,66 @@ public sealed class TechnologyTests : IDisposable
         Assert.Equal(0, (int)(File.GetAttributes(final) & FileAttributes.Hidden));
     }
 
+    /// <summary>Sectores dañados simulados: las lecturas que tocan [inicio, fin) fallan con un error CRC.</summary>
+    private sealed class BadSectors(long start, long end) : IFaultInjector
+    {
+        public void Hit(FaultPoint point, long chunkIndex, Microsoft.Win32.SafeHandles.SafeFileHandle destination)
+        {
+        }
+
+        public void BeforeRead(long offset, int length)
+        {
+            if (offset < end && offset + length > start)
+            {
+                throw new IOException("Error de datos (comprobación de redundancia cíclica).", unchecked((int)0x80070017));
+            }
+        }
+    }
+
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public void RescueModeSavesEverythingReadable(bool move)
+    {
+        var data = new byte[10_000_000];
+        new Random(5).NextBytes(data);
+        string source = _temp.Combine("src/video.mp4");
+        Directory.CreateDirectory(Path.GetDirectoryName(source)!);
+        File.WriteAllBytes(source, data);
+        var options = Options();
+        options.RescueMode = true;
+        options.Move = move;
+        options.RetryCount = 0;
+        var engine = new CopyEngine(options) { FaultInjector = new BadSectors(5_000_000, 5_010_000), SameVolumeOverride = (_, _) => false };
+
+        var result = engine.Run(new CopyJobRequest([source], _temp.Combine("dst")));
+
+        Assert.Single(result.Failures);
+        Assert.Equal(FileErrorKind.PartlyUnreadable, result.Failures[0].Kind);
+        Assert.True(File.Exists(source)); // al mover, el original dañado no se borra
+        byte[] copy = File.ReadAllBytes(_temp.Combine("dst/video.mp4"));
+        Assert.Equal(data.Length, copy.Length);
+        const int badStart = 4_997_120, badEnd = 5_013_504; // los trozos de 4 KB que tocan la zona dañada
+        Assert.True(copy.AsSpan(0, badStart).SequenceEqual(data.AsSpan(0, badStart)));
+        Assert.True(copy.AsSpan(badEnd).SequenceEqual(data.AsSpan(badEnd)));
+        Assert.False(copy.AsSpan(badStart, badEnd - badStart).ContainsAnyExcept((byte)0));
+    }
+
+    [Fact]
+    public void WithoutRescueModeBadSectorsFailTheFile()
+    {
+        string source = Write("src/video.mp4", new string('v', 6_000_000));
+        var options = Options();
+        options.RetryCount = 0;
+        var engine = new CopyEngine(options) { FaultInjector = new BadSectors(5_000_000, 5_010_000) };
+
+        var result = engine.Run(new CopyJobRequest([source], _temp.Combine("dst")));
+
+        Assert.Single(result.Failures);
+        Assert.NotEqual(FileErrorKind.PartlyUnreadable, result.Failures[0].Kind);
+        Assert.False(File.Exists(_temp.Combine("dst/video.mp4")));
+    }
+
     [Fact]
     public void SystemCopyCanBeCancelled()
     {

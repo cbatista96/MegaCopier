@@ -132,6 +132,12 @@ public sealed class CopyOptions
     /// <summary>Carpetas "todo o nada": se copian ocultas y solo aparecen con su nombre cuando todo salió bien.</summary>
     public bool AllOrNothing { get; set; }
 
+    /// <summary>
+    /// Modo rescate (como ddrescue): ante sectores dañados del origen se lee sector a sector, se reintenta y lo
+    /// ilegible se rellena con ceros, en vez de abandonar el archivo. Se anota exactamente qué se perdió.
+    /// </summary>
+    public bool RescueMode { get; set; }
+
     /// <summary>Archivos dispersos (con huecos): el destino también lo es, sin escribir los huecos.</summary>
     public bool PreserveSparse { get; set; } = true;
 

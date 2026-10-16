@@ -148,6 +148,8 @@ public sealed class AppSettings
 
     public bool AllOrNothing { get; set; }
 
+    public bool RescueMode { get; set; }
+
     /// <summary>Carpetas de destino favoritas (menú "Copiar a" y diálogo de destinos).</summary>
     public List<string> FavoriteFolders { get; set; } = [];
 
@@ -174,6 +176,7 @@ public sealed class AppSettings
             VersionsFolder = VersionsFolder, FolderConflict = FolderConflict, TimeToleranceSeconds = TimeToleranceSeconds, VerifySource = VerifySource,
             SaveHashStream = SaveHashStream, PreserveHardLinks = PreserveHardLinks, WipeSource = WipeSource, WaitForDevice = WaitForDevice, WaitForSpace = WaitForSpace,
             AllOrNothing = AllOrNothing,
+            RescueMode = RescueMode,
         };
         set
         {
@@ -193,6 +196,7 @@ public sealed class AppSettings
             WaitForDevice = value.WaitForDevice;
             WaitForSpace = value.WaitForSpace;
             AllOrNothing = value.AllOrNothing;
+            RescueMode = value.RescueMode;
         }
     }
 
@@ -294,6 +298,7 @@ public sealed class AppSettings
             WaitForDevice = WaitForDevice,
             WaitForSpace = WaitForSpace,
             AllOrNothing = AllOrNothing,
+            RescueMode = RescueMode,
         };
 
         int block = Math.Clamp(BlockSizeMB, 1, 16) * CopyOptions.MiB;
