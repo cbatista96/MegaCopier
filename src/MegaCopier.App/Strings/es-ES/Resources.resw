@@ -765,4 +765,11 @@
   <data name="Disk_Checking" xml:space="preserve"><value>Comprobando los discos…</value></data>
   <data name="Disk_WarningTitle" xml:space="preserve"><value>Un disco avisa de fallo</value></data>
   <data name="Disk_Warning" xml:space="preserve"><value>«{0}» (disco {1}): {2}. Copia lo importante a otro disco cuanto antes.</value></data>
+  <data name="Settings_TuneTitle.Text" xml:space="preserve"><value>Ajuste automático para cada disco</value></data>
+  <data name="Settings_TuneDescription.Text" xml:space="preserve"><value>Mide cada disco con varios tamaños de bloque y operaciones a la vez, y usa lo más rápido al copiar hacia él (si no cambiaste a mano el rendimiento).</value></data>
+  <data name="Settings_TuneMeasure.Text" xml:space="preserve"><value>Medir los discos</value></data>
+  <data name="Settings_TuneNone" xml:space="preserve"><value>Todavía no se ha medido ningún disco.</value></data>
+  <data name="Settings_TuneDisk" xml:space="preserve"><value>Disco </value></data>
+  <data name="Settings_TuneProfile" xml:space="preserve"><value>{0}: bloques de {1} MB, {2} a la vez ({3:N0} MB/s)</value></data>
+  <data name="Settings_TuneMeasuring" xml:space="preserve"><value>Midiendo {0} ({1} de {2})…</value></data>
 </root>

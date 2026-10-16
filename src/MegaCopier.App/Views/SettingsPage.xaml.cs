@@ -150,6 +150,8 @@ public sealed partial class SettingsPage : UserControl
         LoadGuard();
         LoadReceive();
         LoadDisks();
+        AutoTuneToggle.IsOn = s.AutoTune;
+        ShowProfiles();
         ScheduleLimitBox.SelectedItem = ScheduleLimitBox.Items.OfType<ComboBoxItem>().FirstOrDefault(i => (string)i.Tag == s.ScheduleLimitMBps.ToString()) ?? ScheduleLimitBox.Items[0];
         ScheduleFromBox.Time = s.ScheduleFrom;
         ScheduleToBox.Time = s.ScheduleTo;
@@ -244,6 +246,7 @@ public sealed partial class SettingsPage : UserControl
         }
 
         s.SaveLogs = LogsToggle.IsOn;
+        s.AutoTune = AutoTuneToggle.IsOn;
         s.WebhookUrl = WebhookBox.Text.Trim();
         if (ScheduleLimitBox.SelectedItem is ComboBoxItem { Tag: string scheduleTag } && int.TryParse(scheduleTag, out int scheduleLimit))
         {
@@ -622,6 +625,38 @@ public sealed partial class SettingsPage : UserControl
     }
 
     private void CheckDisks_Click(object sender, RoutedEventArgs e) => _app.Disks?.Refresh(force: true);
+
+    /// <summary>Los valores medidos de cada disco.</summary>
+    private void ShowProfiles()
+    {
+        var profiles = DeviceTuner.Load();
+        TuneResult.Text = profiles.Count == 0
+            ? L.Get("Settings_TuneNone")
+            : string.Join(Environment.NewLine, profiles.OrderBy(p => p.Key).Select(p =>
+                L.F("Settings_TuneProfile", p.Key.Replace("DISK", L.Get("Settings_TuneDisk")), p.Value.BlockSizeMB, p.Value.QueueDepth, p.Value.MBps)));
+    }
+
+    /// <summary>Mide cada disco físico una vez (en la carpeta temporal o en la raíz de la unidad), sin bloquear la ventana.</summary>
+    private async void Tune_Click(object sender, RoutedEventArgs e)
+    {
+        TuneButton.IsEnabled = false;
+        string system = Path.GetPathRoot(Environment.SystemDirectory) ?? "C:\\";
+        var folders = DriveInfo.GetDrives()
+            .Where(d => d.DriveType == DriveType.Fixed && d.IsReady && d.AvailableFreeSpace > 2L * 1024 * 1024 * 1024)
+            .Select(d => string.Equals(d.Name, system, StringComparison.OrdinalIgnoreCase) ? Path.GetTempPath() : d.Name)
+            .GroupBy(DeviceTuner.DeviceOf)
+            .Select(g => g.First())
+            .ToList();
+        int done = 0;
+        foreach (string folder in folders)
+        {
+            TuneResult.Text = L.F("Settings_TuneMeasuring", Path.GetPathRoot(folder), ++done, folders.Count);
+            await Task.Run(() => DeviceTuner.Measure(folder, App.TestMode ? 64 : 256));
+        }
+
+        ShowProfiles();
+        TuneButton.IsEnabled = true;
+    }
 
     private static Button IconButton(string glyph, string name)
     {
