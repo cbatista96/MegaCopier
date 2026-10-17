@@ -35,7 +35,41 @@ internal sealed class SevenZipWriter : IArchiveWriter
         _output.Write(new byte[SignatureHeaderSize]); // se rellena al terminar
     }
 
+    /// <summary>Para <see cref="Prepare"/>: con la clave ya calculada (calcularla cuesta 2^19 rondas de SHA-256).</summary>
+    private SevenZipWriter(Stream output, byte[]? key, CompressionLevel level)
+    {
+        _output = output;
+        _level = level;
+        _key = key;
+    }
+
     public int Count => _entries.Count;
+
+    /// <summary>Comprime y cifra el archivo en memoria; sus datos se copian tal cual con <see cref="Append"/>.</summary>
+    public IPreparedEntry Prepare(string name, Stream source, DateTime lastWriteUtc, Action<ReadOnlySpan<byte>> onRead, CancellationToken cancellationToken)
+    {
+        var memory = new MemoryStream();
+        var single = new SevenZipWriter(memory, _key, _level);
+        single.AddFile(name, source, lastWriteUtc, onRead, cancellationToken);
+        return new Prepared(memory.ToArray(), single._entries[0]);
+    }
+
+    public void Append(IPreparedEntry prepared)
+    {
+        var (data, entry) = (Prepared)prepared;
+        if (entry.Size > 0)
+        {
+            entry.Offset = _output.Position;
+            _output.Write(data);
+        }
+
+        _entries.Add(entry);
+    }
+
+    private sealed record Prepared(byte[] Data, Entry Entry) : IPreparedEntry
+    {
+        public long Size => Entry.Size;
+    }
 
     /// <summary>La clave de 7-Zip: SHA-256 de 2^19 repeticiones de (contraseña en UTF-16 + contador de 64 bits).</summary>
     internal static byte[] DeriveKey(string password)

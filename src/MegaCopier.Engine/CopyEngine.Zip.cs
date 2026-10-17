@@ -95,12 +95,75 @@ public sealed partial class CopyEngine
                     writer.AddDirectory(Path.GetRelativePath(root, directory.Destination), Directory.GetLastWriteTimeUtc(directory.Source));
                 }
 
+                // Los archivos pequeños y medianos se comprimen (y cifran) a la vez en varios núcleos y se escriben en
+                // orden; uno grande espera a que se escriba lo anterior y va directo al archivo, sin pasar por memoria.
+                var pending = new Queue<(TransferItem Item, string Name, Task<(IPreparedEntry? Entry, string? Hash, Exception? Error)> Work)>();
+                int parallel = Math.Clamp(Environment.ProcessorCount, 1, 8);
+
+                void Complete((TransferItem Item, string Name, Task<(IPreparedEntry? Entry, string? Hash, Exception? Error)> Work) next)
+                {
+                    var (entry, hash, error) = next.Work.GetAwaiter().GetResult();
+                    if (entry is null)
+                    {
+                        Fail(next.Item, result, error!.Message, FileErrors.Classify(error));
+                        return;
+                    }
+
+                    writer.Append(entry);
+                    next.Item.SourceHash = hash;
+                    added.Add((next.Item, next.Name, hash));
+                    result.FilesCopied++;
+                    result.BytesTransferred += next.Item.Length;
+                    Files.Update(next.Item, FileState.Copied);
+                }
+
                 while (Files.TakeNext() is { } item)
                 {
                     cancellationToken.ThrowIfCancellationRequested();
                     Controller.WaitIfPaused(cancellationToken);
-                    progress.BeginFile(item.Source, item.Length);
                     string name = Path.GetRelativePath(zipPath, item.Destination);
+                    if (item.Length <= ParallelArchiveLimit)
+                    {
+                        while (pending.Count >= parallel)
+                        {
+                            Complete(pending.Dequeue());
+                        }
+
+                        var captured = item;
+                        pending.Enqueue((item, name, Task.Run(() =>
+                        {
+                            var tracker = new ProgressTracker(progress, forwardBytes: true);
+                            tracker.BeginFile(captured.Source, captured.Length);
+                            try
+                            {
+                                var hasher = FileHasher.Create(_options.HashAlgorithm) ?? FileHasher.Create(FileHashAlgorithm.XxHash128)!;
+                                using var source = new FileStream(captured.Source, FileMode.Open, FileAccess.Read, FileShare.Read, 1 << 20, FileOptions.SequentialScan);
+                                var entry = writer.Prepare(name, source, File.GetLastWriteTimeUtc(captured.Source), block =>
+                                {
+                                    Controller.WaitIfPaused(cancellationToken);
+                                    hasher.Append(block);
+                                    tracker.AddTransferred(block.Length);
+                                }, cancellationToken);
+                                return ((IPreparedEntry?)entry, (string?)hasher.Finish(), (Exception?)null);
+                            }
+                            catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+                            {
+                                return (null, null, ex);
+                            }
+                            finally
+                            {
+                                tracker.EndFile();
+                            }
+                        }, cancellationToken)));
+                        continue;
+                    }
+
+                    while (pending.Count > 0)
+                    {
+                        Complete(pending.Dequeue());
+                    }
+
+                    progress.BeginFile(item.Source, item.Length);
                     try
                     {
                         var hasher = FileHasher.Create(_options.HashAlgorithm) ?? FileHasher.Create(FileHashAlgorithm.XxHash128);
@@ -126,6 +189,11 @@ public sealed partial class CopyEngine
                     }
 
                     progress.EndFile();
+                }
+
+                while (pending.Count > 0)
+                {
+                    Complete(pending.Dequeue());
                 }
 
                 writer.Finish();
@@ -170,6 +238,9 @@ public sealed partial class CopyEngine
         Log(result.Success ? LogLevel.Info : LogLevel.Warning, Texts.F("E_ZipDone", zipPath, result.FilesCopied, result.Failures.Count));
         return result;
     }
+
+    /// <summary>Hasta este tamaño, los archivos se comprimen en paralelo (en memoria).</summary>
+    private const long ParallelArchiveLimit = 16L * 1024 * 1024;
 
     /// <summary>El ZIP creado por la última copia con <see cref="CopyOptions.Zip"/>.</summary>
     public string? ZipFile { get; private set; }
