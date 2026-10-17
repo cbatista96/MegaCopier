@@ -292,7 +292,7 @@ public partial class App : Application
                 options.Move = false;
             }
 
-            var job = Queue.Submit(request.Sources, destination, options, request.StartAtUtc);
+            var job = Queue.Submit(request.Sources, destination, options, request.StartAtUtc, request.Excluded);
             Disks?.Check(request.Sources.Append(destination));
             if (operation == JobOperation.Copy && (Settings.ExportReport || Settings.Scripts.Count > 0))
             {
@@ -604,6 +604,12 @@ public partial class App : Application
             case "debug-mtp" when TestMode:
                 // Solo pruebas: la ventana del móvil. Destination = "import" (Sources[0] = carpeta del PC) o "export" (Sources = qué copiar).
                 _ = request.Destination == "export" ? Window.MtpExportAsync(request.Sources) : Window.MtpImportAsync(request.Sources.FirstOrDefault());
+                ShowWindow();
+                return new IpcResponse { Ok = true };
+
+            case "debug-compare" when TestMode && request.Destination is { } compareRight && request.Sources.Count == 1:
+                // Solo pruebas: abrir "Comparar y sincronizar" con Sources[0] (izquierda) y Destination (derecha).
+                Window.ShowCompare(request.Sources[0], compareRight);
                 ShowWindow();
                 return new IpcResponse { Ok = true };
 

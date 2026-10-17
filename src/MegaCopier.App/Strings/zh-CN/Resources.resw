@@ -852,4 +852,37 @@
   <data name="LiveSync_FailedTitle" xml:space="preserve"><value>同步出现问题</value></data>
   <data name="LiveSync_FailedError" xml:space="preserve"><value>无法同步“{0}”：{1}</value></data>
   <data name="LiveSync_FailedFiles" xml:space="preserve"><value>“{0}”中有 {1} 个文件无法复制（下次改动时会重试）。</value></data>
+  <data name="Tool_Compare.Text" xml:space="preserve"><value>比较并同步文件夹…</value></data>
+  <data name="Compare_Title.Text" xml:space="preserve"><value>比较并同步</value></data>
+  <data name="Compare_Left.Text" xml:space="preserve"><value>左侧</value></data>
+  <data name="Compare_Right.Text" xml:space="preserve"><value>右侧</value></data>
+  <data name="Compare_Change.Text" xml:space="preserve"><value>更改…</value></data>
+  <data name="Sync_TwoWay.Content" xml:space="preserve"><value>双向</value></data>
+  <data name="Sync_LeftToRight.Content" xml:space="preserve"><value>左 → 右（镜像）</value></data>
+  <data name="Sync_RightToLeft.Content" xml:space="preserve"><value>右 → 左（镜像）</value></data>
+  <data name="Compare_Run.Text" xml:space="preserve"><value>比较</value></data>
+  <data name="Compare_ShowEqual.Content" xml:space="preserve"><value>同时显示相同的内容</value></data>
+  <data name="Compare_Info.Text" xml:space="preserve"><value>被移除或替换的内容会进入回收站（在 USB 和网络上则进入 .megacopier-borrados 文件夹）。取消勾选不想改动的项目。</value></data>
+  <data name="Compare_Summary" xml:space="preserve"><value>要复制 {0} 个 · 要移除 {1} 个 · 相同 {2} 个</value></data>
+  <data name="Compare_Comparing" xml:space="preserve"><value>正在比较…</value></data>
+  <data name="Compare_Error" xml:space="preserve"><value>无法比较：{0}</value></data>
+  <data name="Compare_Nothing" xml:space="preserve"><value>两个文件夹已经相同。</value></data>
+  <data name="Compare_OnlyEqualHidden" xml:space="preserve"><value>只有相同的项目（已隐藏）。</value></data>
+  <data name="Compare_Simulate.Text" xml:space="preserve"><value>模拟</value></data>
+  <data name="Compare_Sync.Text" xml:space="preserve"><value>同步</value></data>
+  <data name="Compare_PickRight" xml:space="preserve"><value>与此比较</value></data>
+  <data name="Compare_ToRight" xml:space="preserve"><value>复制到右侧</value></data>
+  <data name="Compare_ToLeft" xml:space="preserve"><value>复制到左侧</value></data>
+  <data name="Compare_DeleteLeft" xml:space="preserve"><value>从左侧移除</value></data>
+  <data name="Compare_DeleteRight" xml:space="preserve"><value>从右侧移除</value></data>
+  <data name="Compare_FolderLeft" xml:space="preserve"><value>在左侧创建文件夹</value></data>
+  <data name="Compare_FolderRight" xml:space="preserve"><value>在右侧创建文件夹</value></data>
+  <data name="Compare_Equal" xml:space="preserve"><value>相同</value></data>
+  <data name="Compare_New" xml:space="preserve"><value>新增</value></data>
+  <data name="Compare_Changed" xml:space="preserve"><value>已更改</value></data>
+  <data name="Compare_Deleted" xml:space="preserve"><value>另一侧已删除</value></data>
+  <data name="Compare_BothChanged" xml:space="preserve"><value>两侧都有更改：保留最新的</value></data>
+  <data name="Compare_ChangedAndDeleted" xml:space="preserve"><value>一侧删除但另一侧有更改：保留</value></data>
+  <data name="Compare_Extra" xml:space="preserve"><value>源中没有</value></data>
+  <data name="Compare_Same" xml:space="preserve"><value>两侧相同</value></data>
 </root>

@@ -97,6 +97,12 @@ public sealed partial class MainWindow : Window
         HistoryView.CloseRequested += ShowJobs;
         SettingsView.CloseRequested += ShowJobs;
         TimelineView.CloseRequested += ShowJobs;
+        CompareView.CloseRequested += ShowJobs;
+        CompareView.SyncRequested += request =>
+        {
+            ShowJobs();
+            Submit(request);
+        };
         TimelineView.JobChosen += job =>
         {
             ShowJobs();
@@ -244,12 +250,13 @@ public sealed partial class MainWindow : Window
         HistoryView.Visibility = Visibility.Collapsed;
         SettingsView.Visibility = Visibility.Collapsed;
         TimelineView.Visibility = Visibility.Collapsed;
+        CompareView.Visibility = Visibility.Collapsed;
         UpdateLayoutState();
     }
 
     /// <summary>Hay una página (Historial, Ajustes, Línea de tiempo) encima de las copias.</summary>
     private bool PageOpen => HistoryView.Visibility == Visibility.Visible || SettingsView.Visibility == Visibility.Visible
-        || TimelineView.Visibility == Visibility.Visible;
+        || TimelineView.Visibility == Visibility.Visible || CompareView.Visibility == Visibility.Visible;
 
     /// <summary>Aplica el tema: claro/oscuro de los controles, fondo de la ventana y barra de título.</summary>
     internal void ApplyTheme(ThemeDefinition theme, bool reloadResources = false)
@@ -625,6 +632,7 @@ public sealed partial class MainWindow : Window
             string where = HistoryView.Visibility == Visibility.Visible ? "Historial"
                 : SettingsView.Visibility == Visibility.Visible ? "Ajustes"
                 : TimelineView.Visibility == Visibility.Visible ? "Línea de tiempo"
+                : CompareView.Visibility == Visibility.Visible ? "Comparar"
                 : _expanded ? "Completa/" + (Tabs.SelectedItem as SelectorBarItem)?.Text : "Compacta";
             TextAudit.Run(Root, $"{where} {AppWindow.Size.Width}px");
         }
@@ -714,10 +722,31 @@ public sealed partial class MainWindow : Window
 
     private void Shelf_Click(object sender, RoutedEventArgs e) => _app.ShowShelf();
 
+    private async void Compare_Click(object sender, RoutedEventArgs e)
+    {
+        if (await Pickers.PickFolderAsync() is { } left && await Pickers.PickFolderAsync(L.Get("Compare_PickRight")) is { } right)
+        {
+            ShowCompare(left, right);
+        }
+    }
+
+    /// <summary>Abre "Comparar y sincronizar" con estas dos carpetas (también desde las pruebas).</summary>
+    internal void ShowCompare(string left, string right)
+    {
+        HistoryView.Visibility = Visibility.Collapsed;
+        SettingsView.Visibility = Visibility.Collapsed;
+        TimelineView.Visibility = Visibility.Collapsed;
+        CompareView.Show(left, right);
+        CompareView.Visibility = Visibility.Visible;
+        EnsureRoomForPage();
+        UpdateLayoutState();
+    }
+
     private void Timeline_Click(object sender, RoutedEventArgs e)
     {
         HistoryView.Visibility = Visibility.Collapsed;
         SettingsView.Visibility = Visibility.Collapsed;
+        CompareView.Visibility = Visibility.Collapsed;
         TimelineView.Show(Jobs);
         TimelineView.Visibility = Visibility.Visible;
         EnsureRoomForPage();
@@ -728,6 +757,7 @@ public sealed partial class MainWindow : Window
     {
         SettingsView.Visibility = Visibility.Collapsed;
         TimelineView.Visibility = Visibility.Collapsed;
+        CompareView.Visibility = Visibility.Collapsed;
         HistoryView.Reload();
         HistoryView.Visibility = Visibility.Visible;
         EnsureRoomForPage();
@@ -738,6 +768,7 @@ public sealed partial class MainWindow : Window
     {
         HistoryView.Visibility = Visibility.Collapsed;
         TimelineView.Visibility = Visibility.Collapsed;
+        CompareView.Visibility = Visibility.Collapsed;
         SettingsView.Load();
         SettingsView.Visibility = Visibility.Visible;
         EnsureRoomForPage();

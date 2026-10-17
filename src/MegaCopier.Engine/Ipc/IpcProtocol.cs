@@ -42,6 +42,12 @@ public sealed class IpcRequest
     /// <summary>Copiar, sincronizar (espejo), solo actualizar o solo carpetas.</summary>
     public CopyMode? Mode { get; set; }
 
+    /// <summary>Con la operación Sync: en dos sentidos o como espejo hacia un lado.</summary>
+    public SyncDirection? SyncDirection { get; set; }
+
+    /// <summary>Lo que no se toca (en Sync, rutas relativas desmarcadas en la vista de comparación).</summary>
+    public List<string>? Excluded { get; set; }
+
     /// <summary>Simular: decir qué se haría sin cambiar nada.</summary>
     public bool? DryRun { get; set; }
 

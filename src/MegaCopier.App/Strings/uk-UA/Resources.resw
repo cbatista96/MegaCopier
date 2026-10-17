@@ -852,4 +852,37 @@
   <data name="LiveSync_FailedTitle" xml:space="preserve"><value>Проблема синхронізації</value></data>
   <data name="LiveSync_FailedError" xml:space="preserve"><value>Не вдалося синхронізувати «{0}»: {1}</value></data>
   <data name="LiveSync_FailedFiles" xml:space="preserve"><value>У «{0}» не вдалося скопіювати файли ({1}); повтор під час наступної зміни.</value></data>
+  <data name="Tool_Compare.Text" xml:space="preserve"><value>Порівняти й синхронізувати папки…</value></data>
+  <data name="Compare_Title.Text" xml:space="preserve"><value>Порівняння й синхронізація</value></data>
+  <data name="Compare_Left.Text" xml:space="preserve"><value>Ліворуч</value></data>
+  <data name="Compare_Right.Text" xml:space="preserve"><value>Праворуч</value></data>
+  <data name="Compare_Change.Text" xml:space="preserve"><value>Змінити…</value></data>
+  <data name="Sync_TwoWay.Content" xml:space="preserve"><value>В обидва боки</value></data>
+  <data name="Sync_LeftToRight.Content" xml:space="preserve"><value>Ліворуч → праворуч (дзеркало)</value></data>
+  <data name="Sync_RightToLeft.Content" xml:space="preserve"><value>Праворуч → ліворуч (дзеркало)</value></data>
+  <data name="Compare_Run.Text" xml:space="preserve"><value>Порівняти</value></data>
+  <data name="Compare_ShowEqual.Content" xml:space="preserve"><value>Показувати й однакове</value></data>
+  <data name="Compare_Info.Text" xml:space="preserve"><value>Видалене чи замінене потрапляє до кошика (на USB і в мережі — до папки .megacopier-borrados). Зніміть позначку з того, що не треба чіпати.</value></data>
+  <data name="Compare_Summary" xml:space="preserve"><value>Копіювати: {0} · видалити: {1} · однакових: {2}</value></data>
+  <data name="Compare_Comparing" xml:space="preserve"><value>Порівняння…</value></data>
+  <data name="Compare_Error" xml:space="preserve"><value>Не вдалося порівняти: {0}</value></data>
+  <data name="Compare_Nothing" xml:space="preserve"><value>Обидві папки вже однакові.</value></data>
+  <data name="Compare_OnlyEqualHidden" xml:space="preserve"><value>Лише однакові елементи (приховано).</value></data>
+  <data name="Compare_Simulate.Text" xml:space="preserve"><value>Змоделювати</value></data>
+  <data name="Compare_Sync.Text" xml:space="preserve"><value>Синхронізувати</value></data>
+  <data name="Compare_PickRight" xml:space="preserve"><value>Порівняти з цією</value></data>
+  <data name="Compare_ToRight" xml:space="preserve"><value>Копіювати праворуч</value></data>
+  <data name="Compare_ToLeft" xml:space="preserve"><value>Копіювати ліворуч</value></data>
+  <data name="Compare_DeleteLeft" xml:space="preserve"><value>Видалити ліворуч</value></data>
+  <data name="Compare_DeleteRight" xml:space="preserve"><value>Видалити праворуч</value></data>
+  <data name="Compare_FolderLeft" xml:space="preserve"><value>Створити папку ліворуч</value></data>
+  <data name="Compare_FolderRight" xml:space="preserve"><value>Створити папку праворуч</value></data>
+  <data name="Compare_Equal" xml:space="preserve"><value>Однаково</value></data>
+  <data name="Compare_New" xml:space="preserve"><value>Нове</value></data>
+  <data name="Compare_Changed" xml:space="preserve"><value>Змінено</value></data>
+  <data name="Compare_Deleted" xml:space="preserve"><value>Видалено з іншого боку</value></data>
+  <data name="Compare_BothChanged" xml:space="preserve"><value>Змінено з обох боків: перемагає новіше</value></data>
+  <data name="Compare_ChangedAndDeleted" xml:space="preserve"><value>Видалено з одного боку, але змінено з іншого: зберігається</value></data>
+  <data name="Compare_Extra" xml:space="preserve"><value>Немає в джерелі</value></data>
+  <data name="Compare_Same" xml:space="preserve"><value>Однаково з обох боків</value></data>
 </root>

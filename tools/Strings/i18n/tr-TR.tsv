@@ -846,3 +846,36 @@ LiveSync_Error	{0} geçişinde hata: {1}
 LiveSync_FailedTitle	Eşitleme sorunu
 LiveSync_FailedError	"{0}" eşitlenemedi: {1}
 LiveSync_FailedFiles	"{0}" içinde {1} dosya kopyalanamadı (bir sonraki değişiklikte yeniden denenecek).
+Tool_Compare.Text	Klasörleri karşılaştır ve eşitle…
+Compare_Title.Text	Karşılaştır ve eşitle
+Compare_Left.Text	Sol
+Compare_Right.Text	Sağ
+Compare_Change.Text	Değiştir…
+Sync_TwoWay.Content	İki yönlü
+Sync_LeftToRight.Content	Sol → sağ (yansıt)
+Sync_RightToLeft.Content	Sağ → sol (yansıt)
+Compare_Run.Text	Karşılaştır
+Compare_ShowEqual.Content	Aynı olanları da göster
+Compare_Info.Text	Kaldırılan veya değiştirilenler Geri Dönüşüm Kutusu'na gider (USB ve ağda .megacopier-borrados klasörüne). Dokunulmasını istemediklerinizin işaretini kaldırın.
+Compare_Summary	Kopyalanacak {0} · kaldırılacak {1} · aynı {2}
+Compare_Comparing	Karşılaştırılıyor…
+Compare_Error	Karşılaştırılamadı: {0}
+Compare_Nothing	İki klasör zaten aynı.
+Compare_OnlyEqualHidden	Yalnızca aynı öğeler var (gizli).
+Compare_Simulate.Text	Benzet
+Compare_Sync.Text	Eşitle
+Compare_PickRight	Bununla karşılaştır
+Compare_ToRight	Sağa kopyala
+Compare_ToLeft	Sola kopyala
+Compare_DeleteLeft	Soldan kaldır
+Compare_DeleteRight	Sağdan kaldır
+Compare_FolderLeft	Klasörü solda oluştur
+Compare_FolderRight	Klasörü sağda oluştur
+Compare_Equal	Aynı
+Compare_New	Yeni
+Compare_Changed	Değişti
+Compare_Deleted	Diğer tarafta silindi
+Compare_BothChanged	İki tarafta da değişti: en yenisi kazanır
+Compare_ChangedAndDeleted	Bir tarafta silindi ama diğerinde değişti: korunur
+Compare_Extra	Kaynakta yok
+Compare_Same	İki tarafta aynı

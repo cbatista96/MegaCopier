@@ -846,3 +846,36 @@ LiveSync_Error	Erro na passagem de {0}: {1}
 LiveSync_FailedTitle	Problema na sincronização
 LiveSync_FailedError	Não foi possível sincronizar "{0}": {1}
 LiveSync_FailedFiles	Em "{0}", {1} arquivos não puderam ser copiados (nova tentativa na próxima mudança).
+Tool_Compare.Text	Comparar e sincronizar pastas…
+Compare_Title.Text	Comparar e sincronizar
+Compare_Left.Text	Esquerda
+Compare_Right.Text	Direita
+Compare_Change.Text	Alterar…
+Sync_TwoWay.Content	Nos dois sentidos
+Sync_LeftToRight.Content	Esquerda → direita (espelho)
+Sync_RightToLeft.Content	Direita → esquerda (espelho)
+Compare_Run.Text	Comparar
+Compare_ShowEqual.Content	Mostrar também o que é igual
+Compare_Info.Text	O que for removido ou substituído vai para a Lixeira (em USB e rede, para a pasta .megacopier-borrados). Desmarque o que não quiser mexer.
+Compare_Summary	{0} para copiar · {1} para remover · {2} iguais
+Compare_Comparing	Comparando…
+Compare_Error	Não foi possível comparar: {0}
+Compare_Nothing	As duas pastas já estão iguais.
+Compare_OnlyEqualHidden	Só há itens iguais (ocultos).
+Compare_Simulate.Text	Simular
+Compare_Sync.Text	Sincronizar
+Compare_PickRight	Comparar com esta
+Compare_ToRight	Copiar para a direita
+Compare_ToLeft	Copiar para a esquerda
+Compare_DeleteLeft	Remover da esquerda
+Compare_DeleteRight	Remover da direita
+Compare_FolderLeft	Criar a pasta na esquerda
+Compare_FolderRight	Criar a pasta na direita
+Compare_Equal	Igual
+Compare_New	Novo
+Compare_Changed	Alterado
+Compare_Deleted	Apagado do outro lado
+Compare_BothChanged	Alterado nos dois lados: vence o mais recente
+Compare_ChangedAndDeleted	Apagado de um lado mas alterado do outro: é mantido
+Compare_Extra	Não está na origem
+Compare_Same	Igual nos dois lados

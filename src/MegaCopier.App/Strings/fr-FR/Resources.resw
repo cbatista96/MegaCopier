@@ -852,4 +852,37 @@
   <data name="LiveSync_FailedTitle" xml:space="preserve"><value>Problème de synchronisation</value></data>
   <data name="LiveSync_FailedError" xml:space="preserve"><value>« {0} » n&apos;a pas pu être synchronisé : {1}</value></data>
   <data name="LiveSync_FailedFiles" xml:space="preserve"><value>Dans « {0} », {1} fichiers n&apos;ont pas pu être copiés (nouvel essai au prochain changement).</value></data>
+  <data name="Tool_Compare.Text" xml:space="preserve"><value>Comparer et synchroniser des dossiers…</value></data>
+  <data name="Compare_Title.Text" xml:space="preserve"><value>Comparer et synchroniser</value></data>
+  <data name="Compare_Left.Text" xml:space="preserve"><value>Gauche</value></data>
+  <data name="Compare_Right.Text" xml:space="preserve"><value>Droite</value></data>
+  <data name="Compare_Change.Text" xml:space="preserve"><value>Changer…</value></data>
+  <data name="Sync_TwoWay.Content" xml:space="preserve"><value>Dans les deux sens</value></data>
+  <data name="Sync_LeftToRight.Content" xml:space="preserve"><value>Gauche → droite (miroir)</value></data>
+  <data name="Sync_RightToLeft.Content" xml:space="preserve"><value>Droite → gauche (miroir)</value></data>
+  <data name="Compare_Run.Text" xml:space="preserve"><value>Comparer</value></data>
+  <data name="Compare_ShowEqual.Content" xml:space="preserve"><value>Afficher aussi ce qui est identique</value></data>
+  <data name="Compare_Info.Text" xml:space="preserve"><value>Ce qui est retiré ou remplacé va dans la Corbeille (sur USB et réseau, dans le dossier .megacopier-borrados). Décochez ce que vous ne voulez pas toucher.</value></data>
+  <data name="Compare_Summary" xml:space="preserve"><value>{0} à copier · {1} à retirer · {2} identiques</value></data>
+  <data name="Compare_Comparing" xml:space="preserve"><value>Comparaison…</value></data>
+  <data name="Compare_Error" xml:space="preserve"><value>Comparaison impossible : {0}</value></data>
+  <data name="Compare_Nothing" xml:space="preserve"><value>Les deux dossiers sont déjà identiques.</value></data>
+  <data name="Compare_OnlyEqualHidden" xml:space="preserve"><value>Seulement des éléments identiques (masqués).</value></data>
+  <data name="Compare_Simulate.Text" xml:space="preserve"><value>Simuler</value></data>
+  <data name="Compare_Sync.Text" xml:space="preserve"><value>Synchroniser</value></data>
+  <data name="Compare_PickRight" xml:space="preserve"><value>Comparer avec celui-ci</value></data>
+  <data name="Compare_ToRight" xml:space="preserve"><value>Copier à droite</value></data>
+  <data name="Compare_ToLeft" xml:space="preserve"><value>Copier à gauche</value></data>
+  <data name="Compare_DeleteLeft" xml:space="preserve"><value>Retirer à gauche</value></data>
+  <data name="Compare_DeleteRight" xml:space="preserve"><value>Retirer à droite</value></data>
+  <data name="Compare_FolderLeft" xml:space="preserve"><value>Créer le dossier à gauche</value></data>
+  <data name="Compare_FolderRight" xml:space="preserve"><value>Créer le dossier à droite</value></data>
+  <data name="Compare_Equal" xml:space="preserve"><value>Identique</value></data>
+  <data name="Compare_New" xml:space="preserve"><value>Nouveau</value></data>
+  <data name="Compare_Changed" xml:space="preserve"><value>Modifié</value></data>
+  <data name="Compare_Deleted" xml:space="preserve"><value>Supprimé de l&apos;autre côté</value></data>
+  <data name="Compare_BothChanged" xml:space="preserve"><value>Modifié des deux côtés : le plus récent l&apos;emporte</value></data>
+  <data name="Compare_ChangedAndDeleted" xml:space="preserve"><value>Supprimé d&apos;un côté mais modifié de l&apos;autre : conservé</value></data>
+  <data name="Compare_Extra" xml:space="preserve"><value>Absent de la source</value></data>
+  <data name="Compare_Same" xml:space="preserve"><value>Identique des deux côtés</value></data>
 </root>

@@ -475,10 +475,11 @@ public sealed class CopyQueue
         return loaded;
     }
 
-    public CopyJob Submit(IEnumerable<string> sources, string destination, CopyOptions options, DateTime? startAtUtc = null)
+    public CopyJob Submit(IEnumerable<string> sources, string destination, CopyOptions options, DateTime? startAtUtc = null, IEnumerable<string>? excluded = null)
     {
         var record = CopyJobRecord.New(sources, destination, options);
         record.StartAtUtc = startAtUtc;
+        record.Excluded = [.. excluded ?? []];
         if (startAtUtc is not null)
         {
             EnsureScheduleTimer();

@@ -89,6 +89,7 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
         JobOperation.Hash => "Hash",
         JobOperation.Send => "Send",
         JobOperation.Decrypt => "Decrypt",
+        JobOperation.Sync => Job.Record.DryRun ? "Simulate" : "Sync",
         _ when Job.Record.Encrypt && !IsMove => "Encrypt",
         _ when Job.Record.DryRun => "Simulate",
         _ when Job.Record.Mode == CopyMode.Mirror && !IsMove => "Sync",

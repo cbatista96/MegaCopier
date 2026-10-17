@@ -846,3 +846,36 @@ LiveSync_Error	{0} 的同步出错：{1}
 LiveSync_FailedTitle	同步出现问题
 LiveSync_FailedError	无法同步“{0}”：{1}
 LiveSync_FailedFiles	“{0}”中有 {1} 个文件无法复制（下次改动时会重试）。
+Tool_Compare.Text	比较并同步文件夹…
+Compare_Title.Text	比较并同步
+Compare_Left.Text	左侧
+Compare_Right.Text	右侧
+Compare_Change.Text	更改…
+Sync_TwoWay.Content	双向
+Sync_LeftToRight.Content	左 → 右（镜像）
+Sync_RightToLeft.Content	右 → 左（镜像）
+Compare_Run.Text	比较
+Compare_ShowEqual.Content	同时显示相同的内容
+Compare_Info.Text	被移除或替换的内容会进入回收站（在 USB 和网络上则进入 .megacopier-borrados 文件夹）。取消勾选不想改动的项目。
+Compare_Summary	要复制 {0} 个 · 要移除 {1} 个 · 相同 {2} 个
+Compare_Comparing	正在比较…
+Compare_Error	无法比较：{0}
+Compare_Nothing	两个文件夹已经相同。
+Compare_OnlyEqualHidden	只有相同的项目（已隐藏）。
+Compare_Simulate.Text	模拟
+Compare_Sync.Text	同步
+Compare_PickRight	与此比较
+Compare_ToRight	复制到右侧
+Compare_ToLeft	复制到左侧
+Compare_DeleteLeft	从左侧移除
+Compare_DeleteRight	从右侧移除
+Compare_FolderLeft	在左侧创建文件夹
+Compare_FolderRight	在右侧创建文件夹
+Compare_Equal	相同
+Compare_New	新增
+Compare_Changed	已更改
+Compare_Deleted	另一侧已删除
+Compare_BothChanged	两侧都有更改：保留最新的
+Compare_ChangedAndDeleted	一侧删除但另一侧有更改：保留
+Compare_Extra	源中没有
+Compare_Same	两侧相同

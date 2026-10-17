@@ -846,3 +846,36 @@ LiveSync_Error	{0} 동기화 오류: {1}
 LiveSync_FailedTitle	동기화 문제
 LiveSync_FailedError	"{0}"을(를) 동기화할 수 없습니다: {1}
 LiveSync_FailedFiles	"{0}"에서 파일 {1}개를 복사하지 못했습니다(다음 변경 때 다시 시도합니다).
+Tool_Compare.Text	폴더 비교 및 동기화…
+Compare_Title.Text	비교 및 동기화
+Compare_Left.Text	왼쪽
+Compare_Right.Text	오른쪽
+Compare_Change.Text	변경…
+Sync_TwoWay.Content	양방향
+Sync_LeftToRight.Content	왼쪽 → 오른쪽(미러)
+Sync_RightToLeft.Content	오른쪽 → 왼쪽(미러)
+Compare_Run.Text	비교
+Compare_ShowEqual.Content	같은 항목도 표시
+Compare_Info.Text	제거되거나 바뀐 항목은 휴지통으로 갑니다(USB와 네트워크에서는 .megacopier-borrados 폴더로). 건드리지 않을 항목은 선택을 해제하세요.
+Compare_Summary	복사 {0} · 제거 {1} · 동일 {2}
+Compare_Comparing	비교하는 중…
+Compare_Error	비교할 수 없습니다: {0}
+Compare_Nothing	두 폴더가 이미 같습니다.
+Compare_OnlyEqualHidden	같은 항목만 있습니다(숨김).
+Compare_Simulate.Text	시뮬레이션
+Compare_Sync.Text	동기화
+Compare_PickRight	이 폴더와 비교
+Compare_ToRight	오른쪽으로 복사
+Compare_ToLeft	왼쪽으로 복사
+Compare_DeleteLeft	왼쪽에서 제거
+Compare_DeleteRight	오른쪽에서 제거
+Compare_FolderLeft	왼쪽에 폴더 만들기
+Compare_FolderRight	오른쪽에 폴더 만들기
+Compare_Equal	동일
+Compare_New	새 항목
+Compare_Changed	변경됨
+Compare_Deleted	반대쪽에서 삭제됨
+Compare_BothChanged	양쪽에서 변경됨: 최신 항목 우선
+Compare_ChangedAndDeleted	한쪽에서 삭제됐지만 다른 쪽에서 변경됨: 유지
+Compare_Extra	원본에 없음
+Compare_Same	양쪽 동일

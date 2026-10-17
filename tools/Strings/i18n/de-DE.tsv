@@ -846,3 +846,36 @@ LiveSync_Error	Fehler im Durchgang von {0}: {1}
 LiveSync_FailedTitle	Problem bei der Synchronisierung
 LiveSync_FailedError	„{0}“ konnte nicht synchronisiert werden: {1}
 LiveSync_FailedFiles	In „{0}“ konnten {1} Dateien nicht kopiert werden (neuer Versuch bei der nächsten Änderung).
+Tool_Compare.Text	Ordner vergleichen und synchronisieren…
+Compare_Title.Text	Vergleichen und synchronisieren
+Compare_Left.Text	Links
+Compare_Right.Text	Rechts
+Compare_Change.Text	Ändern…
+Sync_TwoWay.Content	In beide Richtungen
+Sync_LeftToRight.Content	Links → rechts (Spiegel)
+Sync_RightToLeft.Content	Rechts → links (Spiegel)
+Compare_Run.Text	Vergleichen
+Compare_ShowEqual.Content	Auch Identisches anzeigen
+Compare_Info.Text	Entferntes oder Ersetztes kommt in den Papierkorb (auf USB und im Netzwerk in den Ordner .megacopier-borrados). Deaktivieren Sie, was unberührt bleiben soll.
+Compare_Summary	{0} zu kopieren · {1} zu entfernen · {2} identisch
+Compare_Comparing	Wird verglichen…
+Compare_Error	Vergleich nicht möglich: {0}
+Compare_Nothing	Beide Ordner sind bereits identisch.
+Compare_OnlyEqualHidden	Nur identische Elemente (ausgeblendet).
+Compare_Simulate.Text	Simulieren
+Compare_Sync.Text	Synchronisieren
+Compare_PickRight	Mit diesem vergleichen
+Compare_ToRight	Nach rechts kopieren
+Compare_ToLeft	Nach links kopieren
+Compare_DeleteLeft	Links entfernen
+Compare_DeleteRight	Rechts entfernen
+Compare_FolderLeft	Ordner links erstellen
+Compare_FolderRight	Ordner rechts erstellen
+Compare_Equal	Identisch
+Compare_New	Neu
+Compare_Changed	Geändert
+Compare_Deleted	Auf der anderen Seite gelöscht
+Compare_BothChanged	Auf beiden Seiten geändert: das Neueste gewinnt
+Compare_ChangedAndDeleted	Auf einer Seite gelöscht, auf der anderen geändert: bleibt erhalten
+Compare_Extra	Nicht in der Quelle
+Compare_Same	Auf beiden Seiten identisch
