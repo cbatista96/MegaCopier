@@ -947,4 +947,11 @@
   <data name="Destinations_PasswordHintZip" xml:space="preserve"><value>Le ZIP est chiffré en AES-256 et s&apos;ouvre avec 7-Zip, WinZip ou WinRAR (l&apos;Explorateur Windows n&apos;ouvre pas les ZIP chiffrés). Les noms des fichiers restent visibles sans le mot de passe. Si vous l&apos;oubliez, impossible de récupérer les fichiers.</value></data>
   <data name="Settings_RemoteConnectionsTitle.Text" xml:space="preserve"><value>Connexions simultanées</value></data>
   <data name="Settings_RemoteConnectionsDescription.Text" xml:space="preserve"><value>Avec de nombreux fichiers, plusieurs connexions simultanées au serveur vont bien plus vite (de 1 à 255). Si le serveur limite les connexions, celles qu&apos;il autorise sont utilisées.</value></data>
+  <data name="Settings_DefenderTitle.Text" xml:space="preserve"><value>Exclure MegaCopier de l&apos;analyse de Windows Defender</value></data>
+  <data name="Settings_DefenderDescription.Text" xml:space="preserve"><value>Avec beaucoup de petits fichiers, la copie est nettement plus rapide car Defender n&apos;analyse plus chaque fichier écrit par MegaCopier. Les fichiers copiés sont toujours analysés lorsqu&apos;un autre programme les ouvre. Nécessite des droits d&apos;administrateur.</value></data>
+  <data name="Settings_DefenderAdd" xml:space="preserve"><value>Ajouter l&apos;exclusion</value></data>
+  <data name="Settings_DefenderRemove" xml:space="preserve"><value>Supprimer l&apos;exclusion</value></data>
+  <data name="Settings_DefenderOn" xml:space="preserve"><value>Activée : Defender n&apos;analyse pas ce qu&apos;écrit MegaCopier.</value></data>
+  <data name="Settings_DefenderCancelled" xml:space="preserve"><value>L&apos;autorisation d&apos;administrateur n&apos;a pas été accordée : rien n&apos;a été modifié.</value></data>
+  <data name="Settings_DefenderFailed" xml:space="preserve"><value>Windows Defender n&apos;a pas accepté la modification (un autre antivirus le remplace peut-être, ou une stratégie l&apos;empêche).</value></data>
 </root>

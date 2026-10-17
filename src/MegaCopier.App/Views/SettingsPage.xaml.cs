@@ -112,6 +112,7 @@ public sealed partial class SettingsPage : UserControl
         DragConfirmBox.SelectedIndex = (int)s.DragConfirm;
         DragConfirmBox.IsEnabled = s.InterceptExplorerDrag;
         ShellMenuToggle.IsOn = ShellExtensionRegistration.IsRegistered;
+        ShowDefender();
         ShellMenuToggle.IsEnabled = App.ShellExtensionPath is not null;
         StartupToggle.IsOn = StartupRegistration.IsEnabled;
 
@@ -882,6 +883,35 @@ public sealed partial class SettingsPage : UserControl
     private void Restart_Click(object sender, RoutedEventArgs e) => _app.Restart();
 
     private void Close_Click(object sender, RoutedEventArgs e) => CloseRequested?.Invoke();
+
+    private void ShowDefender()
+    {
+        bool excluded = _app.Settings.DefenderExcluded;
+        DefenderButtonText.Text = L.Get(excluded ? "Settings_DefenderRemove" : "Settings_DefenderAdd");
+        DefenderState.Text = excluded ? L.Get("Settings_DefenderOn") : "";
+        DefenderState.Visibility = excluded ? Visibility.Visible : Visibility.Collapsed;
+        DefenderState.ClearValue(TextBlock.ForegroundProperty);
+    }
+
+    private async void Defender_Click(object sender, RoutedEventArgs e)
+    {
+        bool add = !_app.Settings.DefenderExcluded;
+        DefenderButton.IsEnabled = false;
+        bool? done = await DefenderExclusion.SetAsync(add);
+        DefenderButton.IsEnabled = true;
+        if (done == true)
+        {
+            _app.Settings.DefenderExcluded = add;
+            _app.Settings.Save();
+            ShowDefender();
+            return;
+        }
+
+        ShowDefender();
+        DefenderState.Text = L.Get(done is null ? "Settings_DefenderCancelled" : "Settings_DefenderFailed");
+        DefenderState.Foreground = ThemeManager.ErrorBrush;
+        DefenderState.Visibility = Visibility.Visible;
+    }
 
     private void ShellMenu_Toggled(object sender, RoutedEventArgs e)
     {

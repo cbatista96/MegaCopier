@@ -941,3 +941,10 @@ Destinations_Zip.Content	Salva in un file ZIP
 Destinations_PasswordHintZip	Lo ZIP è crittografato con AES-256 e si apre con 7-Zip, WinZip o WinRAR (Esplora file di Windows non apre gli ZIP crittografati). I nomi dei file sono visibili senza password. Se la dimentichi, non c'è modo di recuperare i file.
 Settings_RemoteConnectionsTitle.Text	Connessioni simultanee
 Settings_RemoteConnectionsDescription.Text	Con molti file, più connessioni simultanee al server sono molto più veloci (da 1 a 255). Se il server limita le connessioni, si usano quelle consentite.
+Settings_DefenderTitle.Text	Escludi MegaCopier dall'analisi di Windows Defender
+Settings_DefenderDescription.Text	Con molti file piccoli la copia è molto più veloce perché Defender smette di analizzare ogni file scritto da MegaCopier. I file copiati vengono comunque analizzati quando un altro programma li apre. Richiede i diritti di amministratore.
+Settings_DefenderAdd	Aggiungi esclusione
+Settings_DefenderRemove	Rimuovi esclusione
+Settings_DefenderOn	Attiva: Defender non analizza ciò che scrive MegaCopier.
+Settings_DefenderCancelled	Autorizzazione di amministratore non concessa: non è stato modificato nulla.
+Settings_DefenderFailed	Windows Defender non ha accettato la modifica (forse è sostituito da un altro antivirus o lo impedisce un criterio).

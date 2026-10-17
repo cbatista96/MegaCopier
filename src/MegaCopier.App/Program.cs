@@ -232,6 +232,11 @@ public static class Program
 
         ShellExtensionRegistration.Unregister();
         ShellMenuPackage.Unregister();
+        if (AppSettings.Load().DefenderExcluded)
+        {
+            DefenderExclusion.SetAsync(add: false).GetAwaiter().GetResult(); // la exclusión no debe sobrevivir a la app
+        }
+
         StartupRegistration.Set(false);
         try
         {
