@@ -834,4 +834,22 @@
   <data name="LocalSend_AutoAccept.Content" xml:space="preserve"><value>Accepteren zonder te vragen (alleen vertrouwde netwerken)</value></data>
   <data name="LocalSend_Listening" xml:space="preserve"><value>Wacht op LocalSend-overdrachten (poort {0}).</value></data>
   <data name="LocalSend_Ask" xml:space="preserve"><value>&apos;{0}&apos; wil je {1} bestanden ({2}) sturen met LocalSend. Accepteren?</value></data>
+  <data name="Settings_LiveSync.Text" xml:space="preserve"><value>Realtime synchronisatie</value></data>
+  <data name="Settings_LiveSyncTitle.Text" xml:space="preserve"><value>Mappen die meteen gekopieerd worden</value></data>
+  <data name="Settings_LiveSyncDescription.Text" xml:space="preserve"><value>MegaCopier houdt elke map in de gaten en zet elke wijziging in de kopie zodra er niets meer verandert (een paar seconden). Met spiegelen verdwijnt wat je verwijdert ook uit de kopie. Werkt zolang MegaCopier open is (in het systeemvak).</value></data>
+  <data name="Settings_LiveSyncAdd.Text" xml:space="preserve"><value>Map toevoegen…</value></data>
+  <data name="Settings_LiveSyncEmpty" xml:space="preserve"><value>Je synchroniseert nog geen enkele map.</value></data>
+  <data name="Settings_LiveSyncNow" xml:space="preserve"><value>&apos;{0}&apos; nu synchroniseren</value></data>
+  <data name="Settings_LiveSyncRemove" xml:space="preserve"><value>Stoppen met synchroniseren van &apos;{0}&apos;</value></data>
+  <data name="LiveSync_Mirror" xml:space="preserve"><value>Spiegelen</value></data>
+  <data name="LiveSync_MirrorTip" xml:space="preserve"><value>Uit de kopie verwijderen wat uit de map verdwijnt</value></data>
+  <data name="LiveSync_PickTarget" xml:space="preserve"><value>Hierheen synchroniseren</value></data>
+  <data name="LiveSync_Invalid" xml:space="preserve"><value>Kan niet synchroniseren: {0}</value></data>
+  <data name="LiveSync_Waiting" xml:space="preserve"><value>Eerste ronde voorbereiden…</value></data>
+  <data name="LiveSync_Syncing" xml:space="preserve"><value>Synchroniseren…</value></data>
+  <data name="LiveSync_Last" xml:space="preserve"><value>Bijgewerkt · laatste ronde {0}: {1} gekopieerd, {2} verwijderd, {3} fouten</value></data>
+  <data name="LiveSync_Error" xml:space="preserve"><value>Fout in de ronde van {0}: {1}</value></data>
+  <data name="LiveSync_FailedTitle" xml:space="preserve"><value>Probleem met synchroniseren</value></data>
+  <data name="LiveSync_FailedError" xml:space="preserve"><value>&apos;{0}&apos; kon niet worden gesynchroniseerd: {1}</value></data>
+  <data name="LiveSync_FailedFiles" xml:space="preserve"><value>In &apos;{0}&apos; konden {1} bestanden niet worden gekopieerd (nieuwe poging bij de volgende wijziging).</value></data>
 </root>

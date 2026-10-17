@@ -834,4 +834,22 @@
   <data name="LocalSend_AutoAccept.Content" xml:space="preserve"><value>Aceitar sem perguntar (só em redes confiáveis)</value></data>
   <data name="LocalSend_Listening" xml:space="preserve"><value>Aguardando envios do LocalSend (porta {0}).</value></data>
   <data name="LocalSend_Ask" xml:space="preserve"><value>&quot;{0}&quot; quer enviar {1} arquivos ({2}) com o LocalSend. Aceitar?</value></data>
+  <data name="Settings_LiveSync.Text" xml:space="preserve"><value>Sincronização em tempo real</value></data>
+  <data name="Settings_LiveSyncTitle.Text" xml:space="preserve"><value>Pastas copiadas na hora</value></data>
+  <data name="Settings_LiveSyncDescription.Text" xml:space="preserve"><value>O MegaCopier vigia cada pasta e passa cada mudança para a cópia assim que ela para de mudar (alguns segundos). Com espelho, o que você apagar também some da cópia. Funciona enquanto o MegaCopier estiver aberto (na bandeja).</value></data>
+  <data name="Settings_LiveSyncAdd.Text" xml:space="preserve"><value>Adicionar pasta…</value></data>
+  <data name="Settings_LiveSyncEmpty" xml:space="preserve"><value>Você ainda não sincroniza nenhuma pasta.</value></data>
+  <data name="Settings_LiveSyncNow" xml:space="preserve"><value>Sincronizar &quot;{0}&quot; agora</value></data>
+  <data name="Settings_LiveSyncRemove" xml:space="preserve"><value>Parar de sincronizar &quot;{0}&quot;</value></data>
+  <data name="LiveSync_Mirror" xml:space="preserve"><value>Espelho</value></data>
+  <data name="LiveSync_MirrorTip" xml:space="preserve"><value>Apagar da cópia o que for apagado da pasta</value></data>
+  <data name="LiveSync_PickTarget" xml:space="preserve"><value>Sincronizar aqui</value></data>
+  <data name="LiveSync_Invalid" xml:space="preserve"><value>Não é possível sincronizar: {0}</value></data>
+  <data name="LiveSync_Waiting" xml:space="preserve"><value>Preparando a primeira passagem…</value></data>
+  <data name="LiveSync_Syncing" xml:space="preserve"><value>Sincronizando…</value></data>
+  <data name="LiveSync_Last" xml:space="preserve"><value>Em dia · última passagem {0}: {1} copiados, {2} removidos, {3} erros</value></data>
+  <data name="LiveSync_Error" xml:space="preserve"><value>Erro na passagem de {0}: {1}</value></data>
+  <data name="LiveSync_FailedTitle" xml:space="preserve"><value>Problema na sincronização</value></data>
+  <data name="LiveSync_FailedError" xml:space="preserve"><value>Não foi possível sincronizar &quot;{0}&quot;: {1}</value></data>
+  <data name="LiveSync_FailedFiles" xml:space="preserve"><value>Em &quot;{0}&quot;, {1} arquivos não puderam ser copiados (nova tentativa na próxima mudança).</value></data>
 </root>

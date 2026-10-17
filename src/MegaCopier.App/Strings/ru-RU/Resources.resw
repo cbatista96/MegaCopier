@@ -834,4 +834,22 @@
   <data name="LocalSend_AutoAccept.Content" xml:space="preserve"><value>Принимать без вопросов (только в доверенных сетях)</value></data>
   <data name="LocalSend_Listening" xml:space="preserve"><value>Ожидание отправок LocalSend (порт {0}).</value></data>
   <data name="LocalSend_Ask" xml:space="preserve"><value>«{0}» хочет отправить вам файлы ({1}, {2}) через LocalSend. Принять?</value></data>
+  <data name="Settings_LiveSync.Text" xml:space="preserve"><value>Синхронизация в реальном времени</value></data>
+  <data name="Settings_LiveSyncTitle.Text" xml:space="preserve"><value>Папки, копируемые сразу</value></data>
+  <data name="Settings_LiveSyncDescription.Text" xml:space="preserve"><value>MegaCopier следит за каждой папкой и переносит каждое изменение в её копию, как только изменения прекращаются (несколько секунд). В режиме зеркала удалённое исчезает и из копии. Работает, пока MegaCopier открыт (в области уведомлений).</value></data>
+  <data name="Settings_LiveSyncAdd.Text" xml:space="preserve"><value>Добавить папку…</value></data>
+  <data name="Settings_LiveSyncEmpty" xml:space="preserve"><value>Вы пока не синхронизируете ни одной папки.</value></data>
+  <data name="Settings_LiveSyncNow" xml:space="preserve"><value>Синхронизировать «{0}» сейчас</value></data>
+  <data name="Settings_LiveSyncRemove" xml:space="preserve"><value>Прекратить синхронизацию «{0}»</value></data>
+  <data name="LiveSync_Mirror" xml:space="preserve"><value>Зеркало</value></data>
+  <data name="LiveSync_MirrorTip" xml:space="preserve"><value>Удалять из копии то, что удалено из папки</value></data>
+  <data name="LiveSync_PickTarget" xml:space="preserve"><value>Синхронизировать сюда</value></data>
+  <data name="LiveSync_Invalid" xml:space="preserve"><value>Синхронизация невозможна: {0}</value></data>
+  <data name="LiveSync_Waiting" xml:space="preserve"><value>Подготовка первого прохода…</value></data>
+  <data name="LiveSync_Syncing" xml:space="preserve"><value>Синхронизация…</value></data>
+  <data name="LiveSync_Last" xml:space="preserve"><value>Актуально · последний проход {0}: скопировано {1}, удалено {2}, ошибок {3}</value></data>
+  <data name="LiveSync_Error" xml:space="preserve"><value>Ошибка прохода {0}: {1}</value></data>
+  <data name="LiveSync_FailedTitle" xml:space="preserve"><value>Проблема синхронизации</value></data>
+  <data name="LiveSync_FailedError" xml:space="preserve"><value>Не удалось синхронизировать «{0}»: {1}</value></data>
+  <data name="LiveSync_FailedFiles" xml:space="preserve"><value>В «{0}» не удалось скопировать файлы ({1}); повтор при следующем изменении.</value></data>
 </root>

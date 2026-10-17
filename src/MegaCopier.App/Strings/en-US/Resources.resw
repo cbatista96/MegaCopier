@@ -834,4 +834,22 @@
   <data name="LocalSend_AutoAccept.Content" xml:space="preserve"><value>Accept without asking (trusted networks only)</value></data>
   <data name="LocalSend_Listening" xml:space="preserve"><value>Waiting for LocalSend transfers (port {0}).</value></data>
   <data name="LocalSend_Ask" xml:space="preserve"><value>&quot;{0}&quot; wants to send you {1} files ({2}) with LocalSend. Accept them?</value></data>
+  <data name="Settings_LiveSync.Text" xml:space="preserve"><value>Real-time sync</value></data>
+  <data name="Settings_LiveSyncTitle.Text" xml:space="preserve"><value>Folders copied as they change</value></data>
+  <data name="Settings_LiveSyncDescription.Text" xml:space="preserve"><value>MegaCopier watches each folder and passes every change to its copy as soon as it stops changing (a few seconds). With mirror, what you delete also disappears from the copy. Works while MegaCopier is open (in the tray).</value></data>
+  <data name="Settings_LiveSyncAdd.Text" xml:space="preserve"><value>Add folder…</value></data>
+  <data name="Settings_LiveSyncEmpty" xml:space="preserve"><value>You&apos;re not syncing any folder yet.</value></data>
+  <data name="Settings_LiveSyncNow" xml:space="preserve"><value>Sync &quot;{0}&quot; now</value></data>
+  <data name="Settings_LiveSyncRemove" xml:space="preserve"><value>Stop syncing &quot;{0}&quot;</value></data>
+  <data name="LiveSync_Mirror" xml:space="preserve"><value>Mirror</value></data>
+  <data name="LiveSync_MirrorTip" xml:space="preserve"><value>Delete from the copy what is deleted from the folder</value></data>
+  <data name="LiveSync_PickTarget" xml:space="preserve"><value>Sync here</value></data>
+  <data name="LiveSync_Invalid" xml:space="preserve"><value>Can&apos;t sync: {0}</value></data>
+  <data name="LiveSync_Waiting" xml:space="preserve"><value>Preparing the first pass…</value></data>
+  <data name="LiveSync_Syncing" xml:space="preserve"><value>Syncing…</value></data>
+  <data name="LiveSync_Last" xml:space="preserve"><value>Up to date · last pass {0}: {1} copied, {2} removed, {3} errors</value></data>
+  <data name="LiveSync_Error" xml:space="preserve"><value>Error in the {0} pass: {1}</value></data>
+  <data name="LiveSync_FailedTitle" xml:space="preserve"><value>Sync problem</value></data>
+  <data name="LiveSync_FailedError" xml:space="preserve"><value>&quot;{0}&quot; couldn&apos;t be synced: {1}</value></data>
+  <data name="LiveSync_FailedFiles" xml:space="preserve"><value>In &quot;{0}&quot;, {1} files couldn&apos;t be copied (it will retry on the next change).</value></data>
 </root>

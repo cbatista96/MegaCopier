@@ -834,4 +834,22 @@
   <data name="LocalSend_AutoAccept.Content" xml:space="preserve"><value>Ohne Nachfrage annehmen (nur in vertrauenswürdigen Netzwerken)</value></data>
   <data name="LocalSend_Listening" xml:space="preserve"><value>Wartet auf LocalSend-Übertragungen (Port {0}).</value></data>
   <data name="LocalSend_Ask" xml:space="preserve"><value>„{0}“ möchte Ihnen {1} Dateien ({2}) mit LocalSend senden. Annehmen?</value></data>
+  <data name="Settings_LiveSync.Text" xml:space="preserve"><value>Echtzeit-Synchronisierung</value></data>
+  <data name="Settings_LiveSyncTitle.Text" xml:space="preserve"><value>Ordner, die sofort kopiert werden</value></data>
+  <data name="Settings_LiveSyncDescription.Text" xml:space="preserve"><value>MegaCopier überwacht jeden Ordner und überträgt jede Änderung in seine Kopie, sobald sich nichts mehr ändert (einige Sekunden). Mit Spiegeln verschwindet Gelöschtes auch aus der Kopie. Funktioniert, solange MegaCopier geöffnet ist (im Infobereich).</value></data>
+  <data name="Settings_LiveSyncAdd.Text" xml:space="preserve"><value>Ordner hinzufügen…</value></data>
+  <data name="Settings_LiveSyncEmpty" xml:space="preserve"><value>Sie synchronisieren noch keinen Ordner.</value></data>
+  <data name="Settings_LiveSyncNow" xml:space="preserve"><value>„{0}“ jetzt synchronisieren</value></data>
+  <data name="Settings_LiveSyncRemove" xml:space="preserve"><value>„{0}“ nicht mehr synchronisieren</value></data>
+  <data name="LiveSync_Mirror" xml:space="preserve"><value>Spiegeln</value></data>
+  <data name="LiveSync_MirrorTip" xml:space="preserve"><value>Aus der Kopie löschen, was im Ordner gelöscht wird</value></data>
+  <data name="LiveSync_PickTarget" xml:space="preserve"><value>Hierher synchronisieren</value></data>
+  <data name="LiveSync_Invalid" xml:space="preserve"><value>Synchronisierung nicht möglich: {0}</value></data>
+  <data name="LiveSync_Waiting" xml:space="preserve"><value>Erster Durchgang wird vorbereitet…</value></data>
+  <data name="LiveSync_Syncing" xml:space="preserve"><value>Wird synchronisiert…</value></data>
+  <data name="LiveSync_Last" xml:space="preserve"><value>Aktuell · letzter Durchgang {0}: {1} kopiert, {2} entfernt, {3} Fehler</value></data>
+  <data name="LiveSync_Error" xml:space="preserve"><value>Fehler im Durchgang von {0}: {1}</value></data>
+  <data name="LiveSync_FailedTitle" xml:space="preserve"><value>Problem bei der Synchronisierung</value></data>
+  <data name="LiveSync_FailedError" xml:space="preserve"><value>„{0}“ konnte nicht synchronisiert werden: {1}</value></data>
+  <data name="LiveSync_FailedFiles" xml:space="preserve"><value>In „{0}“ konnten {1} Dateien nicht kopiert werden (neuer Versuch bei der nächsten Änderung).</value></data>
 </root>

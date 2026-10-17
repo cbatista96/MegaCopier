@@ -828,3 +828,21 @@ Settings_LocalSendDescription	같은 네트워크의 휴대폰에 LocalSend(무�
 LocalSend_AutoAccept.Content	묻지 않고 받기(신뢰할 수 있는 네트워크에서만)
 LocalSend_Listening	LocalSend 전송을 기다리는 중(포트 {0}).
 LocalSend_Ask	"{0}"이(가) LocalSend로 파일 {1}개({2})를 보내려고 합니다. 받을까요?
+Settings_LiveSync.Text	실시간 동기화
+Settings_LiveSyncTitle.Text	바로 복사되는 폴더
+Settings_LiveSyncDescription.Text	MegaCopier가 각 폴더를 지켜보다가 변경이 멈추면(몇 초) 바로 복사본에 반영합니다. 미러를 켜면 삭제한 항목도 복사본에서 사라집니다. MegaCopier가 열려 있는 동안(알림 영역) 작동합니다.
+Settings_LiveSyncAdd.Text	폴더 추가…
+Settings_LiveSyncEmpty	아직 동기화하는 폴더가 없습니다.
+Settings_LiveSyncNow	지금 "{0}" 동기화
+Settings_LiveSyncRemove	"{0}" 동기화 중지
+LiveSync_Mirror	미러
+LiveSync_MirrorTip	폴더에서 삭제한 항목을 복사본에서도 삭제
+LiveSync_PickTarget	여기로 동기화
+LiveSync_Invalid	동기화할 수 없습니다: {0}
+LiveSync_Waiting	첫 동기화를 준비하는 중…
+LiveSync_Syncing	동기화하는 중…
+LiveSync_Last	최신 상태 · 마지막 동기화 {0}: 복사 {1}, 제거 {2}, 오류 {3}
+LiveSync_Error	{0} 동기화 오류: {1}
+LiveSync_FailedTitle	동기화 문제
+LiveSync_FailedError	"{0}"을(를) 동기화할 수 없습니다: {1}
+LiveSync_FailedFiles	"{0}"에서 파일 {1}개를 복사하지 못했습니다(다음 변경 때 다시 시도합니다).

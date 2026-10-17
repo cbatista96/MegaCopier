@@ -828,3 +828,21 @@ Settings_LocalSendDescription	Установите LocalSend (бесплатно
 LocalSend_AutoAccept.Content	Принимать без вопросов (только в доверенных сетях)
 LocalSend_Listening	Ожидание отправок LocalSend (порт {0}).
 LocalSend_Ask	«{0}» хочет отправить вам файлы ({1}, {2}) через LocalSend. Принять?
+Settings_LiveSync.Text	Синхронизация в реальном времени
+Settings_LiveSyncTitle.Text	Папки, копируемые сразу
+Settings_LiveSyncDescription.Text	MegaCopier следит за каждой папкой и переносит каждое изменение в её копию, как только изменения прекращаются (несколько секунд). В режиме зеркала удалённое исчезает и из копии. Работает, пока MegaCopier открыт (в области уведомлений).
+Settings_LiveSyncAdd.Text	Добавить папку…
+Settings_LiveSyncEmpty	Вы пока не синхронизируете ни одной папки.
+Settings_LiveSyncNow	Синхронизировать «{0}» сейчас
+Settings_LiveSyncRemove	Прекратить синхронизацию «{0}»
+LiveSync_Mirror	Зеркало
+LiveSync_MirrorTip	Удалять из копии то, что удалено из папки
+LiveSync_PickTarget	Синхронизировать сюда
+LiveSync_Invalid	Синхронизация невозможна: {0}
+LiveSync_Waiting	Подготовка первого прохода…
+LiveSync_Syncing	Синхронизация…
+LiveSync_Last	Актуально · последний проход {0}: скопировано {1}, удалено {2}, ошибок {3}
+LiveSync_Error	Ошибка прохода {0}: {1}
+LiveSync_FailedTitle	Проблема синхронизации
+LiveSync_FailedError	Не удалось синхронизировать «{0}»: {1}
+LiveSync_FailedFiles	В «{0}» не удалось скопировать файлы ({1}); повтор при следующем изменении.

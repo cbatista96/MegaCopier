@@ -828,3 +828,21 @@ Settings_LocalSendDescription	Aynı ağdaki bir telefona LocalSend'i (ücretsiz,
 LocalSend_AutoAccept.Content	Sormadan kabul et (yalnızca güvenilir ağlarda)
 LocalSend_Listening	LocalSend gönderimleri bekleniyor (bağlantı noktası {0}).
 LocalSend_Ask	"{0}" size LocalSend ile {1} dosya ({2}) göndermek istiyor. Kabul edilsin mi?
+Settings_LiveSync.Text	Gerçek zamanlı eşitleme
+Settings_LiveSyncTitle.Text	Değiştikçe kopyalanan klasörler
+Settings_LiveSyncDescription.Text	MegaCopier her klasörü izler ve değişiklik durur durmaz (birkaç saniye) her değişikliği kopyasına aktarır. Yansıtmada sildikleriniz kopyadan da kalkar. MegaCopier açıkken (bildirim alanında) çalışır.
+Settings_LiveSyncAdd.Text	Klasör ekle…
+Settings_LiveSyncEmpty	Henüz hiçbir klasörü eşitlemiyorsunuz.
+Settings_LiveSyncNow	"{0}" şimdi eşitle
+Settings_LiveSyncRemove	"{0}" eşitlemeyi durdur
+LiveSync_Mirror	Yansıt
+LiveSync_MirrorTip	Klasörden silineni kopyadan da sil
+LiveSync_PickTarget	Buraya eşitle
+LiveSync_Invalid	Eşitlenemiyor: {0}
+LiveSync_Waiting	İlk geçiş hazırlanıyor…
+LiveSync_Syncing	Eşitleniyor…
+LiveSync_Last	Güncel · son geçiş {0}: {1} kopyalandı, {2} kaldırıldı, {3} hata
+LiveSync_Error	{0} geçişinde hata: {1}
+LiveSync_FailedTitle	Eşitleme sorunu
+LiveSync_FailedError	"{0}" eşitlenemedi: {1}
+LiveSync_FailedFiles	"{0}" içinde {1} dosya kopyalanamadı (bir sonraki değişiklikte yeniden denenecek).

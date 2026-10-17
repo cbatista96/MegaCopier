@@ -30,6 +30,8 @@ public partial class App : Application
 
     internal PeerService? Peers { get; private set; }
 
+    internal LiveSyncService? LiveSyncs { get; private set; }
+
     internal DiskWatcher? Disks { get; private set; }
     private MainWindow? _window;
     private Views.ShelfWindow? _shelf;
@@ -128,6 +130,8 @@ public partial class App : Application
         Disks.Refresh(force: true);
         Peers = new PeerService(this);
         Peers.Apply();
+        LiveSyncs = new LiveSyncService(this);
+        LiveSyncs.Apply();
 
         _taskbar = new TaskbarProgress(Window.Handle);
         _statusTimer = Dispatcher.CreateTimer();
@@ -603,6 +607,12 @@ public partial class App : Application
                 ShowWindow();
                 return new IpcResponse { Ok = true };
 
+            case "debug-livesync" when TestMode && request.Destination is { } syncTarget && request.Sources.Count == 1:
+                // Solo pruebas: sincronizar al momento Sources[0] en Destination (MOVE=1: en espejo).
+                return LiveSyncs?.Add(request.Sources[0], syncTarget, request.Move == true) is { } syncProblem
+                    ? new IpcResponse { Ok = false, Error = syncProblem }
+                    : new IpcResponse { Ok = true };
+
             case "debug-finish" when TestMode:
                 // Solo pruebas: elegir "Al terminar" (Destination = Sleep, Shutdown...) sin abrir el menú.
                 FinishAction = Enum.Parse<FinishAction>(request.Destination ?? "None");
@@ -859,6 +869,7 @@ public partial class App : Application
         // Las copias en curso se detienen conservando lo copiado: al volver se continúan.
         _paste?.Dispose();
         _drag?.Dispose();
+        LiveSyncs?.Dispose();
         await Task.Run(() => Queue.StopAll(TimeSpan.FromSeconds(5)));
         _statusTimer?.Stop();
         _taskbar?.Dispose();

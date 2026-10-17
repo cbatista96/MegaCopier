@@ -377,6 +377,20 @@
                         </StackPanel>
                     </StackPanel>
                 </Border>
+                <!-- Sincronización en tiempo real -->
+                <TextBlock x:Uid="Settings_LiveSync" Style="{StaticResource McSection}" />
+                <Border Style="{StaticResource McSettingCard}">
+                    <StackPanel Spacing="8">
+                        <Grid Style="{StaticResource Row}" Tag="SettingRow">
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                            <FontIcon VerticalAlignment="Center" Glyph="&#xE895;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
+                            <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_LiveSyncTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="Settings_LiveSyncDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                            <Button Grid.Column="2" Style="{StaticResource McButton}" Click="LiveSyncAdd_Click"><TextBlock x:Uid="Settings_LiveSyncAdd" /></Button>
+                        </Grid>
+                        <TextBlock x:Name="LiveSyncProblem" Style="{StaticResource McSecondary}" Margin="30,0,0,0" TextWrapping="Wrap" Visibility="Collapsed" />
+                        <StackPanel x:Name="LiveSyncList" Spacing="6" Margin="30,0,0,0" />
+                    </StackPanel>
+                </Border>
                 <!-- Tareas programadas -->
                 <TextBlock x:Uid="Settings_Tasks" Style="{StaticResource McSection}" />
                 <Border Style="{StaticResource McSettingCard}">

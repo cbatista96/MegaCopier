@@ -834,4 +834,22 @@
   <data name="LocalSend_AutoAccept.Content" xml:space="preserve"><value>確認せずに受け入れる（信頼できるネットワークのみ）</value></data>
   <data name="LocalSend_Listening" xml:space="preserve"><value>LocalSend からの送信を待っています（ポート {0}）。</value></data>
   <data name="LocalSend_Ask" xml:space="preserve"><value>「{0}」が LocalSend で {1} 個のファイル（{2}）を送ろうとしています。受け入れますか？</value></data>
+  <data name="Settings_LiveSync.Text" xml:space="preserve"><value>リアルタイム同期</value></data>
+  <data name="Settings_LiveSyncTitle.Text" xml:space="preserve"><value>変更されたらすぐコピーするフォルダー</value></data>
+  <data name="Settings_LiveSyncDescription.Text" xml:space="preserve"><value>MegaCopier は各フォルダーを監視し、変更が落ち着いたら（数秒）すぐにコピーへ反映します。ミラーでは、削除したものはコピーからも消えます。MegaCopier が開いている間（通知領域）動作します。</value></data>
+  <data name="Settings_LiveSyncAdd.Text" xml:space="preserve"><value>フォルダーを追加…</value></data>
+  <data name="Settings_LiveSyncEmpty" xml:space="preserve"><value>まだ同期しているフォルダーはありません。</value></data>
+  <data name="Settings_LiveSyncNow" xml:space="preserve"><value>「{0}」を今すぐ同期</value></data>
+  <data name="Settings_LiveSyncRemove" xml:space="preserve"><value>「{0}」の同期をやめる</value></data>
+  <data name="LiveSync_Mirror" xml:space="preserve"><value>ミラー</value></data>
+  <data name="LiveSync_MirrorTip" xml:space="preserve"><value>フォルダーから削除したものをコピーからも削除</value></data>
+  <data name="LiveSync_PickTarget" xml:space="preserve"><value>ここに同期</value></data>
+  <data name="LiveSync_Invalid" xml:space="preserve"><value>同期できません: {0}</value></data>
+  <data name="LiveSync_Waiting" xml:space="preserve"><value>最初の同期を準備中…</value></data>
+  <data name="LiveSync_Syncing" xml:space="preserve"><value>同期中…</value></data>
+  <data name="LiveSync_Last" xml:space="preserve"><value>最新 · 前回 {0}: コピー {1}、削除 {2}、エラー {3}</value></data>
+  <data name="LiveSync_Error" xml:space="preserve"><value>{0} の同期でエラー: {1}</value></data>
+  <data name="LiveSync_FailedTitle" xml:space="preserve"><value>同期の問題</value></data>
+  <data name="LiveSync_FailedError" xml:space="preserve"><value>「{0}」を同期できませんでした: {1}</value></data>
+  <data name="LiveSync_FailedFiles" xml:space="preserve"><value>「{0}」の {1} 個のファイルをコピーできませんでした（次の変更時に再試行します）。</value></data>
 </root>

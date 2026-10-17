@@ -828,3 +828,21 @@ Settings_LocalSendDescription	在同一网络中的手机上安装 LocalSend（�
 LocalSend_AutoAccept.Content	不询问直接接受（仅限可信网络）
 LocalSend_Listening	正在等待 LocalSend 发送（端口 {0}）。
 LocalSend_Ask	“{0}”想通过 LocalSend 向你发送 {1} 个文件（{2}）。是否接受？
+Settings_LiveSync.Text	实时同步
+Settings_LiveSyncTitle.Text	随改随复制的文件夹
+Settings_LiveSyncDescription.Text	MegaCopier 会监视每个文件夹，在变化停止后（几秒钟）把每处改动同步到副本。启用镜像时，你删除的内容也会从副本中消失。只要 MegaCopier 开着（在通知区域）就会工作。
+Settings_LiveSyncAdd.Text	添加文件夹…
+Settings_LiveSyncEmpty	你还没有同步任何文件夹。
+Settings_LiveSyncNow	立即同步“{0}”
+Settings_LiveSyncRemove	停止同步“{0}”
+LiveSync_Mirror	镜像
+LiveSync_MirrorTip	从副本中删除文件夹里已删除的内容
+LiveSync_PickTarget	同步到这里
+LiveSync_Invalid	无法同步：{0}
+LiveSync_Waiting	正在准备第一次同步…
+LiveSync_Syncing	正在同步…
+LiveSync_Last	已同步 · 上次 {0}：复制 {1} 个，移除 {2} 个，错误 {3} 个
+LiveSync_Error	{0} 的同步出错：{1}
+LiveSync_FailedTitle	同步出现问题
+LiveSync_FailedError	无法同步“{0}”：{1}
+LiveSync_FailedFiles	“{0}”中有 {1} 个文件无法复制（下次改动时会重试）。

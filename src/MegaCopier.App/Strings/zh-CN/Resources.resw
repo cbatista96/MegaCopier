@@ -834,4 +834,22 @@
   <data name="LocalSend_AutoAccept.Content" xml:space="preserve"><value>不询问直接接受（仅限可信网络）</value></data>
   <data name="LocalSend_Listening" xml:space="preserve"><value>正在等待 LocalSend 发送（端口 {0}）。</value></data>
   <data name="LocalSend_Ask" xml:space="preserve"><value>“{0}”想通过 LocalSend 向你发送 {1} 个文件（{2}）。是否接受？</value></data>
+  <data name="Settings_LiveSync.Text" xml:space="preserve"><value>实时同步</value></data>
+  <data name="Settings_LiveSyncTitle.Text" xml:space="preserve"><value>随改随复制的文件夹</value></data>
+  <data name="Settings_LiveSyncDescription.Text" xml:space="preserve"><value>MegaCopier 会监视每个文件夹，在变化停止后（几秒钟）把每处改动同步到副本。启用镜像时，你删除的内容也会从副本中消失。只要 MegaCopier 开着（在通知区域）就会工作。</value></data>
+  <data name="Settings_LiveSyncAdd.Text" xml:space="preserve"><value>添加文件夹…</value></data>
+  <data name="Settings_LiveSyncEmpty" xml:space="preserve"><value>你还没有同步任何文件夹。</value></data>
+  <data name="Settings_LiveSyncNow" xml:space="preserve"><value>立即同步“{0}”</value></data>
+  <data name="Settings_LiveSyncRemove" xml:space="preserve"><value>停止同步“{0}”</value></data>
+  <data name="LiveSync_Mirror" xml:space="preserve"><value>镜像</value></data>
+  <data name="LiveSync_MirrorTip" xml:space="preserve"><value>从副本中删除文件夹里已删除的内容</value></data>
+  <data name="LiveSync_PickTarget" xml:space="preserve"><value>同步到这里</value></data>
+  <data name="LiveSync_Invalid" xml:space="preserve"><value>无法同步：{0}</value></data>
+  <data name="LiveSync_Waiting" xml:space="preserve"><value>正在准备第一次同步…</value></data>
+  <data name="LiveSync_Syncing" xml:space="preserve"><value>正在同步…</value></data>
+  <data name="LiveSync_Last" xml:space="preserve"><value>已同步 · 上次 {0}：复制 {1} 个，移除 {2} 个，错误 {3} 个</value></data>
+  <data name="LiveSync_Error" xml:space="preserve"><value>{0} 的同步出错：{1}</value></data>
+  <data name="LiveSync_FailedTitle" xml:space="preserve"><value>同步出现问题</value></data>
+  <data name="LiveSync_FailedError" xml:space="preserve"><value>无法同步“{0}”：{1}</value></data>
+  <data name="LiveSync_FailedFiles" xml:space="preserve"><value>“{0}”中有 {1} 个文件无法复制（下次改动时会重试）。</value></data>
 </root>
