@@ -29,6 +29,11 @@ public sealed partial class CopyEngine
     /// </summary>
     private CopyJobResult RunSend(CopyJobRequest request, Stopwatch stopwatch, CancellationToken cancellationToken)
     {
+        if (LocalSendSender.IsDestination(request.Destination))
+        {
+            return RunLocalSend(request, stopwatch, cancellationToken);
+        }
+
         var result = new CopyJobResult();
         string dummy = Path.Combine(Path.GetTempPath(), "MegaCopier-send-" + Guid.NewGuid().ToString("N"));
         var plan = CopyPlanner.Build(request.Sources, dummy, _options.Filter, LinkHandling.FollowTarget);

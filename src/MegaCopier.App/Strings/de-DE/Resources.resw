@@ -957,4 +957,5 @@
   <data name="Compare_RenameRight" xml:space="preserve"><value>Rechts umbenennen (war {0})</value></data>
   <data name="Compare_RenameLeft" xml:space="preserve"><value>Links umbenennen (war {0})</value></data>
   <data name="Compare_Renamed" xml:space="preserve"><value>Umbenannt oder verschoben</value></data>
+  <data name="Send_LocalSendDevice" xml:space="preserve"><value>{0} · LocalSend {1} ({2})</value></data>
 </root>

@@ -228,3 +228,6 @@ E_RemoteConnections	Usando {0} conexiones a la vez con el servidor.	Using {0} co
 E_RemoteConnectionFailed	No se pudo abrir la conexión {0} con el servidor ({1}): se sigue con las demás.	Could not open connection {0} to the server ({1}): continuing with the others.
 E_Renamed	Renombrado (sin copiarlo otra vez)	Renamed (not copied again)
 E_WouldRename	Se renombraría	Would be renamed
+E_LocalSendStart	Enviar {0} archivos ({1}) a LocalSend en {2}: acéptalo en la otra pantalla.	Send {0} files ({1}) to LocalSend on {2}: accept it on the other screen.
+E_LocalSendDone	Enviados {0} archivos ({1}) con LocalSend.	Sent {0} files ({1}) with LocalSend.
+E_LocalSendRejected	El otro equipo rechazó el envío.	The other device declined the transfer.

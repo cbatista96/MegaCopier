@@ -951,3 +951,4 @@ Settings_DefenderFailed	Windows Defender 未接受此更改（可能被其他防
 Compare_RenameRight	在右侧重命名（原为 {0}）
 Compare_RenameLeft	在左侧重命名（原为 {0}）
 Compare_Renamed	已重命名或移动
+Send_LocalSendDevice	{0} · LocalSend {1}（{2}）

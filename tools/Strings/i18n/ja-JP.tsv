@@ -951,3 +951,4 @@ Settings_DefenderFailed	Windows Defender が変更を受け付けませんでし
 Compare_RenameRight	右側で名前を変更（元は {0}）
 Compare_RenameLeft	左側で名前を変更（元は {0}）
 Compare_Renamed	名前の変更または移動
+Send_LocalSendDevice	{0} · LocalSend {1}（{2}）

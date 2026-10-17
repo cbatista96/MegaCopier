@@ -228,3 +228,6 @@ E_RemoteConnections	Używanie {0} jednoczesnych połączeń z serwerem.
 E_RemoteConnectionFailed	Nie udało się otworzyć połączenia {0} z serwerem ({1}): kontynuacja z pozostałymi.
 E_Renamed	Zmieniono nazwę (bez ponownego kopiowania)
 E_WouldRename	Zostałaby zmieniona nazwa
+E_LocalSendStart	Wysyłanie {0} plików ({1}) do LocalSend na {2}: zaakceptuj na drugim ekranie.
+E_LocalSendDone	Wysłano {0} plików ({1}) przez LocalSend.
+E_LocalSendRejected	Drugie urządzenie odrzuciło przesyłanie.

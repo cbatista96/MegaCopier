@@ -951,3 +951,4 @@ Settings_DefenderFailed	Windows Defender no aceptó el cambio (puede que lo sust
 Compare_RenameRight	Renombrar a la derecha (era {0})	Rename on the right (was {0})
 Compare_RenameLeft	Renombrar a la izquierda (era {0})	Rename on the left (was {0})
 Compare_Renamed	Renombrado o movido	Renamed or moved
+Send_LocalSendDevice	{0} · LocalSend {1} ({2})	{0} · LocalSend {1} ({2})

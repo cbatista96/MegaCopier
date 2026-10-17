@@ -228,3 +228,6 @@ E_RemoteConnections	{0} gleichzeitige Verbindungen zum Server werden verwendet.
 E_RemoteConnectionFailed	Verbindung {0} zum Server konnte nicht geöffnet werden ({1}): Es geht mit den anderen weiter.
 E_Renamed	Umbenannt (nicht erneut kopiert)
 E_WouldRename	Würde umbenannt
+E_LocalSendStart	{0} Dateien ({1}) an LocalSend auf {2} senden: Auf dem anderen Bildschirm annehmen.
+E_LocalSendDone	{0} Dateien ({1}) mit LocalSend gesendet.
+E_LocalSendRejected	Das andere Gerät hat die Übertragung abgelehnt.

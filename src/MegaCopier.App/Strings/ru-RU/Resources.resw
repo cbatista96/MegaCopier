@@ -957,4 +957,5 @@
   <data name="Compare_RenameRight" xml:space="preserve"><value>Переименовать справа (было {0})</value></data>
   <data name="Compare_RenameLeft" xml:space="preserve"><value>Переименовать слева (было {0})</value></data>
   <data name="Compare_Renamed" xml:space="preserve"><value>Переименован или перемещён</value></data>
+  <data name="Send_LocalSendDevice" xml:space="preserve"><value>{0} · LocalSend {1} ({2})</value></data>
 </root>

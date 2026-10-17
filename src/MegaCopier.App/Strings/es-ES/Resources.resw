@@ -957,4 +957,5 @@
   <data name="Compare_RenameRight" xml:space="preserve"><value>Renombrar a la derecha (era {0})</value></data>
   <data name="Compare_RenameLeft" xml:space="preserve"><value>Renombrar a la izquierda (era {0})</value></data>
   <data name="Compare_Renamed" xml:space="preserve"><value>Renombrado o movido</value></data>
+  <data name="Send_LocalSendDevice" xml:space="preserve"><value>{0} · LocalSend {1} ({2})</value></data>
 </root>
