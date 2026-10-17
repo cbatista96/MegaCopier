@@ -123,7 +123,7 @@ internal sealed partial class FileTransfer
     private FileTransferResult? CopySmall(string sourcePath, string destinationPath, CancellationToken cancellationToken)
     {
         string partialPath = destinationPath + PartialSuffix;
-        using var source = File.OpenHandle(sourcePath, FileMode.Open, FileAccess.Read, FileShare.Read, FileOptions.SequentialScan);
+        using var source = OpenFile(sourcePath, FileMode.Open, FileAccess.Read, FileShare.Read, FileOptions.SequentialScan);
         var info = Win32.GetSourceInfo(source);
         long length = info.Identity.Length;
         if (length > SmallFileLimit)
@@ -242,7 +242,7 @@ internal sealed partial class FileTransfer
         {
             try
             {
-                using var handle = File.OpenHandle(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite | FileShare.Delete, Win32.NoBuffering);
+                using var handle = OpenFile(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite | FileShare.Delete, Win32.NoBuffering);
                 int read = RandomAccess.Read(handle, buffer.Span[..(int)rounded], 0);
                 hasher.Append(buffer.Span[..Math.Min(read, (int)length)]);
                 return hasher.Finish();
@@ -307,7 +307,7 @@ internal sealed partial class FileTransfer
             bool sparse = _options.PreserveSparse && (info.Attributes & FileAttributes.SparseFile) != 0;
             if (sparse && !resuming)
             {
-                using var created = File.OpenHandle(partialPath, FileMode.Create, FileAccess.ReadWrite, FileShare.None);
+                using var created = OpenFile(partialPath, FileMode.Create, FileAccess.ReadWrite, FileShare.None);
                 sparse = Win32.SetSparse(created);
             }
 
@@ -412,7 +412,7 @@ internal sealed partial class FileTransfer
                 return null;
             }
 
-            using var destination = File.OpenHandle(partialPath, FileMode.Create, FileAccess.ReadWrite, FileShare.Read);
+            using var destination = OpenFile(partialPath, FileMode.Create, FileAccess.ReadWrite, FileShare.Read);
             BlockClone.Clone(source, destination, volume, info.Identity.Length, (info.Attributes & FileAttributes.SparseFile) != 0);
         }
         catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or ArgumentException or NotSupportedException)
@@ -471,7 +471,7 @@ internal sealed partial class FileTransfer
             if (_options.Verify && FileHasher.Create(_options.HashAlgorithm) is { } destinationHasher)
             {
                 _progress.SetPhase(CopyPhase.Verifying);
-                using var copy = File.OpenHandle(partialPath, FileMode.Open, FileAccess.Read, FileShare.Read, FileOptions.Asynchronous | FileOptions.SequentialScan);
+                using var copy = OpenFile(partialPath, FileMode.Open, FileAccess.Read, FileShare.Read, FileOptions.Asynchronous | FileOptions.SequentialScan);
                 await ReadSequentialAsync(copy, false, 0, length, (data, _) => destinationHasher.Append(data), cancellationToken).ConfigureAwait(false);
                 result.DestinationHash = destinationHasher.Finish();
                 _progress.SetPhase(CopyPhase.Copying);
@@ -946,18 +946,22 @@ internal sealed partial class FileTransfer
         }
     }
 
+    /// <summary>Abre un archivo; en modo copia de seguridad, saltándose sus permisos.</summary>
+    private SafeFileHandle OpenFile(string path, FileMode mode, FileAccess access, FileShare share, FileOptions options = FileOptions.None) =>
+        _options.BackupMode ? Native.BackupPrivileges.Open(path, mode, access, share, options) : File.OpenHandle(path, mode, access, share, options);
+
     private SafeFileHandle OpenRead(string path, out bool unbuffered)
     {
         unbuffered = _options.UseUnbufferedIo && IoHelpers.SupportsUnbuffered(path);
         var options = FileOptions.Asynchronous | FileOptions.SequentialScan | (unbuffered ? Win32.NoBuffering : FileOptions.None);
-        return File.OpenHandle(path, FileMode.Open, FileAccess.Read, FileShare.Read, options);
+        return OpenFile(path, FileMode.Open, FileAccess.Read, FileShare.Read, options);
     }
 
     private SafeFileHandle OpenWrite(string path, FileMode mode, out bool unbuffered)
     {
         unbuffered = _options.UseUnbufferedIo && IoHelpers.SupportsUnbuffered(path);
         var options = FileOptions.Asynchronous | (unbuffered ? Win32.NoBuffering : FileOptions.None);
-        return File.OpenHandle(path, mode, FileAccess.ReadWrite, FileShare.Read, options);
+        return OpenFile(path, mode, FileAccess.ReadWrite, FileShare.Read, options);
     }
 
     private static IOException SourceChanged() =>

@@ -129,6 +129,9 @@ internal static class Cli
                 case "--rescue":
                     options.RescueMode = true;
                     break;
+                case "--backup":
+                    options.BackupMode = true; // como robocopy /B: en una consola de administrador
+                    break;
                 case "--delta":
                     options.DeltaCopy = true;
                     break;

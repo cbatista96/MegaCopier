@@ -396,6 +396,12 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
 
     public void CopyLocked() => _ = ((App)Microsoft.UI.Xaml.Application.Current).CopyLockedFilesAsync(Job);
 
+    /// <summary>Terminó con archivos sin permiso de lectura o escritura: se pueden copiar en modo copia de seguridad.</summary>
+    public bool CanCopyAdmin => State == CopyJobState.CompletedWithErrors && Job.Record.Operation == JobOperation.Copy
+        && !Engine.Remote.RemotePath.IsRemote(Job.Record.Destination) && Job.Result is { } r && r.Failures.Any(f => f.Kind == FileErrorKind.AccessDenied);
+
+    public void CopyAdmin() => _ = ((App)Microsoft.UI.Xaml.Application.Current).CopyWithAdminAsync(Job);
+
     public void TogglePause()
     {
         if (CanPause)

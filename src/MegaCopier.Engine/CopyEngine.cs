@@ -106,9 +106,17 @@ public sealed partial class CopyEngine
         return plan.Files.Count;
     }
 
+    /// <summary>Solo pruebas: probar el modo copia de seguridad (abrir con FILE_FLAG_BACKUP_SEMANTICS) sin ser administrador.</summary>
+    internal bool SkipBackupPrivilegeCheck { get; set; }
+
     public CopyJobResult Run(CopyJobRequest request, CancellationToken cancellationToken = default)
     {
         var stopwatch = Stopwatch.StartNew();
+        if (_options.BackupMode && !SkipBackupPrivilegeCheck && !Native.BackupPrivileges.Enable())
+        {
+            throw new CopyPlanException(Texts.Get("E_BackupNeedsAdmin"));
+        }
+
         if (_options.Operation == JobOperation.Copy && IsRemoteJob(request))
         {
             return request.Sources.Any(RemotePath.IsRemote) ? RunMtpImport(request, stopwatch, cancellationToken) : RunMtpExport(request, stopwatch, cancellationToken);
