@@ -943,4 +943,6 @@
   <data name="Rules_WipeDod3.Content" xml:space="preserve"><value>DoD 5220.22-M、3 回</value></data>
   <data name="Rules_WipeDod7.Content" xml:space="preserve"><value>DoD 5220.22-M ECE、7 回（低速）</value></data>
   <data name="Rules_EfsRaw.Content" xml:space="preserve"><value>EFS で暗号化されたファイルを復号せずにコピーする</value></data>
+  <data name="Destinations_Zip.Content" xml:space="preserve"><value>ZIP ファイルに保存する</value></data>
+  <data name="Destinations_PasswordHintZip" xml:space="preserve"><value>ZIP は AES-256 で暗号化され、7-Zip、WinZip、WinRAR で開けます（Windows エクスプローラーでは暗号化された ZIP を開けません）。ファイル名はパスワードなしで見えます。パスワードを忘れるとファイルは復元できません。</value></data>
 </root>

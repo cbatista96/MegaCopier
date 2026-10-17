@@ -937,3 +937,5 @@ Rules_WipeRandom.Content	Una pasada aleatoria	One random pass
 Rules_WipeDod3.Content	DoD 5220.22-M, 3 pasadas	DoD 5220.22-M, 3 passes
 Rules_WipeDod7.Content	DoD 5220.22-M ECE, 7 pasadas (lento)	DoD 5220.22-M ECE, 7 passes (slow)
 Rules_EfsRaw.Content	Copiar los archivos cifrados con EFS sin descifrarlos	Copy EFS-encrypted files without decrypting them
+Destinations_Zip.Content	Guardar en un archivo ZIP	Save into a ZIP file
+Destinations_PasswordHintZip	El ZIP se cifra con AES-256 y se abre con 7-Zip, WinZip o WinRAR (el Explorador de Windows no abre ZIP cifrados). Los nombres de los archivos se ven sin la contraseña. Si la olvidas, no hay forma de recuperarlos.	The ZIP is encrypted with AES-256 and opens with 7-Zip, WinZip or WinRAR (Windows Explorer cannot open encrypted ZIPs). File names are visible without the password. If you forget it, there is no way to recover the files.

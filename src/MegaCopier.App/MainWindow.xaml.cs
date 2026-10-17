@@ -1099,11 +1099,13 @@ public sealed partial class MainWindow : Window
         DestinationsMove.IsChecked = move;
         DestinationsMode.SelectedIndex = 0;
         DestinationsDryRun.IsChecked = false;
+        DestinationsZip.IsChecked = false;
         DestinationsEncrypt.IsChecked = false;
         DestinationsEncryptPanel.Visibility = Visibility.Collapsed;
         DestinationsPassword.Password = "";
         DestinationsPassword2.Password = "";
         DestinationsPasswordInfo.Text = L.Get("Destinations_PasswordHint");
+        DestinationsPasswordInfo.ClearValue(TextBlock.ForegroundProperty);
         DestinationsNone.Visibility = Visibility.Collapsed;
         DestinationsSchedule.IsChecked = false;
         DestinationsWhen.Visibility = Visibility.Collapsed;
@@ -1153,6 +1155,7 @@ public sealed partial class MainWindow : Window
             StartAtUtc = startAt,
             Mode = (Engine.CopyMode)Math.Max(0, DestinationsMode.SelectedIndex),
             DryRun = DestinationsDryRun.IsChecked == true ? true : null,
+            Zip = DestinationsZip.IsChecked == true ? true : null,
             Encrypt = DestinationsEncrypt.IsChecked == true ? true : null,
             Password = DestinationsEncrypt.IsChecked == true ? DestinationsPassword.Password : null,
         });
@@ -1323,8 +1326,12 @@ public sealed partial class MainWindow : Window
 
     // Cifrar y descifrar
 
-    private void DestinationsEncrypt_Click(object sender, RoutedEventArgs e) =>
+    private void DestinationsEncrypt_Click(object sender, RoutedEventArgs e)
+    {
         DestinationsEncryptPanel.Visibility = DestinationsEncrypt.IsChecked == true ? Visibility.Visible : Visibility.Collapsed;
+        DestinationsPasswordInfo.Text = L.Get(DestinationsZip.IsChecked == true ? "Destinations_PasswordHintZip" : "Destinations_PasswordHint");
+        DestinationsPasswordInfo.ClearValue(TextBlock.ForegroundProperty);
+    }
 
     /// <summary>Con cifrado, la contraseña debe tener 8 caracteres o más y repetirse igual (si no, el diálogo sigue abierto).</summary>
     private void Destinations_PrimaryClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)

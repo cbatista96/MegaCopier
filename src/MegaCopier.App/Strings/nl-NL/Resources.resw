@@ -943,4 +943,6 @@
   <data name="Rules_WipeDod3.Content" xml:space="preserve"><value>DoD 5220.22-M, 3 keer</value></data>
   <data name="Rules_WipeDod7.Content" xml:space="preserve"><value>DoD 5220.22-M ECE, 7 keer (traag)</value></data>
   <data name="Rules_EfsRaw.Content" xml:space="preserve"><value>EFS-versleutelde bestanden kopiëren zonder ze te ontsleutelen</value></data>
+  <data name="Destinations_Zip.Content" xml:space="preserve"><value>Opslaan in een ZIP-bestand</value></data>
+  <data name="Destinations_PasswordHintZip" xml:space="preserve"><value>De ZIP wordt versleuteld met AES-256 en opent met 7-Zip, WinZip of WinRAR (Windows Verkenner opent geen versleutelde ZIP&apos;s). Bestandsnamen zijn zichtbaar zonder wachtwoord. Als je het vergeet, zijn de bestanden niet te herstellen.</value></data>
 </root>

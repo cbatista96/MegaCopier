@@ -135,6 +135,9 @@ internal static class Cli
                 case "--efsraw":
                     options.EfsRaw = true;
                     break;
+                case "--zip":
+                    options.Zip = true;
+                    break;
                 case "--delta":
                     options.DeltaCopy = true;
                     break;

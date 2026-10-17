@@ -937,3 +937,5 @@ Rules_WipeRandom.Content	Tek rastgele geçiş
 Rules_WipeDod3.Content	DoD 5220.22-M, 3 geçiş
 Rules_WipeDod7.Content	DoD 5220.22-M ECE, 7 geçiş (yavaş)
 Rules_EfsRaw.Content	EFS ile şifrelenmiş dosyaları şifresini çözmeden kopyala
+Destinations_Zip.Content	ZIP dosyasına kaydet
+Destinations_PasswordHintZip	ZIP, AES-256 ile şifrelenir ve 7-Zip, WinZip veya WinRAR ile açılır (Windows Gezgini şifreli ZIP'leri açamaz). Dosya adları parola olmadan görünür. Parolayı unutursanız dosyaları kurtarmanın yolu yoktur.

@@ -943,4 +943,6 @@
   <data name="Rules_WipeDod3.Content" xml:space="preserve"><value>DoD 5220.22-M, 3 passagens</value></data>
   <data name="Rules_WipeDod7.Content" xml:space="preserve"><value>DoD 5220.22-M ECE, 7 passagens (lento)</value></data>
   <data name="Rules_EfsRaw.Content" xml:space="preserve"><value>Copiar arquivos criptografados com EFS sem descriptografá-los</value></data>
+  <data name="Destinations_Zip.Content" xml:space="preserve"><value>Salvar em um arquivo ZIP</value></data>
+  <data name="Destinations_PasswordHintZip" xml:space="preserve"><value>O ZIP é criptografado com AES-256 e abre com 7-Zip, WinZip ou WinRAR (o Explorador do Windows não abre ZIPs criptografados). Os nomes dos arquivos ficam visíveis sem a senha. Se você esquecê-la, não há como recuperar os arquivos.</value></data>
 </root>

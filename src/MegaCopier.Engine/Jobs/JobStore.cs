@@ -63,6 +63,8 @@ public sealed class CopyJobRecord
 
     public bool EfsRaw { get; set; }
 
+    public bool Zip { get; set; }
+
     public LinkHandling Links { get; set; } = LinkHandling.CopyLink;
 
     public string KeepBothPattern { get; set; } = CopyOptions.DefaultKeepBothPattern;
@@ -152,6 +154,7 @@ public sealed class CopyJobRecord
         SecureDelete = options.SecureDelete,
         WipeMethod = options.WipeMethod,
         EfsRaw = options.EfsRaw,
+        Zip = options.Zip,
         Links = options.Links,
         KeepBothPattern = options.KeepBothPattern,
         Filter = options.Filter,
@@ -208,6 +211,7 @@ public sealed class CopyJobRecord
             SecureDelete = SecureDelete,
             WipeMethod = WipeMethod,
             EfsRaw = EfsRaw,
+            Zip = Zip,
             Links = Links,
             KeepBothPattern = KeepBothPattern,
             Filter = Filter ?? new FileFilter(),

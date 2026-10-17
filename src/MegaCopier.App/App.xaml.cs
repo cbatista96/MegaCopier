@@ -325,6 +325,7 @@ public partial class App : Application
             options.SecureDelete = request.SecureDelete ?? false;
             options.PeerCode = request.PeerCode ?? "";
             options.Encrypt = request.Encrypt ?? false;
+            options.Zip = request.Zip ?? false;
             options.EncryptionPassword = request.Password ?? "";
             if (operation != JobOperation.Copy)
             {
