@@ -977,4 +977,16 @@
   <data name="Files_AttrSparse" xml:space="preserve"><value>sparse</value></data>
   <data name="Files_AttrCloud" xml:space="preserve"><value>cloud only</value></data>
   <data name="Rules_Shield.Content" xml:space="preserve"><value>Ransomware shield: stop if what is about to be overwritten suddenly looks encrypted</value></data>
+  <data name="Rules_Recovery.Header" xml:space="preserve"><value>Recovery data (to repair the copy if the disk damages it)</value></data>
+  <data name="Rules_RecoveryNone.Content" xml:space="preserve"><value>No</value></data>
+  <data name="Rules_Recovery5.Content" xml:space="preserve"><value>5 % (a few scattered blocks)</value></data>
+  <data name="Rules_Recovery10.Content" xml:space="preserve"><value>10 % (recommended)</value></data>
+  <data name="Rules_Recovery20.Content" xml:space="preserve"><value>20 % (old disks or cheap USB drives)</value></data>
+  <data name="Tool_Repair.Text" xml:space="preserve"><value>Repair with recovery data…</value></data>
+  <data name="Job_TitleRepair" xml:space="preserve"><value>Repair {0}</value></data>
+  <data name="Job_TitleRepairing" xml:space="preserve"><value>Repairing {0}</value></data>
+  <data name="Job_TitleRepaired" xml:space="preserve"><value>Checked {0}</value></data>
+  <data name="Job_StateRepairing" xml:space="preserve"><value>Repairing</value></data>
+  <data name="Job_FilesRepairedOne" xml:space="preserve"><value>{0} file repaired</value></data>
+  <data name="Job_FilesRepairedMany" xml:space="preserve"><value>{0} files repaired</value></data>
 </root>

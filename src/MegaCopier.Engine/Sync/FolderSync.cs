@@ -93,7 +93,7 @@ public static class FolderSync
         foreach (var info in folder.EnumerateFileSystemInfos("*", Walk))
         {
             string relative = Path.GetRelativePath(root, info.FullName);
-            if (relative.StartsWith(TrashFolder, StringComparison.OrdinalIgnoreCase)
+            if (relative.StartsWith(TrashFolder, StringComparison.OrdinalIgnoreCase) || relative.StartsWith(IO.RecoveryData.Folder, StringComparison.OrdinalIgnoreCase)
                 || info.Name.EndsWith(FileTransfer.PartialSuffix, StringComparison.OrdinalIgnoreCase)
                 || info.Name.EndsWith(FileTransfer.JournalSuffix, StringComparison.OrdinalIgnoreCase))
             {

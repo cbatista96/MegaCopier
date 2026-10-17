@@ -106,6 +106,12 @@
             </ComboBox>
             <CheckBox x:Name="EfsRawBox" x:Uid="Rules_EfsRaw" Click="Changed" />
             <CheckBox x:Name="ShieldBox" x:Uid="Rules_Shield" Click="Changed" />
+            <ComboBox x:Name="RecoveryBox" x:Uid="Rules_Recovery" HorizontalAlignment="Stretch" SelectionChanged="Selection_Changed">
+                <ComboBoxItem x:Uid="Rules_RecoveryNone" />
+                <ComboBoxItem x:Uid="Rules_Recovery5" />
+                <ComboBoxItem x:Uid="Rules_Recovery10" />
+                <ComboBoxItem x:Uid="Rules_Recovery20" />
+            </ComboBox>
             <CheckBox x:Name="WaitDeviceBox" x:Uid="Rules_WaitDevice" Click="Changed" />
             <CheckBox x:Name="WaitSpaceBox" x:Uid="Rules_WaitSpace" Click="Changed" />
             <CheckBox x:Name="AllOrNothingBox" x:Uid="Rules_AllOrNothing" Click="Changed" />

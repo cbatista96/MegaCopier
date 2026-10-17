@@ -971,3 +971,15 @@ Files_AttrEncrypted	crittografato (EFS)
 Files_AttrSparse	sparse
 Files_AttrCloud	solo nel cloud
 Rules_Shield.Content	Scudo anti-ransomware: fermarsi se ciò che sta per sovrascrivere sembra improvvisamente crittografato
+Rules_Recovery.Header	Dati di ripristino (per riparare la copia se il disco la danneggia)
+Rules_RecoveryNone.Content	No
+Rules_Recovery5.Content	5 % (pochi blocchi sparsi)
+Rules_Recovery10.Content	10 % (consigliato)
+Rules_Recovery20.Content	20 % (dischi vecchi o chiavette economiche)
+Tool_Repair.Text	Ripara con i dati di ripristino…
+Job_TitleRepair	Ripara {0}
+Job_TitleRepairing	Riparazione di {0}
+Job_TitleRepaired	{0} controllato
+Job_StateRepairing	Riparazione
+Job_FilesRepairedOne	{0} file riparato
+Job_FilesRepairedMany	{0} file riparati

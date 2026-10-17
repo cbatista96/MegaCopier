@@ -977,4 +977,16 @@
   <data name="Files_AttrSparse" xml:space="preserve"><value>fragmenté</value></data>
   <data name="Files_AttrCloud" xml:space="preserve"><value>uniquement dans le cloud</value></data>
   <data name="Rules_Shield.Content" xml:space="preserve"><value>Bouclier anti-rançongiciel : arrêter si ce qui va être écrasé semble soudain chiffré</value></data>
+  <data name="Rules_Recovery.Header" xml:space="preserve"><value>Données de récupération (pour réparer la copie si le disque l&apos;abîme)</value></data>
+  <data name="Rules_RecoveryNone.Content" xml:space="preserve"><value>Non</value></data>
+  <data name="Rules_Recovery5.Content" xml:space="preserve"><value>5 % (quelques blocs isolés)</value></data>
+  <data name="Rules_Recovery10.Content" xml:space="preserve"><value>10 % (recommandé)</value></data>
+  <data name="Rules_Recovery20.Content" xml:space="preserve"><value>20 % (vieux disques ou clés USB bon marché)</value></data>
+  <data name="Tool_Repair.Text" xml:space="preserve"><value>Réparer avec les données de récupération…</value></data>
+  <data name="Job_TitleRepair" xml:space="preserve"><value>Réparer {0}</value></data>
+  <data name="Job_TitleRepairing" xml:space="preserve"><value>Réparation de {0}</value></data>
+  <data name="Job_TitleRepaired" xml:space="preserve"><value>{0} vérifié</value></data>
+  <data name="Job_StateRepairing" xml:space="preserve"><value>Réparation</value></data>
+  <data name="Job_FilesRepairedOne" xml:space="preserve"><value>{0} fichier réparé</value></data>
+  <data name="Job_FilesRepairedMany" xml:space="preserve"><value>{0} fichiers réparés</value></data>
 </root>

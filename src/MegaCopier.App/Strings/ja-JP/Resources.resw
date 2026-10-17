@@ -977,4 +977,16 @@
   <data name="Files_AttrSparse" xml:space="preserve"><value>スパース</value></data>
   <data name="Files_AttrCloud" xml:space="preserve"><value>クラウドのみ</value></data>
   <data name="Rules_Shield.Content" xml:space="preserve"><value>ランサムウェア対策: 上書きする内容が急に暗号化されたように見えたら停止</value></data>
+  <data name="Rules_Recovery.Header" xml:space="preserve"><value>回復データ（ディスクがコピーを壊したときの修復用）</value></data>
+  <data name="Rules_RecoveryNone.Content" xml:space="preserve"><value>なし</value></data>
+  <data name="Rules_Recovery5.Content" xml:space="preserve"><value>5%（散在する少数のブロック）</value></data>
+  <data name="Rules_Recovery10.Content" xml:space="preserve"><value>10%（推奨）</value></data>
+  <data name="Rules_Recovery20.Content" xml:space="preserve"><value>20%（古いディスクや安価な USB メモリ）</value></data>
+  <data name="Tool_Repair.Text" xml:space="preserve"><value>回復データで修復…</value></data>
+  <data name="Job_TitleRepair" xml:space="preserve"><value>{0} を修復</value></data>
+  <data name="Job_TitleRepairing" xml:space="preserve"><value>{0} を修復中</value></data>
+  <data name="Job_TitleRepaired" xml:space="preserve"><value>{0} を確認済み</value></data>
+  <data name="Job_StateRepairing" xml:space="preserve"><value>修復中</value></data>
+  <data name="Job_FilesRepairedOne" xml:space="preserve"><value>{0} 個のファイルを修復</value></data>
+  <data name="Job_FilesRepairedMany" xml:space="preserve"><value>{0} 個のファイルを修復</value></data>
 </root>

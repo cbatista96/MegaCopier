@@ -977,4 +977,16 @@
   <data name="Files_AttrSparse" xml:space="preserve"><value>sparse</value></data>
   <data name="Files_AttrCloud" xml:space="preserve"><value>alleen in de cloud</value></data>
   <data name="Rules_Shield.Content" xml:space="preserve"><value>Ransomwareschild: stoppen als wat gaat overschrijven plotseling versleuteld lijkt</value></data>
+  <data name="Rules_Recovery.Header" xml:space="preserve"><value>Herstelgegevens (om de kopie te herstellen als de schijf hem beschadigt)</value></data>
+  <data name="Rules_RecoveryNone.Content" xml:space="preserve"><value>Nee</value></data>
+  <data name="Rules_Recovery5.Content" xml:space="preserve"><value>5 % (enkele losse blokken)</value></data>
+  <data name="Rules_Recovery10.Content" xml:space="preserve"><value>10 % (aanbevolen)</value></data>
+  <data name="Rules_Recovery20.Content" xml:space="preserve"><value>20 % (oude schijven of goedkope USB-sticks)</value></data>
+  <data name="Tool_Repair.Text" xml:space="preserve"><value>Herstellen met herstelgegevens…</value></data>
+  <data name="Job_TitleRepair" xml:space="preserve"><value>{0} herstellen</value></data>
+  <data name="Job_TitleRepairing" xml:space="preserve"><value>{0} wordt hersteld</value></data>
+  <data name="Job_TitleRepaired" xml:space="preserve"><value>{0} gecontroleerd</value></data>
+  <data name="Job_StateRepairing" xml:space="preserve"><value>Herstellen</value></data>
+  <data name="Job_FilesRepairedOne" xml:space="preserve"><value>{0} bestand hersteld</value></data>
+  <data name="Job_FilesRepairedMany" xml:space="preserve"><value>{0} bestanden hersteld</value></data>
 </root>

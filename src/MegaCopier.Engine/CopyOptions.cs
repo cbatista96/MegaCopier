@@ -50,6 +50,9 @@ public enum JobOperation
 
     /// <summary>Comparar y sincronizar el contenido de dos carpetas (Sources[0] y Destination), en uno o dos sentidos.</summary>
     Sync,
+
+    /// <summary>Reparar con los datos de recuperación (ver <see cref="CopyOptions.RecoveryPercent"/>).</summary>
+    Repair,
 }
 
 /// <summary>Hacia dónde se sincroniza (con <see cref="JobOperation.Sync"/>).</summary>
@@ -213,6 +216,9 @@ public sealed class CopyOptions
 
     /// <summary>Parar si muchos de los archivos que van a reemplazar a otros parecen recién cifrados (ransomware).</summary>
     public bool RansomwareShield { get; set; } = true;
+
+    /// <summary>Datos de recuperación (paridad Reed-Solomon) para reparar la copia si el disco la estropea: % del tamaño, 0 = no.</summary>
+    public int RecoveryPercent { get; set; }
 
     /// <summary>
     /// Copiar a un archivo ZIP en lugar de a una carpeta (el destino puede ser la carpeta donde dejarlo o el propio

@@ -971,3 +971,15 @@ Files_AttrEncrypted	verschlüsselt (EFS)
 Files_AttrSparse	Sparse-Datei
 Files_AttrCloud	nur in der Cloud
 Rules_Shield.Content	Ransomware-Schutz: anhalten, wenn das zu Überschreibende plötzlich verschlüsselt wirkt
+Rules_Recovery.Header	Wiederherstellungsdaten (um die Kopie zu reparieren, wenn der Datenträger sie beschädigt)
+Rules_RecoveryNone.Content	Nein
+Rules_Recovery5.Content	5 % (einige einzelne Blöcke)
+Rules_Recovery10.Content	10 % (empfohlen)
+Rules_Recovery20.Content	20 % (alte Festplatten oder billige USB-Sticks)
+Tool_Repair.Text	Mit Wiederherstellungsdaten reparieren…
+Job_TitleRepair	{0} reparieren
+Job_TitleRepairing	{0} wird repariert
+Job_TitleRepaired	{0} geprüft
+Job_StateRepairing	Reparatur
+Job_FilesRepairedOne	{0} Datei repariert
+Job_FilesRepairedMany	{0} Dateien repariert

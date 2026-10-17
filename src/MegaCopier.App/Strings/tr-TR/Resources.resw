@@ -977,4 +977,16 @@
   <data name="Files_AttrSparse" xml:space="preserve"><value>seyrek</value></data>
   <data name="Files_AttrCloud" xml:space="preserve"><value>yalnızca bulutta</value></data>
   <data name="Rules_Shield.Content" xml:space="preserve"><value>Fidye yazılımı kalkanı: üzerine yazılacak şey birden şifrelenmiş görünürse dur</value></data>
+  <data name="Rules_Recovery.Header" xml:space="preserve"><value>Kurtarma verileri (disk kopyaya zarar verirse onarmak için)</value></data>
+  <data name="Rules_RecoveryNone.Content" xml:space="preserve"><value>Hayır</value></data>
+  <data name="Rules_Recovery5.Content" xml:space="preserve"><value>%5 (birkaç dağınık blok)</value></data>
+  <data name="Rules_Recovery10.Content" xml:space="preserve"><value>%10 (önerilen)</value></data>
+  <data name="Rules_Recovery20.Content" xml:space="preserve"><value>%20 (eski diskler veya ucuz USB bellekler)</value></data>
+  <data name="Tool_Repair.Text" xml:space="preserve"><value>Kurtarma verileriyle onar…</value></data>
+  <data name="Job_TitleRepair" xml:space="preserve"><value>{0} onar</value></data>
+  <data name="Job_TitleRepairing" xml:space="preserve"><value>{0} onarılıyor</value></data>
+  <data name="Job_TitleRepaired" xml:space="preserve"><value>{0} denetlendi</value></data>
+  <data name="Job_StateRepairing" xml:space="preserve"><value>Onarılıyor</value></data>
+  <data name="Job_FilesRepairedOne" xml:space="preserve"><value>{0} dosya onarıldı</value></data>
+  <data name="Job_FilesRepairedMany" xml:space="preserve"><value>{0} dosya onarıldı</value></data>
 </root>

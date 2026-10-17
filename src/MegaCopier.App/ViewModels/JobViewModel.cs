@@ -89,6 +89,7 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
         JobOperation.Hash => "Hash",
         JobOperation.Send => "Send",
         JobOperation.Decrypt => "Decrypt",
+        JobOperation.Repair => "Repair",
         JobOperation.Sync => Job.Record.DryRun ? "Simulate" : "Sync",
         _ when Job.Record.Encrypt && !IsMove => "Encrypt",
         _ when Job.Record.DryRun => "Simulate",
@@ -98,12 +99,12 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
 
     private string Past => Kind switch
     {
-        "Copy" => "Copied", "Move" => "Moved", "Test" => "Tested", "Hash" => "Hashed", "Send" => "Sent", "Decrypt" => "Decrypted", "Encrypt" => "Encrypted", "Simulate" => "Simulated", "Sync" => "Synced", _ => "Deleted",
+        "Copy" => "Copied", "Move" => "Moved", "Test" => "Tested", "Hash" => "Hashed", "Send" => "Sent", "Decrypt" => "Decrypted", "Repair" => "Repaired", "Encrypt" => "Encrypted", "Simulate" => "Simulated", "Sync" => "Synced", _ => "Deleted",
     };
 
     private string Progressive => Kind switch
     {
-        "Copy" => "Copying", "Move" => "Moving", "Test" => "Testing", "Hash" => "Hashing", "Send" => "Sending", "Decrypt" => "Decrypting", "Encrypt" => "Encrypting", "Simulate" => "Simulating", "Sync" => "Syncing", _ => "Deleting",
+        "Copy" => "Copying", "Move" => "Moving", "Test" => "Testing", "Hash" => "Hashing", "Send" => "Sending", "Decrypt" => "Decrypting", "Repair" => "Repairing", "Encrypt" => "Encrypting", "Simulate" => "Simulating", "Sync" => "Syncing", _ => "Deleting",
     };
 
     /// <summary>Programada para más tarde.</summary>

@@ -971,3 +971,15 @@ Files_AttrEncrypted	zaszyfrowany (EFS)
 Files_AttrSparse	rozrzedzony
 Files_AttrCloud	tylko w chmurze
 Rules_Shield.Content	Tarcza przed ransomware: zatrzymaj, jeśli to, co ma nadpisać pliki, nagle wygląda na zaszyfrowane
+Rules_Recovery.Header	Dane odzyskiwania (by naprawić kopię, jeśli dysk ją uszkodzi)
+Rules_RecoveryNone.Content	Nie
+Rules_Recovery5.Content	5 % (kilka pojedynczych bloków)
+Rules_Recovery10.Content	10 % (zalecane)
+Rules_Recovery20.Content	20 % (stare dyski lub tanie pendrive’y)
+Tool_Repair.Text	Napraw za pomocą danych odzyskiwania…
+Job_TitleRepair	Napraw {0}
+Job_TitleRepairing	Naprawianie {0}
+Job_TitleRepaired	Sprawdzono {0}
+Job_StateRepairing	Naprawianie
+Job_FilesRepairedOne	Naprawiono plików: {0}
+Job_FilesRepairedMany	Naprawiono plików: {0}

@@ -58,6 +58,7 @@
                             <MenuFlyoutItem x:Uid="Tool_SendFiles" Click="SendFiles_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE724;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
                             <MenuFlyoutItem x:Uid="Tool_SendFolder" Click="SendFolder_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE724;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
                             <MenuFlyoutItem x:Uid="Tool_Decrypt" Click="Decrypt_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE785;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
+                            <MenuFlyoutItem x:Uid="Tool_Repair" Click="Repair_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE90F;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
                             <MenuFlyoutItem x:Uid="Tool_Compare" Click="Compare_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8FD;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
                             <MenuFlyoutItem x:Uid="Tool_MtpImport" Click="MtpImport_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8EA;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
                             <MenuFlyoutItem x:Uid="Tool_MtpExport" Click="MtpExport_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8EA;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>

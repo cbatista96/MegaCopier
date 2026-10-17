@@ -46,6 +46,8 @@ public sealed class CopyRules
 
     public bool RansomwareShield { get; set; } = true;
 
+    public int RecoveryPercent { get; set; }
+
     public bool WaitForDevice { get; set; } = true;
 
     public bool WaitForSpace { get; set; } = true;
@@ -79,6 +81,7 @@ public sealed class CopyRules
         WipeMethod = r.WipeMethod,
         EfsRaw = r.EfsRaw,
         RansomwareShield = r.RansomwareShield,
+        RecoveryPercent = r.RecoveryPercent,
         WaitForDevice = r.WaitForDevice,
         WaitForSpace = r.WaitForSpace,
         AllOrNothing = r.AllOrNothing,
@@ -108,6 +111,7 @@ public sealed class CopyRules
         r.WipeMethod = WipeMethod;
         r.EfsRaw = EfsRaw;
         r.RansomwareShield = RansomwareShield;
+        r.RecoveryPercent = RecoveryPercent;
         r.WaitForDevice = WaitForDevice;
         r.WaitForSpace = WaitForSpace;
         r.AllOrNothing = AllOrNothing;
@@ -127,6 +131,8 @@ public sealed partial class RulesEditor : UserControl
 
     /// <summary>Las opciones de "cuántas versiones guardar" (días, semanas, meses), en el orden de la lista.</summary>
     private static readonly (int Daily, int Weekly, int Monthly)[] KeepPresets = [(0, 0, 0), (7, 4, 12), (30, 12, 24), (1, 0, 0)];
+
+    private static readonly int[] RecoveryPresets = [0, 5, 10, 20];
 
     private bool _loading;
 
@@ -182,6 +188,7 @@ public sealed partial class RulesEditor : UserControl
         WipeMethodBox.SelectedIndex = (int)rules.WipeMethod;
         EfsRawBox.IsChecked = rules.EfsRaw;
         ShieldBox.IsChecked = rules.RansomwareShield;
+        RecoveryBox.SelectedIndex = Math.Max(0, Array.IndexOf(RecoveryPresets, rules.RecoveryPercent));
         WaitDeviceBox.IsChecked = rules.WaitForDevice;
         WaitSpaceBox.IsChecked = rules.WaitForSpace;
         AllOrNothingBox.IsChecked = rules.AllOrNothing;
@@ -226,6 +233,7 @@ public sealed partial class RulesEditor : UserControl
         WipeMethod = (WipeMethod)Math.Max(0, WipeMethodBox.SelectedIndex),
         EfsRaw = EfsRawBox.IsChecked == true,
         RansomwareShield = ShieldBox.IsChecked == true,
+        RecoveryPercent = RecoveryPresets[Math.Max(0, RecoveryBox.SelectedIndex)],
         WaitForDevice = WaitDeviceBox.IsChecked == true,
         WaitForSpace = WaitSpaceBox.IsChecked == true,
         AllOrNothing = AllOrNothingBox.IsChecked == true,

@@ -971,3 +971,15 @@ Files_AttrEncrypted	cifrado (EFS)	encrypted (EFS)
 Files_AttrSparse	disperso	sparse
 Files_AttrCloud	solo en la nube	cloud only
 Rules_Shield.Content	Escudo contra ransomware: parar si lo que va a sobrescribir parece cifrado de repente	Ransomware shield: stop if what is about to be overwritten suddenly looks encrypted
+Rules_Recovery.Header	Datos de recuperación (para reparar la copia si el disco la estropea)	Recovery data (to repair the copy if the disk damages it)
+Rules_RecoveryNone.Content	No	No
+Rules_Recovery5.Content	5 % (pocos bloques sueltos)	5 % (a few scattered blocks)
+Rules_Recovery10.Content	10 % (recomendado)	10 % (recommended)
+Rules_Recovery20.Content	20 % (discos viejos o USB baratos)	20 % (old disks or cheap USB drives)
+Tool_Repair.Text	Reparar con datos de recuperación…	Repair with recovery data…
+Job_TitleRepair	Reparar {0}	Repair {0}
+Job_TitleRepairing	Reparando {0}	Repairing {0}
+Job_TitleRepaired	Revisado {0}	Checked {0}
+Job_StateRepairing	Reparando	Repairing
+Job_FilesRepairedOne	{0} archivo reparado	{0} file repaired
+Job_FilesRepairedMany	{0} archivos reparados	{0} files repaired

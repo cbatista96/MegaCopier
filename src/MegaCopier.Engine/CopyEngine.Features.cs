@@ -153,6 +153,11 @@ public sealed partial class CopyEngine
                 continue; // la carpeta de versiones nunca se sincroniza
             }
 
+            if (entry is DirectoryInfo { Name: IO.RecoveryData.Folder or Sync.FolderSync.TrashFolder })
+            {
+                continue; // tampoco los datos de recuperación ni lo apartado al sincronizar
+            }
+
             if (entry is FileInfo file && CopyPlanner.IsTransferArtifact(file.Name))
             {
                 continue;
