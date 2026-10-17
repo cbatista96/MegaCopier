@@ -1036,3 +1036,44 @@ Connection_CloudRoot	云文件夹（空 = 全部）
 Connection_NeedClientId	请先输入应用标识（见 docs\Nube.md）。
 Connection_SigningIn	正在等待你在浏览器中登录…
 Connection_SignedIn	已登录。请保存连接。
+Theme_combustion	燃烧
+Theme_caja-negra	黑匣子
+Theme_metro-oscuro	深色 Metro
+Theme_robot	绿色机器人
+Theme_cielo-otono	秋日天空
+Theme_ambar	琥珀
+Theme_granate	石榴红
+Theme_codigo-verde	绿色代码
+Theme_vapor	蒸汽
+Theme_metro-gris	灰色 Metro
+Theme_television	电视
+Theme_reproductor	播放器
+Theme_humo	烟雾
+Theme_berenjena	茄紫
+Theme_sc3-azul	SuperCopier 3 蓝
+Theme_sc3-verde	SuperCopier 3 绿
+Theme_sc3-naranja	SuperCopier 3 橙
+Theme_aurora	极光
+Theme_galaxia	星系
+Theme_neon	霓虹
+Theme_aire	空气
+Theme_metro-claro	浅色 Metro
+Theme_pez-azul	蓝鱼
+Theme_linea-plana	平直线
+Theme_plus	加号
+Theme_cristal	玻璃
+Theme_cielo	天空
+Theme_menta	薄荷
+Theme_cuaderno	笔记本
+Theme_madera	木纹
+Theme_brillo	光泽
+Theme_nieve	雪
+Theme_burbuja-azul	蓝色泡泡
+Theme_burbuja-lima	青柠泡泡
+Theme_toxico	毒绿
+Theme_naranja-tierra	大地橙
+Theme_aero	Aero
+Theme_moderno-8	现代 8
+Theme_mensajero	信使
+Theme_luna	Luna
+Theme_plata	银色

@@ -1036,3 +1036,44 @@ Connection_CloudRoot	Cloudmap (leeg = alles)
 Connection_NeedClientId	Voer eerst de app-id in (zie docs\Nube.md).
 Connection_SigningIn	Wachten tot je je aanmeldt in de browser…
 Connection_SignedIn	Aangemeld. Sla de verbinding op.
+Theme_combustion	Naverbrander
+Theme_caja-negra	Zwarte doos
+Theme_metro-oscuro	Metro donker
+Theme_robot	Groene robot
+Theme_cielo-otono	Herfstlucht
+Theme_ambar	Amber
+Theme_granate	Granaat
+Theme_codigo-verde	Groene code
+Theme_vapor	Stoom
+Theme_metro-gris	Metro grijs
+Theme_television	Televisie
+Theme_reproductor	Mediaspeler
+Theme_humo	Rook
+Theme_berenjena	Aubergine
+Theme_sc3-azul	SuperCopier 3 blauw
+Theme_sc3-verde	SuperCopier 3 groen
+Theme_sc3-naranja	SuperCopier 3 oranje
+Theme_aurora	Noorderlicht
+Theme_galaxia	Sterrenstelsel
+Theme_neon	Neon
+Theme_aire	Lucht
+Theme_metro-claro	Metro licht
+Theme_pez-azul	Blauwe vis
+Theme_linea-plana	Vlakke lijn
+Theme_plus	Plus
+Theme_cristal	Glas
+Theme_cielo	Lucht
+Theme_menta	Munt
+Theme_cuaderno	Schrift
+Theme_madera	Hout
+Theme_brillo	Glans
+Theme_nieve	Sneeuw
+Theme_burbuja-azul	Blauwe bel
+Theme_burbuja-lima	Limoenbel
+Theme_toxico	Giftig
+Theme_naranja-tierra	Aardeoranje
+Theme_aero	Aero
+Theme_moderno-8	Modern 8
+Theme_mensajero	Messenger
+Theme_luna	Luna
+Theme_plata	Zilver

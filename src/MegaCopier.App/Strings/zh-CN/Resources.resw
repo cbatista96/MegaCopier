@@ -1042,4 +1042,45 @@
   <data name="Connection_NeedClientId" xml:space="preserve"><value>请先输入应用标识（见 docs\Nube.md）。</value></data>
   <data name="Connection_SigningIn" xml:space="preserve"><value>正在等待你在浏览器中登录…</value></data>
   <data name="Connection_SignedIn" xml:space="preserve"><value>已登录。请保存连接。</value></data>
+  <data name="Theme_combustion" xml:space="preserve"><value>燃烧</value></data>
+  <data name="Theme_caja-negra" xml:space="preserve"><value>黑匣子</value></data>
+  <data name="Theme_metro-oscuro" xml:space="preserve"><value>深色 Metro</value></data>
+  <data name="Theme_robot" xml:space="preserve"><value>绿色机器人</value></data>
+  <data name="Theme_cielo-otono" xml:space="preserve"><value>秋日天空</value></data>
+  <data name="Theme_ambar" xml:space="preserve"><value>琥珀</value></data>
+  <data name="Theme_granate" xml:space="preserve"><value>石榴红</value></data>
+  <data name="Theme_codigo-verde" xml:space="preserve"><value>绿色代码</value></data>
+  <data name="Theme_vapor" xml:space="preserve"><value>蒸汽</value></data>
+  <data name="Theme_metro-gris" xml:space="preserve"><value>灰色 Metro</value></data>
+  <data name="Theme_television" xml:space="preserve"><value>电视</value></data>
+  <data name="Theme_reproductor" xml:space="preserve"><value>播放器</value></data>
+  <data name="Theme_humo" xml:space="preserve"><value>烟雾</value></data>
+  <data name="Theme_berenjena" xml:space="preserve"><value>茄紫</value></data>
+  <data name="Theme_sc3-azul" xml:space="preserve"><value>SuperCopier 3 蓝</value></data>
+  <data name="Theme_sc3-verde" xml:space="preserve"><value>SuperCopier 3 绿</value></data>
+  <data name="Theme_sc3-naranja" xml:space="preserve"><value>SuperCopier 3 橙</value></data>
+  <data name="Theme_aurora" xml:space="preserve"><value>极光</value></data>
+  <data name="Theme_galaxia" xml:space="preserve"><value>星系</value></data>
+  <data name="Theme_neon" xml:space="preserve"><value>霓虹</value></data>
+  <data name="Theme_aire" xml:space="preserve"><value>空气</value></data>
+  <data name="Theme_metro-claro" xml:space="preserve"><value>浅色 Metro</value></data>
+  <data name="Theme_pez-azul" xml:space="preserve"><value>蓝鱼</value></data>
+  <data name="Theme_linea-plana" xml:space="preserve"><value>平直线</value></data>
+  <data name="Theme_plus" xml:space="preserve"><value>加号</value></data>
+  <data name="Theme_cristal" xml:space="preserve"><value>玻璃</value></data>
+  <data name="Theme_cielo" xml:space="preserve"><value>天空</value></data>
+  <data name="Theme_menta" xml:space="preserve"><value>薄荷</value></data>
+  <data name="Theme_cuaderno" xml:space="preserve"><value>笔记本</value></data>
+  <data name="Theme_madera" xml:space="preserve"><value>木纹</value></data>
+  <data name="Theme_brillo" xml:space="preserve"><value>光泽</value></data>
+  <data name="Theme_nieve" xml:space="preserve"><value>雪</value></data>
+  <data name="Theme_burbuja-azul" xml:space="preserve"><value>蓝色泡泡</value></data>
+  <data name="Theme_burbuja-lima" xml:space="preserve"><value>青柠泡泡</value></data>
+  <data name="Theme_toxico" xml:space="preserve"><value>毒绿</value></data>
+  <data name="Theme_naranja-tierra" xml:space="preserve"><value>大地橙</value></data>
+  <data name="Theme_aero" xml:space="preserve"><value>Aero</value></data>
+  <data name="Theme_moderno-8" xml:space="preserve"><value>现代 8</value></data>
+  <data name="Theme_mensajero" xml:space="preserve"><value>信使</value></data>
+  <data name="Theme_luna" xml:space="preserve"><value>Luna</value></data>
+  <data name="Theme_plata" xml:space="preserve"><value>银色</value></data>
 </root>

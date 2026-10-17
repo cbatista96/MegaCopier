@@ -1036,3 +1036,44 @@ Connection_CloudRoot	Bulut klasörü (boş = tümü)
 Connection_NeedClientId	Önce uygulama kimliğini girin (bkz. docs\Nube.md).
 Connection_SigningIn	Tarayıcıda oturum açmanız bekleniyor…
 Connection_SignedIn	Oturum açıldı. Bağlantıyı kaydedin.
+Theme_combustion	Yanma
+Theme_caja-negra	Kara kutu
+Theme_metro-oscuro	Koyu Metro
+Theme_robot	Yeşil robot
+Theme_cielo-otono	Sonbahar göğü
+Theme_ambar	Kehribar
+Theme_granate	Lal
+Theme_codigo-verde	Yeşil kod
+Theme_vapor	Buhar
+Theme_metro-gris	Gri Metro
+Theme_television	Televizyon
+Theme_reproductor	Oynatıcı
+Theme_humo	Duman
+Theme_berenjena	Patlıcan
+Theme_sc3-azul	SuperCopier 3 mavi
+Theme_sc3-verde	SuperCopier 3 yeşil
+Theme_sc3-naranja	SuperCopier 3 turuncu
+Theme_aurora	Kutup ışığı
+Theme_galaxia	Galaksi
+Theme_neon	Neon
+Theme_aire	Hava
+Theme_metro-claro	Açık Metro
+Theme_pez-azul	Mavi balık
+Theme_linea-plana	Düz çizgi
+Theme_plus	Artı
+Theme_cristal	Cam
+Theme_cielo	Gökyüzü
+Theme_menta	Nane
+Theme_cuaderno	Defter
+Theme_madera	Ahşap
+Theme_brillo	Parıltı
+Theme_nieve	Kar
+Theme_burbuja-azul	Mavi kabarcık
+Theme_burbuja-lima	Limon kabarcık
+Theme_toxico	Zehirli
+Theme_naranja-tierra	Toprak turuncusu
+Theme_aero	Aero
+Theme_moderno-8	Modern 8
+Theme_mensajero	Haberci
+Theme_luna	Luna
+Theme_plata	Gümüş

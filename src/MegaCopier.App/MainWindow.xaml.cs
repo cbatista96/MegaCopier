@@ -276,6 +276,30 @@ public sealed partial class MainWindow : Window
         AppWindow.TitleBar.PreferredTheme = theme.Dark ? TitleBarTheme.Dark : TitleBarTheme.Light;
         SystemBackdrop = Appearance.CreateBackdrop(theme.Backdrop);
         TrayIcon.SetMenuTheme(theme.Dark);
+        ApplyTexture(TextureImage, theme);
+    }
+
+    /// <summary>La textura del tema (Assets/Textures/&lt;nombre&gt;.jpg) detrás de todo, o ninguna.</summary>
+    internal static void ApplyTexture(Image image, ThemeDefinition theme)
+    {
+        if (theme.Texture.Length == 0)
+        {
+            image.Source = null;
+            image.Visibility = Visibility.Collapsed;
+            return;
+        }
+
+        string path = Path.Combine(AppContext.BaseDirectory, "Assets", "Textures", theme.Texture + ".jpg");
+        if (!File.Exists(path))
+        {
+            image.Source = null;
+            image.Visibility = Visibility.Collapsed;
+            return;
+        }
+
+        image.Source = new Microsoft.UI.Xaml.Media.Imaging.BitmapImage(new Uri(path));
+        image.Opacity = Math.Clamp(theme.TextureOpacity, 0, 1);
+        image.Visibility = Visibility.Visible;
     }
 
     internal void ApplyAlwaysOnTop(bool onTop)

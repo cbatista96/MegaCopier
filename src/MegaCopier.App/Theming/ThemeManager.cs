@@ -22,6 +22,24 @@ public sealed class ThemeDefinition
     /// <summary>Color que tiñe el fondo de la ventana (con transparencia sobre Mica/Acrílico).</summary>
     public string Background { get; set; } = "#00000000";
 
+    /// <summary>Segundo color del fondo para un degradado ("" = fondo de un solo color).</summary>
+    public string BackgroundEnd { get; set; } = "";
+
+    /// <summary>Dirección del degradado del fondo en grados (0 = de izquierda a derecha, 90 = de arriba abajo).</summary>
+    public double GradientAngle { get; set; } = 90;
+
+    /// <summary>Textura de fondo incluida en MegaCopier (Assets/Textures/&lt;nombre&gt;.jpg) o "" para ninguna.</summary>
+    public string Texture { get; set; } = "";
+
+    /// <summary>Opacidad de la textura sobre el fondo (0 a 1).</summary>
+    public double TextureOpacity { get; set; } = 0.35;
+
+    /// <summary>
+    /// Colorea también los controles estándar (botones, listas, menús, cuadros de texto, barras de desplazamiento) con
+    /// los colores del tema. Los temas Fluent lo dejan desactivado para verse exactamente como Windows.
+    /// </summary>
+    public bool StyleControls { get; set; } = true;
+
     public string Surface { get; set; } = "#14FFFFFF";
 
     public string SurfaceStrong { get; set; } = "#22FFFFFF";
@@ -74,7 +92,7 @@ internal sealed partial class ThemeJsonContext : JsonSerializerContext;
 /// </summary>
 internal static class ThemeManager
 {
-    public static readonly SolidColorBrush BackgroundBrush = new();
+    public static readonly LinearGradientBrush BackgroundBrush = Gradient();
     public static readonly SolidColorBrush SurfaceBrush = new();
     public static readonly SolidColorBrush SurfaceStrongBrush = new();
     public static readonly SolidColorBrush BorderBrush = new();
@@ -97,10 +115,10 @@ internal static class ThemeManager
 
     public static IReadOnlyList<ThemeDefinition> BuiltIn { get; } =
     [
-        new() { Id = "fluent-dark", Name = "Fluent oscuro", Dark = true, BuiltIn = true },
+        new() { Id = "fluent-dark", Name = "Fluent oscuro", Dark = true, BuiltIn = true, StyleControls = false },
         new()
         {
-            Id = "fluent-light", Name = "Fluent claro", Dark = false, BuiltIn = true,
+            Id = "fluent-light", Name = "Fluent claro", Dark = false, BuiltIn = true, StyleControls = false,
             Surface = "#B3FFFFFF", SurfaceStrong = "#E6FFFFFF", Border = "#14000000",
             Text = "#E4000000", TextSecondary = "#99000000", Track = "#1A000000", Accent = "#2563EB",
             TotalStart = "#2563EB", TotalEnd = "#7C3AED", FileStart = "#0EA5A4", FileEnd = "#2563EB",
@@ -161,6 +179,7 @@ internal static class ThemeManager
             Text = "#FFFFFFFF", TextSecondary = "#FFFFFF00", Accent = "#FF00FFFF", AccentText = "#FF000000",
             TotalStart = "#FF00FFFF", TotalEnd = "#FF00FFFF", FileStart = "#FFFFFF00", FileEnd = "#FFFFFF00", Track = "#FF404040", BarHeight = 12,
         },
+        .. ThemeCatalog.Extra(),
     ];
 
     // Después de BuiltIn: los inicializadores estáticos se ejecutan en orden.
@@ -247,7 +266,10 @@ internal static class ThemeManager
     public static void Apply(ThemeDefinition theme)
     {
         Current = theme;
-        Set(BackgroundBrush, theme.Background);
+        SetGradient(BackgroundBrush, theme.Background, theme.BackgroundEnd.Length > 0 ? theme.BackgroundEnd : theme.Background);
+        double angle = theme.GradientAngle * Math.PI / 180;
+        BackgroundBrush.StartPoint = new Windows.Foundation.Point(0.5 - (Math.Cos(angle) / 2), 0.5 - (Math.Sin(angle) / 2));
+        BackgroundBrush.EndPoint = new Windows.Foundation.Point(0.5 + (Math.Cos(angle) / 2), 0.5 + (Math.Sin(angle) / 2));
         Set(SurfaceBrush, theme.Surface);
         Set(SurfaceStrongBrush, theme.SurfaceStrong);
         Set(BorderBrush, theme.Border);

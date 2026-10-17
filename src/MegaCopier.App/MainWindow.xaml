@@ -15,6 +15,9 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
+        <!-- Textura del tema (madera, brasas...), debajo de todo -->
+        <Image x:Name="TextureImage" Grid.RowSpan="3" Stretch="UniformToFill" IsHitTestVisible="False" Visibility="Collapsed" />
+
         <!-- Barra de título propia: icono, nombre y progreso global -->
         <Grid x:Name="AppTitleBar" Height="40" Padding="14,0,140,0" ColumnSpacing="10">
             <Grid.ColumnDefinitions>
@@ -254,10 +257,10 @@
             </ScrollViewer>
 
             <!-- Páginas superpuestas -->
-            <views:HistoryPage x:Name="HistoryView" Grid.ColumnSpan="2" Visibility="Collapsed" Background="{StaticResource McBackgroundBrush}" />
-            <views:SettingsPage x:Name="SettingsView" Grid.ColumnSpan="2" Visibility="Collapsed" Background="{StaticResource McBackgroundBrush}" />
-            <views:TimelinePage x:Name="TimelineView" Grid.ColumnSpan="2" Visibility="Collapsed" Background="{StaticResource McBackgroundBrush}" />
-            <views:ComparePage x:Name="CompareView" Grid.ColumnSpan="2" Visibility="Collapsed" Background="{StaticResource McBackgroundBrush}" />
+            <views:HistoryPage x:Name="HistoryView" Grid.ColumnSpan="2" Visibility="Collapsed" Background="Transparent" />
+            <views:SettingsPage x:Name="SettingsView" Grid.ColumnSpan="2" Visibility="Collapsed" Background="Transparent" />
+            <views:TimelinePage x:Name="TimelineView" Grid.ColumnSpan="2" Visibility="Collapsed" Background="Transparent" />
+            <views:ComparePage x:Name="CompareView" Grid.ColumnSpan="2" Visibility="Collapsed" Background="Transparent" />
         </Grid>
 
         <!-- Conflicto: el archivo ya existe -->

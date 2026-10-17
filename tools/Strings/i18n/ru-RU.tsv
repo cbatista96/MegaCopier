@@ -1036,3 +1036,44 @@ Connection_CloudRoot	Папка в облаке (пусто — всё)
 Connection_NeedClientId	Сначала введите идентификатор приложения (см. docs\Nube.md).
 Connection_SigningIn	Ожидание входа в браузере…
 Connection_SignedIn	Вход выполнен. Сохраните подключение.
+Theme_combustion	Форсаж
+Theme_caja-negra	Чёрный ящик
+Theme_metro-oscuro	Тёмное метро
+Theme_robot	Зелёный робот
+Theme_cielo-otono	Осеннее небо
+Theme_ambar	Янтарь
+Theme_granate	Гранат
+Theme_codigo-verde	Зелёный код
+Theme_vapor	Пар
+Theme_metro-gris	Серое метро
+Theme_television	Телевизор
+Theme_reproductor	Проигрыватель
+Theme_humo	Дым
+Theme_berenjena	Баклажан
+Theme_sc3-azul	SuperCopier 3 синий
+Theme_sc3-verde	SuperCopier 3 зелёный
+Theme_sc3-naranja	SuperCopier 3 оранжевый
+Theme_aurora	Сияние
+Theme_galaxia	Галактика
+Theme_neon	Неон
+Theme_aire	Воздух
+Theme_metro-claro	Светлое метро
+Theme_pez-azul	Синяя рыба
+Theme_linea-plana	Ровная линия
+Theme_plus	Плюс
+Theme_cristal	Стекло
+Theme_cielo	Небо
+Theme_menta	Мята
+Theme_cuaderno	Тетрадь
+Theme_madera	Дерево
+Theme_brillo	Блеск
+Theme_nieve	Снег
+Theme_burbuja-azul	Синий пузырь
+Theme_burbuja-lima	Лаймовый пузырь
+Theme_toxico	Токсичный
+Theme_naranja-tierra	Земляной оранжевый
+Theme_aero	Аэро
+Theme_moderno-8	Модерн 8
+Theme_mensajero	Мессенджер
+Theme_luna	Луна
+Theme_plata	Серебро
