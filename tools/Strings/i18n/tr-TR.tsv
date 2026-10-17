@@ -1026,3 +1026,5 @@ Remote_StateCompleted	Tamamlandı
 Remote_StateCompletedWithErrors	Hatalarla tamamlandı
 Remote_StateFailed	Başarısız
 Remote_StateInterrupted	Durduruldu (sürdürülebilir)
+Rules_ImageText.Header	Yalnızca bu metni içeren görüntüler (Windows OCR ile, çevrimdışı okunur)
+Rules_ImageText.PlaceholderText	fatura

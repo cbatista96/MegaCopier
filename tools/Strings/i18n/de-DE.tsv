@@ -1026,3 +1026,5 @@ Remote_StateCompleted	Fertig
 Remote_StateCompletedWithErrors	Mit Fehlern fertig
 Remote_StateFailed	Fehlgeschlagen
 Remote_StateInterrupted	Gestoppt (fortsetzbar)
+Rules_ImageText.Header	Nur Bilder mit diesem Text (mit der Windows-Texterkennung gelesen, offline)
+Rules_ImageText.PlaceholderText	Rechnung

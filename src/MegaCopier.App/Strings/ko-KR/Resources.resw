@@ -1032,4 +1032,6 @@
   <data name="Remote_StateCompletedWithErrors" xml:space="preserve"><value>오류와 함께 완료</value></data>
   <data name="Remote_StateFailed" xml:space="preserve"><value>실패</value></data>
   <data name="Remote_StateInterrupted" xml:space="preserve"><value>중지됨(계속 가능)</value></data>
+  <data name="Rules_ImageText.Header" xml:space="preserve"><value>이 텍스트가 있는 이미지만(Windows OCR로 오프라인 인식)</value></data>
+  <data name="Rules_ImageText.PlaceholderText" xml:space="preserve"><value>청구서</value></data>
 </root>

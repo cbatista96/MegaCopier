@@ -260,3 +260,4 @@ C_ManifestMissing	Eksik:
 E_RemoteConnectionsAuto	Sunucu bağlantıları: hıza göre otomatik ayarlanır (en çok {0}).
 E_RemoteConnectionsTuned	Şimdi aynı anda {0} bağlantı ({1}/sn).
 E_MultiSourceUsed	Aynı anda {0} konumdan okundu.
+E_F_ImageText	"{0}" metnini içeren görüntüler

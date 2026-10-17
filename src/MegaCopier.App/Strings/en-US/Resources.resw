@@ -1032,4 +1032,6 @@
   <data name="Remote_StateCompletedWithErrors" xml:space="preserve"><value>Done with errors</value></data>
   <data name="Remote_StateFailed" xml:space="preserve"><value>Failed</value></data>
   <data name="Remote_StateInterrupted" xml:space="preserve"><value>Stopped (can be resumed)</value></data>
+  <data name="Rules_ImageText.Header" xml:space="preserve"><value>Only images containing this text (read with Windows OCR, offline)</value></data>
+  <data name="Rules_ImageText.PlaceholderText" xml:space="preserve"><value>invoice</value></data>
 </root>

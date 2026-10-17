@@ -1026,3 +1026,5 @@ Remote_StateCompleted	Terminada	Done
 Remote_StateCompletedWithErrors	Terminada con errores	Done with errors
 Remote_StateFailed	Falló	Failed
 Remote_StateInterrupted	Detenida (se puede seguir)	Stopped (can be resumed)
+Rules_ImageText.Header	Solo imágenes que contengan este texto (se lee con el OCR de Windows, sin internet)	Only images containing this text (read with Windows OCR, offline)
+Rules_ImageText.PlaceholderText	factura	invoice

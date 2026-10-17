@@ -1032,4 +1032,6 @@
   <data name="Remote_StateCompletedWithErrors" xml:space="preserve"><value>Mit Fehlern fertig</value></data>
   <data name="Remote_StateFailed" xml:space="preserve"><value>Fehlgeschlagen</value></data>
   <data name="Remote_StateInterrupted" xml:space="preserve"><value>Gestoppt (fortsetzbar)</value></data>
+  <data name="Rules_ImageText.Header" xml:space="preserve"><value>Nur Bilder mit diesem Text (mit der Windows-Texterkennung gelesen, offline)</value></data>
+  <data name="Rules_ImageText.PlaceholderText" xml:space="preserve"><value>Rechnung</value></data>
 </root>

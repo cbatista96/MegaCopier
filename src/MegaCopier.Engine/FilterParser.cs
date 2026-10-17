@@ -74,6 +74,16 @@ public static partial class FilterParser
             work = work.Replace(m.Value, " ");
         }
 
+        // Texto dentro de fotos y capturas: 'con el texto "factura"', 'que digan "total"', 'containing "invoice"'.
+        var inside = Regex.Match(work, "(con el texto|con texto|que digan?|que contengan?|que pongan?|with the text|with text|containing|that say) (?:[\"'«“](?<q>[^\"'»”]+)[\"'»”]|(?<w>[^ ]+))");
+        string inText = inside.Groups["q"].Success ? inside.Groups["q"].Value : inside.Groups["w"].Value;
+        if (inside.Success && inText.Trim().Length > 0)
+        {
+            filter.ImageText = inText.Trim();
+            understood.Add(Texts.F("E_F_ImageText", filter.ImageText));
+            work = work.Replace(inside.Value, " ");
+        }
+
         // Fechas relativas y años.
         ParseDates(ref work, now, filter, understood);
 

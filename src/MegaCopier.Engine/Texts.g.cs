@@ -286,6 +286,7 @@ public static partial class Texts
             ["E_RemoteConnectionsAuto"] = "Conexiones con el servidor: se ajustan solas según la velocidad (máximo {0}).",
             ["E_RemoteConnectionsTuned"] = "Ahora {0} conexiones a la vez ({1}/s).",
             ["E_MultiSourceUsed"] = "Leído de {0} sitios a la vez.",
+            ["E_F_ImageText"] = "imágenes con el texto «{0}»",
         },
         ["en-US"] = new()
         {
@@ -550,6 +551,7 @@ public static partial class Texts
             ["E_RemoteConnectionsAuto"] = "Connections to the server: adjusted automatically by speed (maximum {0}).",
             ["E_RemoteConnectionsTuned"] = "Now {0} connections at once ({1}/s).",
             ["E_MultiSourceUsed"] = "Read from {0} places at once.",
+            ["E_F_ImageText"] = "images with the text \"{0}\"",
         },
         ["fr-FR"] = new()
         {
@@ -814,6 +816,7 @@ public static partial class Texts
             ["E_RemoteConnectionsAuto"] = "Connexions au serveur : ajustées automatiquement selon la vitesse (maximum {0}).",
             ["E_RemoteConnectionsTuned"] = "Maintenant {0} connexions simultanées ({1}/s).",
             ["E_MultiSourceUsed"] = "Lu depuis {0} emplacements à la fois.",
+            ["E_F_ImageText"] = "images contenant le texte « {0} »",
         },
         ["de-DE"] = new()
         {
@@ -1078,6 +1081,7 @@ public static partial class Texts
             ["E_RemoteConnectionsAuto"] = "Verbindungen zum Server: werden je nach Geschwindigkeit automatisch angepasst (maximal {0}).",
             ["E_RemoteConnectionsTuned"] = "Jetzt {0} gleichzeitige Verbindungen ({1}/s).",
             ["E_MultiSourceUsed"] = "Von {0} Orten gleichzeitig gelesen.",
+            ["E_F_ImageText"] = "Bilder mit dem Text „{0}“",
         },
         ["it-IT"] = new()
         {
@@ -1342,6 +1346,7 @@ public static partial class Texts
             ["E_RemoteConnectionsAuto"] = "Connessioni al server: regolate automaticamente in base alla velocità (massimo {0}).",
             ["E_RemoteConnectionsTuned"] = "Ora {0} connessioni simultanee ({1}/s).",
             ["E_MultiSourceUsed"] = "Letto da {0} posizioni contemporaneamente.",
+            ["E_F_ImageText"] = "immagini con il testo «{0}»",
         },
         ["pt-BR"] = new()
         {
@@ -1606,6 +1611,7 @@ public static partial class Texts
             ["E_RemoteConnectionsAuto"] = "Conexões com o servidor: ajustadas automaticamente pela velocidade (máximo {0}).",
             ["E_RemoteConnectionsTuned"] = "Agora {0} conexões simultâneas ({1}/s).",
             ["E_MultiSourceUsed"] = "Lido de {0} locais ao mesmo tempo.",
+            ["E_F_ImageText"] = "imagens com o texto \"{0}\"",
         },
         ["ru-RU"] = new()
         {
@@ -1870,6 +1876,7 @@ public static partial class Texts
             ["E_RemoteConnectionsAuto"] = "Подключения к серверу настраиваются автоматически по скорости (максимум {0}).",
             ["E_RemoteConnectionsTuned"] = "Теперь одновременных подключений: {0} ({1}/с).",
             ["E_MultiSourceUsed"] = "Прочитано из {0} мест одновременно.",
+            ["E_F_ImageText"] = "изображения с текстом «{0}»",
         },
         ["uk-UA"] = new()
         {
@@ -2134,6 +2141,7 @@ public static partial class Texts
             ["E_RemoteConnectionsAuto"] = "З'єднання із сервером налаштовуються автоматично за швидкістю (максимум {0}).",
             ["E_RemoteConnectionsTuned"] = "Тепер одночасних з'єднань: {0} ({1}/с).",
             ["E_MultiSourceUsed"] = "Прочитано з {0} місць одночасно.",
+            ["E_F_ImageText"] = "зображення з текстом «{0}»",
         },
         ["pl-PL"] = new()
         {
@@ -2398,6 +2406,7 @@ public static partial class Texts
             ["E_RemoteConnectionsAuto"] = "Połączenia z serwerem: dostosowywane automatycznie do prędkości (maksymalnie {0}).",
             ["E_RemoteConnectionsTuned"] = "Teraz {0} jednoczesnych połączeń ({1}/s).",
             ["E_MultiSourceUsed"] = "Odczytano z {0} miejsc jednocześnie.",
+            ["E_F_ImageText"] = "obrazy z tekstem „{0}”",
         },
         ["nl-NL"] = new()
         {
@@ -2662,6 +2671,7 @@ public static partial class Texts
             ["E_RemoteConnectionsAuto"] = "Verbindingen met de server: automatisch aangepast aan de snelheid (maximaal {0}).",
             ["E_RemoteConnectionsTuned"] = "Nu {0} verbindingen tegelijk ({1}/s).",
             ["E_MultiSourceUsed"] = "Gelezen vanaf {0} plaatsen tegelijk.",
+            ["E_F_ImageText"] = "afbeeldingen met de tekst \"{0}\"",
         },
         ["tr-TR"] = new()
         {
@@ -2926,6 +2936,7 @@ public static partial class Texts
             ["E_RemoteConnectionsAuto"] = "Sunucu bağlantıları: hıza göre otomatik ayarlanır (en çok {0}).",
             ["E_RemoteConnectionsTuned"] = "Şimdi aynı anda {0} bağlantı ({1}/sn).",
             ["E_MultiSourceUsed"] = "Aynı anda {0} konumdan okundu.",
+            ["E_F_ImageText"] = "\"{0}\" metnini içeren görüntüler",
         },
         ["zh-CN"] = new()
         {
@@ -3190,6 +3201,7 @@ public static partial class Texts
             ["E_RemoteConnectionsAuto"] = "服务器连接：根据速度自动调整（最多 {0} 个）。",
             ["E_RemoteConnectionsTuned"] = "现在同时使用 {0} 个连接（{1}/秒）。",
             ["E_MultiSourceUsed"] = "同时从 {0} 个位置读取。",
+            ["E_F_ImageText"] = "包含文字“{0}”的图片",
         },
         ["ja-JP"] = new()
         {
@@ -3454,6 +3466,7 @@ public static partial class Texts
             ["E_RemoteConnectionsAuto"] = "サーバーへの接続: 速度に応じて自動調整（最大 {0}）。",
             ["E_RemoteConnectionsTuned"] = "現在の同時接続数: {0}（{1}/秒）。",
             ["E_MultiSourceUsed"] = "{0} か所から同時に読み込みました。",
+            ["E_F_ImageText"] = "「{0}」という文字を含む画像",
         },
         ["ko-KR"] = new()
         {
@@ -3718,6 +3731,7 @@ public static partial class Texts
             ["E_RemoteConnectionsAuto"] = "서버 연결: 속도에 따라 자동 조정(최대 {0}개).",
             ["E_RemoteConnectionsTuned"] = "현재 동시 연결 {0}개({1}/초).",
             ["E_MultiSourceUsed"] = "{0}곳에서 동시에 읽었습니다.",
+            ["E_F_ImageText"] = "\"{0}\" 텍스트가 있는 이미지",
         },
     };
 }

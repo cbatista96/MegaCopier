@@ -260,3 +260,4 @@ C_ManifestMissing	Brak:
 E_RemoteConnectionsAuto	Połączenia z serwerem: dostosowywane automatycznie do prędkości (maksymalnie {0}).
 E_RemoteConnectionsTuned	Teraz {0} jednoczesnych połączeń ({1}/s).
 E_MultiSourceUsed	Odczytano z {0} miejsc jednocześnie.
+E_F_ImageText	obrazy z tekstem „{0}”

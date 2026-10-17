@@ -32,10 +32,75 @@ public sealed class FileFilter
     public static readonly string[] JunkMasks = ["Thumbs.db", "ehthumbs.db", "desktop.ini", ".DS_Store", "._*", "~$*", "$RECYCLE.BIN", "System Volume Information"];
 
     public bool IsEmpty => Include.Count == 0 && Exclude.Count == 0 && MinSize is null && MaxSize is null
-        && ModifiedAfterUtc is null && ModifiedBeforeUtc is null && !SkipHidden && !SkipSystem && !SkipJunk;
+        && ModifiedAfterUtc is null && ModifiedBeforeUtc is null && !SkipHidden && !SkipSystem && !SkipJunk && ImageText.Length == 0;
 
     public bool AcceptsFile(string relativePath, FileInfo file) =>
-        AcceptsFile(relativePath, file.Length, file.LastWriteTimeUtc) && !HasSkippedAttributes(file.Attributes);
+        AcceptsFile(relativePath, file.Length, file.LastWriteTimeUtc) && !HasSkippedAttributes(file.Attributes) && HasImageText(file);
+
+    /// <summary>Solo fotos y capturas que contengan este texto (leído con el OCR de Windows, sin internet).</summary>
+    public string ImageText { get; set; } = "";
+
+    /// <summary>
+    /// Lee el texto de una imagen (la app lo conecta al OCR de Windows; null = no se pudo). Sin él, el filtro de texto
+    /// no deja pasar nada: mejor no copiar que copiar lo que no se pidió.
+    /// </summary>
+    public static Func<string, string?>? ImageTextReader { get; set; }
+
+    private static readonly HashSet<string> OcrImages = new(StringComparer.OrdinalIgnoreCase) { ".jpg", ".jpeg", ".png", ".bmp", ".gif", ".tif", ".tiff", ".heic", ".webp", ".jxr" };
+
+    private static readonly System.Collections.Concurrent.ConcurrentDictionary<(string Path, long Length, DateTime Modified), string> OcrCache = new();
+
+    private bool HasImageText(FileInfo file)
+    {
+        if (ImageText.Length == 0)
+        {
+            return true;
+        }
+
+        if (!OcrImages.Contains(file.Extension) || ImageTextReader is not { } reader)
+        {
+            return false;
+        }
+
+        var key = (file.FullName, file.Length, file.LastWriteTimeUtc);
+        if (!OcrCache.TryGetValue(key, out string? text))
+        {
+            text = Fold(reader(file.FullName) ?? "");
+            OcrCache[key] = text;
+        }
+
+        return text.Contains(Fold(ImageText), StringComparison.Ordinal);
+    }
+
+    /// <summary>Sin mayúsculas, acentos ni espacios repetidos: el OCR no siempre los acierta.</summary>
+    private static string Fold(string text)
+    {
+        var builder = new System.Text.StringBuilder();
+        bool space = false;
+        foreach (char c in text.ToLowerInvariant().Normalize(System.Text.NormalizationForm.FormD))
+        {
+            if (System.Globalization.CharUnicodeInfo.GetUnicodeCategory(c) == System.Globalization.UnicodeCategory.NonSpacingMark)
+            {
+                continue;
+            }
+
+            if (char.IsWhiteSpace(c))
+            {
+                space = true;
+                continue;
+            }
+
+            if (space && builder.Length > 0)
+            {
+                builder.Append(' ');
+            }
+
+            space = false;
+            builder.Append(c);
+        }
+
+        return builder.ToString();
+    }
 
     /// <summary>Lo mismo para un archivo que no está en el disco (un móvil): sin atributos y quizá sin fecha.</summary>
     public bool AcceptsFile(string relativePath, long length, DateTime? lastWriteUtc)

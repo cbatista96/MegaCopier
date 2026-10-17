@@ -1026,3 +1026,5 @@ Remote_StateCompleted	완료
 Remote_StateCompletedWithErrors	오류와 함께 완료
 Remote_StateFailed	실패
 Remote_StateInterrupted	중지됨(계속 가능)
+Rules_ImageText.Header	이 텍스트가 있는 이미지만(Windows OCR로 오프라인 인식)
+Rules_ImageText.PlaceholderText	청구서

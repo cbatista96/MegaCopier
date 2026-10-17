@@ -1026,3 +1026,5 @@ Remote_StateCompleted	Concluída
 Remote_StateCompletedWithErrors	Concluída com erros
 Remote_StateFailed	Falhou
 Remote_StateInterrupted	Parada (pode ser retomada)
+Rules_ImageText.Header	Só imagens que contenham este texto (lido com o OCR do Windows, offline)
+Rules_ImageText.PlaceholderText	nota fiscal

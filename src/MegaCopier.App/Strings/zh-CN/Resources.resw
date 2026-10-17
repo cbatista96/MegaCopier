@@ -1032,4 +1032,6 @@
   <data name="Remote_StateCompletedWithErrors" xml:space="preserve"><value>已完成但有错误</value></data>
   <data name="Remote_StateFailed" xml:space="preserve"><value>失败</value></data>
   <data name="Remote_StateInterrupted" xml:space="preserve"><value>已停止（可继续）</value></data>
+  <data name="Rules_ImageText.Header" xml:space="preserve"><value>仅包含此文字的图片（用 Windows OCR 离线识别）</value></data>
+  <data name="Rules_ImageText.PlaceholderText" xml:space="preserve"><value>发票</value></data>
 </root>

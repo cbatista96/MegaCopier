@@ -1026,3 +1026,5 @@ Remote_StateCompleted	完了
 Remote_StateCompletedWithErrors	エラーありで完了
 Remote_StateFailed	失敗
 Remote_StateInterrupted	停止中（再開可能）
+Rules_ImageText.Header	この文字を含む画像のみ（Windows の OCR でオフライン認識）
+Rules_ImageText.PlaceholderText	請求書

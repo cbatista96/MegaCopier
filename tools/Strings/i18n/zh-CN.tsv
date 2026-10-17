@@ -1026,3 +1026,5 @@ Remote_StateCompleted	已完成
 Remote_StateCompletedWithErrors	已完成但有错误
 Remote_StateFailed	失败
 Remote_StateInterrupted	已停止（可继续）
+Rules_ImageText.Header	仅包含此文字的图片（用 Windows OCR 离线识别）
+Rules_ImageText.PlaceholderText	发票
