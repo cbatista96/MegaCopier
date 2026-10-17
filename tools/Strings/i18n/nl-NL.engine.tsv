@@ -226,3 +226,5 @@ E_ZipStart	{0} bestanden ({1}) comprimeren in {2}.
 E_ZipDone	ZIP gemaakt: {0} ({1} bestanden, {2} met fouten).
 E_RemoteConnections	{0} verbindingen tegelijk met de server.
 E_RemoteConnectionFailed	Verbinding {0} met de server kon niet worden geopend ({1}): verder met de andere.
+E_Renamed	Hernoemd (niet opnieuw gekopieerd)
+E_WouldRename	Zou worden hernoemd

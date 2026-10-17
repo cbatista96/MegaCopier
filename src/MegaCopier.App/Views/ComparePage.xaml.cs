@@ -67,7 +67,7 @@ public sealed partial class ComparePage : UserControl
             var items = await Task.Run(() =>
             {
                 var last = direction == SyncDirection.TwoWay ? FolderSync.LoadState(FolderSync.StateFile(left, right)) : [];
-                return FolderSync.Plan(FolderSync.Scan(left, filter), FolderSync.Scan(right, filter), last, direction, tolerance);
+                return FolderSync.Plan(FolderSync.Scan(left, filter), FolderSync.Scan(right, filter), last, direction, tolerance, left, right);
             });
             if (generation != _generation)
             {

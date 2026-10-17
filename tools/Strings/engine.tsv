@@ -226,3 +226,5 @@ E_ZipStart	Comprimir {0} archivos ({1}) en {2}.	Compress {0} files ({1}) into {2
 E_ZipDone	ZIP creado: {0} ({1} archivos, {2} con errores).	ZIP created: {0} ({1} files, {2} with errors).
 E_RemoteConnections	Usando {0} conexiones a la vez con el servidor.	Using {0} connections to the server at once.
 E_RemoteConnectionFailed	No se pudo abrir la conexión {0} con el servidor ({1}): se sigue con las demás.	Could not open connection {0} to the server ({1}): continuing with the others.
+E_Renamed	Renombrado (sin copiarlo otra vez)	Renamed (not copied again)
+E_WouldRename	Se renombraría	Would be renamed

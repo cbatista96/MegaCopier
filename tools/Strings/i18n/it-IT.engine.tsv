@@ -226,3 +226,5 @@ E_ZipStart	Comprimi {0} file ({1}) in {2}.
 E_ZipDone	ZIP creato: {0} ({1} file, {2} con errori).
 E_RemoteConnections	Uso di {0} connessioni contemporanee al server.
 E_RemoteConnectionFailed	Impossibile aprire la connessione {0} al server ({1}): si continua con le altre.
+E_Renamed	Rinominato (senza ricopiarlo)
+E_WouldRename	Verrebbe rinominato

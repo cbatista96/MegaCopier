@@ -948,3 +948,6 @@ Settings_DefenderRemove	Видалити виключення
 Settings_DefenderOn	Увімкнено: Захисник не перевіряє те, що записує MegaCopier.
 Settings_DefenderCancelled	Дозвіл адміністратора не надано: нічого не змінено.
 Settings_DefenderFailed	Захисник Windows не прийняв зміну (можливо, його замінює інший антивірус або це заборонено політикою).
+Compare_RenameRight	Перейменувати праворуч (було {0})
+Compare_RenameLeft	Перейменувати ліворуч (було {0})
+Compare_Renamed	Перейменовано або переміщено

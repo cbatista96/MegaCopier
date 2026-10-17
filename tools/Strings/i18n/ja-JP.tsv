@@ -948,3 +948,6 @@ Settings_DefenderRemove	除外を削除
 Settings_DefenderOn	オン: Defender は MegaCopier が書き込むものをスキャンしません。
 Settings_DefenderCancelled	管理者の許可がなかったため、何も変更していません。
 Settings_DefenderFailed	Windows Defender が変更を受け付けませんでした（別のウイルス対策ソフトに置き換えられているか、ポリシーで禁止されている可能性があります）。
+Compare_RenameRight	右側で名前を変更（元は {0}）
+Compare_RenameLeft	左側で名前を変更（元は {0}）
+Compare_Renamed	名前の変更または移動

@@ -226,3 +226,5 @@ E_ZipStart	{0} 個のファイル（{1}）を {2} に圧縮します。
 E_ZipDone	ZIP を作成しました: {0}（{1} 個のファイル、{2} 個がエラー）。
 E_RemoteConnections	サーバーへの同時接続を {0} 本使用しています。
 E_RemoteConnectionFailed	サーバーへの接続 {0} を開けませんでした（{1}）: 残りの接続で続行します。
+E_Renamed	名前を変更（再コピーなし）
+E_WouldRename	名前が変更されます

@@ -226,3 +226,5 @@ E_ZipStart	파일 {0}개({1})를 {2}(으)로 압축합니다.
 E_ZipDone	ZIP 생성됨: {0}(파일 {1}개, 오류 {2}개).
 E_RemoteConnections	서버에 동시에 {0}개 연결을 사용합니다.
 E_RemoteConnectionFailed	서버 연결 {0}을(를) 열 수 없습니다({1}): 나머지 연결로 계속합니다.
+E_Renamed	이름 바꿈(다시 복사하지 않음)
+E_WouldRename	이름이 바뀝니다

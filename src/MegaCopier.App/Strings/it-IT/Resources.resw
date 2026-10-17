@@ -954,4 +954,7 @@
   <data name="Settings_DefenderOn" xml:space="preserve"><value>Attiva: Defender non analizza ciò che scrive MegaCopier.</value></data>
   <data name="Settings_DefenderCancelled" xml:space="preserve"><value>Autorizzazione di amministratore non concessa: non è stato modificato nulla.</value></data>
   <data name="Settings_DefenderFailed" xml:space="preserve"><value>Windows Defender non ha accettato la modifica (forse è sostituito da un altro antivirus o lo impedisce un criterio).</value></data>
+  <data name="Compare_RenameRight" xml:space="preserve"><value>Rinomina a destra (era {0})</value></data>
+  <data name="Compare_RenameLeft" xml:space="preserve"><value>Rinomina a sinistra (era {0})</value></data>
+  <data name="Compare_Renamed" xml:space="preserve"><value>Rinominato o spostato</value></data>
 </root>

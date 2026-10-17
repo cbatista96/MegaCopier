@@ -954,4 +954,7 @@
   <data name="Settings_DefenderOn" xml:space="preserve"><value>Włączone: Defender nie skanuje tego, co zapisuje MegaCopier.</value></data>
   <data name="Settings_DefenderCancelled" xml:space="preserve"><value>Nie udzielono uprawnień administratora: nic nie zmieniono.</value></data>
   <data name="Settings_DefenderFailed" xml:space="preserve"><value>Windows Defender nie przyjął zmiany (może zastępuje go inny antywirus lub blokuje to zasada).</value></data>
+  <data name="Compare_RenameRight" xml:space="preserve"><value>Zmień nazwę po prawej (było {0})</value></data>
+  <data name="Compare_RenameLeft" xml:space="preserve"><value>Zmień nazwę po lewej (było {0})</value></data>
+  <data name="Compare_Renamed" xml:space="preserve"><value>Zmieniono nazwę lub przeniesiono</value></data>
 </root>

@@ -195,4 +195,56 @@ public sealed class FolderSyncTests : IDisposable
         var engine = new CopyEngine(new CopyOptions { Operation = JobOperation.Sync }) { SyncStateFolder = _temp.Combine("estado"), SyncUseRecycleBin = false };
         Assert.Throws<CopyPlanException>(() => engine.Run(new CopyJobRequest([Left], Path.Combine(Left, "dentro"))));
     }
+
+    [Fact]
+    public void RenamesAndMovesAreRenamedOnTheOtherSideInsteadOfCopied()
+    {
+        Write(Left, "informe.docx", new string('i', 5000));
+        Write(Left, @"fotos\playa.jpg", new string('p', 7000));
+        Write(Left, "otro.txt", "otro");
+        Sync();
+
+        File.Move(Path.Combine(Left, "informe.docx"), Path.Combine(Left, "informe final.docx"));
+        Directory.Move(Path.Combine(Left, "fotos"), Path.Combine(Left, "vacaciones"));
+        File.Move(Path.Combine(Right, "otro.txt"), Path.Combine(Right, "renombrado en la derecha.txt"));
+
+        var plan = FolderSync.Plan(FolderSync.Scan(Left, new FileFilter()), FolderSync.Scan(Right, new FileFilter()),
+            FolderSync.LoadState(FolderSync.StateFile(Left, Right, _temp.Combine("estado"))), SyncDirection.TwoWay, TimeSpan.FromSeconds(2), Left, Right);
+        var move = plan.Single(i => i.Relative == "informe final.docx");
+        Assert.Equal((SyncAction.MoveRight, SyncReason.Renamed, "informe.docx"), (move.Action, move.Reason, move.MovedFrom));
+        Assert.Equal(SyncAction.MoveLeft, plan.Single(i => i.Relative == "renombrado en la derecha.txt").Action);
+
+        var result = Sync();
+
+        Assert.Equal(0, result.BytesTransferred); // nada se copió otra vez
+        Assert.Equal(new string('i', 5000), Read(Right, "informe final.docx"));
+        Assert.Null(Read(Right, "informe.docx"));
+        Assert.Equal(new string('p', 7000), Read(Right, @"vacaciones\playa.jpg"));
+        Assert.False(Directory.Exists(Path.Combine(Right, "fotos")));
+        Assert.Equal("otro", Read(Left, "renombrado en la derecha.txt"));
+        Assert.Null(Read(Left, "otro.txt"));
+        Assert.Empty(Trash(Right));
+        Assert.Equal(0, Sync().FilesCopied);
+    }
+
+    [Fact]
+    public void MirrorAlsoRenamesAndTwinsAreCopiedAsUsual()
+    {
+        Write(Left, "uno.bin", new string('a', 3000));
+        Write(Left, "dos.bin", new string('a', 3000)); // idéntico a uno.bin: no se sabe cuál es cuál
+        Write(Left, "unico.bin", new string('c', 4000));
+        Sync(SyncDirection.LeftToRight);
+
+        File.Move(Path.Combine(Left, "uno.bin"), Path.Combine(Left, "uno-nuevo.bin"));
+        File.Move(Path.Combine(Left, "dos.bin"), Path.Combine(Left, "dos-nuevo.bin"));
+        File.Move(Path.Combine(Left, "unico.bin"), Path.Combine(Left, "unico-nuevo.bin"));
+
+        var result = Sync(SyncDirection.LeftToRight);
+
+        Assert.Equal(6000, result.BytesTransferred); // los gemelos se copian; el único solo se renombra
+        Assert.Equal(new string('c', 4000), Read(Right, "unico-nuevo.bin"));
+        Assert.Equal(new string('a', 3000), Read(Right, "uno-nuevo.bin"));
+        Assert.Equal(new string('a', 3000), Read(Right, "dos-nuevo.bin"));
+        Assert.Equal(3, Directory.GetFiles(Right).Length);
+    }
 }

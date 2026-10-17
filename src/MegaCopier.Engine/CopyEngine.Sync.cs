@@ -56,7 +56,7 @@ public sealed partial class CopyEngine
                 : path);
         }
 
-        var plan = FolderSync.Plan(leftFiles, rightFiles, last, _options.SyncDirection, _options.TimeTolerance)
+        var plan = FolderSync.Plan(leftFiles, rightFiles, last, _options.SyncDirection, _options.TimeTolerance, left, right)
             .Where(i => i.Action != SyncAction.Equal && !excluded.Contains(i.Relative))
             .ToList();
 
@@ -82,7 +82,8 @@ public sealed partial class CopyEngine
                     result.FilesCopied++;
                 }
 
-                Files.Update(row, FileState.Planned, Texts.Get(removes ? "E_WouldDelete" : "E_WouldCopy"));
+                bool renames = item.Action is SyncAction.MoveLeft or SyncAction.MoveRight;
+                Files.Update(row, FileState.Planned, Texts.Get(removes ? "E_WouldDelete" : renames ? "E_WouldRename" : "E_WouldCopy"));
             }
 
             progress.Finish();
@@ -92,6 +93,32 @@ public sealed partial class CopyEngine
         }
 
         string stamp = DateTime.Now.ToString("yyyy-MM-dd HH.mm.ss", System.Globalization.CultureInfo.InvariantCulture);
+
+        // 0. Renombrados o movidos en un lado: en el otro se cambia el nombre (sin copiar nada).
+        foreach (var item in plan.Where(i => i.Action is SyncAction.MoveLeft or SyncAction.MoveRight))
+        {
+            bool onLeft = item.Action == SyncAction.MoveLeft;
+            string from = Side(onLeft, item.MovedFrom!);
+            string to = Side(onLeft, item.Relative);
+            var entry = (onLeft ? item.Right : item.Left)!.Value;
+            var row = Files.Add(from, to, entry.Size, entry.ModifiedUtc);
+            try
+            {
+                if (File.Exists(to))
+                {
+                    FolderSync.Discard(to, onLeft ? left : right, stamp, SyncUseRecycleBin);
+                }
+
+                Directory.CreateDirectory(Path.GetDirectoryName(to)!);
+                File.Move(from, to);
+                result.FilesCopied++;
+                Files.Update(row, FileState.Copied, Texts.Get("E_Renamed"));
+            }
+            catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+            {
+                Fail(row, result, ex.Message, FileErrors.Classify(ex));
+            }
+        }
 
         // 1. Archivos que se borran, y los que se van a sobrescribir: a la Papelera (o a .megacopier-borrados).
         foreach (var item in plan.Where(i => i.Action is SyncAction.DeleteLeft or SyncAction.DeleteRight))
@@ -212,10 +239,17 @@ public sealed partial class CopyEngine
         return result;
 
         // De dónde sale cada cosa (o qué se borra) y adónde va (en los borrados, la misma ruta).
-        string From(SyncItem item) => Side(item.Action is SyncAction.CopyToRight or SyncAction.CreateFolderRight or SyncAction.DeleteLeft or SyncAction.DeleteFolderLeft, item.Relative);
+        string From(SyncItem item) => item.Action switch
+        {
+            SyncAction.MoveLeft => Side(true, item.MovedFrom!),
+            SyncAction.MoveRight => Side(false, item.MovedFrom!),
+            _ => Side(item.Action is SyncAction.CopyToRight or SyncAction.CreateFolderRight or SyncAction.DeleteLeft or SyncAction.DeleteFolderLeft, item.Relative),
+        };
 
         string To(SyncItem item) => item.Action switch
         {
+            SyncAction.MoveLeft => Side(true, item.Relative),
+            SyncAction.MoveRight => Side(false, item.Relative),
             SyncAction.CopyToRight or SyncAction.CreateFolderRight => Side(false, item.Relative),
             SyncAction.CopyToLeft or SyncAction.CreateFolderLeft => Side(true, item.Relative),
             _ => From(item),

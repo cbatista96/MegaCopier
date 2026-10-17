@@ -252,6 +252,8 @@ public static partial class Texts
             ["E_ZipDone"] = "ZIP creado: {0} ({1} archivos, {2} con errores).",
             ["E_RemoteConnections"] = "Usando {0} conexiones a la vez con el servidor.",
             ["E_RemoteConnectionFailed"] = "No se pudo abrir la conexión {0} con el servidor ({1}): se sigue con las demás.",
+            ["E_Renamed"] = "Renombrado (sin copiarlo otra vez)",
+            ["E_WouldRename"] = "Se renombraría",
         },
         ["en-US"] = new()
         {
@@ -482,6 +484,8 @@ public static partial class Texts
             ["E_ZipDone"] = "ZIP created: {0} ({1} files, {2} with errors).",
             ["E_RemoteConnections"] = "Using {0} connections to the server at once.",
             ["E_RemoteConnectionFailed"] = "Could not open connection {0} to the server ({1}): continuing with the others.",
+            ["E_Renamed"] = "Renamed (not copied again)",
+            ["E_WouldRename"] = "Would be renamed",
         },
         ["fr-FR"] = new()
         {
@@ -712,6 +716,8 @@ public static partial class Texts
             ["E_ZipDone"] = "ZIP créé : {0} ({1} fichiers, {2} en erreur).",
             ["E_RemoteConnections"] = "Utilisation de {0} connexions simultanées au serveur.",
             ["E_RemoteConnectionFailed"] = "Impossible d'ouvrir la connexion {0} au serveur ({1}) : on continue avec les autres.",
+            ["E_Renamed"] = "Renommé (sans le recopier)",
+            ["E_WouldRename"] = "Serait renommé",
         },
         ["de-DE"] = new()
         {
@@ -942,6 +948,8 @@ public static partial class Texts
             ["E_ZipDone"] = "ZIP erstellt: {0} ({1} Dateien, {2} mit Fehlern).",
             ["E_RemoteConnections"] = "{0} gleichzeitige Verbindungen zum Server werden verwendet.",
             ["E_RemoteConnectionFailed"] = "Verbindung {0} zum Server konnte nicht geöffnet werden ({1}): Es geht mit den anderen weiter.",
+            ["E_Renamed"] = "Umbenannt (nicht erneut kopiert)",
+            ["E_WouldRename"] = "Würde umbenannt",
         },
         ["it-IT"] = new()
         {
@@ -1172,6 +1180,8 @@ public static partial class Texts
             ["E_ZipDone"] = "ZIP creato: {0} ({1} file, {2} con errori).",
             ["E_RemoteConnections"] = "Uso di {0} connessioni contemporanee al server.",
             ["E_RemoteConnectionFailed"] = "Impossibile aprire la connessione {0} al server ({1}): si continua con le altre.",
+            ["E_Renamed"] = "Rinominato (senza ricopiarlo)",
+            ["E_WouldRename"] = "Verrebbe rinominato",
         },
         ["pt-BR"] = new()
         {
@@ -1402,6 +1412,8 @@ public static partial class Texts
             ["E_ZipDone"] = "ZIP criado: {0} ({1} arquivos, {2} com erros).",
             ["E_RemoteConnections"] = "Usando {0} conexões simultâneas com o servidor.",
             ["E_RemoteConnectionFailed"] = "Não foi possível abrir a conexão {0} com o servidor ({1}): continuando com as demais.",
+            ["E_Renamed"] = "Renomeado (sem copiar de novo)",
+            ["E_WouldRename"] = "Seria renomeado",
         },
         ["ru-RU"] = new()
         {
@@ -1632,6 +1644,8 @@ public static partial class Texts
             ["E_ZipDone"] = "ZIP создан: {0} ({1} файлов, {2} с ошибками).",
             ["E_RemoteConnections"] = "Используется {0} одновременных подключений к серверу.",
             ["E_RemoteConnectionFailed"] = "Не удалось открыть подключение {0} к серверу ({1}): продолжаем с остальными.",
+            ["E_Renamed"] = "Переименован (без повторного копирования)",
+            ["E_WouldRename"] = "Будет переименован",
         },
         ["uk-UA"] = new()
         {
@@ -1862,6 +1876,8 @@ public static partial class Texts
             ["E_ZipDone"] = "ZIP створено: {0} ({1} файлів, {2} з помилками).",
             ["E_RemoteConnections"] = "Використовується {0} одночасних з'єднань із сервером.",
             ["E_RemoteConnectionFailed"] = "Не вдалося відкрити з'єднання {0} із сервером ({1}): продовжуємо з іншими.",
+            ["E_Renamed"] = "Перейменовано (без повторного копіювання)",
+            ["E_WouldRename"] = "Буде перейменовано",
         },
         ["pl-PL"] = new()
         {
@@ -2092,6 +2108,8 @@ public static partial class Texts
             ["E_ZipDone"] = "Utworzono ZIP: {0} ({1} plików, {2} z błędami).",
             ["E_RemoteConnections"] = "Używanie {0} jednoczesnych połączeń z serwerem.",
             ["E_RemoteConnectionFailed"] = "Nie udało się otworzyć połączenia {0} z serwerem ({1}): kontynuacja z pozostałymi.",
+            ["E_Renamed"] = "Zmieniono nazwę (bez ponownego kopiowania)",
+            ["E_WouldRename"] = "Zostałaby zmieniona nazwa",
         },
         ["nl-NL"] = new()
         {
@@ -2322,6 +2340,8 @@ public static partial class Texts
             ["E_ZipDone"] = "ZIP gemaakt: {0} ({1} bestanden, {2} met fouten).",
             ["E_RemoteConnections"] = "{0} verbindingen tegelijk met de server.",
             ["E_RemoteConnectionFailed"] = "Verbinding {0} met de server kon niet worden geopend ({1}): verder met de andere.",
+            ["E_Renamed"] = "Hernoemd (niet opnieuw gekopieerd)",
+            ["E_WouldRename"] = "Zou worden hernoemd",
         },
         ["tr-TR"] = new()
         {
@@ -2552,6 +2572,8 @@ public static partial class Texts
             ["E_ZipDone"] = "ZIP oluşturuldu: {0} ({1} dosya, {2} hatalı).",
             ["E_RemoteConnections"] = "Sunucuyla aynı anda {0} bağlantı kullanılıyor.",
             ["E_RemoteConnectionFailed"] = "Sunucuyla {0}. bağlantı açılamadı ({1}): diğerleriyle devam ediliyor.",
+            ["E_Renamed"] = "Yeniden adlandırıldı (tekrar kopyalanmadı)",
+            ["E_WouldRename"] = "Yeniden adlandırılacak",
         },
         ["zh-CN"] = new()
         {
@@ -2782,6 +2804,8 @@ public static partial class Texts
             ["E_ZipDone"] = "已创建 ZIP：{0}（{1} 个文件，{2} 个出错）。",
             ["E_RemoteConnections"] = "正在同时使用 {0} 个服务器连接。",
             ["E_RemoteConnectionFailed"] = "无法打开到服务器的第 {0} 个连接（{1}）：继续使用其他连接。",
+            ["E_Renamed"] = "已重命名（未重新复制）",
+            ["E_WouldRename"] = "将被重命名",
         },
         ["ja-JP"] = new()
         {
@@ -3012,6 +3036,8 @@ public static partial class Texts
             ["E_ZipDone"] = "ZIP を作成しました: {0}（{1} 個のファイル、{2} 個がエラー）。",
             ["E_RemoteConnections"] = "サーバーへの同時接続を {0} 本使用しています。",
             ["E_RemoteConnectionFailed"] = "サーバーへの接続 {0} を開けませんでした（{1}）: 残りの接続で続行します。",
+            ["E_Renamed"] = "名前を変更（再コピーなし）",
+            ["E_WouldRename"] = "名前が変更されます",
         },
         ["ko-KR"] = new()
         {
@@ -3242,6 +3268,8 @@ public static partial class Texts
             ["E_ZipDone"] = "ZIP 생성됨: {0}(파일 {1}개, 오류 {2}개).",
             ["E_RemoteConnections"] = "서버에 동시에 {0}개 연결을 사용합니다.",
             ["E_RemoteConnectionFailed"] = "서버 연결 {0}을(를) 열 수 없습니다({1}): 나머지 연결로 계속합니다.",
+            ["E_Renamed"] = "이름 바꿈(다시 복사하지 않음)",
+            ["E_WouldRename"] = "이름이 바뀝니다",
         },
     };
 }

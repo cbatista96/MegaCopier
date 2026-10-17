@@ -954,4 +954,7 @@
   <data name="Settings_DefenderOn" xml:space="preserve"><value>Açık: Defender, MegaCopier&apos;ın yazdıklarını taramıyor.</value></data>
   <data name="Settings_DefenderCancelled" xml:space="preserve"><value>Yönetici izni verilmedi: hiçbir şey değiştirilmedi.</value></data>
   <data name="Settings_DefenderFailed" xml:space="preserve"><value>Windows Defender değişikliği kabul etmedi (başka bir virüsten koruma programı yerini almış veya bir ilke engelliyor olabilir).</value></data>
+  <data name="Compare_RenameRight" xml:space="preserve"><value>Sağda yeniden adlandır (eskiden {0})</value></data>
+  <data name="Compare_RenameLeft" xml:space="preserve"><value>Solda yeniden adlandır (eskiden {0})</value></data>
+  <data name="Compare_Renamed" xml:space="preserve"><value>Yeniden adlandırıldı veya taşındı</value></data>
 </root>
