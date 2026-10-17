@@ -823,3 +823,8 @@ Mtp_Refresh.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Procur
 Mtp_MoveImport	Remover do dispositivo o que for copiado (mover)
 Mtp_MoveExport	Remover do PC o que for copiado (mover)
 Mtp_Open	Abrir "{0}"
+Settings_LocalSendTitle.Text	Receber do celular com o LocalSend
+Settings_LocalSendDescription	Instale o LocalSend (grátis, para iPhone e Android) em um celular da mesma rede: este PC aparece como "{0}". O que você enviar chega em {1}.
+LocalSend_AutoAccept.Content	Aceitar sem perguntar (só em redes confiáveis)
+LocalSend_Listening	Aguardando envios do LocalSend (porta {0}).
+LocalSend_Ask	"{0}" quer enviar {1} arquivos ({2}) com o LocalSend. Aceitar?

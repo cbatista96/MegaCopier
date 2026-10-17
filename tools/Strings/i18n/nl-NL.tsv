@@ -823,3 +823,8 @@ Mtp_Refresh.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Appara
 Mtp_MoveImport	Gekopieerde van het apparaat verwijderen (verplaatsen)
 Mtp_MoveExport	Gekopieerde van de pc verwijderen (verplaatsen)
 Mtp_Open	'{0}' openen
+Settings_LocalSendTitle.Text	Ontvangen van je telefoon met LocalSend
+Settings_LocalSendDescription	Installeer LocalSend (gratis, voor iPhone en Android) op een telefoon in hetzelfde netwerk: deze pc verschijnt als '{0}'. Wat je verstuurt komt terecht in {1}.
+LocalSend_AutoAccept.Content	Accepteren zonder te vragen (alleen vertrouwde netwerken)
+LocalSend_Listening	Wacht op LocalSend-overdrachten (poort {0}).
+LocalSend_Ask	'{0}' wil je {1} bestanden ({2}) sturen met LocalSend. Accepteren?

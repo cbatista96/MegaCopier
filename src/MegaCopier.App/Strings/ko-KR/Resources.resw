@@ -829,4 +829,9 @@
   <data name="Mtp_MoveImport" xml:space="preserve"><value>복사한 항목을 장치에서 제거(이동)</value></data>
   <data name="Mtp_MoveExport" xml:space="preserve"><value>복사한 항목을 PC에서 제거(이동)</value></data>
   <data name="Mtp_Open" xml:space="preserve"><value>&quot;{0}&quot; 열기</value></data>
+  <data name="Settings_LocalSendTitle.Text" xml:space="preserve"><value>LocalSend로 휴대폰에서 받기</value></data>
+  <data name="Settings_LocalSendDescription" xml:space="preserve"><value>같은 네트워크의 휴대폰에 LocalSend(무료, iPhone 및 Android용)를 설치하세요. 이 PC는 &quot;{0}&quot;(으)로 표시됩니다. 보낸 항목은 {1}에 저장됩니다.</value></data>
+  <data name="LocalSend_AutoAccept.Content" xml:space="preserve"><value>묻지 않고 받기(신뢰할 수 있는 네트워크에서만)</value></data>
+  <data name="LocalSend_Listening" xml:space="preserve"><value>LocalSend 전송을 기다리는 중(포트 {0}).</value></data>
+  <data name="LocalSend_Ask" xml:space="preserve"><value>&quot;{0}&quot;이(가) LocalSend로 파일 {1}개({2})를 보내려고 합니다. 받을까요?</value></data>
 </root>

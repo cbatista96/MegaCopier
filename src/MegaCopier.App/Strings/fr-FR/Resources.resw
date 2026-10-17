@@ -829,4 +829,9 @@
   <data name="Mtp_MoveImport" xml:space="preserve"><value>Retirer de l&apos;appareil ce qui est copié (déplacer)</value></data>
   <data name="Mtp_MoveExport" xml:space="preserve"><value>Retirer du PC ce qui est copié (déplacer)</value></data>
   <data name="Mtp_Open" xml:space="preserve"><value>Ouvrir « {0} »</value></data>
+  <data name="Settings_LocalSendTitle.Text" xml:space="preserve"><value>Recevoir depuis le téléphone avec LocalSend</value></data>
+  <data name="Settings_LocalSendDescription" xml:space="preserve"><value>Installez LocalSend (gratuit, pour iPhone et Android) sur un téléphone du même réseau : ce PC apparaît sous le nom « {0} ». Ce que vous envoyez arrive dans {1}.</value></data>
+  <data name="LocalSend_AutoAccept.Content" xml:space="preserve"><value>Accepter sans demander (réseaux de confiance uniquement)</value></data>
+  <data name="LocalSend_Listening" xml:space="preserve"><value>En attente d&apos;envois LocalSend (port {0}).</value></data>
+  <data name="LocalSend_Ask" xml:space="preserve"><value>« {0} » veut vous envoyer {1} fichiers ({2}) avec LocalSend. Les accepter ?</value></data>
 </root>

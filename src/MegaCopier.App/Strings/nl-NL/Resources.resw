@@ -829,4 +829,9 @@
   <data name="Mtp_MoveImport" xml:space="preserve"><value>Gekopieerde van het apparaat verwijderen (verplaatsen)</value></data>
   <data name="Mtp_MoveExport" xml:space="preserve"><value>Gekopieerde van de pc verwijderen (verplaatsen)</value></data>
   <data name="Mtp_Open" xml:space="preserve"><value>&apos;{0}&apos; openen</value></data>
+  <data name="Settings_LocalSendTitle.Text" xml:space="preserve"><value>Ontvangen van je telefoon met LocalSend</value></data>
+  <data name="Settings_LocalSendDescription" xml:space="preserve"><value>Installeer LocalSend (gratis, voor iPhone en Android) op een telefoon in hetzelfde netwerk: deze pc verschijnt als &apos;{0}&apos;. Wat je verstuurt komt terecht in {1}.</value></data>
+  <data name="LocalSend_AutoAccept.Content" xml:space="preserve"><value>Accepteren zonder te vragen (alleen vertrouwde netwerken)</value></data>
+  <data name="LocalSend_Listening" xml:space="preserve"><value>Wacht op LocalSend-overdrachten (poort {0}).</value></data>
+  <data name="LocalSend_Ask" xml:space="preserve"><value>&apos;{0}&apos; wil je {1} bestanden ({2}) sturen met LocalSend. Accepteren?</value></data>
 </root>

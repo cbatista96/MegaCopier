@@ -823,3 +823,8 @@ Mtp_Refresh.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	장치
 Mtp_MoveImport	복사한 항목을 장치에서 제거(이동)
 Mtp_MoveExport	복사한 항목을 PC에서 제거(이동)
 Mtp_Open	"{0}" 열기
+Settings_LocalSendTitle.Text	LocalSend로 휴대폰에서 받기
+Settings_LocalSendDescription	같은 네트워크의 휴대폰에 LocalSend(무료, iPhone 및 Android용)를 설치하세요. 이 PC는 "{0}"(으)로 표시됩니다. 보낸 항목은 {1}에 저장됩니다.
+LocalSend_AutoAccept.Content	묻지 않고 받기(신뢰할 수 있는 네트워크에서만)
+LocalSend_Listening	LocalSend 전송을 기다리는 중(포트 {0}).
+LocalSend_Ask	"{0}"이(가) LocalSend로 파일 {1}개({2})를 보내려고 합니다. 받을까요?

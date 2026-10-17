@@ -829,4 +829,9 @@
   <data name="Mtp_MoveImport" xml:space="preserve"><value>Remove what&apos;s copied from the device (move)</value></data>
   <data name="Mtp_MoveExport" xml:space="preserve"><value>Remove what&apos;s copied from the PC (move)</value></data>
   <data name="Mtp_Open" xml:space="preserve"><value>Open &quot;{0}&quot;</value></data>
+  <data name="Settings_LocalSendTitle.Text" xml:space="preserve"><value>Receive from your phone with LocalSend</value></data>
+  <data name="Settings_LocalSendDescription" xml:space="preserve"><value>Install LocalSend (free, for iPhone and Android) on a phone on the same network: this PC shows up as &quot;{0}&quot;. What you send arrives in {1}.</value></data>
+  <data name="LocalSend_AutoAccept.Content" xml:space="preserve"><value>Accept without asking (trusted networks only)</value></data>
+  <data name="LocalSend_Listening" xml:space="preserve"><value>Waiting for LocalSend transfers (port {0}).</value></data>
+  <data name="LocalSend_Ask" xml:space="preserve"><value>&quot;{0}&quot; wants to send you {1} files ({2}) with LocalSend. Accept them?</value></data>
 </root>

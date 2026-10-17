@@ -823,3 +823,8 @@ Mtp_Refresh.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Recher
 Mtp_MoveImport	Retirer de l'appareil ce qui est copié (déplacer)
 Mtp_MoveExport	Retirer du PC ce qui est copié (déplacer)
 Mtp_Open	Ouvrir « {0} »
+Settings_LocalSendTitle.Text	Recevoir depuis le téléphone avec LocalSend
+Settings_LocalSendDescription	Installez LocalSend (gratuit, pour iPhone et Android) sur un téléphone du même réseau : ce PC apparaît sous le nom « {0} ». Ce que vous envoyez arrive dans {1}.
+LocalSend_AutoAccept.Content	Accepter sans demander (réseaux de confiance uniquement)
+LocalSend_Listening	En attente d'envois LocalSend (port {0}).
+LocalSend_Ask	« {0} » veut vous envoyer {1} fichiers ({2}) avec LocalSend. Les accepter ?

@@ -285,6 +285,15 @@ public sealed class AppSettings
 
     public int ReceivePort { get; set; } = Engine.Network.PeerProtocol.DefaultPort;
 
+    /// <summary>Recibir lo que se envíe desde un móvil con LocalSend (en la misma carpeta).</summary>
+    public bool LocalSendEnabled { get; set; }
+
+    /// <summary>Aceptar los envíos de LocalSend sin preguntar (solo en redes de confianza).</summary>
+    public bool LocalSendAutoAccept { get; set; }
+
+    /// <summary>Identificador estable de este PC para LocalSend (se crea la primera vez).</summary>
+    public string LocalSendFingerprint { get; set; } = "";
+
     /// <summary>Último equipo al que se envió (para proponerlo la próxima vez).</summary>
     public string LastPeer { get; set; } = "";
 

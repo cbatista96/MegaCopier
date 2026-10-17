@@ -823,3 +823,8 @@ Mtp_Refresh.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Cihazl
 Mtp_MoveImport	Kopyalananları cihazdan kaldır (taşı)
 Mtp_MoveExport	Kopyalananları bilgisayardan kaldır (taşı)
 Mtp_Open	"{0}" öğesini aç
+Settings_LocalSendTitle.Text	LocalSend ile telefondan al
+Settings_LocalSendDescription	Aynı ağdaki bir telefona LocalSend'i (ücretsiz, iPhone ve Android için) yükleyin: bu bilgisayar "{0}" olarak görünür. Gönderdikleriniz {1} konumuna gelir.
+LocalSend_AutoAccept.Content	Sormadan kabul et (yalnızca güvenilir ağlarda)
+LocalSend_Listening	LocalSend gönderimleri bekleniyor (bağlantı noktası {0}).
+LocalSend_Ask	"{0}" size LocalSend ile {1} dosya ({2}) göndermek istiyor. Kabul edilsin mi?
