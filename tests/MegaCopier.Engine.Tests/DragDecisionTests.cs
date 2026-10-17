@@ -156,3 +156,28 @@ public sealed partial class DragDecisionTests
     [LibraryImport("user32.dll", StringMarshalling = StringMarshalling.Utf16)]
     private static partial nint FindWindowExW(nint parent, nint after, string? className, string? title);
 }
+
+public sealed class OtherFileManagersTests
+{
+    [Theory]
+    [InlineData(@"c:\Fotos\*.*", @"c:\Fotos")]
+    [InlineData(@"d:\*.*", @"d:\")]
+    [InlineData(@"\nas\fotos\2025\*.jpg", @"\nas\fotos\2025")]
+    [InlineData(@"c:\Sin filtro", @"c:\Sin filtro")]
+    [InlineData("", null)]
+    public void TotalCommanderPanelPaths(string text, string? expected) =>
+        Assert.Equal(expected, MegaCopier.Shell.OtherFileManagers.TotalCommanderPath(text));
+
+    [Fact]
+    public void DirectoryOpusPaths()
+    {
+        const string xml = """
+            <?xml version="1.0" encoding="UTF-8"?>
+            <results command="paths" result="1">
+              <path active_lister="1" active_tab="1" lister="0x1" side="1" tab="0x2">C:\Users\Ana\Fotos</path>
+              <path lister="0x1" side="2" tab="0x3">D:\Copias</path>
+            </results>
+            """;
+        Assert.Equal([@"C:\Users\Ana\Fotos", @"D:\Copias"], MegaCopier.Shell.OtherFileManagers.DirectoryOpusPaths(xml));
+    }
+}
