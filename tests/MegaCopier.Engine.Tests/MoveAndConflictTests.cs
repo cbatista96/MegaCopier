@@ -56,7 +56,7 @@ public sealed class MoveAndConflictTests : IDisposable
         Assert.Equal(0, result.BytesTransferred); // ni un byte copiado: fue un renombrado
         AssertSameTree(before, Path.Combine(destination, "Origen"));
         Assert.True(Directory.Exists(Path.Combine(destination, "Origen", "vacia")));
-        Assert.True(watch.ElapsedMilliseconds < 2000);
+        Assert.True(watch.ElapsedMilliseconds < 10000); // margen para equipos lentos: el renombrado ya lo prueba BytesTransferred
     }
 
     [Fact]
