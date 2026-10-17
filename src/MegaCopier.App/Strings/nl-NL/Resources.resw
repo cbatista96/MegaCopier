@@ -989,4 +989,24 @@
   <data name="Job_StateRepairing" xml:space="preserve"><value>Herstellen</value></data>
   <data name="Job_FilesRepairedOne" xml:space="preserve"><value>{0} bestand hersteld</value></data>
   <data name="Job_FilesRepairedMany" xml:space="preserve"><value>{0} bestanden hersteld</value></data>
+  <data name="Tool_Snapshot.Text" xml:space="preserve"><value>Back-up zonder duplicaten…</value></data>
+  <data name="Tool_Restore.Text" xml:space="preserve"><value>Back-up herstellen…</value></data>
+  <data name="Picker_Repository" xml:space="preserve"><value>Back-ups hier bewaren</value></data>
+  <data name="Picker_RestoreHere" xml:space="preserve"><value>Hier herstellen</value></data>
+  <data name="Restore_Title" xml:space="preserve"><value>Back-up herstellen</value></data>
+  <data name="Restore_None" xml:space="preserve"><value>Geen MegaCopier-back-ups in {0}.</value></data>
+  <data name="Restore_Item" xml:space="preserve"><value>{0} · {1} bestanden · {2}</value></data>
+  <data name="Restore_Choose" xml:space="preserve"><value>Kiezen</value></data>
+  <data name="Job_TitleBackup" xml:space="preserve"><value>Back-up van {0}</value></data>
+  <data name="Job_TitleBackingUp" xml:space="preserve"><value>{0} wordt geback-upt</value></data>
+  <data name="Job_TitleBackedUp" xml:space="preserve"><value>{0} geback-upt</value></data>
+  <data name="Job_StateBackingUp" xml:space="preserve"><value>Back-up bezig</value></data>
+  <data name="Job_FilesBackedUpOne" xml:space="preserve"><value>{0} bestand geback-upt</value></data>
+  <data name="Job_FilesBackedUpMany" xml:space="preserve"><value>{0} bestanden geback-upt</value></data>
+  <data name="Job_TitleRestore" xml:space="preserve"><value>Herstellen naar {0}</value></data>
+  <data name="Job_TitleRestoring" xml:space="preserve"><value>Herstellen naar {0}</value></data>
+  <data name="Job_TitleRestored" xml:space="preserve"><value>Hersteld naar {0}</value></data>
+  <data name="Job_StateRestoring" xml:space="preserve"><value>Herstellen</value></data>
+  <data name="Job_FilesRestoredOne" xml:space="preserve"><value>{0} bestand hersteld</value></data>
+  <data name="Job_FilesRestoredMany" xml:space="preserve"><value>{0} bestanden hersteld</value></data>
 </root>

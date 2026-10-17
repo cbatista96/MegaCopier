@@ -53,6 +53,12 @@ public enum JobOperation
 
     /// <summary>Reparar con los datos de recuperación (ver <see cref="CopyOptions.RecoveryPercent"/>).</summary>
     Repair,
+
+    /// <summary>Copia de seguridad sin duplicados: los orígenes como instantánea nueva en el repositorio del destino.</summary>
+    Snapshot,
+
+    /// <summary>Restaurar una instantánea (<see cref="CopyOptions.SnapshotId"/>) del repositorio Sources[0] en el destino.</summary>
+    Restore,
 }
 
 /// <summary>Hacia dónde se sincroniza (con <see cref="JobOperation.Sync"/>).</summary>
@@ -219,6 +225,9 @@ public sealed class CopyOptions
 
     /// <summary>Datos de recuperación (paridad Reed-Solomon) para reparar la copia si el disco la estropea: % del tamaño, 0 = no.</summary>
     public int RecoveryPercent { get; set; }
+
+    /// <summary>Con <see cref="JobOperation.Restore"/>: qué instantánea (vacío = la última).</summary>
+    public string SnapshotId { get; set; } = "";
 
     /// <summary>
     /// Copiar a un archivo ZIP en lugar de a una carpeta (el destino puede ser la carpeta donde dejarlo o el propio

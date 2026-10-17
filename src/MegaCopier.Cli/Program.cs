@@ -47,6 +47,9 @@ internal static class Cli
                 "send" => Send(args[1..]),
                 "test" => Test(args[1..]),
                 "repair" => Repair(args[1..]),
+                "backup" => Copy(args[1..], move: false, operation: JobOperation.Snapshot),
+                "restore" => Copy(args[1..], move: false, operation: JobOperation.Restore),
+                "snapshots" => Snapshots(args[1..]),
                 "delete" => Delete(args[1..]),
                 "resume" => Resume(args.Length > 1 ? args[1] : null),
                 "jobs" => Jobs(),
@@ -60,9 +63,9 @@ internal static class Cli
         }
     }
 
-    private static int Copy(string[] args, bool move, bool decrypt = false)
+    private static int Copy(string[] args, bool move, bool decrypt = false, JobOperation operation = JobOperation.Copy)
     {
-        var options = new CopyOptions { Move = move, Operation = decrypt ? JobOperation.Decrypt : JobOperation.Copy };
+        var options = new CopyOptions { Move = move, Operation = decrypt ? JobOperation.Decrypt : operation };
         var paths = new List<string>();
         long? crashAfter = null;
 
@@ -178,6 +181,13 @@ internal static class Cli
                     paths.Add(args[i]);
                     break;
             }
+        }
+
+        // restore <repositorio> [instantánea] <destino>
+        if (operation == JobOperation.Restore && paths.Count == 3)
+        {
+            options.SnapshotId = paths[1];
+            paths.RemoveAt(1);
         }
 
         if (paths.Count < 2)
@@ -388,6 +398,24 @@ internal static class Cli
 
         Console.WriteLine(Texts.F("C_TestDone", result.FilesCopied, result.Failures.Count, result.Elapsed.TotalSeconds));
         return result.Success ? ExitOk : ExitFailures;
+    }
+
+    /// <summary>mcopy snapshots &lt;repositorio&gt;: las copias de seguridad guardadas, con su fecha y tamaño.</summary>
+    private static int Snapshots(string[] args)
+    {
+        if (args.Length == 0)
+        {
+            throw new UsageException(Texts.Get("C_NeedItem"));
+        }
+
+        var repository = new MegaCopier.Engine.Backup.BackupRepository(args[0]);
+        Console.WriteLine(Texts.F("C_Snapshots", repository.Root));
+        foreach (var snapshot in repository.Snapshots())
+        {
+            Console.WriteLine($"  {snapshot.Id}   {snapshot.Files.Count,8}   {Format.Bytes(snapshot.TotalBytes),10}   {string.Join("; ", snapshot.Sources)}");
+        }
+
+        return ExitOk;
     }
 
     /// <summary>mcopy repair &lt;carpeta&gt;: repara con los datos de recuperación lo que el disco haya estropeado.</summary>

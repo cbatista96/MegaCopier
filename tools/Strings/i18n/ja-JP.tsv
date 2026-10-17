@@ -983,3 +983,23 @@ Job_TitleRepaired	{0} を確認済み
 Job_StateRepairing	修復中
 Job_FilesRepairedOne	{0} 個のファイルを修復
 Job_FilesRepairedMany	{0} 個のファイルを修復
+Tool_Snapshot.Text	重複なしバックアップ…
+Tool_Restore.Text	バックアップを復元…
+Picker_Repository	ここにバックアップを保存
+Picker_RestoreHere	ここに復元
+Restore_Title	バックアップの復元
+Restore_None	{0} に MegaCopier のバックアップはありません。
+Restore_Item	{0} · {1} 個のファイル · {2}
+Restore_Choose	選択
+Job_TitleBackup	{0} のバックアップ
+Job_TitleBackingUp	{0} をバックアップ中
+Job_TitleBackedUp	{0} をバックアップしました
+Job_StateBackingUp	バックアップ中
+Job_FilesBackedUpOne	{0} 個のファイルを保存
+Job_FilesBackedUpMany	{0} 個のファイルを保存
+Job_TitleRestore	{0} に復元
+Job_TitleRestoring	{0} に復元中
+Job_TitleRestored	{0} に復元しました
+Job_StateRestoring	復元中
+Job_FilesRestoredOne	{0} 個のファイルを復元
+Job_FilesRestoredMany	{0} 個のファイルを復元

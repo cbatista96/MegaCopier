@@ -983,3 +983,23 @@ Job_TitleRepaired	Revisado {0}	Checked {0}
 Job_StateRepairing	Reparando	Repairing
 Job_FilesRepairedOne	{0} archivo reparado	{0} file repaired
 Job_FilesRepairedMany	{0} archivos reparados	{0} files repaired
+Tool_Snapshot.Text	Copia de seguridad sin duplicados…	Backup without duplicates…
+Tool_Restore.Text	Restaurar una copia de seguridad…	Restore a backup…
+Picker_Repository	Guardar las copias aquí	Keep the backups here
+Picker_RestoreHere	Restaurar aquí	Restore here
+Restore_Title	Restaurar una copia de seguridad	Restore a backup
+Restore_None	No hay copias de seguridad de MegaCopier en {0}.	There are no MegaCopier backups in {0}.
+Restore_Item	{0} · {1} archivos · {2}	{0} · {1} files · {2}
+Restore_Choose	Elegir	Choose
+Job_TitleBackup	Copia de seguridad de {0}	Back up {0}
+Job_TitleBackingUp	Guardando copia de {0}	Backing up {0}
+Job_TitleBackedUp	Copia de seguridad de {0} guardada	{0} backed up
+Job_StateBackingUp	Guardando copia	Backing up
+Job_FilesBackedUpOne	{0} archivo guardado	{0} file backed up
+Job_FilesBackedUpMany	{0} archivos guardados	{0} files backed up
+Job_TitleRestore	Restaurar en {0}	Restore to {0}
+Job_TitleRestoring	Restaurando en {0}	Restoring to {0}
+Job_TitleRestored	Restaurado en {0}	Restored to {0}
+Job_StateRestoring	Restaurando	Restoring
+Job_FilesRestoredOne	{0} archivo restaurado	{0} file restored
+Job_FilesRestoredMany	{0} archivos restaurados	{0} files restored

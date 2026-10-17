@@ -983,3 +983,23 @@ Job_TitleRepaired	{0} 확인됨
 Job_StateRepairing	복구 중
 Job_FilesRepairedOne	파일 {0}개 복구됨
 Job_FilesRepairedMany	파일 {0}개 복구됨
+Tool_Snapshot.Text	중복 없는 백업…
+Tool_Restore.Text	백업 복원…
+Picker_Repository	여기에 백업 보관
+Picker_RestoreHere	여기에 복원
+Restore_Title	백업 복원
+Restore_None	{0}에 MegaCopier 백업이 없습니다.
+Restore_Item	{0} · 파일 {1}개 · {2}
+Restore_Choose	선택
+Job_TitleBackup	{0} 백업
+Job_TitleBackingUp	{0} 백업 중
+Job_TitleBackedUp	{0} 백업됨
+Job_StateBackingUp	백업 중
+Job_FilesBackedUpOne	파일 {0}개 백업됨
+Job_FilesBackedUpMany	파일 {0}개 백업됨
+Job_TitleRestore	{0}(으)로 복원
+Job_TitleRestoring	{0}(으)로 복원 중
+Job_TitleRestored	{0}(으)로 복원됨
+Job_StateRestoring	복원 중
+Job_FilesRestoredOne	파일 {0}개 복원됨
+Job_FilesRestoredMany	파일 {0}개 복원됨

@@ -983,3 +983,23 @@ Job_TitleRepaired	{0} проверен
 Job_StateRepairing	Исправление
 Job_FilesRepairedOne	Исправлено файлов: {0}
 Job_FilesRepairedMany	Исправлено файлов: {0}
+Tool_Snapshot.Text	Резервная копия без дубликатов…
+Tool_Restore.Text	Восстановить резервную копию…
+Picker_Repository	Хранить копии здесь
+Picker_RestoreHere	Восстановить сюда
+Restore_Title	Восстановить резервную копию
+Restore_None	В {0} нет резервных копий MegaCopier.
+Restore_Item	{0} · файлов: {1} · {2}
+Restore_Choose	Выбрать
+Job_TitleBackup	Резервная копия {0}
+Job_TitleBackingUp	Резервное копирование {0}
+Job_TitleBackedUp	Копия {0} сохранена
+Job_StateBackingUp	Резервное копирование
+Job_FilesBackedUpOne	Сохранено файлов: {0}
+Job_FilesBackedUpMany	Сохранено файлов: {0}
+Job_TitleRestore	Восстановить в {0}
+Job_TitleRestoring	Восстановление в {0}
+Job_TitleRestored	Восстановлено в {0}
+Job_StateRestoring	Восстановление
+Job_FilesRestoredOne	Восстановлено файлов: {0}
+Job_FilesRestoredMany	Восстановлено файлов: {0}

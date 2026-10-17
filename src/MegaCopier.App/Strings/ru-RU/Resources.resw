@@ -989,4 +989,24 @@
   <data name="Job_StateRepairing" xml:space="preserve"><value>Исправление</value></data>
   <data name="Job_FilesRepairedOne" xml:space="preserve"><value>Исправлено файлов: {0}</value></data>
   <data name="Job_FilesRepairedMany" xml:space="preserve"><value>Исправлено файлов: {0}</value></data>
+  <data name="Tool_Snapshot.Text" xml:space="preserve"><value>Резервная копия без дубликатов…</value></data>
+  <data name="Tool_Restore.Text" xml:space="preserve"><value>Восстановить резервную копию…</value></data>
+  <data name="Picker_Repository" xml:space="preserve"><value>Хранить копии здесь</value></data>
+  <data name="Picker_RestoreHere" xml:space="preserve"><value>Восстановить сюда</value></data>
+  <data name="Restore_Title" xml:space="preserve"><value>Восстановить резервную копию</value></data>
+  <data name="Restore_None" xml:space="preserve"><value>В {0} нет резервных копий MegaCopier.</value></data>
+  <data name="Restore_Item" xml:space="preserve"><value>{0} · файлов: {1} · {2}</value></data>
+  <data name="Restore_Choose" xml:space="preserve"><value>Выбрать</value></data>
+  <data name="Job_TitleBackup" xml:space="preserve"><value>Резервная копия {0}</value></data>
+  <data name="Job_TitleBackingUp" xml:space="preserve"><value>Резервное копирование {0}</value></data>
+  <data name="Job_TitleBackedUp" xml:space="preserve"><value>Копия {0} сохранена</value></data>
+  <data name="Job_StateBackingUp" xml:space="preserve"><value>Резервное копирование</value></data>
+  <data name="Job_FilesBackedUpOne" xml:space="preserve"><value>Сохранено файлов: {0}</value></data>
+  <data name="Job_FilesBackedUpMany" xml:space="preserve"><value>Сохранено файлов: {0}</value></data>
+  <data name="Job_TitleRestore" xml:space="preserve"><value>Восстановить в {0}</value></data>
+  <data name="Job_TitleRestoring" xml:space="preserve"><value>Восстановление в {0}</value></data>
+  <data name="Job_TitleRestored" xml:space="preserve"><value>Восстановлено в {0}</value></data>
+  <data name="Job_StateRestoring" xml:space="preserve"><value>Восстановление</value></data>
+  <data name="Job_FilesRestoredOne" xml:space="preserve"><value>Восстановлено файлов: {0}</value></data>
+  <data name="Job_FilesRestoredMany" xml:space="preserve"><value>Восстановлено файлов: {0}</value></data>
 </root>

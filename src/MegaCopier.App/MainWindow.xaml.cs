@@ -1390,6 +1390,61 @@ public sealed partial class MainWindow : Window
         Submit(new IpcRequest { Command = "copy", Operation = Engine.JobOperation.Decrypt, Sources = [from], Destination = to, Password = password });
     }
 
+    /// <summary>Copia de seguridad sin duplicados: una carpeta como instantánea nueva en un repositorio.</summary>
+    private async void Snapshot_Click(object sender, RoutedEventArgs e)
+    {
+        if (await Pickers.PickFolderAsync() is not { } source
+            || await Pickers.PickFolderAsync(L.Get("Picker_Repository")) is not { } repository)
+        {
+            return;
+        }
+
+        Submit(new IpcRequest { Command = "copy", Operation = Engine.JobOperation.Snapshot, Sources = [source], Destination = repository });
+    }
+
+    /// <summary>Restaurar: se elige el repositorio, la instantánea (por fecha) y dónde dejarla.</summary>
+    private async void Restore_Click(object sender, RoutedEventArgs e)
+    {
+        if (await Pickers.PickFolderAsync(L.Get("Picker_Repository")) is not { } repository)
+        {
+            return;
+        }
+
+        var snapshots = new Engine.Backup.BackupRepository(repository).Snapshots();
+        if (snapshots.Count == 0)
+        {
+            _app.Notify(L.Get("Restore_Title"), L.F("Restore_None", repository));
+            return;
+        }
+
+        var list = new ListView { SelectionMode = ListViewSelectionMode.Single, MaxHeight = 360 };
+        Microsoft.UI.Xaml.Automation.AutomationProperties.SetName(list, L.Get("Restore_Title"));
+        foreach (var snapshot in Enumerable.Reverse(snapshots))
+        {
+            string label = L.F("Restore_Item", snapshot.CreatedUtc.ToLocalTime().ToString("g"), snapshot.Files.Count, ViewModels.Format.Bytes(snapshot.TotalBytes));
+            list.Items.Add(new ListViewItem { Content = label, Tag = snapshot.Id });
+        }
+
+        list.SelectedIndex = 0;
+        var dialog = new ContentDialog
+        {
+            Title = L.Get("Restore_Title"),
+            Content = list,
+            PrimaryButtonText = L.Get("Restore_Choose"),
+            CloseButtonText = L.Get("SendDialog/CloseButtonText"),
+            DefaultButton = ContentDialogButton.Primary,
+            XamlRoot = Root.XamlRoot,
+            RequestedTheme = Root.RequestedTheme,
+        };
+        if (await dialog.ShowAsync() != ContentDialogResult.Primary || list.SelectedItem is not ListViewItem { Tag: string id }
+            || await Pickers.PickFolderAsync(L.Get("Picker_RestoreHere")) is not { } target)
+        {
+            return;
+        }
+
+        Submit(new IpcRequest { Command = "copy", Operation = Engine.JobOperation.Restore, Sources = [repository], Destination = target, SnapshotId = id });
+    }
+
     /// <summary>Revisa una copia con datos de recuperación y reconstruye lo que el disco haya estropeado.</summary>
     private async void Repair_Click(object sender, RoutedEventArgs e)
     {
