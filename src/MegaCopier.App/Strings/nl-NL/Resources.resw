@@ -933,4 +933,8 @@
   <data name="Email_Sent" xml:space="preserve"><value>E-mail verzonden.</value></data>
   <data name="Email_Failed" xml:space="preserve"><value>Kan niet verzenden: {0}</value></data>
   <data name="Email_Test.Text" xml:space="preserve"><value>Testmail verzenden</value></data>
+  <data name="Panel_CopyAdmin.Text" xml:space="preserve"><value>Kopiëren met beheerdersrechten</value></data>
+  <data name="Backup_Title" xml:space="preserve"><value>Beveiligde bestanden</value></data>
+  <data name="Backup_Done" xml:space="preserve"><value>Gekopieerd in back-upmodus, zonder rekening te houden met hun rechten.</value></data>
+  <data name="Backup_Partial" xml:space="preserve"><value>Sommige bestanden konden nog steeds niet worden gekopieerd: {0}</value></data>
 </root>

@@ -927,3 +927,7 @@ Email_OnlyProblems.Content	Yalnızca sorun olduğunda
 Email_Sent	E-posta gönderildi.
 Email_Failed	Gönderilemedi: {0}
 Email_Test.Text	Deneme e-postası gönder
+Panel_CopyAdmin.Text	Yönetici izniyle kopyala
+Backup_Title	Korumalı dosyalar
+Backup_Done	Yedekleme modunda, izinleri atlanarak kopyalandı.
+Backup_Partial	Bazı dosyalar hâlâ kopyalanamadı: {0}

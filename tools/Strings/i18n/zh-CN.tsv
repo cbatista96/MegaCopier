@@ -927,3 +927,7 @@ Email_OnlyProblems.Content	仅在出现问题时
 Email_Sent	邮件已发送。
 Email_Failed	无法发送：{0}
 Email_Test.Text	发送测试邮件
+Panel_CopyAdmin.Text	以管理员权限复制
+Backup_Title	受保护的文件
+Backup_Done	已在备份模式下绕过权限复制。
+Backup_Partial	部分文件仍无法复制：{0}

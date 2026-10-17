@@ -89,6 +89,12 @@ public static class Program
             return CopyLockedFiles(args[1]);
         }
 
+        // Modo copia de seguridad: este proceso (con permisos de administrador) repite la copia saltándose los permisos.
+        if (args.Length > 1 && args[0] == "--backup")
+        {
+            return CopyWithBackupPrivileges(args[1]);
+        }
+
         var startup = StartupArgs.Parse(args);
 
         // Instancia única: el primer proceso se queda residente; los siguientes le pasan su petición y salen.
@@ -147,6 +153,34 @@ public static class Program
         Engine.LockedFiles.Copy(request, snapshots, options);
         Engine.LockedFiles.Save(request, requestPath);
         return request.Errors.Count == 0 ? 0 : 1;
+    }
+
+    /// <summary>
+    /// "--backup id": repite el trabajo con los privilegios de copia y restauración (lo ya copiado se omite como
+    /// idéntico). Deja en Datos\backup-id.txt cuántos fallaron y el primer error, para el aviso de la app.
+    /// </summary>
+    private static int CopyWithBackupPrivileges(string jobId)
+    {
+        string resultPath = Engine.DataFolder.Combine($"backup-{jobId}.txt");
+        if (new Engine.Jobs.JobStore().Get(jobId) is not { } record)
+        {
+            return 2;
+        }
+
+        var options = record.ToOptions();
+        options.BackupMode = true;
+        options.DryRun = false;
+        try
+        {
+            var result = new Engine.CopyEngine(options).Run(new Engine.CopyJobRequest(record.Sources, record.Destination) { Excluded = record.Excluded, Resumed = true });
+            File.WriteAllText(resultPath, $"{result.Failures.Count}\n{result.Failures.FirstOrDefault()?.Message}");
+            return result.Failures.Count == 0 ? 0 : 1;
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or Engine.CopyPlanException)
+        {
+            File.WriteAllText(resultPath, $"-1\n{ex.Message}");
+            return 2;
+        }
     }
 
     private sealed class FolderSnapshot(string root) : Engine.ISnapshotProvider

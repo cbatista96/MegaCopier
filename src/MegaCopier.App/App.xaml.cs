@@ -188,6 +188,41 @@ public partial class App : Application
     /// Copia los archivos que fallaron por estar en uso leyéndolos de una instantánea de volumen: un proceso aparte pide
     /// permiso de administrador (el aviso de Windows), los copia, y después se reintenta la copia (ya los encuentra).
     /// </summary>
+    internal async Task CopyWithAdminAsync(CopyJob job)
+    {
+        // Modo copia de seguridad: un proceso con permisos de administrador (aviso de Windows) repite la copia
+        // saltándose los permisos de los archivos; después se reintenta aquí y lo copiado se omite como idéntico.
+        string resultPath = DataFolder.Combine($"backup-{job.Id}.txt");
+        int exit;
+        try
+        {
+            var info = new ProcessStartInfo(Environment.ProcessPath!, $"--backup {job.Id}") { UseShellExecute = !TestMode };
+            if (!TestMode)
+            {
+                info.Verb = "runas";
+            }
+
+            using var process = Process.Start(info)!;
+            await process.WaitForExitAsync();
+            exit = process.ExitCode;
+        }
+        catch (System.ComponentModel.Win32Exception)
+        {
+            Notify(L.Get("Backup_Title"), L.Get("Locked_Cancelled"));
+            return;
+        }
+
+        string[] lines = File.Exists(resultPath) ? File.ReadAllLines(resultPath) : ["-1", ""];
+        File.Delete(resultPath);
+        if (TestMode)
+        {
+            TestLog("backup.log", $"salida={exit} {string.Join(" | ", lines)}");
+        }
+
+        Queue.Resume(job);
+        Notify(L.Get("Backup_Title"), exit == 0 ? L.Get("Backup_Done") : L.F("Backup_Partial", lines.ElementAtOrDefault(1) ?? ""));
+    }
+
     internal async Task CopyLockedFilesAsync(CopyJob job)
     {
         var locked = job.Files?.Snapshot().Where(i => i.State == FileState.Failed && i.ErrorKind == FileErrorKind.InUse)

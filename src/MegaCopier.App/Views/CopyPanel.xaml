@@ -123,6 +123,12 @@
                         <TextBlock x:Uid="Panel_CopyLocked" />
                     </StackPanel>
                 </Button>
+                <Button Style="{StaticResource McAccentButton}" Click="{x:Bind Job.CopyAdmin}" Visibility="{x:Bind Job.CanCopyAdmin, Mode=OneWay}">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <FontIcon VerticalAlignment="Center" Glyph="&#xE7EF;" FontSize="12" />
+                        <TextBlock x:Uid="Panel_CopyAdmin" />
+                    </StackPanel>
+                </Button>
                 <Button Style="{StaticResource McAccentButton}" Click="{x:Bind Job.RunForReal}" Visibility="{x:Bind Job.CanRunForReal, Mode=OneWay}">
                     <StackPanel Orientation="Horizontal" Spacing="8">
                         <FontIcon VerticalAlignment="Center" Glyph="&#xE768;" FontSize="12" />

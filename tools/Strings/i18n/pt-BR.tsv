@@ -927,3 +927,7 @@ Email_OnlyProblems.Content	Só se houver problemas
 Email_Sent	E-mail enviado.
 Email_Failed	Não foi possível enviar: {0}
 Email_Test.Text	Enviar e-mail de teste
+Panel_CopyAdmin.Text	Copiar com permissão de administrador
+Backup_Title	Arquivos protegidos
+Backup_Done	Copiados no modo backup, ignorando suas permissões.
+Backup_Partial	Alguns arquivos ainda não puderam ser copiados: {0}

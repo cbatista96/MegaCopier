@@ -35,7 +35,7 @@ internal sealed partial class FileTransfer
             return null;
         }
 
-        using var source = File.OpenHandle(sourcePath, FileMode.Open, FileAccess.Read, FileShare.Read, FileOptions.SequentialScan);
+        using var source = OpenFile(sourcePath, FileMode.Open, FileAccess.Read, FileShare.Read, FileOptions.SequentialScan);
         var info = Win32.GetSourceInfo(source);
         long length = info.Identity.Length;
         IoHelpers.DeleteIfExists(destinationPath + JournalSuffix);
@@ -50,7 +50,7 @@ internal sealed partial class FileTransfer
         try
         {
             var hasher = FileHasher.Create(_options.HashAlgorithm);
-            using (var destination = File.OpenHandle(partialPath, FileMode.Open, FileAccess.ReadWrite, FileShare.Read, FileOptions.RandomAccess))
+            using (var destination = OpenFile(partialPath, FileMode.Open, FileAccess.ReadWrite, FileShare.Read, FileOptions.RandomAccess))
             using (var undo = new FileStream(undoPath, FileMode.CreateNew, FileAccess.Write, FileShare.None, 1, FileOptions.WriteThrough))
             {
                 long oldLength = RandomAccess.GetLength(destination);
@@ -114,7 +114,7 @@ internal sealed partial class FileTransfer
             {
                 _progress.SetPhase(CopyPhase.Verifying);
                 var check = FileHasher.Create(_options.HashAlgorithm)!;
-                using (var copy = File.OpenHandle(partialPath, FileMode.Open, FileAccess.Read, FileShare.Read, FileOptions.SequentialScan))
+                using (var copy = OpenFile(partialPath, FileMode.Open, FileAccess.Read, FileShare.Read, FileOptions.SequentialScan))
                 {
                     for (long offset = 0; offset < length; offset += DeltaBlock)
                     {

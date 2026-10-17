@@ -199,6 +199,12 @@ public sealed class CopyOptions
     /// </summary>
     public bool RescueMode { get; set; }
 
+    /// <summary>
+    /// Modo copia de seguridad (robocopy /B): leer y escribir saltándose los permisos con los privilegios de copia y
+    /// restauración. Solo en un proceso con permisos de administrador (el motor los activa al empezar).
+    /// </summary>
+    public bool BackupMode { get; set; }
+
     /// <summary>Archivos dispersos (con huecos): el destino también lo es, sin escribir los huecos.</summary>
     public bool PreserveSparse { get; set; } = true;
 

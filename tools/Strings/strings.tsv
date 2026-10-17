@@ -927,3 +927,7 @@ Email_OnlyProblems.Content	Solo si hay problemas	Only when there are problems
 Email_Sent	Correo enviado.	Email sent.
 Email_Failed	No se pudo enviar: {0}	Couldn't send: {0}
 Email_Test.Text	Enviar correo de prueba	Send test email
+Panel_CopyAdmin.Text	Copiar con permisos de administrador	Copy with administrator permission
+Backup_Title	Archivos protegidos	Protected files
+Backup_Done	Copiados en modo copia de seguridad, saltándose sus permisos.	Copied in backup mode, bypassing their permissions.
+Backup_Partial	Algunos archivos siguen sin poder copiarse: {0}	Some files still couldn't be copied: {0}
