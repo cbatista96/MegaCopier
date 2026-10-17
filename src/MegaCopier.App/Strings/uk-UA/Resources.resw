@@ -945,4 +945,6 @@
   <data name="Rules_EfsRaw.Content" xml:space="preserve"><value>Копіювати файли, зашифровані EFS, без розшифрування</value></data>
   <data name="Destinations_Zip.Content" xml:space="preserve"><value>Зберегти в ZIP-архів</value></data>
   <data name="Destinations_PasswordHintZip" xml:space="preserve"><value>ZIP шифрується AES-256 і відкривається в 7-Zip, WinZip або WinRAR (Провідник Windows не відкриває зашифровані ZIP). Імена файлів видно без пароля. Якщо ви його забудете, відновити файли буде неможливо.</value></data>
+  <data name="Settings_RemoteConnectionsTitle.Text" xml:space="preserve"><value>Одночасні з&apos;єднання</value></data>
+  <data name="Settings_RemoteConnectionsDescription.Text" xml:space="preserve"><value>За великої кількості файлів кілька одночасних з&apos;єднань із сервером працюють набагато швидше (від 1 до 255). Якщо сервер обмежує з&apos;єднання, використовуються дозволені.</value></data>
 </root>

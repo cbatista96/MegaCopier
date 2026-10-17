@@ -11,6 +11,7 @@ internal sealed class Throttle(Func<long> bytesPerSecond)
     private readonly Stopwatch _clock = Stopwatch.StartNew();
     private long _consumed;
     private long _lastLimit;
+    private readonly Lock _gate = new(); // varias conexiones a un servidor comparten el límite
 
     public async Task WaitAsync(int bytes, CancellationToken cancellationToken)
     {
@@ -21,19 +22,24 @@ internal sealed class Throttle(Func<long> bytesPerSecond)
             return;
         }
 
-        double elapsed = _clock.Elapsed.TotalSeconds;
-
-        // Tras una pausa larga, o si el límite cambió, no se "recupera" el tiempo con una ráfaga: se empieza a contar de nuevo.
-        if (limit != _lastLimit || elapsed - (_consumed / (double)limit) > 1)
+        double ahead;
+        lock (_gate)
         {
-            _clock.Restart();
-            _consumed = 0;
-            elapsed = 0;
-            _lastLimit = limit;
+            double elapsed = _clock.Elapsed.TotalSeconds;
+
+            // Tras una pausa larga, o si el límite cambió, no se "recupera" el tiempo con una ráfaga: se empieza a contar de nuevo.
+            if (limit != _lastLimit || elapsed - (_consumed / (double)limit) > 1)
+            {
+                _clock.Restart();
+                _consumed = 0;
+                elapsed = 0;
+                _lastLimit = limit;
+            }
+
+            _consumed += bytes;
+            ahead = (_consumed / (double)limit) - elapsed;
         }
 
-        _consumed += bytes;
-        double ahead = (_consumed / (double)limit) - elapsed;
         if (ahead > 0.002)
         {
             await Task.Delay(TimeSpan.FromSeconds(ahead), cancellationToken).ConfigureAwait(false);

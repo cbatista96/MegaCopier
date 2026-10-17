@@ -939,3 +939,5 @@ Rules_WipeDod7.Content	DoD 5220.22-M ECE, 7회(느림)
 Rules_EfsRaw.Content	EFS로 암호화된 파일을 해독하지 않고 복사
 Destinations_Zip.Content	ZIP 파일로 저장
 Destinations_PasswordHintZip	ZIP은 AES-256으로 암호화되며 7-Zip, WinZip 또는 WinRAR로 열 수 있습니다(Windows 탐색기는 암호화된 ZIP을 열 수 없음). 파일 이름은 암호 없이도 보입니다. 암호를 잊으면 파일을 복구할 방법이 없습니다.
+Settings_RemoteConnectionsTitle.Text	동시 연결 수
+Settings_RemoteConnectionsDescription.Text	파일이 많을 때 서버에 여러 연결을 동시에 사용하면 훨씬 빠릅니다(1~255). 서버가 연결 수를 제한하면 허용된 만큼만 사용합니다.

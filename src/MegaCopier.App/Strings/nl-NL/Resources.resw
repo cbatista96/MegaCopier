@@ -945,4 +945,6 @@
   <data name="Rules_EfsRaw.Content" xml:space="preserve"><value>EFS-versleutelde bestanden kopiëren zonder ze te ontsleutelen</value></data>
   <data name="Destinations_Zip.Content" xml:space="preserve"><value>Opslaan in een ZIP-bestand</value></data>
   <data name="Destinations_PasswordHintZip" xml:space="preserve"><value>De ZIP wordt versleuteld met AES-256 en opent met 7-Zip, WinZip of WinRAR (Windows Verkenner opent geen versleutelde ZIP&apos;s). Bestandsnamen zijn zichtbaar zonder wachtwoord. Als je het vergeet, zijn de bestanden niet te herstellen.</value></data>
+  <data name="Settings_RemoteConnectionsTitle.Text" xml:space="preserve"><value>Gelijktijdige verbindingen</value></data>
+  <data name="Settings_RemoteConnectionsDescription.Text" xml:space="preserve"><value>Bij veel bestanden gaan meerdere verbindingen tegelijk met de server veel sneller (1 tot 255). Als de server verbindingen beperkt, worden de toegestane gebruikt.</value></data>
 </root>

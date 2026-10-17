@@ -939,3 +939,5 @@ Rules_WipeDod7.Content	DoD 5220.22-M ECE，7 次（慢）
 Rules_EfsRaw.Content	不解密直接复制 EFS 加密的文件
 Destinations_Zip.Content	保存为 ZIP 文件
 Destinations_PasswordHintZip	ZIP 使用 AES-256 加密，可用 7-Zip、WinZip 或 WinRAR 打开（Windows 资源管理器无法打开加密的 ZIP）。文件名无需密码即可看到。如果忘记密码，将无法恢复文件。
+Settings_RemoteConnectionsTitle.Text	同时连接数
+Settings_RemoteConnectionsDescription.Text	文件很多时，同时使用多个服务器连接会快得多（1 到 255）。如果服务器限制连接数，则使用其允许的数量。

@@ -194,4 +194,55 @@ public sealed class RemoteStoreTests : IDisposable
 
         Assert.Equal("", Connections.GetSecret(id));
     }
+
+    [Fact]
+    public void ManyFilesTravelOverSeveralConnectionsAtOnce()
+    {
+        using var server = new FakeFtp(Folder("servidor"), "ana", "secreta", mlsd: true);
+        var connection = new Connection { Name = "NAS", Kind = ConnectionKind.Ftp, Host = "127.0.0.1", Port = server.Port, User = "ana" };
+        string local = Folder("muchos");
+        var files = new Dictionary<string, byte[]>();
+        for (int i = 0; i < 60; i++)
+        {
+            string name = Path.Combine(i % 3 == 0 ? "a" : "b", $"f{i}.bin");
+            files[name] = RandomNumberGenerator.GetBytes(i % 10 == 0 ? 1_500_000 : 20_000 + i);
+            Directory.CreateDirectory(Path.Combine(local, Path.GetDirectoryName(name)!));
+            File.WriteAllBytes(Path.Combine(local, name), files[name]);
+        }
+
+        using (var store = Connections.Open(connection, "secreta"))
+        {
+            store.CreateFolder(store.RootId, "copias");
+        }
+
+        int opened = 0;
+        CopyProgress last = default;
+        CopyEngine Engine()
+        {
+            var engine = new CopyEngine(new CopyOptions { Verify = true, RemoteConnections = 8, ProgressInterval = TimeSpan.Zero })
+            {
+                RemoteOpener = _ => { Interlocked.Increment(ref opened); return Connections.Open(connection, "secreta"); },
+            };
+            engine.ProgressChanged += p => last = p;
+            return engine;
+        }
+
+        string remote = RemotePath.Format(connection.Id, connection.Name, "copias");
+        var up = Engine().Run(new CopyJobRequest([local], remote));
+        Assert.Empty(up.Failures);
+        Assert.Equal(60, up.FilesCopied);
+        Assert.Equal(8, opened);
+        Assert.Equal(last.TotalBytes, last.CompletedBytes);
+        Assert.Equal(60, last.FilesCompleted);
+
+        opened = 0;
+        string back = Folder("vuelta");
+        var down = Engine().Run(new CopyJobRequest([RemotePath.Combine(remote, "muchos")], back));
+        Assert.Empty(down.Failures);
+        Assert.Equal(8, opened);
+        foreach (var (name, content) in files)
+        {
+            Assert.Equal(content, File.ReadAllBytes(Path.Combine(back, "muchos", name)));
+        }
+    }
 }

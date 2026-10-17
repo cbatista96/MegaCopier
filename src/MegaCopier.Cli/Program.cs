@@ -138,6 +138,9 @@ internal static class Cli
                 case "--zip":
                     options.Zip = true;
                     break;
+                case "--connections":
+                    options.RemoteConnections = Math.Clamp(NextInt(args, ref i), 1, CopyOptions.MaxRemoteConnections);
+                    break;
                 case "--delta":
                     options.DeltaCopy = true;
                     break;

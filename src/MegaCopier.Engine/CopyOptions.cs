@@ -227,6 +227,11 @@ public sealed class CopyOptions
     /// </summary>
     public int ParallelSmallFiles { get; set; } = 4;
 
+    public const int MaxRemoteConnections = 255;
+
+    /// <summary>Conexiones a la vez con un servidor (FTP, SFTP, WebDAV, S3), de 1 a 255. Un móvil va siempre de uno en uno.</summary>
+    public int RemoteConnections { get; set; } = 4;
+
     public bool ServerSideCopy { get; set; } = true;
 
     /// <summary>Pedir compresión SMB al copiar por red (Windows 11 / Server 2022): ayuda en redes lentas.</summary>

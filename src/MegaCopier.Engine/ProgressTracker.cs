@@ -37,8 +37,50 @@ internal sealed class ProgressTracker
         _parent = parent;
     }
 
+    /// <summary>
+    /// Para una conexión más de una copia con un servidor: cada byte se pasa en el acto al principal (así la barra
+    /// avanza aunque haya varios archivos grandes a la vez) y el archivo cuenta como terminado al acabar.
+    /// </summary>
+    public ProgressTracker(ProgressTracker parent, bool forwardBytes)
+        : this(parent)
+    {
+        _forward = forwardBytes;
+    }
+
     private readonly ProgressTracker? _parent;
+    private readonly bool _forward;
     private bool _parentWaiting;
+    private long _parallelBytes;
+
+    private void AddParallelBytes(long bytes, string? file)
+    {
+        lock (_gate)
+        {
+            _parallelBytes += bytes;
+            if (file is not null)
+            {
+                _currentFile = file;
+            }
+
+            if (bytes > 0)
+            {
+                AddSample(bytes);
+            }
+
+            Emit(force: file is not null);
+        }
+    }
+
+    private void FinishParallelFile(long sent, long length)
+    {
+        lock (_gate)
+        {
+            _parallelBytes -= sent;
+            _completedFilesBytes += length;
+            _filesCompleted++;
+            Emit(force: false);
+        }
+    }
 
     private readonly List<float> _speedHistory = [];
     private long _lastHistorySample = Stopwatch.GetTimestamp();
@@ -84,14 +126,26 @@ internal sealed class ProgressTracker
             _phase = CopyPhase.Copying;
             Emit(force: true);
         }
+
+        if (_forward)
+        {
+            _parent!.AddParallelBytes(0, path);
+        }
     }
 
     /// <summary>Reinicia el avance del archivo actual (antes de un reintento).</summary>
     public void RestartFile()
     {
+        long undone;
         lock (_gate)
         {
+            undone = _currentDone;
             _currentDone = 0;
+        }
+
+        if (_forward)
+        {
+            _parent!.AddParallelBytes(-undone, null);
         }
     }
 
@@ -109,10 +163,17 @@ internal sealed class ProgressTracker
 
     public void SetFileResumed(long bytes)
     {
+        long delta;
         lock (_gate)
         {
+            delta = bytes - _currentDone;
             _currentDone = bytes;
             Emit(force: true);
+        }
+
+        if (_forward)
+        {
+            _parent!.AddParallelBytes(delta, null);
         }
     }
 
@@ -123,6 +184,11 @@ internal sealed class ProgressTracker
             _currentDone += bytes;
             AddSample(bytes);
             Emit(force: false);
+        }
+
+        if (_forward)
+        {
+            _parent!.AddParallelBytes(bytes, null);
         }
     }
 
@@ -149,13 +215,21 @@ internal sealed class ProgressTracker
 
     public void EndFile()
     {
+        long sent, length;
         lock (_gate)
         {
+            sent = _currentDone;
+            length = _currentLength;
             _completedFilesBytes += _currentLength;
             _filesCompleted++;
             _currentDone = 0;
             _currentLength = 0;
             Emit(force: true);
+        }
+
+        if (_forward)
+        {
+            _parent!.FinishParallelFile(sent, length);
         }
     }
 
@@ -226,7 +300,7 @@ internal sealed class ProgressTracker
             _currentFile,
             _currentDone,
             _currentLength,
-            _completedFilesBytes + _currentDone,
+            _completedFilesBytes + _currentDone + _parallelBytes,
             _totalBytes,
             _filesCompleted,
             _totalFiles,
