@@ -936,3 +936,4 @@ Rules_WipeZeros.Content	ゼロで 1 回上書き（高速）
 Rules_WipeRandom.Content	ランダムで 1 回上書き
 Rules_WipeDod3.Content	DoD 5220.22-M、3 回
 Rules_WipeDod7.Content	DoD 5220.22-M ECE、7 回（低速）
+Rules_EfsRaw.Content	EFS で暗号化されたファイルを復号せずにコピーする

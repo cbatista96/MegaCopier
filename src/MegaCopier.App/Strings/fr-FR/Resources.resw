@@ -942,4 +942,5 @@
   <data name="Rules_WipeRandom.Content" xml:space="preserve"><value>Une passe aléatoire</value></data>
   <data name="Rules_WipeDod3.Content" xml:space="preserve"><value>DoD 5220.22-M, 3 passes</value></data>
   <data name="Rules_WipeDod7.Content" xml:space="preserve"><value>DoD 5220.22-M ECE, 7 passes (lent)</value></data>
+  <data name="Rules_EfsRaw.Content" xml:space="preserve"><value>Copier les fichiers chiffrés EFS sans les déchiffrer</value></data>
 </root>

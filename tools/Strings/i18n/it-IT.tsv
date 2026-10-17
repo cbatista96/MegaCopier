@@ -936,3 +936,4 @@ Rules_WipeZeros.Content	Un passaggio di zeri (veloce)
 Rules_WipeRandom.Content	Un passaggio casuale
 Rules_WipeDod3.Content	DoD 5220.22-M, 3 passaggi
 Rules_WipeDod7.Content	DoD 5220.22-M ECE, 7 passaggi (lento)
+Rules_EfsRaw.Content	Copia i file crittografati con EFS senza decrittografarli

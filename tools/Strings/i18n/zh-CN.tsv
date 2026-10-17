@@ -936,3 +936,4 @@ Rules_WipeZeros.Content	一次零填充（快速）
 Rules_WipeRandom.Content	一次随机填充
 Rules_WipeDod3.Content	DoD 5220.22-M，3 次
 Rules_WipeDod7.Content	DoD 5220.22-M ECE，7 次（慢）
+Rules_EfsRaw.Content	不解密直接复制 EFS 加密的文件

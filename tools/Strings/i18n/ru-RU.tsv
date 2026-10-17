@@ -936,3 +936,4 @@ Rules_WipeZeros.Content	Один проход нулями (быстро)
 Rules_WipeRandom.Content	Один случайный проход
 Rules_WipeDod3.Content	DoD 5220.22-M, 3 прохода
 Rules_WipeDod7.Content	DoD 5220.22-M ECE, 7 проходов (медленно)
+Rules_EfsRaw.Content	Копировать файлы, зашифрованные EFS, без расшифровки

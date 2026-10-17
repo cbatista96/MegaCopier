@@ -205,6 +205,12 @@ public sealed class CopyOptions
     /// </summary>
     public bool BackupMode { get; set; }
 
+    /// <summary>
+    /// Los archivos cifrados con EFS se copian sin descifrar (como robocopy /EFSRAW): el destino queda cifrado igual y no
+    /// hace falta tener la clave. Sin esta opción se copian descifrados si se puede abrir su contenido.
+    /// </summary>
+    public bool EfsRaw { get; set; }
+
     /// <summary>Archivos dispersos (con huecos): el destino también lo es, sin escribir los huecos.</summary>
     public bool PreserveSparse { get; set; } = true;
 

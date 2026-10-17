@@ -936,3 +936,4 @@ Rules_WipeZeros.Content	Tek geçiş sıfır (hızlı)
 Rules_WipeRandom.Content	Tek rastgele geçiş
 Rules_WipeDod3.Content	DoD 5220.22-M, 3 geçiş
 Rules_WipeDod7.Content	DoD 5220.22-M ECE, 7 geçiş (yavaş)
+Rules_EfsRaw.Content	EFS ile şifrelenmiş dosyaları şifresini çözmeden kopyala

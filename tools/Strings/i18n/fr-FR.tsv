@@ -936,3 +936,4 @@ Rules_WipeZeros.Content	Une passe de zéros (rapide)
 Rules_WipeRandom.Content	Une passe aléatoire
 Rules_WipeDod3.Content	DoD 5220.22-M, 3 passes
 Rules_WipeDod7.Content	DoD 5220.22-M ECE, 7 passes (lent)
+Rules_EfsRaw.Content	Copier les fichiers chiffrés EFS sans les déchiffrer
