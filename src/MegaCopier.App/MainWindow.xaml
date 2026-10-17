@@ -225,7 +225,8 @@
             </Grid>
 
             <!-- Sin copias -->
-            <StackPanel x:Name="EmptyState" Grid.ColumnSpan="2" Spacing="14" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="24" Visibility="Collapsed">
+            <ScrollViewer x:Name="EmptyState" Grid.ColumnSpan="2" VerticalScrollBarVisibility="Auto" Visibility="Collapsed">
+            <StackPanel Spacing="14" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="24,20">
                 <StackPanel.ChildrenTransitions>
                     <TransitionCollection>
                         <EntranceThemeTransition IsStaggeringEnabled="True" />
@@ -250,6 +251,7 @@
                     <HyperlinkButton Click="Settings_Click"><TextBlock x:Uid="SettingsSection" /></HyperlinkButton>
                 </StackPanel>
             </StackPanel>
+            </ScrollViewer>
 
             <!-- Páginas superpuestas -->
             <views:HistoryPage x:Name="HistoryView" Grid.ColumnSpan="2" Visibility="Collapsed" Background="{StaticResource McBackgroundBrush}" />

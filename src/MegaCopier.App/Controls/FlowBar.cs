@@ -61,7 +61,11 @@ public sealed partial class FlowBar : UserControl
         _fill.RenderTransform = _indeterminateOffset;
         _fill.SizeChanged += (_, e) => _fillClip.Rect = new Windows.Foundation.Rect(0, 0, e.NewSize.Width, e.NewSize.Height);
 
+        // Todo lo que se sale de la barra (el tramo animado de «cargando», el brillo) se recorta en sus bordes.
         var root = new Grid();
+        var rootClip = new RectangleGeometry();
+        root.Clip = rootClip;
+        root.SizeChanged += (_, e) => rootClip.Rect = new Windows.Foundation.Rect(0, 0, e.NewSize.Width, e.NewSize.Height);
         root.Children.Add(_track);
         root.Children.Add(_fill);
         Content = root;
@@ -76,7 +80,14 @@ public sealed partial class FlowBar : UserControl
             Theming.ThemeManager.Changed += ApplyTheme;
             ApplyTheme(Theming.ThemeManager.Current);
         };
-        SizeChanged += (_, _) => SetFillWidth(_shownValue, animate: false);
+        SizeChanged += (_, _) =>
+        {
+            SetFillWidth(_shownValue, animate: false);
+            if (IsIndeterminate)
+            {
+                UpdateIndeterminate(); // el recorrido depende del ancho real
+            }
+        };
     }
 
     /// <summary>Avance de 0 a 1.</summary>
@@ -187,13 +198,15 @@ public sealed partial class FlowBar : UserControl
 
     private void UpdateIndeterminate()
     {
-        if (IsIndeterminate)
+        _indeterminateAnimation?.Stop();
+        _indeterminateAnimation = null;
+        if (IsIndeterminate && ActualWidth > 0)
         {
             SetFillWidth(0.3, animate: false);
             var animation = new DoubleAnimation
             {
-                From = -0.3 * Math.Max(ActualWidth, 100),
-                To = Math.Max(ActualWidth, 100),
+                From = -0.3 * ActualWidth,
+                To = ActualWidth,
                 Duration = new Duration(TimeSpan.FromMilliseconds(1300)),
                 RepeatBehavior = RepeatBehavior.Forever,
                 EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut },
@@ -204,10 +217,8 @@ public sealed partial class FlowBar : UserControl
             _indeterminateAnimation.Children.Add(animation);
             _indeterminateAnimation.Begin();
         }
-        else
+        else if (!IsIndeterminate)
         {
-            _indeterminateAnimation?.Stop();
-            _indeterminateAnimation = null;
             _indeterminateOffset.X = 0;
             SetFillWidth(Value, animate: false);
         }

@@ -271,7 +271,8 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
 
     public string TotalFilesText => Progress is { } p ? p.TotalFiles.ToString("N0") : "";
 
-    public bool BarIndeterminate => (State == CopyJobState.Queued && !IsScheduled) || (IsRunning && Progress is null);
+    /// <summary>Solo mientras prepara la copia (aún no sabe cuánto hay). En cola espera su turno: barra quieta.</summary>
+    public bool BarIndeterminate => IsRunning && Progress is null;
 
     // ---------------------------------------------------------------------------------------------------------
     // Archivo actual (barra inferior)

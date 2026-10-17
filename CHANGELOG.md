@@ -9,6 +9,11 @@ y las versiones, [SemVer](https://semver.org/lang/es/).
 - Documentación nueva y completa: guía de uso paso a paso, preguntas frecuentes, guía de versiones y capturas de todas
   las vistas y de los 11 temas.
 - `tools\publicar-version.ps1` publica una versión nueva con un solo comando.
+- Una copia en cola muestra la barra quieta y vacía mientras espera su turno, en vez de la animación de «cargando».
+
+### Arreglado
+- La barra de progreso ya no se sale de su sitio (sobre el icono de la lista o fuera del borde) al preparar una copia.
+- La ventana pequeña sin copias ya no corta el icono, los botones ni los enlaces de abajo: crece lo necesario.
 
 ## [1.0.0] - 2026-10-17
 
