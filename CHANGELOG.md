@@ -1,0 +1,45 @@
+# Novedades
+
+Todos los cambios importantes de MegaCopier. El formato sigue [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/)
+y las versiones, [SemVer](https://semver.org/lang/es/).
+
+## [Sin publicar]
+
+## [1.0.0] - 2026-10-17
+
+Primera versión pública.
+
+### Copia y fiabilidad
+- Reanudación tras un apagón dentro del propio archivo, con diario por bloques y comprobación de lo ya copiado.
+- Pausa, saltar, detener y seguir; reintentos; espera a que vuelva el disco, la red o el espacio.
+- Carpetas «todo o nada», modo rescate, archivos en uso con VSS, modo copia de seguridad y copia de EFS sin descifrar.
+- Escudo contra ransomware antes de sobrescribir copias.
+- Datos de recuperación Reed-Solomon y `mcopy repair`.
+- Modo forense con manifiesto SHA-256 firmado y `mcopy verify-manifest`.
+
+### Velocidad
+- E/S directa en paralelo, colas por disco, archivos pequeños en paralelo, IoRing y autoajuste por disco.
+- Clonado en ReFS, copia en el servidor y compresión SMB, copia delta.
+- Varios orígenes a la vez y conexiones con servidores que se ajustan solas (hasta 255).
+- ZIP y 7z comprimidos en paralelo.
+
+### Qué y cómo copiar
+- Espejo, solo actualizar, solo carpetas, organizar fotos por fecha y simulación.
+- Filtros en lenguaje normal y por el texto de las fotos (OCR de Windows).
+- Versiones con limpieza automática y copias de seguridad sin duplicados (`mcopy backup`, `snapshots`, `restore`).
+- Copia cifrada, a ZIP cifrado y a 7z cifrado; borrado seguro de 1, 3 o 7 pasadas.
+- Sincronización en dos sentidos con detección de renombrados, vista de comparación y sincronización en tiempo real.
+
+### Dónde copiar
+- Móviles y cámaras (MTP), LocalSend en los dos sentidos y envío a otro PC con MegaCopier.
+- FTP, FTPS, SFTP, WebDAV, S3, OneDrive, Google Drive y Dropbox.
+
+### Uso diario
+- Sustituye Ctrl+V, el menú contextual (también el corto de Windows 11) y el arrastre del Explorador.
+- Varios destinos, favoritos, carpetas abiertas del Explorador, Total Commander y Directory Opus.
+- Cola por disco, línea de tiempo, bandeja de arrastre, tareas programadas que se ponen al día, historial con deshacer.
+- Aviso SMART, avisos por correo y webhook, control desde el móvil y servidor MCP para asistentes de IA.
+- Consola `mcopy`, modo portátil, 14 idiomas, 11 temas y accesibilidad con lectores de pantalla.
+
+[Sin publicar]: https://github.com/cbatista96/MegaCopier/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/cbatista96/MegaCopier/releases/tag/v1.0.0

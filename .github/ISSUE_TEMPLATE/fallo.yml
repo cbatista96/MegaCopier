@@ -1,0 +1,38 @@
+name: Fallo
+description: Algo no funciona como debería
+labels: [fallo]
+body:
+  - type: textarea
+    id: que
+    attributes:
+      label: Qué pasa
+      description: Qué hiciste, qué esperabas y qué ocurrió.
+    validations:
+      required: true
+  - type: textarea
+    id: pasos
+    attributes:
+      label: Pasos para reproducirlo
+      placeholder: "1. Copiar una carpeta de 10 GB a un USB\n2. Desconectar el USB a la mitad\n3. ..."
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Versión de MegaCopier
+      placeholder: "1.0.0"
+    validations:
+      required: true
+  - type: input
+    id: windows
+    attributes:
+      label: Versión de Windows
+      placeholder: "Windows 11 24H2"
+    validations:
+      required: true
+  - type: textarea
+    id: crash
+    attributes:
+      label: crash.log
+      description: Si existe, el contenido de %LOCALAPPDATA%\MegaCopier\crash.log (o Data\crash.log en la versión portátil).
+      render: text
