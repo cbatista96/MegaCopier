@@ -257,3 +257,5 @@ C_ManifestOk	Assinatura válida (chave {0}) e os {1} arquivos estão exatamente 
 C_ManifestBadSignature	A assinatura NÃO é válida: o manifesto foi modificado ou não foi feito pelo MegaCopier.
 C_ManifestChanged	Alterado desde a cópia:
 C_ManifestMissing	Ausente:
+E_RemoteConnectionsAuto	Conexões com o servidor: ajustadas automaticamente pela velocidade (máximo {0}).
+E_RemoteConnectionsTuned	Agora {0} conexões simultâneas ({1}/s).

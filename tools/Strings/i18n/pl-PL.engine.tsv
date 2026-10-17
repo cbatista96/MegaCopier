@@ -257,3 +257,5 @@ C_ManifestOk	Podpis prawidłowy (klucz {0}) i wszystkie {1} pliki są dokładnie
 C_ManifestBadSignature	Podpis NIE jest prawidłowy: manifest został zmieniony lub nie utworzył go MegaCopier.
 C_ManifestChanged	Zmieniono od skopiowania:
 C_ManifestMissing	Brak:
+E_RemoteConnectionsAuto	Połączenia z serwerem: dostosowywane automatycznie do prędkości (maksymalnie {0}).
+E_RemoteConnectionsTuned	Teraz {0} jednoczesnych połączeń ({1}/s).

@@ -283,6 +283,8 @@ public static partial class Texts
             ["C_ManifestBadSignature"] = "La firma NO es válida: el manifiesto se modificó o no lo hizo MegaCopier.",
             ["C_ManifestChanged"] = "Cambiado desde la copia:",
             ["C_ManifestMissing"] = "Falta:",
+            ["E_RemoteConnectionsAuto"] = "Conexiones con el servidor: se ajustan solas según la velocidad (máximo {0}).",
+            ["E_RemoteConnectionsTuned"] = "Ahora {0} conexiones a la vez ({1}/s).",
         },
         ["en-US"] = new()
         {
@@ -544,6 +546,8 @@ public static partial class Texts
             ["C_ManifestBadSignature"] = "The signature is NOT valid: the manifest was modified or was not made by MegaCopier.",
             ["C_ManifestChanged"] = "Changed since the copy:",
             ["C_ManifestMissing"] = "Missing:",
+            ["E_RemoteConnectionsAuto"] = "Connections to the server: adjusted automatically by speed (maximum {0}).",
+            ["E_RemoteConnectionsTuned"] = "Now {0} connections at once ({1}/s).",
         },
         ["fr-FR"] = new()
         {
@@ -805,6 +809,8 @@ public static partial class Texts
             ["C_ManifestBadSignature"] = "La signature n'est PAS valide : le manifeste a été modifié ou n'a pas été créé par MegaCopier.",
             ["C_ManifestChanged"] = "Modifié depuis la copie :",
             ["C_ManifestMissing"] = "Manquant :",
+            ["E_RemoteConnectionsAuto"] = "Connexions au serveur : ajustées automatiquement selon la vitesse (maximum {0}).",
+            ["E_RemoteConnectionsTuned"] = "Maintenant {0} connexions simultanées ({1}/s).",
         },
         ["de-DE"] = new()
         {
@@ -1066,6 +1072,8 @@ public static partial class Texts
             ["C_ManifestBadSignature"] = "Die Signatur ist NICHT gültig: Das Manifest wurde geändert oder stammt nicht von MegaCopier.",
             ["C_ManifestChanged"] = "Seit dem Kopieren geändert:",
             ["C_ManifestMissing"] = "Fehlt:",
+            ["E_RemoteConnectionsAuto"] = "Verbindungen zum Server: werden je nach Geschwindigkeit automatisch angepasst (maximal {0}).",
+            ["E_RemoteConnectionsTuned"] = "Jetzt {0} gleichzeitige Verbindungen ({1}/s).",
         },
         ["it-IT"] = new()
         {
@@ -1327,6 +1335,8 @@ public static partial class Texts
             ["C_ManifestBadSignature"] = "La firma NON è valida: il manifesto è stato modificato o non è stato creato da MegaCopier.",
             ["C_ManifestChanged"] = "Modificato dopo la copia:",
             ["C_ManifestMissing"] = "Mancante:",
+            ["E_RemoteConnectionsAuto"] = "Connessioni al server: regolate automaticamente in base alla velocità (massimo {0}).",
+            ["E_RemoteConnectionsTuned"] = "Ora {0} connessioni simultanee ({1}/s).",
         },
         ["pt-BR"] = new()
         {
@@ -1588,6 +1598,8 @@ public static partial class Texts
             ["C_ManifestBadSignature"] = "A assinatura NÃO é válida: o manifesto foi modificado ou não foi feito pelo MegaCopier.",
             ["C_ManifestChanged"] = "Alterado desde a cópia:",
             ["C_ManifestMissing"] = "Ausente:",
+            ["E_RemoteConnectionsAuto"] = "Conexões com o servidor: ajustadas automaticamente pela velocidade (máximo {0}).",
+            ["E_RemoteConnectionsTuned"] = "Agora {0} conexões simultâneas ({1}/s).",
         },
         ["ru-RU"] = new()
         {
@@ -1849,6 +1861,8 @@ public static partial class Texts
             ["C_ManifestBadSignature"] = "Подпись НЕдействительна: манифест изменён или создан не MegaCopier.",
             ["C_ManifestChanged"] = "Изменён после копирования:",
             ["C_ManifestMissing"] = "Отсутствует:",
+            ["E_RemoteConnectionsAuto"] = "Подключения к серверу настраиваются автоматически по скорости (максимум {0}).",
+            ["E_RemoteConnectionsTuned"] = "Теперь одновременных подключений: {0} ({1}/с).",
         },
         ["uk-UA"] = new()
         {
@@ -2110,6 +2124,8 @@ public static partial class Texts
             ["C_ManifestBadSignature"] = "Підпис НЕдійсний: маніфест змінено або створено не MegaCopier.",
             ["C_ManifestChanged"] = "Змінено після копіювання:",
             ["C_ManifestMissing"] = "Відсутній:",
+            ["E_RemoteConnectionsAuto"] = "З'єднання із сервером налаштовуються автоматично за швидкістю (максимум {0}).",
+            ["E_RemoteConnectionsTuned"] = "Тепер одночасних з'єднань: {0} ({1}/с).",
         },
         ["pl-PL"] = new()
         {
@@ -2371,6 +2387,8 @@ public static partial class Texts
             ["C_ManifestBadSignature"] = "Podpis NIE jest prawidłowy: manifest został zmieniony lub nie utworzył go MegaCopier.",
             ["C_ManifestChanged"] = "Zmieniono od skopiowania:",
             ["C_ManifestMissing"] = "Brak:",
+            ["E_RemoteConnectionsAuto"] = "Połączenia z serwerem: dostosowywane automatycznie do prędkości (maksymalnie {0}).",
+            ["E_RemoteConnectionsTuned"] = "Teraz {0} jednoczesnych połączeń ({1}/s).",
         },
         ["nl-NL"] = new()
         {
@@ -2632,6 +2650,8 @@ public static partial class Texts
             ["C_ManifestBadSignature"] = "De handtekening is NIET geldig: het manifest is gewijzigd of niet door MegaCopier gemaakt.",
             ["C_ManifestChanged"] = "Gewijzigd sinds het kopiëren:",
             ["C_ManifestMissing"] = "Ontbreekt:",
+            ["E_RemoteConnectionsAuto"] = "Verbindingen met de server: automatisch aangepast aan de snelheid (maximaal {0}).",
+            ["E_RemoteConnectionsTuned"] = "Nu {0} verbindingen tegelijk ({1}/s).",
         },
         ["tr-TR"] = new()
         {
@@ -2893,6 +2913,8 @@ public static partial class Texts
             ["C_ManifestBadSignature"] = "İmza GEÇERLİ DEĞİL: bildirim değiştirilmiş ya da MegaCopier tarafından oluşturulmamış.",
             ["C_ManifestChanged"] = "Kopyalamadan beri değişti:",
             ["C_ManifestMissing"] = "Eksik:",
+            ["E_RemoteConnectionsAuto"] = "Sunucu bağlantıları: hıza göre otomatik ayarlanır (en çok {0}).",
+            ["E_RemoteConnectionsTuned"] = "Şimdi aynı anda {0} bağlantı ({1}/sn).",
         },
         ["zh-CN"] = new()
         {
@@ -3154,6 +3176,8 @@ public static partial class Texts
             ["C_ManifestBadSignature"] = "签名无效：清单已被修改或并非由 MegaCopier 生成。",
             ["C_ManifestChanged"] = "复制后已更改：",
             ["C_ManifestMissing"] = "缺失：",
+            ["E_RemoteConnectionsAuto"] = "服务器连接：根据速度自动调整（最多 {0} 个）。",
+            ["E_RemoteConnectionsTuned"] = "现在同时使用 {0} 个连接（{1}/秒）。",
         },
         ["ja-JP"] = new()
         {
@@ -3415,6 +3439,8 @@ public static partial class Texts
             ["C_ManifestBadSignature"] = "署名が無効です: マニフェストが変更されたか、MegaCopier が作成したものではありません。",
             ["C_ManifestChanged"] = "コピー後に変更:",
             ["C_ManifestMissing"] = "見つかりません:",
+            ["E_RemoteConnectionsAuto"] = "サーバーへの接続: 速度に応じて自動調整（最大 {0}）。",
+            ["E_RemoteConnectionsTuned"] = "現在の同時接続数: {0}（{1}/秒）。",
         },
         ["ko-KR"] = new()
         {
@@ -3676,6 +3702,8 @@ public static partial class Texts
             ["C_ManifestBadSignature"] = "서명이 유효하지 않습니다: 매니페스트가 수정되었거나 MegaCopier가 만든 것이 아닙니다.",
             ["C_ManifestChanged"] = "복사 후 변경됨:",
             ["C_ManifestMissing"] = "없음:",
+            ["E_RemoteConnectionsAuto"] = "서버 연결: 속도에 따라 자동 조정(최대 {0}개).",
+            ["E_RemoteConnectionsTuned"] = "현재 동시 연결 {0}개({1}/초).",
         },
     };
 }

@@ -257,3 +257,5 @@ C_ManifestOk	Firma válida (clave {0}) y los {1} archivos están exactamente igu
 C_ManifestBadSignature	La firma NO es válida: el manifiesto se modificó o no lo hizo MegaCopier.	The signature is NOT valid: the manifest was modified or was not made by MegaCopier.
 C_ManifestChanged	Cambiado desde la copia:	Changed since the copy:
 C_ManifestMissing	Falta:	Missing:
+E_RemoteConnectionsAuto	Conexiones con el servidor: se ajustan solas según la velocidad (máximo {0}).	Connections to the server: adjusted automatically by speed (maximum {0}).
+E_RemoteConnectionsTuned	Ahora {0} conexiones a la vez ({1}/s).	Now {0} connections at once ({1}/s).

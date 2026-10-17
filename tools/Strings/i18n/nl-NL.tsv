@@ -939,8 +939,8 @@ Rules_WipeDod7.Content	DoD 5220.22-M ECE, 7 keer (traag)
 Rules_EfsRaw.Content	EFS-versleutelde bestanden kopiëren zonder ze te ontsleutelen
 Destinations_Zip.Content	Opslaan in een ZIP-bestand
 Destinations_PasswordHintZip	De ZIP wordt versleuteld met AES-256 en opent met 7-Zip, WinZip of WinRAR (Windows Verkenner opent geen versleutelde ZIP's). Bestandsnamen zijn zichtbaar zonder wachtwoord. Als je het vergeet, zijn de bestanden niet te herstellen.
-Settings_RemoteConnectionsTitle.Text	Gelijktijdige verbindingen
-Settings_RemoteConnectionsDescription.Text	Bij veel bestanden gaan meerdere verbindingen tegelijk met de server veel sneller (1 tot 255). Als de server verbindingen beperkt, worden de toegestane gebruikt.
+Settings_RemoteConnectionsTitle.Text	Gelijktijdige verbindingen (maximum)
+Settings_RemoteConnectionsDescription.Text	Bij veel bestanden gaan meerdere verbindingen tegelijk met de server veel sneller. MegaCopier begint met 2 en gaat zelf omhoog of omlaag afhankelijk van de snelheid, tot dit maximum (1 tot 255).
 Settings_DefenderTitle.Text	MegaCopier uitsluiten van scannen door Windows Defender
 Settings_DefenderDescription.Text	Met veel kleine bestanden gaat kopiëren merkbaar sneller, omdat Defender niet meer elk bestand scant dat MegaCopier schrijft. Gekopieerde bestanden worden nog steeds gescand als een ander programma ze opent. Vereist beheerdersrechten.
 Settings_DefenderAdd	Uitsluiting toevoegen

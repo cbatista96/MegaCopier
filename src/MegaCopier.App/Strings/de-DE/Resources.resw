@@ -945,8 +945,8 @@
   <data name="Rules_EfsRaw.Content" xml:space="preserve"><value>EFS-verschlüsselte Dateien ohne Entschlüsseln kopieren</value></data>
   <data name="Destinations_Zip.Content" xml:space="preserve"><value>In einer ZIP-Datei speichern</value></data>
   <data name="Destinations_PasswordHintZip" xml:space="preserve"><value>Die ZIP-Datei wird mit AES-256 verschlüsselt und lässt sich mit 7-Zip, WinZip oder WinRAR öffnen (der Windows-Explorer öffnet keine verschlüsselten ZIP-Dateien). Die Dateinamen sind ohne Kennwort sichtbar. Wenn du es vergisst, lassen sich die Dateien nicht wiederherstellen.</value></data>
-  <data name="Settings_RemoteConnectionsTitle.Text" xml:space="preserve"><value>Gleichzeitige Verbindungen</value></data>
-  <data name="Settings_RemoteConnectionsDescription.Text" xml:space="preserve"><value>Bei vielen Dateien sind mehrere gleichzeitige Verbindungen zum Server viel schneller (1 bis 255). Begrenzt der Server die Verbindungen, werden die erlaubten genutzt.</value></data>
+  <data name="Settings_RemoteConnectionsTitle.Text" xml:space="preserve"><value>Gleichzeitige Verbindungen (Maximum)</value></data>
+  <data name="Settings_RemoteConnectionsDescription.Text" xml:space="preserve"><value>Bei vielen Dateien sind mehrere gleichzeitige Verbindungen zum Server viel schneller. MegaCopier beginnt mit 2 und passt die Anzahl je nach Geschwindigkeit selbst an, bis zu diesem Maximum (1 bis 255).</value></data>
   <data name="Settings_DefenderTitle.Text" xml:space="preserve"><value>MegaCopier von der Überprüfung durch Windows Defender ausschließen</value></data>
   <data name="Settings_DefenderDescription.Text" xml:space="preserve"><value>Bei vielen kleinen Dateien ist das Kopieren deutlich schneller, weil Defender nicht mehr jede von MegaCopier geschriebene Datei prüft. Kopierte Dateien werden weiterhin geprüft, wenn ein anderes Programm sie öffnet. Erfordert Administratorrechte.</value></data>
   <data name="Settings_DefenderAdd" xml:space="preserve"><value>Ausschluss hinzufügen</value></data>

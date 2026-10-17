@@ -254,7 +254,10 @@ public sealed class CopyOptions
     public const int MaxRemoteConnections = 255;
 
     /// <summary>Conexiones a la vez con un servidor (FTP, SFTP, WebDAV, S3), de 1 a 255. Un móvil va siempre de uno en uno.</summary>
-    public int RemoteConnections { get; set; } = 4;
+    public int RemoteConnections { get; set; } = 8;
+
+    /// <summary>Ajustar las conexiones sobre la marcha según la velocidad (<see cref="RemoteConnections"/> es entonces el máximo).</summary>
+    public bool RemoteConnectionsAuto { get; set; } = true;
 
     public bool ServerSideCopy { get; set; } = true;
 

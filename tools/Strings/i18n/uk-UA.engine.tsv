@@ -257,3 +257,5 @@ C_ManifestOk	Підпис дійсний (ключ {0}), і всі файли ({
 C_ManifestBadSignature	Підпис НЕдійсний: маніфест змінено або створено не MegaCopier.
 C_ManifestChanged	Змінено після копіювання:
 C_ManifestMissing	Відсутній:
+E_RemoteConnectionsAuto	З'єднання із сервером налаштовуються автоматично за швидкістю (максимум {0}).
+E_RemoteConnectionsTuned	Тепер одночасних з'єднань: {0} ({1}/с).

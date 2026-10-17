@@ -939,8 +939,8 @@ Rules_WipeDod7.Content	DoD 5220.22-M ECE, 7회(느림)
 Rules_EfsRaw.Content	EFS로 암호화된 파일을 해독하지 않고 복사
 Destinations_Zip.Content	ZIP 파일로 저장
 Destinations_PasswordHintZip	ZIP은 AES-256으로 암호화되며 7-Zip, WinZip 또는 WinRAR로 열 수 있습니다(Windows 탐색기는 암호화된 ZIP을 열 수 없음). 파일 이름은 암호 없이도 보입니다. 암호를 잊으면 파일을 복구할 방법이 없습니다.
-Settings_RemoteConnectionsTitle.Text	동시 연결 수
-Settings_RemoteConnectionsDescription.Text	파일이 많을 때 서버에 여러 연결을 동시에 사용하면 훨씬 빠릅니다(1~255). 서버가 연결 수를 제한하면 허용된 만큼만 사용합니다.
+Settings_RemoteConnectionsTitle.Text	동시 연결 수(최대)
+Settings_RemoteConnectionsDescription.Text	파일이 많을 때 서버에 여러 연결을 동시에 사용하면 훨씬 빠릅니다. MegaCopier는 2개로 시작해 속도에 따라 이 최대값(1~255)까지 자동으로 늘리거나 줄입니다.
 Settings_DefenderTitle.Text	MegaCopier를 Windows Defender 검사에서 제외
 Settings_DefenderDescription.Text	작은 파일이 많을 때 Defender가 MegaCopier가 쓰는 모든 파일을 검사하지 않으므로 복사가 훨씬 빨라집니다. 복사된 파일은 다른 프로그램이 열 때 여전히 검사됩니다. 관리자 권한이 필요합니다.
 Settings_DefenderAdd	제외 추가

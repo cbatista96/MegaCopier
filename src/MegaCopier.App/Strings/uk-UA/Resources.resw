@@ -945,8 +945,8 @@
   <data name="Rules_EfsRaw.Content" xml:space="preserve"><value>Копіювати файли, зашифровані EFS, без розшифрування</value></data>
   <data name="Destinations_Zip.Content" xml:space="preserve"><value>Зберегти в ZIP-архів</value></data>
   <data name="Destinations_PasswordHintZip" xml:space="preserve"><value>ZIP шифрується AES-256 і відкривається в 7-Zip, WinZip або WinRAR (Провідник Windows не відкриває зашифровані ZIP). Імена файлів видно без пароля. Якщо ви його забудете, відновити файли буде неможливо.</value></data>
-  <data name="Settings_RemoteConnectionsTitle.Text" xml:space="preserve"><value>Одночасні з&apos;єднання</value></data>
-  <data name="Settings_RemoteConnectionsDescription.Text" xml:space="preserve"><value>За великої кількості файлів кілька одночасних з&apos;єднань із сервером працюють набагато швидше (від 1 до 255). Якщо сервер обмежує з&apos;єднання, використовуються дозволені.</value></data>
+  <data name="Settings_RemoteConnectionsTitle.Text" xml:space="preserve"><value>Одночасні з&apos;єднання (максимум)</value></data>
+  <data name="Settings_RemoteConnectionsDescription.Text" xml:space="preserve"><value>За великої кількості файлів кілька одночасних з&apos;єднань із сервером працюють набагато швидше. MegaCopier починає з 2 і сам збільшує чи зменшує їх кількість залежно від швидкості, до цього максимуму (від 1 до 255).</value></data>
   <data name="Settings_DefenderTitle.Text" xml:space="preserve"><value>Виключити MegaCopier із перевірки Захисником Windows</value></data>
   <data name="Settings_DefenderDescription.Text" xml:space="preserve"><value>За великої кількості дрібних файлів копіювання помітно швидше, бо Захисник перестає перевіряти кожен файл, який записує MegaCopier. Скопійовані файли й далі перевіряються, коли їх відкриває інша програма. Потрібні права адміністратора.</value></data>
   <data name="Settings_DefenderAdd" xml:space="preserve"><value>Додати виключення</value></data>

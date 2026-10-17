@@ -257,3 +257,5 @@ C_ManifestOk	Geldige handtekening (sleutel {0}) en alle {1} bestanden zijn preci
 C_ManifestBadSignature	De handtekening is NIET geldig: het manifest is gewijzigd of niet door MegaCopier gemaakt.
 C_ManifestChanged	Gewijzigd sinds het kopiëren:
 C_ManifestMissing	Ontbreekt:
+E_RemoteConnectionsAuto	Verbindingen met de server: automatisch aangepast aan de snelheid (maximaal {0}).
+E_RemoteConnectionsTuned	Nu {0} verbindingen tegelijk ({1}/s).

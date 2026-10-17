@@ -945,8 +945,8 @@
   <data name="Rules_EfsRaw.Content" xml:space="preserve"><value>Copiar arquivos criptografados com EFS sem descriptografá-los</value></data>
   <data name="Destinations_Zip.Content" xml:space="preserve"><value>Salvar em um arquivo ZIP</value></data>
   <data name="Destinations_PasswordHintZip" xml:space="preserve"><value>O ZIP é criptografado com AES-256 e abre com 7-Zip, WinZip ou WinRAR (o Explorador do Windows não abre ZIPs criptografados). Os nomes dos arquivos ficam visíveis sem a senha. Se você esquecê-la, não há como recuperar os arquivos.</value></data>
-  <data name="Settings_RemoteConnectionsTitle.Text" xml:space="preserve"><value>Conexões simultâneas</value></data>
-  <data name="Settings_RemoteConnectionsDescription.Text" xml:space="preserve"><value>Com muitos arquivos, várias conexões simultâneas com o servidor são muito mais rápidas (de 1 a 255). Se o servidor limitar as conexões, são usadas as que ele permitir.</value></data>
+  <data name="Settings_RemoteConnectionsTitle.Text" xml:space="preserve"><value>Conexões simultâneas (máximo)</value></data>
+  <data name="Settings_RemoteConnectionsDescription.Text" xml:space="preserve"><value>Com muitos arquivos, várias conexões simultâneas com o servidor são muito mais rápidas. O MegaCopier começa com 2 e aumenta ou diminui sozinho conforme a velocidade, até este máximo (de 1 a 255).</value></data>
   <data name="Settings_DefenderTitle.Text" xml:space="preserve"><value>Excluir o MegaCopier da verificação do Windows Defender</value></data>
   <data name="Settings_DefenderDescription.Text" xml:space="preserve"><value>Com muitos arquivos pequenos, a cópia fica bem mais rápida porque o Defender deixa de verificar cada arquivo que o MegaCopier grava. Os arquivos copiados continuam sendo verificados quando outro programa os abre. Requer permissões de administrador.</value></data>
   <data name="Settings_DefenderAdd" xml:space="preserve"><value>Adicionar exclusão</value></data>

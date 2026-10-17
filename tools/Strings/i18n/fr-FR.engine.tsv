@@ -257,3 +257,5 @@ C_ManifestOk	Signature valide (clé {0}) et les {1} fichiers sont exactement com
 C_ManifestBadSignature	La signature n'est PAS valide : le manifeste a été modifié ou n'a pas été créé par MegaCopier.
 C_ManifestChanged	Modifié depuis la copie :
 C_ManifestMissing	Manquant :
+E_RemoteConnectionsAuto	Connexions au serveur : ajustées automatiquement selon la vitesse (maximum {0}).
+E_RemoteConnectionsTuned	Maintenant {0} connexions simultanées ({1}/s).

@@ -75,7 +75,9 @@ public sealed class CopyJobRecord
 
     public IO.ArchiveFormat ArchiveFormat { get; set; }
 
-    public int RemoteConnections { get; set; } = 4;
+    public int RemoteConnections { get; set; } = 8;
+
+    public bool RemoteConnectionsAuto { get; set; } = true;
 
     public LinkHandling Links { get; set; } = LinkHandling.CopyLink;
 
@@ -179,6 +181,7 @@ public sealed class CopyJobRecord
         Zip = options.Zip,
         ArchiveFormat = options.ArchiveFormat,
         RemoteConnections = options.RemoteConnections,
+        RemoteConnectionsAuto = options.RemoteConnectionsAuto,
         Links = options.Links,
         KeepBothPattern = options.KeepBothPattern,
         Filter = options.Filter,
@@ -245,6 +248,7 @@ public sealed class CopyJobRecord
             Zip = Zip,
             ArchiveFormat = ArchiveFormat,
             RemoteConnections = RemoteConnections,
+            RemoteConnectionsAuto = RemoteConnectionsAuto,
             Links = Links,
             KeepBothPattern = KeepBothPattern,
             Filter = Filter ?? new FileFilter(),
