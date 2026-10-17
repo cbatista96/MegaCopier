@@ -846,3 +846,36 @@ LiveSync_Error	Errore nel passaggio delle {0}: {1}
 LiveSync_FailedTitle	Problema di sincronizzazione
 LiveSync_FailedError	Impossibile sincronizzare «{0}»: {1}
 LiveSync_FailedFiles	In «{0}» non è stato possibile copiare {1} file (si riproverà alla prossima modifica).
+Tool_Compare.Text	Confronta e sincronizza cartelle…
+Compare_Title.Text	Confronta e sincronizza
+Compare_Left.Text	Sinistra
+Compare_Right.Text	Destra
+Compare_Change.Text	Cambia…
+Sync_TwoWay.Content	In entrambe le direzioni
+Sync_LeftToRight.Content	Sinistra → destra (mirror)
+Sync_RightToLeft.Content	Destra → sinistra (mirror)
+Compare_Run.Text	Confronta
+Compare_ShowEqual.Content	Mostra anche ciò che è uguale
+Compare_Info.Text	Ciò che viene rimosso o sostituito va nel Cestino (su USB e rete, nella cartella .megacopier-borrados). Deseleziona ciò che non vuoi toccare.
+Compare_Summary	{0} da copiare · {1} da rimuovere · {2} uguali
+Compare_Comparing	Confronto in corso…
+Compare_Error	Impossibile confrontare: {0}
+Compare_Nothing	Le due cartelle sono già uguali.
+Compare_OnlyEqualHidden	Solo elementi uguali (nascosti).
+Compare_Simulate.Text	Simula
+Compare_Sync.Text	Sincronizza
+Compare_PickRight	Confronta con questa
+Compare_ToRight	Copia a destra
+Compare_ToLeft	Copia a sinistra
+Compare_DeleteLeft	Rimuovi a sinistra
+Compare_DeleteRight	Rimuovi a destra
+Compare_FolderLeft	Crea la cartella a sinistra
+Compare_FolderRight	Crea la cartella a destra
+Compare_Equal	Uguale
+Compare_New	Nuovo
+Compare_Changed	Modificato
+Compare_Deleted	Eliminato dall'altra parte
+Compare_BothChanged	Modificato da entrambe le parti: vince il più recente
+Compare_ChangedAndDeleted	Eliminato da una parte ma modificato dall'altra: si conserva
+Compare_Extra	Non è nell'origine
+Compare_Same	Uguale da entrambe le parti

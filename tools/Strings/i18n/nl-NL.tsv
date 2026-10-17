@@ -846,3 +846,36 @@ LiveSync_Error	Fout in de ronde van {0}: {1}
 LiveSync_FailedTitle	Probleem met synchroniseren
 LiveSync_FailedError	'{0}' kon niet worden gesynchroniseerd: {1}
 LiveSync_FailedFiles	In '{0}' konden {1} bestanden niet worden gekopieerd (nieuwe poging bij de volgende wijziging).
+Tool_Compare.Text	Mappen vergelijken en synchroniseren…
+Compare_Title.Text	Vergelijken en synchroniseren
+Compare_Left.Text	Links
+Compare_Right.Text	Rechts
+Compare_Change.Text	Wijzigen…
+Sync_TwoWay.Content	In beide richtingen
+Sync_LeftToRight.Content	Links → rechts (spiegel)
+Sync_RightToLeft.Content	Rechts → links (spiegel)
+Compare_Run.Text	Vergelijken
+Compare_ShowEqual.Content	Ook gelijke items tonen
+Compare_Info.Text	Wat wordt verwijderd of vervangen gaat naar de Prullenbak (op USB en netwerk naar de map .megacopier-borrados). Vink uit wat je niet wilt aanraken.
+Compare_Summary	{0} te kopiëren · {1} te verwijderen · {2} gelijk
+Compare_Comparing	Vergelijken…
+Compare_Error	Kan niet vergelijken: {0}
+Compare_Nothing	Beide mappen zijn al gelijk.
+Compare_OnlyEqualHidden	Alleen gelijke items (verborgen).
+Compare_Simulate.Text	Simuleren
+Compare_Sync.Text	Synchroniseren
+Compare_PickRight	Vergelijken met deze
+Compare_ToRight	Naar rechts kopiëren
+Compare_ToLeft	Naar links kopiëren
+Compare_DeleteLeft	Links verwijderen
+Compare_DeleteRight	Rechts verwijderen
+Compare_FolderLeft	Map links maken
+Compare_FolderRight	Map rechts maken
+Compare_Equal	Gelijk
+Compare_New	Nieuw
+Compare_Changed	Gewijzigd
+Compare_Deleted	Aan de andere kant verwijderd
+Compare_BothChanged	Aan beide kanten gewijzigd: het nieuwste wint
+Compare_ChangedAndDeleted	Aan één kant verwijderd maar aan de andere gewijzigd: blijft behouden
+Compare_Extra	Niet in de bron
+Compare_Same	Aan beide kanten gelijk

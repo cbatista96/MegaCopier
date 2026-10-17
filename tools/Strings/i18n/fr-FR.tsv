@@ -846,3 +846,36 @@ LiveSync_Error	Erreur lors du passage de {0} : {1}
 LiveSync_FailedTitle	Problème de synchronisation
 LiveSync_FailedError	« {0} » n'a pas pu être synchronisé : {1}
 LiveSync_FailedFiles	Dans « {0} », {1} fichiers n'ont pas pu être copiés (nouvel essai au prochain changement).
+Tool_Compare.Text	Comparer et synchroniser des dossiers…
+Compare_Title.Text	Comparer et synchroniser
+Compare_Left.Text	Gauche
+Compare_Right.Text	Droite
+Compare_Change.Text	Changer…
+Sync_TwoWay.Content	Dans les deux sens
+Sync_LeftToRight.Content	Gauche → droite (miroir)
+Sync_RightToLeft.Content	Droite → gauche (miroir)
+Compare_Run.Text	Comparer
+Compare_ShowEqual.Content	Afficher aussi ce qui est identique
+Compare_Info.Text	Ce qui est retiré ou remplacé va dans la Corbeille (sur USB et réseau, dans le dossier .megacopier-borrados). Décochez ce que vous ne voulez pas toucher.
+Compare_Summary	{0} à copier · {1} à retirer · {2} identiques
+Compare_Comparing	Comparaison…
+Compare_Error	Comparaison impossible : {0}
+Compare_Nothing	Les deux dossiers sont déjà identiques.
+Compare_OnlyEqualHidden	Seulement des éléments identiques (masqués).
+Compare_Simulate.Text	Simuler
+Compare_Sync.Text	Synchroniser
+Compare_PickRight	Comparer avec celui-ci
+Compare_ToRight	Copier à droite
+Compare_ToLeft	Copier à gauche
+Compare_DeleteLeft	Retirer à gauche
+Compare_DeleteRight	Retirer à droite
+Compare_FolderLeft	Créer le dossier à gauche
+Compare_FolderRight	Créer le dossier à droite
+Compare_Equal	Identique
+Compare_New	Nouveau
+Compare_Changed	Modifié
+Compare_Deleted	Supprimé de l'autre côté
+Compare_BothChanged	Modifié des deux côtés : le plus récent l'emporte
+Compare_ChangedAndDeleted	Supprimé d'un côté mais modifié de l'autre : conservé
+Compare_Extra	Absent de la source
+Compare_Same	Identique des deux côtés

@@ -846,3 +846,36 @@ LiveSync_Error	Error en la pasada de {0}: {1}	Error in the {0} pass: {1}
 LiveSync_FailedTitle	Sincronización con problemas	Sync problem
 LiveSync_FailedError	«{0}» no se pudo sincronizar: {1}	"{0}" couldn't be synced: {1}
 LiveSync_FailedFiles	En «{0}», {1} archivos no se pudieron copiar (se reintentará en el próximo cambio).	In "{0}", {1} files couldn't be copied (it will retry on the next change).
+Tool_Compare.Text	Comparar y sincronizar carpetas…	Compare and sync folders…
+Compare_Title.Text	Comparar y sincronizar	Compare and sync
+Compare_Left.Text	Izquierda	Left
+Compare_Right.Text	Derecha	Right
+Compare_Change.Text	Cambiar…	Change…
+Sync_TwoWay.Content	En los dos sentidos	Both ways
+Sync_LeftToRight.Content	Izquierda → derecha (espejo)	Left → right (mirror)
+Sync_RightToLeft.Content	Derecha → izquierda (espejo)	Right → left (mirror)
+Compare_Run.Text	Comparar	Compare
+Compare_ShowEqual.Content	Mostrar también lo que es igual	Also show what's identical
+Compare_Info.Text	Lo que se quita o se sustituye va a la Papelera (en USB y red, a la carpeta .megacopier-borrados). Desmarca lo que no quieras tocar.	What is removed or replaced goes to the Recycle Bin (on USB and network drives, to the .megacopier-borrados folder). Uncheck anything you don't want touched.
+Compare_Summary	{0} para copiar · {1} para quitar · {2} iguales	{0} to copy · {1} to remove · {2} identical
+Compare_Comparing	Comparando…	Comparing…
+Compare_Error	No se pudo comparar: {0}	Couldn't compare: {0}
+Compare_Nothing	Las dos carpetas ya están iguales.	Both folders are already identical.
+Compare_OnlyEqualHidden	Solo hay elementos iguales (ocultos).	Only identical items (hidden).
+Compare_Simulate.Text	Simular	Simulate
+Compare_Sync.Text	Sincronizar	Sync
+Compare_PickRight	Comparar con esta	Compare with this one
+Compare_ToRight	Copiar a la derecha	Copy to the right
+Compare_ToLeft	Copiar a la izquierda	Copy to the left
+Compare_DeleteLeft	Quitar de la izquierda	Remove from the left
+Compare_DeleteRight	Quitar de la derecha	Remove from the right
+Compare_FolderLeft	Crear la carpeta a la izquierda	Create the folder on the left
+Compare_FolderRight	Crear la carpeta a la derecha	Create the folder on the right
+Compare_Equal	Igual	Identical
+Compare_New	Nuevo	New
+Compare_Changed	Cambió	Changed
+Compare_Deleted	Se borró en el otro lado	Deleted on the other side
+Compare_BothChanged	Cambió en los dos lados: gana el más reciente	Changed on both sides: the newest wins
+Compare_ChangedAndDeleted	Borrado en un lado pero cambiado en el otro: se conserva	Deleted on one side but changed on the other: kept
+Compare_Extra	No está en el origen	Not in the source
+Compare_Same	Igual en los dos lados	Identical on both sides

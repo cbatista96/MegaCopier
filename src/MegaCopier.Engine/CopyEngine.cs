@@ -124,6 +124,8 @@ public sealed partial class CopyEngine
                 return RunHash(request, stopwatch, cancellationToken);
             case JobOperation.Send:
                 return RunSend(request, stopwatch, cancellationToken);
+            case JobOperation.Sync:
+                return RunSync(request, stopwatch, cancellationToken);
             case JobOperation.Decrypt:
                 return RunDecrypt(request, stopwatch, cancellationToken);
         }

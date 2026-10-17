@@ -361,6 +361,7 @@ public sealed class AppSettings
             RetryDelay = TimeSpan.FromSeconds(Math.Clamp(RetryDelaySeconds, 0, 3600)),
             OnError = OnError,
             Mode = request.Mode ?? CopyMode.Copy,
+            SyncDirection = request.SyncDirection ?? SyncDirection.TwoWay,
             DryRun = request.DryRun ?? false,
             VersionsFolder = VersionsFolder.Trim(),
             FolderConflict = FolderConflict,

@@ -75,6 +75,8 @@ public sealed class CopyJobRecord
 
     public CopyMode Mode { get; set; }
 
+    public SyncDirection SyncDirection { get; set; }
+
     public bool DryRun { get; set; }
 
     public string VersionsFolder { get; set; } = "";
@@ -152,6 +154,7 @@ public sealed class CopyJobRecord
         OnError = options.OnError,
         CheckFreeSpace = options.CheckFreeSpace,
         Mode = options.Mode,
+        SyncDirection = options.SyncDirection,
         DryRun = options.DryRun,
         VersionsFolder = options.VersionsFolder,
         FolderConflict = options.FolderConflict,
@@ -205,6 +208,7 @@ public sealed class CopyJobRecord
             OnError = OnError,
             CheckFreeSpace = CheckFreeSpace,
             Mode = Mode,
+            SyncDirection = SyncDirection,
             DryRun = DryRun,
             VersionsFolder = VersionsFolder ?? "",
             FolderConflict = FolderConflict,

@@ -47,6 +47,22 @@ public enum JobOperation
 
     /// <summary>Descifrar archivos .mcenc (con <see cref="CopyOptions.EncryptionPassword"/>) en el destino.</summary>
     Decrypt,
+
+    /// <summary>Comparar y sincronizar el contenido de dos carpetas (Sources[0] y Destination), en uno o dos sentidos.</summary>
+    Sync,
+}
+
+/// <summary>Hacia dónde se sincroniza (con <see cref="JobOperation.Sync"/>).</summary>
+public enum SyncDirection
+{
+    /// <summary>En los dos sentidos: lo cambiado en cualquier lado pasa al otro (se recuerda la última vez).</summary>
+    TwoWay,
+
+    /// <summary>La derecha queda igual que la izquierda (espejo).</summary>
+    LeftToRight,
+
+    /// <summary>La izquierda queda igual que la derecha (espejo).</summary>
+    RightToLeft,
 }
 
 /// <summary>Qué copia el trabajo.</summary>
@@ -254,6 +270,9 @@ public sealed class CopyOptions
 
     /// <summary>Simular: calcula y muestra qué se haría (copiar, reemplazar, omitir, borrar) sin tocar nada.</summary>
     public bool DryRun { get; set; }
+
+    /// <summary>Con <see cref="JobOperation.Sync"/>: en dos sentidos o como espejo hacia un lado.</summary>
+    public SyncDirection SyncDirection { get; set; }
 
     /// <summary>Carpeta de versiones ("" = no): lo que se va a reemplazar o borrar se guarda ahí con fecha. Relativa al destino o absoluta.</summary>
     public string VersionsFolder { get; set; } = "";

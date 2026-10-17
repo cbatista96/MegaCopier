@@ -852,4 +852,37 @@
   <data name="LiveSync_FailedTitle" xml:space="preserve"><value>Probleem met synchroniseren</value></data>
   <data name="LiveSync_FailedError" xml:space="preserve"><value>&apos;{0}&apos; kon niet worden gesynchroniseerd: {1}</value></data>
   <data name="LiveSync_FailedFiles" xml:space="preserve"><value>In &apos;{0}&apos; konden {1} bestanden niet worden gekopieerd (nieuwe poging bij de volgende wijziging).</value></data>
+  <data name="Tool_Compare.Text" xml:space="preserve"><value>Mappen vergelijken en synchroniseren…</value></data>
+  <data name="Compare_Title.Text" xml:space="preserve"><value>Vergelijken en synchroniseren</value></data>
+  <data name="Compare_Left.Text" xml:space="preserve"><value>Links</value></data>
+  <data name="Compare_Right.Text" xml:space="preserve"><value>Rechts</value></data>
+  <data name="Compare_Change.Text" xml:space="preserve"><value>Wijzigen…</value></data>
+  <data name="Sync_TwoWay.Content" xml:space="preserve"><value>In beide richtingen</value></data>
+  <data name="Sync_LeftToRight.Content" xml:space="preserve"><value>Links → rechts (spiegel)</value></data>
+  <data name="Sync_RightToLeft.Content" xml:space="preserve"><value>Rechts → links (spiegel)</value></data>
+  <data name="Compare_Run.Text" xml:space="preserve"><value>Vergelijken</value></data>
+  <data name="Compare_ShowEqual.Content" xml:space="preserve"><value>Ook gelijke items tonen</value></data>
+  <data name="Compare_Info.Text" xml:space="preserve"><value>Wat wordt verwijderd of vervangen gaat naar de Prullenbak (op USB en netwerk naar de map .megacopier-borrados). Vink uit wat je niet wilt aanraken.</value></data>
+  <data name="Compare_Summary" xml:space="preserve"><value>{0} te kopiëren · {1} te verwijderen · {2} gelijk</value></data>
+  <data name="Compare_Comparing" xml:space="preserve"><value>Vergelijken…</value></data>
+  <data name="Compare_Error" xml:space="preserve"><value>Kan niet vergelijken: {0}</value></data>
+  <data name="Compare_Nothing" xml:space="preserve"><value>Beide mappen zijn al gelijk.</value></data>
+  <data name="Compare_OnlyEqualHidden" xml:space="preserve"><value>Alleen gelijke items (verborgen).</value></data>
+  <data name="Compare_Simulate.Text" xml:space="preserve"><value>Simuleren</value></data>
+  <data name="Compare_Sync.Text" xml:space="preserve"><value>Synchroniseren</value></data>
+  <data name="Compare_PickRight" xml:space="preserve"><value>Vergelijken met deze</value></data>
+  <data name="Compare_ToRight" xml:space="preserve"><value>Naar rechts kopiëren</value></data>
+  <data name="Compare_ToLeft" xml:space="preserve"><value>Naar links kopiëren</value></data>
+  <data name="Compare_DeleteLeft" xml:space="preserve"><value>Links verwijderen</value></data>
+  <data name="Compare_DeleteRight" xml:space="preserve"><value>Rechts verwijderen</value></data>
+  <data name="Compare_FolderLeft" xml:space="preserve"><value>Map links maken</value></data>
+  <data name="Compare_FolderRight" xml:space="preserve"><value>Map rechts maken</value></data>
+  <data name="Compare_Equal" xml:space="preserve"><value>Gelijk</value></data>
+  <data name="Compare_New" xml:space="preserve"><value>Nieuw</value></data>
+  <data name="Compare_Changed" xml:space="preserve"><value>Gewijzigd</value></data>
+  <data name="Compare_Deleted" xml:space="preserve"><value>Aan de andere kant verwijderd</value></data>
+  <data name="Compare_BothChanged" xml:space="preserve"><value>Aan beide kanten gewijzigd: het nieuwste wint</value></data>
+  <data name="Compare_ChangedAndDeleted" xml:space="preserve"><value>Aan één kant verwijderd maar aan de andere gewijzigd: blijft behouden</value></data>
+  <data name="Compare_Extra" xml:space="preserve"><value>Niet in de bron</value></data>
+  <data name="Compare_Same" xml:space="preserve"><value>Aan beide kanten gelijk</value></data>
 </root>

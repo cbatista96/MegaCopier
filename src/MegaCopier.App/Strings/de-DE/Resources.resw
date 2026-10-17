@@ -852,4 +852,37 @@
   <data name="LiveSync_FailedTitle" xml:space="preserve"><value>Problem bei der Synchronisierung</value></data>
   <data name="LiveSync_FailedError" xml:space="preserve"><value>„{0}“ konnte nicht synchronisiert werden: {1}</value></data>
   <data name="LiveSync_FailedFiles" xml:space="preserve"><value>In „{0}“ konnten {1} Dateien nicht kopiert werden (neuer Versuch bei der nächsten Änderung).</value></data>
+  <data name="Tool_Compare.Text" xml:space="preserve"><value>Ordner vergleichen und synchronisieren…</value></data>
+  <data name="Compare_Title.Text" xml:space="preserve"><value>Vergleichen und synchronisieren</value></data>
+  <data name="Compare_Left.Text" xml:space="preserve"><value>Links</value></data>
+  <data name="Compare_Right.Text" xml:space="preserve"><value>Rechts</value></data>
+  <data name="Compare_Change.Text" xml:space="preserve"><value>Ändern…</value></data>
+  <data name="Sync_TwoWay.Content" xml:space="preserve"><value>In beide Richtungen</value></data>
+  <data name="Sync_LeftToRight.Content" xml:space="preserve"><value>Links → rechts (Spiegel)</value></data>
+  <data name="Sync_RightToLeft.Content" xml:space="preserve"><value>Rechts → links (Spiegel)</value></data>
+  <data name="Compare_Run.Text" xml:space="preserve"><value>Vergleichen</value></data>
+  <data name="Compare_ShowEqual.Content" xml:space="preserve"><value>Auch Identisches anzeigen</value></data>
+  <data name="Compare_Info.Text" xml:space="preserve"><value>Entferntes oder Ersetztes kommt in den Papierkorb (auf USB und im Netzwerk in den Ordner .megacopier-borrados). Deaktivieren Sie, was unberührt bleiben soll.</value></data>
+  <data name="Compare_Summary" xml:space="preserve"><value>{0} zu kopieren · {1} zu entfernen · {2} identisch</value></data>
+  <data name="Compare_Comparing" xml:space="preserve"><value>Wird verglichen…</value></data>
+  <data name="Compare_Error" xml:space="preserve"><value>Vergleich nicht möglich: {0}</value></data>
+  <data name="Compare_Nothing" xml:space="preserve"><value>Beide Ordner sind bereits identisch.</value></data>
+  <data name="Compare_OnlyEqualHidden" xml:space="preserve"><value>Nur identische Elemente (ausgeblendet).</value></data>
+  <data name="Compare_Simulate.Text" xml:space="preserve"><value>Simulieren</value></data>
+  <data name="Compare_Sync.Text" xml:space="preserve"><value>Synchronisieren</value></data>
+  <data name="Compare_PickRight" xml:space="preserve"><value>Mit diesem vergleichen</value></data>
+  <data name="Compare_ToRight" xml:space="preserve"><value>Nach rechts kopieren</value></data>
+  <data name="Compare_ToLeft" xml:space="preserve"><value>Nach links kopieren</value></data>
+  <data name="Compare_DeleteLeft" xml:space="preserve"><value>Links entfernen</value></data>
+  <data name="Compare_DeleteRight" xml:space="preserve"><value>Rechts entfernen</value></data>
+  <data name="Compare_FolderLeft" xml:space="preserve"><value>Ordner links erstellen</value></data>
+  <data name="Compare_FolderRight" xml:space="preserve"><value>Ordner rechts erstellen</value></data>
+  <data name="Compare_Equal" xml:space="preserve"><value>Identisch</value></data>
+  <data name="Compare_New" xml:space="preserve"><value>Neu</value></data>
+  <data name="Compare_Changed" xml:space="preserve"><value>Geändert</value></data>
+  <data name="Compare_Deleted" xml:space="preserve"><value>Auf der anderen Seite gelöscht</value></data>
+  <data name="Compare_BothChanged" xml:space="preserve"><value>Auf beiden Seiten geändert: das Neueste gewinnt</value></data>
+  <data name="Compare_ChangedAndDeleted" xml:space="preserve"><value>Auf einer Seite gelöscht, auf der anderen geändert: bleibt erhalten</value></data>
+  <data name="Compare_Extra" xml:space="preserve"><value>Nicht in der Quelle</value></data>
+  <data name="Compare_Same" xml:space="preserve"><value>Auf beiden Seiten identisch</value></data>
 </root>

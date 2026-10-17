@@ -846,3 +846,36 @@ LiveSync_Error	{0} の同期でエラー: {1}
 LiveSync_FailedTitle	同期の問題
 LiveSync_FailedError	「{0}」を同期できませんでした: {1}
 LiveSync_FailedFiles	「{0}」の {1} 個のファイルをコピーできませんでした（次の変更時に再試行します）。
+Tool_Compare.Text	フォルダーを比較して同期…
+Compare_Title.Text	比較して同期
+Compare_Left.Text	左
+Compare_Right.Text	右
+Compare_Change.Text	変更…
+Sync_TwoWay.Content	双方向
+Sync_LeftToRight.Content	左 → 右（ミラー）
+Sync_RightToLeft.Content	右 → 左（ミラー）
+Compare_Run.Text	比較
+Compare_ShowEqual.Content	同じものも表示
+Compare_Info.Text	削除や置換されたものはごみ箱へ移ります（USB やネットワークでは .megacopier-borrados フォルダーへ）。触れたくないもののチェックを外してください。
+Compare_Summary	コピー {0} · 削除 {1} · 同一 {2}
+Compare_Comparing	比較中…
+Compare_Error	比較できませんでした: {0}
+Compare_Nothing	2 つのフォルダーはすでに同じです。
+Compare_OnlyEqualHidden	同じ項目のみ（非表示）。
+Compare_Simulate.Text	シミュレート
+Compare_Sync.Text	同期
+Compare_PickRight	これと比較
+Compare_ToRight	右へコピー
+Compare_ToLeft	左へコピー
+Compare_DeleteLeft	左から削除
+Compare_DeleteRight	右から削除
+Compare_FolderLeft	左にフォルダーを作成
+Compare_FolderRight	右にフォルダーを作成
+Compare_Equal	同一
+Compare_New	新規
+Compare_Changed	変更あり
+Compare_Deleted	反対側で削除
+Compare_BothChanged	両側で変更: 新しい方を採用
+Compare_ChangedAndDeleted	片側で削除、もう片側で変更: 保持
+Compare_Extra	元にない
+Compare_Same	両側で同一

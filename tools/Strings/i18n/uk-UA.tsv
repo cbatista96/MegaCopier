@@ -846,3 +846,36 @@ LiveSync_Error	Помилка проходу {0}: {1}
 LiveSync_FailedTitle	Проблема синхронізації
 LiveSync_FailedError	Не вдалося синхронізувати «{0}»: {1}
 LiveSync_FailedFiles	У «{0}» не вдалося скопіювати файли ({1}); повтор під час наступної зміни.
+Tool_Compare.Text	Порівняти й синхронізувати папки…
+Compare_Title.Text	Порівняння й синхронізація
+Compare_Left.Text	Ліворуч
+Compare_Right.Text	Праворуч
+Compare_Change.Text	Змінити…
+Sync_TwoWay.Content	В обидва боки
+Sync_LeftToRight.Content	Ліворуч → праворуч (дзеркало)
+Sync_RightToLeft.Content	Праворуч → ліворуч (дзеркало)
+Compare_Run.Text	Порівняти
+Compare_ShowEqual.Content	Показувати й однакове
+Compare_Info.Text	Видалене чи замінене потрапляє до кошика (на USB і в мережі — до папки .megacopier-borrados). Зніміть позначку з того, що не треба чіпати.
+Compare_Summary	Копіювати: {0} · видалити: {1} · однакових: {2}
+Compare_Comparing	Порівняння…
+Compare_Error	Не вдалося порівняти: {0}
+Compare_Nothing	Обидві папки вже однакові.
+Compare_OnlyEqualHidden	Лише однакові елементи (приховано).
+Compare_Simulate.Text	Змоделювати
+Compare_Sync.Text	Синхронізувати
+Compare_PickRight	Порівняти з цією
+Compare_ToRight	Копіювати праворуч
+Compare_ToLeft	Копіювати ліворуч
+Compare_DeleteLeft	Видалити ліворуч
+Compare_DeleteRight	Видалити праворуч
+Compare_FolderLeft	Створити папку ліворуч
+Compare_FolderRight	Створити папку праворуч
+Compare_Equal	Однаково
+Compare_New	Нове
+Compare_Changed	Змінено
+Compare_Deleted	Видалено з іншого боку
+Compare_BothChanged	Змінено з обох боків: перемагає новіше
+Compare_ChangedAndDeleted	Видалено з одного боку, але змінено з іншого: зберігається
+Compare_Extra	Немає в джерелі
+Compare_Same	Однаково з обох боків

@@ -852,4 +852,37 @@
   <data name="LiveSync_FailedTitle" xml:space="preserve"><value>동기화 문제</value></data>
   <data name="LiveSync_FailedError" xml:space="preserve"><value>&quot;{0}&quot;을(를) 동기화할 수 없습니다: {1}</value></data>
   <data name="LiveSync_FailedFiles" xml:space="preserve"><value>&quot;{0}&quot;에서 파일 {1}개를 복사하지 못했습니다(다음 변경 때 다시 시도합니다).</value></data>
+  <data name="Tool_Compare.Text" xml:space="preserve"><value>폴더 비교 및 동기화…</value></data>
+  <data name="Compare_Title.Text" xml:space="preserve"><value>비교 및 동기화</value></data>
+  <data name="Compare_Left.Text" xml:space="preserve"><value>왼쪽</value></data>
+  <data name="Compare_Right.Text" xml:space="preserve"><value>오른쪽</value></data>
+  <data name="Compare_Change.Text" xml:space="preserve"><value>변경…</value></data>
+  <data name="Sync_TwoWay.Content" xml:space="preserve"><value>양방향</value></data>
+  <data name="Sync_LeftToRight.Content" xml:space="preserve"><value>왼쪽 → 오른쪽(미러)</value></data>
+  <data name="Sync_RightToLeft.Content" xml:space="preserve"><value>오른쪽 → 왼쪽(미러)</value></data>
+  <data name="Compare_Run.Text" xml:space="preserve"><value>비교</value></data>
+  <data name="Compare_ShowEqual.Content" xml:space="preserve"><value>같은 항목도 표시</value></data>
+  <data name="Compare_Info.Text" xml:space="preserve"><value>제거되거나 바뀐 항목은 휴지통으로 갑니다(USB와 네트워크에서는 .megacopier-borrados 폴더로). 건드리지 않을 항목은 선택을 해제하세요.</value></data>
+  <data name="Compare_Summary" xml:space="preserve"><value>복사 {0} · 제거 {1} · 동일 {2}</value></data>
+  <data name="Compare_Comparing" xml:space="preserve"><value>비교하는 중…</value></data>
+  <data name="Compare_Error" xml:space="preserve"><value>비교할 수 없습니다: {0}</value></data>
+  <data name="Compare_Nothing" xml:space="preserve"><value>두 폴더가 이미 같습니다.</value></data>
+  <data name="Compare_OnlyEqualHidden" xml:space="preserve"><value>같은 항목만 있습니다(숨김).</value></data>
+  <data name="Compare_Simulate.Text" xml:space="preserve"><value>시뮬레이션</value></data>
+  <data name="Compare_Sync.Text" xml:space="preserve"><value>동기화</value></data>
+  <data name="Compare_PickRight" xml:space="preserve"><value>이 폴더와 비교</value></data>
+  <data name="Compare_ToRight" xml:space="preserve"><value>오른쪽으로 복사</value></data>
+  <data name="Compare_ToLeft" xml:space="preserve"><value>왼쪽으로 복사</value></data>
+  <data name="Compare_DeleteLeft" xml:space="preserve"><value>왼쪽에서 제거</value></data>
+  <data name="Compare_DeleteRight" xml:space="preserve"><value>오른쪽에서 제거</value></data>
+  <data name="Compare_FolderLeft" xml:space="preserve"><value>왼쪽에 폴더 만들기</value></data>
+  <data name="Compare_FolderRight" xml:space="preserve"><value>오른쪽에 폴더 만들기</value></data>
+  <data name="Compare_Equal" xml:space="preserve"><value>동일</value></data>
+  <data name="Compare_New" xml:space="preserve"><value>새 항목</value></data>
+  <data name="Compare_Changed" xml:space="preserve"><value>변경됨</value></data>
+  <data name="Compare_Deleted" xml:space="preserve"><value>반대쪽에서 삭제됨</value></data>
+  <data name="Compare_BothChanged" xml:space="preserve"><value>양쪽에서 변경됨: 최신 항목 우선</value></data>
+  <data name="Compare_ChangedAndDeleted" xml:space="preserve"><value>한쪽에서 삭제됐지만 다른 쪽에서 변경됨: 유지</value></data>
+  <data name="Compare_Extra" xml:space="preserve"><value>원본에 없음</value></data>
+  <data name="Compare_Same" xml:space="preserve"><value>양쪽 동일</value></data>
 </root>

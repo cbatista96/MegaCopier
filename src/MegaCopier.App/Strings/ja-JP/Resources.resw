@@ -852,4 +852,37 @@
   <data name="LiveSync_FailedTitle" xml:space="preserve"><value>同期の問題</value></data>
   <data name="LiveSync_FailedError" xml:space="preserve"><value>「{0}」を同期できませんでした: {1}</value></data>
   <data name="LiveSync_FailedFiles" xml:space="preserve"><value>「{0}」の {1} 個のファイルをコピーできませんでした（次の変更時に再試行します）。</value></data>
+  <data name="Tool_Compare.Text" xml:space="preserve"><value>フォルダーを比較して同期…</value></data>
+  <data name="Compare_Title.Text" xml:space="preserve"><value>比較して同期</value></data>
+  <data name="Compare_Left.Text" xml:space="preserve"><value>左</value></data>
+  <data name="Compare_Right.Text" xml:space="preserve"><value>右</value></data>
+  <data name="Compare_Change.Text" xml:space="preserve"><value>変更…</value></data>
+  <data name="Sync_TwoWay.Content" xml:space="preserve"><value>双方向</value></data>
+  <data name="Sync_LeftToRight.Content" xml:space="preserve"><value>左 → 右（ミラー）</value></data>
+  <data name="Sync_RightToLeft.Content" xml:space="preserve"><value>右 → 左（ミラー）</value></data>
+  <data name="Compare_Run.Text" xml:space="preserve"><value>比較</value></data>
+  <data name="Compare_ShowEqual.Content" xml:space="preserve"><value>同じものも表示</value></data>
+  <data name="Compare_Info.Text" xml:space="preserve"><value>削除や置換されたものはごみ箱へ移ります（USB やネットワークでは .megacopier-borrados フォルダーへ）。触れたくないもののチェックを外してください。</value></data>
+  <data name="Compare_Summary" xml:space="preserve"><value>コピー {0} · 削除 {1} · 同一 {2}</value></data>
+  <data name="Compare_Comparing" xml:space="preserve"><value>比較中…</value></data>
+  <data name="Compare_Error" xml:space="preserve"><value>比較できませんでした: {0}</value></data>
+  <data name="Compare_Nothing" xml:space="preserve"><value>2 つのフォルダーはすでに同じです。</value></data>
+  <data name="Compare_OnlyEqualHidden" xml:space="preserve"><value>同じ項目のみ（非表示）。</value></data>
+  <data name="Compare_Simulate.Text" xml:space="preserve"><value>シミュレート</value></data>
+  <data name="Compare_Sync.Text" xml:space="preserve"><value>同期</value></data>
+  <data name="Compare_PickRight" xml:space="preserve"><value>これと比較</value></data>
+  <data name="Compare_ToRight" xml:space="preserve"><value>右へコピー</value></data>
+  <data name="Compare_ToLeft" xml:space="preserve"><value>左へコピー</value></data>
+  <data name="Compare_DeleteLeft" xml:space="preserve"><value>左から削除</value></data>
+  <data name="Compare_DeleteRight" xml:space="preserve"><value>右から削除</value></data>
+  <data name="Compare_FolderLeft" xml:space="preserve"><value>左にフォルダーを作成</value></data>
+  <data name="Compare_FolderRight" xml:space="preserve"><value>右にフォルダーを作成</value></data>
+  <data name="Compare_Equal" xml:space="preserve"><value>同一</value></data>
+  <data name="Compare_New" xml:space="preserve"><value>新規</value></data>
+  <data name="Compare_Changed" xml:space="preserve"><value>変更あり</value></data>
+  <data name="Compare_Deleted" xml:space="preserve"><value>反対側で削除</value></data>
+  <data name="Compare_BothChanged" xml:space="preserve"><value>両側で変更: 新しい方を採用</value></data>
+  <data name="Compare_ChangedAndDeleted" xml:space="preserve"><value>片側で削除、もう片側で変更: 保持</value></data>
+  <data name="Compare_Extra" xml:space="preserve"><value>元にない</value></data>
+  <data name="Compare_Same" xml:space="preserve"><value>両側で同一</value></data>
 </root>
