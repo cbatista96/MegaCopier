@@ -1034,4 +1034,12 @@
   <data name="Remote_StateInterrupted" xml:space="preserve"><value>Detenida (se puede seguir)</value></data>
   <data name="Rules_ImageText.Header" xml:space="preserve"><value>Solo imágenes que contengan este texto (se lee con el OCR de Windows, sin internet)</value></data>
   <data name="Rules_ImageText.PlaceholderText" xml:space="preserve"><value>factura</value></data>
+  <data name="Connection_ClientId" xml:space="preserve"><value>Identificador de la app (Client ID)</value></data>
+  <data name="Connection_ClientSecret" xml:space="preserve"><value>Secreto de la app (Google lo pide)</value></data>
+  <data name="Connection_CloudHelp" xml:space="preserve"><value>Hay que registrar MegaCopier una vez en Microsoft, Google o Dropbox (es gratis): los pasos están en docs\Nube.md. Luego se inicia sesión en el navegador; MegaCopier nunca ve la contraseña.</value></data>
+  <data name="Connection_SignIn" xml:space="preserve"><value>Iniciar sesión en el navegador</value></data>
+  <data name="Connection_CloudRoot" xml:space="preserve"><value>Carpeta de la nube (vacío = toda)</value></data>
+  <data name="Connection_NeedClientId" xml:space="preserve"><value>Escribe primero el identificador de la app (ver docs\Nube.md).</value></data>
+  <data name="Connection_SigningIn" xml:space="preserve"><value>Esperando a que inicies sesión en el navegador…</value></data>
+  <data name="Connection_SignedIn" xml:space="preserve"><value>Sesión iniciada. Guarda la conexión.</value></data>
 </root>

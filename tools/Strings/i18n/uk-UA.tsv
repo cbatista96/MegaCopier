@@ -1028,3 +1028,11 @@ Remote_StateFailed	Помилка
 Remote_StateInterrupted	Зупинено (можна продовжити)
 Rules_ImageText.Header	Лише зображення з цим текстом (розпізнається OCR Windows, без інтернету)
 Rules_ImageText.PlaceholderText	рахунок
+Connection_ClientId	Ідентифікатор застосунку (Client ID)
+Connection_ClientSecret	Секрет застосунку (вимагає Google)
+Connection_CloudHelp	MegaCopier треба один раз зареєструвати в Microsoft, Google або Dropbox (безкоштовно): кроки в docs\Nube.md. Потім вхід виконується в браузері; MegaCopier ніколи не бачить пароля.
+Connection_SignIn	Увійти в браузері
+Connection_CloudRoot	Тека в хмарі (порожньо — усе)
+Connection_NeedClientId	Спершу введіть ідентифікатор застосунку (див. docs\Nube.md).
+Connection_SigningIn	Очікування входу в браузері…
+Connection_SignedIn	Вхід виконано. Збережіть з'єднання.

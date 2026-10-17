@@ -1034,4 +1034,12 @@
   <data name="Remote_StateInterrupted" xml:space="preserve"><value>Durduruldu (sürdürülebilir)</value></data>
   <data name="Rules_ImageText.Header" xml:space="preserve"><value>Yalnızca bu metni içeren görüntüler (Windows OCR ile, çevrimdışı okunur)</value></data>
   <data name="Rules_ImageText.PlaceholderText" xml:space="preserve"><value>fatura</value></data>
+  <data name="Connection_ClientId" xml:space="preserve"><value>Uygulama kimliği (Client ID)</value></data>
+  <data name="Connection_ClientSecret" xml:space="preserve"><value>Uygulama gizli anahtarı (Google ister)</value></data>
+  <data name="Connection_CloudHelp" xml:space="preserve"><value>MegaCopier&apos;ın Microsoft, Google veya Dropbox&apos;a bir kez kaydedilmesi gerekir (ücretsiz): adımlar docs\Nube.md içinde. Sonra tarayıcıda oturum açılır; MegaCopier parolayı hiç görmez.</value></data>
+  <data name="Connection_SignIn" xml:space="preserve"><value>Tarayıcıda oturum aç</value></data>
+  <data name="Connection_CloudRoot" xml:space="preserve"><value>Bulut klasörü (boş = tümü)</value></data>
+  <data name="Connection_NeedClientId" xml:space="preserve"><value>Önce uygulama kimliğini girin (bkz. docs\Nube.md).</value></data>
+  <data name="Connection_SigningIn" xml:space="preserve"><value>Tarayıcıda oturum açmanız bekleniyor…</value></data>
+  <data name="Connection_SignedIn" xml:space="preserve"><value>Oturum açıldı. Bağlantıyı kaydedin.</value></data>
 </root>

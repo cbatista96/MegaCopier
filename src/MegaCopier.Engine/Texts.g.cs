@@ -287,6 +287,9 @@ public static partial class Texts
             ["E_RemoteConnectionsTuned"] = "Ahora {0} conexiones a la vez ({1}/s).",
             ["E_MultiSourceUsed"] = "Leído de {0} sitios a la vez.",
             ["E_F_ImageText"] = "imágenes con el texto «{0}»",
+            ["E_CloudSignedIn"] = "Sesión iniciada. Ya puedes cerrar esta pestaña y volver a MegaCopier.",
+            ["E_CloudSignInFailed"] = "No se pudo iniciar sesión. Vuelve a MegaCopier para ver el motivo.",
+            ["E_CloudSignInError"] = "No se pudo iniciar sesión: {0}",
         },
         ["en-US"] = new()
         {
@@ -552,6 +555,9 @@ public static partial class Texts
             ["E_RemoteConnectionsTuned"] = "Now {0} connections at once ({1}/s).",
             ["E_MultiSourceUsed"] = "Read from {0} places at once.",
             ["E_F_ImageText"] = "images with the text \"{0}\"",
+            ["E_CloudSignedIn"] = "Signed in. You can close this tab and go back to MegaCopier.",
+            ["E_CloudSignInFailed"] = "Sign-in failed. Go back to MegaCopier to see why.",
+            ["E_CloudSignInError"] = "Could not sign in: {0}",
         },
         ["fr-FR"] = new()
         {
@@ -817,6 +823,9 @@ public static partial class Texts
             ["E_RemoteConnectionsTuned"] = "Maintenant {0} connexions simultanées ({1}/s).",
             ["E_MultiSourceUsed"] = "Lu depuis {0} emplacements à la fois.",
             ["E_F_ImageText"] = "images contenant le texte « {0} »",
+            ["E_CloudSignedIn"] = "Connecté. Vous pouvez fermer cet onglet et revenir à MegaCopier.",
+            ["E_CloudSignInFailed"] = "La connexion a échoué. Revenez à MegaCopier pour voir pourquoi.",
+            ["E_CloudSignInError"] = "Impossible de se connecter : {0}",
         },
         ["de-DE"] = new()
         {
@@ -1082,6 +1091,9 @@ public static partial class Texts
             ["E_RemoteConnectionsTuned"] = "Jetzt {0} gleichzeitige Verbindungen ({1}/s).",
             ["E_MultiSourceUsed"] = "Von {0} Orten gleichzeitig gelesen.",
             ["E_F_ImageText"] = "Bilder mit dem Text „{0}“",
+            ["E_CloudSignedIn"] = "Angemeldet. Du kannst diesen Tab schließen und zu MegaCopier zurückkehren.",
+            ["E_CloudSignInFailed"] = "Anmeldung fehlgeschlagen. Kehre zu MegaCopier zurück, um den Grund zu sehen.",
+            ["E_CloudSignInError"] = "Anmeldung nicht möglich: {0}",
         },
         ["it-IT"] = new()
         {
@@ -1347,6 +1359,9 @@ public static partial class Texts
             ["E_RemoteConnectionsTuned"] = "Ora {0} connessioni simultanee ({1}/s).",
             ["E_MultiSourceUsed"] = "Letto da {0} posizioni contemporaneamente.",
             ["E_F_ImageText"] = "immagini con il testo «{0}»",
+            ["E_CloudSignedIn"] = "Accesso eseguito. Puoi chiudere questa scheda e tornare a MegaCopier.",
+            ["E_CloudSignInFailed"] = "Accesso non riuscito. Torna a MegaCopier per vedere il motivo.",
+            ["E_CloudSignInError"] = "Impossibile accedere: {0}",
         },
         ["pt-BR"] = new()
         {
@@ -1612,6 +1627,9 @@ public static partial class Texts
             ["E_RemoteConnectionsTuned"] = "Agora {0} conexões simultâneas ({1}/s).",
             ["E_MultiSourceUsed"] = "Lido de {0} locais ao mesmo tempo.",
             ["E_F_ImageText"] = "imagens com o texto \"{0}\"",
+            ["E_CloudSignedIn"] = "Login feito. Você pode fechar esta guia e voltar ao MegaCopier.",
+            ["E_CloudSignInFailed"] = "Falha no login. Volte ao MegaCopier para ver o motivo.",
+            ["E_CloudSignInError"] = "Não foi possível entrar: {0}",
         },
         ["ru-RU"] = new()
         {
@@ -1877,6 +1895,9 @@ public static partial class Texts
             ["E_RemoteConnectionsTuned"] = "Теперь одновременных подключений: {0} ({1}/с).",
             ["E_MultiSourceUsed"] = "Прочитано из {0} мест одновременно.",
             ["E_F_ImageText"] = "изображения с текстом «{0}»",
+            ["E_CloudSignedIn"] = "Вход выполнен. Можно закрыть вкладку и вернуться в MegaCopier.",
+            ["E_CloudSignInFailed"] = "Не удалось войти. Вернитесь в MegaCopier, чтобы узнать причину.",
+            ["E_CloudSignInError"] = "Не удалось войти: {0}",
         },
         ["uk-UA"] = new()
         {
@@ -2142,6 +2163,9 @@ public static partial class Texts
             ["E_RemoteConnectionsTuned"] = "Тепер одночасних з'єднань: {0} ({1}/с).",
             ["E_MultiSourceUsed"] = "Прочитано з {0} місць одночасно.",
             ["E_F_ImageText"] = "зображення з текстом «{0}»",
+            ["E_CloudSignedIn"] = "Вхід виконано. Можна закрити вкладку й повернутися до MegaCopier.",
+            ["E_CloudSignInFailed"] = "Не вдалося увійти. Поверніться до MegaCopier, щоб побачити причину.",
+            ["E_CloudSignInError"] = "Не вдалося увійти: {0}",
         },
         ["pl-PL"] = new()
         {
@@ -2407,6 +2431,9 @@ public static partial class Texts
             ["E_RemoteConnectionsTuned"] = "Teraz {0} jednoczesnych połączeń ({1}/s).",
             ["E_MultiSourceUsed"] = "Odczytano z {0} miejsc jednocześnie.",
             ["E_F_ImageText"] = "obrazy z tekstem „{0}”",
+            ["E_CloudSignedIn"] = "Zalogowano. Możesz zamknąć tę kartę i wrócić do MegaCopier.",
+            ["E_CloudSignInFailed"] = "Logowanie nie powiodło się. Wróć do MegaCopier, aby zobaczyć powód.",
+            ["E_CloudSignInError"] = "Nie udało się zalogować: {0}",
         },
         ["nl-NL"] = new()
         {
@@ -2672,6 +2699,9 @@ public static partial class Texts
             ["E_RemoteConnectionsTuned"] = "Nu {0} verbindingen tegelijk ({1}/s).",
             ["E_MultiSourceUsed"] = "Gelezen vanaf {0} plaatsen tegelijk.",
             ["E_F_ImageText"] = "afbeeldingen met de tekst \"{0}\"",
+            ["E_CloudSignedIn"] = "Aangemeld. Je kunt dit tabblad sluiten en teruggaan naar MegaCopier.",
+            ["E_CloudSignInFailed"] = "Aanmelden mislukt. Ga terug naar MegaCopier om te zien waarom.",
+            ["E_CloudSignInError"] = "Kan niet aanmelden: {0}",
         },
         ["tr-TR"] = new()
         {
@@ -2937,6 +2967,9 @@ public static partial class Texts
             ["E_RemoteConnectionsTuned"] = "Şimdi aynı anda {0} bağlantı ({1}/sn).",
             ["E_MultiSourceUsed"] = "Aynı anda {0} konumdan okundu.",
             ["E_F_ImageText"] = "\"{0}\" metnini içeren görüntüler",
+            ["E_CloudSignedIn"] = "Oturum açıldı. Bu sekmeyi kapatıp MegaCopier'a dönebilirsiniz.",
+            ["E_CloudSignInFailed"] = "Oturum açılamadı. Nedenini görmek için MegaCopier'a dönün.",
+            ["E_CloudSignInError"] = "Oturum açılamadı: {0}",
         },
         ["zh-CN"] = new()
         {
@@ -3202,6 +3235,9 @@ public static partial class Texts
             ["E_RemoteConnectionsTuned"] = "现在同时使用 {0} 个连接（{1}/秒）。",
             ["E_MultiSourceUsed"] = "同时从 {0} 个位置读取。",
             ["E_F_ImageText"] = "包含文字“{0}”的图片",
+            ["E_CloudSignedIn"] = "已登录。可以关闭此标签页并返回 MegaCopier。",
+            ["E_CloudSignInFailed"] = "登录失败。请返回 MegaCopier 查看原因。",
+            ["E_CloudSignInError"] = "无法登录：{0}",
         },
         ["ja-JP"] = new()
         {
@@ -3467,6 +3503,9 @@ public static partial class Texts
             ["E_RemoteConnectionsTuned"] = "現在の同時接続数: {0}（{1}/秒）。",
             ["E_MultiSourceUsed"] = "{0} か所から同時に読み込みました。",
             ["E_F_ImageText"] = "「{0}」という文字を含む画像",
+            ["E_CloudSignedIn"] = "サインインしました。このタブを閉じて MegaCopier に戻ってください。",
+            ["E_CloudSignInFailed"] = "サインインできませんでした。MegaCopier に戻って理由を確認してください。",
+            ["E_CloudSignInError"] = "サインインできませんでした: {0}",
         },
         ["ko-KR"] = new()
         {
@@ -3732,6 +3771,9 @@ public static partial class Texts
             ["E_RemoteConnectionsTuned"] = "현재 동시 연결 {0}개({1}/초).",
             ["E_MultiSourceUsed"] = "{0}곳에서 동시에 읽었습니다.",
             ["E_F_ImageText"] = "\"{0}\" 텍스트가 있는 이미지",
+            ["E_CloudSignedIn"] = "로그인되었습니다. 이 탭을 닫고 MegaCopier로 돌아가세요.",
+            ["E_CloudSignInFailed"] = "로그인하지 못했습니다. MegaCopier로 돌아가 이유를 확인하세요.",
+            ["E_CloudSignInError"] = "로그인할 수 없습니다: {0}",
         },
     };
 }

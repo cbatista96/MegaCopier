@@ -261,3 +261,6 @@ E_RemoteConnectionsAuto	Verbindingen met de server: automatisch aangepast aan de
 E_RemoteConnectionsTuned	Nu {0} verbindingen tegelijk ({1}/s).
 E_MultiSourceUsed	Gelezen vanaf {0} plaatsen tegelijk.
 E_F_ImageText	afbeeldingen met de tekst "{0}"
+E_CloudSignedIn	Aangemeld. Je kunt dit tabblad sluiten en teruggaan naar MegaCopier.
+E_CloudSignInFailed	Aanmelden mislukt. Ga terug naar MegaCopier om te zien waarom.
+E_CloudSignInError	Kan niet aanmelden: {0}

@@ -1034,4 +1034,12 @@
   <data name="Remote_StateInterrupted" xml:space="preserve"><value>已停止（可继续）</value></data>
   <data name="Rules_ImageText.Header" xml:space="preserve"><value>仅包含此文字的图片（用 Windows OCR 离线识别）</value></data>
   <data name="Rules_ImageText.PlaceholderText" xml:space="preserve"><value>发票</value></data>
+  <data name="Connection_ClientId" xml:space="preserve"><value>应用标识（Client ID）</value></data>
+  <data name="Connection_ClientSecret" xml:space="preserve"><value>应用密钥（Google 需要）</value></data>
+  <data name="Connection_CloudHelp" xml:space="preserve"><value>需要在 Microsoft、Google 或 Dropbox 注册一次 MegaCopier（免费）：步骤见 docs\Nube.md。之后在浏览器中登录；MegaCopier 永远看不到密码。</value></data>
+  <data name="Connection_SignIn" xml:space="preserve"><value>在浏览器中登录</value></data>
+  <data name="Connection_CloudRoot" xml:space="preserve"><value>云文件夹（空 = 全部）</value></data>
+  <data name="Connection_NeedClientId" xml:space="preserve"><value>请先输入应用标识（见 docs\Nube.md）。</value></data>
+  <data name="Connection_SigningIn" xml:space="preserve"><value>正在等待你在浏览器中登录…</value></data>
+  <data name="Connection_SignedIn" xml:space="preserve"><value>已登录。请保存连接。</value></data>
 </root>

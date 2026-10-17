@@ -1034,4 +1034,12 @@
   <data name="Remote_StateInterrupted" xml:space="preserve"><value>Gestopt (kan hervat worden)</value></data>
   <data name="Rules_ImageText.Header" xml:space="preserve"><value>Alleen afbeeldingen met deze tekst (gelezen met Windows-OCR, offline)</value></data>
   <data name="Rules_ImageText.PlaceholderText" xml:space="preserve"><value>factuur</value></data>
+  <data name="Connection_ClientId" xml:space="preserve"><value>App-id (Client ID)</value></data>
+  <data name="Connection_ClientSecret" xml:space="preserve"><value>App-geheim (vereist door Google)</value></data>
+  <data name="Connection_CloudHelp" xml:space="preserve"><value>MegaCopier moet één keer worden geregistreerd bij Microsoft, Google of Dropbox (gratis): de stappen staan in docs\Nube.md. Daarna meld je je aan in de browser; MegaCopier ziet nooit het wachtwoord.</value></data>
+  <data name="Connection_SignIn" xml:space="preserve"><value>Aanmelden in de browser</value></data>
+  <data name="Connection_CloudRoot" xml:space="preserve"><value>Cloudmap (leeg = alles)</value></data>
+  <data name="Connection_NeedClientId" xml:space="preserve"><value>Voer eerst de app-id in (zie docs\Nube.md).</value></data>
+  <data name="Connection_SigningIn" xml:space="preserve"><value>Wachten tot je je aanmeldt in de browser…</value></data>
+  <data name="Connection_SignedIn" xml:space="preserve"><value>Aangemeld. Sla de verbinding op.</value></data>
 </root>

@@ -1028,3 +1028,11 @@ Remote_StateFailed	Échec
 Remote_StateInterrupted	Arrêtée (reprise possible)
 Rules_ImageText.Header	Seulement les images contenant ce texte (lu par l'OCR de Windows, hors ligne)
 Rules_ImageText.PlaceholderText	facture
+Connection_ClientId	Identifiant de l'application (Client ID)
+Connection_ClientSecret	Secret de l'application (demandé par Google)
+Connection_CloudHelp	Il faut enregistrer MegaCopier une fois chez Microsoft, Google ou Dropbox (gratuit) : les étapes sont dans docs\Nube.md. Ensuite, la connexion se fait dans le navigateur ; MegaCopier ne voit jamais le mot de passe.
+Connection_SignIn	Se connecter dans le navigateur
+Connection_CloudRoot	Dossier du cloud (vide = tout)
+Connection_NeedClientId	Saisissez d'abord l'identifiant de l'application (voir docs\Nube.md).
+Connection_SigningIn	En attente de votre connexion dans le navigateur…
+Connection_SignedIn	Connecté. Enregistrez la connexion.

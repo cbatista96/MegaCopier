@@ -261,3 +261,6 @@ E_RemoteConnectionsAuto	服务器连接：根据速度自动调整（最多 {0} 
 E_RemoteConnectionsTuned	现在同时使用 {0} 个连接（{1}/秒）。
 E_MultiSourceUsed	同时从 {0} 个位置读取。
 E_F_ImageText	包含文字“{0}”的图片
+E_CloudSignedIn	已登录。可以关闭此标签页并返回 MegaCopier。
+E_CloudSignInFailed	登录失败。请返回 MegaCopier 查看原因。
+E_CloudSignInError	无法登录：{0}

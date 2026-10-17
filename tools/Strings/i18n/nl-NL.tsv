@@ -1028,3 +1028,11 @@ Remote_StateFailed	Mislukt
 Remote_StateInterrupted	Gestopt (kan hervat worden)
 Rules_ImageText.Header	Alleen afbeeldingen met deze tekst (gelezen met Windows-OCR, offline)
 Rules_ImageText.PlaceholderText	factuur
+Connection_ClientId	App-id (Client ID)
+Connection_ClientSecret	App-geheim (vereist door Google)
+Connection_CloudHelp	MegaCopier moet één keer worden geregistreerd bij Microsoft, Google of Dropbox (gratis): de stappen staan in docs\Nube.md. Daarna meld je je aan in de browser; MegaCopier ziet nooit het wachtwoord.
+Connection_SignIn	Aanmelden in de browser
+Connection_CloudRoot	Cloudmap (leeg = alles)
+Connection_NeedClientId	Voer eerst de app-id in (zie docs\Nube.md).
+Connection_SigningIn	Wachten tot je je aanmeldt in de browser…
+Connection_SignedIn	Aangemeld. Sla de verbinding op.

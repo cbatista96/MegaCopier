@@ -1028,3 +1028,11 @@ Remote_StateFailed	Fehlgeschlagen
 Remote_StateInterrupted	Gestoppt (fortsetzbar)
 Rules_ImageText.Header	Nur Bilder mit diesem Text (mit der Windows-Texterkennung gelesen, offline)
 Rules_ImageText.PlaceholderText	Rechnung
+Connection_ClientId	App-Kennung (Client-ID)
+Connection_ClientSecret	App-Geheimnis (von Google verlangt)
+Connection_CloudHelp	MegaCopier muss einmal bei Microsoft, Google oder Dropbox registriert werden (kostenlos): die Schritte stehen in docs\Nube.md. Danach meldest du dich im Browser an; MegaCopier sieht nie das Kennwort.
+Connection_SignIn	Im Browser anmelden
+Connection_CloudRoot	Cloud-Ordner (leer = alles)
+Connection_NeedClientId	Gib zuerst die App-Kennung ein (siehe docs\Nube.md).
+Connection_SigningIn	Warte auf deine Anmeldung im Browser…
+Connection_SignedIn	Angemeldet. Speichere die Verbindung.

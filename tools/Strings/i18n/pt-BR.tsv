@@ -1028,3 +1028,11 @@ Remote_StateFailed	Falhou
 Remote_StateInterrupted	Parada (pode ser retomada)
 Rules_ImageText.Header	Só imagens que contenham este texto (lido com o OCR do Windows, offline)
 Rules_ImageText.PlaceholderText	nota fiscal
+Connection_ClientId	Identificador do app (Client ID)
+Connection_ClientSecret	Segredo do app (exigido pelo Google)
+Connection_CloudHelp	É preciso registrar o MegaCopier uma vez na Microsoft, Google ou Dropbox (grátis): os passos estão em docs\Nube.md. Depois o login é feito no navegador; o MegaCopier nunca vê a senha.
+Connection_SignIn	Entrar no navegador
+Connection_CloudRoot	Pasta da nuvem (vazio = tudo)
+Connection_NeedClientId	Digite primeiro o identificador do app (veja docs\Nube.md).
+Connection_SigningIn	Aguardando seu login no navegador…
+Connection_SignedIn	Login feito. Salve a conexão.

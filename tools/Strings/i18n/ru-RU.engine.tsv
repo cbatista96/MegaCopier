@@ -261,3 +261,6 @@ E_RemoteConnectionsAuto	Подключения к серверу настраи�
 E_RemoteConnectionsTuned	Теперь одновременных подключений: {0} ({1}/с).
 E_MultiSourceUsed	Прочитано из {0} мест одновременно.
 E_F_ImageText	изображения с текстом «{0}»
+E_CloudSignedIn	Вход выполнен. Можно закрыть вкладку и вернуться в MegaCopier.
+E_CloudSignInFailed	Не удалось войти. Вернитесь в MegaCopier, чтобы узнать причину.
+E_CloudSignInError	Не удалось войти: {0}

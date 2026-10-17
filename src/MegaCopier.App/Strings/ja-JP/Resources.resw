@@ -1034,4 +1034,12 @@
   <data name="Remote_StateInterrupted" xml:space="preserve"><value>停止中（再開可能）</value></data>
   <data name="Rules_ImageText.Header" xml:space="preserve"><value>この文字を含む画像のみ（Windows の OCR でオフライン認識）</value></data>
   <data name="Rules_ImageText.PlaceholderText" xml:space="preserve"><value>請求書</value></data>
+  <data name="Connection_ClientId" xml:space="preserve"><value>アプリの識別子（Client ID）</value></data>
+  <data name="Connection_ClientSecret" xml:space="preserve"><value>アプリのシークレット（Google で必要）</value></data>
+  <data name="Connection_CloudHelp" xml:space="preserve"><value>MegaCopier を Microsoft、Google、Dropbox に一度登録する必要があります（無料）。手順は docs\Nube.md にあります。その後ブラウザーでサインインします。MegaCopier がパスワードを見ることはありません。</value></data>
+  <data name="Connection_SignIn" xml:space="preserve"><value>ブラウザーでサインイン</value></data>
+  <data name="Connection_CloudRoot" xml:space="preserve"><value>クラウドのフォルダー（空 = すべて）</value></data>
+  <data name="Connection_NeedClientId" xml:space="preserve"><value>先にアプリの識別子を入力してください（docs\Nube.md を参照）。</value></data>
+  <data name="Connection_SigningIn" xml:space="preserve"><value>ブラウザーでのサインインを待っています…</value></data>
+  <data name="Connection_SignedIn" xml:space="preserve"><value>サインインしました。接続を保存してください。</value></data>
 </root>
