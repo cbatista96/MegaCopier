@@ -204,6 +204,7 @@ public static class Program
             if (args.Contains("--shellmenu") && App.ShellExtensionPath is { } dll)
             {
                 ShellExtensionRegistration.Register(dll);
+                ShellMenuPackage.Register();
             }
 
             if (args.Contains("--startup"))
@@ -230,6 +231,7 @@ public static class Program
         }
 
         ShellExtensionRegistration.Unregister();
+        ShellMenuPackage.Unregister();
         StartupRegistration.Set(false);
         try
         {

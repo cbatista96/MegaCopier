@@ -13,6 +13,7 @@
 #include <windows.h>
 #include <shlobj.h>
 #include <shellapi.h>
+#include <shlwapi.h>
 #include <sddl.h>
 #include <string>
 #include <vector>
@@ -23,6 +24,8 @@
 static const CLSID CLSID_ContextMenu = { 0xe2b6c3a1, 0x5f47, 0x4c8e, { 0xa1, 0xd2, 0x7b, 0x3f, 0x9c, 0x0e, 0x6a, 0x54 } };
 // {A9D4F1C7-2B6E-4A3F-8C5D-1E7B0F9A3C62}
 static const CLSID CLSID_DragDrop = { 0xa9d4f1c7, 0x2b6e, 0x4a3f, { 0x8c, 0x5d, 0x1e, 0x7b, 0x0f, 0x9a, 0x3c, 0x62 } };
+// {6F3C2B71-8E4D-4A5B-9C2E-1D7F3A9B5E40}: el menú corto de Windows 11 (IExplorerCommand, desde el paquete disperso)
+static const CLSID CLSID_ExplorerCommand = { 0x6f3c2b71, 0x8e4d, 0x4a5b, { 0x9c, 0x2e, 0x1d, 0x7f, 0x3a, 0x9b, 0x5e, 0x40 } };
 
 static HMODULE g_module = nullptr;
 static LONG g_objects = 0;
@@ -785,6 +788,194 @@ private:
     bool m_fromClipboard = false;
 };
 
+// ---------------------------------------------------------------------------------------------------------------
+// Menú corto de Windows 11 (IExplorerCommand): "Pegar con MegaCopier" sin pasar por "Mostrar más opciones".
+// Windows solo lo muestra si la DLL está registrada en un paquete con identidad (el paquete "disperso" que instala
+// MegaCopier si está firmado). Sobre una carpeta o en su fondo, el elemento que llega es la propia carpeta.
+
+class ExplorerCommand final : public IExplorerCommand
+{
+public:
+    ExplorerCommand() { InterlockedIncrement(&g_objects); }
+    ~ExplorerCommand() { InterlockedDecrement(&g_objects); }
+
+    IFACEMETHODIMP QueryInterface(REFIID riid, void** result) override
+    {
+        if (riid == IID_IUnknown || riid == __uuidof(IExplorerCommand))
+        {
+            *result = static_cast<IExplorerCommand*>(this);
+            AddRef();
+            return S_OK;
+        }
+
+        *result = nullptr;
+        return E_NOINTERFACE;
+    }
+
+    IFACEMETHODIMP_(ULONG) AddRef() override { return InterlockedIncrement(&m_refs); }
+
+    IFACEMETHODIMP_(ULONG) Release() override
+    {
+        ULONG refs = InterlockedDecrement(&m_refs);
+        if (refs == 0)
+        {
+            delete this;
+        }
+
+        return refs;
+    }
+
+    IFACEMETHODIMP GetTitle(IShellItemArray*, LPWSTR* name) override
+    {
+        return SHStrDupW(ReadClipboard().cut ? T(Text::MoveHere) : T(Text::Paste), name);
+    }
+
+    IFACEMETHODIMP GetIcon(IShellItemArray*, LPWSTR* icon) override
+    {
+        std::wstring exe = ModuleDirectory() + L"\\MegaCopier.exe,0";
+        return SHStrDupW(exe.c_str(), icon);
+    }
+
+    IFACEMETHODIMP GetToolTip(IShellItemArray*, LPWSTR* tip) override
+    {
+        *tip = nullptr;
+        return E_NOTIMPL;
+    }
+
+    IFACEMETHODIMP GetCanonicalName(GUID* name) override
+    {
+        *name = CLSID_ExplorerCommand;
+        return S_OK;
+    }
+
+    IFACEMETHODIMP GetState(IShellItemArray* items, BOOL, EXPCMDSTATE* state) override
+    {
+        // Visible solo si hay algo que pegar, MegaCopier está activado y el destino es una carpeta del disco.
+        *state = MegaCopierEnabled() && IsClipboardFormatAvailable(CF_HDROP) && !Destination(items).empty() ? ECS_ENABLED : ECS_HIDDEN;
+        return S_OK;
+    }
+
+    IFACEMETHODIMP Invoke(IShellItemArray* items, IBindCtx*) override
+    {
+        std::wstring destination = Destination(items);
+        ClipboardFiles clipboard = ReadClipboard();
+        if (destination.empty() || clipboard.files.empty())
+        {
+            return S_OK;
+        }
+
+        if (StartCopy(nullptr, clipboard.files, destination, clipboard.cut) && clipboard.cut)
+        {
+            ClearClipboard(); // como el Explorador: lo cortado ya no está en su sitio
+        }
+
+        return S_OK;
+    }
+
+    IFACEMETHODIMP GetFlags(EXPCMDFLAGS* flags) override
+    {
+        *flags = ECF_DEFAULT;
+        return S_OK;
+    }
+
+    IFACEMETHODIMP EnumSubCommands(IEnumExplorerCommand** commands) override
+    {
+        *commands = nullptr;
+        return E_NOTIMPL;
+    }
+
+private:
+    /// La carpeta del disco sobre la que se pulsó (o la del fondo); vacía si no es una carpeta del disco.
+    static std::wstring Destination(IShellItemArray* items)
+    {
+        IShellItem* item = nullptr;
+        DWORD count = 0;
+        if (items == nullptr || FAILED(items->GetCount(&count)) || count != 1 || FAILED(items->GetItemAt(0, &item)))
+        {
+            return {};
+        }
+
+        std::wstring path;
+        LPWSTR name = nullptr;
+        if (SUCCEEDED(item->GetDisplayName(SIGDN_FILESYSPATH, &name)))
+        {
+            DWORD attributes = GetFileAttributesW(name);
+            if (attributes != INVALID_FILE_ATTRIBUTES && (attributes & FILE_ATTRIBUTE_DIRECTORY))
+            {
+                path = name;
+            }
+
+            CoTaskMemFree(name);
+        }
+
+        item->Release();
+        return path;
+    }
+
+    LONG m_refs = 1;
+};
+
+class CommandFactory final : public IClassFactory
+{
+public:
+    CommandFactory() { InterlockedIncrement(&g_objects); }
+    ~CommandFactory() { InterlockedDecrement(&g_objects); }
+
+    IFACEMETHODIMP QueryInterface(REFIID riid, void** result) override
+    {
+        if (riid == IID_IUnknown || riid == IID_IClassFactory)
+        {
+            *result = static_cast<IClassFactory*>(this);
+            AddRef();
+            return S_OK;
+        }
+
+        *result = nullptr;
+        return E_NOINTERFACE;
+    }
+
+    IFACEMETHODIMP_(ULONG) AddRef() override { return InterlockedIncrement(&m_refs); }
+
+    IFACEMETHODIMP_(ULONG) Release() override
+    {
+        ULONG refs = InterlockedDecrement(&m_refs);
+        if (refs == 0)
+        {
+            delete this;
+        }
+
+        return refs;
+    }
+
+    IFACEMETHODIMP CreateInstance(IUnknown* outer, REFIID riid, void** result) override
+    {
+        *result = nullptr;
+        if (outer != nullptr)
+        {
+            return CLASS_E_NOAGGREGATION;
+        }
+
+        auto* command = new (std::nothrow) ExplorerCommand();
+        if (command == nullptr)
+        {
+            return E_OUTOFMEMORY;
+        }
+
+        HRESULT hr = command->QueryInterface(riid, result);
+        command->Release();
+        return hr;
+    }
+
+    IFACEMETHODIMP LockServer(BOOL lock) override
+    {
+        lock ? InterlockedIncrement(&g_locks) : InterlockedDecrement(&g_locks);
+        return S_OK;
+    }
+
+private:
+    LONG m_refs = 1;
+};
+
 class ClassFactory final : public IClassFactory
 {
 public:
@@ -865,6 +1056,19 @@ BOOL APIENTRY DllMain(HMODULE module, DWORD reason, LPVOID)
 
 STDAPI DllGetClassObject(REFCLSID clsid, REFIID riid, void** result)
 {
+    if (clsid == CLSID_ExplorerCommand)
+    {
+        auto* commands = new (std::nothrow) CommandFactory();
+        if (commands == nullptr)
+        {
+            return E_OUTOFMEMORY;
+        }
+
+        HRESULT created = commands->QueryInterface(riid, result);
+        commands->Release();
+        return created;
+    }
+
     Mode mode;
     if (clsid == CLSID_ContextMenu)
     {
