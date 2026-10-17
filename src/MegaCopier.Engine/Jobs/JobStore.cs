@@ -63,6 +63,8 @@ public sealed class CopyJobRecord
 
     public bool EfsRaw { get; set; }
 
+    public bool RansomwareShield { get; set; } = true;
+
     public bool Zip { get; set; }
 
     public IO.ArchiveFormat ArchiveFormat { get; set; }
@@ -164,6 +166,7 @@ public sealed class CopyJobRecord
         SecureDelete = options.SecureDelete,
         WipeMethod = options.WipeMethod,
         EfsRaw = options.EfsRaw,
+        RansomwareShield = options.RansomwareShield,
         Zip = options.Zip,
         ArchiveFormat = options.ArchiveFormat,
         RemoteConnections = options.RemoteConnections,
@@ -226,6 +229,7 @@ public sealed class CopyJobRecord
             SecureDelete = SecureDelete,
             WipeMethod = WipeMethod,
             EfsRaw = EfsRaw,
+            RansomwareShield = RansomwareShield,
             Zip = Zip,
             ArchiveFormat = ArchiveFormat,
             RemoteConnections = RemoteConnections,

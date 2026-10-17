@@ -970,3 +970,4 @@ Files_AttrCompressed	стиснутий (NTFS)
 Files_AttrEncrypted	зашифрований (EFS)
 Files_AttrSparse	розріджений
 Files_AttrCloud	лише в хмарі
+Rules_Shield.Content	Захист від вимагачів: зупинитися, якщо те, що замінить файли, раптом виглядає зашифрованим

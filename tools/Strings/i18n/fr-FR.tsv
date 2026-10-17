@@ -970,3 +970,4 @@ Files_AttrCompressed	compressé (NTFS)
 Files_AttrEncrypted	chiffré (EFS)
 Files_AttrSparse	fragmenté
 Files_AttrCloud	uniquement dans le cloud
+Rules_Shield.Content	Bouclier anti-rançongiciel : arrêter si ce qui va être écrasé semble soudain chiffré

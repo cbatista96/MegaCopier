@@ -970,3 +970,4 @@ Files_AttrCompressed	已压缩 (NTFS)
 Files_AttrEncrypted	已加密 (EFS)
 Files_AttrSparse	稀疏
 Files_AttrCloud	仅在云端
+Rules_Shield.Content	勒索软件防护：如果要覆盖的内容突然看起来像被加密，则停止

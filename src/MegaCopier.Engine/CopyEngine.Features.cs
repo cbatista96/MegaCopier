@@ -277,6 +277,32 @@ public sealed partial class CopyEngine
             : Path.Combine(_destinationRoot, _options.VersionsFolder));
     }
 
+    /// <summary>
+    /// Antes de sobrescribir nada: si muchos de los archivos que van a reemplazar a otros parecen recién cifrados
+    /// (ransomware), se para la copia (ver <see cref="RansomwareShield"/>).
+    /// </summary>
+    private void ShieldAgainstRansomware(IEnumerable<(string Source, string Target)> pairs, CancellationToken cancellationToken)
+    {
+        var replacing = pairs.Where(p =>
+        {
+            var target = new FileInfo(p.Target);
+            if (!target.Exists)
+            {
+                return false;
+            }
+
+            var source = new FileInfo(p.Source);
+            return source.Length != target.Length || (source.LastWriteTimeUtc - target.LastWriteTimeUtc).Duration() > _options.TimeTolerance;
+        });
+        var suspicious = RansomwareShield.Check(replacing, cancellationToken);
+        if (suspicious.Count > 0)
+        {
+            string examples = string.Join(", ", suspicious.Take(3).Select(Path.GetFileName));
+            Log(LogLevel.Error, Texts.F("E_RansomwareSuspected", suspicious.Count, examples));
+            throw new CopyPlanException(Texts.F("E_RansomwareSuspected", suspicious.Count, examples));
+        }
+    }
+
     /// <summary>Al terminar: borra de la carpeta de versiones lo que sobra según la regla de días, semanas y meses.</summary>
     private void PruneVersions()
     {

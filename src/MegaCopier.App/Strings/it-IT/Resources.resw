@@ -976,4 +976,5 @@
   <data name="Files_AttrEncrypted" xml:space="preserve"><value>crittografato (EFS)</value></data>
   <data name="Files_AttrSparse" xml:space="preserve"><value>sparse</value></data>
   <data name="Files_AttrCloud" xml:space="preserve"><value>solo nel cloud</value></data>
+  <data name="Rules_Shield.Content" xml:space="preserve"><value>Scudo anti-ransomware: fermarsi se ciò che sta per sovrascrivere sembra improvvisamente crittografato</value></data>
 </root>

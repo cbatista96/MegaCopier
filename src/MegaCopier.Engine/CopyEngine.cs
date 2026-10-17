@@ -169,6 +169,11 @@ public sealed partial class CopyEngine
         }
 
         (plan, var staged) = StageFolders(request, plan);
+        if (_options.RansomwareShield && !_options.DryRun && _options.Conflict is not (ConflictPolicy.Skip or ConflictPolicy.KeepBoth or ConflictPolicy.Fail))
+        {
+            ShieldAgainstRansomware(plan.Files.Where(f => !excluded.Contains(f.Source)).Select(f => (f.Source, f.Destination)), cancellationToken);
+        }
+
         if (_options.Mode == CopyMode.OrganizeByDate)
         {
             plan = OrganizeByDate(plan);

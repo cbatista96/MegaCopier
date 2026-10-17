@@ -970,3 +970,4 @@ Files_AttrCompressed	compresso (NTFS)
 Files_AttrEncrypted	crittografato (EFS)
 Files_AttrSparse	sparse
 Files_AttrCloud	solo nel cloud
+Rules_Shield.Content	Scudo anti-ransomware: fermarsi se ciò che sta per sovrascrivere sembra improvvisamente crittografato

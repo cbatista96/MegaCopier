@@ -970,3 +970,4 @@ Files_AttrCompressed	comprimido (NTFS)	compressed (NTFS)
 Files_AttrEncrypted	cifrado (EFS)	encrypted (EFS)
 Files_AttrSparse	disperso	sparse
 Files_AttrCloud	solo en la nube	cloud only
+Rules_Shield.Content	Escudo contra ransomware: parar si lo que va a sobrescribir parece cifrado de repente	Ransomware shield: stop if what is about to be overwritten suddenly looks encrypted

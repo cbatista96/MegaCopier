@@ -976,4 +976,5 @@
   <data name="Files_AttrEncrypted" xml:space="preserve"><value>zaszyfrowany (EFS)</value></data>
   <data name="Files_AttrSparse" xml:space="preserve"><value>rozrzedzony</value></data>
   <data name="Files_AttrCloud" xml:space="preserve"><value>tylko w chmurze</value></data>
+  <data name="Rules_Shield.Content" xml:space="preserve"><value>Tarcza przed ransomware: zatrzymaj, jeśli to, co ma nadpisać pliki, nagle wygląda na zaszyfrowane</value></data>
 </root>

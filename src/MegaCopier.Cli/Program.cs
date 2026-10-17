@@ -132,6 +132,9 @@ internal static class Cli
                 case "--backup":
                     options.BackupMode = true; // como robocopy /B: en una consola de administrador
                     break;
+                case "--no-shield":
+                    options.RansomwareShield = false;
+                    break;
                 case "--efsraw":
                     options.EfsRaw = true;
                     break;

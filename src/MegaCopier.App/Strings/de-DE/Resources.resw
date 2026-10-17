@@ -976,4 +976,5 @@
   <data name="Files_AttrEncrypted" xml:space="preserve"><value>verschlüsselt (EFS)</value></data>
   <data name="Files_AttrSparse" xml:space="preserve"><value>Sparse-Datei</value></data>
   <data name="Files_AttrCloud" xml:space="preserve"><value>nur in der Cloud</value></data>
+  <data name="Rules_Shield.Content" xml:space="preserve"><value>Ransomware-Schutz: anhalten, wenn das zu Überschreibende plötzlich verschlüsselt wirkt</value></data>
 </root>
