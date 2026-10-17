@@ -54,6 +54,9 @@ public sealed class IpcRequest
     /// <summary>Al enviar a otro equipo: el código que muestra su MegaCopier.</summary>
     public string? PeerCode { get; set; }
 
+    /// <summary>Copiar a un ZIP (cifrado con AES-256 si además va <see cref="Encrypt"/>).</summary>
+    public bool? Zip { get; set; }
+
     /// <summary>Copia cifrada (con <see cref="Password"/>).</summary>
     public bool? Encrypt { get; set; }
 

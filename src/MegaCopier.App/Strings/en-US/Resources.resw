@@ -943,4 +943,6 @@
   <data name="Rules_WipeDod3.Content" xml:space="preserve"><value>DoD 5220.22-M, 3 passes</value></data>
   <data name="Rules_WipeDod7.Content" xml:space="preserve"><value>DoD 5220.22-M ECE, 7 passes (slow)</value></data>
   <data name="Rules_EfsRaw.Content" xml:space="preserve"><value>Copy EFS-encrypted files without decrypting them</value></data>
+  <data name="Destinations_Zip.Content" xml:space="preserve"><value>Save into a ZIP file</value></data>
+  <data name="Destinations_PasswordHintZip" xml:space="preserve"><value>The ZIP is encrypted with AES-256 and opens with 7-Zip, WinZip or WinRAR (Windows Explorer cannot open encrypted ZIPs). File names are visible without the password. If you forget it, there is no way to recover the files.</value></data>
 </root>

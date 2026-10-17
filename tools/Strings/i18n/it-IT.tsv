@@ -937,3 +937,5 @@ Rules_WipeRandom.Content	Un passaggio casuale
 Rules_WipeDod3.Content	DoD 5220.22-M, 3 passaggi
 Rules_WipeDod7.Content	DoD 5220.22-M ECE, 7 passaggi (lento)
 Rules_EfsRaw.Content	Copia i file crittografati con EFS senza decrittografarli
+Destinations_Zip.Content	Salva in un file ZIP
+Destinations_PasswordHintZip	Lo ZIP è crittografato con AES-256 e si apre con 7-Zip, WinZip o WinRAR (Esplora file di Windows non apre gli ZIP crittografati). I nomi dei file sono visibili senza password. Se la dimentichi, non c'è modo di recuperare i file.

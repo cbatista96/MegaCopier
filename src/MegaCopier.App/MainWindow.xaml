@@ -328,6 +328,7 @@
                 <InfoBar x:Name="DestinationsMirrorInfo" x:Uid="Options_MirrorInfo" Severity="Warning" IsClosable="False" IsOpen="False" />
                 <CheckBox x:Name="DestinationsMove" x:Uid="Destinations_Move" />
                 <CheckBox x:Name="DestinationsDryRun" x:Uid="Destinations_DryRun" />
+                <CheckBox x:Name="DestinationsZip" x:Uid="Destinations_Zip" Click="DestinationsEncrypt_Click" />
                 <CheckBox x:Name="DestinationsEncrypt" x:Uid="Destinations_Encrypt" Click="DestinationsEncrypt_Click" />
                 <StackPanel x:Name="DestinationsEncryptPanel" Spacing="6" Visibility="Collapsed" Margin="28,0,0,0">
                     <PasswordBox x:Name="DestinationsPassword" x:Uid="Destinations_Password" />

@@ -937,3 +937,5 @@ Rules_WipeRandom.Content	ランダムで 1 回上書き
 Rules_WipeDod3.Content	DoD 5220.22-M、3 回
 Rules_WipeDod7.Content	DoD 5220.22-M ECE、7 回（低速）
 Rules_EfsRaw.Content	EFS で暗号化されたファイルを復号せずにコピーする
+Destinations_Zip.Content	ZIP ファイルに保存する
+Destinations_PasswordHintZip	ZIP は AES-256 で暗号化され、7-Zip、WinZip、WinRAR で開けます（Windows エクスプローラーでは暗号化された ZIP を開けません）。ファイル名はパスワードなしで見えます。パスワードを忘れるとファイルは復元できません。

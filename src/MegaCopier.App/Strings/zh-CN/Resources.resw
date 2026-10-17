@@ -943,4 +943,6 @@
   <data name="Rules_WipeDod3.Content" xml:space="preserve"><value>DoD 5220.22-M，3 次</value></data>
   <data name="Rules_WipeDod7.Content" xml:space="preserve"><value>DoD 5220.22-M ECE，7 次（慢）</value></data>
   <data name="Rules_EfsRaw.Content" xml:space="preserve"><value>不解密直接复制 EFS 加密的文件</value></data>
+  <data name="Destinations_Zip.Content" xml:space="preserve"><value>保存为 ZIP 文件</value></data>
+  <data name="Destinations_PasswordHintZip" xml:space="preserve"><value>ZIP 使用 AES-256 加密，可用 7-Zip、WinZip 或 WinRAR 打开（Windows 资源管理器无法打开加密的 ZIP）。文件名无需密码即可看到。如果忘记密码，将无法恢复文件。</value></data>
 </root>

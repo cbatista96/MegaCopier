@@ -937,3 +937,5 @@ Rules_WipeRandom.Content	Один випадковий прохід
 Rules_WipeDod3.Content	DoD 5220.22-M, 3 проходи
 Rules_WipeDod7.Content	DoD 5220.22-M ECE, 7 проходів (повільно)
 Rules_EfsRaw.Content	Копіювати файли, зашифровані EFS, без розшифрування
+Destinations_Zip.Content	Зберегти в ZIP-архів
+Destinations_PasswordHintZip	ZIP шифрується AES-256 і відкривається в 7-Zip, WinZip або WinRAR (Провідник Windows не відкриває зашифровані ZIP). Імена файлів видно без пароля. Якщо ви його забудете, відновити файли буде неможливо.

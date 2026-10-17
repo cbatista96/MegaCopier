@@ -943,4 +943,6 @@
   <data name="Rules_WipeDod3.Content" xml:space="preserve"><value>DoD 5220.22-M, 3 geçiş</value></data>
   <data name="Rules_WipeDod7.Content" xml:space="preserve"><value>DoD 5220.22-M ECE, 7 geçiş (yavaş)</value></data>
   <data name="Rules_EfsRaw.Content" xml:space="preserve"><value>EFS ile şifrelenmiş dosyaları şifresini çözmeden kopyala</value></data>
+  <data name="Destinations_Zip.Content" xml:space="preserve"><value>ZIP dosyasına kaydet</value></data>
+  <data name="Destinations_PasswordHintZip" xml:space="preserve"><value>ZIP, AES-256 ile şifrelenir ve 7-Zip, WinZip veya WinRAR ile açılır (Windows Gezgini şifreli ZIP&apos;leri açamaz). Dosya adları parola olmadan görünür. Parolayı unutursanız dosyaları kurtarmanın yolu yoktur.</value></data>
 </root>

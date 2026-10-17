@@ -943,4 +943,6 @@
   <data name="Rules_WipeDod3.Content" xml:space="preserve"><value>DoD 5220.22-M, 3 Durchgänge</value></data>
   <data name="Rules_WipeDod7.Content" xml:space="preserve"><value>DoD 5220.22-M ECE, 7 Durchgänge (langsam)</value></data>
   <data name="Rules_EfsRaw.Content" xml:space="preserve"><value>EFS-verschlüsselte Dateien ohne Entschlüsseln kopieren</value></data>
+  <data name="Destinations_Zip.Content" xml:space="preserve"><value>In einer ZIP-Datei speichern</value></data>
+  <data name="Destinations_PasswordHintZip" xml:space="preserve"><value>Die ZIP-Datei wird mit AES-256 verschlüsselt und lässt sich mit 7-Zip, WinZip oder WinRAR öffnen (der Windows-Explorer öffnet keine verschlüsselten ZIP-Dateien). Die Dateinamen sind ohne Kennwort sichtbar. Wenn du es vergisst, lassen sich die Dateien nicht wiederherstellen.</value></data>
 </root>

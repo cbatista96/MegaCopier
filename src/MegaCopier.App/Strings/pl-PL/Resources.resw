@@ -943,4 +943,6 @@
   <data name="Rules_WipeDod3.Content" xml:space="preserve"><value>DoD 5220.22-M, 3 przejścia</value></data>
   <data name="Rules_WipeDod7.Content" xml:space="preserve"><value>DoD 5220.22-M ECE, 7 przejść (wolno)</value></data>
   <data name="Rules_EfsRaw.Content" xml:space="preserve"><value>Kopiuj pliki zaszyfrowane EFS bez odszyfrowywania</value></data>
+  <data name="Destinations_Zip.Content" xml:space="preserve"><value>Zapisz w pliku ZIP</value></data>
+  <data name="Destinations_PasswordHintZip" xml:space="preserve"><value>ZIP jest szyfrowany AES-256 i otwiera się w 7-Zip, WinZip lub WinRAR (Eksplorator Windows nie otwiera zaszyfrowanych plików ZIP). Nazwy plików są widoczne bez hasła. Jeśli je zapomnisz, nie da się odzyskać plików.</value></data>
 </root>

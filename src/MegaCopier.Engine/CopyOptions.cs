@@ -211,6 +211,12 @@ public sealed class CopyOptions
     /// </summary>
     public bool EfsRaw { get; set; }
 
+    /// <summary>
+    /// Copiar a un archivo ZIP en lugar de a una carpeta (el destino puede ser la carpeta donde dejarlo o el propio
+    /// .zip). Con <see cref="Encrypt"/>, el ZIP va cifrado con AES-256 (lo abren 7-Zip, WinZip y WinRAR).
+    /// </summary>
+    public bool Zip { get; set; }
+
     /// <summary>Archivos dispersos (con huecos): el destino también lo es, sin escribir los huecos.</summary>
     public bool PreserveSparse { get; set; } = true;
 
