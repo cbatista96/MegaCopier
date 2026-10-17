@@ -21,7 +21,7 @@ if (Microsoft.Win32.Registry.GetValue(@"HKEY_CURRENT_USER\Software\MegaCopier", 
 
 return Cli.Run(args);
 
-internal static class Cli
+internal static partial class Cli
 {
     private const int ExitOk = 0;
     private const int ExitFailures = 1;
@@ -50,6 +50,7 @@ internal static class Cli
                 "backup" => Copy(args[1..], move: false, operation: JobOperation.Snapshot),
                 "restore" => Copy(args[1..], move: false, operation: JobOperation.Restore),
                 "snapshots" => Snapshots(args[1..]),
+                "mcp" => McpServe(),
                 "delete" => Delete(args[1..]),
                 "resume" => Resume(args.Length > 1 ? args[1] : null),
                 "jobs" => Jobs(),

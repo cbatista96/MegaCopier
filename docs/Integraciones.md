@@ -42,3 +42,27 @@ de destino (el otro panel o la otra ventana).
 - `--also <otra carpeta>` copia a la vez a otra carpeta más.
 - `--at 23:30` la deja programada.
 - `mcopy` sin nada muestra la ayuda completa.
+
+## Asistentes de IA (Claude, Copilot y otros): servidor MCP
+
+`mcopy mcp` es un servidor MCP (Model Context Protocol): un asistente de IA puede pedirle a MegaCopier copias,
+comprobaciones y copias de seguridad hablando normal ("copia Documentos al NAS esta noche y verifícala"). Las copias se
+entregan a la app: se ven en su ventana, se pueden pausar y siguen tras un corte de luz. No hay herramientas de borrado.
+
+Herramientas: `copy` (copiar, mover, verificar, espejo y hora de inicio), `verify_checksums`, `create_checksums`,
+`backup`, `list_backups`, `restore` y `status`.
+
+En Claude Desktop (Configuración > Desarrollador > Editar configuración, archivo `claude_desktop_config.json`):
+
+```json
+{
+  "mcpServers": {
+    "megacopier": {
+      "command": "C:\Users\<tu usuario>\AppData\Local\Programs\MegaCopier\mcopy.exe",
+      "args": ["mcp"]
+    }
+  }
+}
+```
+
+Cualquier otro programa compatible con MCP se configura igual: orden `mcopy.exe` con el argumento `mcp`.
