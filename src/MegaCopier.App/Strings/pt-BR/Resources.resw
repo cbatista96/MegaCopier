@@ -808,17 +808,17 @@
   <data name="DragConfirm_Always.Content" xml:space="preserve"><value>Sempre</value></data>
   <data name="Drag_ConfirmMove" xml:space="preserve"><value>Mover {0} para &quot;{1}&quot; com o MegaCopier?</value></data>
   <data name="Drag_ConfirmCopy" xml:space="preserve"><value>Copiar {0} para &quot;{1}&quot; com o MegaCopier?</value></data>
-  <data name="Tool_MtpImport.Text" xml:space="preserve"><value>Copiar do celular ou da câmera…</value></data>
-  <data name="Tool_MtpExport.Text" xml:space="preserve"><value>Copiar arquivos para o celular ou a câmera…</value></data>
+  <data name="Tool_MtpImport.Text" xml:space="preserve"><value>Copiar do celular, câmera ou servidor…</value></data>
+  <data name="Tool_MtpExport.Text" xml:space="preserve"><value>Copiar arquivos para celular, câmera ou servidor…</value></data>
   <data name="MtpDialog.CloseButtonText" xml:space="preserve"><value>Cancelar</value></data>
-  <data name="Mtp_ImportTitle" xml:space="preserve"><value>Copiar do celular ou da câmera</value></data>
-  <data name="Mtp_ExportTitle" xml:space="preserve"><value>Copiar para o celular ou a câmera</value></data>
+  <data name="Mtp_ImportTitle" xml:space="preserve"><value>Copiar do celular, câmera ou servidor</value></data>
+  <data name="Mtp_ExportTitle" xml:space="preserve"><value>Copiar para celular, câmera ou servidor</value></data>
   <data name="Mtp_ImportButton" xml:space="preserve"><value>Copiar para…</value></data>
   <data name="Mtp_ExportButton" xml:space="preserve"><value>Copiar aqui</value></data>
   <data name="Mtp_ImportSummary" xml:space="preserve"><value>Marque o que quer copiar. Sem marcar nada, a pasta aberta é copiada inteira.</value></data>
   <data name="Mtp_ExportSummaryOne" xml:space="preserve"><value>Abra a pasta do dispositivo onde copiar &quot;{0}&quot;.</value></data>
   <data name="Mtp_ExportSummaryMany" xml:space="preserve"><value>Abra a pasta do dispositivo onde copiar {0} itens.</value></data>
-  <data name="Mtp_NoDevices" xml:space="preserve"><value>Nenhum celular ou câmera conectado. Conecte-o por USB, desbloqueie e escolha &quot;Transferência de arquivos&quot;.</value></data>
+  <data name="Mtp_NoDevices" xml:space="preserve"><value>Nenhum celular ou câmera conectado (conecte por USB, desbloqueie e escolha &quot;Transferência de arquivos&quot;) e nenhum servidor em Configurações &gt; Conexões.</value></data>
   <data name="Mtp_Loading" xml:space="preserve"><value>Lendo o dispositivo…</value></data>
   <data name="Mtp_Empty" xml:space="preserve"><value>Pasta vazia.</value></data>
   <data name="Mtp_Error" xml:space="preserve"><value>Não foi possível ler o dispositivo: {0}</value></data>
@@ -885,4 +885,38 @@
   <data name="Compare_ChangedAndDeleted" xml:space="preserve"><value>Apagado de um lado mas alterado do outro: é mantido</value></data>
   <data name="Compare_Extra" xml:space="preserve"><value>Não está na origem</value></data>
   <data name="Compare_Same" xml:space="preserve"><value>Igual nos dois lados</value></data>
+  <data name="Drive_Disk" xml:space="preserve"><value>Disco</value></data>
+  <data name="Drive_Usb" xml:space="preserve"><value>USB</value></data>
+  <data name="Drive_Network" xml:space="preserve"><value>Rede</value></data>
+  <data name="Drive_Server" xml:space="preserve"><value>Servidor</value></data>
+  <data name="Drive_Phone" xml:space="preserve"><value>Celular</value></data>
+  <data name="Settings_Connections.Text" xml:space="preserve"><value>Conexões com servidores</value></data>
+  <data name="Settings_ConnectionsTitle.Text" xml:space="preserve"><value>Servidores e nuvens</value></data>
+  <data name="Settings_ConnectionsDescription.Text" xml:space="preserve"><value>FTP, FTPS, SFTP, WebDAV (Nextcloud, ownCloud, NAS…) e S3 (AWS, Backblaze B2, Cloudflare R2, Wasabi, MinIO…). Aparecem ao copiar de ou para &quot;celular, câmera ou servidor&quot;. As senhas vão para o Gerenciador de Credenciais do Windows. OneDrive, Google Drive e Dropbox não são necessários aqui: com seus apps são pastas normais.</value></data>
+  <data name="Settings_ConnectionsAdd.Text" xml:space="preserve"><value>Adicionar…</value></data>
+  <data name="Settings_ConnectionsEmpty" xml:space="preserve"><value>Ainda não há conexões.</value></data>
+  <data name="Settings_ConnectionEdit" xml:space="preserve"><value>Editar &quot;{0}&quot;</value></data>
+  <data name="Settings_ConnectionDelete" xml:space="preserve"><value>Remover &quot;{0}&quot;</value></data>
+  <data name="Connection_DialogTitle" xml:space="preserve"><value>Conexão</value></data>
+  <data name="Connection_Save" xml:space="preserve"><value>Salvar</value></data>
+  <data name="Connection_Cancel" xml:space="preserve"><value>Cancelar</value></data>
+  <data name="Connection_Kind" xml:space="preserve"><value>Tipo</value></data>
+  <data name="Connection_Name" xml:space="preserve"><value>Nome</value></data>
+  <data name="Connection_Host" xml:space="preserve"><value>Servidor</value></data>
+  <data name="Connection_Url" xml:space="preserve"><value>Endereço (https://…)</value></data>
+  <data name="Connection_Endpoint" xml:space="preserve"><value>Endpoint (vazio = AWS)</value></data>
+  <data name="Connection_Port" xml:space="preserve"><value>Porta (0 = a padrão)</value></data>
+  <data name="Connection_User" xml:space="preserve"><value>Usuário</value></data>
+  <data name="Connection_AccessKey" xml:space="preserve"><value>Chave de acesso</value></data>
+  <data name="Connection_Password" xml:space="preserve"><value>Senha</value></data>
+  <data name="Connection_SecretKey" xml:space="preserve"><value>Chave secreta</value></data>
+  <data name="Connection_PasswordOrKey" xml:space="preserve"><value>Senha ou chave privada (cole inteira)</value></data>
+  <data name="Connection_Root" xml:space="preserve"><value>Pasta (vazia = a inicial)</value></data>
+  <data name="Connection_Bucket" xml:space="preserve"><value>Bucket (e pasta): bucket/pasta</value></data>
+  <data name="Connection_Region" xml:space="preserve"><value>Região (vazia = us-east-1; no R2, auto)</value></data>
+  <data name="Connection_AcceptAny" xml:space="preserve"><value>Aceitar certificados inválidos (só se o servidor usar um próprio)</value></data>
+  <data name="Connection_Test" xml:space="preserve"><value>Testar conexão</value></data>
+  <data name="Connection_Testing" xml:space="preserve"><value>Testando…</value></data>
+  <data name="Connection_TestOk" xml:space="preserve"><value>Conexão funcionando: {0} itens na pasta.</value></data>
+  <data name="Connection_TestFailed" xml:space="preserve"><value>Não foi possível conectar: {0}</value></data>
 </root>

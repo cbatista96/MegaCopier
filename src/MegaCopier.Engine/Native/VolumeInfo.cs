@@ -13,9 +13,9 @@ internal static partial class VolumeInfo
 
     public static string DeviceKey(string path)
     {
-        if (Mtp.MtpPath.IsMtp(path))
+        if (Remote.RemotePath.IsRemote(path))
         {
-            return Mtp.MtpPath.DeviceKey(path);
+            return Remote.RemotePath.DeviceKey(path);
         }
 
         string full = Path.GetFullPath(path);

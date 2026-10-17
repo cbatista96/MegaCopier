@@ -808,17 +808,17 @@
   <data name="DragConfirm_Always.Content" xml:space="preserve"><value>Altijd</value></data>
   <data name="Drag_ConfirmMove" xml:space="preserve"><value>{0} met MegaCopier naar &apos;{1}&apos; verplaatsen?</value></data>
   <data name="Drag_ConfirmCopy" xml:space="preserve"><value>{0} met MegaCopier naar &apos;{1}&apos; kopiëren?</value></data>
-  <data name="Tool_MtpImport.Text" xml:space="preserve"><value>Kopiëren van telefoon of camera…</value></data>
-  <data name="Tool_MtpExport.Text" xml:space="preserve"><value>Bestanden naar telefoon of camera kopiëren…</value></data>
+  <data name="Tool_MtpImport.Text" xml:space="preserve"><value>Kopiëren van telefoon, camera of server…</value></data>
+  <data name="Tool_MtpExport.Text" xml:space="preserve"><value>Bestanden naar telefoon, camera of server kopiëren…</value></data>
   <data name="MtpDialog.CloseButtonText" xml:space="preserve"><value>Annuleren</value></data>
-  <data name="Mtp_ImportTitle" xml:space="preserve"><value>Kopiëren van telefoon of camera</value></data>
-  <data name="Mtp_ExportTitle" xml:space="preserve"><value>Kopiëren naar telefoon of camera</value></data>
+  <data name="Mtp_ImportTitle" xml:space="preserve"><value>Kopiëren van telefoon, camera of server</value></data>
+  <data name="Mtp_ExportTitle" xml:space="preserve"><value>Kopiëren naar telefoon, camera of server</value></data>
   <data name="Mtp_ImportButton" xml:space="preserve"><value>Kopiëren naar…</value></data>
   <data name="Mtp_ExportButton" xml:space="preserve"><value>Hier kopiëren</value></data>
   <data name="Mtp_ImportSummary" xml:space="preserve"><value>Vink aan wat je wilt kopiëren. Zonder vinkjes wordt de hele geopende map gekopieerd.</value></data>
   <data name="Mtp_ExportSummaryOne" xml:space="preserve"><value>Open de map op het apparaat waar &apos;{0}&apos; naartoe moet.</value></data>
   <data name="Mtp_ExportSummaryMany" xml:space="preserve"><value>Open de map op het apparaat waar {0} items naartoe moeten.</value></data>
-  <data name="Mtp_NoDevices" xml:space="preserve"><value>Er is geen telefoon of camera aangesloten. Sluit hem via USB aan, ontgrendel hem en kies &apos;Bestandsoverdracht&apos;.</value></data>
+  <data name="Mtp_NoDevices" xml:space="preserve"><value>Er is geen telefoon of camera aangesloten (sluit hem via USB aan, ontgrendel hem en kies &apos;Bestandsoverdracht&apos;) en er zijn geen servers in Instellingen &gt; Verbindingen.</value></data>
   <data name="Mtp_Loading" xml:space="preserve"><value>Apparaat lezen…</value></data>
   <data name="Mtp_Empty" xml:space="preserve"><value>Lege map.</value></data>
   <data name="Mtp_Error" xml:space="preserve"><value>Kan het apparaat niet lezen: {0}</value></data>
@@ -885,4 +885,38 @@
   <data name="Compare_ChangedAndDeleted" xml:space="preserve"><value>Aan één kant verwijderd maar aan de andere gewijzigd: blijft behouden</value></data>
   <data name="Compare_Extra" xml:space="preserve"><value>Niet in de bron</value></data>
   <data name="Compare_Same" xml:space="preserve"><value>Aan beide kanten gelijk</value></data>
+  <data name="Drive_Disk" xml:space="preserve"><value>Schijf</value></data>
+  <data name="Drive_Usb" xml:space="preserve"><value>USB</value></data>
+  <data name="Drive_Network" xml:space="preserve"><value>Netwerk</value></data>
+  <data name="Drive_Server" xml:space="preserve"><value>Server</value></data>
+  <data name="Drive_Phone" xml:space="preserve"><value>Telefoon</value></data>
+  <data name="Settings_Connections.Text" xml:space="preserve"><value>Serververbindingen</value></data>
+  <data name="Settings_ConnectionsTitle.Text" xml:space="preserve"><value>Servers en clouds</value></data>
+  <data name="Settings_ConnectionsDescription.Text" xml:space="preserve"><value>FTP, FTPS, SFTP, WebDAV (Nextcloud, ownCloud, NAS…) en S3 (AWS, Backblaze B2, Cloudflare R2, Wasabi, MinIO…). Ze verschijnen bij kopiëren van of naar &apos;telefoon, camera of server&apos;. Wachtwoorden gaan naar Windows Referentiebeheer. OneDrive, Google Drive en Dropbox zijn hier niet nodig: met hun apps zijn het gewone mappen.</value></data>
+  <data name="Settings_ConnectionsAdd.Text" xml:space="preserve"><value>Toevoegen…</value></data>
+  <data name="Settings_ConnectionsEmpty" xml:space="preserve"><value>Nog geen verbindingen.</value></data>
+  <data name="Settings_ConnectionEdit" xml:space="preserve"><value>&apos;{0}&apos; bewerken</value></data>
+  <data name="Settings_ConnectionDelete" xml:space="preserve"><value>&apos;{0}&apos; verwijderen</value></data>
+  <data name="Connection_DialogTitle" xml:space="preserve"><value>Verbinding</value></data>
+  <data name="Connection_Save" xml:space="preserve"><value>Opslaan</value></data>
+  <data name="Connection_Cancel" xml:space="preserve"><value>Annuleren</value></data>
+  <data name="Connection_Kind" xml:space="preserve"><value>Type</value></data>
+  <data name="Connection_Name" xml:space="preserve"><value>Naam</value></data>
+  <data name="Connection_Host" xml:space="preserve"><value>Server</value></data>
+  <data name="Connection_Url" xml:space="preserve"><value>Adres (https://…)</value></data>
+  <data name="Connection_Endpoint" xml:space="preserve"><value>Eindpunt (leeg = AWS)</value></data>
+  <data name="Connection_Port" xml:space="preserve"><value>Poort (0 = standaard)</value></data>
+  <data name="Connection_User" xml:space="preserve"><value>Gebruiker</value></data>
+  <data name="Connection_AccessKey" xml:space="preserve"><value>Toegangssleutel</value></data>
+  <data name="Connection_Password" xml:space="preserve"><value>Wachtwoord</value></data>
+  <data name="Connection_SecretKey" xml:space="preserve"><value>Geheime sleutel</value></data>
+  <data name="Connection_PasswordOrKey" xml:space="preserve"><value>Wachtwoord of privésleutel (helemaal plakken)</value></data>
+  <data name="Connection_Root" xml:space="preserve"><value>Map (leeg = de beginmap)</value></data>
+  <data name="Connection_Bucket" xml:space="preserve"><value>Bucket (en map): bucket/map</value></data>
+  <data name="Connection_Region" xml:space="preserve"><value>Regio (leeg = us-east-1; bij R2 auto)</value></data>
+  <data name="Connection_AcceptAny" xml:space="preserve"><value>Ongeldige certificaten accepteren (alleen als de server een eigen certificaat heeft)</value></data>
+  <data name="Connection_Test" xml:space="preserve"><value>Verbinding testen</value></data>
+  <data name="Connection_Testing" xml:space="preserve"><value>Testen…</value></data>
+  <data name="Connection_TestOk" xml:space="preserve"><value>Verbinding werkt: {0} items in de map.</value></data>
+  <data name="Connection_TestFailed" xml:space="preserve"><value>Kan geen verbinding maken: {0}</value></data>
 </root>

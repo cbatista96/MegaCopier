@@ -802,17 +802,17 @@ DragConfirm_Moves.Content	Лише під час переміщення
 DragConfirm_Always.Content	Завжди
 Drag_ConfirmMove	Перемістити {0} до «{1}» через MegaCopier?
 Drag_ConfirmCopy	Копіювати {0} до «{1}» через MegaCopier?
-Tool_MtpImport.Text	Копіювати з телефона чи камери…
-Tool_MtpExport.Text	Копіювати файли на телефон чи камеру…
+Tool_MtpImport.Text	Копіювати з телефона, камери чи сервера…
+Tool_MtpExport.Text	Копіювати файли на телефон, камеру чи сервер…
 MtpDialog.CloseButtonText	Скасувати
-Mtp_ImportTitle	Копіювати з телефона чи камери
-Mtp_ExportTitle	Копіювати на телефон чи камеру
+Mtp_ImportTitle	Копіювати з телефона, камери чи сервера
+Mtp_ExportTitle	Копіювати на телефон, камеру чи сервер
 Mtp_ImportButton	Копіювати в…
 Mtp_ExportButton	Копіювати сюди
 Mtp_ImportSummary	Позначте, що потрібно скопіювати. Якщо нічого не позначено, копіюється вся відкрита папка.
 Mtp_ExportSummaryOne	Відкрийте папку пристрою, куди скопіювати «{0}».
 Mtp_ExportSummaryMany	Відкрийте папку пристрою, куди скопіювати елементи ({0}).
-Mtp_NoDevices	Телефон чи камеру не під'єднано. Під'єднайте через USB, розблокуйте й виберіть «Передавання файлів».
+Mtp_NoDevices	Телефон чи камеру не під'єднано (під'єднайте через USB, розблокуйте й виберіть «Передавання файлів»), і немає серверів у «Налаштування > Підключення».
 Mtp_Loading	Читання пристрою…
 Mtp_Empty	Папка порожня.
 Mtp_Error	Не вдалося прочитати пристрій: {0}
@@ -879,3 +879,37 @@ Compare_BothChanged	Змінено з обох боків: перемагає н
 Compare_ChangedAndDeleted	Видалено з одного боку, але змінено з іншого: зберігається
 Compare_Extra	Немає в джерелі
 Compare_Same	Однаково з обох боків
+Drive_Disk	Диск
+Drive_Usb	USB
+Drive_Network	Мережа
+Drive_Server	Сервер
+Drive_Phone	Телефон
+Settings_Connections.Text	Підключення до серверів
+Settings_ConnectionsTitle.Text	Сервери та хмари
+Settings_ConnectionsDescription.Text	FTP, FTPS, SFTP, WebDAV (Nextcloud, ownCloud, NAS…) і S3 (AWS, Backblaze B2, Cloudflare R2, Wasabi, MinIO…). Вони з'являються під час копіювання з «телефона, камери чи сервера» і на них. Паролі зберігаються в диспетчері облікових даних Windows. OneDrive, Google Drive і Dropbox тут не потрібні: з їхніми програмами це звичайні папки.
+Settings_ConnectionsAdd.Text	Додати…
+Settings_ConnectionsEmpty	Підключень поки немає.
+Settings_ConnectionEdit	Змінити «{0}»
+Settings_ConnectionDelete	Видалити «{0}»
+Connection_DialogTitle	Підключення
+Connection_Save	Зберегти
+Connection_Cancel	Скасувати
+Connection_Kind	Тип
+Connection_Name	Назва
+Connection_Host	Сервер
+Connection_Url	Адреса (https://…)
+Connection_Endpoint	Кінцева точка (порожньо = AWS)
+Connection_Port	Порт (0 = стандартний)
+Connection_User	Користувач
+Connection_AccessKey	Ключ доступу
+Connection_Password	Пароль
+Connection_SecretKey	Секретний ключ
+Connection_PasswordOrKey	Пароль або закритий ключ (вставте повністю)
+Connection_Root	Папка (порожньо = домашня)
+Connection_Bucket	Бакет (і папка): bucket/папка
+Connection_Region	Регіон (порожньо = us-east-1; у R2 — auto)
+Connection_AcceptAny	Приймати недійсні сертифікати (лише якщо в сервера власний)
+Connection_Test	Перевірити підключення
+Connection_Testing	Перевірка…
+Connection_TestOk	Підключення працює: елементів у папці — {0}.
+Connection_TestFailed	Не вдалося підключитися: {0}

@@ -1,13 +1,13 @@
 using System.Diagnostics;
 using MegaCopier.Engine.IO;
-using MegaCopier.Engine.Mtp;
+using MegaCopier.Engine.Remote;
 
 namespace MegaCopier.Engine;
 
 public sealed partial class CopyEngine
 {
     /// <summary>Abre un móvil o cámara por su id (las pruebas ponen uno de mentira).</summary>
-    internal Func<string, IMtpDevice> MtpOpener { get; set; } = MtpDevices.Open;
+    internal Func<string, IRemoteStore> RemoteOpener { get; set; } = RemoteStores.Open;
 
     private enum MtpAction
     {
@@ -19,8 +19,8 @@ public sealed partial class CopyEngine
         Fail,
     }
 
-    private static bool IsMtpJob(CopyJobRequest request) =>
-        MtpPath.IsMtp(request.Destination) || request.Sources.Any(MtpPath.IsMtp);
+    private static bool IsRemoteJob(CopyJobRequest request) =>
+        RemotePath.IsRemote(request.Destination) || request.Sources.Any(RemotePath.IsRemote);
 
     /// <summary>
     /// Del móvil al PC: recorre las carpetas del dispositivo, copia cada archivo a un .part (con su hash), lo renombra
@@ -31,25 +31,25 @@ public sealed partial class CopyEngine
     {
         var result = new CopyJobResult();
         _destinationRoot = Path.TrimEndingDirectorySeparator(Path.GetFullPath(request.Destination));
-        var devices = new Dictionary<string, IMtpDevice>(StringComparer.OrdinalIgnoreCase);
-        var objects = new Dictionary<int, MtpObject>();
-        var topFolders = new List<(IMtpDevice Device, MtpObject Folder, List<TransferItem> Items)>();
+        var devices = new Dictionary<string, IRemoteStore>(StringComparer.OrdinalIgnoreCase);
+        var objects = new Dictionary<int, RemoteItem>();
+        var topFolders = new List<(IRemoteStore Device, RemoteItem Folder, List<TransferItem> Items)>();
         try
         {
             foreach (string source in request.Sources)
             {
-                if (!MtpPath.TryParse(source, out string deviceId, out _, out string inner))
+                if (!RemotePath.TryParse(source, out string deviceId, out _, out string inner))
                 {
                     throw new CopyPlanException(Texts.F("E_SourceMissing", source));
                 }
 
                 if (!devices.TryGetValue(deviceId, out var device))
                 {
-                    devices[deviceId] = device = MtpOpener(deviceId);
+                    devices[deviceId] = device = RemoteOpener(deviceId);
                 }
 
-                var found = MtpDevices.Resolve(device, inner)
-                    ?? (_options.Move && request.Resumed ? null : throw new CopyPlanException(Texts.F("E_SourceMissing", MtpPath.Display(source))));
+                var found = RemoteStores.Resolve(device, inner)
+                    ?? (_options.Move && request.Resumed ? null : throw new CopyPlanException(Texts.F("E_SourceMissing", RemotePath.Display(source))));
                 if (found is null)
                 {
                     continue; // al reanudar un movimiento: ya se movió entero
@@ -80,7 +80,7 @@ public sealed partial class CopyEngine
             {
                 cancellationToken.ThrowIfCancellationRequested();
                 Controller.WaitIfPaused(cancellationToken);
-                if (!objects.TryGetValue(item.Id, out var obj) || !MtpPath.TryParse(item.Source, out string deviceId, out _, out _))
+                if (!objects.TryGetValue(item.Id, out var obj) || !RemotePath.TryParse(item.Source, out string deviceId, out _, out _))
                 {
                     continue;
                 }
@@ -127,8 +127,8 @@ public sealed partial class CopyEngine
         return result;
     }
 
-    private void PlanFolder(IMtpDevice device, MtpObject folder, string sourcePath, string targetPath, string relative,
-        Dictionary<int, MtpObject> objects, List<TransferItem> items)
+    private void PlanFolder(IRemoteStore device, RemoteItem folder, string sourcePath, string targetPath, string relative,
+        Dictionary<int, RemoteItem> objects, List<TransferItem> items)
     {
         if (!_options.Filter.AcceptsDirectory(relative, FileAttributes.Directory))
         {
@@ -142,7 +142,7 @@ public sealed partial class CopyEngine
 
         foreach (var child in device.Children(folder.Id).OrderBy(c => c.IsFolder).ThenBy(c => c.Name, StringComparer.OrdinalIgnoreCase))
         {
-            string childSource = MtpPath.Combine(sourcePath, child.Name);
+            string childSource = RemotePath.Combine(sourcePath, child.Name);
             string childTarget = Path.Combine(targetPath, SafeName(child.Name));
             string childRelative = relative + Path.DirectorySeparatorChar + child.Name;
             if (child.IsFolder)
@@ -158,7 +158,7 @@ public sealed partial class CopyEngine
         }
     }
 
-    private void ImportOne(IMtpDevice device, MtpObject obj, TransferItem item, CopyJobResult result, ProgressTracker progress, Throttle throttle, CancellationToken cancellationToken)
+    private void ImportOne(IRemoteStore device, RemoteItem obj, TransferItem item, CopyJobResult result, ProgressTracker progress, Throttle throttle, CancellationToken cancellationToken)
     {
         if (File.Exists(item.Destination))
         {
@@ -262,7 +262,7 @@ public sealed partial class CopyEngine
         }
     }
 
-    private string HashDeviceObject(IMtpDevice device, string objectId)
+    private string HashDeviceObject(IRemoteStore device, string objectId)
     {
         var hasher = FileHasher.Create(_options.HashAlgorithm == FileHashAlgorithm.None ? FileHashAlgorithm.XxHash3 : _options.HashAlgorithm)!;
         using (var stream = device.OpenRead(objectId))
@@ -312,23 +312,23 @@ public sealed partial class CopyEngine
     private CopyJobResult RunMtpExport(CopyJobRequest request, Stopwatch stopwatch, CancellationToken cancellationToken)
     {
         var result = new CopyJobResult();
-        if (!MtpPath.TryParse(request.Destination, out string deviceId, out _, out string inner))
+        if (!RemotePath.TryParse(request.Destination, out string deviceId, out _, out string inner))
         {
             throw new CopyPlanException(Texts.F("E_SourceMissing", request.Destination));
         }
 
-        using var device = MtpOpener(deviceId);
-        var root = MtpDevices.Resolve(device, inner);
+        using var device = RemoteOpener(deviceId);
+        var root = RemoteStores.Resolve(device, inner);
         if (root is not { IsFolder: true })
         {
-            throw new CopyPlanException(Texts.F("E_SourceMissing", MtpPath.Display(request.Destination)));
+            throw new CopyPlanException(Texts.F("E_SourceMissing", RemotePath.Display(request.Destination)));
         }
 
         // El planificador de siempre, con una raíz de mentira: de ella sale la ruta relativa de cada archivo.
         string fakeRoot = Path.Combine(Path.GetTempPath(), "megacopier-mtp-" + Guid.NewGuid().ToString("N"));
         var plan = CopyPlanner.Build(request.Sources, fakeRoot, _options.Filter, _options.Links);
         var folders = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase) { [""] = root.Id };
-        var listing = new Dictionary<string, List<MtpObject>>(StringComparer.OrdinalIgnoreCase);
+        var listing = new Dictionary<string, List<RemoteItem>>(StringComparer.OrdinalIgnoreCase);
 
         string Relative(string fake) => Path.GetRelativePath(fakeRoot, fake);
         string Folder(string relativeDirectory)
@@ -344,14 +344,14 @@ public sealed partial class CopyEngine
             id = existing?.Id ?? (_options.DryRun ? "dry:" + relativeDirectory : device.CreateFolder(parent, name));
             if (existing is null && !_options.DryRun)
             {
-                Listing(parent).Add(new MtpObject(id, name, true, 0, null));
+                Listing(parent).Add(new RemoteItem(id, name, true, 0, null));
             }
 
             folders[relativeDirectory] = id;
             return id;
         }
 
-        List<MtpObject> Listing(string folderId)
+        List<RemoteItem> Listing(string folderId)
         {
             if (!listing.TryGetValue(folderId, out var list))
             {
@@ -368,14 +368,14 @@ public sealed partial class CopyEngine
 
         foreach (var file in plan.Files)
         {
-            Files.Add(file.Source, MtpPath.Combine(request.Destination, Relative(file.Destination).Replace('\\', '/')), file.Length, file.LastWriteUtc);
+            Files.Add(file.Source, RemotePath.Combine(request.Destination, Relative(file.Destination).Replace('\\', '/')), file.Length, file.LastWriteUtc);
         }
 
         var progress = new ProgressTracker(p => ProgressChanged?.Invoke(p), _options.ProgressInterval);
         var (totalBytes, totalFiles) = Files.Totals();
         progress.Start(totalBytes, totalFiles);
         _progress = progress;
-        Log(LogLevel.Info, $"Copiar {totalFiles} archivos ({FormatBytes(totalBytes)}) a {MtpPath.Display(request.Destination)}.");
+        Log(LogLevel.Info, $"Copiar {totalFiles} archivos ({FormatBytes(totalBytes)}) a {RemotePath.Display(request.Destination)}.");
 
         while (Files.TakeNext() is { } item)
         {
@@ -384,7 +384,7 @@ public sealed partial class CopyEngine
             progress.BeginFile(item.Source, item.Length);
             try
             {
-                MtpPath.TryParse(item.Destination, out _, out _, out string innerTarget);
+                RemotePath.TryParse(item.Destination, out _, out _, out string innerTarget);
                 string relative = innerTarget[inner.Length..].Trim('/');
                 string parentId = Folder(Path.GetDirectoryName(relative.Replace('/', '\\')) ?? "");
                 ExportOne(device, parentId, Listing(parentId), item, result, progress, cancellationToken);
@@ -412,9 +412,9 @@ public sealed partial class CopyEngine
         return result;
     }
 
-    private void ExportOne(IMtpDevice device, string parentId, List<MtpObject> siblings, TransferItem item, CopyJobResult result, ProgressTracker progress, CancellationToken cancellationToken)
+    private void ExportOne(IRemoteStore device, string parentId, List<RemoteItem> siblings, TransferItem item, CopyJobResult result, ProgressTracker progress, CancellationToken cancellationToken)
     {
-        string name = MtpPath.Name(item.Destination);
+        string name = RemotePath.Name(item.Destination);
         var existing = siblings.FirstOrDefault(o => !o.IsFolder && string.Equals(o.Name, name, StringComparison.OrdinalIgnoreCase));
         if (existing is not null)
         {
@@ -431,13 +431,13 @@ public sealed partial class CopyEngine
 
                     return;
                 case MtpAction.Fail:
-                    Fail(item, result, Texts.F("E_DestinationExists", MtpPath.Display(item.Destination)));
+                    Fail(item, result, Texts.F("E_DestinationExists", RemotePath.Display(item.Destination)));
                     return;
                 case MtpAction.KeepBoth or MtpAction.RenameExisting:
                     // En el móvil no se renombra lo que ya hay: el nuevo llega con otro nombre.
                     name = Path.GetFileName(FreeName(Path.Combine("x", name), candidate =>
                         !siblings.Any(o => string.Equals(o.Name, Path.GetFileName(candidate), StringComparison.OrdinalIgnoreCase))));
-                    item.Destination = MtpPath.Combine(MtpPath.Parent(item.Destination), name);
+                    item.Destination = RemotePath.Combine(RemotePath.Parent(item.Destination), name);
                     existing = null;
                     break;
             }
@@ -470,7 +470,7 @@ public sealed partial class CopyEngine
         }
 
         item.SourceHash = hasher.Finish();
-        siblings.Add(new MtpObject(id, name, false, item.Length, DateTime.UtcNow));
+        siblings.Add(new RemoteItem(id, name, false, item.Length, DateTime.UtcNow));
 
         if (_options.Verify && id.Length > 0)
         {

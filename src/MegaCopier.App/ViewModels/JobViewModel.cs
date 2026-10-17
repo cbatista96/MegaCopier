@@ -304,9 +304,9 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
         {
             var sources = Job.Record.Sources;
             string first = Path.TrimEndingDirectorySeparator(sources.FirstOrDefault() ?? "");
-            if (Engine.Mtp.MtpPath.IsMtp(first))
+            if (Engine.Remote.RemotePath.IsRemote(first))
             {
-                return Format.Display(sources.Count == 1 ? first : Engine.Mtp.MtpPath.Parent(first)) + "\\";
+                return Format.Display(sources.Count == 1 ? first : Engine.Remote.RemotePath.Parent(first)) + "\\";
             }
 
             return sources.Count == 1 && Directory.Exists(first) ? first + "\\" : (Path.GetDirectoryName(first) ?? first) + "\\";

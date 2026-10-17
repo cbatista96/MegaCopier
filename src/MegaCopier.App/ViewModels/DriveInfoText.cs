@@ -1,4 +1,5 @@
 using System.Collections.Concurrent;
+using MegaCopier.App.Services;
 
 namespace MegaCopier.App.ViewModels;
 
@@ -17,9 +18,12 @@ internal static class DriveInfoText
     /// <summary>Datos de la unidad (se refrescan como mucho cada 5 s: el espacio libre cambia durante la copia).</summary>
     public static DriveDescription Describe(string path)
     {
-        if (Engine.Mtp.MtpPath.TryParse(path, out _, out string device, out _))
+        if (Engine.Remote.RemotePath.TryParse(path, out _, out string device, out _))
         {
-            return new DriveDescription(device, "", "", "MTP", "MTP", 0, 0); // un móvil: no hay letra ni espacio libre que mirar
+            // Un móvil o un servidor: no hay letra ni espacio libre que mirar.
+            return Engine.Remote.RemotePath.IsNetwork(path)
+                ? new DriveDescription(device, "", "", "", L.Get("Drive_Server"), 0, 0)
+                : new DriveDescription(device, "", "", "MTP", L.Get("Drive_Phone"), 0, 0);
         }
 
         string root;
@@ -51,11 +55,11 @@ internal static class DriveInfoText
             };
             string kind = drive.DriveType switch
             {
-                DriveType.Removable => "USB",
-                DriveType.Network => "Red",
+                DriveType.Removable => L.Get("Drive_Usb"),
+                DriveType.Network => L.Get("Drive_Network"),
                 DriveType.CDRom => "CD/DVD",
                 DriveType.Ram => "RAM",
-                _ => "Disco",
+                _ => L.Get("Drive_Disk"),
             };
             description = drive.IsReady
                 ? new DriveDescription(letter, drive.VolumeLabel, glyph, drive.DriveFormat, kind, drive.TotalSize, drive.AvailableFreeSpace)

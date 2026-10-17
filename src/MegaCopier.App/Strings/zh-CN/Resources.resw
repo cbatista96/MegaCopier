@@ -808,17 +808,17 @@
   <data name="DragConfirm_Always.Content" xml:space="preserve"><value>总是</value></data>
   <data name="Drag_ConfirmMove" xml:space="preserve"><value>用 MegaCopier 将 {0} 移动到“{1}”？</value></data>
   <data name="Drag_ConfirmCopy" xml:space="preserve"><value>用 MegaCopier 将 {0} 复制到“{1}”？</value></data>
-  <data name="Tool_MtpImport.Text" xml:space="preserve"><value>从手机或相机复制…</value></data>
-  <data name="Tool_MtpExport.Text" xml:space="preserve"><value>将文件复制到手机或相机…</value></data>
+  <data name="Tool_MtpImport.Text" xml:space="preserve"><value>从手机、相机或服务器复制…</value></data>
+  <data name="Tool_MtpExport.Text" xml:space="preserve"><value>将文件复制到手机、相机或服务器…</value></data>
   <data name="MtpDialog.CloseButtonText" xml:space="preserve"><value>取消</value></data>
-  <data name="Mtp_ImportTitle" xml:space="preserve"><value>从手机或相机复制</value></data>
-  <data name="Mtp_ExportTitle" xml:space="preserve"><value>复制到手机或相机</value></data>
+  <data name="Mtp_ImportTitle" xml:space="preserve"><value>从手机、相机或服务器复制</value></data>
+  <data name="Mtp_ExportTitle" xml:space="preserve"><value>复制到手机、相机或服务器</value></data>
   <data name="Mtp_ImportButton" xml:space="preserve"><value>复制到…</value></data>
   <data name="Mtp_ExportButton" xml:space="preserve"><value>复制到这里</value></data>
   <data name="Mtp_ImportSummary" xml:space="preserve"><value>勾选要复制的内容。如果什么都不勾选，将复制整个打开的文件夹。</value></data>
   <data name="Mtp_ExportSummaryOne" xml:space="preserve"><value>打开设备上要复制“{0}”的文件夹。</value></data>
   <data name="Mtp_ExportSummaryMany" xml:space="preserve"><value>打开设备上要复制 {0} 个项目的文件夹。</value></data>
-  <data name="Mtp_NoDevices" xml:space="preserve"><value>没有连接手机或相机。请用 USB 连接、解锁并选择“文件传输”。</value></data>
+  <data name="Mtp_NoDevices" xml:space="preserve"><value>没有连接手机或相机（请用 USB 连接、解锁并选择“文件传输”），设置 &gt; 连接 中也没有服务器。</value></data>
   <data name="Mtp_Loading" xml:space="preserve"><value>正在读取设备…</value></data>
   <data name="Mtp_Empty" xml:space="preserve"><value>空文件夹。</value></data>
   <data name="Mtp_Error" xml:space="preserve"><value>无法读取设备：{0}</value></data>
@@ -885,4 +885,38 @@
   <data name="Compare_ChangedAndDeleted" xml:space="preserve"><value>一侧删除但另一侧有更改：保留</value></data>
   <data name="Compare_Extra" xml:space="preserve"><value>源中没有</value></data>
   <data name="Compare_Same" xml:space="preserve"><value>两侧相同</value></data>
+  <data name="Drive_Disk" xml:space="preserve"><value>磁盘</value></data>
+  <data name="Drive_Usb" xml:space="preserve"><value>USB</value></data>
+  <data name="Drive_Network" xml:space="preserve"><value>网络</value></data>
+  <data name="Drive_Server" xml:space="preserve"><value>服务器</value></data>
+  <data name="Drive_Phone" xml:space="preserve"><value>手机</value></data>
+  <data name="Settings_Connections.Text" xml:space="preserve"><value>服务器连接</value></data>
+  <data name="Settings_ConnectionsTitle.Text" xml:space="preserve"><value>服务器和云</value></data>
+  <data name="Settings_ConnectionsDescription.Text" xml:space="preserve"><value>FTP、FTPS、SFTP、WebDAV（Nextcloud、ownCloud、NAS…）和 S3（AWS、Backblaze B2、Cloudflare R2、Wasabi、MinIO…）。在“手机、相机或服务器”之间复制时会显示。密码保存在 Windows 凭据管理器中。OneDrive、Google Drive 和 Dropbox 不需要在这里添加：通过它们的应用，它们就是普通文件夹。</value></data>
+  <data name="Settings_ConnectionsAdd.Text" xml:space="preserve"><value>添加…</value></data>
+  <data name="Settings_ConnectionsEmpty" xml:space="preserve"><value>还没有连接。</value></data>
+  <data name="Settings_ConnectionEdit" xml:space="preserve"><value>编辑“{0}”</value></data>
+  <data name="Settings_ConnectionDelete" xml:space="preserve"><value>移除“{0}”</value></data>
+  <data name="Connection_DialogTitle" xml:space="preserve"><value>连接</value></data>
+  <data name="Connection_Save" xml:space="preserve"><value>保存</value></data>
+  <data name="Connection_Cancel" xml:space="preserve"><value>取消</value></data>
+  <data name="Connection_Kind" xml:space="preserve"><value>类型</value></data>
+  <data name="Connection_Name" xml:space="preserve"><value>名称</value></data>
+  <data name="Connection_Host" xml:space="preserve"><value>服务器</value></data>
+  <data name="Connection_Url" xml:space="preserve"><value>地址 (https://…)</value></data>
+  <data name="Connection_Endpoint" xml:space="preserve"><value>终结点（留空 = AWS）</value></data>
+  <data name="Connection_Port" xml:space="preserve"><value>端口（0 = 默认）</value></data>
+  <data name="Connection_User" xml:space="preserve"><value>用户名</value></data>
+  <data name="Connection_AccessKey" xml:space="preserve"><value>访问密钥</value></data>
+  <data name="Connection_Password" xml:space="preserve"><value>密码</value></data>
+  <data name="Connection_SecretKey" xml:space="preserve"><value>私有访问密钥</value></data>
+  <data name="Connection_PasswordOrKey" xml:space="preserve"><value>密码或私钥（完整粘贴）</value></data>
+  <data name="Connection_Root" xml:space="preserve"><value>文件夹（留空 = 起始文件夹）</value></data>
+  <data name="Connection_Bucket" xml:space="preserve"><value>存储桶（和文件夹）：bucket/文件夹</value></data>
+  <data name="Connection_Region" xml:space="preserve"><value>区域（留空 = us-east-1；R2 填 auto）</value></data>
+  <data name="Connection_AcceptAny" xml:space="preserve"><value>接受无效证书（仅当服务器使用自签名证书时）</value></data>
+  <data name="Connection_Test" xml:space="preserve"><value>测试连接</value></data>
+  <data name="Connection_Testing" xml:space="preserve"><value>正在测试…</value></data>
+  <data name="Connection_TestOk" xml:space="preserve"><value>连接正常：文件夹中有 {0} 个项目。</value></data>
+  <data name="Connection_TestFailed" xml:space="preserve"><value>无法连接：{0}</value></data>
 </root>

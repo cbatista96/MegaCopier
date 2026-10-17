@@ -802,17 +802,17 @@ DragConfirm_Moves.Content	移動するときだけ
 DragConfirm_Always.Content	常に
 Drag_ConfirmMove	MegaCopier で {0} を「{1}」に移動しますか？
 Drag_ConfirmCopy	MegaCopier で {0} を「{1}」にコピーしますか？
-Tool_MtpImport.Text	スマートフォンやカメラからコピー…
-Tool_MtpExport.Text	ファイルをスマートフォンやカメラにコピー…
+Tool_MtpImport.Text	スマートフォン、カメラ、サーバーからコピー…
+Tool_MtpExport.Text	ファイルをスマートフォン、カメラ、サーバーにコピー…
 MtpDialog.CloseButtonText	キャンセル
-Mtp_ImportTitle	スマートフォンやカメラからコピー
-Mtp_ExportTitle	スマートフォンやカメラにコピー
+Mtp_ImportTitle	スマートフォン、カメラ、サーバーからコピー
+Mtp_ExportTitle	スマートフォン、カメラ、サーバーにコピー
 Mtp_ImportButton	コピー先…
 Mtp_ExportButton	ここにコピー
 Mtp_ImportSummary	コピーしたいものにチェックを付けます。何もチェックしないと、開いているフォルダー全体をコピーします。
 Mtp_ExportSummaryOne	「{0}」をコピーするデバイスのフォルダーを開いてください。
 Mtp_ExportSummaryMany	{0} 個の項目をコピーするデバイスのフォルダーを開いてください。
-Mtp_NoDevices	スマートフォンもカメラも接続されていません。USB で接続し、ロックを解除して「ファイル転送」を選んでください。
+Mtp_NoDevices	スマートフォンもカメラも接続されていません（USB で接続し、ロックを解除して「ファイル転送」を選択）。設定 > 接続 にサーバーもありません。
 Mtp_Loading	デバイスを読み取り中…
 Mtp_Empty	空のフォルダー。
 Mtp_Error	デバイスを読み取れませんでした: {0}
@@ -879,3 +879,37 @@ Compare_BothChanged	両側で変更: 新しい方を採用
 Compare_ChangedAndDeleted	片側で削除、もう片側で変更: 保持
 Compare_Extra	元にない
 Compare_Same	両側で同一
+Drive_Disk	ディスク
+Drive_Usb	USB
+Drive_Network	ネットワーク
+Drive_Server	サーバー
+Drive_Phone	スマートフォン
+Settings_Connections.Text	サーバー接続
+Settings_ConnectionsTitle.Text	サーバーとクラウド
+Settings_ConnectionsDescription.Text	FTP、FTPS、SFTP、WebDAV（Nextcloud、ownCloud、NAS…）、S3（AWS、Backblaze B2、Cloudflare R2、Wasabi、MinIO…）。「スマートフォン、カメラ、サーバー」とのコピーで表示されます。パスワードは Windows 資格情報マネージャーに保存されます。OneDrive、Google Drive、Dropbox はここでは不要です（各アプリで通常のフォルダーになります）。
+Settings_ConnectionsAdd.Text	追加…
+Settings_ConnectionsEmpty	接続はまだありません。
+Settings_ConnectionEdit	「{0}」を編集
+Settings_ConnectionDelete	「{0}」を削除
+Connection_DialogTitle	接続
+Connection_Save	保存
+Connection_Cancel	キャンセル
+Connection_Kind	種類
+Connection_Name	名前
+Connection_Host	サーバー
+Connection_Url	アドレス (https://…)
+Connection_Endpoint	エンドポイント（空 = AWS）
+Connection_Port	ポート（0 = 標準）
+Connection_User	ユーザー
+Connection_AccessKey	アクセス キー
+Connection_Password	パスワード
+Connection_SecretKey	シークレット キー
+Connection_PasswordOrKey	パスワードまたは秘密キー（全体を貼り付け）
+Connection_Root	フォルダー（空 = 開始フォルダー）
+Connection_Bucket	バケット（とフォルダー）: bucket/フォルダー
+Connection_Region	リージョン（空 = us-east-1、R2 は auto）
+Connection_AcceptAny	無効な証明書を受け入れる（サーバーが独自の証明書の場合のみ）
+Connection_Test	接続をテスト
+Connection_Testing	テスト中…
+Connection_TestOk	接続できました: フォルダーに {0} 個の項目があります。
+Connection_TestFailed	接続できませんでした: {0}

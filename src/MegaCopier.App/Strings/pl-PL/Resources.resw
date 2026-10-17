@@ -808,17 +808,17 @@
   <data name="DragConfirm_Always.Content" xml:space="preserve"><value>Zawsze</value></data>
   <data name="Drag_ConfirmMove" xml:space="preserve"><value>Przenieść {0} do „{1}” przez MegaCopier?</value></data>
   <data name="Drag_ConfirmCopy" xml:space="preserve"><value>Skopiować {0} do „{1}” przez MegaCopier?</value></data>
-  <data name="Tool_MtpImport.Text" xml:space="preserve"><value>Kopiuj z telefonu lub aparatu…</value></data>
-  <data name="Tool_MtpExport.Text" xml:space="preserve"><value>Kopiuj pliki na telefon lub aparat…</value></data>
+  <data name="Tool_MtpImport.Text" xml:space="preserve"><value>Kopiuj z telefonu, aparatu lub serwera…</value></data>
+  <data name="Tool_MtpExport.Text" xml:space="preserve"><value>Kopiuj pliki na telefon, aparat lub serwer…</value></data>
   <data name="MtpDialog.CloseButtonText" xml:space="preserve"><value>Anuluj</value></data>
-  <data name="Mtp_ImportTitle" xml:space="preserve"><value>Kopiuj z telefonu lub aparatu</value></data>
-  <data name="Mtp_ExportTitle" xml:space="preserve"><value>Kopiuj na telefon lub aparat</value></data>
+  <data name="Mtp_ImportTitle" xml:space="preserve"><value>Kopiuj z telefonu, aparatu lub serwera</value></data>
+  <data name="Mtp_ExportTitle" xml:space="preserve"><value>Kopiuj na telefon, aparat lub serwer</value></data>
   <data name="Mtp_ImportButton" xml:space="preserve"><value>Kopiuj do…</value></data>
   <data name="Mtp_ExportButton" xml:space="preserve"><value>Kopiuj tutaj</value></data>
   <data name="Mtp_ImportSummary" xml:space="preserve"><value>Zaznacz, co chcesz skopiować. Bez zaznaczenia kopiowany jest cały otwarty folder.</value></data>
   <data name="Mtp_ExportSummaryOne" xml:space="preserve"><value>Otwórz folder urządzenia, do którego skopiować „{0}”.</value></data>
   <data name="Mtp_ExportSummaryMany" xml:space="preserve"><value>Otwórz folder urządzenia, do którego skopiować elementy ({0}).</value></data>
-  <data name="Mtp_NoDevices" xml:space="preserve"><value>Nie podłączono telefonu ani aparatu. Podłącz go przez USB, odblokuj i wybierz „Przesyłanie plików”.</value></data>
+  <data name="Mtp_NoDevices" xml:space="preserve"><value>Nie podłączono telefonu ani aparatu (podłącz przez USB, odblokuj i wybierz „Przesyłanie plików”) i nie ma serwerów w Ustawienia &gt; Połączenia.</value></data>
   <data name="Mtp_Loading" xml:space="preserve"><value>Odczytywanie urządzenia…</value></data>
   <data name="Mtp_Empty" xml:space="preserve"><value>Pusty folder.</value></data>
   <data name="Mtp_Error" xml:space="preserve"><value>Nie udało się odczytać urządzenia: {0}</value></data>
@@ -885,4 +885,38 @@
   <data name="Compare_ChangedAndDeleted" xml:space="preserve"><value>Usunięte po jednej stronie, zmienione po drugiej: zostaje</value></data>
   <data name="Compare_Extra" xml:space="preserve"><value>Brak w źródle</value></data>
   <data name="Compare_Same" xml:space="preserve"><value>Identyczne po obu stronach</value></data>
+  <data name="Drive_Disk" xml:space="preserve"><value>Dysk</value></data>
+  <data name="Drive_Usb" xml:space="preserve"><value>USB</value></data>
+  <data name="Drive_Network" xml:space="preserve"><value>Sieć</value></data>
+  <data name="Drive_Server" xml:space="preserve"><value>Serwer</value></data>
+  <data name="Drive_Phone" xml:space="preserve"><value>Telefon</value></data>
+  <data name="Settings_Connections.Text" xml:space="preserve"><value>Połączenia z serwerami</value></data>
+  <data name="Settings_ConnectionsTitle.Text" xml:space="preserve"><value>Serwery i chmury</value></data>
+  <data name="Settings_ConnectionsDescription.Text" xml:space="preserve"><value>FTP, FTPS, SFTP, WebDAV (Nextcloud, ownCloud, NAS…) i S3 (AWS, Backblaze B2, Cloudflare R2, Wasabi, MinIO…). Pojawiają się przy kopiowaniu z lub na „telefon, aparat lub serwer”. Hasła trafiają do Menedżera poświadczeń Windows. OneDrive, Google Drive i Dropbox nie są tu potrzebne: z ich aplikacjami to zwykłe foldery.</value></data>
+  <data name="Settings_ConnectionsAdd.Text" xml:space="preserve"><value>Dodaj…</value></data>
+  <data name="Settings_ConnectionsEmpty" xml:space="preserve"><value>Brak połączeń.</value></data>
+  <data name="Settings_ConnectionEdit" xml:space="preserve"><value>Edytuj „{0}”</value></data>
+  <data name="Settings_ConnectionDelete" xml:space="preserve"><value>Usuń „{0}”</value></data>
+  <data name="Connection_DialogTitle" xml:space="preserve"><value>Połączenie</value></data>
+  <data name="Connection_Save" xml:space="preserve"><value>Zapisz</value></data>
+  <data name="Connection_Cancel" xml:space="preserve"><value>Anuluj</value></data>
+  <data name="Connection_Kind" xml:space="preserve"><value>Typ</value></data>
+  <data name="Connection_Name" xml:space="preserve"><value>Nazwa</value></data>
+  <data name="Connection_Host" xml:space="preserve"><value>Serwer</value></data>
+  <data name="Connection_Url" xml:space="preserve"><value>Adres (https://…)</value></data>
+  <data name="Connection_Endpoint" xml:space="preserve"><value>Punkt końcowy (puste = AWS)</value></data>
+  <data name="Connection_Port" xml:space="preserve"><value>Port (0 = domyślny)</value></data>
+  <data name="Connection_User" xml:space="preserve"><value>Użytkownik</value></data>
+  <data name="Connection_AccessKey" xml:space="preserve"><value>Klucz dostępu</value></data>
+  <data name="Connection_Password" xml:space="preserve"><value>Hasło</value></data>
+  <data name="Connection_SecretKey" xml:space="preserve"><value>Klucz tajny</value></data>
+  <data name="Connection_PasswordOrKey" xml:space="preserve"><value>Hasło lub klucz prywatny (wklej w całości)</value></data>
+  <data name="Connection_Root" xml:space="preserve"><value>Folder (pusty = startowy)</value></data>
+  <data name="Connection_Bucket" xml:space="preserve"><value>Zasobnik (i folder): bucket/folder</value></data>
+  <data name="Connection_Region" xml:space="preserve"><value>Region (pusty = us-east-1; w R2 auto)</value></data>
+  <data name="Connection_AcceptAny" xml:space="preserve"><value>Akceptuj nieprawidłowe certyfikaty (tylko gdy serwer ma własny)</value></data>
+  <data name="Connection_Test" xml:space="preserve"><value>Testuj połączenie</value></data>
+  <data name="Connection_Testing" xml:space="preserve"><value>Testowanie…</value></data>
+  <data name="Connection_TestOk" xml:space="preserve"><value>Połączenie działa: elementów w folderze: {0}.</value></data>
+  <data name="Connection_TestFailed" xml:space="preserve"><value>Nie udało się połączyć: {0}</value></data>
 </root>

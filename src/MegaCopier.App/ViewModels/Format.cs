@@ -19,11 +19,11 @@ internal static class Format
     /// Ruta acortada por el medio para que se vea la carpeta final: "C:\Users\…\scratchpad\dest1". La completa va en el tooltip.
     /// </summary>
     /// <summary>Una ruta para mostrarla: las de un móvil ("mtp:...") como "Pixel 8\DCIM\Camera".</summary>
-    public static string Display(string path) => Engine.Mtp.MtpPath.IsMtp(path) ? Engine.Mtp.MtpPath.Display(path) : path;
+    public static string Display(string path) => Engine.Remote.RemotePath.IsRemote(path) ? Engine.Remote.RemotePath.Display(path) : path;
 
     /// <summary>El nombre del último elemento de la ruta (archivo o carpeta), también en un móvil.</summary>
     public static string ItemName(string path) =>
-        Engine.Mtp.MtpPath.IsMtp(path) ? Engine.Mtp.MtpPath.Name(path) : Path.GetFileName(Path.TrimEndingDirectorySeparator(path));
+        Engine.Remote.RemotePath.IsRemote(path) ? Engine.Remote.RemotePath.Name(path) : Path.GetFileName(Path.TrimEndingDirectorySeparator(path));
 
     public static string ShortPath(string path, int keep = 2)
     {

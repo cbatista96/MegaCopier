@@ -802,17 +802,17 @@ DragConfirm_Moves.Content	Yalnızca taşırken
 DragConfirm_Always.Content	Her zaman
 Drag_ConfirmMove	{0} MegaCopier ile "{1}" konumuna taşınsın mı?
 Drag_ConfirmCopy	{0} MegaCopier ile "{1}" konumuna kopyalansın mı?
-Tool_MtpImport.Text	Telefondan veya kameradan kopyala…
-Tool_MtpExport.Text	Dosyaları telefona veya kameraya kopyala…
+Tool_MtpImport.Text	Telefon, kamera veya sunucudan kopyala…
+Tool_MtpExport.Text	Dosyaları telefona, kameraya veya sunucuya kopyala…
 MtpDialog.CloseButtonText	İptal
-Mtp_ImportTitle	Telefondan veya kameradan kopyala
-Mtp_ExportTitle	Telefona veya kameraya kopyala
+Mtp_ImportTitle	Telefon, kamera veya sunucudan kopyala
+Mtp_ExportTitle	Telefona, kameraya veya sunucuya kopyala
 Mtp_ImportButton	Şuraya kopyala…
 Mtp_ExportButton	Buraya kopyala
 Mtp_ImportSummary	Kopyalamak istediklerinizi işaretleyin. Hiçbir şey işaretlenmezse açık klasörün tamamı kopyalanır.
 Mtp_ExportSummaryOne	"{0}" öğesinin kopyalanacağı cihaz klasörünü açın.
 Mtp_ExportSummaryMany	{0} öğenin kopyalanacağı cihaz klasörünü açın.
-Mtp_NoDevices	Bağlı telefon veya kamera yok. USB ile bağlayın, kilidini açın ve "Dosya aktarımı"nı seçin.
+Mtp_NoDevices	Bağlı telefon veya kamera yok (USB ile bağlayın, kilidini açın ve "Dosya aktarımı"nı seçin) ve Ayarlar > Bağlantılar'da sunucu yok.
 Mtp_Loading	Cihaz okunuyor…
 Mtp_Empty	Boş klasör.
 Mtp_Error	Cihaz okunamadı: {0}
@@ -879,3 +879,37 @@ Compare_BothChanged	İki tarafta da değişti: en yenisi kazanır
 Compare_ChangedAndDeleted	Bir tarafta silindi ama diğerinde değişti: korunur
 Compare_Extra	Kaynakta yok
 Compare_Same	İki tarafta aynı
+Drive_Disk	Disk
+Drive_Usb	USB
+Drive_Network	Ağ
+Drive_Server	Sunucu
+Drive_Phone	Telefon
+Settings_Connections.Text	Sunucu bağlantıları
+Settings_ConnectionsTitle.Text	Sunucular ve bulutlar
+Settings_ConnectionsDescription.Text	FTP, FTPS, SFTP, WebDAV (Nextcloud, ownCloud, NAS…) ve S3 (AWS, Backblaze B2, Cloudflare R2, Wasabi, MinIO…). "Telefon, kamera veya sunucu"dan ya da oraya kopyalarken görünürler. Parolalar Windows Kimlik Bilgileri Yöneticisi'nde saklanır. OneDrive, Google Drive ve Dropbox'a burada gerek yok: uygulamalarıyla normal klasörlerdir.
+Settings_ConnectionsAdd.Text	Ekle…
+Settings_ConnectionsEmpty	Henüz bağlantı yok.
+Settings_ConnectionEdit	"{0}" düzenle
+Settings_ConnectionDelete	"{0}" kaldır
+Connection_DialogTitle	Bağlantı
+Connection_Save	Kaydet
+Connection_Cancel	İptal
+Connection_Kind	Tür
+Connection_Name	Ad
+Connection_Host	Sunucu
+Connection_Url	Adres (https://…)
+Connection_Endpoint	Uç nokta (boş = AWS)
+Connection_Port	Bağlantı noktası (0 = varsayılan)
+Connection_User	Kullanıcı
+Connection_AccessKey	Erişim anahtarı
+Connection_Password	Parola
+Connection_SecretKey	Gizli anahtar
+Connection_PasswordOrKey	Parola veya özel anahtar (tamamını yapıştırın)
+Connection_Root	Klasör (boş = başlangıç klasörü)
+Connection_Bucket	Kova (ve klasör): bucket/klasör
+Connection_Region	Bölge (boş = us-east-1; R2'de auto)
+Connection_AcceptAny	Geçersiz sertifikaları kabul et (yalnızca sunucunun kendi sertifikası varsa)
+Connection_Test	Bağlantıyı sına
+Connection_Testing	Sınanıyor…
+Connection_TestOk	Bağlantı çalışıyor: klasörde {0} öğe var.
+Connection_TestFailed	Bağlanılamadı: {0}

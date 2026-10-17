@@ -218,3 +218,4 @@ C_Usage	MegaCopier — kopiowanie, które przetrwa awarie prądu\n\nUżycie:\n  
 U_Seconds	{0} s
 U_MinSec	{0} min {1} s
 U_HourMin	{0} godz. {1} min
+E_HostKeyChanged	Tożsamość {0} się zmieniła (odcisk {1}). Może to być inny komputer podszywający się pod niego: brak połączenia. Jeśli celowo zmieniłeś serwer, utwórz połączenie od nowa.

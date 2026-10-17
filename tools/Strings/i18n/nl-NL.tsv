@@ -802,17 +802,17 @@ DragConfirm_Moves.Content	Alleen bij verplaatsen
 DragConfirm_Always.Content	Altijd
 Drag_ConfirmMove	{0} met MegaCopier naar '{1}' verplaatsen?
 Drag_ConfirmCopy	{0} met MegaCopier naar '{1}' kopiëren?
-Tool_MtpImport.Text	Kopiëren van telefoon of camera…
-Tool_MtpExport.Text	Bestanden naar telefoon of camera kopiëren…
+Tool_MtpImport.Text	Kopiëren van telefoon, camera of server…
+Tool_MtpExport.Text	Bestanden naar telefoon, camera of server kopiëren…
 MtpDialog.CloseButtonText	Annuleren
-Mtp_ImportTitle	Kopiëren van telefoon of camera
-Mtp_ExportTitle	Kopiëren naar telefoon of camera
+Mtp_ImportTitle	Kopiëren van telefoon, camera of server
+Mtp_ExportTitle	Kopiëren naar telefoon, camera of server
 Mtp_ImportButton	Kopiëren naar…
 Mtp_ExportButton	Hier kopiëren
 Mtp_ImportSummary	Vink aan wat je wilt kopiëren. Zonder vinkjes wordt de hele geopende map gekopieerd.
 Mtp_ExportSummaryOne	Open de map op het apparaat waar '{0}' naartoe moet.
 Mtp_ExportSummaryMany	Open de map op het apparaat waar {0} items naartoe moeten.
-Mtp_NoDevices	Er is geen telefoon of camera aangesloten. Sluit hem via USB aan, ontgrendel hem en kies 'Bestandsoverdracht'.
+Mtp_NoDevices	Er is geen telefoon of camera aangesloten (sluit hem via USB aan, ontgrendel hem en kies 'Bestandsoverdracht') en er zijn geen servers in Instellingen > Verbindingen.
 Mtp_Loading	Apparaat lezen…
 Mtp_Empty	Lege map.
 Mtp_Error	Kan het apparaat niet lezen: {0}
@@ -879,3 +879,37 @@ Compare_BothChanged	Aan beide kanten gewijzigd: het nieuwste wint
 Compare_ChangedAndDeleted	Aan één kant verwijderd maar aan de andere gewijzigd: blijft behouden
 Compare_Extra	Niet in de bron
 Compare_Same	Aan beide kanten gelijk
+Drive_Disk	Schijf
+Drive_Usb	USB
+Drive_Network	Netwerk
+Drive_Server	Server
+Drive_Phone	Telefoon
+Settings_Connections.Text	Serververbindingen
+Settings_ConnectionsTitle.Text	Servers en clouds
+Settings_ConnectionsDescription.Text	FTP, FTPS, SFTP, WebDAV (Nextcloud, ownCloud, NAS…) en S3 (AWS, Backblaze B2, Cloudflare R2, Wasabi, MinIO…). Ze verschijnen bij kopiëren van of naar 'telefoon, camera of server'. Wachtwoorden gaan naar Windows Referentiebeheer. OneDrive, Google Drive en Dropbox zijn hier niet nodig: met hun apps zijn het gewone mappen.
+Settings_ConnectionsAdd.Text	Toevoegen…
+Settings_ConnectionsEmpty	Nog geen verbindingen.
+Settings_ConnectionEdit	'{0}' bewerken
+Settings_ConnectionDelete	'{0}' verwijderen
+Connection_DialogTitle	Verbinding
+Connection_Save	Opslaan
+Connection_Cancel	Annuleren
+Connection_Kind	Type
+Connection_Name	Naam
+Connection_Host	Server
+Connection_Url	Adres (https://…)
+Connection_Endpoint	Eindpunt (leeg = AWS)
+Connection_Port	Poort (0 = standaard)
+Connection_User	Gebruiker
+Connection_AccessKey	Toegangssleutel
+Connection_Password	Wachtwoord
+Connection_SecretKey	Geheime sleutel
+Connection_PasswordOrKey	Wachtwoord of privésleutel (helemaal plakken)
+Connection_Root	Map (leeg = de beginmap)
+Connection_Bucket	Bucket (en map): bucket/map
+Connection_Region	Regio (leeg = us-east-1; bij R2 auto)
+Connection_AcceptAny	Ongeldige certificaten accepteren (alleen als de server een eigen certificaat heeft)
+Connection_Test	Verbinding testen
+Connection_Testing	Testen…
+Connection_TestOk	Verbinding werkt: {0} items in de map.
+Connection_TestFailed	Kan geen verbinding maken: {0}

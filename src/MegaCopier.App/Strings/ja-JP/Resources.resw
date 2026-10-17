@@ -808,17 +808,17 @@
   <data name="DragConfirm_Always.Content" xml:space="preserve"><value>常に</value></data>
   <data name="Drag_ConfirmMove" xml:space="preserve"><value>MegaCopier で {0} を「{1}」に移動しますか？</value></data>
   <data name="Drag_ConfirmCopy" xml:space="preserve"><value>MegaCopier で {0} を「{1}」にコピーしますか？</value></data>
-  <data name="Tool_MtpImport.Text" xml:space="preserve"><value>スマートフォンやカメラからコピー…</value></data>
-  <data name="Tool_MtpExport.Text" xml:space="preserve"><value>ファイルをスマートフォンやカメラにコピー…</value></data>
+  <data name="Tool_MtpImport.Text" xml:space="preserve"><value>スマートフォン、カメラ、サーバーからコピー…</value></data>
+  <data name="Tool_MtpExport.Text" xml:space="preserve"><value>ファイルをスマートフォン、カメラ、サーバーにコピー…</value></data>
   <data name="MtpDialog.CloseButtonText" xml:space="preserve"><value>キャンセル</value></data>
-  <data name="Mtp_ImportTitle" xml:space="preserve"><value>スマートフォンやカメラからコピー</value></data>
-  <data name="Mtp_ExportTitle" xml:space="preserve"><value>スマートフォンやカメラにコピー</value></data>
+  <data name="Mtp_ImportTitle" xml:space="preserve"><value>スマートフォン、カメラ、サーバーからコピー</value></data>
+  <data name="Mtp_ExportTitle" xml:space="preserve"><value>スマートフォン、カメラ、サーバーにコピー</value></data>
   <data name="Mtp_ImportButton" xml:space="preserve"><value>コピー先…</value></data>
   <data name="Mtp_ExportButton" xml:space="preserve"><value>ここにコピー</value></data>
   <data name="Mtp_ImportSummary" xml:space="preserve"><value>コピーしたいものにチェックを付けます。何もチェックしないと、開いているフォルダー全体をコピーします。</value></data>
   <data name="Mtp_ExportSummaryOne" xml:space="preserve"><value>「{0}」をコピーするデバイスのフォルダーを開いてください。</value></data>
   <data name="Mtp_ExportSummaryMany" xml:space="preserve"><value>{0} 個の項目をコピーするデバイスのフォルダーを開いてください。</value></data>
-  <data name="Mtp_NoDevices" xml:space="preserve"><value>スマートフォンもカメラも接続されていません。USB で接続し、ロックを解除して「ファイル転送」を選んでください。</value></data>
+  <data name="Mtp_NoDevices" xml:space="preserve"><value>スマートフォンもカメラも接続されていません（USB で接続し、ロックを解除して「ファイル転送」を選択）。設定 &gt; 接続 にサーバーもありません。</value></data>
   <data name="Mtp_Loading" xml:space="preserve"><value>デバイスを読み取り中…</value></data>
   <data name="Mtp_Empty" xml:space="preserve"><value>空のフォルダー。</value></data>
   <data name="Mtp_Error" xml:space="preserve"><value>デバイスを読み取れませんでした: {0}</value></data>
@@ -885,4 +885,38 @@
   <data name="Compare_ChangedAndDeleted" xml:space="preserve"><value>片側で削除、もう片側で変更: 保持</value></data>
   <data name="Compare_Extra" xml:space="preserve"><value>元にない</value></data>
   <data name="Compare_Same" xml:space="preserve"><value>両側で同一</value></data>
+  <data name="Drive_Disk" xml:space="preserve"><value>ディスク</value></data>
+  <data name="Drive_Usb" xml:space="preserve"><value>USB</value></data>
+  <data name="Drive_Network" xml:space="preserve"><value>ネットワーク</value></data>
+  <data name="Drive_Server" xml:space="preserve"><value>サーバー</value></data>
+  <data name="Drive_Phone" xml:space="preserve"><value>スマートフォン</value></data>
+  <data name="Settings_Connections.Text" xml:space="preserve"><value>サーバー接続</value></data>
+  <data name="Settings_ConnectionsTitle.Text" xml:space="preserve"><value>サーバーとクラウド</value></data>
+  <data name="Settings_ConnectionsDescription.Text" xml:space="preserve"><value>FTP、FTPS、SFTP、WebDAV（Nextcloud、ownCloud、NAS…）、S3（AWS、Backblaze B2、Cloudflare R2、Wasabi、MinIO…）。「スマートフォン、カメラ、サーバー」とのコピーで表示されます。パスワードは Windows 資格情報マネージャーに保存されます。OneDrive、Google Drive、Dropbox はここでは不要です（各アプリで通常のフォルダーになります）。</value></data>
+  <data name="Settings_ConnectionsAdd.Text" xml:space="preserve"><value>追加…</value></data>
+  <data name="Settings_ConnectionsEmpty" xml:space="preserve"><value>接続はまだありません。</value></data>
+  <data name="Settings_ConnectionEdit" xml:space="preserve"><value>「{0}」を編集</value></data>
+  <data name="Settings_ConnectionDelete" xml:space="preserve"><value>「{0}」を削除</value></data>
+  <data name="Connection_DialogTitle" xml:space="preserve"><value>接続</value></data>
+  <data name="Connection_Save" xml:space="preserve"><value>保存</value></data>
+  <data name="Connection_Cancel" xml:space="preserve"><value>キャンセル</value></data>
+  <data name="Connection_Kind" xml:space="preserve"><value>種類</value></data>
+  <data name="Connection_Name" xml:space="preserve"><value>名前</value></data>
+  <data name="Connection_Host" xml:space="preserve"><value>サーバー</value></data>
+  <data name="Connection_Url" xml:space="preserve"><value>アドレス (https://…)</value></data>
+  <data name="Connection_Endpoint" xml:space="preserve"><value>エンドポイント（空 = AWS）</value></data>
+  <data name="Connection_Port" xml:space="preserve"><value>ポート（0 = 標準）</value></data>
+  <data name="Connection_User" xml:space="preserve"><value>ユーザー</value></data>
+  <data name="Connection_AccessKey" xml:space="preserve"><value>アクセス キー</value></data>
+  <data name="Connection_Password" xml:space="preserve"><value>パスワード</value></data>
+  <data name="Connection_SecretKey" xml:space="preserve"><value>シークレット キー</value></data>
+  <data name="Connection_PasswordOrKey" xml:space="preserve"><value>パスワードまたは秘密キー（全体を貼り付け）</value></data>
+  <data name="Connection_Root" xml:space="preserve"><value>フォルダー（空 = 開始フォルダー）</value></data>
+  <data name="Connection_Bucket" xml:space="preserve"><value>バケット（とフォルダー）: bucket/フォルダー</value></data>
+  <data name="Connection_Region" xml:space="preserve"><value>リージョン（空 = us-east-1、R2 は auto）</value></data>
+  <data name="Connection_AcceptAny" xml:space="preserve"><value>無効な証明書を受け入れる（サーバーが独自の証明書の場合のみ）</value></data>
+  <data name="Connection_Test" xml:space="preserve"><value>接続をテスト</value></data>
+  <data name="Connection_Testing" xml:space="preserve"><value>テスト中…</value></data>
+  <data name="Connection_TestOk" xml:space="preserve"><value>接続できました: フォルダーに {0} 個の項目があります。</value></data>
+  <data name="Connection_TestFailed" xml:space="preserve"><value>接続できませんでした: {0}</value></data>
 </root>

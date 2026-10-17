@@ -154,6 +154,7 @@ public sealed partial class SettingsPage : UserControl
         LoadTasks();
         LoadGuard();
         LoadLiveSync();
+        LoadConnections();
         LoadReceive();
         LoadDisks();
         AutoTuneToggle.IsOn = s.AutoTune;

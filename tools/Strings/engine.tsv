@@ -218,3 +218,4 @@ C_Usage	MegaCopier — copia que sobrevive a apagones\n\nUso:\n  mcopy copy <ori
 U_Seconds	{0} s	{0} s
 U_MinSec	{0} min {1} s	{0} min {1} s
 U_HourMin	{0} h {1} min	{0} h {1} min
+E_HostKeyChanged	La identidad de {0} ha cambiado (huella {1}). Podría ser otro equipo haciéndose pasar por él: no se conecta. Si cambiaste el servidor a propósito, vuelve a crear la conexión.	The identity of {0} has changed (fingerprint {1}). It could be another computer impersonating it: not connecting. If you changed the server on purpose, create the connection again.
