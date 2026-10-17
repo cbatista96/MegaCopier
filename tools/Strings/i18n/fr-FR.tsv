@@ -931,3 +931,8 @@ Panel_CopyAdmin.Text	Copier avec les droits d'administrateur
 Backup_Title	Fichiers protégés
 Backup_Done	Copiés en mode sauvegarde, en contournant leurs autorisations.
 Backup_Partial	Certains fichiers ne peuvent toujours pas être copiés : {0}
+Rules_WipeMethod.Header	Effacement sécurisé
+Rules_WipeZeros.Content	Une passe de zéros (rapide)
+Rules_WipeRandom.Content	Une passe aléatoire
+Rules_WipeDod3.Content	DoD 5220.22-M, 3 passes
+Rules_WipeDod7.Content	DoD 5220.22-M ECE, 7 passes (lent)

@@ -302,6 +302,7 @@ public sealed class FeatureTests : IDisposable
         var options = Options();
         options.Operation = JobOperation.Delete;
         options.SecureDelete = true;
+        options.WipeMethod = WipeMethod.Dod7;
         options.Links = LinkHandling.Skip;
         options.KeepBothPattern = "{name}-{n}{ext}";
         options.Filter = new FileFilter { Exclude = ["*.tmp"], MinSize = 10 };
@@ -311,6 +312,7 @@ public sealed class FeatureTests : IDisposable
         var restored = CopyJobRecord.FromJson(CopyJobRecord.New(["a"], "b", options).ToJson())!.ToOptions();
         Assert.Equal(JobOperation.Delete, restored.Operation);
         Assert.True(restored.SecureDelete);
+        Assert.Equal(WipeMethod.Dod7, restored.WipeMethod);
         Assert.Equal(LinkHandling.Skip, restored.Links);
         Assert.Equal("{name}-{n}{ext}", restored.KeepBothPattern);
         Assert.Equal(["*.tmp"], restored.Filter.Exclude);

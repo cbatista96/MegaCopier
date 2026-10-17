@@ -937,4 +937,9 @@
   <data name="Backup_Title" xml:space="preserve"><value>Fichiers protégés</value></data>
   <data name="Backup_Done" xml:space="preserve"><value>Copiés en mode sauvegarde, en contournant leurs autorisations.</value></data>
   <data name="Backup_Partial" xml:space="preserve"><value>Certains fichiers ne peuvent toujours pas être copiés : {0}</value></data>
+  <data name="Rules_WipeMethod.Header" xml:space="preserve"><value>Effacement sécurisé</value></data>
+  <data name="Rules_WipeZeros.Content" xml:space="preserve"><value>Une passe de zéros (rapide)</value></data>
+  <data name="Rules_WipeRandom.Content" xml:space="preserve"><value>Une passe aléatoire</value></data>
+  <data name="Rules_WipeDod3.Content" xml:space="preserve"><value>DoD 5220.22-M, 3 passes</value></data>
+  <data name="Rules_WipeDod7.Content" xml:space="preserve"><value>DoD 5220.22-M ECE, 7 passes (lent)</value></data>
 </root>

@@ -34,6 +34,8 @@ public sealed class CopyRules
 
     public bool WipeSource { get; set; }
 
+    public WipeMethod WipeMethod { get; set; }
+
     public bool WaitForDevice { get; set; } = true;
 
     public bool WaitForSpace { get; set; } = true;
@@ -61,6 +63,7 @@ public sealed class CopyRules
         SaveHashStream = r.SaveHashStream,
         PreserveHardLinks = r.PreserveHardLinks,
         WipeSource = r.WipeSource,
+        WipeMethod = r.WipeMethod,
         WaitForDevice = r.WaitForDevice,
         WaitForSpace = r.WaitForSpace,
         AllOrNothing = r.AllOrNothing,
@@ -84,6 +87,7 @@ public sealed class CopyRules
         r.SaveHashStream = SaveHashStream;
         r.PreserveHardLinks = PreserveHardLinks;
         r.WipeSource = WipeSource;
+        r.WipeMethod = WipeMethod;
         r.WaitForDevice = WaitForDevice;
         r.WaitForSpace = WaitForSpace;
         r.AllOrNothing = AllOrNothing;
@@ -150,6 +154,7 @@ public sealed partial class RulesEditor : UserControl
         HashStreamBox.IsChecked = rules.SaveHashStream;
         HardLinksBox.IsChecked = rules.PreserveHardLinks;
         WipeBox.IsChecked = rules.WipeSource;
+        WipeMethodBox.SelectedIndex = (int)rules.WipeMethod;
         WaitDeviceBox.IsChecked = rules.WaitForDevice;
         WaitSpaceBox.IsChecked = rules.WaitForSpace;
         AllOrNothingBox.IsChecked = rules.AllOrNothing;
@@ -188,6 +193,7 @@ public sealed partial class RulesEditor : UserControl
         SaveHashStream = HashStreamBox.IsChecked == true,
         PreserveHardLinks = HardLinksBox.IsChecked == true,
         WipeSource = WipeBox.IsChecked == true,
+        WipeMethod = (WipeMethod)Math.Max(0, WipeMethodBox.SelectedIndex),
         WaitForDevice = WaitDeviceBox.IsChecked == true,
         WaitForSpace = WaitSpaceBox.IsChecked == true,
         AllOrNothing = AllOrNothingBox.IsChecked == true,

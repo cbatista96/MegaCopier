@@ -228,22 +228,23 @@ public sealed partial class CopyEngine
         var (totalBytes, totalFiles) = Files.Totals();
 
         // El borrado normal no escribe: la barra avanza por archivos; el seguro sí sobrescribe todo el contenido.
-        progress.Start(_options.SecureDelete ? totalBytes : 0, totalFiles);
+        int passes = WipePasses(_options.WipeMethod).Length;
+        progress.Start(_options.SecureDelete ? totalBytes * passes : 0, totalFiles);
         _progress = progress;
         Log(LogLevel.Info, Texts.F(_options.SecureDelete ? "E_WipeStart" : "E_DeleteStart", totalFiles, FormatBytes(totalBytes)));
 
-        byte[] zeros = new byte[CopyOptions.MiB];
+        byte[] buffer = new byte[CopyOptions.MiB];
         while (Files.TakeNext() is { } item)
         {
             cancellationToken.ThrowIfCancellationRequested();
             Controller.WaitIfPaused(cancellationToken);
-            progress.BeginFile(item.Source, _options.SecureDelete ? item.Length : 0);
+            progress.BeginFile(item.Source, _options.SecureDelete ? item.Length * passes : 0);
             try
             {
                 ClearReadOnly(item.Source);
                 if (_options.SecureDelete)
                 {
-                    Wipe(item.Source, zeros, progress, cancellationToken);
+                    Wipe(item.Source, buffer, progress, cancellationToken);
                 }
                 else
                 {
@@ -295,26 +296,55 @@ public sealed partial class CopyEngine
         return result;
     }
 
+    /// <summary>Las pasadas de cada método: un byte fijo, o null para datos aleatorios.</summary>
+    /// <summary>Para las pruebas: se llama tras cada pasada con el archivo aún abierto.</summary>
+    internal Action<Stream>? AfterWipePass { get; set; }
+
+    internal static byte?[] WipePasses(WipeMethod method) => method switch
+    {
+        WipeMethod.Random => [null],
+        WipeMethod.Dod3 => [0x00, 0xFF, null],
+        WipeMethod.Dod7 => [0x00, 0xFF, null, null, 0x00, 0xFF, null],
+        _ => [0x00],
+    };
+
     /// <summary>
-    /// Borrado seguro: sobrescribe todo el contenido con ceros (escritura directa al disco), lo trunca, le cambia el
-    /// nombre por uno aleatorio (para no dejar el original en la tabla de archivos) y lo borra.
+    /// Borrado seguro: sobrescribe todo el contenido (una o varias pasadas según <see cref="CopyOptions.WipeMethod"/>,
+    /// escribiendo directamente al disco), lo trunca, le cambia el nombre por uno aleatorio (para no dejar el original
+    /// en la tabla de archivos) y lo borra.
     /// </summary>
     /// <remarks>En SSD el controlador puede conservar copias en otras celdas; es lo más que se puede hacer desde Windows.</remarks>
-    private void Wipe(string path, byte[] zeros, ProgressTracker progress, CancellationToken cancellationToken)
+    private void Wipe(string path, byte[] buffer, ProgressTracker progress, CancellationToken cancellationToken)
     {
-        using (var stream = new FileStream(path, FileMode.Open, FileAccess.Write, FileShare.None, 1, FileOptions.WriteThrough))
+        using (var stream = new FileStream(path, FileMode.Open, FileAccess.ReadWrite, FileShare.None, 1, FileOptions.WriteThrough))
         {
-            long remaining = stream.Length;
-            while (remaining > 0)
+            foreach (byte? pattern in WipePasses(_options.WipeMethod))
             {
-                cancellationToken.ThrowIfCancellationRequested();
-                int count = (int)Math.Min(zeros.Length, remaining);
-                stream.Write(zeros, 0, count);
-                remaining -= count;
-                progress.AddTransferred(count);
+                if (pattern is { } value)
+                {
+                    buffer.AsSpan().Fill(value);
+                }
+
+                stream.Position = 0;
+                long remaining = stream.Length;
+                while (remaining > 0)
+                {
+                    cancellationToken.ThrowIfCancellationRequested();
+                    int count = (int)Math.Min(buffer.Length, remaining);
+                    if (pattern is null)
+                    {
+                        System.Security.Cryptography.RandomNumberGenerator.Fill(buffer.AsSpan(0, count));
+                    }
+
+                    stream.Write(buffer, 0, count);
+                    remaining -= count;
+                    progress.AddTransferred(count);
+                }
+
+                stream.Flush(flushToDisk: true);
+                AfterWipePass?.Invoke(stream);
             }
 
-            stream.Flush(flushToDisk: true);
             stream.SetLength(0);
         }
 

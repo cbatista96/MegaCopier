@@ -314,6 +314,9 @@ public sealed class CopyOptions
     /// <summary>Al borrar: sobrescribir el contenido, cambiar el nombre y entonces borrar (no se puede recuperar).</summary>
     public bool SecureDelete { get; set; }
 
+    /// <summary>Con qué se sobrescribe en el borrado seguro (y al mover con <see cref="WipeSource"/>).</summary>
+    public WipeMethod WipeMethod { get; set; }
+
     public LinkHandling Links { get; set; } = LinkHandling.CopyLink;
 
     /// <summary>Nombre de "conservar ambos": {name}, {n}, {ext} y {date} (aaaa-mm-dd).</summary>
@@ -345,4 +348,20 @@ public sealed class CopyOptions
             throw new ArgumentException("ResumeVerifyChunks y RetryCount no pueden ser negativos.");
         }
     }
+}
+
+/// <summary>Cómo sobrescribe el borrado seguro el contenido antes de borrarlo.</summary>
+public enum WipeMethod
+{
+    /// <summary>Una pasada con ceros: suficiente para los discos actuales.</summary>
+    Zeros,
+
+    /// <summary>Una pasada con datos aleatorios.</summary>
+    Random,
+
+    /// <summary>DoD 5220.22-M, 3 pasadas: ceros, unos y aleatorio.</summary>
+    Dod3,
+
+    /// <summary>DoD 5220.22-M ECE, 7 pasadas: ceros, unos, aleatorio, aleatorio, ceros, unos y aleatorio.</summary>
+    Dod7,
 }
