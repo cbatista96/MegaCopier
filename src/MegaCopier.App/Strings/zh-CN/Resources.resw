@@ -967,4 +967,5 @@
   <data name="Rules_VersionsWeek.Content" xml:space="preserve"><value>7 个每日、4 个每周和 12 个每月</value></data>
   <data name="Rules_VersionsMonth.Content" xml:space="preserve"><value>30 个每日、12 个每周和 24 个每月</value></data>
   <data name="Rules_VersionsLast.Content" xml:space="preserve"><value>仅最新一个</value></data>
+  <data name="Task_Monthly.Content" xml:space="preserve"><value>每月</value></data>
 </root>

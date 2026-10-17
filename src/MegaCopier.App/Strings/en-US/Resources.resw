@@ -967,4 +967,5 @@
   <data name="Rules_VersionsWeek.Content" xml:space="preserve"><value>7 daily, 4 weekly and 12 monthly</value></data>
   <data name="Rules_VersionsMonth.Content" xml:space="preserve"><value>30 daily, 12 weekly and 24 monthly</value></data>
   <data name="Rules_VersionsLast.Content" xml:space="preserve"><value>Only the latest</value></data>
+  <data name="Task_Monthly.Content" xml:space="preserve"><value>Every month</value></data>
 </root>

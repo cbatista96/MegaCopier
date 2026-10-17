@@ -967,4 +967,5 @@
   <data name="Rules_VersionsWeek.Content" xml:space="preserve"><value>7 dagelijkse, 4 wekelijkse en 12 maandelijkse</value></data>
   <data name="Rules_VersionsMonth.Content" xml:space="preserve"><value>30 dagelijkse, 12 wekelijkse en 24 maandelijkse</value></data>
   <data name="Rules_VersionsLast.Content" xml:space="preserve"><value>Alleen de nieuwste</value></data>
+  <data name="Task_Monthly.Content" xml:space="preserve"><value>Elke maand</value></data>
 </root>

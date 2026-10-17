@@ -967,4 +967,5 @@
   <data name="Rules_VersionsWeek.Content" xml:space="preserve"><value>日次 7、週次 4、月次 12</value></data>
   <data name="Rules_VersionsMonth.Content" xml:space="preserve"><value>日次 30、週次 12、月次 24</value></data>
   <data name="Rules_VersionsLast.Content" xml:space="preserve"><value>最新のみ</value></data>
+  <data name="Task_Monthly.Content" xml:space="preserve"><value>毎月</value></data>
 </root>

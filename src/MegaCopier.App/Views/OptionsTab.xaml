@@ -115,6 +115,7 @@
                             <ComboBoxItem x:Uid="Task_Once" />
                             <ComboBoxItem x:Uid="Task_Daily" />
                             <ComboBoxItem x:Uid="Task_Weekly" />
+                            <ComboBoxItem x:Uid="Task_Monthly" />
                         </ComboBox>
                         <Button Style="{StaticResource McButton}" Click="SaveTask_Click"><TextBlock x:Uid="Task_Save" /></Button>
                     </StackPanel>
