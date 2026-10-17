@@ -1,9 +1,10 @@
 using System.Runtime.InteropServices;
+using MegaCopier.Shell;
 
 namespace MegaCopier.App.Services;
 
 /// <summary>
-/// Carpetas abiertas ahora mismo en ventanas del Explorador, para ofrecerlas como destino (como TeraCopy). Usa la
+/// Carpetas abiertas ahora mismo en ventanas del Explorador (y de Total Commander y Directory Opus), para ofrecerlas como destino (como TeraCopy). Usa la
 /// interfaz documentada IShellWindows (la misma que usan los scripts de Windows): nada se inyecta en el Explorador.
 /// Debe llamarse desde un hilo STA (el de la interfaz).
 /// </summary>
@@ -18,7 +19,11 @@ internal static unsafe partial class ExplorerFolders
     private static readonly Guid IPersistFolder2 = new("1AC3D9F0-175C-11D1-95BE-00609797EA4F");
 
     /// <summary>Rutas de las carpetas abiertas (sin repetir; las que no son del disco, como "Este equipo", se omiten).</summary>
-    public static List<string> Open()
+    public static List<string> Open() =>
+        [.. ExplorerOnly().Concat(OtherFileManagers.Open()).Distinct(StringComparer.OrdinalIgnoreCase)];
+
+    /// <summary>Solo las ventanas del Explorador.</summary>
+    private static List<string> ExplorerOnly()
     {
         var folders = new List<string>();
         void* windows = null;
