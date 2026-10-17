@@ -1026,3 +1026,5 @@ Remote_StateCompleted	Klaar
 Remote_StateCompletedWithErrors	Klaar met fouten
 Remote_StateFailed	Mislukt
 Remote_StateInterrupted	Gestopt (kan hervat worden)
+Rules_ImageText.Header	Alleen afbeeldingen met deze tekst (gelezen met Windows-OCR, offline)
+Rules_ImageText.PlaceholderText	factuur

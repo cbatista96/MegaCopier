@@ -1026,3 +1026,5 @@ Remote_StateCompleted	Terminée
 Remote_StateCompletedWithErrors	Terminée avec des erreurs
 Remote_StateFailed	Échec
 Remote_StateInterrupted	Arrêtée (reprise possible)
+Rules_ImageText.Header	Seulement les images contenant ce texte (lu par l'OCR de Windows, hors ligne)
+Rules_ImageText.PlaceholderText	facture

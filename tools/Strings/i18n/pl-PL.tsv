@@ -1026,3 +1026,5 @@ Remote_StateCompleted	Gotowe
 Remote_StateCompletedWithErrors	Gotowe z błędami
 Remote_StateFailed	Niepowodzenie
 Remote_StateInterrupted	Zatrzymano (można wznowić)
+Rules_ImageText.Header	Tylko obrazy zawierające ten tekst (odczytany przez OCR Windows, offline)
+Rules_ImageText.PlaceholderText	faktura

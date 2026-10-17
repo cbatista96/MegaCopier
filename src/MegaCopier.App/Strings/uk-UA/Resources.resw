@@ -1032,4 +1032,6 @@
   <data name="Remote_StateCompletedWithErrors" xml:space="preserve"><value>Готово з помилками</value></data>
   <data name="Remote_StateFailed" xml:space="preserve"><value>Помилка</value></data>
   <data name="Remote_StateInterrupted" xml:space="preserve"><value>Зупинено (можна продовжити)</value></data>
+  <data name="Rules_ImageText.Header" xml:space="preserve"><value>Лише зображення з цим текстом (розпізнається OCR Windows, без інтернету)</value></data>
+  <data name="Rules_ImageText.PlaceholderText" xml:space="preserve"><value>рахунок</value></data>
 </root>

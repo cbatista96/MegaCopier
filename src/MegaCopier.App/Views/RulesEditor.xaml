@@ -44,6 +44,7 @@
             <CheckBox x:Name="SkipHiddenBox" x:Uid="Rules_SkipHidden" Click="Changed" />
             <CheckBox x:Name="SkipSystemBox" x:Uid="Rules_SkipSystem" Click="Changed" />
             <CheckBox x:Name="SkipJunkBox" x:Uid="Rules_SkipJunk" Click="Changed" />
+            <TextBox x:Name="ImageTextBox" x:Uid="Rules_ImageText" LostFocus="Changed" />
         </StackPanel>
 
         <!-- Reglas -->

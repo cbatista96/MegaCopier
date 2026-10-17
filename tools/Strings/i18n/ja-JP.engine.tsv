@@ -260,3 +260,4 @@ C_ManifestMissing	見つかりません:
 E_RemoteConnectionsAuto	サーバーへの接続: 速度に応じて自動調整（最大 {0}）。
 E_RemoteConnectionsTuned	現在の同時接続数: {0}（{1}/秒）。
 E_MultiSourceUsed	{0} か所から同時に読み込みました。
+E_F_ImageText	「{0}」という文字を含む画像

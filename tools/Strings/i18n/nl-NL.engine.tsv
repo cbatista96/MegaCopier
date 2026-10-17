@@ -260,3 +260,4 @@ C_ManifestMissing	Ontbreekt:
 E_RemoteConnectionsAuto	Verbindingen met de server: automatisch aangepast aan de snelheid (maximaal {0}).
 E_RemoteConnectionsTuned	Nu {0} verbindingen tegelijk ({1}/s).
 E_MultiSourceUsed	Gelezen vanaf {0} plaatsen tegelijk.
+E_F_ImageText	afbeeldingen met de tekst "{0}"

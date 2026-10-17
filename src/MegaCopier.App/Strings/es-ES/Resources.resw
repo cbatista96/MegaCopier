@@ -1032,4 +1032,6 @@
   <data name="Remote_StateCompletedWithErrors" xml:space="preserve"><value>Terminada con errores</value></data>
   <data name="Remote_StateFailed" xml:space="preserve"><value>Falló</value></data>
   <data name="Remote_StateInterrupted" xml:space="preserve"><value>Detenida (se puede seguir)</value></data>
+  <data name="Rules_ImageText.Header" xml:space="preserve"><value>Solo imágenes que contengan este texto (se lee con el OCR de Windows, sin internet)</value></data>
+  <data name="Rules_ImageText.PlaceholderText" xml:space="preserve"><value>factura</value></data>
 </root>

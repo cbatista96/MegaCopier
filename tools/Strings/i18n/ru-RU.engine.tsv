@@ -260,3 +260,4 @@ C_ManifestMissing	Отсутствует:
 E_RemoteConnectionsAuto	Подключения к серверу настраиваются автоматически по скорости (максимум {0}).
 E_RemoteConnectionsTuned	Теперь одновременных подключений: {0} ({1}/с).
 E_MultiSourceUsed	Прочитано из {0} мест одновременно.
+E_F_ImageText	изображения с текстом «{0}»

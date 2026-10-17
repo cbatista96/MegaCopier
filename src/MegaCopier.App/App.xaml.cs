@@ -137,6 +137,7 @@ public partial class App : Application
         Disks.Refresh(force: true);
         Peers = new PeerService(this);
         Peers.Apply();
+        Engine.FileFilter.ImageTextReader = WindowsOcr.Read; // "fotos con el texto…"
         Remote = new RemoteControlService(this);
         Remote.Apply();
         LiveSyncs = new LiveSyncService(this);

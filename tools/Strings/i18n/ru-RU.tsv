@@ -1026,3 +1026,5 @@ Remote_StateCompleted	Готово
 Remote_StateCompletedWithErrors	Готово с ошибками
 Remote_StateFailed	Ошибка
 Remote_StateInterrupted	Остановлено (можно продолжить)
+Rules_ImageText.Header	Только изображения с этим текстом (распознаётся OCR Windows, без интернета)
+Rules_ImageText.PlaceholderText	счёт

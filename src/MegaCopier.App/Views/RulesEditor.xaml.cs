@@ -185,6 +185,7 @@ public sealed partial class RulesEditor : UserControl
         DelayBox.Value = rules.RetryDelaySeconds;
         OnErrorBox.SelectedIndex = (int)rules.OnError;
         SkipJunkBox.IsChecked = f.SkipJunk;
+        ImageTextBox.Text = f.ImageText;
         FolderConflictBox.SelectedIndex = (int)rules.FolderConflict;
         VersionsBox.Text = rules.VersionsFolder;
         VersionsKeepBox.SelectedIndex = Math.Max(0, Array.IndexOf(KeepPresets, (rules.VersionsDaily, rules.VersionsWeekly, rules.VersionsMonthly)));
@@ -224,6 +225,7 @@ public sealed partial class RulesEditor : UserControl
             SkipHidden = SkipHiddenBox.IsChecked == true,
             SkipSystem = SkipSystemBox.IsChecked == true,
             SkipJunk = SkipJunkBox.IsChecked == true,
+            ImageText = ImageTextBox.Text.Trim(),
         },
         Links = (LinkHandling)Math.Max(0, LinksBox.SelectedIndex),
         KeepBothPattern = string.IsNullOrWhiteSpace(PatternBox.Text) ? CopyOptions.DefaultKeepBothPattern : PatternBox.Text.Trim(),
