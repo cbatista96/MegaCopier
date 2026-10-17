@@ -808,4 +808,25 @@
   <data name="DragConfirm_Always.Content" xml:space="preserve"><value>Всегда</value></data>
   <data name="Drag_ConfirmMove" xml:space="preserve"><value>Переместить {0} в «{1}» через MegaCopier?</value></data>
   <data name="Drag_ConfirmCopy" xml:space="preserve"><value>Копировать {0} в «{1}» через MegaCopier?</value></data>
+  <data name="Tool_MtpImport.Text" xml:space="preserve"><value>Копировать с телефона или камеры…</value></data>
+  <data name="Tool_MtpExport.Text" xml:space="preserve"><value>Копировать файлы на телефон или камеру…</value></data>
+  <data name="MtpDialog.CloseButtonText" xml:space="preserve"><value>Отмена</value></data>
+  <data name="Mtp_ImportTitle" xml:space="preserve"><value>Копировать с телефона или камеры</value></data>
+  <data name="Mtp_ExportTitle" xml:space="preserve"><value>Копировать на телефон или камеру</value></data>
+  <data name="Mtp_ImportButton" xml:space="preserve"><value>Копировать в…</value></data>
+  <data name="Mtp_ExportButton" xml:space="preserve"><value>Копировать сюда</value></data>
+  <data name="Mtp_ImportSummary" xml:space="preserve"><value>Отметьте то, что нужно скопировать. Если ничего не отмечено, копируется вся открытая папка.</value></data>
+  <data name="Mtp_ExportSummaryOne" xml:space="preserve"><value>Откройте папку устройства, куда скопировать «{0}».</value></data>
+  <data name="Mtp_ExportSummaryMany" xml:space="preserve"><value>Откройте папку устройства, куда скопировать элементы ({0}).</value></data>
+  <data name="Mtp_NoDevices" xml:space="preserve"><value>Телефон или камера не подключены. Подключите по USB, разблокируйте и выберите «Передача файлов».</value></data>
+  <data name="Mtp_Loading" xml:space="preserve"><value>Чтение устройства…</value></data>
+  <data name="Mtp_Empty" xml:space="preserve"><value>Папка пуста.</value></data>
+  <data name="Mtp_Error" xml:space="preserve"><value>Не удалось прочитать устройство: {0}</value></data>
+  <data name="Mtp_Up.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>На уровень выше</value></data>
+  <data name="Mtp_Up.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>На уровень выше</value></data>
+  <data name="Mtp_Refresh.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Найти устройства</value></data>
+  <data name="Mtp_Refresh.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Найти устройства</value></data>
+  <data name="Mtp_MoveImport" xml:space="preserve"><value>Удалить скопированное с устройства (переместить)</value></data>
+  <data name="Mtp_MoveExport" xml:space="preserve"><value>Удалить скопированное с ПК (переместить)</value></data>
+  <data name="Mtp_Open" xml:space="preserve"><value>Открыть «{0}»</value></data>
 </root>

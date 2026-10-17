@@ -802,3 +802,24 @@ DragConfirm_Moves.Content	이동할 때만
 DragConfirm_Always.Content	항상
 Drag_ConfirmMove	MegaCopier로 {0}을(를) "{1}"(으)로 이동할까요?
 Drag_ConfirmCopy	MegaCopier로 {0}을(를) "{1}"(으)로 복사할까요?
+Tool_MtpImport.Text	휴대폰이나 카메라에서 복사…
+Tool_MtpExport.Text	휴대폰이나 카메라로 파일 복사…
+MtpDialog.CloseButtonText	취소
+Mtp_ImportTitle	휴대폰이나 카메라에서 복사
+Mtp_ExportTitle	휴대폰이나 카메라로 복사
+Mtp_ImportButton	복사 위치…
+Mtp_ExportButton	여기에 복사
+Mtp_ImportSummary	복사할 항목을 선택하세요. 아무것도 선택하지 않으면 열려 있는 폴더 전체를 복사합니다.
+Mtp_ExportSummaryOne	"{0}"을(를) 복사할 장치 폴더를 여세요.
+Mtp_ExportSummaryMany	항목 {0}개를 복사할 장치 폴더를 여세요.
+Mtp_NoDevices	연결된 휴대폰이나 카메라가 없습니다. USB로 연결하고 잠금을 해제한 다음 "파일 전송"을 선택하세요.
+Mtp_Loading	장치를 읽는 중…
+Mtp_Empty	빈 폴더입니다.
+Mtp_Error	장치를 읽을 수 없습니다: {0}
+Mtp_Up.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	한 단계 위로
+Mtp_Up.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	한 단계 위로
+Mtp_Refresh.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	장치 찾기
+Mtp_Refresh.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	장치 찾기
+Mtp_MoveImport	복사한 항목을 장치에서 제거(이동)
+Mtp_MoveExport	복사한 항목을 PC에서 제거(이동)
+Mtp_Open	"{0}" 열기

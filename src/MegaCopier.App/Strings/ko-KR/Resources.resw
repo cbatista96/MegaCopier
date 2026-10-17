@@ -808,4 +808,25 @@
   <data name="DragConfirm_Always.Content" xml:space="preserve"><value>항상</value></data>
   <data name="Drag_ConfirmMove" xml:space="preserve"><value>MegaCopier로 {0}을(를) &quot;{1}&quot;(으)로 이동할까요?</value></data>
   <data name="Drag_ConfirmCopy" xml:space="preserve"><value>MegaCopier로 {0}을(를) &quot;{1}&quot;(으)로 복사할까요?</value></data>
+  <data name="Tool_MtpImport.Text" xml:space="preserve"><value>휴대폰이나 카메라에서 복사…</value></data>
+  <data name="Tool_MtpExport.Text" xml:space="preserve"><value>휴대폰이나 카메라로 파일 복사…</value></data>
+  <data name="MtpDialog.CloseButtonText" xml:space="preserve"><value>취소</value></data>
+  <data name="Mtp_ImportTitle" xml:space="preserve"><value>휴대폰이나 카메라에서 복사</value></data>
+  <data name="Mtp_ExportTitle" xml:space="preserve"><value>휴대폰이나 카메라로 복사</value></data>
+  <data name="Mtp_ImportButton" xml:space="preserve"><value>복사 위치…</value></data>
+  <data name="Mtp_ExportButton" xml:space="preserve"><value>여기에 복사</value></data>
+  <data name="Mtp_ImportSummary" xml:space="preserve"><value>복사할 항목을 선택하세요. 아무것도 선택하지 않으면 열려 있는 폴더 전체를 복사합니다.</value></data>
+  <data name="Mtp_ExportSummaryOne" xml:space="preserve"><value>&quot;{0}&quot;을(를) 복사할 장치 폴더를 여세요.</value></data>
+  <data name="Mtp_ExportSummaryMany" xml:space="preserve"><value>항목 {0}개를 복사할 장치 폴더를 여세요.</value></data>
+  <data name="Mtp_NoDevices" xml:space="preserve"><value>연결된 휴대폰이나 카메라가 없습니다. USB로 연결하고 잠금을 해제한 다음 &quot;파일 전송&quot;을 선택하세요.</value></data>
+  <data name="Mtp_Loading" xml:space="preserve"><value>장치를 읽는 중…</value></data>
+  <data name="Mtp_Empty" xml:space="preserve"><value>빈 폴더입니다.</value></data>
+  <data name="Mtp_Error" xml:space="preserve"><value>장치를 읽을 수 없습니다: {0}</value></data>
+  <data name="Mtp_Up.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>한 단계 위로</value></data>
+  <data name="Mtp_Up.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>한 단계 위로</value></data>
+  <data name="Mtp_Refresh.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>장치 찾기</value></data>
+  <data name="Mtp_Refresh.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>장치 찾기</value></data>
+  <data name="Mtp_MoveImport" xml:space="preserve"><value>복사한 항목을 장치에서 제거(이동)</value></data>
+  <data name="Mtp_MoveExport" xml:space="preserve"><value>복사한 항목을 PC에서 제거(이동)</value></data>
+  <data name="Mtp_Open" xml:space="preserve"><value>&quot;{0}&quot; 열기</value></data>
 </root>

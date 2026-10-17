@@ -34,7 +34,11 @@ public sealed class FileFilter
     public bool IsEmpty => Include.Count == 0 && Exclude.Count == 0 && MinSize is null && MaxSize is null
         && ModifiedAfterUtc is null && ModifiedBeforeUtc is null && !SkipHidden && !SkipSystem && !SkipJunk;
 
-    public bool AcceptsFile(string relativePath, FileInfo file)
+    public bool AcceptsFile(string relativePath, FileInfo file) =>
+        AcceptsFile(relativePath, file.Length, file.LastWriteTimeUtc) && !HasSkippedAttributes(file.Attributes);
+
+    /// <summary>Lo mismo para un archivo que no está en el disco (un móvil): sin atributos y quizá sin fecha.</summary>
+    public bool AcceptsFile(string relativePath, long length, DateTime? lastWriteUtc)
     {
         string name = Path.GetFileName(relativePath);
         if (Exclude.Any(mask => Matches(mask, name, relativePath)) || IsJunk(name))
@@ -47,17 +51,13 @@ public sealed class FileFilter
             return false;
         }
 
-        if ((MinSize is { } min && file.Length < min) || (MaxSize is { } max && file.Length > max))
+        if ((MinSize is { } min && length < min) || (MaxSize is { } max && length > max))
         {
             return false;
         }
 
-        if ((ModifiedAfterUtc is { } after && file.LastWriteTimeUtc < after) || (ModifiedBeforeUtc is { } before && file.LastWriteTimeUtc > before))
-        {
-            return false;
-        }
-
-        return !HasSkippedAttributes(file.Attributes);
+        return lastWriteUtc is not { } modified
+            || !((ModifiedAfterUtc is { } after && modified < after) || (ModifiedBeforeUtc is { } before && modified > before));
     }
 
     public bool AcceptsDirectory(string relativePath, FileAttributes attributes)

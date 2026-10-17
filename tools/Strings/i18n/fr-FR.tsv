@@ -802,3 +802,24 @@ DragConfirm_Moves.Content	Seulement pour déplacer
 DragConfirm_Always.Content	Toujours
 Drag_ConfirmMove	Déplacer {0} vers « {1} » avec MegaCopier ?
 Drag_ConfirmCopy	Copier {0} vers « {1} » avec MegaCopier ?
+Tool_MtpImport.Text	Copier depuis un téléphone ou un appareil photo…
+Tool_MtpExport.Text	Copier des fichiers vers un téléphone ou un appareil photo…
+MtpDialog.CloseButtonText	Annuler
+Mtp_ImportTitle	Copier depuis un téléphone ou un appareil photo
+Mtp_ExportTitle	Copier vers un téléphone ou un appareil photo
+Mtp_ImportButton	Copier vers…
+Mtp_ExportButton	Copier ici
+Mtp_ImportSummary	Cochez ce que vous voulez copier. Sans rien cocher, tout le dossier ouvert est copié.
+Mtp_ExportSummaryOne	Ouvrez le dossier de l'appareil où copier « {0} ».
+Mtp_ExportSummaryMany	Ouvrez le dossier de l'appareil où copier {0} éléments.
+Mtp_NoDevices	Aucun téléphone ni appareil photo n'est connecté. Branchez-le en USB, déverrouillez-le et choisissez « Transfert de fichiers ».
+Mtp_Loading	Lecture de l'appareil…
+Mtp_Empty	Dossier vide.
+Mtp_Error	Impossible de lire l'appareil : {0}
+Mtp_Up.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Remonter d'un niveau
+Mtp_Up.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Remonter d'un niveau
+Mtp_Refresh.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Rechercher des appareils
+Mtp_Refresh.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Rechercher des appareils
+Mtp_MoveImport	Retirer de l'appareil ce qui est copié (déplacer)
+Mtp_MoveExport	Retirer du PC ce qui est copié (déplacer)
+Mtp_Open	Ouvrir « {0} »

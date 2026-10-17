@@ -808,4 +808,25 @@
   <data name="DragConfirm_Always.Content" xml:space="preserve"><value>Her zaman</value></data>
   <data name="Drag_ConfirmMove" xml:space="preserve"><value>{0} MegaCopier ile &quot;{1}&quot; konumuna taşınsın mı?</value></data>
   <data name="Drag_ConfirmCopy" xml:space="preserve"><value>{0} MegaCopier ile &quot;{1}&quot; konumuna kopyalansın mı?</value></data>
+  <data name="Tool_MtpImport.Text" xml:space="preserve"><value>Telefondan veya kameradan kopyala…</value></data>
+  <data name="Tool_MtpExport.Text" xml:space="preserve"><value>Dosyaları telefona veya kameraya kopyala…</value></data>
+  <data name="MtpDialog.CloseButtonText" xml:space="preserve"><value>İptal</value></data>
+  <data name="Mtp_ImportTitle" xml:space="preserve"><value>Telefondan veya kameradan kopyala</value></data>
+  <data name="Mtp_ExportTitle" xml:space="preserve"><value>Telefona veya kameraya kopyala</value></data>
+  <data name="Mtp_ImportButton" xml:space="preserve"><value>Şuraya kopyala…</value></data>
+  <data name="Mtp_ExportButton" xml:space="preserve"><value>Buraya kopyala</value></data>
+  <data name="Mtp_ImportSummary" xml:space="preserve"><value>Kopyalamak istediklerinizi işaretleyin. Hiçbir şey işaretlenmezse açık klasörün tamamı kopyalanır.</value></data>
+  <data name="Mtp_ExportSummaryOne" xml:space="preserve"><value>&quot;{0}&quot; öğesinin kopyalanacağı cihaz klasörünü açın.</value></data>
+  <data name="Mtp_ExportSummaryMany" xml:space="preserve"><value>{0} öğenin kopyalanacağı cihaz klasörünü açın.</value></data>
+  <data name="Mtp_NoDevices" xml:space="preserve"><value>Bağlı telefon veya kamera yok. USB ile bağlayın, kilidini açın ve &quot;Dosya aktarımı&quot;nı seçin.</value></data>
+  <data name="Mtp_Loading" xml:space="preserve"><value>Cihaz okunuyor…</value></data>
+  <data name="Mtp_Empty" xml:space="preserve"><value>Boş klasör.</value></data>
+  <data name="Mtp_Error" xml:space="preserve"><value>Cihaz okunamadı: {0}</value></data>
+  <data name="Mtp_Up.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Bir üst düzey</value></data>
+  <data name="Mtp_Up.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Bir üst düzey</value></data>
+  <data name="Mtp_Refresh.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Cihazları ara</value></data>
+  <data name="Mtp_Refresh.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Cihazları ara</value></data>
+  <data name="Mtp_MoveImport" xml:space="preserve"><value>Kopyalananları cihazdan kaldır (taşı)</value></data>
+  <data name="Mtp_MoveExport" xml:space="preserve"><value>Kopyalananları bilgisayardan kaldır (taşı)</value></data>
+  <data name="Mtp_Open" xml:space="preserve"><value>&quot;{0}&quot; öğesini aç</value></data>
 </root>

@@ -808,4 +808,25 @@
   <data name="DragConfirm_Always.Content" xml:space="preserve"><value>总是</value></data>
   <data name="Drag_ConfirmMove" xml:space="preserve"><value>用 MegaCopier 将 {0} 移动到“{1}”？</value></data>
   <data name="Drag_ConfirmCopy" xml:space="preserve"><value>用 MegaCopier 将 {0} 复制到“{1}”？</value></data>
+  <data name="Tool_MtpImport.Text" xml:space="preserve"><value>从手机或相机复制…</value></data>
+  <data name="Tool_MtpExport.Text" xml:space="preserve"><value>将文件复制到手机或相机…</value></data>
+  <data name="MtpDialog.CloseButtonText" xml:space="preserve"><value>取消</value></data>
+  <data name="Mtp_ImportTitle" xml:space="preserve"><value>从手机或相机复制</value></data>
+  <data name="Mtp_ExportTitle" xml:space="preserve"><value>复制到手机或相机</value></data>
+  <data name="Mtp_ImportButton" xml:space="preserve"><value>复制到…</value></data>
+  <data name="Mtp_ExportButton" xml:space="preserve"><value>复制到这里</value></data>
+  <data name="Mtp_ImportSummary" xml:space="preserve"><value>勾选要复制的内容。如果什么都不勾选，将复制整个打开的文件夹。</value></data>
+  <data name="Mtp_ExportSummaryOne" xml:space="preserve"><value>打开设备上要复制“{0}”的文件夹。</value></data>
+  <data name="Mtp_ExportSummaryMany" xml:space="preserve"><value>打开设备上要复制 {0} 个项目的文件夹。</value></data>
+  <data name="Mtp_NoDevices" xml:space="preserve"><value>没有连接手机或相机。请用 USB 连接、解锁并选择“文件传输”。</value></data>
+  <data name="Mtp_Loading" xml:space="preserve"><value>正在读取设备…</value></data>
+  <data name="Mtp_Empty" xml:space="preserve"><value>空文件夹。</value></data>
+  <data name="Mtp_Error" xml:space="preserve"><value>无法读取设备：{0}</value></data>
+  <data name="Mtp_Up.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>上一级</value></data>
+  <data name="Mtp_Up.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>上一级</value></data>
+  <data name="Mtp_Refresh.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>查找设备</value></data>
+  <data name="Mtp_Refresh.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>查找设备</value></data>
+  <data name="Mtp_MoveImport" xml:space="preserve"><value>从设备上删除已复制的内容（移动）</value></data>
+  <data name="Mtp_MoveExport" xml:space="preserve"><value>从电脑上删除已复制的内容（移动）</value></data>
+  <data name="Mtp_Open" xml:space="preserve"><value>打开“{0}”</value></data>
 </root>

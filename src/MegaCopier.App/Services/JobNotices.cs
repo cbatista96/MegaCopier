@@ -141,7 +141,7 @@ internal static class JobNotices
     public static string Summary(CopyJob job)
     {
         string what = job.Record.Sources.Count == 1
-            ? Path.GetFileName(Path.TrimEndingDirectorySeparator(job.Record.Sources[0]))
+            ? ViewModels.Format.ItemName(job.Record.Sources[0])
             : L.F("Job_ManyItems", job.Record.Sources.Count);
         string icon = job.State == CopyJobState.Completed ? "✔" : "⚠";
         string state = L.Get(job.State switch
@@ -150,7 +150,7 @@ internal static class JobNotices
             CopyJobState.CompletedWithErrors => "Job_StateCompletedErrors",
             _ => "Job_StateFailed",
         });
-        var text = new StringBuilder($"{icon} MegaCopier · {state}: {what} → {job.Record.Destination}");
+        var text = new StringBuilder($"{icon} MegaCopier · {state}: {what} → {ViewModels.Format.Display(job.Record.Destination)}");
         if (job.Result is { } result)
         {
             text.Append($" · {L.F(result.FilesCopied == 1 ? "Job_FilesCopiedOne" : "Job_FilesCopiedMany", result.FilesCopied)} · {Format.Bytes(result.BytesTransferred)} · {Format.Duration(result.Elapsed)}");

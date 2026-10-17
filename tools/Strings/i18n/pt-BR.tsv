@@ -802,3 +802,24 @@ DragConfirm_Moves.Content	Só ao mover
 DragConfirm_Always.Content	Sempre
 Drag_ConfirmMove	Mover {0} para "{1}" com o MegaCopier?
 Drag_ConfirmCopy	Copiar {0} para "{1}" com o MegaCopier?
+Tool_MtpImport.Text	Copiar do celular ou da câmera…
+Tool_MtpExport.Text	Copiar arquivos para o celular ou a câmera…
+MtpDialog.CloseButtonText	Cancelar
+Mtp_ImportTitle	Copiar do celular ou da câmera
+Mtp_ExportTitle	Copiar para o celular ou a câmera
+Mtp_ImportButton	Copiar para…
+Mtp_ExportButton	Copiar aqui
+Mtp_ImportSummary	Marque o que quer copiar. Sem marcar nada, a pasta aberta é copiada inteira.
+Mtp_ExportSummaryOne	Abra a pasta do dispositivo onde copiar "{0}".
+Mtp_ExportSummaryMany	Abra a pasta do dispositivo onde copiar {0} itens.
+Mtp_NoDevices	Nenhum celular ou câmera conectado. Conecte-o por USB, desbloqueie e escolha "Transferência de arquivos".
+Mtp_Loading	Lendo o dispositivo…
+Mtp_Empty	Pasta vazia.
+Mtp_Error	Não foi possível ler o dispositivo: {0}
+Mtp_Up.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Subir um nível
+Mtp_Up.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Subir um nível
+Mtp_Refresh.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Procurar dispositivos
+Mtp_Refresh.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Procurar dispositivos
+Mtp_MoveImport	Remover do dispositivo o que for copiado (mover)
+Mtp_MoveExport	Remover do PC o que for copiado (mover)
+Mtp_Open	Abrir "{0}"

@@ -802,3 +802,24 @@ DragConfirm_Moves.Content	Nur beim Verschieben
 DragConfirm_Always.Content	Immer
 Drag_ConfirmMove	{0} mit MegaCopier nach „{1}“ verschieben?
 Drag_ConfirmCopy	{0} mit MegaCopier nach „{1}“ kopieren?
+Tool_MtpImport.Text	Vom Handy oder von der Kamera kopieren…
+Tool_MtpExport.Text	Dateien aufs Handy oder die Kamera kopieren…
+MtpDialog.CloseButtonText	Abbrechen
+Mtp_ImportTitle	Vom Handy oder von der Kamera kopieren
+Mtp_ExportTitle	Aufs Handy oder die Kamera kopieren
+Mtp_ImportButton	Kopieren nach…
+Mtp_ExportButton	Hierher kopieren
+Mtp_ImportSummary	Markieren Sie, was kopiert werden soll. Ohne Markierung wird der ganze geöffnete Ordner kopiert.
+Mtp_ExportSummaryOne	Öffnen Sie den Geräteordner, in den „{0}“ kopiert werden soll.
+Mtp_ExportSummaryMany	Öffnen Sie den Geräteordner, in den {0} Elemente kopiert werden sollen.
+Mtp_NoDevices	Kein Handy und keine Kamera verbunden. Per USB anschließen, entsperren und „Dateiübertragung“ wählen.
+Mtp_Loading	Gerät wird gelesen…
+Mtp_Empty	Leerer Ordner.
+Mtp_Error	Das Gerät konnte nicht gelesen werden: {0}
+Mtp_Up.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Eine Ebene höher
+Mtp_Up.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Eine Ebene höher
+Mtp_Refresh.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Geräte suchen
+Mtp_Refresh.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Geräte suchen
+Mtp_MoveImport	Kopiertes vom Gerät entfernen (verschieben)
+Mtp_MoveExport	Kopiertes vom PC entfernen (verschieben)
+Mtp_Open	„{0}“ öffnen

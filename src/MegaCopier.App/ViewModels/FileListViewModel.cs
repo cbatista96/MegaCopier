@@ -26,7 +26,7 @@ public sealed partial class FileRowViewModel(TransferItem item, string root) : I
 
     public int Id => Item.Id;
 
-    public string Name => Path.GetFileName(Item.Source);
+    public string Name => Format.ItemName(Item.Source);
 
     /// <summary>Nombre accesible de la fila (lectores de pantalla).</summary>
     public override string ToString() => $"{Name}, {StateText}";
@@ -36,14 +36,14 @@ public sealed partial class FileRowViewModel(TransferItem item, string root) : I
     {
         get
         {
-            string folder = Path.GetDirectoryName(Item.Source) ?? "";
+            string folder = Path.GetDirectoryName(Format.Display(Item.Source)) ?? "";
             return folder.StartsWith(root, StringComparison.OrdinalIgnoreCase) ? folder[root.Length..].TrimStart('\\') : folder;
         }
     }
 
-    public string SourcePath => Item.Source;
+    public string SourcePath => Format.Display(Item.Source);
 
-    public string DestinationPath => Item.Destination;
+    public string DestinationPath => Format.Display(Item.Destination);
 
     public string SizeText => Format.Bytes(Item.Length);
 
@@ -134,7 +134,7 @@ public sealed partial class FileListViewModel : INotifyPropertyChanged, IDisposa
         _list = list;
         _dispatcher = dispatcher;
         _hideFinished = hideFinished;
-        _root = Path.GetDirectoryName(Path.TrimEndingDirectorySeparator(job.Record.Sources.FirstOrDefault() ?? "")) ?? "";
+        _root = Path.GetDirectoryName(Path.TrimEndingDirectorySeparator(Format.Display(job.Record.Sources.FirstOrDefault() ?? ""))) ?? "";
         foreach (var item in list.Snapshot())
         {
             _rows[item.Id] = new FileRowViewModel(item, _root);

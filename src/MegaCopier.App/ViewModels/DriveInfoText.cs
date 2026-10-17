@@ -17,6 +17,11 @@ internal static class DriveInfoText
     /// <summary>Datos de la unidad (se refrescan como mucho cada 5 s: el espacio libre cambia durante la copia).</summary>
     public static DriveDescription Describe(string path)
     {
+        if (Engine.Mtp.MtpPath.TryParse(path, out _, out string device, out _))
+        {
+            return new DriveDescription(device, "", "", "MTP", "MTP", 0, 0); // un móvil: no hay letra ni espacio libre que mirar
+        }
+
         string root;
         try
         {

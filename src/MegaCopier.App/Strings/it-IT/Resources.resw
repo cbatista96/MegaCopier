@@ -808,4 +808,25 @@
   <data name="DragConfirm_Always.Content" xml:space="preserve"><value>Sempre</value></data>
   <data name="Drag_ConfirmMove" xml:space="preserve"><value>Spostare {0} in «{1}» con MegaCopier?</value></data>
   <data name="Drag_ConfirmCopy" xml:space="preserve"><value>Copiare {0} in «{1}» con MegaCopier?</value></data>
+  <data name="Tool_MtpImport.Text" xml:space="preserve"><value>Copia da telefono o fotocamera…</value></data>
+  <data name="Tool_MtpExport.Text" xml:space="preserve"><value>Copia file su telefono o fotocamera…</value></data>
+  <data name="MtpDialog.CloseButtonText" xml:space="preserve"><value>Annulla</value></data>
+  <data name="Mtp_ImportTitle" xml:space="preserve"><value>Copia da telefono o fotocamera</value></data>
+  <data name="Mtp_ExportTitle" xml:space="preserve"><value>Copia su telefono o fotocamera</value></data>
+  <data name="Mtp_ImportButton" xml:space="preserve"><value>Copia in…</value></data>
+  <data name="Mtp_ExportButton" xml:space="preserve"><value>Copia qui</value></data>
+  <data name="Mtp_ImportSummary" xml:space="preserve"><value>Seleziona ciò che vuoi copiare. Senza selezione si copia l&apos;intera cartella aperta.</value></data>
+  <data name="Mtp_ExportSummaryOne" xml:space="preserve"><value>Apri la cartella del dispositivo in cui copiare «{0}».</value></data>
+  <data name="Mtp_ExportSummaryMany" xml:space="preserve"><value>Apri la cartella del dispositivo in cui copiare {0} elementi.</value></data>
+  <data name="Mtp_NoDevices" xml:space="preserve"><value>Nessun telefono o fotocamera collegato. Collegalo via USB, sbloccalo e scegli «Trasferimento file».</value></data>
+  <data name="Mtp_Loading" xml:space="preserve"><value>Lettura del dispositivo…</value></data>
+  <data name="Mtp_Empty" xml:space="preserve"><value>Cartella vuota.</value></data>
+  <data name="Mtp_Error" xml:space="preserve"><value>Impossibile leggere il dispositivo: {0}</value></data>
+  <data name="Mtp_Up.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Livello superiore</value></data>
+  <data name="Mtp_Up.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Livello superiore</value></data>
+  <data name="Mtp_Refresh.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Cerca dispositivi</value></data>
+  <data name="Mtp_Refresh.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Cerca dispositivi</value></data>
+  <data name="Mtp_MoveImport" xml:space="preserve"><value>Rimuovi dal dispositivo ciò che viene copiato (sposta)</value></data>
+  <data name="Mtp_MoveExport" xml:space="preserve"><value>Rimuovi dal PC ciò che viene copiato (sposta)</value></data>
+  <data name="Mtp_Open" xml:space="preserve"><value>Apri «{0}»</value></data>
 </root>

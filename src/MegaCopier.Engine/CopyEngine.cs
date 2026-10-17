@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using System.Text;
 using MegaCopier.Engine.IO;
+using MegaCopier.Engine.Mtp;
 using MegaCopier.Engine.Native;
 
 namespace MegaCopier.Engine;
@@ -108,6 +109,11 @@ public sealed partial class CopyEngine
     public CopyJobResult Run(CopyJobRequest request, CancellationToken cancellationToken = default)
     {
         var stopwatch = Stopwatch.StartNew();
+        if (_options.Operation == JobOperation.Copy && IsMtpJob(request))
+        {
+            return request.Sources.Any(MtpPath.IsMtp) ? RunMtpImport(request, stopwatch, cancellationToken) : RunMtpExport(request, stopwatch, cancellationToken);
+        }
+
         switch (_options.Operation)
         {
             case JobOperation.Test:

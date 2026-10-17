@@ -802,3 +802,24 @@ DragConfirm_Moves.Content	移動するときだけ
 DragConfirm_Always.Content	常に
 Drag_ConfirmMove	MegaCopier で {0} を「{1}」に移動しますか？
 Drag_ConfirmCopy	MegaCopier で {0} を「{1}」にコピーしますか？
+Tool_MtpImport.Text	スマートフォンやカメラからコピー…
+Tool_MtpExport.Text	ファイルをスマートフォンやカメラにコピー…
+MtpDialog.CloseButtonText	キャンセル
+Mtp_ImportTitle	スマートフォンやカメラからコピー
+Mtp_ExportTitle	スマートフォンやカメラにコピー
+Mtp_ImportButton	コピー先…
+Mtp_ExportButton	ここにコピー
+Mtp_ImportSummary	コピーしたいものにチェックを付けます。何もチェックしないと、開いているフォルダー全体をコピーします。
+Mtp_ExportSummaryOne	「{0}」をコピーするデバイスのフォルダーを開いてください。
+Mtp_ExportSummaryMany	{0} 個の項目をコピーするデバイスのフォルダーを開いてください。
+Mtp_NoDevices	スマートフォンもカメラも接続されていません。USB で接続し、ロックを解除して「ファイル転送」を選んでください。
+Mtp_Loading	デバイスを読み取り中…
+Mtp_Empty	空のフォルダー。
+Mtp_Error	デバイスを読み取れませんでした: {0}
+Mtp_Up.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	1 つ上へ
+Mtp_Up.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	1 つ上へ
+Mtp_Refresh.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	デバイスを検索
+Mtp_Refresh.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	デバイスを検索
+Mtp_MoveImport	コピーしたものをデバイスから削除（移動）
+Mtp_MoveExport	コピーしたものを PC から削除（移動）
+Mtp_Open	「{0}」を開く

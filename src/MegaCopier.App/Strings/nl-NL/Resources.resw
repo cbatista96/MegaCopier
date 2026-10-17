@@ -808,4 +808,25 @@
   <data name="DragConfirm_Always.Content" xml:space="preserve"><value>Altijd</value></data>
   <data name="Drag_ConfirmMove" xml:space="preserve"><value>{0} met MegaCopier naar &apos;{1}&apos; verplaatsen?</value></data>
   <data name="Drag_ConfirmCopy" xml:space="preserve"><value>{0} met MegaCopier naar &apos;{1}&apos; kopiëren?</value></data>
+  <data name="Tool_MtpImport.Text" xml:space="preserve"><value>Kopiëren van telefoon of camera…</value></data>
+  <data name="Tool_MtpExport.Text" xml:space="preserve"><value>Bestanden naar telefoon of camera kopiëren…</value></data>
+  <data name="MtpDialog.CloseButtonText" xml:space="preserve"><value>Annuleren</value></data>
+  <data name="Mtp_ImportTitle" xml:space="preserve"><value>Kopiëren van telefoon of camera</value></data>
+  <data name="Mtp_ExportTitle" xml:space="preserve"><value>Kopiëren naar telefoon of camera</value></data>
+  <data name="Mtp_ImportButton" xml:space="preserve"><value>Kopiëren naar…</value></data>
+  <data name="Mtp_ExportButton" xml:space="preserve"><value>Hier kopiëren</value></data>
+  <data name="Mtp_ImportSummary" xml:space="preserve"><value>Vink aan wat je wilt kopiëren. Zonder vinkjes wordt de hele geopende map gekopieerd.</value></data>
+  <data name="Mtp_ExportSummaryOne" xml:space="preserve"><value>Open de map op het apparaat waar &apos;{0}&apos; naartoe moet.</value></data>
+  <data name="Mtp_ExportSummaryMany" xml:space="preserve"><value>Open de map op het apparaat waar {0} items naartoe moeten.</value></data>
+  <data name="Mtp_NoDevices" xml:space="preserve"><value>Er is geen telefoon of camera aangesloten. Sluit hem via USB aan, ontgrendel hem en kies &apos;Bestandsoverdracht&apos;.</value></data>
+  <data name="Mtp_Loading" xml:space="preserve"><value>Apparaat lezen…</value></data>
+  <data name="Mtp_Empty" xml:space="preserve"><value>Lege map.</value></data>
+  <data name="Mtp_Error" xml:space="preserve"><value>Kan het apparaat niet lezen: {0}</value></data>
+  <data name="Mtp_Up.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Niveau omhoog</value></data>
+  <data name="Mtp_Up.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Niveau omhoog</value></data>
+  <data name="Mtp_Refresh.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Apparaten zoeken</value></data>
+  <data name="Mtp_Refresh.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Apparaten zoeken</value></data>
+  <data name="Mtp_MoveImport" xml:space="preserve"><value>Gekopieerde van het apparaat verwijderen (verplaatsen)</value></data>
+  <data name="Mtp_MoveExport" xml:space="preserve"><value>Gekopieerde van de pc verwijderen (verplaatsen)</value></data>
+  <data name="Mtp_Open" xml:space="preserve"><value>&apos;{0}&apos; openen</value></data>
 </root>

@@ -808,4 +808,25 @@
   <data name="DragConfirm_Always.Content" xml:space="preserve"><value>常に</value></data>
   <data name="Drag_ConfirmMove" xml:space="preserve"><value>MegaCopier で {0} を「{1}」に移動しますか？</value></data>
   <data name="Drag_ConfirmCopy" xml:space="preserve"><value>MegaCopier で {0} を「{1}」にコピーしますか？</value></data>
+  <data name="Tool_MtpImport.Text" xml:space="preserve"><value>スマートフォンやカメラからコピー…</value></data>
+  <data name="Tool_MtpExport.Text" xml:space="preserve"><value>ファイルをスマートフォンやカメラにコピー…</value></data>
+  <data name="MtpDialog.CloseButtonText" xml:space="preserve"><value>キャンセル</value></data>
+  <data name="Mtp_ImportTitle" xml:space="preserve"><value>スマートフォンやカメラからコピー</value></data>
+  <data name="Mtp_ExportTitle" xml:space="preserve"><value>スマートフォンやカメラにコピー</value></data>
+  <data name="Mtp_ImportButton" xml:space="preserve"><value>コピー先…</value></data>
+  <data name="Mtp_ExportButton" xml:space="preserve"><value>ここにコピー</value></data>
+  <data name="Mtp_ImportSummary" xml:space="preserve"><value>コピーしたいものにチェックを付けます。何もチェックしないと、開いているフォルダー全体をコピーします。</value></data>
+  <data name="Mtp_ExportSummaryOne" xml:space="preserve"><value>「{0}」をコピーするデバイスのフォルダーを開いてください。</value></data>
+  <data name="Mtp_ExportSummaryMany" xml:space="preserve"><value>{0} 個の項目をコピーするデバイスのフォルダーを開いてください。</value></data>
+  <data name="Mtp_NoDevices" xml:space="preserve"><value>スマートフォンもカメラも接続されていません。USB で接続し、ロックを解除して「ファイル転送」を選んでください。</value></data>
+  <data name="Mtp_Loading" xml:space="preserve"><value>デバイスを読み取り中…</value></data>
+  <data name="Mtp_Empty" xml:space="preserve"><value>空のフォルダー。</value></data>
+  <data name="Mtp_Error" xml:space="preserve"><value>デバイスを読み取れませんでした: {0}</value></data>
+  <data name="Mtp_Up.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>1 つ上へ</value></data>
+  <data name="Mtp_Up.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>1 つ上へ</value></data>
+  <data name="Mtp_Refresh.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>デバイスを検索</value></data>
+  <data name="Mtp_Refresh.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>デバイスを検索</value></data>
+  <data name="Mtp_MoveImport" xml:space="preserve"><value>コピーしたものをデバイスから削除（移動）</value></data>
+  <data name="Mtp_MoveExport" xml:space="preserve"><value>コピーしたものを PC から削除（移動）</value></data>
+  <data name="Mtp_Open" xml:space="preserve"><value>「{0}」を開く</value></data>
 </root>

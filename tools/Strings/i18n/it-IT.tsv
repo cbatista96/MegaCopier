@@ -802,3 +802,24 @@ DragConfirm_Moves.Content	Solo quando sposta
 DragConfirm_Always.Content	Sempre
 Drag_ConfirmMove	Spostare {0} in «{1}» con MegaCopier?
 Drag_ConfirmCopy	Copiare {0} in «{1}» con MegaCopier?
+Tool_MtpImport.Text	Copia da telefono o fotocamera…
+Tool_MtpExport.Text	Copia file su telefono o fotocamera…
+MtpDialog.CloseButtonText	Annulla
+Mtp_ImportTitle	Copia da telefono o fotocamera
+Mtp_ExportTitle	Copia su telefono o fotocamera
+Mtp_ImportButton	Copia in…
+Mtp_ExportButton	Copia qui
+Mtp_ImportSummary	Seleziona ciò che vuoi copiare. Senza selezione si copia l'intera cartella aperta.
+Mtp_ExportSummaryOne	Apri la cartella del dispositivo in cui copiare «{0}».
+Mtp_ExportSummaryMany	Apri la cartella del dispositivo in cui copiare {0} elementi.
+Mtp_NoDevices	Nessun telefono o fotocamera collegato. Collegalo via USB, sbloccalo e scegli «Trasferimento file».
+Mtp_Loading	Lettura del dispositivo…
+Mtp_Empty	Cartella vuota.
+Mtp_Error	Impossibile leggere il dispositivo: {0}
+Mtp_Up.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Livello superiore
+Mtp_Up.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Livello superiore
+Mtp_Refresh.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Cerca dispositivi
+Mtp_Refresh.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Cerca dispositivi
+Mtp_MoveImport	Rimuovi dal dispositivo ciò che viene copiato (sposta)
+Mtp_MoveExport	Rimuovi dal PC ciò che viene copiato (sposta)
+Mtp_Open	Apri «{0}»

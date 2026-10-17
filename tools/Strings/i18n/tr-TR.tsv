@@ -802,3 +802,24 @@ DragConfirm_Moves.Content	Yalnızca taşırken
 DragConfirm_Always.Content	Her zaman
 Drag_ConfirmMove	{0} MegaCopier ile "{1}" konumuna taşınsın mı?
 Drag_ConfirmCopy	{0} MegaCopier ile "{1}" konumuna kopyalansın mı?
+Tool_MtpImport.Text	Telefondan veya kameradan kopyala…
+Tool_MtpExport.Text	Dosyaları telefona veya kameraya kopyala…
+MtpDialog.CloseButtonText	İptal
+Mtp_ImportTitle	Telefondan veya kameradan kopyala
+Mtp_ExportTitle	Telefona veya kameraya kopyala
+Mtp_ImportButton	Şuraya kopyala…
+Mtp_ExportButton	Buraya kopyala
+Mtp_ImportSummary	Kopyalamak istediklerinizi işaretleyin. Hiçbir şey işaretlenmezse açık klasörün tamamı kopyalanır.
+Mtp_ExportSummaryOne	"{0}" öğesinin kopyalanacağı cihaz klasörünü açın.
+Mtp_ExportSummaryMany	{0} öğenin kopyalanacağı cihaz klasörünü açın.
+Mtp_NoDevices	Bağlı telefon veya kamera yok. USB ile bağlayın, kilidini açın ve "Dosya aktarımı"nı seçin.
+Mtp_Loading	Cihaz okunuyor…
+Mtp_Empty	Boş klasör.
+Mtp_Error	Cihaz okunamadı: {0}
+Mtp_Up.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Bir üst düzey
+Mtp_Up.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Bir üst düzey
+Mtp_Refresh.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Cihazları ara
+Mtp_Refresh.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Cihazları ara
+Mtp_MoveImport	Kopyalananları cihazdan kaldır (taşı)
+Mtp_MoveExport	Kopyalananları bilgisayardan kaldır (taşı)
+Mtp_Open	"{0}" öğesini aç

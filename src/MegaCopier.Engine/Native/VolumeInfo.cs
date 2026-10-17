@@ -13,6 +13,11 @@ internal static partial class VolumeInfo
 
     public static string DeviceKey(string path)
     {
+        if (Mtp.MtpPath.IsMtp(path))
+        {
+            return Mtp.MtpPath.DeviceKey(path);
+        }
+
         string full = Path.GetFullPath(path);
         string root = Path.GetPathRoot(full) ?? full;
 
