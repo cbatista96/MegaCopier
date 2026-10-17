@@ -382,8 +382,8 @@
                         <Grid Style="{StaticResource Row}" Tag="SettingRow">
                             <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
                             <FontIcon VerticalAlignment="Center" Glyph="&#xE8EA;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
-                            <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_RemoteTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="Settings_RemoteDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
-                            <ToggleSwitch x:Name="RemoteToggle" Grid.Column="2" OnContent="" OffContent="" MinWidth="0" Toggled="Remote_Toggled" />
+                            <StackPanel Grid.Column="1"><TextBlock x:Name="RemoteTitleLabel" x:Uid="Settings_RemoteTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="Settings_RemoteDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                            <ToggleSwitch x:Name="RemoteToggle" AutomationProperties.LabeledBy="{x:Bind RemoteTitleLabel}" Grid.Column="2" OnContent="" OffContent="" MinWidth="0" Toggled="Remote_Toggled" />
                         </Grid>
                         <Grid x:Name="RemotePanel" ColumnSpacing="8" Margin="30,0,0,0">
                             <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
@@ -406,8 +406,8 @@
                         <Grid Style="{StaticResource Row}" Tag="SettingRow">
                             <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
                             <FontIcon VerticalAlignment="Center" Glyph="&#xE8CE;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
-                            <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_RemoteConnectionsTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="Settings_RemoteConnectionsDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
-                            <NumberBox x:Name="RemoteConnectionsBox" Grid.Column="2" Minimum="1" Maximum="255" SpinButtonPlacementMode="Inline" MinWidth="140" ValueChanged="Number_Changed" />
+                            <StackPanel Grid.Column="1"><TextBlock x:Name="RemoteConnectionsTitleLabel" x:Uid="Settings_RemoteConnectionsTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="Settings_RemoteConnectionsDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                            <NumberBox x:Name="RemoteConnectionsBox" AutomationProperties.LabeledBy="{x:Bind RemoteConnectionsTitleLabel}" Grid.Column="2" Minimum="1" Maximum="255" SpinButtonPlacementMode="Inline" MinWidth="140" ValueChanged="Number_Changed" />
                         </Grid>
                     </StackPanel>
                 </Border>
