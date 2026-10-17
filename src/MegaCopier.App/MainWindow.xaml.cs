@@ -28,10 +28,14 @@ public sealed partial class MainWindow : Window
     private const double CompactWidth = 600;
     private const double CompactHeight = 252;
     private const double PagerHeight = 40;
+
+    /// <summary>Sin copias, la ventana compacta crece para que quepan el icono, los botones y los enlaces.</summary>
+    private const double EmptyHeight = 360;
     private const double ExpandedWidth = 1060;
     private const double ExpandedHeight = 720;
     private const double SidebarWidth = 290;
 
+    private bool _wasEmpty = true;
     private readonly App _app;
     private readonly DispatcherQueue _dispatcher;
     private readonly SemaphoreSlim _dialogGate = new(1, 1);
@@ -406,7 +410,7 @@ public sealed partial class MainWindow : Window
         if (AppWindow.Presenter is OverlappedPresenter overlapped)
         {
             // La ventana no puede encogerse tanto que tape el paginador o los botones.
-            overlapped.PreferredMinimumHeight = Scaled(_expanded ? 480 : CompactHeight + (pager == Visibility.Visible ? PagerHeight : 0));
+            overlapped.PreferredMinimumHeight = Scaled(_expanded ? 480 : Jobs.Count == 0 ? 240 : CompactHeight + (pager == Visibility.Visible ? PagerHeight : 0));
         }
 
         if (Pager.Visibility != pager)
@@ -494,7 +498,9 @@ public sealed partial class MainWindow : Window
     }
 
     private (double Width, double Height) TargetSize(bool expanded) =>
-        expanded ? (ExpandedWidth, ExpandedHeight) : (CompactWidth, CompactHeight + (Jobs.Count > 1 ? PagerHeight : 0));
+        expanded ? (ExpandedWidth, ExpandedHeight)
+        : Jobs.Count == 0 ? (CompactWidth, EmptyHeight)
+        : (CompactWidth, CompactHeight + (Jobs.Count > 1 ? PagerHeight : 0));
 
     private void Sidebar_Click(object sender, RoutedEventArgs e)
     {
@@ -573,6 +579,16 @@ public sealed partial class MainWindow : Window
         bool page = PageOpen;
         bool empty = Jobs.Count == 0;
         EmptyState.Visibility = !page && empty ? Visibility.Visible : Visibility.Collapsed;
+        if (empty != _wasEmpty)
+        {
+            // De «sin copias» a «copiando» (o al revés), la ventana compacta cambia de alto.
+            _wasEmpty = empty;
+            if (!_expanded && AppWindow.IsVisible)
+            {
+                AnimateResize();
+            }
+        }
+
         Detail.Visibility = !page && !empty ? Visibility.Visible : Visibility.Collapsed;
         ApplySidebar();
         JobsHeader.Text = L.F("Jobs_Header", Jobs.Count, Jobs.Count(j => j.IsActive));
