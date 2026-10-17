@@ -1010,4 +1010,6 @@
   <data name="Job_FilesRestoredOne" xml:space="preserve"><value>{0} 個のファイルを復元</value></data>
   <data name="Job_FilesRestoredMany" xml:space="preserve"><value>{0} 個のファイルを復元</value></data>
   <data name="Rules_Forensic.Content" xml:space="preserve"><value>フォレンジック モード: すべての SHA-256 と署名付きマニフェストをコピー先に</value></data>
+  <data name="Rules_Alternates.Header" xml:space="preserve"><value>同じデータがあるほかの場所（1 行に 1 つ）: 大きなファイルはすべてから同時に読み込む</value></data>
+  <data name="Rules_Alternates.PlaceholderText" xml:space="preserve"><value>\\NAS2\写真</value></data>
 </root>

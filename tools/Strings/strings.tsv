@@ -1004,3 +1004,5 @@ Job_StateRestoring	Restaurando	Restoring
 Job_FilesRestoredOne	{0} archivo restaurado	{0} file restored
 Job_FilesRestoredMany	{0} archivos restaurados	{0} files restored
 Rules_Forensic.Content	Modo forense: SHA-256 de todo y un manifiesto firmado en el destino	Forensic mode: SHA-256 of everything and a signed manifest in the destination
+Rules_Alternates.Header	Otros sitios con lo mismo que el origen (uno por línea): los archivos grandes se leen de todos a la vez	Other places with the same data as the source (one per line): big files are read from all at once
+Rules_Alternates.PlaceholderText	\\NAS2\fotos	\\NAS2\photos

@@ -259,6 +259,12 @@ public sealed class CopyOptions
     /// <summary>Ajustar las conexiones sobre la marcha según la velocidad (<see cref="RemoteConnections"/> es entonces el máximo).</summary>
     public bool RemoteConnectionsAuto { get; set; } = true;
 
+    /// <summary>
+    /// Otros sitios con el mismo contenido que el origen (otro NAS, la carpeta compartida de otro equipo...): los archivos
+    /// grandes se leen de todos a la vez. Cada uno es el equivalente de la carpeta (o archivo) de origen.
+    /// </summary>
+    public List<string> AlternateSources { get; set; } = [];
+
     public bool ServerSideCopy { get; set; } = true;
 
     /// <summary>Pedir compresión SMB al copiar por red (Windows 11 / Server 2022): ayuda en redes lentas.</summary>

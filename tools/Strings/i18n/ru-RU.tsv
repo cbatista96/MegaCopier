@@ -1004,3 +1004,5 @@ Job_StateRestoring	Восстановление
 Job_FilesRestoredOne	Восстановлено файлов: {0}
 Job_FilesRestoredMany	Восстановлено файлов: {0}
 Rules_Forensic.Content	Криминалистический режим: SHA-256 всего и подписанный манифест в месте назначения
+Rules_Alternates.Header	Другие места с теми же данными (по одному в строке): большие файлы читаются отовсюду сразу
+Rules_Alternates.PlaceholderText	\\NAS2\фото

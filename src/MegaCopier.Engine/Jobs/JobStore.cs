@@ -79,6 +79,8 @@ public sealed class CopyJobRecord
 
     public bool RemoteConnectionsAuto { get; set; } = true;
 
+    public List<string> AlternateSources { get; set; } = [];
+
     public LinkHandling Links { get; set; } = LinkHandling.CopyLink;
 
     public string KeepBothPattern { get; set; } = CopyOptions.DefaultKeepBothPattern;
@@ -182,6 +184,7 @@ public sealed class CopyJobRecord
         ArchiveFormat = options.ArchiveFormat,
         RemoteConnections = options.RemoteConnections,
         RemoteConnectionsAuto = options.RemoteConnectionsAuto,
+        AlternateSources = [.. options.AlternateSources],
         Links = options.Links,
         KeepBothPattern = options.KeepBothPattern,
         Filter = options.Filter,
@@ -249,6 +252,7 @@ public sealed class CopyJobRecord
             ArchiveFormat = ArchiveFormat,
             RemoteConnections = RemoteConnections,
             RemoteConnectionsAuto = RemoteConnectionsAuto,
+            AlternateSources = [.. AlternateSources ?? []],
             Links = Links,
             KeepBothPattern = KeepBothPattern,
             Filter = Filter ?? new FileFilter(),

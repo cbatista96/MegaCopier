@@ -48,6 +48,39 @@ public sealed partial class CopyEngine
         Log(LogLevel.Info, Texts.F("E_RecoveryCreated", created, _options.RecoveryPercent));
     }
 
+    /// <summary>
+    /// Dónde más está cada archivo del origen (<see cref="CopyOptions.AlternateSources"/>): cada sitio alternativo es el
+    /// equivalente del origen, así que "\\nas1\fotos\2026\a.jpg" con la alternativa "\\nas2\fotos" es "\\nas2\fotos\2026\a.jpg".
+    /// Con varios orígenes, cada alternativa contiene una carpeta con el nombre de cada uno.
+    /// </summary>
+    private Func<string, IReadOnlyList<string>>? AlternatesFor(CopyJobRequest request)
+    {
+        if (_options.AlternateSources.Count == 0 || request.Sources.Count == 0)
+        {
+            return null;
+        }
+
+        var roots = request.Sources.Select(s => Path.TrimEndingDirectorySeparator(Path.GetFullPath(s))).ToList();
+        var alternates = _options.AlternateSources.Select(a => Path.TrimEndingDirectorySeparator(Path.GetFullPath(a))).ToList();
+        bool single = roots.Count == 1;
+        return path =>
+        {
+            foreach (string root in roots)
+            {
+                string? relative = string.Equals(path, root, StringComparison.OrdinalIgnoreCase) ? ""
+                    : path.StartsWith(root + Path.DirectorySeparatorChar, StringComparison.OrdinalIgnoreCase) ? path[(root.Length + 1)..]
+                    : null;
+                if (relative is not null)
+                {
+                    return [.. alternates.Select(alternate => single ? Path.Combine(alternate, relative) : Path.Combine(alternate, Path.GetFileName(root), relative))
+                        .Select(Path.TrimEndingDirectorySeparator)];
+                }
+            }
+
+            return [];
+        };
+    }
+
     /// <summary>El manifiesto firmado de la última copia en modo forense.</summary>
     public string? LastManifest { get; private set; }
 

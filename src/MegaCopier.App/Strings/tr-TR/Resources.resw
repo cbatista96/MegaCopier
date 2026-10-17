@@ -1010,4 +1010,6 @@
   <data name="Job_FilesRestoredOne" xml:space="preserve"><value>{0} dosya geri yüklendi</value></data>
   <data name="Job_FilesRestoredMany" xml:space="preserve"><value>{0} dosya geri yüklendi</value></data>
   <data name="Rules_Forensic.Content" xml:space="preserve"><value>Adli mod: her şeyin SHA-256&apos;sı ve hedefte imzalı bir bildirim</value></data>
+  <data name="Rules_Alternates.Header" xml:space="preserve"><value>Aynı verilerin bulunduğu diğer konumlar (her satıra bir tane): büyük dosyalar hepsinden aynı anda okunur</value></data>
+  <data name="Rules_Alternates.PlaceholderText" xml:space="preserve"><value>\\NAS2\fotograflar</value></data>
 </root>

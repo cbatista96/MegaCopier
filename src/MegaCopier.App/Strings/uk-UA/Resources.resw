@@ -1010,4 +1010,6 @@
   <data name="Job_FilesRestoredOne" xml:space="preserve"><value>Відновлено файлів: {0}</value></data>
   <data name="Job_FilesRestoredMany" xml:space="preserve"><value>Відновлено файлів: {0}</value></data>
   <data name="Rules_Forensic.Content" xml:space="preserve"><value>Криміналістичний режим: SHA-256 усього й підписаний маніфест у місці призначення</value></data>
+  <data name="Rules_Alternates.Header" xml:space="preserve"><value>Інші місця з тими самими даними (по одному в рядку): великі файли читаються звідусіль одночасно</value></data>
+  <data name="Rules_Alternates.PlaceholderText" xml:space="preserve"><value>\\NAS2\фото</value></data>
 </root>

@@ -1004,3 +1004,5 @@ Job_StateRestoring	Herstellen
 Job_FilesRestoredOne	{0} bestand hersteld
 Job_FilesRestoredMany	{0} bestanden hersteld
 Rules_Forensic.Content	Forensische modus: SHA-256 van alles en een ondertekend manifest in het doel
+Rules_Alternates.Header	Andere plekken met dezelfde gegevens (één per regel): grote bestanden worden van alle tegelijk gelezen
+Rules_Alternates.PlaceholderText	\\NAS2\fotos

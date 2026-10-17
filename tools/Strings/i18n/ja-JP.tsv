@@ -1004,3 +1004,5 @@ Job_StateRestoring	復元中
 Job_FilesRestoredOne	{0} 個のファイルを復元
 Job_FilesRestoredMany	{0} 個のファイルを復元
 Rules_Forensic.Content	フォレンジック モード: すべての SHA-256 と署名付きマニフェストをコピー先に
+Rules_Alternates.Header	同じデータがあるほかの場所（1 行に 1 つ）: 大きなファイルはすべてから同時に読み込む
+Rules_Alternates.PlaceholderText	\\NAS2\写真

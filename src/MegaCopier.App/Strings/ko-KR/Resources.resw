@@ -1010,4 +1010,6 @@
   <data name="Job_FilesRestoredOne" xml:space="preserve"><value>파일 {0}개 복원됨</value></data>
   <data name="Job_FilesRestoredMany" xml:space="preserve"><value>파일 {0}개 복원됨</value></data>
   <data name="Rules_Forensic.Content" xml:space="preserve"><value>포렌식 모드: 모든 파일의 SHA-256과 대상에 서명된 매니페스트</value></data>
+  <data name="Rules_Alternates.Header" xml:space="preserve"><value>같은 데이터가 있는 다른 위치(한 줄에 하나씩): 큰 파일은 모든 위치에서 동시에 읽음</value></data>
+  <data name="Rules_Alternates.PlaceholderText" xml:space="preserve"><value>\\NAS2\사진</value></data>
 </root>

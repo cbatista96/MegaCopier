@@ -1010,4 +1010,6 @@
   <data name="Job_FilesRestoredOne" xml:space="preserve"><value>已还原 {0} 个文件</value></data>
   <data name="Job_FilesRestoredMany" xml:space="preserve"><value>已还原 {0} 个文件</value></data>
   <data name="Rules_Forensic.Content" xml:space="preserve"><value>取证模式：全部计算 SHA-256，并在目标中生成签名清单</value></data>
+  <data name="Rules_Alternates.Header" xml:space="preserve"><value>存有相同数据的其他位置（每行一个）：大文件同时从所有位置读取</value></data>
+  <data name="Rules_Alternates.PlaceholderText" xml:space="preserve"><value>\\NAS2\照片</value></data>
 </root>

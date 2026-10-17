@@ -13,6 +13,9 @@ internal sealed class FileTransferResult
 
     public long BytesResumed { get; set; }
 
+    /// <summary>De cuántos sitios se leyó a la vez (ver CopyMultiSource); 0 = solo del origen.</summary>
+    public int Sources { get; set; }
+
     public int ChunksRejectedOnResume { get; set; }
 
     public int ChunksRepaired { get; set; }
@@ -103,6 +106,12 @@ internal sealed partial class FileTransfer
         if (_options.EfsRaw && File.GetAttributes(sourcePath).HasFlag(FileAttributes.Encrypted))
         {
             return CopyEfsRaw(sourcePath, destinationPath, cancellationToken);
+        }
+
+        if (lengthHint >= MultiSourceThreshold && _faults is null && !delta
+            && CopyMultiSource(sourcePath, destinationPath, cancellationToken) is { } shared)
+        {
+            return shared;
         }
 
         if (delta && lengthHint >= DeltaThreshold && _faults is null
