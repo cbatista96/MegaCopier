@@ -62,6 +62,26 @@
                     </Grid>
                 </Border>
                 <Border Style="{StaticResource McSettingCard}">
+                    <StackPanel Spacing="10">
+                        <Grid Style="{StaticResource Row}" Tag="SettingRow">
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                            <FontIcon VerticalAlignment="Center" Glyph="&#xE7C9;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
+                            <StackPanel Grid.Column="1"><TextBlock x:Uid="DragTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="DragDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                            <ToggleSwitch x:Name="DragToggle" Grid.Column="2" OnContent="" OffContent="" MinWidth="0" Toggled="Changed" />
+                        </Grid>
+                        <Grid Style="{StaticResource Row}" Tag="SettingRow">
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                            <FontIcon VerticalAlignment="Center" Glyph="&#xE9CE;" FontSize="18" Foreground="Transparent" />
+                            <TextBlock Grid.Column="1" x:Uid="DragConfirmTitle" Style="{StaticResource McSecondary}" VerticalAlignment="Center" TextWrapping="Wrap" />
+                            <ComboBox x:Name="DragConfirmBox" Grid.Column="2" MinWidth="200" SelectionChanged="Selection_Changed">
+                                <ComboBoxItem x:Uid="DragConfirm_Never" />
+                                <ComboBoxItem x:Uid="DragConfirm_Moves" />
+                                <ComboBoxItem x:Uid="DragConfirm_Always" />
+                            </ComboBox>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+                <Border Style="{StaticResource McSettingCard}">
                     <Grid Style="{StaticResource Row}">
                         <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
                         <FontIcon VerticalAlignment="Center" Glyph="&#xE8A9;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />

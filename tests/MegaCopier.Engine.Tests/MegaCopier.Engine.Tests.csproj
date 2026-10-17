@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\MegaCopier.Engine\MegaCopier.Engine.csproj" />
+    <ProjectReference Include="..\..\src\MegaCopier.Shell\MegaCopier.Shell.csproj" />
   </ItemGroup>
 
 </Project>

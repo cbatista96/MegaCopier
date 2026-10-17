@@ -794,3 +794,11 @@ Shelf_RemoveNamed	「{0}」をシェルフから削除
 Destinations_NoneChosen.Text	コピー先を 1 つ以上チェックしてください（またはフォルダーを追加）。
 Finish_ShutdownMessage	MegaCopier がコピーを完了しました。1 分後に PC をシャットダウンします。
 Hash_Name	ハッシュ: {0}
+DragTitle.Text	左ボタンのドラッグを MegaCopier で
+DragDescription.Text	エクスプローラーやデスクトップのウィンドウ間でファイルをドラッグすると、MegaCopier がコピーまたは移動します（同じルール: 同じドライブなら移動、Ctrl でコピー、Shift で移動）。ファイル、ZIP、ナビゲーション ウィンドウへのドロップは引き続きエクスプローラーが処理します。
+DragConfirmTitle.Text	事前に確認
+DragConfirm_Never.Content	しない
+DragConfirm_Moves.Content	移動するときだけ
+DragConfirm_Always.Content	常に
+Drag_ConfirmMove	MegaCopier で {0} を「{1}」に移動しますか？
+Drag_ConfirmCopy	MegaCopier で {0} を「{1}」にコピーしますか？

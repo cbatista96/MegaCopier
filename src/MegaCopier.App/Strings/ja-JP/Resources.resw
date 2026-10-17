@@ -800,4 +800,12 @@
   <data name="Destinations_NoneChosen.Text" xml:space="preserve"><value>コピー先を 1 つ以上チェックしてください（またはフォルダーを追加）。</value></data>
   <data name="Finish_ShutdownMessage" xml:space="preserve"><value>MegaCopier がコピーを完了しました。1 分後に PC をシャットダウンします。</value></data>
   <data name="Hash_Name" xml:space="preserve"><value>ハッシュ: {0}</value></data>
+  <data name="DragTitle.Text" xml:space="preserve"><value>左ボタンのドラッグを MegaCopier で</value></data>
+  <data name="DragDescription.Text" xml:space="preserve"><value>エクスプローラーやデスクトップのウィンドウ間でファイルをドラッグすると、MegaCopier がコピーまたは移動します（同じルール: 同じドライブなら移動、Ctrl でコピー、Shift で移動）。ファイル、ZIP、ナビゲーション ウィンドウへのドロップは引き続きエクスプローラーが処理します。</value></data>
+  <data name="DragConfirmTitle.Text" xml:space="preserve"><value>事前に確認</value></data>
+  <data name="DragConfirm_Never.Content" xml:space="preserve"><value>しない</value></data>
+  <data name="DragConfirm_Moves.Content" xml:space="preserve"><value>移動するときだけ</value></data>
+  <data name="DragConfirm_Always.Content" xml:space="preserve"><value>常に</value></data>
+  <data name="Drag_ConfirmMove" xml:space="preserve"><value>MegaCopier で {0} を「{1}」に移動しますか？</value></data>
+  <data name="Drag_ConfirmCopy" xml:space="preserve"><value>MegaCopier で {0} を「{1}」にコピーしますか？</value></data>
 </root>

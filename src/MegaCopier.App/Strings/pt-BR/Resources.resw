@@ -800,4 +800,12 @@
   <data name="Destinations_NoneChosen.Text" xml:space="preserve"><value>Marque pelo menos um destino (ou adicione uma pasta).</value></data>
   <data name="Finish_ShutdownMessage" xml:space="preserve"><value>O MegaCopier terminou as cópias. O computador será desligado em 1 minuto.</value></data>
   <data name="Hash_Name" xml:space="preserve"><value>Hash: {0}</value></data>
+  <data name="DragTitle.Text" xml:space="preserve"><value>Arrastar com o botão esquerdo com o MegaCopier</value></data>
+  <data name="DragDescription.Text" xml:space="preserve"><value>Ao arrastar arquivos de uma janela do Explorador de Arquivos ou da Área de Trabalho para outra, o MegaCopier copia ou move (mesmas regras: na mesma unidade move, Ctrl copia, Shift move). Soltar sobre um arquivo, um ZIP ou o painel de navegação continua com o Explorador.</value></data>
+  <data name="DragConfirmTitle.Text" xml:space="preserve"><value>Perguntar antes</value></data>
+  <data name="DragConfirm_Never.Content" xml:space="preserve"><value>Nunca</value></data>
+  <data name="DragConfirm_Moves.Content" xml:space="preserve"><value>Só ao mover</value></data>
+  <data name="DragConfirm_Always.Content" xml:space="preserve"><value>Sempre</value></data>
+  <data name="Drag_ConfirmMove" xml:space="preserve"><value>Mover {0} para &quot;{1}&quot; com o MegaCopier?</value></data>
+  <data name="Drag_ConfirmCopy" xml:space="preserve"><value>Copiar {0} para &quot;{1}&quot; com o MegaCopier?</value></data>
 </root>

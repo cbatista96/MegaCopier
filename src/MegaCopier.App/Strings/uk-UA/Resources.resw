@@ -800,4 +800,12 @@
   <data name="Destinations_NoneChosen.Text" xml:space="preserve"><value>Позначте хоча б одне призначення (або додайте папку).</value></data>
   <data name="Finish_ShutdownMessage" xml:space="preserve"><value>MegaCopier завершив копіювання. Комп&apos;ютер вимкнеться за 1 хвилину.</value></data>
   <data name="Hash_Name" xml:space="preserve"><value>Геш: {0}</value></data>
+  <data name="DragTitle.Text" xml:space="preserve"><value>Перетягування лівою кнопкою через MegaCopier</value></data>
+  <data name="DragDescription.Text" xml:space="preserve"><value>Коли ви перетягуєте файли з одного вікна Провідника чи робочого столу в інше, їх копіює або переміщує MegaCopier (ті самі правила: на тому самому диску — переміщення, Ctrl — копіювання, Shift — переміщення). Перетягування на файл, ZIP чи в область переходів і далі виконує Провідник.</value></data>
+  <data name="DragConfirmTitle.Text" xml:space="preserve"><value>Запитувати</value></data>
+  <data name="DragConfirm_Never.Content" xml:space="preserve"><value>Ніколи</value></data>
+  <data name="DragConfirm_Moves.Content" xml:space="preserve"><value>Лише під час переміщення</value></data>
+  <data name="DragConfirm_Always.Content" xml:space="preserve"><value>Завжди</value></data>
+  <data name="Drag_ConfirmMove" xml:space="preserve"><value>Перемістити {0} до «{1}» через MegaCopier?</value></data>
+  <data name="Drag_ConfirmCopy" xml:space="preserve"><value>Копіювати {0} до «{1}» через MegaCopier?</value></data>
 </root>

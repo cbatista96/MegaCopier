@@ -794,3 +794,11 @@ Shelf_RemoveNamed	Quitar «{0}» de la bandeja	Remove "{0}" from the shelf
 Destinations_NoneChosen.Text	Marca al menos un destino (o añade una carpeta).	Tick at least one destination (or add a folder).
 Finish_ShutdownMessage	MegaCopier terminó las copias. El equipo se apagará en 1 minuto.	MegaCopier has finished the transfers. The PC will shut down in 1 minute.
 Hash_Name	Hash: {0}	Hash: {0}
+DragTitle.Text	Arrastrar con el botón izquierdo con MegaCopier	Left-button drag with MegaCopier
+DragDescription.Text	Al arrastrar archivos de una ventana del Explorador o del Escritorio a otra, copia o mueve MegaCopier (con las mismas reglas: en la misma unidad mueve, Ctrl copia, Mayús mueve). Soltar sobre un archivo, un ZIP o el panel de navegación sigue siendo cosa del Explorador.	When you drag files from one File Explorer or desktop window to another, MegaCopier copies or moves them (same rules: same drive moves, Ctrl copies, Shift moves). Dropping on a file, a ZIP or the navigation pane is still handled by File Explorer.
+DragConfirmTitle.Text	Preguntar antes	Ask first
+DragConfirm_Never.Content	Nunca	Never
+DragConfirm_Moves.Content	Solo al mover	Only when moving
+DragConfirm_Always.Content	Siempre	Always
+Drag_ConfirmMove	¿Mover {0} a «{1}» con MegaCopier?	Move {0} to "{1}" with MegaCopier?
+Drag_ConfirmCopy	¿Copiar {0} a «{1}» con MegaCopier?	Copy {0} to "{1}" with MegaCopier?

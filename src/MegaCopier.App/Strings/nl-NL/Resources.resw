@@ -800,4 +800,12 @@
   <data name="Destinations_NoneChosen.Text" xml:space="preserve"><value>Vink minstens één doel aan (of voeg een map toe).</value></data>
   <data name="Finish_ShutdownMessage" xml:space="preserve"><value>MegaCopier heeft de kopieën voltooid. De computer wordt over 1 minuut afgesloten.</value></data>
   <data name="Hash_Name" xml:space="preserve"><value>Hash: {0}</value></data>
+  <data name="DragTitle.Text" xml:space="preserve"><value>Slepen met de linkermuisknop via MegaCopier</value></data>
+  <data name="DragDescription.Text" xml:space="preserve"><value>Als je bestanden van het ene Verkenner- of bureaubladvenster naar een ander sleept, kopieert of verplaatst MegaCopier ze (zelfde regels: op hetzelfde station verplaatsen, Ctrl kopieert, Shift verplaatst). Neerzetten op een bestand, een ZIP of het navigatiedeelvenster blijft Verkenner doen.</value></data>
+  <data name="DragConfirmTitle.Text" xml:space="preserve"><value>Eerst vragen</value></data>
+  <data name="DragConfirm_Never.Content" xml:space="preserve"><value>Nooit</value></data>
+  <data name="DragConfirm_Moves.Content" xml:space="preserve"><value>Alleen bij verplaatsen</value></data>
+  <data name="DragConfirm_Always.Content" xml:space="preserve"><value>Altijd</value></data>
+  <data name="Drag_ConfirmMove" xml:space="preserve"><value>{0} met MegaCopier naar &apos;{1}&apos; verplaatsen?</value></data>
+  <data name="Drag_ConfirmCopy" xml:space="preserve"><value>{0} met MegaCopier naar &apos;{1}&apos; kopiëren?</value></data>
 </root>

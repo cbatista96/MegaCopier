@@ -794,3 +794,11 @@ Shelf_RemoveNamed	"{0}" öğesini raftan kaldır
 Destinations_NoneChosen.Text	En az bir hedef işaretleyin (veya bir klasör ekleyin).
 Finish_ShutdownMessage	MegaCopier kopyalamaları bitirdi. Bilgisayar 1 dakika içinde kapanacak.
 Hash_Name	Karma: {0}
+DragTitle.Text	Sol tuşla sürüklemeyi MegaCopier ile yap
+DragDescription.Text	Dosyaları bir Dosya Gezgini veya masaüstü penceresinden diğerine sürüklediğinizde MegaCopier kopyalar ya da taşır (aynı kurallar: aynı sürücüde taşır, Ctrl kopyalar, Shift taşır). Bir dosyanın, ZIP'in veya gezinti bölmesinin üzerine bırakmayı yine Dosya Gezgini yapar.
+DragConfirmTitle.Text	Önce sor
+DragConfirm_Never.Content	Hiçbir zaman
+DragConfirm_Moves.Content	Yalnızca taşırken
+DragConfirm_Always.Content	Her zaman
+Drag_ConfirmMove	{0} MegaCopier ile "{1}" konumuna taşınsın mı?
+Drag_ConfirmCopy	{0} MegaCopier ile "{1}" konumuna kopyalansın mı?

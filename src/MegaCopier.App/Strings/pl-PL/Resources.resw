@@ -800,4 +800,12 @@
   <data name="Destinations_NoneChosen.Text" xml:space="preserve"><value>Zaznacz co najmniej jedno miejsce docelowe (lub dodaj folder).</value></data>
   <data name="Finish_ShutdownMessage" xml:space="preserve"><value>MegaCopier zakończył kopiowanie. Komputer wyłączy się za 1 minutę.</value></data>
   <data name="Hash_Name" xml:space="preserve"><value>Skrót: {0}</value></data>
+  <data name="DragTitle.Text" xml:space="preserve"><value>Przeciąganie lewym przyciskiem przez MegaCopier</value></data>
+  <data name="DragDescription.Text" xml:space="preserve"><value>Gdy przeciągasz pliki z jednego okna Eksploratora lub pulpitu do innego, kopiuje je lub przenosi MegaCopier (te same zasady: na tym samym dysku przenosi, Ctrl kopiuje, Shift przenosi). Upuszczenie na plik, ZIP lub okienko nawigacji nadal obsługuje Eksplorator.</value></data>
+  <data name="DragConfirmTitle.Text" xml:space="preserve"><value>Pytaj wcześniej</value></data>
+  <data name="DragConfirm_Never.Content" xml:space="preserve"><value>Nigdy</value></data>
+  <data name="DragConfirm_Moves.Content" xml:space="preserve"><value>Tylko przy przenoszeniu</value></data>
+  <data name="DragConfirm_Always.Content" xml:space="preserve"><value>Zawsze</value></data>
+  <data name="Drag_ConfirmMove" xml:space="preserve"><value>Przenieść {0} do „{1}” przez MegaCopier?</value></data>
+  <data name="Drag_ConfirmCopy" xml:space="preserve"><value>Skopiować {0} do „{1}” przez MegaCopier?</value></data>
 </root>

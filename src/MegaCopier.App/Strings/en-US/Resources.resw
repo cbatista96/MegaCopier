@@ -800,4 +800,12 @@
   <data name="Destinations_NoneChosen.Text" xml:space="preserve"><value>Tick at least one destination (or add a folder).</value></data>
   <data name="Finish_ShutdownMessage" xml:space="preserve"><value>MegaCopier has finished the transfers. The PC will shut down in 1 minute.</value></data>
   <data name="Hash_Name" xml:space="preserve"><value>Hash: {0}</value></data>
+  <data name="DragTitle.Text" xml:space="preserve"><value>Left-button drag with MegaCopier</value></data>
+  <data name="DragDescription.Text" xml:space="preserve"><value>When you drag files from one File Explorer or desktop window to another, MegaCopier copies or moves them (same rules: same drive moves, Ctrl copies, Shift moves). Dropping on a file, a ZIP or the navigation pane is still handled by File Explorer.</value></data>
+  <data name="DragConfirmTitle.Text" xml:space="preserve"><value>Ask first</value></data>
+  <data name="DragConfirm_Never.Content" xml:space="preserve"><value>Never</value></data>
+  <data name="DragConfirm_Moves.Content" xml:space="preserve"><value>Only when moving</value></data>
+  <data name="DragConfirm_Always.Content" xml:space="preserve"><value>Always</value></data>
+  <data name="Drag_ConfirmMove" xml:space="preserve"><value>Move {0} to &quot;{1}&quot; with MegaCopier?</value></data>
+  <data name="Drag_ConfirmCopy" xml:space="preserve"><value>Copy {0} to &quot;{1}&quot; with MegaCopier?</value></data>
 </root>

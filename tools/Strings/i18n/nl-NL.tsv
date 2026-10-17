@@ -794,3 +794,11 @@ Shelf_RemoveNamed	'{0}' van de plank verwijderen
 Destinations_NoneChosen.Text	Vink minstens één doel aan (of voeg een map toe).
 Finish_ShutdownMessage	MegaCopier heeft de kopieën voltooid. De computer wordt over 1 minuut afgesloten.
 Hash_Name	Hash: {0}
+DragTitle.Text	Slepen met de linkermuisknop via MegaCopier
+DragDescription.Text	Als je bestanden van het ene Verkenner- of bureaubladvenster naar een ander sleept, kopieert of verplaatst MegaCopier ze (zelfde regels: op hetzelfde station verplaatsen, Ctrl kopieert, Shift verplaatst). Neerzetten op een bestand, een ZIP of het navigatiedeelvenster blijft Verkenner doen.
+DragConfirmTitle.Text	Eerst vragen
+DragConfirm_Never.Content	Nooit
+DragConfirm_Moves.Content	Alleen bij verplaatsen
+DragConfirm_Always.Content	Altijd
+Drag_ConfirmMove	{0} met MegaCopier naar '{1}' verplaatsen?
+Drag_ConfirmCopy	{0} met MegaCopier naar '{1}' kopiëren?

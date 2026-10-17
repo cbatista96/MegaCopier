@@ -138,6 +138,16 @@ internal static partial class SystemActions
         return GetLastInputInfo(ref info) ? TimeSpan.FromMilliseconds(unchecked((uint)Environment.TickCount - info.Time)) : TimeSpan.MaxValue;
     }
 
+    /// <summary>
+    /// Pregunta Sí/No con el cuadro de Windows, delante de todo (el usuario acaba de soltar un arrastre y lo espera).
+    /// Se puede llamar desde cualquier hilo: bloquea solo ese hilo.
+    /// </summary>
+    public static bool Confirm(string question) =>
+        MessageBoxW(0, question, "MegaCopier", 0x4 /* MB_YESNO */ | 0x20 /* MB_ICONQUESTION */ | 0x40000 /* MB_TOPMOST */ | 0x10000 /* MB_SETFOREGROUND */) == 6 /* IDYES */;
+
+    [LibraryImport("user32.dll", StringMarshalling = StringMarshalling.Utf16)]
+    private static partial int MessageBoxW(nint owner, string text, string caption, uint type);
+
     [StructLayout(LayoutKind.Sequential)]
     private struct LastInputInfo
     {

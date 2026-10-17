@@ -794,3 +794,11 @@ Shelf_RemoveNamed	Убрать «{0}» с полки
 Destinations_NoneChosen.Text	Отметьте хотя бы одно назначение (или добавьте папку).
 Finish_ShutdownMessage	MegaCopier завершил копирование. Компьютер выключится через 1 минуту.
 Hash_Name	Хеш: {0}
+DragTitle.Text	Перетаскивание левой кнопкой через MegaCopier
+DragDescription.Text	Когда вы перетаскиваете файлы из одного окна Проводника или рабочего стола в другое, их копирует или перемещает MegaCopier (те же правила: на том же диске — перемещение, Ctrl — копирование, Shift — перемещение). Перетаскивание на файл, ZIP или в область навигации по-прежнему выполняет Проводник.
+DragConfirmTitle.Text	Спрашивать
+DragConfirm_Never.Content	Никогда
+DragConfirm_Moves.Content	Только при перемещении
+DragConfirm_Always.Content	Всегда
+Drag_ConfirmMove	Переместить {0} в «{1}» через MegaCopier?
+Drag_ConfirmCopy	Копировать {0} в «{1}» через MegaCopier?

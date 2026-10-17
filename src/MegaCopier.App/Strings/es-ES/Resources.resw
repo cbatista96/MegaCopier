@@ -800,4 +800,12 @@
   <data name="Destinations_NoneChosen.Text" xml:space="preserve"><value>Marca al menos un destino (o añade una carpeta).</value></data>
   <data name="Finish_ShutdownMessage" xml:space="preserve"><value>MegaCopier terminó las copias. El equipo se apagará en 1 minuto.</value></data>
   <data name="Hash_Name" xml:space="preserve"><value>Hash: {0}</value></data>
+  <data name="DragTitle.Text" xml:space="preserve"><value>Arrastrar con el botón izquierdo con MegaCopier</value></data>
+  <data name="DragDescription.Text" xml:space="preserve"><value>Al arrastrar archivos de una ventana del Explorador o del Escritorio a otra, copia o mueve MegaCopier (con las mismas reglas: en la misma unidad mueve, Ctrl copia, Mayús mueve). Soltar sobre un archivo, un ZIP o el panel de navegación sigue siendo cosa del Explorador.</value></data>
+  <data name="DragConfirmTitle.Text" xml:space="preserve"><value>Preguntar antes</value></data>
+  <data name="DragConfirm_Never.Content" xml:space="preserve"><value>Nunca</value></data>
+  <data name="DragConfirm_Moves.Content" xml:space="preserve"><value>Solo al mover</value></data>
+  <data name="DragConfirm_Always.Content" xml:space="preserve"><value>Siempre</value></data>
+  <data name="Drag_ConfirmMove" xml:space="preserve"><value>¿Mover {0} a «{1}» con MegaCopier?</value></data>
+  <data name="Drag_ConfirmCopy" xml:space="preserve"><value>¿Copiar {0} a «{1}» con MegaCopier?</value></data>
 </root>

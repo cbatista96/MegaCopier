@@ -800,4 +800,12 @@
   <data name="Destinations_NoneChosen.Text" xml:space="preserve"><value>Cochez au moins une destination (ou ajoutez un dossier).</value></data>
   <data name="Finish_ShutdownMessage" xml:space="preserve"><value>MegaCopier a terminé les copies. L&apos;ordinateur s&apos;arrêtera dans 1 minute.</value></data>
   <data name="Hash_Name" xml:space="preserve"><value>Hachage : {0}</value></data>
+  <data name="DragTitle.Text" xml:space="preserve"><value>Glisser avec le bouton gauche avec MegaCopier</value></data>
+  <data name="DragDescription.Text" xml:space="preserve"><value>Quand vous faites glisser des fichiers d&apos;une fenêtre de l&apos;Explorateur ou du Bureau vers une autre, MegaCopier les copie ou les déplace (mêmes règles : sur le même lecteur il déplace, Ctrl copie, Maj déplace). Déposer sur un fichier, un ZIP ou le volet de navigation reste géré par l&apos;Explorateur.</value></data>
+  <data name="DragConfirmTitle.Text" xml:space="preserve"><value>Demander avant</value></data>
+  <data name="DragConfirm_Never.Content" xml:space="preserve"><value>Jamais</value></data>
+  <data name="DragConfirm_Moves.Content" xml:space="preserve"><value>Seulement pour déplacer</value></data>
+  <data name="DragConfirm_Always.Content" xml:space="preserve"><value>Toujours</value></data>
+  <data name="Drag_ConfirmMove" xml:space="preserve"><value>Déplacer {0} vers « {1} » avec MegaCopier ?</value></data>
+  <data name="Drag_ConfirmCopy" xml:space="preserve"><value>Copier {0} vers « {1} » avec MegaCopier ?</value></data>
 </root>
