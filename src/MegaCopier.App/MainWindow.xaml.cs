@@ -1331,6 +1331,11 @@ public sealed partial class MainWindow : Window
 
     private void DestinationsEncrypt_Click(object sender, RoutedEventArgs e)
     {
+        if (DestinationsPasswordInfo is null)
+        {
+            return; // aún cargando la ventana
+        }
+
         DestinationsFormat.Visibility = DestinationsZip.IsChecked == true ? Visibility.Visible : Visibility.Collapsed;
         DestinationsEncryptPanel.Visibility = DestinationsEncrypt.IsChecked == true ? Visibility.Visible : Visibility.Collapsed;
         DestinationsPasswordInfo.Text = L.Get(DestinationsZip.IsChecked != true ? "Destinations_PasswordHint" : DestinationsFormat.SelectedIndex == 1 ? "Destinations_PasswordHint7z" : "Destinations_PasswordHintZip");
