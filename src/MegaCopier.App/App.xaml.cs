@@ -326,6 +326,7 @@ public partial class App : Application
             options.PeerCode = request.PeerCode ?? "";
             options.Encrypt = request.Encrypt ?? false;
             options.Zip = request.Zip ?? false;
+            options.ArchiveFormat = request.ArchiveFormat ?? Engine.IO.ArchiveFormat.Zip;
             options.EncryptionPassword = request.Password ?? "";
             if (operation != JobOperation.Copy)
             {

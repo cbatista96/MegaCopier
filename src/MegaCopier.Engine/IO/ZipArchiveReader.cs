@@ -199,7 +199,7 @@ internal static class ZipArchiveReader
     }
 
     /// <summary>Un tramo de otro flujo (solo lectura), para no leer más allá de los datos de una entrada.</summary>
-    private sealed class SubStream(Stream inner, long start, long length) : Stream
+    internal sealed class SubStream(Stream inner, long start, long length) : Stream
     {
         private long _position;
 

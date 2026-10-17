@@ -958,4 +958,8 @@
   <data name="Compare_RenameLeft" xml:space="preserve"><value>Zmień nazwę po lewej (było {0})</value></data>
   <data name="Compare_Renamed" xml:space="preserve"><value>Zmieniono nazwę lub przeniesiono</value></data>
   <data name="Send_LocalSendDevice" xml:space="preserve"><value>{0} · LocalSend {1} ({2})</value></data>
+  <data name="Destinations_Format.Header" xml:space="preserve"><value>Format</value></data>
+  <data name="Destinations_FormatZip.Content" xml:space="preserve"><value>ZIP (otwiera się wszędzie)</value></data>
+  <data name="Destinations_Format7z.Content" xml:space="preserve"><value>7z (z hasłem ukrywa też nazwy)</value></data>
+  <data name="Destinations_PasswordHint7z" xml:space="preserve"><value>7z jest szyfrowany AES-256 razem z listą plików: bez hasła nie widać nawet nazw. Otwiera się w 7-Zip, WinRAR lub PeaZip. Jeśli zapomnisz hasło, nie da się odzyskać plików.</value></data>
 </root>

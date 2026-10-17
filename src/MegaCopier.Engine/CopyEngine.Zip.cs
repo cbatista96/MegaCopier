@@ -14,10 +14,12 @@ public sealed partial class CopyEngine
     internal string ZipTarget(CopyJobRequest request)
     {
         string destination = Path.GetFullPath(request.Destination);
-        if (destination.EndsWith(".zip", StringComparison.OrdinalIgnoreCase))
+        if (destination.EndsWith(".zip", StringComparison.OrdinalIgnoreCase) || destination.EndsWith(".7z", StringComparison.OrdinalIgnoreCase))
         {
             return destination;
         }
+
+        string extension = _options.ArchiveFormat == ArchiveFormat.SevenZip ? ".7z" : ".zip";
 
         string name = request.Sources.Count == 1
             ? (Directory.Exists(request.Sources[0]) ? Path.GetFileName(Path.TrimEndingDirectorySeparator(request.Sources[0])) : Path.GetFileNameWithoutExtension(request.Sources[0]))
@@ -27,10 +29,10 @@ public sealed partial class CopyEngine
             name = "MegaCopier"; // la raíz de una unidad
         }
 
-        string path = Path.Combine(destination, name + ".zip");
+        string path = Path.Combine(destination, name + extension);
         for (int n = 2; File.Exists(path) && _options.Conflict != ConflictPolicy.Overwrite; n++)
         {
-            path = Path.Combine(destination, $"{name} ({n}).zip");
+            path = Path.Combine(destination, $"{name} ({n}){extension}");
         }
 
         return path;
@@ -84,7 +86,10 @@ public sealed partial class CopyEngine
         {
             using (var output = new FileStream(partial, FileMode.Create, FileAccess.ReadWrite, FileShare.None, 1 << 20))
             {
-                var writer = new ZipArchiveWriter(output, _options.Encrypt ? _options.EncryptionPassword : null);
+                string? password = _options.Encrypt ? _options.EncryptionPassword : null;
+                IArchiveWriter writer = zipPath.EndsWith(".7z", StringComparison.OrdinalIgnoreCase)
+                    ? new SevenZipWriter(output, password)
+                    : new ZipArchiveWriter(output, password);
                 foreach (var directory in plan.Directories.OrderBy(d => d.Depth))
                 {
                     writer.AddDirectory(Path.GetRelativePath(root, directory.Destination), Directory.GetLastWriteTimeUtc(directory.Source));
@@ -128,7 +133,7 @@ public sealed partial class CopyEngine
 
                 if (_options.Verify)
                 {
-                    VerifyZip(output, added, progress, result, cancellationToken);
+                    VerifyArchive(writer, added, progress, result, cancellationToken);
                 }
             }
 
@@ -169,23 +174,16 @@ public sealed partial class CopyEngine
     /// <summary>El ZIP creado por la última copia con <see cref="CopyOptions.Zip"/>.</summary>
     public string? ZipFile { get; private set; }
 
-    private void VerifyZip(Stream zip, List<(TransferItem Item, string Name, string? Hash)> added, ProgressTracker progress, CopyJobResult result, CancellationToken cancellationToken)
+    private void VerifyArchive(IArchiveWriter archive, List<(TransferItem Item, string Name, string? Hash)> added, ProgressTracker progress, CopyJobResult result, CancellationToken cancellationToken)
     {
         progress.SetPhase(CopyPhase.Verifying);
-        var entries = ZipArchiveReader.Entries(zip).ToDictionary(e => e.Name, StringComparer.Ordinal);
-        string? password = _options.Encrypt ? _options.EncryptionPassword : null;
         foreach (var (item, name, hash) in added)
         {
             progress.BeginFile(item.Destination, item.Length);
             try
             {
-                if (!entries.TryGetValue(name.Replace('\\', '/'), out var entry))
-                {
-                    throw new InvalidDataException(Texts.Get("E_ZipDamaged"));
-                }
-
                 var check = FileHasher.Create(_options.HashAlgorithm) ?? FileHasher.Create(FileHashAlgorithm.XxHash128)!;
-                ZipArchiveReader.Extract(zip, entry, password, block =>
+                archive.ReadBack(name, block =>
                 {
                     check.Append(block);
                     progress.AddTransferred(block.Length);

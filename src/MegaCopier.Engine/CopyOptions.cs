@@ -217,6 +217,9 @@ public sealed class CopyOptions
     /// </summary>
     public bool Zip { get; set; }
 
+    /// <summary>ZIP o 7z (si el destino termina en .zip o .7z, manda la extensión).</summary>
+    public IO.ArchiveFormat ArchiveFormat { get; set; }
+
     /// <summary>Archivos dispersos (con huecos): el destino también lo es, sin escribir los huecos.</summary>
     public bool PreserveSparse { get; set; } = true;
 

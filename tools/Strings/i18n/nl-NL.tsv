@@ -952,3 +952,7 @@ Compare_RenameRight	Rechts hernoemen (was {0})
 Compare_RenameLeft	Links hernoemen (was {0})
 Compare_Renamed	Hernoemd of verplaatst
 Send_LocalSendDevice	{0} · LocalSend {1} ({2})
+Destinations_Format.Header	Indeling
+Destinations_FormatZip.Content	ZIP (opent overal)
+Destinations_Format7z.Content	7z (met wachtwoord ook namen verborgen)
+Destinations_PasswordHint7z	De 7z wordt versleuteld met AES-256, inclusief de bestandslijst: zonder wachtwoord zijn zelfs de namen onzichtbaar. Opent met 7-Zip, WinRAR of PeaZip. Als je het vergeet, zijn de bestanden niet te herstellen.

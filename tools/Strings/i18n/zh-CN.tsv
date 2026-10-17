@@ -952,3 +952,7 @@ Compare_RenameRight	在右侧重命名（原为 {0}）
 Compare_RenameLeft	在左侧重命名（原为 {0}）
 Compare_Renamed	已重命名或移动
 Send_LocalSendDevice	{0} · LocalSend {1}（{2}）
+Destinations_Format.Header	格式
+Destinations_FormatZip.Content	ZIP（任何程序都能打开）
+Destinations_Format7z.Content	7z（设置密码时也隐藏文件名）
+Destinations_PasswordHint7z	7z 使用 AES-256 加密，包括文件列表：没有密码连文件名都看不到。可用 7-Zip、WinRAR 或 PeaZip 打开。如果忘记密码，将无法恢复文件。

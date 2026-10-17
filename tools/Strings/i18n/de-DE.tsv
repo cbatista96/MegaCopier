@@ -952,3 +952,7 @@ Compare_RenameRight	Rechts umbenennen (war {0})
 Compare_RenameLeft	Links umbenennen (war {0})
 Compare_Renamed	Umbenannt oder verschoben
 Send_LocalSendDevice	{0} · LocalSend {1} ({2})
+Destinations_Format.Header	Format
+Destinations_FormatZip.Content	ZIP (lässt sich überall öffnen)
+Destinations_Format7z.Content	7z (mit Kennwort auch die Namen verborgen)
+Destinations_PasswordHint7z	Die 7z-Datei wird mit AES-256 verschlüsselt, einschließlich der Dateiliste: Ohne Kennwort sind nicht einmal die Namen sichtbar. Öffnen mit 7-Zip, WinRAR oder PeaZip. Wenn du es vergisst, lassen sich die Dateien nicht wiederherstellen.

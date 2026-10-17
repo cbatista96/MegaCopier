@@ -958,4 +958,8 @@
   <data name="Compare_RenameLeft" xml:space="preserve"><value>左側で名前を変更（元は {0}）</value></data>
   <data name="Compare_Renamed" xml:space="preserve"><value>名前の変更または移動</value></data>
   <data name="Send_LocalSendDevice" xml:space="preserve"><value>{0} · LocalSend {1}（{2}）</value></data>
+  <data name="Destinations_Format.Header" xml:space="preserve"><value>形式</value></data>
+  <data name="Destinations_FormatZip.Content" xml:space="preserve"><value>ZIP（どこでも開ける）</value></data>
+  <data name="Destinations_Format7z.Content" xml:space="preserve"><value>7z（パスワード付きで名前も隠す）</value></data>
+  <data name="Destinations_PasswordHint7z" xml:space="preserve"><value>7z はファイル一覧も含めて AES-256 で暗号化されます。パスワードがないと名前も見えません。7-Zip、WinRAR、PeaZip で開けます。パスワードを忘れるとファイルは復元できません。</value></data>
 </root>

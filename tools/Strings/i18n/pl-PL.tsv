@@ -952,3 +952,7 @@ Compare_RenameRight	Zmień nazwę po prawej (było {0})
 Compare_RenameLeft	Zmień nazwę po lewej (było {0})
 Compare_Renamed	Zmieniono nazwę lub przeniesiono
 Send_LocalSendDevice	{0} · LocalSend {1} ({2})
+Destinations_Format.Header	Format
+Destinations_FormatZip.Content	ZIP (otwiera się wszędzie)
+Destinations_Format7z.Content	7z (z hasłem ukrywa też nazwy)
+Destinations_PasswordHint7z	7z jest szyfrowany AES-256 razem z listą plików: bez hasła nie widać nawet nazw. Otwiera się w 7-Zip, WinRAR lub PeaZip. Jeśli zapomnisz hasło, nie da się odzyskać plików.

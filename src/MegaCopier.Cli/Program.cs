@@ -138,6 +138,10 @@ internal static class Cli
                 case "--zip":
                     options.Zip = true;
                     break;
+                case "--7z":
+                    options.Zip = true;
+                    options.ArchiveFormat = MegaCopier.Engine.IO.ArchiveFormat.SevenZip;
+                    break;
                 case "--connections":
                     options.RemoteConnections = Math.Clamp(NextInt(args, ref i), 1, CopyOptions.MaxRemoteConnections);
                     break;
