@@ -967,4 +967,5 @@
   <data name="Rules_VersionsWeek.Content" xml:space="preserve"><value>일별 7개, 주별 4개, 월별 12개</value></data>
   <data name="Rules_VersionsMonth.Content" xml:space="preserve"><value>일별 30개, 주별 12개, 월별 24개</value></data>
   <data name="Rules_VersionsLast.Content" xml:space="preserve"><value>최신 버전만</value></data>
+  <data name="Task_Monthly.Content" xml:space="preserve"><value>매월</value></data>
 </root>

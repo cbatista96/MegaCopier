@@ -9,6 +9,7 @@ public enum TaskFrequency
     Once,
     Daily,
     Weekly,
+    Monthly,
 }
 
 /// <summary>
@@ -47,26 +48,35 @@ internal static class ScheduledTasks
         Reports.SaveList(copy, list);
 
         string exe = Environment.ProcessPath ?? Path.Combine(AppContext.BaseDirectory, "MegaCopier.exe");
-        var arguments = new List<string>
-        {
-            "/Create", "/F", "/TN", TaskName(name),
-            "/TR", $"\"{exe}\" run \"{list}\"",
-            "/ST", start.ToString("HH:mm"),
-        };
-        switch (frequency)
-        {
-            case TaskFrequency.Daily:
-                arguments.AddRange(["/SC", "DAILY"]);
-                break;
-            case TaskFrequency.Weekly:
-                arguments.AddRange(["/SC", "WEEKLY", "/D", start.DayOfWeek.ToString()[..3].ToUpperInvariant()]);
-                break;
-            default:
-                arguments.AddRange(["/SC", "ONCE", "/SD", start.ToString(DateFormat())]);
-                break;
-        }
 
-        return Run(arguments);
+        // Con una definición XML (y no con /SC) se puede pedir "ejecutar en cuanto se pueda si se pasó la hora": si el
+        // equipo estaba apagado o suspendido a esa hora, la copia se hace al volver.
+        string xml = Path.Combine(Folder, name + ".task.xml");
+        File.WriteAllText(xml, Definition(exe, $"run \"{list}\"", frequency, start), System.Text.Encoding.Unicode);
+        return Run(["/Create", "/F", "/TN", TaskName(name), "/XML", xml]);
+    }
+
+    /// <summary>La tarea en el formato del Programador de tareas: disparador, "ponerse al día" y la orden.</summary>
+    internal static string Definition(string exe, string arguments, TaskFrequency frequency, DateTime start)
+    {
+        string boundary = start.ToString("yyyy-MM-dd'T'HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+        string trigger = frequency switch
+        {
+            TaskFrequency.Daily => $"<CalendarTrigger><StartBoundary>{boundary}</StartBoundary><ScheduleByDay><DaysInterval>1</DaysInterval></ScheduleByDay></CalendarTrigger>",
+            TaskFrequency.Weekly => $"<CalendarTrigger><StartBoundary>{boundary}</StartBoundary><ScheduleByWeek><WeeksInterval>1</WeeksInterval><DaysOfWeek><{start.DayOfWeek} /></DaysOfWeek></ScheduleByWeek></CalendarTrigger>",
+            TaskFrequency.Monthly => $"<CalendarTrigger><StartBoundary>{boundary}</StartBoundary><ScheduleByMonth><DaysOfMonth><Day>{Math.Min(start.Day, 28)}</Day></DaysOfMonth>"
+                + "<Months><January /><February /><March /><April /><May /><June /><July /><August /><September /><October /><November /><December /></Months></ScheduleByMonth></CalendarTrigger>",
+            _ => $"<TimeTrigger><StartBoundary>{boundary}</StartBoundary></TimeTrigger>",
+        };
+        return "<?xml version=\"1.0\" encoding=\"UTF-16\"?>\r\n"
+            + "<Task version=\"1.2\" xmlns=\"http://schemas.microsoft.com/windows/2004/02/mit/task\">"
+            + "<RegistrationInfo><Description>MegaCopier</Description></RegistrationInfo>"
+            + $"<Triggers>{trigger}</Triggers>"
+            + "<Principals><Principal id=\"Author\"><LogonType>InteractiveToken</LogonType><RunLevel>LeastPrivilege</RunLevel></Principal></Principals>"
+            + "<Settings><StartWhenAvailable>true</StartWhenAvailable><DisallowStartIfOnBatteries>false</DisallowStartIfOnBatteries>"
+            + "<StopIfGoingOnBatteries>false</StopIfGoingOnBatteries><ExecutionTimeLimit>PT0S</ExecutionTimeLimit><MultipleInstancesPolicy>IgnoreNew</MultipleInstancesPolicy></Settings>"
+            + $"<Actions Context=\"Author\"><Exec><Command>{System.Security.SecurityElement.Escape(exe)}</Command><Arguments>{System.Security.SecurityElement.Escape(arguments)}</Arguments></Exec></Actions>"
+            + "</Task>";
     }
 
     public static string? Delete(string name)
@@ -75,6 +85,7 @@ internal static class ScheduledTasks
         try
         {
             File.Delete(PathOf(name));
+            File.Delete(Path.Combine(Folder, name + ".task.xml"));
         }
         catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
         {
@@ -85,14 +96,6 @@ internal static class ScheduledTasks
     }
 
     private static string TaskName(string name) => $"MegaCopier - {name}";
-
-    /// <summary>schtasks /SD usa el formato de fecha corto del sistema (dd/MM/yyyy, MM/dd/yyyy...).</summary>
-    private static string DateFormat()
-    {
-        string pattern = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern;
-        int day = pattern.IndexOf('d'), month = pattern.IndexOf('M'), year = pattern.IndexOf('y');
-        return year < month ? "yyyy/MM/dd" : day < month ? "dd/MM/yyyy" : "MM/dd/yyyy";
-    }
 
     private static string? Run(List<string> arguments)
     {

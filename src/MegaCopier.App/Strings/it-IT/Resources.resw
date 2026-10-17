@@ -967,4 +967,5 @@
   <data name="Rules_VersionsWeek.Content" xml:space="preserve"><value>7 giornaliere, 4 settimanali e 12 mensili</value></data>
   <data name="Rules_VersionsMonth.Content" xml:space="preserve"><value>30 giornaliere, 12 settimanali e 24 mensili</value></data>
   <data name="Rules_VersionsLast.Content" xml:space="preserve"><value>Solo l&apos;ultima</value></data>
+  <data name="Task_Monthly.Content" xml:space="preserve"><value>Ogni mese</value></data>
 </root>

@@ -967,4 +967,5 @@
   <data name="Rules_VersionsWeek.Content" xml:space="preserve"><value>7 dziennych, 4 tygodniowe i 12 miesięcznych</value></data>
   <data name="Rules_VersionsMonth.Content" xml:space="preserve"><value>30 dziennych, 12 tygodniowych i 24 miesięczne</value></data>
   <data name="Rules_VersionsLast.Content" xml:space="preserve"><value>Tylko najnowszą</value></data>
+  <data name="Task_Monthly.Content" xml:space="preserve"><value>Co miesiąc</value></data>
 </root>

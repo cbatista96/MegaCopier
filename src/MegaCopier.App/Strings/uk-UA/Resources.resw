@@ -967,4 +967,5 @@
   <data name="Rules_VersionsWeek.Content" xml:space="preserve"><value>7 щоденних, 4 щотижневих і 12 щомісячних</value></data>
   <data name="Rules_VersionsMonth.Content" xml:space="preserve"><value>30 щоденних, 12 щотижневих і 24 щомісячних</value></data>
   <data name="Rules_VersionsLast.Content" xml:space="preserve"><value>Лише останню</value></data>
+  <data name="Task_Monthly.Content" xml:space="preserve"><value>Щомісяця</value></data>
 </root>
