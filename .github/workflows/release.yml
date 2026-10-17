@@ -1,0 +1,63 @@
+name: Publicar versión
+
+# Se publica una versión al subir una etiqueta "v1.2.3" que coincida con <Version> de Directory.Build.props.
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      - name: Comprobar la versión
+        shell: pwsh
+        run: |
+          $version = ([xml](Get-Content Directory.Build.props -Raw)).Project.PropertyGroup.Version
+          if ("v$version" -ne "${{ github.ref_name }}") { throw "La etiqueta ${{ github.ref_name }} no coincide con la versión $version de Directory.Build.props" }
+          "VERSION=$version" | Out-File $env:GITHUB_ENV -Append -Encoding utf8
+
+      - name: Inno Setup
+        shell: powershell
+        run: |
+          if (-not (Test-Path "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe")) { choco install innosetup --no-progress -y }
+
+      - name: Compilar y probar
+        shell: powershell
+        run: .\build.ps1
+
+      - name: Preparar los archivos
+        shell: pwsh # PowerShell 7: lee el script en UTF-8 (los acentos de las notas)
+        run: |
+          $out = New-Item -ItemType Directory -Force release
+          Copy-Item "artifacts\installer\MegaCopier-Setup-$env:VERSION.exe" $out
+          # Portátil: la app y mcopy en una carpeta, con portable.txt (los ajustes van a Data\, al lado).
+          $portable = New-Item -ItemType Directory -Force "portable\MegaCopier"
+          Copy-Item artifacts\app\* $portable -Recurse -Exclude *.pdb
+          Copy-Item artifacts\cli\mcopy.exe $portable
+          New-Item -ItemType File "$portable\portable.txt" | Out-Null
+          Compress-Archive -Path $portable -DestinationPath "$out\MegaCopier-$env:VERSION-portable.zip"
+          Copy-Item artifacts\cli\mcopy.exe "$out\mcopy-$env:VERSION.exe"
+          $files = Get-ChildItem $out # antes de crear SHA256SUMS.txt, que no se incluye a sí mismo
+          $files | ForEach-Object { "{0}  {1}" -f (Get-FileHash $_.FullName -Algorithm SHA256).Hash.ToLowerInvariant(), $_.Name } |
+            Out-File "$out\SHA256SUMS.txt" -Encoding ascii
+          # Notas: la sección de esta versión en CHANGELOG.md.
+          $changelog = Get-Content CHANGELOG.md -Raw -Encoding utf8
+          $match = [regex]::Match($changelog, "(?ms)^## \[$([regex]::Escape($env:VERSION))\][^\n]*\n(.*?)(?=^## \[|^\[)")
+          $notes = if ($match.Success) { $match.Groups[1].Value.Trim() } else { "MegaCopier $env:VERSION" }
+          $notes + "`n`n**Instalar:** descarga ``MegaCopier-Setup-$env:VERSION.exe`` y ejecútalo (Windows 11, 64 bits). El instalador aún no está firmado: en el aviso de SmartScreen pulsa *Más información* > *Ejecutar de todas formas*. Las sumas SHA-256 están en ``SHA256SUMS.txt``." |
+            Out-File notes.md -Encoding utf8
+
+      - name: Publicar
+        shell: powershell
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "${{ github.ref_name }}" (Get-ChildItem release).FullName --title "MegaCopier $env:VERSION" --notes-file notes.md

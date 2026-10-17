@@ -1,0 +1,35 @@
+name: Compilación
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      - name: Inno Setup
+        shell: powershell
+        run: |
+          if (-not (Test-Path "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe")) { choco install innosetup --no-progress -y }
+
+      - name: Compilar y probar
+        shell: powershell
+        run: .\build.ps1
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: MegaCopier-instalador
+          path: artifacts/installer/*.exe
+          retention-days: 14
