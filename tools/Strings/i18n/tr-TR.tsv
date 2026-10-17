@@ -956,3 +956,8 @@ Destinations_Format.Header	Biçim
 Destinations_FormatZip.Content	ZIP (her yerde açılır)
 Destinations_Format7z.Content	7z (parolayla adlar da gizlenir)
 Destinations_PasswordHint7z	7z, dosya listesi dahil AES-256 ile şifrelenir: parola olmadan adlar bile görünmez. 7-Zip, WinRAR veya PeaZip ile açılır. Parolayı unutursanız dosyaları kurtarmanın yolu yoktur.
+Rules_VersionsKeep.Header	Kaç sürüm saklansın
+Rules_VersionsAll.Content	Tümü
+Rules_VersionsWeek.Content	7 günlük, 4 haftalık ve 12 aylık
+Rules_VersionsMonth.Content	30 günlük, 12 haftalık ve 24 aylık
+Rules_VersionsLast.Content	Yalnızca en sonuncusu

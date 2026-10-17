@@ -956,3 +956,8 @@ Destinations_Format.Header	Formato	Format
 Destinations_FormatZip.Content	ZIP (lo abre cualquier programa)	ZIP (opens anywhere)
 Destinations_Format7z.Content	7z (con contraseña oculta también los nombres)	7z (with a password, names are hidden too)
 Destinations_PasswordHint7z	El 7z se cifra con AES-256, incluida la lista de archivos: sin la contraseña no se ven ni los nombres. Se abre con 7-Zip, WinRAR o PeaZip. Si la olvidas, no hay forma de recuperarlos.	The 7z is encrypted with AES-256, including the file list: without the password not even the names are visible. Opens with 7-Zip, WinRAR or PeaZip. If you forget it, there is no way to recover the files.
+Rules_VersionsKeep.Header	Cuántas versiones guardar	How many versions to keep
+Rules_VersionsAll.Content	Todas	All
+Rules_VersionsWeek.Content	7 diarias, 4 semanales y 12 mensuales	7 daily, 4 weekly and 12 monthly
+Rules_VersionsMonth.Content	30 diarias, 12 semanales y 24 mensuales	30 daily, 12 weekly and 24 monthly
+Rules_VersionsLast.Content	Solo la última	Only the latest

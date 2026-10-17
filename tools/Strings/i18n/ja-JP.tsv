@@ -956,3 +956,8 @@ Destinations_Format.Header	形式
 Destinations_FormatZip.Content	ZIP（どこでも開ける）
 Destinations_Format7z.Content	7z（パスワード付きで名前も隠す）
 Destinations_PasswordHint7z	7z はファイル一覧も含めて AES-256 で暗号化されます。パスワードがないと名前も見えません。7-Zip、WinRAR、PeaZip で開けます。パスワードを忘れるとファイルは復元できません。
+Rules_VersionsKeep.Header	保存するバージョン数
+Rules_VersionsAll.Content	すべて
+Rules_VersionsWeek.Content	日次 7、週次 4、月次 12
+Rules_VersionsMonth.Content	日次 30、週次 12、月次 24
+Rules_VersionsLast.Content	最新のみ

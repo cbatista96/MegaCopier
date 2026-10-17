@@ -956,3 +956,8 @@ Destinations_Format.Header	Indeling
 Destinations_FormatZip.Content	ZIP (opent overal)
 Destinations_Format7z.Content	7z (met wachtwoord ook namen verborgen)
 Destinations_PasswordHint7z	De 7z wordt versleuteld met AES-256, inclusief de bestandslijst: zonder wachtwoord zijn zelfs de namen onzichtbaar. Opent met 7-Zip, WinRAR of PeaZip. Als je het vergeet, zijn de bestanden niet te herstellen.
+Rules_VersionsKeep.Header	Hoeveel versies bewaren
+Rules_VersionsAll.Content	Alle
+Rules_VersionsWeek.Content	7 dagelijkse, 4 wekelijkse en 12 maandelijkse
+Rules_VersionsMonth.Content	30 dagelijkse, 12 wekelijkse en 24 maandelijkse
+Rules_VersionsLast.Content	Alleen de nieuwste

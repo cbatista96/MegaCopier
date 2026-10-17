@@ -85,6 +85,12 @@
                 <ComboBoxItem x:Uid="Rules_FolderSkip" />
             </ComboBox>
             <TextBox x:Name="VersionsBox" x:Uid="Rules_Versions" LostFocus="Changed" />
+            <ComboBox x:Name="VersionsKeepBox" x:Uid="Rules_VersionsKeep" HorizontalAlignment="Stretch" SelectionChanged="Selection_Changed">
+                <ComboBoxItem x:Uid="Rules_VersionsAll" />
+                <ComboBoxItem x:Uid="Rules_VersionsWeek" />
+                <ComboBoxItem x:Uid="Rules_VersionsMonth" />
+                <ComboBoxItem x:Uid="Rules_VersionsLast" />
+            </ComboBox>
             <NumberBox x:Name="ToleranceBox" x:Uid="Rules_Tolerance" Minimum="0" Maximum="3600" SpinButtonPlacementMode="Compact" ValueChanged="Number_Changed" />
         </StackPanel>
         <StackPanel x:Name="SafetyRight" Grid.Row="2" Grid.Column="1" Spacing="2">

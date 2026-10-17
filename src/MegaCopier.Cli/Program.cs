@@ -142,6 +142,11 @@ internal static class Cli
                     options.Zip = true;
                     options.ArchiveFormat = MegaCopier.Engine.IO.ArchiveFormat.SevenZip;
                     break;
+                case "--keep-versions":
+                    string keepText = Next(args, ref i);
+                    (options.VersionsDaily, options.VersionsWeekly, options.VersionsMonthly) = VersionPruner.Parse(keepText)
+                        ?? throw new UsageException(Texts.F("C_BadKeepVersions", keepText));
+                    break;
                 case "--connections":
                     options.RemoteConnections = Math.Clamp(NextInt(args, ref i), 1, CopyOptions.MaxRemoteConnections);
                     break;

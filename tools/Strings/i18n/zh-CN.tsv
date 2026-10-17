@@ -956,3 +956,8 @@ Destinations_Format.Header	格式
 Destinations_FormatZip.Content	ZIP（任何程序都能打开）
 Destinations_Format7z.Content	7z（设置密码时也隐藏文件名）
 Destinations_PasswordHint7z	7z 使用 AES-256 加密，包括文件列表：没有密码连文件名都看不到。可用 7-Zip、WinRAR 或 PeaZip 打开。如果忘记密码，将无法恢复文件。
+Rules_VersionsKeep.Header	保留多少个版本
+Rules_VersionsAll.Content	全部
+Rules_VersionsWeek.Content	7 个每日、4 个每周和 12 个每月
+Rules_VersionsMonth.Content	30 个每日、12 个每周和 24 个每月
+Rules_VersionsLast.Content	仅最新一个

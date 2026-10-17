@@ -962,4 +962,9 @@
   <data name="Destinations_FormatZip.Content" xml:space="preserve"><value>ZIP（任何程序都能打开）</value></data>
   <data name="Destinations_Format7z.Content" xml:space="preserve"><value>7z（设置密码时也隐藏文件名）</value></data>
   <data name="Destinations_PasswordHint7z" xml:space="preserve"><value>7z 使用 AES-256 加密，包括文件列表：没有密码连文件名都看不到。可用 7-Zip、WinRAR 或 PeaZip 打开。如果忘记密码，将无法恢复文件。</value></data>
+  <data name="Rules_VersionsKeep.Header" xml:space="preserve"><value>保留多少个版本</value></data>
+  <data name="Rules_VersionsAll.Content" xml:space="preserve"><value>全部</value></data>
+  <data name="Rules_VersionsWeek.Content" xml:space="preserve"><value>7 个每日、4 个每周和 12 个每月</value></data>
+  <data name="Rules_VersionsMonth.Content" xml:space="preserve"><value>30 个每日、12 个每周和 24 个每月</value></data>
+  <data name="Rules_VersionsLast.Content" xml:space="preserve"><value>仅最新一个</value></data>
 </root>

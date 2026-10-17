@@ -303,6 +303,13 @@ public sealed class CopyOptions
     /// <summary>Carpeta de versiones ("" = no): lo que se va a reemplazar o borrar se guarda ahí con fecha. Relativa al destino o absoluta.</summary>
     public string VersionsFolder { get; set; } = "";
 
+    /// <summary>Limpieza de la carpeta de versiones: cuántos días, semanas y meses guardar (todo 0 = guardar todas).</summary>
+    public int VersionsDaily { get; set; }
+
+    public int VersionsWeekly { get; set; }
+
+    public int VersionsMonthly { get; set; }
+
     public FolderConflictPolicy FolderConflict { get; set; }
 
     /// <summary>Diferencia de fecha que se considera igual (FAT/exFAT guardan la hora cada 2 s; algunos NAS redondean).</summary>
