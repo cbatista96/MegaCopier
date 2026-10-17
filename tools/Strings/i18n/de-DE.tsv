@@ -970,3 +970,4 @@ Files_AttrCompressed	komprimiert (NTFS)
 Files_AttrEncrypted	verschlüsselt (EFS)
 Files_AttrSparse	Sparse-Datei
 Files_AttrCloud	nur in der Cloud
+Rules_Shield.Content	Ransomware-Schutz: anhalten, wenn das zu Überschreibende plötzlich verschlüsselt wirkt

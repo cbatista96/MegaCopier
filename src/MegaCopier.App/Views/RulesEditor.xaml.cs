@@ -44,6 +44,8 @@ public sealed class CopyRules
 
     public bool EfsRaw { get; set; }
 
+    public bool RansomwareShield { get; set; } = true;
+
     public bool WaitForDevice { get; set; } = true;
 
     public bool WaitForSpace { get; set; } = true;
@@ -76,6 +78,7 @@ public sealed class CopyRules
         WipeSource = r.WipeSource,
         WipeMethod = r.WipeMethod,
         EfsRaw = r.EfsRaw,
+        RansomwareShield = r.RansomwareShield,
         WaitForDevice = r.WaitForDevice,
         WaitForSpace = r.WaitForSpace,
         AllOrNothing = r.AllOrNothing,
@@ -104,6 +107,7 @@ public sealed class CopyRules
         r.WipeSource = WipeSource;
         r.WipeMethod = WipeMethod;
         r.EfsRaw = EfsRaw;
+        r.RansomwareShield = RansomwareShield;
         r.WaitForDevice = WaitForDevice;
         r.WaitForSpace = WaitForSpace;
         r.AllOrNothing = AllOrNothing;
@@ -177,6 +181,7 @@ public sealed partial class RulesEditor : UserControl
         WipeBox.IsChecked = rules.WipeSource;
         WipeMethodBox.SelectedIndex = (int)rules.WipeMethod;
         EfsRawBox.IsChecked = rules.EfsRaw;
+        ShieldBox.IsChecked = rules.RansomwareShield;
         WaitDeviceBox.IsChecked = rules.WaitForDevice;
         WaitSpaceBox.IsChecked = rules.WaitForSpace;
         AllOrNothingBox.IsChecked = rules.AllOrNothing;
@@ -220,6 +225,7 @@ public sealed partial class RulesEditor : UserControl
         WipeSource = WipeBox.IsChecked == true,
         WipeMethod = (WipeMethod)Math.Max(0, WipeMethodBox.SelectedIndex),
         EfsRaw = EfsRawBox.IsChecked == true,
+        RansomwareShield = ShieldBox.IsChecked == true,
         WaitForDevice = WaitDeviceBox.IsChecked == true,
         WaitForSpace = WaitSpaceBox.IsChecked == true,
         AllOrNothing = AllOrNothingBox.IsChecked == true,

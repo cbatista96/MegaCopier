@@ -976,4 +976,5 @@
   <data name="Files_AttrEncrypted" xml:space="preserve"><value>chiffré (EFS)</value></data>
   <data name="Files_AttrSparse" xml:space="preserve"><value>fragmenté</value></data>
   <data name="Files_AttrCloud" xml:space="preserve"><value>uniquement dans le cloud</value></data>
+  <data name="Rules_Shield.Content" xml:space="preserve"><value>Bouclier anti-rançongiciel : arrêter si ce qui va être écrasé semble soudain chiffré</value></data>
 </root>

@@ -970,3 +970,4 @@ Files_AttrCompressed	圧縮 (NTFS)
 Files_AttrEncrypted	暗号化 (EFS)
 Files_AttrSparse	スパース
 Files_AttrCloud	クラウドのみ
+Rules_Shield.Content	ランサムウェア対策: 上書きする内容が急に暗号化されたように見えたら停止

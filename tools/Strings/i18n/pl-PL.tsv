@@ -970,3 +970,4 @@ Files_AttrCompressed	skompresowany (NTFS)
 Files_AttrEncrypted	zaszyfrowany (EFS)
 Files_AttrSparse	rozrzedzony
 Files_AttrCloud	tylko w chmurze
+Rules_Shield.Content	Tarcza przed ransomware: zatrzymaj, jeśli to, co ma nadpisać pliki, nagle wygląda na zaszyfrowane

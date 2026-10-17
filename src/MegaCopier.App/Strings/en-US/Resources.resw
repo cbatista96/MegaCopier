@@ -976,4 +976,5 @@
   <data name="Files_AttrEncrypted" xml:space="preserve"><value>encrypted (EFS)</value></data>
   <data name="Files_AttrSparse" xml:space="preserve"><value>sparse</value></data>
   <data name="Files_AttrCloud" xml:space="preserve"><value>cloud only</value></data>
+  <data name="Rules_Shield.Content" xml:space="preserve"><value>Ransomware shield: stop if what is about to be overwritten suddenly looks encrypted</value></data>
 </root>

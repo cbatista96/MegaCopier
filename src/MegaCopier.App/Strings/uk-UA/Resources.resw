@@ -976,4 +976,5 @@
   <data name="Files_AttrEncrypted" xml:space="preserve"><value>зашифрований (EFS)</value></data>
   <data name="Files_AttrSparse" xml:space="preserve"><value>розріджений</value></data>
   <data name="Files_AttrCloud" xml:space="preserve"><value>лише в хмарі</value></data>
+  <data name="Rules_Shield.Content" xml:space="preserve"><value>Захист від вимагачів: зупинитися, якщо те, що замінить файли, раптом виглядає зашифрованим</value></data>
 </root>

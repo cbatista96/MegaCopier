@@ -94,6 +94,12 @@ public sealed partial class CopyEngine
 
         string stamp = DateTime.Now.ToString("yyyy-MM-dd HH.mm.ss", System.Globalization.CultureInfo.InvariantCulture);
 
+        if (_options.RansomwareShield)
+        {
+            ShieldAgainstRansomware(plan.Where(i => i.Action is SyncAction.CopyToLeft or SyncAction.CopyToRight)
+                .Select(i => (Side(i.Action == SyncAction.CopyToRight, i.Relative), Side(i.Action == SyncAction.CopyToLeft, i.Relative))), cancellationToken);
+        }
+
         // 0. Renombrados o movidos en un lado: en el otro se cambia el nombre (sin copiar nada).
         foreach (var item in plan.Where(i => i.Action is SyncAction.MoveLeft or SyncAction.MoveRight))
         {

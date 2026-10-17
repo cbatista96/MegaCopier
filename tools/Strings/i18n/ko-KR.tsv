@@ -970,3 +970,4 @@ Files_AttrCompressed	압축됨(NTFS)
 Files_AttrEncrypted	암호화됨(EFS)
 Files_AttrSparse	스파스
 Files_AttrCloud	클라우드 전용
+Rules_Shield.Content	랜섬웨어 방어: 덮어쓸 내용이 갑자기 암호화된 것처럼 보이면 중지

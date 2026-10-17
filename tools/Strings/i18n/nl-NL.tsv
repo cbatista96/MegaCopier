@@ -970,3 +970,4 @@ Files_AttrCompressed	gecomprimeerd (NTFS)
 Files_AttrEncrypted	versleuteld (EFS)
 Files_AttrSparse	sparse
 Files_AttrCloud	alleen in de cloud
+Rules_Shield.Content	Ransomwareschild: stoppen als wat gaat overschrijven plotseling versleuteld lijkt

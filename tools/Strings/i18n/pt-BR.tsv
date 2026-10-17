@@ -970,3 +970,4 @@ Files_AttrCompressed	compactado (NTFS)
 Files_AttrEncrypted	criptografado (EFS)
 Files_AttrSparse	esparso
 Files_AttrCloud	somente na nuvem
+Rules_Shield.Content	Escudo contra ransomware: parar se o que vai sobrescrever parecer criptografado de repente

@@ -211,6 +211,9 @@ public sealed class CopyOptions
     /// </summary>
     public bool EfsRaw { get; set; }
 
+    /// <summary>Parar si muchos de los archivos que van a reemplazar a otros parecen recién cifrados (ransomware).</summary>
+    public bool RansomwareShield { get; set; } = true;
+
     /// <summary>
     /// Copiar a un archivo ZIP en lugar de a una carpeta (el destino puede ser la carpeta donde dejarlo o el propio
     /// .zip). Con <see cref="Encrypt"/>, el ZIP va cifrado con AES-256 (lo abren 7-Zip, WinZip y WinRAR).

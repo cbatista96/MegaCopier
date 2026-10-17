@@ -970,3 +970,4 @@ Files_AttrCompressed	sıkıştırılmış (NTFS)
 Files_AttrEncrypted	şifreli (EFS)
 Files_AttrSparse	seyrek
 Files_AttrCloud	yalnızca bulutta
+Rules_Shield.Content	Fidye yazılımı kalkanı: üzerine yazılacak şey birden şifrelenmiş görünürse dur
