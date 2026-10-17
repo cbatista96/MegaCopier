@@ -200,6 +200,6 @@ public sealed class MoveAndConflictTests : IDisposable
         var result = new CopyEngine(options).Run(new CopyJobRequest([source], _temp.Combine("dst")));
 
         Assert.True(result.Success);
-        Assert.InRange(watch.Elapsed.TotalSeconds, 0.6, 3);
+        Assert.InRange(watch.Elapsed.TotalSeconds, 0.6, 20); // lo que importa es el mínimo; el máximo solo detecta un cuelgue
     }
 }

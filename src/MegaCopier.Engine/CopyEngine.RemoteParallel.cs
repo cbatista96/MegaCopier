@@ -124,9 +124,10 @@ public sealed partial class CopyEngine
         // Mientras trabajan: cada 2 segundos se mira la velocidad total y se decide cuántas conexiones usar.
         long lastBytes = progress.CompletedBytes;
         var clock = System.Diagnostics.Stopwatch.StartNew();
-        while (threads.Any(t => t.IsAlive))
+        // Una sola consulta: entre «queda alguna viva» y «dame la primera viva» la última puede terminar.
+        while (threads.FirstOrDefault(t => t.IsAlive) is { } alive)
         {
-            threads.First(t => t.IsAlive).Join(TimeSpan.FromSeconds(2));
+            alive.Join(TimeSpan.FromSeconds(2));
             if (tuner is null || Controller.IsPaused)
             {
                 lastBytes = progress.CompletedBytes;
