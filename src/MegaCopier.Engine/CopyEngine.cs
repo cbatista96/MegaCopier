@@ -138,6 +138,10 @@ public sealed partial class CopyEngine
                 return RunDecrypt(request, stopwatch, cancellationToken);
             case JobOperation.Repair:
                 return RunRepair(request, stopwatch, cancellationToken);
+            case JobOperation.Snapshot:
+                return RunSnapshot(request, stopwatch, cancellationToken);
+            case JobOperation.Restore:
+                return RunRestore(request, stopwatch, cancellationToken);
             case JobOperation.Copy when _options.Zip:
                 return RunZip(request, stopwatch, cancellationToken);
         }

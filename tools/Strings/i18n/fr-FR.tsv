@@ -983,3 +983,23 @@ Job_TitleRepaired	{0} vérifié
 Job_StateRepairing	Réparation
 Job_FilesRepairedOne	{0} fichier réparé
 Job_FilesRepairedMany	{0} fichiers réparés
+Tool_Snapshot.Text	Sauvegarde sans doublons…
+Tool_Restore.Text	Restaurer une sauvegarde…
+Picker_Repository	Garder les sauvegardes ici
+Picker_RestoreHere	Restaurer ici
+Restore_Title	Restaurer une sauvegarde
+Restore_None	Aucune sauvegarde MegaCopier dans {0}.
+Restore_Item	{0} · {1} fichiers · {2}
+Restore_Choose	Choisir
+Job_TitleBackup	Sauvegarder {0}
+Job_TitleBackingUp	Sauvegarde de {0}
+Job_TitleBackedUp	{0} sauvegardé
+Job_StateBackingUp	Sauvegarde
+Job_FilesBackedUpOne	{0} fichier sauvegardé
+Job_FilesBackedUpMany	{0} fichiers sauvegardés
+Job_TitleRestore	Restaurer dans {0}
+Job_TitleRestoring	Restauration dans {0}
+Job_TitleRestored	Restauré dans {0}
+Job_StateRestoring	Restauration
+Job_FilesRestoredOne	{0} fichier restauré
+Job_FilesRestoredMany	{0} fichiers restaurés

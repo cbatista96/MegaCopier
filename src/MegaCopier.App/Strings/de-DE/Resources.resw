@@ -989,4 +989,24 @@
   <data name="Job_StateRepairing" xml:space="preserve"><value>Reparatur</value></data>
   <data name="Job_FilesRepairedOne" xml:space="preserve"><value>{0} Datei repariert</value></data>
   <data name="Job_FilesRepairedMany" xml:space="preserve"><value>{0} Dateien repariert</value></data>
+  <data name="Tool_Snapshot.Text" xml:space="preserve"><value>Sicherung ohne Duplikate…</value></data>
+  <data name="Tool_Restore.Text" xml:space="preserve"><value>Sicherung wiederherstellen…</value></data>
+  <data name="Picker_Repository" xml:space="preserve"><value>Sicherungen hier aufbewahren</value></data>
+  <data name="Picker_RestoreHere" xml:space="preserve"><value>Hier wiederherstellen</value></data>
+  <data name="Restore_Title" xml:space="preserve"><value>Sicherung wiederherstellen</value></data>
+  <data name="Restore_None" xml:space="preserve"><value>Keine MegaCopier-Sicherungen in {0}.</value></data>
+  <data name="Restore_Item" xml:space="preserve"><value>{0} · {1} Dateien · {2}</value></data>
+  <data name="Restore_Choose" xml:space="preserve"><value>Auswählen</value></data>
+  <data name="Job_TitleBackup" xml:space="preserve"><value>{0} sichern</value></data>
+  <data name="Job_TitleBackingUp" xml:space="preserve"><value>{0} wird gesichert</value></data>
+  <data name="Job_TitleBackedUp" xml:space="preserve"><value>{0} gesichert</value></data>
+  <data name="Job_StateBackingUp" xml:space="preserve"><value>Sicherung läuft</value></data>
+  <data name="Job_FilesBackedUpOne" xml:space="preserve"><value>{0} Datei gesichert</value></data>
+  <data name="Job_FilesBackedUpMany" xml:space="preserve"><value>{0} Dateien gesichert</value></data>
+  <data name="Job_TitleRestore" xml:space="preserve"><value>Nach {0} wiederherstellen</value></data>
+  <data name="Job_TitleRestoring" xml:space="preserve"><value>Wiederherstellung nach {0}</value></data>
+  <data name="Job_TitleRestored" xml:space="preserve"><value>Nach {0} wiederhergestellt</value></data>
+  <data name="Job_StateRestoring" xml:space="preserve"><value>Wiederherstellung</value></data>
+  <data name="Job_FilesRestoredOne" xml:space="preserve"><value>{0} Datei wiederhergestellt</value></data>
+  <data name="Job_FilesRestoredMany" xml:space="preserve"><value>{0} Dateien wiederhergestellt</value></data>
 </root>

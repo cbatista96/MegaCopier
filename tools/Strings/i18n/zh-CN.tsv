@@ -983,3 +983,23 @@ Job_TitleRepaired	已检查 {0}
 Job_StateRepairing	正在修复
 Job_FilesRepairedOne	已修复 {0} 个文件
 Job_FilesRepairedMany	已修复 {0} 个文件
+Tool_Snapshot.Text	无重复备份…
+Tool_Restore.Text	还原备份…
+Picker_Repository	将备份保存在此处
+Picker_RestoreHere	还原到此处
+Restore_Title	还原备份
+Restore_None	{0} 中没有 MegaCopier 备份。
+Restore_Item	{0} · {1} 个文件 · {2}
+Restore_Choose	选择
+Job_TitleBackup	备份 {0}
+Job_TitleBackingUp	正在备份 {0}
+Job_TitleBackedUp	已备份 {0}
+Job_StateBackingUp	正在备份
+Job_FilesBackedUpOne	已备份 {0} 个文件
+Job_FilesBackedUpMany	已备份 {0} 个文件
+Job_TitleRestore	还原到 {0}
+Job_TitleRestoring	正在还原到 {0}
+Job_TitleRestored	已还原到 {0}
+Job_StateRestoring	正在还原
+Job_FilesRestoredOne	已还原 {0} 个文件
+Job_FilesRestoredMany	已还原 {0} 个文件

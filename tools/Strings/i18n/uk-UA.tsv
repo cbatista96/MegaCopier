@@ -983,3 +983,23 @@ Job_TitleRepaired	{0} перевірено
 Job_StateRepairing	Виправлення
 Job_FilesRepairedOne	Виправлено файлів: {0}
 Job_FilesRepairedMany	Виправлено файлів: {0}
+Tool_Snapshot.Text	Резервна копія без дублікатів…
+Tool_Restore.Text	Відновити резервну копію…
+Picker_Repository	Зберігати копії тут
+Picker_RestoreHere	Відновити сюди
+Restore_Title	Відновити резервну копію
+Restore_None	У {0} немає резервних копій MegaCopier.
+Restore_Item	{0} · файлів: {1} · {2}
+Restore_Choose	Вибрати
+Job_TitleBackup	Резервна копія {0}
+Job_TitleBackingUp	Резервне копіювання {0}
+Job_TitleBackedUp	Копію {0} збережено
+Job_StateBackingUp	Резервне копіювання
+Job_FilesBackedUpOne	Збережено файлів: {0}
+Job_FilesBackedUpMany	Збережено файлів: {0}
+Job_TitleRestore	Відновити в {0}
+Job_TitleRestoring	Відновлення в {0}
+Job_TitleRestored	Відновлено в {0}
+Job_StateRestoring	Відновлення
+Job_FilesRestoredOne	Відновлено файлів: {0}
+Job_FilesRestoredMany	Відновлено файлів: {0}

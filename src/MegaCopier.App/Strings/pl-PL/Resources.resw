@@ -989,4 +989,24 @@
   <data name="Job_StateRepairing" xml:space="preserve"><value>Naprawianie</value></data>
   <data name="Job_FilesRepairedOne" xml:space="preserve"><value>Naprawiono plików: {0}</value></data>
   <data name="Job_FilesRepairedMany" xml:space="preserve"><value>Naprawiono plików: {0}</value></data>
+  <data name="Tool_Snapshot.Text" xml:space="preserve"><value>Kopia zapasowa bez duplikatów…</value></data>
+  <data name="Tool_Restore.Text" xml:space="preserve"><value>Przywróć kopię zapasową…</value></data>
+  <data name="Picker_Repository" xml:space="preserve"><value>Przechowuj kopie tutaj</value></data>
+  <data name="Picker_RestoreHere" xml:space="preserve"><value>Przywróć tutaj</value></data>
+  <data name="Restore_Title" xml:space="preserve"><value>Przywróć kopię zapasową</value></data>
+  <data name="Restore_None" xml:space="preserve"><value>Brak kopii zapasowych MegaCopier w {0}.</value></data>
+  <data name="Restore_Item" xml:space="preserve"><value>{0} · plików: {1} · {2}</value></data>
+  <data name="Restore_Choose" xml:space="preserve"><value>Wybierz</value></data>
+  <data name="Job_TitleBackup" xml:space="preserve"><value>Kopia zapasowa {0}</value></data>
+  <data name="Job_TitleBackingUp" xml:space="preserve"><value>Tworzenie kopii {0}</value></data>
+  <data name="Job_TitleBackedUp" xml:space="preserve"><value>Zapisano kopię {0}</value></data>
+  <data name="Job_StateBackingUp" xml:space="preserve"><value>Tworzenie kopii</value></data>
+  <data name="Job_FilesBackedUpOne" xml:space="preserve"><value>Zapisano plików: {0}</value></data>
+  <data name="Job_FilesBackedUpMany" xml:space="preserve"><value>Zapisano plików: {0}</value></data>
+  <data name="Job_TitleRestore" xml:space="preserve"><value>Przywróć do {0}</value></data>
+  <data name="Job_TitleRestoring" xml:space="preserve"><value>Przywracanie do {0}</value></data>
+  <data name="Job_TitleRestored" xml:space="preserve"><value>Przywrócono do {0}</value></data>
+  <data name="Job_StateRestoring" xml:space="preserve"><value>Przywracanie</value></data>
+  <data name="Job_FilesRestoredOne" xml:space="preserve"><value>Przywrócono plików: {0}</value></data>
+  <data name="Job_FilesRestoredMany" xml:space="preserve"><value>Przywrócono plików: {0}</value></data>
 </root>

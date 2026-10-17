@@ -983,3 +983,23 @@ Job_TitleRepaired	{0} gecontroleerd
 Job_StateRepairing	Herstellen
 Job_FilesRepairedOne	{0} bestand hersteld
 Job_FilesRepairedMany	{0} bestanden hersteld
+Tool_Snapshot.Text	Back-up zonder duplicaten…
+Tool_Restore.Text	Back-up herstellen…
+Picker_Repository	Back-ups hier bewaren
+Picker_RestoreHere	Hier herstellen
+Restore_Title	Back-up herstellen
+Restore_None	Geen MegaCopier-back-ups in {0}.
+Restore_Item	{0} · {1} bestanden · {2}
+Restore_Choose	Kiezen
+Job_TitleBackup	Back-up van {0}
+Job_TitleBackingUp	{0} wordt geback-upt
+Job_TitleBackedUp	{0} geback-upt
+Job_StateBackingUp	Back-up bezig
+Job_FilesBackedUpOne	{0} bestand geback-upt
+Job_FilesBackedUpMany	{0} bestanden geback-upt
+Job_TitleRestore	Herstellen naar {0}
+Job_TitleRestoring	Herstellen naar {0}
+Job_TitleRestored	Hersteld naar {0}
+Job_StateRestoring	Herstellen
+Job_FilesRestoredOne	{0} bestand hersteld
+Job_FilesRestoredMany	{0} bestanden hersteld

@@ -983,3 +983,23 @@ Job_TitleRepaired	Sprawdzono {0}
 Job_StateRepairing	Naprawianie
 Job_FilesRepairedOne	Naprawiono plików: {0}
 Job_FilesRepairedMany	Naprawiono plików: {0}
+Tool_Snapshot.Text	Kopia zapasowa bez duplikatów…
+Tool_Restore.Text	Przywróć kopię zapasową…
+Picker_Repository	Przechowuj kopie tutaj
+Picker_RestoreHere	Przywróć tutaj
+Restore_Title	Przywróć kopię zapasową
+Restore_None	Brak kopii zapasowych MegaCopier w {0}.
+Restore_Item	{0} · plików: {1} · {2}
+Restore_Choose	Wybierz
+Job_TitleBackup	Kopia zapasowa {0}
+Job_TitleBackingUp	Tworzenie kopii {0}
+Job_TitleBackedUp	Zapisano kopię {0}
+Job_StateBackingUp	Tworzenie kopii
+Job_FilesBackedUpOne	Zapisano plików: {0}
+Job_FilesBackedUpMany	Zapisano plików: {0}
+Job_TitleRestore	Przywróć do {0}
+Job_TitleRestoring	Przywracanie do {0}
+Job_TitleRestored	Przywrócono do {0}
+Job_StateRestoring	Przywracanie
+Job_FilesRestoredOne	Przywrócono plików: {0}
+Job_FilesRestoredMany	Przywrócono plików: {0}

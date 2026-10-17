@@ -989,4 +989,24 @@
   <data name="Job_StateRepairing" xml:space="preserve"><value>Onarılıyor</value></data>
   <data name="Job_FilesRepairedOne" xml:space="preserve"><value>{0} dosya onarıldı</value></data>
   <data name="Job_FilesRepairedMany" xml:space="preserve"><value>{0} dosya onarıldı</value></data>
+  <data name="Tool_Snapshot.Text" xml:space="preserve"><value>Yinelenmesiz yedekleme…</value></data>
+  <data name="Tool_Restore.Text" xml:space="preserve"><value>Yedeği geri yükle…</value></data>
+  <data name="Picker_Repository" xml:space="preserve"><value>Yedekleri burada tut</value></data>
+  <data name="Picker_RestoreHere" xml:space="preserve"><value>Buraya geri yükle</value></data>
+  <data name="Restore_Title" xml:space="preserve"><value>Yedeği geri yükle</value></data>
+  <data name="Restore_None" xml:space="preserve"><value>{0} içinde MegaCopier yedeği yok.</value></data>
+  <data name="Restore_Item" xml:space="preserve"><value>{0} · {1} dosya · {2}</value></data>
+  <data name="Restore_Choose" xml:space="preserve"><value>Seç</value></data>
+  <data name="Job_TitleBackup" xml:space="preserve"><value>{0} yedeği</value></data>
+  <data name="Job_TitleBackingUp" xml:space="preserve"><value>{0} yedekleniyor</value></data>
+  <data name="Job_TitleBackedUp" xml:space="preserve"><value>{0} yedeklendi</value></data>
+  <data name="Job_StateBackingUp" xml:space="preserve"><value>Yedekleniyor</value></data>
+  <data name="Job_FilesBackedUpOne" xml:space="preserve"><value>{0} dosya yedeklendi</value></data>
+  <data name="Job_FilesBackedUpMany" xml:space="preserve"><value>{0} dosya yedeklendi</value></data>
+  <data name="Job_TitleRestore" xml:space="preserve"><value>{0} konumuna geri yükle</value></data>
+  <data name="Job_TitleRestoring" xml:space="preserve"><value>{0} konumuna geri yükleniyor</value></data>
+  <data name="Job_TitleRestored" xml:space="preserve"><value>{0} konumuna geri yüklendi</value></data>
+  <data name="Job_StateRestoring" xml:space="preserve"><value>Geri yükleniyor</value></data>
+  <data name="Job_FilesRestoredOne" xml:space="preserve"><value>{0} dosya geri yüklendi</value></data>
+  <data name="Job_FilesRestoredMany" xml:space="preserve"><value>{0} dosya geri yüklendi</value></data>
 </root>

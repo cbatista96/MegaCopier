@@ -59,6 +59,9 @@ public sealed class IpcRequest
 
     public IO.ArchiveFormat? ArchiveFormat { get; set; }
 
+    /// <summary>Con Restore: qué instantánea (vacío = la última).</summary>
+    public string? SnapshotId { get; set; }
+
     /// <summary>Copia cifrada (con <see cref="Password"/>).</summary>
     public bool? Encrypt { get; set; }
 

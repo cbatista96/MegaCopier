@@ -983,3 +983,23 @@ Job_TitleRepaired	{0} geprüft
 Job_StateRepairing	Reparatur
 Job_FilesRepairedOne	{0} Datei repariert
 Job_FilesRepairedMany	{0} Dateien repariert
+Tool_Snapshot.Text	Sicherung ohne Duplikate…
+Tool_Restore.Text	Sicherung wiederherstellen…
+Picker_Repository	Sicherungen hier aufbewahren
+Picker_RestoreHere	Hier wiederherstellen
+Restore_Title	Sicherung wiederherstellen
+Restore_None	Keine MegaCopier-Sicherungen in {0}.
+Restore_Item	{0} · {1} Dateien · {2}
+Restore_Choose	Auswählen
+Job_TitleBackup	{0} sichern
+Job_TitleBackingUp	{0} wird gesichert
+Job_TitleBackedUp	{0} gesichert
+Job_StateBackingUp	Sicherung läuft
+Job_FilesBackedUpOne	{0} Datei gesichert
+Job_FilesBackedUpMany	{0} Dateien gesichert
+Job_TitleRestore	Nach {0} wiederherstellen
+Job_TitleRestoring	Wiederherstellung nach {0}
+Job_TitleRestored	Nach {0} wiederhergestellt
+Job_StateRestoring	Wiederherstellung
+Job_FilesRestoredOne	{0} Datei wiederhergestellt
+Job_FilesRestoredMany	{0} Dateien wiederhergestellt

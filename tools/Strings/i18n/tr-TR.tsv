@@ -983,3 +983,23 @@ Job_TitleRepaired	{0} denetlendi
 Job_StateRepairing	Onarılıyor
 Job_FilesRepairedOne	{0} dosya onarıldı
 Job_FilesRepairedMany	{0} dosya onarıldı
+Tool_Snapshot.Text	Yinelenmesiz yedekleme…
+Tool_Restore.Text	Yedeği geri yükle…
+Picker_Repository	Yedekleri burada tut
+Picker_RestoreHere	Buraya geri yükle
+Restore_Title	Yedeği geri yükle
+Restore_None	{0} içinde MegaCopier yedeği yok.
+Restore_Item	{0} · {1} dosya · {2}
+Restore_Choose	Seç
+Job_TitleBackup	{0} yedeği
+Job_TitleBackingUp	{0} yedekleniyor
+Job_TitleBackedUp	{0} yedeklendi
+Job_StateBackingUp	Yedekleniyor
+Job_FilesBackedUpOne	{0} dosya yedeklendi
+Job_FilesBackedUpMany	{0} dosya yedeklendi
+Job_TitleRestore	{0} konumuna geri yükle
+Job_TitleRestoring	{0} konumuna geri yükleniyor
+Job_TitleRestored	{0} konumuna geri yüklendi
+Job_StateRestoring	Geri yükleniyor
+Job_FilesRestoredOne	{0} dosya geri yüklendi
+Job_FilesRestoredMany	{0} dosya geri yüklendi
