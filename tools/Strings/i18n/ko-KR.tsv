@@ -951,3 +951,4 @@ Settings_DefenderFailed	Windows Defender가 변경을 받아들이지 않았습�
 Compare_RenameRight	오른쪽에서 이름 바꾸기(이전 {0})
 Compare_RenameLeft	왼쪽에서 이름 바꾸기(이전 {0})
 Compare_Renamed	이름 바뀜 또는 이동됨
+Send_LocalSendDevice	{0} · LocalSend {1}({2})

@@ -951,3 +951,4 @@ Settings_DefenderFailed	Windows Defender değişikliği kabul etmedi (başka bir
 Compare_RenameRight	Sağda yeniden adlandır (eskiden {0})
 Compare_RenameLeft	Solda yeniden adlandır (eskiden {0})
 Compare_Renamed	Yeniden adlandırıldı veya taşındı
+Send_LocalSendDevice	{0} · LocalSend {1} ({2})

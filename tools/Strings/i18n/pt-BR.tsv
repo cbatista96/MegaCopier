@@ -951,3 +951,4 @@ Settings_DefenderFailed	O Windows Defender não aceitou a alteração (talvez ou
 Compare_RenameRight	Renomear à direita (era {0})
 Compare_RenameLeft	Renomear à esquerda (era {0})
 Compare_Renamed	Renomeado ou movido
+Send_LocalSendDevice	{0} · LocalSend {1} ({2})

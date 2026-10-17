@@ -957,4 +957,5 @@
   <data name="Compare_RenameRight" xml:space="preserve"><value>右側で名前を変更（元は {0}）</value></data>
   <data name="Compare_RenameLeft" xml:space="preserve"><value>左側で名前を変更（元は {0}）</value></data>
   <data name="Compare_Renamed" xml:space="preserve"><value>名前の変更または移動</value></data>
+  <data name="Send_LocalSendDevice" xml:space="preserve"><value>{0} · LocalSend {1}（{2}）</value></data>
 </root>

@@ -228,3 +228,6 @@ E_RemoteConnections	Utilisation de {0} connexions simultanées au serveur.
 E_RemoteConnectionFailed	Impossible d'ouvrir la connexion {0} au serveur ({1}) : on continue avec les autres.
 E_Renamed	Renommé (sans le recopier)
 E_WouldRename	Serait renommé
+E_LocalSendStart	Envoyer {0} fichiers ({1}) à LocalSend sur {2} : acceptez sur l'autre écran.
+E_LocalSendDone	{0} fichiers ({1}) envoyés avec LocalSend.
+E_LocalSendRejected	L'autre appareil a refusé l'envoi.

@@ -1414,12 +1414,19 @@ public sealed partial class MainWindow : Window
         SendPeers.Items.Clear();
         SendHostBox.Text = _app.Settings.LastPeer;
         SendCodeBox.Text = "";
+        SendCodeBox.IsEnabled = true;
         SendSearching.Text = L.Get("Send_Searching");
         SendDialog.XamlRoot = Root.XamlRoot;
         SendDialog.RequestedTheme = Root.RequestedTheme;
         _ = SearchPeersAsync();
-        if (await SendDialog.ShowAsync() != ContentDialogResult.Primary
-            || SendHostBox.Text.Trim().Length == 0 || SendCodeBox.Text.Trim().Length == 0)
+        if (await SendDialog.ShowAsync() != ContentDialogResult.Primary || SendHostBox.Text.Trim().Length == 0)
+        {
+            return;
+        }
+
+        // LocalSend no usa código: se acepta en la pantalla del otro equipo.
+        bool localSend = Engine.Network.LocalSendSender.IsDestination(SendHostBox.Text.Trim());
+        if (!localSend && SendCodeBox.Text.Trim().Length == 0)
         {
             return;
         }
@@ -1440,12 +1447,31 @@ public sealed partial class MainWindow : Window
     {
         try
         {
+            // Equipos con MegaCopier y, a la vez, móviles y equipos con LocalSend (en pruebas no: la multidifusión
+            // haría saltar el aviso del cortafuegos).
+            var localSend = App.TestMode ? Task.FromResult(new List<Engine.Network.LocalSendDevice>())
+                : Engine.Network.LocalSendSender.DiscoverAsync(Environment.MachineName, TimeSpan.FromSeconds(2));
             var found = await Engine.Network.PeerDiscovery.SearchAsync(TimeSpan.FromSeconds(1.5));
             foreach (var peer in found.Where(p => p.Name != Environment.MachineName || App.TestMode))
             {
                 var item = new ListViewItem { Content = $"{peer.Name}  ({peer.Address})", Tag = $"{peer.Address}:{peer.Port}" };
                 Microsoft.UI.Xaml.Automation.AutomationProperties.SetName(item, peer.Name);
                 SendPeers.Items.Add(item);
+            }
+
+            try
+            {
+                foreach (var device in (await localSend).Where(d => d.Fingerprint != _app.Settings.LocalSendFingerprint)) // no este mismo PC
+                {
+                    string label = L.F("Send_LocalSendDevice", device.Alias, device.DeviceModel ?? "", device.Address);
+                    var item = new ListViewItem { Content = label, Tag = device.Destination };
+                    Microsoft.UI.Xaml.Automation.AutomationProperties.SetName(item, label);
+                    SendPeers.Items.Add(item);
+                }
+            }
+            catch (System.Net.Sockets.SocketException)
+            {
+                // El puerto de LocalSend puede estar ocupado por la propia app LocalSend: se sigue sin ella.
             }
 
             SendSearching.Text = SendPeers.Items.Count == 0 ? L.Get("Send_NoneFound") : "";
@@ -1461,6 +1487,7 @@ public sealed partial class MainWindow : Window
         if (SendPeers.SelectedItem is ListViewItem { Tag: string address })
         {
             SendHostBox.Text = address;
+            SendCodeBox.IsEnabled = !Engine.Network.LocalSendSender.IsDestination(address);
         }
     }
 

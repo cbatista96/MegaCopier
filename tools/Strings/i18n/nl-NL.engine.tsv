@@ -228,3 +228,6 @@ E_RemoteConnections	{0} verbindingen tegelijk met de server.
 E_RemoteConnectionFailed	Verbinding {0} met de server kon niet worden geopend ({1}): verder met de andere.
 E_Renamed	Hernoemd (niet opnieuw gekopieerd)
 E_WouldRename	Zou worden hernoemd
+E_LocalSendStart	{0} bestanden ({1}) naar LocalSend op {2} sturen: accepteer op het andere scherm.
+E_LocalSendDone	{0} bestanden ({1}) verzonden met LocalSend.
+E_LocalSendRejected	Het andere apparaat heeft de overdracht geweigerd.

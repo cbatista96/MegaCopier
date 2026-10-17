@@ -228,3 +228,6 @@ E_RemoteConnections	서버에 동시에 {0}개 연결을 사용합니다.
 E_RemoteConnectionFailed	서버 연결 {0}을(를) 열 수 없습니다({1}): 나머지 연결로 계속합니다.
 E_Renamed	이름 바꿈(다시 복사하지 않음)
 E_WouldRename	이름이 바뀝니다
+E_LocalSendStart	{2}의 LocalSend로 파일 {0}개({1})를 보냅니다. 다른 화면에서 수락하세요.
+E_LocalSendDone	LocalSend로 파일 {0}개({1})를 보냈습니다.
+E_LocalSendRejected	다른 기기가 전송을 거부했습니다.

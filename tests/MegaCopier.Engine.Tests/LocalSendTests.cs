@@ -184,4 +184,44 @@ public sealed class LocalSendTests : IDisposable
     [InlineData("con. ", "_con")]
     [InlineData("fotos/COM1.txt", @"fotos\_COM1.txt")]
     public void SafeRelativePaths(string name, string? expected) => Assert.Equal(expected, LocalSendProtocol.SafeRelativePath(name));
+
+    [Fact]
+    public void MegaCopierSendsToLocalSend()
+    {
+        Start();
+        string source = _temp.Combine("origen");
+        Directory.CreateDirectory(Path.Combine(source, "fotos"));
+        byte[] photo = RandomNumberGenerator.GetBytes(2_500_000);
+        File.WriteAllBytes(Path.Combine(source, "fotos", "playa.jpg"), photo);
+        File.WriteAllText(Path.Combine(source, "nota ñ.txt"), "hola");
+        CopyProgress last = default;
+        var engine = new CopyEngine(new CopyOptions { Operation = JobOperation.Send, ProgressInterval = TimeSpan.Zero });
+        engine.ProgressChanged += p => last = p;
+
+        var result = engine.Run(new CopyJobRequest([source], $"localsend://127.0.0.1:{_receiver!.Port}/http/huella-pc"));
+
+        Assert.Equal(2, result.FilesCopied);
+        Assert.Equal(2, _offer!.Files);
+        Assert.Equal(photo, File.ReadAllBytes(Path.Combine(Folder, "origen", "fotos", "playa.jpg")));
+        Assert.Equal("hola", File.ReadAllText(Path.Combine(Folder, "origen", "nota ñ.txt")));
+        Assert.Equal(last.TotalBytes, last.CompletedBytes);
+    }
+
+    [Fact]
+    public void ARejectedLocalSendTransferIsReported()
+    {
+        Start();
+        _accept = false;
+        File.WriteAllText(_temp.Combine("a.txt"), "a");
+        var engine = new CopyEngine(new CopyOptions { Operation = JobOperation.Send });
+        Assert.Throws<CopyPlanException>(() => engine.Run(new CopyJobRequest([_temp.Combine("a.txt")], $"localsend://127.0.0.1:{_receiver!.Port}/http/")));
+        Assert.False(File.Exists(Path.Combine(Folder, "a.txt")));
+    }
+
+    [Theory]
+    [InlineData("localsend://192.168.1.20:53317/https/ABCD", "192.168.1.20", 53317, true, "ABCD")]
+    [InlineData("localsend://10.0.0.5:4000/http/", "10.0.0.5", 4000, false, "")]
+    [InlineData("localsend://[fe80::1]:53317/https/X", "fe80::1", 53317, true, "X")]
+    public void LocalSendDestinationsParse(string destination, string host, int port, bool https, string fingerprint) =>
+        Assert.Equal((host, port, https, fingerprint), LocalSendSender.Parse(destination));
 }

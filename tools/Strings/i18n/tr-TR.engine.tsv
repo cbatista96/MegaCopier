@@ -228,3 +228,6 @@ E_RemoteConnections	Sunucuyla aynı anda {0} bağlantı kullanılıyor.
 E_RemoteConnectionFailed	Sunucuyla {0}. bağlantı açılamadı ({1}): diğerleriyle devam ediliyor.
 E_Renamed	Yeniden adlandırıldı (tekrar kopyalanmadı)
 E_WouldRename	Yeniden adlandırılacak
+E_LocalSendStart	{0} dosya ({1}) {2} üzerindeki LocalSend'e gönderiliyor: diğer ekranda kabul edin.
+E_LocalSendDone	LocalSend ile {0} dosya ({1}) gönderildi.
+E_LocalSendRejected	Diğer cihaz aktarımı reddetti.

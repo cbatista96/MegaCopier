@@ -951,3 +951,4 @@ Settings_DefenderFailed	Захисник Windows не прийняв зміну 
 Compare_RenameRight	Перейменувати праворуч (було {0})
 Compare_RenameLeft	Перейменувати ліворуч (було {0})
 Compare_Renamed	Перейменовано або переміщено
+Send_LocalSendDevice	{0} · LocalSend {1} ({2})

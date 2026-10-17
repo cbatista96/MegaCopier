@@ -228,3 +228,6 @@ E_RemoteConnections	サーバーへの同時接続を {0} 本使用していま�
 E_RemoteConnectionFailed	サーバーへの接続 {0} を開けませんでした（{1}）: 残りの接続で続行します。
 E_Renamed	名前を変更（再コピーなし）
 E_WouldRename	名前が変更されます
+E_LocalSendStart	{2} の LocalSend に {0} 個のファイル（{1}）を送信します。相手の画面で受け入れてください。
+E_LocalSendDone	LocalSend で {0} 個のファイル（{1}）を送信しました。
+E_LocalSendRejected	相手のデバイスが送信を拒否しました。

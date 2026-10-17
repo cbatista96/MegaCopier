@@ -951,3 +951,4 @@ Settings_DefenderFailed	Защитник Windows не принял измене�
 Compare_RenameRight	Переименовать справа (было {0})
 Compare_RenameLeft	Переименовать слева (было {0})
 Compare_Renamed	Переименован или перемещён
+Send_LocalSendDevice	{0} · LocalSend {1} ({2})

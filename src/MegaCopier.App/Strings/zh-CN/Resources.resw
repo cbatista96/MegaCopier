@@ -957,4 +957,5 @@
   <data name="Compare_RenameRight" xml:space="preserve"><value>在右侧重命名（原为 {0}）</value></data>
   <data name="Compare_RenameLeft" xml:space="preserve"><value>在左侧重命名（原为 {0}）</value></data>
   <data name="Compare_Renamed" xml:space="preserve"><value>已重命名或移动</value></data>
+  <data name="Send_LocalSendDevice" xml:space="preserve"><value>{0} · LocalSend {1}（{2}）</value></data>
 </root>

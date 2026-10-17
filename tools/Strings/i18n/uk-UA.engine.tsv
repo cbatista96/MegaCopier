@@ -228,3 +228,6 @@ E_RemoteConnections	Використовується {0} одночасних з
 E_RemoteConnectionFailed	Не вдалося відкрити з'єднання {0} із сервером ({1}): продовжуємо з іншими.
 E_Renamed	Перейменовано (без повторного копіювання)
 E_WouldRename	Буде перейменовано
+E_LocalSendStart	Надсилання {0} файлів ({1}) у LocalSend на {2}: прийміть на іншому екрані.
+E_LocalSendDone	Надіслано файлів через LocalSend: {0} ({1}).
+E_LocalSendRejected	Інший пристрій відхилив надсилання.

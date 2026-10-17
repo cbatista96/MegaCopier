@@ -254,6 +254,9 @@ public static partial class Texts
             ["E_RemoteConnectionFailed"] = "No se pudo abrir la conexión {0} con el servidor ({1}): se sigue con las demás.",
             ["E_Renamed"] = "Renombrado (sin copiarlo otra vez)",
             ["E_WouldRename"] = "Se renombraría",
+            ["E_LocalSendStart"] = "Enviar {0} archivos ({1}) a LocalSend en {2}: acéptalo en la otra pantalla.",
+            ["E_LocalSendDone"] = "Enviados {0} archivos ({1}) con LocalSend.",
+            ["E_LocalSendRejected"] = "El otro equipo rechazó el envío.",
         },
         ["en-US"] = new()
         {
@@ -486,6 +489,9 @@ public static partial class Texts
             ["E_RemoteConnectionFailed"] = "Could not open connection {0} to the server ({1}): continuing with the others.",
             ["E_Renamed"] = "Renamed (not copied again)",
             ["E_WouldRename"] = "Would be renamed",
+            ["E_LocalSendStart"] = "Send {0} files ({1}) to LocalSend on {2}: accept it on the other screen.",
+            ["E_LocalSendDone"] = "Sent {0} files ({1}) with LocalSend.",
+            ["E_LocalSendRejected"] = "The other device declined the transfer.",
         },
         ["fr-FR"] = new()
         {
@@ -718,6 +724,9 @@ public static partial class Texts
             ["E_RemoteConnectionFailed"] = "Impossible d'ouvrir la connexion {0} au serveur ({1}) : on continue avec les autres.",
             ["E_Renamed"] = "Renommé (sans le recopier)",
             ["E_WouldRename"] = "Serait renommé",
+            ["E_LocalSendStart"] = "Envoyer {0} fichiers ({1}) à LocalSend sur {2} : acceptez sur l'autre écran.",
+            ["E_LocalSendDone"] = "{0} fichiers ({1}) envoyés avec LocalSend.",
+            ["E_LocalSendRejected"] = "L'autre appareil a refusé l'envoi.",
         },
         ["de-DE"] = new()
         {
@@ -950,6 +959,9 @@ public static partial class Texts
             ["E_RemoteConnectionFailed"] = "Verbindung {0} zum Server konnte nicht geöffnet werden ({1}): Es geht mit den anderen weiter.",
             ["E_Renamed"] = "Umbenannt (nicht erneut kopiert)",
             ["E_WouldRename"] = "Würde umbenannt",
+            ["E_LocalSendStart"] = "{0} Dateien ({1}) an LocalSend auf {2} senden: Auf dem anderen Bildschirm annehmen.",
+            ["E_LocalSendDone"] = "{0} Dateien ({1}) mit LocalSend gesendet.",
+            ["E_LocalSendRejected"] = "Das andere Gerät hat die Übertragung abgelehnt.",
         },
         ["it-IT"] = new()
         {
@@ -1182,6 +1194,9 @@ public static partial class Texts
             ["E_RemoteConnectionFailed"] = "Impossibile aprire la connessione {0} al server ({1}): si continua con le altre.",
             ["E_Renamed"] = "Rinominato (senza ricopiarlo)",
             ["E_WouldRename"] = "Verrebbe rinominato",
+            ["E_LocalSendStart"] = "Invia {0} file ({1}) a LocalSend su {2}: accetta sull'altro schermo.",
+            ["E_LocalSendDone"] = "Inviati {0} file ({1}) con LocalSend.",
+            ["E_LocalSendRejected"] = "L'altro dispositivo ha rifiutato l'invio.",
         },
         ["pt-BR"] = new()
         {
@@ -1414,6 +1429,9 @@ public static partial class Texts
             ["E_RemoteConnectionFailed"] = "Não foi possível abrir a conexão {0} com o servidor ({1}): continuando com as demais.",
             ["E_Renamed"] = "Renomeado (sem copiar de novo)",
             ["E_WouldRename"] = "Seria renomeado",
+            ["E_LocalSendStart"] = "Enviar {0} arquivos ({1}) ao LocalSend em {2}: aceite na outra tela.",
+            ["E_LocalSendDone"] = "{0} arquivos ({1}) enviados com o LocalSend.",
+            ["E_LocalSendRejected"] = "O outro dispositivo recusou o envio.",
         },
         ["ru-RU"] = new()
         {
@@ -1646,6 +1664,9 @@ public static partial class Texts
             ["E_RemoteConnectionFailed"] = "Не удалось открыть подключение {0} к серверу ({1}): продолжаем с остальными.",
             ["E_Renamed"] = "Переименован (без повторного копирования)",
             ["E_WouldRename"] = "Будет переименован",
+            ["E_LocalSendStart"] = "Отправка {0} файлов ({1}) в LocalSend на {2}: примите на другом экране.",
+            ["E_LocalSendDone"] = "Отправлено файлов через LocalSend: {0} ({1}).",
+            ["E_LocalSendRejected"] = "Другое устройство отклонило отправку.",
         },
         ["uk-UA"] = new()
         {
@@ -1878,6 +1899,9 @@ public static partial class Texts
             ["E_RemoteConnectionFailed"] = "Не вдалося відкрити з'єднання {0} із сервером ({1}): продовжуємо з іншими.",
             ["E_Renamed"] = "Перейменовано (без повторного копіювання)",
             ["E_WouldRename"] = "Буде перейменовано",
+            ["E_LocalSendStart"] = "Надсилання {0} файлів ({1}) у LocalSend на {2}: прийміть на іншому екрані.",
+            ["E_LocalSendDone"] = "Надіслано файлів через LocalSend: {0} ({1}).",
+            ["E_LocalSendRejected"] = "Інший пристрій відхилив надсилання.",
         },
         ["pl-PL"] = new()
         {
@@ -2110,6 +2134,9 @@ public static partial class Texts
             ["E_RemoteConnectionFailed"] = "Nie udało się otworzyć połączenia {0} z serwerem ({1}): kontynuacja z pozostałymi.",
             ["E_Renamed"] = "Zmieniono nazwę (bez ponownego kopiowania)",
             ["E_WouldRename"] = "Zostałaby zmieniona nazwa",
+            ["E_LocalSendStart"] = "Wysyłanie {0} plików ({1}) do LocalSend na {2}: zaakceptuj na drugim ekranie.",
+            ["E_LocalSendDone"] = "Wysłano {0} plików ({1}) przez LocalSend.",
+            ["E_LocalSendRejected"] = "Drugie urządzenie odrzuciło przesyłanie.",
         },
         ["nl-NL"] = new()
         {
@@ -2342,6 +2369,9 @@ public static partial class Texts
             ["E_RemoteConnectionFailed"] = "Verbinding {0} met de server kon niet worden geopend ({1}): verder met de andere.",
             ["E_Renamed"] = "Hernoemd (niet opnieuw gekopieerd)",
             ["E_WouldRename"] = "Zou worden hernoemd",
+            ["E_LocalSendStart"] = "{0} bestanden ({1}) naar LocalSend op {2} sturen: accepteer op het andere scherm.",
+            ["E_LocalSendDone"] = "{0} bestanden ({1}) verzonden met LocalSend.",
+            ["E_LocalSendRejected"] = "Het andere apparaat heeft de overdracht geweigerd.",
         },
         ["tr-TR"] = new()
         {
@@ -2574,6 +2604,9 @@ public static partial class Texts
             ["E_RemoteConnectionFailed"] = "Sunucuyla {0}. bağlantı açılamadı ({1}): diğerleriyle devam ediliyor.",
             ["E_Renamed"] = "Yeniden adlandırıldı (tekrar kopyalanmadı)",
             ["E_WouldRename"] = "Yeniden adlandırılacak",
+            ["E_LocalSendStart"] = "{0} dosya ({1}) {2} üzerindeki LocalSend'e gönderiliyor: diğer ekranda kabul edin.",
+            ["E_LocalSendDone"] = "LocalSend ile {0} dosya ({1}) gönderildi.",
+            ["E_LocalSendRejected"] = "Diğer cihaz aktarımı reddetti.",
         },
         ["zh-CN"] = new()
         {
@@ -2806,6 +2839,9 @@ public static partial class Texts
             ["E_RemoteConnectionFailed"] = "无法打开到服务器的第 {0} 个连接（{1}）：继续使用其他连接。",
             ["E_Renamed"] = "已重命名（未重新复制）",
             ["E_WouldRename"] = "将被重命名",
+            ["E_LocalSendStart"] = "向 {2} 上的 LocalSend 发送 {0} 个文件（{1}）：请在另一台设备上接受。",
+            ["E_LocalSendDone"] = "已通过 LocalSend 发送 {0} 个文件（{1}）。",
+            ["E_LocalSendRejected"] = "另一台设备拒绝了传输。",
         },
         ["ja-JP"] = new()
         {
@@ -3038,6 +3074,9 @@ public static partial class Texts
             ["E_RemoteConnectionFailed"] = "サーバーへの接続 {0} を開けませんでした（{1}）: 残りの接続で続行します。",
             ["E_Renamed"] = "名前を変更（再コピーなし）",
             ["E_WouldRename"] = "名前が変更されます",
+            ["E_LocalSendStart"] = "{2} の LocalSend に {0} 個のファイル（{1}）を送信します。相手の画面で受け入れてください。",
+            ["E_LocalSendDone"] = "LocalSend で {0} 個のファイル（{1}）を送信しました。",
+            ["E_LocalSendRejected"] = "相手のデバイスが送信を拒否しました。",
         },
         ["ko-KR"] = new()
         {
@@ -3270,6 +3309,9 @@ public static partial class Texts
             ["E_RemoteConnectionFailed"] = "서버 연결 {0}을(를) 열 수 없습니다({1}): 나머지 연결로 계속합니다.",
             ["E_Renamed"] = "이름 바꿈(다시 복사하지 않음)",
             ["E_WouldRename"] = "이름이 바뀝니다",
+            ["E_LocalSendStart"] = "{2}의 LocalSend로 파일 {0}개({1})를 보냅니다. 다른 화면에서 수락하세요.",
+            ["E_LocalSendDone"] = "LocalSend로 파일 {0}개({1})를 보냈습니다.",
+            ["E_LocalSendRejected"] = "다른 기기가 전송을 거부했습니다.",
         },
     };
 }

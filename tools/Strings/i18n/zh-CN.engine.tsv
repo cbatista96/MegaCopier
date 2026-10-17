@@ -228,3 +228,6 @@ E_RemoteConnections	正在同时使用 {0} 个服务器连接。
 E_RemoteConnectionFailed	无法打开到服务器的第 {0} 个连接（{1}）：继续使用其他连接。
 E_Renamed	已重命名（未重新复制）
 E_WouldRename	将被重命名
+E_LocalSendStart	向 {2} 上的 LocalSend 发送 {0} 个文件（{1}）：请在另一台设备上接受。
+E_LocalSendDone	已通过 LocalSend 发送 {0} 个文件（{1}）。
+E_LocalSendRejected	另一台设备拒绝了传输。

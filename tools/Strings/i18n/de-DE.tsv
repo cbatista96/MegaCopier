@@ -951,3 +951,4 @@ Settings_DefenderFailed	Windows Defender hat die Änderung nicht übernommen (ev
 Compare_RenameRight	Rechts umbenennen (war {0})
 Compare_RenameLeft	Links umbenennen (war {0})
 Compare_Renamed	Umbenannt oder verschoben
+Send_LocalSendDevice	{0} · LocalSend {1} ({2})
