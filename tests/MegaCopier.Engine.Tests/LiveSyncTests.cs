@@ -92,7 +92,12 @@ public sealed class LiveSyncTests : IDisposable
             }
         }
 
-        WaitFor(() => Directory.Exists(Target) && Directory.GetFiles(Target).Length == 200);
+        // Solo los archivos terminados: mientras se copia, en el destino también hay .mcpart y .mcjournal.
+        WaitFor(() => Enumerable.Range(0, 200).All(i =>
+        {
+            var file = new FileInfo(Path.Combine(Target, $"f{i}.txt"));
+            return file.Exists && file.Length == i;
+        }));
         Assert.All(Enumerable.Range(0, 200), i => Assert.Equal(i, new FileInfo(Path.Combine(Target, $"f{i}.txt")).Length));
     }
 
