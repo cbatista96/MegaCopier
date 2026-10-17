@@ -962,4 +962,9 @@
   <data name="Destinations_FormatZip.Content" xml:space="preserve"><value>ZIP (otwiera się wszędzie)</value></data>
   <data name="Destinations_Format7z.Content" xml:space="preserve"><value>7z (z hasłem ukrywa też nazwy)</value></data>
   <data name="Destinations_PasswordHint7z" xml:space="preserve"><value>7z jest szyfrowany AES-256 razem z listą plików: bez hasła nie widać nawet nazw. Otwiera się w 7-Zip, WinRAR lub PeaZip. Jeśli zapomnisz hasło, nie da się odzyskać plików.</value></data>
+  <data name="Rules_VersionsKeep.Header" xml:space="preserve"><value>Ile wersji zachować</value></data>
+  <data name="Rules_VersionsAll.Content" xml:space="preserve"><value>Wszystkie</value></data>
+  <data name="Rules_VersionsWeek.Content" xml:space="preserve"><value>7 dziennych, 4 tygodniowe i 12 miesięcznych</value></data>
+  <data name="Rules_VersionsMonth.Content" xml:space="preserve"><value>30 dziennych, 12 tygodniowych i 24 miesięczne</value></data>
+  <data name="Rules_VersionsLast.Content" xml:space="preserve"><value>Tylko najnowszą</value></data>
 </root>

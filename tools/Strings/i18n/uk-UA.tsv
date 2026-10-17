@@ -956,3 +956,8 @@ Destinations_Format.Header	Формат
 Destinations_FormatZip.Content	ZIP (відкривається будь-де)
 Destinations_Format7z.Content	7z (з паролем приховує й імена)
 Destinations_PasswordHint7z	7z шифрується AES-256 разом зі списком файлів: без пароля не видно навіть імен. Відкривається в 7-Zip, WinRAR або PeaZip. Якщо ви забудете пароль, відновити файли буде неможливо.
+Rules_VersionsKeep.Header	Скільки версій зберігати
+Rules_VersionsAll.Content	Усі
+Rules_VersionsWeek.Content	7 щоденних, 4 щотижневих і 12 щомісячних
+Rules_VersionsMonth.Content	30 щоденних, 12 щотижневих і 24 щомісячних
+Rules_VersionsLast.Content	Лише останню

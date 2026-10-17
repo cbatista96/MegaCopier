@@ -146,6 +146,12 @@ public sealed class AppSettings
     /// <summary>Carpeta (dentro del destino) donde guardar lo reemplazado o borrado; vacío = no guardar.</summary>
     public string VersionsFolder { get; set; } = "";
 
+    public int VersionsDaily { get; set; }
+
+    public int VersionsWeekly { get; set; }
+
+    public int VersionsMonthly { get; set; }
+
     public FolderConflictPolicy FolderConflict { get; set; }
 
     public double TimeToleranceSeconds { get; set; } = 2;
@@ -197,7 +203,7 @@ public sealed class AppSettings
         get => new()
         {
             Filter = Filter, Links = Links, KeepBothPattern = KeepBothPattern, RetryCount = RetryCount, RetryDelaySeconds = RetryDelaySeconds, OnError = OnError,
-            VersionsFolder = VersionsFolder, FolderConflict = FolderConflict, TimeToleranceSeconds = TimeToleranceSeconds, VerifySource = VerifySource,
+            VersionsFolder = VersionsFolder, VersionsDaily = VersionsDaily, VersionsWeekly = VersionsWeekly, VersionsMonthly = VersionsMonthly, FolderConflict = FolderConflict, TimeToleranceSeconds = TimeToleranceSeconds, VerifySource = VerifySource,
             SaveHashStream = SaveHashStream, PreserveHardLinks = PreserveHardLinks, WipeSource = WipeSource, WipeMethod = WipeMethod, EfsRaw = EfsRaw, WaitForDevice = WaitForDevice, WaitForSpace = WaitForSpace,
             AllOrNothing = AllOrNothing,
             RescueMode = RescueMode,
@@ -213,6 +219,9 @@ public sealed class AppSettings
             RetryDelaySeconds = value.RetryDelaySeconds;
             OnError = value.OnError;
             VersionsFolder = value.VersionsFolder;
+            VersionsDaily = value.VersionsDaily;
+            VersionsWeekly = value.VersionsWeekly;
+            VersionsMonthly = value.VersionsMonthly;
             FolderConflict = value.FolderConflict;
             TimeToleranceSeconds = value.TimeToleranceSeconds;
             VerifySource = value.VerifySource;
@@ -405,6 +414,9 @@ public sealed class AppSettings
             SyncDirection = request.SyncDirection ?? SyncDirection.TwoWay,
             DryRun = request.DryRun ?? false,
             VersionsFolder = VersionsFolder.Trim(),
+            VersionsDaily = VersionsDaily,
+            VersionsWeekly = VersionsWeekly,
+            VersionsMonthly = VersionsMonthly,
             FolderConflict = FolderConflict,
             TimeTolerance = TimeSpan.FromSeconds(Math.Clamp(TimeToleranceSeconds, 0, 3600)),
             VerifySource = VerifySource,

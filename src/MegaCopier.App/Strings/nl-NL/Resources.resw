@@ -962,4 +962,9 @@
   <data name="Destinations_FormatZip.Content" xml:space="preserve"><value>ZIP (opent overal)</value></data>
   <data name="Destinations_Format7z.Content" xml:space="preserve"><value>7z (met wachtwoord ook namen verborgen)</value></data>
   <data name="Destinations_PasswordHint7z" xml:space="preserve"><value>De 7z wordt versleuteld met AES-256, inclusief de bestandslijst: zonder wachtwoord zijn zelfs de namen onzichtbaar. Opent met 7-Zip, WinRAR of PeaZip. Als je het vergeet, zijn de bestanden niet te herstellen.</value></data>
+  <data name="Rules_VersionsKeep.Header" xml:space="preserve"><value>Hoeveel versies bewaren</value></data>
+  <data name="Rules_VersionsAll.Content" xml:space="preserve"><value>Alle</value></data>
+  <data name="Rules_VersionsWeek.Content" xml:space="preserve"><value>7 dagelijkse, 4 wekelijkse en 12 maandelijkse</value></data>
+  <data name="Rules_VersionsMonth.Content" xml:space="preserve"><value>30 dagelijkse, 12 wekelijkse en 24 maandelijkse</value></data>
+  <data name="Rules_VersionsLast.Content" xml:space="preserve"><value>Alleen de nieuwste</value></data>
 </root>

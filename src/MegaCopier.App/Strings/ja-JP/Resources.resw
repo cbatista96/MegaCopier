@@ -962,4 +962,9 @@
   <data name="Destinations_FormatZip.Content" xml:space="preserve"><value>ZIP（どこでも開ける）</value></data>
   <data name="Destinations_Format7z.Content" xml:space="preserve"><value>7z（パスワード付きで名前も隠す）</value></data>
   <data name="Destinations_PasswordHint7z" xml:space="preserve"><value>7z はファイル一覧も含めて AES-256 で暗号化されます。パスワードがないと名前も見えません。7-Zip、WinRAR、PeaZip で開けます。パスワードを忘れるとファイルは復元できません。</value></data>
+  <data name="Rules_VersionsKeep.Header" xml:space="preserve"><value>保存するバージョン数</value></data>
+  <data name="Rules_VersionsAll.Content" xml:space="preserve"><value>すべて</value></data>
+  <data name="Rules_VersionsWeek.Content" xml:space="preserve"><value>日次 7、週次 4、月次 12</value></data>
+  <data name="Rules_VersionsMonth.Content" xml:space="preserve"><value>日次 30、週次 12、月次 24</value></data>
+  <data name="Rules_VersionsLast.Content" xml:space="preserve"><value>最新のみ</value></data>
 </root>

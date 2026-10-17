@@ -91,6 +91,12 @@ public sealed class CopyJobRecord
 
     public string VersionsFolder { get; set; } = "";
 
+    public int VersionsDaily { get; set; }
+
+    public int VersionsWeekly { get; set; }
+
+    public int VersionsMonthly { get; set; }
+
     public FolderConflictPolicy FolderConflict { get; set; }
 
     public double TimeToleranceSeconds { get; set; } = 2;
@@ -172,6 +178,9 @@ public sealed class CopyJobRecord
         SyncDirection = options.SyncDirection,
         DryRun = options.DryRun,
         VersionsFolder = options.VersionsFolder,
+        VersionsDaily = options.VersionsDaily,
+        VersionsWeekly = options.VersionsWeekly,
+        VersionsMonthly = options.VersionsMonthly,
         FolderConflict = options.FolderConflict,
         TimeToleranceSeconds = options.TimeTolerance.TotalSeconds,
         VerifySource = options.VerifySource,
@@ -231,6 +240,9 @@ public sealed class CopyJobRecord
             SyncDirection = SyncDirection,
             DryRun = DryRun,
             VersionsFolder = VersionsFolder ?? "",
+            VersionsDaily = VersionsDaily,
+            VersionsWeekly = VersionsWeekly,
+            VersionsMonthly = VersionsMonthly,
             FolderConflict = FolderConflict,
             TimeTolerance = TimeSpan.FromSeconds(Math.Clamp(TimeToleranceSeconds, 0, 3600)),
             VerifySource = VerifySource,

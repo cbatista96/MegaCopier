@@ -962,4 +962,9 @@
   <data name="Destinations_FormatZip.Content" xml:space="preserve"><value>ZIP (her yerde açılır)</value></data>
   <data name="Destinations_Format7z.Content" xml:space="preserve"><value>7z (parolayla adlar da gizlenir)</value></data>
   <data name="Destinations_PasswordHint7z" xml:space="preserve"><value>7z, dosya listesi dahil AES-256 ile şifrelenir: parola olmadan adlar bile görünmez. 7-Zip, WinRAR veya PeaZip ile açılır. Parolayı unutursanız dosyaları kurtarmanın yolu yoktur.</value></data>
+  <data name="Rules_VersionsKeep.Header" xml:space="preserve"><value>Kaç sürüm saklansın</value></data>
+  <data name="Rules_VersionsAll.Content" xml:space="preserve"><value>Tümü</value></data>
+  <data name="Rules_VersionsWeek.Content" xml:space="preserve"><value>7 günlük, 4 haftalık ve 12 aylık</value></data>
+  <data name="Rules_VersionsMonth.Content" xml:space="preserve"><value>30 günlük, 12 haftalık ve 24 aylık</value></data>
+  <data name="Rules_VersionsLast.Content" xml:space="preserve"><value>Yalnızca en sonuncusu</value></data>
 </root>

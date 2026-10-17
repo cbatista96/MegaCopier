@@ -277,6 +277,35 @@ public sealed partial class CopyEngine
             : Path.Combine(_destinationRoot, _options.VersionsFolder));
     }
 
+    /// <summary>Al terminar: borra de la carpeta de versiones lo que sobra según la regla de días, semanas y meses.</summary>
+    private void PruneVersions()
+    {
+        if (_options.DryRun || VersionsRoot() is not { } root)
+        {
+            return;
+        }
+
+        int removed = 0;
+        foreach (string path in VersionPruner.Excess(root, _options.VersionsDaily, _options.VersionsWeekly, _options.VersionsMonthly))
+        {
+            try
+            {
+                ClearReadOnly(path);
+                File.Delete(path);
+                removed++;
+            }
+            catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+            {
+                Log(LogLevel.Warning, ex.Message, path);
+            }
+        }
+
+        if (removed > 0)
+        {
+            Log(LogLevel.Info, Texts.F("E_VersionsPruned", removed));
+        }
+    }
+
     /// <summary>Aparta un archivo del destino a la carpeta de versiones: "nombre 2026-10-16 153000.ext".</summary>
     private void KeepVersion(string path)
     {

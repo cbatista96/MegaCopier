@@ -956,3 +956,8 @@ Destinations_Format.Header	Format
 Destinations_FormatZip.Content	ZIP (lässt sich überall öffnen)
 Destinations_Format7z.Content	7z (mit Kennwort auch die Namen verborgen)
 Destinations_PasswordHint7z	Die 7z-Datei wird mit AES-256 verschlüsselt, einschließlich der Dateiliste: Ohne Kennwort sind nicht einmal die Namen sichtbar. Öffnen mit 7-Zip, WinRAR oder PeaZip. Wenn du es vergisst, lassen sich die Dateien nicht wiederherstellen.
+Rules_VersionsKeep.Header	Wie viele Versionen behalten
+Rules_VersionsAll.Content	Alle
+Rules_VersionsWeek.Content	7 tägliche, 4 wöchentliche und 12 monatliche
+Rules_VersionsMonth.Content	30 tägliche, 12 wöchentliche und 24 monatliche
+Rules_VersionsLast.Content	Nur die neueste

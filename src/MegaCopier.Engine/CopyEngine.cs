@@ -320,6 +320,8 @@ public sealed partial class CopyEngine
             SaveChecksumFile();
         }
 
+        PruneVersions();
+
         progress.Finish();
         result.Elapsed = stopwatch.Elapsed;
         Log(

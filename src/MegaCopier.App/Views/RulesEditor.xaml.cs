@@ -22,6 +22,12 @@ public sealed class CopyRules
 
     public string VersionsFolder { get; set; } = "";
 
+    public int VersionsDaily { get; set; }
+
+    public int VersionsWeekly { get; set; }
+
+    public int VersionsMonthly { get; set; }
+
     public FolderConflictPolicy FolderConflict { get; set; }
 
     public double TimeToleranceSeconds { get; set; } = 2;
@@ -59,6 +65,9 @@ public sealed class CopyRules
         RetryDelaySeconds = r.RetryDelaySeconds,
         OnError = r.OnError,
         VersionsFolder = r.VersionsFolder ?? "",
+        VersionsDaily = r.VersionsDaily,
+        VersionsWeekly = r.VersionsWeekly,
+        VersionsMonthly = r.VersionsMonthly,
         FolderConflict = r.FolderConflict,
         TimeToleranceSeconds = r.TimeToleranceSeconds,
         VerifySource = r.VerifySource,
@@ -84,6 +93,9 @@ public sealed class CopyRules
         r.RetryDelaySeconds = RetryDelaySeconds;
         r.OnError = OnError;
         r.VersionsFolder = VersionsFolder;
+        r.VersionsDaily = VersionsDaily;
+        r.VersionsWeekly = VersionsWeekly;
+        r.VersionsMonthly = VersionsMonthly;
         r.FolderConflict = FolderConflict;
         r.TimeToleranceSeconds = TimeToleranceSeconds;
         r.VerifySource = VerifySource;
@@ -108,6 +120,10 @@ public sealed class CopyRules
 public sealed partial class RulesEditor : UserControl
 {
     private const double MiB = 1024 * 1024;
+
+    /// <summary>Las opciones de "cuántas versiones guardar" (días, semanas, meses), en el orden de la lista.</summary>
+    private static readonly (int Daily, int Weekly, int Monthly)[] KeepPresets = [(0, 0, 0), (7, 4, 12), (30, 12, 24), (1, 0, 0)];
+
     private bool _loading;
 
     public RulesEditor()
@@ -153,6 +169,7 @@ public sealed partial class RulesEditor : UserControl
         SkipJunkBox.IsChecked = f.SkipJunk;
         FolderConflictBox.SelectedIndex = (int)rules.FolderConflict;
         VersionsBox.Text = rules.VersionsFolder;
+        VersionsKeepBox.SelectedIndex = Math.Max(0, Array.IndexOf(KeepPresets, (rules.VersionsDaily, rules.VersionsWeekly, rules.VersionsMonthly)));
         ToleranceBox.Value = rules.TimeToleranceSeconds;
         VerifySourceBox.IsChecked = rules.VerifySource;
         HashStreamBox.IsChecked = rules.SaveHashStream;
@@ -193,6 +210,9 @@ public sealed partial class RulesEditor : UserControl
         OnError = (ErrorPolicy)Math.Max(0, OnErrorBox.SelectedIndex),
         FolderConflict = (FolderConflictPolicy)Math.Max(0, FolderConflictBox.SelectedIndex),
         VersionsFolder = VersionsBox.Text.Trim(),
+        VersionsDaily = KeepPresets[Math.Max(0, VersionsKeepBox.SelectedIndex)].Daily,
+        VersionsWeekly = KeepPresets[Math.Max(0, VersionsKeepBox.SelectedIndex)].Weekly,
+        VersionsMonthly = KeepPresets[Math.Max(0, VersionsKeepBox.SelectedIndex)].Monthly,
         TimeToleranceSeconds = double.IsNaN(ToleranceBox.Value) ? 2 : ToleranceBox.Value,
         VerifySource = VerifySourceBox.IsChecked == true,
         SaveHashStream = HashStreamBox.IsChecked == true,
