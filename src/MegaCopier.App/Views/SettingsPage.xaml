@@ -377,6 +377,21 @@
                         </StackPanel>
                     </StackPanel>
                 </Border>
+                <Border Style="{StaticResource McSettingCard}">
+                    <StackPanel Spacing="10">
+                        <Grid Style="{StaticResource Row}" Tag="SettingRow">
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                            <FontIcon VerticalAlignment="Center" Glyph="&#xE8EA;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
+                            <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_RemoteTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="Settings_RemoteDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                            <ToggleSwitch x:Name="RemoteToggle" Grid.Column="2" OnContent="" OffContent="" MinWidth="0" Toggled="Remote_Toggled" />
+                        </Grid>
+                        <Grid x:Name="RemotePanel" ColumnSpacing="8" Margin="30,0,0,0">
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                            <TextBlock x:Name="RemoteInfo" Style="{StaticResource McSecondary}" VerticalAlignment="Center" TextWrapping="Wrap" IsTextSelectionEnabled="True" />
+                            <Button Grid.Column="1" Style="{StaticResource McButton}" Click="RemoteNewCode_Click"><TextBlock x:Uid="Settings_RemoteNewCode" /></Button>
+                        </Grid>
+                    </StackPanel>
+                </Border>
                 <!-- Conexiones a servidores -->
                 <TextBlock x:Uid="Settings_Connections" Style="{StaticResource McSection}" />
                 <Border Style="{StaticResource McSettingCard}">

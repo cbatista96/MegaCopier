@@ -1006,3 +1006,23 @@ Job_FilesRestoredMany	{0} archivos restaurados	{0} files restored
 Rules_Forensic.Content	Modo forense: SHA-256 de todo y un manifiesto firmado en el destino	Forensic mode: SHA-256 of everything and a signed manifest in the destination
 Rules_Alternates.Header	Otros sitios con lo mismo que el origen (uno por línea): los archivos grandes se leen de todos a la vez	Other places with the same data as the source (one per line): big files are read from all at once
 Rules_Alternates.PlaceholderText	\\NAS2\fotos	\\NAS2\photos
+Settings_RemoteTitle.Text	Controlar desde el móvil	Control from your phone
+Settings_RemoteDescription.Text	Desde el navegador del móvil (en la misma red) ves las copias y las pausas, sigues o cancelas. Sin instalar nada.	From your phone's browser (on the same network) you can see the transfers and pause, resume or cancel them. Nothing to install.
+Settings_RemoteNewCode.Text	Otro código	New code
+Settings_RemoteInfo	Abre en el móvil {0} y escribe el código {1}	On your phone, open {0} and type the code {1}
+Settings_RemoteError	No se pudo abrir el puerto: {0}	Could not open the port: {0}
+Remote_PageCode	Código de MegaCopier (está en Ajustes del PC)	MegaCopier code (shown in Settings on the PC)
+Remote_PageEnter	Entrar	Enter
+Remote_PageEmpty	No hay copias ahora mismo.	No transfers right now.
+Remote_PagePause	Pausar	Pause
+Remote_PageResume	Seguir	Resume
+Remote_PageCancel	Detener	Stop
+Remote_PageWrong	Código incorrecto.	Wrong code.
+Remote_TitleMany	{0} y {1} más	{0} and {1} more
+Remote_StateQueued	En cola	Queued
+Remote_StateRunning	Copiando	Copying
+Remote_StatePaused	En pausa	Paused
+Remote_StateCompleted	Terminada	Done
+Remote_StateCompletedWithErrors	Terminada con errores	Done with errors
+Remote_StateFailed	Falló	Failed
+Remote_StateInterrupted	Detenida (se puede seguir)	Stopped (can be resumed)

@@ -1012,4 +1012,24 @@
   <data name="Rules_Forensic.Content" xml:space="preserve"><value>取证模式：全部计算 SHA-256，并在目标中生成签名清单</value></data>
   <data name="Rules_Alternates.Header" xml:space="preserve"><value>存有相同数据的其他位置（每行一个）：大文件同时从所有位置读取</value></data>
   <data name="Rules_Alternates.PlaceholderText" xml:space="preserve"><value>\\NAS2\照片</value></data>
+  <data name="Settings_RemoteTitle.Text" xml:space="preserve"><value>用手机控制</value></data>
+  <data name="Settings_RemoteDescription.Text" xml:space="preserve"><value>在手机浏览器中（同一网络）查看复制任务，并可暂停、继续或取消。无需安装任何东西。</value></data>
+  <data name="Settings_RemoteNewCode.Text" xml:space="preserve"><value>新代码</value></data>
+  <data name="Settings_RemoteInfo" xml:space="preserve"><value>在手机上打开 {0} 并输入代码 {1}</value></data>
+  <data name="Settings_RemoteError" xml:space="preserve"><value>无法打开端口：{0}</value></data>
+  <data name="Remote_PageCode" xml:space="preserve"><value>MegaCopier 代码（在电脑的设置中）</value></data>
+  <data name="Remote_PageEnter" xml:space="preserve"><value>进入</value></data>
+  <data name="Remote_PageEmpty" xml:space="preserve"><value>目前没有复制任务。</value></data>
+  <data name="Remote_PagePause" xml:space="preserve"><value>暂停</value></data>
+  <data name="Remote_PageResume" xml:space="preserve"><value>继续</value></data>
+  <data name="Remote_PageCancel" xml:space="preserve"><value>停止</value></data>
+  <data name="Remote_PageWrong" xml:space="preserve"><value>代码错误。</value></data>
+  <data name="Remote_TitleMany" xml:space="preserve"><value>{0} 等 {1} 项</value></data>
+  <data name="Remote_StateQueued" xml:space="preserve"><value>排队中</value></data>
+  <data name="Remote_StateRunning" xml:space="preserve"><value>正在复制</value></data>
+  <data name="Remote_StatePaused" xml:space="preserve"><value>已暂停</value></data>
+  <data name="Remote_StateCompleted" xml:space="preserve"><value>已完成</value></data>
+  <data name="Remote_StateCompletedWithErrors" xml:space="preserve"><value>已完成但有错误</value></data>
+  <data name="Remote_StateFailed" xml:space="preserve"><value>失败</value></data>
+  <data name="Remote_StateInterrupted" xml:space="preserve"><value>已停止（可继续）</value></data>
 </root>

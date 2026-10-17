@@ -1012,4 +1012,24 @@
   <data name="Rules_Forensic.Content" xml:space="preserve"><value>フォレンジック モード: すべての SHA-256 と署名付きマニフェストをコピー先に</value></data>
   <data name="Rules_Alternates.Header" xml:space="preserve"><value>同じデータがあるほかの場所（1 行に 1 つ）: 大きなファイルはすべてから同時に読み込む</value></data>
   <data name="Rules_Alternates.PlaceholderText" xml:space="preserve"><value>\\NAS2\写真</value></data>
+  <data name="Settings_RemoteTitle.Text" xml:space="preserve"><value>スマートフォンから操作</value></data>
+  <data name="Settings_RemoteDescription.Text" xml:space="preserve"><value>スマートフォンのブラウザー（同じネットワーク）でコピーを確認し、一時停止・再開・キャンセルできます。インストール不要です。</value></data>
+  <data name="Settings_RemoteNewCode.Text" xml:space="preserve"><value>新しいコード</value></data>
+  <data name="Settings_RemoteInfo" xml:space="preserve"><value>スマートフォンで {0} を開き、コード {1} を入力</value></data>
+  <data name="Settings_RemoteError" xml:space="preserve"><value>ポートを開けませんでした: {0}</value></data>
+  <data name="Remote_PageCode" xml:space="preserve"><value>MegaCopier のコード（PC の設定に表示）</value></data>
+  <data name="Remote_PageEnter" xml:space="preserve"><value>開く</value></data>
+  <data name="Remote_PageEmpty" xml:space="preserve"><value>現在コピーはありません。</value></data>
+  <data name="Remote_PagePause" xml:space="preserve"><value>一時停止</value></data>
+  <data name="Remote_PageResume" xml:space="preserve"><value>再開</value></data>
+  <data name="Remote_PageCancel" xml:space="preserve"><value>停止</value></data>
+  <data name="Remote_PageWrong" xml:space="preserve"><value>コードが違います。</value></data>
+  <data name="Remote_TitleMany" xml:space="preserve"><value>{0} ほか {1} 件</value></data>
+  <data name="Remote_StateQueued" xml:space="preserve"><value>待機中</value></data>
+  <data name="Remote_StateRunning" xml:space="preserve"><value>コピー中</value></data>
+  <data name="Remote_StatePaused" xml:space="preserve"><value>一時停止中</value></data>
+  <data name="Remote_StateCompleted" xml:space="preserve"><value>完了</value></data>
+  <data name="Remote_StateCompletedWithErrors" xml:space="preserve"><value>エラーありで完了</value></data>
+  <data name="Remote_StateFailed" xml:space="preserve"><value>失敗</value></data>
+  <data name="Remote_StateInterrupted" xml:space="preserve"><value>停止中（再開可能）</value></data>
 </root>

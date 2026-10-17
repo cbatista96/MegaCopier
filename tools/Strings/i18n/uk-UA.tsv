@@ -1006,3 +1006,23 @@ Job_FilesRestoredMany	Відновлено файлів: {0}
 Rules_Forensic.Content	Криміналістичний режим: SHA-256 усього й підписаний маніфест у місці призначення
 Rules_Alternates.Header	Інші місця з тими самими даними (по одному в рядку): великі файли читаються звідусіль одночасно
 Rules_Alternates.PlaceholderText	\\NAS2\фото
+Settings_RemoteTitle.Text	Керування з телефона
+Settings_RemoteDescription.Text	У браузері телефона (у тій самій мережі) видно копіювання; їх можна призупинити, продовжити або скасувати. Нічого не потрібно встановлювати.
+Settings_RemoteNewCode.Text	Новий код
+Settings_RemoteInfo	Відкрийте на телефоні {0} і введіть код {1}
+Settings_RemoteError	Не вдалося відкрити порт: {0}
+Remote_PageCode	Код MegaCopier (у налаштуваннях на ПК)
+Remote_PageEnter	Увійти
+Remote_PageEmpty	Зараз копіювань немає.
+Remote_PagePause	Пауза
+Remote_PageResume	Продовжити
+Remote_PageCancel	Зупинити
+Remote_PageWrong	Неправильний код.
+Remote_TitleMany	{0} і ще {1}
+Remote_StateQueued	У черзі
+Remote_StateRunning	Копіювання
+Remote_StatePaused	Призупинено
+Remote_StateCompleted	Готово
+Remote_StateCompletedWithErrors	Готово з помилками
+Remote_StateFailed	Помилка
+Remote_StateInterrupted	Зупинено (можна продовжити)

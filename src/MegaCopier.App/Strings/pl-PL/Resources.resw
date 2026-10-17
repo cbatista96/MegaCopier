@@ -1012,4 +1012,24 @@
   <data name="Rules_Forensic.Content" xml:space="preserve"><value>Tryb śledczy: SHA-256 wszystkiego i podpisany manifest w miejscu docelowym</value></data>
   <data name="Rules_Alternates.Header" xml:space="preserve"><value>Inne miejsca z tymi samymi danymi (po jednym w wierszu): duże pliki czytane są ze wszystkich naraz</value></data>
   <data name="Rules_Alternates.PlaceholderText" xml:space="preserve"><value>\\NAS2\zdjecia</value></data>
+  <data name="Settings_RemoteTitle.Text" xml:space="preserve"><value>Sterowanie z telefonu</value></data>
+  <data name="Settings_RemoteDescription.Text" xml:space="preserve"><value>W przeglądarce telefonu (w tej samej sieci) widzisz kopiowania i możesz je wstrzymać, wznowić lub anulować. Bez instalowania czegokolwiek.</value></data>
+  <data name="Settings_RemoteNewCode.Text" xml:space="preserve"><value>Nowy kod</value></data>
+  <data name="Settings_RemoteInfo" xml:space="preserve"><value>Otwórz w telefonie {0} i wpisz kod {1}</value></data>
+  <data name="Settings_RemoteError" xml:space="preserve"><value>Nie udało się otworzyć portu: {0}</value></data>
+  <data name="Remote_PageCode" xml:space="preserve"><value>Kod MegaCopier (w ustawieniach na PC)</value></data>
+  <data name="Remote_PageEnter" xml:space="preserve"><value>Wejdź</value></data>
+  <data name="Remote_PageEmpty" xml:space="preserve"><value>Teraz nie ma kopiowań.</value></data>
+  <data name="Remote_PagePause" xml:space="preserve"><value>Wstrzymaj</value></data>
+  <data name="Remote_PageResume" xml:space="preserve"><value>Wznów</value></data>
+  <data name="Remote_PageCancel" xml:space="preserve"><value>Zatrzymaj</value></data>
+  <data name="Remote_PageWrong" xml:space="preserve"><value>Nieprawidłowy kod.</value></data>
+  <data name="Remote_TitleMany" xml:space="preserve"><value>{0} i {1} więcej</value></data>
+  <data name="Remote_StateQueued" xml:space="preserve"><value>W kolejce</value></data>
+  <data name="Remote_StateRunning" xml:space="preserve"><value>Kopiowanie</value></data>
+  <data name="Remote_StatePaused" xml:space="preserve"><value>Wstrzymano</value></data>
+  <data name="Remote_StateCompleted" xml:space="preserve"><value>Gotowe</value></data>
+  <data name="Remote_StateCompletedWithErrors" xml:space="preserve"><value>Gotowe z błędami</value></data>
+  <data name="Remote_StateFailed" xml:space="preserve"><value>Niepowodzenie</value></data>
+  <data name="Remote_StateInterrupted" xml:space="preserve"><value>Zatrzymano (można wznowić)</value></data>
 </root>

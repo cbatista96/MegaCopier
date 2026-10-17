@@ -1006,3 +1006,23 @@ Job_FilesRestoredMany	{0} file ripristinati
 Rules_Forensic.Content	Modalità forense: SHA-256 di tutto e un manifesto firmato nella destinazione
 Rules_Alternates.Header	Altre posizioni con gli stessi dati (una per riga): i file grandi si leggono da tutte insieme
 Rules_Alternates.PlaceholderText	\\NAS2\foto
+Settings_RemoteTitle.Text	Controlla dal telefono
+Settings_RemoteDescription.Text	Dal browser del telefono (sulla stessa rete) vedi le copie e puoi metterle in pausa, riprenderle o annullarle. Senza installare nulla.
+Settings_RemoteNewCode.Text	Nuovo codice
+Settings_RemoteInfo	Sul telefono apri {0} e inserisci il codice {1}
+Settings_RemoteError	Impossibile aprire la porta: {0}
+Remote_PageCode	Codice MegaCopier (nelle impostazioni del PC)
+Remote_PageEnter	Entra
+Remote_PageEmpty	Nessuna copia in questo momento.
+Remote_PagePause	Pausa
+Remote_PageResume	Riprendi
+Remote_PageCancel	Ferma
+Remote_PageWrong	Codice errato.
+Remote_TitleMany	{0} e altri {1}
+Remote_StateQueued	In coda
+Remote_StateRunning	In copia
+Remote_StatePaused	In pausa
+Remote_StateCompleted	Completata
+Remote_StateCompletedWithErrors	Completata con errori
+Remote_StateFailed	Non riuscita
+Remote_StateInterrupted	Fermata (si può riprendere)

@@ -620,6 +620,8 @@ public sealed partial class SettingsPage : UserControl
         loading = _loading;
         _loading = true;
         LocalSendToggle.IsOn = _app.Settings.LocalSendEnabled;
+        RemoteToggle.IsOn = _app.Settings.RemoteControlEnabled;
+        ShowRemote();
         LocalSendAutoAcceptBox.IsChecked = _app.Settings.LocalSendAutoAccept;
         _loading = loading;
         LocalSendDescription.Text = L.F("Settings_LocalSendDescription", Environment.MachineName, peers?.Folder ?? "");
@@ -640,6 +642,38 @@ public sealed partial class SettingsPage : UserControl
         _app.Settings.Save();
         _app.Peers?.Apply();
         LoadReceive();
+    }
+
+    private void Remote_Toggled(object sender, RoutedEventArgs e)
+    {
+        if (_loading)
+        {
+            return;
+        }
+
+        _app.Settings.RemoteControlEnabled = RemoteToggle.IsOn;
+        _app.Settings.Save();
+        _app.Remote?.Apply();
+        ShowRemote();
+    }
+
+    private void RemoteNewCode_Click(object sender, RoutedEventArgs e)
+    {
+        _app.Remote?.NewCode();
+        ShowRemote();
+    }
+
+    /// <summary>Dirección para el navegador del móvil y el código que pide.</summary>
+    private void ShowRemote()
+    {
+        bool on = _app.Settings.RemoteControlEnabled;
+        RemotePanel.Visibility = on ? Visibility.Visible : Visibility.Collapsed;
+        if (on && _app.Remote is { } remote)
+        {
+            RemoteInfo.Text = remote.Error is { } error
+                ? L.F("Settings_RemoteError", error)
+                : L.F("Settings_RemoteInfo", string.Join("  ·  ", remote.Addresses), _app.Settings.RemoteControlCode);
+        }
     }
 
     private void LocalSendAutoAccept_Click(object sender, RoutedEventArgs e)

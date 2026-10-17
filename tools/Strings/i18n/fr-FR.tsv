@@ -1006,3 +1006,23 @@ Job_FilesRestoredMany	{0} fichiers restaurés
 Rules_Forensic.Content	Mode forensique : SHA-256 de tout et un manifeste signé dans la destination
 Rules_Alternates.Header	Autres emplacements avec les mêmes données (un par ligne) : les gros fichiers sont lus depuis tous à la fois
 Rules_Alternates.PlaceholderText	\\NAS2\photos
+Settings_RemoteTitle.Text	Contrôler depuis le téléphone
+Settings_RemoteDescription.Text	Depuis le navigateur du téléphone (sur le même réseau), vous voyez les copies et pouvez les suspendre, les reprendre ou les annuler. Rien à installer.
+Settings_RemoteNewCode.Text	Nouveau code
+Settings_RemoteInfo	Sur le téléphone, ouvrez {0} et saisissez le code {1}
+Settings_RemoteError	Impossible d'ouvrir le port : {0}
+Remote_PageCode	Code MegaCopier (affiché dans les paramètres du PC)
+Remote_PageEnter	Entrer
+Remote_PageEmpty	Aucune copie pour le moment.
+Remote_PagePause	Suspendre
+Remote_PageResume	Reprendre
+Remote_PageCancel	Arrêter
+Remote_PageWrong	Code incorrect.
+Remote_TitleMany	{0} et {1} de plus
+Remote_StateQueued	En file d'attente
+Remote_StateRunning	Copie en cours
+Remote_StatePaused	En pause
+Remote_StateCompleted	Terminée
+Remote_StateCompletedWithErrors	Terminée avec des erreurs
+Remote_StateFailed	Échec
+Remote_StateInterrupted	Arrêtée (reprise possible)

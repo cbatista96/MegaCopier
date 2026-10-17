@@ -1006,3 +1006,23 @@ Job_FilesRestoredMany	Przywrócono plików: {0}
 Rules_Forensic.Content	Tryb śledczy: SHA-256 wszystkiego i podpisany manifest w miejscu docelowym
 Rules_Alternates.Header	Inne miejsca z tymi samymi danymi (po jednym w wierszu): duże pliki czytane są ze wszystkich naraz
 Rules_Alternates.PlaceholderText	\\NAS2\zdjecia
+Settings_RemoteTitle.Text	Sterowanie z telefonu
+Settings_RemoteDescription.Text	W przeglądarce telefonu (w tej samej sieci) widzisz kopiowania i możesz je wstrzymać, wznowić lub anulować. Bez instalowania czegokolwiek.
+Settings_RemoteNewCode.Text	Nowy kod
+Settings_RemoteInfo	Otwórz w telefonie {0} i wpisz kod {1}
+Settings_RemoteError	Nie udało się otworzyć portu: {0}
+Remote_PageCode	Kod MegaCopier (w ustawieniach na PC)
+Remote_PageEnter	Wejdź
+Remote_PageEmpty	Teraz nie ma kopiowań.
+Remote_PagePause	Wstrzymaj
+Remote_PageResume	Wznów
+Remote_PageCancel	Zatrzymaj
+Remote_PageWrong	Nieprawidłowy kod.
+Remote_TitleMany	{0} i {1} więcej
+Remote_StateQueued	W kolejce
+Remote_StateRunning	Kopiowanie
+Remote_StatePaused	Wstrzymano
+Remote_StateCompleted	Gotowe
+Remote_StateCompletedWithErrors	Gotowe z błędami
+Remote_StateFailed	Niepowodzenie
+Remote_StateInterrupted	Zatrzymano (można wznowić)

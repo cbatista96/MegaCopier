@@ -1006,3 +1006,23 @@ Job_FilesRestoredMany	{0} bestanden hersteld
 Rules_Forensic.Content	Forensische modus: SHA-256 van alles en een ondertekend manifest in het doel
 Rules_Alternates.Header	Andere plekken met dezelfde gegevens (één per regel): grote bestanden worden van alle tegelijk gelezen
 Rules_Alternates.PlaceholderText	\\NAS2\fotos
+Settings_RemoteTitle.Text	Bedienen vanaf je telefoon
+Settings_RemoteDescription.Text	In de browser van je telefoon (op hetzelfde netwerk) zie je de kopieën en kun je ze pauzeren, hervatten of annuleren. Niets te installeren.
+Settings_RemoteNewCode.Text	Nieuwe code
+Settings_RemoteInfo	Open op je telefoon {0} en typ de code {1}
+Settings_RemoteError	Kan de poort niet openen: {0}
+Remote_PageCode	MegaCopier-code (staat bij Instellingen op de pc)
+Remote_PageEnter	Doorgaan
+Remote_PageEmpty	Op dit moment geen kopieën.
+Remote_PagePause	Pauzeren
+Remote_PageResume	Hervatten
+Remote_PageCancel	Stoppen
+Remote_PageWrong	Onjuiste code.
+Remote_TitleMany	{0} en nog {1}
+Remote_StateQueued	In wachtrij
+Remote_StateRunning	Bezig
+Remote_StatePaused	Gepauzeerd
+Remote_StateCompleted	Klaar
+Remote_StateCompletedWithErrors	Klaar met fouten
+Remote_StateFailed	Mislukt
+Remote_StateInterrupted	Gestopt (kan hervat worden)
