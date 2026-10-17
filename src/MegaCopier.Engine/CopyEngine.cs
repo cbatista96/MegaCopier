@@ -270,6 +270,7 @@ public sealed partial class CopyEngine
         using (var pool = new BufferPool(_options.BlockSize, FileTransfer.RequiredBuffers(_options)))
         {
             var transfer = new FileTransfer(_options, pool, Controller, progress, FaultInjector, (path, bytes) => ChunkCommitted?.Invoke(path, bytes));
+            transfer.Alternates = AlternatesFor(request);
             using var helpers = new SmallFileHelpers(this, progress, result, cancellationToken);
             while (true)
             {
@@ -824,6 +825,11 @@ public sealed partial class CopyEngine
                 result.BytesResumed += outcome.BytesResumed;
                 result.ChunksRejectedOnResume += outcome.ChunksRejectedOnResume;
                 result.ChunksRepaired += outcome.ChunksRepaired;
+                if (outcome.Sources > 1)
+                {
+                    Log(LogLevel.Info, Texts.F("E_MultiSourceUsed", outcome.Sources), item.Source);
+                }
+
                 if (outcome.BytesResumed > 0)
                 {
                     result.FilesResumed++;

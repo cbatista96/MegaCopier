@@ -1004,3 +1004,5 @@ Job_StateRestoring	Geri yükleniyor
 Job_FilesRestoredOne	{0} dosya geri yüklendi
 Job_FilesRestoredMany	{0} dosya geri yüklendi
 Rules_Forensic.Content	Adli mod: her şeyin SHA-256'sı ve hedefte imzalı bir bildirim
+Rules_Alternates.Header	Aynı verilerin bulunduğu diğer konumlar (her satıra bir tane): büyük dosyalar hepsinden aynı anda okunur
+Rules_Alternates.PlaceholderText	\\NAS2\fotograflar

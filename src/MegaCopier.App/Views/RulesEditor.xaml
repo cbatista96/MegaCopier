@@ -85,6 +85,7 @@
                 <ComboBoxItem x:Uid="Rules_FolderSkip" />
             </ComboBox>
             <TextBox x:Name="VersionsBox" x:Uid="Rules_Versions" LostFocus="Changed" />
+            <TextBox x:Name="AlternatesBox" x:Uid="Rules_Alternates" AcceptsReturn="True" TextWrapping="Wrap" MinHeight="56" LostFocus="Changed" />
             <ComboBox x:Name="VersionsKeepBox" x:Uid="Rules_VersionsKeep" HorizontalAlignment="Stretch" SelectionChanged="Selection_Changed">
                 <ComboBoxItem x:Uid="Rules_VersionsAll" />
                 <ComboBoxItem x:Uid="Rules_VersionsWeek" />

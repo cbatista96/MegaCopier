@@ -162,6 +162,9 @@ internal static partial class Cli
                     (options.VersionsDaily, options.VersionsWeekly, options.VersionsMonthly) = VersionPruner.Parse(keepText)
                         ?? throw new UsageException(Texts.F("C_BadKeepVersions", keepText));
                     break;
+                case "--also-from":
+                    options.AlternateSources.Add(Path.GetFullPath(Next(args, ref i)));
+                    break;
                 case "--connections":
                     options.RemoteConnections = Math.Clamp(NextInt(args, ref i), 1, CopyOptions.MaxRemoteConnections);
                     break;

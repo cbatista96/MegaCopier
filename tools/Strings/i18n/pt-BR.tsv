@@ -1004,3 +1004,5 @@ Job_StateRestoring	Restaurando
 Job_FilesRestoredOne	{0} arquivo restaurado
 Job_FilesRestoredMany	{0} arquivos restaurados
 Rules_Forensic.Content	Modo forense: SHA-256 de tudo e um manifesto assinado no destino
+Rules_Alternates.Header	Outros locais com os mesmos dados (um por linha): arquivos grandes são lidos de todos ao mesmo tempo
+Rules_Alternates.PlaceholderText	\\NAS2\fotos

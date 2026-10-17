@@ -50,6 +50,8 @@ public sealed class CopyRules
 
     public bool Forensic { get; set; }
 
+    public List<string> AlternateSources { get; set; } = [];
+
     public bool WaitForDevice { get; set; } = true;
 
     public bool WaitForSpace { get; set; } = true;
@@ -85,6 +87,7 @@ public sealed class CopyRules
         RansomwareShield = r.RansomwareShield,
         RecoveryPercent = r.RecoveryPercent,
         Forensic = r.Forensic,
+        AlternateSources = [.. r.AlternateSources ?? []],
         WaitForDevice = r.WaitForDevice,
         WaitForSpace = r.WaitForSpace,
         AllOrNothing = r.AllOrNothing,
@@ -116,6 +119,7 @@ public sealed class CopyRules
         r.RansomwareShield = RansomwareShield;
         r.RecoveryPercent = RecoveryPercent;
         r.Forensic = Forensic;
+        r.AlternateSources = [.. AlternateSources];
         r.WaitForDevice = WaitForDevice;
         r.WaitForSpace = WaitForSpace;
         r.AllOrNothing = AllOrNothing;
@@ -193,6 +197,7 @@ public sealed partial class RulesEditor : UserControl
         EfsRawBox.IsChecked = rules.EfsRaw;
         ShieldBox.IsChecked = rules.RansomwareShield;
         ForensicBox.IsChecked = rules.Forensic;
+        AlternatesBox.Text = string.Join("\r", rules.AlternateSources);
         RecoveryBox.SelectedIndex = Math.Max(0, Array.IndexOf(RecoveryPresets, rules.RecoveryPercent));
         WaitDeviceBox.IsChecked = rules.WaitForDevice;
         WaitSpaceBox.IsChecked = rules.WaitForSpace;
@@ -239,6 +244,7 @@ public sealed partial class RulesEditor : UserControl
         EfsRaw = EfsRawBox.IsChecked == true,
         RansomwareShield = ShieldBox.IsChecked == true,
         Forensic = ForensicBox.IsChecked == true,
+        AlternateSources = [.. AlternatesBox.Text.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)],
         RecoveryPercent = RecoveryPresets[Math.Max(0, RecoveryBox.SelectedIndex)],
         WaitForDevice = WaitDeviceBox.IsChecked == true,
         WaitForSpace = WaitSpaceBox.IsChecked == true,

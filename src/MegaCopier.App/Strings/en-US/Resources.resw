@@ -1010,4 +1010,6 @@
   <data name="Job_FilesRestoredOne" xml:space="preserve"><value>{0} file restored</value></data>
   <data name="Job_FilesRestoredMany" xml:space="preserve"><value>{0} files restored</value></data>
   <data name="Rules_Forensic.Content" xml:space="preserve"><value>Forensic mode: SHA-256 of everything and a signed manifest in the destination</value></data>
+  <data name="Rules_Alternates.Header" xml:space="preserve"><value>Other places with the same data as the source (one per line): big files are read from all at once</value></data>
+  <data name="Rules_Alternates.PlaceholderText" xml:space="preserve"><value>\\NAS2\photos</value></data>
 </root>
