@@ -945,8 +945,8 @@
   <data name="Rules_EfsRaw.Content" xml:space="preserve"><value>EFS で暗号化されたファイルを復号せずにコピーする</value></data>
   <data name="Destinations_Zip.Content" xml:space="preserve"><value>ZIP ファイルに保存する</value></data>
   <data name="Destinations_PasswordHintZip" xml:space="preserve"><value>ZIP は AES-256 で暗号化され、7-Zip、WinZip、WinRAR で開けます（Windows エクスプローラーでは暗号化された ZIP を開けません）。ファイル名はパスワードなしで見えます。パスワードを忘れるとファイルは復元できません。</value></data>
-  <data name="Settings_RemoteConnectionsTitle.Text" xml:space="preserve"><value>同時接続数</value></data>
-  <data name="Settings_RemoteConnectionsDescription.Text" xml:space="preserve"><value>ファイルが多い場合、サーバーへの同時接続を増やすとずっと速くなります（1～255）。サーバーが接続数を制限している場合は、許可された数を使います。</value></data>
+  <data name="Settings_RemoteConnectionsTitle.Text" xml:space="preserve"><value>同時接続数（最大）</value></data>
+  <data name="Settings_RemoteConnectionsDescription.Text" xml:space="preserve"><value>ファイルが多い場合、サーバーへの同時接続を増やすとずっと速くなります。MegaCopier は 2 本から始め、速度に応じて自動で増減します（この最大値まで、1～255）。</value></data>
   <data name="Settings_DefenderTitle.Text" xml:space="preserve"><value>MegaCopier を Windows Defender のスキャン対象から除外する</value></data>
   <data name="Settings_DefenderDescription.Text" xml:space="preserve"><value>小さなファイルが多いとき、Defender が MegaCopier の書き込む各ファイルをスキャンしなくなるため、コピーがかなり速くなります。コピーしたファイルは、他のプログラムで開くときに引き続きスキャンされます。管理者権限が必要です。</value></data>
   <data name="Settings_DefenderAdd" xml:space="preserve"><value>除外を追加</value></data>

@@ -257,3 +257,5 @@ C_ManifestOk	Gültige Signatur (Schlüssel {0}), und alle {1} Dateien sind genau
 C_ManifestBadSignature	Die Signatur ist NICHT gültig: Das Manifest wurde geändert oder stammt nicht von MegaCopier.
 C_ManifestChanged	Seit dem Kopieren geändert:
 C_ManifestMissing	Fehlt:
+E_RemoteConnectionsAuto	Verbindungen zum Server: werden je nach Geschwindigkeit automatisch angepasst (maximal {0}).
+E_RemoteConnectionsTuned	Jetzt {0} gleichzeitige Verbindungen ({1}/s).

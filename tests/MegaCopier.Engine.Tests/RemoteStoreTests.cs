@@ -219,7 +219,7 @@ public sealed class RemoteStoreTests : IDisposable
         CopyProgress last = default;
         CopyEngine Engine()
         {
-            var engine = new CopyEngine(new CopyOptions { Verify = true, RemoteConnections = 8, ProgressInterval = TimeSpan.Zero })
+            var engine = new CopyEngine(new CopyOptions { Verify = true, RemoteConnections = 8, RemoteConnectionsAuto = false, ProgressInterval = TimeSpan.Zero })
             {
                 RemoteOpener = _ => { Interlocked.Increment(ref opened); return Connections.Open(connection, "secreta"); },
             };

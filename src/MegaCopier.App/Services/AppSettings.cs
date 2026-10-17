@@ -90,7 +90,7 @@ public sealed class AppSettings
     public int MaxActiveJobs { get; set; } = 3;
 
     /// <summary>Conexiones a la vez con un servidor (FTP, SFTP, WebDAV, S3).</summary>
-    public int RemoteConnections { get; set; } = 4;
+    public int RemoteConnections { get; set; } = 8;
 
     /// <summary>Se añadió la exclusión de Windows Defender (ver DefenderExclusion).</summary>
     public bool DefenderExcluded { get; set; }

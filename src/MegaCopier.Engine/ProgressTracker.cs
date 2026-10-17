@@ -95,6 +95,18 @@ internal sealed class ProgressTracker
     }
 
     /// <summary>La lista cambió (se añadieron o quitaron archivos).</summary>
+    /// <summary>Bytes hechos hasta ahora (para medir la velocidad desde fuera).</summary>
+    public long CompletedBytes
+    {
+        get
+        {
+            lock (_gate)
+            {
+                return _completedFilesBytes + _currentDone + _parallelBytes;
+            }
+        }
+    }
+
     public void SetTotals(long totalBytes, int totalFiles)
     {
         lock (_gate)

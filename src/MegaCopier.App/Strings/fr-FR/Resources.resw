@@ -945,8 +945,8 @@
   <data name="Rules_EfsRaw.Content" xml:space="preserve"><value>Copier les fichiers chiffrés EFS sans les déchiffrer</value></data>
   <data name="Destinations_Zip.Content" xml:space="preserve"><value>Enregistrer dans un fichier ZIP</value></data>
   <data name="Destinations_PasswordHintZip" xml:space="preserve"><value>Le ZIP est chiffré en AES-256 et s&apos;ouvre avec 7-Zip, WinZip ou WinRAR (l&apos;Explorateur Windows n&apos;ouvre pas les ZIP chiffrés). Les noms des fichiers restent visibles sans le mot de passe. Si vous l&apos;oubliez, impossible de récupérer les fichiers.</value></data>
-  <data name="Settings_RemoteConnectionsTitle.Text" xml:space="preserve"><value>Connexions simultanées</value></data>
-  <data name="Settings_RemoteConnectionsDescription.Text" xml:space="preserve"><value>Avec de nombreux fichiers, plusieurs connexions simultanées au serveur vont bien plus vite (de 1 à 255). Si le serveur limite les connexions, celles qu&apos;il autorise sont utilisées.</value></data>
+  <data name="Settings_RemoteConnectionsTitle.Text" xml:space="preserve"><value>Connexions simultanées (maximum)</value></data>
+  <data name="Settings_RemoteConnectionsDescription.Text" xml:space="preserve"><value>Avec de nombreux fichiers, plusieurs connexions simultanées au serveur vont bien plus vite. MegaCopier commence avec 2 et augmente ou diminue tout seul selon la vitesse, jusqu&apos;à ce maximum (de 1 à 255).</value></data>
   <data name="Settings_DefenderTitle.Text" xml:space="preserve"><value>Exclure MegaCopier de l&apos;analyse de Windows Defender</value></data>
   <data name="Settings_DefenderDescription.Text" xml:space="preserve"><value>Avec beaucoup de petits fichiers, la copie est nettement plus rapide car Defender n&apos;analyse plus chaque fichier écrit par MegaCopier. Les fichiers copiés sont toujours analysés lorsqu&apos;un autre programme les ouvre. Nécessite des droits d&apos;administrateur.</value></data>
   <data name="Settings_DefenderAdd" xml:space="preserve"><value>Ajouter l&apos;exclusion</value></data>

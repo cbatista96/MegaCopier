@@ -257,3 +257,5 @@ C_ManifestOk	서명 유효(키 {0}), 파일 {1}개 모두 복사할 때와 정�
 C_ManifestBadSignature	서명이 유효하지 않습니다: 매니페스트가 수정되었거나 MegaCopier가 만든 것이 아닙니다.
 C_ManifestChanged	복사 후 변경됨:
 C_ManifestMissing	없음:
+E_RemoteConnectionsAuto	서버 연결: 속도에 따라 자동 조정(최대 {0}개).
+E_RemoteConnectionsTuned	현재 동시 연결 {0}개({1}/초).

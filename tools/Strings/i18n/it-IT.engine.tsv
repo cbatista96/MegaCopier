@@ -257,3 +257,5 @@ C_ManifestOk	Firma valida (chiave {0}) e tutti i {1} file sono esattamente come 
 C_ManifestBadSignature	La firma NON è valida: il manifesto è stato modificato o non è stato creato da MegaCopier.
 C_ManifestChanged	Modificato dopo la copia:
 C_ManifestMissing	Mancante:
+E_RemoteConnectionsAuto	Connessioni al server: regolate automaticamente in base alla velocità (massimo {0}).
+E_RemoteConnectionsTuned	Ora {0} connessioni simultanee ({1}/s).

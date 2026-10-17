@@ -939,8 +939,8 @@ Rules_WipeDod7.Content	DoD 5220.22-M ECE, 7 przejść (wolno)
 Rules_EfsRaw.Content	Kopiuj pliki zaszyfrowane EFS bez odszyfrowywania
 Destinations_Zip.Content	Zapisz w pliku ZIP
 Destinations_PasswordHintZip	ZIP jest szyfrowany AES-256 i otwiera się w 7-Zip, WinZip lub WinRAR (Eksplorator Windows nie otwiera zaszyfrowanych plików ZIP). Nazwy plików są widoczne bez hasła. Jeśli je zapomnisz, nie da się odzyskać plików.
-Settings_RemoteConnectionsTitle.Text	Jednoczesne połączenia
-Settings_RemoteConnectionsDescription.Text	Przy wielu plikach kilka jednoczesnych połączeń z serwerem działa znacznie szybciej (od 1 do 255). Jeśli serwer ogranicza połączenia, używane są te, na które pozwala.
+Settings_RemoteConnectionsTitle.Text	Jednoczesne połączenia (maksimum)
+Settings_RemoteConnectionsDescription.Text	Przy wielu plikach kilka jednoczesnych połączeń z serwerem działa znacznie szybciej. MegaCopier zaczyna od 2 i sam zwiększa lub zmniejsza ich liczbę zależnie od prędkości, aż do tego maksimum (od 1 do 255).
 Settings_DefenderTitle.Text	Wyklucz MegaCopier ze skanowania przez Windows Defender
 Settings_DefenderDescription.Text	Przy wielu małych plikach kopiowanie jest wyraźnie szybsze, bo Defender przestaje skanować każdy plik zapisywany przez MegaCopier. Skopiowane pliki są nadal skanowane, gdy otwiera je inny program. Wymaga uprawnień administratora.
 Settings_DefenderAdd	Dodaj wykluczenie

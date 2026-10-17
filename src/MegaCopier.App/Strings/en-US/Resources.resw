@@ -945,8 +945,8 @@
   <data name="Rules_EfsRaw.Content" xml:space="preserve"><value>Copy EFS-encrypted files without decrypting them</value></data>
   <data name="Destinations_Zip.Content" xml:space="preserve"><value>Save into a ZIP file</value></data>
   <data name="Destinations_PasswordHintZip" xml:space="preserve"><value>The ZIP is encrypted with AES-256 and opens with 7-Zip, WinZip or WinRAR (Windows Explorer cannot open encrypted ZIPs). File names are visible without the password. If you forget it, there is no way to recover the files.</value></data>
-  <data name="Settings_RemoteConnectionsTitle.Text" xml:space="preserve"><value>Simultaneous connections</value></data>
-  <data name="Settings_RemoteConnectionsDescription.Text" xml:space="preserve"><value>With many files, several connections to the server at once go much faster (1 to 255). If the server limits connections, those it allows are used.</value></data>
+  <data name="Settings_RemoteConnectionsTitle.Text" xml:space="preserve"><value>Simultaneous connections (maximum)</value></data>
+  <data name="Settings_RemoteConnectionsDescription.Text" xml:space="preserve"><value>With many files, several connections to the server at once go much faster. MegaCopier starts with 2 and goes up or down by itself depending on the speed, up to this maximum (1 to 255).</value></data>
   <data name="Settings_DefenderTitle.Text" xml:space="preserve"><value>Exclude MegaCopier from Windows Defender scanning</value></data>
   <data name="Settings_DefenderDescription.Text" xml:space="preserve"><value>With many small files, copying is noticeably faster because Defender stops scanning every file MegaCopier writes. Copied files are still scanned when another program opens them. Requires administrator rights.</value></data>
   <data name="Settings_DefenderAdd" xml:space="preserve"><value>Add exclusion</value></data>

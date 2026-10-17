@@ -939,8 +939,8 @@ Rules_WipeDod7.Content	DoD 5220.22-M ECE, 7 проходів (повільно)
 Rules_EfsRaw.Content	Копіювати файли, зашифровані EFS, без розшифрування
 Destinations_Zip.Content	Зберегти в ZIP-архів
 Destinations_PasswordHintZip	ZIP шифрується AES-256 і відкривається в 7-Zip, WinZip або WinRAR (Провідник Windows не відкриває зашифровані ZIP). Імена файлів видно без пароля. Якщо ви його забудете, відновити файли буде неможливо.
-Settings_RemoteConnectionsTitle.Text	Одночасні з'єднання
-Settings_RemoteConnectionsDescription.Text	За великої кількості файлів кілька одночасних з'єднань із сервером працюють набагато швидше (від 1 до 255). Якщо сервер обмежує з'єднання, використовуються дозволені.
+Settings_RemoteConnectionsTitle.Text	Одночасні з'єднання (максимум)
+Settings_RemoteConnectionsDescription.Text	За великої кількості файлів кілька одночасних з'єднань із сервером працюють набагато швидше. MegaCopier починає з 2 і сам збільшує чи зменшує їх кількість залежно від швидкості, до цього максимуму (від 1 до 255).
 Settings_DefenderTitle.Text	Виключити MegaCopier із перевірки Захисником Windows
 Settings_DefenderDescription.Text	За великої кількості дрібних файлів копіювання помітно швидше, бо Захисник перестає перевіряти кожен файл, який записує MegaCopier. Скопійовані файли й далі перевіряються, коли їх відкриває інша програма. Потрібні права адміністратора.
 Settings_DefenderAdd	Додати виключення

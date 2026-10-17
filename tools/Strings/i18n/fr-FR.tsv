@@ -939,8 +939,8 @@ Rules_WipeDod7.Content	DoD 5220.22-M ECE, 7 passes (lent)
 Rules_EfsRaw.Content	Copier les fichiers chiffrés EFS sans les déchiffrer
 Destinations_Zip.Content	Enregistrer dans un fichier ZIP
 Destinations_PasswordHintZip	Le ZIP est chiffré en AES-256 et s'ouvre avec 7-Zip, WinZip ou WinRAR (l'Explorateur Windows n'ouvre pas les ZIP chiffrés). Les noms des fichiers restent visibles sans le mot de passe. Si vous l'oubliez, impossible de récupérer les fichiers.
-Settings_RemoteConnectionsTitle.Text	Connexions simultanées
-Settings_RemoteConnectionsDescription.Text	Avec de nombreux fichiers, plusieurs connexions simultanées au serveur vont bien plus vite (de 1 à 255). Si le serveur limite les connexions, celles qu'il autorise sont utilisées.
+Settings_RemoteConnectionsTitle.Text	Connexions simultanées (maximum)
+Settings_RemoteConnectionsDescription.Text	Avec de nombreux fichiers, plusieurs connexions simultanées au serveur vont bien plus vite. MegaCopier commence avec 2 et augmente ou diminue tout seul selon la vitesse, jusqu'à ce maximum (de 1 à 255).
 Settings_DefenderTitle.Text	Exclure MegaCopier de l'analyse de Windows Defender
 Settings_DefenderDescription.Text	Avec beaucoup de petits fichiers, la copie est nettement plus rapide car Defender n'analyse plus chaque fichier écrit par MegaCopier. Les fichiers copiés sont toujours analysés lorsqu'un autre programme les ouvre. Nécessite des droits d'administrateur.
 Settings_DefenderAdd	Ajouter l'exclusion

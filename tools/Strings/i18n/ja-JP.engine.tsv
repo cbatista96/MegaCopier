@@ -257,3 +257,5 @@ C_ManifestOk	署名は有効（キー {0}）で、{1} 個のファイルはす�
 C_ManifestBadSignature	署名が無効です: マニフェストが変更されたか、MegaCopier が作成したものではありません。
 C_ManifestChanged	コピー後に変更:
 C_ManifestMissing	見つかりません:
+E_RemoteConnectionsAuto	サーバーへの接続: 速度に応じて自動調整（最大 {0}）。
+E_RemoteConnectionsTuned	現在の同時接続数: {0}（{1}/秒）。

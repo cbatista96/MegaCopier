@@ -257,3 +257,5 @@ C_ManifestOk	İmza geçerli (anahtar {0}) ve {1} dosyanın tamamı kopyalandığ
 C_ManifestBadSignature	İmza GEÇERLİ DEĞİL: bildirim değiştirilmiş ya da MegaCopier tarafından oluşturulmamış.
 C_ManifestChanged	Kopyalamadan beri değişti:
 C_ManifestMissing	Eksik:
+E_RemoteConnectionsAuto	Sunucu bağlantıları: hıza göre otomatik ayarlanır (en çok {0}).
+E_RemoteConnectionsTuned	Şimdi aynı anda {0} bağlantı ({1}/sn).

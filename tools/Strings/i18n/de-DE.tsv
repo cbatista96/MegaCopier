@@ -939,8 +939,8 @@ Rules_WipeDod7.Content	DoD 5220.22-M ECE, 7 Durchgänge (langsam)
 Rules_EfsRaw.Content	EFS-verschlüsselte Dateien ohne Entschlüsseln kopieren
 Destinations_Zip.Content	In einer ZIP-Datei speichern
 Destinations_PasswordHintZip	Die ZIP-Datei wird mit AES-256 verschlüsselt und lässt sich mit 7-Zip, WinZip oder WinRAR öffnen (der Windows-Explorer öffnet keine verschlüsselten ZIP-Dateien). Die Dateinamen sind ohne Kennwort sichtbar. Wenn du es vergisst, lassen sich die Dateien nicht wiederherstellen.
-Settings_RemoteConnectionsTitle.Text	Gleichzeitige Verbindungen
-Settings_RemoteConnectionsDescription.Text	Bei vielen Dateien sind mehrere gleichzeitige Verbindungen zum Server viel schneller (1 bis 255). Begrenzt der Server die Verbindungen, werden die erlaubten genutzt.
+Settings_RemoteConnectionsTitle.Text	Gleichzeitige Verbindungen (Maximum)
+Settings_RemoteConnectionsDescription.Text	Bei vielen Dateien sind mehrere gleichzeitige Verbindungen zum Server viel schneller. MegaCopier beginnt mit 2 und passt die Anzahl je nach Geschwindigkeit selbst an, bis zu diesem Maximum (1 bis 255).
 Settings_DefenderTitle.Text	MegaCopier von der Überprüfung durch Windows Defender ausschließen
 Settings_DefenderDescription.Text	Bei vielen kleinen Dateien ist das Kopieren deutlich schneller, weil Defender nicht mehr jede von MegaCopier geschriebene Datei prüft. Kopierte Dateien werden weiterhin geprüft, wenn ein anderes Programm sie öffnet. Erfordert Administratorrechte.
 Settings_DefenderAdd	Ausschluss hinzufügen

@@ -939,8 +939,8 @@ Rules_WipeDod7.Content	DoD 5220.22-M ECE, 7 geçiş (yavaş)
 Rules_EfsRaw.Content	EFS ile şifrelenmiş dosyaları şifresini çözmeden kopyala
 Destinations_Zip.Content	ZIP dosyasına kaydet
 Destinations_PasswordHintZip	ZIP, AES-256 ile şifrelenir ve 7-Zip, WinZip veya WinRAR ile açılır (Windows Gezgini şifreli ZIP'leri açamaz). Dosya adları parola olmadan görünür. Parolayı unutursanız dosyaları kurtarmanın yolu yoktur.
-Settings_RemoteConnectionsTitle.Text	Eşzamanlı bağlantılar
-Settings_RemoteConnectionsDescription.Text	Çok sayıda dosyada sunucuyla aynı anda birkaç bağlantı çok daha hızlıdır (1 ile 255 arası). Sunucu bağlantıları sınırlıyorsa izin verdikleri kullanılır.
+Settings_RemoteConnectionsTitle.Text	Eşzamanlı bağlantılar (en çok)
+Settings_RemoteConnectionsDescription.Text	Çok sayıda dosyada sunucuyla aynı anda birkaç bağlantı çok daha hızlıdır. MegaCopier 2 ile başlar ve hıza göre kendiliğinden artırır veya azaltır; bu en yüksek değere kadar (1 ile 255 arası).
 Settings_DefenderTitle.Text	MegaCopier'ı Windows Defender taramasından hariç tut
 Settings_DefenderDescription.Text	Çok sayıda küçük dosyada kopyalama belirgin şekilde hızlanır, çünkü Defender MegaCopier'ın yazdığı her dosyayı taramayı bırakır. Kopyalanan dosyalar başka bir program açtığında yine taranır. Yönetici izni gerekir.
 Settings_DefenderAdd	Dışlama ekle
