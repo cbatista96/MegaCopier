@@ -828,3 +828,21 @@ Settings_LocalSendDescription	同じネットワークのスマートフォン�
 LocalSend_AutoAccept.Content	確認せずに受け入れる（信頼できるネットワークのみ）
 LocalSend_Listening	LocalSend からの送信を待っています（ポート {0}）。
 LocalSend_Ask	「{0}」が LocalSend で {1} 個のファイル（{2}）を送ろうとしています。受け入れますか？
+Settings_LiveSync.Text	リアルタイム同期
+Settings_LiveSyncTitle.Text	変更されたらすぐコピーするフォルダー
+Settings_LiveSyncDescription.Text	MegaCopier は各フォルダーを監視し、変更が落ち着いたら（数秒）すぐにコピーへ反映します。ミラーでは、削除したものはコピーからも消えます。MegaCopier が開いている間（通知領域）動作します。
+Settings_LiveSyncAdd.Text	フォルダーを追加…
+Settings_LiveSyncEmpty	まだ同期しているフォルダーはありません。
+Settings_LiveSyncNow	「{0}」を今すぐ同期
+Settings_LiveSyncRemove	「{0}」の同期をやめる
+LiveSync_Mirror	ミラー
+LiveSync_MirrorTip	フォルダーから削除したものをコピーからも削除
+LiveSync_PickTarget	ここに同期
+LiveSync_Invalid	同期できません: {0}
+LiveSync_Waiting	最初の同期を準備中…
+LiveSync_Syncing	同期中…
+LiveSync_Last	最新 · 前回 {0}: コピー {1}、削除 {2}、エラー {3}
+LiveSync_Error	{0} の同期でエラー: {1}
+LiveSync_FailedTitle	同期の問題
+LiveSync_FailedError	「{0}」を同期できませんでした: {1}
+LiveSync_FailedFiles	「{0}」の {1} 個のファイルをコピーできませんでした（次の変更時に再試行します）。

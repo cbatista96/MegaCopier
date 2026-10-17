@@ -828,3 +828,21 @@ Settings_LocalSendDescription	Instale o LocalSend (grátis, para iPhone e Androi
 LocalSend_AutoAccept.Content	Aceitar sem perguntar (só em redes confiáveis)
 LocalSend_Listening	Aguardando envios do LocalSend (porta {0}).
 LocalSend_Ask	"{0}" quer enviar {1} arquivos ({2}) com o LocalSend. Aceitar?
+Settings_LiveSync.Text	Sincronização em tempo real
+Settings_LiveSyncTitle.Text	Pastas copiadas na hora
+Settings_LiveSyncDescription.Text	O MegaCopier vigia cada pasta e passa cada mudança para a cópia assim que ela para de mudar (alguns segundos). Com espelho, o que você apagar também some da cópia. Funciona enquanto o MegaCopier estiver aberto (na bandeja).
+Settings_LiveSyncAdd.Text	Adicionar pasta…
+Settings_LiveSyncEmpty	Você ainda não sincroniza nenhuma pasta.
+Settings_LiveSyncNow	Sincronizar "{0}" agora
+Settings_LiveSyncRemove	Parar de sincronizar "{0}"
+LiveSync_Mirror	Espelho
+LiveSync_MirrorTip	Apagar da cópia o que for apagado da pasta
+LiveSync_PickTarget	Sincronizar aqui
+LiveSync_Invalid	Não é possível sincronizar: {0}
+LiveSync_Waiting	Preparando a primeira passagem…
+LiveSync_Syncing	Sincronizando…
+LiveSync_Last	Em dia · última passagem {0}: {1} copiados, {2} removidos, {3} erros
+LiveSync_Error	Erro na passagem de {0}: {1}
+LiveSync_FailedTitle	Problema na sincronização
+LiveSync_FailedError	Não foi possível sincronizar "{0}": {1}
+LiveSync_FailedFiles	Em "{0}", {1} arquivos não puderam ser copiados (nova tentativa na próxima mudança).

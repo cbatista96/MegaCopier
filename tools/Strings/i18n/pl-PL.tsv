@@ -828,3 +828,21 @@ Settings_LocalSendDescription	Zainstaluj LocalSend (za darmo, na iPhone’a i An
 LocalSend_AutoAccept.Content	Akceptuj bez pytania (tylko w zaufanych sieciach)
 LocalSend_Listening	Oczekiwanie na przesyłki LocalSend (port {0}).
 LocalSend_Ask	„{0}” chce wysłać ci pliki ({1}, {2}) przez LocalSend. Zaakceptować?
+Settings_LiveSync.Text	Synchronizacja w czasie rzeczywistym
+Settings_LiveSyncTitle.Text	Foldery kopiowane na bieżąco
+Settings_LiveSyncDescription.Text	MegaCopier obserwuje każdy folder i przenosi każdą zmianę do jego kopii, gdy tylko zmiany ustaną (kilka sekund). W trybie lustra to, co usuniesz, znika też z kopii. Działa, gdy MegaCopier jest otwarty (w zasobniku).
+Settings_LiveSyncAdd.Text	Dodaj folder…
+Settings_LiveSyncEmpty	Nie synchronizujesz jeszcze żadnego folderu.
+Settings_LiveSyncNow	Synchronizuj teraz „{0}”
+Settings_LiveSyncRemove	Przestań synchronizować „{0}”
+LiveSync_Mirror	Lustro
+LiveSync_MirrorTip	Usuwaj z kopii to, co zostało usunięte z folderu
+LiveSync_PickTarget	Synchronizuj tutaj
+LiveSync_Invalid	Nie można synchronizować: {0}
+LiveSync_Waiting	Przygotowywanie pierwszego przebiegu…
+LiveSync_Syncing	Synchronizowanie…
+LiveSync_Last	Aktualne · ostatni przebieg {0}: skopiowano {1}, usunięto {2}, błędy: {3}
+LiveSync_Error	Błąd przebiegu z {0}: {1}
+LiveSync_FailedTitle	Problem z synchronizacją
+LiveSync_FailedError	Nie udało się zsynchronizować „{0}”: {1}
+LiveSync_FailedFiles	W „{0}” nie udało się skopiować plików ({1}); ponowna próba przy następnej zmianie.

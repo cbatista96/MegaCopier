@@ -153,6 +153,7 @@ public sealed partial class SettingsPage : UserControl
         LoadFavorites();
         LoadTasks();
         LoadGuard();
+        LoadLiveSync();
         LoadReceive();
         LoadDisks();
         AutoTuneToggle.IsOn = s.AutoTune;
@@ -699,6 +700,99 @@ public sealed partial class SettingsPage : UserControl
 
         ShowProfiles();
         TuneButton.IsEnabled = true;
+    }
+
+    private bool _liveSyncHooked;
+
+    /// <summary>Sincronización en tiempo real: cada carpeta con su copia, su estado y sus botones.</summary>
+    private void LoadLiveSync()
+    {
+        if (_app.LiveSyncs is not { } service)
+        {
+            return;
+        }
+
+        if (!_liveSyncHooked)
+        {
+            _liveSyncHooked = true;
+            service.StatusChanged += LoadLiveSync;
+        }
+
+        LiveSyncList.Children.Clear();
+        foreach (var pair in _app.Settings.LiveSyncs.ToList())
+        {
+            var row = new Grid { ColumnSpacing = 8 };
+            row.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+            row.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+            row.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+            row.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+            row.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+            var (state, problem) = service.Status(pair);
+            row.Children.Add(new FontIcon
+            {
+                Glyph = problem ? "" : "",
+                FontSize = 14,
+                VerticalAlignment = VerticalAlignment.Center,
+                Foreground = problem ? ThemeManager.WarningBrush : ThemeManager.AccentBrush,
+            });
+            string route = $"{pair.Source} → {LiveSyncService.Target(pair)}";
+            var text = new StackPanel { VerticalAlignment = VerticalAlignment.Center };
+            text.Children.Add(new TextBlock { Text = route, TextTrimming = TextTrimming.CharacterEllipsis });
+            text.Children.Add(new TextBlock { Text = state, FontSize = 12, Foreground = problem ? ThemeManager.WarningBrush : ThemeManager.TextSecondaryBrush, TextWrapping = TextWrapping.Wrap });
+            ToolTipService.SetToolTip(text, route);
+            Grid.SetColumn(text, 1);
+            row.Children.Add(text);
+
+            var captured = pair;
+            var mirror = new CheckBox { Content = L.Get("LiveSync_Mirror"), IsChecked = pair.Mirror, MinWidth = 0, VerticalAlignment = VerticalAlignment.Center };
+            ToolTipService.SetToolTip(mirror, L.Get("LiveSync_MirrorTip"));
+            mirror.Click += (_, _) =>
+            {
+                captured.Mirror = mirror.IsChecked == true;
+                _app.Settings.Save();
+                service.Apply();
+            };
+            Grid.SetColumn(mirror, 2);
+            row.Children.Add(mirror);
+            var now = IconButton("", L.F("Settings_LiveSyncNow", pair.Source));
+            now.Click += (_, _) => service.SyncNow(captured);
+            Grid.SetColumn(now, 3);
+            row.Children.Add(now);
+            var remove = IconButton("", L.F("Settings_LiveSyncRemove", pair.Source));
+            remove.Click += (_, _) =>
+            {
+                _app.Settings.LiveSyncs.Remove(captured);
+                _app.Settings.Save();
+                service.Apply();
+            };
+            Grid.SetColumn(remove, 4);
+            row.Children.Add(remove);
+            LiveSyncList.Children.Add(row);
+        }
+
+        if (LiveSyncList.Children.Count == 0)
+        {
+            LiveSyncList.Children.Add(new TextBlock { Text = L.Get("Settings_LiveSyncEmpty"), Foreground = ThemeManager.TextSecondaryBrush, FontSize = 12 });
+        }
+    }
+
+    private async void LiveSyncAdd_Click(object sender, RoutedEventArgs e)
+    {
+        if (await Pickers.PickFolderAsync() is not { } source
+            || await Pickers.PickFolderAsync(L.Get("LiveSync_PickTarget")) is not { } destination)
+        {
+            return;
+        }
+
+        AddLiveSync(source, destination);
+    }
+
+    /// <summary>Añade una carpeta a sincronizar (también desde las pruebas); si no se puede, dice por qué.</summary>
+    internal void AddLiveSync(string source, string destination)
+    {
+        string? problem = _app.LiveSyncs?.Add(source, destination);
+        LiveSyncProblem.Text = problem is null ? "" : L.F("LiveSync_Invalid", problem);
+        LiveSyncProblem.Visibility = problem is null ? Visibility.Collapsed : Visibility.Visible;
     }
 
     private static Button IconButton(string glyph, string name)

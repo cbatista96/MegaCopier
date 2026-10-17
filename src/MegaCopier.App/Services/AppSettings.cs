@@ -271,6 +271,9 @@ public sealed class AppSettings
     /// <summary>Carpetas vigiladas por el guardián de integridad.</summary>
     public List<GuardedFolder> GuardedFolders { get; set; } = [];
 
+    /// <summary>Carpetas sincronizadas al momento (Ajustes > Sincronización en tiempo real).</summary>
+    public List<LiveSyncPair> LiveSyncs { get; set; } = [];
+
     /// <summary>Cada cuántos días se comprueba cada carpeta vigilada.</summary>
     public int GuardIntervalDays { get; set; } = 7;
 

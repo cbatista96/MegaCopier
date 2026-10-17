@@ -828,3 +828,21 @@ Settings_LocalSendDescription	Installeer LocalSend (gratis, voor iPhone en Andro
 LocalSend_AutoAccept.Content	Accepteren zonder te vragen (alleen vertrouwde netwerken)
 LocalSend_Listening	Wacht op LocalSend-overdrachten (poort {0}).
 LocalSend_Ask	'{0}' wil je {1} bestanden ({2}) sturen met LocalSend. Accepteren?
+Settings_LiveSync.Text	Realtime synchronisatie
+Settings_LiveSyncTitle.Text	Mappen die meteen gekopieerd worden
+Settings_LiveSyncDescription.Text	MegaCopier houdt elke map in de gaten en zet elke wijziging in de kopie zodra er niets meer verandert (een paar seconden). Met spiegelen verdwijnt wat je verwijdert ook uit de kopie. Werkt zolang MegaCopier open is (in het systeemvak).
+Settings_LiveSyncAdd.Text	Map toevoegen…
+Settings_LiveSyncEmpty	Je synchroniseert nog geen enkele map.
+Settings_LiveSyncNow	'{0}' nu synchroniseren
+Settings_LiveSyncRemove	Stoppen met synchroniseren van '{0}'
+LiveSync_Mirror	Spiegelen
+LiveSync_MirrorTip	Uit de kopie verwijderen wat uit de map verdwijnt
+LiveSync_PickTarget	Hierheen synchroniseren
+LiveSync_Invalid	Kan niet synchroniseren: {0}
+LiveSync_Waiting	Eerste ronde voorbereiden…
+LiveSync_Syncing	Synchroniseren…
+LiveSync_Last	Bijgewerkt · laatste ronde {0}: {1} gekopieerd, {2} verwijderd, {3} fouten
+LiveSync_Error	Fout in de ronde van {0}: {1}
+LiveSync_FailedTitle	Probleem met synchroniseren
+LiveSync_FailedError	'{0}' kon niet worden gesynchroniseerd: {1}
+LiveSync_FailedFiles	In '{0}' konden {1} bestanden niet worden gekopieerd (nieuwe poging bij de volgende wijziging).

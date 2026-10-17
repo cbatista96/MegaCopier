@@ -828,3 +828,21 @@ Settings_LocalSendDescription	Instala LocalSend (gratis, para iPhone y Android) 
 LocalSend_AutoAccept.Content	Aceptar sin preguntar (solo en redes de confianza)	Accept without asking (trusted networks only)
 LocalSend_Listening	Esperando envíos de LocalSend (puerto {0}).	Waiting for LocalSend transfers (port {0}).
 LocalSend_Ask	«{0}» quiere enviarte {1} archivos ({2}) con LocalSend. ¿Aceptarlos?	"{0}" wants to send you {1} files ({2}) with LocalSend. Accept them?
+Settings_LiveSync.Text	Sincronización en tiempo real	Real-time sync
+Settings_LiveSyncTitle.Text	Carpetas copiadas al momento	Folders copied as they change
+Settings_LiveSyncDescription.Text	MegaCopier vigila cada carpeta y pasa cada cambio a su copia en cuanto deja de cambiar (unos segundos). En espejo, lo que borres también desaparece de la copia. Funciona mientras MegaCopier esté abierto (en la bandeja).	MegaCopier watches each folder and passes every change to its copy as soon as it stops changing (a few seconds). With mirror, what you delete also disappears from the copy. Works while MegaCopier is open (in the tray).
+Settings_LiveSyncAdd.Text	Añadir carpeta…	Add folder…
+Settings_LiveSyncEmpty	Todavía no sincronizas ninguna carpeta.	You're not syncing any folder yet.
+Settings_LiveSyncNow	Sincronizar ahora «{0}»	Sync "{0}" now
+Settings_LiveSyncRemove	Dejar de sincronizar «{0}»	Stop syncing "{0}"
+LiveSync_Mirror	Espejo	Mirror
+LiveSync_MirrorTip	Borrar de la copia lo que se borra de la carpeta	Delete from the copy what is deleted from the folder
+LiveSync_PickTarget	Sincronizar aquí	Sync here
+LiveSync_Invalid	No se puede sincronizar: {0}	Can't sync: {0}
+LiveSync_Waiting	Preparando la primera pasada…	Preparing the first pass…
+LiveSync_Syncing	Sincronizando…	Syncing…
+LiveSync_Last	Al día · última pasada {0}: {1} copiados, {2} quitados, {3} errores	Up to date · last pass {0}: {1} copied, {2} removed, {3} errors
+LiveSync_Error	Error en la pasada de {0}: {1}	Error in the {0} pass: {1}
+LiveSync_FailedTitle	Sincronización con problemas	Sync problem
+LiveSync_FailedError	«{0}» no se pudo sincronizar: {1}	"{0}" couldn't be synced: {1}
+LiveSync_FailedFiles	En «{0}», {1} archivos no se pudieron copiar (se reintentará en el próximo cambio).	In "{0}", {1} files couldn't be copied (it will retry on the next change).
