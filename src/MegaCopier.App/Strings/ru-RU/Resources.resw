@@ -954,4 +954,7 @@
   <data name="Settings_DefenderOn" xml:space="preserve"><value>Включено: Защитник не проверяет то, что записывает MegaCopier.</value></data>
   <data name="Settings_DefenderCancelled" xml:space="preserve"><value>Разрешение администратора не получено: ничего не изменено.</value></data>
   <data name="Settings_DefenderFailed" xml:space="preserve"><value>Защитник Windows не принял изменение (возможно, его заменяет другой антивирус или это запрещено политикой).</value></data>
+  <data name="Compare_RenameRight" xml:space="preserve"><value>Переименовать справа (было {0})</value></data>
+  <data name="Compare_RenameLeft" xml:space="preserve"><value>Переименовать слева (было {0})</value></data>
+  <data name="Compare_Renamed" xml:space="preserve"><value>Переименован или перемещён</value></data>
 </root>

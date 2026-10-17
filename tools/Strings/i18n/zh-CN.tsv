@@ -948,3 +948,6 @@ Settings_DefenderRemove	删除排除项
 Settings_DefenderOn	已启用：Defender 不扫描 MegaCopier 写入的内容。
 Settings_DefenderCancelled	未授予管理员权限：未做任何更改。
 Settings_DefenderFailed	Windows Defender 未接受此更改（可能被其他防病毒软件取代，或被策略阻止）。
+Compare_RenameRight	在右侧重命名（原为 {0}）
+Compare_RenameLeft	在左侧重命名（原为 {0}）
+Compare_Renamed	已重命名或移动

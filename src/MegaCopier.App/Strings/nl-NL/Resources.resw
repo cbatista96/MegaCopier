@@ -954,4 +954,7 @@
   <data name="Settings_DefenderOn" xml:space="preserve"><value>Aan: Defender scant niet wat MegaCopier schrijft.</value></data>
   <data name="Settings_DefenderCancelled" xml:space="preserve"><value>Geen beheerdersmachtiging gegeven: er is niets gewijzigd.</value></data>
   <data name="Settings_DefenderFailed" xml:space="preserve"><value>Windows Defender heeft de wijziging niet geaccepteerd (mogelijk vervangt een andere antivirus hem of verhindert een beleid dit).</value></data>
+  <data name="Compare_RenameRight" xml:space="preserve"><value>Rechts hernoemen (was {0})</value></data>
+  <data name="Compare_RenameLeft" xml:space="preserve"><value>Links hernoemen (was {0})</value></data>
+  <data name="Compare_Renamed" xml:space="preserve"><value>Hernoemd of verplaatst</value></data>
 </root>

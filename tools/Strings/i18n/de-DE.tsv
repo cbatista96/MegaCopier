@@ -948,3 +948,6 @@ Settings_DefenderRemove	Ausschluss entfernen
 Settings_DefenderOn	Aktiv: Defender prüft nicht, was MegaCopier schreibt.
 Settings_DefenderCancelled	Keine Administratorberechtigung erteilt: Es wurde nichts geändert.
 Settings_DefenderFailed	Windows Defender hat die Änderung nicht übernommen (eventuell ersetzt ihn ein anderes Antivirenprogramm oder eine Richtlinie verhindert es).
+Compare_RenameRight	Rechts umbenennen (war {0})
+Compare_RenameLeft	Links umbenennen (war {0})
+Compare_Renamed	Umbenannt oder verschoben

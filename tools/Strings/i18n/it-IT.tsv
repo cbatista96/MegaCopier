@@ -948,3 +948,6 @@ Settings_DefenderRemove	Rimuovi esclusione
 Settings_DefenderOn	Attiva: Defender non analizza ciò che scrive MegaCopier.
 Settings_DefenderCancelled	Autorizzazione di amministratore non concessa: non è stato modificato nulla.
 Settings_DefenderFailed	Windows Defender non ha accettato la modifica (forse è sostituito da un altro antivirus o lo impedisce un criterio).
+Compare_RenameRight	Rinomina a destra (era {0})
+Compare_RenameLeft	Rinomina a sinistra (era {0})
+Compare_Renamed	Rinominato o spostato

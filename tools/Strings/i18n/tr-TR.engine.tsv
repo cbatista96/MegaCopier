@@ -226,3 +226,5 @@ E_ZipStart	{0} dosya ({1}) {2} içine sıkıştırılıyor.
 E_ZipDone	ZIP oluşturuldu: {0} ({1} dosya, {2} hatalı).
 E_RemoteConnections	Sunucuyla aynı anda {0} bağlantı kullanılıyor.
 E_RemoteConnectionFailed	Sunucuyla {0}. bağlantı açılamadı ({1}): diğerleriyle devam ediliyor.
+E_Renamed	Yeniden adlandırıldı (tekrar kopyalanmadı)
+E_WouldRename	Yeniden adlandırılacak

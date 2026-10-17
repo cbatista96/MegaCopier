@@ -226,3 +226,5 @@ E_ZipStart	将 {0} 个文件（{1}）压缩到 {2}。
 E_ZipDone	已创建 ZIP：{0}（{1} 个文件，{2} 个出错）。
 E_RemoteConnections	正在同时使用 {0} 个服务器连接。
 E_RemoteConnectionFailed	无法打开到服务器的第 {0} 个连接（{1}）：继续使用其他连接。
+E_Renamed	已重命名（未重新复制）
+E_WouldRename	将被重命名

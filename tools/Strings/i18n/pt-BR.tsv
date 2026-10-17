@@ -948,3 +948,6 @@ Settings_DefenderRemove	Remover exclusão
 Settings_DefenderOn	Ativada: o Defender não verifica o que o MegaCopier grava.
 Settings_DefenderCancelled	A permissão de administrador não foi concedida: nada foi alterado.
 Settings_DefenderFailed	O Windows Defender não aceitou a alteração (talvez outro antivírus o substitua ou uma política impeça).
+Compare_RenameRight	Renomear à direita (era {0})
+Compare_RenameLeft	Renomear à esquerda (era {0})
+Compare_Renamed	Renomeado ou movido

@@ -954,4 +954,7 @@
   <data name="Settings_DefenderOn" xml:space="preserve"><value>已启用：Defender 不扫描 MegaCopier 写入的内容。</value></data>
   <data name="Settings_DefenderCancelled" xml:space="preserve"><value>未授予管理员权限：未做任何更改。</value></data>
   <data name="Settings_DefenderFailed" xml:space="preserve"><value>Windows Defender 未接受此更改（可能被其他防病毒软件取代，或被策略阻止）。</value></data>
+  <data name="Compare_RenameRight" xml:space="preserve"><value>在右侧重命名（原为 {0}）</value></data>
+  <data name="Compare_RenameLeft" xml:space="preserve"><value>在左侧重命名（原为 {0}）</value></data>
+  <data name="Compare_Renamed" xml:space="preserve"><value>已重命名或移动</value></data>
 </root>

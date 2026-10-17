@@ -948,3 +948,6 @@ Settings_DefenderRemove	Uitsluiting verwijderen
 Settings_DefenderOn	Aan: Defender scant niet wat MegaCopier schrijft.
 Settings_DefenderCancelled	Geen beheerdersmachtiging gegeven: er is niets gewijzigd.
 Settings_DefenderFailed	Windows Defender heeft de wijziging niet geaccepteerd (mogelijk vervangt een andere antivirus hem of verhindert een beleid dit).
+Compare_RenameRight	Rechts hernoemen (was {0})
+Compare_RenameLeft	Links hernoemen (was {0})
+Compare_Renamed	Hernoemd of verplaatst

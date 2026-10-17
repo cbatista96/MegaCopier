@@ -23,8 +23,8 @@ public sealed partial class CompareRow(SyncItem item)
 
     public string ActionGlyph => Item.Action switch
     {
-        SyncAction.CopyToRight or SyncAction.CreateFolderRight => "",   // →
-        SyncAction.CopyToLeft or SyncAction.CreateFolderLeft => "",     // ←
+        SyncAction.CopyToRight or SyncAction.CreateFolderRight or SyncAction.MoveRight => "",   // →
+        SyncAction.CopyToLeft or SyncAction.CreateFolderLeft or SyncAction.MoveLeft => "",     // ←
         SyncAction.DeleteLeft or SyncAction.DeleteRight or SyncAction.DeleteFolderLeft or SyncAction.DeleteFolderRight => "",
         _ => "",                                                        // igual
     };
@@ -32,16 +32,21 @@ public sealed partial class CompareRow(SyncItem item)
     /// <summary>Quitar: va hacia el lado del que se quita (para leer la flecha como "pasa a").</summary>
     public bool IsRemoval => Item.Action is SyncAction.DeleteLeft or SyncAction.DeleteRight or SyncAction.DeleteFolderLeft or SyncAction.DeleteFolderRight;
 
-    public string ActionText => L.Get(Item.Action switch
+    public string ActionText => Item.Action switch
     {
-        SyncAction.CopyToRight => "Compare_ToRight",
-        SyncAction.CopyToLeft => "Compare_ToLeft",
-        SyncAction.DeleteLeft or SyncAction.DeleteFolderLeft => "Compare_DeleteLeft",
-        SyncAction.DeleteRight or SyncAction.DeleteFolderRight => "Compare_DeleteRight",
-        SyncAction.CreateFolderLeft => "Compare_FolderLeft",
-        SyncAction.CreateFolderRight => "Compare_FolderRight",
-        _ => "Compare_Equal",
-    });
+        SyncAction.MoveRight => L.F("Compare_RenameRight", Item.MovedFrom ?? ""),
+        SyncAction.MoveLeft => L.F("Compare_RenameLeft", Item.MovedFrom ?? ""),
+        _ => L.Get(Item.Action switch
+            {
+                SyncAction.CopyToRight => "Compare_ToRight",
+                SyncAction.CopyToLeft => "Compare_ToLeft",
+                SyncAction.DeleteLeft or SyncAction.DeleteFolderLeft => "Compare_DeleteLeft",
+                SyncAction.DeleteRight or SyncAction.DeleteFolderRight => "Compare_DeleteRight",
+                SyncAction.CreateFolderLeft => "Compare_FolderLeft",
+                SyncAction.CreateFolderRight => "Compare_FolderRight",
+                _ => "Compare_Equal",
+            }),
+    };
 
     public string ReasonText => L.Get(Item.Reason switch
     {
@@ -51,6 +56,7 @@ public sealed partial class CompareRow(SyncItem item)
         SyncReason.BothChanged => "Compare_BothChanged",
         SyncReason.ChangedAndDeleted => "Compare_ChangedAndDeleted",
         SyncReason.Extra => "Compare_Extra",
+        SyncReason.Renamed => "Compare_Renamed",
         _ => "Compare_Same",
     });
 

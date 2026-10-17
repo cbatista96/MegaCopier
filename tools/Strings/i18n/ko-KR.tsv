@@ -948,3 +948,6 @@ Settings_DefenderRemove	제외 제거
 Settings_DefenderOn	켜짐: Defender가 MegaCopier가 쓰는 내용을 검사하지 않습니다.
 Settings_DefenderCancelled	관리자 권한이 부여되지 않아 아무것도 변경하지 않았습니다.
 Settings_DefenderFailed	Windows Defender가 변경을 받아들이지 않았습니다(다른 바이러스 백신이 대신하거나 정책으로 차단되었을 수 있음).
+Compare_RenameRight	오른쪽에서 이름 바꾸기(이전 {0})
+Compare_RenameLeft	왼쪽에서 이름 바꾸기(이전 {0})
+Compare_Renamed	이름 바뀜 또는 이동됨
