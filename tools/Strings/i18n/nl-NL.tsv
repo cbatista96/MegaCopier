@@ -939,3 +939,5 @@ Rules_WipeDod7.Content	DoD 5220.22-M ECE, 7 keer (traag)
 Rules_EfsRaw.Content	EFS-versleutelde bestanden kopiëren zonder ze te ontsleutelen
 Destinations_Zip.Content	Opslaan in een ZIP-bestand
 Destinations_PasswordHintZip	De ZIP wordt versleuteld met AES-256 en opent met 7-Zip, WinZip of WinRAR (Windows Verkenner opent geen versleutelde ZIP's). Bestandsnamen zijn zichtbaar zonder wachtwoord. Als je het vergeet, zijn de bestanden niet te herstellen.
+Settings_RemoteConnectionsTitle.Text	Gelijktijdige verbindingen
+Settings_RemoteConnectionsDescription.Text	Bij veel bestanden gaan meerdere verbindingen tegelijk met de server veel sneller (1 tot 255). Als de server verbindingen beperkt, worden de toegestane gebruikt.

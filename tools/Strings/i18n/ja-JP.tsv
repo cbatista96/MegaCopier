@@ -939,3 +939,5 @@ Rules_WipeDod7.Content	DoD 5220.22-M ECE、7 回（低速）
 Rules_EfsRaw.Content	EFS で暗号化されたファイルを復号せずにコピーする
 Destinations_Zip.Content	ZIP ファイルに保存する
 Destinations_PasswordHintZip	ZIP は AES-256 で暗号化され、7-Zip、WinZip、WinRAR で開けます（Windows エクスプローラーでは暗号化された ZIP を開けません）。ファイル名はパスワードなしで見えます。パスワードを忘れるとファイルは復元できません。
+Settings_RemoteConnectionsTitle.Text	同時接続数
+Settings_RemoteConnectionsDescription.Text	ファイルが多い場合、サーバーへの同時接続を増やすとずっと速くなります（1～255）。サーバーが接続数を制限している場合は、許可された数を使います。

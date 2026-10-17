@@ -945,4 +945,6 @@
   <data name="Rules_EfsRaw.Content" xml:space="preserve"><value>Kopiuj pliki zaszyfrowane EFS bez odszyfrowywania</value></data>
   <data name="Destinations_Zip.Content" xml:space="preserve"><value>Zapisz w pliku ZIP</value></data>
   <data name="Destinations_PasswordHintZip" xml:space="preserve"><value>ZIP jest szyfrowany AES-256 i otwiera się w 7-Zip, WinZip lub WinRAR (Eksplorator Windows nie otwiera zaszyfrowanych plików ZIP). Nazwy plików są widoczne bez hasła. Jeśli je zapomnisz, nie da się odzyskać plików.</value></data>
+  <data name="Settings_RemoteConnectionsTitle.Text" xml:space="preserve"><value>Jednoczesne połączenia</value></data>
+  <data name="Settings_RemoteConnectionsDescription.Text" xml:space="preserve"><value>Przy wielu plikach kilka jednoczesnych połączeń z serwerem działa znacznie szybciej (od 1 do 255). Jeśli serwer ogranicza połączenia, używane są te, na które pozwala.</value></data>
 </root>

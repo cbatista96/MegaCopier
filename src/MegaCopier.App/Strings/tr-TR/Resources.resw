@@ -945,4 +945,6 @@
   <data name="Rules_EfsRaw.Content" xml:space="preserve"><value>EFS ile şifrelenmiş dosyaları şifresini çözmeden kopyala</value></data>
   <data name="Destinations_Zip.Content" xml:space="preserve"><value>ZIP dosyasına kaydet</value></data>
   <data name="Destinations_PasswordHintZip" xml:space="preserve"><value>ZIP, AES-256 ile şifrelenir ve 7-Zip, WinZip veya WinRAR ile açılır (Windows Gezgini şifreli ZIP&apos;leri açamaz). Dosya adları parola olmadan görünür. Parolayı unutursanız dosyaları kurtarmanın yolu yoktur.</value></data>
+  <data name="Settings_RemoteConnectionsTitle.Text" xml:space="preserve"><value>Eşzamanlı bağlantılar</value></data>
+  <data name="Settings_RemoteConnectionsDescription.Text" xml:space="preserve"><value>Çok sayıda dosyada sunucuyla aynı anda birkaç bağlantı çok daha hızlıdır (1 ile 255 arası). Sunucu bağlantıları sınırlıyorsa izin verdikleri kullanılır.</value></data>
 </root>

@@ -945,4 +945,6 @@
   <data name="Rules_EfsRaw.Content" xml:space="preserve"><value>EFS で暗号化されたファイルを復号せずにコピーする</value></data>
   <data name="Destinations_Zip.Content" xml:space="preserve"><value>ZIP ファイルに保存する</value></data>
   <data name="Destinations_PasswordHintZip" xml:space="preserve"><value>ZIP は AES-256 で暗号化され、7-Zip、WinZip、WinRAR で開けます（Windows エクスプローラーでは暗号化された ZIP を開けません）。ファイル名はパスワードなしで見えます。パスワードを忘れるとファイルは復元できません。</value></data>
+  <data name="Settings_RemoteConnectionsTitle.Text" xml:space="preserve"><value>同時接続数</value></data>
+  <data name="Settings_RemoteConnectionsDescription.Text" xml:space="preserve"><value>ファイルが多い場合、サーバーへの同時接続を増やすとずっと速くなります（1～255）。サーバーが接続数を制限している場合は、許可された数を使います。</value></data>
 </root>

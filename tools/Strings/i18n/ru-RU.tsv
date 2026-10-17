@@ -939,3 +939,5 @@ Rules_WipeDod7.Content	DoD 5220.22-M ECE, 7 проходов (медленно)
 Rules_EfsRaw.Content	Копировать файлы, зашифрованные EFS, без расшифровки
 Destinations_Zip.Content	Сохранить в ZIP-архив
 Destinations_PasswordHintZip	ZIP шифруется AES-256 и открывается в 7-Zip, WinZip или WinRAR (Проводник Windows не открывает зашифрованные ZIP). Имена файлов видны без пароля. Если вы его забудете, восстановить файлы будет невозможно.
+Settings_RemoteConnectionsTitle.Text	Одновременные подключения
+Settings_RemoteConnectionsDescription.Text	При большом числе файлов несколько одновременных подключений к серверу работают намного быстрее (от 1 до 255). Если сервер ограничивает подключения, используются разрешённые.

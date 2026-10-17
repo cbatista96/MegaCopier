@@ -89,6 +89,9 @@ public sealed class AppSettings
     /// <summary>Máximo de trabajos activos a la vez (0 = sin límite).</summary>
     public int MaxActiveJobs { get; set; } = 3;
 
+    /// <summary>Conexiones a la vez con un servidor (FTP, SFTP, WebDAV, S3).</summary>
+    public int RemoteConnections { get; set; } = 4;
+
     /// <summary>Rutas de dispositivos rápidos separadas por comas ("C:, D:\Datos, \\servidor\recurso").</summary>
     public string FastDevices { get; set; } = "";
 
@@ -388,6 +391,7 @@ public sealed class AppSettings
             SaveChecksumFile = SaveChecksumFile,
             ReadQueueDepth = Math.Clamp(QueueDepth, 1, 16),
             WriteQueueDepth = Math.Clamp(QueueDepth, 1, 16),
+            RemoteConnections = Math.Clamp(RemoteConnections, 1, CopyOptions.MaxRemoteConnections),
             Filter = Filter,
             Links = Links,
             KeepBothPattern = KeepBothPattern,

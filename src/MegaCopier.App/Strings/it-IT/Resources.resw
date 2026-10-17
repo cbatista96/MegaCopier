@@ -945,4 +945,6 @@
   <data name="Rules_EfsRaw.Content" xml:space="preserve"><value>Copia i file crittografati con EFS senza decrittografarli</value></data>
   <data name="Destinations_Zip.Content" xml:space="preserve"><value>Salva in un file ZIP</value></data>
   <data name="Destinations_PasswordHintZip" xml:space="preserve"><value>Lo ZIP è crittografato con AES-256 e si apre con 7-Zip, WinZip o WinRAR (Esplora file di Windows non apre gli ZIP crittografati). I nomi dei file sono visibili senza password. Se la dimentichi, non c&apos;è modo di recuperare i file.</value></data>
+  <data name="Settings_RemoteConnectionsTitle.Text" xml:space="preserve"><value>Connessioni simultanee</value></data>
+  <data name="Settings_RemoteConnectionsDescription.Text" xml:space="preserve"><value>Con molti file, più connessioni simultanee al server sono molto più veloci (da 1 a 255). Se il server limita le connessioni, si usano quelle consentite.</value></data>
 </root>

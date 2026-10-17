@@ -939,3 +939,5 @@ Rules_WipeDod7.Content	DoD 5220.22-M ECE, 7 pasadas (lento)	DoD 5220.22-M ECE, 7
 Rules_EfsRaw.Content	Copiar los archivos cifrados con EFS sin descifrarlos	Copy EFS-encrypted files without decrypting them
 Destinations_Zip.Content	Guardar en un archivo ZIP	Save into a ZIP file
 Destinations_PasswordHintZip	El ZIP se cifra con AES-256 y se abre con 7-Zip, WinZip o WinRAR (el Explorador de Windows no abre ZIP cifrados). Los nombres de los archivos se ven sin la contraseña. Si la olvidas, no hay forma de recuperarlos.	The ZIP is encrypted with AES-256 and opens with 7-Zip, WinZip or WinRAR (Windows Explorer cannot open encrypted ZIPs). File names are visible without the password. If you forget it, there is no way to recover the files.
+Settings_RemoteConnectionsTitle.Text	Conexiones a la vez	Simultaneous connections
+Settings_RemoteConnectionsDescription.Text	Con muchos archivos, varias conexiones a la vez con el servidor van mucho más rápido (de 1 a 255). Si el servidor limita las conexiones, se usan las que admita.	With many files, several connections to the server at once go much faster (1 to 255). If the server limits connections, those it allows are used.

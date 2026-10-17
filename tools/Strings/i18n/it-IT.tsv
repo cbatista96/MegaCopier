@@ -939,3 +939,5 @@ Rules_WipeDod7.Content	DoD 5220.22-M ECE, 7 passaggi (lento)
 Rules_EfsRaw.Content	Copia i file crittografati con EFS senza decrittografarli
 Destinations_Zip.Content	Salva in un file ZIP
 Destinations_PasswordHintZip	Lo ZIP è crittografato con AES-256 e si apre con 7-Zip, WinZip o WinRAR (Esplora file di Windows non apre gli ZIP crittografati). I nomi dei file sono visibili senza password. Se la dimentichi, non c'è modo di recuperare i file.
+Settings_RemoteConnectionsTitle.Text	Connessioni simultanee
+Settings_RemoteConnectionsDescription.Text	Con molti file, più connessioni simultanee al server sono molto più veloci (da 1 a 255). Se il server limita le connessioni, si usano quelle consentite.

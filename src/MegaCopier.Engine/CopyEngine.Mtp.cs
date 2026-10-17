@@ -76,29 +76,29 @@ public sealed partial class CopyEngine
             Log(LogLevel.Info, $"Copiar {totalFiles} archivos ({FormatBytes(totalBytes)}) del dispositivo a {request.Destination}.");
             var throttle = new Throttle(() => _options.MaxBytesPerSecond);
 
-            while (Files.TakeNext() is { } item)
+            // Varias conexiones solo si todo viene del mismo servidor; si no, cada archivo con la de su origen.
+            string? single = devices.Count == 1 ? devices.Keys.First() : null;
+            ForEachRemoteFile(single ?? "", single is null ? null! : devices[single], progress, result, cancellationToken, (store, item, own, tracker, token) =>
             {
-                cancellationToken.ThrowIfCancellationRequested();
-                Controller.WaitIfPaused(cancellationToken);
                 if (!objects.TryGetValue(item.Id, out var obj) || !RemotePath.TryParse(item.Source, out string deviceId, out _, out _))
                 {
-                    continue;
+                    return;
                 }
 
-                var device = devices[deviceId];
-                progress.BeginFile(item.Destination, item.Length);
+                var device = single is null ? devices[deviceId] : store;
+                tracker.BeginFile(item.Destination, item.Length);
                 try
                 {
-                    ImportOne(device, obj, item, result, progress, throttle, cancellationToken);
+                    ImportOne(device, obj, item, own, tracker, throttle, token);
                 }
                 catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
                 {
                     IoHelpers.DeleteIfExists(item.Destination + FileTransfer.PartialSuffix);
-                    Fail(item, result, ex.Message, FileErrors.Classify(ex));
+                    Fail(item, own, ex.Message, FileErrors.Classify(ex));
                 }
 
-                progress.EndFile();
-            }
+                tracker.EndFile();
+            });
 
             // Mover carpetas: si todo lo de dentro llegó bien, la carpeta entera se borra del móvil (como el Explorador).
             if (_options.Move && !_options.DryRun)
@@ -377,25 +377,37 @@ public sealed partial class CopyEngine
         _progress = progress;
         Log(LogLevel.Info, $"Copiar {totalFiles} archivos ({FormatBytes(totalBytes)}) a {RemotePath.Display(request.Destination)}.");
 
-        while (Files.TakeNext() is { } item)
+        // Las carpetas ya están creadas y listadas: las conexiones solo consultan lo ya sabido (y ninguna usa la
+        // conexión principal para crear o listar mientras otra sube).
+        foreach (string folderId in folders.Values.ToList())
         {
-            cancellationToken.ThrowIfCancellationRequested();
-            Controller.WaitIfPaused(cancellationToken);
-            progress.BeginFile(item.Source, item.Length);
+            Listing(folderId);
+        }
+
+        ForEachRemoteFile(deviceId, device, progress, result, cancellationToken, (store, item, own, tracker, token) =>
+        {
+            tracker.BeginFile(item.Source, item.Length);
             try
             {
                 RemotePath.TryParse(item.Destination, out _, out _, out string innerTarget);
                 string relative = innerTarget[inner.Length..].Trim('/');
-                string parentId = Folder(Path.GetDirectoryName(relative.Replace('/', '\\')) ?? "");
-                ExportOne(device, parentId, Listing(parentId), item, result, progress, cancellationToken);
+                string parentId;
+                List<RemoteItem> siblings;
+                lock (folders)
+                {
+                    parentId = Folder(Path.GetDirectoryName(relative.Replace('/', '\\')) ?? "");
+                    siblings = Listing(parentId);
+                }
+
+                ExportOne(store, parentId, siblings, item, own, tracker, token);
             }
             catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
             {
-                Fail(item, result, ex.Message, FileErrors.Classify(ex));
+                Fail(item, own, ex.Message, FileErrors.Classify(ex));
             }
 
-            progress.EndFile();
-        }
+            tracker.EndFile();
+        });
 
         if (_options.Move && !_options.DryRun)
         {
@@ -414,81 +426,117 @@ public sealed partial class CopyEngine
 
     private void ExportOne(IRemoteStore device, string parentId, List<RemoteItem> siblings, TransferItem item, CopyJobResult result, ProgressTracker progress, CancellationToken cancellationToken)
     {
-        string name = RemotePath.Name(item.Destination);
-        var existing = siblings.FirstOrDefault(o => !o.IsFolder && string.Equals(o.Name, name, StringComparison.OrdinalIgnoreCase));
-        if (existing is not null)
+        // Con varias conexiones, otra puede estar decidiendo en la misma carpeta: la decisión y la reserva del nombre
+        // van juntas (el archivo aparece en la lista antes de subirlo, para que nadie elija el mismo nombre).
+        Monitor.Enter(siblings);
+        bool locked = true;
+        RemoteItem? placeholder = null;
+        try
         {
-            var action = DecideMtpConflict(existing.Size, existing.ModifiedUtc, item.Length, item.LastWriteUtc, sizeOnly: true, out string? reason);
-            switch (action)
+            string name = RemotePath.Name(item.Destination);
+            var existing = siblings.FirstOrDefault(o => !o.IsFolder && string.Equals(o.Name, name, StringComparison.OrdinalIgnoreCase));
+            if (existing is not null)
             {
-                case MtpAction.Skip:
-                    result.FilesSkipped++;
-                    Files.Update(item, FileState.Skipped, reason);
-                    if (_options.Move && !_options.DryRun && reason == Texts.Get("E_SkipIdentical"))
-                    {
-                        File.Delete(item.Source);
-                    }
+                var action = DecideMtpConflict(existing.Size, existing.ModifiedUtc, item.Length, item.LastWriteUtc, sizeOnly: true, out string? reason);
+                switch (action)
+                {
+                    case MtpAction.Skip:
+                        result.FilesSkipped++;
+                        Files.Update(item, FileState.Skipped, reason);
+                        if (_options.Move && !_options.DryRun && reason == Texts.Get("E_SkipIdentical"))
+                        {
+                            File.Delete(item.Source);
+                        }
 
-                    return;
-                case MtpAction.Fail:
-                    Fail(item, result, Texts.F("E_DestinationExists", RemotePath.Display(item.Destination)));
-                    return;
-                case MtpAction.KeepBoth or MtpAction.RenameExisting:
-                    // En el móvil no se renombra lo que ya hay: el nuevo llega con otro nombre.
-                    name = Path.GetFileName(FreeName(Path.Combine("x", name), candidate =>
-                        !siblings.Any(o => string.Equals(o.Name, Path.GetFileName(candidate), StringComparison.OrdinalIgnoreCase))));
-                    item.Destination = RemotePath.Combine(RemotePath.Parent(item.Destination), name);
-                    existing = null;
-                    break;
+                        return;
+                    case MtpAction.Fail:
+                        Fail(item, result, Texts.F("E_DestinationExists", RemotePath.Display(item.Destination)));
+                        return;
+                    case MtpAction.KeepBoth or MtpAction.RenameExisting:
+                        // En el móvil no se renombra lo que ya hay: el nuevo llega con otro nombre.
+                        name = Path.GetFileName(FreeName(Path.Combine("x", name), candidate =>
+                            !siblings.Any(o => string.Equals(o.Name, Path.GetFileName(candidate), StringComparison.OrdinalIgnoreCase))));
+                        item.Destination = RemotePath.Combine(RemotePath.Parent(item.Destination), name);
+                        existing = null;
+                        break;
+                }
             }
-        }
 
-        if (_options.DryRun)
-        {
-            result.FilesCopied++;
-            Files.Update(item, FileState.Planned, Texts.Get(existing is null ? "E_WouldCopy" : "E_WouldReplace"));
-            return;
-        }
-
-        if (existing is not null)
-        {
-            device.Delete(existing.Id, recursive: false);
-            siblings.Remove(existing);
-        }
-
-        var hasher = FileHasher.Create(_options.HashAlgorithm == FileHashAlgorithm.None ? FileHashAlgorithm.XxHash3 : _options.HashAlgorithm)!;
-        string id;
-        using (var input = new FileStream(item.Source, FileMode.Open, FileAccess.Read, FileShare.Read, 1 << 20, FileOptions.SequentialScan))
-        using (var counting = new ProgressStream(input, count =>
-        {
-            cancellationToken.ThrowIfCancellationRequested();
-            Controller.WaitIfPaused(cancellationToken);
-            progress.AddTransferred(count);
-        }, hasher))
-        {
-            id = device.Upload(parentId, name, counting, item.Length, cancellationToken);
-        }
-
-        item.SourceHash = hasher.Finish();
-        siblings.Add(new RemoteItem(id, name, false, item.Length, DateTime.UtcNow));
-
-        if (_options.Verify && id.Length > 0)
-        {
-            item.DestinationHash = HashDeviceObject(device, id);
-            if (!string.Equals(item.DestinationHash, item.SourceHash, StringComparison.OrdinalIgnoreCase))
+            if (_options.DryRun)
             {
-                TryMtp(() => device.Delete(id, recursive: false));
-                Fail(item, result, Texts.Get("E_HashMismatch"), FileErrorKind.ChecksumMismatch);
+                result.FilesCopied++;
+                Files.Update(item, FileState.Planned, Texts.Get(existing is null ? "E_WouldCopy" : "E_WouldReplace"));
                 return;
             }
-        }
 
-        result.FilesCopied++;
-        result.BytesTransferred += item.Length;
-        Files.Update(item, _options.Verify && id.Length > 0 ? FileState.Verified : FileState.Copied);
-        if (_options.Move)
+            if (existing is not null)
+            {
+                siblings.Remove(existing);
+            }
+
+            placeholder = new RemoteItem("", name, false, item.Length, DateTime.UtcNow);
+            siblings.Add(placeholder);
+            Monitor.Exit(siblings);
+            locked = false;
+            if (existing is not null)
+            {
+                device.Delete(existing.Id, recursive: false);
+            }
+
+            var hasher = FileHasher.Create(_options.HashAlgorithm == FileHashAlgorithm.None ? FileHashAlgorithm.XxHash3 : _options.HashAlgorithm)!;
+            string id;
+            using (var input = new FileStream(item.Source, FileMode.Open, FileAccess.Read, FileShare.Read, 1 << 20, FileOptions.SequentialScan))
+            using (var counting = new ProgressStream(input, count =>
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+                Controller.WaitIfPaused(cancellationToken);
+                progress.AddTransferred(count);
+            }, hasher))
+            {
+                id = device.Upload(parentId, name, counting, item.Length, cancellationToken);
+            }
+
+            item.SourceHash = hasher.Finish();
+            lock (siblings)
+            {
+                siblings.Remove(placeholder);
+                siblings.Add(new RemoteItem(id, name, false, item.Length, DateTime.UtcNow));
+            }
+
+            placeholder = null;
+
+            if (_options.Verify && id.Length > 0)
+            {
+                item.DestinationHash = HashDeviceObject(device, id);
+                if (!string.Equals(item.DestinationHash, item.SourceHash, StringComparison.OrdinalIgnoreCase))
+                {
+                    TryMtp(() => device.Delete(id, recursive: false));
+                    Fail(item, result, Texts.Get("E_HashMismatch"), FileErrorKind.ChecksumMismatch);
+                    return;
+                }
+            }
+
+            result.FilesCopied++;
+            result.BytesTransferred += item.Length;
+            Files.Update(item, _options.Verify && id.Length > 0 ? FileState.Verified : FileState.Copied);
+            if (_options.Move)
+            {
+                File.Delete(item.Source);
+            }
+        }
+        finally
         {
-            File.Delete(item.Source);
+            if (locked)
+            {
+                Monitor.Exit(siblings);
+            }
+            else if (placeholder is not null)
+            {
+                lock (siblings)
+                {
+                    siblings.Remove(placeholder); // la subida falló: el nombre queda libre
+                }
+            }
         }
     }
 

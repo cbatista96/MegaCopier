@@ -142,6 +142,8 @@ public sealed partial class SettingsPage : UserControl
         BufferBox.SelectedItem = BufferBox.Items.OfType<ComboBoxItem>().FirstOrDefault(i => (string)i.Tag == s.BlockSizeMB.ToString()) ?? BufferBox.Items[2];
         ThreadsBox.Value = s.QueueDepth;
         MaxJobsBox.Value = s.MaxActiveJobs;
+        RemoteConnectionsBox.Value = s.RemoteConnections;
+        Microsoft.UI.Xaml.Automation.AutomationProperties.SetName(RemoteConnectionsBox, L.Get("Settings_RemoteConnectionsTitle/Text"));
         FastBox.Text = s.FastDevices;
         PriorityBox.SelectedIndex = (int)s.Priority;
         UnitsBox.SelectedIndex = (int)s.Units;
@@ -260,6 +262,11 @@ public sealed partial class SettingsPage : UserControl
         if (!double.IsNaN(MaxJobsBox.Value))
         {
             s.MaxActiveJobs = (int)MaxJobsBox.Value;
+        }
+
+        if (!double.IsNaN(RemoteConnectionsBox.Value))
+        {
+            s.RemoteConnections = Math.Clamp((int)RemoteConnectionsBox.Value, 1, Engine.CopyOptions.MaxRemoteConnections);
         }
 
         s.FastDevices = FastBox.Text.Trim();

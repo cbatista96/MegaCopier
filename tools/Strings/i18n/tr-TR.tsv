@@ -939,3 +939,5 @@ Rules_WipeDod7.Content	DoD 5220.22-M ECE, 7 geçiş (yavaş)
 Rules_EfsRaw.Content	EFS ile şifrelenmiş dosyaları şifresini çözmeden kopyala
 Destinations_Zip.Content	ZIP dosyasına kaydet
 Destinations_PasswordHintZip	ZIP, AES-256 ile şifrelenir ve 7-Zip, WinZip veya WinRAR ile açılır (Windows Gezgini şifreli ZIP'leri açamaz). Dosya adları parola olmadan görünür. Parolayı unutursanız dosyaları kurtarmanın yolu yoktur.
+Settings_RemoteConnectionsTitle.Text	Eşzamanlı bağlantılar
+Settings_RemoteConnectionsDescription.Text	Çok sayıda dosyada sunucuyla aynı anda birkaç bağlantı çok daha hızlıdır (1 ile 255 arası). Sunucu bağlantıları sınırlıyorsa izin verdikleri kullanılır.
