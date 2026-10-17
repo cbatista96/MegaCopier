@@ -888,10 +888,18 @@ public sealed partial class SettingsPage : UserControl
             if (ShellMenuToggle.IsOn && App.ShellExtensionPath is { } dll)
             {
                 ShellExtensionRegistration.Register(dll);
+                if (!App.TestMode)
+                {
+                    _ = Task.Run(ShellMenuPackage.Register); // tarda unos segundos; el menú clásico ya está
+                }
             }
             else
             {
                 ShellExtensionRegistration.Unregister();
+                if (!App.TestMode)
+                {
+                    _ = Task.Run(ShellMenuPackage.Unregister);
+                }
             }
         }
         catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)

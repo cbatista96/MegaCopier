@@ -5,8 +5,8 @@ namespace MegaCopier.Shell;
 
 /// <summary>
 /// Registra MegaCopierShell.dll en el Explorador para el usuario actual (HKCU): no necesita permisos de administrador.
-/// En Windows 11 estas opciones aparecen en "Mostrar más opciones" (el menú compacto solo admite apps empaquetadas y
-/// firmadas) y directamente en el menú de arrastrar con el botón derecho.
+/// En Windows 11 estas opciones aparecen en "Mostrar más opciones" (al menú corto llega "Pegar con MegaCopier" por
+/// el paquete disperso, ver ShellMenuPackage en la app) y directamente en el menú de arrastrar con el botón derecho.
 /// </summary>
 public static partial class ShellExtensionRegistration
 {

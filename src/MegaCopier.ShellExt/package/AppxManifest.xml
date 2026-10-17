@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Paquete disperso (sparse package): solo sirve para que Windows 11 muestre "Pegar con MegaCopier" en el menú
+     contextual corto. Los archivos siguen en la carpeta de instalación (ExternalLocation); el paquete solo lleva este
+     manifiesto y los logotipos. build.ps1 sustituye $VERSION$, $DLL$ y $PUBLISHER$. Sin firma, el editor lleva el
+     OID de "paquete sin firmar" de Windows 11 y se registra con AllowUnsigned. -->
+<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+         xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+         xmlns:uap10="http://schemas.microsoft.com/appx/manifest/uap/windows10/10"
+         xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+         xmlns:desktop4="http://schemas.microsoft.com/appx/manifest/desktop/windows10/4"
+         xmlns:desktop5="http://schemas.microsoft.com/appx/manifest/desktop/windows10/5"
+         xmlns:com="http://schemas.microsoft.com/appx/manifest/com/windows10"
+         IgnorableNamespaces="uap uap10 rescap desktop4 desktop5 com">
+  <Identity Name="MegaCopier.ShellMenu" Publisher="$PUBLISHER$" Version="$VERSION$" ProcessorArchitecture="x64" />
+  <Properties>
+    <DisplayName>MegaCopier</DisplayName>
+    <PublisherDisplayName>MegaCopier</PublisherDisplayName>
+    <Logo>StoreLogo.png</Logo>
+    <uap10:AllowExternalContent>true</uap10:AllowExternalContent>
+  </Properties>
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.22000.0" MaxVersionTested="10.0.26100.0" />
+  </Dependencies>
+  <Resources>
+    <Resource Language="es-ES" />
+  </Resources>
+  <Capabilities>
+    <rescap:Capability Name="runFullTrust" />
+    <rescap:Capability Name="unvirtualizedResources" />
+  </Capabilities>
+  <Applications>
+    <Application Id="MegaCopier" Executable="MegaCopier.exe" uap10:TrustLevel="mediumIL" uap10:RuntimeBehavior="win32App">
+      <uap:VisualElements DisplayName="MegaCopier" Description="MegaCopier" BackgroundColor="transparent"
+                          Square150x150Logo="Square150x150Logo.png" Square44x44Logo="Square44x44Logo.png" AppListEntry="none" />
+      <Extensions>
+        <desktop4:Extension Category="windows.fileExplorerContextMenus">
+          <desktop4:FileExplorerContextMenus>
+            <desktop5:ItemType Type="Directory">
+              <desktop5:Verb Id="MegaCopierPaste" Clsid="6F3C2B71-8E4D-4A5B-9C2E-1D7F3A9B5E40" />
+            </desktop5:ItemType>
+            <desktop5:ItemType Type="Directory\Background">
+              <desktop5:Verb Id="MegaCopierPaste" Clsid="6F3C2B71-8E4D-4A5B-9C2E-1D7F3A9B5E40" />
+            </desktop5:ItemType>
+          </desktop4:FileExplorerContextMenus>
+        </desktop4:Extension>
+        <com:Extension Category="windows.comServer">
+          <com:ComServer>
+            <com:SurrogateServer DisplayName="MegaCopier">
+              <com:Class Id="6F3C2B71-8E4D-4A5B-9C2E-1D7F3A9B5E40" Path="$DLL$" ThreadingModel="STA" />
+            </com:SurrogateServer>
+          </com:ComServer>
+        </com:Extension>
+      </Extensions>
+    </Application>
+  </Applications>
+</Package>
