@@ -971,3 +971,15 @@ Files_AttrEncrypted	şifreli (EFS)
 Files_AttrSparse	seyrek
 Files_AttrCloud	yalnızca bulutta
 Rules_Shield.Content	Fidye yazılımı kalkanı: üzerine yazılacak şey birden şifrelenmiş görünürse dur
+Rules_Recovery.Header	Kurtarma verileri (disk kopyaya zarar verirse onarmak için)
+Rules_RecoveryNone.Content	Hayır
+Rules_Recovery5.Content	%5 (birkaç dağınık blok)
+Rules_Recovery10.Content	%10 (önerilen)
+Rules_Recovery20.Content	%20 (eski diskler veya ucuz USB bellekler)
+Tool_Repair.Text	Kurtarma verileriyle onar…
+Job_TitleRepair	{0} onar
+Job_TitleRepairing	{0} onarılıyor
+Job_TitleRepaired	{0} denetlendi
+Job_StateRepairing	Onarılıyor
+Job_FilesRepairedOne	{0} dosya onarıldı
+Job_FilesRepairedMany	{0} dosya onarıldı

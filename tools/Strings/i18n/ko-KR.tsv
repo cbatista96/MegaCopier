@@ -971,3 +971,15 @@ Files_AttrEncrypted	암호화됨(EFS)
 Files_AttrSparse	스파스
 Files_AttrCloud	클라우드 전용
 Rules_Shield.Content	랜섬웨어 방어: 덮어쓸 내용이 갑자기 암호화된 것처럼 보이면 중지
+Rules_Recovery.Header	복구 데이터(디스크가 복사본을 손상시키면 복구용)
+Rules_RecoveryNone.Content	아니요
+Rules_Recovery5.Content	5%(흩어진 소수 블록)
+Rules_Recovery10.Content	10%(권장)
+Rules_Recovery20.Content	20%(오래된 디스크나 저가 USB)
+Tool_Repair.Text	복구 데이터로 복구…
+Job_TitleRepair	{0} 복구
+Job_TitleRepairing	{0} 복구 중
+Job_TitleRepaired	{0} 확인됨
+Job_StateRepairing	복구 중
+Job_FilesRepairedOne	파일 {0}개 복구됨
+Job_FilesRepairedMany	파일 {0}개 복구됨

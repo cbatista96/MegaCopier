@@ -971,3 +971,15 @@ Files_AttrEncrypted	versleuteld (EFS)
 Files_AttrSparse	sparse
 Files_AttrCloud	alleen in de cloud
 Rules_Shield.Content	Ransomwareschild: stoppen als wat gaat overschrijven plotseling versleuteld lijkt
+Rules_Recovery.Header	Herstelgegevens (om de kopie te herstellen als de schijf hem beschadigt)
+Rules_RecoveryNone.Content	Nee
+Rules_Recovery5.Content	5 % (enkele losse blokken)
+Rules_Recovery10.Content	10 % (aanbevolen)
+Rules_Recovery20.Content	20 % (oude schijven of goedkope USB-sticks)
+Tool_Repair.Text	Herstellen met herstelgegevens…
+Job_TitleRepair	{0} herstellen
+Job_TitleRepairing	{0} wordt hersteld
+Job_TitleRepaired	{0} gecontroleerd
+Job_StateRepairing	Herstellen
+Job_FilesRepairedOne	{0} bestand hersteld
+Job_FilesRepairedMany	{0} bestanden hersteld

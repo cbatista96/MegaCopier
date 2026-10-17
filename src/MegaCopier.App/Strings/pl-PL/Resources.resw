@@ -977,4 +977,16 @@
   <data name="Files_AttrSparse" xml:space="preserve"><value>rozrzedzony</value></data>
   <data name="Files_AttrCloud" xml:space="preserve"><value>tylko w chmurze</value></data>
   <data name="Rules_Shield.Content" xml:space="preserve"><value>Tarcza przed ransomware: zatrzymaj, jeśli to, co ma nadpisać pliki, nagle wygląda na zaszyfrowane</value></data>
+  <data name="Rules_Recovery.Header" xml:space="preserve"><value>Dane odzyskiwania (by naprawić kopię, jeśli dysk ją uszkodzi)</value></data>
+  <data name="Rules_RecoveryNone.Content" xml:space="preserve"><value>Nie</value></data>
+  <data name="Rules_Recovery5.Content" xml:space="preserve"><value>5 % (kilka pojedynczych bloków)</value></data>
+  <data name="Rules_Recovery10.Content" xml:space="preserve"><value>10 % (zalecane)</value></data>
+  <data name="Rules_Recovery20.Content" xml:space="preserve"><value>20 % (stare dyski lub tanie pendrive’y)</value></data>
+  <data name="Tool_Repair.Text" xml:space="preserve"><value>Napraw za pomocą danych odzyskiwania…</value></data>
+  <data name="Job_TitleRepair" xml:space="preserve"><value>Napraw {0}</value></data>
+  <data name="Job_TitleRepairing" xml:space="preserve"><value>Naprawianie {0}</value></data>
+  <data name="Job_TitleRepaired" xml:space="preserve"><value>Sprawdzono {0}</value></data>
+  <data name="Job_StateRepairing" xml:space="preserve"><value>Naprawianie</value></data>
+  <data name="Job_FilesRepairedOne" xml:space="preserve"><value>Naprawiono plików: {0}</value></data>
+  <data name="Job_FilesRepairedMany" xml:space="preserve"><value>Naprawiono plików: {0}</value></data>
 </root>

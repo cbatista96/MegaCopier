@@ -971,3 +971,15 @@ Files_AttrEncrypted	зашифрован (EFS)
 Files_AttrSparse	разреженный
 Files_AttrCloud	только в облаке
 Rules_Shield.Content	Защита от вымогателей: остановиться, если то, что заменит файлы, внезапно выглядит зашифрованным
+Rules_Recovery.Header	Данные восстановления (чтобы исправить копию, если диск её повредит)
+Rules_RecoveryNone.Content	Нет
+Rules_Recovery5.Content	5 % (несколько отдельных блоков)
+Rules_Recovery10.Content	10 % (рекомендуется)
+Rules_Recovery20.Content	20 % (старые диски или дешёвые флешки)
+Tool_Repair.Text	Исправить с помощью данных восстановления…
+Job_TitleRepair	Исправить {0}
+Job_TitleRepairing	Исправление {0}
+Job_TitleRepaired	{0} проверен
+Job_StateRepairing	Исправление
+Job_FilesRepairedOne	Исправлено файлов: {0}
+Job_FilesRepairedMany	Исправлено файлов: {0}

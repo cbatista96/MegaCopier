@@ -977,4 +977,16 @@
   <data name="Files_AttrSparse" xml:space="preserve"><value>розріджений</value></data>
   <data name="Files_AttrCloud" xml:space="preserve"><value>лише в хмарі</value></data>
   <data name="Rules_Shield.Content" xml:space="preserve"><value>Захист від вимагачів: зупинитися, якщо те, що замінить файли, раптом виглядає зашифрованим</value></data>
+  <data name="Rules_Recovery.Header" xml:space="preserve"><value>Дані відновлення (щоб виправити копію, якщо диск її пошкодить)</value></data>
+  <data name="Rules_RecoveryNone.Content" xml:space="preserve"><value>Ні</value></data>
+  <data name="Rules_Recovery5.Content" xml:space="preserve"><value>5 % (кілька окремих блоків)</value></data>
+  <data name="Rules_Recovery10.Content" xml:space="preserve"><value>10 % (рекомендовано)</value></data>
+  <data name="Rules_Recovery20.Content" xml:space="preserve"><value>20 % (старі диски або дешеві флешки)</value></data>
+  <data name="Tool_Repair.Text" xml:space="preserve"><value>Виправити за допомогою даних відновлення…</value></data>
+  <data name="Job_TitleRepair" xml:space="preserve"><value>Виправити {0}</value></data>
+  <data name="Job_TitleRepairing" xml:space="preserve"><value>Виправлення {0}</value></data>
+  <data name="Job_TitleRepaired" xml:space="preserve"><value>{0} перевірено</value></data>
+  <data name="Job_StateRepairing" xml:space="preserve"><value>Виправлення</value></data>
+  <data name="Job_FilesRepairedOne" xml:space="preserve"><value>Виправлено файлів: {0}</value></data>
+  <data name="Job_FilesRepairedMany" xml:space="preserve"><value>Виправлено файлів: {0}</value></data>
 </root>

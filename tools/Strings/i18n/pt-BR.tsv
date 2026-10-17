@@ -971,3 +971,15 @@ Files_AttrEncrypted	criptografado (EFS)
 Files_AttrSparse	esparso
 Files_AttrCloud	somente na nuvem
 Rules_Shield.Content	Escudo contra ransomware: parar se o que vai sobrescrever parecer criptografado de repente
+Rules_Recovery.Header	Dados de recuperação (para reparar a cópia se o disco a danificar)
+Rules_RecoveryNone.Content	Não
+Rules_Recovery5.Content	5 % (poucos blocos soltos)
+Rules_Recovery10.Content	10 % (recomendado)
+Rules_Recovery20.Content	20 % (discos velhos ou pendrives baratos)
+Tool_Repair.Text	Reparar com dados de recuperação…
+Job_TitleRepair	Reparar {0}
+Job_TitleRepairing	Reparando {0}
+Job_TitleRepaired	{0} revisado
+Job_StateRepairing	Reparando
+Job_FilesRepairedOne	{0} arquivo reparado
+Job_FilesRepairedMany	{0} arquivos reparados

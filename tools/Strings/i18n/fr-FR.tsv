@@ -971,3 +971,15 @@ Files_AttrEncrypted	chiffré (EFS)
 Files_AttrSparse	fragmenté
 Files_AttrCloud	uniquement dans le cloud
 Rules_Shield.Content	Bouclier anti-rançongiciel : arrêter si ce qui va être écrasé semble soudain chiffré
+Rules_Recovery.Header	Données de récupération (pour réparer la copie si le disque l'abîme)
+Rules_RecoveryNone.Content	Non
+Rules_Recovery5.Content	5 % (quelques blocs isolés)
+Rules_Recovery10.Content	10 % (recommandé)
+Rules_Recovery20.Content	20 % (vieux disques ou clés USB bon marché)
+Tool_Repair.Text	Réparer avec les données de récupération…
+Job_TitleRepair	Réparer {0}
+Job_TitleRepairing	Réparation de {0}
+Job_TitleRepaired	{0} vérifié
+Job_StateRepairing	Réparation
+Job_FilesRepairedOne	{0} fichier réparé
+Job_FilesRepairedMany	{0} fichiers réparés

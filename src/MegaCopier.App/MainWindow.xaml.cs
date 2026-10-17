@@ -1390,6 +1390,15 @@ public sealed partial class MainWindow : Window
         Submit(new IpcRequest { Command = "copy", Operation = Engine.JobOperation.Decrypt, Sources = [from], Destination = to, Password = password });
     }
 
+    /// <summary>Revisa una copia con datos de recuperación y reconstruye lo que el disco haya estropeado.</summary>
+    private async void Repair_Click(object sender, RoutedEventArgs e)
+    {
+        if (await Pickers.PickFolderAsync() is { } folder)
+        {
+            Submit(new IpcRequest { Command = "copy", Operation = Engine.JobOperation.Repair, Sources = [folder], Destination = folder });
+        }
+    }
+
     // Enviar a otro equipo con MegaCopier
 
     private async void SendFiles_Click(object sender, RoutedEventArgs e)

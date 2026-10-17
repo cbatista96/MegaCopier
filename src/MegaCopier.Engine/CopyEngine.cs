@@ -136,6 +136,8 @@ public sealed partial class CopyEngine
                 return RunSync(request, stopwatch, cancellationToken);
             case JobOperation.Decrypt:
                 return RunDecrypt(request, stopwatch, cancellationToken);
+            case JobOperation.Repair:
+                return RunRepair(request, stopwatch, cancellationToken);
             case JobOperation.Copy when _options.Zip:
                 return RunZip(request, stopwatch, cancellationToken);
         }
@@ -326,6 +328,7 @@ public sealed partial class CopyEngine
         }
 
         PruneVersions();
+        CreateRecoveryData(progress, cancellationToken);
 
         progress.Finish();
         result.Elapsed = stopwatch.Elapsed;

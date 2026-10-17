@@ -977,4 +977,16 @@
   <data name="Files_AttrSparse" xml:space="preserve"><value>разреженный</value></data>
   <data name="Files_AttrCloud" xml:space="preserve"><value>только в облаке</value></data>
   <data name="Rules_Shield.Content" xml:space="preserve"><value>Защита от вымогателей: остановиться, если то, что заменит файлы, внезапно выглядит зашифрованным</value></data>
+  <data name="Rules_Recovery.Header" xml:space="preserve"><value>Данные восстановления (чтобы исправить копию, если диск её повредит)</value></data>
+  <data name="Rules_RecoveryNone.Content" xml:space="preserve"><value>Нет</value></data>
+  <data name="Rules_Recovery5.Content" xml:space="preserve"><value>5 % (несколько отдельных блоков)</value></data>
+  <data name="Rules_Recovery10.Content" xml:space="preserve"><value>10 % (рекомендуется)</value></data>
+  <data name="Rules_Recovery20.Content" xml:space="preserve"><value>20 % (старые диски или дешёвые флешки)</value></data>
+  <data name="Tool_Repair.Text" xml:space="preserve"><value>Исправить с помощью данных восстановления…</value></data>
+  <data name="Job_TitleRepair" xml:space="preserve"><value>Исправить {0}</value></data>
+  <data name="Job_TitleRepairing" xml:space="preserve"><value>Исправление {0}</value></data>
+  <data name="Job_TitleRepaired" xml:space="preserve"><value>{0} проверен</value></data>
+  <data name="Job_StateRepairing" xml:space="preserve"><value>Исправление</value></data>
+  <data name="Job_FilesRepairedOne" xml:space="preserve"><value>Исправлено файлов: {0}</value></data>
+  <data name="Job_FilesRepairedMany" xml:space="preserve"><value>Исправлено файлов: {0}</value></data>
 </root>

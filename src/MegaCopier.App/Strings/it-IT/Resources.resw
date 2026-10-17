@@ -977,4 +977,16 @@
   <data name="Files_AttrSparse" xml:space="preserve"><value>sparse</value></data>
   <data name="Files_AttrCloud" xml:space="preserve"><value>solo nel cloud</value></data>
   <data name="Rules_Shield.Content" xml:space="preserve"><value>Scudo anti-ransomware: fermarsi se ciò che sta per sovrascrivere sembra improvvisamente crittografato</value></data>
+  <data name="Rules_Recovery.Header" xml:space="preserve"><value>Dati di ripristino (per riparare la copia se il disco la danneggia)</value></data>
+  <data name="Rules_RecoveryNone.Content" xml:space="preserve"><value>No</value></data>
+  <data name="Rules_Recovery5.Content" xml:space="preserve"><value>5 % (pochi blocchi sparsi)</value></data>
+  <data name="Rules_Recovery10.Content" xml:space="preserve"><value>10 % (consigliato)</value></data>
+  <data name="Rules_Recovery20.Content" xml:space="preserve"><value>20 % (dischi vecchi o chiavette economiche)</value></data>
+  <data name="Tool_Repair.Text" xml:space="preserve"><value>Ripara con i dati di ripristino…</value></data>
+  <data name="Job_TitleRepair" xml:space="preserve"><value>Ripara {0}</value></data>
+  <data name="Job_TitleRepairing" xml:space="preserve"><value>Riparazione di {0}</value></data>
+  <data name="Job_TitleRepaired" xml:space="preserve"><value>{0} controllato</value></data>
+  <data name="Job_StateRepairing" xml:space="preserve"><value>Riparazione</value></data>
+  <data name="Job_FilesRepairedOne" xml:space="preserve"><value>{0} file riparato</value></data>
+  <data name="Job_FilesRepairedMany" xml:space="preserve"><value>{0} file riparati</value></data>
 </root>

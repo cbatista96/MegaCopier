@@ -46,6 +46,7 @@ internal static class Cli
                 "move" => Copy(args[1..], move: true),
                 "send" => Send(args[1..]),
                 "test" => Test(args[1..]),
+                "repair" => Repair(args[1..]),
                 "delete" => Delete(args[1..]),
                 "resume" => Resume(args.Length > 1 ? args[1] : null),
                 "jobs" => Jobs(),
@@ -131,6 +132,9 @@ internal static class Cli
                     break;
                 case "--backup":
                     options.BackupMode = true; // como robocopy /B: en una consola de administrador
+                    break;
+                case "--recovery":
+                    options.RecoveryPercent = Math.Clamp(NextInt(args, ref i), 0, 25);
                     break;
                 case "--no-shield":
                     options.RansomwareShield = false;
@@ -383,6 +387,26 @@ internal static class Cli
         }
 
         Console.WriteLine(Texts.F("C_TestDone", result.FilesCopied, result.Failures.Count, result.Elapsed.TotalSeconds));
+        return result.Success ? ExitOk : ExitFailures;
+    }
+
+    /// <summary>mcopy repair &lt;carpeta&gt;: repara con los datos de recuperación lo que el disco haya estropeado.</summary>
+    private static int Repair(string[] args)
+    {
+        if (args.Length == 0)
+        {
+            throw new UsageException(Texts.Get("C_NeedItem"));
+        }
+
+        var sources = args.Select(Path.GetFullPath).ToList();
+        var engine = new CopyEngine(new CopyOptions { Operation = JobOperation.Repair });
+        var result = engine.Run(new CopyJobRequest(sources, sources[0]));
+        foreach (var item in engine.Files.Snapshot().Where(i => i.State is not FileState.Verified))
+        {
+            Console.WriteLine($"{item.Source}  ({item.Message})");
+        }
+
+        Console.WriteLine(Texts.F("C_RepairDone", result.FilesCopied, result.FilesSkipped, result.Failures.Count));
         return result.Success ? ExitOk : ExitFailures;
     }
 

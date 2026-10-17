@@ -971,3 +971,15 @@ Files_AttrEncrypted	暗号化 (EFS)
 Files_AttrSparse	スパース
 Files_AttrCloud	クラウドのみ
 Rules_Shield.Content	ランサムウェア対策: 上書きする内容が急に暗号化されたように見えたら停止
+Rules_Recovery.Header	回復データ（ディスクがコピーを壊したときの修復用）
+Rules_RecoveryNone.Content	なし
+Rules_Recovery5.Content	5%（散在する少数のブロック）
+Rules_Recovery10.Content	10%（推奨）
+Rules_Recovery20.Content	20%（古いディスクや安価な USB メモリ）
+Tool_Repair.Text	回復データで修復…
+Job_TitleRepair	{0} を修復
+Job_TitleRepairing	{0} を修復中
+Job_TitleRepaired	{0} を確認済み
+Job_StateRepairing	修復中
+Job_FilesRepairedOne	{0} 個のファイルを修復
+Job_FilesRepairedMany	{0} 個のファイルを修復

@@ -977,4 +977,16 @@
   <data name="Files_AttrSparse" xml:space="preserve"><value>稀疏</value></data>
   <data name="Files_AttrCloud" xml:space="preserve"><value>仅在云端</value></data>
   <data name="Rules_Shield.Content" xml:space="preserve"><value>勒索软件防护：如果要覆盖的内容突然看起来像被加密，则停止</value></data>
+  <data name="Rules_Recovery.Header" xml:space="preserve"><value>恢复数据（磁盘损坏副本时用于修复）</value></data>
+  <data name="Rules_RecoveryNone.Content" xml:space="preserve"><value>否</value></data>
+  <data name="Rules_Recovery5.Content" xml:space="preserve"><value>5%（少量零散块）</value></data>
+  <data name="Rules_Recovery10.Content" xml:space="preserve"><value>10%（推荐）</value></data>
+  <data name="Rules_Recovery20.Content" xml:space="preserve"><value>20%（旧磁盘或廉价 U 盘）</value></data>
+  <data name="Tool_Repair.Text" xml:space="preserve"><value>使用恢复数据修复…</value></data>
+  <data name="Job_TitleRepair" xml:space="preserve"><value>修复 {0}</value></data>
+  <data name="Job_TitleRepairing" xml:space="preserve"><value>正在修复 {0}</value></data>
+  <data name="Job_TitleRepaired" xml:space="preserve"><value>已检查 {0}</value></data>
+  <data name="Job_StateRepairing" xml:space="preserve"><value>正在修复</value></data>
+  <data name="Job_FilesRepairedOne" xml:space="preserve"><value>已修复 {0} 个文件</value></data>
+  <data name="Job_FilesRepairedMany" xml:space="preserve"><value>已修复 {0} 个文件</value></data>
 </root>

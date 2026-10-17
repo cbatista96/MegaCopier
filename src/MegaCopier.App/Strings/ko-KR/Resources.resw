@@ -977,4 +977,16 @@
   <data name="Files_AttrSparse" xml:space="preserve"><value>스파스</value></data>
   <data name="Files_AttrCloud" xml:space="preserve"><value>클라우드 전용</value></data>
   <data name="Rules_Shield.Content" xml:space="preserve"><value>랜섬웨어 방어: 덮어쓸 내용이 갑자기 암호화된 것처럼 보이면 중지</value></data>
+  <data name="Rules_Recovery.Header" xml:space="preserve"><value>복구 데이터(디스크가 복사본을 손상시키면 복구용)</value></data>
+  <data name="Rules_RecoveryNone.Content" xml:space="preserve"><value>아니요</value></data>
+  <data name="Rules_Recovery5.Content" xml:space="preserve"><value>5%(흩어진 소수 블록)</value></data>
+  <data name="Rules_Recovery10.Content" xml:space="preserve"><value>10%(권장)</value></data>
+  <data name="Rules_Recovery20.Content" xml:space="preserve"><value>20%(오래된 디스크나 저가 USB)</value></data>
+  <data name="Tool_Repair.Text" xml:space="preserve"><value>복구 데이터로 복구…</value></data>
+  <data name="Job_TitleRepair" xml:space="preserve"><value>{0} 복구</value></data>
+  <data name="Job_TitleRepairing" xml:space="preserve"><value>{0} 복구 중</value></data>
+  <data name="Job_TitleRepaired" xml:space="preserve"><value>{0} 확인됨</value></data>
+  <data name="Job_StateRepairing" xml:space="preserve"><value>복구 중</value></data>
+  <data name="Job_FilesRepairedOne" xml:space="preserve"><value>파일 {0}개 복구됨</value></data>
+  <data name="Job_FilesRepairedMany" xml:space="preserve"><value>파일 {0}개 복구됨</value></data>
 </root>
