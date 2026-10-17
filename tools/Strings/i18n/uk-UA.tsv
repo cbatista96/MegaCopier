@@ -913,3 +913,17 @@ Connection_Test	Перевірити підключення
 Connection_Testing	Перевірка…
 Connection_TestOk	Підключення працює: елементів у папці — {0}.
 Connection_TestFailed	Не вдалося підключитися: {0}
+Settings_EmailTitle.Text	Сповіщати поштою
+Settings_EmailDescription.Text	Після кожного копіювання — лист зі зведенням і файлами з помилками. Gmail і Outlook вимагають «пароль програми».
+Email_Server.Header	SMTP-сервер
+Email_Port.Header	Порт (0 = стандартний)
+Email_Security.Header	Шифрування
+Email_SecurityNone.Content	Немає (лише локальна мережа)
+Email_User.Header	Користувач
+Email_Password.Header	Пароль
+Email_From.Header	Відправник
+Email_To.Header	Кому (через кому)
+Email_OnlyProblems.Content	Лише за проблем
+Email_Sent	Лист надіслано.
+Email_Failed	Не вдалося надіслати: {0}
+Email_Test.Text	Надіслати тестовий лист

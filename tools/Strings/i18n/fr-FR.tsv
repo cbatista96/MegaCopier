@@ -913,3 +913,17 @@ Connection_Test	Tester la connexion
 Connection_Testing	Test en cours…
 Connection_TestOk	Connexion réussie : {0} éléments dans le dossier.
 Connection_TestFailed	Connexion impossible : {0}
+Settings_EmailTitle.Text	Avertir par e-mail
+Settings_EmailDescription.Text	À la fin de chaque copie, un e-mail avec le résumé et les fichiers en échec. Gmail et Outlook demandent un « mot de passe d'application ».
+Email_Server.Header	Serveur SMTP
+Email_Port.Header	Port (0 = habituel)
+Email_Security.Header	Chiffrement
+Email_SecurityNone.Content	Aucun (réseau local uniquement)
+Email_User.Header	Utilisateur
+Email_Password.Header	Mot de passe
+Email_From.Header	Expéditeur
+Email_To.Header	À (séparés par des virgules)
+Email_OnlyProblems.Content	Seulement en cas de problème
+Email_Sent	E-mail envoyé.
+Email_Failed	Envoi impossible : {0}
+Email_Test.Text	Envoyer un e-mail de test

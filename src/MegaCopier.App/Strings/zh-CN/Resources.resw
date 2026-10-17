@@ -919,4 +919,18 @@
   <data name="Connection_Testing" xml:space="preserve"><value>正在测试…</value></data>
   <data name="Connection_TestOk" xml:space="preserve"><value>连接正常：文件夹中有 {0} 个项目。</value></data>
   <data name="Connection_TestFailed" xml:space="preserve"><value>无法连接：{0}</value></data>
+  <data name="Settings_EmailTitle.Text" xml:space="preserve"><value>通过电子邮件通知</value></data>
+  <data name="Settings_EmailDescription.Text" xml:space="preserve"><value>每次复制完成时，发送一封包含摘要和失败文件的邮件。Gmail 和 Outlook 需要“应用专用密码”。</value></data>
+  <data name="Email_Server.Header" xml:space="preserve"><value>SMTP 服务器</value></data>
+  <data name="Email_Port.Header" xml:space="preserve"><value>端口（0 = 默认）</value></data>
+  <data name="Email_Security.Header" xml:space="preserve"><value>加密</value></data>
+  <data name="Email_SecurityNone.Content" xml:space="preserve"><value>无（仅限本地网络）</value></data>
+  <data name="Email_User.Header" xml:space="preserve"><value>用户名</value></data>
+  <data name="Email_Password.Header" xml:space="preserve"><value>密码</value></data>
+  <data name="Email_From.Header" xml:space="preserve"><value>发件人</value></data>
+  <data name="Email_To.Header" xml:space="preserve"><value>收件人（用逗号分隔）</value></data>
+  <data name="Email_OnlyProblems.Content" xml:space="preserve"><value>仅在出现问题时</value></data>
+  <data name="Email_Sent" xml:space="preserve"><value>邮件已发送。</value></data>
+  <data name="Email_Failed" xml:space="preserve"><value>无法发送：{0}</value></data>
+  <data name="Email_Test.Text" xml:space="preserve"><value>发送测试邮件</value></data>
 </root>

@@ -138,6 +138,47 @@ internal static class JobNotices
     }
 
     /// <summary>Texto del aviso: "✔ Copiado «Fotos» → D:\Copia · 1.234 archivos · 12,3 GB en 4 min".</summary>
+    /// <summary>El aviso por correo: el resumen como asunto y, en el cuerpo, de dónde a dónde y los archivos con error.</summary>
+    public static async Task<string?> SendEmailAsync(Engine.Network.SmtpSettings settings, CopyJob? job)
+    {
+        string subject = job is null ? L.Get("Settings_WebhookTestMessage") : Summary(job);
+        var body = new StringBuilder(subject).Append("\n\n");
+        if (job is not null)
+        {
+            foreach (string source in job.Record.Sources)
+            {
+                body.Append(ViewModels.Format.Display(source)).Append('\n');
+            }
+
+            body.Append("→ ").Append(ViewModels.Format.Display(job.Record.Destination)).Append('\n');
+            if (job.Result is { Failures.Count: > 0 } result)
+            {
+                body.Append('\n').Append(L.F("Job_FailedFiles", result.Failures.Count)).Append(":\n");
+                foreach (var failure in result.Failures.Take(50))
+                {
+                    body.Append("• ").Append(ViewModels.Format.Display(failure.Source)).Append(" — ").Append(failure.Message).Append('\n');
+                }
+
+                if (result.Failures.Count > 50)
+                {
+                    body.Append(L.F("Job_FailuresMore", result.Failures.Count - 50)).Append('\n');
+                }
+            }
+        }
+
+        try
+        {
+            await Engine.Network.SmtpSender.SendAsync(settings, subject, body.ToString());
+            return null;
+        }
+        catch (Exception ex) when (ex is IOException or System.Net.Sockets.SocketException or UnauthorizedAccessException or ArgumentException
+            or System.Security.Authentication.AuthenticationException or OperationCanceledException)
+        {
+            Debug.WriteLine($"Correo no enviado: {ex.Message}");
+            return ex.Message;
+        }
+    }
+
     public static string Summary(CopyJob job)
     {
         string what = job.Record.Sources.Count == 1

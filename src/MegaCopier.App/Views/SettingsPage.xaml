@@ -544,6 +544,36 @@
                     </Grid>
                 </Border>
 
+                <!-- Avisos por correo -->
+                <Border Style="{StaticResource McSettingCard}">
+                    <StackPanel Spacing="10">
+                        <Grid Style="{StaticResource Row}" Tag="SettingRow">
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                            <FontIcon VerticalAlignment="Center" Glyph="&#xE715;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
+                            <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_EmailTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="Settings_EmailDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                            <ToggleSwitch x:Name="EmailToggle" Grid.Column="2" OnContent="" OffContent="" MinWidth="0" Toggled="Changed" />
+                        </Grid>
+                        <Grid x:Name="EmailPanel" Margin="30,0,0,0" ColumnSpacing="8" RowSpacing="8">
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="2*" /><ColumnDefinition Width="*" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
+                            <TextBox x:Name="EmailServerBox" x:Uid="Email_Server" LostFocus="Changed" />
+                            <NumberBox x:Name="EmailPortBox" x:Uid="Email_Port" Grid.Column="1" Minimum="0" Maximum="65535" SpinButtonPlacementMode="Compact" ValueChanged="Number_Changed" />
+                            <ComboBox x:Name="EmailSecurityBox" x:Uid="Email_Security" Grid.Column="2" HorizontalAlignment="Stretch" SelectionChanged="Selection_Changed">
+                                <ComboBoxItem Content="STARTTLS (587)" />
+                                <ComboBoxItem Content="SSL/TLS (465)" />
+                                <ComboBoxItem x:Uid="Email_SecurityNone" />
+                            </ComboBox>
+                            <TextBox x:Name="EmailUserBox" x:Uid="Email_User" Grid.Row="1" LostFocus="Changed" />
+                            <PasswordBox x:Name="EmailPasswordBox" x:Uid="Email_Password" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" LostFocus="EmailPassword_LostFocus" />
+                            <TextBox x:Name="EmailFromBox" x:Uid="Email_From" Grid.Row="2" LostFocus="Changed" />
+                            <TextBox x:Name="EmailToBox" x:Uid="Email_To" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" LostFocus="Changed" />
+                            <CheckBox x:Name="EmailOnlyProblemsBox" x:Uid="Email_OnlyProblems" Grid.Row="3" Grid.ColumnSpan="2" Click="Changed" />
+                            <Button Grid.Row="3" Grid.Column="2" HorizontalAlignment="Right" Style="{StaticResource McButton}" Click="TestEmail_Click"><TextBlock x:Uid="Email_Test" /></Button>
+                            <TextBlock x:Name="EmailResult" Grid.Row="4" Grid.ColumnSpan="3" Style="{StaticResource McSecondary}" TextWrapping="Wrap" />
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
                 <Border Style="{StaticResource McSettingCard}">
                     <StackPanel Spacing="8">
                         <Grid Style="{StaticResource Row}">

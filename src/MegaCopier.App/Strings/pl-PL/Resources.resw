@@ -919,4 +919,18 @@
   <data name="Connection_Testing" xml:space="preserve"><value>Testowanie…</value></data>
   <data name="Connection_TestOk" xml:space="preserve"><value>Połączenie działa: elementów w folderze: {0}.</value></data>
   <data name="Connection_TestFailed" xml:space="preserve"><value>Nie udało się połączyć: {0}</value></data>
+  <data name="Settings_EmailTitle.Text" xml:space="preserve"><value>Powiadamiaj e-mailem</value></data>
+  <data name="Settings_EmailDescription.Text" xml:space="preserve"><value>Po każdym kopiowaniu e-mail z podsumowaniem i plikami, które się nie powiodły. Gmail i Outlook wymagają „hasła aplikacji”.</value></data>
+  <data name="Email_Server.Header" xml:space="preserve"><value>Serwer SMTP</value></data>
+  <data name="Email_Port.Header" xml:space="preserve"><value>Port (0 = domyślny)</value></data>
+  <data name="Email_Security.Header" xml:space="preserve"><value>Szyfrowanie</value></data>
+  <data name="Email_SecurityNone.Content" xml:space="preserve"><value>Brak (tylko sieć lokalna)</value></data>
+  <data name="Email_User.Header" xml:space="preserve"><value>Użytkownik</value></data>
+  <data name="Email_Password.Header" xml:space="preserve"><value>Hasło</value></data>
+  <data name="Email_From.Header" xml:space="preserve"><value>Nadawca</value></data>
+  <data name="Email_To.Header" xml:space="preserve"><value>Do (oddzielone przecinkami)</value></data>
+  <data name="Email_OnlyProblems.Content" xml:space="preserve"><value>Tylko przy problemach</value></data>
+  <data name="Email_Sent" xml:space="preserve"><value>Wysłano e-mail.</value></data>
+  <data name="Email_Failed" xml:space="preserve"><value>Nie udało się wysłać: {0}</value></data>
+  <data name="Email_Test.Text" xml:space="preserve"><value>Wyślij testowy e-mail</value></data>
 </root>

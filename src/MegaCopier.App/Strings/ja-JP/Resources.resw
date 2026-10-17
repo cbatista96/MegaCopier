@@ -919,4 +919,18 @@
   <data name="Connection_Testing" xml:space="preserve"><value>テスト中…</value></data>
   <data name="Connection_TestOk" xml:space="preserve"><value>接続できました: フォルダーに {0} 個の項目があります。</value></data>
   <data name="Connection_TestFailed" xml:space="preserve"><value>接続できませんでした: {0}</value></data>
+  <data name="Settings_EmailTitle.Text" xml:space="preserve"><value>メールで通知</value></data>
+  <data name="Settings_EmailDescription.Text" xml:space="preserve"><value>各コピーが終わるたびに、概要と失敗したファイルをメールで送ります。Gmail と Outlook では「アプリ パスワード」が必要です。</value></data>
+  <data name="Email_Server.Header" xml:space="preserve"><value>SMTP サーバー</value></data>
+  <data name="Email_Port.Header" xml:space="preserve"><value>ポート（0 = 標準）</value></data>
+  <data name="Email_Security.Header" xml:space="preserve"><value>暗号化</value></data>
+  <data name="Email_SecurityNone.Content" xml:space="preserve"><value>なし（ローカル ネットワークのみ）</value></data>
+  <data name="Email_User.Header" xml:space="preserve"><value>ユーザー</value></data>
+  <data name="Email_Password.Header" xml:space="preserve"><value>パスワード</value></data>
+  <data name="Email_From.Header" xml:space="preserve"><value>差出人</value></data>
+  <data name="Email_To.Header" xml:space="preserve"><value>宛先（コンマ区切り）</value></data>
+  <data name="Email_OnlyProblems.Content" xml:space="preserve"><value>問題があるときだけ</value></data>
+  <data name="Email_Sent" xml:space="preserve"><value>メールを送信しました。</value></data>
+  <data name="Email_Failed" xml:space="preserve"><value>送信できませんでした: {0}</value></data>
+  <data name="Email_Test.Text" xml:space="preserve"><value>テスト メールを送信</value></data>
 </root>

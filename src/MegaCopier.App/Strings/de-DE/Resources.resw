@@ -919,4 +919,18 @@
   <data name="Connection_Testing" xml:space="preserve"><value>Wird getestet…</value></data>
   <data name="Connection_TestOk" xml:space="preserve"><value>Verbindung funktioniert: {0} Elemente im Ordner.</value></data>
   <data name="Connection_TestFailed" xml:space="preserve"><value>Verbindung nicht möglich: {0}</value></data>
+  <data name="Settings_EmailTitle.Text" xml:space="preserve"><value>Per E-Mail benachrichtigen</value></data>
+  <data name="Settings_EmailDescription.Text" xml:space="preserve"><value>Nach jeder Kopie eine E-Mail mit der Zusammenfassung und den fehlgeschlagenen Dateien. Gmail und Outlook verlangen ein „App-Kennwort“.</value></data>
+  <data name="Email_Server.Header" xml:space="preserve"><value>SMTP-Server</value></data>
+  <data name="Email_Port.Header" xml:space="preserve"><value>Port (0 = Standard)</value></data>
+  <data name="Email_Security.Header" xml:space="preserve"><value>Verschlüsselung</value></data>
+  <data name="Email_SecurityNone.Content" xml:space="preserve"><value>Keine (nur lokales Netzwerk)</value></data>
+  <data name="Email_User.Header" xml:space="preserve"><value>Benutzer</value></data>
+  <data name="Email_Password.Header" xml:space="preserve"><value>Kennwort</value></data>
+  <data name="Email_From.Header" xml:space="preserve"><value>Absender</value></data>
+  <data name="Email_To.Header" xml:space="preserve"><value>An (durch Kommas getrennt)</value></data>
+  <data name="Email_OnlyProblems.Content" xml:space="preserve"><value>Nur bei Problemen</value></data>
+  <data name="Email_Sent" xml:space="preserve"><value>E-Mail gesendet.</value></data>
+  <data name="Email_Failed" xml:space="preserve"><value>Senden nicht möglich: {0}</value></data>
+  <data name="Email_Test.Text" xml:space="preserve"><value>Test-E-Mail senden</value></data>
 </root>

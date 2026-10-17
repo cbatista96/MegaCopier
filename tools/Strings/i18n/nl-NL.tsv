@@ -913,3 +913,17 @@ Connection_Test	Verbinding testen
 Connection_Testing	Testen…
 Connection_TestOk	Verbinding werkt: {0} items in de map.
 Connection_TestFailed	Kan geen verbinding maken: {0}
+Settings_EmailTitle.Text	Melden per e-mail
+Settings_EmailDescription.Text	Na elke kopie een e-mail met de samenvatting en de mislukte bestanden. Gmail en Outlook vragen om een 'app-wachtwoord'.
+Email_Server.Header	SMTP-server
+Email_Port.Header	Poort (0 = standaard)
+Email_Security.Header	Versleuteling
+Email_SecurityNone.Content	Geen (alleen lokaal netwerk)
+Email_User.Header	Gebruiker
+Email_Password.Header	Wachtwoord
+Email_From.Header	Afzender
+Email_To.Header	Aan (gescheiden door komma's)
+Email_OnlyProblems.Content	Alleen bij problemen
+Email_Sent	E-mail verzonden.
+Email_Failed	Kan niet verzenden: {0}
+Email_Test.Text	Testmail verzenden

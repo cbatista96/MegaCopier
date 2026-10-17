@@ -913,3 +913,17 @@ Connection_Test	Prova connessione
 Connection_Testing	Prova in corso…
 Connection_TestOk	Connessione riuscita: {0} elementi nella cartella.
 Connection_TestFailed	Impossibile connettersi: {0}
+Settings_EmailTitle.Text	Avvisa via e-mail
+Settings_EmailDescription.Text	Al termine di ogni copia, un'e-mail con il riepilogo e i file non riusciti. Gmail e Outlook richiedono una «password per le app».
+Email_Server.Header	Server SMTP
+Email_Port.Header	Porta (0 = abituale)
+Email_Security.Header	Crittografia
+Email_SecurityNone.Content	Nessuna (solo rete locale)
+Email_User.Header	Utente
+Email_Password.Header	Password
+Email_From.Header	Mittente
+Email_To.Header	A (separati da virgole)
+Email_OnlyProblems.Content	Solo se ci sono problemi
+Email_Sent	E-mail inviata.
+Email_Failed	Impossibile inviare: {0}
+Email_Test.Text	Invia e-mail di prova

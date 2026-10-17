@@ -913,3 +913,17 @@ Connection_Test	测试连接
 Connection_Testing	正在测试…
 Connection_TestOk	连接正常：文件夹中有 {0} 个项目。
 Connection_TestFailed	无法连接：{0}
+Settings_EmailTitle.Text	通过电子邮件通知
+Settings_EmailDescription.Text	每次复制完成时，发送一封包含摘要和失败文件的邮件。Gmail 和 Outlook 需要“应用专用密码”。
+Email_Server.Header	SMTP 服务器
+Email_Port.Header	端口（0 = 默认）
+Email_Security.Header	加密
+Email_SecurityNone.Content	无（仅限本地网络）
+Email_User.Header	用户名
+Email_Password.Header	密码
+Email_From.Header	发件人
+Email_To.Header	收件人（用逗号分隔）
+Email_OnlyProblems.Content	仅在出现问题时
+Email_Sent	邮件已发送。
+Email_Failed	无法发送：{0}
+Email_Test.Text	发送测试邮件

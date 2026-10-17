@@ -148,6 +148,16 @@ public sealed partial class SettingsPage : UserControl
         SlowBox.SelectedItem = SlowBox.Items.OfType<ComboBoxItem>().FirstOrDefault(i => (string)i.Tag == s.SlowWhenActiveMBps.ToString()) ?? SlowBox.Items[0];
         LogsToggle.IsOn = s.SaveLogs;
         WebhookBox.Text = s.WebhookUrl;
+        EmailToggle.IsOn = s.EmailEnabled;
+        EmailServerBox.Text = s.EmailServer;
+        EmailPortBox.Value = s.EmailPort;
+        EmailSecurityBox.SelectedIndex = (int)s.EmailSecurity;
+        EmailUserBox.Text = s.EmailUser;
+        EmailPasswordBox.Password = Engine.Remote.Connections.GetSecret(AppSettings.SmtpSecretId);
+        EmailFromBox.Text = s.EmailFrom;
+        EmailToBox.Text = s.EmailTo;
+        EmailOnlyProblemsBox.IsChecked = s.EmailOnlyProblems;
+        EmailPanel.Visibility = s.EmailEnabled ? Visibility.Visible : Visibility.Collapsed;
         ScriptsBox.Text = string.Join(Environment.NewLine, s.Scripts);
         Rules.Load(s.Rules);
         LoadFavorites();
@@ -263,6 +273,15 @@ public sealed partial class SettingsPage : UserControl
         s.SaveLogs = LogsToggle.IsOn;
         s.AutoTune = AutoTuneToggle.IsOn;
         s.WebhookUrl = WebhookBox.Text.Trim();
+        s.EmailEnabled = EmailToggle.IsOn;
+        s.EmailServer = EmailServerBox.Text.Trim();
+        s.EmailPort = double.IsNaN(EmailPortBox.Value) ? 0 : (int)EmailPortBox.Value;
+        s.EmailSecurity = (Engine.Network.SmtpSecurity)Math.Max(0, EmailSecurityBox.SelectedIndex);
+        s.EmailUser = EmailUserBox.Text.Trim();
+        s.EmailFrom = EmailFromBox.Text.Trim();
+        s.EmailTo = EmailToBox.Text.Trim();
+        s.EmailOnlyProblems = EmailOnlyProblemsBox.IsChecked == true;
+        EmailPanel.Visibility = s.EmailEnabled ? Visibility.Visible : Visibility.Collapsed;
         if (ScheduleLimitBox.SelectedItem is ComboBoxItem { Tag: string scheduleTag } && int.TryParse(scheduleTag, out int scheduleLimit))
         {
             s.ScheduleLimitMBps = scheduleLimit;
@@ -294,6 +313,25 @@ public sealed partial class SettingsPage : UserControl
         WebhookResult.Text = L.Get("Settings_WebhookSending");
         bool ok = await JobNotices.SendWebhookAsync(_app.Settings.WebhookUrl, L.Get("Settings_WebhookTestMessage"), null);
         WebhookResult.Text = L.Get(ok ? "Settings_WebhookOk" : "Settings_WebhookFailed");
+    }
+
+    /// <summary>La contraseña del correo va al Administrador de credenciales, no a los ajustes.</summary>
+    private void EmailPassword_LostFocus(object sender, RoutedEventArgs e)
+    {
+        if (!_loading)
+        {
+            Engine.Remote.Connections.SetSecret(AppSettings.SmtpSecretId, EmailPasswordBox.Password);
+        }
+    }
+
+    private async void TestEmail_Click(object sender, RoutedEventArgs e)
+    {
+        Store();
+        Engine.Remote.Connections.SetSecret(AppSettings.SmtpSecretId, EmailPasswordBox.Password);
+        EmailResult.Text = L.Get("Settings_WebhookSending");
+        var smtp = _app.Settings.SmtpSettings();
+        string? error = await Task.Run(() => JobNotices.SendEmailAsync(smtp, null));
+        EmailResult.Text = error is null ? L.Get("Email_Sent") : L.F("Email_Failed", error);
     }
 
     // ---------------------------------------------------------------------------------------------------------

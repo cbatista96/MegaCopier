@@ -913,3 +913,17 @@ Connection_Test	Testar conexão
 Connection_Testing	Testando…
 Connection_TestOk	Conexão funcionando: {0} itens na pasta.
 Connection_TestFailed	Não foi possível conectar: {0}
+Settings_EmailTitle.Text	Avisar por e-mail
+Settings_EmailDescription.Text	Ao terminar cada cópia, um e-mail com o resumo e os arquivos que falharam. Gmail e Outlook pedem uma "senha de app".
+Email_Server.Header	Servidor SMTP
+Email_Port.Header	Porta (0 = padrão)
+Email_Security.Header	Criptografia
+Email_SecurityNone.Content	Nenhuma (só rede local)
+Email_User.Header	Usuário
+Email_Password.Header	Senha
+Email_From.Header	Remetente
+Email_To.Header	Para (separados por vírgulas)
+Email_OnlyProblems.Content	Só se houver problemas
+Email_Sent	E-mail enviado.
+Email_Failed	Não foi possível enviar: {0}
+Email_Test.Text	Enviar e-mail de teste
