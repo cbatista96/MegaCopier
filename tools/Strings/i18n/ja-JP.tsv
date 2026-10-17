@@ -962,3 +962,11 @@ Rules_VersionsWeek.Content	日次 7、週次 4、月次 12
 Rules_VersionsMonth.Content	日次 30、週次 12、月次 24
 Rules_VersionsLast.Content	最新のみ
 Task_Monthly.Content	毎月
+Files_Details	{0} バイト · 更新 {1}\n宛先: {2}\n属性: {3}
+Files_AttrReadOnly	読み取り専用
+Files_AttrHidden	隠し
+Files_AttrSystem	システム
+Files_AttrCompressed	圧縮 (NTFS)
+Files_AttrEncrypted	暗号化 (EFS)
+Files_AttrSparse	スパース
+Files_AttrCloud	クラウドのみ

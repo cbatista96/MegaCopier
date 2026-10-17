@@ -962,3 +962,11 @@ Rules_VersionsWeek.Content	7 giornaliere, 4 settimanali e 12 mensili
 Rules_VersionsMonth.Content	30 giornaliere, 12 settimanali e 24 mensili
 Rules_VersionsLast.Content	Solo l'ultima
 Task_Monthly.Content	Ogni mese
+Files_Details	{0} byte · modificato {1}\nDestinazione: {2}\nAttributi: {3}
+Files_AttrReadOnly	sola lettura
+Files_AttrHidden	nascosto
+Files_AttrSystem	sistema
+Files_AttrCompressed	compresso (NTFS)
+Files_AttrEncrypted	crittografato (EFS)
+Files_AttrSparse	sparse
+Files_AttrCloud	solo nel cloud

@@ -968,4 +968,12 @@
   <data name="Rules_VersionsMonth.Content" xml:space="preserve"><value>30 щоденних, 12 щотижневих і 24 щомісячних</value></data>
   <data name="Rules_VersionsLast.Content" xml:space="preserve"><value>Лише останню</value></data>
   <data name="Task_Monthly.Content" xml:space="preserve"><value>Щомісяця</value></data>
+  <data name="Files_Details" xml:space="preserve"><value>{0} байт · змінено {1}\nПризначення: {2}\nАтрибути: {3}</value></data>
+  <data name="Files_AttrReadOnly" xml:space="preserve"><value>лише читання</value></data>
+  <data name="Files_AttrHidden" xml:space="preserve"><value>прихований</value></data>
+  <data name="Files_AttrSystem" xml:space="preserve"><value>системний</value></data>
+  <data name="Files_AttrCompressed" xml:space="preserve"><value>стиснутий (NTFS)</value></data>
+  <data name="Files_AttrEncrypted" xml:space="preserve"><value>зашифрований (EFS)</value></data>
+  <data name="Files_AttrSparse" xml:space="preserve"><value>розріджений</value></data>
+  <data name="Files_AttrCloud" xml:space="preserve"><value>лише в хмарі</value></data>
 </root>

@@ -962,3 +962,11 @@ Rules_VersionsWeek.Content	7 个每日、4 个每周和 12 个每月
 Rules_VersionsMonth.Content	30 个每日、12 个每周和 24 个每月
 Rules_VersionsLast.Content	仅最新一个
 Task_Monthly.Content	每月
+Files_Details	{0} 字节 · 修改于 {1}\n目标：{2}\n属性：{3}
+Files_AttrReadOnly	只读
+Files_AttrHidden	隐藏
+Files_AttrSystem	系统
+Files_AttrCompressed	已压缩 (NTFS)
+Files_AttrEncrypted	已加密 (EFS)
+Files_AttrSparse	稀疏
+Files_AttrCloud	仅在云端

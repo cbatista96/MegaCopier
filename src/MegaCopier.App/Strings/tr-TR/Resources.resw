@@ -968,4 +968,12 @@
   <data name="Rules_VersionsMonth.Content" xml:space="preserve"><value>30 günlük, 12 haftalık ve 24 aylık</value></data>
   <data name="Rules_VersionsLast.Content" xml:space="preserve"><value>Yalnızca en sonuncusu</value></data>
   <data name="Task_Monthly.Content" xml:space="preserve"><value>Her ay</value></data>
+  <data name="Files_Details" xml:space="preserve"><value>{0} bayt · değiştirilme {1}\nHedef: {2}\nÖznitelikler: {3}</value></data>
+  <data name="Files_AttrReadOnly" xml:space="preserve"><value>salt okunur</value></data>
+  <data name="Files_AttrHidden" xml:space="preserve"><value>gizli</value></data>
+  <data name="Files_AttrSystem" xml:space="preserve"><value>sistem</value></data>
+  <data name="Files_AttrCompressed" xml:space="preserve"><value>sıkıştırılmış (NTFS)</value></data>
+  <data name="Files_AttrEncrypted" xml:space="preserve"><value>şifreli (EFS)</value></data>
+  <data name="Files_AttrSparse" xml:space="preserve"><value>seyrek</value></data>
+  <data name="Files_AttrCloud" xml:space="preserve"><value>yalnızca bulutta</value></data>
 </root>

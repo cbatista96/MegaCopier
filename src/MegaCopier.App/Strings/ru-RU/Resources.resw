@@ -968,4 +968,12 @@
   <data name="Rules_VersionsMonth.Content" xml:space="preserve"><value>30 ежедневных, 12 еженедельных и 24 ежемесячных</value></data>
   <data name="Rules_VersionsLast.Content" xml:space="preserve"><value>Только последнюю</value></data>
   <data name="Task_Monthly.Content" xml:space="preserve"><value>Каждый месяц</value></data>
+  <data name="Files_Details" xml:space="preserve"><value>{0} байт · изменён {1}\nНазначение: {2}\nАтрибуты: {3}</value></data>
+  <data name="Files_AttrReadOnly" xml:space="preserve"><value>только чтение</value></data>
+  <data name="Files_AttrHidden" xml:space="preserve"><value>скрытый</value></data>
+  <data name="Files_AttrSystem" xml:space="preserve"><value>системный</value></data>
+  <data name="Files_AttrCompressed" xml:space="preserve"><value>сжатый (NTFS)</value></data>
+  <data name="Files_AttrEncrypted" xml:space="preserve"><value>зашифрован (EFS)</value></data>
+  <data name="Files_AttrSparse" xml:space="preserve"><value>разреженный</value></data>
+  <data name="Files_AttrCloud" xml:space="preserve"><value>только в облаке</value></data>
 </root>
