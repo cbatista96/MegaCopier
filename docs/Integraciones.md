@@ -58,7 +58,7 @@ En Claude Desktop (Configuración > Desarrollador > Editar configuración, archi
 {
   "mcpServers": {
     "megacopier": {
-      "command": "C:\Users\<tu usuario>\AppData\Local\Programs\MegaCopier\mcopy.exe",
+      "command": "C:\\Users\\<tu usuario>\\AppData\\Local\\Programs\\MegaCopier\\mcopy.exe",
       "args": ["mcp"]
     }
   }
