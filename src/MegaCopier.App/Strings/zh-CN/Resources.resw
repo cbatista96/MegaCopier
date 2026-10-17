@@ -1,0 +1,803 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generado por tools/Strings/gen.cs: no editar a mano. -->
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="JobsSection.Text" xml:space="preserve"><value>复制任务</value></data>
+  <data name="SettingsSection.Text" xml:space="preserve"><value>设置</value></data>
+  <data name="FinishButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>所有复制完成后要做什么</value></data>
+  <data name="FinishNothing.Text" xml:space="preserve"><value>不执行任何操作</value></data>
+  <data name="FinishSleep.Text" xml:space="preserve"><value>睡眠</value></data>
+  <data name="FinishShutdown.Text" xml:space="preserve"><value>关机</value></data>
+  <data name="NewCopyText.Text" xml:space="preserve"><value>新建复制</value></data>
+  <data name="CopyFilesItem.Text" xml:space="preserve"><value>复制文件…</value></data>
+  <data name="CopyFolderItem.Text" xml:space="preserve"><value>复制文件夹…</value></data>
+  <data name="EmptyTitle.Text" xml:space="preserve"><value>没有复制任务</value></data>
+  <data name="EmptyDescription.Text" xml:space="preserve"><value>你开始的复制会显示在这里。如果停电，恢复后可以从中断处继续。</value></data>
+  <data name="PauseButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>暂停</value></data>
+  <data name="StopButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>停止（以后可以继续）</value></data>
+  <data name="OpenFolderButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>打开目标文件夹</value></data>
+  <data name="ClearButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>从列表中移除</value></data>
+  <data name="DiscardButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>放弃并删除未完成的副本</value></data>
+  <data name="ConflictDialog.Title" xml:space="preserve"><value>文件已存在</value></data>
+  <data name="ConflictDialog.PrimaryButtonText" xml:space="preserve"><value>替换</value></data>
+  <data name="ConflictDialog.SecondaryButtonText" xml:space="preserve"><value>保留两者</value></data>
+  <data name="ConflictDialog.CloseButtonText" xml:space="preserve"><value>跳过</value></data>
+  <data name="ConflictExistingTitle.Text" xml:space="preserve"><value>现有文件</value></data>
+  <data name="ConflictApplyAll.Content" xml:space="preserve"><value>对此复制中的其他冲突执行相同操作</value></data>
+  <data name="RestartInfo.Title" xml:space="preserve"><value>重新启动 MegaCopier 以应用更改</value></data>
+  <data name="RestartInfo.Message" xml:space="preserve"><value>正在进行的复制将停止，之后可以继续。</value></data>
+  <data name="RestartButton.Content" xml:space="preserve"><value>立即重新启动</value></data>
+  <data name="AppearanceHeader.Text" xml:space="preserve"><value>外观</value></data>
+  <data name="ThemeTitle.Text" xml:space="preserve"><value>主题</value></data>
+  <data name="ThemeDescription.Text" xml:space="preserve"><value>浅色、深色或与 Windows 相同</value></data>
+  <data name="ThemeSystem.Content" xml:space="preserve"><value>与 Windows 相同</value></data>
+  <data name="ThemeLight.Content" xml:space="preserve"><value>浅色</value></data>
+  <data name="ThemeDark.Content" xml:space="preserve"><value>深色</value></data>
+  <data name="AccentTitle.Text" xml:space="preserve"><value>主题色</value></data>
+  <data name="AccentDescription.Text" xml:space="preserve"><value>按钮、进度条和突出元素的颜色</value></data>
+  <data name="BackdropTitle.Text" xml:space="preserve"><value>窗口背景</value></data>
+  <data name="BackdropDescription.Text" xml:space="preserve"><value>Windows 11 材质让桌面隐约透出</value></data>
+  <data name="BackdropMica.Content" xml:space="preserve"><value>云母</value></data>
+  <data name="BackdropMicaAlt.Content" xml:space="preserve"><value>云母 Alt（色调更浓）</value></data>
+  <data name="BackdropAcrylic.Content" xml:space="preserve"><value>亚克力</value></data>
+  <data name="BackdropSolid.Content" xml:space="preserve"><value>纯色</value></data>
+  <data name="LanguageTitle.Text" xml:space="preserve"><value>语言</value></data>
+  <data name="LanguageDescription.Text" xml:space="preserve"><value>MegaCopier 及其文件资源管理器选项的语言</value></data>
+  <data name="LanguageAuto.Content" xml:space="preserve"><value>与 Windows 相同</value></data>
+  <data name="OnTopTitle.Text" xml:space="preserve"><value>总在最前</value></data>
+  <data name="OnTopDescription.Text" xml:space="preserve"><value>复制时窗口保持在其他窗口之上</value></data>
+  <data name="CopyHeader.Text" xml:space="preserve"><value>复制</value></data>
+  <data name="VerifyTitle.Text" xml:space="preserve"><value>复制后校验</value></data>
+  <data name="VerifyDescription.Text" xml:space="preserve"><value>不经缓存重新读取目标，并修复与源不一致的每个数据块</value></data>
+  <data name="ConflictTitle.Text" xml:space="preserve"><value>文件已存在时</value></data>
+  <data name="ConflictDescription.Text" xml:space="preserve"><value>相同的文件（大小和日期一致）总是跳过</value></data>
+  <data name="ConflictAsk.Content" xml:space="preserve"><value>询问</value></data>
+  <data name="ConflictReplace.Content" xml:space="preserve"><value>替换</value></data>
+  <data name="ConflictSkip.Content" xml:space="preserve"><value>跳过</value></data>
+  <data name="ConflictNewer.Content" xml:space="preserve"><value>较新时替换</value></data>
+  <data name="ConflictKeepBoth.Content" xml:space="preserve"><value>保留两者</value></data>
+  <data name="SpeedTitle.Text" xml:space="preserve"><value>速度限制</value></data>
+  <data name="SpeedDescription.Text" xml:space="preserve"><value>为其他任务保留磁盘或网络带宽（适用于新的复制）</value></data>
+  <data name="SpeedUnlimited.Content" xml:space="preserve"><value>不限速</value></data>
+  <data name="AutoResumeTitle.Text" xml:space="preserve"><value>自动继续中断的复制</value></data>
+  <data name="AutoResumeDescription.Text" xml:space="preserve"><value>停电或重启后，打开 MegaCopier 时不询问直接继续</value></data>
+  <data name="ExplorerHeader.Text" xml:space="preserve"><value>文件资源管理器</value></data>
+  <data name="PasteTitle.Text" xml:space="preserve"><value>粘贴 (Ctrl+V) 时用 MegaCopier 复制和移动</value></data>
+  <data name="PasteDescription.Text" xml:space="preserve"><value>在文件资源管理器或桌面粘贴已复制 (Ctrl+C) 或剪切 (Ctrl+X) 的文件时，由 MegaCopier 完成。粘贴到同一文件夹仍由文件资源管理器处理</value></data>
+  <data name="ShellMenuTitle.Text" xml:space="preserve"><value>右键菜单选项</value></data>
+  <data name="ShellMenuDescription.Text" xml:space="preserve"><value>“用 MegaCopier 粘贴”（在“显示更多选项”中）以及右键拖动时的“用 MegaCopier 复制 / 移动到这里”</value></data>
+  <data name="SystemHeader.Text" xml:space="preserve"><value>系统</value></data>
+  <data name="StartupTitle.Text" xml:space="preserve"><value>随 Windows 启动</value></data>
+  <data name="StartupDescription.Text" xml:space="preserve"><value>留在通知区域，让复制立即开始</value></data>
+  <data name="NotifyTitle.Text" xml:space="preserve"><value>完成时通知</value></data>
+  <data name="NotifyDescription.Text" xml:space="preserve"><value>复制结束且窗口不可见时显示系统通知</value></data>
+  <data name="Accent_System" xml:space="preserve"><value>与 Windows 相同</value></data>
+  <data name="Accent_Blue" xml:space="preserve"><value>蓝色</value></data>
+  <data name="Accent_Violet" xml:space="preserve"><value>紫色</value></data>
+  <data name="Accent_Teal" xml:space="preserve"><value>青色</value></data>
+  <data name="Accent_Green" xml:space="preserve"><value>绿色</value></data>
+  <data name="Accent_Orange" xml:space="preserve"><value>橙色</value></data>
+  <data name="Accent_Pink" xml:space="preserve"><value>粉色</value></data>
+  <data name="Accent_Red" xml:space="preserve"><value>红色</value></data>
+  <data name="About" xml:space="preserve"><value>MegaCopier {0} · 断电也不怕的复制</value></data>
+  <data name="Picker_CopyHere" xml:space="preserve"><value>复制到这里</value></data>
+  <data name="Finish_Label" xml:space="preserve"><value>完成后</value></data>
+  <data name="Finish_LabelSleep" xml:space="preserve"><value>完成后：睡眠</value></data>
+  <data name="Finish_LabelShutdown" xml:space="preserve"><value>完成后：关机</value></data>
+  <data name="Conflict_Message" xml:space="preserve"><value>“{1}”中已有名为“{0}”的文件。</value></data>
+  <data name="Conflict_SourceCopy" xml:space="preserve"><value>要复制的文件</value></data>
+  <data name="Conflict_SourceMove" xml:space="preserve"><value>要移动的文件</value></data>
+  <data name="Conflict_Newer" xml:space="preserve"><value> · 较新</value></data>
+  <data name="Job_OneItem" xml:space="preserve"><value>“{0}”</value></data>
+  <data name="Job_ManyItems" xml:space="preserve"><value>{0} 个项目</value></data>
+  <data name="Job_TitleCopying" xml:space="preserve"><value>正在复制 {0}</value></data>
+  <data name="Job_TitleMoving" xml:space="preserve"><value>正在移动 {0}</value></data>
+  <data name="Job_TitleCopied" xml:space="preserve"><value>已复制 {0}</value></data>
+  <data name="Job_TitleMoved" xml:space="preserve"><value>已移动 {0}</value></data>
+  <data name="Job_TitleQueued" xml:space="preserve"><value>等待中：{0}</value></data>
+  <data name="Job_Destination" xml:space="preserve"><value>到 {0}</value></data>
+  <data name="Job_StateQueued" xml:space="preserve"><value>排队中：磁盘忙</value></data>
+  <data name="Job_StateVerifying" xml:space="preserve"><value>正在校验</value></data>
+  <data name="Job_StateValidating" xml:space="preserve"><value>正在检查已复制的部分</value></data>
+  <data name="Job_StateWaiting" xml:space="preserve"><value>等待你的决定：文件已存在</value></data>
+  <data name="Job_StateCopying" xml:space="preserve"><value>正在复制</value></data>
+  <data name="Job_StateMoving" xml:space="preserve"><value>正在移动</value></data>
+  <data name="Job_StatePaused" xml:space="preserve"><value>已暂停</value></data>
+  <data name="Job_StateCompleted" xml:space="preserve"><value>已完成</value></data>
+  <data name="Job_StateCompletedErrors" xml:space="preserve"><value>已完成，有错误</value></data>
+  <data name="Job_StateFailed" xml:space="preserve"><value>错误</value></data>
+  <data name="Job_StateInterrupted" xml:space="preserve"><value>已中断 · 可从中断处继续</value></data>
+  <data name="Job_ResumeHint" xml:space="preserve"><value>按“继续”以继续</value></data>
+  <data name="Job_Preparing" xml:space="preserve"><value>正在准备…</value></data>
+  <data name="Job_Progress" xml:space="preserve"><value>{0} / {1}</value></data>
+  <data name="Job_Remaining" xml:space="preserve"><value>剩余 {0}</value></data>
+  <data name="Job_Files" xml:space="preserve"><value>{0} / {1} 个文件</value></data>
+  <data name="Job_FilesCopiedOne" xml:space="preserve"><value>已复制 {0} 个文件</value></data>
+  <data name="Job_FilesCopiedMany" xml:space="preserve"><value>已复制 {0} 个文件</value></data>
+  <data name="Job_FilesMovedOne" xml:space="preserve"><value>已移动 {0} 个文件</value></data>
+  <data name="Job_FilesMovedMany" xml:space="preserve"><value>已移动 {0} 个文件</value></data>
+  <data name="Job_TransferredIn" xml:space="preserve"><value>{0}，用时 {1}</value></data>
+  <data name="Job_Recovered" xml:space="preserve"><value>恢复 {0}</value></data>
+  <data name="Job_Skipped" xml:space="preserve"><value>跳过 {0}</value></data>
+  <data name="Job_Verified" xml:space="preserve"><value>已校验</value></data>
+  <data name="Job_Repaired" xml:space="preserve"><value>（修复了 {0} 个数据块）</value></data>
+  <data name="Job_FailedFiles" xml:space="preserve"><value>{0} 个文件出错</value></data>
+  <data name="Job_Resume" xml:space="preserve"><value>继续</value></data>
+  <data name="Job_Retry" xml:space="preserve"><value>重试</value></data>
+  <data name="Job_FailuresHeader" xml:space="preserve"><value>查看 {0} 个有问题的文件</value></data>
+  <data name="Job_FailuresMore" xml:space="preserve"><value>… 还有 {0} 个</value></data>
+  <data name="Tray_Open" xml:space="preserve"><value>打开 MegaCopier</value></data>
+  <data name="Tray_PauseAll" xml:space="preserve"><value>全部暂停</value></data>
+  <data name="Tray_ResumeAll" xml:space="preserve"><value>全部继续</value></data>
+  <data name="Tray_Startup" xml:space="preserve"><value>随 Windows 启动</value></data>
+  <data name="Tray_Exit" xml:space="preserve"><value>退出</value></data>
+  <data name="Tray_OneJob" xml:space="preserve"><value>1 个复制任务</value></data>
+  <data name="Tray_ManyJobs" xml:space="preserve"><value>{0} 个复制任务</value></data>
+  <data name="Notify_InterruptedTitle" xml:space="preserve"><value>有中断的复制</value></data>
+  <data name="Notify_InterruptedOne" xml:space="preserve"><value>有一个复制未完成。打开它可从中断处继续。</value></data>
+  <data name="Notify_InterruptedMany" xml:space="preserve"><value>有 {0} 个复制未完成。打开它们以继续。</value></data>
+  <data name="Notify_DoneTitle" xml:space="preserve"><value>复制完成</value></data>
+  <data name="Notify_ProblemTitle" xml:space="preserve"><value>复制出现问题</value></data>
+  <data name="Notify_AllDoneTitle" xml:space="preserve"><value>复制全部完成</value></data>
+  <data name="Error_NeedsPaths" xml:space="preserve"><value>复制请求需要源和目标。</value></data>
+  <data name="Tray_Disable" xml:space="preserve"><value>禁用（使用 Windows 复制）</value></data>
+  <data name="Tray_Enable" xml:space="preserve"><value>启用 MegaCopier</value></data>
+  <data name="Tray_TooltipDisabled" xml:space="preserve"><value>MegaCopier · 已禁用（由 Windows 复制）</value></data>
+  <data name="Notify_DisabledTitle" xml:space="preserve"><value>MegaCopier 已禁用</value></data>
+  <data name="Notify_DisabledBody" xml:space="preserve"><value>复制将由 Windows 完成。双击图标可重新启用。</value></data>
+  <data name="Notify_EnabledTitle" xml:space="preserve"><value>MegaCopier 已启用</value></data>
+  <data name="Notify_EnabledBody" xml:space="preserve"><value>文件资源管理器中的复制和移动将由 MegaCopier 完成。</value></data>
+  <data name="AboutDialog.Title" xml:space="preserve"><value>关于 MegaCopier</value></data>
+  <data name="AboutDialog.CloseButtonText" xml:space="preserve"><value>关闭</value></data>
+  <data name="About_DataFolder.Content" xml:space="preserve"><value>打开数据文件夹（设置、主题、历史记录、报告）</value></data>
+  <data name="About_Description.Text" xml:space="preserve"><value>Windows 11 文件复制工具，断电后即使是单个巨大文件也能继续复制，并校验已复制的部分。</value></data>
+  <data name="About_Features.Text" xml:space="preserve"><value>无缓存异步 I/O · 并行读写 · 哈希校验 (CRC32、xxHash、MD5、SHA) · 按磁盘排队 · 暂停与继续 · 移动 · 冲突处理 · 速度限制 · 复制列表 · 报告 · 主题。</value></data>
+  <data name="CopyFiles.Text" xml:space="preserve"><value>复制文件…</value></data>
+  <data name="CopyFolder.Text" xml:space="preserve"><value>复制文件夹…</value></data>
+  <data name="CopyFilesText.Text" xml:space="preserve"><value>复制文件</value></data>
+  <data name="CopyFolderText.Text" xml:space="preserve"><value>复制文件夹</value></data>
+  <data name="Files_AddFiles.Text" xml:space="preserve"><value>添加文件…</value></data>
+  <data name="Files_AddFolder.Text" xml:space="preserve"><value>添加文件夹…</value></data>
+  <data name="Files_AutoScroll.Content" xml:space="preserve"><value>跟随当前文件</value></data>
+  <data name="Files_CopyHashes.Text" xml:space="preserve"><value>复制哈希值</value></data>
+  <data name="Files_CopyPath.Text" xml:space="preserve"><value>复制路径</value></data>
+  <data name="Files_Empty.Text" xml:space="preserve"><value>没有可显示的文件</value></data>
+  <data name="Files_ExportCsv.Text" xml:space="preserve"><value>导出为 CSV…</value></data>
+  <data name="Files_ExportHtml.Text" xml:space="preserve"><value>导出 HTML 报告…</value></data>
+  <data name="Files_FilterAll.Content" xml:space="preserve"><value>全部</value></data>
+  <data name="Files_FilterDone.Content" xml:space="preserve"><value>已复制</value></data>
+  <data name="Files_FilterErrors.Content" xml:space="preserve"><value>有错误</value></data>
+  <data name="Files_FilterPending.Content" xml:space="preserve"><value>待处理</value></data>
+  <data name="Files_FilterSkipped.Content" xml:space="preserve"><value>已跳过</value></data>
+  <data name="Files_HideFinished.Content" xml:space="preserve"><value>隐藏已完成</value></data>
+  <data name="Files_Menu.Text" xml:space="preserve"><value>列表</value></data>
+  <data name="Files_MoveBottom.Text" xml:space="preserve"><value>移到末尾</value></data>
+  <data name="Files_MoveDown.Text" xml:space="preserve"><value>下移</value></data>
+  <data name="Files_MoveTop.Text" xml:space="preserve"><value>移到开头</value></data>
+  <data name="Files_MoveUp.Text" xml:space="preserve"><value>上移</value></data>
+  <data name="Files_OpenSource.Text" xml:space="preserve"><value>显示源文件</value></data>
+  <data name="Files_OpenTarget.Text" xml:space="preserve"><value>显示目标文件</value></data>
+  <data name="Files_Remove.Text" xml:space="preserve"><value>从复制中移除</value></data>
+  <data name="Files_Retry.Text" xml:space="preserve"><value>重试失败的文件</value></data>
+  <data name="Files_SaveList.Text" xml:space="preserve"><value>保存复制列表…</value></data>
+  <data name="Files_Search.PlaceholderText" xml:space="preserve"><value>搜索文件</value></data>
+  <data name="Files_Size.Text" xml:space="preserve"><value>大小</value></data>
+  <data name="Files_SourceHash.Text" xml:space="preserve"><value>源哈希</value></data>
+  <data name="Files_TargetHash.Text" xml:space="preserve"><value>目标哈希</value></data>
+  <data name="History_Clear.Text" xml:space="preserve"><value>清空</value></data>
+  <data name="History_Empty.Text" xml:space="preserve"><value>还没有完成的复制</value></data>
+  <data name="History_Open.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>打开目标</value></data>
+  <data name="History_Repeat.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>重复（只复制新增或更改的内容）</value></data>
+  <data name="History_Title.Text" xml:space="preserve"><value>历史记录</value></data>
+  <data name="Log_Export.Text" xml:space="preserve"><value>导出日志</value></data>
+  <data name="Options_Acl.Content" xml:space="preserve"><value>权限 (ACL)</value></data>
+  <data name="Options_Attributes.Content" xml:space="preserve"><value>属性</value></data>
+  <data name="Options_Audit.Content" xml:space="preserve"><value>审核 (SACL)</value></data>
+  <data name="Options_BufferSize.Text" xml:space="preserve"><value>缓冲区大小</value></data>
+  <data name="Options_Data.Content" xml:space="preserve"><value>数据</value></data>
+  <data name="Options_ExportReport.Content" xml:space="preserve"><value>保存 HTML 报告</value></data>
+  <data name="Options_FilesFolders.Text" xml:space="preserve"><value>文件和文件夹</value></data>
+  <data name="Options_OnFinish.Text" xml:space="preserve"><value>完成后</value></data>
+  <data name="Options_Owner.Content" xml:space="preserve"><value>所有者</value></data>
+  <data name="Options_ResetDefault.Text" xml:space="preserve"><value>重置</value></data>
+  <data name="Options_RunningInfo.Message" xml:space="preserve"><value>复制正在进行：这些更改将在继续时生效（“校验”和“无人值守”立即生效）。</value></data>
+  <data name="Options_SaveChecksum.Content" xml:space="preserve"><value>保存校验和文件</value></data>
+  <data name="Options_SaveDefault.Text" xml:space="preserve"><value>保存为默认值</value></data>
+  <data name="Options_Scripts.Text" xml:space="preserve"><value>完成后的命令</value></data>
+  <data name="Options_ScriptsHelp.Text" xml:space="preserve"><value>每行一条，用 cmd.exe 运行。以“ok:”开头表示仅在成功时运行，以“error:”开头表示仅在失败时运行。变量：%MEGACOPIER_STATE%、%MEGACOPIER_DESTINATION%、%MEGACOPIER_SOURCES%、%MEGACOPIER_FILES%、%MEGACOPIER_BYTES%、%MEGACOPIER_FAILED%、%MEGACOPIER_CHECKSUM%。</value></data>
+  <data name="Options_Security.Text" xml:space="preserve"><value>安全 (NTFS)</value></data>
+  <data name="Options_Streams.Content" xml:space="preserve"><value>备用数据流 (ADS)</value></data>
+  <data name="Options_SystemCache.Content" xml:space="preserve"><value>使用系统缓存</value></data>
+  <data name="Options_Threads.Text" xml:space="preserve"><value>并行</value></data>
+  <data name="Options_ThreadsShort.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>同时进行的读写操作</value></data>
+  <data name="Options_Timestamps.Content" xml:space="preserve"><value>日期</value></data>
+  <data name="Options_Transfer.Text" xml:space="preserve"><value>复制哪些内容</value></data>
+  <data name="Options_TransferOptions.Text" xml:space="preserve"><value>传输</value></data>
+  <data name="Options_Verify.Content" xml:space="preserve"><value>复制后校验</value></data>
+  <data name="Options_VerifySkipped.Content" xml:space="preserve"><value>也校验跳过的文件</value></data>
+  <data name="Page_Back.Text" xml:space="preserve"><value>返回</value></data>
+  <data name="Pager_Next.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>下一个复制</value></data>
+  <data name="Pager_Previous.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>上一个复制</value></data>
+  <data name="Pager_Text" xml:space="preserve"><value>第 {0} 个，共 {1} 个</value></data>
+  <data name="Panel_Discard.Text" xml:space="preserve"><value>放弃</value></data>
+  <data name="Panel_File.Text" xml:space="preserve"><value>文件</value></data>
+  <data name="Panel_OpenFolder.Text" xml:space="preserve"><value>打开文件夹</value></data>
+  <data name="Panel_Pause.Text" xml:space="preserve"><value>暂停</value></data>
+  <data name="Panel_Skip.Text" xml:space="preserve"><value>跳过</value></data>
+  <data name="Panel_Stop.Text" xml:space="preserve"><value>停止</value></data>
+  <data name="Panel_More" xml:space="preserve"><value>更多</value></data>
+  <data name="Panel_Less" xml:space="preserve"><value>更少</value></data>
+  <data name="Priority_Low.Content" xml:space="preserve"><value>低</value></data>
+  <data name="Priority_BelowNormal.Content" xml:space="preserve"><value>低于正常</value></data>
+  <data name="Priority_Normal.Content" xml:space="preserve"><value>正常</value></data>
+  <data name="Priority_AboveNormal.Content" xml:space="preserve"><value>高于正常</value></data>
+  <data name="Priority_High.Content" xml:space="preserve"><value>高</value></data>
+  <data name="Settings_Advanced.Text" xml:space="preserve"><value>高级</value></data>
+  <data name="Settings_EnabledTitle.Text" xml:space="preserve"><value>用 MegaCopier 代替 Windows 复制</value></data>
+  <data name="Settings_EnabledDescription.Text" xml:space="preserve"><value>也可以双击通知区域图标切换。关闭后，图标变灰并带红色 X，由文件资源管理器复制。</value></data>
+  <data name="Settings_FastTitle.Text" xml:space="preserve"><value>快速设备</value></data>
+  <data name="Settings_FastDescription.Text" xml:space="preserve"><value>可以同时进行多个复制的驱动器或路径（NVMe SSD、RAID）；其他设备按磁盘逐个进行。</value></data>
+  <data name="Settings_FinishTitle.Text" xml:space="preserve"><value>复制完成后</value></data>
+  <data name="Settings_FinishDescription.Text" xml:space="preserve"><value>没有任务在运行时窗口的行为</value></data>
+  <data name="Settings_FinishAuto.Content" xml:space="preserve"><value>一切顺利时关闭</value></data>
+  <data name="Settings_FinishClose.Content" xml:space="preserve"><value>总是关闭</value></data>
+  <data name="Settings_FinishKeep.Content" xml:space="preserve"><value>保持打开</value></data>
+  <data name="Settings_FreeSpace.Content" xml:space="preserve"><value>先检查可用空间</value></data>
+  <data name="Settings_General.Text" xml:space="preserve"><value>常规</value></data>
+  <data name="Settings_HashTitle.Text" xml:space="preserve"><value>哈希算法</value></data>
+  <data name="Settings_HashDescription.Text" xml:space="preserve"><value>用于校验和保存的校验和。xxHash3 最快；SHA-256 兼容性最好。</value></data>
+  <data name="Settings_MaxJobsTitle.Text" xml:space="preserve"><value>同时复制数</value></data>
+  <data name="Settings_MaxJobsDescription.Text" xml:space="preserve"><value>同时进行的复制数上限（0 = 不限）。使用同一磁盘的复制总是排队等候。</value></data>
+  <data name="Settings_ModeAuto.Content" xml:space="preserve"><value>自动</value></data>
+  <data name="Settings_ModeCompact.Content" xml:space="preserve"><value>紧凑</value></data>
+  <data name="Settings_ModeExpanded.Content" xml:space="preserve"><value>完整</value></data>
+  <data name="Settings_PerformanceTitle.Text" xml:space="preserve"><value>性能</value></data>
+  <data name="Settings_PerformanceDescription.Text" xml:space="preserve"><value>速度限制、缓冲区大小和并行操作</value></data>
+  <data name="Settings_PriorityTitle.Text" xml:space="preserve"><value>进程优先级</value></data>
+  <data name="Settings_PriorityDescription.Text" xml:space="preserve"><value>低优先级让电脑在复制时更流畅</value></data>
+  <data name="Settings_Queue.Text" xml:space="preserve"><value>队列</value></data>
+  <data name="Settings_Themes.Text" xml:space="preserve"><value>主题</value></data>
+  <data name="Settings_WhatToCopy.Text" xml:space="preserve"><value>复制哪些内容以及之后做什么</value></data>
+  <data name="Settings_Window.Text" xml:space="preserve"><value>窗口</value></data>
+  <data name="Settings_WindowModeTitle.Text" xml:space="preserve"><value>复制窗口</value></data>
+  <data name="Settings_WindowModeDescription.Text" xml:space="preserve"><value>自动：一个复制时紧凑，多个时完整。“更多”和“更少”可随时切换。</value></data>
+  <data name="Status_Bytes.Text" xml:space="preserve"><value>大小</value></data>
+  <data name="Status_Category.Text" xml:space="preserve"><value>状态</value></data>
+  <data name="Status_Copied.Text" xml:space="preserve"><value>已复制</value></data>
+  <data name="Status_Failed.Text" xml:space="preserve"><value>有错误</value></data>
+  <data name="Status_Files.Text" xml:space="preserve"><value>文件</value></data>
+  <data name="Status_Pending.Text" xml:space="preserve"><value>待处理</value></data>
+  <data name="Status_Skipped.Text" xml:space="preserve"><value>已跳过</value></data>
+  <data name="Status_Total.Text" xml:space="preserve"><value>总计</value></data>
+  <data name="Status_Verified.Text" xml:space="preserve"><value>已校验</value></data>
+  <data name="Tab_Files.Text" xml:space="preserve"><value>文件</value></data>
+  <data name="Tab_Log.Text" xml:space="preserve"><value>日志</value></data>
+  <data name="Tab_Options.Text" xml:space="preserve"><value>选项</value></data>
+  <data name="Tab_Status.Text" xml:space="preserve"><value>状态</value></data>
+  <data name="Tab_Target.Text" xml:space="preserve"><value>目标</value></data>
+  <data name="Target_Destination.Text" xml:space="preserve"><value>目标</value></data>
+  <data name="Target_Source.Text" xml:space="preserve"><value>源</value></data>
+  <data name="Target_Space" xml:space="preserve"><value>可用 {0}，共 {1}</value></data>
+  <data name="Theme_BarHeight.Header" xml:space="preserve"><value>进度条高度</value></data>
+  <data name="Theme_Radius.Header" xml:space="preserve"><value>圆角</value></data>
+  <data name="Theme_Customize.Text" xml:space="preserve"><value>自定义主题（颜色、进度条、背景）</value></data>
+  <data name="Theme_Delete.Text" xml:space="preserve"><value>删除</value></data>
+  <data name="Theme_Export.Text" xml:space="preserve"><value>导出…</value></data>
+  <data name="Theme_Import.Text" xml:space="preserve"><value>导入…</value></data>
+  <data name="Theme_Name.Header" xml:space="preserve"><value>名称</value></data>
+  <data name="Theme_Save" xml:space="preserve"><value>保存</value></data>
+  <data name="Theme_SaveAsNew" xml:space="preserve"><value>另存为新主题</value></data>
+  <data name="Theme_Auto" xml:space="preserve"><value>Fluent（跟随系统）</value></data>
+  <data name="Theme_CopyOf" xml:space="preserve"><value>{0}（自定义）</value></data>
+  <data name="Theme_Custom" xml:space="preserve"><value>我的主题</value></data>
+  <data name="Theme_FileType" xml:space="preserve"><value>MegaCopier 主题</value></data>
+  <data name="Theme_ImportFailed" xml:space="preserve"><value>无法导入主题</value></data>
+  <data name="Theme_ColorBackground" xml:space="preserve"><value>背景</value></data>
+  <data name="Theme_ColorSurface" xml:space="preserve"><value>卡片</value></data>
+  <data name="Theme_ColorSurfaceStrong" xml:space="preserve"><value>突出卡片</value></data>
+  <data name="Theme_ColorBorder" xml:space="preserve"><value>边框</value></data>
+  <data name="Theme_ColorText" xml:space="preserve"><value>文本</value></data>
+  <data name="Theme_ColorTextSecondary" xml:space="preserve"><value>次要文本</value></data>
+  <data name="Theme_ColorAccent" xml:space="preserve"><value>主题色</value></data>
+  <data name="Theme_ColorAccentText" xml:space="preserve"><value>主题色上的文本</value></data>
+  <data name="Theme_ColorTotalStart" xml:space="preserve"><value>总进度条：起点</value></data>
+  <data name="Theme_ColorTotalEnd" xml:space="preserve"><value>总进度条：终点</value></data>
+  <data name="Theme_ColorFileStart" xml:space="preserve"><value>文件进度条：起点</value></data>
+  <data name="Theme_ColorFileEnd" xml:space="preserve"><value>文件进度条：终点</value></data>
+  <data name="Theme_ColorTrack" xml:space="preserve"><value>进度条底色</value></data>
+  <data name="Theme_ColorSuccess" xml:space="preserve"><value>成功</value></data>
+  <data name="Theme_ColorWarning" xml:space="preserve"><value>警告</value></data>
+  <data name="Theme_ColorError" xml:space="preserve"><value>错误</value></data>
+  <data name="Theme_fluent-dark" xml:space="preserve"><value>Fluent 深色</value></data>
+  <data name="Theme_fluent-light" xml:space="preserve"><value>Fluent 浅色</value></data>
+  <data name="Theme_midnight" xml:space="preserve"><value>午夜</value></data>
+  <data name="Theme_graphite" xml:space="preserve"><value>石墨</value></data>
+  <data name="Theme_ocean" xml:space="preserve"><value>海洋</value></data>
+  <data name="Theme_forest" xml:space="preserve"><value>森林</value></data>
+  <data name="Theme_sunset" xml:space="preserve"><value>日落</value></data>
+  <data name="Theme_supercopier" xml:space="preserve"><value>经典 SuperCopier</value></data>
+  <data name="Theme_ultracopier" xml:space="preserve"><value>经典 Ultracopier</value></data>
+  <data name="Theme_contrast" xml:space="preserve"><value>高对比度</value></data>
+  <data name="Tool_About.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>关于</value></data>
+  <data name="Tool_ClearDone.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>移除已完成的复制</value></data>
+  <data name="Tool_History.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>历史记录</value></data>
+  <data name="Tool_HistoryText.Text" xml:space="preserve"><value>历史记录</value></data>
+  <data name="Tool_LoadList.Text" xml:space="preserve"><value>加载复制列表…</value></data>
+  <data name="Tool_LoadListText.Text" xml:space="preserve"><value>加载列表</value></data>
+  <data name="Tool_MoveFiles.Text" xml:space="preserve"><value>移动文件…</value></data>
+  <data name="Tool_NewCopy.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>新建复制</value></data>
+  <data name="Tool_NewCopyText.Text" xml:space="preserve"><value>新建</value></data>
+  <data name="Tool_PauseAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>全部暂停</value></data>
+  <data name="Tool_ResumeAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>全部继续</value></data>
+  <data name="Tool_Settings.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>设置</value></data>
+  <data name="Tool_Sidebar.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>显示或隐藏复制列表</value></data>
+  <data name="Drop_Caption" xml:space="preserve"><value>用 MegaCopier 复制</value></data>
+  <data name="File_Pending" xml:space="preserve"><value>待处理</value></data>
+  <data name="File_Copying" xml:space="preserve"><value>正在复制</value></data>
+  <data name="File_Verifying" xml:space="preserve"><value>正在校验</value></data>
+  <data name="File_Copied" xml:space="preserve"><value>已复制</value></data>
+  <data name="File_Verified" xml:space="preserve"><value>已校验</value></data>
+  <data name="File_Skipped" xml:space="preserve"><value>已跳过</value></data>
+  <data name="File_Failed" xml:space="preserve"><value>错误</value></data>
+  <data name="Files_AddFailed" xml:space="preserve"><value>无法添加</value></data>
+  <data name="Files_Count" xml:space="preserve"><value>{0} / {1} 个文件</value></data>
+  <data name="Files_ListType" xml:space="preserve"><value>MegaCopier 复制列表</value></data>
+  <data name="Files_LoadFailed" xml:space="preserve"><value>无法加载列表</value></data>
+  <data name="Hash_None" xml:space="preserve"><value>哈希：无</value></data>
+  <data name="Jobs_Header" xml:space="preserve"><value>复制：{0} · 进行中：{1}</value></data>
+  <data name="Language_Auto" xml:space="preserve"><value>与 Windows 相同</value></data>
+  <data name="Log_FileType" xml:space="preserve"><value>文本</value></data>
+  <data name="Picker_MoveHere" xml:space="preserve"><value>移动到这里</value></data>
+  <data name="Settings_AutoResume.Content" xml:space="preserve"><value>启动时自动继续</value></data>
+  <data name="Panel_Options.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>此复制的选项</value></data>
+  <data name="Panel_UnattendedItem.Text" xml:space="preserve"><value>无人值守（不询问：跳过已存在的文件）</value></data>
+  <data name="Panel_VerifyItem.Text" xml:space="preserve"><value>完成后校验</value></data>
+  <data name="Panel_OpenFolderItem.Text" xml:space="preserve"><value>打开目标文件夹</value></data>
+  <data name="Status_ExactBytes" xml:space="preserve"><value>{0} 字节</value></data>
+  <data name="Notify_SettingsResetTitle" xml:space="preserve"><value>设置已重置</value></data>
+  <data name="Notify_SettingsResetBody" xml:space="preserve"><value>无法读取你的设置，因此使用默认设置。原文件保存在 settings.json.bad。</value></data>
+  <data name="Job_TitleCopy" xml:space="preserve"><value>复制 {0}</value></data>
+  <data name="Job_TitleMove" xml:space="preserve"><value>移动 {0}</value></data>
+  <data name="Job_FailedOne" xml:space="preserve"><value>1 个文件出错</value></data>
+  <data name="Error_InUse" xml:space="preserve"><value>另一个程序打开了此文件。关闭它后按“重试”。</value></data>
+  <data name="Error_AccessDenied" xml:space="preserve"><value>拒绝访问：你没有读取或写入此文件的权限。</value></data>
+  <data name="Error_DiskFull" xml:space="preserve"><value>目标磁盘已满。</value></data>
+  <data name="Error_NotFound" xml:space="preserve"><value>文件或文件夹已不存在（被移动、删除或驱动器已断开？）。</value></data>
+  <data name="Error_PathTooLong" xml:space="preserve"><value>路径对目标来说太长。</value></data>
+  <data name="Error_NetworkLost" xml:space="preserve"><value>网络连接已断开。恢复后按“重试”从中断处继续。</value></data>
+  <data name="Error_HashMismatch" xml:space="preserve"><value>副本与原文件不一致（校验失败）。</value></data>
+  <data name="Error_DeleteFailed" xml:space="preserve"><value>已正确复制，但无法删除原文件。</value></data>
+  <data name="Report_State" xml:space="preserve"><value>状态</value></data>
+  <data name="Report_File" xml:space="preserve"><value>文件</value></data>
+  <data name="Report_Source" xml:space="preserve"><value>源</value></data>
+  <data name="Report_Destination" xml:space="preserve"><value>目标</value></data>
+  <data name="Report_Size" xml:space="preserve"><value>大小</value></data>
+  <data name="Report_SourceHash" xml:space="preserve"><value>源哈希</value></data>
+  <data name="Report_TargetHash" xml:space="preserve"><value>目标哈希</value></data>
+  <data name="Report_Message" xml:space="preserve"><value>消息</value></data>
+  <data name="Report_Copied" xml:space="preserve"><value>已复制</value></data>
+  <data name="Report_Verified" xml:space="preserve"><value>已校验</value></data>
+  <data name="Report_Skipped" xml:space="preserve"><value>已跳过</value></data>
+  <data name="Report_Failed" xml:space="preserve"><value>有错误</value></data>
+  <data name="Job_SkippedOne" xml:space="preserve"><value>跳过 1 个</value></data>
+  <data name="Rules_Filters.Text" xml:space="preserve"><value>筛选</value></data>
+  <data name="Rules_Include.Header" xml:space="preserve"><value>仅包含（用 ; 分隔的掩码）</value></data>
+  <data name="Rules_Include.PlaceholderText" xml:space="preserve"><value>*.jpg; *.png; 照片\*</value></data>
+  <data name="Rules_Exclude.Header" xml:space="preserve"><value>排除</value></data>
+  <data name="Rules_Exclude.PlaceholderText" xml:space="preserve"><value>node_modules; *.tmp; Thumbs.db</value></data>
+  <data name="Rules_MinSize.Header" xml:space="preserve"><value>最小大小 (MB)</value></data>
+  <data name="Rules_MaxSize.Header" xml:space="preserve"><value>最大大小 (MB)</value></data>
+  <data name="Rules_After.Header" xml:space="preserve"><value>修改时间不早于</value></data>
+  <data name="Rules_Before.Header" xml:space="preserve"><value>修改时间不晚于</value></data>
+  <data name="Rules_SkipHidden.Content" xml:space="preserve"><value>跳过隐藏文件</value></data>
+  <data name="Rules_SkipSystem.Content" xml:space="preserve"><value>跳过系统文件</value></data>
+  <data name="Rules_Rules.Text" xml:space="preserve"><value>规则</value></data>
+  <data name="Rules_Links.Header" xml:space="preserve"><value>符号链接和联接</value></data>
+  <data name="Rules_LinksCopy.Content" xml:space="preserve"><value>作为链接复制</value></data>
+  <data name="Rules_LinksFollow.Content" xml:space="preserve"><value>复制链接指向的内容</value></data>
+  <data name="Rules_LinksSkip.Content" xml:space="preserve"><value>跳过</value></data>
+  <data name="Rules_Pattern.Header" xml:space="preserve"><value>保留两者时的名称 ({name}, {n}, {ext}, {date})</value></data>
+  <data name="Rules_PatternPreview" xml:space="preserve"><value>示例：{0}</value></data>
+  <data name="Rules_Retries.Header" xml:space="preserve"><value>重试次数</value></data>
+  <data name="Rules_Delay.Header" xml:space="preserve"><value>重试间隔（秒）</value></data>
+  <data name="Rules_OnError.Header" xml:space="preserve"><value>如果文件一直失败</value></data>
+  <data name="Rules_OnErrorSkip.Content" xml:space="preserve"><value>记录下来并继续下一个</value></data>
+  <data name="Rules_OnErrorStop.Content" xml:space="preserve"><value>停止复制（可以继续）</value></data>
+  <data name="ConflictDifferentSize.Content" xml:space="preserve"><value>大小不同时替换</value></data>
+  <data name="ConflictRenameExisting.Content" xml:space="preserve"><value>重命名现有文件</value></data>
+  <data name="Conflict_RenameExisting.Text" xml:space="preserve"><value>重命名现有文件并复制此文件</value></data>
+  <data name="Schedule_Title.Text" xml:space="preserve"><value>计划开始时间</value></data>
+  <data name="Schedule_Set.Text" xml:space="preserve"><value>计划</value></data>
+  <data name="Schedule_Now.Text" xml:space="preserve"><value>立即开始</value></data>
+  <data name="Schedule_InThePast" xml:space="preserve"><value>请选择将来的时间。</value></data>
+  <data name="Job_StateScheduled" xml:space="preserve"><value>计划于 {0}</value></data>
+  <data name="Settings_Favorites.Text" xml:space="preserve"><value>收藏文件夹</value></data>
+  <data name="Settings_FavoritesTitle.Text" xml:space="preserve"><value>收藏的目标</value></data>
+  <data name="Settings_FavoritesDescription.Text" xml:space="preserve"><value>它们会出现在“新建 &gt; 复制到”和目标对话框中，以便同时复制到多个文件夹。</value></data>
+  <data name="Settings_FavoritesAdd.Text" xml:space="preserve"><value>添加文件夹</value></data>
+  <data name="Settings_FavoritesRemove" xml:space="preserve"><value>移除 {0}</value></data>
+  <data name="Settings_FavoritesEmpty" xml:space="preserve"><value>还没有收藏。</value></data>
+  <data name="Tool_CopyTo.Text" xml:space="preserve"><value>复制到</value></data>
+  <data name="Tool_CopyToEmpty" xml:space="preserve"><value>没有收藏或最近的文件夹</value></data>
+  <data name="Tool_CopyToManage" xml:space="preserve"><value>管理收藏…</value></data>
+  <data name="Tool_TestFiles.Text" xml:space="preserve"><value>检查校验和文件…</value></data>
+  <data name="Tool_TestFolder.Text" xml:space="preserve"><value>检查文件夹的校验和…</value></data>
+  <data name="Tool_Delete.Text" xml:space="preserve"><value>删除…</value></data>
+  <data name="Tool_Wipe.Text" xml:space="preserve"><value>安全删除…</value></data>
+  <data name="DestinationsDialog.Title" xml:space="preserve"><value>复制到哪里？</value></data>
+  <data name="DestinationsDialog.PrimaryButtonText" xml:space="preserve"><value>开始</value></data>
+  <data name="DestinationsDialog.CloseButtonText" xml:space="preserve"><value>取消</value></data>
+  <data name="Destinations_SummaryOne" xml:space="preserve"><value>为“{0}”选择一个或多个目标。</value></data>
+  <data name="Destinations_SummaryMany" xml:space="preserve"><value>为 {0} 个项目选择一个或多个目标。</value></data>
+  <data name="Destinations_Add.Text" xml:space="preserve"><value>添加文件夹…</value></data>
+  <data name="Destinations_Move.Content" xml:space="preserve"><value>移动而不是复制</value></data>
+  <data name="Destinations_Schedule.Content" xml:space="preserve"><value>稍后开始</value></data>
+  <data name="DeleteDialog.Title" xml:space="preserve"><value>删除</value></data>
+  <data name="DeleteDialog.PrimaryButtonText" xml:space="preserve"><value>删除</value></data>
+  <data name="DeleteDialog.CloseButtonText" xml:space="preserve"><value>取消</value></data>
+  <data name="Delete_ConfirmOne" xml:space="preserve"><value>删除“{0}”？它不会进入回收站。</value></data>
+  <data name="Delete_ConfirmMany" xml:space="preserve"><value>删除 {0} 个项目？它们不会进入回收站。</value></data>
+  <data name="Delete_ConfirmSecureOne" xml:space="preserve"><value>安全删除“{0}”？</value></data>
+  <data name="Delete_ConfirmSecureMany" xml:space="preserve"><value>安全删除 {0} 个项目？</value></data>
+  <data name="Delete_SecureWarning.Title" xml:space="preserve"><value>将无法恢复</value></data>
+  <data name="Delete_SecureWarning.Message" xml:space="preserve"><value>删除前会覆盖内容。在 SSD 上，磁盘本身可能保留残留数据；如需最高安全性，请使用 BitLocker 加密。</value></data>
+  <data name="FinishHibernate.Text" xml:space="preserve"><value>休眠</value></data>
+  <data name="FinishSignOut.Text" xml:space="preserve"><value>注销</value></data>
+  <data name="FinishExit.Text" xml:space="preserve"><value>关闭 MegaCopier</value></data>
+  <data name="Finish_LabelHibernate" xml:space="preserve"><value>完成后：休眠</value></data>
+  <data name="Finish_LabelSignOut" xml:space="preserve"><value>完成后：注销</value></data>
+  <data name="Finish_LabelExit" xml:space="preserve"><value>完成后：关闭 MegaCopier</value></data>
+  <data name="Notify_FinishSleep" xml:space="preserve"><value>正在进入睡眠…</value></data>
+  <data name="Notify_FinishHibernate" xml:space="preserve"><value>正在进入休眠…</value></data>
+  <data name="Notify_FinishShutdown" xml:space="preserve"><value>电脑将在 1 分钟后关机（取消：shutdown /a）。</value></data>
+  <data name="Notify_FinishSignOut" xml:space="preserve"><value>正在注销…</value></data>
+  <data name="Notify_FinishExitApp" xml:space="preserve"><value>MegaCopier 正在关闭。</value></data>
+  <data name="Files_SelectAll.Text" xml:space="preserve"><value>全选</value></data>
+  <data name="Files_SelectSameExtension.Text" xml:space="preserve"><value>选择扩展名相同的文件</value></data>
+  <data name="Files_SelectSameFolder.Text" xml:space="preserve"><value>选择同一文件夹中的文件</value></data>
+  <data name="Files_InvertSelection.Text" xml:space="preserve"><value>反向选择</value></data>
+  <data name="Job_TitleTest" xml:space="preserve"><value>检查 {0}</value></data>
+  <data name="Job_TitleTesting" xml:space="preserve"><value>正在检查 {0}</value></data>
+  <data name="Job_TitleTested" xml:space="preserve"><value>已检查 {0}</value></data>
+  <data name="Job_TitleDelete" xml:space="preserve"><value>删除 {0}</value></data>
+  <data name="Job_TitleDeleting" xml:space="preserve"><value>正在删除 {0}</value></data>
+  <data name="Job_TitleDeleted" xml:space="preserve"><value>已删除 {0}</value></data>
+  <data name="Job_StateTesting" xml:space="preserve"><value>正在检查</value></data>
+  <data name="Job_StateDeleting" xml:space="preserve"><value>正在删除</value></data>
+  <data name="Job_FilesTestedOne" xml:space="preserve"><value>{0} 个文件正常</value></data>
+  <data name="Job_FilesTestedMany" xml:space="preserve"><value>{0} 个文件正常</value></data>
+  <data name="Job_FilesDeletedOne" xml:space="preserve"><value>已删除 {0} 个文件</value></data>
+  <data name="Job_FilesDeletedMany" xml:space="preserve"><value>已删除 {0} 个文件</value></data>
+  <data name="Job_TitleScheduled" xml:space="preserve"><value>已计划：{0}</value></data>
+  <data name="Error_ChecksumMismatch" xml:space="preserve"><value>内容与保存的校验和不一致：文件已更改或已损坏。</value></data>
+  <data name="Job_FilteredOut" xml:space="preserve"><value>没有文件通过此复制的筛选</value></data>
+  <data name="Rules_After.PlaceholderText" xml:space="preserve"><value>任意日期</value></data>
+  <data name="Rules_Before.PlaceholderText" xml:space="preserve"><value>任意日期</value></data>
+  <data name="Drop_MoveTo" xml:space="preserve"><value>移到第 {0} 位</value></data>
+  <data name="Drop_InsertAt" xml:space="preserve"><value>添加到第 {0} 位</value></data>
+  <data name="Drop_AddToJob" xml:space="preserve"><value>添加到此复制</value></data>
+  <data name="Drop_AddToNamedJob" xml:space="preserve"><value>添加到 {0}</value></data>
+  <data name="Drop_JobOrder" xml:space="preserve"><value>放到队列第 {0} 位</value></data>
+  <data name="Settings_Sounds.Text" xml:space="preserve"><value>声音</value></data>
+  <data name="Settings_SoundsTitle.Text" xml:space="preserve"><value>声音提醒</value></data>
+  <data name="Settings_SoundsDescription.Text" xml:space="preserve"><value>为每个时刻选择声音：Windows 声音、电脑上的任意文件或无声音。</value></data>
+  <data name="Settings_Volume.Header" xml:space="preserve"><value>音量</value></data>
+  <data name="Settings_SoundsQuiet.Content" xml:space="preserve"><value>全屏游戏或演示以及“请勿打扰”时保持安静</value></data>
+  <data name="Sound_Done" xml:space="preserve"><value>复制顺利完成</value></data>
+  <data name="Sound_Errors" xml:space="preserve"><value>复制完成但有错误</value></data>
+  <data name="Sound_AllDone" xml:space="preserve"><value>全部复制完成</value></data>
+  <data name="Sound_Attention" xml:space="preserve"><value>需要你做决定（文件已存在）</value></data>
+  <data name="Sound_Test" xml:space="preserve"><value>试听</value></data>
+  <data name="Sound_None" xml:space="preserve"><value>无声音</value></data>
+  <data name="Sound_Default" xml:space="preserve"><value>Windows 默认</value></data>
+  <data name="Sound_Choose" xml:space="preserve"><value>选择文件…</value></data>
+  <data name="File_Planned" xml:space="preserve"><value>已模拟</value></data>
+  <data name="File_Deleted" xml:space="preserve"><value>已移除</value></data>
+  <data name="File_RemovedExtra" xml:space="preserve"><value>已从目标移除：源中已没有它</value></data>
+  <data name="Plan_Copy" xml:space="preserve"><value>将被复制</value></data>
+  <data name="Plan_Replace" xml:space="preserve"><value>将替换目标中的文件</value></data>
+  <data name="Plan_ReplaceNewer" xml:space="preserve"><value>将替换目标中的文件：原文件较新</value></data>
+  <data name="Plan_ReplaceSize" xml:space="preserve"><value>将替换目标中的文件：大小不同</value></data>
+  <data name="Plan_KeepBoth" xml:space="preserve"><value>已存在：将以其他名称复制</value></data>
+  <data name="Plan_RenameExisting" xml:space="preserve"><value>已存在：将重命名目标中的文件并复制此文件</value></data>
+  <data name="Plan_Ask" xml:space="preserve"><value>已存在：将询问你怎么做</value></data>
+  <data name="Plan_SkipIdentical" xml:space="preserve"><value>将跳过：目标中已有相同文件</value></data>
+  <data name="Plan_SkipExists" xml:space="preserve"><value>将跳过：已存在</value></data>
+  <data name="Plan_SkipOlder" xml:space="preserve"><value>将跳过：目标中的文件相同或更新</value></data>
+  <data name="Plan_SkipSameSize" xml:space="preserve"><value>将跳过：大小相同</value></data>
+  <data name="Plan_SkipNotInDestination" xml:space="preserve"><value>将跳过：目标中没有（仅更新）</value></data>
+  <data name="Plan_SkipSamePath" xml:space="preserve"><value>将跳过：源和目标相同</value></data>
+  <data name="Plan_Delete" xml:space="preserve"><value>将从目标移除：源中已没有它</value></data>
+  <data name="Plan_Fail" xml:space="preserve"><value>将失败：目标已存在</value></data>
+  <data name="Plan_None" xml:space="preserve"><value>已模拟</value></data>
+  <data name="Skip_SkipIdentical" xml:space="preserve"><value>目标中已有相同文件</value></data>
+  <data name="Skip_SkipExists" xml:space="preserve"><value>已存在：已跳过</value></data>
+  <data name="Skip_SkipOlder" xml:space="preserve"><value>目标中的文件相同或更新</value></data>
+  <data name="Skip_SkipSameSize" xml:space="preserve"><value>与目标中的文件大小相同</value></data>
+  <data name="Skip_SkipNotInDestination" xml:space="preserve"><value>目标中没有（只更新已存在的文件）</value></data>
+  <data name="Skip_SkipSamePath" xml:space="preserve"><value>源和目标是同一个文件</value></data>
+  <data name="Skip_SkipByUser" xml:space="preserve"><value>被你跳过</value></data>
+  <data name="Job_TitleSync" xml:space="preserve"><value>同步 {0}</value></data>
+  <data name="Job_TitleSyncing" xml:space="preserve"><value>正在同步 {0}</value></data>
+  <data name="Job_TitleSynced" xml:space="preserve"><value>已同步 {0}</value></data>
+  <data name="Job_StateSyncing" xml:space="preserve"><value>正在同步</value></data>
+  <data name="Job_FilesSyncedOne" xml:space="preserve"><value>已更新 {0} 个文件</value></data>
+  <data name="Job_FilesSyncedMany" xml:space="preserve"><value>已更新 {0} 个文件</value></data>
+  <data name="Job_TitleSimulate" xml:space="preserve"><value>模拟 {0}</value></data>
+  <data name="Job_TitleSimulating" xml:space="preserve"><value>正在模拟 {0}</value></data>
+  <data name="Job_TitleSimulated" xml:space="preserve"><value>模拟：{0}</value></data>
+  <data name="Job_StateSimulating" xml:space="preserve"><value>正在模拟</value></data>
+  <data name="Job_FilesSimulatedOne" xml:space="preserve"><value>将复制 {0} 个文件</value></data>
+  <data name="Job_FilesSimulatedMany" xml:space="preserve"><value>将复制 {0} 个文件</value></data>
+  <data name="Job_WouldTransfer" xml:space="preserve"><value>共 {0}</value></data>
+  <data name="Job_TitleHash" xml:space="preserve"><value>为 {0} 创建校验和</value></data>
+  <data name="Job_TitleHashing" xml:space="preserve"><value>正在计算 {0} 的校验和</value></data>
+  <data name="Job_TitleHashed" xml:space="preserve"><value>{0} 的校验和</value></data>
+  <data name="Job_StateHashing" xml:space="preserve"><value>正在计算校验和</value></data>
+  <data name="Job_FilesHashedOne" xml:space="preserve"><value>校验和列表中有 {0} 个文件</value></data>
+  <data name="Job_FilesHashedMany" xml:space="preserve"><value>校验和列表中有 {0} 个文件</value></data>
+  <data name="Job_StateWaitingDevice" xml:space="preserve"><value>正在等待磁盘或网络恢复…</value></data>
+  <data name="Job_StateWaitingSpace" xml:space="preserve"><value>正在等待目标有可用空间…</value></data>
+  <data name="Job_RemovedOne" xml:space="preserve"><value>已从目标移除 1 个</value></data>
+  <data name="Job_Removed" xml:space="preserve"><value>已从目标移除 {0} 个</value></data>
+  <data name="Job_WouldRemove" xml:space="preserve"><value>将从目标移除 {0} 个</value></data>
+  <data name="Panel_RunForReal.Text" xml:space="preserve"><value>正式执行</value></data>
+  <data name="Options_Mode.Header" xml:space="preserve"><value>模式</value></data>
+  <data name="Mode_Copy.Content" xml:space="preserve"><value>复制</value></data>
+  <data name="Mode_Mirror.Content" xml:space="preserve"><value>同步（镜像）</value></data>
+  <data name="Mode_Update.Content" xml:space="preserve"><value>只更新已存在的文件</value></data>
+  <data name="Mode_Folders.Content" xml:space="preserve"><value>仅文件夹结构</value></data>
+  <data name="Options_MirrorInfo.Title" xml:space="preserve"><value>同步会从目标移除源中已没有的内容</value></data>
+  <data name="Options_MirrorInfo.Message" xml:space="preserve"><value>被筛选排除的内容不会被改动。设置版本文件夹可保存被移除或替换的文件。</value></data>
+  <data name="Options_DryRun.Content" xml:space="preserve"><value>模拟：只显示会发生什么，不做任何更改</value></data>
+  <data name="Destinations_DryRun.Content" xml:space="preserve"><value>先模拟（不做任何更改）</value></data>
+  <data name="Tool_HashFolder.Text" xml:space="preserve"><value>为文件夹创建校验和文件…</value></data>
+  <data name="Tool_HashFiles.Text" xml:space="preserve"><value>为文件创建校验和文件…</value></data>
+  <data name="Rules_SkipJunk.Content" xml:space="preserve"><value>跳过垃圾文件 (Thumbs.db, desktop.ini, .DS_Store, ~$…)</value></data>
+  <data name="Rules_OnErrorEnd.Content" xml:space="preserve"><value>在队列末尾重试</value></data>
+  <data name="Rules_Safety.Text" xml:space="preserve"><value>同步与安全</value></data>
+  <data name="Rules_FolderConflict.Header" xml:space="preserve"><value>如果目标中已有该文件夹</value></data>
+  <data name="Rules_FolderMerge.Content" xml:space="preserve"><value>合并内容</value></data>
+  <data name="Rules_FolderSkip.Content" xml:space="preserve"><value>整个跳过</value></data>
+  <data name="Rules_Versions.Header" xml:space="preserve"><value>将替换或移除的文件保存在文件夹中</value></data>
+  <data name="Rules_Versions.PlaceholderText" xml:space="preserve"><value>留空：不保存（例如 .versions）</value></data>
+  <data name="Rules_Tolerance.Header" xml:space="preserve"><value>“相同”的日期容差（秒）</value></data>
+  <data name="Rules_VerifySource.Content" xml:space="preserve"><value>完成时重新读取原文件</value></data>
+  <data name="Rules_HashStream.Content" xml:space="preserve"><value>将哈希保存在每个文件内</value></data>
+  <data name="Rules_HardLinks.Content" xml:space="preserve"><value>保留硬链接</value></data>
+  <data name="Rules_Wipe.Content" xml:space="preserve"><value>移动时安全删除原文件</value></data>
+  <data name="Rules_WaitDevice.Content" xml:space="preserve"><value>磁盘或网络断开时等待</value></data>
+  <data name="Rules_WaitSpace.Content" xml:space="preserve"><value>空间不足时等待</value></data>
+  <data name="Rules_VerifySource.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>重新计算原文件的哈希：检测它在复制期间是否发生变化，或源磁盘是否读取有误。</value></data>
+  <data name="Rules_HashStream.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>保存在文件自身的隐藏数据流中 (NTFS)。以后“检查文件夹的校验和”即使没有校验和文件也能发现任何损坏。</value></data>
+  <data name="Rules_HardLinks.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>如果多个名称是同一个文件，在目标中也会如此（不占双倍空间）。</value></data>
+  <data name="Rules_Tolerance.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>FAT32 和 exFAT 记录时间的精度为 2 秒：有了这个容差，相同的文件不会被重新复制。</value></data>
+  <data name="Rules_Versions.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>在替换或移除文件之前，会把它移到目标中的这个文件夹，并在名称中加上日期。</value></data>
+  <data name="Settings_UnitsTitle.Text" xml:space="preserve"><value>大小单位</value></data>
+  <data name="Settings_UnitsDescription.Text" xml:space="preserve"><value>大小和速度的显示方式。</value></data>
+  <data name="Units_Classic.Content" xml:space="preserve"><value>KB、MB、GB（与文件资源管理器相同）</value></data>
+  <data name="Units_Iec.Content" xml:space="preserve"><value>KiB、MiB、GiB（二进制）</value></data>
+  <data name="Units_Decimal.Content" xml:space="preserve"><value>按 1000 计的 kB、MB、GB（与厂商相同）</value></data>
+  <data name="Settings_SlowTitle.Text" xml:space="preserve"><value>使用电脑时放慢速度</value></data>
+  <data name="Settings_SlowDescription.Text" xml:space="preserve"><value>你使用键盘或鼠标时，复制不超过此速度；离开电脑后恢复原速。</value></data>
+  <data name="Slow_Off.Content" xml:space="preserve"><value>否</value></data>
+  <data name="Settings_LogsTitle.Text" xml:space="preserve"><value>保存每次复制的日志</value></data>
+  <data name="Settings_LogsDescription.Text" xml:space="preserve"><value>每次复制在日志文件夹中生成一个文件；30 天后自动删除。</value></data>
+  <data name="Settings_LogsOpen.Text" xml:space="preserve"><value>打开文件夹</value></data>
+  <data name="Settings_WebhookTitle.Text" xml:space="preserve"><value>完成时通知网址</value></data>
+  <data name="Settings_WebhookDescription.Text" xml:space="preserve"><value>在手机或聊天中收到通知：Discord、Slack、Teams、ntfy.sh、Home Assistant… 会发送一个带 JSON 的 POST 请求。</value></data>
+  <data name="Settings_WebhookBox.PlaceholderText" xml:space="preserve"><value>https://ntfy.sh/my-secret-topic</value></data>
+  <data name="Settings_WebhookTest.Text" xml:space="preserve"><value>测试</value></data>
+  <data name="Settings_WebhookSending" xml:space="preserve"><value>正在发送…</value></data>
+  <data name="Settings_WebhookOk" xml:space="preserve"><value>通知已发送。</value></data>
+  <data name="Settings_WebhookFailed" xml:space="preserve"><value>无法发送：请检查网址和网络连接。</value></data>
+  <data name="Settings_WebhookTestMessage" xml:space="preserve"><value>✔ MegaCopier：测试通知</value></data>
+  <data name="FinishDialog.Title" xml:space="preserve"><value>全部复制完成</value></data>
+  <data name="FinishDialog.PrimaryButtonText" xml:space="preserve"><value>立即执行</value></data>
+  <data name="FinishDialog.CloseButtonText" xml:space="preserve"><value>取消</value></data>
+  <data name="Finish_CountdownSleep" xml:space="preserve"><value>电脑将在 {0} 秒后睡眠。</value></data>
+  <data name="Finish_CountdownHibernate" xml:space="preserve"><value>电脑将在 {0} 秒后休眠。</value></data>
+  <data name="Finish_CountdownShutdown" xml:space="preserve"><value>电脑将在 {0} 秒后关机。</value></data>
+  <data name="Finish_CountdownSignOut" xml:space="preserve"><value>将在 {0} 秒后注销。</value></data>
+  <data name="Finish_CountdownExitApp" xml:space="preserve"><value>MegaCopier 将在 {0} 秒后关闭。</value></data>
+  <data name="Job_SlowedDown" xml:space="preserve"><value>你使用电脑时放慢速度</value></data>
+  <data name="History_Undone" xml:space="preserve"><value>已撤销</value></data>
+  <data name="History_Undo.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>撤销：把移动的内容放回原处，或把复制的内容送入回收站</value></data>
+  <data name="History_CopyBack.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>复制回源文件夹（还原）</value></data>
+  <data name="History_UndoDialog.Title" xml:space="preserve"><value>撤销此复制？</value></data>
+  <data name="History_UndoDialog.PrimaryButtonText" xml:space="preserve"><value>撤销</value></data>
+  <data name="History_UndoDialog.CloseButtonText" xml:space="preserve"><value>取消</value></data>
+  <data name="History_UndoMoveConfirm" xml:space="preserve"><value>所有移动的内容都会从“{0}”回到原文件夹。</value></data>
+  <data name="History_UndoCopyConfirm" xml:space="preserve"><value>复制的 {0} 个文件将送入回收站（可以恢复）。之后被修改的文件或替换了其他文件的文件不会改动。</value></data>
+  <data name="History_UndoDone" xml:space="preserve"><value>已将 {0} 个文件送入回收站。</value></data>
+  <data name="History_UndoKept" xml:space="preserve"><value>保留了 {0} 个之后被修改的文件和 {1} 个替换了其他文件的文件。</value></data>
+  <data name="History_UndoTitleBar.Title" xml:space="preserve"><value>复制已撤销</value></data>
+  <data name="History_Undo.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>撤销：把移动的内容放回原处，或把复制的内容送入回收站</value></data>
+  <data name="History_CopyBack.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>复制回源文件夹（还原）</value></data>
+  <data name="History_Open.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>打开目标</value></data>
+  <data name="History_Repeat.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>重复（只复制新增或更改的内容）</value></data>
+  <data name="Task_Header.Text" xml:space="preserve"><value>或者保存为任务，让 Windows 在上面选定的时间自动重复：</value></data>
+  <data name="Task_Name.PlaceholderText" xml:space="preserve"><value>任务名称</value></data>
+  <data name="Task_Once.Content" xml:space="preserve"><value>一次</value></data>
+  <data name="Task_Daily.Content" xml:space="preserve"><value>每天</value></data>
+  <data name="Task_Weekly.Content" xml:space="preserve"><value>每周</value></data>
+  <data name="Task_Save.Text" xml:space="preserve"><value>保存为任务</value></data>
+  <data name="Task_SavedOnce" xml:space="preserve"><value>任务“{0}”已保存：将于 {2} {1} 运行。</value></data>
+  <data name="Task_SavedDaily" xml:space="preserve"><value>任务“{0}”已保存：将于每天 {1} 运行。</value></data>
+  <data name="Task_SavedWeekly" xml:space="preserve"><value>任务“{0}”已保存：将于每周与 {2} 相同的星期几 {1} 运行。</value></data>
+  <data name="Task_Failed" xml:space="preserve"><value>无法计划：{0}</value></data>
+  <data name="Settings_Tasks.Text" xml:space="preserve"><value>计划任务</value></data>
+  <data name="Settings_TasksTitle.Text" xml:space="preserve"><value>自动重复的复制</value></data>
+  <data name="Settings_TasksDescription.Text" xml:space="preserve"><value>在复制的“选项”选项卡中创建（“保存为任务”）；即使 MegaCopier 已关闭，Windows 任务计划程序也会运行它们。</value></data>
+  <data name="Settings_TasksEmpty" xml:space="preserve"><value>还没有任务。</value></data>
+  <data name="Settings_TaskRun" xml:space="preserve"><value>立即运行“{0}”</value></data>
+  <data name="Settings_TaskDelete" xml:space="preserve"><value>删除任务“{0}”</value></data>
+  <data name="About_Portable" xml:space="preserve"><value>便携版（数据位于 {0}）</value></data>
+  <data name="Job_Estimate" xml:space="preserve"><value>{0}，约 {1}</value></data>
+  <data name="Job_EstimateSize" xml:space="preserve"><value>共 {0}</value></data>
+  <data name="Settings_SmbCompression.Content" xml:space="preserve"><value>通过网络压缩 (SMB)</value></data>
+  <data name="Settings_SmbCompression.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>请求服务器在传输途中压缩数据（Windows 11 和 Windows Server 2022 或更高版本）。如果源和目标在同一台服务器上，复制总由服务器自己完成，不经过这台电脑。</value></data>
+  <data name="Error_TooLargeForFileSystem" xml:space="preserve"><value>此磁盘放不下：FAT32 不允许 4 GB 或更大的文件。请将其格式化为 exFAT 或 NTFS。</value></data>
+  <data name="Rules_AllOrNothing.Content" xml:space="preserve"><value>“全有或全无”文件夹</value></data>
+  <data name="Rules_AllOrNothing.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>每个新文件夹先隐藏复制，只有全部成功后才以其名称出现：绝不会留下看似完整却只复制了一半的文件夹。</value></data>
+  <data name="Rules_Rescue.Content" xml:space="preserve"><value>损坏磁盘的救援模式</value></data>
+  <data name="Rules_Rescue.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>如果源有坏扇区，会逐扇区读取并救出所有可读内容；不可读部分填零并记入日志。移动时不会删除原文件。</value></data>
+  <data name="Error_PartlyUnreadable" xml:space="preserve"><value>部分救出：源的部分扇区已损坏并被填零（详见日志）。</value></data>
+  <data name="Settings_Guard.Text" xml:space="preserve"><value>完整性守护</value></data>
+  <data name="Settings_GuardTitle.Text" xml:space="preserve"><value>防止文件随时间损坏</value></data>
+  <data name="Settings_GuardDescription.Text" xml:space="preserve"><value>每个文件在内部保存自己的哈希。电脑空闲时，MegaCopier 会检查它们：如果某个文件在没人编辑的情况下变了（被磁盘损坏），会提醒你。你编辑的内容会自动更新。需要 NTFS。</value></data>
+  <data name="Guard_Daily.Content" xml:space="preserve"><value>每天</value></data>
+  <data name="Guard_Weekly.Content" xml:space="preserve"><value>每周</value></data>
+  <data name="Guard_Monthly.Content" xml:space="preserve"><value>每月</value></data>
+  <data name="Settings_GuardAdd.Text" xml:space="preserve"><value>守护文件夹…</value></data>
+  <data name="Settings_GuardEmpty" xml:space="preserve"><value>你还没有守护任何文件夹。</value></data>
+  <data name="Settings_GuardCheck" xml:space="preserve"><value>立即检查“{0}”</value></data>
+  <data name="Settings_GuardRemove" xml:space="preserve"><value>停止守护“{0}”</value></data>
+  <data name="Guard_NotYet" xml:space="preserve"><value>等待首次检查</value></data>
+  <data name="Guard_LastOk" xml:space="preserve"><value>{0} 已检查：一切正常</value></data>
+  <data name="Guard_LastDamaged" xml:space="preserve"><value>{0} 已检查：{1} 个文件损坏（见历史记录）</value></data>
+  <data name="Guard_DamagedTitle" xml:space="preserve"><value>完整性守护</value></data>
+  <data name="Guard_DamagedOne" xml:space="preserve"><value>“{0}”中有一个文件在磁盘上损坏了。</value></data>
+  <data name="Guard_DamagedMany" xml:space="preserve"><value>“{1}”中有 {0} 个文件在磁盘上损坏了。</value></data>
+  <data name="Guard_LastDamagedOne" xml:space="preserve"><value>{0} 已检查：一个文件损坏（见历史记录）</value></data>
+  <data name="Settings_ScheduleLimitTitle.Text" xml:space="preserve"><value>按时段限速</value></data>
+  <data name="Settings_ScheduleLimitDescription.Text" xml:space="preserve"><value>例如在工作时间：在所选时段内复制不超过此速度。</value></data>
+  <data name="Settings_ScheduleFrom.Text" xml:space="preserve"><value>从</value></data>
+  <data name="Settings_ScheduleTo.Text" xml:space="preserve"><value>到</value></data>
+  <data name="Settings_PauseBatteryTitle.Text" xml:space="preserve"><value>使用电池时暂停</value></data>
+  <data name="Settings_PauseBatteryDescription.Text" xml:space="preserve"><value>笔记本未接电源时，复制会等待，接上电源后自动继续。</value></data>
+  <data name="Settings_PauseFullTitle.Text" xml:space="preserve"><value>游戏和演示时暂停</value></data>
+  <data name="Settings_PauseFullDescription.Text" xml:space="preserve"><value>有全屏游戏或演示时，复制会等待，以免拖慢它。</value></data>
+  <data name="Comfort_PausedTitle" xml:space="preserve"><value>复制已暂停</value></data>
+  <data name="Comfort_PausedBattery" xml:space="preserve"><value>电脑正在使用电池：接上电源后复制将继续。</value></data>
+  <data name="Comfort_PausedFullScreen" xml:space="preserve"><value>正在运行全屏游戏或演示：退出后复制将继续。</value></data>
+  <data name="Job_StatePausedBattery" xml:space="preserve"><value>已暂停：使用电池</value></data>
+  <data name="Job_StatePausedFullScreen" xml:space="preserve"><value>已暂停：全屏</value></data>
+  <data name="Job_SlowedSchedule" xml:space="preserve"><value>因所选时段而放慢</value></data>
+  <data name="Rules_Delta.Content" xml:space="preserve"><value>替换大文件时只写入变化部分</value></data>
+  <data name="Rules_Delta.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>对 16 MB 及以上的文件（虚拟磁盘、邮件、项目）进行差异复制：只写入不同的数据块。如果取消或断电，文件会恢复到之前的版本。</value></data>
+  <data name="Panel_CopyLocked.Text" xml:space="preserve"><value>复制正在使用的文件</value></data>
+  <data name="Locked_Title" xml:space="preserve"><value>正在使用的文件</value></data>
+  <data name="Locked_Cancelled" xml:space="preserve"><value>未获得管理员权限：正在使用的文件未被复制。</value></data>
+  <data name="Locked_Done" xml:space="preserve"><value>已从磁盘快照复制 {0} 个正在使用的文件。</value></data>
+  <data name="Locked_Partial" xml:space="preserve"><value>已从快照复制 {0} 个；其余无法复制：{1}</value></data>
+  <data name="Settings_Peer.Text" xml:space="preserve"><value>从其他电脑接收</value></data>
+  <data name="Settings_PeerTitle.Text" xml:space="preserve"><value>接收来自装有 MegaCopier 的其他电脑的文件</value></data>
+  <data name="Settings_PeerDescription.Text" xml:space="preserve"><value>通过家庭或办公室网络，无需共享文件夹。发送方需要下面的代码；连接经过加密，每个文件到达时都会校验。第一次时 Windows 可能会请求防火墙权限。</value></data>
+  <data name="Settings_PeerCode.Text" xml:space="preserve"><value>向你发送文件的代码：</value></data>
+  <data name="Settings_PeerNewCode.Text" xml:space="preserve"><value>新代码</value></data>
+  <data name="Settings_PeerFolder.Text" xml:space="preserve"><value>更改文件夹…</value></data>
+  <data name="Settings_PeerFolderIs" xml:space="preserve"><value>保存在 {0}</value></data>
+  <data name="Settings_PeerListening" xml:space="preserve"><value>正在“{0}”上等待发送（端口 {1}）。</value></data>
+  <data name="Settings_PeerError" xml:space="preserve"><value>无法开始接收：{0}</value></data>
+  <data name="Peer_ReceivingTitle" xml:space="preserve"><value>正在接收文件</value></data>
+  <data name="Peer_Receiving" xml:space="preserve"><value>{0} 正在向你发送 {1} 个文件 ({2})。</value></data>
+  <data name="Peer_ReceivedTitle" xml:space="preserve"><value>已收到文件</value></data>
+  <data name="Peer_Received" xml:space="preserve"><value>来自 {1} 的 {0} 个文件，保存在 {2}。</value></data>
+  <data name="Peer_RejectedTitle" xml:space="preserve"><value>发送被拒绝</value></data>
+  <data name="Peer_Rejected" xml:space="preserve"><value>{0} 试图用错误的代码向你发送文件。</value></data>
+  <data name="Tool_SendFiles.Text" xml:space="preserve"><value>发送文件到其他电脑…</value></data>
+  <data name="Tool_SendFolder.Text" xml:space="preserve"><value>发送文件夹到其他电脑…</value></data>
+  <data name="SendDialog.Title" xml:space="preserve"><value>发送到其他电脑</value></data>
+  <data name="SendDialog.PrimaryButtonText" xml:space="preserve"><value>发送</value></data>
+  <data name="SendDialog.CloseButtonText" xml:space="preserve"><value>取消</value></data>
+  <data name="Send_SummaryOne" xml:space="preserve"><value>将“{0}”发送到正在用 MegaCopier 接收的其他电脑。</value></data>
+  <data name="Send_SummaryMany" xml:space="preserve"><value>将 {0} 个项目发送到正在用 MegaCopier 接收的其他电脑。</value></data>
+  <data name="Send_Found.Text" xml:space="preserve"><value>网络上找到的电脑：</value></data>
+  <data name="Send_Searching" xml:space="preserve"><value>正在搜索…</value></data>
+  <data name="Send_NoneFound" xml:space="preserve"><value>未找到：请输入其名称或 IP。</value></data>
+  <data name="Send_Host.Header" xml:space="preserve"><value>电脑（名称或 IP）</value></data>
+  <data name="Send_Host.PlaceholderText" xml:space="preserve"><value>客厅电脑 或 192.168.1.20</value></data>
+  <data name="Send_Code.Header" xml:space="preserve"><value>该电脑在“设置”中显示的代码</value></data>
+  <data name="Send_Code.PlaceholderText" xml:space="preserve"><value>XXXX-XXXX-XXXX</value></data>
+  <data name="Job_TitleSend" xml:space="preserve"><value>发送 {0}</value></data>
+  <data name="Job_TitleSending" xml:space="preserve"><value>正在发送 {0}</value></data>
+  <data name="Job_TitleSent" xml:space="preserve"><value>已发送 {0}</value></data>
+  <data name="Job_StateSending" xml:space="preserve"><value>正在发送</value></data>
+  <data name="Job_FilesSentOne" xml:space="preserve"><value>已发送 {0} 个文件</value></data>
+  <data name="Job_FilesSentMany" xml:space="preserve"><value>已发送 {0} 个文件</value></data>
+  <data name="Rules_Describe.Header" xml:space="preserve"><value>用自己的话描述（英语或西班牙语）</value></data>
+  <data name="Rules_Describe.PlaceholderText" xml:space="preserve"><value>photos larger than 2 MB from last month except .tmp</value></data>
+  <data name="Rules_DescribeApply.Text" xml:space="preserve"><value>应用</value></data>
+  <data name="Rules_DescribeUnderstood" xml:space="preserve"><value>已理解：{0}。</value></data>
+  <data name="Rules_DescribeNothing" xml:space="preserve"><value>没有理解到要筛选的内容。</value></data>
+  <data name="Rules_DescribeUnknown" xml:space="preserve"><value>无法理解：{0}。</value></data>
+  <data name="Mode_Organize.Content" xml:space="preserve"><value>按日期整理照片</value></data>
+  <data name="Rules_Duplicates.Content" xml:space="preserve"><value>不复制目标中已有的内容（重复项）</value></data>
+  <data name="Rules_Duplicates.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>比较内容而不是名称：目标任何文件夹中已有的照片，即使名称不同，也不会再次复制。</value></data>
+  <data name="Skip_SkipDuplicate" xml:space="preserve"><value>目标中已有，名称或文件夹不同</value></data>
+  <data name="Plan_SkipDuplicate" xml:space="preserve"><value>将跳过：目标中已有（重复项）</value></data>
+  <data name="Destinations_Encrypt.Content" xml:space="preserve"><value>用密码加密（用于可能丢失的 U 盘或硬盘）</value></data>
+  <data name="Destinations_Password.Header" xml:space="preserve"><value>密码</value></data>
+  <data name="Destinations_Password2.Header" xml:space="preserve"><value>再次输入</value></data>
+  <data name="Destinations_PasswordHint" xml:space="preserve"><value>使用 AES-256 加密。如果忘记密码，文件将无法恢复。读取方法：“新建”菜单 &gt; “解密”。</value></data>
+  <data name="Destinations_PasswordShort" xml:space="preserve"><value>密码至少需要 8 个字符。</value></data>
+  <data name="Destinations_PasswordMismatch" xml:space="preserve"><value>两次输入的密码不一致。</value></data>
+  <data name="PasswordDialog.Title" xml:space="preserve"><value>密码</value></data>
+  <data name="PasswordDialog.PrimaryButtonText" xml:space="preserve"><value>确定</value></data>
+  <data name="PasswordDialog.CloseButtonText" xml:space="preserve"><value>取消</value></data>
+  <data name="Tool_Decrypt.Text" xml:space="preserve"><value>解密加密文件…</value></data>
+  <data name="Picker_DecryptHere" xml:space="preserve"><value>解密到这里</value></data>
+  <data name="Decrypt_Ask" xml:space="preserve"><value>“{0}”中加密文件的密码：</value></data>
+  <data name="Resume_PasswordAsk" xml:space="preserve"><value>此复制已加密且不保存密码：请输入密码以继续。</value></data>
+  <data name="Job_TitleEncrypt" xml:space="preserve"><value>加密 {0}</value></data>
+  <data name="Job_TitleEncrypting" xml:space="preserve"><value>正在加密 {0}</value></data>
+  <data name="Job_TitleEncrypted" xml:space="preserve"><value>已加密 {0}</value></data>
+  <data name="Job_StateEncrypting" xml:space="preserve"><value>正在加密</value></data>
+  <data name="Job_FilesEncryptedOne" xml:space="preserve"><value>已加密 {0} 个文件</value></data>
+  <data name="Job_FilesEncryptedMany" xml:space="preserve"><value>已加密 {0} 个文件</value></data>
+  <data name="Job_TitleDecrypt" xml:space="preserve"><value>解密 {0}</value></data>
+  <data name="Job_TitleDecrypting" xml:space="preserve"><value>正在解密 {0}</value></data>
+  <data name="Job_TitleDecrypted" xml:space="preserve"><value>已解密 {0}</value></data>
+  <data name="Job_StateDecrypting" xml:space="preserve"><value>正在解密</value></data>
+  <data name="Job_FilesDecryptedOne" xml:space="preserve"><value>已解密 {0} 个文件</value></data>
+  <data name="Job_FilesDecryptedMany" xml:space="preserve"><value>已解密 {0} 个文件</value></data>
+  <data name="Settings_DisksTitle.Text" xml:space="preserve"><value>磁盘状态</value></data>
+  <data name="Settings_DisksDescription.Text" xml:space="preserve"><value>Windows 报告的每个磁盘的状态 (SMART)。如果某个磁盘预警故障，从它复制或复制到它时 MegaCopier 会告诉你。</value></data>
+  <data name="Settings_DisksCheck.Text" xml:space="preserve"><value>立即检查</value></data>
+  <data name="Disk_Row" xml:space="preserve"><value>磁盘 {0} · {1}：{2}</value></data>
+  <data name="Disk_Healthy" xml:space="preserve"><value>正常</value></data>
+  <data name="Disk_Unknown" xml:space="preserve"><value>状态未知</value></data>
+  <data name="Disk_HealthWarning" xml:space="preserve"><value>报告问题</value></data>
+  <data name="Disk_Checking" xml:space="preserve"><value>正在检查磁盘…</value></data>
+  <data name="Disk_WarningTitle" xml:space="preserve"><value>有磁盘报告故障</value></data>
+  <data name="Disk_Warning" xml:space="preserve"><value>“{0}”（磁盘 {1}）：{2}。请尽快把重要内容复制到其他磁盘。</value></data>
+  <data name="Settings_TuneTitle.Text" xml:space="preserve"><value>为每个磁盘自动调优</value></data>
+  <data name="Settings_TuneDescription.Text" xml:space="preserve"><value>用多种块大小和并行操作数测量每个磁盘，并在复制到它时使用最快的组合（除非你手动修改了性能设置）。</value></data>
+  <data name="Settings_TuneMeasure.Text" xml:space="preserve"><value>测量磁盘</value></data>
+  <data name="Settings_TuneNone" xml:space="preserve"><value>还没有测量任何磁盘。</value></data>
+  <data name="Settings_TuneDisk" xml:space="preserve"><value>磁盘</value></data>
+  <data name="Settings_TuneProfile" xml:space="preserve"><value>{0}：{1} MB 块，同时 {2} 个 ({3:N0} MB/s)</value></data>
+  <data name="Settings_TuneMeasuring" xml:space="preserve"><value>正在测量 {0}（{1} / {2}）…</value></data>
+  <data name="Tool_Timeline.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>队列时间线</value></data>
+  <data name="Timeline_Title.Text" xml:space="preserve"><value>时间线</value></data>
+  <data name="Timeline_Info.Text" xml:space="preserve"><value>根据每个磁盘的速度预测。使用同一磁盘的复制逐个进行。</value></data>
+  <data name="Timeline_Empty.Text" xml:space="preserve"><value>没有进行中或排队的复制。</value></data>
+  <data name="Timeline_Summary" xml:space="preserve"><value>预计全部在 {0} 左右完成（{1} 后）。</value></data>
+  <data name="Timeline_Now" xml:space="preserve"><value>现在</value></data>
+  <data name="Timeline_Tomorrow" xml:space="preserve"><value>明天 {0}</value></data>
+  <data name="Timeline_Running" xml:space="preserve"><value>进行中 · 预计结束：{0}（剩余 {1}）</value></data>
+  <data name="Timeline_Paused" xml:space="preserve"><value>已暂停 · 若现在继续，预计结束：{0}</value></data>
+  <data name="Timeline_Queued" xml:space="preserve"><value>排队中 · 开始：{0} · 预计结束：{1}（用时 {2}）</value></data>
+  <data name="Timeline_Scheduled" xml:space="preserve"><value>已计划 · 开始：{0} · 预计结束：{1}（用时 {2}）</value></data>
+  <data name="Timeline_Measuring" xml:space="preserve"><value>仍在测量大小</value></data>
+  <data name="Tool_Shelf.Text" xml:space="preserve"><value>拖放架</value></data>
+  <data name="Tray_Shelf" xml:space="preserve"><value>拖放架</value></data>
+  <data name="Shelf_WindowTitle" xml:space="preserve"><value>MegaCopier 拖放架</value></data>
+  <data name="Shelf_Title.Text" xml:space="preserve"><value>拖放架</value></data>
+  <data name="Shelf_Empty.Text" xml:space="preserve"><value>把任何位置的文件和文件夹拖到这里。然后一起复制或移动，或者再拖出去。</value></data>
+  <data name="Shelf_DropCaption" xml:space="preserve"><value>添加到拖放架</value></data>
+  <data name="Shelf_CopyTo.Text" xml:space="preserve"><value>复制到…</value></data>
+  <data name="Shelf_MoveTo.Text" xml:space="preserve"><value>移动到…</value></data>
+  <data name="Shelf_Clear.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>清空拖放架</value></data>
+  <data name="Shelf_Remove.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>从拖放架移除</value></data>
+  <data name="Shelf_One" xml:space="preserve"><value>1 个项目</value></data>
+  <data name="Shelf_Many" xml:space="preserve"><value>{0} 个项目</value></data>
+  <data name="Shelf_RemoveNamed" xml:space="preserve"><value>从拖放架移除“{0}”</value></data>
+  <data name="Destinations_NoneChosen.Text" xml:space="preserve"><value>请至少勾选一个目标（或添加文件夹）。</value></data>
+  <data name="Finish_ShutdownMessage" xml:space="preserve"><value>MegaCopier 已完成复制。电脑将在 1 分钟后关机。</value></data>
+  <data name="Hash_Name" xml:space="preserve"><value>哈希：{0}</value></data>
+</root>

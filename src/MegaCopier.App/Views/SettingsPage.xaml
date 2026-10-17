@@ -49,7 +49,7 @@
                     <Grid Style="{StaticResource Row}">
                         <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
                         <FontIcon VerticalAlignment="Center" Glyph="&#xE7E8;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
-                        <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_EnabledTitle" Style="{StaticResource McBody}" /><TextBlock x:Uid="Settings_EnabledDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                        <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_EnabledTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="Settings_EnabledDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
                         <ToggleSwitch x:Name="EnabledToggle" Grid.Column="2" OnContent="" OffContent="" MinWidth="0" Toggled="Changed" />
                     </Grid>
                 </Border>
@@ -57,7 +57,7 @@
                     <Grid Style="{StaticResource Row}">
                         <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
                         <FontIcon VerticalAlignment="Center" Glyph="&#xE77F;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
-                        <StackPanel Grid.Column="1"><TextBlock x:Uid="PasteTitle" Style="{StaticResource McBody}" /><TextBlock x:Uid="PasteDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                        <StackPanel Grid.Column="1"><TextBlock x:Uid="PasteTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="PasteDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
                         <ToggleSwitch x:Name="PasteToggle" Grid.Column="2" OnContent="" OffContent="" MinWidth="0" Toggled="Changed" />
                     </Grid>
                 </Border>
@@ -65,7 +65,7 @@
                     <Grid Style="{StaticResource Row}">
                         <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
                         <FontIcon VerticalAlignment="Center" Glyph="&#xE8A9;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
-                        <StackPanel Grid.Column="1"><TextBlock x:Uid="ShellMenuTitle" Style="{StaticResource McBody}" /><TextBlock x:Uid="ShellMenuDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                        <StackPanel Grid.Column="1"><TextBlock x:Uid="ShellMenuTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="ShellMenuDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
                         <ToggleSwitch x:Name="ShellMenuToggle" Grid.Column="2" OnContent="" OffContent="" MinWidth="0" Toggled="ShellMenu_Toggled" />
                     </Grid>
                 </Border>
@@ -73,7 +73,7 @@
                     <Grid Style="{StaticResource Row}">
                         <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
                         <FontIcon VerticalAlignment="Center" Glyph="&#xE7B5;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
-                        <StackPanel Grid.Column="1"><TextBlock x:Uid="StartupTitle" Style="{StaticResource McBody}" /><TextBlock x:Uid="StartupDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                        <StackPanel Grid.Column="1"><TextBlock x:Uid="StartupTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="StartupDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
                         <ToggleSwitch x:Name="StartupToggle" Grid.Column="2" OnContent="" OffContent="" MinWidth="0" Toggled="Startup_Toggled" />
                     </Grid>
                 </Border>
@@ -84,7 +84,7 @@
                     <Grid Style="{StaticResource Row}">
                         <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
                         <FontIcon VerticalAlignment="Center" Glyph="&#xE737;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
-                        <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_WindowModeTitle" Style="{StaticResource McBody}" /><TextBlock x:Uid="Settings_WindowModeDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                        <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_WindowModeTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="Settings_WindowModeDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
                         <ComboBox x:Name="WindowModeBox" Grid.Column="2" MinWidth="220" SelectionChanged="Selection_Changed">
                             <ComboBoxItem x:Uid="Settings_ModeAuto" /><ComboBoxItem x:Uid="Settings_ModeCompact" /><ComboBoxItem x:Uid="Settings_ModeExpanded" />
                         </ComboBox>
@@ -94,7 +94,7 @@
                     <Grid Style="{StaticResource Row}">
                         <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
                         <FontIcon VerticalAlignment="Center" Glyph="&#xE8BB;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
-                        <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_FinishTitle" Style="{StaticResource McBody}" /><TextBlock x:Uid="Settings_FinishDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                        <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_FinishTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="Settings_FinishDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
                         <ComboBox x:Name="FinishWindowBox" Grid.Column="2" MinWidth="220" SelectionChanged="Selection_Changed">
                             <ComboBoxItem x:Uid="Settings_FinishAuto" /><ComboBoxItem x:Uid="Settings_FinishClose" /><ComboBoxItem x:Uid="Settings_FinishKeep" />
                         </ComboBox>
@@ -104,7 +104,7 @@
                     <Grid Style="{StaticResource Row}">
                         <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
                         <FontIcon VerticalAlignment="Center" Glyph="&#xE718;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
-                        <StackPanel Grid.Column="1"><TextBlock x:Uid="OnTopTitle" Style="{StaticResource McBody}" /><TextBlock x:Uid="OnTopDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                        <StackPanel Grid.Column="1"><TextBlock x:Uid="OnTopTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="OnTopDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
                         <ToggleSwitch x:Name="OnTopToggle" Grid.Column="2" OnContent="" OffContent="" MinWidth="0" Toggled="Changed" />
                     </Grid>
                 </Border>
@@ -112,7 +112,7 @@
                     <Grid Style="{StaticResource Row}">
                         <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
                         <FontIcon VerticalAlignment="Center" Glyph="&#xEA8F;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
-                        <StackPanel Grid.Column="1"><TextBlock x:Uid="NotifyTitle" Style="{StaticResource McBody}" /><TextBlock x:Uid="NotifyDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                        <StackPanel Grid.Column="1"><TextBlock x:Uid="NotifyTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="NotifyDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
                         <ToggleSwitch x:Name="NotifyToggle" Grid.Column="3" OnContent="" OffContent="" MinWidth="0" Toggled="Changed" />
                     </Grid>
                 </Border>
@@ -120,7 +120,7 @@
                     <Grid Style="{StaticResource Row}">
                         <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
                         <FontIcon VerticalAlignment="Center" Glyph="&#xF2B7;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
-                        <StackPanel Grid.Column="1"><TextBlock x:Uid="LanguageTitle" Style="{StaticResource McBody}" /><TextBlock x:Uid="LanguageDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                        <StackPanel Grid.Column="1"><TextBlock x:Uid="LanguageTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="LanguageDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
                         <ComboBox x:Name="LanguageBox" Grid.Column="2" MinWidth="220" SelectionChanged="Language_Changed" />
                     </Grid>
                 </Border>
@@ -128,7 +128,7 @@
                     <Grid Style="{StaticResource Row}">
                         <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
                         <FontIcon VerticalAlignment="Center" Glyph="&#xE9D9;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
-                        <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_UnitsTitle" Style="{StaticResource McBody}" /><TextBlock x:Uid="Settings_UnitsDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                        <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_UnitsTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="Settings_UnitsDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
                         <ComboBox x:Name="UnitsBox" Grid.Column="2" MinWidth="220" SelectionChanged="Selection_Changed">
                             <ComboBoxItem x:Uid="Units_Classic" /><ComboBoxItem x:Uid="Units_Iec" /><ComboBoxItem x:Uid="Units_Decimal" />
                         </ComboBox>
@@ -141,7 +141,7 @@
                     <Grid Style="{StaticResource Row}">
                         <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
                         <FontIcon VerticalAlignment="Center" Glyph="&#xE995;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
-                        <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_SoundsTitle" Style="{StaticResource McBody}" /><TextBlock x:Uid="Settings_SoundsDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                        <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_SoundsTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="Settings_SoundsDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
                         <ToggleSwitch x:Name="SoundBox" Grid.Column="2" OnContent="" OffContent="" MinWidth="0" Toggled="Changed" />
                     </Grid>
                 </Border>
@@ -233,7 +233,7 @@
                     <Grid Style="{StaticResource Row}">
                         <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
                         <FontIcon VerticalAlignment="Center" Glyph="&#xE9D5;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
-                        <StackPanel Grid.Column="1"><TextBlock x:Uid="VerifyTitle" Style="{StaticResource McBody}" /><TextBlock x:Uid="VerifyDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                        <StackPanel Grid.Column="1"><TextBlock x:Uid="VerifyTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="VerifyDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
                         <ToggleSwitch x:Name="VerifyToggle" Grid.Column="2" OnContent="" OffContent="" MinWidth="0" Toggled="Changed" />
                     </Grid>
                 </Border>
@@ -241,7 +241,7 @@
                     <Grid Style="{StaticResource Row}">
                         <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
                         <FontIcon VerticalAlignment="Center" Glyph="&#xE8C8;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
-                        <StackPanel Grid.Column="1"><TextBlock x:Uid="ConflictTitle" Style="{StaticResource McBody}" /><TextBlock x:Uid="ConflictDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                        <StackPanel Grid.Column="1"><TextBlock x:Uid="ConflictTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="ConflictDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
                         <ComboBox x:Name="ConflictBox" Grid.Column="2" MinWidth="220" SelectionChanged="Selection_Changed">
                             <ComboBoxItem x:Uid="ConflictAsk" /><ComboBoxItem x:Uid="ConflictReplace" /><ComboBoxItem x:Uid="ConflictSkip" /><ComboBoxItem x:Uid="ConflictNewer" /><ComboBoxItem x:Uid="ConflictKeepBoth" /><ComboBoxItem x:Uid="ConflictDifferentSize" /><ComboBoxItem x:Uid="ConflictRenameExisting" />
                         </ComboBox>
@@ -251,7 +251,7 @@
                     <Grid Style="{StaticResource Row}">
                         <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
                         <FontIcon VerticalAlignment="Center" Glyph="&#xE72E;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
-                        <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_HashTitle" Style="{StaticResource McBody}" /><TextBlock x:Uid="Settings_HashDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                        <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_HashTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="Settings_HashDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
                         <ComboBox x:Name="HashBox" Grid.Column="2" MinWidth="220" SelectionChanged="Selection_Changed" />
                     </Grid>
                 </Border>
@@ -282,7 +282,7 @@
                     <Grid Style="{StaticResource Row}">
                         <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /><ColumnDefinition Width="Auto" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
                         <FontIcon VerticalAlignment="Center" Glyph="&#xEC4A;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
-                        <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_PerformanceTitle" Style="{StaticResource McBody}" /><TextBlock x:Uid="Settings_PerformanceDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                        <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_PerformanceTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="Settings_PerformanceDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
                         <ComboBox x:Name="SpeedBox" Grid.Column="2" MinWidth="130" SelectionChanged="Selection_Changed">
                             <ComboBoxItem x:Uid="SpeedUnlimited" Tag="0" /><ComboBoxItem Content="10 MB/s" Tag="10" /><ComboBoxItem Content="25 MB/s" Tag="25" /><ComboBoxItem Content="50 MB/s" Tag="50" />
                             <ComboBoxItem Content="100 MB/s" Tag="100" /><ComboBoxItem Content="250 MB/s" Tag="250" /><ComboBoxItem Content="500 MB/s" Tag="500" />
@@ -305,7 +305,7 @@
                         <Grid ColumnSpacing="12">
                             <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
                             <FontIcon VerticalAlignment="Center" Glyph="&#xE734;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
-                            <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_FavoritesTitle" Style="{StaticResource McBody}" /><TextBlock x:Uid="Settings_FavoritesDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                            <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_FavoritesTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="Settings_FavoritesDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
                             <Button Grid.Column="2" Style="{StaticResource McButton}" Click="AddFavorite_Click">
                                 <StackPanel Orientation="Horizontal" Spacing="8"><FontIcon VerticalAlignment="Center" Glyph="&#xE710;" FontSize="12" /><TextBlock x:Uid="Settings_FavoritesAdd" /></StackPanel>
                             </Button>
@@ -321,7 +321,7 @@
                         <Grid Style="{StaticResource Row}">
                             <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
                             <FontIcon VerticalAlignment="Center" Glyph="&#xE968;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
-                            <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_PeerTitle" Style="{StaticResource McBody}" /><TextBlock x:Uid="Settings_PeerDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                            <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_PeerTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="Settings_PeerDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
                             <ToggleSwitch x:Name="ReceiveToggle" Grid.Column="3" OnContent="" OffContent="" MinWidth="0" Toggled="Receive_Toggled" />
                         </Grid>
                         <StackPanel x:Name="ReceivePanel" Spacing="8" Margin="30,0,0,0">
@@ -346,7 +346,7 @@
                         <Grid Style="{StaticResource Row}">
                             <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
                             <FontIcon VerticalAlignment="Center" Glyph="&#xE823;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
-                            <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_TasksTitle" Style="{StaticResource McBody}" /><TextBlock x:Uid="Settings_TasksDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                            <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_TasksTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="Settings_TasksDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
                         </Grid>
                         <StackPanel x:Name="TasksList" Spacing="4" Margin="30,0,0,0" />
                     </StackPanel>
@@ -358,7 +358,7 @@
                         <Grid Style="{StaticResource Row}">
                             <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
                             <FontIcon VerticalAlignment="Center" Glyph="&#xE83D;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
-                            <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_GuardTitle" Style="{StaticResource McBody}" /><TextBlock x:Uid="Settings_GuardDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                            <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_GuardTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="Settings_GuardDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
                             <ComboBox x:Name="GuardIntervalBox" Grid.Column="2" MinWidth="160" SelectionChanged="Selection_Changed">
                                 <ComboBoxItem x:Uid="Guard_Daily" Tag="1" /><ComboBoxItem x:Uid="Guard_Weekly" Tag="7" /><ComboBoxItem x:Uid="Guard_Monthly" Tag="30" />
                             </ComboBox>
@@ -375,7 +375,7 @@
                     <Grid Style="{StaticResource Row}">
                         <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
                         <FontIcon VerticalAlignment="Center" Glyph="&#xE8FD;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
-                        <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_MaxJobsTitle" Style="{StaticResource McBody}" /><TextBlock x:Uid="Settings_MaxJobsDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                        <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_MaxJobsTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="Settings_MaxJobsDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
                         <NumberBox x:Name="MaxJobsBox" Grid.Column="2" Minimum="0" Maximum="32" SpinButtonPlacementMode="Inline" MinWidth="140" ValueChanged="Number_Changed" />
                     </Grid>
                 </Border>
@@ -383,7 +383,7 @@
                     <Grid Style="{StaticResource Row}">
                         <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
                         <FontIcon VerticalAlignment="Center" Glyph="&#xE945;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
-                        <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_FastTitle" Style="{StaticResource McBody}" /><TextBlock x:Uid="Settings_FastDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                        <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_FastTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="Settings_FastDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
                         <TextBox x:Name="FastBox" Grid.Column="2" MinWidth="220" PlaceholderText="C:, D:\Datos" LostFocus="Changed" />
                     </Grid>
                 </Border>
@@ -391,7 +391,7 @@
                     <Grid Style="{StaticResource Row}">
                         <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
                         <FontIcon VerticalAlignment="Center" Glyph="&#xE7F4;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
-                        <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_SlowTitle" Style="{StaticResource McBody}" /><TextBlock x:Uid="Settings_SlowDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                        <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_SlowTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="Settings_SlowDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
                         <ComboBox x:Name="SlowBox" Grid.Column="2" MinWidth="220" SelectionChanged="Selection_Changed">
                             <ComboBoxItem x:Uid="Slow_Off" Tag="0" /><ComboBoxItem Content="5 MB/s" Tag="5" /><ComboBoxItem Content="20 MB/s" Tag="20" />
                             <ComboBoxItem Content="50 MB/s" Tag="50" /><ComboBoxItem Content="100 MB/s" Tag="100" />
@@ -403,7 +403,7 @@
                         <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
                         <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
                         <FontIcon VerticalAlignment="Center" Glyph="&#xE823;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
-                        <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_ScheduleLimitTitle" Style="{StaticResource McBody}" /><TextBlock x:Uid="Settings_ScheduleLimitDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                        <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_ScheduleLimitTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="Settings_ScheduleLimitDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
                         <ComboBox x:Name="ScheduleLimitBox" Grid.Column="2" MinWidth="160" SelectionChanged="Selection_Changed">
                             <ComboBoxItem x:Uid="Slow_Off" Tag="0" /><ComboBoxItem Content="5 MB/s" Tag="5" /><ComboBoxItem Content="20 MB/s" Tag="20" />
                             <ComboBoxItem Content="50 MB/s" Tag="50" /><ComboBoxItem Content="100 MB/s" Tag="100" />
@@ -420,7 +420,7 @@
                     <Grid Style="{StaticResource Row}">
                         <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
                         <FontIcon VerticalAlignment="Center" Glyph="&#xE83F;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
-                        <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_PauseBatteryTitle" Style="{StaticResource McBody}" /><TextBlock x:Uid="Settings_PauseBatteryDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                        <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_PauseBatteryTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="Settings_PauseBatteryDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
                         <ToggleSwitch x:Name="PauseBatteryToggle" Grid.Column="3" OnContent="" OffContent="" MinWidth="0" Toggled="Changed" />
                     </Grid>
                 </Border>
@@ -428,7 +428,7 @@
                     <Grid Style="{StaticResource Row}">
                         <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
                         <FontIcon VerticalAlignment="Center" Glyph="&#xE7FC;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
-                        <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_PauseFullTitle" Style="{StaticResource McBody}" /><TextBlock x:Uid="Settings_PauseFullDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                        <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_PauseFullTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="Settings_PauseFullDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
                         <ToggleSwitch x:Name="PauseFullToggle" Grid.Column="3" OnContent="" OffContent="" MinWidth="0" Toggled="Changed" />
                     </Grid>
                 </Border>
@@ -439,7 +439,7 @@
                     <Grid Style="{StaticResource Row}">
                         <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
                         <FontIcon VerticalAlignment="Center" Glyph="&#xE9F5;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
-                        <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_PriorityTitle" Style="{StaticResource McBody}" /><TextBlock x:Uid="Settings_PriorityDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                        <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_PriorityTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="Settings_PriorityDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
                         <ComboBox x:Name="PriorityBox" Grid.Column="2" MinWidth="220" SelectionChanged="Selection_Changed">
                             <ComboBoxItem x:Uid="Priority_Low" /><ComboBoxItem x:Uid="Priority_BelowNormal" /><ComboBoxItem x:Uid="Priority_Normal" /><ComboBoxItem x:Uid="Priority_AboveNormal" /><ComboBoxItem x:Uid="Priority_High" />
                         </ComboBox>
@@ -450,7 +450,7 @@
                         <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
                         <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
                         <FontIcon VerticalAlignment="Center" Glyph="&#xE756;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
-                        <StackPanel Grid.Column="1"><TextBlock x:Uid="Options_Scripts" Style="{StaticResource McBody}" /><TextBlock x:Uid="Options_ScriptsHelp" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                        <StackPanel Grid.Column="1"><TextBlock x:Uid="Options_Scripts" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="Options_ScriptsHelp" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
                         <TextBox x:Name="ScriptsBox" Grid.Row="1" Grid.Column="1" AcceptsReturn="True" MinHeight="80" FontFamily="Consolas" LostFocus="Changed" />
                     </Grid>
                 </Border>
@@ -459,7 +459,7 @@
                     <Grid Style="{StaticResource Row}">
                         <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
                         <FontIcon VerticalAlignment="Center" Glyph="&#xE9F9;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
-                        <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_LogsTitle" Style="{StaticResource McBody}" /><TextBlock x:Uid="Settings_LogsDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                        <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_LogsTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="Settings_LogsDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
                         <Button Grid.Column="2" Style="{StaticResource McButton}" Click="OpenLogs_Click"><TextBlock x:Uid="Settings_LogsOpen" /></Button>
                         <ToggleSwitch x:Name="LogsToggle" Grid.Column="3" OnContent="" OffContent="" MinWidth="0" Toggled="Changed" />
                     </Grid>
@@ -469,7 +469,7 @@
                         <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
                         <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
                         <FontIcon VerticalAlignment="Center" Glyph="&#xE774;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
-                        <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_WebhookTitle" Style="{StaticResource McBody}" /><TextBlock x:Uid="Settings_WebhookDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                        <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_WebhookTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="Settings_WebhookDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
                         <Grid Grid.Row="1" Grid.Column="1" ColumnSpacing="8">
                             <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
                             <TextBox x:Name="WebhookBox" x:Uid="Settings_WebhookBox" LostFocus="Changed" />
@@ -484,7 +484,7 @@
                         <Grid Style="{StaticResource Row}">
                             <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
                             <FontIcon VerticalAlignment="Center" Glyph="&#xEDA2;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
-                            <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_DisksTitle" Style="{StaticResource McBody}" /><TextBlock x:Uid="Settings_DisksDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                            <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_DisksTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="Settings_DisksDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
                             <Button Grid.Column="2" Style="{StaticResource McButton}" Click="CheckDisks_Click"><TextBlock x:Uid="Settings_DisksCheck" /></Button>
                         </Grid>
                         <StackPanel x:Name="DiskList" Spacing="4" Margin="30,0,0,0" />
@@ -496,7 +496,7 @@
                         <Grid Style="{StaticResource Row}">
                             <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
                             <FontIcon VerticalAlignment="Center" Glyph="&#xE9D9;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
-                            <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_TuneTitle" Style="{StaticResource McBody}" /><TextBlock x:Uid="Settings_TuneDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                            <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_TuneTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="Settings_TuneDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
                             <Button x:Name="TuneButton" Grid.Column="2" Style="{StaticResource McButton}" Click="Tune_Click"><TextBlock x:Uid="Settings_TuneMeasure" /></Button>
                             <ToggleSwitch x:Name="AutoTuneToggle" Grid.Column="3" OnContent="" OffContent="" MinWidth="0" Toggled="Changed" />
                         </Grid>

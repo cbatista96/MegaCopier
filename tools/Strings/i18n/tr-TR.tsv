@@ -1,0 +1,796 @@
+clave	texto
+JobsSection.Text	Kopyalamalar
+SettingsSection.Text	Ayarlar
+FinishButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Tüm kopyalamalar bitince ne yapılsın
+FinishNothing.Text	Hiçbir şey yapma
+FinishSleep.Text	Uyku moduna al
+FinishShutdown.Text	Bilgisayarı kapat
+NewCopyText.Text	Yeni kopyalama
+CopyFilesItem.Text	Dosyaları kopyala…
+CopyFolderItem.Text	Bir klasörü kopyala…
+EmptyTitle.Text	Kopyalama yok
+EmptyDescription.Text	Başlattığınız kopyalamalar burada görünür. Elektrik kesilirse, kaldıkları yerden devam ettirebilirsiniz.
+PauseButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Duraklat
+StopButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Durdur (sonra devam ettirilebilir)
+OpenFolderButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Hedef klasörü aç
+ClearButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Listeden kaldır
+DiscardButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Vazgeç ve yarım kopyayı sil
+ConflictDialog.Title	Dosya zaten var
+ConflictDialog.PrimaryButtonText	Değiştir
+ConflictDialog.SecondaryButtonText	İkisini de tut
+ConflictDialog.CloseButtonText	Atla
+ConflictExistingTitle.Text	Mevcut olan
+ConflictApplyAll.Content	Bu kopyalamadaki diğer çakışmalarda da aynısını yap
+RestartInfo.Title	Değişikliği uygulamak için MegaCopier'ı yeniden başlatın
+RestartInfo.Message	Süren kopyalamalar durur ve ardından devam ettirebilirsiniz.
+RestartButton.Content	Şimdi yeniden başlat
+AppearanceHeader.Text	Görünüm
+ThemeTitle.Text	Tema
+ThemeDescription.Text	Açık, koyu veya Windows ile aynı
+ThemeSystem.Content	Windows ile aynı
+ThemeLight.Content	Açık
+ThemeDark.Content	Koyu
+AccentTitle.Text	Vurgu rengi
+AccentDescription.Text	Düğmelerin, ilerleme çubuklarının ve öne çıkan öğelerin rengi
+BackdropTitle.Text	Pencere arka planı
+BackdropDescription.Text	Windows 11 malzemeleri masaüstünün arkadan görünmesini sağlar
+BackdropMica.Content	Mica
+BackdropMicaAlt.Content	Mica Alt (daha renkli)
+BackdropAcrylic.Content	Akrilik
+BackdropSolid.Content	Düz
+LanguageTitle.Text	Dil
+LanguageDescription.Text	MegaCopier'ın ve Dosya Gezgini'ndeki seçeneklerinin dili
+LanguageAuto.Content	Windows ile aynı
+OnTopTitle.Text	Her zaman üstte
+OnTopDescription.Text	Kopyalarken pencere diğerlerinin üstünde kalır
+CopyHeader.Text	Kopyalama
+VerifyTitle.Text	Kopyaladıktan sonra doğrula
+VerifyDescription.Text	Hedefi önbelleksiz yeniden okur ve kaynakla eşleşmeyen her bloğu onarır
+ConflictTitle.Text	Dosya zaten varsa
+ConflictDescription.Text	Aynı dosyalar (aynı boyut ve tarih) her zaman atlanır
+ConflictAsk.Content	Sor
+ConflictReplace.Content	Değiştir
+ConflictSkip.Content	Atla
+ConflictNewer.Content	Daha yeniyse değiştir
+ConflictKeepBoth.Content	İkisini de tut
+SpeedTitle.Text	Hız sınırı
+SpeedDescription.Text	Disk veya ağ bant genişliğini diğer işlere bırakır (yeni kopyalamalara uygulanır)
+SpeedUnlimited.Content	Sınırsız
+AutoResumeTitle.Text	Kesilen kopyalamaları otomatik olarak sürdür
+AutoResumeDescription.Text	Elektrik kesintisi veya yeniden başlatmadan sonra MegaCopier açılınca sormadan devam et
+ExplorerHeader.Text	Dosya Gezgini
+PasteTitle.Text	Yapıştırırken (Ctrl+V) MegaCopier ile kopyala ve taşı
+PasteDescription.Text	Dosya Gezgini'nde veya masaüstünde kopyalanmış (Ctrl+C) ya da kesilmiş (Ctrl+X) dosyaları yapıştırdığınızda işi MegaCopier yapar. Aynı klasöre yapıştırmayı yine Dosya Gezgini yapar
+ShellMenuTitle.Text	Bağlam menüsü seçenekleri
+ShellMenuDescription.Text	Sağ tuşla sürüklerken "MegaCopier ile yapıştır" (Daha fazla seçenek göster altında) ve "MegaCopier ile buraya kopyala / taşı"
+SystemHeader.Text	Sistem
+StartupTitle.Text	Windows ile başlat
+StartupDescription.Text	Kopyalamaların anında başlaması için bildirim alanında kalır
+NotifyTitle.Text	Bitince bildir
+NotifyDescription.Text	Bir kopyalama bittiğinde ve pencere görünür değilken sistem bildirimi
+Accent_System	Windows ile aynı
+Accent_Blue	Mavi
+Accent_Violet	Mor
+Accent_Teal	Turkuaz
+Accent_Green	Yeşil
+Accent_Orange	Turuncu
+Accent_Pink	Pembe
+Accent_Red	Kırmızı
+About	MegaCopier {0} · elektrik kesintilerinden sağ çıkan kopyalamalar
+Picker_CopyHere	Buraya kopyala
+Finish_Label	Bitince
+Finish_LabelSleep	Bitince: uyku
+Finish_LabelShutdown	Bitince: kapat
+Conflict_Message	"{1}" içinde "{0}" adlı bir dosya zaten var.
+Conflict_SourceCopy	Kopyaladığınız
+Conflict_SourceMove	Taşıdığınız
+Conflict_Newer	 · daha yeni
+Job_OneItem	"{0}"
+Job_ManyItems	{0} öğe
+Job_TitleCopying	{0} kopyalanıyor
+Job_TitleMoving	{0} taşınıyor
+Job_TitleCopied	{0} kopyalandı
+Job_TitleMoved	{0} taşındı
+Job_TitleQueued	Bekliyor: {0}
+Job_Destination	{0} konumuna
+Job_StateQueued	Sırada: disk meşgul
+Job_StateVerifying	Doğrulanıyor
+Job_StateValidating	Kopyalanmış kısım denetleniyor
+Job_StateWaiting	Kararınızı bekliyor: dosya zaten var
+Job_StateCopying	Kopyalanıyor
+Job_StateMoving	Taşınıyor
+Job_StatePaused	Duraklatıldı
+Job_StateCompleted	Tamamlandı
+Job_StateCompletedErrors	Hatalarla tamamlandı
+Job_StateFailed	Hata
+Job_StateInterrupted	Kesildi · kaldığı yerden sürdürülebilir
+Job_ResumeHint	Devam etmek için Sürdür'e basın
+Job_Preparing	Hazırlanıyor…
+Job_Progress	{0} / {1}
+Job_Remaining	{0} kaldı
+Job_Files	{0} / {1} dosya
+Job_FilesCopiedOne	{0} dosya kopyalandı
+Job_FilesCopiedMany	{0} dosya kopyalandı
+Job_FilesMovedOne	{0} dosya taşındı
+Job_FilesMovedMany	{0} dosya taşındı
+Job_TransferredIn	{1} içinde {0}
+Job_Recovered	{0} kurtarıldı
+Job_Skipped	{0} atlandı
+Job_Verified	doğrulandı
+Job_Repaired	({0} blok onarıldı)
+Job_FailedFiles	{0} dosyada hata
+Job_Resume	Sürdür
+Job_Retry	Yeniden dene
+Job_FailuresHeader	Sorunlu {0} dosyayı göster
+Job_FailuresMore	… ve {0} tane daha
+Tray_Open	MegaCopier'ı aç
+Tray_PauseAll	Tümünü duraklat
+Tray_ResumeAll	Tümünü sürdür
+Tray_Startup	Windows ile başlat
+Tray_Exit	Çıkış
+Tray_OneJob	1 kopyalama
+Tray_ManyJobs	{0} kopyalama
+Notify_InterruptedTitle	Kesilmiş kopyalamalar var
+Notify_InterruptedOne	Bir kopyalama yarım kaldı. Kaldığı yerden sürdürmek için açın.
+Notify_InterruptedMany	{0} kopyalama yarım kaldı. Sürdürmek için açın.
+Notify_DoneTitle	Kopyalama bitti
+Notify_ProblemTitle	Kopyalamada sorunlar oldu
+Notify_AllDoneTitle	Kopyalamalar bitti
+Error_NeedsPaths	Bir kopyalama isteği kaynak ve hedef gerektirir.
+Tray_Disable	Devre dışı bırak (Windows kopyalamasını kullan)
+Tray_Enable	MegaCopier'ı etkinleştir
+Tray_TooltipDisabled	MegaCopier · devre dışı (Windows kopyalıyor)
+Notify_DisabledTitle	MegaCopier devre dışı
+Notify_DisabledBody	Kopyalamaları Windows yapacak. Yeniden etkinleştirmek için simgeye çift tıklayın.
+Notify_EnabledTitle	MegaCopier etkin
+Notify_EnabledBody	Dosya Gezgini'ndeki kopyalama ve taşımaları MegaCopier yapacak.
+AboutDialog.Title	MegaCopier hakkında
+AboutDialog.CloseButtonText	Kapat
+About_DataFolder.Content	Veri klasörünü aç (ayarlar, temalar, geçmiş, raporlar)
+About_Description.Text	Elektrik kesintisinden sonra tek bir dev dosyayı bile, kopyalanmış kısmı doğrulayarak sürdüren Windows 11 dosya kopyalayıcısı.
+About_Features.Text	Önbelleksiz eşzamansız G/Ç · paralel okuma ve yazma · karma ile doğrulama (CRC32, xxHash, MD5, SHA) · disk başına sıra · duraklatma ve sürdürme · taşıma · çakışmalar · hız sınırı · kopyalama listeleri · raporlar · temalar.
+CopyFiles.Text	Dosyaları kopyala…
+CopyFolder.Text	Bir klasörü kopyala…
+CopyFilesText.Text	Dosyaları kopyala
+CopyFolderText.Text	Klasörü kopyala
+Files_AddFiles.Text	Dosya ekle…
+Files_AddFolder.Text	Klasör ekle…
+Files_AutoScroll.Content	Geçerli dosyayı izle
+Files_CopyHashes.Text	Karmaları kopyala
+Files_CopyPath.Text	Yolu kopyala
+Files_Empty.Text	Gösterilecek dosya yok
+Files_ExportCsv.Text	CSV olarak dışa aktar…
+Files_ExportHtml.Text	HTML raporu dışa aktar…
+Files_FilterAll.Content	Tümü
+Files_FilterDone.Content	Kopyalanan
+Files_FilterErrors.Content	Hatalı
+Files_FilterPending.Content	Bekleyen
+Files_FilterSkipped.Content	Atlanan
+Files_HideFinished.Content	Bitenleri gizle
+Files_Menu.Text	Liste
+Files_MoveBottom.Text	Sona taşı
+Files_MoveDown.Text	Aşağı
+Files_MoveTop.Text	Başa taşı
+Files_MoveUp.Text	Yukarı
+Files_OpenSource.Text	Kaynağı göster
+Files_OpenTarget.Text	Hedefi göster
+Files_Remove.Text	Kopyalamadan kaldır
+Files_Retry.Text	Başarısız olanları yeniden dene
+Files_SaveList.Text	Kopyalama listesini kaydet…
+Files_Search.PlaceholderText	Dosya ara
+Files_Size.Text	Boyut
+Files_SourceHash.Text	Kaynak karması
+Files_TargetHash.Text	Hedef karması
+History_Clear.Text	Temizle
+History_Empty.Text	Henüz biten kopyalama yok
+History_Open.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Hedefi aç
+History_Repeat.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Yinele (yalnızca yeni veya değişeni kopyalar)
+History_Title.Text	Geçmiş
+Log_Export.Text	Günlüğü dışa aktar
+Options_Acl.Content	İzinler (ACL)
+Options_Attributes.Content	Öznitelikler
+Options_Audit.Content	Denetim (SACL)
+Options_BufferSize.Text	Arabellek boyutu
+Options_Data.Content	Veri
+Options_ExportReport.Content	HTML raporu kaydet
+Options_FilesFolders.Text	Dosyalar ve klasörler
+Options_OnFinish.Text	Bitince
+Options_Owner.Content	Sahip
+Options_ResetDefault.Text	Sıfırla
+Options_RunningInfo.Message	Kopyalama sürüyor: bu değişiklikler sürdürünce uygulanır (Doğrula ve Gözetimsiz hemen).
+Options_SaveChecksum.Content	Sağlama dosyası kaydet
+Options_SaveDefault.Text	Varsayılan olarak kaydet
+Options_Scripts.Text	Bitince komutlar
+Options_ScriptsHelp.Text	Her satıra bir tane, cmd.exe ile çalışır. Yalnızca başarıda çalışması için "ok:", yalnızca hatada çalışması için "error:" ile başlayın. Değişkenler: %MEGACOPIER_STATE%, %MEGACOPIER_DESTINATION%, %MEGACOPIER_SOURCES%, %MEGACOPIER_FILES%, %MEGACOPIER_BYTES%, %MEGACOPIER_FAILED%, %MEGACOPIER_CHECKSUM%.
+Options_Security.Text	Güvenlik (NTFS)
+Options_Streams.Content	Alternatif veri akışları (ADS)
+Options_SystemCache.Content	Sistem önbelleğini kullan
+Options_Threads.Text	Paralel
+Options_ThreadsShort.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Eşzamanlı okuma ve yazmalar
+Options_Timestamps.Content	Tarihler
+Options_Transfer.Text	Ne kopyalanır
+Options_TransferOptions.Text	Aktarım
+Options_Verify.Content	Kopyaladıktan sonra doğrula
+Options_VerifySkipped.Content	Atlananları da doğrula
+Page_Back.Text	Geri
+Pager_Next.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Sonraki kopyalama
+Pager_Previous.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Önceki kopyalama
+Pager_Text	Kopyalama {0} / {1}
+Panel_Discard.Text	Vazgeç
+Panel_File.Text	Dosya
+Panel_OpenFolder.Text	Klasörü aç
+Panel_Pause.Text	Duraklat
+Panel_Skip.Text	Atla
+Panel_Stop.Text	Durdur
+Panel_More	Daha fazla
+Panel_Less	Daha az
+Priority_Low.Content	Düşük
+Priority_BelowNormal.Content	Normalin altında
+Priority_Normal.Content	Normal
+Priority_AboveNormal.Content	Normalin üstünde
+Priority_High.Content	Yüksek
+Settings_Advanced.Text	Gelişmiş
+Settings_EnabledTitle.Text	Windows kopyalaması yerine MegaCopier'ı kullan
+Settings_EnabledDescription.Text	Bildirim alanı simgesine çift tıklayarak da olur. Kapalıyken simge kırmızı X ile griye döner ve Dosya Gezgini kopyalar.
+Settings_FastTitle.Text	Hızlı aygıtlar
+Settings_FastDescription.Text	Aynı anda birkaç kopyalamayı kaldıran sürücüler veya yollar (NVMe SSD, RAID); diğerleri disk başına tek tek gider.
+Settings_FinishTitle.Text	Kopyalamalar bitince
+Settings_FinishDescription.Text	Çalışan bir şey kalmayınca pencere ne yapar
+Settings_FinishAuto.Content	Her şey yolunda gittiyse kapat
+Settings_FinishClose.Content	Her zaman kapat
+Settings_FinishKeep.Content	Açık bırak
+Settings_FreeSpace.Content	Önce boş alanı denetle
+Settings_General.Text	Genel
+Settings_HashTitle.Text	Karma algoritması
+Settings_HashDescription.Text	Doğrulama ve kaydedilen sağlamalar için. xxHash3 en hızlısı, SHA-256 en uyumlusudur.
+Settings_MaxJobsTitle.Text	Eşzamanlı kopyalamalar
+Settings_MaxJobsDescription.Text	Aynı anda en fazla kaç kopyalama (0 = sınırsız). Aynı diskteki kopyalamalar her zaman sırasını bekler.
+Settings_ModeAuto.Content	Otomatik
+Settings_ModeCompact.Content	Kompakt
+Settings_ModeExpanded.Content	Tam
+Settings_PerformanceTitle.Text	Performans
+Settings_PerformanceDescription.Text	Hız sınırı, arabellek boyutu ve eşzamanlı işlemler
+Settings_PriorityTitle.Text	İşlem önceliği
+Settings_PriorityDescription.Text	Düşük, kopyalarken bilgisayarı daha akıcı tutar
+Settings_Queue.Text	Sıra
+Settings_Themes.Text	Temalar
+Settings_WhatToCopy.Text	Ne kopyalanır ve sonra ne olur
+Settings_Window.Text	Pencere
+Settings_WindowModeTitle.Text	Kopyalama penceresi
+Settings_WindowModeDescription.Text	Otomatik: tek kopyalamada kompakt, birkaç tane olunca tam. "Daha fazla" ve "Daha az" istediğiniz an değiştirir.
+Status_Bytes.Text	Boyut
+Status_Category.Text	Durum
+Status_Copied.Text	Kopyalanan
+Status_Failed.Text	Hatalı
+Status_Files.Text	Dosyalar
+Status_Pending.Text	Bekleyen
+Status_Skipped.Text	Atlanan
+Status_Total.Text	Toplam
+Status_Verified.Text	Doğrulanan
+Tab_Files.Text	Dosyalar
+Tab_Log.Text	Günlük
+Tab_Options.Text	Seçenekler
+Tab_Status.Text	Durum
+Tab_Target.Text	Hedef
+Target_Destination.Text	Hedef
+Target_Source.Text	Kaynak
+Target_Space	{1} içinde {0} boş
+Theme_BarHeight.Header	Çubuk yüksekliği
+Theme_Radius.Header	Köşe yuvarlaklığı
+Theme_Customize.Text	Temayı özelleştir (renkler, çubuklar, arka plan)
+Theme_Delete.Text	Sil
+Theme_Export.Text	Dışa aktar…
+Theme_Import.Text	İçe aktar…
+Theme_Name.Header	Ad
+Theme_Save	Kaydet
+Theme_SaveAsNew	Yeni tema olarak kaydet
+Theme_Auto	Fluent (Windows gibi)
+Theme_CopyOf	{0} (özel)
+Theme_Custom	Temam
+Theme_FileType	MegaCopier teması
+Theme_ImportFailed	Tema içe aktarılamadı
+Theme_ColorBackground	Arka plan
+Theme_ColorSurface	Kartlar
+Theme_ColorSurfaceStrong	Vurgulu kartlar
+Theme_ColorBorder	Kenarlıklar
+Theme_ColorText	Metin
+Theme_ColorTextSecondary	İkincil metin
+Theme_ColorAccent	Vurgu
+Theme_ColorAccentText	Vurgu üstü metin
+Theme_ColorTotalStart	Toplam çubuğu: başlangıç
+Theme_ColorTotalEnd	Toplam çubuğu: bitiş
+Theme_ColorFileStart	Dosya çubuğu: başlangıç
+Theme_ColorFileEnd	Dosya çubuğu: bitiş
+Theme_ColorTrack	Çubuk arka planı
+Theme_ColorSuccess	Başarılı
+Theme_ColorWarning	Uyarı
+Theme_ColorError	Hata
+Theme_fluent-dark	Fluent koyu
+Theme_fluent-light	Fluent açık
+Theme_midnight	Gece yarısı
+Theme_graphite	Grafit
+Theme_ocean	Okyanus
+Theme_forest	Orman
+Theme_sunset	Gün batımı
+Theme_supercopier	Klasik SuperCopier
+Theme_ultracopier	Klasik Ultracopier
+Theme_contrast	Yüksek karşıtlık
+Tool_About.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Hakkında
+Tool_ClearDone.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Biten kopyalamaları kaldır
+Tool_History.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Geçmiş
+Tool_HistoryText.Text	Geçmiş
+Tool_LoadList.Text	Kopyalama listesi yükle…
+Tool_LoadListText.Text	Liste yükle
+Tool_MoveFiles.Text	Dosyaları taşı…
+Tool_NewCopy.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Yeni kopyalama
+Tool_NewCopyText.Text	Yeni
+Tool_PauseAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Tümünü duraklat
+Tool_ResumeAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Tümünü sürdür
+Tool_Settings.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Ayarlar
+Tool_Sidebar.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Kopyalama listesini göster veya gizle
+Drop_Caption	MegaCopier ile kopyala
+File_Pending	Bekliyor
+File_Copying	Kopyalanıyor
+File_Verifying	Doğrulanıyor
+File_Copied	Kopyalandı
+File_Verified	Doğrulandı
+File_Skipped	Atlandı
+File_Failed	Hata
+Files_AddFailed	Eklenemedi
+Files_Count	{0} / {1} dosya
+Files_ListType	MegaCopier kopyalama listesi
+Files_LoadFailed	Liste yüklenemedi
+Hash_None	Karma: yok
+Jobs_Header	KOPYALAMA: {0} · ETKİN: {1}
+Language_Auto	Windows ile aynı
+Log_FileType	Metin
+Picker_MoveHere	Buraya taşı
+Settings_AutoResume.Content	Başlangıçta kendiliğinden sürdür
+Panel_Options.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Bu kopyalamanın seçenekleri
+Panel_UnattendedItem.Text	Gözetimsiz (sorma: var olanları atlar)
+Panel_VerifyItem.Text	Bitince doğrula
+Panel_OpenFolderItem.Text	Hedef klasörü aç
+Status_ExactBytes	{0} bayt
+Notify_SettingsResetTitle	Ayarlar sıfırlandı
+Notify_SettingsResetBody	Ayarlarınız okunamadı, bu yüzden varsayılanlar kullanılıyor. Özgün dosya settings.json.bad içinde.
+Job_TitleCopy	{0} kopyala
+Job_TitleMove	{0} taşı
+Job_FailedOne	1 dosyada hata
+Error_InUse	Dosyayı başka bir program açık tutuyor. Kapatın ve "Yeniden dene"ye basın.
+Error_AccessDenied	Erişim reddedildi: bu dosyayı okuma veya yazma izniniz yok.
+Error_DiskFull	Hedef diskte yer kalmadı.
+Error_NotFound	Dosya veya klasör artık yok (taşındı, silindi veya sürücü çıkarıldı mı?).
+Error_PathTooLong	Yol, hedef için çok uzun.
+Error_NetworkLost	Ağ bağlantısı koptu. Geri geldiğinde kaldığı yerden devam etmek için "Yeniden dene"ye basın.
+Error_HashMismatch	Kopya, özgünüyle eşleşmiyor (doğrulama başarısız).
+Error_DeleteFailed	Doğru kopyalandı ama özgün dosya silinemedi.
+Report_State	Durum
+Report_File	Dosya
+Report_Source	Kaynak
+Report_Destination	Hedef
+Report_Size	Boyut
+Report_SourceHash	Kaynak karması
+Report_TargetHash	Hedef karması
+Report_Message	İleti
+Report_Copied	Kopyalanan
+Report_Verified	Doğrulanan
+Report_Skipped	Atlanan
+Report_Failed	Hatalı
+Job_SkippedOne	1 atlandı
+Rules_Filters.Text	Filtreler
+Rules_Include.Header	Yalnızca dahil et (; ile ayrılmış maskeler)
+Rules_Include.PlaceholderText	*.jpg; *.png; Fotoğraflar\*
+Rules_Exclude.Header	Hariç tut
+Rules_Exclude.PlaceholderText	node_modules; *.tmp; Thumbs.db
+Rules_MinSize.Header	En küçük boyut (MB)
+Rules_MaxSize.Header	En büyük boyut (MB)
+Rules_After.Header	Şu tarihten beri değişen
+Rules_Before.Header	Şu tarihe kadar değişen
+Rules_SkipHidden.Content	Gizlileri atla
+Rules_SkipSystem.Content	Sistem dosyalarını atla
+Rules_Rules.Text	Kurallar
+Rules_Links.Header	Sembolik bağlantılar ve birleşim noktaları
+Rules_LinksCopy.Content	Bağlantı olarak kopyala
+Rules_LinksFollow.Content	Gösterdikleri yeri kopyala
+Rules_LinksSkip.Content	Atla
+Rules_Pattern.Header	İkisini de tutarken ad ({name}, {n}, {ext}, {date})
+Rules_PatternPreview	Örnek: {0}
+Rules_Retries.Header	Yeniden denemeler
+Rules_Delay.Header	Denemeler arası bekleme (sn)
+Rules_OnError.Header	Bir dosya başarısız olmaya devam ederse
+Rules_OnErrorSkip.Content	Not et ve sonrakine geç
+Rules_OnErrorStop.Content	Kopyalamayı durdur (sürdürülebilir)
+ConflictDifferentSize.Content	Boyut farklıysa değiştir
+ConflictRenameExisting.Content	Mevcudu yeniden adlandır
+Conflict_RenameExisting.Text	Mevcudu yeniden adlandır ve bunu kopyala
+Schedule_Title.Text	Başlangıcı zamanla
+Schedule_Set.Text	Zamanla
+Schedule_Now.Text	Şimdi başlat
+Schedule_InThePast	İleri bir saat seçin.
+Job_StateScheduled	{0} için zamanlandı
+Settings_Favorites.Text	Sık kullanılan klasörler
+Settings_FavoritesTitle.Text	Sık kullanılan hedefler
+Settings_FavoritesDescription.Text	Aynı anda birkaç klasöre kopyalamak için "Yeni > Şuraya kopyala" altında ve hedefler penceresinde görünürler.
+Settings_FavoritesAdd.Text	Klasör ekle
+Settings_FavoritesRemove	{0} kaldır
+Settings_FavoritesEmpty	Henüz sık kullanılan yok.
+Tool_CopyTo.Text	Şuraya kopyala
+Tool_CopyToEmpty	Sık kullanılan veya son kullanılan yok
+Tool_CopyToManage	Sık kullanılanları yönet…
+Tool_TestFiles.Text	Sağlama dosyalarını sına…
+Tool_TestFolder.Text	Bir klasörün sağlamalarını sına…
+Tool_Delete.Text	Sil…
+Tool_Wipe.Text	Güvenli sil…
+DestinationsDialog.Title	Nereye?
+DestinationsDialog.PrimaryButtonText	Başlat
+DestinationsDialog.CloseButtonText	İptal
+Destinations_SummaryOne	"{0}" için bir veya daha fazla hedef seçin.
+Destinations_SummaryMany	{0} öğe için bir veya daha fazla hedef seçin.
+Destinations_Add.Text	Klasör ekle…
+Destinations_Move.Content	Kopyalamak yerine taşı
+Destinations_Schedule.Content	Daha sonra başlat
+DeleteDialog.Title	Sil
+DeleteDialog.PrimaryButtonText	Sil
+DeleteDialog.CloseButtonText	İptal
+Delete_ConfirmOne	"{0}" silinsin mi? Geri Dönüşüm Kutusu'na gitmez.
+Delete_ConfirmMany	{0} öğe silinsin mi? Geri Dönüşüm Kutusu'na gitmezler.
+Delete_ConfirmSecureOne	"{0}" güvenli silinsin mi?
+Delete_ConfirmSecureMany	{0} öğe güvenli silinsin mi?
+Delete_SecureWarning.Title	Kurtarılamaz
+Delete_SecureWarning.Message	İçerik silinmeden önce üzerine yazılır. SSD'lerde disk kalıntı tutabilir; en yüksek güvenlik için BitLocker şifrelemesini kullanın.
+FinishHibernate.Text	Hazırda beklet
+FinishSignOut.Text	Oturumu kapat
+FinishExit.Text	MegaCopier'ı kapat
+Finish_LabelHibernate	Bitince: hazırda beklet
+Finish_LabelSignOut	Bitince: oturumu kapat
+Finish_LabelExit	Bitince: MegaCopier'ı kapat
+Notify_FinishSleep	Uyku moduna geçiliyor…
+Notify_FinishHibernate	Hazırda bekletiliyor…
+Notify_FinishShutdown	Bilgisayar 1 dakika içinde kapanacak (iptal: shutdown /a).
+Notify_FinishSignOut	Oturum kapatılıyor…
+Notify_FinishExitApp	MegaCopier kapanıyor.
+Files_SelectAll.Text	Tümünü seç
+Files_SelectSameExtension.Text	Aynı uzantılıları seç
+Files_SelectSameFolder.Text	Aynı klasördekileri seç
+Files_InvertSelection.Text	Seçimi ters çevir
+Job_TitleTest	{0} sına
+Job_TitleTesting	{0} sınanıyor
+Job_TitleTested	{0} sınandı
+Job_TitleDelete	{0} sil
+Job_TitleDeleting	{0} siliniyor
+Job_TitleDeleted	{0} silindi
+Job_StateTesting	Sınanıyor
+Job_StateDeleting	Siliniyor
+Job_FilesTestedOne	{0} dosya sağlam
+Job_FilesTestedMany	{0} dosya sağlam
+Job_FilesDeletedOne	{0} dosya silindi
+Job_FilesDeletedMany	{0} dosya silindi
+Job_TitleScheduled	Zamanlandı: {0}
+Error_ChecksumMismatch	İçerik kaydedilen sağlamayla eşleşmiyor: dosya değişmiş veya hasarlı.
+Job_FilteredOut	Bu kopyalamanın filtrelerinden geçen dosya yok
+Rules_After.PlaceholderText	Herhangi bir tarih
+Rules_Before.PlaceholderText	Herhangi bir tarih
+Drop_MoveTo	{0}. konuma taşı
+Drop_InsertAt	{0}. konuma ekle
+Drop_AddToJob	Bu kopyalamaya ekle
+Drop_AddToNamedJob	{0} öğesine ekle
+Drop_JobOrder	Sıranın {0}. yerine koy
+Settings_Sounds.Text	Sesler
+Settings_SoundsTitle.Text	Sesli uyarılar
+Settings_SoundsDescription.Text	Her an için bir ses seçin: Windows sesi, bilgisayarınızdaki herhangi bir dosya veya hiçbiri.
+Settings_Volume.Header	Ses düzeyi
+Settings_SoundsQuiet.Content	Tam ekran oyun veya sunumlarda ve Rahatsız etmeyin modunda sessiz kal
+Sound_Done	Bir kopyalama başarıyla bitti
+Sound_Errors	Bir kopyalama hatalarla bitti
+Sound_AllDone	Tüm kopyalamalar bitti
+Sound_Attention	Kararınız gerekiyor (dosya zaten var)
+Sound_Test	Sesi dene
+Sound_None	Ses yok
+Sound_Default	Windows sesi
+Sound_Choose	Dosya seç…
+File_Planned	Benzetildi
+File_Deleted	Kaldırıldı
+File_RemovedExtra	Hedeften kaldırıldı: artık kaynakta yoktu
+Plan_Copy	Kopyalanırdı
+Plan_Replace	Hedefteki dosyanın yerini alırdı
+Plan_ReplaceNewer	Hedefteki dosyanın yerini alırdı: özgün daha yeni
+Plan_ReplaceSize	Hedefteki dosyanın yerini alırdı: boyutu farklı
+Plan_KeepBoth	Zaten var: başka adla kopyalanırdı
+Plan_RenameExisting	Zaten var: hedefteki yeniden adlandırılır ve bu kopyalanırdı
+Plan_Ask	Zaten var: size sorulurdu
+Plan_SkipIdentical	Atlanırdı: hedefte zaten aynısı var
+Plan_SkipExists	Atlanırdı: zaten var
+Plan_SkipOlder	Atlanırdı: hedefteki aynı veya daha yeni
+Plan_SkipSameSize	Atlanırdı: aynı boyut
+Plan_SkipNotInDestination	Atlanırdı: hedefte yok (yalnızca güncelleme)
+Plan_SkipSamePath	Atlanırdı: kaynak ve hedef aynı
+Plan_Delete	Hedeften kaldırılırdı: artık kaynakta yok
+Plan_Fail	Başarısız olurdu: hedef zaten var
+Plan_None	Benzetildi
+Skip_SkipIdentical	Hedefte zaten aynısı vardı
+Skip_SkipExists	Zaten vardı: atlandı
+Skip_SkipOlder	Hedefteki aynı veya daha yeni
+Skip_SkipSameSize	Hedeftekiyle aynı boyut
+Skip_SkipNotInDestination	Hedefte yok (yalnızca var olanlar güncellenir)
+Skip_SkipSamePath	Kaynak ve hedef aynı dosya
+Skip_SkipByUser	Sizin tarafınızdan atlandı
+Job_TitleSync	{0} eşitle
+Job_TitleSyncing	{0} eşitleniyor
+Job_TitleSynced	{0} eşitlendi
+Job_StateSyncing	Eşitleniyor
+Job_FilesSyncedOne	{0} dosya güncellendi
+Job_FilesSyncedMany	{0} dosya güncellendi
+Job_TitleSimulate	{0} benzet
+Job_TitleSimulating	{0} benzetiliyor
+Job_TitleSimulated	Benzetim: {0}
+Job_StateSimulating	Benzetiliyor
+Job_FilesSimulatedOne	{0} dosya kopyalanırdı
+Job_FilesSimulatedMany	{0} dosya kopyalanırdı
+Job_WouldTransfer	toplam {0}
+Job_TitleHash	{0} için sağlama oluştur
+Job_TitleHashing	{0} için sağlama hesaplanıyor
+Job_TitleHashed	{0} sağlamaları
+Job_StateHashing	Sağlama hesaplanıyor
+Job_FilesHashedOne	Sağlama listesinde {0} dosya
+Job_FilesHashedMany	Sağlama listesinde {0} dosya
+Job_StateWaitingDevice	Disk veya ağın geri gelmesi bekleniyor…
+Job_StateWaitingSpace	Hedefte boş alan bekleniyor…
+Job_RemovedOne	1 tane hedeften kaldırıldı
+Job_Removed	{0} tane hedeften kaldırıldı
+Job_WouldRemove	{0} tane hedeften kaldırılırdı
+Panel_RunForReal.Text	Gerçekten yap
+Options_Mode.Header	Mod
+Mode_Copy.Content	Kopyala
+Mode_Mirror.Content	Eşitle (yansı)
+Mode_Update.Content	Yalnızca var olanları güncelle
+Mode_Folders.Content	Yalnızca klasör yapısı
+Options_MirrorInfo.Title	Eşitleme, kaynakta artık olmayanı hedeften kaldırır
+Options_MirrorInfo.Message	Filtrelerin dışladığına dokunulmaz. Kaldırılanı veya değiştirileni saklamak için bir sürümler klasörü belirtin.
+Options_DryRun.Content	Benzet: hiçbir şeyi değiştirmeden ne olacağını göster
+Destinations_DryRun.Content	Önce benzet (hiçbir şey değişmez)
+Tool_HashFolder.Text	Bir klasör için sağlama dosyası oluştur…
+Tool_HashFiles.Text	Dosyalar için sağlama dosyası oluştur…
+Rules_SkipJunk.Content	Gereksiz dosyaları atla (Thumbs.db, desktop.ini, .DS_Store, ~$…)
+Rules_OnErrorEnd.Content	Sıranın sonunda yeniden dene
+Rules_Safety.Text	Eşitleme ve güvenlik
+Rules_FolderConflict.Header	Bir klasör hedefte zaten varsa
+Rules_FolderMerge.Content	İçeriği birleştir
+Rules_FolderSkip.Content	Tamamen atla
+Rules_Versions.Header	Değiştirilen veya kaldırılanı şu klasörde sakla
+Rules_Versions.PlaceholderText	Boş: saklama (örneğin .surumler)
+Rules_Tolerance.Header	"Aynı" için tarih payı (saniye)
+Rules_VerifySource.Content	Bitince özgünü yeniden oku
+Rules_HashStream.Content	Karmayı her dosyanın içine kaydet
+Rules_HardLinks.Content	Sabit bağlantıları koru
+Rules_Wipe.Content	Taşırken özgünleri güvenli sil
+Rules_WaitDevice.Content	Disk veya ağ koparsa bekle
+Rules_WaitSpace.Content	Yer yoksa bekle
+Rules_VerifySource.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Özgünün karmasını yeniden hesaplar: kopyalama sırasında değişip değişmediğini veya kaynak diskin kötü okuyup okumadığını saptar.
+Rules_HashStream.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Dosyanın kendi gizli akışında saklanır (NTFS). "Bir klasörün sağlamalarını sına" daha sonra, sağlama dosyası olmasa bile her hasarı saptar.
+Rules_HardLinks.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Birkaç ad aynı dosyaysa hedefte de öyle olur (iki kat yer kaplamaz).
+Rules_Tolerance.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	FAT32 ve exFAT saati 2 saniye hassasiyetle kaydeder: bu payla aynı dosyalar yeniden kopyalanmaz.
+Rules_Versions.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Bir dosya değiştirilmeden veya kaldırılmadan önce, adında tarih olacak şekilde bu hedef klasöre taşınır.
+Settings_UnitsTitle.Text	Boyut birimleri
+Settings_UnitsDescription.Text	Boyutlar ve hızlar nasıl gösterilir.
+Units_Classic.Content	KB, MB, GB (Dosya Gezgini gibi)
+Units_Iec.Content	KiB, MiB, GiB (ikili)
+Units_Decimal.Content	1000'lik kB, MB, GB (üretici gibi)
+Settings_SlowTitle.Text	Bilgisayarı kullanırken yavaşla
+Settings_SlowDescription.Text	Klavye veya fareyi kullanırken kopyalamalar bu hızı geçmez; bilgisayarı bırakınca yeniden hızlanır.
+Slow_Off.Content	Hayır
+Settings_LogsTitle.Text	Her kopyalamanın günlüğünü kaydet
+Settings_LogsDescription.Text	Günlükler klasöründe kopyalama başına bir dosya; 30 gün sonra kendiliğinden silinir.
+Settings_LogsOpen.Text	Klasörü aç
+Settings_WebhookTitle.Text	Bitince bir web adresine bildir
+Settings_WebhookDescription.Text	Bildirimi telefonda veya sohbette almak için: Discord, Slack, Teams, ntfy.sh, Home Assistant… JSON içeren bir POST gönderilir.
+Settings_WebhookBox.PlaceholderText	https://ntfy.sh/gizli-konum
+Settings_WebhookTest.Text	Dene
+Settings_WebhookSending	Gönderiliyor…
+Settings_WebhookOk	Bildirim gönderildi.
+Settings_WebhookFailed	Gönderilemedi: adresi ve bağlantıyı denetleyin.
+Settings_WebhookTestMessage	✔ MegaCopier: deneme bildirimi
+FinishDialog.Title	Tüm kopyalamalar bitti
+FinishDialog.PrimaryButtonText	Şimdi yap
+FinishDialog.CloseButtonText	İptal
+Finish_CountdownSleep	Bilgisayar {0} sn içinde uyku moduna geçecek.
+Finish_CountdownHibernate	Bilgisayar {0} sn içinde hazırda bekletilecek.
+Finish_CountdownShutdown	Bilgisayar {0} sn içinde kapanacak.
+Finish_CountdownSignOut	Oturum {0} sn içinde kapanacak.
+Finish_CountdownExitApp	MegaCopier {0} sn içinde kapanacak.
+Job_SlowedDown	Bilgisayarı kullanırken daha yavaş
+History_Undone	geri alındı
+History_Undo.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Geri al: taşınanı geri koy veya kopyalananı Geri Dönüşüm Kutusu'na gönder
+History_CopyBack.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Kaynak klasöre geri kopyala (geri yükle)
+History_UndoDialog.Title	Bu kopyalama geri alınsın mı?
+History_UndoDialog.PrimaryButtonText	Geri al
+History_UndoDialog.CloseButtonText	İptal
+History_UndoMoveConfirm	Taşınan her şey "{0}" konumundan özgün klasörüne döner.
+History_UndoCopyConfirm	Kopyalanan {0} dosya Geri Dönüşüm Kutusu'na gider (geri alınabilir). Sonradan değişenlere veya başka bir dosyanın yerini alanlara dokunulmaz.
+History_UndoDone	{0} dosya Geri Dönüşüm Kutusu'na gönderildi.
+History_UndoKept	Sonradan değişen {0} ve başkalarının yerini alan {1} dosya bırakıldı.
+History_UndoTitleBar.Title	Kopyalama geri alındı
+History_Undo.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Geri al: taşınanı geri koy veya kopyalananı Geri Dönüşüm Kutusu'na gönder
+History_CopyBack.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Kaynak klasöre geri kopyala (geri yükle)
+History_Open.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Hedefi aç
+History_Repeat.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Yinele (yalnızca yeni veya değişeni kopyalar)
+Task_Header.Text	Ya da Windows'un yukarıda seçilen saatte kendiliğinden yinelemesi için görev olarak kaydedin:
+Task_Name.PlaceholderText	Görev adı
+Task_Once.Content	Bir kez
+Task_Daily.Content	Her gün
+Task_Weekly.Content	Her hafta
+Task_Save.Text	Görev olarak kaydet
+Task_SavedOnce	"{0}" görevi kaydedildi: {2} günü saat {1} için çalışacak.
+Task_SavedDaily	"{0}" görevi kaydedildi: her gün saat {1} için çalışacak.
+Task_SavedWeekly	"{0}" görevi kaydedildi: her hafta, {2} ile aynı gün, saat {1} için çalışacak.
+Task_Failed	Zamanlanamadı: {0}
+Settings_Tasks.Text	Zamanlanmış görevler
+Settings_TasksTitle.Text	Kendiliğinden yinelenen kopyalamalar
+Settings_TasksDescription.Text	Bir kopyalamanın Seçenekler sekmesinden ("Görev olarak kaydet") oluşturulur; MegaCopier kapalı olsa bile Windows Görev Zamanlayıcı başlatır.
+Settings_TasksEmpty	Henüz görev yok.
+Settings_TaskRun	"{0}" şimdi çalıştır
+Settings_TaskDelete	"{0}" görevini sil
+About_Portable	taşınabilir (veriler {0} içinde)
+Job_Estimate	{0}, yaklaşık {1}
+Job_EstimateSize	toplam {0}
+Settings_SmbCompression.Content	Ağ üzerinden sıkıştır (SMB)
+Settings_SmbCompression.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Sunucudan verileri yolda sıkıştırmasını ister (Windows 11 ve Windows Server 2022 veya sonrası). Kaynak ve hedef aynı sunucudaysa kopyalamayı her zaman sunucunun kendisi yapar, bu bilgisayardan geçmez.
+Error_TooLargeForFileSystem	Bu diske sığmaz: FAT32 4 GB ve üzeri dosyalara izin vermez. exFAT veya NTFS olarak biçimlendirin.
+Rules_AllOrNothing.Content	"Ya hep ya hiç" klasörler
+Rules_AllOrNothing.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Her yeni klasör gizli kopyalanır ve yalnızca her şey yolunda gittiğinde kendi adıyla görünür: tamam gibi görünen yarım kopyalanmış bir klasör asla kalmaz.
+Rules_Rescue.Content	Hasarlı diskler için kurtarma modu
+Rules_Rescue.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Kaynakta bozuk kesimler varsa kesim kesim okunur ve okunabilen her şey kurtarılır; okunamayan sıfır olur ve günlüğe yazılır. Taşırken özgün dosya silinmez.
+Error_PartlyUnreadable	Kısmen kurtarıldı: kaynağın bazı kesimleri hasarlıydı ve sıfır oldu (ayrıntılar Günlük'te).
+Settings_Guard.Text	Bütünlük bekçisi
+Settings_GuardTitle.Text	Dosyalarınızın zamanla bozulmadığını gözet
+Settings_GuardDescription.Text	Her dosya kendi karmasını içinde saklar. Bilgisayar boştayken MegaCopier bunları denetler: biri kimse düzenlemeden değiştiyse (disk bozduysa) uyarılırsınız. Düzenledikleriniz kendiliğinden yenilenir. NTFS gerekir.
+Guard_Daily.Content	Her gün
+Guard_Weekly.Content	Her hafta
+Guard_Monthly.Content	Her ay
+Settings_GuardAdd.Text	Bir klasörü gözet…
+Settings_GuardEmpty	Henüz hiçbir klasörü gözetmiyorsunuz.
+Settings_GuardCheck	"{0}" şimdi denetle
+Settings_GuardRemove	"{0}" gözetmeyi bırak
+Guard_NotYet	İlk denetimi bekliyor
+Guard_LastOk	{0} tarihinde denetlendi: her şey yolunda
+Guard_LastDamaged	{0} tarihinde denetlendi: {1} hasarlı dosya (Geçmiş'e bakın)
+Guard_DamagedTitle	Bütünlük bekçisi
+Guard_DamagedOne	"{0}" içindeki bir dosya diskte hasar gördü.
+Guard_DamagedMany	"{1}" içindeki {0} dosya diskte hasar gördü.
+Guard_LastDamagedOne	{0} tarihinde denetlendi: bir hasarlı dosya (Geçmiş'e bakın)
+Settings_ScheduleLimitTitle.Text	Saate göre hız sınırı
+Settings_ScheduleLimitDescription.Text	Örneğin mesai saatlerinde: kopyalamalar seçilen saatler arasında bu hızı geçmez.
+Settings_ScheduleFrom.Text	Başlangıç
+Settings_ScheduleTo.Text	bitiş
+Settings_PauseBatteryTitle.Text	Pildeyken duraklat
+Settings_PauseBatteryDescription.Text	Fişe takılı olmayan bir dizüstünde kopyalamalar bekler ve takınca kendiliğinden devam eder.
+Settings_PauseFullTitle.Text	Oyun ve sunumlarda duraklat
+Settings_PauseFullDescription.Text	Tam ekran bir oyun veya sunum varken kopyalamalar onu yavaşlatmamak için bekler.
+Comfort_PausedTitle	Kopyalamalar duraklatıldı
+Comfort_PausedBattery	Bilgisayar pille çalışıyor: kopyalamalar fişe takınca devam edecek.
+Comfort_PausedFullScreen	Tam ekran bir oyun veya sunum açık: kopyalamalar çıkınca devam edecek.
+Job_StatePausedBattery	Duraklatıldı: pilde
+Job_StatePausedFullScreen	Duraklatıldı: tam ekran
+Job_SlowedSchedule	Seçilen zamanlama nedeniyle daha yavaş
+Rules_Delta.Content	Büyük dosyaları değiştirirken yalnızca değişeni yaz
+Rules_Delta.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	16 MB ve üzeri dosyalar için fark kopyalaması (sanal diskler, posta, projeler): yalnızca farklı bloklar yazılır. İptal edilir veya elektrik kesilirse dosya önceki sürümüne döner.
+Panel_CopyLocked.Text	Kullanımdaki dosyaları kopyala
+Locked_Title	Kullanımdaki dosyalar
+Locked_Cancelled	Yönetici izni verilmedi: kullanımdaki dosyalar kopyalanmadı.
+Locked_Done	Diskin anlık görüntüsünden {0} kullanımdaki dosya kopyalandı.
+Locked_Partial	Anlık görüntüden {0} kopyalandı; geri kalanı kopyalanamadı: {1}
+Settings_Peer.Text	Diğer bilgisayarlardan al
+Settings_PeerTitle.Text	MegaCopier olan diğer bilgisayarlardan dosya al
+Settings_PeerDescription.Text	Ev veya ofis ağı üzerinden, paylaşılan klasör olmadan. Gönderenin aşağıdaki koda ihtiyacı var; bağlantı şifrelidir ve her dosya varışta denetlenir. İlk seferde Windows güvenlik duvarı izni isteyebilir.
+Settings_PeerCode.Text	Size dosya göndermek için kod:
+Settings_PeerNewCode.Text	Yeni kod
+Settings_PeerFolder.Text	Klasörü değiştir…
+Settings_PeerFolderIs	{0} içine kaydedilir
+Settings_PeerListening	"{0}" üzerinde gönderim bekleniyor (bağlantı noktası {1}).
+Settings_PeerError	Alım başlatılamadı: {0}
+Peer_ReceivingTitle	Dosyalar alınıyor
+Peer_Receiving	{0} size {1} dosya gönderiyor ({2}).
+Peer_ReceivedTitle	Dosyalar alındı
+Peer_Received	{1} kaynağından {0} dosya, {2} içine.
+Peer_RejectedTitle	Gönderim reddedildi
+Peer_Rejected	{0} size yanlış kodla dosya göndermeye çalıştı.
+Tool_SendFiles.Text	Dosyaları başka bir bilgisayara gönder…
+Tool_SendFolder.Text	Bir klasörü başka bir bilgisayara gönder…
+SendDialog.Title	Başka bir bilgisayara gönder
+SendDialog.PrimaryButtonText	Gönder
+SendDialog.CloseButtonText	İptal
+Send_SummaryOne	"{0}" öğesini MegaCopier'ın alım yaptığı başka bir bilgisayara gönder.
+Send_SummaryMany	{0} öğeyi MegaCopier'ın alım yaptığı başka bir bilgisayara gönder.
+Send_Found.Text	Ağda bulunan bilgisayarlar:
+Send_Searching	Aranıyor…
+Send_NoneFound	Hiçbiri bulunamadı: adını veya IP'sini yazın.
+Send_Host.Header	Bilgisayar (ad veya IP)
+Send_Host.PlaceholderText	SALON-PC veya 192.168.1.20
+Send_Code.Header	O bilgisayarın Ayarlar'da gösterdiği kod
+Send_Code.PlaceholderText	XXXX-XXXX-XXXX
+Job_TitleSend	{0} gönder
+Job_TitleSending	{0} gönderiliyor
+Job_TitleSent	{0} gönderildi
+Job_StateSending	Gönderiliyor
+Job_FilesSentOne	{0} dosya gönderildi
+Job_FilesSentMany	{0} dosya gönderildi
+Rules_Describe.Header	Kendi sözlerinizle söyleyin (İngilizce veya İspanyolca)
+Rules_Describe.PlaceholderText	photos larger than 2 MB from last month except .tmp
+Rules_DescribeApply.Text	Uygula
+Rules_DescribeUnderstood	Anlaşıldı: {0}.
+Rules_DescribeNothing	Filtrelenecek bir şey anlaşılmadı.
+Rules_DescribeUnknown	Anlaşılmadı: {0}.
+Mode_Organize.Content	Fotoğrafları tarihe göre düzenle
+Rules_Duplicates.Content	Hedefte zaten olanı kopyalama (yinelenenler)
+Rules_Duplicates.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Adı değil içeriği karşılaştırır: hedefin herhangi bir klasöründe, başka adla bile olsa zaten bulunan bir fotoğraf yeniden kopyalanmaz.
+Skip_SkipDuplicate	Hedefte başka ad veya başka klasörde zaten var
+Plan_SkipDuplicate	Atlanırdı: hedefte zaten var (yinelenen)
+Destinations_Encrypt.Content	Parolayla şifrele (kaybedebileceğiniz bir USB bellek veya disk için)
+Destinations_Password.Header	Parola
+Destinations_Password2.Header	Yineleyin
+Destinations_PasswordHint	AES-256 ile şifrelenir. Parolayı unutursanız dosyalar kurtarılamaz. Okumak için: Yeni menüsü > Şifreyi çöz.
+Destinations_PasswordShort	Parola en az 8 karakter olmalı.
+Destinations_PasswordMismatch	İki parola eşleşmiyor.
+PasswordDialog.Title	Parola
+PasswordDialog.PrimaryButtonText	Tamam
+PasswordDialog.CloseButtonText	İptal
+Tool_Decrypt.Text	Şifreli dosyaların şifresini çöz…
+Picker_DecryptHere	Buraya şifresini çöz
+Decrypt_Ask	"{0}" içindeki şifreli dosyaların parolası:
+Resume_PasswordAsk	Bu kopyalama şifreli ve parola kaydedilmiyor: devam etmek için yazın.
+Job_TitleEncrypt	{0} şifrele
+Job_TitleEncrypting	{0} şifreleniyor
+Job_TitleEncrypted	{0} şifrelendi
+Job_StateEncrypting	Şifreleniyor
+Job_FilesEncryptedOne	{0} dosya şifrelendi
+Job_FilesEncryptedMany	{0} dosya şifrelendi
+Job_TitleDecrypt	{0} şifresini çöz
+Job_TitleDecrypting	{0} şifresi çözülüyor
+Job_TitleDecrypted	{0} şifresi çözüldü
+Job_StateDecrypting	Şifre çözülüyor
+Job_FilesDecryptedOne	{0} dosyanın şifresi çözüldü
+Job_FilesDecryptedMany	{0} dosyanın şifresi çözüldü
+Settings_DisksTitle.Text	Disklerin durumu
+Settings_DisksDescription.Text	Windows'un her disk için bildirdiği (SMART). Biri arıza uyarısı verirse MegaCopier ondan veya ona kopyalarken size söyler.
+Settings_DisksCheck.Text	Şimdi denetle
+Disk_Row	Disk {0} · {1}: {2}
+Disk_Healthy	sağlıklı
+Disk_Unknown	durum bilinmiyor
+Disk_HealthWarning	sorun bildiriyor
+Disk_Checking	Diskler denetleniyor…
+Disk_WarningTitle	Bir disk arıza bildiriyor
+Disk_Warning	"{0}" (disk {1}): {2}. Önemli olanı en kısa sürede başka bir diske kopyalayın.
+Settings_TuneTitle.Text	Her disk için otomatik ayar
+Settings_TuneDescription.Text	Her diski farklı blok boyutları ve eşzamanlı işlemlerle ölçer ve ona kopyalarken en hızlısını kullanır (performansı elle değiştirmediyseniz).
+Settings_TuneMeasure.Text	Diskleri ölç
+Settings_TuneNone	Henüz hiçbir disk ölçülmedi.
+Settings_TuneDisk	Disk
+Settings_TuneProfile	{0}: {1} MB'lık bloklar, aynı anda {2} ({3:N0} MB/sn)
+Settings_TuneMeasuring	{0} ölçülüyor ({1} / {2})…
+Tool_Timeline.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Sıranın zaman çizelgesi
+Timeline_Title.Text	Zaman çizelgesi
+Timeline_Info.Text	Her diskin hızına göre tahmin. Aynı diski kullanan kopyalamalar tek tek gider.
+Timeline_Empty.Text	Süren veya sırada bekleyen kopyalama yok.
+Timeline_Summary	Her şey {0} civarında bitmeli ({1} sonra).
+Timeline_Now	Şimdi
+Timeline_Tomorrow	yarın {0}
+Timeline_Running	Sürüyor · tahmini bitiş: {0} ({1} kaldı)
+Timeline_Paused	Duraklatıldı · şimdi sürdürülürse tahmini bitiş: {0}
+Timeline_Queued	Sırada · başlangıç: {0} · tahmini bitiş: {1} ({2} sürer)
+Timeline_Scheduled	Zamanlandı · başlangıç: {0} · tahmini bitiş: {1} ({2} sürer)
+Timeline_Measuring	boyutu hâlâ ölçülüyor
+Tool_Shelf.Text	Bırakma rafı
+Tray_Shelf	Bırakma rafı
+Shelf_WindowTitle	MegaCopier bırakma rafı
+Shelf_Title.Text	Bırakma rafı
+Shelf_Empty.Text	Her yerden dosya ve klasörleri buraya bırakın. Sonra hepsini birlikte kopyalayın veya taşıyın ya da dışarı sürükleyin.
+Shelf_DropCaption	Rafa ekle
+Shelf_CopyTo.Text	Şuraya kopyala…
+Shelf_MoveTo.Text	Şuraya taşı…
+Shelf_Clear.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Rafı boşalt
+Shelf_Remove.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Raftan kaldır
+Shelf_One	1 öğe
+Shelf_Many	{0} öğe
+Shelf_RemoveNamed	"{0}" öğesini raftan kaldır
+Destinations_NoneChosen.Text	En az bir hedef işaretleyin (veya bir klasör ekleyin).
+Finish_ShutdownMessage	MegaCopier kopyalamaları bitirdi. Bilgisayar 1 dakika içinde kapanacak.
+Hash_Name	Karma: {0}

@@ -1,0 +1,12 @@
+clave	texto
+S_CopyHere	Mit MegaCopier hierher kopieren
+S_MoveHere	Mit MegaCopier hierher verschieben
+S_Paste	Mit MegaCopier einfügen
+S_PasteIntoFolder	Mit MegaCopier in diesen Ordner einfügen
+S_MoveIntoFolder	Mit MegaCopier in diesen Ordner verschieben
+S_TestChecksums	Prüfsummen testen
+S_CreateChecksums	Prüfsummendatei erstellen
+S_SecureDelete	Sicher löschen…
+S_HelpText	Kopieren mit MegaCopier: setzt nach einem Stromausfall fort
+S_DeliverFailed	Die Kopie konnte nicht an MegaCopier übergeben werden.
+S_OpenFailed	MegaCopier konnte nicht geöffnet werden.

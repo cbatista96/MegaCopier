@@ -49,17 +49,17 @@ public sealed partial class OptionsTab : UserControl
     public static string HashName(FileHashAlgorithm hash) => hash switch
     {
         FileHashAlgorithm.None => L.Get("Hash_None"),
-        FileHashAlgorithm.Crc32 => "Hash: CRC32",
-        FileHashAlgorithm.XxHash3 => "Hash: xxHash3-64",
-        FileHashAlgorithm.XxHash64 => "Hash: xxHash64",
-        FileHashAlgorithm.XxHash128 => "Hash: xxHash3-128",
-        FileHashAlgorithm.Md5 => "Hash: MD5",
-        FileHashAlgorithm.Sha1 => "Hash: SHA-1",
-        FileHashAlgorithm.Sha256 => "Hash: SHA-256",
-        FileHashAlgorithm.Sha3_256 => "Hash: SHA3-256",
-        FileHashAlgorithm.Sha3_512 => "Hash: SHA3-512",
-        FileHashAlgorithm.Blake3 => "Hash: BLAKE3",
-        _ => "Hash: SHA-512",
+        FileHashAlgorithm.Crc32 => L.F("Hash_Name", "CRC32"),
+        FileHashAlgorithm.XxHash3 => L.F("Hash_Name", "xxHash3-64"),
+        FileHashAlgorithm.XxHash64 => L.F("Hash_Name", "xxHash64"),
+        FileHashAlgorithm.XxHash128 => L.F("Hash_Name", "xxHash3-128"),
+        FileHashAlgorithm.Md5 => L.F("Hash_Name", "MD5"),
+        FileHashAlgorithm.Sha1 => L.F("Hash_Name", "SHA-1"),
+        FileHashAlgorithm.Sha256 => L.F("Hash_Name", "SHA-256"),
+        FileHashAlgorithm.Sha3_256 => L.F("Hash_Name", "SHA3-256"),
+        FileHashAlgorithm.Sha3_512 => L.F("Hash_Name", "SHA3-512"),
+        FileHashAlgorithm.Blake3 => L.F("Hash_Name", "BLAKE3"),
+        _ => L.F("Hash_Name", "SHA-512"),
     };
 
     public static int ConflictIndex(ConflictPolicy conflict) => conflict switch

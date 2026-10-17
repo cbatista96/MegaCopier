@@ -1,0 +1,12 @@
+clave	es-ES	en-US
+S_CopyHere	Copiar aquí con MegaCopier	Copy here with MegaCopier
+S_MoveHere	Mover aquí con MegaCopier	Move here with MegaCopier
+S_Paste	Pegar con MegaCopier	Paste with MegaCopier
+S_PasteIntoFolder	Pegar en esta carpeta con MegaCopier	Paste into this folder with MegaCopier
+S_MoveIntoFolder	Mover a esta carpeta con MegaCopier	Move into this folder with MegaCopier
+S_TestChecksums	Comprobar sumas	Test checksums
+S_CreateChecksums	Crear archivo de sumas	Create checksum file
+S_SecureDelete	Borrar de forma segura…	Securely delete…
+S_HelpText	Copia con MegaCopier: reanudable tras un corte de luz	Copy with MegaCopier: resumes after a power cut
+S_DeliverFailed	No se pudo entregar la copia a MegaCopier.	Couldn't hand the transfer over to MegaCopier.
+S_OpenFailed	No se pudo abrir MegaCopier.	Couldn't open MegaCopier.

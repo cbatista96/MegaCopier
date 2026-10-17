@@ -1,0 +1,220 @@
+clave	texto
+E_WouldMove	移動されます
+E_WouldCopy	コピーされます
+E_WouldReplace	既存のファイルを置き換えます
+E_WouldReplaceNewer	置き換えます: コピー元のほうが新しい
+E_WouldReplaceSize	置き換えます: サイズが変わった
+E_WouldKeepBoth	別の名前でコピーします（両方残す）
+E_WouldRenameExisting	既存のファイルの名前を変えてこれをコピーします
+E_WouldAsk	どうするか確認します
+E_WouldSkipIdentical	スキップ: 同一
+E_WouldSkipExists	スキップ: 既に存在
+E_WouldSkipOlder	スキップ: コピー先が同じか新しい
+E_WouldSkipSameSize	スキップ: サイズが同じ
+E_WouldSkipNotInDestination	スキップ: コピー先にない
+E_WouldDelete	コピー先から削除: コピー元にない
+E_Deleted	コピー先から削除: コピー元にない
+E_WouldFail	エラーとして記録されます
+E_WouldSkipSamePath	スキップ: コピー元とコピー先が同じ
+E_SkipIdentical	既存のファイルと同一
+E_SkipOlder	コピー先が同じか新しい
+E_SkipSameSize	既存のファイルとサイズが同じ
+E_SkipNotInDestination	コピー先にない（既存のファイルのみ更新）
+E_SkipSamePath	コピー元とコピー先が同じファイル
+E_SkipExisted	既に存在: スキップしました
+E_DeletedLog	コピー先から削除しました（コピー元にない）。
+E_FolderExistsSkipped	フォルダーはコピー先に既に存在: スキップしました。
+E_VersionSaved	以前のバージョンを {0} に保存しました
+E_HardLinkTo	{0} へのハードリンク
+E_HardLinkCreated	ハードリンクを作成しました（{0} と同じファイル）。
+E_HardLinkFailed	ハードリンクを作成できませんでした ({0})。ファイルをコピーします。
+E_HashStreamFailed	ファイル内にハッシュを保存できませんでした（コピー先が NTFS ではない？）: {0}
+E_DeviceLost	ネットワークまたはドライブが失われました: 復帰するまで待って自動で再開します。
+E_DeviceBack	ドライブが復帰しました: 続きから再開します。
+E_DiskFull	コピー先がいっぱいです: 空き容量ができると自動で再開します。
+E_SpaceBack	空き容量ができました: 再開します。
+E_HashStreamsSaved	{0} 個のファイル内にハッシュを保存しました。
+E_ChecksumSaved	チェックサムファイルを保存しました: {0}
+E_HashStart	{1} 個のファイル ({2}) の {0} を計算します。
+E_Added	{0} 個のファイル ({1}) を追加しました。
+E_NeedPassword	このコピーは暗号化されています: 続けるにはパスワードを再入力してください。
+E_DryRunSummary	シミュレーション: {0} 個をコピー、{1} 個をスキップ、{2} 個を削除します。
+E_DoneCopy	{0} で完了: コピー {1}、スキップ {2}、エラー {3}。
+E_DuplicateInDestination	コピー先に既にあります: {0}
+E_Repaired	検証で破損したブロックを {0} 個修復しました。
+E_DeltaCopy	差分コピー: {0} を書き込み、{1} は既に同一でした。
+E_Cloned	ブロックを瞬時に複製しました (ReFS/Dev Drive): 変更するまで追加の容量を使いません。
+E_SmbCompressed	SMB 圧縮を使って Windows がコピーしました。
+E_ServerSide	サーバー上で直接コピーしました（データはこの PC を経由していません）。
+E_Resumed	{0} から再開しました。
+E_HashMismatch	ハッシュが一致しません
+E_SourceChanged	読み直したコピー元がコピーした内容と一致しません（読み取りエラー、またはコピー中に変更）
+E_SkippedByUser	ユーザーがスキップ
+E_SkippedByUserLog	ユーザーがスキップしました。
+E_ExistingDiffers	既存のファイルがコピー元と異なります
+E_ExistingDiffersLog	既存のファイルはサイズと日付が同じですが、内容が異なります。
+E_IdenticalVerified	同一（ハッシュで検証済み）
+E_SkippedNotVerified	スキップしたファイルを検証できませんでした: {0}
+E_RetryAtEnd	最後に再試行します: {0}
+E_DestinationExists	コピー先は既に存在します: {0}
+E_ExistingRenamed	既存のファイルの名前を {0} に変更しました。
+E_NoSpace	コピー先の容量が足りません: {0:F2} GB 必要、空き {1:F2} GB。
+E_RescuedZeros	救出しました: コピー元の読めない {0} をゼロで埋めました（ログを参照）。
+E_LinkExists	コピー先に既に存在するため、リンクは作り直しませんでした: {0}
+E_LinkCreated	リンクを作成しました: {0} → {1}
+E_JunctionCreated	ジャンクションを作成しました: {0} → {1}
+E_LinkFallback	リンクを作成できませんでした ({0})。リンク先のファイルをコピーしました。
+E_LinkFailed	リンクを作成できませんでした: {0}
+E_NoChecksums	チェックサムファイル (.sha256, .md5, .sfv, .xxh3...) も、ハッシュを保存したファイルも見つかりませんでした。
+E_TestStart	{1} 個のチェックサムリストから {0} 個のファイル ({2}) を確認します。
+E_NotFound	存在しません: {0}
+E_NoStoredHash	保存されたハッシュなし: 未確認
+E_ModifiedAfterHash	ハッシュ保存後に変更: 未確認
+E_NowProtected	保存されたハッシュなし: 保護を開始
+E_HashRenewed	ハッシュ保存後に変更: ハッシュを更新
+E_ChecksumMismatch	内容が保存されたチェックサムと一致しません
+E_DoneTest	{0} で確認完了: 正常 {1}、エラー {2}。
+E_UnsupportedAlgorithm	サポートされていないアルゴリズム: {0}
+E_DeleteStart	{0} 個のファイル ({1}) を削除します。
+E_WipeStart	{0} 個のファイル ({1}) を完全に削除します。
+E_DoneDelete	{0} で完了: 削除 {1}、エラー {2}。
+E_NoSources	コピー元が指定されていません。
+E_WholeDrive	ドライブ全体のコピーはまだサポートしていません: {0}
+E_SourceMissing	コピー元が存在しません: {0}
+E_IntoItself	フォルダーをそれ自身の中にコピーすることはできません: {0}
+E_SourceUnreadable	コピー元を読み取れません: {0}
+E_LinkSkipped	リンクをスキップしました: {0}
+E_BrokenLinkSkipped	壊れたリンクをスキップしました: {0} → {1}
+E_LinkLoop	リンクのループを回避しました: {0}
+E_StreamsFailed	代替データストリームはコピーされませんでした: {0}
+E_RescueGap	救出モード: バイト {0:N0}–{1:N0}（{2:N0} バイト）を読めませんでした。ゼロで埋めました。
+E_BlockUnrepairable	「{1}」のブロック {0} は修復後もコピー元と一致しません。
+E_SourceChangedSinceStart	コピー元のファイルが、開始時にコピーした内容と一致しなくなりました。
+E_SourceSizeChanged	コピー中にコピー元のファイルのサイズが変わりました。
+E_Disk_Degraded	性能低下
+E_Disk_Predictive	故障の予兆 (SMART)
+E_Disk_Error	エラー
+E_Disk_Unrecoverable	回復不能
+E_Disk_Stopped	停止
+E_Disk_Lost	通信不能
+E_Disk_Transient	一時的なエラー
+E_Disk_Metadata	認識できないメタデータ
+E_JunctionOpenFailed	ジャンクションを作成するために {0} を開けませんでした。
+E_JunctionFailed	ジャンクション {0} → {1} を作成できませんでした。
+E_HardLinkCreateFailed	ハードリンク {0} を作成できませんでした。
+E_SnapshotFailed	{0} のスナップショットを作成できませんでした: {1}
+E_SnapshotOpenFailed	スナップショットを開けませんでした ({0})。
+E_NoWmiAnswer	Win32_ShadowCopy が応答しませんでした。
+E_PowerShellExit	PowerShell がコード {0} で終了しました。
+E_ReadSecurityAdmin	コピー元のセキュリティを読み取れません: 管理者権限が必要です。
+E_ReadSecurityFailed	コピー元のセキュリティを読み取れません（エラー {0}）。
+E_WriteSecurityAdmin	コピー先にセキュリティを適用できません: 管理者権限が必要です。
+E_WriteSecurityFailed	コピー先にセキュリティを適用できません（エラー {0}）。
+E_AtomicExists	コピー先に既に存在: 既存のフォルダーにコピーします（「全部か無か」なし）。
+E_AtomicNotPublished	エラーがありました: フォルダーはまだ公開しません（{0} として隠したまま）。再試行すると完全な状態で現れます。
+E_AtomicPublished	フォルダーが完成しました: その名前で公開しました。
+E_AtomicRenameFailed	フォルダーに最終的な名前を付けられませんでした: {0}
+E_BadFileHeader	ファイルヘッダーが無効です。
+E_PartialChanged	途中のファイルが変更されています。
+E_NotEncrypted	MegaCopier で暗号化されたファイルではありません。
+E_BadEncryptedHeader	暗号化ファイルのヘッダーが無効です。
+E_EncryptedExtra	暗号化ファイルに余分なデータがあります。
+E_ConnectFailed	{0}:{1} に接続できませんでした（相手の MegaCopier が受信中で、ファイアウォールが許可していますか？）: {2}
+E_AlreadyOnPeer	相手の PC に既にあります
+E_DamagedTwice	2 回とも相手の PC に破損した状態で届きました
+E_Fat32	FAT32 には入りません（1 ファイル最大 4 GB）。ディスクを exFAT または NTFS でフォーマットしてください。
+E_FatLimits	コピー先は {0} です: 代替データストリームとアクセス許可は保存されず、日付は 2 秒単位です。
+E_CaseCollisions	コピー先で {0} 個の名前が重複します（大文字小文字の違いのみ）: 競合として扱います。
+E_BadName	Windows で問題のある名前（予約名、または末尾がピリオドや空白）: 開けないプログラムがあります。
+E_LongPaths	{0} 個のファイルのパスが 260 文字を超えます: エクスプローラーなどで開けない場合があります。
+E_WrongCode	コードが相手の PC に表示されているものと一致しません。
+E_PeerUnknownCode	相手の PC はこのコードを知りません: 接続は安全ではありません。
+E_FlushFailed	データをディスクに書き込めませんでした。
+E_SourceInfoFailed	コピー元ファイルの情報を読み取れませんでした。
+E_JobNotRunning	ジョブは実行されていません。
+E_StopBeforeDiscard	破棄する前にジョブを停止してください。
+E_JobErrors	{0} 個のファイルでエラー
+E_NoEncryptedFiles	選択した中に MegaCopier の暗号化ファイル (.mcenc) はありません。
+E_WrongPassword	パスワードが間違っているか、暗号化ファイルが破損または改ざんされています。
+E_BadPeerMessage	相手の PC からのメッセージが無効です。
+E_NoPhotoDate	{0} 個のファイルに撮影日時がありません: 更新日時で整理します。
+E_F_NoHidden	隠しファイルを除く
+E_F_NoSystem	システムファイルを除く
+E_F_NoJunk	不要ファイルを除く
+E_F_Without	{0} を除く
+E_F_Today	今日の
+E_F_Yesterday	昨日以降の
+E_F_ThisWeek	今週の
+E_F_ThisMonth	今月の
+E_F_ThisYear	今年の
+E_F_LastDay	直近 1 日
+E_F_LastWeek	直近 1 週間
+E_F_LastMonth	直近 1 か月
+E_F_LastYear	直近 1 年
+E_F_LastDays	直近 {0} 日
+E_F_LastWeeks	直近 {0} 週間
+E_F_LastMonths	直近 {0} か月
+E_F_LastYears	直近 {0} 年
+E_F_Before	{0} より前
+E_F_Since	{0} 以降
+E_F_InYear	{0} 年の
+E_Kind_fotos	写真
+E_Kind_videos	動画
+E_Kind_musica	音楽
+E_Kind_documentos	ドキュメント
+E_Kind_comprimidos	圧縮ファイル
+E_Kind_programas	プログラム
+E_Kind_temporales	一時ファイル
+C_UnknownCommand	不明なコマンド: {0}
+C_UnknownConflict	不明な競合モード: {0}
+C_UnknownOption	不明なオプション: {0}
+C_NeedSourceAndDestination	少なくとも 1 つのコピー元とコピー先フォルダーを指定してください。
+C_UnknownSendOption	send の不明なオプション: {0}
+C_NeedItem	少なくとも 1 つのファイルまたはフォルダーを指定してください。
+C_Delivered	{1:F0} ms で MegaCopier に渡しました（ジョブ {0}）。
+C_Rejected	MegaCopier がコピーを拒否しました: {0}
+C_AppNotFound	MegaCopier が開いておらず、MegaCopier.exe が見つかりません（MEGACOPIER_APP にパスを設定してください）。
+C_AppStarted	MegaCopier が開いていなかったため、コピーと一緒に起動しました。
+C_BadTime	無効な時刻: {0}（HH:mm または日時を使ってください）。
+C_NeedChecksums	チェックサムファイルまたはそれを含むフォルダーを指定してください。
+C_Ok	正常
+C_Failed	失敗
+C_TestDone	正常 {0}、エラー {1}、{2:F1} 秒。
+C_NeedDelete	削除するものを指定してください。
+C_NeedYes	削除は元に戻せません: 確認のため --yes を付けてください。
+C_DeleteDone	{0} 個のファイルを削除、{1} 個がエラー。
+C_WipeDone	{0} 個のファイルを完全に削除、{1} 個がエラー。
+C_NoJob	ジョブ {0} は存在しません。
+C_NoPendingJobs	保留中のジョブはありません。
+C_Resuming	{0} を再開: {1} → {2}
+C_TestKill	[テスト] {1} の {0} を確定した後にプロセスを終了します。
+C_TestContinue	[テスト] 続行するには: mcopy resume {0}
+C_DryRunNote	シミュレーション: 何も変更していません。本番で実行するには --dry-run を外してください。
+C_RetryHint	エラーのファイルがあります。再試行: mcopy resume {0}
+C_PausedHint	コピーを一時停止しました。続きから再開: mcopy resume {0}
+C_Error	エラー: {0}
+C_JobPending	ジョブは保留中です: mcopy resume {0}
+C_Exists	既に存在します: {0}
+C_New	新しいファイル
+C_Existing	既存のファイル
+C_ConflictPrompt	[r] 置き換え、[s] スキップ、[k] 両方残す（大文字 = すべてに適用）:
+C_ConflictKeys	rsk
+C_DoneIn	{0} で完了
+C_Summary	コピー: {0}（再開: {1}）   スキップ: {2}   エラー: {3}
+C_Transferred	転送: {0}   再開のおかげで再コピー不要: {1}
+C_AverageSpeed	平均速度: {0}/s
+C_Blocks	再開時に破棄したブロック: {0}   検証で修復したブロック: {1}
+C_MissingValue	{0} の値がありません。
+C_NeedPositive	{0} には正の数が必要です。
+C_Password	パスワード:
+C_Repeat	もう一度:
+C_PasswordShort	パスワードは 8 文字以上必要です。
+C_PasswordMismatch	パスワードが一致しません。
+C_Checking	確認中
+C_Verifying	検証中
+C_Left	残り {0}
+C_Of	{0} / {1}
+C_Usage	MegaCopier — 停電に強いコピー\n\n使い方:\n  mcopy copy <コピー元>... <コピー先フォルダー> [オプション]\n  mcopy move <コピー元>... <コピー先フォルダー> [オプション]   移動（同じディスクなら瞬時）\n  mcopy send <コピー元>... <コピー先フォルダー> [--verify] [--move] [--also <別フォルダー>]... [--at HH:mm]\n                              コピーを MegaCopier アプリ（ウィンドウと通知領域）に渡す\n  mcopy send --test <チェックサム|フォルダー>...   アプリでチェックサムファイルを確認\n  mcopy send --delete [--secure] <パス>...       アプリで（完全に）削除\n  mcopy send --hash <フォルダー|ファイル>...       アプリでチェックサムファイルを作成\n  mcopy send ... [--mirror|--update-only|--folders-only] [--dry-run]\n  mcopy test <チェックサム|フォルダー>...   アプリなしで .sha256, .md5, .sfv, .xxh3... を確認\n  mcopy decrypt <暗号化ファイル|フォルダー>... <コピー先フォルダー>   .mcenc ファイルを復号\n  mcopy delete [--secure] --yes <パス>...   アプリなしで削除（--secure: 先に上書き）\n  mcopy resume [id]      中断したジョブ（またはその 1 つ）を再開\n  mcopy jobs             保留中のジョブを一覧表示\n\ncopy のオプション:\n  --verify               キャッシュなしでコピー先を読み直し、ハッシュを比較して壊れたブロックを修復\n  --conflict <モード>    overwrite（既定）| skip | newer | rename | fail | ask\n  --limit-mb <n>         n MB/s に制限\n  --force                コピー先が同一でもコピー\n  --chunk-mb <n>         何 MB ごとにディスク上で進行を確定するか（既定 64）\n  --block-mb <n>         1 回の読み書きのサイズ (MB)\n  --queue <n>            同時に行う読み書きの数\n  --no-unbuffered        直接 I/O の代わりに Windows のキャッシュを使う\n  --mirror               同期: コピー元にもうないものをコピー先から削除\n  --update-only          コピー先に既にあるファイルのみ更新\n  --folders-only         フォルダー構造のみ作成\n  --dry-run              シミュレーション: 各ファイルがどうなるかを表示し、何も変更しない\n  --versions <フォルダー>  置換・削除したファイルをコピー先のそのフォルダーに保存\n  --skip-junk            Thumbs.db, desktop.ini, .DS_Store, ~$... をスキップ\n  --smb-compress         ネットワーク経由のコピーで SMB 圧縮を要求（低速ネットワーク）\n  --atomic               全部か無か: フォルダーは完成してから現れる\n  --rescue               救出モード: 破損ディスクから読めるものを救出（読めない部分はゼロ）\n  --delta                大きなファイルを置き換えるときは変更されたブロックだけ書き込む\n  --organize             写真と動画を撮影日で「年-月」フォルダーに整理\n  --skip-duplicates      コピー先に既にあるもの（同じ内容、名前は問わない）はコピーしない\n  --encrypt              パスワードで暗号化したコピー (AES-256、.mcenc ファイル)\n  --crash-after-mb <n>   [テスト] ファイルの n MB を確定した後にプロセスを終了\n\nCtrl+C でコピーを一時停止します。'resume' で最後に確定したブロックから再開します。
+U_Seconds	{0} 秒
+U_MinSec	{0} 分 {1} 秒
+U_HourMin	{0} 時間 {1} 分

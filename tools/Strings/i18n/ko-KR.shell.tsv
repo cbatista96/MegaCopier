@@ -1,0 +1,12 @@
+clave	texto
+S_CopyHere	MegaCopier로 여기에 복사
+S_MoveHere	MegaCopier로 여기로 이동
+S_Paste	MegaCopier로 붙여넣기
+S_PasteIntoFolder	MegaCopier로 이 폴더에 붙여넣기
+S_MoveIntoFolder	MegaCopier로 이 폴더로 이동
+S_TestChecksums	체크섬 확인
+S_CreateChecksums	체크섬 파일 만들기
+S_SecureDelete	안전하게 삭제…
+S_HelpText	MegaCopier로 복사: 정전 후에도 이어서 가능
+S_DeliverFailed	복사를 MegaCopier에 넘길 수 없습니다.
+S_OpenFailed	MegaCopier를 열 수 없습니다.

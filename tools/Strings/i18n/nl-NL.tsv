@@ -1,0 +1,796 @@
+clave	texto
+JobsSection.Text	Kopieën
+SettingsSection.Text	Instellingen
+FinishButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Wat te doen als alle kopieën klaar zijn
+FinishNothing.Text	Niets doen
+FinishSleep.Text	Slaapstand
+FinishShutdown.Text	Computer afsluiten
+NewCopyText.Text	Nieuwe kopie
+CopyFilesItem.Text	Bestanden kopiëren…
+CopyFolderItem.Text	Een map kopiëren…
+EmptyTitle.Text	Geen kopieën
+EmptyDescription.Text	Kopieën die je start, verschijnen hier. Valt de stroom uit, dan kun je ze hervatten precies waar ze stopten.
+PauseButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Pauzeren
+StopButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Stoppen (later te hervatten)
+OpenFolderButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Doelmap openen
+ClearButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Uit de lijst verwijderen
+DiscardButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Verwerpen en de gedeeltelijke kopie verwijderen
+ConflictDialog.Title	Het bestand bestaat al
+ConflictDialog.PrimaryButtonText	Vervangen
+ConflictDialog.SecondaryButtonText	Beide houden
+ConflictDialog.CloseButtonText	Overslaan
+ConflictExistingTitle.Text	Het bestaande
+ConflictApplyAll.Content	Hetzelfde doen bij de andere conflicten van deze kopie
+RestartInfo.Title	Start MegaCopier opnieuw om de wijziging toe te passen
+RestartInfo.Message	Lopende kopieën stoppen en kun je daarna hervatten.
+RestartButton.Content	Nu opnieuw starten
+AppearanceHeader.Text	Uiterlijk
+ThemeTitle.Text	Thema
+ThemeDescription.Text	Licht, donker of zoals Windows
+ThemeSystem.Content	Zoals Windows
+ThemeLight.Content	Licht
+ThemeDark.Content	Donker
+AccentTitle.Text	Accentkleur
+AccentDescription.Text	Kleur van knoppen, voortgangsbalken en gemarkeerde elementen
+BackdropTitle.Text	Vensterachtergrond
+BackdropDescription.Text	De materialen van Windows 11 laten het bureaublad doorschemeren
+BackdropMica.Content	Mica
+BackdropMicaAlt.Content	Mica Alt (meer tint)
+BackdropAcrylic.Content	Acryl
+BackdropSolid.Content	Effen
+LanguageTitle.Text	Taal
+LanguageDescription.Text	Taal van MegaCopier en van zijn opties in Verkenner
+LanguageAuto.Content	Zoals Windows
+OnTopTitle.Text	Altijd op voorgrond
+OnTopDescription.Text	Het venster blijft boven de andere tijdens het kopiëren
+CopyHeader.Text	Kopiëren
+VerifyTitle.Text	Controleren na het kopiëren
+VerifyDescription.Text	Leest het doel opnieuw zonder cache en herstelt elk blok dat niet met de bron overeenkomt
+ConflictTitle.Text	Als het bestand al bestaat
+ConflictDescription.Text	Identieke bestanden (zelfde grootte en datum) worden altijd overgeslagen
+ConflictAsk.Content	Vragen
+ConflictReplace.Content	Vervangen
+ConflictSkip.Content	Overslaan
+ConflictNewer.Content	Vervangen als nieuwer
+ConflictKeepBoth.Content	Beide houden
+SpeedTitle.Text	Snelheidslimiet
+SpeedDescription.Text	Laat schijf- of netwerkbandbreedte over voor andere taken (geldt voor nieuwe kopieën)
+SpeedUnlimited.Content	Onbeperkt
+AutoResumeTitle.Text	Onderbroken kopieën automatisch hervatten
+AutoResumeDescription.Text	Na een stroomstoring of herstart zonder vragen verdergaan wanneer MegaCopier opent
+ExplorerHeader.Text	Verkenner
+PasteTitle.Text	Kopiëren en verplaatsen met MegaCopier bij plakken (Ctrl+V)
+PasteDescription.Text	Als je gekopieerde (Ctrl+C) of geknipte (Ctrl+X) bestanden plakt in Verkenner of op het bureaublad, doet MegaCopier het. Plakken in dezelfde map blijft Verkenner doen
+ShellMenuTitle.Text	Opties in het snelmenu
+ShellMenuDescription.Text	'Plakken met MegaCopier' (onder Meer opties weergeven) en 'Hierheen kopiëren / verplaatsen met MegaCopier' bij slepen met de rechtermuisknop
+SystemHeader.Text	Systeem
+StartupTitle.Text	Starten met Windows
+StartupDescription.Text	Blijft in het systeemvak zodat kopieën direct beginnen
+NotifyTitle.Text	Melden bij voltooiing
+NotifyDescription.Text	Systeemmelding wanneer een kopie klaar is en het venster niet zichtbaar is
+Accent_System	Zoals Windows
+Accent_Blue	Blauw
+Accent_Violet	Violet
+Accent_Teal	Turkoois
+Accent_Green	Groen
+Accent_Orange	Oranje
+Accent_Pink	Roze
+Accent_Red	Rood
+About	MegaCopier {0} · kopieën die stroomstoringen overleven
+Picker_CopyHere	Hierheen kopiëren
+Finish_Label	Na afloop
+Finish_LabelSleep	Na afloop: slaapstand
+Finish_LabelShutdown	Na afloop: afsluiten
+Conflict_Message	Er is al een bestand met de naam '{0}' in '{1}'.
+Conflict_SourceCopy	Het bestand dat je kopieert
+Conflict_SourceMove	Het bestand dat je verplaatst
+Conflict_Newer	 · nieuwer
+Job_OneItem	'{0}'
+Job_ManyItems	{0} items
+Job_TitleCopying	{0} kopiëren
+Job_TitleMoving	{0} verplaatsen
+Job_TitleCopied	{0} gekopieerd
+Job_TitleMoved	{0} verplaatst
+Job_TitleQueued	Wacht: {0}
+Job_Destination	naar {0}
+Job_StateQueued	In wachtrij: schijf bezet
+Job_StateVerifying	Controleren
+Job_StateValidating	Al gekopieerde delen controleren
+Job_StateWaiting	Wacht op je beslissing: het bestand bestaat al
+Job_StateCopying	Kopiëren
+Job_StateMoving	Verplaatsen
+Job_StatePaused	Gepauzeerd
+Job_StateCompleted	Voltooid
+Job_StateCompletedErrors	Voltooid met fouten
+Job_StateFailed	Fout
+Job_StateInterrupted	Onderbroken · kan verder waar het stopte
+Job_ResumeHint	Klik op Hervatten om verder te gaan
+Job_Preparing	Voorbereiden…
+Job_Progress	{0} van {1}
+Job_Remaining	nog {0}
+Job_Files	{0} van {1} bestanden
+Job_FilesCopiedOne	{0} bestand gekopieerd
+Job_FilesCopiedMany	{0} bestanden gekopieerd
+Job_FilesMovedOne	{0} bestand verplaatst
+Job_FilesMovedMany	{0} bestanden verplaatst
+Job_TransferredIn	{0} in {1}
+Job_Recovered	{0} hersteld
+Job_Skipped	{0} overgeslagen
+Job_Verified	gecontroleerd
+Job_Repaired	({0} blokken hersteld)
+Job_FailedFiles	{0} bestanden met fouten
+Job_Resume	Hervatten
+Job_Retry	Opnieuw
+Job_FailuresHeader	De {0} bestanden met problemen tonen
+Job_FailuresMore	… en nog {0}
+Tray_Open	MegaCopier openen
+Tray_PauseAll	Alles pauzeren
+Tray_ResumeAll	Alles hervatten
+Tray_Startup	Starten met Windows
+Tray_Exit	Afsluiten
+Tray_OneJob	1 kopie
+Tray_ManyJobs	{0} kopieën
+Notify_InterruptedTitle	Er zijn onderbroken kopieën
+Notify_InterruptedOne	Een kopie is niet afgemaakt. Open haar om verder te gaan waar ze stopte.
+Notify_InterruptedMany	{0} kopieën zijn niet afgemaakt. Open ze om verder te gaan.
+Notify_DoneTitle	Kopie voltooid
+Notify_ProblemTitle	De kopie had problemen
+Notify_AllDoneTitle	Kopieën voltooid
+Error_NeedsPaths	Een kopieeropdracht heeft bronnen en een doel nodig.
+Tray_Disable	Uitschakelen (kopiëren van Windows gebruiken)
+Tray_Enable	MegaCopier inschakelen
+Tray_TooltipDisabled	MegaCopier · uitgeschakeld (Windows kopieert)
+Notify_DisabledTitle	MegaCopier uitgeschakeld
+Notify_DisabledBody	Windows verzorgt het kopiëren. Dubbelklik op het pictogram om het weer in te schakelen.
+Notify_EnabledTitle	MegaCopier ingeschakeld
+Notify_EnabledBody	Kopiëren en verplaatsen in Verkenner doet voortaan MegaCopier.
+AboutDialog.Title	Over MegaCopier
+AboutDialog.CloseButtonText	Sluiten
+About_DataFolder.Content	De gegevensmap openen (instellingen, thema's, geschiedenis, rapporten)
+About_Description.Text	Bestandskopieerder voor Windows 11 die zelfs één enorm bestand hervat na een stroomstoring, en controleert wat al gekopieerd is.
+About_Features.Text	Asynchrone I/O zonder cache · parallelle lees- en schrijfacties · controle met hash (CRC32, xxHash, MD5, SHA) · wachtrij per schijf · pauzeren en hervatten · verplaatsen · conflicten · snelheidslimiet · kopieerlijsten · rapporten · thema's.
+CopyFiles.Text	Bestanden kopiëren…
+CopyFolder.Text	Een map kopiëren…
+CopyFilesText.Text	Bestanden kopiëren
+CopyFolderText.Text	Map kopiëren
+Files_AddFiles.Text	Bestanden toevoegen…
+Files_AddFolder.Text	Map toevoegen…
+Files_AutoScroll.Content	Huidige volgen
+Files_CopyHashes.Text	Hashes kopiëren
+Files_CopyPath.Text	Pad kopiëren
+Files_Empty.Text	Geen bestanden om te tonen
+Files_ExportCsv.Text	Exporteren naar CSV…
+Files_ExportHtml.Text	HTML-rapport exporteren…
+Files_FilterAll.Content	Alle
+Files_FilterDone.Content	Gekopieerd
+Files_FilterErrors.Content	Met fouten
+Files_FilterPending.Content	In behandeling
+Files_FilterSkipped.Content	Overgeslagen
+Files_HideFinished.Content	Voltooide verbergen
+Files_Menu.Text	Lijst
+Files_MoveBottom.Text	Naar het einde
+Files_MoveDown.Text	Omlaag
+Files_MoveTop.Text	Naar het begin
+Files_MoveUp.Text	Omhoog
+Files_OpenSource.Text	Bron tonen
+Files_OpenTarget.Text	Doel tonen
+Files_Remove.Text	Uit de kopie verwijderen
+Files_Retry.Text	Mislukte opnieuw proberen
+Files_SaveList.Text	Kopieerlijst opslaan…
+Files_Search.PlaceholderText	Bestanden zoeken
+Files_Size.Text	Grootte
+Files_SourceHash.Text	Bronhash
+Files_TargetHash.Text	Doelhash
+History_Clear.Text	Wissen
+History_Empty.Text	Nog geen voltooide kopieën
+History_Open.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Doel openen
+History_Repeat.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Herhalen (kopieert alleen wat nieuw of gewijzigd is)
+History_Title.Text	Geschiedenis
+Log_Export.Text	Logboek exporteren
+Options_Acl.Content	Machtigingen (ACL)
+Options_Attributes.Content	Kenmerken
+Options_Audit.Content	Controle (SACL)
+Options_BufferSize.Text	Buffergrootte
+Options_Data.Content	Gegevens
+Options_ExportReport.Content	HTML-rapport opslaan
+Options_FilesFolders.Text	Bestanden en mappen
+Options_OnFinish.Text	Na afloop
+Options_Owner.Content	Eigenaar
+Options_ResetDefault.Text	Herstellen
+Options_RunningInfo.Message	De kopie loopt: deze wijzigingen gelden bij het hervatten (Controleren en Onbeheerd meteen).
+Options_SaveChecksum.Content	Controlesombestand opslaan
+Options_SaveDefault.Text	Als standaard opslaan
+Options_Scripts.Text	Opdrachten na afloop
+Options_ScriptsHelp.Text	Eén per regel, uitgevoerd met cmd.exe. Begin met 'ok:' om alleen bij succes uit te voeren of met 'error:' alleen bij een fout. Variabelen: %MEGACOPIER_STATE%, %MEGACOPIER_DESTINATION%, %MEGACOPIER_SOURCES%, %MEGACOPIER_FILES%, %MEGACOPIER_BYTES%, %MEGACOPIER_FAILED%, %MEGACOPIER_CHECKSUM%.
+Options_Security.Text	Beveiliging (NTFS)
+Options_Streams.Content	Alternatieve gegevensstromen (ADS)
+Options_SystemCache.Content	Systeemcache gebruiken
+Options_Threads.Text	Parallel
+Options_ThreadsShort.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Gelijktijdige lees- en schrijfacties
+Options_Timestamps.Content	Datums
+Options_Transfer.Text	Wat wordt gekopieerd
+Options_TransferOptions.Text	Overdracht
+Options_Verify.Content	Controleren na kopiëren
+Options_VerifySkipped.Content	Ook overgeslagen controleren
+Page_Back.Text	Terug
+Pager_Next.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Volgende kopie
+Pager_Previous.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Vorige kopie
+Pager_Text	Kopie {0} van {1}
+Panel_Discard.Text	Verwerpen
+Panel_File.Text	Bestand
+Panel_OpenFolder.Text	Map openen
+Panel_Pause.Text	Pauzeren
+Panel_Skip.Text	Overslaan
+Panel_Stop.Text	Stoppen
+Panel_More	Meer
+Panel_Less	Minder
+Priority_Low.Content	Laag
+Priority_BelowNormal.Content	Lager dan normaal
+Priority_Normal.Content	Normaal
+Priority_AboveNormal.Content	Hoger dan normaal
+Priority_High.Content	Hoog
+Settings_Advanced.Text	Geavanceerd
+Settings_EnabledTitle.Text	MegaCopier gebruiken in plaats van kopiëren van Windows
+Settings_EnabledDescription.Text	Ook met dubbelklikken op het pictogram in het systeemvak. Uitgeschakeld wordt het pictogram grijs met een rode X en kopieert Verkenner.
+Settings_FastTitle.Text	Snelle apparaten
+Settings_FastDescription.Text	Stations of paden (NVMe-SSD, RAID) die meerdere kopieën tegelijk aankunnen; de rest gaat één voor één per schijf.
+Settings_FinishTitle.Text	Als de kopieën klaar zijn
+Settings_FinishDescription.Text	Wat het venster doet als er niets meer loopt
+Settings_FinishAuto.Content	Sluiten als alles goed ging
+Settings_FinishClose.Content	Altijd sluiten
+Settings_FinishKeep.Content	Open laten
+Settings_FreeSpace.Content	Eerst vrije ruimte controleren
+Settings_General.Text	Algemeen
+Settings_HashTitle.Text	Hash-algoritme
+Settings_HashDescription.Text	Voor controle en opgeslagen controlesommen. xxHash3 is het snelst; SHA-256 het meest compatibel.
+Settings_MaxJobsTitle.Text	Gelijktijdige kopieën
+Settings_MaxJobsDescription.Text	Maximaal aantal kopieën tegelijk (0 = onbeperkt). Kopieën op dezelfde schijf wachten altijd op hun beurt.
+Settings_ModeAuto.Content	Automatisch
+Settings_ModeCompact.Content	Compact
+Settings_ModeExpanded.Content	Volledig
+Settings_PerformanceTitle.Text	Prestaties
+Settings_PerformanceDescription.Text	Snelheidslimiet, buffergrootte en gelijktijdige bewerkingen
+Settings_PriorityTitle.Text	Procesprioriteit
+Settings_PriorityDescription.Text	Laag houdt de computer vlotter tijdens het kopiëren
+Settings_Queue.Text	Wachtrij
+Settings_Themes.Text	Thema's
+Settings_WhatToCopy.Text	Wat wordt gekopieerd en wat daarna gebeurt
+Settings_Window.Text	Venster
+Settings_WindowModeTitle.Text	Kopieervenster
+Settings_WindowModeDescription.Text	Automatisch: compact bij één kopie, volledig bij meerdere. 'Meer' en 'Minder' wisselen op elk moment.
+Status_Bytes.Text	Grootte
+Status_Category.Text	Status
+Status_Copied.Text	Gekopieerd
+Status_Failed.Text	Met fouten
+Status_Files.Text	Bestanden
+Status_Pending.Text	In behandeling
+Status_Skipped.Text	Overgeslagen
+Status_Total.Text	Totaal
+Status_Verified.Text	Gecontroleerd
+Tab_Files.Text	Bestanden
+Tab_Log.Text	Logboek
+Tab_Options.Text	Opties
+Tab_Status.Text	Status
+Tab_Target.Text	Doel
+Target_Destination.Text	Doel
+Target_Source.Text	Bron
+Target_Space	{0} vrij van {1}
+Theme_BarHeight.Header	Hoogte van de balken
+Theme_Radius.Header	Afronding
+Theme_Customize.Text	Thema aanpassen (kleuren, balken, achtergrond)
+Theme_Delete.Text	Verwijderen
+Theme_Export.Text	Exporteren…
+Theme_Import.Text	Importeren…
+Theme_Name.Header	Naam
+Theme_Save	Opslaan
+Theme_SaveAsNew	Opslaan als nieuw thema
+Theme_Auto	Fluent (zoals Windows)
+Theme_CopyOf	{0} (aangepast)
+Theme_Custom	Mijn thema
+Theme_FileType	MegaCopier-thema
+Theme_ImportFailed	Het thema kon niet worden geïmporteerd
+Theme_ColorBackground	Achtergrond
+Theme_ColorSurface	Kaarten
+Theme_ColorSurfaceStrong	Gemarkeerde kaarten
+Theme_ColorBorder	Randen
+Theme_ColorText	Tekst
+Theme_ColorTextSecondary	Secundaire tekst
+Theme_ColorAccent	Accent
+Theme_ColorAccentText	Tekst op accent
+Theme_ColorTotalStart	Totaalbalk: begin
+Theme_ColorTotalEnd	Totaalbalk: einde
+Theme_ColorFileStart	Bestandsbalk: begin
+Theme_ColorFileEnd	Bestandsbalk: einde
+Theme_ColorTrack	Achtergrond van de balken
+Theme_ColorSuccess	Geslaagd
+Theme_ColorWarning	Waarschuwing
+Theme_ColorError	Fout
+Theme_fluent-dark	Fluent donker
+Theme_fluent-light	Fluent licht
+Theme_midnight	Middernacht
+Theme_graphite	Grafiet
+Theme_ocean	Oceaan
+Theme_forest	Bos
+Theme_sunset	Zonsondergang
+Theme_supercopier	SuperCopier klassiek
+Theme_ultracopier	Ultracopier klassiek
+Theme_contrast	Hoog contrast
+Tool_About.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Over
+Tool_ClearDone.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Voltooide kopieën verwijderen
+Tool_History.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Geschiedenis
+Tool_HistoryText.Text	Geschiedenis
+Tool_LoadList.Text	Een kopieerlijst laden…
+Tool_LoadListText.Text	Lijst laden
+Tool_MoveFiles.Text	Bestanden verplaatsen…
+Tool_NewCopy.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Nieuwe kopie
+Tool_NewCopyText.Text	Nieuw
+Tool_PauseAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Alle pauzeren
+Tool_ResumeAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Alle hervatten
+Tool_Settings.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Instellingen
+Tool_Sidebar.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Kopieënlijst tonen of verbergen
+Drop_Caption	Kopiëren met MegaCopier
+File_Pending	In behandeling
+File_Copying	Kopiëren
+File_Verifying	Controleren
+File_Copied	Gekopieerd
+File_Verified	Gecontroleerd
+File_Skipped	Overgeslagen
+File_Failed	Fout
+Files_AddFailed	Kon niet worden toegevoegd
+Files_Count	{0} van {1} bestanden
+Files_ListType	MegaCopier-kopieerlijst
+Files_LoadFailed	De lijst kon niet worden geladen
+Hash_None	Hash: geen
+Jobs_Header	KOPIEËN: {0} · ACTIEF: {1}
+Language_Auto	Zoals Windows
+Log_FileType	Tekst
+Picker_MoveHere	Hierheen verplaatsen
+Settings_AutoResume.Content	Zelf hervatten bij opstarten
+Panel_Options.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Opties van deze kopie
+Panel_UnattendedItem.Text	Onbeheerd (niet vragen: bestaande overslaan)
+Panel_VerifyItem.Text	Controleren na afloop
+Panel_OpenFolderItem.Text	Doelmap openen
+Status_ExactBytes	{0} bytes
+Notify_SettingsResetTitle	Instellingen hersteld
+Notify_SettingsResetBody	Je instellingen konden niet worden gelezen, dus de standaardinstellingen worden gebruikt. Het oorspronkelijke bestand is settings.json.bad.
+Job_TitleCopy	{0} kopiëren
+Job_TitleMove	{0} verplaatsen
+Job_FailedOne	1 bestand met fouten
+Error_InUse	Een ander programma heeft het bestand geopend. Sluit het en klik op 'Opnieuw'.
+Error_AccessDenied	Toegang geweigerd: je mag dit bestand niet lezen of schrijven.
+Error_DiskFull	De doelschijf is vol.
+Error_NotFound	Het bestand of de map bestaat niet meer (verplaatst, verwijderd of station losgekoppeld?).
+Error_PathTooLong	Het pad is te lang voor het doel.
+Error_NetworkLost	De netwerkverbinding is verbroken. Als die terug is, klik op 'Opnieuw' om verder te gaan waar het stopte.
+Error_HashMismatch	De kopie komt niet overeen met het origineel (controle mislukt).
+Error_DeleteFailed	Correct gekopieerd, maar het origineel kon niet worden verwijderd.
+Report_State	Status
+Report_File	Bestand
+Report_Source	Bron
+Report_Destination	Doel
+Report_Size	Grootte
+Report_SourceHash	Bronhash
+Report_TargetHash	Doelhash
+Report_Message	Bericht
+Report_Copied	Gekopieerd
+Report_Verified	Gecontroleerd
+Report_Skipped	Overgeslagen
+Report_Failed	Met fouten
+Job_SkippedOne	1 overgeslagen
+Rules_Filters.Text	Filters
+Rules_Include.Header	Alleen opnemen (maskers gescheiden door ;)
+Rules_Include.PlaceholderText	*.jpg; *.png; Foto's\*
+Rules_Exclude.Header	Uitsluiten
+Rules_Exclude.PlaceholderText	node_modules; *.tmp; Thumbs.db
+Rules_MinSize.Header	Minimale grootte (MB)
+Rules_MaxSize.Header	Maximale grootte (MB)
+Rules_After.Header	Gewijzigd vanaf
+Rules_Before.Header	Gewijzigd tot
+Rules_SkipHidden.Content	Verborgen overslaan
+Rules_SkipSystem.Content	Systeembestanden overslaan
+Rules_Rules.Text	Regels
+Rules_Links.Header	Symbolische koppelingen en juncties
+Rules_LinksCopy.Content	Als koppeling kopiëren
+Rules_LinksFollow.Content	Kopiëren waar ze naar verwijzen
+Rules_LinksSkip.Content	Overslaan
+Rules_Pattern.Header	Naam bij beide houden ({name}, {n}, {ext}, {date})
+Rules_PatternPreview	Voorbeeld: {0}
+Rules_Retries.Header	Nieuwe pogingen
+Rules_Delay.Header	Wachttijd tussen pogingen (s)
+Rules_OnError.Header	Als een bestand blijft mislukken
+Rules_OnErrorSkip.Content	Noteren en doorgaan
+Rules_OnErrorStop.Content	De kopie stoppen (kan worden hervat)
+ConflictDifferentSize.Content	Vervangen als de grootte afwijkt
+ConflictRenameExisting.Content	Het bestaande hernoemen
+Conflict_RenameExisting.Text	Het bestaande hernoemen en dit kopiëren
+Schedule_Title.Text	Start plannen
+Schedule_Set.Text	Plannen
+Schedule_Now.Text	Nu starten
+Schedule_InThePast	Kies een tijd in de toekomst.
+Job_StateScheduled	Gepland voor {0}
+Settings_Favorites.Text	Favoriete mappen
+Settings_FavoritesTitle.Text	Favoriete doelen
+Settings_FavoritesDescription.Text	Ze verschijnen in 'Nieuw > Kopiëren naar' en in het doelenvenster om naar meerdere mappen tegelijk te kopiëren.
+Settings_FavoritesAdd.Text	Map toevoegen
+Settings_FavoritesRemove	{0} verwijderen
+Settings_FavoritesEmpty	Nog geen favorieten.
+Tool_CopyTo.Text	Kopiëren naar
+Tool_CopyToEmpty	Geen favorieten of recente mappen
+Tool_CopyToManage	Favorieten beheren…
+Tool_TestFiles.Text	Controlesombestanden testen…
+Tool_TestFolder.Text	Controlesommen van een map testen…
+Tool_Delete.Text	Verwijderen…
+Tool_Wipe.Text	Veilig verwijderen…
+DestinationsDialog.Title	Waarheen?
+DestinationsDialog.PrimaryButtonText	Starten
+DestinationsDialog.CloseButtonText	Annuleren
+Destinations_SummaryOne	Kies een of meer doelen voor '{0}'.
+Destinations_SummaryMany	Kies een of meer doelen voor {0} items.
+Destinations_Add.Text	Map toevoegen…
+Destinations_Move.Content	Verplaatsen in plaats van kopiëren
+Destinations_Schedule.Content	Later starten
+DeleteDialog.Title	Verwijderen
+DeleteDialog.PrimaryButtonText	Verwijderen
+DeleteDialog.CloseButtonText	Annuleren
+Delete_ConfirmOne	'{0}' verwijderen? Het gaat niet naar de Prullenbak.
+Delete_ConfirmMany	{0} items verwijderen? Ze gaan niet naar de Prullenbak.
+Delete_ConfirmSecureOne	'{0}' veilig verwijderen?
+Delete_ConfirmSecureMany	{0} items veilig verwijderen?
+Delete_SecureWarning.Title	Niet te herstellen
+Delete_SecureWarning.Message	De inhoud wordt overschreven voor het verwijderen. Op SSD's kan de schijf zelf resten bewaren; gebruik voor maximale veiligheid BitLocker-versleuteling.
+FinishHibernate.Text	Sluimerstand
+FinishSignOut.Text	Afmelden
+FinishExit.Text	MegaCopier sluiten
+Finish_LabelHibernate	Na afloop: sluimerstand
+Finish_LabelSignOut	Na afloop: afmelden
+Finish_LabelExit	Na afloop: MegaCopier sluiten
+Notify_FinishSleep	Slaapstand wordt geactiveerd…
+Notify_FinishHibernate	Sluimerstand wordt geactiveerd…
+Notify_FinishShutdown	De computer wordt over 1 minuut afgesloten (annuleren: shutdown /a).
+Notify_FinishSignOut	Afmelden…
+Notify_FinishExitApp	MegaCopier wordt gesloten.
+Files_SelectAll.Text	Alles selecteren
+Files_SelectSameExtension.Text	Met dezelfde extensie selecteren
+Files_SelectSameFolder.Text	Uit dezelfde map selecteren
+Files_InvertSelection.Text	Selectie omkeren
+Job_TitleTest	{0} testen
+Job_TitleTesting	{0} testen
+Job_TitleTested	{0} getest
+Job_TitleDelete	{0} verwijderen
+Job_TitleDeleting	{0} wordt verwijderd
+Job_TitleDeleted	{0} verwijderd
+Job_StateTesting	Testen
+Job_StateDeleting	Verwijderen
+Job_FilesTestedOne	{0} bestand in orde
+Job_FilesTestedMany	{0} bestanden in orde
+Job_FilesDeletedOne	{0} bestand verwijderd
+Job_FilesDeletedMany	{0} bestanden verwijderd
+Job_TitleScheduled	Gepland: {0}
+Error_ChecksumMismatch	De inhoud komt niet overeen met de opgeslagen controlesom: het bestand is gewijzigd of beschadigd.
+Job_FilteredOut	Geen enkel bestand komt door de filters van deze kopie
+Rules_After.PlaceholderText	Elke datum
+Rules_Before.PlaceholderText	Elke datum
+Drop_MoveTo	Naar positie {0} verplaatsen
+Drop_InsertAt	Op positie {0} toevoegen
+Drop_AddToJob	Aan deze kopie toevoegen
+Drop_AddToNamedJob	Aan {0} toevoegen
+Drop_JobOrder	Op plaats {0} van de wachtrij zetten
+Settings_Sounds.Text	Geluiden
+Settings_SoundsTitle.Text	Geluidsmeldingen
+Settings_SoundsDescription.Text	Kies een geluid voor elk moment: een van Windows, een willekeurig bestand op je computer of geen.
+Settings_Volume.Header	Volume
+Settings_SoundsQuiet.Content	Stil blijven bij games of presentaties op volledig scherm en bij Niet storen
+Sound_Done	Een kopie is goed afgerond
+Sound_Errors	Een kopie eindigde met fouten
+Sound_AllDone	Alle kopieën zijn klaar
+Sound_Attention	Je beslissing is nodig (het bestand bestaat al)
+Sound_Test	Geluid testen
+Sound_None	Geen geluid
+Sound_Default	Standaard van Windows
+Sound_Choose	Een bestand kiezen…
+File_Planned	Gesimuleerd
+File_Deleted	Verwijderd
+File_RemovedExtra	Uit het doel verwijderd: stond niet meer in de bron
+Plan_Copy	Zou worden gekopieerd
+Plan_Replace	Zou het bestand in het doel vervangen
+Plan_ReplaceNewer	Zou het bestand in het doel vervangen: het origineel is nieuwer
+Plan_ReplaceSize	Zou het bestand in het doel vervangen: andere grootte
+Plan_KeepBoth	Bestaat al: zou onder een andere naam worden gekopieerd
+Plan_RenameExisting	Bestaat al: zou het bestand in het doel hernoemen en dit kopiëren
+Plan_Ask	Bestaat al: je zou worden gevraagd wat te doen
+Plan_SkipIdentical	Zou worden overgeslagen: al identiek in het doel
+Plan_SkipExists	Zou worden overgeslagen: bestaat al
+Plan_SkipOlder	Zou worden overgeslagen: het doel is even oud of nieuwer
+Plan_SkipSameSize	Zou worden overgeslagen: zelfde grootte
+Plan_SkipNotInDestination	Zou worden overgeslagen: niet in het doel (alleen bijwerken)
+Plan_SkipSamePath	Zou worden overgeslagen: bron en doel zijn hetzelfde
+Plan_Delete	Zou uit het doel worden verwijderd: staat niet meer in de bron
+Plan_Fail	Zou mislukken: het doel bestaat al
+Plan_None	Gesimuleerd
+Skip_SkipIdentical	Al identiek in het doel
+Skip_SkipExists	Bestond al: overgeslagen
+Skip_SkipOlder	Het doel is even oud of nieuwer
+Skip_SkipSameSize	Zelfde grootte als in het doel
+Skip_SkipNotInDestination	Niet in het doel (alleen bestaande worden bijgewerkt)
+Skip_SkipSamePath	Bron en doel zijn hetzelfde bestand
+Skip_SkipByUser	Door jou overgeslagen
+Job_TitleSync	{0} synchroniseren
+Job_TitleSyncing	{0} wordt gesynchroniseerd
+Job_TitleSynced	{0} gesynchroniseerd
+Job_StateSyncing	Synchroniseren
+Job_FilesSyncedOne	{0} bestand bijgewerkt
+Job_FilesSyncedMany	{0} bestanden bijgewerkt
+Job_TitleSimulate	{0} simuleren
+Job_TitleSimulating	{0} wordt gesimuleerd
+Job_TitleSimulated	Simulatie: {0}
+Job_StateSimulating	Simuleren
+Job_FilesSimulatedOne	{0} bestand zou worden gekopieerd
+Job_FilesSimulatedMany	{0} bestanden zouden worden gekopieerd
+Job_WouldTransfer	{0} in totaal
+Job_TitleHash	Controlesommen maken van {0}
+Job_TitleHashing	Controlesommen berekenen van {0}
+Job_TitleHashed	Controlesommen van {0}
+Job_StateHashing	Controlesommen berekenen
+Job_FilesHashedOne	{0} bestand in de controlesomlijst
+Job_FilesHashedMany	{0} bestanden in de controlesomlijst
+Job_StateWaitingDevice	Wachten tot de schijf of het netwerk terug is…
+Job_StateWaitingSpace	Wachten op vrije ruimte in het doel…
+Job_RemovedOne	1 uit het doel verwijderd
+Job_Removed	{0} uit het doel verwijderd
+Job_WouldRemove	{0} zouden uit het doel worden verwijderd
+Panel_RunForReal.Text	Echt uitvoeren
+Options_Mode.Header	Modus
+Mode_Copy.Content	Kopiëren
+Mode_Mirror.Content	Synchroniseren (spiegelen)
+Mode_Update.Content	Alleen bestaande bijwerken
+Mode_Folders.Content	Alleen de mapstructuur
+Options_MirrorInfo.Title	Synchroniseren verwijdert uit het doel wat niet meer in de bron staat
+Options_MirrorInfo.Message	Wat de filters uitsluiten, blijft onaangeroerd. Geef een versiemap op om verwijderde of vervangen bestanden te bewaren.
+Options_DryRun.Content	Simuleren: tonen wat er zou gebeuren zonder iets te wijzigen
+Destinations_DryRun.Content	Eerst simuleren (wijzigt niets)
+Tool_HashFolder.Text	Controlesombestand van een map maken…
+Tool_HashFiles.Text	Controlesombestand van bestanden maken…
+Rules_SkipJunk.Content	Overbodige bestanden overslaan (Thumbs.db, desktop.ini, .DS_Store, ~$…)
+Rules_OnErrorEnd.Content	Opnieuw proberen aan het einde van de wachtrij
+Rules_Safety.Text	Synchronisatie en veiligheid
+Rules_FolderConflict.Header	Als een map al in het doel bestaat
+Rules_FolderMerge.Content	Inhoud samenvoegen
+Rules_FolderSkip.Content	Helemaal overslaan
+Rules_Versions.Header	Vervangen of verwijderde bestanden bewaren in de map
+Rules_Versions.PlaceholderText	Leeg: niet bewaren (bijvoorbeeld .versies)
+Rules_Tolerance.Header	Datummarge voor 'identiek' (seconden)
+Rules_VerifySource.Content	Het origineel na afloop opnieuw lezen
+Rules_HashStream.Content	De hash in elk bestand opslaan
+Rules_HardLinks.Content	Harde koppelingen behouden
+Rules_Wipe.Content	Bij verplaatsen de originelen veilig verwijderen
+Rules_WaitDevice.Content	Wachten als de schijf of het netwerk wegvalt
+Rules_WaitSpace.Content	Wachten bij ruimtegebrek
+Rules_VerifySource.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Berekent de hash van het origineel opnieuw: ziet of het tijdens het kopiëren is gewijzigd of dat de bronschijf slecht leest.
+Rules_HashStream.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Wordt opgeslagen in een verborgen stroom van het bestand zelf (NTFS). 'Controlesommen van een map testen' ziet daarna elke beschadiging, ook zonder controlesombestand.
+Rules_HardLinks.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Zijn meerdere namen hetzelfde bestand, dan zijn ze dat in het doel ook (geen dubbele ruimte).
+Rules_Tolerance.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	FAT32 en exFAT slaan de tijd op tot op 2 seconden: met deze marge worden identieke bestanden niet opnieuw gekopieerd.
+Rules_Versions.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Voordat een bestand wordt vervangen of verwijderd, wordt het met de datum in de naam naar deze doelmap verplaatst.
+Settings_UnitsTitle.Text	Grootte-eenheden
+Settings_UnitsDescription.Text	Hoe groottes en snelheden worden getoond.
+Units_Classic.Content	KB, MB, GB (zoals Verkenner)
+Units_Iec.Content	KiB, MiB, GiB (binair)
+Units_Decimal.Content	kB, MB, GB van 1000 (zoals de fabrikant)
+Settings_SlowTitle.Text	Langzamer terwijl je de computer gebruikt
+Settings_SlowDescription.Text	Zolang je toetsenbord of muis gebruikt, blijven kopieën onder deze snelheid; als je de computer verlaat, gaan ze weer sneller.
+Slow_Off.Content	Nee
+Settings_LogsTitle.Text	Het logboek van elke kopie opslaan
+Settings_LogsDescription.Text	Eén bestand per kopie in de logboekmap; ze worden na 30 dagen verwijderd.
+Settings_LogsOpen.Text	Map openen
+Settings_WebhookTitle.Text	Een webadres waarschuwen na afloop
+Settings_WebhookDescription.Text	Om de melding op je telefoon of in de chat te krijgen: Discord, Slack, Teams, ntfy.sh, Home Assistant… Er wordt een POST met JSON verstuurd.
+Settings_WebhookBox.PlaceholderText	https://ntfy.sh/mijn-geheim-onderwerp
+Settings_WebhookTest.Text	Testen
+Settings_WebhookSending	Verzenden…
+Settings_WebhookOk	Melding verzonden.
+Settings_WebhookFailed	Verzenden mislukt: controleer het adres en de verbinding.
+Settings_WebhookTestMessage	✔ MegaCopier: testmelding
+FinishDialog.Title	Alle kopieën zijn klaar
+FinishDialog.PrimaryButtonText	Nu doen
+FinishDialog.CloseButtonText	Annuleren
+Finish_CountdownSleep	De computer gaat over {0} s naar de slaapstand.
+Finish_CountdownHibernate	De computer gaat over {0} s naar de sluimerstand.
+Finish_CountdownShutdown	De computer wordt over {0} s afgesloten.
+Finish_CountdownSignOut	Je wordt over {0} s afgemeld.
+Finish_CountdownExitApp	MegaCopier sluit over {0} s.
+Job_SlowedDown	Langzamer terwijl je de computer gebruikt
+History_Undone	ongedaan gemaakt
+History_Undo.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Ongedaan maken: verplaatste items terugzetten of gekopieerde naar de Prullenbak sturen
+History_CopyBack.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Terugkopiëren naar de bronmap (herstellen)
+History_UndoDialog.Title	Deze kopie ongedaan maken?
+History_UndoDialog.PrimaryButtonText	Ongedaan maken
+History_UndoDialog.CloseButtonText	Annuleren
+History_UndoMoveConfirm	Alles wat verplaatst is, gaat vanuit '{0}' terug naar de oorspronkelijke map.
+History_UndoCopyConfirm	De {0} gekopieerde bestanden gaan naar de Prullenbak (te herstellen). Bestanden die later zijn gewijzigd of een ander bestand hebben vervangen, blijven onaangeroerd.
+History_UndoDone	{0} bestanden naar de Prullenbak gestuurd.
+History_UndoKept	{0} later gewijzigde en {1} die andere vervingen, zijn bewaard.
+History_UndoTitleBar.Title	Kopie ongedaan gemaakt
+History_Undo.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Ongedaan maken: verplaatste items terugzetten of gekopieerde naar de Prullenbak sturen
+History_CopyBack.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Terugkopiëren naar de bronmap (herstellen)
+History_Open.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Doel openen
+History_Repeat.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Herhalen (kopieert alleen wat nieuw of gewijzigd is)
+Task_Header.Text	Of sla haar op als taak zodat Windows haar zelf herhaalt op de hierboven gekozen tijd:
+Task_Name.PlaceholderText	Naam van de taak
+Task_Once.Content	Eenmalig
+Task_Daily.Content	Dagelijks
+Task_Weekly.Content	Wekelijks
+Task_Save.Text	Als taak opslaan
+Task_SavedOnce	Taak '{0}' opgeslagen: wordt uitgevoerd op {2} om {1}.
+Task_SavedDaily	Taak '{0}' opgeslagen: wordt dagelijks uitgevoerd om {1}.
+Task_SavedWeekly	Taak '{0}' opgeslagen: wordt wekelijks uitgevoerd, op dezelfde weekdag als {2}, om {1}.
+Task_Failed	Plannen mislukt: {0}
+Settings_Tasks.Text	Geplande taken
+Settings_TasksTitle.Text	Kopieën die zichzelf herhalen
+Settings_TasksDescription.Text	Maak ze op het tabblad Opties van een kopie ('Als taak opslaan'); Windows Taakplanner start ze, ook als MegaCopier gesloten is.
+Settings_TasksEmpty	Nog geen taken.
+Settings_TaskRun	'{0}' nu uitvoeren
+Settings_TaskDelete	Taak '{0}' verwijderen
+About_Portable	draagbaar (gegevens in {0})
+Job_Estimate	{0}, ongeveer {1}
+Job_EstimateSize	{0} in totaal
+Settings_SmbCompression.Content	Comprimeren via het netwerk (SMB)
+Settings_SmbCompression.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Vraagt de server de gegevens onderweg te comprimeren (Windows 11 en Windows Server 2022 of nieuwer). Staan bron en doel op dezelfde server, dan kopieert de server altijd zelf, zonder via deze computer te gaan.
+Error_TooLargeForFileSystem	Past niet op deze schijf: FAT32 staat geen bestanden van 4 GB of meer toe. Formatteer hem als exFAT of NTFS.
+Rules_AllOrNothing.Content	Mappen 'alles of niets'
+Rules_AllOrNothing.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Elke nieuwe map wordt verborgen gekopieerd en verschijnt pas onder haar naam als alles goed ging: er blijft nooit een half gekopieerde map achter die compleet lijkt.
+Rules_Rescue.Content	Reddingsmodus voor beschadigde schijven
+Rules_Rescue.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Heeft de bron beschadigde sectoren, dan wordt sector voor sector gelezen en alles wat leesbaar is gered; het onleesbare wordt nullen en komt in het logboek. Bij verplaatsen wordt het origineel niet verwijderd.
+Error_PartlyUnreadable	Deels gered: sommige sectoren van de bron waren beschadigd en werden nullen (details in het Logboek).
+Settings_Guard.Text	Integriteitsbewaker
+Settings_GuardTitle.Text	Bewaken dat je bestanden na verloop van tijd niet beschadigen
+Settings_GuardDescription.Text	Elk bestand bewaart zijn hash in zich. Als de computer inactief is, controleert MegaCopier ze: is er een gewijzigd zonder dat iemand het bewerkte (de schijf beschadigde het), dan krijg je een waarschuwing. Wat je bewerkt, wordt vanzelf vernieuwd. Vereist NTFS.
+Guard_Daily.Content	Dagelijks
+Guard_Weekly.Content	Wekelijks
+Guard_Monthly.Content	Maandelijks
+Settings_GuardAdd.Text	Een map bewaken…
+Settings_GuardEmpty	Je bewaakt nog geen enkele map.
+Settings_GuardCheck	'{0}' nu controleren
+Settings_GuardRemove	'{0}' niet meer bewaken
+Guard_NotYet	Wacht op de eerste controle
+Guard_LastOk	Gecontroleerd op {0}: alles in orde
+Guard_LastDamaged	Gecontroleerd op {0}: {1} beschadigde bestanden (zie Geschiedenis)
+Guard_DamagedTitle	Integriteitsbewaker
+Guard_DamagedOne	Een bestand in '{0}' is op de schijf beschadigd.
+Guard_DamagedMany	{0} bestanden in '{1}' zijn op de schijf beschadigd.
+Guard_LastDamagedOne	Gecontroleerd op {0}: één beschadigd bestand (zie Geschiedenis)
+Settings_ScheduleLimitTitle.Text	Snelheidslimiet volgens tijdschema
+Settings_ScheduleLimitDescription.Text	Bijvoorbeeld tijdens werkuren: kopieën blijven tussen de gekozen tijden onder deze snelheid.
+Settings_ScheduleFrom.Text	Van
+Settings_ScheduleTo.Text	tot
+Settings_PauseBatteryTitle.Text	Pauzeren op accu
+Settings_PauseBatteryDescription.Text	Op een laptop zonder stroom wachten kopieën en gaan ze vanzelf verder als je hem aansluit.
+Settings_PauseFullTitle.Text	Pauzeren bij games en presentaties
+Settings_PauseFullDescription.Text	Bij een game of presentatie op volledig scherm wachten kopieën om die niet te vertragen.
+Comfort_PausedTitle	Kopieën gepauzeerd
+Comfort_PausedBattery	De computer werkt op de accu: kopieën gaan verder als je hem aansluit.
+Comfort_PausedFullScreen	Er loopt een game of presentatie op volledig scherm: kopieën gaan verder als je die verlaat.
+Job_StatePausedBattery	Gepauzeerd: op accu
+Job_StatePausedFullScreen	Gepauzeerd: volledig scherm
+Job_SlowedSchedule	Langzamer door het gekozen tijdschema
+Rules_Delta.Content	Bij het vervangen van grote bestanden alleen wijzigingen schrijven
+Rules_Delta.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Deltakopie voor bestanden vanaf 16 MB (virtuele schijven, e-mail, projecten): alleen afwijkende blokken worden geschreven. Bij annuleren of stroomuitval gaat het bestand terug naar de vorige versie.
+Panel_CopyLocked.Text	Bestanden in gebruik kopiëren
+Locked_Title	Bestanden in gebruik
+Locked_Cancelled	Er is geen beheerdersmachtiging gegeven: de bestanden in gebruik zijn niet gekopieerd.
+Locked_Done	{0} bestanden in gebruik gekopieerd uit een momentopname van de schijf.
+Locked_Partial	{0} gekopieerd uit een momentopname; de rest kon niet worden gekopieerd: {1}
+Settings_Peer.Text	Ontvangen van andere computers
+Settings_PeerTitle.Text	Bestanden ontvangen van andere computers met MegaCopier
+Settings_PeerDescription.Text	Via het thuis- of kantoornetwerk, zonder gedeelde mappen. De afzender heeft de code hieronder nodig; de verbinding is versleuteld en elk bestand wordt bij aankomst gecontroleerd. De eerste keer kan Windows om toestemming van de firewall vragen.
+Settings_PeerCode.Text	Code om je bestanden te sturen:
+Settings_PeerNewCode.Text	Nieuwe code
+Settings_PeerFolder.Text	Map wijzigen…
+Settings_PeerFolderIs	Opgeslagen in {0}
+Settings_PeerListening	Wacht op zendingen op '{0}' (poort {1}).
+Settings_PeerError	Ontvangen kon niet starten: {0}
+Peer_ReceivingTitle	Bestanden ontvangen
+Peer_Receiving	{0} stuurt je {1} bestanden ({2}).
+Peer_ReceivedTitle	Bestanden ontvangen
+Peer_Received	{0} bestanden van {1}, in {2}.
+Peer_RejectedTitle	Zending geweigerd
+Peer_Rejected	{0} probeerde je bestanden te sturen met een verkeerde code.
+Tool_SendFiles.Text	Bestanden naar een andere computer sturen…
+Tool_SendFolder.Text	Een map naar een andere computer sturen…
+SendDialog.Title	Naar een andere computer sturen
+SendDialog.PrimaryButtonText	Verzenden
+SendDialog.CloseButtonText	Annuleren
+Send_SummaryOne	'{0}' sturen naar een andere computer waar MegaCopier ontvangt.
+Send_SummaryMany	{0} items sturen naar een andere computer waar MegaCopier ontvangt.
+Send_Found.Text	Gevonden computers in het netwerk:
+Send_Searching	Zoeken…
+Send_NoneFound	Niets gevonden: typ de naam of het IP-adres.
+Send_Host.Header	Computer (naam of IP)
+Send_Host.PlaceholderText	PC-WOONKAMER of 192.168.1.20
+Send_Code.Header	Code die die computer in Instellingen toont
+Send_Code.PlaceholderText	XXXX-XXXX-XXXX
+Job_TitleSend	{0} verzenden
+Job_TitleSending	{0} wordt verzonden
+Job_TitleSent	{0} verzonden
+Job_StateSending	Verzenden
+Job_FilesSentOne	{0} bestand verzonden
+Job_FilesSentMany	{0} bestanden verzonden
+Rules_Describe.Header	Zeg het in je eigen woorden (in het Engels of Spaans)
+Rules_Describe.PlaceholderText	photos larger than 2 MB from last month except .tmp
+Rules_DescribeApply.Text	Toepassen
+Rules_DescribeUnderstood	Begrepen: {0}.
+Rules_DescribeNothing	Niets om te filteren begrepen.
+Rules_DescribeUnknown	Niet begrepen: {0}.
+Mode_Organize.Content	Foto's op datum ordenen
+Rules_Duplicates.Content	Niet kopiëren wat al in het doel staat (duplicaten)
+Rules_Duplicates.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Vergelijkt de inhoud, niet de naam: een foto die al in een doelmap staat, ook onder een andere naam, wordt niet opnieuw gekopieerd.
+Skip_SkipDuplicate	Staat al in het doel onder een andere naam of in een andere map
+Plan_SkipDuplicate	Zou worden overgeslagen: staat al in het doel (duplicaat)
+Destinations_Encrypt.Content	Versleutelen met wachtwoord (voor een USB-stick of schijf die je kunt verliezen)
+Destinations_Password.Header	Wachtwoord
+Destinations_Password2.Header	Herhaal het
+Destinations_PasswordHint	Versleuteld met AES-256. Vergeet je het wachtwoord, dan zijn de bestanden niet te herstellen. Om ze te lezen: menu Nieuw > Ontsleutelen.
+Destinations_PasswordShort	Het wachtwoord moet minstens 8 tekens hebben.
+Destinations_PasswordMismatch	De twee wachtwoorden komen niet overeen.
+PasswordDialog.Title	Wachtwoord
+PasswordDialog.PrimaryButtonText	OK
+PasswordDialog.CloseButtonText	Annuleren
+Tool_Decrypt.Text	Versleutelde bestanden ontsleutelen…
+Picker_DecryptHere	Hier ontsleutelen
+Decrypt_Ask	Wachtwoord van de versleutelde bestanden in '{0}':
+Resume_PasswordAsk	Deze kopie is versleuteld en het wachtwoord wordt niet bewaard: typ het om verder te gaan.
+Job_TitleEncrypt	{0} versleutelen
+Job_TitleEncrypting	{0} wordt versleuteld
+Job_TitleEncrypted	{0} versleuteld
+Job_StateEncrypting	Versleutelen
+Job_FilesEncryptedOne	{0} bestand versleuteld
+Job_FilesEncryptedMany	{0} bestanden versleuteld
+Job_TitleDecrypt	{0} ontsleutelen
+Job_TitleDecrypting	{0} wordt ontsleuteld
+Job_TitleDecrypted	{0} ontsleuteld
+Job_StateDecrypting	Ontsleutelen
+Job_FilesDecryptedOne	{0} bestand ontsleuteld
+Job_FilesDecryptedMany	{0} bestanden ontsleuteld
+Settings_DisksTitle.Text	Status van de schijven
+Settings_DisksDescription.Text	Wat Windows over elke schijf meldt (SMART). Waarschuwt er een voor een storing, dan zegt MegaCopier het je als je ervan of ernaar kopieert.
+Settings_DisksCheck.Text	Nu controleren
+Disk_Row	Schijf {0} · {1}: {2}
+Disk_Healthy	in orde
+Disk_Unknown	onbekende status
+Disk_HealthWarning	meldt een probleem
+Disk_Checking	Schijven controleren…
+Disk_WarningTitle	Een schijf meldt een storing
+Disk_Warning	'{0}' (schijf {1}): {2}. Kopieer het belangrijkste zo snel mogelijk naar een andere schijf.
+Settings_TuneTitle.Text	Automatische afstemming per schijf
+Settings_TuneDescription.Text	Meet elke schijf met verschillende blokgroottes en gelijktijdige bewerkingen en gebruikt de snelste bij het kopiëren ernaartoe (tenzij je de prestaties handmatig hebt gewijzigd).
+Settings_TuneMeasure.Text	Schijven meten
+Settings_TuneNone	Nog geen schijf gemeten.
+Settings_TuneDisk	Schijf
+Settings_TuneProfile	{0}: blokken van {1} MB, {2} tegelijk ({3:N0} MB/s)
+Settings_TuneMeasuring	{0} meten ({1} van {2})…
+Tool_Timeline.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Tijdlijn van de wachtrij
+Timeline_Title.Text	Tijdlijn
+Timeline_Info.Text	Voorspelling op basis van de snelheid van elke schijf. Kopieën op dezelfde schijf gaan één voor één.
+Timeline_Empty.Text	Geen lopende of wachtende kopieën.
+Timeline_Summary	Alles zou rond {0} klaar moeten zijn (over {1}).
+Timeline_Now	Nu
+Timeline_Tomorrow	morgen {0}
+Timeline_Running	Bezig · verwacht einde: {0} (nog {1})
+Timeline_Paused	Gepauzeerd · bij nu hervatten verwacht einde: {0}
+Timeline_Queued	In wachtrij · start: {0} · verwacht einde: {1} (duurt {2})
+Timeline_Scheduled	Gepland · start: {0} · verwacht einde: {1} (duurt {2})
+Timeline_Measuring	de grootte wordt nog gemeten
+Tool_Shelf.Text	Neerzetplank
+Tray_Shelf	Neerzetplank
+Shelf_WindowTitle	MegaCopier-neerzetplank
+Shelf_Title.Text	Neerzetplank
+Shelf_Empty.Text	Zet hier bestanden en mappen van overal neer. Kopieer of verplaats ze daarna allemaal samen, of sleep ze er weer uit.
+Shelf_DropCaption	Aan de plank toevoegen
+Shelf_CopyTo.Text	Kopiëren naar…
+Shelf_MoveTo.Text	Verplaatsen naar…
+Shelf_Clear.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Plank leegmaken
+Shelf_Remove.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Van de plank verwijderen
+Shelf_One	1 item
+Shelf_Many	{0} items
+Shelf_RemoveNamed	'{0}' van de plank verwijderen
+Destinations_NoneChosen.Text	Vink minstens één doel aan (of voeg een map toe).
+Finish_ShutdownMessage	MegaCopier heeft de kopieën voltooid. De computer wordt over 1 minuut afgesloten.
+Hash_Name	Hash: {0}

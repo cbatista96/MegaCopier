@@ -1,0 +1,796 @@
+clave	texto
+JobsSection.Text	复制任务
+SettingsSection.Text	设置
+FinishButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	所有复制完成后要做什么
+FinishNothing.Text	不执行任何操作
+FinishSleep.Text	睡眠
+FinishShutdown.Text	关机
+NewCopyText.Text	新建复制
+CopyFilesItem.Text	复制文件…
+CopyFolderItem.Text	复制文件夹…
+EmptyTitle.Text	没有复制任务
+EmptyDescription.Text	你开始的复制会显示在这里。如果停电，恢复后可以从中断处继续。
+PauseButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	暂停
+StopButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	停止（以后可以继续）
+OpenFolderButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	打开目标文件夹
+ClearButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	从列表中移除
+DiscardButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	放弃并删除未完成的副本
+ConflictDialog.Title	文件已存在
+ConflictDialog.PrimaryButtonText	替换
+ConflictDialog.SecondaryButtonText	保留两者
+ConflictDialog.CloseButtonText	跳过
+ConflictExistingTitle.Text	现有文件
+ConflictApplyAll.Content	对此复制中的其他冲突执行相同操作
+RestartInfo.Title	重新启动 MegaCopier 以应用更改
+RestartInfo.Message	正在进行的复制将停止，之后可以继续。
+RestartButton.Content	立即重新启动
+AppearanceHeader.Text	外观
+ThemeTitle.Text	主题
+ThemeDescription.Text	浅色、深色或与 Windows 相同
+ThemeSystem.Content	与 Windows 相同
+ThemeLight.Content	浅色
+ThemeDark.Content	深色
+AccentTitle.Text	主题色
+AccentDescription.Text	按钮、进度条和突出元素的颜色
+BackdropTitle.Text	窗口背景
+BackdropDescription.Text	Windows 11 材质让桌面隐约透出
+BackdropMica.Content	云母
+BackdropMicaAlt.Content	云母 Alt（色调更浓）
+BackdropAcrylic.Content	亚克力
+BackdropSolid.Content	纯色
+LanguageTitle.Text	语言
+LanguageDescription.Text	MegaCopier 及其文件资源管理器选项的语言
+LanguageAuto.Content	与 Windows 相同
+OnTopTitle.Text	总在最前
+OnTopDescription.Text	复制时窗口保持在其他窗口之上
+CopyHeader.Text	复制
+VerifyTitle.Text	复制后校验
+VerifyDescription.Text	不经缓存重新读取目标，并修复与源不一致的每个数据块
+ConflictTitle.Text	文件已存在时
+ConflictDescription.Text	相同的文件（大小和日期一致）总是跳过
+ConflictAsk.Content	询问
+ConflictReplace.Content	替换
+ConflictSkip.Content	跳过
+ConflictNewer.Content	较新时替换
+ConflictKeepBoth.Content	保留两者
+SpeedTitle.Text	速度限制
+SpeedDescription.Text	为其他任务保留磁盘或网络带宽（适用于新的复制）
+SpeedUnlimited.Content	不限速
+AutoResumeTitle.Text	自动继续中断的复制
+AutoResumeDescription.Text	停电或重启后，打开 MegaCopier 时不询问直接继续
+ExplorerHeader.Text	文件资源管理器
+PasteTitle.Text	粘贴 (Ctrl+V) 时用 MegaCopier 复制和移动
+PasteDescription.Text	在文件资源管理器或桌面粘贴已复制 (Ctrl+C) 或剪切 (Ctrl+X) 的文件时，由 MegaCopier 完成。粘贴到同一文件夹仍由文件资源管理器处理
+ShellMenuTitle.Text	右键菜单选项
+ShellMenuDescription.Text	“用 MegaCopier 粘贴”（在“显示更多选项”中）以及右键拖动时的“用 MegaCopier 复制 / 移动到这里”
+SystemHeader.Text	系统
+StartupTitle.Text	随 Windows 启动
+StartupDescription.Text	留在通知区域，让复制立即开始
+NotifyTitle.Text	完成时通知
+NotifyDescription.Text	复制结束且窗口不可见时显示系统通知
+Accent_System	与 Windows 相同
+Accent_Blue	蓝色
+Accent_Violet	紫色
+Accent_Teal	青色
+Accent_Green	绿色
+Accent_Orange	橙色
+Accent_Pink	粉色
+Accent_Red	红色
+About	MegaCopier {0} · 断电也不怕的复制
+Picker_CopyHere	复制到这里
+Finish_Label	完成后
+Finish_LabelSleep	完成后：睡眠
+Finish_LabelShutdown	完成后：关机
+Conflict_Message	“{1}”中已有名为“{0}”的文件。
+Conflict_SourceCopy	要复制的文件
+Conflict_SourceMove	要移动的文件
+Conflict_Newer	 · 较新
+Job_OneItem	“{0}”
+Job_ManyItems	{0} 个项目
+Job_TitleCopying	正在复制 {0}
+Job_TitleMoving	正在移动 {0}
+Job_TitleCopied	已复制 {0}
+Job_TitleMoved	已移动 {0}
+Job_TitleQueued	等待中：{0}
+Job_Destination	到 {0}
+Job_StateQueued	排队中：磁盘忙
+Job_StateVerifying	正在校验
+Job_StateValidating	正在检查已复制的部分
+Job_StateWaiting	等待你的决定：文件已存在
+Job_StateCopying	正在复制
+Job_StateMoving	正在移动
+Job_StatePaused	已暂停
+Job_StateCompleted	已完成
+Job_StateCompletedErrors	已完成，有错误
+Job_StateFailed	错误
+Job_StateInterrupted	已中断 · 可从中断处继续
+Job_ResumeHint	按“继续”以继续
+Job_Preparing	正在准备…
+Job_Progress	{0} / {1}
+Job_Remaining	剩余 {0}
+Job_Files	{0} / {1} 个文件
+Job_FilesCopiedOne	已复制 {0} 个文件
+Job_FilesCopiedMany	已复制 {0} 个文件
+Job_FilesMovedOne	已移动 {0} 个文件
+Job_FilesMovedMany	已移动 {0} 个文件
+Job_TransferredIn	{0}，用时 {1}
+Job_Recovered	恢复 {0}
+Job_Skipped	跳过 {0}
+Job_Verified	已校验
+Job_Repaired	（修复了 {0} 个数据块）
+Job_FailedFiles	{0} 个文件出错
+Job_Resume	继续
+Job_Retry	重试
+Job_FailuresHeader	查看 {0} 个有问题的文件
+Job_FailuresMore	… 还有 {0} 个
+Tray_Open	打开 MegaCopier
+Tray_PauseAll	全部暂停
+Tray_ResumeAll	全部继续
+Tray_Startup	随 Windows 启动
+Tray_Exit	退出
+Tray_OneJob	1 个复制任务
+Tray_ManyJobs	{0} 个复制任务
+Notify_InterruptedTitle	有中断的复制
+Notify_InterruptedOne	有一个复制未完成。打开它可从中断处继续。
+Notify_InterruptedMany	有 {0} 个复制未完成。打开它们以继续。
+Notify_DoneTitle	复制完成
+Notify_ProblemTitle	复制出现问题
+Notify_AllDoneTitle	复制全部完成
+Error_NeedsPaths	复制请求需要源和目标。
+Tray_Disable	禁用（使用 Windows 复制）
+Tray_Enable	启用 MegaCopier
+Tray_TooltipDisabled	MegaCopier · 已禁用（由 Windows 复制）
+Notify_DisabledTitle	MegaCopier 已禁用
+Notify_DisabledBody	复制将由 Windows 完成。双击图标可重新启用。
+Notify_EnabledTitle	MegaCopier 已启用
+Notify_EnabledBody	文件资源管理器中的复制和移动将由 MegaCopier 完成。
+AboutDialog.Title	关于 MegaCopier
+AboutDialog.CloseButtonText	关闭
+About_DataFolder.Content	打开数据文件夹（设置、主题、历史记录、报告）
+About_Description.Text	Windows 11 文件复制工具，断电后即使是单个巨大文件也能继续复制，并校验已复制的部分。
+About_Features.Text	无缓存异步 I/O · 并行读写 · 哈希校验 (CRC32、xxHash、MD5、SHA) · 按磁盘排队 · 暂停与继续 · 移动 · 冲突处理 · 速度限制 · 复制列表 · 报告 · 主题。
+CopyFiles.Text	复制文件…
+CopyFolder.Text	复制文件夹…
+CopyFilesText.Text	复制文件
+CopyFolderText.Text	复制文件夹
+Files_AddFiles.Text	添加文件…
+Files_AddFolder.Text	添加文件夹…
+Files_AutoScroll.Content	跟随当前文件
+Files_CopyHashes.Text	复制哈希值
+Files_CopyPath.Text	复制路径
+Files_Empty.Text	没有可显示的文件
+Files_ExportCsv.Text	导出为 CSV…
+Files_ExportHtml.Text	导出 HTML 报告…
+Files_FilterAll.Content	全部
+Files_FilterDone.Content	已复制
+Files_FilterErrors.Content	有错误
+Files_FilterPending.Content	待处理
+Files_FilterSkipped.Content	已跳过
+Files_HideFinished.Content	隐藏已完成
+Files_Menu.Text	列表
+Files_MoveBottom.Text	移到末尾
+Files_MoveDown.Text	下移
+Files_MoveTop.Text	移到开头
+Files_MoveUp.Text	上移
+Files_OpenSource.Text	显示源文件
+Files_OpenTarget.Text	显示目标文件
+Files_Remove.Text	从复制中移除
+Files_Retry.Text	重试失败的文件
+Files_SaveList.Text	保存复制列表…
+Files_Search.PlaceholderText	搜索文件
+Files_Size.Text	大小
+Files_SourceHash.Text	源哈希
+Files_TargetHash.Text	目标哈希
+History_Clear.Text	清空
+History_Empty.Text	还没有完成的复制
+History_Open.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	打开目标
+History_Repeat.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	重复（只复制新增或更改的内容）
+History_Title.Text	历史记录
+Log_Export.Text	导出日志
+Options_Acl.Content	权限 (ACL)
+Options_Attributes.Content	属性
+Options_Audit.Content	审核 (SACL)
+Options_BufferSize.Text	缓冲区大小
+Options_Data.Content	数据
+Options_ExportReport.Content	保存 HTML 报告
+Options_FilesFolders.Text	文件和文件夹
+Options_OnFinish.Text	完成后
+Options_Owner.Content	所有者
+Options_ResetDefault.Text	重置
+Options_RunningInfo.Message	复制正在进行：这些更改将在继续时生效（“校验”和“无人值守”立即生效）。
+Options_SaveChecksum.Content	保存校验和文件
+Options_SaveDefault.Text	保存为默认值
+Options_Scripts.Text	完成后的命令
+Options_ScriptsHelp.Text	每行一条，用 cmd.exe 运行。以“ok:”开头表示仅在成功时运行，以“error:”开头表示仅在失败时运行。变量：%MEGACOPIER_STATE%、%MEGACOPIER_DESTINATION%、%MEGACOPIER_SOURCES%、%MEGACOPIER_FILES%、%MEGACOPIER_BYTES%、%MEGACOPIER_FAILED%、%MEGACOPIER_CHECKSUM%。
+Options_Security.Text	安全 (NTFS)
+Options_Streams.Content	备用数据流 (ADS)
+Options_SystemCache.Content	使用系统缓存
+Options_Threads.Text	并行
+Options_ThreadsShort.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	同时进行的读写操作
+Options_Timestamps.Content	日期
+Options_Transfer.Text	复制哪些内容
+Options_TransferOptions.Text	传输
+Options_Verify.Content	复制后校验
+Options_VerifySkipped.Content	也校验跳过的文件
+Page_Back.Text	返回
+Pager_Next.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	下一个复制
+Pager_Previous.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	上一个复制
+Pager_Text	第 {0} 个，共 {1} 个
+Panel_Discard.Text	放弃
+Panel_File.Text	文件
+Panel_OpenFolder.Text	打开文件夹
+Panel_Pause.Text	暂停
+Panel_Skip.Text	跳过
+Panel_Stop.Text	停止
+Panel_More	更多
+Panel_Less	更少
+Priority_Low.Content	低
+Priority_BelowNormal.Content	低于正常
+Priority_Normal.Content	正常
+Priority_AboveNormal.Content	高于正常
+Priority_High.Content	高
+Settings_Advanced.Text	高级
+Settings_EnabledTitle.Text	用 MegaCopier 代替 Windows 复制
+Settings_EnabledDescription.Text	也可以双击通知区域图标切换。关闭后，图标变灰并带红色 X，由文件资源管理器复制。
+Settings_FastTitle.Text	快速设备
+Settings_FastDescription.Text	可以同时进行多个复制的驱动器或路径（NVMe SSD、RAID）；其他设备按磁盘逐个进行。
+Settings_FinishTitle.Text	复制完成后
+Settings_FinishDescription.Text	没有任务在运行时窗口的行为
+Settings_FinishAuto.Content	一切顺利时关闭
+Settings_FinishClose.Content	总是关闭
+Settings_FinishKeep.Content	保持打开
+Settings_FreeSpace.Content	先检查可用空间
+Settings_General.Text	常规
+Settings_HashTitle.Text	哈希算法
+Settings_HashDescription.Text	用于校验和保存的校验和。xxHash3 最快；SHA-256 兼容性最好。
+Settings_MaxJobsTitle.Text	同时复制数
+Settings_MaxJobsDescription.Text	同时进行的复制数上限（0 = 不限）。使用同一磁盘的复制总是排队等候。
+Settings_ModeAuto.Content	自动
+Settings_ModeCompact.Content	紧凑
+Settings_ModeExpanded.Content	完整
+Settings_PerformanceTitle.Text	性能
+Settings_PerformanceDescription.Text	速度限制、缓冲区大小和并行操作
+Settings_PriorityTitle.Text	进程优先级
+Settings_PriorityDescription.Text	低优先级让电脑在复制时更流畅
+Settings_Queue.Text	队列
+Settings_Themes.Text	主题
+Settings_WhatToCopy.Text	复制哪些内容以及之后做什么
+Settings_Window.Text	窗口
+Settings_WindowModeTitle.Text	复制窗口
+Settings_WindowModeDescription.Text	自动：一个复制时紧凑，多个时完整。“更多”和“更少”可随时切换。
+Status_Bytes.Text	大小
+Status_Category.Text	状态
+Status_Copied.Text	已复制
+Status_Failed.Text	有错误
+Status_Files.Text	文件
+Status_Pending.Text	待处理
+Status_Skipped.Text	已跳过
+Status_Total.Text	总计
+Status_Verified.Text	已校验
+Tab_Files.Text	文件
+Tab_Log.Text	日志
+Tab_Options.Text	选项
+Tab_Status.Text	状态
+Tab_Target.Text	目标
+Target_Destination.Text	目标
+Target_Source.Text	源
+Target_Space	可用 {0}，共 {1}
+Theme_BarHeight.Header	进度条高度
+Theme_Radius.Header	圆角
+Theme_Customize.Text	自定义主题（颜色、进度条、背景）
+Theme_Delete.Text	删除
+Theme_Export.Text	导出…
+Theme_Import.Text	导入…
+Theme_Name.Header	名称
+Theme_Save	保存
+Theme_SaveAsNew	另存为新主题
+Theme_Auto	Fluent（跟随系统）
+Theme_CopyOf	{0}（自定义）
+Theme_Custom	我的主题
+Theme_FileType	MegaCopier 主题
+Theme_ImportFailed	无法导入主题
+Theme_ColorBackground	背景
+Theme_ColorSurface	卡片
+Theme_ColorSurfaceStrong	突出卡片
+Theme_ColorBorder	边框
+Theme_ColorText	文本
+Theme_ColorTextSecondary	次要文本
+Theme_ColorAccent	主题色
+Theme_ColorAccentText	主题色上的文本
+Theme_ColorTotalStart	总进度条：起点
+Theme_ColorTotalEnd	总进度条：终点
+Theme_ColorFileStart	文件进度条：起点
+Theme_ColorFileEnd	文件进度条：终点
+Theme_ColorTrack	进度条底色
+Theme_ColorSuccess	成功
+Theme_ColorWarning	警告
+Theme_ColorError	错误
+Theme_fluent-dark	Fluent 深色
+Theme_fluent-light	Fluent 浅色
+Theme_midnight	午夜
+Theme_graphite	石墨
+Theme_ocean	海洋
+Theme_forest	森林
+Theme_sunset	日落
+Theme_supercopier	经典 SuperCopier
+Theme_ultracopier	经典 Ultracopier
+Theme_contrast	高对比度
+Tool_About.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	关于
+Tool_ClearDone.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	移除已完成的复制
+Tool_History.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	历史记录
+Tool_HistoryText.Text	历史记录
+Tool_LoadList.Text	加载复制列表…
+Tool_LoadListText.Text	加载列表
+Tool_MoveFiles.Text	移动文件…
+Tool_NewCopy.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	新建复制
+Tool_NewCopyText.Text	新建
+Tool_PauseAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	全部暂停
+Tool_ResumeAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	全部继续
+Tool_Settings.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	设置
+Tool_Sidebar.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	显示或隐藏复制列表
+Drop_Caption	用 MegaCopier 复制
+File_Pending	待处理
+File_Copying	正在复制
+File_Verifying	正在校验
+File_Copied	已复制
+File_Verified	已校验
+File_Skipped	已跳过
+File_Failed	错误
+Files_AddFailed	无法添加
+Files_Count	{0} / {1} 个文件
+Files_ListType	MegaCopier 复制列表
+Files_LoadFailed	无法加载列表
+Hash_None	哈希：无
+Jobs_Header	复制：{0} · 进行中：{1}
+Language_Auto	与 Windows 相同
+Log_FileType	文本
+Picker_MoveHere	移动到这里
+Settings_AutoResume.Content	启动时自动继续
+Panel_Options.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	此复制的选项
+Panel_UnattendedItem.Text	无人值守（不询问：跳过已存在的文件）
+Panel_VerifyItem.Text	完成后校验
+Panel_OpenFolderItem.Text	打开目标文件夹
+Status_ExactBytes	{0} 字节
+Notify_SettingsResetTitle	设置已重置
+Notify_SettingsResetBody	无法读取你的设置，因此使用默认设置。原文件保存在 settings.json.bad。
+Job_TitleCopy	复制 {0}
+Job_TitleMove	移动 {0}
+Job_FailedOne	1 个文件出错
+Error_InUse	另一个程序打开了此文件。关闭它后按“重试”。
+Error_AccessDenied	拒绝访问：你没有读取或写入此文件的权限。
+Error_DiskFull	目标磁盘已满。
+Error_NotFound	文件或文件夹已不存在（被移动、删除或驱动器已断开？）。
+Error_PathTooLong	路径对目标来说太长。
+Error_NetworkLost	网络连接已断开。恢复后按“重试”从中断处继续。
+Error_HashMismatch	副本与原文件不一致（校验失败）。
+Error_DeleteFailed	已正确复制，但无法删除原文件。
+Report_State	状态
+Report_File	文件
+Report_Source	源
+Report_Destination	目标
+Report_Size	大小
+Report_SourceHash	源哈希
+Report_TargetHash	目标哈希
+Report_Message	消息
+Report_Copied	已复制
+Report_Verified	已校验
+Report_Skipped	已跳过
+Report_Failed	有错误
+Job_SkippedOne	跳过 1 个
+Rules_Filters.Text	筛选
+Rules_Include.Header	仅包含（用 ; 分隔的掩码）
+Rules_Include.PlaceholderText	*.jpg; *.png; 照片\*
+Rules_Exclude.Header	排除
+Rules_Exclude.PlaceholderText	node_modules; *.tmp; Thumbs.db
+Rules_MinSize.Header	最小大小 (MB)
+Rules_MaxSize.Header	最大大小 (MB)
+Rules_After.Header	修改时间不早于
+Rules_Before.Header	修改时间不晚于
+Rules_SkipHidden.Content	跳过隐藏文件
+Rules_SkipSystem.Content	跳过系统文件
+Rules_Rules.Text	规则
+Rules_Links.Header	符号链接和联接
+Rules_LinksCopy.Content	作为链接复制
+Rules_LinksFollow.Content	复制链接指向的内容
+Rules_LinksSkip.Content	跳过
+Rules_Pattern.Header	保留两者时的名称 ({name}, {n}, {ext}, {date})
+Rules_PatternPreview	示例：{0}
+Rules_Retries.Header	重试次数
+Rules_Delay.Header	重试间隔（秒）
+Rules_OnError.Header	如果文件一直失败
+Rules_OnErrorSkip.Content	记录下来并继续下一个
+Rules_OnErrorStop.Content	停止复制（可以继续）
+ConflictDifferentSize.Content	大小不同时替换
+ConflictRenameExisting.Content	重命名现有文件
+Conflict_RenameExisting.Text	重命名现有文件并复制此文件
+Schedule_Title.Text	计划开始时间
+Schedule_Set.Text	计划
+Schedule_Now.Text	立即开始
+Schedule_InThePast	请选择将来的时间。
+Job_StateScheduled	计划于 {0}
+Settings_Favorites.Text	收藏文件夹
+Settings_FavoritesTitle.Text	收藏的目标
+Settings_FavoritesDescription.Text	它们会出现在“新建 > 复制到”和目标对话框中，以便同时复制到多个文件夹。
+Settings_FavoritesAdd.Text	添加文件夹
+Settings_FavoritesRemove	移除 {0}
+Settings_FavoritesEmpty	还没有收藏。
+Tool_CopyTo.Text	复制到
+Tool_CopyToEmpty	没有收藏或最近的文件夹
+Tool_CopyToManage	管理收藏…
+Tool_TestFiles.Text	检查校验和文件…
+Tool_TestFolder.Text	检查文件夹的校验和…
+Tool_Delete.Text	删除…
+Tool_Wipe.Text	安全删除…
+DestinationsDialog.Title	复制到哪里？
+DestinationsDialog.PrimaryButtonText	开始
+DestinationsDialog.CloseButtonText	取消
+Destinations_SummaryOne	为“{0}”选择一个或多个目标。
+Destinations_SummaryMany	为 {0} 个项目选择一个或多个目标。
+Destinations_Add.Text	添加文件夹…
+Destinations_Move.Content	移动而不是复制
+Destinations_Schedule.Content	稍后开始
+DeleteDialog.Title	删除
+DeleteDialog.PrimaryButtonText	删除
+DeleteDialog.CloseButtonText	取消
+Delete_ConfirmOne	删除“{0}”？它不会进入回收站。
+Delete_ConfirmMany	删除 {0} 个项目？它们不会进入回收站。
+Delete_ConfirmSecureOne	安全删除“{0}”？
+Delete_ConfirmSecureMany	安全删除 {0} 个项目？
+Delete_SecureWarning.Title	将无法恢复
+Delete_SecureWarning.Message	删除前会覆盖内容。在 SSD 上，磁盘本身可能保留残留数据；如需最高安全性，请使用 BitLocker 加密。
+FinishHibernate.Text	休眠
+FinishSignOut.Text	注销
+FinishExit.Text	关闭 MegaCopier
+Finish_LabelHibernate	完成后：休眠
+Finish_LabelSignOut	完成后：注销
+Finish_LabelExit	完成后：关闭 MegaCopier
+Notify_FinishSleep	正在进入睡眠…
+Notify_FinishHibernate	正在进入休眠…
+Notify_FinishShutdown	电脑将在 1 分钟后关机（取消：shutdown /a）。
+Notify_FinishSignOut	正在注销…
+Notify_FinishExitApp	MegaCopier 正在关闭。
+Files_SelectAll.Text	全选
+Files_SelectSameExtension.Text	选择扩展名相同的文件
+Files_SelectSameFolder.Text	选择同一文件夹中的文件
+Files_InvertSelection.Text	反向选择
+Job_TitleTest	检查 {0}
+Job_TitleTesting	正在检查 {0}
+Job_TitleTested	已检查 {0}
+Job_TitleDelete	删除 {0}
+Job_TitleDeleting	正在删除 {0}
+Job_TitleDeleted	已删除 {0}
+Job_StateTesting	正在检查
+Job_StateDeleting	正在删除
+Job_FilesTestedOne	{0} 个文件正常
+Job_FilesTestedMany	{0} 个文件正常
+Job_FilesDeletedOne	已删除 {0} 个文件
+Job_FilesDeletedMany	已删除 {0} 个文件
+Job_TitleScheduled	已计划：{0}
+Error_ChecksumMismatch	内容与保存的校验和不一致：文件已更改或已损坏。
+Job_FilteredOut	没有文件通过此复制的筛选
+Rules_After.PlaceholderText	任意日期
+Rules_Before.PlaceholderText	任意日期
+Drop_MoveTo	移到第 {0} 位
+Drop_InsertAt	添加到第 {0} 位
+Drop_AddToJob	添加到此复制
+Drop_AddToNamedJob	添加到 {0}
+Drop_JobOrder	放到队列第 {0} 位
+Settings_Sounds.Text	声音
+Settings_SoundsTitle.Text	声音提醒
+Settings_SoundsDescription.Text	为每个时刻选择声音：Windows 声音、电脑上的任意文件或无声音。
+Settings_Volume.Header	音量
+Settings_SoundsQuiet.Content	全屏游戏或演示以及“请勿打扰”时保持安静
+Sound_Done	复制顺利完成
+Sound_Errors	复制完成但有错误
+Sound_AllDone	全部复制完成
+Sound_Attention	需要你做决定（文件已存在）
+Sound_Test	试听
+Sound_None	无声音
+Sound_Default	Windows 默认
+Sound_Choose	选择文件…
+File_Planned	已模拟
+File_Deleted	已移除
+File_RemovedExtra	已从目标移除：源中已没有它
+Plan_Copy	将被复制
+Plan_Replace	将替换目标中的文件
+Plan_ReplaceNewer	将替换目标中的文件：原文件较新
+Plan_ReplaceSize	将替换目标中的文件：大小不同
+Plan_KeepBoth	已存在：将以其他名称复制
+Plan_RenameExisting	已存在：将重命名目标中的文件并复制此文件
+Plan_Ask	已存在：将询问你怎么做
+Plan_SkipIdentical	将跳过：目标中已有相同文件
+Plan_SkipExists	将跳过：已存在
+Plan_SkipOlder	将跳过：目标中的文件相同或更新
+Plan_SkipSameSize	将跳过：大小相同
+Plan_SkipNotInDestination	将跳过：目标中没有（仅更新）
+Plan_SkipSamePath	将跳过：源和目标相同
+Plan_Delete	将从目标移除：源中已没有它
+Plan_Fail	将失败：目标已存在
+Plan_None	已模拟
+Skip_SkipIdentical	目标中已有相同文件
+Skip_SkipExists	已存在：已跳过
+Skip_SkipOlder	目标中的文件相同或更新
+Skip_SkipSameSize	与目标中的文件大小相同
+Skip_SkipNotInDestination	目标中没有（只更新已存在的文件）
+Skip_SkipSamePath	源和目标是同一个文件
+Skip_SkipByUser	被你跳过
+Job_TitleSync	同步 {0}
+Job_TitleSyncing	正在同步 {0}
+Job_TitleSynced	已同步 {0}
+Job_StateSyncing	正在同步
+Job_FilesSyncedOne	已更新 {0} 个文件
+Job_FilesSyncedMany	已更新 {0} 个文件
+Job_TitleSimulate	模拟 {0}
+Job_TitleSimulating	正在模拟 {0}
+Job_TitleSimulated	模拟：{0}
+Job_StateSimulating	正在模拟
+Job_FilesSimulatedOne	将复制 {0} 个文件
+Job_FilesSimulatedMany	将复制 {0} 个文件
+Job_WouldTransfer	共 {0}
+Job_TitleHash	为 {0} 创建校验和
+Job_TitleHashing	正在计算 {0} 的校验和
+Job_TitleHashed	{0} 的校验和
+Job_StateHashing	正在计算校验和
+Job_FilesHashedOne	校验和列表中有 {0} 个文件
+Job_FilesHashedMany	校验和列表中有 {0} 个文件
+Job_StateWaitingDevice	正在等待磁盘或网络恢复…
+Job_StateWaitingSpace	正在等待目标有可用空间…
+Job_RemovedOne	已从目标移除 1 个
+Job_Removed	已从目标移除 {0} 个
+Job_WouldRemove	将从目标移除 {0} 个
+Panel_RunForReal.Text	正式执行
+Options_Mode.Header	模式
+Mode_Copy.Content	复制
+Mode_Mirror.Content	同步（镜像）
+Mode_Update.Content	只更新已存在的文件
+Mode_Folders.Content	仅文件夹结构
+Options_MirrorInfo.Title	同步会从目标移除源中已没有的内容
+Options_MirrorInfo.Message	被筛选排除的内容不会被改动。设置版本文件夹可保存被移除或替换的文件。
+Options_DryRun.Content	模拟：只显示会发生什么，不做任何更改
+Destinations_DryRun.Content	先模拟（不做任何更改）
+Tool_HashFolder.Text	为文件夹创建校验和文件…
+Tool_HashFiles.Text	为文件创建校验和文件…
+Rules_SkipJunk.Content	跳过垃圾文件 (Thumbs.db, desktop.ini, .DS_Store, ~$…)
+Rules_OnErrorEnd.Content	在队列末尾重试
+Rules_Safety.Text	同步与安全
+Rules_FolderConflict.Header	如果目标中已有该文件夹
+Rules_FolderMerge.Content	合并内容
+Rules_FolderSkip.Content	整个跳过
+Rules_Versions.Header	将替换或移除的文件保存在文件夹中
+Rules_Versions.PlaceholderText	留空：不保存（例如 .versions）
+Rules_Tolerance.Header	“相同”的日期容差（秒）
+Rules_VerifySource.Content	完成时重新读取原文件
+Rules_HashStream.Content	将哈希保存在每个文件内
+Rules_HardLinks.Content	保留硬链接
+Rules_Wipe.Content	移动时安全删除原文件
+Rules_WaitDevice.Content	磁盘或网络断开时等待
+Rules_WaitSpace.Content	空间不足时等待
+Rules_VerifySource.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	重新计算原文件的哈希：检测它在复制期间是否发生变化，或源磁盘是否读取有误。
+Rules_HashStream.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	保存在文件自身的隐藏数据流中 (NTFS)。以后“检查文件夹的校验和”即使没有校验和文件也能发现任何损坏。
+Rules_HardLinks.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	如果多个名称是同一个文件，在目标中也会如此（不占双倍空间）。
+Rules_Tolerance.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	FAT32 和 exFAT 记录时间的精度为 2 秒：有了这个容差，相同的文件不会被重新复制。
+Rules_Versions.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	在替换或移除文件之前，会把它移到目标中的这个文件夹，并在名称中加上日期。
+Settings_UnitsTitle.Text	大小单位
+Settings_UnitsDescription.Text	大小和速度的显示方式。
+Units_Classic.Content	KB、MB、GB（与文件资源管理器相同）
+Units_Iec.Content	KiB、MiB、GiB（二进制）
+Units_Decimal.Content	按 1000 计的 kB、MB、GB（与厂商相同）
+Settings_SlowTitle.Text	使用电脑时放慢速度
+Settings_SlowDescription.Text	你使用键盘或鼠标时，复制不超过此速度；离开电脑后恢复原速。
+Slow_Off.Content	否
+Settings_LogsTitle.Text	保存每次复制的日志
+Settings_LogsDescription.Text	每次复制在日志文件夹中生成一个文件；30 天后自动删除。
+Settings_LogsOpen.Text	打开文件夹
+Settings_WebhookTitle.Text	完成时通知网址
+Settings_WebhookDescription.Text	在手机或聊天中收到通知：Discord、Slack、Teams、ntfy.sh、Home Assistant… 会发送一个带 JSON 的 POST 请求。
+Settings_WebhookBox.PlaceholderText	https://ntfy.sh/my-secret-topic
+Settings_WebhookTest.Text	测试
+Settings_WebhookSending	正在发送…
+Settings_WebhookOk	通知已发送。
+Settings_WebhookFailed	无法发送：请检查网址和网络连接。
+Settings_WebhookTestMessage	✔ MegaCopier：测试通知
+FinishDialog.Title	全部复制完成
+FinishDialog.PrimaryButtonText	立即执行
+FinishDialog.CloseButtonText	取消
+Finish_CountdownSleep	电脑将在 {0} 秒后睡眠。
+Finish_CountdownHibernate	电脑将在 {0} 秒后休眠。
+Finish_CountdownShutdown	电脑将在 {0} 秒后关机。
+Finish_CountdownSignOut	将在 {0} 秒后注销。
+Finish_CountdownExitApp	MegaCopier 将在 {0} 秒后关闭。
+Job_SlowedDown	你使用电脑时放慢速度
+History_Undone	已撤销
+History_Undo.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	撤销：把移动的内容放回原处，或把复制的内容送入回收站
+History_CopyBack.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	复制回源文件夹（还原）
+History_UndoDialog.Title	撤销此复制？
+History_UndoDialog.PrimaryButtonText	撤销
+History_UndoDialog.CloseButtonText	取消
+History_UndoMoveConfirm	所有移动的内容都会从“{0}”回到原文件夹。
+History_UndoCopyConfirm	复制的 {0} 个文件将送入回收站（可以恢复）。之后被修改的文件或替换了其他文件的文件不会改动。
+History_UndoDone	已将 {0} 个文件送入回收站。
+History_UndoKept	保留了 {0} 个之后被修改的文件和 {1} 个替换了其他文件的文件。
+History_UndoTitleBar.Title	复制已撤销
+History_Undo.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	撤销：把移动的内容放回原处，或把复制的内容送入回收站
+History_CopyBack.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	复制回源文件夹（还原）
+History_Open.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	打开目标
+History_Repeat.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	重复（只复制新增或更改的内容）
+Task_Header.Text	或者保存为任务，让 Windows 在上面选定的时间自动重复：
+Task_Name.PlaceholderText	任务名称
+Task_Once.Content	一次
+Task_Daily.Content	每天
+Task_Weekly.Content	每周
+Task_Save.Text	保存为任务
+Task_SavedOnce	任务“{0}”已保存：将于 {2} {1} 运行。
+Task_SavedDaily	任务“{0}”已保存：将于每天 {1} 运行。
+Task_SavedWeekly	任务“{0}”已保存：将于每周与 {2} 相同的星期几 {1} 运行。
+Task_Failed	无法计划：{0}
+Settings_Tasks.Text	计划任务
+Settings_TasksTitle.Text	自动重复的复制
+Settings_TasksDescription.Text	在复制的“选项”选项卡中创建（“保存为任务”）；即使 MegaCopier 已关闭，Windows 任务计划程序也会运行它们。
+Settings_TasksEmpty	还没有任务。
+Settings_TaskRun	立即运行“{0}”
+Settings_TaskDelete	删除任务“{0}”
+About_Portable	便携版（数据位于 {0}）
+Job_Estimate	{0}，约 {1}
+Job_EstimateSize	共 {0}
+Settings_SmbCompression.Content	通过网络压缩 (SMB)
+Settings_SmbCompression.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	请求服务器在传输途中压缩数据（Windows 11 和 Windows Server 2022 或更高版本）。如果源和目标在同一台服务器上，复制总由服务器自己完成，不经过这台电脑。
+Error_TooLargeForFileSystem	此磁盘放不下：FAT32 不允许 4 GB 或更大的文件。请将其格式化为 exFAT 或 NTFS。
+Rules_AllOrNothing.Content	“全有或全无”文件夹
+Rules_AllOrNothing.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	每个新文件夹先隐藏复制，只有全部成功后才以其名称出现：绝不会留下看似完整却只复制了一半的文件夹。
+Rules_Rescue.Content	损坏磁盘的救援模式
+Rules_Rescue.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	如果源有坏扇区，会逐扇区读取并救出所有可读内容；不可读部分填零并记入日志。移动时不会删除原文件。
+Error_PartlyUnreadable	部分救出：源的部分扇区已损坏并被填零（详见日志）。
+Settings_Guard.Text	完整性守护
+Settings_GuardTitle.Text	防止文件随时间损坏
+Settings_GuardDescription.Text	每个文件在内部保存自己的哈希。电脑空闲时，MegaCopier 会检查它们：如果某个文件在没人编辑的情况下变了（被磁盘损坏），会提醒你。你编辑的内容会自动更新。需要 NTFS。
+Guard_Daily.Content	每天
+Guard_Weekly.Content	每周
+Guard_Monthly.Content	每月
+Settings_GuardAdd.Text	守护文件夹…
+Settings_GuardEmpty	你还没有守护任何文件夹。
+Settings_GuardCheck	立即检查“{0}”
+Settings_GuardRemove	停止守护“{0}”
+Guard_NotYet	等待首次检查
+Guard_LastOk	{0} 已检查：一切正常
+Guard_LastDamaged	{0} 已检查：{1} 个文件损坏（见历史记录）
+Guard_DamagedTitle	完整性守护
+Guard_DamagedOne	“{0}”中有一个文件在磁盘上损坏了。
+Guard_DamagedMany	“{1}”中有 {0} 个文件在磁盘上损坏了。
+Guard_LastDamagedOne	{0} 已检查：一个文件损坏（见历史记录）
+Settings_ScheduleLimitTitle.Text	按时段限速
+Settings_ScheduleLimitDescription.Text	例如在工作时间：在所选时段内复制不超过此速度。
+Settings_ScheduleFrom.Text	从
+Settings_ScheduleTo.Text	到
+Settings_PauseBatteryTitle.Text	使用电池时暂停
+Settings_PauseBatteryDescription.Text	笔记本未接电源时，复制会等待，接上电源后自动继续。
+Settings_PauseFullTitle.Text	游戏和演示时暂停
+Settings_PauseFullDescription.Text	有全屏游戏或演示时，复制会等待，以免拖慢它。
+Comfort_PausedTitle	复制已暂停
+Comfort_PausedBattery	电脑正在使用电池：接上电源后复制将继续。
+Comfort_PausedFullScreen	正在运行全屏游戏或演示：退出后复制将继续。
+Job_StatePausedBattery	已暂停：使用电池
+Job_StatePausedFullScreen	已暂停：全屏
+Job_SlowedSchedule	因所选时段而放慢
+Rules_Delta.Content	替换大文件时只写入变化部分
+Rules_Delta.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	对 16 MB 及以上的文件（虚拟磁盘、邮件、项目）进行差异复制：只写入不同的数据块。如果取消或断电，文件会恢复到之前的版本。
+Panel_CopyLocked.Text	复制正在使用的文件
+Locked_Title	正在使用的文件
+Locked_Cancelled	未获得管理员权限：正在使用的文件未被复制。
+Locked_Done	已从磁盘快照复制 {0} 个正在使用的文件。
+Locked_Partial	已从快照复制 {0} 个；其余无法复制：{1}
+Settings_Peer.Text	从其他电脑接收
+Settings_PeerTitle.Text	接收来自装有 MegaCopier 的其他电脑的文件
+Settings_PeerDescription.Text	通过家庭或办公室网络，无需共享文件夹。发送方需要下面的代码；连接经过加密，每个文件到达时都会校验。第一次时 Windows 可能会请求防火墙权限。
+Settings_PeerCode.Text	向你发送文件的代码：
+Settings_PeerNewCode.Text	新代码
+Settings_PeerFolder.Text	更改文件夹…
+Settings_PeerFolderIs	保存在 {0}
+Settings_PeerListening	正在“{0}”上等待发送（端口 {1}）。
+Settings_PeerError	无法开始接收：{0}
+Peer_ReceivingTitle	正在接收文件
+Peer_Receiving	{0} 正在向你发送 {1} 个文件 ({2})。
+Peer_ReceivedTitle	已收到文件
+Peer_Received	来自 {1} 的 {0} 个文件，保存在 {2}。
+Peer_RejectedTitle	发送被拒绝
+Peer_Rejected	{0} 试图用错误的代码向你发送文件。
+Tool_SendFiles.Text	发送文件到其他电脑…
+Tool_SendFolder.Text	发送文件夹到其他电脑…
+SendDialog.Title	发送到其他电脑
+SendDialog.PrimaryButtonText	发送
+SendDialog.CloseButtonText	取消
+Send_SummaryOne	将“{0}”发送到正在用 MegaCopier 接收的其他电脑。
+Send_SummaryMany	将 {0} 个项目发送到正在用 MegaCopier 接收的其他电脑。
+Send_Found.Text	网络上找到的电脑：
+Send_Searching	正在搜索…
+Send_NoneFound	未找到：请输入其名称或 IP。
+Send_Host.Header	电脑（名称或 IP）
+Send_Host.PlaceholderText	客厅电脑 或 192.168.1.20
+Send_Code.Header	该电脑在“设置”中显示的代码
+Send_Code.PlaceholderText	XXXX-XXXX-XXXX
+Job_TitleSend	发送 {0}
+Job_TitleSending	正在发送 {0}
+Job_TitleSent	已发送 {0}
+Job_StateSending	正在发送
+Job_FilesSentOne	已发送 {0} 个文件
+Job_FilesSentMany	已发送 {0} 个文件
+Rules_Describe.Header	用自己的话描述（英语或西班牙语）
+Rules_Describe.PlaceholderText	photos larger than 2 MB from last month except .tmp
+Rules_DescribeApply.Text	应用
+Rules_DescribeUnderstood	已理解：{0}。
+Rules_DescribeNothing	没有理解到要筛选的内容。
+Rules_DescribeUnknown	无法理解：{0}。
+Mode_Organize.Content	按日期整理照片
+Rules_Duplicates.Content	不复制目标中已有的内容（重复项）
+Rules_Duplicates.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	比较内容而不是名称：目标任何文件夹中已有的照片，即使名称不同，也不会再次复制。
+Skip_SkipDuplicate	目标中已有，名称或文件夹不同
+Plan_SkipDuplicate	将跳过：目标中已有（重复项）
+Destinations_Encrypt.Content	用密码加密（用于可能丢失的 U 盘或硬盘）
+Destinations_Password.Header	密码
+Destinations_Password2.Header	再次输入
+Destinations_PasswordHint	使用 AES-256 加密。如果忘记密码，文件将无法恢复。读取方法：“新建”菜单 > “解密”。
+Destinations_PasswordShort	密码至少需要 8 个字符。
+Destinations_PasswordMismatch	两次输入的密码不一致。
+PasswordDialog.Title	密码
+PasswordDialog.PrimaryButtonText	确定
+PasswordDialog.CloseButtonText	取消
+Tool_Decrypt.Text	解密加密文件…
+Picker_DecryptHere	解密到这里
+Decrypt_Ask	“{0}”中加密文件的密码：
+Resume_PasswordAsk	此复制已加密且不保存密码：请输入密码以继续。
+Job_TitleEncrypt	加密 {0}
+Job_TitleEncrypting	正在加密 {0}
+Job_TitleEncrypted	已加密 {0}
+Job_StateEncrypting	正在加密
+Job_FilesEncryptedOne	已加密 {0} 个文件
+Job_FilesEncryptedMany	已加密 {0} 个文件
+Job_TitleDecrypt	解密 {0}
+Job_TitleDecrypting	正在解密 {0}
+Job_TitleDecrypted	已解密 {0}
+Job_StateDecrypting	正在解密
+Job_FilesDecryptedOne	已解密 {0} 个文件
+Job_FilesDecryptedMany	已解密 {0} 个文件
+Settings_DisksTitle.Text	磁盘状态
+Settings_DisksDescription.Text	Windows 报告的每个磁盘的状态 (SMART)。如果某个磁盘预警故障，从它复制或复制到它时 MegaCopier 会告诉你。
+Settings_DisksCheck.Text	立即检查
+Disk_Row	磁盘 {0} · {1}：{2}
+Disk_Healthy	正常
+Disk_Unknown	状态未知
+Disk_HealthWarning	报告问题
+Disk_Checking	正在检查磁盘…
+Disk_WarningTitle	有磁盘报告故障
+Disk_Warning	“{0}”（磁盘 {1}）：{2}。请尽快把重要内容复制到其他磁盘。
+Settings_TuneTitle.Text	为每个磁盘自动调优
+Settings_TuneDescription.Text	用多种块大小和并行操作数测量每个磁盘，并在复制到它时使用最快的组合（除非你手动修改了性能设置）。
+Settings_TuneMeasure.Text	测量磁盘
+Settings_TuneNone	还没有测量任何磁盘。
+Settings_TuneDisk	磁盘
+Settings_TuneProfile	{0}：{1} MB 块，同时 {2} 个 ({3:N0} MB/s)
+Settings_TuneMeasuring	正在测量 {0}（{1} / {2}）…
+Tool_Timeline.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	队列时间线
+Timeline_Title.Text	时间线
+Timeline_Info.Text	根据每个磁盘的速度预测。使用同一磁盘的复制逐个进行。
+Timeline_Empty.Text	没有进行中或排队的复制。
+Timeline_Summary	预计全部在 {0} 左右完成（{1} 后）。
+Timeline_Now	现在
+Timeline_Tomorrow	明天 {0}
+Timeline_Running	进行中 · 预计结束：{0}（剩余 {1}）
+Timeline_Paused	已暂停 · 若现在继续，预计结束：{0}
+Timeline_Queued	排队中 · 开始：{0} · 预计结束：{1}（用时 {2}）
+Timeline_Scheduled	已计划 · 开始：{0} · 预计结束：{1}（用时 {2}）
+Timeline_Measuring	仍在测量大小
+Tool_Shelf.Text	拖放架
+Tray_Shelf	拖放架
+Shelf_WindowTitle	MegaCopier 拖放架
+Shelf_Title.Text	拖放架
+Shelf_Empty.Text	把任何位置的文件和文件夹拖到这里。然后一起复制或移动，或者再拖出去。
+Shelf_DropCaption	添加到拖放架
+Shelf_CopyTo.Text	复制到…
+Shelf_MoveTo.Text	移动到…
+Shelf_Clear.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	清空拖放架
+Shelf_Remove.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	从拖放架移除
+Shelf_One	1 个项目
+Shelf_Many	{0} 个项目
+Shelf_RemoveNamed	从拖放架移除“{0}”
+Destinations_NoneChosen.Text	请至少勾选一个目标（或添加文件夹）。
+Finish_ShutdownMessage	MegaCopier 已完成复制。电脑将在 1 分钟后关机。
+Hash_Name	哈希：{0}

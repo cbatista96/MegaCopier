@@ -58,6 +58,7 @@ internal sealed partial class FileTransfer
                 BinaryPrimitives.WriteInt64LittleEndian(header, oldLength);
                 undo.Write(header); // para devolverle su tamaño al deshacer
 
+                Span<byte> record = stackalloc byte[12];
                 for (long offset = 0; offset < length; offset += DeltaBlock)
                 {
                     cancellationToken.ThrowIfCancellationRequested();
@@ -81,7 +82,6 @@ internal sealed partial class FileTransfer
                         // Primero el bloque antiguo al registro de deshacer (escrito ya en el disco), después el nuevo.
                         if (existing > 0)
                         {
-                            Span<byte> record = stackalloc byte[12];
                             BinaryPrimitives.WriteInt64LittleEndian(record, offset);
                             BinaryPrimitives.WriteInt32LittleEndian(record[8..], existing);
                             undo.Write(record);

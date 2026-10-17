@@ -1,0 +1,12 @@
+clave	texto
+S_CopyHere	Hierheen kopiëren met MegaCopier
+S_MoveHere	Hierheen verplaatsen met MegaCopier
+S_Paste	Plakken met MegaCopier
+S_PasteIntoFolder	In deze map plakken met MegaCopier
+S_MoveIntoFolder	Naar deze map verplaatsen met MegaCopier
+S_TestChecksums	Controlesommen testen
+S_CreateChecksums	Controlesombestand maken
+S_SecureDelete	Veilig verwijderen…
+S_HelpText	Kopiëren met MegaCopier: gaat verder na een stroomstoring
+S_DeliverFailed	Kan de kopie niet aan MegaCopier doorgeven.
+S_OpenFailed	Kan MegaCopier niet openen.

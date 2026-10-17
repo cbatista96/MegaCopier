@@ -1,0 +1,220 @@
+clave	texto
+E_WouldMove	이동됩니다
+E_WouldCopy	복사됩니다
+E_WouldReplace	기존 파일을 바꿉니다
+E_WouldReplaceNewer	바꿉니다: 원본이 더 최신
+E_WouldReplaceSize	바꿉니다: 크기가 바뀜
+E_WouldKeepBoth	다른 이름으로 복사합니다(둘 다 유지)
+E_WouldRenameExisting	기존 파일 이름을 바꾸고 이 파일을 복사합니다
+E_WouldAsk	어떻게 할지 묻습니다
+E_WouldSkipIdentical	건너뜀: 동일
+E_WouldSkipExists	건너뜀: 이미 있음
+E_WouldSkipOlder	건너뜀: 대상이 같거나 더 최신
+E_WouldSkipSameSize	건너뜀: 크기가 같음
+E_WouldSkipNotInDestination	건너뜀: 대상에 없음
+E_WouldDelete	대상에서 삭제: 원본에 없음
+E_Deleted	대상에서 삭제됨: 원본에 없음
+E_WouldFail	오류로 표시됩니다
+E_WouldSkipSamePath	건너뜀: 원본과 대상이 같음
+E_SkipIdentical	기존 파일과 동일
+E_SkipOlder	대상이 같거나 더 최신
+E_SkipSameSize	기존 파일과 크기가 같음
+E_SkipNotInDestination	대상에 없음(기존 파일만 업데이트)
+E_SkipSamePath	원본과 대상이 같은 파일
+E_SkipExisted	이미 있음: 건너뜀
+E_DeletedLog	대상에서 삭제했습니다(원본에 없음).
+E_FolderExistsSkipped	대상에 폴더가 이미 있어 건너뛰었습니다.
+E_VersionSaved	이전 버전을 {0}에 저장했습니다
+E_HardLinkTo	{0}에 대한 하드 링크
+E_HardLinkCreated	하드 링크를 만들었습니다({0}와 같은 파일).
+E_HardLinkFailed	하드 링크를 만들 수 없어({0}) 파일을 복사합니다.
+E_HashStreamFailed	파일 안에 해시를 저장할 수 없습니다(대상이 NTFS가 아님?): {0}
+E_DeviceLost	네트워크나 드라이브가 사라졌습니다: 돌아올 때까지 기다렸다가 자동으로 이어서 합니다.
+E_DeviceBack	드라이브가 돌아왔습니다: 중단된 곳부터 이어서 합니다.
+E_DiskFull	대상이 가득 찼습니다: 공간이 생기면 자동으로 이어서 합니다.
+E_SpaceBack	공간이 생겼습니다: 계속합니다.
+E_HashStreamsSaved	파일 {0}개 안에 해시를 저장했습니다.
+E_ChecksumSaved	체크섬 파일을 저장했습니다: {0}
+E_HashStart	파일 {1}개({2})의 {0}을(를) 계산합니다.
+E_Added	파일 {0}개({1})를 추가했습니다.
+E_NeedPassword	이 복사는 암호화되어 있습니다: 계속하려면 암호를 다시 입력하세요.
+E_DryRunSummary	시뮬레이션: {0}개 복사, {1}개 건너뛰기, {2}개 삭제 예정.
+E_DoneCopy	{0} 만에 완료: 복사 {1}, 건너뜀 {2}, 오류 {3}.
+E_DuplicateInDestination	대상에 이미 있음: {0}
+E_Repaired	확인 과정에서 손상된 블록 {0}개를 복구했습니다.
+E_DeltaCopy	차등 복사: {0} 기록, {1}는 이미 동일했습니다.
+E_Cloned	블록을 즉시 복제했습니다(ReFS/Dev Drive): 수정하기 전까지 추가 공간을 쓰지 않습니다.
+E_SmbCompressed	SMB 압축을 사용해 Windows가 복사했습니다.
+E_ServerSide	서버에서 직접 복사했습니다(데이터가 이 PC를 거치지 않음).
+E_Resumed	{0}부터 이어서 했습니다.
+E_HashMismatch	해시가 일치하지 않음
+E_SourceChanged	다시 읽은 원본이 복사한 내용과 다릅니다(읽기 오류 또는 복사 중 변경)
+E_SkippedByUser	사용자가 건너뜀
+E_SkippedByUserLog	사용자가 건너뛰었습니다.
+E_ExistingDiffers	기존 파일이 원본과 다름
+E_ExistingDiffersLog	기존 파일의 크기와 날짜는 같지만 내용이 다릅니다.
+E_IdenticalVerified	동일(해시로 확인됨)
+E_SkippedNotVerified	건너뛴 파일을 확인할 수 없습니다: {0}
+E_RetryAtEnd	마지막에 다시 시도합니다: {0}
+E_DestinationExists	대상이 이미 있습니다: {0}
+E_ExistingRenamed	기존 파일 이름을 {0}(으)로 바꿨습니다.
+E_NoSpace	대상 공간 부족: {0:F2} GB 필요, {1:F2} GB 사용 가능.
+E_RescuedZeros	구조됨: 원본의 읽을 수 없는 {0}을(를) 0으로 채웠습니다(로그 참조).
+E_LinkExists	대상에 이미 있어 링크를 다시 만들지 않았습니다: {0}
+E_LinkCreated	링크를 만들었습니다: {0} → {1}
+E_JunctionCreated	정션을 만들었습니다: {0} → {1}
+E_LinkFallback	링크를 만들 수 없어({0}) 링크가 가리키는 파일을 복사했습니다.
+E_LinkFailed	링크를 만들 수 없습니다: {0}
+E_NoChecksums	체크섬 파일(.sha256, .md5, .sfv, .xxh3...)도, 해시가 저장된 파일도 찾지 못했습니다.
+E_TestStart	체크섬 목록 {1}개에서 파일 {0}개({2})를 확인합니다.
+E_NotFound	없음: {0}
+E_NoStoredHash	저장된 해시 없음: 확인 안 함
+E_ModifiedAfterHash	해시 저장 후 수정됨: 확인 안 함
+E_NowProtected	저장된 해시 없음: 이제 보호됨
+E_HashRenewed	해시 저장 후 수정됨: 해시 갱신
+E_ChecksumMismatch	내용이 저장된 체크섬과 일치하지 않음
+E_DoneTest	{0} 만에 확인 완료: 정상 {1}, 오류 {2}.
+E_UnsupportedAlgorithm	지원하지 않는 알고리즘: {0}
+E_DeleteStart	파일 {0}개({1})를 삭제합니다.
+E_WipeStart	파일 {0}개({1})를 안전하게 삭제합니다.
+E_DoneDelete	{0} 만에 완료: 삭제 {1}, 오류 {2}.
+E_NoSources	원본이 지정되지 않았습니다.
+E_WholeDrive	드라이브 전체 복사는 아직 지원하지 않습니다: {0}
+E_SourceMissing	원본이 없습니다: {0}
+E_IntoItself	폴더를 자기 자신 안으로 복사할 수 없습니다: {0}
+E_SourceUnreadable	원본을 읽을 수 없습니다: {0}
+E_LinkSkipped	링크를 건너뛰었습니다: {0}
+E_BrokenLinkSkipped	깨진 링크를 건너뛰었습니다: {0} → {1}
+E_LinkLoop	링크 순환을 피했습니다: {0}
+E_StreamsFailed	대체 데이터 스트림을 복사하지 못했습니다: {0}
+E_RescueGap	구조 모드: 바이트 {0:N0}–{1:N0}({2:N0}바이트)를 읽을 수 없어 0으로 채웠습니다.
+E_BlockUnrepairable	"{1}"의 블록 {0}이(가) 복구 후에도 원본과 일치하지 않습니다.
+E_SourceChangedSinceStart	원본 파일이 처음 복사한 내용과 더 이상 일치하지 않습니다.
+E_SourceSizeChanged	복사하는 동안 원본 파일의 크기가 바뀌었습니다.
+E_Disk_Degraded	성능 저하
+E_Disk_Predictive	고장 예측(SMART)
+E_Disk_Error	오류
+E_Disk_Unrecoverable	복구 불가
+E_Disk_Stopped	중지됨
+E_Disk_Lost	통신 끊김
+E_Disk_Transient	일시적 오류
+E_Disk_Metadata	인식할 수 없는 메타데이터
+E_JunctionOpenFailed	정션을 만들기 위해 {0}을(를) 열 수 없습니다.
+E_JunctionFailed	정션 {0} → {1}을(를) 만들 수 없습니다.
+E_HardLinkCreateFailed	하드 링크 {0}을(를) 만들 수 없습니다.
+E_SnapshotFailed	{0}의 스냅숏을 만들 수 없습니다: {1}
+E_SnapshotOpenFailed	스냅숏을 열 수 없습니다({0}).
+E_NoWmiAnswer	Win32_ShadowCopy가 응답하지 않았습니다.
+E_PowerShellExit	PowerShell이 코드 {0}(으)로 종료되었습니다.
+E_ReadSecurityAdmin	원본의 보안을 읽을 수 없습니다: 관리자 권한이 필요합니다.
+E_ReadSecurityFailed	원본의 보안을 읽을 수 없습니다(오류 {0}).
+E_WriteSecurityAdmin	대상에 보안을 적용할 수 없습니다: 관리자 권한이 필요합니다.
+E_WriteSecurityFailed	대상에 보안을 적용할 수 없습니다(오류 {0}).
+E_AtomicExists	대상에 이미 있음: 기존 폴더에 복사합니다("전부 아니면 전무" 없이).
+E_AtomicNotPublished	오류가 있었습니다: 폴더를 아직 공개하지 않습니다({0}(으)로 숨겨 둠). 다시 시도하면 완전한 상태로 나타납니다.
+E_AtomicPublished	폴더 완성: 원래 이름으로 공개했습니다.
+E_AtomicRenameFailed	폴더에 최종 이름을 붙일 수 없습니다: {0}
+E_BadFileHeader	파일 헤더가 잘못되었습니다.
+E_PartialChanged	미완성 파일이 변경되었습니다.
+E_NotEncrypted	MegaCopier로 암호화된 파일이 아닙니다.
+E_BadEncryptedHeader	암호화 파일 헤더가 잘못되었습니다.
+E_EncryptedExtra	암호화 파일에 불필요한 데이터가 있습니다.
+E_ConnectFailed	{0}:{1}에 연결할 수 없습니다(상대 MegaCopier가 받는 중이고 방화벽이 허용하나요?): {2}
+E_AlreadyOnPeer	상대 PC에 이미 있음
+E_DamagedTwice	두 번 모두 상대 PC에 손상된 상태로 도착함
+E_Fat32	FAT32에 들어가지 않습니다(파일당 최대 4GB). 디스크를 exFAT 또는 NTFS로 포맷하세요.
+E_FatLimits	대상이 {0}입니다: 대체 데이터 스트림과 권한은 저장되지 않고 날짜는 2초 단위입니다.
+E_CaseCollisions	대상에서 이름 {0}개가 겹칩니다(대소문자만 다름): 충돌로 처리합니다.
+E_BadName	Windows에서 문제가 되는 이름(예약된 이름이거나 마침표나 공백으로 끝남): 일부 프로그램에서 열 수 없습니다.
+E_LongPaths	파일 {0}개의 경로가 260자를 넘습니다: 파일 탐색기 등에서 열 수 없을 수 있습니다.
+E_WrongCode	코드가 상대 PC에 표시된 것과 일치하지 않습니다.
+E_PeerUnknownCode	상대 PC가 이 코드를 모릅니다: 연결이 안전하지 않습니다.
+E_FlushFailed	데이터를 디스크에 쓸 수 없습니다.
+E_SourceInfoFailed	원본 파일 정보를 읽을 수 없습니다.
+E_JobNotRunning	작업이 실행 중이 아닙니다.
+E_StopBeforeDiscard	취소하기 전에 작업을 중지하세요.
+E_JobErrors	파일 {0}개 오류
+E_NoEncryptedFiles	선택한 항목에 MegaCopier 암호화 파일(.mcenc)이 없습니다.
+E_WrongPassword	암호가 틀렸거나 암호화 파일이 손상 또는 변조되었습니다.
+E_BadPeerMessage	상대 PC의 메시지가 잘못되었습니다.
+E_NoPhotoDate	파일 {0}개에 촬영 날짜가 없어 수정한 날짜로 정리합니다.
+E_F_NoHidden	숨김 파일 제외
+E_F_NoSystem	시스템 파일 제외
+E_F_NoJunk	불필요한 파일 제외
+E_F_Without	{0} 제외
+E_F_Today	오늘
+E_F_Yesterday	어제부터
+E_F_ThisWeek	이번 주
+E_F_ThisMonth	이번 달
+E_F_ThisYear	올해
+E_F_LastDay	최근 하루
+E_F_LastWeek	최근 일주일
+E_F_LastMonth	최근 한 달
+E_F_LastYear	최근 1년
+E_F_LastDays	최근 {0}일
+E_F_LastWeeks	최근 {0}주
+E_F_LastMonths	최근 {0}개월
+E_F_LastYears	최근 {0}년
+E_F_Before	{0} 이전
+E_F_Since	{0}부터
+E_F_InYear	{0}년
+E_Kind_fotos	사진
+E_Kind_videos	동영상
+E_Kind_musica	음악
+E_Kind_documentos	문서
+E_Kind_comprimidos	압축 파일
+E_Kind_programas	프로그램
+E_Kind_temporales	임시 파일
+C_UnknownCommand	알 수 없는 명령: {0}
+C_UnknownConflict	알 수 없는 충돌 모드: {0}
+C_UnknownOption	알 수 없는 옵션: {0}
+C_NeedSourceAndDestination	원본과 대상 폴더를 하나 이상 지정하세요.
+C_UnknownSendOption	send의 알 수 없는 옵션: {0}
+C_NeedItem	파일이나 폴더를 하나 이상 지정하세요.
+C_Delivered	{1:F0}ms 만에 MegaCopier에 전달했습니다(작업 {0}).
+C_Rejected	MegaCopier가 복사를 거부했습니다: {0}
+C_AppNotFound	MegaCopier가 열려 있지 않고 MegaCopier.exe를 찾을 수 없습니다(MEGACOPIER_APP에 경로를 설정하세요).
+C_AppStarted	MegaCopier가 열려 있지 않아 복사와 함께 시작했습니다.
+C_BadTime	잘못된 시간: {0}(HH:mm 또는 날짜와 시간을 사용하세요).
+C_NeedChecksums	체크섬 파일이나 이를 포함한 폴더를 지정하세요.
+C_Ok	정상
+C_Failed	실패
+C_TestDone	정상 {0}, 오류 {1}, {2:F1}초.
+C_NeedDelete	삭제할 항목을 지정하세요.
+C_NeedYes	삭제는 되돌릴 수 없습니다: 확인하려면 --yes를 추가하세요.
+C_DeleteDone	파일 {0}개 삭제, {1}개 오류.
+C_WipeDone	파일 {0}개 안전하게 삭제, {1}개 오류.
+C_NoJob	작업 {0}이(가) 없습니다.
+C_NoPendingJobs	대기 중인 작업이 없습니다.
+C_Resuming	{0} 재개: {1} → {2}
+C_TestKill	[테스트] {1}의 {0}을(를) 확정한 후 프로세스를 종료합니다.
+C_TestContinue	[테스트] 계속하려면: mcopy resume {0}
+C_DryRunNote	시뮬레이션: 아무것도 바꾸지 않았습니다. 실제로 하려면 --dry-run을 빼세요.
+C_RetryHint	오류가 난 파일이 있습니다. 다시 시도: mcopy resume {0}
+C_PausedHint	복사가 일시 중지되었습니다. 이어서 하기: mcopy resume {0}
+C_Error	오류: {0}
+C_JobPending	작업이 대기 중입니다: mcopy resume {0}
+C_Exists	이미 있음: {0}
+C_New	새 파일
+C_Existing	기존 파일
+C_ConflictPrompt	[r] 바꾸기, [s] 건너뛰기, [k] 둘 다 유지(대문자 = 모두에 적용):
+C_ConflictKeys	rsk
+C_DoneIn	{0} 만에 완료
+C_Summary	복사: {0}(이어서: {1})   건너뜀: {2}   오류: {3}
+C_Transferred	전송: {0}   이어하기 덕분에 다시 복사하지 않음: {1}
+C_AverageSpeed	평균 속도: {0}/s
+C_Blocks	재개 시 버린 블록: {0}   확인으로 복구한 블록: {1}
+C_MissingValue	{0}의 값이 없습니다.
+C_NeedPositive	{0}에는 양수가 필요합니다.
+C_Password	암호:
+C_Repeat	다시 입력:
+C_PasswordShort	암호는 8자 이상이어야 합니다.
+C_PasswordMismatch	암호가 일치하지 않습니다.
+C_Checking	확인 중
+C_Verifying	검증 중
+C_Left	{0} 남음
+C_Of	{0} / {1}
+C_Usage	MegaCopier — 정전에도 끄떡없는 복사\n\n사용법:\n  mcopy copy <원본>... <대상 폴더> [옵션]\n  mcopy move <원본>... <대상 폴더> [옵션]   이동(같은 디스크면 즉시)\n  mcopy send <원본>... <대상 폴더> [--verify] [--move] [--also <다른 폴더>]... [--at HH:mm]\n                              복사를 MegaCopier 앱(창과 알림 영역)에 넘김\n  mcopy send --test <체크섬|폴더>...       앱에서 체크섬 파일 확인\n  mcopy send --delete [--secure] <경로>...  앱에서 (안전하게) 삭제\n  mcopy send --hash <폴더|파일>...         앱에서 체크섬 파일 만들기\n  mcopy send ... [--mirror|--update-only|--folders-only] [--dry-run]\n  mcopy test <체크섬|폴더>...   앱 없이 .sha256, .md5, .sfv, .xxh3... 확인\n  mcopy decrypt <암호화 파일|폴더>... <대상 폴더>   .mcenc 파일 해독\n  mcopy delete [--secure] --yes <경로>...   앱 없이 삭제(--secure: 먼저 덮어쓰기)\n  mcopy resume [id]      중단된 작업(또는 그중 하나) 재개\n  mcopy jobs             대기 중인 작업 목록\n\ncopy 옵션:\n  --verify               캐시 없이 대상을 다시 읽고 해시를 비교해 손상된 블록 복구\n  --conflict <모드>      overwrite(기본값) | skip | newer | rename | fail | ask\n  --limit-mb <n>         n MB/s로 제한\n  --force                대상이 동일해도 복사\n  --chunk-mb <n>         몇 MB마다 디스크에 진행 상황을 확정할지(기본값 64)\n  --block-mb <n>         한 번 읽고 쓰는 크기(MB)\n  --queue <n>            동시에 진행하는 읽기/쓰기 수\n  --no-unbuffered        직접 I/O 대신 Windows 캐시 사용\n  --mirror               동기화: 원본에 더 이상 없는 항목을 대상에서 제거\n  --update-only          대상에 이미 있는 파일만 업데이트\n  --folders-only         폴더 구조만 만들기\n  --dry-run              시뮬레이션: 각 파일이 어떻게 될지 알려 주고 아무것도 바꾸지 않음\n  --versions <폴더>      바뀌거나 제거된 파일을 대상의 그 폴더에 보관\n  --skip-junk            Thumbs.db, desktop.ini, .DS_Store, ~$... 건너뛰기\n  --smb-compress         네트워크 복사 시 SMB 압축 요청(느린 네트워크)\n  --atomic               전부 아니면 전무: 폴더는 완성된 후에만 나타남\n  --rescue               구조 모드: 손상된 디스크에서 읽을 수 있는 것을 구함(읽을 수 없는 부분은 0)\n  --delta                큰 파일을 바꿀 때 변경된 블록만 쓰기\n  --organize             사진과 동영상을 촬영 날짜에 따라 "연-월" 폴더로 정리\n  --skip-duplicates      대상에 이미 있는 항목(같은 내용, 이름 무관)은 복사하지 않음\n  --encrypt              암호로 암호화한 복사본(AES-256, .mcenc 파일)\n  --crash-after-mb <n>   [테스트] 파일의 n MB를 확정한 후 프로세스 종료\n\nCtrl+C로 복사를 일시 중지하고, 'resume'으로 마지막으로 확정한 블록부터 이어서 합니다.
+U_Seconds	{0}초
+U_MinSec	{0}분 {1}초
+U_HourMin	{0}시간 {1}분

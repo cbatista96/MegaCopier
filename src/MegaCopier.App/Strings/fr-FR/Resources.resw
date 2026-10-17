@@ -1,0 +1,803 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generado por tools/Strings/gen.cs: no editar a mano. -->
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="JobsSection.Text" xml:space="preserve"><value>Copies</value></data>
+  <data name="SettingsSection.Text" xml:space="preserve"><value>Paramètres</value></data>
+  <data name="FinishButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Que faire quand toutes les copies sont terminées</value></data>
+  <data name="FinishNothing.Text" xml:space="preserve"><value>Ne rien faire</value></data>
+  <data name="FinishSleep.Text" xml:space="preserve"><value>Mettre en veille</value></data>
+  <data name="FinishShutdown.Text" xml:space="preserve"><value>Arrêter l&apos;ordinateur</value></data>
+  <data name="NewCopyText.Text" xml:space="preserve"><value>Nouvelle copie</value></data>
+  <data name="CopyFilesItem.Text" xml:space="preserve"><value>Copier des fichiers…</value></data>
+  <data name="CopyFolderItem.Text" xml:space="preserve"><value>Copier un dossier…</value></data>
+  <data name="EmptyTitle.Text" xml:space="preserve"><value>Aucune copie</value></data>
+  <data name="EmptyDescription.Text" xml:space="preserve"><value>Les copies que vous lancez apparaîtront ici. En cas de coupure de courant, vous pourrez les reprendre là où elles se sont arrêtées.</value></data>
+  <data name="PauseButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Pause</value></data>
+  <data name="StopButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Arrêter (vous pourrez reprendre plus tard)</value></data>
+  <data name="OpenFolderButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Ouvrir le dossier de destination</value></data>
+  <data name="ClearButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Retirer de la liste</value></data>
+  <data name="DiscardButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Abandonner et supprimer la copie partielle</value></data>
+  <data name="ConflictDialog.Title" xml:space="preserve"><value>Le fichier existe déjà</value></data>
+  <data name="ConflictDialog.PrimaryButtonText" xml:space="preserve"><value>Remplacer</value></data>
+  <data name="ConflictDialog.SecondaryButtonText" xml:space="preserve"><value>Garder les deux</value></data>
+  <data name="ConflictDialog.CloseButtonText" xml:space="preserve"><value>Ignorer</value></data>
+  <data name="ConflictExistingTitle.Text" xml:space="preserve"><value>Celui qui existe</value></data>
+  <data name="ConflictApplyAll.Content" xml:space="preserve"><value>Faire de même pour les autres conflits de cette copie</value></data>
+  <data name="RestartInfo.Title" xml:space="preserve"><value>Redémarrez MegaCopier pour appliquer la modification</value></data>
+  <data name="RestartInfo.Message" xml:space="preserve"><value>Les copies en cours s&apos;arrêteront et vous pourrez les reprendre ensuite.</value></data>
+  <data name="RestartButton.Content" xml:space="preserve"><value>Redémarrer maintenant</value></data>
+  <data name="AppearanceHeader.Text" xml:space="preserve"><value>Apparence</value></data>
+  <data name="ThemeTitle.Text" xml:space="preserve"><value>Thème</value></data>
+  <data name="ThemeDescription.Text" xml:space="preserve"><value>Clair, sombre ou comme Windows</value></data>
+  <data name="ThemeSystem.Content" xml:space="preserve"><value>Comme Windows</value></data>
+  <data name="ThemeLight.Content" xml:space="preserve"><value>Clair</value></data>
+  <data name="ThemeDark.Content" xml:space="preserve"><value>Sombre</value></data>
+  <data name="AccentTitle.Text" xml:space="preserve"><value>Couleur d&apos;accentuation</value></data>
+  <data name="AccentDescription.Text" xml:space="preserve"><value>Couleur des boutons, des barres de progression et des éléments mis en avant</value></data>
+  <data name="BackdropTitle.Text" xml:space="preserve"><value>Arrière-plan de la fenêtre</value></data>
+  <data name="BackdropDescription.Text" xml:space="preserve"><value>Les matériaux de Windows 11 laissent entrevoir le bureau</value></data>
+  <data name="BackdropMica.Content" xml:space="preserve"><value>Mica</value></data>
+  <data name="BackdropMicaAlt.Content" xml:space="preserve"><value>Mica Alt (plus teinté)</value></data>
+  <data name="BackdropAcrylic.Content" xml:space="preserve"><value>Acrylique</value></data>
+  <data name="BackdropSolid.Content" xml:space="preserve"><value>Uni</value></data>
+  <data name="LanguageTitle.Text" xml:space="preserve"><value>Langue</value></data>
+  <data name="LanguageDescription.Text" xml:space="preserve"><value>Langue de MegaCopier et de ses options dans l&apos;Explorateur</value></data>
+  <data name="LanguageAuto.Content" xml:space="preserve"><value>Comme Windows</value></data>
+  <data name="OnTopTitle.Text" xml:space="preserve"><value>Toujours au premier plan</value></data>
+  <data name="OnTopDescription.Text" xml:space="preserve"><value>La fenêtre reste au-dessus des autres pendant la copie</value></data>
+  <data name="CopyHeader.Text" xml:space="preserve"><value>Copie</value></data>
+  <data name="VerifyTitle.Text" xml:space="preserve"><value>Vérifier après la copie</value></data>
+  <data name="VerifyDescription.Text" xml:space="preserve"><value>Relit la destination sans cache et répare tout bloc qui ne correspond pas à la source</value></data>
+  <data name="ConflictTitle.Text" xml:space="preserve"><value>Si le fichier existe déjà</value></data>
+  <data name="ConflictDescription.Text" xml:space="preserve"><value>Les fichiers identiques (même taille et même date) sont toujours ignorés</value></data>
+  <data name="ConflictAsk.Content" xml:space="preserve"><value>Demander</value></data>
+  <data name="ConflictReplace.Content" xml:space="preserve"><value>Remplacer</value></data>
+  <data name="ConflictSkip.Content" xml:space="preserve"><value>Ignorer</value></data>
+  <data name="ConflictNewer.Content" xml:space="preserve"><value>Remplacer s&apos;il est plus récent</value></data>
+  <data name="ConflictKeepBoth.Content" xml:space="preserve"><value>Garder les deux</value></data>
+  <data name="SpeedTitle.Text" xml:space="preserve"><value>Limite de vitesse</value></data>
+  <data name="SpeedDescription.Text" xml:space="preserve"><value>Laisse de la bande passante disque ou réseau pour d&apos;autres tâches (s&apos;applique aux nouvelles copies)</value></data>
+  <data name="SpeedUnlimited.Content" xml:space="preserve"><value>Illimitée</value></data>
+  <data name="AutoResumeTitle.Text" xml:space="preserve"><value>Reprendre automatiquement les copies interrompues</value></data>
+  <data name="AutoResumeDescription.Text" xml:space="preserve"><value>Après une coupure de courant ou un redémarrage, continuer sans demander à l&apos;ouverture de MegaCopier</value></data>
+  <data name="ExplorerHeader.Text" xml:space="preserve"><value>Explorateur de fichiers</value></data>
+  <data name="PasteTitle.Text" xml:space="preserve"><value>Copier et déplacer avec MegaCopier au collage (Ctrl+V)</value></data>
+  <data name="PasteDescription.Text" xml:space="preserve"><value>Quand vous collez des fichiers copiés (Ctrl+C) ou coupés (Ctrl+X) dans l&apos;Explorateur ou sur le Bureau, MegaCopier s&apos;en charge. Coller dans le même dossier reste géré par l&apos;Explorateur</value></data>
+  <data name="ShellMenuTitle.Text" xml:space="preserve"><value>Options du menu contextuel</value></data>
+  <data name="ShellMenuDescription.Text" xml:space="preserve"><value>« Coller avec MegaCopier » (dans Afficher plus d&apos;options) et « Copier / Déplacer ici avec MegaCopier » en glissant avec le bouton droit</value></data>
+  <data name="SystemHeader.Text" xml:space="preserve"><value>Système</value></data>
+  <data name="StartupTitle.Text" xml:space="preserve"><value>Démarrer avec Windows</value></data>
+  <data name="StartupDescription.Text" xml:space="preserve"><value>Reste dans la zone de notification pour que les copies démarrent instantanément</value></data>
+  <data name="NotifyTitle.Text" xml:space="preserve"><value>Prévenir à la fin</value></data>
+  <data name="NotifyDescription.Text" xml:space="preserve"><value>Notification système quand une copie se termine et que la fenêtre n&apos;est pas visible</value></data>
+  <data name="Accent_System" xml:space="preserve"><value>Comme Windows</value></data>
+  <data name="Accent_Blue" xml:space="preserve"><value>Bleu</value></data>
+  <data name="Accent_Violet" xml:space="preserve"><value>Violet</value></data>
+  <data name="Accent_Teal" xml:space="preserve"><value>Turquoise</value></data>
+  <data name="Accent_Green" xml:space="preserve"><value>Vert</value></data>
+  <data name="Accent_Orange" xml:space="preserve"><value>Orange</value></data>
+  <data name="Accent_Pink" xml:space="preserve"><value>Rose</value></data>
+  <data name="Accent_Red" xml:space="preserve"><value>Rouge</value></data>
+  <data name="About" xml:space="preserve"><value>MegaCopier {0} · des copies qui survivent aux coupures de courant</value></data>
+  <data name="Picker_CopyHere" xml:space="preserve"><value>Copier ici</value></data>
+  <data name="Finish_Label" xml:space="preserve"><value>À la fin</value></data>
+  <data name="Finish_LabelSleep" xml:space="preserve"><value>À la fin : veille</value></data>
+  <data name="Finish_LabelShutdown" xml:space="preserve"><value>À la fin : arrêter</value></data>
+  <data name="Conflict_Message" xml:space="preserve"><value>Il existe déjà un fichier nommé « {0} » dans « {1} ».</value></data>
+  <data name="Conflict_SourceCopy" xml:space="preserve"><value>Celui que vous copiez</value></data>
+  <data name="Conflict_SourceMove" xml:space="preserve"><value>Celui que vous déplacez</value></data>
+  <data name="Conflict_Newer" xml:space="preserve"><value> · plus récent</value></data>
+  <data name="Job_OneItem" xml:space="preserve"><value>« {0} »</value></data>
+  <data name="Job_ManyItems" xml:space="preserve"><value>{0} éléments</value></data>
+  <data name="Job_TitleCopying" xml:space="preserve"><value>Copie de {0}</value></data>
+  <data name="Job_TitleMoving" xml:space="preserve"><value>Déplacement de {0}</value></data>
+  <data name="Job_TitleCopied" xml:space="preserve"><value>{0} copié</value></data>
+  <data name="Job_TitleMoved" xml:space="preserve"><value>{0} déplacé</value></data>
+  <data name="Job_TitleQueued" xml:space="preserve"><value>En attente : {0}</value></data>
+  <data name="Job_Destination" xml:space="preserve"><value>vers {0}</value></data>
+  <data name="Job_StateQueued" xml:space="preserve"><value>En file : disque occupé</value></data>
+  <data name="Job_StateVerifying" xml:space="preserve"><value>Vérification</value></data>
+  <data name="Job_StateValidating" xml:space="preserve"><value>Contrôle de ce qui est déjà copié</value></data>
+  <data name="Job_StateWaiting" xml:space="preserve"><value>En attente de votre décision : le fichier existe déjà</value></data>
+  <data name="Job_StateCopying" xml:space="preserve"><value>Copie en cours</value></data>
+  <data name="Job_StateMoving" xml:space="preserve"><value>Déplacement en cours</value></data>
+  <data name="Job_StatePaused" xml:space="preserve"><value>En pause</value></data>
+  <data name="Job_StateCompleted" xml:space="preserve"><value>Terminé</value></data>
+  <data name="Job_StateCompletedErrors" xml:space="preserve"><value>Terminé avec des erreurs</value></data>
+  <data name="Job_StateFailed" xml:space="preserve"><value>Erreur</value></data>
+  <data name="Job_StateInterrupted" xml:space="preserve"><value>Interrompu · peut reprendre là où il s&apos;est arrêté</value></data>
+  <data name="Job_ResumeHint" xml:space="preserve"><value>Cliquez sur Reprendre pour continuer</value></data>
+  <data name="Job_Preparing" xml:space="preserve"><value>Préparation…</value></data>
+  <data name="Job_Progress" xml:space="preserve"><value>{0} sur {1}</value></data>
+  <data name="Job_Remaining" xml:space="preserve"><value>reste {0}</value></data>
+  <data name="Job_Files" xml:space="preserve"><value>{0} fichiers sur {1}</value></data>
+  <data name="Job_FilesCopiedOne" xml:space="preserve"><value>{0} fichier copié</value></data>
+  <data name="Job_FilesCopiedMany" xml:space="preserve"><value>{0} fichiers copiés</value></data>
+  <data name="Job_FilesMovedOne" xml:space="preserve"><value>{0} fichier déplacé</value></data>
+  <data name="Job_FilesMovedMany" xml:space="preserve"><value>{0} fichiers déplacés</value></data>
+  <data name="Job_TransferredIn" xml:space="preserve"><value>{0} en {1}</value></data>
+  <data name="Job_Recovered" xml:space="preserve"><value>{0} récupérés</value></data>
+  <data name="Job_Skipped" xml:space="preserve"><value>{0} ignorés</value></data>
+  <data name="Job_Verified" xml:space="preserve"><value>vérifié</value></data>
+  <data name="Job_Repaired" xml:space="preserve"><value>({0} blocs réparés)</value></data>
+  <data name="Job_FailedFiles" xml:space="preserve"><value>{0} fichiers en erreur</value></data>
+  <data name="Job_Resume" xml:space="preserve"><value>Reprendre</value></data>
+  <data name="Job_Retry" xml:space="preserve"><value>Réessayer</value></data>
+  <data name="Job_FailuresHeader" xml:space="preserve"><value>Voir les {0} fichiers en erreur</value></data>
+  <data name="Job_FailuresMore" xml:space="preserve"><value>… et {0} de plus</value></data>
+  <data name="Tray_Open" xml:space="preserve"><value>Ouvrir MegaCopier</value></data>
+  <data name="Tray_PauseAll" xml:space="preserve"><value>Tout mettre en pause</value></data>
+  <data name="Tray_ResumeAll" xml:space="preserve"><value>Tout reprendre</value></data>
+  <data name="Tray_Startup" xml:space="preserve"><value>Démarrer avec Windows</value></data>
+  <data name="Tray_Exit" xml:space="preserve"><value>Quitter</value></data>
+  <data name="Tray_OneJob" xml:space="preserve"><value>1 copie</value></data>
+  <data name="Tray_ManyJobs" xml:space="preserve"><value>{0} copies</value></data>
+  <data name="Notify_InterruptedTitle" xml:space="preserve"><value>Des copies ont été interrompues</value></data>
+  <data name="Notify_InterruptedOne" xml:space="preserve"><value>Une copie est restée inachevée. Ouvrez-la pour la reprendre là où elle s&apos;est arrêtée.</value></data>
+  <data name="Notify_InterruptedMany" xml:space="preserve"><value>{0} copies sont restées inachevées. Ouvrez-les pour les reprendre.</value></data>
+  <data name="Notify_DoneTitle" xml:space="preserve"><value>Copie terminée</value></data>
+  <data name="Notify_ProblemTitle" xml:space="preserve"><value>La copie a rencontré des problèmes</value></data>
+  <data name="Notify_AllDoneTitle" xml:space="preserve"><value>Copies terminées</value></data>
+  <data name="Error_NeedsPaths" xml:space="preserve"><value>Une demande de copie nécessite des sources et une destination.</value></data>
+  <data name="Tray_Disable" xml:space="preserve"><value>Désactiver (utiliser la copie de Windows)</value></data>
+  <data name="Tray_Enable" xml:space="preserve"><value>Activer MegaCopier</value></data>
+  <data name="Tray_TooltipDisabled" xml:space="preserve"><value>MegaCopier · désactivé (Windows copie)</value></data>
+  <data name="Notify_DisabledTitle" xml:space="preserve"><value>MegaCopier désactivé</value></data>
+  <data name="Notify_DisabledBody" xml:space="preserve"><value>La copie de Windows s&apos;occupera des transferts. Double-cliquez sur l&apos;icône pour le réactiver.</value></data>
+  <data name="Notify_EnabledTitle" xml:space="preserve"><value>MegaCopier activé</value></data>
+  <data name="Notify_EnabledBody" xml:space="preserve"><value>Les copies et déplacements de l&apos;Explorateur seront faits par MegaCopier.</value></data>
+  <data name="AboutDialog.Title" xml:space="preserve"><value>À propos de MegaCopier</value></data>
+  <data name="AboutDialog.CloseButtonText" xml:space="preserve"><value>Fermer</value></data>
+  <data name="About_DataFolder.Content" xml:space="preserve"><value>Ouvrir le dossier de données (paramètres, thèmes, historique, rapports)</value></data>
+  <data name="About_Description.Text" xml:space="preserve"><value>Copieur de fichiers pour Windows 11 qui reprend même un seul fichier énorme après une coupure de courant, en vérifiant ce qui est déjà copié.</value></data>
+  <data name="About_Features.Text" xml:space="preserve"><value>E/S asynchrones sans cache · lectures et écritures en parallèle · vérification par hachage (CRC32, xxHash, MD5, SHA) · file par disque · pause et reprise · déplacement · conflits · limite de vitesse · listes de copie · rapports · thèmes.</value></data>
+  <data name="CopyFiles.Text" xml:space="preserve"><value>Copier des fichiers…</value></data>
+  <data name="CopyFolder.Text" xml:space="preserve"><value>Copier un dossier…</value></data>
+  <data name="CopyFilesText.Text" xml:space="preserve"><value>Copier des fichiers</value></data>
+  <data name="CopyFolderText.Text" xml:space="preserve"><value>Copier un dossier</value></data>
+  <data name="Files_AddFiles.Text" xml:space="preserve"><value>Ajouter des fichiers…</value></data>
+  <data name="Files_AddFolder.Text" xml:space="preserve"><value>Ajouter un dossier…</value></data>
+  <data name="Files_AutoScroll.Content" xml:space="preserve"><value>Suivre le fichier en cours</value></data>
+  <data name="Files_CopyHashes.Text" xml:space="preserve"><value>Copier les hachages</value></data>
+  <data name="Files_CopyPath.Text" xml:space="preserve"><value>Copier le chemin</value></data>
+  <data name="Files_Empty.Text" xml:space="preserve"><value>Aucun fichier à afficher</value></data>
+  <data name="Files_ExportCsv.Text" xml:space="preserve"><value>Exporter en CSV…</value></data>
+  <data name="Files_ExportHtml.Text" xml:space="preserve"><value>Exporter un rapport HTML…</value></data>
+  <data name="Files_FilterAll.Content" xml:space="preserve"><value>Tous</value></data>
+  <data name="Files_FilterDone.Content" xml:space="preserve"><value>Copiés</value></data>
+  <data name="Files_FilterErrors.Content" xml:space="preserve"><value>En erreur</value></data>
+  <data name="Files_FilterPending.Content" xml:space="preserve"><value>En attente</value></data>
+  <data name="Files_FilterSkipped.Content" xml:space="preserve"><value>Ignorés</value></data>
+  <data name="Files_HideFinished.Content" xml:space="preserve"><value>Masquer les terminés</value></data>
+  <data name="Files_Menu.Text" xml:space="preserve"><value>Liste</value></data>
+  <data name="Files_MoveBottom.Text" xml:space="preserve"><value>Mettre à la fin</value></data>
+  <data name="Files_MoveDown.Text" xml:space="preserve"><value>Descendre</value></data>
+  <data name="Files_MoveTop.Text" xml:space="preserve"><value>Mettre au début</value></data>
+  <data name="Files_MoveUp.Text" xml:space="preserve"><value>Monter</value></data>
+  <data name="Files_OpenSource.Text" xml:space="preserve"><value>Afficher la source</value></data>
+  <data name="Files_OpenTarget.Text" xml:space="preserve"><value>Afficher la destination</value></data>
+  <data name="Files_Remove.Text" xml:space="preserve"><value>Retirer de la copie</value></data>
+  <data name="Files_Retry.Text" xml:space="preserve"><value>Réessayer les échecs</value></data>
+  <data name="Files_SaveList.Text" xml:space="preserve"><value>Enregistrer la liste de copie…</value></data>
+  <data name="Files_Search.PlaceholderText" xml:space="preserve"><value>Rechercher des fichiers</value></data>
+  <data name="Files_Size.Text" xml:space="preserve"><value>Taille</value></data>
+  <data name="Files_SourceHash.Text" xml:space="preserve"><value>Hachage source</value></data>
+  <data name="Files_TargetHash.Text" xml:space="preserve"><value>Hachage destination</value></data>
+  <data name="History_Clear.Text" xml:space="preserve"><value>Vider</value></data>
+  <data name="History_Empty.Text" xml:space="preserve"><value>Aucune copie terminée pour l&apos;instant</value></data>
+  <data name="History_Open.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Ouvrir la destination</value></data>
+  <data name="History_Repeat.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Répéter (copie seulement ce qui est nouveau ou modifié)</value></data>
+  <data name="History_Title.Text" xml:space="preserve"><value>Historique</value></data>
+  <data name="Log_Export.Text" xml:space="preserve"><value>Exporter le journal</value></data>
+  <data name="Options_Acl.Content" xml:space="preserve"><value>Autorisations (ACL)</value></data>
+  <data name="Options_Attributes.Content" xml:space="preserve"><value>Attributs</value></data>
+  <data name="Options_Audit.Content" xml:space="preserve"><value>Audit (SACL)</value></data>
+  <data name="Options_BufferSize.Text" xml:space="preserve"><value>Taille du tampon</value></data>
+  <data name="Options_Data.Content" xml:space="preserve"><value>Données</value></data>
+  <data name="Options_ExportReport.Content" xml:space="preserve"><value>Enregistrer un rapport HTML</value></data>
+  <data name="Options_FilesFolders.Text" xml:space="preserve"><value>Fichiers et dossiers</value></data>
+  <data name="Options_OnFinish.Text" xml:space="preserve"><value>À la fin</value></data>
+  <data name="Options_Owner.Content" xml:space="preserve"><value>Propriétaire</value></data>
+  <data name="Options_ResetDefault.Text" xml:space="preserve"><value>Réinitialiser</value></data>
+  <data name="Options_RunningInfo.Message" xml:space="preserve"><value>La copie est en cours : ces changements s&apos;appliquent à la reprise (Vérifier et Sans surveillance, immédiatement).</value></data>
+  <data name="Options_SaveChecksum.Content" xml:space="preserve"><value>Enregistrer un fichier de sommes</value></data>
+  <data name="Options_SaveDefault.Text" xml:space="preserve"><value>Enregistrer par défaut</value></data>
+  <data name="Options_Scripts.Text" xml:space="preserve"><value>Commandes à la fin</value></data>
+  <data name="Options_ScriptsHelp.Text" xml:space="preserve"><value>Une par ligne, exécutées avec cmd.exe. Commencez par « ok: » pour n&apos;exécuter qu&apos;en cas de succès ou par « error: » qu&apos;en cas d&apos;échec. Variables : %MEGACOPIER_STATE%, %MEGACOPIER_DESTINATION%, %MEGACOPIER_SOURCES%, %MEGACOPIER_FILES%, %MEGACOPIER_BYTES%, %MEGACOPIER_FAILED%, %MEGACOPIER_CHECKSUM%.</value></data>
+  <data name="Options_Security.Text" xml:space="preserve"><value>Sécurité (NTFS)</value></data>
+  <data name="Options_Streams.Content" xml:space="preserve"><value>Flux de données alternatifs (ADS)</value></data>
+  <data name="Options_SystemCache.Content" xml:space="preserve"><value>Utiliser le cache système</value></data>
+  <data name="Options_Threads.Text" xml:space="preserve"><value>En parallèle</value></data>
+  <data name="Options_ThreadsShort.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Lectures et écritures simultanées</value></data>
+  <data name="Options_Timestamps.Content" xml:space="preserve"><value>Dates</value></data>
+  <data name="Options_Transfer.Text" xml:space="preserve"><value>Ce qui est copié</value></data>
+  <data name="Options_TransferOptions.Text" xml:space="preserve"><value>Transfert</value></data>
+  <data name="Options_Verify.Content" xml:space="preserve"><value>Vérifier après la copie</value></data>
+  <data name="Options_VerifySkipped.Content" xml:space="preserve"><value>Vérifier aussi les fichiers ignorés</value></data>
+  <data name="Page_Back.Text" xml:space="preserve"><value>Retour</value></data>
+  <data name="Pager_Next.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Copie suivante</value></data>
+  <data name="Pager_Previous.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Copie précédente</value></data>
+  <data name="Pager_Text" xml:space="preserve"><value>Copie {0} sur {1}</value></data>
+  <data name="Panel_Discard.Text" xml:space="preserve"><value>Abandonner</value></data>
+  <data name="Panel_File.Text" xml:space="preserve"><value>Fichier</value></data>
+  <data name="Panel_OpenFolder.Text" xml:space="preserve"><value>Ouvrir le dossier</value></data>
+  <data name="Panel_Pause.Text" xml:space="preserve"><value>Pause</value></data>
+  <data name="Panel_Skip.Text" xml:space="preserve"><value>Passer</value></data>
+  <data name="Panel_Stop.Text" xml:space="preserve"><value>Arrêter</value></data>
+  <data name="Panel_More" xml:space="preserve"><value>Plus</value></data>
+  <data name="Panel_Less" xml:space="preserve"><value>Moins</value></data>
+  <data name="Priority_Low.Content" xml:space="preserve"><value>Basse</value></data>
+  <data name="Priority_BelowNormal.Content" xml:space="preserve"><value>Inférieure à la normale</value></data>
+  <data name="Priority_Normal.Content" xml:space="preserve"><value>Normale</value></data>
+  <data name="Priority_AboveNormal.Content" xml:space="preserve"><value>Supérieure à la normale</value></data>
+  <data name="Priority_High.Content" xml:space="preserve"><value>Haute</value></data>
+  <data name="Settings_Advanced.Text" xml:space="preserve"><value>Avancé</value></data>
+  <data name="Settings_EnabledTitle.Text" xml:space="preserve"><value>Utiliser MegaCopier au lieu de la copie de Windows</value></data>
+  <data name="Settings_EnabledDescription.Text" xml:space="preserve"><value>Aussi avec un double-clic sur l&apos;icône de notification. Désactivé, l&apos;icône devient grise avec une croix rouge et l&apos;Explorateur copie.</value></data>
+  <data name="Settings_FastTitle.Text" xml:space="preserve"><value>Périphériques rapides</value></data>
+  <data name="Settings_FastDescription.Text" xml:space="preserve"><value>Lecteurs ou chemins (SSD NVMe, RAID) qui acceptent plusieurs copies à la fois ; les autres passent une par une par disque.</value></data>
+  <data name="Settings_FinishTitle.Text" xml:space="preserve"><value>À la fin des copies</value></data>
+  <data name="Settings_FinishDescription.Text" xml:space="preserve"><value>Ce que fait la fenêtre quand plus rien n&apos;est en cours</value></data>
+  <data name="Settings_FinishAuto.Content" xml:space="preserve"><value>Fermer si tout s&apos;est bien passé</value></data>
+  <data name="Settings_FinishClose.Content" xml:space="preserve"><value>Toujours fermer</value></data>
+  <data name="Settings_FinishKeep.Content" xml:space="preserve"><value>Laisser ouverte</value></data>
+  <data name="Settings_FreeSpace.Content" xml:space="preserve"><value>Vérifier l&apos;espace libre avant</value></data>
+  <data name="Settings_General.Text" xml:space="preserve"><value>Général</value></data>
+  <data name="Settings_HashTitle.Text" xml:space="preserve"><value>Algorithme de hachage</value></data>
+  <data name="Settings_HashDescription.Text" xml:space="preserve"><value>Pour la vérification et les sommes enregistrées. xxHash3 est le plus rapide ; SHA-256 le plus compatible.</value></data>
+  <data name="Settings_MaxJobsTitle.Text" xml:space="preserve"><value>Copies simultanées</value></data>
+  <data name="Settings_MaxJobsDescription.Text" xml:space="preserve"><value>Nombre maximal de copies en même temps (0 = sans limite). Les copies sur le même disque attendent toujours leur tour.</value></data>
+  <data name="Settings_ModeAuto.Content" xml:space="preserve"><value>Automatique</value></data>
+  <data name="Settings_ModeCompact.Content" xml:space="preserve"><value>Compacte</value></data>
+  <data name="Settings_ModeExpanded.Content" xml:space="preserve"><value>Complète</value></data>
+  <data name="Settings_PerformanceTitle.Text" xml:space="preserve"><value>Performances</value></data>
+  <data name="Settings_PerformanceDescription.Text" xml:space="preserve"><value>Limite de vitesse, taille du tampon et opérations simultanées</value></data>
+  <data name="Settings_PriorityTitle.Text" xml:space="preserve"><value>Priorité du processus</value></data>
+  <data name="Settings_PriorityDescription.Text" xml:space="preserve"><value>Basse garde l&apos;ordinateur plus réactif pendant la copie</value></data>
+  <data name="Settings_Queue.Text" xml:space="preserve"><value>File d&apos;attente</value></data>
+  <data name="Settings_Themes.Text" xml:space="preserve"><value>Thèmes</value></data>
+  <data name="Settings_WhatToCopy.Text" xml:space="preserve"><value>Ce qui est copié et ce qui se passe ensuite</value></data>
+  <data name="Settings_Window.Text" xml:space="preserve"><value>Fenêtre</value></data>
+  <data name="Settings_WindowModeTitle.Text" xml:space="preserve"><value>Fenêtre de copie</value></data>
+  <data name="Settings_WindowModeDescription.Text" xml:space="preserve"><value>Automatique : compacte avec une copie, complète quand il y en a plusieurs. « Plus » et « Moins » la changent à tout moment.</value></data>
+  <data name="Status_Bytes.Text" xml:space="preserve"><value>Taille</value></data>
+  <data name="Status_Category.Text" xml:space="preserve"><value>État</value></data>
+  <data name="Status_Copied.Text" xml:space="preserve"><value>Copiés</value></data>
+  <data name="Status_Failed.Text" xml:space="preserve"><value>En erreur</value></data>
+  <data name="Status_Files.Text" xml:space="preserve"><value>Fichiers</value></data>
+  <data name="Status_Pending.Text" xml:space="preserve"><value>En attente</value></data>
+  <data name="Status_Skipped.Text" xml:space="preserve"><value>Ignorés</value></data>
+  <data name="Status_Total.Text" xml:space="preserve"><value>Total</value></data>
+  <data name="Status_Verified.Text" xml:space="preserve"><value>Vérifiés</value></data>
+  <data name="Tab_Files.Text" xml:space="preserve"><value>Fichiers</value></data>
+  <data name="Tab_Log.Text" xml:space="preserve"><value>Journal</value></data>
+  <data name="Tab_Options.Text" xml:space="preserve"><value>Options</value></data>
+  <data name="Tab_Status.Text" xml:space="preserve"><value>État</value></data>
+  <data name="Tab_Target.Text" xml:space="preserve"><value>Destination</value></data>
+  <data name="Target_Destination.Text" xml:space="preserve"><value>Destination</value></data>
+  <data name="Target_Source.Text" xml:space="preserve"><value>Source</value></data>
+  <data name="Target_Space" xml:space="preserve"><value>{0} libres sur {1}</value></data>
+  <data name="Theme_BarHeight.Header" xml:space="preserve"><value>Hauteur des barres</value></data>
+  <data name="Theme_Radius.Header" xml:space="preserve"><value>Arrondi des coins</value></data>
+  <data name="Theme_Customize.Text" xml:space="preserve"><value>Personnaliser le thème (couleurs, barres, arrière-plan)</value></data>
+  <data name="Theme_Delete.Text" xml:space="preserve"><value>Supprimer</value></data>
+  <data name="Theme_Export.Text" xml:space="preserve"><value>Exporter…</value></data>
+  <data name="Theme_Import.Text" xml:space="preserve"><value>Importer…</value></data>
+  <data name="Theme_Name.Header" xml:space="preserve"><value>Nom</value></data>
+  <data name="Theme_Save" xml:space="preserve"><value>Enregistrer</value></data>
+  <data name="Theme_SaveAsNew" xml:space="preserve"><value>Enregistrer comme nouveau thème</value></data>
+  <data name="Theme_Auto" xml:space="preserve"><value>Fluent (comme Windows)</value></data>
+  <data name="Theme_CopyOf" xml:space="preserve"><value>{0} (personnalisé)</value></data>
+  <data name="Theme_Custom" xml:space="preserve"><value>Mon thème</value></data>
+  <data name="Theme_FileType" xml:space="preserve"><value>Thème MegaCopier</value></data>
+  <data name="Theme_ImportFailed" xml:space="preserve"><value>Impossible d&apos;importer le thème</value></data>
+  <data name="Theme_ColorBackground" xml:space="preserve"><value>Arrière-plan</value></data>
+  <data name="Theme_ColorSurface" xml:space="preserve"><value>Cartes</value></data>
+  <data name="Theme_ColorSurfaceStrong" xml:space="preserve"><value>Cartes mises en avant</value></data>
+  <data name="Theme_ColorBorder" xml:space="preserve"><value>Bordures</value></data>
+  <data name="Theme_ColorText" xml:space="preserve"><value>Texte</value></data>
+  <data name="Theme_ColorTextSecondary" xml:space="preserve"><value>Texte secondaire</value></data>
+  <data name="Theme_ColorAccent" xml:space="preserve"><value>Accent</value></data>
+  <data name="Theme_ColorAccentText" xml:space="preserve"><value>Texte sur l&apos;accent</value></data>
+  <data name="Theme_ColorTotalStart" xml:space="preserve"><value>Barre totale : début</value></data>
+  <data name="Theme_ColorTotalEnd" xml:space="preserve"><value>Barre totale : fin</value></data>
+  <data name="Theme_ColorFileStart" xml:space="preserve"><value>Barre du fichier : début</value></data>
+  <data name="Theme_ColorFileEnd" xml:space="preserve"><value>Barre du fichier : fin</value></data>
+  <data name="Theme_ColorTrack" xml:space="preserve"><value>Fond des barres</value></data>
+  <data name="Theme_ColorSuccess" xml:space="preserve"><value>Succès</value></data>
+  <data name="Theme_ColorWarning" xml:space="preserve"><value>Avertissement</value></data>
+  <data name="Theme_ColorError" xml:space="preserve"><value>Erreur</value></data>
+  <data name="Theme_fluent-dark" xml:space="preserve"><value>Fluent sombre</value></data>
+  <data name="Theme_fluent-light" xml:space="preserve"><value>Fluent clair</value></data>
+  <data name="Theme_midnight" xml:space="preserve"><value>Minuit</value></data>
+  <data name="Theme_graphite" xml:space="preserve"><value>Graphite</value></data>
+  <data name="Theme_ocean" xml:space="preserve"><value>Océan</value></data>
+  <data name="Theme_forest" xml:space="preserve"><value>Forêt</value></data>
+  <data name="Theme_sunset" xml:space="preserve"><value>Coucher de soleil</value></data>
+  <data name="Theme_supercopier" xml:space="preserve"><value>SuperCopier classique</value></data>
+  <data name="Theme_ultracopier" xml:space="preserve"><value>Ultracopier classique</value></data>
+  <data name="Theme_contrast" xml:space="preserve"><value>Contraste élevé</value></data>
+  <data name="Tool_About.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>À propos</value></data>
+  <data name="Tool_ClearDone.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Retirer les copies terminées</value></data>
+  <data name="Tool_History.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Historique</value></data>
+  <data name="Tool_HistoryText.Text" xml:space="preserve"><value>Historique</value></data>
+  <data name="Tool_LoadList.Text" xml:space="preserve"><value>Charger une liste de copie…</value></data>
+  <data name="Tool_LoadListText.Text" xml:space="preserve"><value>Charger une liste</value></data>
+  <data name="Tool_MoveFiles.Text" xml:space="preserve"><value>Déplacer des fichiers…</value></data>
+  <data name="Tool_NewCopy.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Nouvelle copie</value></data>
+  <data name="Tool_NewCopyText.Text" xml:space="preserve"><value>Nouvelle</value></data>
+  <data name="Tool_PauseAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Tout mettre en pause</value></data>
+  <data name="Tool_ResumeAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Tout reprendre</value></data>
+  <data name="Tool_Settings.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Paramètres</value></data>
+  <data name="Tool_Sidebar.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Afficher ou masquer la liste des copies</value></data>
+  <data name="Drop_Caption" xml:space="preserve"><value>Copier avec MegaCopier</value></data>
+  <data name="File_Pending" xml:space="preserve"><value>En attente</value></data>
+  <data name="File_Copying" xml:space="preserve"><value>Copie en cours</value></data>
+  <data name="File_Verifying" xml:space="preserve"><value>Vérification</value></data>
+  <data name="File_Copied" xml:space="preserve"><value>Copié</value></data>
+  <data name="File_Verified" xml:space="preserve"><value>Vérifié</value></data>
+  <data name="File_Skipped" xml:space="preserve"><value>Ignoré</value></data>
+  <data name="File_Failed" xml:space="preserve"><value>Erreur</value></data>
+  <data name="Files_AddFailed" xml:space="preserve"><value>Impossible d&apos;ajouter</value></data>
+  <data name="Files_Count" xml:space="preserve"><value>{0} fichiers sur {1}</value></data>
+  <data name="Files_ListType" xml:space="preserve"><value>Liste de copie MegaCopier</value></data>
+  <data name="Files_LoadFailed" xml:space="preserve"><value>Impossible de charger la liste</value></data>
+  <data name="Hash_None" xml:space="preserve"><value>Hachage : aucun</value></data>
+  <data name="Jobs_Header" xml:space="preserve"><value>COPIES : {0} · ACTIVES : {1}</value></data>
+  <data name="Language_Auto" xml:space="preserve"><value>Comme Windows</value></data>
+  <data name="Log_FileType" xml:space="preserve"><value>Texte</value></data>
+  <data name="Picker_MoveHere" xml:space="preserve"><value>Déplacer ici</value></data>
+  <data name="Settings_AutoResume.Content" xml:space="preserve"><value>Reprendre seules au démarrage</value></data>
+  <data name="Panel_Options.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Options de cette copie</value></data>
+  <data name="Panel_UnattendedItem.Text" xml:space="preserve"><value>Sans surveillance (ne pas demander : ignore les fichiers existants)</value></data>
+  <data name="Panel_VerifyItem.Text" xml:space="preserve"><value>Vérifier à la fin</value></data>
+  <data name="Panel_OpenFolderItem.Text" xml:space="preserve"><value>Ouvrir le dossier de destination</value></data>
+  <data name="Status_ExactBytes" xml:space="preserve"><value>{0} octets</value></data>
+  <data name="Notify_SettingsResetTitle" xml:space="preserve"><value>Paramètres réinitialisés</value></data>
+  <data name="Notify_SettingsResetBody" xml:space="preserve"><value>Vos paramètres n&apos;ont pas pu être lus, les valeurs par défaut sont utilisées. Le fichier d&apos;origine est settings.json.bad.</value></data>
+  <data name="Job_TitleCopy" xml:space="preserve"><value>Copier {0}</value></data>
+  <data name="Job_TitleMove" xml:space="preserve"><value>Déplacer {0}</value></data>
+  <data name="Job_FailedOne" xml:space="preserve"><value>1 fichier en erreur</value></data>
+  <data name="Error_InUse" xml:space="preserve"><value>Un autre programme a ouvert le fichier. Fermez-le puis cliquez sur « Réessayer ».</value></data>
+  <data name="Error_AccessDenied" xml:space="preserve"><value>Accès refusé : vous n&apos;avez pas le droit de lire ou d&apos;écrire ce fichier.</value></data>
+  <data name="Error_DiskFull" xml:space="preserve"><value>Le disque de destination est plein.</value></data>
+  <data name="Error_NotFound" xml:space="preserve"><value>Le fichier ou le dossier n&apos;existe plus (déplacé, supprimé, ou lecteur déconnecté ?).</value></data>
+  <data name="Error_PathTooLong" xml:space="preserve"><value>Le chemin est trop long pour la destination.</value></data>
+  <data name="Error_NetworkLost" xml:space="preserve"><value>La connexion réseau a été perdue. Quand elle revient, cliquez sur « Réessayer » pour continuer là où elle s&apos;est arrêtée.</value></data>
+  <data name="Error_HashMismatch" xml:space="preserve"><value>La copie ne correspond pas à l&apos;original (échec de la vérification).</value></data>
+  <data name="Error_DeleteFailed" xml:space="preserve"><value>Copié correctement, mais l&apos;original n&apos;a pas pu être supprimé.</value></data>
+  <data name="Report_State" xml:space="preserve"><value>État</value></data>
+  <data name="Report_File" xml:space="preserve"><value>Fichier</value></data>
+  <data name="Report_Source" xml:space="preserve"><value>Source</value></data>
+  <data name="Report_Destination" xml:space="preserve"><value>Destination</value></data>
+  <data name="Report_Size" xml:space="preserve"><value>Taille</value></data>
+  <data name="Report_SourceHash" xml:space="preserve"><value>Hachage source</value></data>
+  <data name="Report_TargetHash" xml:space="preserve"><value>Hachage destination</value></data>
+  <data name="Report_Message" xml:space="preserve"><value>Message</value></data>
+  <data name="Report_Copied" xml:space="preserve"><value>Copiés</value></data>
+  <data name="Report_Verified" xml:space="preserve"><value>Vérifiés</value></data>
+  <data name="Report_Skipped" xml:space="preserve"><value>Ignorés</value></data>
+  <data name="Report_Failed" xml:space="preserve"><value>En erreur</value></data>
+  <data name="Job_SkippedOne" xml:space="preserve"><value>1 ignoré</value></data>
+  <data name="Rules_Filters.Text" xml:space="preserve"><value>Filtres</value></data>
+  <data name="Rules_Include.Header" xml:space="preserve"><value>Inclure seulement (masques séparés par ;)</value></data>
+  <data name="Rules_Include.PlaceholderText" xml:space="preserve"><value>*.jpg; *.png; Photos\*</value></data>
+  <data name="Rules_Exclude.Header" xml:space="preserve"><value>Exclure</value></data>
+  <data name="Rules_Exclude.PlaceholderText" xml:space="preserve"><value>node_modules; *.tmp; Thumbs.db</value></data>
+  <data name="Rules_MinSize.Header" xml:space="preserve"><value>Taille minimale (Mo)</value></data>
+  <data name="Rules_MaxSize.Header" xml:space="preserve"><value>Taille maximale (Mo)</value></data>
+  <data name="Rules_After.Header" xml:space="preserve"><value>Modifiés depuis</value></data>
+  <data name="Rules_Before.Header" xml:space="preserve"><value>Modifiés jusqu&apos;au</value></data>
+  <data name="Rules_SkipHidden.Content" xml:space="preserve"><value>Ignorer les fichiers cachés</value></data>
+  <data name="Rules_SkipSystem.Content" xml:space="preserve"><value>Ignorer les fichiers système</value></data>
+  <data name="Rules_Rules.Text" xml:space="preserve"><value>Règles</value></data>
+  <data name="Rules_Links.Header" xml:space="preserve"><value>Liens symboliques et jonctions</value></data>
+  <data name="Rules_LinksCopy.Content" xml:space="preserve"><value>Les copier comme liens</value></data>
+  <data name="Rules_LinksFollow.Content" xml:space="preserve"><value>Copier ce vers quoi ils pointent</value></data>
+  <data name="Rules_LinksSkip.Content" xml:space="preserve"><value>Les ignorer</value></data>
+  <data name="Rules_Pattern.Header" xml:space="preserve"><value>Nom en gardant les deux ({name}, {n}, {ext}, {date})</value></data>
+  <data name="Rules_PatternPreview" xml:space="preserve"><value>Exemple : {0}</value></data>
+  <data name="Rules_Retries.Header" xml:space="preserve"><value>Nouvelles tentatives</value></data>
+  <data name="Rules_Delay.Header" xml:space="preserve"><value>Attente entre tentatives (s)</value></data>
+  <data name="Rules_OnError.Header" xml:space="preserve"><value>Si un fichier échoue encore</value></data>
+  <data name="Rules_OnErrorSkip.Content" xml:space="preserve"><value>Le noter et passer au suivant</value></data>
+  <data name="Rules_OnErrorStop.Content" xml:space="preserve"><value>Arrêter la copie (elle pourra reprendre)</value></data>
+  <data name="ConflictDifferentSize.Content" xml:space="preserve"><value>Remplacer si la taille diffère</value></data>
+  <data name="ConflictRenameExisting.Content" xml:space="preserve"><value>Renommer celui qui existe</value></data>
+  <data name="Conflict_RenameExisting.Text" xml:space="preserve"><value>Renommer celui qui existe et copier celui-ci</value></data>
+  <data name="Schedule_Title.Text" xml:space="preserve"><value>Programmer le démarrage</value></data>
+  <data name="Schedule_Set.Text" xml:space="preserve"><value>Programmer</value></data>
+  <data name="Schedule_Now.Text" xml:space="preserve"><value>Commencer maintenant</value></data>
+  <data name="Schedule_InThePast" xml:space="preserve"><value>Choisissez une heure future.</value></data>
+  <data name="Job_StateScheduled" xml:space="preserve"><value>Programmée pour {0}</value></data>
+  <data name="Settings_Favorites.Text" xml:space="preserve"><value>Dossiers favoris</value></data>
+  <data name="Settings_FavoritesTitle.Text" xml:space="preserve"><value>Destinations favorites</value></data>
+  <data name="Settings_FavoritesDescription.Text" xml:space="preserve"><value>Elles apparaissent dans « Nouvelle &gt; Copier vers » et dans la boîte de destinations pour copier vers plusieurs dossiers à la fois.</value></data>
+  <data name="Settings_FavoritesAdd.Text" xml:space="preserve"><value>Ajouter un dossier</value></data>
+  <data name="Settings_FavoritesRemove" xml:space="preserve"><value>Retirer {0}</value></data>
+  <data name="Settings_FavoritesEmpty" xml:space="preserve"><value>Aucun favori pour l&apos;instant.</value></data>
+  <data name="Tool_CopyTo.Text" xml:space="preserve"><value>Copier vers</value></data>
+  <data name="Tool_CopyToEmpty" xml:space="preserve"><value>Ni favoris ni dossiers récents</value></data>
+  <data name="Tool_CopyToManage" xml:space="preserve"><value>Gérer les favoris…</value></data>
+  <data name="Tool_TestFiles.Text" xml:space="preserve"><value>Contrôler des fichiers de sommes…</value></data>
+  <data name="Tool_TestFolder.Text" xml:space="preserve"><value>Contrôler les sommes d&apos;un dossier…</value></data>
+  <data name="Tool_Delete.Text" xml:space="preserve"><value>Supprimer…</value></data>
+  <data name="Tool_Wipe.Text" xml:space="preserve"><value>Supprimer de façon sécurisée…</value></data>
+  <data name="DestinationsDialog.Title" xml:space="preserve"><value>Où ?</value></data>
+  <data name="DestinationsDialog.PrimaryButtonText" xml:space="preserve"><value>Commencer</value></data>
+  <data name="DestinationsDialog.CloseButtonText" xml:space="preserve"><value>Annuler</value></data>
+  <data name="Destinations_SummaryOne" xml:space="preserve"><value>Choisissez une ou plusieurs destinations pour « {0} ».</value></data>
+  <data name="Destinations_SummaryMany" xml:space="preserve"><value>Choisissez une ou plusieurs destinations pour {0} éléments.</value></data>
+  <data name="Destinations_Add.Text" xml:space="preserve"><value>Ajouter un dossier…</value></data>
+  <data name="Destinations_Move.Content" xml:space="preserve"><value>Déplacer au lieu de copier</value></data>
+  <data name="Destinations_Schedule.Content" xml:space="preserve"><value>Commencer plus tard</value></data>
+  <data name="DeleteDialog.Title" xml:space="preserve"><value>Supprimer</value></data>
+  <data name="DeleteDialog.PrimaryButtonText" xml:space="preserve"><value>Supprimer</value></data>
+  <data name="DeleteDialog.CloseButtonText" xml:space="preserve"><value>Annuler</value></data>
+  <data name="Delete_ConfirmOne" xml:space="preserve"><value>Supprimer « {0} » ? Il ne va pas dans la Corbeille.</value></data>
+  <data name="Delete_ConfirmMany" xml:space="preserve"><value>Supprimer {0} éléments ? Ils ne vont pas dans la Corbeille.</value></data>
+  <data name="Delete_ConfirmSecureOne" xml:space="preserve"><value>Supprimer « {0} » de façon sécurisée ?</value></data>
+  <data name="Delete_ConfirmSecureMany" xml:space="preserve"><value>Supprimer {0} éléments de façon sécurisée ?</value></data>
+  <data name="Delete_SecureWarning.Title" xml:space="preserve"><value>Ils ne pourront pas être récupérés</value></data>
+  <data name="Delete_SecureWarning.Message" xml:space="preserve"><value>Le contenu est écrasé avant la suppression. Sur un SSD, le disque lui-même peut garder des traces ; pour une sécurité maximale, utilisez le chiffrement BitLocker.</value></data>
+  <data name="FinishHibernate.Text" xml:space="preserve"><value>Mettre en veille prolongée</value></data>
+  <data name="FinishSignOut.Text" xml:space="preserve"><value>Se déconnecter</value></data>
+  <data name="FinishExit.Text" xml:space="preserve"><value>Fermer MegaCopier</value></data>
+  <data name="Finish_LabelHibernate" xml:space="preserve"><value>À la fin : veille prolongée</value></data>
+  <data name="Finish_LabelSignOut" xml:space="preserve"><value>À la fin : déconnexion</value></data>
+  <data name="Finish_LabelExit" xml:space="preserve"><value>À la fin : fermer MegaCopier</value></data>
+  <data name="Notify_FinishSleep" xml:space="preserve"><value>Mise en veille…</value></data>
+  <data name="Notify_FinishHibernate" xml:space="preserve"><value>Mise en veille prolongée…</value></data>
+  <data name="Notify_FinishShutdown" xml:space="preserve"><value>L&apos;ordinateur s&apos;arrêtera dans 1 minute (annuler : shutdown /a).</value></data>
+  <data name="Notify_FinishSignOut" xml:space="preserve"><value>Déconnexion…</value></data>
+  <data name="Notify_FinishExitApp" xml:space="preserve"><value>MegaCopier se ferme.</value></data>
+  <data name="Files_SelectAll.Text" xml:space="preserve"><value>Tout sélectionner</value></data>
+  <data name="Files_SelectSameExtension.Text" xml:space="preserve"><value>Sélectionner ceux de même extension</value></data>
+  <data name="Files_SelectSameFolder.Text" xml:space="preserve"><value>Sélectionner ceux du même dossier</value></data>
+  <data name="Files_InvertSelection.Text" xml:space="preserve"><value>Inverser la sélection</value></data>
+  <data name="Job_TitleTest" xml:space="preserve"><value>Contrôler {0}</value></data>
+  <data name="Job_TitleTesting" xml:space="preserve"><value>Contrôle de {0}</value></data>
+  <data name="Job_TitleTested" xml:space="preserve"><value>{0} contrôlé</value></data>
+  <data name="Job_TitleDelete" xml:space="preserve"><value>Supprimer {0}</value></data>
+  <data name="Job_TitleDeleting" xml:space="preserve"><value>Suppression de {0}</value></data>
+  <data name="Job_TitleDeleted" xml:space="preserve"><value>{0} supprimé</value></data>
+  <data name="Job_StateTesting" xml:space="preserve"><value>Contrôle en cours</value></data>
+  <data name="Job_StateDeleting" xml:space="preserve"><value>Suppression en cours</value></data>
+  <data name="Job_FilesTestedOne" xml:space="preserve"><value>{0} fichier correct</value></data>
+  <data name="Job_FilesTestedMany" xml:space="preserve"><value>{0} fichiers corrects</value></data>
+  <data name="Job_FilesDeletedOne" xml:space="preserve"><value>{0} fichier supprimé</value></data>
+  <data name="Job_FilesDeletedMany" xml:space="preserve"><value>{0} fichiers supprimés</value></data>
+  <data name="Job_TitleScheduled" xml:space="preserve"><value>Programmée : {0}</value></data>
+  <data name="Error_ChecksumMismatch" xml:space="preserve"><value>Le contenu ne correspond pas à la somme enregistrée : le fichier a changé ou est endommagé.</value></data>
+  <data name="Job_FilteredOut" xml:space="preserve"><value>Aucun fichier ne passe les filtres de cette copie</value></data>
+  <data name="Rules_After.PlaceholderText" xml:space="preserve"><value>Toute date</value></data>
+  <data name="Rules_Before.PlaceholderText" xml:space="preserve"><value>Toute date</value></data>
+  <data name="Drop_MoveTo" xml:space="preserve"><value>Déplacer en position {0}</value></data>
+  <data name="Drop_InsertAt" xml:space="preserve"><value>Ajouter en position {0}</value></data>
+  <data name="Drop_AddToJob" xml:space="preserve"><value>Ajouter à cette copie</value></data>
+  <data name="Drop_AddToNamedJob" xml:space="preserve"><value>Ajouter à {0}</value></data>
+  <data name="Drop_JobOrder" xml:space="preserve"><value>Placer en position {0} de la file</value></data>
+  <data name="Settings_Sounds.Text" xml:space="preserve"><value>Sons</value></data>
+  <data name="Settings_SoundsTitle.Text" xml:space="preserve"><value>Alertes sonores</value></data>
+  <data name="Settings_SoundsDescription.Text" xml:space="preserve"><value>Choisissez un son pour chaque moment : un son de Windows, n&apos;importe quel fichier de votre ordinateur, ou aucun.</value></data>
+  <data name="Settings_Volume.Header" xml:space="preserve"><value>Volume</value></data>
+  <data name="Settings_SoundsQuiet.Content" xml:space="preserve"><value>Rester silencieux pendant les jeux ou présentations en plein écran et en mode Ne pas déranger</value></data>
+  <data name="Sound_Done" xml:space="preserve"><value>Une copie s&apos;est bien terminée</value></data>
+  <data name="Sound_Errors" xml:space="preserve"><value>Une copie s&apos;est terminée avec des erreurs</value></data>
+  <data name="Sound_AllDone" xml:space="preserve"><value>Toutes les copies sont terminées</value></data>
+  <data name="Sound_Attention" xml:space="preserve"><value>Votre décision est nécessaire (le fichier existe déjà)</value></data>
+  <data name="Sound_Test" xml:space="preserve"><value>Tester le son</value></data>
+  <data name="Sound_None" xml:space="preserve"><value>Aucun son</value></data>
+  <data name="Sound_Default" xml:space="preserve"><value>Celui de Windows</value></data>
+  <data name="Sound_Choose" xml:space="preserve"><value>Choisir un fichier…</value></data>
+  <data name="File_Planned" xml:space="preserve"><value>Simulé</value></data>
+  <data name="File_Deleted" xml:space="preserve"><value>Retiré</value></data>
+  <data name="File_RemovedExtra" xml:space="preserve"><value>Retiré de la destination : il n&apos;était plus dans la source</value></data>
+  <data name="Plan_Copy" xml:space="preserve"><value>Serait copié</value></data>
+  <data name="Plan_Replace" xml:space="preserve"><value>Remplacerait celui de la destination</value></data>
+  <data name="Plan_ReplaceNewer" xml:space="preserve"><value>Remplacerait celui de la destination : l&apos;original est plus récent</value></data>
+  <data name="Plan_ReplaceSize" xml:space="preserve"><value>Remplacerait celui de la destination : taille différente</value></data>
+  <data name="Plan_KeepBoth" xml:space="preserve"><value>Existe déjà : serait copié sous un autre nom</value></data>
+  <data name="Plan_RenameExisting" xml:space="preserve"><value>Existe déjà : renommerait celui de la destination et copierait celui-ci</value></data>
+  <data name="Plan_Ask" xml:space="preserve"><value>Existe déjà : vous seriez consulté</value></data>
+  <data name="Plan_SkipIdentical" xml:space="preserve"><value>Serait ignoré : déjà identique dans la destination</value></data>
+  <data name="Plan_SkipExists" xml:space="preserve"><value>Serait ignoré : existe déjà</value></data>
+  <data name="Plan_SkipOlder" xml:space="preserve"><value>Serait ignoré : celui de la destination est identique ou plus récent</value></data>
+  <data name="Plan_SkipSameSize" xml:space="preserve"><value>Serait ignoré : même taille</value></data>
+  <data name="Plan_SkipNotInDestination" xml:space="preserve"><value>Serait ignoré : absent de la destination (mise à jour seulement)</value></data>
+  <data name="Plan_SkipSamePath" xml:space="preserve"><value>Serait ignoré : la source et la destination sont identiques</value></data>
+  <data name="Plan_Delete" xml:space="preserve"><value>Serait retiré de la destination : n&apos;est plus dans la source</value></data>
+  <data name="Plan_Fail" xml:space="preserve"><value>Échouerait : la destination existe déjà</value></data>
+  <data name="Plan_None" xml:space="preserve"><value>Simulé</value></data>
+  <data name="Skip_SkipIdentical" xml:space="preserve"><value>Déjà identique dans la destination</value></data>
+  <data name="Skip_SkipExists" xml:space="preserve"><value>Existait déjà : ignoré</value></data>
+  <data name="Skip_SkipOlder" xml:space="preserve"><value>Celui de la destination est identique ou plus récent</value></data>
+  <data name="Skip_SkipSameSize" xml:space="preserve"><value>Même taille que celui de la destination</value></data>
+  <data name="Skip_SkipNotInDestination" xml:space="preserve"><value>Absent de la destination (seuls les existants sont mis à jour)</value></data>
+  <data name="Skip_SkipSamePath" xml:space="preserve"><value>La source et la destination sont le même fichier</value></data>
+  <data name="Skip_SkipByUser" xml:space="preserve"><value>Passé par vous</value></data>
+  <data name="Job_TitleSync" xml:space="preserve"><value>Synchroniser {0}</value></data>
+  <data name="Job_TitleSyncing" xml:space="preserve"><value>Synchronisation de {0}</value></data>
+  <data name="Job_TitleSynced" xml:space="preserve"><value>{0} synchronisé</value></data>
+  <data name="Job_StateSyncing" xml:space="preserve"><value>Synchronisation</value></data>
+  <data name="Job_FilesSyncedOne" xml:space="preserve"><value>{0} fichier mis à jour</value></data>
+  <data name="Job_FilesSyncedMany" xml:space="preserve"><value>{0} fichiers mis à jour</value></data>
+  <data name="Job_TitleSimulate" xml:space="preserve"><value>Simuler {0}</value></data>
+  <data name="Job_TitleSimulating" xml:space="preserve"><value>Simulation de {0}</value></data>
+  <data name="Job_TitleSimulated" xml:space="preserve"><value>Simulation : {0}</value></data>
+  <data name="Job_StateSimulating" xml:space="preserve"><value>Simulation</value></data>
+  <data name="Job_FilesSimulatedOne" xml:space="preserve"><value>{0} fichier serait copié</value></data>
+  <data name="Job_FilesSimulatedMany" xml:space="preserve"><value>{0} fichiers seraient copiés</value></data>
+  <data name="Job_WouldTransfer" xml:space="preserve"><value>{0} au total</value></data>
+  <data name="Job_TitleHash" xml:space="preserve"><value>Créer les sommes de {0}</value></data>
+  <data name="Job_TitleHashing" xml:space="preserve"><value>Calcul des sommes de {0}</value></data>
+  <data name="Job_TitleHashed" xml:space="preserve"><value>Sommes de {0}</value></data>
+  <data name="Job_StateHashing" xml:space="preserve"><value>Calcul des sommes</value></data>
+  <data name="Job_FilesHashedOne" xml:space="preserve"><value>{0} fichier dans la liste de sommes</value></data>
+  <data name="Job_FilesHashedMany" xml:space="preserve"><value>{0} fichiers dans la liste de sommes</value></data>
+  <data name="Job_StateWaitingDevice" xml:space="preserve"><value>En attente du retour du disque ou du réseau…</value></data>
+  <data name="Job_StateWaitingSpace" xml:space="preserve"><value>En attente d&apos;espace libre sur la destination…</value></data>
+  <data name="Job_RemovedOne" xml:space="preserve"><value>1 retiré de la destination</value></data>
+  <data name="Job_Removed" xml:space="preserve"><value>{0} retirés de la destination</value></data>
+  <data name="Job_WouldRemove" xml:space="preserve"><value>{0} seraient retirés de la destination</value></data>
+  <data name="Panel_RunForReal.Text" xml:space="preserve"><value>Le faire pour de vrai</value></data>
+  <data name="Options_Mode.Header" xml:space="preserve"><value>Mode</value></data>
+  <data name="Mode_Copy.Content" xml:space="preserve"><value>Copier</value></data>
+  <data name="Mode_Mirror.Content" xml:space="preserve"><value>Synchroniser (miroir)</value></data>
+  <data name="Mode_Update.Content" xml:space="preserve"><value>Mettre à jour seulement les existants</value></data>
+  <data name="Mode_Folders.Content" xml:space="preserve"><value>Structure des dossiers seulement</value></data>
+  <data name="Options_MirrorInfo.Title" xml:space="preserve"><value>Synchroniser retire de la destination ce qui n&apos;est plus dans la source</value></data>
+  <data name="Options_MirrorInfo.Message" xml:space="preserve"><value>Ce que les filtres excluent n&apos;est pas touché. Indiquez un dossier de versions pour garder ce qui est retiré ou remplacé.</value></data>
+  <data name="Options_DryRun.Content" xml:space="preserve"><value>Simuler : montrer ce qui se passerait sans rien changer</value></data>
+  <data name="Destinations_DryRun.Content" xml:space="preserve"><value>Simuler d&apos;abord (ne change rien)</value></data>
+  <data name="Tool_HashFolder.Text" xml:space="preserve"><value>Créer un fichier de sommes d&apos;un dossier…</value></data>
+  <data name="Tool_HashFiles.Text" xml:space="preserve"><value>Créer un fichier de sommes de fichiers…</value></data>
+  <data name="Rules_SkipJunk.Content" xml:space="preserve"><value>Ignorer les fichiers inutiles (Thumbs.db, desktop.ini, .DS_Store, ~$…)</value></data>
+  <data name="Rules_OnErrorEnd.Content" xml:space="preserve"><value>Le réessayer à la fin de la file</value></data>
+  <data name="Rules_Safety.Text" xml:space="preserve"><value>Synchronisation et sécurité</value></data>
+  <data name="Rules_FolderConflict.Header" xml:space="preserve"><value>Si un dossier existe déjà dans la destination</value></data>
+  <data name="Rules_FolderMerge.Content" xml:space="preserve"><value>Fusionner son contenu</value></data>
+  <data name="Rules_FolderSkip.Content" xml:space="preserve"><value>L&apos;ignorer entièrement</value></data>
+  <data name="Rules_Versions.Header" xml:space="preserve"><value>Garder les fichiers remplacés ou retirés dans le dossier</value></data>
+  <data name="Rules_Versions.PlaceholderText" xml:space="preserve"><value>Vide : ne pas garder (par exemple .versions)</value></data>
+  <data name="Rules_Tolerance.Header" xml:space="preserve"><value>Marge de date pour « identiques » (secondes)</value></data>
+  <data name="Rules_VerifySource.Content" xml:space="preserve"><value>Relire l&apos;original à la fin</value></data>
+  <data name="Rules_HashStream.Content" xml:space="preserve"><value>Enregistrer le hachage dans chaque fichier</value></data>
+  <data name="Rules_HardLinks.Content" xml:space="preserve"><value>Conserver les liens physiques</value></data>
+  <data name="Rules_Wipe.Content" xml:space="preserve"><value>En déplaçant, effacer les originaux de façon sécurisée</value></data>
+  <data name="Rules_WaitDevice.Content" xml:space="preserve"><value>Attendre si le disque ou le réseau se déconnecte</value></data>
+  <data name="Rules_WaitSpace.Content" xml:space="preserve"><value>Attendre en cas de manque d&apos;espace</value></data>
+  <data name="Rules_VerifySource.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Recalcule le hachage de l&apos;original : détecte s&apos;il a changé pendant la copie ou si le disque source lit mal.</value></data>
+  <data name="Rules_HashStream.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Enregistré dans un flux caché du fichier lui-même (NTFS). « Contrôler les sommes d&apos;un dossier » détectera ensuite tout dommage, même sans fichier de sommes.</value></data>
+  <data name="Rules_HardLinks.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Si plusieurs noms désignent le même fichier, ce sera aussi le cas dans la destination (pas d&apos;espace en double).</value></data>
+  <data name="Rules_Tolerance.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>FAT32 et exFAT enregistrent l&apos;heure à 2 secondes près : avec cette marge, les fichiers identiques ne sont pas recopiés.</value></data>
+  <data name="Rules_Versions.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Avant qu&apos;un fichier soit remplacé ou retiré, il est déplacé dans ce dossier de la destination avec la date dans son nom.</value></data>
+  <data name="Settings_UnitsTitle.Text" xml:space="preserve"><value>Unités de taille</value></data>
+  <data name="Settings_UnitsDescription.Text" xml:space="preserve"><value>Comment les tailles et les vitesses sont affichées.</value></data>
+  <data name="Units_Classic.Content" xml:space="preserve"><value>Ko, Mo, Go (comme l&apos;Explorateur)</value></data>
+  <data name="Units_Iec.Content" xml:space="preserve"><value>Kio, Mio, Gio (binaires)</value></data>
+  <data name="Units_Decimal.Content" xml:space="preserve"><value>ko, Mo, Go de 1000 (comme le fabricant)</value></data>
+  <data name="Settings_SlowTitle.Text" xml:space="preserve"><value>Ralentir pendant que vous utilisez l&apos;ordinateur</value></data>
+  <data name="Settings_SlowDescription.Text" xml:space="preserve"><value>Quand vous utilisez le clavier ou la souris, les copies restent sous cette vitesse ; quand vous quittez l&apos;ordinateur, elles accélèrent à nouveau.</value></data>
+  <data name="Slow_Off.Content" xml:space="preserve"><value>Non</value></data>
+  <data name="Settings_LogsTitle.Text" xml:space="preserve"><value>Enregistrer le journal de chaque copie</value></data>
+  <data name="Settings_LogsDescription.Text" xml:space="preserve"><value>Un fichier par copie dans le dossier des journaux ; ils sont supprimés au bout de 30 jours.</value></data>
+  <data name="Settings_LogsOpen.Text" xml:space="preserve"><value>Ouvrir le dossier</value></data>
+  <data name="Settings_WebhookTitle.Text" xml:space="preserve"><value>Prévenir une adresse web à la fin</value></data>
+  <data name="Settings_WebhookDescription.Text" xml:space="preserve"><value>Pour recevoir l&apos;avis sur votre téléphone ou dans un chat : Discord, Slack, Teams, ntfy.sh, Home Assistant… Un POST avec du JSON est envoyé.</value></data>
+  <data name="Settings_WebhookBox.PlaceholderText" xml:space="preserve"><value>https://ntfy.sh/mon-sujet-secret</value></data>
+  <data name="Settings_WebhookTest.Text" xml:space="preserve"><value>Tester</value></data>
+  <data name="Settings_WebhookSending" xml:space="preserve"><value>Envoi…</value></data>
+  <data name="Settings_WebhookOk" xml:space="preserve"><value>Avis envoyé avec succès.</value></data>
+  <data name="Settings_WebhookFailed" xml:space="preserve"><value>Envoi impossible : vérifiez l&apos;adresse et la connexion.</value></data>
+  <data name="Settings_WebhookTestMessage" xml:space="preserve"><value>✔ MegaCopier : avis de test</value></data>
+  <data name="FinishDialog.Title" xml:space="preserve"><value>Toutes les copies sont terminées</value></data>
+  <data name="FinishDialog.PrimaryButtonText" xml:space="preserve"><value>Le faire maintenant</value></data>
+  <data name="FinishDialog.CloseButtonText" xml:space="preserve"><value>Annuler</value></data>
+  <data name="Finish_CountdownSleep" xml:space="preserve"><value>L&apos;ordinateur se mettra en veille dans {0} s.</value></data>
+  <data name="Finish_CountdownHibernate" xml:space="preserve"><value>L&apos;ordinateur passera en veille prolongée dans {0} s.</value></data>
+  <data name="Finish_CountdownShutdown" xml:space="preserve"><value>L&apos;ordinateur s&apos;arrêtera dans {0} s.</value></data>
+  <data name="Finish_CountdownSignOut" xml:space="preserve"><value>Vous serez déconnecté dans {0} s.</value></data>
+  <data name="Finish_CountdownExitApp" xml:space="preserve"><value>MegaCopier se fermera dans {0} s.</value></data>
+  <data name="Job_SlowedDown" xml:space="preserve"><value>Plus lent pendant que vous utilisez l&apos;ordinateur</value></data>
+  <data name="History_Undone" xml:space="preserve"><value>annulé</value></data>
+  <data name="History_Undo.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Annuler : remettre en place ce qui a été déplacé, ou envoyer ce qui a été copié à la Corbeille</value></data>
+  <data name="History_CopyBack.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Recopier vers le dossier source (restaurer)</value></data>
+  <data name="History_UndoDialog.Title" xml:space="preserve"><value>Annuler cette copie ?</value></data>
+  <data name="History_UndoDialog.PrimaryButtonText" xml:space="preserve"><value>Annuler la copie</value></data>
+  <data name="History_UndoDialog.CloseButtonText" xml:space="preserve"><value>Fermer</value></data>
+  <data name="History_UndoMoveConfirm" xml:space="preserve"><value>Tout ce qui a été déplacé retournera dans son dossier d&apos;origine depuis « {0} ».</value></data>
+  <data name="History_UndoCopyConfirm" xml:space="preserve"><value>Les {0} fichiers copiés iront à la Corbeille (récupérables). Les fichiers modifiés depuis, ou qui en ont remplacé un autre, ne sont pas touchés.</value></data>
+  <data name="History_UndoDone" xml:space="preserve"><value>{0} fichiers envoyés à la Corbeille.</value></data>
+  <data name="History_UndoKept" xml:space="preserve"><value>{0} modifiés depuis et {1} qui en ont remplacé d&apos;autres ont été conservés.</value></data>
+  <data name="History_UndoTitleBar.Title" xml:space="preserve"><value>Copie annulée</value></data>
+  <data name="History_Undo.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Annuler : remettre en place ce qui a été déplacé, ou envoyer ce qui a été copié à la Corbeille</value></data>
+  <data name="History_CopyBack.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Recopier vers le dossier source (restaurer)</value></data>
+  <data name="History_Open.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Ouvrir la destination</value></data>
+  <data name="History_Repeat.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Répéter (copie seulement ce qui est nouveau ou modifié)</value></data>
+  <data name="Task_Header.Text" xml:space="preserve"><value>Ou enregistrez-la comme tâche pour que Windows la répète à l&apos;heure choisie ci-dessus :</value></data>
+  <data name="Task_Name.PlaceholderText" xml:space="preserve"><value>Nom de la tâche</value></data>
+  <data name="Task_Once.Content" xml:space="preserve"><value>Une fois</value></data>
+  <data name="Task_Daily.Content" xml:space="preserve"><value>Chaque jour</value></data>
+  <data name="Task_Weekly.Content" xml:space="preserve"><value>Chaque semaine</value></data>
+  <data name="Task_Save.Text" xml:space="preserve"><value>Enregistrer comme tâche</value></data>
+  <data name="Task_SavedOnce" xml:space="preserve"><value>Tâche « {0} » enregistrée : elle s&apos;exécutera le {2} à {1}.</value></data>
+  <data name="Task_SavedDaily" xml:space="preserve"><value>Tâche « {0} » enregistrée : elle s&apos;exécutera chaque jour à {1}.</value></data>
+  <data name="Task_SavedWeekly" xml:space="preserve"><value>Tâche « {0} » enregistrée : elle s&apos;exécutera chaque semaine, le même jour que le {2}, à {1}.</value></data>
+  <data name="Task_Failed" xml:space="preserve"><value>Impossible de programmer : {0}</value></data>
+  <data name="Settings_Tasks.Text" xml:space="preserve"><value>Tâches planifiées</value></data>
+  <data name="Settings_TasksTitle.Text" xml:space="preserve"><value>Copies qui se répètent toutes seules</value></data>
+  <data name="Settings_TasksDescription.Text" xml:space="preserve"><value>Créez-les depuis l&apos;onglet Options d&apos;une copie (« Enregistrer comme tâche ») ; le Planificateur de tâches de Windows les lance, même si MegaCopier est fermé.</value></data>
+  <data name="Settings_TasksEmpty" xml:space="preserve"><value>Aucune tâche pour l&apos;instant.</value></data>
+  <data name="Settings_TaskRun" xml:space="preserve"><value>Exécuter « {0} » maintenant</value></data>
+  <data name="Settings_TaskDelete" xml:space="preserve"><value>Supprimer la tâche « {0} »</value></data>
+  <data name="About_Portable" xml:space="preserve"><value>portable (données dans {0})</value></data>
+  <data name="Job_Estimate" xml:space="preserve"><value>{0}, environ {1}</value></data>
+  <data name="Job_EstimateSize" xml:space="preserve"><value>{0} au total</value></data>
+  <data name="Settings_SmbCompression.Content" xml:space="preserve"><value>Compresser sur le réseau (SMB)</value></data>
+  <data name="Settings_SmbCompression.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Demande au serveur de compresser les données en route (Windows 11 et Windows Server 2022 ou ultérieur). Si la source et la destination sont sur le même serveur, c&apos;est toujours le serveur qui copie, sans passer par cet ordinateur.</value></data>
+  <data name="Error_TooLargeForFileSystem" xml:space="preserve"><value>Ne tient pas sur ce disque : FAT32 n&apos;accepte pas les fichiers de 4 Go ou plus. Formatez-le en exFAT ou NTFS.</value></data>
+  <data name="Rules_AllOrNothing.Content" xml:space="preserve"><value>Dossiers « tout ou rien »</value></data>
+  <data name="Rules_AllOrNothing.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Chaque nouveau dossier est copié caché et n&apos;apparaît sous son nom que si tout s&apos;est bien passé : jamais de dossier à moitié copié qui semble complet.</value></data>
+  <data name="Rules_Rescue.Content" xml:space="preserve"><value>Mode sauvetage pour disques endommagés</value></data>
+  <data name="Rules_Rescue.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Si la source a des secteurs défectueux, elle est lue secteur par secteur et tout ce qui est lisible est sauvé ; l&apos;illisible devient des zéros et est noté dans le journal. L&apos;original n&apos;est pas supprimé lors d&apos;un déplacement.</value></data>
+  <data name="Error_PartlyUnreadable" xml:space="preserve"><value>Sauvé en partie : certains secteurs de la source étaient endommagés et sont devenus des zéros (détails dans le Journal).</value></data>
+  <data name="Settings_Guard.Text" xml:space="preserve"><value>Gardien d&apos;intégrité</value></data>
+  <data name="Settings_GuardTitle.Text" xml:space="preserve"><value>Surveiller que vos fichiers ne s&apos;abîment pas avec le temps</value></data>
+  <data name="Settings_GuardDescription.Text" xml:space="preserve"><value>Chaque fichier garde son hachage en lui. Quand l&apos;ordinateur est inactif, MegaCopier les vérifie : si l&apos;un a changé sans que personne ne le modifie (le disque l&apos;a abîmé), vous êtes prévenu. Ce que vous modifiez est renouvelé automatiquement. Nécessite NTFS.</value></data>
+  <data name="Guard_Daily.Content" xml:space="preserve"><value>Chaque jour</value></data>
+  <data name="Guard_Weekly.Content" xml:space="preserve"><value>Chaque semaine</value></data>
+  <data name="Guard_Monthly.Content" xml:space="preserve"><value>Chaque mois</value></data>
+  <data name="Settings_GuardAdd.Text" xml:space="preserve"><value>Surveiller un dossier…</value></data>
+  <data name="Settings_GuardEmpty" xml:space="preserve"><value>Vous ne surveillez encore aucun dossier.</value></data>
+  <data name="Settings_GuardCheck" xml:space="preserve"><value>Contrôler « {0} » maintenant</value></data>
+  <data name="Settings_GuardRemove" xml:space="preserve"><value>Ne plus surveiller « {0} »</value></data>
+  <data name="Guard_NotYet" xml:space="preserve"><value>En attente du premier contrôle</value></data>
+  <data name="Guard_LastOk" xml:space="preserve"><value>Contrôlé le {0} : tout va bien</value></data>
+  <data name="Guard_LastDamaged" xml:space="preserve"><value>Contrôlé le {0} : {1} fichiers endommagés (voir l&apos;Historique)</value></data>
+  <data name="Guard_DamagedTitle" xml:space="preserve"><value>Gardien d&apos;intégrité</value></data>
+  <data name="Guard_DamagedOne" xml:space="preserve"><value>Un fichier de « {0} » a été endommagé sur le disque.</value></data>
+  <data name="Guard_DamagedMany" xml:space="preserve"><value>{0} fichiers de « {1} » ont été endommagés sur le disque.</value></data>
+  <data name="Guard_LastDamagedOne" xml:space="preserve"><value>Contrôlé le {0} : un fichier endommagé (voir l&apos;Historique)</value></data>
+  <data name="Settings_ScheduleLimitTitle.Text" xml:space="preserve"><value>Limite de vitesse selon l&apos;heure</value></data>
+  <data name="Settings_ScheduleLimitDescription.Text" xml:space="preserve"><value>Par exemple pendant les heures de travail : les copies restent sous cette vitesse entre les heures choisies.</value></data>
+  <data name="Settings_ScheduleFrom.Text" xml:space="preserve"><value>De</value></data>
+  <data name="Settings_ScheduleTo.Text" xml:space="preserve"><value>à</value></data>
+  <data name="Settings_PauseBatteryTitle.Text" xml:space="preserve"><value>Pause sur batterie</value></data>
+  <data name="Settings_PauseBatteryDescription.Text" xml:space="preserve"><value>Sur un portable débranché, les copies attendent et reprennent seules quand vous le rebranchez.</value></data>
+  <data name="Settings_PauseFullTitle.Text" xml:space="preserve"><value>Pause pendant les jeux et présentations</value></data>
+  <data name="Settings_PauseFullDescription.Text" xml:space="preserve"><value>Avec un jeu ou une présentation en plein écran, les copies attendent pour ne pas le ralentir.</value></data>
+  <data name="Comfort_PausedTitle" xml:space="preserve"><value>Copies en pause</value></data>
+  <data name="Comfort_PausedBattery" xml:space="preserve"><value>L&apos;ordinateur est sur batterie : les copies reprendront quand vous le brancherez.</value></data>
+  <data name="Comfort_PausedFullScreen" xml:space="preserve"><value>Un jeu ou une présentation en plein écran est en cours : les copies reprendront quand vous le quitterez.</value></data>
+  <data name="Job_StatePausedBattery" xml:space="preserve"><value>En pause : sur batterie</value></data>
+  <data name="Job_StatePausedFullScreen" xml:space="preserve"><value>En pause : plein écran</value></data>
+  <data name="Job_SlowedSchedule" xml:space="preserve"><value>Plus lent à cause de l&apos;horaire choisi</value></data>
+  <data name="Rules_Delta.Content" xml:space="preserve"><value>En remplaçant de gros fichiers, n&apos;écrire que ce qui a changé</value></data>
+  <data name="Rules_Delta.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Copie différentielle pour les fichiers de 16 Mo ou plus (disques virtuels, courrier, projets) : seuls les blocs différents sont écrits. En cas d&apos;annulation ou de coupure, le fichier revient à sa version précédente.</value></data>
+  <data name="Panel_CopyLocked.Text" xml:space="preserve"><value>Copier les fichiers en cours d&apos;utilisation</value></data>
+  <data name="Locked_Title" xml:space="preserve"><value>Fichiers en cours d&apos;utilisation</value></data>
+  <data name="Locked_Cancelled" xml:space="preserve"><value>L&apos;autorisation d&apos;administrateur n&apos;a pas été donnée : les fichiers en cours d&apos;utilisation n&apos;ont pas été copiés.</value></data>
+  <data name="Locked_Done" xml:space="preserve"><value>{0} fichiers en cours d&apos;utilisation copiés depuis un instantané du disque.</value></data>
+  <data name="Locked_Partial" xml:space="preserve"><value>{0} copiés depuis un instantané ; les autres n&apos;ont pas pu l&apos;être : {1}</value></data>
+  <data name="Settings_Peer.Text" xml:space="preserve"><value>Recevoir d&apos;autres ordinateurs</value></data>
+  <data name="Settings_PeerTitle.Text" xml:space="preserve"><value>Recevoir des fichiers d&apos;autres ordinateurs avec MegaCopier</value></data>
+  <data name="Settings_PeerDescription.Text" xml:space="preserve"><value>Par le réseau de la maison ou du bureau, sans dossiers partagés. L&apos;expéditeur a besoin du code ci-dessous ; la connexion est chiffrée et chaque fichier est vérifié à l&apos;arrivée. La première fois, Windows peut demander l&apos;autorisation du pare-feu.</value></data>
+  <data name="Settings_PeerCode.Text" xml:space="preserve"><value>Code pour vous envoyer des fichiers :</value></data>
+  <data name="Settings_PeerNewCode.Text" xml:space="preserve"><value>Nouveau code</value></data>
+  <data name="Settings_PeerFolder.Text" xml:space="preserve"><value>Changer de dossier…</value></data>
+  <data name="Settings_PeerFolderIs" xml:space="preserve"><value>Enregistrés dans {0}</value></data>
+  <data name="Settings_PeerListening" xml:space="preserve"><value>En attente d&apos;envois sur « {0} » (port {1}).</value></data>
+  <data name="Settings_PeerError" xml:space="preserve"><value>Impossible de commencer la réception : {0}</value></data>
+  <data name="Peer_ReceivingTitle" xml:space="preserve"><value>Réception de fichiers</value></data>
+  <data name="Peer_Receiving" xml:space="preserve"><value>{0} vous envoie {1} fichiers ({2}).</value></data>
+  <data name="Peer_ReceivedTitle" xml:space="preserve"><value>Fichiers reçus</value></data>
+  <data name="Peer_Received" xml:space="preserve"><value>{0} fichiers de {1}, dans {2}.</value></data>
+  <data name="Peer_RejectedTitle" xml:space="preserve"><value>Envoi refusé</value></data>
+  <data name="Peer_Rejected" xml:space="preserve"><value>{0} a essayé de vous envoyer des fichiers avec un mauvais code.</value></data>
+  <data name="Tool_SendFiles.Text" xml:space="preserve"><value>Envoyer des fichiers à un autre ordinateur…</value></data>
+  <data name="Tool_SendFolder.Text" xml:space="preserve"><value>Envoyer un dossier à un autre ordinateur…</value></data>
+  <data name="SendDialog.Title" xml:space="preserve"><value>Envoyer à un autre ordinateur</value></data>
+  <data name="SendDialog.PrimaryButtonText" xml:space="preserve"><value>Envoyer</value></data>
+  <data name="SendDialog.CloseButtonText" xml:space="preserve"><value>Annuler</value></data>
+  <data name="Send_SummaryOne" xml:space="preserve"><value>Envoyer « {0} » à un autre ordinateur où MegaCopier est en réception.</value></data>
+  <data name="Send_SummaryMany" xml:space="preserve"><value>Envoyer {0} éléments à un autre ordinateur où MegaCopier est en réception.</value></data>
+  <data name="Send_Found.Text" xml:space="preserve"><value>Ordinateurs trouvés sur le réseau :</value></data>
+  <data name="Send_Searching" xml:space="preserve"><value>Recherche…</value></data>
+  <data name="Send_NoneFound" xml:space="preserve"><value>Aucun trouvé : saisissez son nom ou son adresse IP.</value></data>
+  <data name="Send_Host.Header" xml:space="preserve"><value>Ordinateur (nom ou IP)</value></data>
+  <data name="Send_Host.PlaceholderText" xml:space="preserve"><value>PC-SALON ou 192.168.1.20</value></data>
+  <data name="Send_Code.Header" xml:space="preserve"><value>Code affiché par cet ordinateur dans Paramètres</value></data>
+  <data name="Send_Code.PlaceholderText" xml:space="preserve"><value>XXXX-XXXX-XXXX</value></data>
+  <data name="Job_TitleSend" xml:space="preserve"><value>Envoyer {0}</value></data>
+  <data name="Job_TitleSending" xml:space="preserve"><value>Envoi de {0}</value></data>
+  <data name="Job_TitleSent" xml:space="preserve"><value>{0} envoyé</value></data>
+  <data name="Job_StateSending" xml:space="preserve"><value>Envoi en cours</value></data>
+  <data name="Job_FilesSentOne" xml:space="preserve"><value>{0} fichier envoyé</value></data>
+  <data name="Job_FilesSentMany" xml:space="preserve"><value>{0} fichiers envoyés</value></data>
+  <data name="Rules_Describe.Header" xml:space="preserve"><value>Dites-le avec vos mots (en anglais ou en espagnol)</value></data>
+  <data name="Rules_Describe.PlaceholderText" xml:space="preserve"><value>photos larger than 2 MB from last month except .tmp</value></data>
+  <data name="Rules_DescribeApply.Text" xml:space="preserve"><value>Appliquer</value></data>
+  <data name="Rules_DescribeUnderstood" xml:space="preserve"><value>Compris : {0}.</value></data>
+  <data name="Rules_DescribeNothing" xml:space="preserve"><value>Rien à filtrer n&apos;a été compris.</value></data>
+  <data name="Rules_DescribeUnknown" xml:space="preserve"><value>Non compris : {0}.</value></data>
+  <data name="Mode_Organize.Content" xml:space="preserve"><value>Organiser les photos par date</value></data>
+  <data name="Rules_Duplicates.Content" xml:space="preserve"><value>Ne pas copier ce qui est déjà dans la destination (doublons)</value></data>
+  <data name="Rules_Duplicates.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Compare le contenu, pas le nom : une photo déjà présente dans n&apos;importe quel dossier de la destination, même sous un autre nom, n&apos;est pas recopiée.</value></data>
+  <data name="Skip_SkipDuplicate" xml:space="preserve"><value>Déjà dans la destination sous un autre nom ou dans un autre dossier</value></data>
+  <data name="Plan_SkipDuplicate" xml:space="preserve"><value>Serait ignoré : déjà dans la destination (doublon)</value></data>
+  <data name="Destinations_Encrypt.Content" xml:space="preserve"><value>Chiffrer avec un mot de passe (pour une clé USB ou un disque que vous pourriez perdre)</value></data>
+  <data name="Destinations_Password.Header" xml:space="preserve"><value>Mot de passe</value></data>
+  <data name="Destinations_Password2.Header" xml:space="preserve"><value>Répétez-le</value></data>
+  <data name="Destinations_PasswordHint" xml:space="preserve"><value>Chiffré avec AES-256. Si vous oubliez le mot de passe, les fichiers sont irrécupérables. Pour les lire : menu Nouvelle &gt; Déchiffrer.</value></data>
+  <data name="Destinations_PasswordShort" xml:space="preserve"><value>Le mot de passe doit contenir au moins 8 caractères.</value></data>
+  <data name="Destinations_PasswordMismatch" xml:space="preserve"><value>Les deux mots de passe ne correspondent pas.</value></data>
+  <data name="PasswordDialog.Title" xml:space="preserve"><value>Mot de passe</value></data>
+  <data name="PasswordDialog.PrimaryButtonText" xml:space="preserve"><value>OK</value></data>
+  <data name="PasswordDialog.CloseButtonText" xml:space="preserve"><value>Annuler</value></data>
+  <data name="Tool_Decrypt.Text" xml:space="preserve"><value>Déchiffrer des fichiers chiffrés…</value></data>
+  <data name="Picker_DecryptHere" xml:space="preserve"><value>Déchiffrer ici</value></data>
+  <data name="Decrypt_Ask" xml:space="preserve"><value>Mot de passe des fichiers chiffrés de « {0} » :</value></data>
+  <data name="Resume_PasswordAsk" xml:space="preserve"><value>Cette copie est chiffrée et le mot de passe n&apos;est pas enregistré : saisissez-le pour continuer.</value></data>
+  <data name="Job_TitleEncrypt" xml:space="preserve"><value>Chiffrer {0}</value></data>
+  <data name="Job_TitleEncrypting" xml:space="preserve"><value>Chiffrement de {0}</value></data>
+  <data name="Job_TitleEncrypted" xml:space="preserve"><value>{0} chiffré</value></data>
+  <data name="Job_StateEncrypting" xml:space="preserve"><value>Chiffrement</value></data>
+  <data name="Job_FilesEncryptedOne" xml:space="preserve"><value>{0} fichier chiffré</value></data>
+  <data name="Job_FilesEncryptedMany" xml:space="preserve"><value>{0} fichiers chiffrés</value></data>
+  <data name="Job_TitleDecrypt" xml:space="preserve"><value>Déchiffrer {0}</value></data>
+  <data name="Job_TitleDecrypting" xml:space="preserve"><value>Déchiffrement de {0}</value></data>
+  <data name="Job_TitleDecrypted" xml:space="preserve"><value>{0} déchiffré</value></data>
+  <data name="Job_StateDecrypting" xml:space="preserve"><value>Déchiffrement</value></data>
+  <data name="Job_FilesDecryptedOne" xml:space="preserve"><value>{0} fichier déchiffré</value></data>
+  <data name="Job_FilesDecryptedMany" xml:space="preserve"><value>{0} fichiers déchiffrés</value></data>
+  <data name="Settings_DisksTitle.Text" xml:space="preserve"><value>État des disques</value></data>
+  <data name="Settings_DisksDescription.Text" xml:space="preserve"><value>Ce que Windows indique pour chaque disque (SMART). Si l&apos;un signale une panne, MegaCopier vous le dit quand vous copiez depuis ou vers lui.</value></data>
+  <data name="Settings_DisksCheck.Text" xml:space="preserve"><value>Vérifier maintenant</value></data>
+  <data name="Disk_Row" xml:space="preserve"><value>Disque {0} · {1} : {2}</value></data>
+  <data name="Disk_Healthy" xml:space="preserve"><value>bon</value></data>
+  <data name="Disk_Unknown" xml:space="preserve"><value>état inconnu</value></data>
+  <data name="Disk_HealthWarning" xml:space="preserve"><value>signale un problème</value></data>
+  <data name="Disk_Checking" xml:space="preserve"><value>Vérification des disques…</value></data>
+  <data name="Disk_WarningTitle" xml:space="preserve"><value>Un disque signale une panne</value></data>
+  <data name="Disk_Warning" xml:space="preserve"><value>« {0} » (disque {1}) : {2}. Copiez l&apos;important sur un autre disque dès que possible.</value></data>
+  <data name="Settings_TuneTitle.Text" xml:space="preserve"><value>Réglage automatique pour chaque disque</value></data>
+  <data name="Settings_TuneDescription.Text" xml:space="preserve"><value>Mesure chaque disque avec plusieurs tailles de bloc et opérations simultanées, et utilise le plus rapide pour copier vers lui (sauf si vous avez modifié les performances à la main).</value></data>
+  <data name="Settings_TuneMeasure.Text" xml:space="preserve"><value>Mesurer les disques</value></data>
+  <data name="Settings_TuneNone" xml:space="preserve"><value>Aucun disque n&apos;a encore été mesuré.</value></data>
+  <data name="Settings_TuneDisk" xml:space="preserve"><value>Disque</value></data>
+  <data name="Settings_TuneProfile" xml:space="preserve"><value>{0} : blocs de {1} Mo, {2} à la fois ({3:N0} Mo/s)</value></data>
+  <data name="Settings_TuneMeasuring" xml:space="preserve"><value>Mesure de {0} ({1} sur {2})…</value></data>
+  <data name="Tool_Timeline.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Chronologie de la file</value></data>
+  <data name="Timeline_Title.Text" xml:space="preserve"><value>Chronologie</value></data>
+  <data name="Timeline_Info.Text" xml:space="preserve"><value>Prévision selon la vitesse de chaque disque. Les copies qui utilisent le même disque passent une par une.</value></data>
+  <data name="Timeline_Empty.Text" xml:space="preserve"><value>Aucune copie en cours ou en file.</value></data>
+  <data name="Timeline_Summary" xml:space="preserve"><value>Tout devrait être terminé vers {0} (dans {1}).</value></data>
+  <data name="Timeline_Now" xml:space="preserve"><value>Maintenant</value></data>
+  <data name="Timeline_Tomorrow" xml:space="preserve"><value>demain {0}</value></data>
+  <data name="Timeline_Running" xml:space="preserve"><value>En cours · fin prévue : {0} (reste {1})</value></data>
+  <data name="Timeline_Paused" xml:space="preserve"><value>En pause · si elle reprend maintenant, fin prévue : {0}</value></data>
+  <data name="Timeline_Queued" xml:space="preserve"><value>En file · début : {0} · fin prévue : {1} (dure {2})</value></data>
+  <data name="Timeline_Scheduled" xml:space="preserve"><value>Programmée · début : {0} · fin prévue : {1} (dure {2})</value></data>
+  <data name="Timeline_Measuring" xml:space="preserve"><value>sa taille est encore en cours de mesure</value></data>
+  <data name="Tool_Shelf.Text" xml:space="preserve"><value>Étagère de dépôt</value></data>
+  <data name="Tray_Shelf" xml:space="preserve"><value>Étagère de dépôt</value></data>
+  <data name="Shelf_WindowTitle" xml:space="preserve"><value>Étagère de dépôt MegaCopier</value></data>
+  <data name="Shelf_Title.Text" xml:space="preserve"><value>Étagère de dépôt</value></data>
+  <data name="Shelf_Empty.Text" xml:space="preserve"><value>Déposez ici des fichiers et dossiers de n&apos;importe où. Puis copiez-les ou déplacez-les tous ensemble, ou faites-les glisser ailleurs.</value></data>
+  <data name="Shelf_DropCaption" xml:space="preserve"><value>Ajouter à l&apos;étagère</value></data>
+  <data name="Shelf_CopyTo.Text" xml:space="preserve"><value>Copier vers…</value></data>
+  <data name="Shelf_MoveTo.Text" xml:space="preserve"><value>Déplacer vers…</value></data>
+  <data name="Shelf_Clear.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Vider l&apos;étagère</value></data>
+  <data name="Shelf_Remove.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Retirer de l&apos;étagère</value></data>
+  <data name="Shelf_One" xml:space="preserve"><value>1 élément</value></data>
+  <data name="Shelf_Many" xml:space="preserve"><value>{0} éléments</value></data>
+  <data name="Shelf_RemoveNamed" xml:space="preserve"><value>Retirer « {0} » de l&apos;étagère</value></data>
+  <data name="Destinations_NoneChosen.Text" xml:space="preserve"><value>Cochez au moins une destination (ou ajoutez un dossier).</value></data>
+  <data name="Finish_ShutdownMessage" xml:space="preserve"><value>MegaCopier a terminé les copies. L&apos;ordinateur s&apos;arrêtera dans 1 minute.</value></data>
+  <data name="Hash_Name" xml:space="preserve"><value>Hachage : {0}</value></data>
+</root>

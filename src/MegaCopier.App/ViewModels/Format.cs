@@ -1,4 +1,5 @@
 using System.Globalization;
+using MegaCopier.Engine;
 
 namespace MegaCopier.App.ViewModels;
 
@@ -47,22 +48,23 @@ internal static class Format
 
     public static string Duration(TimeSpan span)
     {
+        // Las unidades vienen de la tabla de textos ("1 min 05 s", "1 хв 05 с", "1分 05秒").
         if (span.TotalSeconds < 1)
         {
-            return string.Format(Culture, "{0:0.0} s", span.TotalSeconds);
+            return Texts.F("U_Seconds", span.TotalSeconds.ToString("0.0", Culture));
         }
 
         if (span.TotalMinutes < 1)
         {
-            return $"{(int)Math.Ceiling(span.TotalSeconds)} s";
+            return Texts.F("U_Seconds", (int)Math.Ceiling(span.TotalSeconds));
         }
 
         if (span.TotalHours < 1)
         {
-            return $"{(int)span.TotalMinutes} min {span.Seconds:00} s";
+            return Texts.F("U_MinSec", (int)span.TotalMinutes, span.Seconds.ToString("00", Culture));
         }
 
-        return $"{(int)span.TotalHours} h {span.Minutes:00} min";
+        return Texts.F("U_HourMin", (int)span.TotalHours, span.Minutes.ToString("00", Culture));
     }
 
     public static string Date(DateTime utc) => utc.ToLocalTime().ToString("g", Culture);

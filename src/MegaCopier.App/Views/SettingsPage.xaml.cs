@@ -635,7 +635,7 @@ public sealed partial class SettingsPage : UserControl
         TuneResult.Text = profiles.Count == 0
             ? L.Get("Settings_TuneNone")
             : string.Join(Environment.NewLine, profiles.OrderBy(p => p.Key).Select(p =>
-                L.F("Settings_TuneProfile", p.Key.Replace("DISK", L.Get("Settings_TuneDisk")), p.Value.BlockSizeMB, p.Value.QueueDepth, p.Value.MBps)));
+                L.F("Settings_TuneProfile", p.Key.Replace("DISK", L.Get("Settings_TuneDisk").TrimEnd() + " "), p.Value.BlockSizeMB, p.Value.QueueDepth, p.Value.MBps)));
     }
 
     /// <summary>Mide cada disco físico una vez (en la carpeta temporal o en la raíz de la unidad), sin bloquear la ventana.</summary>

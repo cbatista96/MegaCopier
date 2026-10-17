@@ -55,7 +55,7 @@
                 </DropDownButton.Flyout>
             </DropDownButton>
             <TextBox x:Name="SearchBox" x:Uid="Files_Search" Grid.Column="1" TextChanged="Search_TextChanged" MaxWidth="360" HorizontalAlignment="Stretch" MinWidth="120" />
-            <StackPanel x:Name="ListToggles" Grid.Column="2" Orientation="Horizontal" Spacing="4">
+            <StackPanel x:Name="ListToggles" Grid.Column="2" Orientation="Horizontal" Spacing="12">
                 <CheckBox x:Name="HideFinishedBox" x:Uid="Files_HideFinished" Checked="HideFinished_Changed" Unchecked="HideFinished_Changed" MinWidth="0" />
                 <CheckBox x:Name="AutoScrollBox" x:Uid="Files_AutoScroll" IsChecked="True" MinWidth="0" />
             </StackPanel>
@@ -78,8 +78,8 @@
                 <ColumnDefinition Width="84" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="1" x:Name="CountText" Style="{StaticResource McSecondary}" TextTrimming="CharacterEllipsis" />
-            <TextBlock x:Name="SourceHashHeader" Grid.Column="2" Width="96" x:Uid="Files_SourceHash" Style="{StaticResource McSecondary}" TextTrimming="CharacterEllipsis" />
-            <TextBlock x:Name="TargetHashHeader" Grid.Column="3" Width="96" x:Uid="Files_TargetHash" Style="{StaticResource McSecondary}" TextTrimming="CharacterEllipsis" />
+            <TextBlock x:Name="SourceHashHeader" Grid.Column="2" Width="96" x:Uid="Files_SourceHash" Style="{StaticResource McSecondary}" TextWrapping="WrapWholeWords" MaxLines="2" TextTrimming="CharacterEllipsis" />
+            <TextBlock x:Name="TargetHashHeader" Grid.Column="3" Width="96" x:Uid="Files_TargetHash" Style="{StaticResource McSecondary}" TextWrapping="WrapWholeWords" MaxLines="2" TextTrimming="CharacterEllipsis" />
             <TextBlock Grid.Column="4" x:Uid="Files_Size" Style="{StaticResource McSecondary}" TextAlignment="Right" />
         </Grid>
 

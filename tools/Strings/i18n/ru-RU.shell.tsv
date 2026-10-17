@@ -1,0 +1,12 @@
+clave	texto
+S_CopyHere	Копировать сюда через MegaCopier
+S_MoveHere	Переместить сюда через MegaCopier
+S_Paste	Вставить через MegaCopier
+S_PasteIntoFolder	Вставить в эту папку через MegaCopier
+S_MoveIntoFolder	Переместить в эту папку через MegaCopier
+S_TestChecksums	Проверить контрольные суммы
+S_CreateChecksums	Создать файл контрольных сумм
+S_SecureDelete	Удалить без возможности восстановления…
+S_HelpText	Копирование через MegaCopier: продолжается после отключения питания
+S_DeliverFailed	Не удалось передать копирование в MegaCopier.
+S_OpenFailed	Не удалось открыть MegaCopier.

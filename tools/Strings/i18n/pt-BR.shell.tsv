@@ -1,0 +1,12 @@
+clave	texto
+S_CopyHere	Copiar aqui com o MegaCopier
+S_MoveHere	Mover aqui com o MegaCopier
+S_Paste	Colar com o MegaCopier
+S_PasteIntoFolder	Colar nesta pasta com o MegaCopier
+S_MoveIntoFolder	Mover para esta pasta com o MegaCopier
+S_TestChecksums	Verificar somas
+S_CreateChecksums	Criar arquivo de somas
+S_SecureDelete	Apagar com segurança…
+S_HelpText	Cópia com o MegaCopier: retoma após uma queda de energia
+S_DeliverFailed	Não foi possível entregar a cópia ao MegaCopier.
+S_OpenFailed	Não foi possível abrir o MegaCopier.

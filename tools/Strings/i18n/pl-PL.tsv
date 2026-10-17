@@ -1,0 +1,796 @@
+clave	texto
+JobsSection.Text	Kopiowania
+SettingsSection.Text	Ustawienia
+FinishButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Co zrobić, gdy wszystkie kopiowania się skończą
+FinishNothing.Text	Nic nie rób
+FinishSleep.Text	Uśpij komputer
+FinishShutdown.Text	Wyłącz komputer
+NewCopyText.Text	Nowe kopiowanie
+CopyFilesItem.Text	Kopiuj pliki…
+CopyFolderItem.Text	Kopiuj folder…
+EmptyTitle.Text	Brak kopiowań
+EmptyDescription.Text	Tu pojawią się uruchomione kopiowania. Jeśli zabraknie prądu, będzie można je wznowić dokładnie tam, gdzie się zatrzymały.
+PauseButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Wstrzymaj
+StopButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Zatrzymaj (można wznowić później)
+OpenFolderButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Otwórz folder docelowy
+ClearButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Usuń z listy
+DiscardButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Odrzuć i usuń częściową kopię
+ConflictDialog.Title	Plik już istnieje
+ConflictDialog.PrimaryButtonText	Zastąp
+ConflictDialog.SecondaryButtonText	Zachowaj oba
+ConflictDialog.CloseButtonText	Pomiń
+ConflictExistingTitle.Text	Istniejący
+ConflictApplyAll.Content	Postąp tak samo z pozostałymi konfliktami tego kopiowania
+RestartInfo.Title	Uruchom ponownie MegaCopier, aby zastosować zmianę
+RestartInfo.Message	Trwające kopiowania zatrzymają się i będzie można je potem wznowić.
+RestartButton.Content	Uruchom ponownie
+AppearanceHeader.Text	Wygląd
+ThemeTitle.Text	Motyw
+ThemeDescription.Text	Jasny, ciemny lub jak w Windows
+ThemeSystem.Content	Jak w Windows
+ThemeLight.Content	Jasny
+ThemeDark.Content	Ciemny
+AccentTitle.Text	Kolor akcentu
+AccentDescription.Text	Kolor przycisków, pasków postępu i wyróżnionych elementów
+BackdropTitle.Text	Tło okna
+BackdropDescription.Text	Materiały Windows 11 pozwalają prześwitywać pulpitowi
+BackdropMica.Content	Mica
+BackdropMicaAlt.Content	Mica Alt (mocniejszy odcień)
+BackdropAcrylic.Content	Akryl
+BackdropSolid.Content	Jednolite
+LanguageTitle.Text	Język
+LanguageDescription.Text	Język MegaCopier i jego opcji w Eksploratorze plików
+LanguageAuto.Content	Jak w Windows
+OnTopTitle.Text	Zawsze na wierzchu
+OnTopDescription.Text	Okno pozostaje nad innymi podczas kopiowania
+CopyHeader.Text	Kopiowanie
+VerifyTitle.Text	Weryfikuj po skopiowaniu
+VerifyDescription.Text	Ponownie odczytuje miejsce docelowe bez pamięci podręcznej i naprawia każdy blok niezgodny ze źródłem
+ConflictTitle.Text	Jeśli plik już istnieje
+ConflictDescription.Text	Identyczne pliki (ten sam rozmiar i data) są zawsze pomijane
+ConflictAsk.Content	Pytaj
+ConflictReplace.Content	Zastępuj
+ConflictSkip.Content	Pomijaj
+ConflictNewer.Content	Zastępuj, jeśli nowszy
+ConflictKeepBoth.Content	Zachowuj oba
+SpeedTitle.Text	Limit prędkości
+SpeedDescription.Text	Zostawia przepustowość dysku lub sieci dla innych zadań (dotyczy nowych kopiowań)
+SpeedUnlimited.Content	Bez limitu
+AutoResumeTitle.Text	Automatycznie wznawiaj przerwane kopiowania
+AutoResumeDescription.Text	Po awarii zasilania lub ponownym uruchomieniu kontynuuj bez pytania przy starcie MegaCopier
+ExplorerHeader.Text	Eksplorator plików
+PasteTitle.Text	Kopiuj i przenoś przez MegaCopier przy wklejaniu (Ctrl+V)
+PasteDescription.Text	Gdy wklejasz w Eksploratorze lub na pulpicie pliki skopiowane (Ctrl+C) lub wycięte (Ctrl+X), robi to MegaCopier. Wklejanie do tego samego folderu nadal wykonuje Eksplorator
+ShellMenuTitle.Text	Opcje w menu kontekstowym
+ShellMenuDescription.Text	„Wklej przez MegaCopier” (w Pokaż więcej opcji) i „Kopiuj / Przenieś tutaj przez MegaCopier” przy przeciąganiu prawym przyciskiem
+SystemHeader.Text	System
+StartupTitle.Text	Uruchamiaj z systemem Windows
+StartupDescription.Text	Pozostaje w obszarze powiadomień, aby kopiowanie zaczynało się natychmiast
+NotifyTitle.Text	Powiadamiaj po zakończeniu
+NotifyDescription.Text	Powiadomienie systemowe, gdy kopiowanie się kończy, a okno nie jest widoczne
+Accent_System	Jak w Windows
+Accent_Blue	Niebieski
+Accent_Violet	Fioletowy
+Accent_Teal	Turkusowy
+Accent_Green	Zielony
+Accent_Orange	Pomarańczowy
+Accent_Pink	Różowy
+Accent_Red	Czerwony
+About	MegaCopier {0} · kopiowanie, które przetrwa awarie prądu
+Picker_CopyHere	Kopiuj tutaj
+Finish_Label	Po zakończeniu
+Finish_LabelSleep	Po zakończeniu: uśpij
+Finish_LabelShutdown	Po zakończeniu: wyłącz
+Conflict_Message	W „{1}” istnieje już plik o nazwie „{0}”.
+Conflict_SourceCopy	Ten, który kopiujesz
+Conflict_SourceMove	Ten, który przenosisz
+Conflict_Newer	 · nowszy
+Job_OneItem	„{0}”
+Job_ManyItems	Elementy: {0}
+Job_TitleCopying	Kopiowanie {0}
+Job_TitleMoving	Przenoszenie {0}
+Job_TitleCopied	Skopiowano {0}
+Job_TitleMoved	Przeniesiono {0}
+Job_TitleQueued	Oczekuje: {0}
+Job_Destination	do {0}
+Job_StateQueued	W kolejce: dysk zajęty
+Job_StateVerifying	Weryfikowanie
+Job_StateValidating	Sprawdzanie tego, co już skopiowano
+Job_StateWaiting	Czeka na twoją decyzję: plik już istnieje
+Job_StateCopying	Kopiowanie
+Job_StateMoving	Przenoszenie
+Job_StatePaused	Wstrzymano
+Job_StateCompleted	Ukończono
+Job_StateCompletedErrors	Ukończono z błędami
+Job_StateFailed	Błąd
+Job_StateInterrupted	Przerwano · można wznowić od miejsca zatrzymania
+Job_ResumeHint	Kliknij Wznów, aby kontynuować
+Job_Preparing	Przygotowywanie…
+Job_Progress	{0} z {1}
+Job_Remaining	zostało {0}
+Job_Files	{0} z {1} plików
+Job_FilesCopiedOne	Skopiowane pliki: {0}
+Job_FilesCopiedMany	Skopiowane pliki: {0}
+Job_FilesMovedOne	Przeniesione pliki: {0}
+Job_FilesMovedMany	Przeniesione pliki: {0}
+Job_TransferredIn	{0} w {1}
+Job_Recovered	odzyskane: {0}
+Job_Skipped	pominięte: {0}
+Job_Verified	zweryfikowano
+Job_Repaired	(naprawione bloki: {0})
+Job_FailedFiles	Pliki z błędami: {0}
+Job_Resume	Wznów
+Job_Retry	Ponów
+Job_FailuresHeader	Pokaż pliki z problemami ({0})
+Job_FailuresMore	… i jeszcze {0}
+Tray_Open	Otwórz MegaCopier
+Tray_PauseAll	Wstrzymaj wszystko
+Tray_ResumeAll	Wznów wszystko
+Tray_Startup	Uruchamiaj z systemem Windows
+Tray_Exit	Zakończ
+Tray_OneJob	1 kopiowanie
+Tray_ManyJobs	Kopiowania: {0}
+Notify_InterruptedTitle	Są przerwane kopiowania
+Notify_InterruptedOne	Jedno kopiowanie nie zostało ukończone. Otwórz je, aby wznowić od miejsca zatrzymania.
+Notify_InterruptedMany	Nieukończone kopiowania: {0}. Otwórz je, aby wznowić.
+Notify_DoneTitle	Kopiowanie zakończone
+Notify_ProblemTitle	Podczas kopiowania wystąpiły problemy
+Notify_AllDoneTitle	Kopiowania zakończone
+Error_NeedsPaths	Żądanie kopiowania wymaga źródeł i miejsca docelowego.
+Tray_Disable	Wyłącz (używaj kopiowania Windows)
+Tray_Enable	Włącz MegaCopier
+Tray_TooltipDisabled	MegaCopier · wyłączony (kopiuje Windows)
+Notify_DisabledTitle	MegaCopier wyłączony
+Notify_DisabledBody	Kopiowaniem zajmie się Windows. Kliknij dwukrotnie ikonę, aby ponownie go włączyć.
+Notify_EnabledTitle	MegaCopier włączony
+Notify_EnabledBody	Kopiowaniem i przenoszeniem w Eksploratorze zajmie się MegaCopier.
+AboutDialog.Title	MegaCopier — informacje
+AboutDialog.CloseButtonText	Zamknij
+About_DataFolder.Content	Otwórz folder danych (ustawienia, motywy, historia, raporty)
+About_Description.Text	Program do kopiowania dla Windows 11, który wznawia nawet jeden ogromny plik po awarii prądu, weryfikując to, co już skopiowano.
+About_Features.Text	Asynchroniczne we/wy bez pamięci podręcznej · równoległe odczyty i zapisy · weryfikacja skrótem (CRC32, xxHash, MD5, SHA) · kolejka na dysk · wstrzymywanie i wznawianie · przenoszenie · konflikty · limit prędkości · listy kopiowania · raporty · motywy.
+CopyFiles.Text	Kopiuj pliki…
+CopyFolder.Text	Kopiuj folder…
+CopyFilesText.Text	Kopiuj pliki
+CopyFolderText.Text	Kopiuj folder
+Files_AddFiles.Text	Dodaj pliki…
+Files_AddFolder.Text	Dodaj folder…
+Files_AutoScroll.Content	Śledź bieżący
+Files_CopyHashes.Text	Kopiuj skróty
+Files_CopyPath.Text	Kopiuj ścieżkę
+Files_Empty.Text	Brak plików do wyświetlenia
+Files_ExportCsv.Text	Eksportuj do CSV…
+Files_ExportHtml.Text	Eksportuj raport HTML…
+Files_FilterAll.Content	Wszystkie
+Files_FilterDone.Content	Skopiowane
+Files_FilterErrors.Content	Z błędami
+Files_FilterPending.Content	Oczekujące
+Files_FilterSkipped.Content	Pominięte
+Files_HideFinished.Content	Ukryj zakończone
+Files_Menu.Text	Lista
+Files_MoveBottom.Text	Przenieś na koniec
+Files_MoveDown.Text	W dół
+Files_MoveTop.Text	Przenieś na początek
+Files_MoveUp.Text	W górę
+Files_OpenSource.Text	Pokaż źródło
+Files_OpenTarget.Text	Pokaż miejsce docelowe
+Files_Remove.Text	Usuń z kopiowania
+Files_Retry.Text	Ponów nieudane
+Files_SaveList.Text	Zapisz listę kopiowania…
+Files_Search.PlaceholderText	Szukaj plików
+Files_Size.Text	Rozmiar
+Files_SourceHash.Text	Skrót źródła
+Files_TargetHash.Text	Skrót celu
+History_Clear.Text	Wyczyść
+History_Empty.Text	Nie ma jeszcze zakończonych kopiowań
+History_Open.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Otwórz miejsce docelowe
+History_Repeat.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Powtórz (kopiuje tylko nowe lub zmienione)
+History_Title.Text	Historia
+Log_Export.Text	Eksportuj dziennik
+Options_Acl.Content	Uprawnienia (ACL)
+Options_Attributes.Content	Atrybuty
+Options_Audit.Content	Inspekcja (SACL)
+Options_BufferSize.Text	Rozmiar bufora
+Options_Data.Content	Dane
+Options_ExportReport.Content	Zapisz raport HTML
+Options_FilesFolders.Text	Pliki i foldery
+Options_OnFinish.Text	Po zakończeniu
+Options_Owner.Content	Właściciel
+Options_ResetDefault.Text	Przywróć
+Options_RunningInfo.Message	Kopiowanie trwa: te zmiany obowiązują po wznowieniu (Weryfikuj i Bez nadzoru — od razu).
+Options_SaveChecksum.Content	Zapisz plik sum kontrolnych
+Options_SaveDefault.Text	Zapisz jako domyślne
+Options_Scripts.Text	Polecenia po zakończeniu
+Options_ScriptsHelp.Text	Jedno w wierszu, wykonywane przez cmd.exe. Zacznij od „ok:”, aby wykonać tylko po sukcesie, lub od „error:” — tylko po błędzie. Zmienne: %MEGACOPIER_STATE%, %MEGACOPIER_DESTINATION%, %MEGACOPIER_SOURCES%, %MEGACOPIER_FILES%, %MEGACOPIER_BYTES%, %MEGACOPIER_FAILED%, %MEGACOPIER_CHECKSUM%.
+Options_Security.Text	Zabezpieczenia (NTFS)
+Options_Streams.Content	Alternatywne strumienie danych (ADS)
+Options_SystemCache.Content	Używaj systemowej pamięci podręcznej
+Options_Threads.Text	Równolegle
+Options_ThreadsShort.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Jednoczesne odczyty i zapisy
+Options_Timestamps.Content	Daty
+Options_Transfer.Text	Co jest kopiowane
+Options_TransferOptions.Text	Przesyłanie
+Options_Verify.Content	Weryfikuj po skopiowaniu
+Options_VerifySkipped.Content	Weryfikuj też pominięte
+Page_Back.Text	Wstecz
+Pager_Next.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Następne kopiowanie
+Pager_Previous.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Poprzednie kopiowanie
+Pager_Text	Kopiowanie {0} z {1}
+Panel_Discard.Text	Odrzuć
+Panel_File.Text	Plik
+Panel_OpenFolder.Text	Otwórz folder
+Panel_Pause.Text	Wstrzymaj
+Panel_Skip.Text	Pomiń
+Panel_Stop.Text	Zatrzymaj
+Panel_More	Więcej
+Panel_Less	Mniej
+Priority_Low.Content	Niski
+Priority_BelowNormal.Content	Poniżej normalnego
+Priority_Normal.Content	Normalny
+Priority_AboveNormal.Content	Powyżej normalnego
+Priority_High.Content	Wysoki
+Settings_Advanced.Text	Zaawansowane
+Settings_EnabledTitle.Text	Używaj MegaCopier zamiast kopiowania Windows
+Settings_EnabledDescription.Text	Także przez dwukrotne kliknięcie ikony w obszarze powiadomień. Po wyłączeniu ikona staje się szara z czerwonym X i kopiuje Eksplorator.
+Settings_FastTitle.Text	Szybkie urządzenia
+Settings_FastDescription.Text	Dyski lub ścieżki (SSD NVMe, RAID), które obsługują kilka kopiowań naraz; pozostałe idą po jednym na dysk.
+Settings_FinishTitle.Text	Gdy kopiowania się skończą
+Settings_FinishDescription.Text	Co robi okno, gdy nic już nie trwa
+Settings_FinishAuto.Content	Zamknij, jeśli wszystko poszło dobrze
+Settings_FinishClose.Content	Zawsze zamykaj
+Settings_FinishKeep.Content	Pozostaw otwarte
+Settings_FreeSpace.Content	Najpierw sprawdzaj wolne miejsce
+Settings_General.Text	Ogólne
+Settings_HashTitle.Text	Algorytm skrótu
+Settings_HashDescription.Text	Do weryfikacji i zapisanych sum. xxHash3 jest najszybszy; SHA-256 najbardziej zgodny.
+Settings_MaxJobsTitle.Text	Jednoczesne kopiowania
+Settings_MaxJobsDescription.Text	Maksymalna liczba kopiowań naraz (0 = bez limitu). Te na tym samym dysku zawsze czekają na swoją kolej.
+Settings_ModeAuto.Content	Automatyczne
+Settings_ModeCompact.Content	Kompaktowe
+Settings_ModeExpanded.Content	Pełne
+Settings_PerformanceTitle.Text	Wydajność
+Settings_PerformanceDescription.Text	Limit prędkości, rozmiar bufora i jednoczesne operacje
+Settings_PriorityTitle.Text	Priorytet procesu
+Settings_PriorityDescription.Text	Niski zachowuje sprawność komputera podczas kopiowania
+Settings_Queue.Text	Kolejka
+Settings_Themes.Text	Motywy
+Settings_WhatToCopy.Text	Co jest kopiowane i co dzieje się potem
+Settings_Window.Text	Okno
+Settings_WindowModeTitle.Text	Okno kopiowania
+Settings_WindowModeDescription.Text	Automatyczne: kompaktowe przy jednym kopiowaniu, pełne przy kilku. „Więcej” i „Mniej” przełączają je w każdej chwili.
+Status_Bytes.Text	Rozmiar
+Status_Category.Text	Stan
+Status_Copied.Text	Skopiowane
+Status_Failed.Text	Z błędami
+Status_Files.Text	Pliki
+Status_Pending.Text	Oczekujące
+Status_Skipped.Text	Pominięte
+Status_Total.Text	Razem
+Status_Verified.Text	Zweryfikowane
+Tab_Files.Text	Pliki
+Tab_Log.Text	Dziennik
+Tab_Options.Text	Opcje
+Tab_Status.Text	Stan
+Tab_Target.Text	Cel
+Target_Destination.Text	Miejsce docelowe
+Target_Source.Text	Źródło
+Target_Space	wolne {0} z {1}
+Theme_BarHeight.Header	Wysokość pasków
+Theme_Radius.Header	Zaokrąglenie
+Theme_Customize.Text	Dostosuj motyw (kolory, paski, tło)
+Theme_Delete.Text	Usuń
+Theme_Export.Text	Eksportuj…
+Theme_Import.Text	Importuj…
+Theme_Name.Header	Nazwa
+Theme_Save	Zapisz
+Theme_SaveAsNew	Zapisz jako nowy motyw
+Theme_Auto	Fluent (jak Windows)
+Theme_CopyOf	{0} (własny)
+Theme_Custom	Mój motyw
+Theme_FileType	Motyw MegaCopier
+Theme_ImportFailed	Nie udało się zaimportować motywu
+Theme_ColorBackground	Tło
+Theme_ColorSurface	Karty
+Theme_ColorSurfaceStrong	Wyróżnione karty
+Theme_ColorBorder	Obramowania
+Theme_ColorText	Tekst
+Theme_ColorTextSecondary	Tekst dodatkowy
+Theme_ColorAccent	Akcent
+Theme_ColorAccentText	Tekst na akcencie
+Theme_ColorTotalStart	Pasek całości: początek
+Theme_ColorTotalEnd	Pasek całości: koniec
+Theme_ColorFileStart	Pasek pliku: początek
+Theme_ColorFileEnd	Pasek pliku: koniec
+Theme_ColorTrack	Tło pasków
+Theme_ColorSuccess	Sukces
+Theme_ColorWarning	Ostrzeżenie
+Theme_ColorError	Błąd
+Theme_fluent-dark	Fluent ciemny
+Theme_fluent-light	Fluent jasny
+Theme_midnight	Północ
+Theme_graphite	Grafit
+Theme_ocean	Ocean
+Theme_forest	Las
+Theme_sunset	Zachód słońca
+Theme_supercopier	Klasyczny SuperCopier
+Theme_ultracopier	Klasyczny Ultracopier
+Theme_contrast	Duży kontrast
+Tool_About.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Informacje
+Tool_ClearDone.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Usuń zakończone kopiowania
+Tool_History.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Historia
+Tool_HistoryText.Text	Historia
+Tool_LoadList.Text	Wczytaj listę kopiowania…
+Tool_LoadListText.Text	Wczytaj listę
+Tool_MoveFiles.Text	Przenieś pliki…
+Tool_NewCopy.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Nowe kopiowanie
+Tool_NewCopyText.Text	Nowe
+Tool_PauseAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Wstrzymaj wszystkie
+Tool_ResumeAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Wznów wszystkie
+Tool_Settings.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Ustawienia
+Tool_Sidebar.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Pokaż lub ukryj listę kopiowań
+Drop_Caption	Kopiuj przez MegaCopier
+File_Pending	Oczekuje
+File_Copying	Kopiowanie
+File_Verifying	Weryfikowanie
+File_Copied	Skopiowano
+File_Verified	Zweryfikowano
+File_Skipped	Pominięto
+File_Failed	Błąd
+Files_AddFailed	Nie udało się dodać
+Files_Count	{0} z {1} plików
+Files_ListType	Lista kopiowania MegaCopier
+Files_LoadFailed	Nie udało się wczytać listy
+Hash_None	Skrót: brak
+Jobs_Header	KOPIOWANIA: {0} · AKTYWNE: {1}
+Language_Auto	Jak w Windows
+Log_FileType	Tekst
+Picker_MoveHere	Przenieś tutaj
+Settings_AutoResume.Content	Wznawiaj same przy uruchomieniu
+Panel_Options.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Opcje tego kopiowania
+Panel_UnattendedItem.Text	Bez nadzoru (bez pytań: pomija istniejące)
+Panel_VerifyItem.Text	Weryfikuj po zakończeniu
+Panel_OpenFolderItem.Text	Otwórz folder docelowy
+Status_ExactBytes	{0} B
+Notify_SettingsResetTitle	Ustawienia przywrócone
+Notify_SettingsResetBody	Nie udało się odczytać twoich ustawień, więc używane są domyślne. Oryginalny plik to settings.json.bad.
+Job_TitleCopy	Kopiuj {0}
+Job_TitleMove	Przenieś {0}
+Job_FailedOne	1 plik z błędami
+Error_InUse	Inny program ma otwarty ten plik. Zamknij go i kliknij „Ponów”.
+Error_AccessDenied	Odmowa dostępu: nie masz uprawnień do odczytu lub zapisu tego pliku.
+Error_DiskFull	Na dysku docelowym nie ma miejsca.
+Error_NotFound	Plik lub folder już nie istnieje (przeniesiony, usunięty lub dysk odłączony?).
+Error_PathTooLong	Ścieżka jest za długa dla miejsca docelowego.
+Error_NetworkLost	Utracono połączenie sieciowe. Gdy wróci, kliknij „Ponów”, aby kontynuować od miejsca zatrzymania.
+Error_HashMismatch	Kopia nie zgadza się z oryginałem (weryfikacja nie powiodła się).
+Error_DeleteFailed	Skopiowano poprawnie, ale nie udało się usunąć oryginału.
+Report_State	Stan
+Report_File	Plik
+Report_Source	Źródło
+Report_Destination	Miejsce docelowe
+Report_Size	Rozmiar
+Report_SourceHash	Skrót źródła
+Report_TargetHash	Skrót celu
+Report_Message	Komunikat
+Report_Copied	Skopiowane
+Report_Verified	Zweryfikowane
+Report_Skipped	Pominięte
+Report_Failed	Z błędami
+Job_SkippedOne	1 pominięty
+Rules_Filters.Text	Filtry
+Rules_Include.Header	Uwzględnij tylko (maski rozdzielone ;)
+Rules_Include.PlaceholderText	*.jpg; *.png; Zdjęcia\*
+Rules_Exclude.Header	Wyklucz
+Rules_Exclude.PlaceholderText	node_modules; *.tmp; Thumbs.db
+Rules_MinSize.Header	Minimalny rozmiar (MB)
+Rules_MaxSize.Header	Maksymalny rozmiar (MB)
+Rules_After.Header	Zmienione od
+Rules_Before.Header	Zmienione do
+Rules_SkipHidden.Content	Pomijaj ukryte
+Rules_SkipSystem.Content	Pomijaj systemowe
+Rules_Rules.Text	Reguły
+Rules_Links.Header	Dowiązania symboliczne i punkty połączenia
+Rules_LinksCopy.Content	Kopiuj jako dowiązania
+Rules_LinksFollow.Content	Kopiuj to, na co wskazują
+Rules_LinksSkip.Content	Pomijaj je
+Rules_Pattern.Header	Nazwa przy zachowaniu obu ({name}, {n}, {ext}, {date})
+Rules_PatternPreview	Przykład: {0}
+Rules_Retries.Header	Ponowienia
+Rules_Delay.Header	Przerwa między próbami (s)
+Rules_OnError.Header	Jeśli plik nadal się nie udaje
+Rules_OnErrorSkip.Content	Zanotuj i przejdź do następnego
+Rules_OnErrorStop.Content	Zatrzymaj kopiowanie (można wznowić)
+ConflictDifferentSize.Content	Zastępuj, gdy zmienił się rozmiar
+ConflictRenameExisting.Content	Zmieniaj nazwę istniejącego
+Conflict_RenameExisting.Text	Zmień nazwę istniejącego i skopiuj ten
+Schedule_Title.Text	Zaplanuj start
+Schedule_Set.Text	Zaplanuj
+Schedule_Now.Text	Zacznij teraz
+Schedule_InThePast	Wybierz godzinę w przyszłości.
+Job_StateScheduled	Zaplanowano na {0}
+Settings_Favorites.Text	Ulubione foldery
+Settings_FavoritesTitle.Text	Ulubione miejsca docelowe
+Settings_FavoritesDescription.Text	Pojawiają się w „Nowe > Kopiuj do” i w oknie miejsc docelowych, aby kopiować do kilku folderów naraz.
+Settings_FavoritesAdd.Text	Dodaj folder
+Settings_FavoritesRemove	Usuń {0}
+Settings_FavoritesEmpty	Nie ma jeszcze ulubionych.
+Tool_CopyTo.Text	Kopiuj do
+Tool_CopyToEmpty	Brak ulubionych i ostatnich
+Tool_CopyToManage	Zarządzaj ulubionymi…
+Tool_TestFiles.Text	Sprawdź pliki sum kontrolnych…
+Tool_TestFolder.Text	Sprawdź sumy kontrolne folderu…
+Tool_Delete.Text	Usuń…
+Tool_Wipe.Text	Usuń bezpiecznie…
+DestinationsDialog.Title	Dokąd?
+DestinationsDialog.PrimaryButtonText	Rozpocznij
+DestinationsDialog.CloseButtonText	Anuluj
+Destinations_SummaryOne	Wybierz jedno lub więcej miejsc docelowych dla „{0}”.
+Destinations_SummaryMany	Wybierz jedno lub więcej miejsc docelowych dla elementów ({0}).
+Destinations_Add.Text	Dodaj folder…
+Destinations_Move.Content	Przenieś zamiast kopiować
+Destinations_Schedule.Content	Zacznij później
+DeleteDialog.Title	Usuń
+DeleteDialog.PrimaryButtonText	Usuń
+DeleteDialog.CloseButtonText	Anuluj
+Delete_ConfirmOne	Usunąć „{0}”? Nie trafi do Kosza.
+Delete_ConfirmMany	Usunąć elementy ({0})? Nie trafią do Kosza.
+Delete_ConfirmSecureOne	Bezpiecznie usunąć „{0}”?
+Delete_ConfirmSecureMany	Bezpiecznie usunąć elementy ({0})?
+Delete_SecureWarning.Title	Nie będzie można odzyskać
+Delete_SecureWarning.Message	Zawartość jest nadpisywana przed usunięciem. Na dyskach SSD sam dysk może przechowywać resztki; dla maksymalnego bezpieczeństwa użyj szyfrowania BitLocker.
+FinishHibernate.Text	Hibernuj
+FinishSignOut.Text	Wyloguj
+FinishExit.Text	Zamknij MegaCopier
+Finish_LabelHibernate	Po zakończeniu: hibernacja
+Finish_LabelSignOut	Po zakończeniu: wyloguj
+Finish_LabelExit	Po zakończeniu: zamknij MegaCopier
+Notify_FinishSleep	Usypianie komputera…
+Notify_FinishHibernate	Hibernowanie komputera…
+Notify_FinishShutdown	Komputer wyłączy się za 1 minutę (anuluj: shutdown /a).
+Notify_FinishSignOut	Wylogowywanie…
+Notify_FinishExitApp	MegaCopier się zamyka.
+Files_SelectAll.Text	Zaznacz wszystko
+Files_SelectSameExtension.Text	Zaznacz z tym samym rozszerzeniem
+Files_SelectSameFolder.Text	Zaznacz z tego samego folderu
+Files_InvertSelection.Text	Odwróć zaznaczenie
+Job_TitleTest	Sprawdź {0}
+Job_TitleTesting	Sprawdzanie {0}
+Job_TitleTested	Sprawdzono {0}
+Job_TitleDelete	Usuń {0}
+Job_TitleDeleting	Usuwanie {0}
+Job_TitleDeleted	Usunięto {0}
+Job_StateTesting	Sprawdzanie
+Job_StateDeleting	Usuwanie
+Job_FilesTestedOne	Poprawne pliki: {0}
+Job_FilesTestedMany	Poprawne pliki: {0}
+Job_FilesDeletedOne	Usunięte pliki: {0}
+Job_FilesDeletedMany	Usunięte pliki: {0}
+Job_TitleScheduled	Zaplanowano: {0}
+Error_ChecksumMismatch	Zawartość nie zgadza się z zapisaną sumą: plik się zmienił lub jest uszkodzony.
+Job_FilteredOut	Żaden plik nie przechodzi przez filtry tego kopiowania
+Rules_After.PlaceholderText	Dowolna data
+Rules_Before.PlaceholderText	Dowolna data
+Drop_MoveTo	Przenieś na pozycję {0}
+Drop_InsertAt	Dodaj na pozycji {0}
+Drop_AddToJob	Dodaj do tego kopiowania
+Drop_AddToNamedJob	Dodaj do {0}
+Drop_JobOrder	Umieść na miejscu {0} w kolejce
+Settings_Sounds.Text	Dźwięki
+Settings_SoundsTitle.Text	Powiadomienia dźwiękowe
+Settings_SoundsDescription.Text	Wybierz dźwięk dla każdej chwili: dźwięk Windows, dowolny plik z komputera lub brak.
+Settings_Volume.Header	Głośność
+Settings_SoundsQuiet.Content	Nie odtwarzaj podczas gier lub prezentacji na pełnym ekranie ani w trybie Nie przeszkadzać
+Sound_Done	Kopiowanie zakończyło się dobrze
+Sound_Errors	Kopiowanie zakończyło się z błędami
+Sound_AllDone	Wszystkie kopiowania zakończone
+Sound_Attention	Potrzebna twoja decyzja (plik już istnieje)
+Sound_Test	Odtwórz dźwięk
+Sound_None	Bez dźwięku
+Sound_Default	Dźwięk Windows
+Sound_Choose	Wybierz plik…
+File_Planned	Symulowany
+File_Deleted	Usunięty
+File_RemovedExtra	Usunięty z miejsca docelowego: nie było go już w źródle
+Plan_Copy	Zostałby skopiowany
+Plan_Replace	Zastąpiłby plik w miejscu docelowym
+Plan_ReplaceNewer	Zastąpiłby plik w miejscu docelowym: oryginał jest nowszy
+Plan_ReplaceSize	Zastąpiłby plik w miejscu docelowym: inny rozmiar
+Plan_KeepBoth	Już istnieje: zostałby skopiowany pod inną nazwą
+Plan_RenameExisting	Już istnieje: zmieniłby nazwę pliku w celu i skopiował ten
+Plan_Ask	Już istnieje: zostałbyś zapytany
+Plan_SkipIdentical	Zostałby pominięty: w celu jest już taki sam
+Plan_SkipExists	Zostałby pominięty: już istnieje
+Plan_SkipOlder	Zostałby pominięty: plik w celu jest taki sam lub nowszy
+Plan_SkipSameSize	Zostałby pominięty: ten sam rozmiar
+Plan_SkipNotInDestination	Zostałby pominięty: brak w celu (tylko aktualizacja)
+Plan_SkipSamePath	Zostałby pominięty: źródło i cel są tym samym
+Plan_Delete	Zostałby usunięty z celu: nie ma go już w źródle
+Plan_Fail	Nie powiódłby się: cel już istnieje
+Plan_None	Symulowany
+Skip_SkipIdentical	W celu był już taki sam
+Skip_SkipExists	Już istniał: pominięto
+Skip_SkipOlder	Plik w celu jest taki sam lub nowszy
+Skip_SkipSameSize	Ten sam rozmiar co w celu
+Skip_SkipNotInDestination	Brak w celu (aktualizowane są tylko istniejące)
+Skip_SkipSamePath	Źródło i cel to ten sam plik
+Skip_SkipByUser	Pominięty przez ciebie
+Job_TitleSync	Synchronizuj {0}
+Job_TitleSyncing	Synchronizowanie {0}
+Job_TitleSynced	Zsynchronizowano {0}
+Job_StateSyncing	Synchronizowanie
+Job_FilesSyncedOne	Zaktualizowane pliki: {0}
+Job_FilesSyncedMany	Zaktualizowane pliki: {0}
+Job_TitleSimulate	Symuluj {0}
+Job_TitleSimulating	Symulowanie {0}
+Job_TitleSimulated	Symulacja: {0}
+Job_StateSimulating	Symulowanie
+Job_FilesSimulatedOne	Zostałyby skopiowane pliki: {0}
+Job_FilesSimulatedMany	Zostałyby skopiowane pliki: {0}
+Job_WouldTransfer	łącznie {0}
+Job_TitleHash	Utwórz sumy dla {0}
+Job_TitleHashing	Obliczanie sum dla {0}
+Job_TitleHashed	Sumy dla {0}
+Job_StateHashing	Obliczanie sum
+Job_FilesHashedOne	Pliki na liście sum: {0}
+Job_FilesHashedMany	Pliki na liście sum: {0}
+Job_StateWaitingDevice	Czekanie na powrót dysku lub sieci…
+Job_StateWaitingSpace	Czekanie na wolne miejsce w celu…
+Job_RemovedOne	1 usunięty z celu
+Job_Removed	usunięte z celu: {0}
+Job_WouldRemove	zostałyby usunięte z celu: {0}
+Panel_RunForReal.Text	Wykonaj naprawdę
+Options_Mode.Header	Tryb
+Mode_Copy.Content	Kopiuj
+Mode_Mirror.Content	Synchronizuj (lustro)
+Mode_Update.Content	Tylko aktualizuj istniejące
+Mode_Folders.Content	Tylko struktura folderów
+Options_MirrorInfo.Title	Synchronizacja usuwa z celu to, czego nie ma już w źródle
+Options_MirrorInfo.Message	To, co wykluczają filtry, pozostaje nietknięte. Wskaż folder wersji, aby zachować usunięte lub zastąpione pliki.
+Options_DryRun.Content	Symuluj: pokaż, co by się stało, nic nie zmieniając
+Destinations_DryRun.Content	Najpierw symuluj (nic nie zmienia)
+Tool_HashFolder.Text	Utwórz plik sum dla folderu…
+Tool_HashFiles.Text	Utwórz plik sum dla plików…
+Rules_SkipJunk.Content	Pomijaj zbędne pliki (Thumbs.db, desktop.ini, .DS_Store, ~$…)
+Rules_OnErrorEnd.Content	Ponów na końcu kolejki
+Rules_Safety.Text	Synchronizacja i bezpieczeństwo
+Rules_FolderConflict.Header	Jeśli folder już istnieje w celu
+Rules_FolderMerge.Content	Scal zawartość
+Rules_FolderSkip.Content	Pomiń w całości
+Rules_Versions.Header	Zachowuj zastąpione lub usunięte w folderze
+Rules_Versions.PlaceholderText	Puste: nie zachowuj (np. .wersje)
+Rules_Tolerance.Header	Margines daty dla „identycznych” (sekundy)
+Rules_VerifySource.Content	Odczytaj ponownie oryginał na końcu
+Rules_HashStream.Content	Zapisuj skrót wewnątrz każdego pliku
+Rules_HardLinks.Content	Zachowuj twarde dowiązania
+Rules_Wipe.Content	Przy przenoszeniu bezpiecznie usuwaj oryginały
+Rules_WaitDevice.Content	Czekaj, gdy dysk lub sieć się rozłączy
+Rules_WaitSpace.Content	Czekaj, gdy brakuje miejsca
+Rules_VerifySource.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Ponownie oblicza skrót oryginału: wykrywa, czy zmienił się podczas kopiowania lub czy dysk źródłowy źle czyta.
+Rules_HashStream.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Zapisywany w ukrytym strumieniu samego pliku (NTFS). „Sprawdź sumy kontrolne folderu” wykryje potem każde uszkodzenie, nawet bez pliku sum.
+Rules_HardLinks.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Jeśli kilka nazw to ten sam plik, w celu też tak będzie (bez podwójnego miejsca).
+Rules_Tolerance.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	FAT32 i exFAT zapisują czas z dokładnością do 2 sekund: z tym marginesem identyczne pliki nie są kopiowane ponownie.
+Rules_Versions.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Przed zastąpieniem lub usunięciem plik jest przenoszony do tego folderu w celu z datą w nazwie.
+Settings_UnitsTitle.Text	Jednostki rozmiaru
+Settings_UnitsDescription.Text	Jak wyświetlane są rozmiary i prędkości.
+Units_Classic.Content	KB, MB, GB (jak Eksplorator)
+Units_Iec.Content	KiB, MiB, GiB (binarne)
+Units_Decimal.Content	kB, MB, GB po 1000 (jak producent)
+Settings_SlowTitle.Text	Zwalniaj, gdy używasz komputera
+Settings_SlowDescription.Text	Gdy używasz klawiatury lub myszy, kopiowanie nie przekracza tej prędkości; gdy odchodzisz od komputera, znów przyspiesza.
+Slow_Off.Content	Nie
+Settings_LogsTitle.Text	Zapisuj dziennik każdego kopiowania
+Settings_LogsDescription.Text	Jeden plik na kopiowanie w folderze dzienników; są usuwane po 30 dniach.
+Settings_LogsOpen.Text	Otwórz folder
+Settings_WebhookTitle.Text	Powiadom adres internetowy po zakończeniu
+Settings_WebhookDescription.Text	Aby dostać powiadomienie na telefon lub czat: Discord, Slack, Teams, ntfy.sh, Home Assistant… Wysyłane jest żądanie POST z JSON.
+Settings_WebhookBox.PlaceholderText	https://ntfy.sh/moj-tajny-temat
+Settings_WebhookTest.Text	Testuj
+Settings_WebhookSending	Wysyłanie…
+Settings_WebhookOk	Powiadomienie wysłane.
+Settings_WebhookFailed	Nie udało się wysłać: sprawdź adres i połączenie.
+Settings_WebhookTestMessage	✔ MegaCopier: powiadomienie testowe
+FinishDialog.Title	Wszystkie kopiowania zakończone
+FinishDialog.PrimaryButtonText	Zrób to teraz
+FinishDialog.CloseButtonText	Anuluj
+Finish_CountdownSleep	Komputer zostanie uśpiony za {0} s.
+Finish_CountdownHibernate	Komputer przejdzie w hibernację za {0} s.
+Finish_CountdownShutdown	Komputer wyłączy się za {0} s.
+Finish_CountdownSignOut	Nastąpi wylogowanie za {0} s.
+Finish_CountdownExitApp	MegaCopier zamknie się za {0} s.
+Job_SlowedDown	Wolniej, gdy używasz komputera
+History_Undone	cofnięto
+History_Undo.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Cofnij: przywróć przeniesione lub wyślij skopiowane do Kosza
+History_CopyBack.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Skopiuj z powrotem do folderu źródłowego (przywróć)
+History_UndoDialog.Title	Cofnąć to kopiowanie?
+History_UndoDialog.PrimaryButtonText	Cofnij
+History_UndoDialog.CloseButtonText	Anuluj
+History_UndoMoveConfirm	Wszystko, co przeniesiono, wróci z „{0}” do swojego pierwotnego folderu.
+History_UndoCopyConfirm	Skopiowane pliki ({0}) trafią do Kosza (można je odzyskać). Pliki zmienione później lub takie, które zastąpiły inny plik, pozostaną nietknięte.
+History_UndoDone	Wysłano do Kosza plików: {0}.
+History_UndoKept	Pozostawiono: zmienione później — {0}, zastępujące inne — {1}.
+History_UndoTitleBar.Title	Kopiowanie cofnięte
+History_Undo.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Cofnij: przywróć przeniesione lub wyślij skopiowane do Kosza
+History_CopyBack.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Skopiuj z powrotem do folderu źródłowego (przywróć)
+History_Open.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Otwórz miejsce docelowe
+History_Repeat.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Powtórz (kopiuje tylko nowe lub zmienione)
+Task_Header.Text	Lub zapisz je jako zadanie, aby Windows sam je powtarzał o godzinie wybranej powyżej:
+Task_Name.PlaceholderText	Nazwa zadania
+Task_Once.Content	Raz
+Task_Daily.Content	Codziennie
+Task_Weekly.Content	Co tydzień
+Task_Save.Text	Zapisz jako zadanie
+Task_SavedOnce	Zadanie „{0}” zapisane: zostanie wykonane {2} o {1}.
+Task_SavedDaily	Zadanie „{0}” zapisane: będzie wykonywane codziennie o {1}.
+Task_SavedWeekly	Zadanie „{0}” zapisane: będzie wykonywane co tydzień, w ten sam dzień tygodnia co {2}, o {1}.
+Task_Failed	Nie udało się zaplanować: {0}
+Settings_Tasks.Text	Zaplanowane zadania
+Settings_TasksTitle.Text	Kopiowania powtarzane automatycznie
+Settings_TasksDescription.Text	Tworzy się je na karcie Opcje kopiowania („Zapisz jako zadanie”); uruchamia je Harmonogram zadań Windows, nawet gdy MegaCopier jest zamknięty.
+Settings_TasksEmpty	Nie ma jeszcze zadań.
+Settings_TaskRun	Uruchom „{0}” teraz
+Settings_TaskDelete	Usuń zadanie „{0}”
+About_Portable	przenośna (dane w {0})
+Job_Estimate	{0}, około {1}
+Job_EstimateSize	łącznie {0}
+Settings_SmbCompression.Content	Kompresuj w sieci (SMB)
+Settings_SmbCompression.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Prosi serwer o kompresowanie danych w drodze (Windows 11 i Windows Server 2022 lub nowszy). Jeśli źródło i cel są na tym samym serwerze, kopię zawsze wykonuje sam serwer, bez udziału tego komputera.
+Error_TooLargeForFileSystem	Nie mieści się na tym dysku: FAT32 nie obsługuje plików 4 GB i większych. Sformatuj go jako exFAT lub NTFS.
+Rules_AllOrNothing.Content	Foldery „wszystko albo nic”
+Rules_AllOrNothing.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Każdy nowy folder jest kopiowany jako ukryty i pojawia się pod swoją nazwą dopiero, gdy wszystko się udało: nigdy nie zostaje w połowie skopiowany folder, który wygląda na kompletny.
+Rules_Rescue.Content	Tryb ratunkowy dla uszkodzonych dysków
+Rules_Rescue.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Jeśli źródło ma uszkodzone sektory, jest czytane sektor po sektorze i ratowane jest wszystko, co da się odczytać; nieczytelne staje się zerami i jest zapisywane w dzienniku. Przy przenoszeniu oryginał nie jest usuwany.
+Error_PartlyUnreadable	Uratowano częściowo: niektóre sektory źródła były uszkodzone i zostały zastąpione zerami (szczegóły w Dzienniku).
+Settings_Guard.Text	Strażnik integralności
+Settings_GuardTitle.Text	Pilnuj, aby pliki nie psuły się z czasem
+Settings_GuardDescription.Text	Każdy plik przechowuje swój skrót w sobie. Gdy komputer jest bezczynny, MegaCopier je sprawdza: jeśli któryś zmienił się bez edycji (uszkodził go dysk), zostaniesz ostrzeżony. To, co edytujesz, odnawia się samo. Wymaga NTFS.
+Guard_Daily.Content	Codziennie
+Guard_Weekly.Content	Co tydzień
+Guard_Monthly.Content	Co miesiąc
+Settings_GuardAdd.Text	Pilnuj folderu…
+Settings_GuardEmpty	Nie pilnujesz jeszcze żadnego folderu.
+Settings_GuardCheck	Sprawdź „{0}” teraz
+Settings_GuardRemove	Przestań pilnować „{0}”
+Guard_NotYet	Czeka na pierwsze sprawdzenie
+Guard_LastOk	Sprawdzono {0}: wszystko w porządku
+Guard_LastDamaged	Sprawdzono {0}: uszkodzone pliki — {1} (zobacz Historię)
+Guard_DamagedTitle	Strażnik integralności
+Guard_DamagedOne	Plik w „{0}” uległ uszkodzeniu na dysku.
+Guard_DamagedMany	Pliki w „{1}” uszkodzone na dysku: {0}.
+Guard_LastDamagedOne	Sprawdzono {0}: jeden uszkodzony plik (zobacz Historię)
+Settings_ScheduleLimitTitle.Text	Limit prędkości wg godzin
+Settings_ScheduleLimitDescription.Text	Na przykład w godzinach pracy: kopiowanie nie przekracza tej prędkości między wybranymi godzinami.
+Settings_ScheduleFrom.Text	Od
+Settings_ScheduleTo.Text	do
+Settings_PauseBatteryTitle.Text	Wstrzymuj na baterii
+Settings_PauseBatteryDescription.Text	Na laptopie bez zasilacza kopiowanie czeka i wznawia się samo po podłączeniu.
+Settings_PauseFullTitle.Text	Wstrzymuj podczas gier i prezentacji
+Settings_PauseFullDescription.Text	Podczas gry lub prezentacji na pełnym ekranie kopiowanie czeka, żeby jej nie spowalniać.
+Comfort_PausedTitle	Kopiowanie wstrzymane
+Comfort_PausedBattery	Komputer działa na baterii: kopiowanie wznowi się po podłączeniu zasilania.
+Comfort_PausedFullScreen	Trwa gra lub prezentacja na pełnym ekranie: kopiowanie wznowi się po jej opuszczeniu.
+Job_StatePausedBattery	Wstrzymano: na baterii
+Job_StatePausedFullScreen	Wstrzymano: pełny ekran
+Job_SlowedSchedule	Wolniej z powodu wybranego harmonogramu
+Rules_Delta.Content	Przy zastępowaniu dużych plików zapisuj tylko zmiany
+Rules_Delta.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Kopia różnicowa dla plików od 16 MB (dyski wirtualne, poczta, projekty): zapisywane są tylko różniące się bloki. Po anulowaniu lub awarii zasilania plik wraca do poprzedniej wersji.
+Panel_CopyLocked.Text	Kopiuj używane pliki
+Locked_Title	Używane pliki
+Locked_Cancelled	Nie udzielono uprawnień administratora: używane pliki nie zostały skopiowane.
+Locked_Done	Skopiowano używane pliki z migawki dysku: {0}.
+Locked_Partial	Skopiowano z migawki: {0}; pozostałych nie udało się skopiować: {1}
+Settings_Peer.Text	Odbieranie z innych komputerów
+Settings_PeerTitle.Text	Odbieraj pliki z innych komputerów z MegaCopier
+Settings_PeerDescription.Text	Przez sieć domową lub biurową, bez folderów udostępnionych. Nadawca potrzebuje poniższego kodu; połączenie jest szyfrowane, a każdy plik sprawdzany po dotarciu. Za pierwszym razem Windows może poprosić o zgodę zapory.
+Settings_PeerCode.Text	Kod do wysyłania ci plików:
+Settings_PeerNewCode.Text	Nowy kod
+Settings_PeerFolder.Text	Zmień folder…
+Settings_PeerFolderIs	Zapisywane w {0}
+Settings_PeerListening	Czekanie na przesyłki na „{0}” (port {1}).
+Settings_PeerError	Nie udało się rozpocząć odbierania: {0}
+Peer_ReceivingTitle	Odbieranie plików
+Peer_Receiving	{0} wysyła ci pliki: {1} ({2}).
+Peer_ReceivedTitle	Pliki odebrane
+Peer_Received	Pliki od {1}: {0}, w {2}.
+Peer_RejectedTitle	Przesyłka odrzucona
+Peer_Rejected	{0} próbował wysłać ci pliki z błędnym kodem.
+Tool_SendFiles.Text	Wyślij pliki na inny komputer…
+Tool_SendFolder.Text	Wyślij folder na inny komputer…
+SendDialog.Title	Wyślij na inny komputer
+SendDialog.PrimaryButtonText	Wyślij
+SendDialog.CloseButtonText	Anuluj
+Send_SummaryOne	Wyślij „{0}” na inny komputer z MegaCopier w trybie odbierania.
+Send_SummaryMany	Wyślij elementy ({0}) na inny komputer z MegaCopier w trybie odbierania.
+Send_Found.Text	Komputery znalezione w sieci:
+Send_Searching	Wyszukiwanie…
+Send_NoneFound	Nic nie znaleziono: wpisz nazwę lub IP.
+Send_Host.Header	Komputer (nazwa lub IP)
+Send_Host.PlaceholderText	PC-SALON lub 192.168.1.20
+Send_Code.Header	Kod pokazywany przez ten komputer w Ustawieniach
+Send_Code.PlaceholderText	XXXX-XXXX-XXXX
+Job_TitleSend	Wyślij {0}
+Job_TitleSending	Wysyłanie {0}
+Job_TitleSent	Wysłano {0}
+Job_StateSending	Wysyłanie
+Job_FilesSentOne	Wysłane pliki: {0}
+Job_FilesSentMany	Wysłane pliki: {0}
+Rules_Describe.Header	Powiedz własnymi słowami (po angielsku lub hiszpańsku)
+Rules_Describe.PlaceholderText	photos larger than 2 MB from last month except .tmp
+Rules_DescribeApply.Text	Zastosuj
+Rules_DescribeUnderstood	Zrozumiano: {0}.
+Rules_DescribeNothing	Nie zrozumiano nic do filtrowania.
+Rules_DescribeUnknown	Nie zrozumiano: {0}.
+Mode_Organize.Content	Porządkuj zdjęcia według daty
+Rules_Duplicates.Content	Nie kopiuj tego, co już jest w celu (duplikaty)
+Rules_Duplicates.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Porównuje zawartość, nie nazwę: zdjęcie, które już jest w dowolnym folderze celu, nawet pod inną nazwą, nie jest kopiowane ponownie.
+Skip_SkipDuplicate	Już jest w celu pod inną nazwą lub w innym folderze
+Plan_SkipDuplicate	Zostałby pominięty: już jest w celu (duplikat)
+Destinations_Encrypt.Content	Szyfruj hasłem (dla pendrive'a lub dysku, który możesz zgubić)
+Destinations_Password.Header	Hasło
+Destinations_Password2.Header	Powtórz hasło
+Destinations_PasswordHint	Szyfrowane AES-256. Jeśli zapomnisz hasła, nie da się odzyskać plików. Aby je odczytać: menu Nowe > Odszyfruj.
+Destinations_PasswordShort	Hasło musi mieć co najmniej 8 znaków.
+Destinations_PasswordMismatch	Hasła nie są zgodne.
+PasswordDialog.Title	Hasło
+PasswordDialog.PrimaryButtonText	OK
+PasswordDialog.CloseButtonText	Anuluj
+Tool_Decrypt.Text	Odszyfruj zaszyfrowane pliki…
+Picker_DecryptHere	Odszyfruj tutaj
+Decrypt_Ask	Hasło zaszyfrowanych plików w „{0}”:
+Resume_PasswordAsk	To kopiowanie jest zaszyfrowane, a hasło nie jest zapisywane: wpisz je, aby kontynuować.
+Job_TitleEncrypt	Zaszyfruj {0}
+Job_TitleEncrypting	Szyfrowanie {0}
+Job_TitleEncrypted	Zaszyfrowano {0}
+Job_StateEncrypting	Szyfrowanie
+Job_FilesEncryptedOne	Zaszyfrowane pliki: {0}
+Job_FilesEncryptedMany	Zaszyfrowane pliki: {0}
+Job_TitleDecrypt	Odszyfruj {0}
+Job_TitleDecrypting	Odszyfrowywanie {0}
+Job_TitleDecrypted	Odszyfrowano {0}
+Job_StateDecrypting	Odszyfrowywanie
+Job_FilesDecryptedOne	Odszyfrowane pliki: {0}
+Job_FilesDecryptedMany	Odszyfrowane pliki: {0}
+Settings_DisksTitle.Text	Stan dysków
+Settings_DisksDescription.Text	Co Windows zgłasza o każdym dysku (SMART). Jeśli któryś ostrzega o awarii, MegaCopier powie ci o tym przy kopiowaniu z niego lub na niego.
+Settings_DisksCheck.Text	Sprawdź teraz
+Disk_Row	Dysk {0} · {1}: {2}
+Disk_Healthy	sprawny
+Disk_Unknown	stan nieznany
+Disk_HealthWarning	zgłasza problem
+Disk_Checking	Sprawdzanie dysków…
+Disk_WarningTitle	Dysk zgłasza awarię
+Disk_Warning	„{0}” (dysk {1}): {2}. Jak najszybciej skopiuj ważne dane na inny dysk.
+Settings_TuneTitle.Text	Automatyczne dostrajanie dla każdego dysku
+Settings_TuneDescription.Text	Mierzy każdy dysk przy różnych rozmiarach bloku i liczbie operacji i używa najszybszego wariantu przy kopiowaniu na niego (jeśli nie zmieniłeś wydajności ręcznie).
+Settings_TuneMeasure.Text	Zmierz dyski
+Settings_TuneNone	Żaden dysk nie został jeszcze zmierzony.
+Settings_TuneDisk	Dysk
+Settings_TuneProfile	{0}: bloki po {1} MB, {2} naraz ({3:N0} MB/s)
+Settings_TuneMeasuring	Mierzenie {0} ({1} z {2})…
+Tool_Timeline.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Oś czasu kolejki
+Timeline_Title.Text	Oś czasu
+Timeline_Info.Text	Prognoza według prędkości każdego dysku. Kopiowania na tym samym dysku idą po kolei.
+Timeline_Empty.Text	Brak trwających i oczekujących kopiowań.
+Timeline_Summary	Wszystko powinno się skończyć około {0} (za {1}).
+Timeline_Now	Teraz
+Timeline_Tomorrow	jutro {0}
+Timeline_Running	Trwa · przewidywany koniec: {0} (zostało {1})
+Timeline_Paused	Wstrzymano · przy wznowieniu teraz koniec: {0}
+Timeline_Queued	W kolejce · start: {0} · koniec: {1} (potrwa {2})
+Timeline_Scheduled	Zaplanowano · start: {0} · koniec: {1} (potrwa {2})
+Timeline_Measuring	rozmiar jest jeszcze mierzony
+Tool_Shelf.Text	Półka do upuszczania
+Tray_Shelf	Półka do upuszczania
+Shelf_WindowTitle	Półka do upuszczania MegaCopier
+Shelf_Title.Text	Półka do upuszczania
+Shelf_Empty.Text	Upuść tutaj pliki i foldery z dowolnego miejsca. Potem skopiuj je lub przenieś razem albo przeciągnij je dalej.
+Shelf_DropCaption	Dodaj na półkę
+Shelf_CopyTo.Text	Kopiuj do…
+Shelf_MoveTo.Text	Przenieś do…
+Shelf_Clear.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Opróżnij półkę
+Shelf_Remove.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Usuń z półki
+Shelf_One	1 element
+Shelf_Many	Elementy: {0}
+Shelf_RemoveNamed	Usuń „{0}” z półki
+Destinations_NoneChosen.Text	Zaznacz co najmniej jedno miejsce docelowe (lub dodaj folder).
+Finish_ShutdownMessage	MegaCopier zakończył kopiowanie. Komputer wyłączy się za 1 minutę.
+Hash_Name	Skrót: {0}

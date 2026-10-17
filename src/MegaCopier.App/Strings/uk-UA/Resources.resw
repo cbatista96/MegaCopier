@@ -1,0 +1,803 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generado por tools/Strings/gen.cs: no editar a mano. -->
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="JobsSection.Text" xml:space="preserve"><value>Копіювання</value></data>
+  <data name="SettingsSection.Text" xml:space="preserve"><value>Налаштування</value></data>
+  <data name="FinishButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Що зробити, коли всі копіювання завершаться</value></data>
+  <data name="FinishNothing.Text" xml:space="preserve"><value>Нічого не робити</value></data>
+  <data name="FinishSleep.Text" xml:space="preserve"><value>Режим сну</value></data>
+  <data name="FinishShutdown.Text" xml:space="preserve"><value>Вимкнути комп&apos;ютер</value></data>
+  <data name="NewCopyText.Text" xml:space="preserve"><value>Нове копіювання</value></data>
+  <data name="CopyFilesItem.Text" xml:space="preserve"><value>Копіювати файли…</value></data>
+  <data name="CopyFolderItem.Text" xml:space="preserve"><value>Копіювати папку…</value></data>
+  <data name="EmptyTitle.Text" xml:space="preserve"><value>Немає копіювань</value></data>
+  <data name="EmptyDescription.Text" xml:space="preserve"><value>Тут з&apos;являться копіювання, які ви запустите. Якщо зникне світло, їх можна буде продовжити з того місця, де вони зупинилися.</value></data>
+  <data name="PauseButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Пауза</value></data>
+  <data name="StopButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Зупинити (можна буде продовжити пізніше)</value></data>
+  <data name="OpenFolderButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Відкрити папку призначення</value></data>
+  <data name="ClearButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Прибрати зі списку</value></data>
+  <data name="DiscardButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Скасувати й видалити часткову копію</value></data>
+  <data name="ConflictDialog.Title" xml:space="preserve"><value>Файл уже існує</value></data>
+  <data name="ConflictDialog.PrimaryButtonText" xml:space="preserve"><value>Замінити</value></data>
+  <data name="ConflictDialog.SecondaryButtonText" xml:space="preserve"><value>Залишити обидва</value></data>
+  <data name="ConflictDialog.CloseButtonText" xml:space="preserve"><value>Пропустити</value></data>
+  <data name="ConflictExistingTitle.Text" xml:space="preserve"><value>Наявний</value></data>
+  <data name="ConflictApplyAll.Content" xml:space="preserve"><value>Так само вчинити з іншими конфліктами цього копіювання</value></data>
+  <data name="RestartInfo.Title" xml:space="preserve"><value>Перезапустіть MegaCopier, щоб застосувати зміну</value></data>
+  <data name="RestartInfo.Message" xml:space="preserve"><value>Поточні копіювання зупиняться, і їх можна буде продовжити після перезапуску.</value></data>
+  <data name="RestartButton.Content" xml:space="preserve"><value>Перезапустити</value></data>
+  <data name="AppearanceHeader.Text" xml:space="preserve"><value>Вигляд</value></data>
+  <data name="ThemeTitle.Text" xml:space="preserve"><value>Тема</value></data>
+  <data name="ThemeDescription.Text" xml:space="preserve"><value>Світла, темна або як у Windows</value></data>
+  <data name="ThemeSystem.Content" xml:space="preserve"><value>Як у Windows</value></data>
+  <data name="ThemeLight.Content" xml:space="preserve"><value>Світла</value></data>
+  <data name="ThemeDark.Content" xml:space="preserve"><value>Темна</value></data>
+  <data name="AccentTitle.Text" xml:space="preserve"><value>Колір акценту</value></data>
+  <data name="AccentDescription.Text" xml:space="preserve"><value>Колір кнопок, індикаторів виконання та виділених елементів</value></data>
+  <data name="BackdropTitle.Text" xml:space="preserve"><value>Фон вікна</value></data>
+  <data name="BackdropDescription.Text" xml:space="preserve"><value>Матеріали Windows 11 дають побачити робочий стіл крізь вікно</value></data>
+  <data name="BackdropMica.Content" xml:space="preserve"><value>Mica</value></data>
+  <data name="BackdropMicaAlt.Content" xml:space="preserve"><value>Mica Alt (насиченіше)</value></data>
+  <data name="BackdropAcrylic.Content" xml:space="preserve"><value>Акрил</value></data>
+  <data name="BackdropSolid.Content" xml:space="preserve"><value>Суцільний</value></data>
+  <data name="LanguageTitle.Text" xml:space="preserve"><value>Мова</value></data>
+  <data name="LanguageDescription.Text" xml:space="preserve"><value>Мова MegaCopier і його команд у Провіднику</value></data>
+  <data name="LanguageAuto.Content" xml:space="preserve"><value>Як у Windows</value></data>
+  <data name="OnTopTitle.Text" xml:space="preserve"><value>Поверх інших вікон</value></data>
+  <data name="OnTopDescription.Text" xml:space="preserve"><value>Вікно залишається над іншими під час копіювання</value></data>
+  <data name="CopyHeader.Text" xml:space="preserve"><value>Копіювання</value></data>
+  <data name="VerifyTitle.Text" xml:space="preserve"><value>Перевіряти після копіювання</value></data>
+  <data name="VerifyDescription.Text" xml:space="preserve"><value>Перечитує призначення без кешу й виправляє кожен блок, що не збігається з джерелом</value></data>
+  <data name="ConflictTitle.Text" xml:space="preserve"><value>Якщо файл уже існує</value></data>
+  <data name="ConflictDescription.Text" xml:space="preserve"><value>Однакові файли (той самий розмір і дата) завжди пропускаються</value></data>
+  <data name="ConflictAsk.Content" xml:space="preserve"><value>Питати</value></data>
+  <data name="ConflictReplace.Content" xml:space="preserve"><value>Замінювати</value></data>
+  <data name="ConflictSkip.Content" xml:space="preserve"><value>Пропускати</value></data>
+  <data name="ConflictNewer.Content" xml:space="preserve"><value>Замінювати, якщо новіший</value></data>
+  <data name="ConflictKeepBoth.Content" xml:space="preserve"><value>Залишати обидва</value></data>
+  <data name="SpeedTitle.Text" xml:space="preserve"><value>Обмеження швидкості</value></data>
+  <data name="SpeedDescription.Text" xml:space="preserve"><value>Залишає пропускну здатність диска чи мережі для інших завдань (діє для нових копіювань)</value></data>
+  <data name="SpeedUnlimited.Content" xml:space="preserve"><value>Без обмежень</value></data>
+  <data name="AutoResumeTitle.Text" xml:space="preserve"><value>Автоматично продовжувати перервані копіювання</value></data>
+  <data name="AutoResumeDescription.Text" xml:space="preserve"><value>Після вимкнення живлення чи перезавантаження продовжувати без запитань під час запуску MegaCopier</value></data>
+  <data name="ExplorerHeader.Text" xml:space="preserve"><value>Провідник</value></data>
+  <data name="PasteTitle.Text" xml:space="preserve"><value>Копіювати й переміщувати через MegaCopier під час вставлення (Ctrl+V)</value></data>
+  <data name="PasteDescription.Text" xml:space="preserve"><value>Коли ви вставляєте в Провіднику чи на робочому столі скопійовані (Ctrl+C) або вирізані (Ctrl+X) файли, це робить MegaCopier. Вставлення в ту саму папку й надалі виконує Провідник</value></data>
+  <data name="ShellMenuTitle.Text" xml:space="preserve"><value>Команди в контекстному меню</value></data>
+  <data name="ShellMenuDescription.Text" xml:space="preserve"><value>«Вставити через MegaCopier» (у «Показати додаткові параметри») і «Копіювати / Перемістити сюди через MegaCopier» під час перетягування правою кнопкою</value></data>
+  <data name="SystemHeader.Text" xml:space="preserve"><value>Система</value></data>
+  <data name="StartupTitle.Text" xml:space="preserve"><value>Запускати разом із Windows</value></data>
+  <data name="StartupDescription.Text" xml:space="preserve"><value>Залишається в області сповіщень, щоб копіювання починалося миттєво</value></data>
+  <data name="NotifyTitle.Text" xml:space="preserve"><value>Сповіщати про завершення</value></data>
+  <data name="NotifyDescription.Text" xml:space="preserve"><value>Системне сповіщення, коли копіювання закінчується, а вікно не видно</value></data>
+  <data name="Accent_System" xml:space="preserve"><value>Як у Windows</value></data>
+  <data name="Accent_Blue" xml:space="preserve"><value>Синій</value></data>
+  <data name="Accent_Violet" xml:space="preserve"><value>Фіолетовий</value></data>
+  <data name="Accent_Teal" xml:space="preserve"><value>Бірюзовий</value></data>
+  <data name="Accent_Green" xml:space="preserve"><value>Зелений</value></data>
+  <data name="Accent_Orange" xml:space="preserve"><value>Помаранчевий</value></data>
+  <data name="Accent_Pink" xml:space="preserve"><value>Рожевий</value></data>
+  <data name="Accent_Red" xml:space="preserve"><value>Червоний</value></data>
+  <data name="About" xml:space="preserve"><value>MegaCopier {0} · копіювання, яке переживає вимкнення світла</value></data>
+  <data name="Picker_CopyHere" xml:space="preserve"><value>Копіювати сюди</value></data>
+  <data name="Finish_Label" xml:space="preserve"><value>Після завершення</value></data>
+  <data name="Finish_LabelSleep" xml:space="preserve"><value>Після завершення: сон</value></data>
+  <data name="Finish_LabelShutdown" xml:space="preserve"><value>Після завершення: вимкнути</value></data>
+  <data name="Conflict_Message" xml:space="preserve"><value>У «{1}» уже є файл з іменем «{0}».</value></data>
+  <data name="Conflict_SourceCopy" xml:space="preserve"><value>Той, що ви копіюєте</value></data>
+  <data name="Conflict_SourceMove" xml:space="preserve"><value>Той, що ви переміщуєте</value></data>
+  <data name="Conflict_Newer" xml:space="preserve"><value> · новіший</value></data>
+  <data name="Job_OneItem" xml:space="preserve"><value>«{0}»</value></data>
+  <data name="Job_ManyItems" xml:space="preserve"><value>Елементів: {0}</value></data>
+  <data name="Job_TitleCopying" xml:space="preserve"><value>Копіювання {0}</value></data>
+  <data name="Job_TitleMoving" xml:space="preserve"><value>Переміщення {0}</value></data>
+  <data name="Job_TitleCopied" xml:space="preserve"><value>Скопійовано: {0}</value></data>
+  <data name="Job_TitleMoved" xml:space="preserve"><value>Переміщено: {0}</value></data>
+  <data name="Job_TitleQueued" xml:space="preserve"><value>Очікує: {0}</value></data>
+  <data name="Job_Destination" xml:space="preserve"><value>до {0}</value></data>
+  <data name="Job_StateQueued" xml:space="preserve"><value>У черзі: диск зайнятий</value></data>
+  <data name="Job_StateVerifying" xml:space="preserve"><value>Перевірка</value></data>
+  <data name="Job_StateValidating" xml:space="preserve"><value>Перевірка вже скопійованого</value></data>
+  <data name="Job_StateWaiting" xml:space="preserve"><value>Чекає вашого рішення: файл уже існує</value></data>
+  <data name="Job_StateCopying" xml:space="preserve"><value>Копіювання</value></data>
+  <data name="Job_StateMoving" xml:space="preserve"><value>Переміщення</value></data>
+  <data name="Job_StatePaused" xml:space="preserve"><value>Призупинено</value></data>
+  <data name="Job_StateCompleted" xml:space="preserve"><value>Завершено</value></data>
+  <data name="Job_StateCompletedErrors" xml:space="preserve"><value>Завершено з помилками</value></data>
+  <data name="Job_StateFailed" xml:space="preserve"><value>Помилка</value></data>
+  <data name="Job_StateInterrupted" xml:space="preserve"><value>Перервано · можна продовжити з місця зупинки</value></data>
+  <data name="Job_ResumeHint" xml:space="preserve"><value>Натисніть «Продовжити»</value></data>
+  <data name="Job_Preparing" xml:space="preserve"><value>Підготовка…</value></data>
+  <data name="Job_Progress" xml:space="preserve"><value>{0} з {1}</value></data>
+  <data name="Job_Remaining" xml:space="preserve"><value>залишилося {0}</value></data>
+  <data name="Job_Files" xml:space="preserve"><value>{0} з {1} файлів</value></data>
+  <data name="Job_FilesCopiedOne" xml:space="preserve"><value>Скопійовано файлів: {0}</value></data>
+  <data name="Job_FilesCopiedMany" xml:space="preserve"><value>Скопійовано файлів: {0}</value></data>
+  <data name="Job_FilesMovedOne" xml:space="preserve"><value>Переміщено файлів: {0}</value></data>
+  <data name="Job_FilesMovedMany" xml:space="preserve"><value>Переміщено файлів: {0}</value></data>
+  <data name="Job_TransferredIn" xml:space="preserve"><value>{0} за {1}</value></data>
+  <data name="Job_Recovered" xml:space="preserve"><value>відновлено: {0}</value></data>
+  <data name="Job_Skipped" xml:space="preserve"><value>пропущено: {0}</value></data>
+  <data name="Job_Verified" xml:space="preserve"><value>перевірено</value></data>
+  <data name="Job_Repaired" xml:space="preserve"><value>(виправлено блоків: {0})</value></data>
+  <data name="Job_FailedFiles" xml:space="preserve"><value>Файлів з помилками: {0}</value></data>
+  <data name="Job_Resume" xml:space="preserve"><value>Продовжити</value></data>
+  <data name="Job_Retry" xml:space="preserve"><value>Повторити</value></data>
+  <data name="Job_FailuresHeader" xml:space="preserve"><value>Показати файли з проблемами ({0})</value></data>
+  <data name="Job_FailuresMore" xml:space="preserve"><value>… і ще {0}</value></data>
+  <data name="Tray_Open" xml:space="preserve"><value>Відкрити MegaCopier</value></data>
+  <data name="Tray_PauseAll" xml:space="preserve"><value>Призупинити всі</value></data>
+  <data name="Tray_ResumeAll" xml:space="preserve"><value>Відновити всі</value></data>
+  <data name="Tray_Startup" xml:space="preserve"><value>Запускати разом із Windows</value></data>
+  <data name="Tray_Exit" xml:space="preserve"><value>Вийти</value></data>
+  <data name="Tray_OneJob" xml:space="preserve"><value>1 копіювання</value></data>
+  <data name="Tray_ManyJobs" xml:space="preserve"><value>Копіювань: {0}</value></data>
+  <data name="Notify_InterruptedTitle" xml:space="preserve"><value>Є перервані копіювання</value></data>
+  <data name="Notify_InterruptedOne" xml:space="preserve"><value>Одне копіювання не завершено. Відкрийте його, щоб продовжити з місця зупинки.</value></data>
+  <data name="Notify_InterruptedMany" xml:space="preserve"><value>Незавершених копіювань: {0}. Відкрийте їх, щоб продовжити.</value></data>
+  <data name="Notify_DoneTitle" xml:space="preserve"><value>Копіювання завершено</value></data>
+  <data name="Notify_ProblemTitle" xml:space="preserve"><value>Під час копіювання виникли проблеми</value></data>
+  <data name="Notify_AllDoneTitle" xml:space="preserve"><value>Копіювання завершено</value></data>
+  <data name="Error_NeedsPaths" xml:space="preserve"><value>Для запиту на копіювання потрібні джерела й призначення.</value></data>
+  <data name="Tray_Disable" xml:space="preserve"><value>Вимкнути (використовувати копіювання Windows)</value></data>
+  <data name="Tray_Enable" xml:space="preserve"><value>Увімкнути MegaCopier</value></data>
+  <data name="Tray_TooltipDisabled" xml:space="preserve"><value>MegaCopier · вимкнено (копіює Windows)</value></data>
+  <data name="Notify_DisabledTitle" xml:space="preserve"><value>MegaCopier вимкнено</value></data>
+  <data name="Notify_DisabledBody" xml:space="preserve"><value>Копіюванням займеться Windows. Двічі клацніть значок, щоб знову ввімкнути MegaCopier.</value></data>
+  <data name="Notify_EnabledTitle" xml:space="preserve"><value>MegaCopier увімкнено</value></data>
+  <data name="Notify_EnabledBody" xml:space="preserve"><value>Копіюванням і переміщенням у Провіднику займеться MegaCopier.</value></data>
+  <data name="AboutDialog.Title" xml:space="preserve"><value>Про MegaCopier</value></data>
+  <data name="AboutDialog.CloseButtonText" xml:space="preserve"><value>Закрити</value></data>
+  <data name="About_DataFolder.Content" xml:space="preserve"><value>Відкрити папку даних (параметри, теми, журнал, звіти)</value></data>
+  <data name="About_Description.Text" xml:space="preserve"><value>Програма копіювання для Windows 11, яка продовжує навіть один величезний файл після вимкнення живлення, перевіряючи вже скопійоване.</value></data>
+  <data name="About_Features.Text" xml:space="preserve"><value>Асинхронне введення-виведення без кешу · паралельне читання й запис · перевірка гешем (CRC32, xxHash, MD5, SHA) · черга за дисками · пауза й продовження · переміщення · конфлікти · обмеження швидкості · списки копіювання · звіти · теми.</value></data>
+  <data name="CopyFiles.Text" xml:space="preserve"><value>Копіювати файли…</value></data>
+  <data name="CopyFolder.Text" xml:space="preserve"><value>Копіювати папку…</value></data>
+  <data name="CopyFilesText.Text" xml:space="preserve"><value>Копіювати файли</value></data>
+  <data name="CopyFolderText.Text" xml:space="preserve"><value>Копіювати папку</value></data>
+  <data name="Files_AddFiles.Text" xml:space="preserve"><value>Додати файли…</value></data>
+  <data name="Files_AddFolder.Text" xml:space="preserve"><value>Додати папку…</value></data>
+  <data name="Files_AutoScroll.Content" xml:space="preserve"><value>Стежити за поточним</value></data>
+  <data name="Files_CopyHashes.Text" xml:space="preserve"><value>Копіювати геші</value></data>
+  <data name="Files_CopyPath.Text" xml:space="preserve"><value>Копіювати шлях</value></data>
+  <data name="Files_Empty.Text" xml:space="preserve"><value>Немає файлів для показу</value></data>
+  <data name="Files_ExportCsv.Text" xml:space="preserve"><value>Експорт у CSV…</value></data>
+  <data name="Files_ExportHtml.Text" xml:space="preserve"><value>Експорт HTML-звіту…</value></data>
+  <data name="Files_FilterAll.Content" xml:space="preserve"><value>Усі</value></data>
+  <data name="Files_FilterDone.Content" xml:space="preserve"><value>Скопійовані</value></data>
+  <data name="Files_FilterErrors.Content" xml:space="preserve"><value>З помилками</value></data>
+  <data name="Files_FilterPending.Content" xml:space="preserve"><value>Очікують</value></data>
+  <data name="Files_FilterSkipped.Content" xml:space="preserve"><value>Пропущені</value></data>
+  <data name="Files_HideFinished.Content" xml:space="preserve"><value>Приховувати завершені</value></data>
+  <data name="Files_Menu.Text" xml:space="preserve"><value>Список</value></data>
+  <data name="Files_MoveBottom.Text" xml:space="preserve"><value>У кінець</value></data>
+  <data name="Files_MoveDown.Text" xml:space="preserve"><value>Нижче</value></data>
+  <data name="Files_MoveTop.Text" xml:space="preserve"><value>На початок</value></data>
+  <data name="Files_MoveUp.Text" xml:space="preserve"><value>Вище</value></data>
+  <data name="Files_OpenSource.Text" xml:space="preserve"><value>Показати джерело</value></data>
+  <data name="Files_OpenTarget.Text" xml:space="preserve"><value>Показати призначення</value></data>
+  <data name="Files_Remove.Text" xml:space="preserve"><value>Прибрати з копіювання</value></data>
+  <data name="Files_Retry.Text" xml:space="preserve"><value>Повторити невдалі</value></data>
+  <data name="Files_SaveList.Text" xml:space="preserve"><value>Зберегти список копіювання…</value></data>
+  <data name="Files_Search.PlaceholderText" xml:space="preserve"><value>Пошук файлів</value></data>
+  <data name="Files_Size.Text" xml:space="preserve"><value>Розмір</value></data>
+  <data name="Files_SourceHash.Text" xml:space="preserve"><value>Геш джерела</value></data>
+  <data name="Files_TargetHash.Text" xml:space="preserve"><value>Геш призначення</value></data>
+  <data name="History_Clear.Text" xml:space="preserve"><value>Очистити</value></data>
+  <data name="History_Empty.Text" xml:space="preserve"><value>Завершених копіювань поки немає</value></data>
+  <data name="History_Open.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Відкрити призначення</value></data>
+  <data name="History_Repeat.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Повторити (копіює лише нове чи змінене)</value></data>
+  <data name="History_Title.Text" xml:space="preserve"><value>Журнал</value></data>
+  <data name="Log_Export.Text" xml:space="preserve"><value>Експортувати протокол</value></data>
+  <data name="Options_Acl.Content" xml:space="preserve"><value>Дозволи (ACL)</value></data>
+  <data name="Options_Attributes.Content" xml:space="preserve"><value>Атрибути</value></data>
+  <data name="Options_Audit.Content" xml:space="preserve"><value>Аудит (SACL)</value></data>
+  <data name="Options_BufferSize.Text" xml:space="preserve"><value>Розмір буфера</value></data>
+  <data name="Options_Data.Content" xml:space="preserve"><value>Дані</value></data>
+  <data name="Options_ExportReport.Content" xml:space="preserve"><value>Зберігати HTML-звіт</value></data>
+  <data name="Options_FilesFolders.Text" xml:space="preserve"><value>Файли й папки</value></data>
+  <data name="Options_OnFinish.Text" xml:space="preserve"><value>Після завершення</value></data>
+  <data name="Options_Owner.Content" xml:space="preserve"><value>Власник</value></data>
+  <data name="Options_ResetDefault.Text" xml:space="preserve"><value>Скинути</value></data>
+  <data name="Options_RunningInfo.Message" xml:space="preserve"><value>Копіювання триває: ці зміни застосуються під час продовження («Перевіряти» й «Без запитань» — одразу).</value></data>
+  <data name="Options_SaveChecksum.Content" xml:space="preserve"><value>Зберігати файл контрольних сум</value></data>
+  <data name="Options_SaveDefault.Text" xml:space="preserve"><value>Зберегти за замовчуванням</value></data>
+  <data name="Options_Scripts.Text" xml:space="preserve"><value>Команди після завершення</value></data>
+  <data name="Options_ScriptsHelp.Text" xml:space="preserve"><value>По одній у рядку, виконуються через cmd.exe. Почніть з «ok:», щоб виконати лише в разі успіху, або з «error:» — лише в разі помилки. Змінні: %MEGACOPIER_STATE%, %MEGACOPIER_DESTINATION%, %MEGACOPIER_SOURCES%, %MEGACOPIER_FILES%, %MEGACOPIER_BYTES%, %MEGACOPIER_FAILED%, %MEGACOPIER_CHECKSUM%.</value></data>
+  <data name="Options_Security.Text" xml:space="preserve"><value>Безпека (NTFS)</value></data>
+  <data name="Options_Streams.Content" xml:space="preserve"><value>Альтернативні потоки (ADS)</value></data>
+  <data name="Options_SystemCache.Content" xml:space="preserve"><value>Використовувати системний кеш</value></data>
+  <data name="Options_Threads.Text" xml:space="preserve"><value>Паралельно</value></data>
+  <data name="Options_ThreadsShort.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Одночасні операції читання й запису</value></data>
+  <data name="Options_Timestamps.Content" xml:space="preserve"><value>Дати</value></data>
+  <data name="Options_Transfer.Text" xml:space="preserve"><value>Що копіюється</value></data>
+  <data name="Options_TransferOptions.Text" xml:space="preserve"><value>Передавання</value></data>
+  <data name="Options_Verify.Content" xml:space="preserve"><value>Перевіряти після копіювання</value></data>
+  <data name="Options_VerifySkipped.Content" xml:space="preserve"><value>Перевіряти й пропущені</value></data>
+  <data name="Page_Back.Text" xml:space="preserve"><value>Назад</value></data>
+  <data name="Pager_Next.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Наступне копіювання</value></data>
+  <data name="Pager_Previous.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Попереднє копіювання</value></data>
+  <data name="Pager_Text" xml:space="preserve"><value>Копіювання {0} з {1}</value></data>
+  <data name="Panel_Discard.Text" xml:space="preserve"><value>Скасувати</value></data>
+  <data name="Panel_File.Text" xml:space="preserve"><value>Файл</value></data>
+  <data name="Panel_OpenFolder.Text" xml:space="preserve"><value>Відкрити папку</value></data>
+  <data name="Panel_Pause.Text" xml:space="preserve"><value>Пауза</value></data>
+  <data name="Panel_Skip.Text" xml:space="preserve"><value>Пропустити</value></data>
+  <data name="Panel_Stop.Text" xml:space="preserve"><value>Зупинити</value></data>
+  <data name="Panel_More" xml:space="preserve"><value>Більше</value></data>
+  <data name="Panel_Less" xml:space="preserve"><value>Менше</value></data>
+  <data name="Priority_Low.Content" xml:space="preserve"><value>Низький</value></data>
+  <data name="Priority_BelowNormal.Content" xml:space="preserve"><value>Нижче середнього</value></data>
+  <data name="Priority_Normal.Content" xml:space="preserve"><value>Звичайний</value></data>
+  <data name="Priority_AboveNormal.Content" xml:space="preserve"><value>Вище середнього</value></data>
+  <data name="Priority_High.Content" xml:space="preserve"><value>Високий</value></data>
+  <data name="Settings_Advanced.Text" xml:space="preserve"><value>Додатково</value></data>
+  <data name="Settings_EnabledTitle.Text" xml:space="preserve"><value>Використовувати MegaCopier замість копіювання Windows</value></data>
+  <data name="Settings_EnabledDescription.Text" xml:space="preserve"><value>Також подвійним клацанням значка в області сповіщень. Якщо вимкнено, значок стає сірим із червоним хрестиком і копіює Провідник.</value></data>
+  <data name="Settings_FastTitle.Text" xml:space="preserve"><value>Швидкі пристрої</value></data>
+  <data name="Settings_FastDescription.Text" xml:space="preserve"><value>Диски чи шляхи (NVMe SSD, RAID), що витримують кілька копіювань одночасно; решта йдуть по одному на диск.</value></data>
+  <data name="Settings_FinishTitle.Text" xml:space="preserve"><value>Коли копіювання завершаться</value></data>
+  <data name="Settings_FinishDescription.Text" xml:space="preserve"><value>Що робить вікно, коли більше нічого не виконується</value></data>
+  <data name="Settings_FinishAuto.Content" xml:space="preserve"><value>Закривати, якщо все пройшло добре</value></data>
+  <data name="Settings_FinishClose.Content" xml:space="preserve"><value>Завжди закривати</value></data>
+  <data name="Settings_FinishKeep.Content" xml:space="preserve"><value>Залишати відкритим</value></data>
+  <data name="Settings_FreeSpace.Content" xml:space="preserve"><value>Спершу перевіряти вільне місце</value></data>
+  <data name="Settings_General.Text" xml:space="preserve"><value>Загальні</value></data>
+  <data name="Settings_HashTitle.Text" xml:space="preserve"><value>Алгоритм гешування</value></data>
+  <data name="Settings_HashDescription.Text" xml:space="preserve"><value>Для перевірки й збережених контрольних сум. xxHash3 — найшвидший, SHA-256 — найсумісніший.</value></data>
+  <data name="Settings_MaxJobsTitle.Text" xml:space="preserve"><value>Одночасні копіювання</value></data>
+  <data name="Settings_MaxJobsDescription.Text" xml:space="preserve"><value>Максимум одночасних копіювань (0 = без обмежень). Копіювання на одному диску завжди чекають своєї черги.</value></data>
+  <data name="Settings_ModeAuto.Content" xml:space="preserve"><value>Автоматично</value></data>
+  <data name="Settings_ModeCompact.Content" xml:space="preserve"><value>Компактно</value></data>
+  <data name="Settings_ModeExpanded.Content" xml:space="preserve"><value>Повністю</value></data>
+  <data name="Settings_PerformanceTitle.Text" xml:space="preserve"><value>Продуктивність</value></data>
+  <data name="Settings_PerformanceDescription.Text" xml:space="preserve"><value>Обмеження швидкості, розмір буфера й одночасні операції</value></data>
+  <data name="Settings_PriorityTitle.Text" xml:space="preserve"><value>Пріоритет процесу</value></data>
+  <data name="Settings_PriorityDescription.Text" xml:space="preserve"><value>Низький зберігає чуйність комп&apos;ютера під час копіювання</value></data>
+  <data name="Settings_Queue.Text" xml:space="preserve"><value>Черга</value></data>
+  <data name="Settings_Themes.Text" xml:space="preserve"><value>Теми</value></data>
+  <data name="Settings_WhatToCopy.Text" xml:space="preserve"><value>Що копіюється і що відбувається потім</value></data>
+  <data name="Settings_Window.Text" xml:space="preserve"><value>Вікно</value></data>
+  <data name="Settings_WindowModeTitle.Text" xml:space="preserve"><value>Вікно копіювання</value></data>
+  <data name="Settings_WindowModeDescription.Text" xml:space="preserve"><value>Автоматично: компактне за одного копіювання, повне за кількох. «Більше» й «Менше» перемикають його будь-коли.</value></data>
+  <data name="Status_Bytes.Text" xml:space="preserve"><value>Розмір</value></data>
+  <data name="Status_Category.Text" xml:space="preserve"><value>Стан</value></data>
+  <data name="Status_Copied.Text" xml:space="preserve"><value>Скопійовано</value></data>
+  <data name="Status_Failed.Text" xml:space="preserve"><value>З помилками</value></data>
+  <data name="Status_Files.Text" xml:space="preserve"><value>Файли</value></data>
+  <data name="Status_Pending.Text" xml:space="preserve"><value>Очікують</value></data>
+  <data name="Status_Skipped.Text" xml:space="preserve"><value>Пропущено</value></data>
+  <data name="Status_Total.Text" xml:space="preserve"><value>Усього</value></data>
+  <data name="Status_Verified.Text" xml:space="preserve"><value>Перевірено</value></data>
+  <data name="Tab_Files.Text" xml:space="preserve"><value>Файли</value></data>
+  <data name="Tab_Log.Text" xml:space="preserve"><value>Протокол</value></data>
+  <data name="Tab_Options.Text" xml:space="preserve"><value>Параметри</value></data>
+  <data name="Tab_Status.Text" xml:space="preserve"><value>Стан</value></data>
+  <data name="Tab_Target.Text" xml:space="preserve"><value>Призначення</value></data>
+  <data name="Target_Destination.Text" xml:space="preserve"><value>Призначення</value></data>
+  <data name="Target_Source.Text" xml:space="preserve"><value>Джерело</value></data>
+  <data name="Target_Space" xml:space="preserve"><value>вільно {0} з {1}</value></data>
+  <data name="Theme_BarHeight.Header" xml:space="preserve"><value>Висота смуг</value></data>
+  <data name="Theme_Radius.Header" xml:space="preserve"><value>Заокруглення кутів</value></data>
+  <data name="Theme_Customize.Text" xml:space="preserve"><value>Налаштувати тему (кольори, смуги, фон)</value></data>
+  <data name="Theme_Delete.Text" xml:space="preserve"><value>Видалити</value></data>
+  <data name="Theme_Export.Text" xml:space="preserve"><value>Експорт…</value></data>
+  <data name="Theme_Import.Text" xml:space="preserve"><value>Імпорт…</value></data>
+  <data name="Theme_Name.Header" xml:space="preserve"><value>Назва</value></data>
+  <data name="Theme_Save" xml:space="preserve"><value>Зберегти</value></data>
+  <data name="Theme_SaveAsNew" xml:space="preserve"><value>Зберегти як нову тему</value></data>
+  <data name="Theme_Auto" xml:space="preserve"><value>Fluent (як Windows)</value></data>
+  <data name="Theme_CopyOf" xml:space="preserve"><value>{0} (власна)</value></data>
+  <data name="Theme_Custom" xml:space="preserve"><value>Моя тема</value></data>
+  <data name="Theme_FileType" xml:space="preserve"><value>Тема MegaCopier</value></data>
+  <data name="Theme_ImportFailed" xml:space="preserve"><value>Не вдалося імпортувати тему</value></data>
+  <data name="Theme_ColorBackground" xml:space="preserve"><value>Фон</value></data>
+  <data name="Theme_ColorSurface" xml:space="preserve"><value>Картки</value></data>
+  <data name="Theme_ColorSurfaceStrong" xml:space="preserve"><value>Виділені картки</value></data>
+  <data name="Theme_ColorBorder" xml:space="preserve"><value>Межі</value></data>
+  <data name="Theme_ColorText" xml:space="preserve"><value>Текст</value></data>
+  <data name="Theme_ColorTextSecondary" xml:space="preserve"><value>Другорядний текст</value></data>
+  <data name="Theme_ColorAccent" xml:space="preserve"><value>Акцент</value></data>
+  <data name="Theme_ColorAccentText" xml:space="preserve"><value>Текст на акценті</value></data>
+  <data name="Theme_ColorTotalStart" xml:space="preserve"><value>Загальна смуга: початок</value></data>
+  <data name="Theme_ColorTotalEnd" xml:space="preserve"><value>Загальна смуга: кінець</value></data>
+  <data name="Theme_ColorFileStart" xml:space="preserve"><value>Смуга файлу: початок</value></data>
+  <data name="Theme_ColorFileEnd" xml:space="preserve"><value>Смуга файлу: кінець</value></data>
+  <data name="Theme_ColorTrack" xml:space="preserve"><value>Фон смуг</value></data>
+  <data name="Theme_ColorSuccess" xml:space="preserve"><value>Успіх</value></data>
+  <data name="Theme_ColorWarning" xml:space="preserve"><value>Попередження</value></data>
+  <data name="Theme_ColorError" xml:space="preserve"><value>Помилка</value></data>
+  <data name="Theme_fluent-dark" xml:space="preserve"><value>Fluent темна</value></data>
+  <data name="Theme_fluent-light" xml:space="preserve"><value>Fluent світла</value></data>
+  <data name="Theme_midnight" xml:space="preserve"><value>Північ</value></data>
+  <data name="Theme_graphite" xml:space="preserve"><value>Графіт</value></data>
+  <data name="Theme_ocean" xml:space="preserve"><value>Океан</value></data>
+  <data name="Theme_forest" xml:space="preserve"><value>Ліс</value></data>
+  <data name="Theme_sunset" xml:space="preserve"><value>Захід сонця</value></data>
+  <data name="Theme_supercopier" xml:space="preserve"><value>Класичний SuperCopier</value></data>
+  <data name="Theme_ultracopier" xml:space="preserve"><value>Класичний Ultracopier</value></data>
+  <data name="Theme_contrast" xml:space="preserve"><value>Висока контрастність</value></data>
+  <data name="Tool_About.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Про програму</value></data>
+  <data name="Tool_ClearDone.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Прибрати завершені копіювання</value></data>
+  <data name="Tool_History.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Журнал</value></data>
+  <data name="Tool_HistoryText.Text" xml:space="preserve"><value>Журнал</value></data>
+  <data name="Tool_LoadList.Text" xml:space="preserve"><value>Завантажити список копіювання…</value></data>
+  <data name="Tool_LoadListText.Text" xml:space="preserve"><value>Завантажити список</value></data>
+  <data name="Tool_MoveFiles.Text" xml:space="preserve"><value>Перемістити файли…</value></data>
+  <data name="Tool_NewCopy.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Нове копіювання</value></data>
+  <data name="Tool_NewCopyText.Text" xml:space="preserve"><value>Нове</value></data>
+  <data name="Tool_PauseAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Призупинити всі</value></data>
+  <data name="Tool_ResumeAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Відновити всі</value></data>
+  <data name="Tool_Settings.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Налаштування</value></data>
+  <data name="Tool_Sidebar.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Показати або приховати список копіювань</value></data>
+  <data name="Drop_Caption" xml:space="preserve"><value>Копіювати через MegaCopier</value></data>
+  <data name="File_Pending" xml:space="preserve"><value>Очікує</value></data>
+  <data name="File_Copying" xml:space="preserve"><value>Копіювання</value></data>
+  <data name="File_Verifying" xml:space="preserve"><value>Перевірка</value></data>
+  <data name="File_Copied" xml:space="preserve"><value>Скопійовано</value></data>
+  <data name="File_Verified" xml:space="preserve"><value>Перевірено</value></data>
+  <data name="File_Skipped" xml:space="preserve"><value>Пропущено</value></data>
+  <data name="File_Failed" xml:space="preserve"><value>Помилка</value></data>
+  <data name="Files_AddFailed" xml:space="preserve"><value>Не вдалося додати</value></data>
+  <data name="Files_Count" xml:space="preserve"><value>{0} з {1} файлів</value></data>
+  <data name="Files_ListType" xml:space="preserve"><value>Список копіювання MegaCopier</value></data>
+  <data name="Files_LoadFailed" xml:space="preserve"><value>Не вдалося завантажити список</value></data>
+  <data name="Hash_None" xml:space="preserve"><value>Геш: немає</value></data>
+  <data name="Jobs_Header" xml:space="preserve"><value>КОПІЙ: {0} · АКТИВНИХ: {1}</value></data>
+  <data name="Language_Auto" xml:space="preserve"><value>Як у Windows</value></data>
+  <data name="Log_FileType" xml:space="preserve"><value>Текст</value></data>
+  <data name="Picker_MoveHere" xml:space="preserve"><value>Перемістити сюди</value></data>
+  <data name="Settings_AutoResume.Content" xml:space="preserve"><value>Продовжувати самостійно під час запуску</value></data>
+  <data name="Panel_Options.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Параметри цього копіювання</value></data>
+  <data name="Panel_UnattendedItem.Text" xml:space="preserve"><value>Без запитань (наявні пропускаються)</value></data>
+  <data name="Panel_VerifyItem.Text" xml:space="preserve"><value>Перевірити після завершення</value></data>
+  <data name="Panel_OpenFolderItem.Text" xml:space="preserve"><value>Відкрити папку призначення</value></data>
+  <data name="Status_ExactBytes" xml:space="preserve"><value>{0} байт</value></data>
+  <data name="Notify_SettingsResetTitle" xml:space="preserve"><value>Налаштування скинуто</value></data>
+  <data name="Notify_SettingsResetBody" xml:space="preserve"><value>Не вдалося прочитати ваші параметри, тому використовуються стандартні. Початковий файл — settings.json.bad.</value></data>
+  <data name="Job_TitleCopy" xml:space="preserve"><value>Копіювати {0}</value></data>
+  <data name="Job_TitleMove" xml:space="preserve"><value>Перемістити {0}</value></data>
+  <data name="Job_FailedOne" xml:space="preserve"><value>1 файл з помилками</value></data>
+  <data name="Error_InUse" xml:space="preserve"><value>Файл відкритий іншою програмою. Закрийте її й натисніть «Повторити».</value></data>
+  <data name="Error_AccessDenied" xml:space="preserve"><value>Доступ заборонено: у вас немає прав на читання чи запис цього файлу.</value></data>
+  <data name="Error_DiskFull" xml:space="preserve"><value>На диску призначення не залишилося місця.</value></data>
+  <data name="Error_NotFound" xml:space="preserve"><value>Файл або папка більше не існує (переміщено, видалено чи диск від&apos;єднано?).</value></data>
+  <data name="Error_PathTooLong" xml:space="preserve"><value>Шлях задовгий для призначення.</value></data>
+  <data name="Error_NetworkLost" xml:space="preserve"><value>Мережеве з&apos;єднання втрачено. Коли воно відновиться, натисніть «Повторити», щоб продовжити з місця зупинки.</value></data>
+  <data name="Error_HashMismatch" xml:space="preserve"><value>Копія не збігається з оригіналом (перевірку не пройдено).</value></data>
+  <data name="Error_DeleteFailed" xml:space="preserve"><value>Скопійовано правильно, але видалити оригінал не вдалося.</value></data>
+  <data name="Report_State" xml:space="preserve"><value>Стан</value></data>
+  <data name="Report_File" xml:space="preserve"><value>Файл</value></data>
+  <data name="Report_Source" xml:space="preserve"><value>Джерело</value></data>
+  <data name="Report_Destination" xml:space="preserve"><value>Призначення</value></data>
+  <data name="Report_Size" xml:space="preserve"><value>Розмір</value></data>
+  <data name="Report_SourceHash" xml:space="preserve"><value>Геш джерела</value></data>
+  <data name="Report_TargetHash" xml:space="preserve"><value>Геш призначення</value></data>
+  <data name="Report_Message" xml:space="preserve"><value>Повідомлення</value></data>
+  <data name="Report_Copied" xml:space="preserve"><value>Скопійовано</value></data>
+  <data name="Report_Verified" xml:space="preserve"><value>Перевірено</value></data>
+  <data name="Report_Skipped" xml:space="preserve"><value>Пропущено</value></data>
+  <data name="Report_Failed" xml:space="preserve"><value>З помилками</value></data>
+  <data name="Job_SkippedOne" xml:space="preserve"><value>1 пропущено</value></data>
+  <data name="Rules_Filters.Text" xml:space="preserve"><value>Фільтри</value></data>
+  <data name="Rules_Include.Header" xml:space="preserve"><value>Включати лише (маски через ;)</value></data>
+  <data name="Rules_Include.PlaceholderText" xml:space="preserve"><value>*.jpg; *.png; Фото\*</value></data>
+  <data name="Rules_Exclude.Header" xml:space="preserve"><value>Виключати</value></data>
+  <data name="Rules_Exclude.PlaceholderText" xml:space="preserve"><value>node_modules; *.tmp; Thumbs.db</value></data>
+  <data name="Rules_MinSize.Header" xml:space="preserve"><value>Мін. розмір (МБ)</value></data>
+  <data name="Rules_MaxSize.Header" xml:space="preserve"><value>Макс. розмір (МБ)</value></data>
+  <data name="Rules_After.Header" xml:space="preserve"><value>Змінені з</value></data>
+  <data name="Rules_Before.Header" xml:space="preserve"><value>Змінені до</value></data>
+  <data name="Rules_SkipHidden.Content" xml:space="preserve"><value>Пропускати приховані</value></data>
+  <data name="Rules_SkipSystem.Content" xml:space="preserve"><value>Пропускати системні</value></data>
+  <data name="Rules_Rules.Text" xml:space="preserve"><value>Правила</value></data>
+  <data name="Rules_Links.Header" xml:space="preserve"><value>Символічні посилання й з&apos;єднання</value></data>
+  <data name="Rules_LinksCopy.Content" xml:space="preserve"><value>Копіювати як посилання</value></data>
+  <data name="Rules_LinksFollow.Content" xml:space="preserve"><value>Копіювати те, на що вони вказують</value></data>
+  <data name="Rules_LinksSkip.Content" xml:space="preserve"><value>Пропускати</value></data>
+  <data name="Rules_Pattern.Header" xml:space="preserve"><value>Ім&apos;я, якщо залишати обидва ({name}, {n}, {ext}, {date})</value></data>
+  <data name="Rules_PatternPreview" xml:space="preserve"><value>Приклад: {0}</value></data>
+  <data name="Rules_Retries.Header" xml:space="preserve"><value>Повтори</value></data>
+  <data name="Rules_Delay.Header" xml:space="preserve"><value>Пауза між повторами (с)</value></data>
+  <data name="Rules_OnError.Header" xml:space="preserve"><value>Якщо файл і далі не вдається</value></data>
+  <data name="Rules_OnErrorSkip.Content" xml:space="preserve"><value>Записати й перейти до наступного</value></data>
+  <data name="Rules_OnErrorStop.Content" xml:space="preserve"><value>Зупинити копіювання (можна продовжити)</value></data>
+  <data name="ConflictDifferentSize.Content" xml:space="preserve"><value>Замінювати за іншого розміру</value></data>
+  <data name="ConflictRenameExisting.Content" xml:space="preserve"><value>Перейменовувати наявний</value></data>
+  <data name="Conflict_RenameExisting.Text" xml:space="preserve"><value>Перейменувати наявний і скопіювати цей</value></data>
+  <data name="Schedule_Title.Text" xml:space="preserve"><value>Запланувати запуск</value></data>
+  <data name="Schedule_Set.Text" xml:space="preserve"><value>Запланувати</value></data>
+  <data name="Schedule_Now.Text" xml:space="preserve"><value>Почати зараз</value></data>
+  <data name="Schedule_InThePast" xml:space="preserve"><value>Виберіть час у майбутньому.</value></data>
+  <data name="Job_StateScheduled" xml:space="preserve"><value>Заплановано на {0}</value></data>
+  <data name="Settings_Favorites.Text" xml:space="preserve"><value>Улюблені папки</value></data>
+  <data name="Settings_FavoritesTitle.Text" xml:space="preserve"><value>Улюблені призначення</value></data>
+  <data name="Settings_FavoritesDescription.Text" xml:space="preserve"><value>Вони з&apos;являються в «Нове &gt; Копіювати в» і у вікні призначень, щоб копіювати одразу в кілька папок.</value></data>
+  <data name="Settings_FavoritesAdd.Text" xml:space="preserve"><value>Додати папку</value></data>
+  <data name="Settings_FavoritesRemove" xml:space="preserve"><value>Прибрати {0}</value></data>
+  <data name="Settings_FavoritesEmpty" xml:space="preserve"><value>Улюблених поки немає.</value></data>
+  <data name="Tool_CopyTo.Text" xml:space="preserve"><value>Копіювати в</value></data>
+  <data name="Tool_CopyToEmpty" xml:space="preserve"><value>Немає улюблених і нещодавніх</value></data>
+  <data name="Tool_CopyToManage" xml:space="preserve"><value>Керувати улюбленими…</value></data>
+  <data name="Tool_TestFiles.Text" xml:space="preserve"><value>Перевірити файли контрольних сум…</value></data>
+  <data name="Tool_TestFolder.Text" xml:space="preserve"><value>Перевірити контрольні суми папки…</value></data>
+  <data name="Tool_Delete.Text" xml:space="preserve"><value>Видалити…</value></data>
+  <data name="Tool_Wipe.Text" xml:space="preserve"><value>Видалити без можливості відновлення…</value></data>
+  <data name="DestinationsDialog.Title" xml:space="preserve"><value>Куди?</value></data>
+  <data name="DestinationsDialog.PrimaryButtonText" xml:space="preserve"><value>Почати</value></data>
+  <data name="DestinationsDialog.CloseButtonText" xml:space="preserve"><value>Скасувати</value></data>
+  <data name="Destinations_SummaryOne" xml:space="preserve"><value>Виберіть одне чи кілька призначень для «{0}».</value></data>
+  <data name="Destinations_SummaryMany" xml:space="preserve"><value>Виберіть одне чи кілька призначень для елементів ({0}).</value></data>
+  <data name="Destinations_Add.Text" xml:space="preserve"><value>Додати папку…</value></data>
+  <data name="Destinations_Move.Content" xml:space="preserve"><value>Перемістити замість копіювання</value></data>
+  <data name="Destinations_Schedule.Content" xml:space="preserve"><value>Почати пізніше</value></data>
+  <data name="DeleteDialog.Title" xml:space="preserve"><value>Видалити</value></data>
+  <data name="DeleteDialog.PrimaryButtonText" xml:space="preserve"><value>Видалити</value></data>
+  <data name="DeleteDialog.CloseButtonText" xml:space="preserve"><value>Скасувати</value></data>
+  <data name="Delete_ConfirmOne" xml:space="preserve"><value>Видалити «{0}»? Він не потрапить до кошика.</value></data>
+  <data name="Delete_ConfirmMany" xml:space="preserve"><value>Видалити елементи ({0})? Вони не потраплять до кошика.</value></data>
+  <data name="Delete_ConfirmSecureOne" xml:space="preserve"><value>Видалити «{0}» без можливості відновлення?</value></data>
+  <data name="Delete_ConfirmSecureMany" xml:space="preserve"><value>Видалити елементи ({0}) без можливості відновлення?</value></data>
+  <data name="Delete_SecureWarning.Title" xml:space="preserve"><value>Відновити буде неможливо</value></data>
+  <data name="Delete_SecureWarning.Message" xml:space="preserve"><value>Вміст перезаписується перед видаленням. На SSD сам диск може зберігати залишки; для максимального захисту використовуйте шифрування BitLocker.</value></data>
+  <data name="FinishHibernate.Text" xml:space="preserve"><value>Глибокий сон</value></data>
+  <data name="FinishSignOut.Text" xml:space="preserve"><value>Вийти із системи</value></data>
+  <data name="FinishExit.Text" xml:space="preserve"><value>Закрити MegaCopier</value></data>
+  <data name="Finish_LabelHibernate" xml:space="preserve"><value>Після завершення: глибокий сон</value></data>
+  <data name="Finish_LabelSignOut" xml:space="preserve"><value>Після завершення: вихід</value></data>
+  <data name="Finish_LabelExit" xml:space="preserve"><value>Після завершення: закрити MegaCopier</value></data>
+  <data name="Notify_FinishSleep" xml:space="preserve"><value>Перехід у режим сну…</value></data>
+  <data name="Notify_FinishHibernate" xml:space="preserve"><value>Перехід у глибокий сон…</value></data>
+  <data name="Notify_FinishShutdown" xml:space="preserve"><value>Комп&apos;ютер вимкнеться за 1 хвилину (скасувати: shutdown /a).</value></data>
+  <data name="Notify_FinishSignOut" xml:space="preserve"><value>Вихід із системи…</value></data>
+  <data name="Notify_FinishExitApp" xml:space="preserve"><value>MegaCopier закривається.</value></data>
+  <data name="Files_SelectAll.Text" xml:space="preserve"><value>Виділити все</value></data>
+  <data name="Files_SelectSameExtension.Text" xml:space="preserve"><value>Виділити з таким самим розширенням</value></data>
+  <data name="Files_SelectSameFolder.Text" xml:space="preserve"><value>Виділити з тієї самої папки</value></data>
+  <data name="Files_InvertSelection.Text" xml:space="preserve"><value>Інвертувати виділення</value></data>
+  <data name="Job_TitleTest" xml:space="preserve"><value>Перевірити {0}</value></data>
+  <data name="Job_TitleTesting" xml:space="preserve"><value>Перевірка {0}</value></data>
+  <data name="Job_TitleTested" xml:space="preserve"><value>Перевірено: {0}</value></data>
+  <data name="Job_TitleDelete" xml:space="preserve"><value>Видалити {0}</value></data>
+  <data name="Job_TitleDeleting" xml:space="preserve"><value>Видалення {0}</value></data>
+  <data name="Job_TitleDeleted" xml:space="preserve"><value>Видалено: {0}</value></data>
+  <data name="Job_StateTesting" xml:space="preserve"><value>Перевірка</value></data>
+  <data name="Job_StateDeleting" xml:space="preserve"><value>Видалення</value></data>
+  <data name="Job_FilesTestedOne" xml:space="preserve"><value>Справних файлів: {0}</value></data>
+  <data name="Job_FilesTestedMany" xml:space="preserve"><value>Справних файлів: {0}</value></data>
+  <data name="Job_FilesDeletedOne" xml:space="preserve"><value>Видалено файлів: {0}</value></data>
+  <data name="Job_FilesDeletedMany" xml:space="preserve"><value>Видалено файлів: {0}</value></data>
+  <data name="Job_TitleScheduled" xml:space="preserve"><value>Заплановано: {0}</value></data>
+  <data name="Error_ChecksumMismatch" xml:space="preserve"><value>Вміст не збігається зі збереженою контрольною сумою: файл змінено або пошкоджено.</value></data>
+  <data name="Job_FilteredOut" xml:space="preserve"><value>Жоден файл не проходить фільтри цього копіювання</value></data>
+  <data name="Rules_After.PlaceholderText" xml:space="preserve"><value>Будь-яка дата</value></data>
+  <data name="Rules_Before.PlaceholderText" xml:space="preserve"><value>Будь-яка дата</value></data>
+  <data name="Drop_MoveTo" xml:space="preserve"><value>Перемістити на позицію {0}</value></data>
+  <data name="Drop_InsertAt" xml:space="preserve"><value>Додати на позицію {0}</value></data>
+  <data name="Drop_AddToJob" xml:space="preserve"><value>Додати до цього копіювання</value></data>
+  <data name="Drop_AddToNamedJob" xml:space="preserve"><value>Додати до {0}</value></data>
+  <data name="Drop_JobOrder" xml:space="preserve"><value>Поставити на місце {0} у черзі</value></data>
+  <data name="Settings_Sounds.Text" xml:space="preserve"><value>Звуки</value></data>
+  <data name="Settings_SoundsTitle.Text" xml:space="preserve"><value>Звукові сповіщення</value></data>
+  <data name="Settings_SoundsDescription.Text" xml:space="preserve"><value>Виберіть звук для кожного моменту: звук Windows, будь-який файл на комп&apos;ютері або без звуку.</value></data>
+  <data name="Settings_Volume.Header" xml:space="preserve"><value>Гучність</value></data>
+  <data name="Settings_SoundsQuiet.Content" xml:space="preserve"><value>Не звучати під час повноекранних ігор і презентацій та в режимі «Не турбувати»</value></data>
+  <data name="Sound_Done" xml:space="preserve"><value>Копіювання пройшло успішно</value></data>
+  <data name="Sound_Errors" xml:space="preserve"><value>Копіювання завершилося з помилками</value></data>
+  <data name="Sound_AllDone" xml:space="preserve"><value>Усі копіювання завершено</value></data>
+  <data name="Sound_Attention" xml:space="preserve"><value>Потрібне ваше рішення (файл уже існує)</value></data>
+  <data name="Sound_Test" xml:space="preserve"><value>Перевірити звук</value></data>
+  <data name="Sound_None" xml:space="preserve"><value>Без звуку</value></data>
+  <data name="Sound_Default" xml:space="preserve"><value>Звук Windows</value></data>
+  <data name="Sound_Choose" xml:space="preserve"><value>Вибрати файл…</value></data>
+  <data name="File_Planned" xml:space="preserve"><value>Змодельовано</value></data>
+  <data name="File_Deleted" xml:space="preserve"><value>Видалено</value></data>
+  <data name="File_RemovedExtra" xml:space="preserve"><value>Видалено з призначення: його більше немає в джерелі</value></data>
+  <data name="Plan_Copy" xml:space="preserve"><value>Буде скопійовано</value></data>
+  <data name="Plan_Replace" xml:space="preserve"><value>Замінить файл у призначенні</value></data>
+  <data name="Plan_ReplaceNewer" xml:space="preserve"><value>Замінить файл у призначенні: оригінал новіший</value></data>
+  <data name="Plan_ReplaceSize" xml:space="preserve"><value>Замінить файл у призначенні: інший розмір</value></data>
+  <data name="Plan_KeepBoth" xml:space="preserve"><value>Уже є: буде скопійовано під іншим ім&apos;ям</value></data>
+  <data name="Plan_RenameExisting" xml:space="preserve"><value>Уже є: файл у призначенні буде перейменовано, а цей скопійовано</value></data>
+  <data name="Plan_Ask" xml:space="preserve"><value>Уже є: вас запитають, що робити</value></data>
+  <data name="Plan_SkipIdentical" xml:space="preserve"><value>Буде пропущено: у призначенні вже такий самий</value></data>
+  <data name="Plan_SkipExists" xml:space="preserve"><value>Буде пропущено: уже існує</value></data>
+  <data name="Plan_SkipOlder" xml:space="preserve"><value>Буде пропущено: у призначенні такий самий або новіший</value></data>
+  <data name="Plan_SkipSameSize" xml:space="preserve"><value>Буде пропущено: той самий розмір</value></data>
+  <data name="Plan_SkipNotInDestination" xml:space="preserve"><value>Буде пропущено: немає в призначенні (лише оновлення)</value></data>
+  <data name="Plan_SkipSamePath" xml:space="preserve"><value>Буде пропущено: джерело й призначення збігаються</value></data>
+  <data name="Plan_Delete" xml:space="preserve"><value>Буде видалено з призначення: його більше немає в джерелі</value></data>
+  <data name="Plan_Fail" xml:space="preserve"><value>Завершиться помилкою: призначення вже існує</value></data>
+  <data name="Plan_None" xml:space="preserve"><value>Змодельовано</value></data>
+  <data name="Skip_SkipIdentical" xml:space="preserve"><value>У призначенні вже такий самий</value></data>
+  <data name="Skip_SkipExists" xml:space="preserve"><value>Уже існував: пропущено</value></data>
+  <data name="Skip_SkipOlder" xml:space="preserve"><value>У призначенні такий самий або новіший</value></data>
+  <data name="Skip_SkipSameSize" xml:space="preserve"><value>Той самий розмір, що в призначенні</value></data>
+  <data name="Skip_SkipNotInDestination" xml:space="preserve"><value>Немає в призначенні (оновлюються лише наявні)</value></data>
+  <data name="Skip_SkipSamePath" xml:space="preserve"><value>Джерело й призначення — той самий файл</value></data>
+  <data name="Skip_SkipByUser" xml:space="preserve"><value>Пропущено вами</value></data>
+  <data name="Job_TitleSync" xml:space="preserve"><value>Синхронізувати {0}</value></data>
+  <data name="Job_TitleSyncing" xml:space="preserve"><value>Синхронізація {0}</value></data>
+  <data name="Job_TitleSynced" xml:space="preserve"><value>Синхронізовано: {0}</value></data>
+  <data name="Job_StateSyncing" xml:space="preserve"><value>Синхронізація</value></data>
+  <data name="Job_FilesSyncedOne" xml:space="preserve"><value>Оновлено файлів: {0}</value></data>
+  <data name="Job_FilesSyncedMany" xml:space="preserve"><value>Оновлено файлів: {0}</value></data>
+  <data name="Job_TitleSimulate" xml:space="preserve"><value>Змоделювати {0}</value></data>
+  <data name="Job_TitleSimulating" xml:space="preserve"><value>Моделювання {0}</value></data>
+  <data name="Job_TitleSimulated" xml:space="preserve"><value>Моделювання: {0}</value></data>
+  <data name="Job_StateSimulating" xml:space="preserve"><value>Моделювання</value></data>
+  <data name="Job_FilesSimulatedOne" xml:space="preserve"><value>Буде скопійовано файлів: {0}</value></data>
+  <data name="Job_FilesSimulatedMany" xml:space="preserve"><value>Буде скопійовано файлів: {0}</value></data>
+  <data name="Job_WouldTransfer" xml:space="preserve"><value>усього {0}</value></data>
+  <data name="Job_TitleHash" xml:space="preserve"><value>Створити контрольні суми для {0}</value></data>
+  <data name="Job_TitleHashing" xml:space="preserve"><value>Обчислення контрольних сум для {0}</value></data>
+  <data name="Job_TitleHashed" xml:space="preserve"><value>Контрольні суми для {0}</value></data>
+  <data name="Job_StateHashing" xml:space="preserve"><value>Обчислення контрольних сум</value></data>
+  <data name="Job_FilesHashedOne" xml:space="preserve"><value>Файлів у списку сум: {0}</value></data>
+  <data name="Job_FilesHashedMany" xml:space="preserve"><value>Файлів у списку сум: {0}</value></data>
+  <data name="Job_StateWaitingDevice" xml:space="preserve"><value>Очікування повернення диска чи мережі…</value></data>
+  <data name="Job_StateWaitingSpace" xml:space="preserve"><value>Очікування вільного місця в призначенні…</value></data>
+  <data name="Job_RemovedOne" xml:space="preserve"><value>1 видалено з призначення</value></data>
+  <data name="Job_Removed" xml:space="preserve"><value>видалено з призначення: {0}</value></data>
+  <data name="Job_WouldRemove" xml:space="preserve"><value>буде видалено з призначення: {0}</value></data>
+  <data name="Panel_RunForReal.Text" xml:space="preserve"><value>Виконати насправді</value></data>
+  <data name="Options_Mode.Header" xml:space="preserve"><value>Режим</value></data>
+  <data name="Mode_Copy.Content" xml:space="preserve"><value>Копіювати</value></data>
+  <data name="Mode_Mirror.Content" xml:space="preserve"><value>Синхронізувати (дзеркало)</value></data>
+  <data name="Mode_Update.Content" xml:space="preserve"><value>Лише оновлювати наявні</value></data>
+  <data name="Mode_Folders.Content" xml:space="preserve"><value>Лише структура папок</value></data>
+  <data name="Options_MirrorInfo.Title" xml:space="preserve"><value>Синхронізація видаляє з призначення те, чого більше немає в джерелі</value></data>
+  <data name="Options_MirrorInfo.Message" xml:space="preserve"><value>Те, що виключено фільтрами, не змінюється. Вкажіть папку версій, щоб зберігати видалене чи замінене.</value></data>
+  <data name="Options_DryRun.Content" xml:space="preserve"><value>Змоделювати: показати, що буде зроблено, нічого не змінюючи</value></data>
+  <data name="Destinations_DryRun.Content" xml:space="preserve"><value>Спершу змоделювати (нічого не змінює)</value></data>
+  <data name="Tool_HashFolder.Text" xml:space="preserve"><value>Створити файл контрольних сум для папки…</value></data>
+  <data name="Tool_HashFiles.Text" xml:space="preserve"><value>Створити файл контрольних сум для файлів…</value></data>
+  <data name="Rules_SkipJunk.Content" xml:space="preserve"><value>Пропускати сміттєві файли (Thumbs.db, desktop.ini, .DS_Store, ~$…)</value></data>
+  <data name="Rules_OnErrorEnd.Content" xml:space="preserve"><value>Повторити в кінці черги</value></data>
+  <data name="Rules_Safety.Text" xml:space="preserve"><value>Синхронізація й безпека</value></data>
+  <data name="Rules_FolderConflict.Header" xml:space="preserve"><value>Якщо папка вже є в призначенні</value></data>
+  <data name="Rules_FolderMerge.Content" xml:space="preserve"><value>Об&apos;єднати вміст</value></data>
+  <data name="Rules_FolderSkip.Content" xml:space="preserve"><value>Пропустити повністю</value></data>
+  <data name="Rules_Versions.Header" xml:space="preserve"><value>Зберігати замінене чи видалене в папці</value></data>
+  <data name="Rules_Versions.PlaceholderText" xml:space="preserve"><value>Порожньо: не зберігати (напр. .versions)</value></data>
+  <data name="Rules_Tolerance.Header" xml:space="preserve"><value>Допуск дати для «однакових» (секунди)</value></data>
+  <data name="Rules_VerifySource.Content" xml:space="preserve"><value>Перечитати оригінал наприкінці</value></data>
+  <data name="Rules_HashStream.Content" xml:space="preserve"><value>Зберігати геш усередині кожного файлу</value></data>
+  <data name="Rules_HardLinks.Content" xml:space="preserve"><value>Зберігати жорсткі посилання</value></data>
+  <data name="Rules_Wipe.Content" xml:space="preserve"><value>Під час переміщення видаляти оригінали без можливості відновлення</value></data>
+  <data name="Rules_WaitDevice.Content" xml:space="preserve"><value>Чекати, якщо від&apos;єднається диск чи мережа</value></data>
+  <data name="Rules_WaitSpace.Content" xml:space="preserve"><value>Чекати, якщо бракує місця</value></data>
+  <data name="Rules_VerifySource.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Знову обчислює геш оригіналу: виявляє, чи змінився він під час копіювання або чи погано читає вихідний диск.</value></data>
+  <data name="Rules_HashStream.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Зберігається в прихованому потоці самого файлу (NTFS). «Перевірити контрольні суми папки» потім знайде будь-яке пошкодження, навіть без файлу сум.</value></data>
+  <data name="Rules_HardLinks.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Якщо кілька імен — той самий файл, у призначенні буде так само (без подвійного місця).</value></data>
+  <data name="Rules_Tolerance.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>FAT32 та exFAT зберігають час із точністю до 2 секунд: з цим допуском однакові файли не копіюються повторно.</value></data>
+  <data name="Rules_Versions.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Перед заміною чи видаленням файл переміщується в цю папку призначення з датою в імені.</value></data>
+  <data name="Settings_UnitsTitle.Text" xml:space="preserve"><value>Одиниці розміру</value></data>
+  <data name="Settings_UnitsDescription.Text" xml:space="preserve"><value>Як показуються розміри й швидкості.</value></data>
+  <data name="Units_Classic.Content" xml:space="preserve"><value>КБ, МБ, ГБ (як у Провіднику)</value></data>
+  <data name="Units_Iec.Content" xml:space="preserve"><value>КіБ, МіБ, ГіБ (двійкові)</value></data>
+  <data name="Units_Decimal.Content" xml:space="preserve"><value>кБ, МБ, ГБ по 1000 (як у виробника)</value></data>
+  <data name="Settings_SlowTitle.Text" xml:space="preserve"><value>Повільніше, поки ви працюєте за комп&apos;ютером</value></data>
+  <data name="Settings_SlowDescription.Text" xml:space="preserve"><value>Поки ви користуєтеся клавіатурою чи мишею, копіювання не перевищує цієї швидкості; коли ви відходите, воно знову пришвидшується.</value></data>
+  <data name="Slow_Off.Content" xml:space="preserve"><value>Ні</value></data>
+  <data name="Settings_LogsTitle.Text" xml:space="preserve"><value>Зберігати протокол кожного копіювання</value></data>
+  <data name="Settings_LogsDescription.Text" xml:space="preserve"><value>Один файл на копіювання в папці протоколів; видаляються через 30 днів.</value></data>
+  <data name="Settings_LogsOpen.Text" xml:space="preserve"><value>Відкрити папку</value></data>
+  <data name="Settings_WebhookTitle.Text" xml:space="preserve"><value>Сповіщати вебадресу після завершення</value></data>
+  <data name="Settings_WebhookDescription.Text" xml:space="preserve"><value>Щоб отримувати сповіщення на телефон чи в чат: Discord, Slack, Teams, ntfy.sh, Home Assistant… Надсилається POST із JSON.</value></data>
+  <data name="Settings_WebhookBox.PlaceholderText" xml:space="preserve"><value>https://ntfy.sh/moya-taemna-tema</value></data>
+  <data name="Settings_WebhookTest.Text" xml:space="preserve"><value>Перевірити</value></data>
+  <data name="Settings_WebhookSending" xml:space="preserve"><value>Надсилання…</value></data>
+  <data name="Settings_WebhookOk" xml:space="preserve"><value>Сповіщення надіслано.</value></data>
+  <data name="Settings_WebhookFailed" xml:space="preserve"><value>Не вдалося надіслати: перевірте адресу й з&apos;єднання.</value></data>
+  <data name="Settings_WebhookTestMessage" xml:space="preserve"><value>✔ MegaCopier: тестове сповіщення</value></data>
+  <data name="FinishDialog.Title" xml:space="preserve"><value>Усі копіювання завершено</value></data>
+  <data name="FinishDialog.PrimaryButtonText" xml:space="preserve"><value>Виконати зараз</value></data>
+  <data name="FinishDialog.CloseButtonText" xml:space="preserve"><value>Скасувати</value></data>
+  <data name="Finish_CountdownSleep" xml:space="preserve"><value>Комп&apos;ютер перейде в режим сну за {0} с.</value></data>
+  <data name="Finish_CountdownHibernate" xml:space="preserve"><value>Комп&apos;ютер перейде в глибокий сон за {0} с.</value></data>
+  <data name="Finish_CountdownShutdown" xml:space="preserve"><value>Комп&apos;ютер вимкнеться за {0} с.</value></data>
+  <data name="Finish_CountdownSignOut" xml:space="preserve"><value>Вихід із системи за {0} с.</value></data>
+  <data name="Finish_CountdownExitApp" xml:space="preserve"><value>MegaCopier закриється за {0} с.</value></data>
+  <data name="Job_SlowedDown" xml:space="preserve"><value>Повільніше, поки ви працюєте за комп&apos;ютером</value></data>
+  <data name="History_Undone" xml:space="preserve"><value>скасовано</value></data>
+  <data name="History_Undo.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Скасувати: повернути переміщене або відправити скопійоване до кошика</value></data>
+  <data name="History_CopyBack.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Скопіювати назад у вихідну папку (відновити)</value></data>
+  <data name="History_UndoDialog.Title" xml:space="preserve"><value>Скасувати це копіювання?</value></data>
+  <data name="History_UndoDialog.PrimaryButtonText" xml:space="preserve"><value>Скасувати копіювання</value></data>
+  <data name="History_UndoDialog.CloseButtonText" xml:space="preserve"><value>Закрити</value></data>
+  <data name="History_UndoMoveConfirm" xml:space="preserve"><value>Усе переміщене повернеться з «{0}» до вихідної папки.</value></data>
+  <data name="History_UndoCopyConfirm" xml:space="preserve"><value>Скопійовані файли ({0}) потраплять до кошика (їх можна відновити). Файли, змінені пізніше або які замінили інший файл, не змінюються.</value></data>
+  <data name="History_UndoDone" xml:space="preserve"><value>Відправлено до кошика файлів: {0}.</value></data>
+  <data name="History_UndoKept" xml:space="preserve"><value>Залишено: змінених пізніше — {0}, тих, що замінили інші, — {1}.</value></data>
+  <data name="History_UndoTitleBar.Title" xml:space="preserve"><value>Копіювання скасовано</value></data>
+  <data name="History_Undo.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Скасувати: повернути переміщене або відправити скопійоване до кошика</value></data>
+  <data name="History_CopyBack.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Скопіювати назад у вихідну папку (відновити)</value></data>
+  <data name="History_Open.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Відкрити призначення</value></data>
+  <data name="History_Repeat.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Повторити (копіює лише нове чи змінене)</value></data>
+  <data name="Task_Header.Text" xml:space="preserve"><value>Або збережіть його як завдання, щоб Windows сама повторювала його у вибраний вище час:</value></data>
+  <data name="Task_Name.PlaceholderText" xml:space="preserve"><value>Назва завдання</value></data>
+  <data name="Task_Once.Content" xml:space="preserve"><value>Один раз</value></data>
+  <data name="Task_Daily.Content" xml:space="preserve"><value>Щодня</value></data>
+  <data name="Task_Weekly.Content" xml:space="preserve"><value>Щотижня</value></data>
+  <data name="Task_Save.Text" xml:space="preserve"><value>Зберегти як завдання</value></data>
+  <data name="Task_SavedOnce" xml:space="preserve"><value>Завдання «{0}» збережено: воно виконається {2} о {1}.</value></data>
+  <data name="Task_SavedDaily" xml:space="preserve"><value>Завдання «{0}» збережено: воно виконуватиметься щодня о {1}.</value></data>
+  <data name="Task_SavedWeekly" xml:space="preserve"><value>Завдання «{0}» збережено: воно виконуватиметься щотижня в той самий день тижня, що й {2}, о {1}.</value></data>
+  <data name="Task_Failed" xml:space="preserve"><value>Не вдалося запланувати: {0}</value></data>
+  <data name="Settings_Tasks.Text" xml:space="preserve"><value>Заплановані завдання</value></data>
+  <data name="Settings_TasksTitle.Text" xml:space="preserve"><value>Копіювання, що повторюються самі</value></data>
+  <data name="Settings_TasksDescription.Text" xml:space="preserve"><value>Створюються на вкладці «Параметри» копіювання («Зберегти як завдання»); їх запускає Планувальник завдань Windows, навіть якщо MegaCopier закрито.</value></data>
+  <data name="Settings_TasksEmpty" xml:space="preserve"><value>Завдань поки немає.</value></data>
+  <data name="Settings_TaskRun" xml:space="preserve"><value>Виконати «{0}» зараз</value></data>
+  <data name="Settings_TaskDelete" xml:space="preserve"><value>Видалити завдання «{0}»</value></data>
+  <data name="About_Portable" xml:space="preserve"><value>портативна (дані в {0})</value></data>
+  <data name="Job_Estimate" xml:space="preserve"><value>{0}, приблизно {1}</value></data>
+  <data name="Job_EstimateSize" xml:space="preserve"><value>усього {0}</value></data>
+  <data name="Settings_SmbCompression.Content" xml:space="preserve"><value>Стискати в мережі (SMB)</value></data>
+  <data name="Settings_SmbCompression.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Просить сервер стискати дані в дорозі (Windows 11 і Windows Server 2022 або новіші). Якщо джерело й призначення на одному сервері, копіює завжди сам сервер, не через цей комп&apos;ютер.</value></data>
+  <data name="Error_TooLargeForFileSystem" xml:space="preserve"><value>Не вміщується на цей диск: FAT32 не дозволяє файли від 4 ГБ. Відформатуйте його в exFAT або NTFS.</value></data>
+  <data name="Rules_AllOrNothing.Content" xml:space="preserve"><value>Папки «все або нічого»</value></data>
+  <data name="Rules_AllOrNothing.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Кожна нова папка копіюється прихованою й з&apos;являється під своїм іменем, лише коли все пройшло добре: ніколи не залишиться наполовину скопійованої папки, що виглядає повною.</value></data>
+  <data name="Rules_Rescue.Content" xml:space="preserve"><value>Режим порятунку для пошкоджених дисків</value></data>
+  <data name="Rules_Rescue.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Якщо джерело має пошкоджені сектори, воно читається посекторно й рятується все читабельне; нечитабельне заповнюється нулями й записується в протокол. Під час переміщення оригінал не видаляється.</value></data>
+  <data name="Error_PartlyUnreadable" xml:space="preserve"><value>Врятовано частково: деякі сектори джерела були пошкоджені й заповнені нулями (подробиці в протоколі).</value></data>
+  <data name="Settings_Guard.Text" xml:space="preserve"><value>Вартовий цілісності</value></data>
+  <data name="Settings_GuardTitle.Text" xml:space="preserve"><value>Стежити, щоб ваші файли не псувалися з часом</value></data>
+  <data name="Settings_GuardDescription.Text" xml:space="preserve"><value>Кожен файл зберігає свій геш усередині. Коли комп&apos;ютер простоює, MegaCopier перевіряє їх: якщо якийсь змінився без редагування (його пошкодив диск), ви отримаєте попередження. Те, що ви редагуєте, оновлюється саме. Потрібна NTFS.</value></data>
+  <data name="Guard_Daily.Content" xml:space="preserve"><value>Щодня</value></data>
+  <data name="Guard_Weekly.Content" xml:space="preserve"><value>Щотижня</value></data>
+  <data name="Guard_Monthly.Content" xml:space="preserve"><value>Щомісяця</value></data>
+  <data name="Settings_GuardAdd.Text" xml:space="preserve"><value>Стежити за папкою…</value></data>
+  <data name="Settings_GuardEmpty" xml:space="preserve"><value>Ви поки не стежите за жодною папкою.</value></data>
+  <data name="Settings_GuardCheck" xml:space="preserve"><value>Перевірити «{0}» зараз</value></data>
+  <data name="Settings_GuardRemove" xml:space="preserve"><value>Перестати стежити за «{0}»</value></data>
+  <data name="Guard_NotYet" xml:space="preserve"><value>Очікує першої перевірки</value></data>
+  <data name="Guard_LastOk" xml:space="preserve"><value>Перевірено {0}: усе гаразд</value></data>
+  <data name="Guard_LastDamaged" xml:space="preserve"><value>Перевірено {0}: пошкоджених файлів — {1} (див. журнал)</value></data>
+  <data name="Guard_DamagedTitle" xml:space="preserve"><value>Вартовий цілісності</value></data>
+  <data name="Guard_DamagedOne" xml:space="preserve"><value>Файл із «{0}» пошкоджено на диску.</value></data>
+  <data name="Guard_DamagedMany" xml:space="preserve"><value>Пошкоджено на диску файлів із «{1}»: {0}.</value></data>
+  <data name="Guard_LastDamagedOne" xml:space="preserve"><value>Перевірено {0}: один пошкоджений файл (див. журнал)</value></data>
+  <data name="Settings_ScheduleLimitTitle.Text" xml:space="preserve"><value>Обмеження швидкості за розкладом</value></data>
+  <data name="Settings_ScheduleLimitDescription.Text" xml:space="preserve"><value>Наприклад, у робочий час: копіювання не перевищує цієї швидкості між вибраними годинами.</value></data>
+  <data name="Settings_ScheduleFrom.Text" xml:space="preserve"><value>З</value></data>
+  <data name="Settings_ScheduleTo.Text" xml:space="preserve"><value>до</value></data>
+  <data name="Settings_PauseBatteryTitle.Text" xml:space="preserve"><value>Пауза під час роботи від батареї</value></data>
+  <data name="Settings_PauseBatteryDescription.Text" xml:space="preserve"><value>На ноутбуці без зарядного копіювання чекає й продовжується само після підключення.</value></data>
+  <data name="Settings_PauseFullTitle.Text" xml:space="preserve"><value>Пауза під час ігор і презентацій</value></data>
+  <data name="Settings_PauseFullDescription.Text" xml:space="preserve"><value>За повноекранної гри чи презентації копіювання чекає, щоб не сповільнювати її.</value></data>
+  <data name="Comfort_PausedTitle" xml:space="preserve"><value>Копіювання призупинено</value></data>
+  <data name="Comfort_PausedBattery" xml:space="preserve"><value>Комп&apos;ютер працює від батареї: копіювання продовжиться після підключення до мережі.</value></data>
+  <data name="Comfort_PausedFullScreen" xml:space="preserve"><value>Триває повноекранна гра чи презентація: копіювання продовжиться після виходу з неї.</value></data>
+  <data name="Job_StatePausedBattery" xml:space="preserve"><value>Пауза: від батареї</value></data>
+  <data name="Job_StatePausedFullScreen" xml:space="preserve"><value>Пауза: повний екран</value></data>
+  <data name="Job_SlowedSchedule" xml:space="preserve"><value>Повільніше за вибраним розкладом</value></data>
+  <data name="Rules_Delta.Content" xml:space="preserve"><value>Під час заміни великих файлів записувати лише зміни</value></data>
+  <data name="Rules_Delta.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Різницеве копіювання для файлів від 16 МБ (віртуальні диски, пошта, проєкти): записуються лише відмінні блоки. У разі скасування чи вимкнення живлення файл повертається до попередньої версії.</value></data>
+  <data name="Panel_CopyLocked.Text" xml:space="preserve"><value>Копіювати файли, що використовуються</value></data>
+  <data name="Locked_Title" xml:space="preserve"><value>Файли, що використовуються</value></data>
+  <data name="Locked_Cancelled" xml:space="preserve"><value>Права адміністратора не надано: файли, що використовуються, не скопійовано.</value></data>
+  <data name="Locked_Done" xml:space="preserve"><value>Скопійовано файлів, що використовуються, з тіньової копії диска: {0}.</value></data>
+  <data name="Locked_Partial" xml:space="preserve"><value>Скопійовано з тіньової копії: {0}; решту скопіювати не вдалося: {1}</value></data>
+  <data name="Settings_Peer.Text" xml:space="preserve"><value>Отримання з інших комп&apos;ютерів</value></data>
+  <data name="Settings_PeerTitle.Text" xml:space="preserve"><value>Отримувати файли з інших комп&apos;ютерів із MegaCopier</value></data>
+  <data name="Settings_PeerDescription.Text" xml:space="preserve"><value>Через домашню чи офісну мережу, без спільних папок. Відправнику потрібен код нижче; з&apos;єднання зашифроване, і кожен файл перевіряється під час отримання. Першого разу Windows може запитати дозвіл брандмауера.</value></data>
+  <data name="Settings_PeerCode.Text" xml:space="preserve"><value>Код для надсилання вам файлів:</value></data>
+  <data name="Settings_PeerNewCode.Text" xml:space="preserve"><value>Новий код</value></data>
+  <data name="Settings_PeerFolder.Text" xml:space="preserve"><value>Змінити папку…</value></data>
+  <data name="Settings_PeerFolderIs" xml:space="preserve"><value>Зберігаються в {0}</value></data>
+  <data name="Settings_PeerListening" xml:space="preserve"><value>Очікування надсилань на «{0}» (порт {1}).</value></data>
+  <data name="Settings_PeerError" xml:space="preserve"><value>Не вдалося почати отримання: {0}</value></data>
+  <data name="Peer_ReceivingTitle" xml:space="preserve"><value>Отримання файлів</value></data>
+  <data name="Peer_Receiving" xml:space="preserve"><value>{0} надсилає вам файли: {1} ({2}).</value></data>
+  <data name="Peer_ReceivedTitle" xml:space="preserve"><value>Файли отримано</value></data>
+  <data name="Peer_Received" xml:space="preserve"><value>Файлів від {1}: {0}, у {2}.</value></data>
+  <data name="Peer_RejectedTitle" xml:space="preserve"><value>Надсилання відхилено</value></data>
+  <data name="Peer_Rejected" xml:space="preserve"><value>{0} намагався надіслати вам файли з неправильним кодом.</value></data>
+  <data name="Tool_SendFiles.Text" xml:space="preserve"><value>Надіслати файли на інший комп&apos;ютер…</value></data>
+  <data name="Tool_SendFolder.Text" xml:space="preserve"><value>Надіслати папку на інший комп&apos;ютер…</value></data>
+  <data name="SendDialog.Title" xml:space="preserve"><value>Надіслати на інший комп&apos;ютер</value></data>
+  <data name="SendDialog.PrimaryButtonText" xml:space="preserve"><value>Надіслати</value></data>
+  <data name="SendDialog.CloseButtonText" xml:space="preserve"><value>Скасувати</value></data>
+  <data name="Send_SummaryOne" xml:space="preserve"><value>Надіслати «{0}» на інший комп&apos;ютер, де MegaCopier отримує файли.</value></data>
+  <data name="Send_SummaryMany" xml:space="preserve"><value>Надіслати елементи ({0}) на інший комп&apos;ютер, де MegaCopier отримує файли.</value></data>
+  <data name="Send_Found.Text" xml:space="preserve"><value>Комп&apos;ютери в мережі:</value></data>
+  <data name="Send_Searching" xml:space="preserve"><value>Пошук…</value></data>
+  <data name="Send_NoneFound" xml:space="preserve"><value>Нічого не знайдено: введіть ім&apos;я чи IP.</value></data>
+  <data name="Send_Host.Header" xml:space="preserve"><value>Комп&apos;ютер (ім&apos;я чи IP)</value></data>
+  <data name="Send_Host.PlaceholderText" xml:space="preserve"><value>PC-VITALNIA або 192.168.1.20</value></data>
+  <data name="Send_Code.Header" xml:space="preserve"><value>Код, який цей комп&apos;ютер показує в налаштуваннях</value></data>
+  <data name="Send_Code.PlaceholderText" xml:space="preserve"><value>XXXX-XXXX-XXXX</value></data>
+  <data name="Job_TitleSend" xml:space="preserve"><value>Надіслати {0}</value></data>
+  <data name="Job_TitleSending" xml:space="preserve"><value>Надсилання {0}</value></data>
+  <data name="Job_TitleSent" xml:space="preserve"><value>Надіслано: {0}</value></data>
+  <data name="Job_StateSending" xml:space="preserve"><value>Надсилання</value></data>
+  <data name="Job_FilesSentOne" xml:space="preserve"><value>Надіслано файлів: {0}</value></data>
+  <data name="Job_FilesSentMany" xml:space="preserve"><value>Надіслано файлів: {0}</value></data>
+  <data name="Rules_Describe.Header" xml:space="preserve"><value>Скажіть своїми словами (англійською чи іспанською)</value></data>
+  <data name="Rules_Describe.PlaceholderText" xml:space="preserve"><value>photos larger than 2 MB from last month except .tmp</value></data>
+  <data name="Rules_DescribeApply.Text" xml:space="preserve"><value>Застосувати</value></data>
+  <data name="Rules_DescribeUnderstood" xml:space="preserve"><value>Зрозуміло: {0}.</value></data>
+  <data name="Rules_DescribeNothing" xml:space="preserve"><value>Не зрозумів, що фільтрувати.</value></data>
+  <data name="Rules_DescribeUnknown" xml:space="preserve"><value>Не зрозумів: {0}.</value></data>
+  <data name="Mode_Organize.Content" xml:space="preserve"><value>Упорядкувати фото за датою</value></data>
+  <data name="Rules_Duplicates.Content" xml:space="preserve"><value>Не копіювати те, що вже є в призначенні (дублікати)</value></data>
+  <data name="Rules_Duplicates.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Порівнює вміст, а не ім&apos;я: фото, яке вже є в будь-якій папці призначення, навіть під іншим ім&apos;ям, не копіюється знову.</value></data>
+  <data name="Skip_SkipDuplicate" xml:space="preserve"><value>Уже є в призначенні під іншим ім&apos;ям чи в іншій папці</value></data>
+  <data name="Plan_SkipDuplicate" xml:space="preserve"><value>Буде пропущено: уже є в призначенні (дублікат)</value></data>
+  <data name="Destinations_Encrypt.Content" xml:space="preserve"><value>Зашифрувати паролем (для флешки чи диска, який можна загубити)</value></data>
+  <data name="Destinations_Password.Header" xml:space="preserve"><value>Пароль</value></data>
+  <data name="Destinations_Password2.Header" xml:space="preserve"><value>Повторіть пароль</value></data>
+  <data name="Destinations_PasswordHint" xml:space="preserve"><value>Шифрується AES-256. Якщо ви забудете пароль, відновити файли буде неможливо. Щоб прочитати їх: меню «Нове» &gt; «Розшифрувати».</value></data>
+  <data name="Destinations_PasswordShort" xml:space="preserve"><value>Пароль має містити щонайменше 8 символів.</value></data>
+  <data name="Destinations_PasswordMismatch" xml:space="preserve"><value>Паролі не збігаються.</value></data>
+  <data name="PasswordDialog.Title" xml:space="preserve"><value>Пароль</value></data>
+  <data name="PasswordDialog.PrimaryButtonText" xml:space="preserve"><value>ОК</value></data>
+  <data name="PasswordDialog.CloseButtonText" xml:space="preserve"><value>Скасувати</value></data>
+  <data name="Tool_Decrypt.Text" xml:space="preserve"><value>Розшифрувати зашифровані файли…</value></data>
+  <data name="Picker_DecryptHere" xml:space="preserve"><value>Розшифрувати сюди</value></data>
+  <data name="Decrypt_Ask" xml:space="preserve"><value>Пароль зашифрованих файлів у «{0}»:</value></data>
+  <data name="Resume_PasswordAsk" xml:space="preserve"><value>Це копіювання зашифроване, а пароль не зберігається: введіть його, щоб продовжити.</value></data>
+  <data name="Job_TitleEncrypt" xml:space="preserve"><value>Зашифрувати {0}</value></data>
+  <data name="Job_TitleEncrypting" xml:space="preserve"><value>Шифрування {0}</value></data>
+  <data name="Job_TitleEncrypted" xml:space="preserve"><value>Зашифровано: {0}</value></data>
+  <data name="Job_StateEncrypting" xml:space="preserve"><value>Шифрування</value></data>
+  <data name="Job_FilesEncryptedOne" xml:space="preserve"><value>Зашифровано файлів: {0}</value></data>
+  <data name="Job_FilesEncryptedMany" xml:space="preserve"><value>Зашифровано файлів: {0}</value></data>
+  <data name="Job_TitleDecrypt" xml:space="preserve"><value>Розшифрувати {0}</value></data>
+  <data name="Job_TitleDecrypting" xml:space="preserve"><value>Розшифрування {0}</value></data>
+  <data name="Job_TitleDecrypted" xml:space="preserve"><value>Розшифровано: {0}</value></data>
+  <data name="Job_StateDecrypting" xml:space="preserve"><value>Розшифрування</value></data>
+  <data name="Job_FilesDecryptedOne" xml:space="preserve"><value>Розшифровано файлів: {0}</value></data>
+  <data name="Job_FilesDecryptedMany" xml:space="preserve"><value>Розшифровано файлів: {0}</value></data>
+  <data name="Settings_DisksTitle.Text" xml:space="preserve"><value>Стан дисків</value></data>
+  <data name="Settings_DisksDescription.Text" xml:space="preserve"><value>Що Windows повідомляє про кожен диск (SMART). Якщо якийсь попереджає про збій, MegaCopier скаже вам про це під час копіювання з нього чи на нього.</value></data>
+  <data name="Settings_DisksCheck.Text" xml:space="preserve"><value>Перевірити зараз</value></data>
+  <data name="Disk_Row" xml:space="preserve"><value>Диск {0} · {1}: {2}</value></data>
+  <data name="Disk_Healthy" xml:space="preserve"><value>справний</value></data>
+  <data name="Disk_Unknown" xml:space="preserve"><value>стан невідомий</value></data>
+  <data name="Disk_HealthWarning" xml:space="preserve"><value>повідомляє про проблему</value></data>
+  <data name="Disk_Checking" xml:space="preserve"><value>Перевірка дисків…</value></data>
+  <data name="Disk_WarningTitle" xml:space="preserve"><value>Диск повідомляє про збій</value></data>
+  <data name="Disk_Warning" xml:space="preserve"><value>«{0}» (диск {1}): {2}. Якнайшвидше скопіюйте важливе на інший диск.</value></data>
+  <data name="Settings_TuneTitle.Text" xml:space="preserve"><value>Автоналаштування для кожного диска</value></data>
+  <data name="Settings_TuneDescription.Text" xml:space="preserve"><value>Вимірює кожен диск із різними розмірами блоку й кількістю операцій і використовує найшвидший варіант під час копіювання на нього (якщо ви не змінювали продуктивність вручну).</value></data>
+  <data name="Settings_TuneMeasure.Text" xml:space="preserve"><value>Виміряти диски</value></data>
+  <data name="Settings_TuneNone" xml:space="preserve"><value>Жоден диск ще не виміряно.</value></data>
+  <data name="Settings_TuneDisk" xml:space="preserve"><value>Диск</value></data>
+  <data name="Settings_TuneProfile" xml:space="preserve"><value>{0}: блоки по {1} МБ, {2} одночасно ({3:N0} МБ/с)</value></data>
+  <data name="Settings_TuneMeasuring" xml:space="preserve"><value>Вимірювання {0} ({1} з {2})…</value></data>
+  <data name="Tool_Timeline.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Часова шкала черги</value></data>
+  <data name="Timeline_Title.Text" xml:space="preserve"><value>Часова шкала</value></data>
+  <data name="Timeline_Info.Text" xml:space="preserve"><value>Прогноз за швидкістю кожного диска. Копіювання на одному диску йдуть по черзі.</value></data>
+  <data name="Timeline_Empty.Text" xml:space="preserve"><value>Немає копіювань, що виконуються чи очікують.</value></data>
+  <data name="Timeline_Summary" xml:space="preserve"><value>Усе має завершитися близько {0} (через {1}).</value></data>
+  <data name="Timeline_Now" xml:space="preserve"><value>Зараз</value></data>
+  <data name="Timeline_Tomorrow" xml:space="preserve"><value>завтра {0}</value></data>
+  <data name="Timeline_Running" xml:space="preserve"><value>Виконується · очікуване закінчення: {0} (залишилося {1})</value></data>
+  <data name="Timeline_Paused" xml:space="preserve"><value>Пауза · якщо продовжити зараз, закінчення: {0}</value></data>
+  <data name="Timeline_Queued" xml:space="preserve"><value>У черзі · початок: {0} · закінчення: {1} (триватиме {2})</value></data>
+  <data name="Timeline_Scheduled" xml:space="preserve"><value>Заплановано · початок: {0} · закінчення: {1} (триватиме {2})</value></data>
+  <data name="Timeline_Measuring" xml:space="preserve"><value>розмір ще вимірюється</value></data>
+  <data name="Tool_Shelf.Text" xml:space="preserve"><value>Полиця для перетягування</value></data>
+  <data name="Tray_Shelf" xml:space="preserve"><value>Полиця для перетягування</value></data>
+  <data name="Shelf_WindowTitle" xml:space="preserve"><value>Полиця для перетягування MegaCopier</value></data>
+  <data name="Shelf_Title.Text" xml:space="preserve"><value>Полиця для перетягування</value></data>
+  <data name="Shelf_Empty.Text" xml:space="preserve"><value>Перетягніть сюди файли й папки звідки завгодно. Потім скопіюйте чи перемістіть їх усі разом або перетягніть назад.</value></data>
+  <data name="Shelf_DropCaption" xml:space="preserve"><value>Додати на полицю</value></data>
+  <data name="Shelf_CopyTo.Text" xml:space="preserve"><value>Копіювати в…</value></data>
+  <data name="Shelf_MoveTo.Text" xml:space="preserve"><value>Перемістити в…</value></data>
+  <data name="Shelf_Clear.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Очистити полицю</value></data>
+  <data name="Shelf_Remove.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Прибрати з полиці</value></data>
+  <data name="Shelf_One" xml:space="preserve"><value>1 елемент</value></data>
+  <data name="Shelf_Many" xml:space="preserve"><value>Елементів: {0}</value></data>
+  <data name="Shelf_RemoveNamed" xml:space="preserve"><value>Прибрати «{0}» з полиці</value></data>
+  <data name="Destinations_NoneChosen.Text" xml:space="preserve"><value>Позначте хоча б одне призначення (або додайте папку).</value></data>
+  <data name="Finish_ShutdownMessage" xml:space="preserve"><value>MegaCopier завершив копіювання. Комп&apos;ютер вимкнеться за 1 хвилину.</value></data>
+  <data name="Hash_Name" xml:space="preserve"><value>Геш: {0}</value></data>
+</root>

@@ -799,4 +799,5 @@
   <data name="Shelf_RemoveNamed" xml:space="preserve"><value>Remove &quot;{0}&quot; from the shelf</value></data>
   <data name="Destinations_NoneChosen.Text" xml:space="preserve"><value>Tick at least one destination (or add a folder).</value></data>
   <data name="Finish_ShutdownMessage" xml:space="preserve"><value>MegaCopier has finished the transfers. The PC will shut down in 1 minute.</value></data>
+  <data name="Hash_Name" xml:space="preserve"><value>Hash: {0}</value></data>
 </root>
