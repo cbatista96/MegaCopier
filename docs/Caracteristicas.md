@@ -1,7 +1,7 @@
 # Características de MegaCopier
 
 Todo lo que hace MegaCopier, por temas. Para usarlo, la [guía](Guia.md); para compararlo con otros copiadores, la
-[comparativa](Comparativa-copiadores.md).
+[comparativa](Comparativa-copiadores.md); y si tienes dudas, las [preguntas frecuentes](Preguntas-frecuentes.md).
 
 ## Copia que no se pierde
 

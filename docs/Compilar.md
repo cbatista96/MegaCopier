@@ -61,18 +61,16 @@ que los huecos `{0}` coincidan.
 
 ## Versiones
 
-La versión está en `Directory.Build.props` (sigue [SemVer](https://semver.org/lang/es/)). Para publicar una:
+La versión está en `Directory.Build.props` (sigue [SemVer](https://semver.org/lang/es/)) y los cambios se anotan en
+`## [Sin publicar]` de `CHANGELOG.md`. Para publicar una versión:
 
-1. Sube la versión en `Directory.Build.props` y anota los cambios en `CHANGELOG.md`.
-2. Crea la etiqueta y súbela:
+```powershell
+.\tools\publicar-version.ps1 1.2.0
+```
 
-   ```powershell
-   git tag v1.2.0
-   git push origin v1.2.0
-   ```
-
-3. GitHub compila, prueba y publica la versión con el instalador, el ZIP portátil, `mcopy.exe` y sus sumas SHA-256
-   (`.github/workflows/release.yml`).
+Cambia la versión, fecha las novedades, crea la etiqueta `v1.2.0` y la sube. GitHub compila, prueba y publica la versión
+con el instalador, el ZIP portátil, `mcopy.exe` y sus sumas SHA-256 (`.github/workflows/release.yml`). Todo el proceso
+explicado en [Versiones.md](Versiones.md).
 
 ## Firmar (opcional)
 

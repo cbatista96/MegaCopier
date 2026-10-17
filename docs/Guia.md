@@ -1,114 +1,581 @@
 # Guía de uso de MegaCopier
 
-Copiador de archivos para Windows 11 cuya prioridad es que **una copia interrumpida (apagón, cuelgue, USB desconectado)
-continúe desde donde quedó, sin corromper el archivo**. Sustituye al Ctrl+V del Explorador, arranca al instante y es
-más rápido que el Explorador y robocopy entre discos NVMe.
+Todo MegaCopier explicado paso a paso. Si es tu primera vez, lee **[Instalar](#1-instalar)** y **[Copiar y pegar](#2-copiar-y-pegar-desde-el-explorador)**: con eso ya lo usas. El resto lo consultas cuando lo
+necesites.
 
-![Copiando](capturas/compacta.png)
+![MegaCopier copiando en la ventana compacta](capturas/compacta.png)
 
-## Instalar
+## Índice
 
-Descarga `MegaCopier-Setup-<versión>.exe` de la página de [versiones (Releases)](https://github.com/cbatista96/MegaCopier/releases) y ejecútalo (≈20 MB). Se instala **solo para tu usuario** en
-`%LOCALAPPDATA%\Programs\MegaCopier`, sin pedir permisos de administrador y sin instalar nada más (lleva su propio runtime).
-Durante la instalación puedes elegir:
+1. [Instalar](#1-instalar)
+2. [Copiar y pegar desde el Explorador](#2-copiar-y-pegar-desde-el-explorador)
+3. [La ventana de copia](#3-la-ventana-de-copia)
+4. [Si se va la luz: reanudar](#4-si-se-va-la-luz-reanudar)
+5. [Si el archivo ya existe](#5-si-el-archivo-ya-existe)
+6. [El menú «Nueva»](#6-el-menú-nueva)
+7. [Varios destinos, favoritos y programar](#7-varios-destinos-favoritos-y-programar)
+8. [Comprobar que la copia está bien](#8-comprobar-que-la-copia-está-bien)
+9. [Sincronizar carpetas](#9-sincronizar-carpetas)
+10. [Copias de seguridad y versiones](#10-copias-de-seguridad-y-versiones)
+11. [Proteger tus copias](#11-proteger-tus-copias)
+12. [Cifrar, comprimir y borrar de forma segura](#12-cifrar-comprimir-y-borrar-de-forma-segura)
+13. [Móviles, otros equipos, servidores y nubes](#13-móviles-otros-equipos-servidores-y-nubes)
+14. [La cola, la línea de tiempo y el historial](#14-la-cola-la-línea-de-tiempo-y-el-historial)
+15. [Tareas programadas y avisos](#15-tareas-programadas-y-avisos)
+16. [Controlar desde el móvil y con asistentes de IA](#16-controlar-desde-el-móvil-y-con-asistentes-de-ia)
+17. [Ajustes](#17-ajustes)
+18. [Temas](#18-temas)
+19. [La consola `mcopy`](#19-la-consola-mcopy)
+20. [Versión portátil](#20-versión-portátil)
+21. [Cómo funciona por dentro](#21-cómo-funciona-por-dentro)
+22. [Rendimiento](#22-rendimiento)
+23. [Limitaciones conocidas](#23-limitaciones-conocidas)
 
-- Añadir «Pegar con MegaCopier» y «Copiar / Mover aquí» al Explorador.
-- Iniciar con Windows (recomendado: queda en la bandeja y las copias empiezan al instante).
+---
 
-Se desinstala desde *Configuración > Aplicaciones* y no deja nada en el registro. Al final pregunta si borrar también
-los ajustes, temas e historial (`%LOCALAPPDATA%\MegaCopier`); por defecto se conservan para una reinstalación.
+## 1. Instalar
 
-**Activar / desactivar**: doble clic en el icono de la bandeja. Desactivado, el icono se pone gris con una X roja y
-copia el Explorador de Windows como siempre; otro doble clic lo devuelve a su color y MegaCopier vuelve a encargarse.
+1. Entra en la página de la **[última versión](https://github.com/cbatista96/MegaCopier/releases/latest)** y descarga
+   `MegaCopier-Setup-<versión>.exe` (unos 25 MB).
+2. Ejecútalo. Como el instalador todavía no está firmado, Windows muestra el aviso de **SmartScreen**: pulsa
+   **Más información** y luego **Ejecutar de todas formas**.
+3. Elige las opciones:
+   - **Añadir MegaCopier al menú del Explorador**: «Pegar con MegaCopier» y «Copiar / Mover aquí con MegaCopier».
+   - **Iniciar con Windows** (recomendado): MegaCopier queda en la bandeja y las copias empiezan al instante.
 
-> El instalador no está firmado: Windows mostrará el aviso de SmartScreen («Más información» → «Ejecutar de todas
-> formas»). Firmarlo (p. ej. con Azure Trusted Signing) elimina el aviso.
+Se instala **solo para tu usuario** en `%LOCALAPPDATA%\Programs\MegaCopier`, sin permisos de administrador y sin instalar
+nada más (lleva dentro todo lo que necesita). Tus ajustes, temas e historial se guardan en `%LOCALAPPDATA%\MegaCopier`.
 
-## Qué hace
+**Actualizar:** descarga el instalador de la versión nueva y ejecútalo encima. Se conservan los ajustes y el historial.
 
-**Copiar y mover desde el Explorador**
-- **Ctrl+C / Ctrl+X → Ctrl+V** en el Explorador o el Escritorio: lo hace MegaCopier. Solo actúa cuando el foco está en la
-  lista de archivos (nunca en la barra de direcciones, la búsqueda o al renombrar). Pegar en la misma carpeta y las
-  carpetas virtuales (Este equipo, ZIP…) siguen con el Explorador.
-- **Menú contextual** «Pegar con MegaCopier» y **arrastrar con el botón derecho** «Copiar aquí» / «Mover aquí».
-- **Mover**: en el mismo disco es un renombrado instantáneo (2 GB en 16 ms); entre discos se copia y el original solo se
-  borra cuando su copia está completa.
+**Desinstalar:** *Configuración > Aplicaciones > Aplicaciones instaladas > MegaCopier > Desinstalar*. No deja nada en el
+registro. Al final pregunta si borrar también tus ajustes, temas e historial; por defecto se conservan por si lo vuelves a
+instalar.
 
-**Reanudación tras un apagón** (el corazón del proyecto)
+---
+
+## 2. Copiar y pegar desde el Explorador
+
+Una vez instalado, **no tienes que cambiar nada de lo que haces**:
+
+- **Ctrl+C → Ctrl+V** en el Explorador o en el Escritorio: copia MegaCopier.
+- **Ctrl+X → Ctrl+V**: mueve MegaCopier. En el mismo disco es un renombrado instantáneo (2 GB en 16 ms); entre discos se
+  copia y el original solo se borra cuando su copia está completa y comprobada.
+- **Clic derecho > Pegar con MegaCopier** en una carpeta o en el fondo de una ventana. En Windows 11 aparece en el menú
+  corto, sin pasar por «Mostrar más opciones».
+- **Arrastrar con el botón derecho** y soltar: «Copiar aquí con MegaCopier» o «Mover aquí con MegaCopier».
+- **Arrastrar con el botón izquierdo** entre ventanas del Explorador (hay que activarlo en *Ajustes > General*; puede
+  preguntar antes, siempre o solo al mover).
+
+MegaCopier solo actúa cuando el foco está en la lista de archivos: nunca al escribir en la barra de direcciones, en la
+búsqueda o al renombrar. Pegar en la misma carpeta y en carpetas especiales (*Este equipo*, dentro de un ZIP…) sigue
+haciéndolo el Explorador.
+
+### Activar y desactivar
+
+**Doble clic en el icono de MegaCopier de la bandeja** (junto al reloj). Desactivado, el icono se pone gris con una X roja
+y copia el Explorador de Windows como siempre. Otro doble clic lo vuelve a activar. También está en el menú del icono:
+*Desactivar (usar el copiador de Windows)* / *Activar MegaCopier*.
+
+El menú del icono de la bandeja (clic derecho) tiene además: **Abrir MegaCopier**, **Pausar todo**, **Reanudar todo**,
+**Bandeja de arrastre**, **Iniciar con Windows** y **Salir**.
+
+---
+
+## 3. La ventana de copia
+
+### Compacta
+
+Al empezar una copia se abre la **ventana compacta**: la barra de arriba es el progreso total y la de abajo el del archivo
+que se está copiando, con la velocidad y el tiempo que queda. Debajo, las unidades de origen y destino.
+
+Los botones: **⌄ Más** (amplía la ventana), **Pausa**, **Saltar** (deja el archivo actual y sigue con el siguiente) y
+**Detener** (para la copia; se puede continuar después desde donde quedó). El botón **…** tiene más opciones de esa copia.
+Con varias copias aparece un paginador **‹ ›** para pasar de una a otra.
+
+### Completa
+
+**«Más»** la convierte en la **vista completa**:
+
+![Vista completa en modo claro](capturas/completa-claro.png)
+
+- **Barra de herramientas:** menú lateral, **Nueva** (todas las operaciones, ver [el menú «Nueva»](#6-el-menú-nueva)),
+  pausar todas, reanudar todas, quitar las terminadas, **línea de tiempo**, **historial**, **ajustes**, **acerca de** y
+  **Al terminar** (qué hace el equipo cuando acaban todas las copias: nada, suspender, hibernar, apagar, cerrar sesión o
+  cerrar MegaCopier).
+- **A la izquierda**, todas las copias con su estado (copiando, en espera, en pausa, completada, con errores…). Se
+  reordenan arrastrándolas.
+- **A la derecha**, la copia elegida con cinco pestañas:
+
+| Pestaña | Qué tiene |
+|---|---|
+| **Archivos** | La lista viva de archivos: lo ya copiado desaparece si marcas *Ocultar los terminados*, y *Seguir al actual* mantiene a la vista el que se copia. Buscar, filtrar por estado, ver las sumas de origen y destino, reordenar, quitar o añadir archivos, guardar o cargar la lista y exportarla a CSV o HTML. Al pasar el ratón por un archivo se ven todos sus detalles. |
+| **Destino** | El espacio libre de cada unidad de destino. |
+| **Opciones** | Qué se copia (fechas, atributos, ADS, permisos, propietario, auditoría), el modo, qué hacer si el archivo existe, el algoritmo de suma, el búfer, la verificación, archivo de sumas, informe HTML, comandos al terminar, filtros y reglas. Se pueden cambiar con la copia en marcha. |
+| **Estado** | Gráfica de velocidad y totales: copiados, verificados, omitidos, con errores y pendientes. |
+| **Registro** | Todo lo que ha pasado, con la hora. |
+
+![Ventana ampliada con la gráfica de velocidad](capturas/ampliada-estado.png)
+
+En *Ajustes > Ventana > Ventana de copia* eliges si empieza **compacta**, **completa** o **automática** (compacta con
+una copia y completa cuando hay varias a la vez).
+
+### Al terminar
+
+Según *Ajustes > Ventana > Al terminar las copias*, la ventana se **cierra si todo fue bien** (lo normal), se **cierra
+siempre** o **se queda abierta**. Si se queda abierta verás el resumen y el botón **Abrir carpeta**:
+
+![Copias terminadas](capturas/terminadas.png)
+
+También puedes arrastrar archivos o carpetas a la ventana para copiarlos.
+
+---
+
+## 4. Si se va la luz: reanudar
+
+Es lo que hace a MegaCopier diferente. Si la copia se corta (apagón, cuelgue, Windows se reinicia, se desconecta el USB),
+**no se pierde lo copiado**:
+
+1. Al volver a abrir MegaCopier, la copia aparece como **«Interrumpido · se puede continuar desde donde quedó»** y Windows
+   muestra un aviso.
+
+   ![Copia interrumpida](capturas/interrumpida.png)
+
+2. Pulsa **Continuar** (▶). MegaCopier comprueba que lo ya copiado está bien y sigue **dentro del mismo archivo**, no
+   desde el principio:
+
+   ![Copia reanudada al 30 % del archivo](capturas/reanudada.png)
+
+Si prefieres que sigan solas sin preguntar: *Ajustes > Copia > Reanudar solas al arrancar*. Con **Descartar** (la
+papelera) se abandona la copia y se borra lo que quedó a medias.
+
+Mientras copia, el equipo no se suspende. Si el disco o la red desaparecen un momento, MegaCopier **espera** a que
+vuelvan (y también a que haya espacio libre) en vez de fallar.
+
+---
+
+## 5. Si el archivo ya existe
+
+Por defecto MegaCopier **pregunta**, enseñando los dos archivos con su miniatura, tamaño y fecha (y cuál es más reciente):
+
+![El archivo ya existe](capturas/conflicto.png)
+
+- **Reemplazar**, **Conservar ambos** (el nuevo se copia con otro nombre) u **Omitir**.
+- **Renombrar el que ya está y copiar este**.
+- **Hacer lo mismo con los demás conflictos de esta copia**, para no tener que contestar uno a uno.
+
+Si no quieres que pregunte, elige una regla fija en *Ajustes > Copia > Si el archivo ya existe*: reemplazar, omitir,
+reemplazar si es más nuevo, reemplazar si cambia el tamaño, conservar ambos o renombrar el que ya está. El patrón de
+nombres se puede cambiar (`{name} ({n}){ext}`, `{date}`…).
+
+Si el archivo de destino es idéntico al de origen, se omite sin preguntar.
+
+---
+
+## 6. El menú «Nueva»
+
+El botón **Nueva** de la vista completa reúne todo lo que MegaCopier sabe hacer sin pasar por el Explorador:
+
+| Opción | Qué hace |
+|---|---|
+| **Copiar archivos… / Copiar una carpeta… / Mover archivos…** | Eliges qué y adónde. |
+| **Copiar a** | Copia rápida a un favorito, un destino reciente o una carpeta abierta en el Explorador, Total Commander o Directory Opus. |
+| **Comprobar archivos de sumas… / Comprobar sumas de una carpeta…** | Comprueba un `.sha256`, `.md5`, `.sfv`, `.b3`, `.xxh3`… (ver [Comprobar](#8-comprobar-que-la-copia-está-bien)). |
+| **Crear archivo de sumas de una carpeta… / de archivos…** | Calcula y guarda las sumas. |
+| **Enviar archivos / una carpeta a otro equipo…** | Por la red local a otro PC con MegaCopier o a un móvil con LocalSend. |
+| **Descifrar archivos cifrados…** | Recupera los `.mcenc` con su contraseña. |
+| **Reparar con datos de recuperación…** | Repara una copia dañada (ver [Proteger](#11-proteger-tus-copias)). |
+| **Copia de seguridad sin duplicados… / Restaurar una copia de seguridad…** | Ver [Copias de seguridad](#10-copias-de-seguridad-y-versiones). |
+| **Comparar y sincronizar carpetas…** | Ver [Sincronizar](#9-sincronizar-carpetas). |
+| **Copiar desde / a un móvil, cámara o servidor…** | MTP, FTP, SFTP, WebDAV, S3 y nubes. |
+| **Borrar… / Borrar de forma segura…** | Siempre con confirmación. |
+| **Cargar una lista de copia…** | Repite una lista de archivos guardada. |
+| **Bandeja de arrastre** | Una ventanita donde vas soltando archivos de distintas carpetas para copiarlos juntos después. |
+
+---
+
+## 7. Varios destinos, favoritos y programar
+
+Al elegir el destino (por ejemplo, con *Copiar archivos…*) se abre la ventana de destinos, donde puedes:
+
+- **Añadir varios destinos**: la misma copia va a la vez a dos discos o a un disco y un NAS. Se lee el origen una sola vez.
+- Usar **favoritos** (se gestionan en *Ajustes > Carpetas favoritas*), **recientes** o las **carpetas abiertas** en el
+  Explorador, Total Commander y Directory Opus.
+- **Mover** en vez de copiar, **simular** (dice qué haría sin cambiar nada) y elegir el **modo**:
+  - **Copiar** (normal).
+  - **Sincronizar (espejo)**: deja el destino igual que el origen, quitando lo que sobra.
+  - **Solo actualizar los que ya existen**.
+  - **Solo la estructura de carpetas**, sin archivos.
+  - **Organizar fotos por fecha**: fotos y vídeos en carpetas año-mes según la fecha en que se tomaron.
+- **Cifrar** con contraseña o copiar a un **ZIP** o **7z** (ver [Cifrar](#12-cifrar-comprimir-y-borrar-de-forma-segura)).
+- **Programar** la hora de inicio (sigue programada aunque reinicies el equipo) o guardarla como **tarea** que se repite.
+
+### Filtros
+
+En la pestaña **Opciones > Filtros** de cada copia (o con `mcopy`):
+
+- Incluir y excluir por nombre (`*.jpg; node_modules`), tamaño, fechas, ocultos y de sistema.
+- **En lenguaje normal**: escribe «fotos de más de 2 MB del último mes sin los .tmp» y MegaCopier lo convierte en filtros.
+- **Por el texto de las fotos y capturas**: «con el texto "factura"» busca dentro de las imágenes con el reconocimiento de
+  texto de Windows, sin internet.
+- **Omitir fotos duplicadas**: no copia lo que ya está en el destino aunque tenga otro nombre.
+- Omitir basura: `Thumbs.db`, `desktop.ini`, `.DS_Store`, `~$…`.
+
+---
+
+## 8. Comprobar que la copia está bien
+
+- **Verificar después de copiar** (*Ajustes > Copia*, o en cada copia): relee el destino **sin caché** (de verdad del
+  disco), compara las sumas con el origen y, si un bloque no coincide, **lo vuelve a copiar**.
+- **Algoritmo de suma**: CRC32, xxHash3, xxHash64, xxHash128, MD5, SHA-1, SHA-256, SHA-512, SHA3-256, SHA3-512 o BLAKE3.
+  xxHash3 es el más rápido; SHA-256 y BLAKE3 sirven además como prueba de que nadie ha tocado los archivos.
+- **Guardar archivo de sumas** al terminar, para comprobarlo cuando quieras.
+- **Comprobar sumas** (*Nueva > Comprobar…*): lee un `.sha256`, `.sha1`, `.sha512`, `.md5`, `.sfv`, `.b3` o `.xxh*`
+  (formatos sha256sum, BSD y xxhsum) y dice qué está bien, qué ha cambiado y qué falta.
+
+Los errores se explican en lenguaje claro («otro programa tiene el archivo abierto», «no queda espacio»…) con un botón
+**Reintentar**; el detalle técnico está en el texto que aparece al pasar el ratón.
+
+---
+
+## 9. Sincronizar carpetas
+
+### Comparar y sincronizar
+
+*Nueva > Comparar y sincronizar carpetas…*: eliges una carpeta a la izquierda y otra a la derecha y pulsas **Comparar**.
+
+![Comparar y sincronizar](capturas/comparar.png)
+
+- Ves cada diferencia: archivos nuevos, cambiados, borrados, con su tamaño y fecha en cada lado y una flecha con lo que
+  se hará.
+- Eliges el sentido: **en los dos sentidos**, **de izquierda a derecha** o **de derecha a izquierda**.
+- Desmarca lo que no quieras tocar. **Simular** enseña el resultado sin cambiar nada; **Sincronizar** lo hace.
+
+En los dos sentidos, MegaCopier **recuerda cómo estaban** las carpetas la última vez: así sabe si un archivo se borró en un
+lado (y lo borra en el otro) o es nuevo, y **detecta los renombrados y movidos** (los renombra en el otro lado en vez de
+copiarlos otra vez). Lo que se quita o se sustituye va a la **Papelera** (en USB y red, a la carpeta
+`.megacopier-borrados`).
+
+### Espejo
+
+El modo **Sincronizar (espejo)** deja el destino exactamente igual que el origen. Es en un solo sentido: lo que se borre en
+el origen se borra en el destino (con la carpeta de versiones, se guarda allí en vez de perderse).
+
+### Sincronización en tiempo real
+
+*Ajustes > Sincronización en tiempo real > Añadir carpeta…*: MegaCopier vigila la carpeta y copia cada cambio al momento
+a su destino, mientras esté abierto en la bandeja. Puede ser en espejo (también borra) o solo añadir y actualizar.
+
+---
+
+## 10. Copias de seguridad y versiones
+
+### Copias de seguridad sin duplicados
+
+*Nueva > Copia de seguridad sin duplicados…* (o `mcopy backup`). Cada copia de seguridad es una **instantánea** completa,
+pero los datos se guardan troceados por contenido: lo que no ha cambiado no se vuelve a guardar. Diez copias de algo que
+apenas cambia ocupan poco más que una.
+
+Para recuperar: *Nueva > Restaurar una copia de seguridad…*, eliges la fecha y adónde (o `mcopy snapshots` y
+`mcopy restore`).
+
+### Carpeta de versiones
+
+Al copiar o sincronizar, lo que se sobrescribe o se quita puede guardarse en una **carpeta de versiones** dentro del
+destino, en vez de perderse. Con **limpieza automática** (por ejemplo: una versión por día de la última semana, una por
+semana del último mes y una por mes del último año).
+
+### Copia delta
+
+Al reemplazar archivos grandes (máquinas virtuales, bases de datos…), solo se escriben los **bloques que cambiaron**. Mucho
+más rápido, y se puede deshacer desde el historial.
+
+---
+
+## 11. Proteger tus copias
+
+- **Escudo contra ransomware** (activado siempre): si muchos archivos que van a sobrescribir una copia buena parecen
+  cifrados de repente, la copia **se para** antes de estropear también la copia buena, y te avisa.
+- **Datos de recuperación** (`--recovery`): guarda junto a la copia un pequeño porcentaje de datos extra (paridad
+  Reed-Solomon, como PAR2). Si con los años el disco o el USB estropea bloques de la copia, *Nueva > Reparar con datos de
+  recuperación…* (o `mcopy repair`) los reconstruye **sin necesitar el original**.
+- **Guardián de integridad** (*Ajustes > Guardián de integridad*): guarda la suma de cada archivo de las carpetas que
+  elijas y las revisa cada día, semana o mes. Si un archivo se ha dañado sin que nadie lo tocara (corrupción silenciosa
+  del disco), te avisa.
+- **Aviso SMART** (*Ajustes > Avanzado > Estado de los discos*): avisa cuando un disco empieza a fallar.
+- **Modo forense** (`--forensic`): guarda un manifiesto con la SHA-256 de cada archivo de origen y de destino, quién copió
+  y cuándo, firmado digitalmente. Cualquiera puede comprobar después que nada ha cambiado con `mcopy verify-manifest`.
+- **Modo rescate** (`--rescue`): para discos dañados; salva todo lo legible y deja en ceros lo que no se puede leer, en vez
+  de fallar.
+- **Carpetas «todo o nada»** (`--atomic`): la carpeta solo aparece en el destino cuando está completa.
+
+---
+
+## 12. Cifrar, comprimir y borrar de forma segura
+
+- **Copia cifrada**: en la ventana de destinos, *Cifrar* y una contraseña. Cada archivo se guarda cifrado con AES-256
+  (`.mcenc`). Para recuperarlos: *Nueva > Descifrar archivos cifrados…* o `mcopy decrypt`. **Si olvidas la contraseña no
+  hay forma de recuperarlos.**
+- **A ZIP** (con o sin contraseña): el ZIP cifrado usa AES de WinZip y lo abren 7-Zip, WinRAR y WinZip.
+- **A 7z** (con o sin contraseña): cifrado, oculta también los nombres de los archivos.
+- ZIP y 7z se comprimen **en paralelo** en varios núcleos.
+- **Borrar de forma segura** (*Nueva > Borrar de forma segura…*): sobrescribe antes de borrar, con una pasada de ceros,
+  una aleatoria, DoD de 3 pasadas o DoD de 7 pasadas. Los enlaces se borran como enlaces, sin tocar lo que hay detrás.
+
+---
+
+## 13. Móviles, otros equipos, servidores y nubes
+
+### Móviles y cámaras por USB
+
+Conecta el móvil o la cámara (en el móvil, elige *Transferir archivos*). *Nueva > Copiar desde un móvil, cámara o
+servidor…* para traer fotos, o *Copiar archivos a un móvil, cámara o servidor…* para llevar.
+
+### LocalSend (iPhone y Android, sin cables)
+
+[LocalSend](https://localsend.org) es una app gratuita para el móvil. Con *Ajustes > Recibir de otros equipos > Recibir
+desde el móvil con LocalSend* activado, el PC aparece en LocalSend y lo que envíes llega a la carpeta que elijas. Para
+**enviar al móvil**: *Nueva > Enviar archivos a otro equipo…* y elige el móvil.
+
+### Otro PC con MegaCopier
+
+En el PC que recibe: *Ajustes > Recibir de otros equipos > Recibir archivos de otros equipos con MegaCopier*. Te da un
+**código**. En el que envía: *Nueva > Enviar archivos a otro equipo…*, elige el equipo (o escribe su nombre o IP) y el
+código. Va cifrado y por la red local.
+
+### Servidores
+
+*Ajustes > Conexiones a servidores > Añadir…*: **FTP**, **FTPS**, **SFTP**, **WebDAV** (Nextcloud, ownCloud, NAS…) y **S3**
+y compatibles (AWS, Backblaze B2, Cloudflare R2, Wasabi, MinIO). Después aparecen como origen y destino. Las contraseñas
+se guardan en el Administrador de credenciales de Windows, nunca en archivos.
+
+MegaCopier usa varias conexiones a la vez (hasta 255) y **las ajusta solo** según la velocidad que consigue. El máximo se
+elige en *Conexiones a la vez (máximo)*.
+
+### Nubes: OneDrive, Google Drive y Dropbox
+
+Se añaden igual que un servidor, con inicio de sesión en el navegador (MegaCopier nunca ve tu contraseña). Cada servicio
+pide **registrar la app una vez** (gratis, unos 10 minutos): [cómo conectar las nubes](Nube.md).
+
+### Total Commander y Directory Opus
+
+Un botón que llame a `mcopy send` hace que copien con MegaCopier: [Integraciones](Integraciones.md).
+
+---
+
+## 14. La cola, la línea de tiempo y el historial
+
+- **Cola por disco**: dos copias en el mismo disco van **de una en una** (a la vez serían más lentas); en discos distintos
+  van **a la vez**. *Ajustes > Cola* fija el máximo de copias a la vez y qué discos son «rápidos» (pueden con varias).
+- **Línea de tiempo** (icono del reloj): cuándo empezará y terminará cada copia, según la velocidad de cada disco.
+
+  ![Línea de tiempo](capturas/linea-tiempo.png)
+
+- **Historial** (icono del reloj con flecha): todas las copias terminadas, con **Repetir**, **Deshacer** (quita lo
+  copiado o devuelve lo movido), **Copiar de vuelta** y **Abrir destino**.
+
+  ![Historial](capturas/historial.png)
+
+---
+
+## 15. Tareas programadas y avisos
+
+- **Tareas programadas**: en la ventana de destinos, *Guardar como tarea*. Se repiten una vez, cada día, semana o mes.
+  Si el PC estaba apagado a esa hora, **se hacen al encenderlo**. Se gestionan en *Ajustes > Tareas programadas*.
+- **Avisar al terminar** con una notificación de Windows y sonido (*Ajustes > Sonidos*).
+- **Avisar por correo** (*Ajustes > Avanzado*): servidor SMTP, remitente y destinatarios, o solo si hay problemas. Tiene
+  botón de prueba.
+- **Avisar a una dirección web** (webhook) al terminar, para Slack, Discord, Teams, Home Assistant o lo que uses.
+- **Al terminar** (barra de herramientas): suspender, hibernar, apagar, cerrar sesión o cerrar MegaCopier.
+- **Comandos al terminar** (pestaña Opciones): uno por línea, se ejecutan con `cmd.exe` y reciben variables como
+  `%MEGACOPIER_STATE%` o `%MEGACOPIER_DESTINATION%`. Empieza la línea con `ok:` para que solo se ejecute si todo fue bien,
+  o con `error:` si falló.
+
+---
+
+## 16. Controlar desde el móvil y con asistentes de IA
+
+- **Controlar desde el móvil** (*Ajustes > Recibir de otros equipos > Controlar desde el móvil*): abre en el navegador del
+  móvil la dirección que te da, escribe el código y verás las copias con su progreso, y podrás pausarlas, seguirlas o
+  detenerlas. Solo funciona en tu red local y se bloquea tras 10 códigos erróneos.
+- **Asistentes de IA** (Claude, Copilot y otros): `mcopy mcp` es un servidor MCP. El asistente puede pedir copias,
+  comprobaciones y copias de seguridad («copia Documentos al NAS esta noche y verifícala»). No puede borrar nada.
+  [Cómo configurarlo](Integraciones.md#asistentes-de-ia-claude-copilot-y-otros-servidor-mcp).
+
+---
+
+## 17. Ajustes
+
+Botón del engranaje en la vista completa. Cada ajuste tiene su explicación debajo.
+
+![Ajustes](capturas/ajustes.png)
+
+| Sección | Qué se ajusta |
+|---|---|
+| **General** | Usar MegaCopier en lugar del copiador de Windows · Copiar y mover al pegar (Ctrl+V) · Arrastrar con el botón izquierdo (y si preguntar antes) · Opciones en el menú contextual · Iniciar con Windows. |
+| **Ventana** | Ventana compacta, completa o automática · Qué hacer al terminar · Siempre visible · Avisar al terminar · **Idioma** · Unidades de tamaño (KB como el Explorador, KiB binarias o kB de 1000). |
+| **Sonidos** | Sonido para cada momento (terminar, error, pregunta…), volumen, sonidos propios y no sonar con juegos, presentaciones o «No molestar». |
+| **Temas** | El tema y su editor (ver [Temas](#18-temas)). |
+| **Copia** | Verificar después de copiar · Si el archivo ya existe · Algoritmo de suma · Qué se copia (fechas, atributos, ADS, permisos, propietario, auditoría) · Archivo de sumas e informe · Comprobar el espacio libre antes · Caché del sistema · Comprimir por la red (SMB) · Reanudar solas al arrancar · Rendimiento (límite de velocidad, búfer, operaciones en paralelo). |
+| **Carpetas favoritas** | Destinos favoritos para *Copiar a*. |
+| **Recibir de otros equipos** | Recibir de otro PC con MegaCopier (código y carpeta) · Recibir con LocalSend · Controlar desde el móvil. |
+| **Conexiones a servidores** | Servidores y nubes · Conexiones a la vez (máximo). |
+| **Sincronización en tiempo real** | Carpetas que se copian al momento. |
+| **Tareas programadas** | Copias que se repiten solas. |
+| **Guardián de integridad** | Carpetas vigiladas y cada cuánto. |
+| **Cola** | Copias a la vez · Dispositivos rápidos · Ir más despacio mientras usas el equipo · Límite de velocidad por horario · Pausar con batería · Pausar en juegos y presentaciones. |
+| **Avanzado** | Prioridad del proceso · Excluir MegaCopier de Windows Defender (más rápido con muchos archivos; pide permiso de administrador) · Comandos al terminar · Guardar el registro de cada copia · Avisos por webhook y por correo · Estado de los discos (SMART) · Ajuste automático para cada disco. |
+
+Cambiar el **idioma** pide reiniciar MegaCopier (la app lo ofrece con un botón). Hay 14: español, inglés, francés, alemán,
+italiano, portugués de Brasil, ruso, ucraniano, polaco, neerlandés, turco, chino, japonés y coreano.
+
+---
+
+## 18. Temas
+
+*Ajustes > Temas*. Cambian toda la interfaz al momento:
+
+| | | |
+|---|---|---|
+| **Fluent (como Windows)**: sigue el modo claro u oscuro y el color de acento de Windows | **Fluent oscuro** | **Fluent claro** |
+| **Medianoche** | **Grafito** | **Océano** |
+| **Bosque** | **Atardecer** | **SuperCopier clásico** |
+| **Ultracopier clásico** | **Alto contraste** | |
+
+Con **Personalizar el tema** cambias los 16 colores (lo ves al momento en toda la interfaz), el degradado y el alto de las
+barras, el redondeo y el fondo (Mica, Mica Alt, Acrílico o sólido). Guarda tus temas con nombre y compártelos con
+**Exportar…** / **Importar…** (archivos `.json`).
+
+Todos los temas en imágenes: [README > Temas](../README.md#temas).
+
+---
+
+## 19. La consola `mcopy`
+
+`mcopy.exe` está en la carpeta de MegaCopier (`%LOCALAPPDATA%\Programs\MegaCopier`). Copia por sí sola, sin la app, o le
+entrega la copia a la app con `send` (la arranca si está cerrada).
+
+### Comandos
+
+```text
+mcopy copy <origen>... <carpeta-destino> [opciones]      copiar
+mcopy move <origen>... <carpeta-destino> [opciones]      mover (instantáneo en el mismo disco)
+mcopy send <origen>... <carpeta-destino> [--verify] [--move] [--also <otra-carpeta>]... [--at HH:mm]
+                                                         entregar la copia a la app (ventana y bandeja)
+mcopy send ... [--mirror|--update-only|--folders-only] [--dry-run]
+mcopy send --test <sumas|carpeta>...                     comprobar sumas en la app
+mcopy send --hash <carpeta|archivos>...                  crear un archivo de sumas en la app
+mcopy send --delete [--secure] <ruta>...                 borrar (de forma segura) desde la app
+mcopy test <sumas|carpeta>...                            comprobar sumas sin la app
+mcopy decrypt <cifrados|carpeta>... <carpeta-destino>    descifrar archivos .mcenc
+mcopy delete [--secure] --yes <ruta>...                  borrar sin la app (--secure: sobrescribe antes)
+mcopy repair <carpeta>                                   reparar con los datos de recuperación
+mcopy verify-manifest <manifiesto.json>                  comprobar un manifiesto forense
+mcopy backup <orígenes>... <repositorio>                 copia de seguridad sin duplicados
+mcopy snapshots <repositorio>                            listar las copias de seguridad
+mcopy restore <repositorio> [id|latest] <destino>        restaurar una copia de seguridad
+mcopy resume [id]                                        continuar los trabajos interrumpidos (o solo uno)
+mcopy jobs                                               listar los trabajos pendientes
+mcopy status                                             estado de la app
+mcopy mcp                                                servidor MCP para asistentes de IA
+```
+
+### Opciones de `copy` y `move`
+
+| Opción | Qué hace |
+|---|---|
+| `--verify` | Relee el destino sin caché, compara las sumas y repara los bloques dañados. |
+| `--conflict <modo>` | `overwrite` (por defecto), `skip`, `newer`, `rename`, `fail` o `ask`. |
+| `--force` | Copia aunque el destino sea idéntico. |
+| `--limit-mb <n>` | Limita la velocidad a n MB/s. |
+| `--mirror` | Espejo: quita del destino lo que ya no está en el origen. |
+| `--update-only` | Solo actualiza los archivos que ya existen en el destino. |
+| `--folders-only` | Solo crea la estructura de carpetas. |
+| `--dry-run` | Simula: dice qué haría con cada archivo sin cambiar nada. |
+| `--versions <carpeta>` | Guarda lo reemplazado o quitado en esa carpeta del destino. |
+| `--keep-versions d,s,m` | Con `--versions`: días, semanas y meses de versiones a guardar (p. ej. `7,4,12`). |
+| `--skip-junk` | Omite `Thumbs.db`, `desktop.ini`, `.DS_Store`, `~$…`. |
+| `--skip-duplicates` | No copia lo que ya está en el destino (mismo contenido, cualquier nombre). |
+| `--organize` | Organiza fotos y vídeos en carpetas año-mes por la fecha de toma. |
+| `--atomic` | Todo o nada: la carpeta solo aparece cuando está completa. |
+| `--delta` | Al reemplazar archivos grandes, escribe solo los bloques que cambiaron. |
+| `--rescue` | Modo rescate para discos dañados. |
+| `--recovery <n>` | Guarda datos de recuperación (n % de paridad). |
+| `--forensic` | Manifiesto forense firmado. |
+| `--encrypt` | Copia cifrada con contraseña (AES-256, `.mcenc`). |
+| `--zip` / `--7z` | Copia a un ZIP o a un 7z (con `--encrypt`, cifrado). |
+| `--wipe <m>` | `zeros`, `random`, `dod3` o `dod7`: pasadas de `delete --secure`. |
+| `--backup` | Modo copia de seguridad: salta los permisos (consola de administrador). |
+| `--efsraw` | Copia los archivos cifrados con EFS sin descifrarlos. |
+| `--smb-compress` | Pide compresión SMB al copiar por red. |
+| `--also-from <carpeta>` | Otro sitio con lo mismo que el origen: los archivos grandes se leen de todos a la vez. |
+| `--connections <n>` | Conexiones a la vez con un servidor (1-255, por defecto 4). |
+| `--no-shield` | Desactiva el escudo contra ransomware. |
+| `--chunk-mb <n>` | Cada cuántos MB se confirma en el disco (por defecto 64). |
+| `--block-mb <n>` / `--queue <n>` | Tamaño de cada lectura y escritura, y cuántas a la vez. |
+| `--no-unbuffered` | Usa la caché de Windows en vez de E/S directa. |
+| `--crash-after-mb <n>` | *(prueba)* Mata el proceso tras confirmar n MB, para probar la reanudación. |
+
+**Ctrl+C** pausa la copia; `mcopy resume` la continúa desde el último bloque confirmado.
+
+### Ejemplos
+
+```text
+mcopy copy D:\Fotos E:\Copias --verify
+mcopy copy D:\Trabajo \\NAS\Trabajo --mirror --versions .versiones --keep-versions 7,4,12
+mcopy copy D:\Proyecto E:\Proyecto.7z --7z --encrypt
+mcopy send D:\Vídeos E:\Vídeos --also F:\Vídeos --at 23:30
+mcopy backup D:\Documentos F:\CopiasSeguridad
+mcopy restore F:\CopiasSeguridad latest D:\Recuperado
+mcopy test E:\Copias\sumas.sha256
+```
+
+---
+
+## 20. Versión portátil
+
+Descarga `MegaCopier-<versión>-portable.zip`, descomprímelo donde quieras (también en un USB) y ejecuta
+`MegaCopier.exe`. El archivo `portable.txt` que lleva dentro hace que guarde **todo en la carpeta `Data`** de al lado: no
+escribe en el registro ni en tu perfil.
+
+La versión portátil no sustituye el Ctrl+V del Explorador ni añade opciones al menú contextual (eso necesita el
+instalador), pero hace todo lo demás: copiar arrastrando a su ventana, el menú *Nueva*, sincronizar, copias de seguridad,
+servidores y la consola `mcopy`.
+
+---
+
+## 21. Cómo funciona por dentro
+
+La reanudación tras un apagón, paso a paso:
+
 1. Nunca se escribe en el nombre final: se copia a `archivo.ext.mcpart`.
-2. Por bloques de 64 MB: los datos se vacían al disco (`FlushFileBuffers`) y **solo después** se anota el bloque y su
-   hash XxHash128 en `archivo.ext.mcjournal`.
-3. Al reanudar manda el journal, no el tamaño del archivo: se descartan registros rotos (CRC32 por registro), se
-   comprueba que el origen no cambió y se releen del disco los últimos bloques por si el disco "mintió".
-4. Al terminar: fechas y atributos, renombrado atómico al nombre final y borrado del journal.
+2. Por bloques (64 MB por defecto): los datos se vacían al disco (`FlushFileBuffers`) y **solo después** se anota el bloque
+   y su suma (XxHash128) en `archivo.ext.mcjournal`.
+3. Al reanudar manda el diario, no el tamaño del archivo: se descartan registros rotos (cada uno lleva su CRC32), se
+   comprueba que el origen no ha cambiado y se releen del disco los últimos bloques por si el disco «mintió» sobre lo que
+   había guardado.
+4. Al terminar: fechas y atributos, renombrado atómico al nombre final y borrado del diario.
 
-Tras un apagón se pierde como máximo un bloque. Al volver a abrir MegaCopier, las copias a medias aparecen como
-*interrumpidas* (con aviso del sistema) y se continúan con un clic, o solas si se activa en Ajustes.
+Tras un apagón se pierde como máximo un bloque.
 
-**La ventana**
-- **Compacta** al empezar: barra del progreso total arriba y del archivo actual abajo, unidades de origen y destino
-  (letra, nombre, tipo) y Pausa / Saltar / Detener. Con varias copias, un paginador «Copia 1 de 3».
-- **«Más»** la despliega (con animación) a la **vista completa**: barra de herramientas, lista de todas las copias a la
-  izquierda y, de la elegida, las pestañas **Archivos** (lista viva; lo ya copiado desaparece si se elige, con filtros,
-  búsqueda, hashes de origen y destino, reordenar, quitar, añadir archivos, guardar/cargar la lista, exportar CSV/HTML),
-  **Destino** (espacio libre de cada unidad), **Opciones** (qué se copia: fechas, atributos, ADS, permisos, propietario,
-  auditoría; hash; búfer; verificación; sumas; informe; comandos al terminar), **Estado** (gráfica de velocidad y
-  totales) y **Registro**. En modo automático pasa sola a la vista completa cuando hay dos copias a la vez.
-- **Historial** con «Repetir» y «Abrir destino»; arrastrar archivos a la ventana para copiarlos.
-- Al terminar: se cierra si todo fue bien, se queda abierta o siempre se cierra (a elegir); sonido y aviso opcionales.
+La app es de **instancia única por usuario**: el primer proceso queda en la bandeja y todo lo demás (la extensión del
+Explorador, `mcopy`, otro `MegaCopier.exe`) le entrega la petición por una tubería con nombre propia del usuario. Por eso
+pegar con Ctrl+V empieza a copiar en milisegundos. Más detalles técnicos en [Compilar.md](Compilar.md#arquitectura).
 
-![Vista completa](capturas/completa.png)
+---
 
-**Durante la copia**
-- Progreso también en la barra de tareas y la bandeja; pausar, saltar el archivo actual, detener (reanudable) y
-  descartar; cola por **disco físico** (dos copias en el mismo disco esperan turno; en discos distintos van en paralelo;
-  máximo de copias a la vez y «dispositivos rápidos» configurables).
-- **Si el archivo ya existe**: pregunta con un diálogo que compara ambos archivos (reemplazar / conservar ambos /
-  omitir, con «hacer lo mismo con todos»), o una política fija.
-- Verificación opcional sin caché con **reparación** de bloques dañados; los errores se explican en lenguaje claro
-  («otro programa tiene el archivo abierto», «no queda espacio»…) con «Reintentar»; el detalle técnico va en el tooltip.
-- Límite de velocidad; el equipo no se suspende mientras copia; **al terminar**: suspender o apagar el equipo.
+## 22. Rendimiento
 
-**Más que copiar** (lo que TeraCopy Pro, Ultracopier y FastCopy ofrecen, y algo más)
-- **Varios destinos a la vez**, **carpetas favoritas** y **destinos recientes** («Nueva > Copiar a» y el diálogo de destinos).
-- **Programar el inicio** de una copia (sigue programada aunque se reinicie el equipo) o pausar una en marcha hasta una hora.
-- **Filtros**: incluir y excluir por máscara (`*.jpg; node_modules`), tamaño, fechas, ocultos y de sistema.
-- **Conflictos**: preguntar, reemplazar, omitir, reemplazar si es más reciente o si cambia el tamaño, conservar ambos o
-  renombrar el que ya estaba, con un patrón de nombres propio (`{name} ({n}){ext}`, `{date}`).
-- **Comprobar sumas** (como el modo Test de TeraCopy): `.sha256`, `.sha1`, `.sha512`, `.md5`, `.sfv` y `.xxh*`, en formato
-  sha256sum, BSD y xxhsum.
-- **Borrar** y **borrar de forma segura** (sobrescribe, renombra y borra), siempre con confirmación; los enlaces se borran
-  como enlaces, sin tocar lo que hay detrás.
-- **Enlaces simbólicos y uniones**: copiarlos como enlace, copiar su contenido u omitirlos, cortando bucles. Los archivos
-  de OneDrive en la nube se copian como archivos normales.
-- **Rutas de más de 260 caracteres**, también con flujos ADS y permisos.
-- Reintentos y espera configurables, y qué hacer si un archivo sigue fallando (seguir o detener).
-- En la lista: seleccionar todo, los de la misma extensión o carpeta, invertir la selección.
-- **Al terminar**: suspender, hibernar, apagar, cerrar sesión o cerrar MegaCopier.
-
-**Temas**: 11 temas completos que cambian toda la interfaz al momento (Fluent como Windows, Fluent oscuro/claro,
-Medianoche, Grafito, Océano, Bosque, Atardecer, SuperCopier clásico, Ultracopier clásico y Alto contraste): colores,
-degradado de cada barra, alto de las barras, redondeo y fondo Mica / Mica Alt / Acrílico / sólido. Un editor permite
-cambiar los 16 colores (se ve el resultado al momento en toda la interfaz, también en casillas e interruptores), guardar temas propios e importarlos/exportarlos (.json).
-
-**Más ajustes**: «siempre visible», prioridad del proceso, **14 idiomas** (también en las opciones del
-Explorador), y un `crash.log` en `%LOCALAPPDATA%\MegaCopier` si algo falla.
-
-![Conflicto](capturas/conflicto.png)
-![Tema SuperCopier clásico](capturas/tema-supercopier.png)
-
-## Rendimiento
-
-E/S asíncrona sin caché con **4 lecturas y 4 escrituras simultáneas** de bloques de 4 MB; el hash se calcula en orden
-mientras las escrituras siguen en curso. Medido el 15/10/2026 con 4 GB, contando hasta que los datos están en el disco:
+E/S asíncrona sin caché con 4 lecturas y 4 escrituras simultáneas de bloques de 4 MB; la suma se calcula en orden mientras
+las escrituras siguen en curso. Medido el 15/10/2026 con 4 GB, contando hasta que los datos están en el disco:
 
 | | MegaCopier | robocopy |
 |---|---|---|
 | Entre dos NVMe (990 EVO → 990 EVO Plus) | 3.050–3.900 MB/s | 1.800–2.290 MB/s |
-| Verificación (relectura sin caché + hash) | ~6.800 MB/s | — |
+| Verificación (relectura sin caché + suma) | ~6.800 MB/s | — |
 | Mismo NVMe | 460–1.140 MB/s | 460–900 MB/s |
 
-En el mismo disco manda el SSD (tras agotar su caché SLC baja a ~500 MB/s con cualquier programa).
+En el mismo disco manda el SSD: tras agotar su caché SLC baja a unos 500 MB/s con cualquier programa.
 
 | Arranque | Tiempo |
 |---|---|
@@ -116,52 +583,24 @@ En el mismo disco manda el SSD (tras agotar su caché SLC baja a ~500 MB/s con c
 | App en la bandeja: Ctrl+V → ventana visible | 32–112 ms |
 | App cerrada: petición → app abierta y ventana visible | 279–477 ms |
 
-## Compilar
+---
 
-Ver [Compilar.md](Compilar.md).
+## 23. Limitaciones conocidas
 
-## Herramienta de consola
-
-```text
-mcopy copy <origen>... <destino> [--verify] [--conflict overwrite|skip|newer|rename|fail|ask] [--force] [--limit-mb n]
-mcopy move <origen>... <destino> [mismas opciones]
-mcopy send <origen>... <destino> [--verify] [--move] [--also <otro-destino>]... [--at HH:mm]
-                                                         entrega la copia a la app (la arranca si está cerrada)
-mcopy send --test <sumas|carpeta>...                     comprobar sumas en la app
-mcopy send --delete [--secure] <ruta>...                 borrar (de forma segura) en la app
-mcopy test <sumas|carpeta>...                            comprobar sumas sin la app
-mcopy delete [--secure] --yes <ruta>...                  borrar sin la app
-mcopy resume [id]                                        continúa trabajos interrumpidos
-mcopy jobs
-```
-
-Para probar la reanudación: `--crash-after-mb 2000` mata el proceso tras confirmar 2000 MB. Matar el proceso no equivale
-a un apagón (Windows sigue vaciando su caché): para una prueba real hay que apagar de golpe una máquina virtual de Hyper-V.
-
-## Arquitectura
-
-| Proyecto | Qué contiene |
-|---|---|
-| `src/MegaCopier.Engine` | Motor: journal, E/S sin caché, mover, conflictos, reintentos, cola por disco y protocolo IPC. |
-| `src/MegaCopier.App` | App WinUI 3 (Windows App SDK 2.x, sin MSIX, Native AOT): proceso residente, bandeja (Win32 directo), ventana y ajustes. |
-| `src/MegaCopier.Shell` | Integración con el Explorador desde la app: gancho de Ctrl+V, portapapeles, carpeta de la pestaña activa (COM), registro de la extensión. |
-| `src/MegaCopier.ShellExt` | Extensión del Explorador en C++ (menú contextual y arrastrar con el botón derecho). |
-| `src/MegaCopier.Cli` | Consola `mcopy`. |
-| `tests/MegaCopier.Engine.Tests` | Más de 300 pruebas: cortes simulados en cada punto crítico, journal dañado, mover, conflictos, cola, IPC, servidores, nubes y móviles de prueba, formatos ZIP y 7z, recuperación, sincronización... |
-| `installer/MegaCopier.iss` | Instalador Inno Setup por usuario. |
-| `tools/` | Generadores del icono y de los textos. |
-
-La app es **instancia única por usuario**: el primer proceso queda residente y cualquier otro (la extensión, `mcopy`,
-un segundo `MegaCopier.exe`) le entrega la petición por la tubería `\\.\pipe\MegaCopier-<SID>` (longitud + JSON UTF-8).
-
-## Limitaciones conocidas
-
-- Lo que está programado y probado con pruebas automáticas pero no en un equipo real (ReFS, VSS, nubes, móviles por USB,
-  modo copia de seguridad, EFS...) está en la [comparativa](Comparativa-copiadores.md#1-lo-que-está-hecho-pero-no-se-ha-podido-probar-en-real).
-- Cambiar el **idioma** requiere reiniciar MegaCopier (la app lo ofrece con un botón).
+- Algunas funciones están programadas y probadas con pruebas automáticas, pero no se han podido probar todavía en un equipo
+  real (ReFS, VSS, nubes, móviles por USB, modo copia de seguridad, EFS…): la lista está en la
+  [comparativa](Comparativa-copiadores.md#1-lo-que-está-hecho-pero-no-se-ha-podido-probar-en-real). Si algo falla, avisa o
+  copia de la forma normal; nunca se pierde la copia por ellas.
+- No se ha probado todavía un **apagón real** (sí procesos matados y fallos simulados en cada punto crítico).
+- Las nubes piden **registrar la app** en cada servicio una vez ([cómo](Nube.md)): la versión publicada no lleva
+  identificadores propios.
+- Cambiar el **idioma** requiere reiniciar MegaCopier.
 - Los errores de los archivos se muestran traducidos; el detalle técnico y el registro interno del motor están en español.
-- En discos **SSD**, el borrado seguro no garantiza borrar todas las copias internas del disco (para eso, BitLocker).
+- En discos **SSD**, el borrado seguro no garantiza borrar las copias internas del disco (para eso, BitLocker).
 - Crear **enlaces simbólicos** de archivo en el destino requiere el modo de desarrollador o permisos de administrador; las
   carpetas enlazadas se recrean como uniones, que no lo requieren.
-- No se ha probado todavía un **apagón real** (solo procesos matados y fallos simulados en las pruebas).
-- El instalador no está firmado: Windows muestra el aviso de SmartScreen hasta que se firme.
+- El instalador **no está firmado**: Windows muestra el aviso de SmartScreen hasta que se firme.
+- Solo para **Windows 11 de 64 bits**.
+
+¿Algo no funciona? Mira las [preguntas frecuentes](Preguntas-frecuentes.md) o
+[abre una incidencia](https://github.com/cbatista96/MegaCopier/issues/new/choose).
