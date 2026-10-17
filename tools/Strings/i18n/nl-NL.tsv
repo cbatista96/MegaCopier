@@ -802,3 +802,24 @@ DragConfirm_Moves.Content	Alleen bij verplaatsen
 DragConfirm_Always.Content	Altijd
 Drag_ConfirmMove	{0} met MegaCopier naar '{1}' verplaatsen?
 Drag_ConfirmCopy	{0} met MegaCopier naar '{1}' kopiëren?
+Tool_MtpImport.Text	Kopiëren van telefoon of camera…
+Tool_MtpExport.Text	Bestanden naar telefoon of camera kopiëren…
+MtpDialog.CloseButtonText	Annuleren
+Mtp_ImportTitle	Kopiëren van telefoon of camera
+Mtp_ExportTitle	Kopiëren naar telefoon of camera
+Mtp_ImportButton	Kopiëren naar…
+Mtp_ExportButton	Hier kopiëren
+Mtp_ImportSummary	Vink aan wat je wilt kopiëren. Zonder vinkjes wordt de hele geopende map gekopieerd.
+Mtp_ExportSummaryOne	Open de map op het apparaat waar '{0}' naartoe moet.
+Mtp_ExportSummaryMany	Open de map op het apparaat waar {0} items naartoe moeten.
+Mtp_NoDevices	Er is geen telefoon of camera aangesloten. Sluit hem via USB aan, ontgrendel hem en kies 'Bestandsoverdracht'.
+Mtp_Loading	Apparaat lezen…
+Mtp_Empty	Lege map.
+Mtp_Error	Kan het apparaat niet lezen: {0}
+Mtp_Up.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Niveau omhoog
+Mtp_Up.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Niveau omhoog
+Mtp_Refresh.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Apparaten zoeken
+Mtp_Refresh.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Apparaten zoeken
+Mtp_MoveImport	Gekopieerde van het apparaat verwijderen (verplaatsen)
+Mtp_MoveExport	Gekopieerde van de pc verwijderen (verplaatsen)
+Mtp_Open	'{0}' openen

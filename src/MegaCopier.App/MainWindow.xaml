@@ -58,6 +58,8 @@
                             <MenuFlyoutItem x:Uid="Tool_SendFiles" Click="SendFiles_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE724;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
                             <MenuFlyoutItem x:Uid="Tool_SendFolder" Click="SendFolder_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE724;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
                             <MenuFlyoutItem x:Uid="Tool_Decrypt" Click="Decrypt_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE785;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
+                            <MenuFlyoutItem x:Uid="Tool_MtpImport" Click="MtpImport_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8EA;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
+                            <MenuFlyoutItem x:Uid="Tool_MtpExport" Click="MtpExport_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8EA;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
                             <MenuFlyoutSeparator />
                             <MenuFlyoutItem x:Uid="Tool_Delete" Click="Delete_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE74D;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
                             <MenuFlyoutItem x:Uid="Tool_Wipe" Click="Wipe_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE72E;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
@@ -367,6 +369,32 @@
                 <TextBox x:Name="SendCodeBox" x:Uid="Send_Code" FontFamily="Consolas" CharacterCasing="Upper" />
             </StackPanel>
         </ContentDialog>
+        <!-- Móviles y cámaras (MTP): elegir qué copiar del dispositivo, o a qué carpeta suya copiar -->
+        <ContentDialog
+            x:Name="MtpDialog"
+            x:Uid="MtpDialog"
+            Grid.RowSpan="3"
+            Style="{StaticResource DefaultContentDialogStyle}"
+            DefaultButton="Primary">
+            <StackPanel Spacing="10" MinWidth="420" MaxWidth="560">
+                <TextBlock x:Name="MtpSummary" TextWrapping="Wrap" />
+                <Grid ColumnSpacing="8">
+                    <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                    <ComboBox x:Name="MtpDeviceBox" HorizontalAlignment="Stretch" SelectionChanged="MtpDevice_SelectionChanged" />
+                    <Button x:Uid="Mtp_Refresh" Grid.Column="1" Style="{StaticResource McButton}" MinWidth="0" Width="40" Height="32" Padding="0" Click="MtpRefresh_Click"><FontIcon Glyph="&#xE72C;" FontSize="14" /></Button>
+                </Grid>
+                <Grid ColumnSpacing="8">
+                    <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+                    <Button x:Name="MtpUpButton" x:Uid="Mtp_Up" Style="{StaticResource McButton}" MinWidth="0" Width="40" Height="32" Padding="0" Click="MtpUp_Click"><FontIcon Glyph="&#xE74A;" FontSize="14" /></Button>
+                    <TextBlock x:Name="MtpPathText" Grid.Column="1" VerticalAlignment="Center" Style="{StaticResource McSecondary}" TextTrimming="CharacterEllipsis" />
+                </Grid>
+                <ListView x:Name="MtpList" Height="280" SelectionMode="Multiple"
+                          BorderThickness="1" BorderBrush="{StaticResource McBorderBrush}" CornerRadius="6" SelectionChanged="MtpList_SelectionChanged" />
+                <TextBlock x:Name="MtpStatus" Style="{StaticResource McSecondary}" TextWrapping="Wrap" />
+                <CheckBox x:Name="MtpMoveBox" />
+            </StackPanel>
+        </ContentDialog>
+
         <!-- Contraseña (descifrar, o volver a darla tras reiniciar) -->
         <ContentDialog x:Name="PasswordDialog" x:Uid="PasswordDialog" Grid.RowSpan="3" Style="{StaticResource DefaultContentDialogStyle}" DefaultButton="Primary">
             <StackPanel Spacing="8" MaxWidth="420">

@@ -161,7 +161,7 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
         {
             var sources = Job.Record.Sources;
             string what = sources.Count == 1
-                ? L.F("Job_OneItem", Path.GetFileName(sources[0].TrimEnd('\\')))
+                ? L.F("Job_OneItem", Format.ItemName(sources[0]))
                 : L.F("Job_ManyItems", sources.Count);
             return State switch
             {
@@ -186,9 +186,9 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
     {
         get
         {
-            string target = Path.GetFileName(Path.TrimEndingDirectorySeparator(Job.Record.Destination));
+            string target = Format.ItemName(Job.Record.Destination);
             string status = IsRunning && SpeedAndRemaining.Length > 0 ? SpeedAndRemaining : StateText;
-            return $"→ {(target.Length > 0 ? target : Job.Record.Destination)} · {status}";
+            return $"→ {(target.Length > 0 ? target : Format.Display(Job.Record.Destination))} · {status}";
         }
     }
 
@@ -280,9 +280,9 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
 
     public string CurrentFileName => !IsActive ? "" : _current is { } item ? Path.GetFileName(item.Source) : Path.GetFileName(Progress?.CurrentFile ?? "");
 
-    public string CurrentSourcePath => IsActive && _current is { } item ? item.Source : SourceFolder;
+    public string CurrentSourcePath => IsActive && _current is { } item ? Format.Display(item.Source) : SourceFolder;
 
-    public string CurrentTargetPath => IsActive && _current is { } item ? item.Destination : Job.Record.Destination;
+    public string CurrentTargetPath => Format.Display(IsActive && _current is { } item ? item.Destination : Job.Record.Destination);
 
     public string FileBytesText => Progress is { CurrentFileLength: > 0 } p && IsActive
         ? L.F("Job_Progress", Format.Bytes(p.CurrentFileBytes), Format.Bytes(p.CurrentFileLength))
@@ -303,6 +303,11 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
         {
             var sources = Job.Record.Sources;
             string first = Path.TrimEndingDirectorySeparator(sources.FirstOrDefault() ?? "");
+            if (Engine.Mtp.MtpPath.IsMtp(first))
+            {
+                return Format.Display(sources.Count == 1 ? first : Engine.Mtp.MtpPath.Parent(first)) + "\\";
+            }
+
             return sources.Count == 1 && Directory.Exists(first) ? first + "\\" : (Path.GetDirectoryName(first) ?? first) + "\\";
         }
     }
@@ -314,9 +319,9 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
 
     public string DestinationFolderShort => Format.ShortPath(Job.Record.Destination, PathKeep);
 
-    public string DestinationFolder => Path.TrimEndingDirectorySeparator(Job.Record.Destination) + "\\";
+    public string DestinationFolder => Path.TrimEndingDirectorySeparator(Format.Display(Job.Record.Destination)) + "\\";
 
-    public string DestinationText => L.F("Job_Destination", Job.Record.Destination);
+    public string DestinationText => L.F("Job_Destination", Format.Display(Job.Record.Destination));
 
     public DriveDescription SourceDrive => DriveInfoText.Describe(Job.Record.Sources.FirstOrDefault() ?? "C:\\");
 

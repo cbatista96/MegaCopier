@@ -33,7 +33,7 @@ public sealed class HistoryRow(HistoryEntry entry, Action<HistoryRow> undo)
         get
         {
             string what = entry.Sources.Count == 1
-                ? L.F("Job_OneItem", Path.GetFileName(entry.Sources[0].TrimEnd('\\')))
+                ? L.F("Job_OneItem", Format.ItemName(entry.Sources[0]))
                 : L.F("Job_ManyItems", entry.Sources.Count);
             string title = L.F(entry.Operation switch
             {
@@ -47,9 +47,9 @@ public sealed class HistoryRow(HistoryEntry entry, Action<HistoryRow> undo)
     }
 
     public string Route =>
-        $"{Format.ShortPath(Path.GetDirectoryName(entry.Sources.FirstOrDefault()?.TrimEnd('\\') ?? "") ?? "")} → {Format.ShortPath(entry.Destination)}";
+        $"{Format.ShortPath(Path.GetDirectoryName(Format.Display(entry.Sources.FirstOrDefault() ?? "").TrimEnd('\\')) ?? "")} → {Format.ShortPath(entry.Destination)}";
 
-    public string FullRoute => $"{string.Join("; ", entry.Sources)} → {entry.Destination}";
+    public string FullRoute => $"{string.Join("; ", entry.Sources.Select(Format.Display))} → {Format.Display(entry.Destination)}";
 
     public string Summary =>
         $"{entry.Finished:g} · {L.F((entry.Move ? "Job_FilesMoved" : "Job_FilesCopied") + (entry.Files == 1 ? "One" : "Many"), entry.Files)} · {Format.Bytes(entry.Bytes)} · {Format.Duration(TimeSpan.FromSeconds(entry.Seconds))}"

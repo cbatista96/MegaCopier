@@ -802,3 +802,24 @@ DragConfirm_Moves.Content	Лише під час переміщення
 DragConfirm_Always.Content	Завжди
 Drag_ConfirmMove	Перемістити {0} до «{1}» через MegaCopier?
 Drag_ConfirmCopy	Копіювати {0} до «{1}» через MegaCopier?
+Tool_MtpImport.Text	Копіювати з телефона чи камери…
+Tool_MtpExport.Text	Копіювати файли на телефон чи камеру…
+MtpDialog.CloseButtonText	Скасувати
+Mtp_ImportTitle	Копіювати з телефона чи камери
+Mtp_ExportTitle	Копіювати на телефон чи камеру
+Mtp_ImportButton	Копіювати в…
+Mtp_ExportButton	Копіювати сюди
+Mtp_ImportSummary	Позначте, що потрібно скопіювати. Якщо нічого не позначено, копіюється вся відкрита папка.
+Mtp_ExportSummaryOne	Відкрийте папку пристрою, куди скопіювати «{0}».
+Mtp_ExportSummaryMany	Відкрийте папку пристрою, куди скопіювати елементи ({0}).
+Mtp_NoDevices	Телефон чи камеру не під'єднано. Під'єднайте через USB, розблокуйте й виберіть «Передавання файлів».
+Mtp_Loading	Читання пристрою…
+Mtp_Empty	Папка порожня.
+Mtp_Error	Не вдалося прочитати пристрій: {0}
+Mtp_Up.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	На рівень вище
+Mtp_Up.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	На рівень вище
+Mtp_Refresh.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Шукати пристрої
+Mtp_Refresh.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Шукати пристрої
+Mtp_MoveImport	Видалити скопійоване з пристрою (перемістити)
+Mtp_MoveExport	Видалити скопійоване з ПК (перемістити)
+Mtp_Open	Відкрити «{0}»

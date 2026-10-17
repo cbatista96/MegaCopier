@@ -802,3 +802,24 @@ DragConfirm_Moves.Content	仅移动时
 DragConfirm_Always.Content	总是
 Drag_ConfirmMove	用 MegaCopier 将 {0} 移动到“{1}”？
 Drag_ConfirmCopy	用 MegaCopier 将 {0} 复制到“{1}”？
+Tool_MtpImport.Text	从手机或相机复制…
+Tool_MtpExport.Text	将文件复制到手机或相机…
+MtpDialog.CloseButtonText	取消
+Mtp_ImportTitle	从手机或相机复制
+Mtp_ExportTitle	复制到手机或相机
+Mtp_ImportButton	复制到…
+Mtp_ExportButton	复制到这里
+Mtp_ImportSummary	勾选要复制的内容。如果什么都不勾选，将复制整个打开的文件夹。
+Mtp_ExportSummaryOne	打开设备上要复制“{0}”的文件夹。
+Mtp_ExportSummaryMany	打开设备上要复制 {0} 个项目的文件夹。
+Mtp_NoDevices	没有连接手机或相机。请用 USB 连接、解锁并选择“文件传输”。
+Mtp_Loading	正在读取设备…
+Mtp_Empty	空文件夹。
+Mtp_Error	无法读取设备：{0}
+Mtp_Up.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	上一级
+Mtp_Up.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	上一级
+Mtp_Refresh.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	查找设备
+Mtp_Refresh.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	查找设备
+Mtp_MoveImport	从设备上删除已复制的内容（移动）
+Mtp_MoveExport	从电脑上删除已复制的内容（移动）
+Mtp_Open	打开“{0}”

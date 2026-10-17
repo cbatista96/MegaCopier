@@ -597,6 +597,12 @@ public partial class App : Application
                 ShowWindow();
                 return new IpcResponse { Ok = true };
 
+            case "debug-mtp" when TestMode:
+                // Solo pruebas: la ventana del móvil. Destination = "import" (Sources[0] = carpeta del PC) o "export" (Sources = qué copiar).
+                _ = request.Destination == "export" ? Window.MtpExportAsync(request.Sources) : Window.MtpImportAsync(request.Sources.FirstOrDefault());
+                ShowWindow();
+                return new IpcResponse { Ok = true };
+
             case "debug-finish" when TestMode:
                 // Solo pruebas: elegir "Al terminar" (Destination = Sleep, Shutdown...) sin abrir el menú.
                 FinishAction = Enum.Parse<FinishAction>(request.Destination ?? "None");

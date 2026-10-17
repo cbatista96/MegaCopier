@@ -802,3 +802,24 @@ DragConfirm_Moves.Content	Tylko przy przenoszeniu
 DragConfirm_Always.Content	Zawsze
 Drag_ConfirmMove	Przenieść {0} do „{1}” przez MegaCopier?
 Drag_ConfirmCopy	Skopiować {0} do „{1}” przez MegaCopier?
+Tool_MtpImport.Text	Kopiuj z telefonu lub aparatu…
+Tool_MtpExport.Text	Kopiuj pliki na telefon lub aparat…
+MtpDialog.CloseButtonText	Anuluj
+Mtp_ImportTitle	Kopiuj z telefonu lub aparatu
+Mtp_ExportTitle	Kopiuj na telefon lub aparat
+Mtp_ImportButton	Kopiuj do…
+Mtp_ExportButton	Kopiuj tutaj
+Mtp_ImportSummary	Zaznacz, co chcesz skopiować. Bez zaznaczenia kopiowany jest cały otwarty folder.
+Mtp_ExportSummaryOne	Otwórz folder urządzenia, do którego skopiować „{0}”.
+Mtp_ExportSummaryMany	Otwórz folder urządzenia, do którego skopiować elementy ({0}).
+Mtp_NoDevices	Nie podłączono telefonu ani aparatu. Podłącz go przez USB, odblokuj i wybierz „Przesyłanie plików”.
+Mtp_Loading	Odczytywanie urządzenia…
+Mtp_Empty	Pusty folder.
+Mtp_Error	Nie udało się odczytać urządzenia: {0}
+Mtp_Up.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Poziom wyżej
+Mtp_Up.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Poziom wyżej
+Mtp_Refresh.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Szukaj urządzeń
+Mtp_Refresh.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Szukaj urządzeń
+Mtp_MoveImport	Usuń skopiowane z urządzenia (przenieś)
+Mtp_MoveExport	Usuń skopiowane z komputera (przenieś)
+Mtp_Open	Otwórz „{0}”
