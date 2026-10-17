@@ -92,6 +92,12 @@
             <CheckBox x:Name="HashStreamBox" x:Uid="Rules_HashStream" Click="Changed" />
             <CheckBox x:Name="HardLinksBox" x:Uid="Rules_HardLinks" Click="Changed" />
             <CheckBox x:Name="WipeBox" x:Uid="Rules_Wipe" Click="Changed" />
+            <ComboBox x:Name="WipeMethodBox" x:Uid="Rules_WipeMethod" HorizontalAlignment="Stretch" SelectionChanged="Selection_Changed">
+                <ComboBoxItem x:Uid="Rules_WipeZeros" />
+                <ComboBoxItem x:Uid="Rules_WipeRandom" />
+                <ComboBoxItem x:Uid="Rules_WipeDod3" />
+                <ComboBoxItem x:Uid="Rules_WipeDod7" />
+            </ComboBox>
             <CheckBox x:Name="WaitDeviceBox" x:Uid="Rules_WaitDevice" Click="Changed" />
             <CheckBox x:Name="WaitSpaceBox" x:Uid="Rules_WaitSpace" Click="Changed" />
             <CheckBox x:Name="AllOrNothingBox" x:Uid="Rules_AllOrNothing" Click="Changed" />

@@ -931,3 +931,8 @@ Panel_CopyAdmin.Text	以管理员权限复制
 Backup_Title	受保护的文件
 Backup_Done	已在备份模式下绕过权限复制。
 Backup_Partial	部分文件仍无法复制：{0}
+Rules_WipeMethod.Header	安全删除
+Rules_WipeZeros.Content	一次零填充（快速）
+Rules_WipeRandom.Content	一次随机填充
+Rules_WipeDod3.Content	DoD 5220.22-M，3 次
+Rules_WipeDod7.Content	DoD 5220.22-M ECE，7 次（慢）

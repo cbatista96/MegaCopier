@@ -931,3 +931,8 @@ Panel_CopyAdmin.Text	관리자 권한으로 복사
 Backup_Title	보호된 파일
 Backup_Done	백업 모드로 권한을 무시하고 복사했습니다.
 Backup_Partial	일부 파일은 여전히 복사할 수 없습니다: {0}
+Rules_WipeMethod.Header	안전한 삭제
+Rules_WipeZeros.Content	0으로 1회 덮어쓰기(빠름)
+Rules_WipeRandom.Content	무작위로 1회 덮어쓰기
+Rules_WipeDod3.Content	DoD 5220.22-M, 3회
+Rules_WipeDod7.Content	DoD 5220.22-M ECE, 7회(느림)

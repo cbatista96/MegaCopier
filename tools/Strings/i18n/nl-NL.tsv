@@ -931,3 +931,8 @@ Panel_CopyAdmin.Text	Kopiëren met beheerdersrechten
 Backup_Title	Beveiligde bestanden
 Backup_Done	Gekopieerd in back-upmodus, zonder rekening te houden met hun rechten.
 Backup_Partial	Sommige bestanden konden nog steeds niet worden gekopieerd: {0}
+Rules_WipeMethod.Header	Veilig wissen
+Rules_WipeZeros.Content	Eén keer nullen (snel)
+Rules_WipeRandom.Content	Eén keer willekeurig
+Rules_WipeDod3.Content	DoD 5220.22-M, 3 keer
+Rules_WipeDod7.Content	DoD 5220.22-M ECE, 7 keer (traag)

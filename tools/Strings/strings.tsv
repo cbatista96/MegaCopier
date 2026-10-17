@@ -931,3 +931,8 @@ Panel_CopyAdmin.Text	Copiar con permisos de administrador	Copy with administrato
 Backup_Title	Archivos protegidos	Protected files
 Backup_Done	Copiados en modo copia de seguridad, saltándose sus permisos.	Copied in backup mode, bypassing their permissions.
 Backup_Partial	Algunos archivos siguen sin poder copiarse: {0}	Some files still couldn't be copied: {0}
+Rules_WipeMethod.Header	Borrado seguro	Secure wipe
+Rules_WipeZeros.Content	Una pasada con ceros (rápido)	One pass of zeros (fast)
+Rules_WipeRandom.Content	Una pasada aleatoria	One random pass
+Rules_WipeDod3.Content	DoD 5220.22-M, 3 pasadas	DoD 5220.22-M, 3 passes
+Rules_WipeDod7.Content	DoD 5220.22-M ECE, 7 pasadas (lento)	DoD 5220.22-M ECE, 7 passes (slow)

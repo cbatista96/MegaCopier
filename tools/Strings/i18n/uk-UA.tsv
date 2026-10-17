@@ -931,3 +931,8 @@ Panel_CopyAdmin.Text	Копіювати з правами адміністрат
 Backup_Title	Захищені файли
 Backup_Done	Скопійовано в режимі резервного копіювання в обхід дозволів.
 Backup_Partial	Деякі файли досі не вдалося скопіювати: {0}
+Rules_WipeMethod.Header	Безпечне видалення
+Rules_WipeZeros.Content	Один прохід нулями (швидко)
+Rules_WipeRandom.Content	Один випадковий прохід
+Rules_WipeDod3.Content	DoD 5220.22-M, 3 проходи
+Rules_WipeDod7.Content	DoD 5220.22-M ECE, 7 проходів (повільно)

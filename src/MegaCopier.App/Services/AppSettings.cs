@@ -152,6 +152,8 @@ public sealed class AppSettings
 
     public bool WipeSource { get; set; }
 
+    public WipeMethod WipeMethod { get; set; }
+
     public bool WaitForDevice { get; set; } = true;
 
     public bool WaitForSpace { get; set; } = true;
@@ -188,7 +190,7 @@ public sealed class AppSettings
         {
             Filter = Filter, Links = Links, KeepBothPattern = KeepBothPattern, RetryCount = RetryCount, RetryDelaySeconds = RetryDelaySeconds, OnError = OnError,
             VersionsFolder = VersionsFolder, FolderConflict = FolderConflict, TimeToleranceSeconds = TimeToleranceSeconds, VerifySource = VerifySource,
-            SaveHashStream = SaveHashStream, PreserveHardLinks = PreserveHardLinks, WipeSource = WipeSource, WaitForDevice = WaitForDevice, WaitForSpace = WaitForSpace,
+            SaveHashStream = SaveHashStream, PreserveHardLinks = PreserveHardLinks, WipeSource = WipeSource, WipeMethod = WipeMethod, WaitForDevice = WaitForDevice, WaitForSpace = WaitForSpace,
             AllOrNothing = AllOrNothing,
             RescueMode = RescueMode,
             DeltaCopy = DeltaCopy,
@@ -209,6 +211,7 @@ public sealed class AppSettings
             SaveHashStream = value.SaveHashStream;
             PreserveHardLinks = value.PreserveHardLinks;
             WipeSource = value.WipeSource;
+            WipeMethod = value.WipeMethod;
             WaitForDevice = value.WaitForDevice;
             WaitForSpace = value.WaitForSpace;
             AllOrNothing = value.AllOrNothing;
@@ -398,6 +401,7 @@ public sealed class AppSettings
             SaveHashStream = SaveHashStream,
             PreserveHardLinks = PreserveHardLinks,
             WipeSource = WipeSource,
+            WipeMethod = WipeMethod,
             WaitForDevice = WaitForDevice,
             WaitForSpace = WaitForSpace,
             AllOrNothing = AllOrNothing,

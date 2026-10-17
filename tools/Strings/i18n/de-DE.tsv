@@ -931,3 +931,8 @@ Panel_CopyAdmin.Text	Mit Administratorrechten kopieren
 Backup_Title	Geschützte Dateien
 Backup_Done	Im Sicherungsmodus kopiert, ohne Rücksicht auf ihre Berechtigungen.
 Backup_Partial	Einige Dateien konnten weiterhin nicht kopiert werden: {0}
+Rules_WipeMethod.Header	Sicheres Löschen
+Rules_WipeZeros.Content	Ein Durchgang mit Nullen (schnell)
+Rules_WipeRandom.Content	Ein zufälliger Durchgang
+Rules_WipeDod3.Content	DoD 5220.22-M, 3 Durchgänge
+Rules_WipeDod7.Content	DoD 5220.22-M ECE, 7 Durchgänge (langsam)

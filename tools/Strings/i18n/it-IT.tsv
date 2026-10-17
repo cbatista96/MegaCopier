@@ -931,3 +931,8 @@ Panel_CopyAdmin.Text	Copia con permessi di amministratore
 Backup_Title	File protetti
 Backup_Done	Copiati in modalità backup, ignorando i loro permessi.
 Backup_Partial	Alcuni file non si possono ancora copiare: {0}
+Rules_WipeMethod.Header	Cancellazione sicura
+Rules_WipeZeros.Content	Un passaggio di zeri (veloce)
+Rules_WipeRandom.Content	Un passaggio casuale
+Rules_WipeDod3.Content	DoD 5220.22-M, 3 passaggi
+Rules_WipeDod7.Content	DoD 5220.22-M ECE, 7 passaggi (lento)

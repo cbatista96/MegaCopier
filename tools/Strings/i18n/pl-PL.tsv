@@ -931,3 +931,8 @@ Panel_CopyAdmin.Text	Kopiuj z uprawnieniami administratora
 Backup_Title	Pliki chronione
 Backup_Done	Skopiowano w trybie kopii zapasowej z pominięciem uprawnień.
 Backup_Partial	Niektórych plików nadal nie udało się skopiować: {0}
+Rules_WipeMethod.Header	Bezpieczne usuwanie
+Rules_WipeZeros.Content	Jedno przejście zerami (szybko)
+Rules_WipeRandom.Content	Jedno przejście losowe
+Rules_WipeDod3.Content	DoD 5220.22-M, 3 przejścia
+Rules_WipeDod7.Content	DoD 5220.22-M ECE, 7 przejść (wolno)

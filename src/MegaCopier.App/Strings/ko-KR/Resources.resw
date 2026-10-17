@@ -937,4 +937,9 @@
   <data name="Backup_Title" xml:space="preserve"><value>보호된 파일</value></data>
   <data name="Backup_Done" xml:space="preserve"><value>백업 모드로 권한을 무시하고 복사했습니다.</value></data>
   <data name="Backup_Partial" xml:space="preserve"><value>일부 파일은 여전히 복사할 수 없습니다: {0}</value></data>
+  <data name="Rules_WipeMethod.Header" xml:space="preserve"><value>안전한 삭제</value></data>
+  <data name="Rules_WipeZeros.Content" xml:space="preserve"><value>0으로 1회 덮어쓰기(빠름)</value></data>
+  <data name="Rules_WipeRandom.Content" xml:space="preserve"><value>무작위로 1회 덮어쓰기</value></data>
+  <data name="Rules_WipeDod3.Content" xml:space="preserve"><value>DoD 5220.22-M, 3회</value></data>
+  <data name="Rules_WipeDod7.Content" xml:space="preserve"><value>DoD 5220.22-M ECE, 7회(느림)</value></data>
 </root>

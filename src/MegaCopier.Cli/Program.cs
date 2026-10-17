@@ -365,12 +365,32 @@ internal static class Cli
         return result.Success ? ExitOk : ExitFailures;
     }
 
-    /// <summary>mcopy delete [--secure] --yes: borra (o borra de forma segura) sin la app.</summary>
+    /// <summary>mcopy delete [--secure [--wipe zeros|random|dod3|dod7]] --yes: borra (o borra de forma segura) sin la app.</summary>
     private static int Delete(string[] args)
     {
         bool secure = args.Contains("--secure");
         bool confirmed = args.Contains("--yes");
-        var paths = args.Where(a => !a.StartsWith("--", StringComparison.Ordinal)).Select(Path.GetFullPath).ToList();
+        var method = WipeMethod.Zeros;
+        var paths = new List<string>();
+        for (int i = 0; i < args.Length; i++)
+        {
+            if (args[i] == "--wipe")
+            {
+                method = Next(args, ref i) switch
+                {
+                    "zeros" => WipeMethod.Zeros,
+                    "random" => WipeMethod.Random,
+                    "dod3" => WipeMethod.Dod3,
+                    "dod7" => WipeMethod.Dod7,
+                    var other => throw new UsageException(Texts.F("C_UnknownWipe", other)),
+                };
+            }
+            else if (!args[i].StartsWith("--", StringComparison.Ordinal))
+            {
+                paths.Add(Path.GetFullPath(args[i]));
+            }
+        }
+
         if (paths.Count == 0)
         {
             throw new UsageException(Texts.Get("C_NeedDelete"));
@@ -381,7 +401,7 @@ internal static class Cli
             throw new UsageException(Texts.Get("C_NeedYes"));
         }
 
-        var engine = new CopyEngine(new CopyOptions { Operation = JobOperation.Delete, SecureDelete = secure });
+        var engine = new CopyEngine(new CopyOptions { Operation = JobOperation.Delete, SecureDelete = secure, WipeMethod = method });
         var result = engine.Run(new CopyJobRequest(paths, Path.GetDirectoryName(paths[0]) ?? paths[0]));
         foreach (var failure in result.Failures)
         {

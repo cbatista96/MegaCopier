@@ -931,3 +931,8 @@ Panel_CopyAdmin.Text	Копировать с правами администра
 Backup_Title	Защищённые файлы
 Backup_Done	Скопировано в режиме резервного копирования в обход разрешений.
 Backup_Partial	Некоторые файлы по-прежнему не удалось скопировать: {0}
+Rules_WipeMethod.Header	Безопасное удаление
+Rules_WipeZeros.Content	Один проход нулями (быстро)
+Rules_WipeRandom.Content	Один случайный проход
+Rules_WipeDod3.Content	DoD 5220.22-M, 3 прохода
+Rules_WipeDod7.Content	DoD 5220.22-M ECE, 7 проходов (медленно)

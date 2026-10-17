@@ -59,6 +59,8 @@ public sealed class CopyJobRecord
 
     public bool SecureDelete { get; set; }
 
+    public WipeMethod WipeMethod { get; set; }
+
     public LinkHandling Links { get; set; } = LinkHandling.CopyLink;
 
     public string KeepBothPattern { get; set; } = CopyOptions.DefaultKeepBothPattern;
@@ -146,6 +148,7 @@ public sealed class CopyJobRecord
         QueueDepth = options.WriteQueueDepth,
         Operation = options.Operation,
         SecureDelete = options.SecureDelete,
+        WipeMethod = options.WipeMethod,
         Links = options.Links,
         KeepBothPattern = options.KeepBothPattern,
         Filter = options.Filter,
@@ -200,6 +203,7 @@ public sealed class CopyJobRecord
             UseUnbufferedIo = !UseSystemCache,
             Operation = Operation,
             SecureDelete = SecureDelete,
+            WipeMethod = WipeMethod,
             Links = Links,
             KeepBothPattern = KeepBothPattern,
             Filter = Filter ?? new FileFilter(),
