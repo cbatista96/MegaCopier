@@ -808,17 +808,17 @@
   <data name="DragConfirm_Always.Content" xml:space="preserve"><value>항상</value></data>
   <data name="Drag_ConfirmMove" xml:space="preserve"><value>MegaCopier로 {0}을(를) &quot;{1}&quot;(으)로 이동할까요?</value></data>
   <data name="Drag_ConfirmCopy" xml:space="preserve"><value>MegaCopier로 {0}을(를) &quot;{1}&quot;(으)로 복사할까요?</value></data>
-  <data name="Tool_MtpImport.Text" xml:space="preserve"><value>휴대폰이나 카메라에서 복사…</value></data>
-  <data name="Tool_MtpExport.Text" xml:space="preserve"><value>휴대폰이나 카메라로 파일 복사…</value></data>
+  <data name="Tool_MtpImport.Text" xml:space="preserve"><value>휴대폰, 카메라 또는 서버에서 복사…</value></data>
+  <data name="Tool_MtpExport.Text" xml:space="preserve"><value>휴대폰, 카메라 또는 서버로 파일 복사…</value></data>
   <data name="MtpDialog.CloseButtonText" xml:space="preserve"><value>취소</value></data>
-  <data name="Mtp_ImportTitle" xml:space="preserve"><value>휴대폰이나 카메라에서 복사</value></data>
-  <data name="Mtp_ExportTitle" xml:space="preserve"><value>휴대폰이나 카메라로 복사</value></data>
+  <data name="Mtp_ImportTitle" xml:space="preserve"><value>휴대폰, 카메라 또는 서버에서 복사</value></data>
+  <data name="Mtp_ExportTitle" xml:space="preserve"><value>휴대폰, 카메라 또는 서버로 복사</value></data>
   <data name="Mtp_ImportButton" xml:space="preserve"><value>복사 위치…</value></data>
   <data name="Mtp_ExportButton" xml:space="preserve"><value>여기에 복사</value></data>
   <data name="Mtp_ImportSummary" xml:space="preserve"><value>복사할 항목을 선택하세요. 아무것도 선택하지 않으면 열려 있는 폴더 전체를 복사합니다.</value></data>
   <data name="Mtp_ExportSummaryOne" xml:space="preserve"><value>&quot;{0}&quot;을(를) 복사할 장치 폴더를 여세요.</value></data>
   <data name="Mtp_ExportSummaryMany" xml:space="preserve"><value>항목 {0}개를 복사할 장치 폴더를 여세요.</value></data>
-  <data name="Mtp_NoDevices" xml:space="preserve"><value>연결된 휴대폰이나 카메라가 없습니다. USB로 연결하고 잠금을 해제한 다음 &quot;파일 전송&quot;을 선택하세요.</value></data>
+  <data name="Mtp_NoDevices" xml:space="preserve"><value>연결된 휴대폰이나 카메라가 없고(USB로 연결하고 잠금을 해제한 다음 &quot;파일 전송&quot; 선택) 설정 &gt; 연결에 서버도 없습니다.</value></data>
   <data name="Mtp_Loading" xml:space="preserve"><value>장치를 읽는 중…</value></data>
   <data name="Mtp_Empty" xml:space="preserve"><value>빈 폴더입니다.</value></data>
   <data name="Mtp_Error" xml:space="preserve"><value>장치를 읽을 수 없습니다: {0}</value></data>
@@ -885,4 +885,38 @@
   <data name="Compare_ChangedAndDeleted" xml:space="preserve"><value>한쪽에서 삭제됐지만 다른 쪽에서 변경됨: 유지</value></data>
   <data name="Compare_Extra" xml:space="preserve"><value>원본에 없음</value></data>
   <data name="Compare_Same" xml:space="preserve"><value>양쪽 동일</value></data>
+  <data name="Drive_Disk" xml:space="preserve"><value>디스크</value></data>
+  <data name="Drive_Usb" xml:space="preserve"><value>USB</value></data>
+  <data name="Drive_Network" xml:space="preserve"><value>네트워크</value></data>
+  <data name="Drive_Server" xml:space="preserve"><value>서버</value></data>
+  <data name="Drive_Phone" xml:space="preserve"><value>휴대폰</value></data>
+  <data name="Settings_Connections.Text" xml:space="preserve"><value>서버 연결</value></data>
+  <data name="Settings_ConnectionsTitle.Text" xml:space="preserve"><value>서버 및 클라우드</value></data>
+  <data name="Settings_ConnectionsDescription.Text" xml:space="preserve"><value>FTP, FTPS, SFTP, WebDAV(Nextcloud, ownCloud, NAS…) 및 S3(AWS, Backblaze B2, Cloudflare R2, Wasabi, MinIO…). &quot;휴대폰, 카메라 또는 서버&quot;에서/로 복사할 때 나타납니다. 암호는 Windows 자격 증명 관리자에 저장됩니다. OneDrive, Google Drive, Dropbox는 여기에 필요 없습니다. 각 앱으로 일반 폴더가 됩니다.</value></data>
+  <data name="Settings_ConnectionsAdd.Text" xml:space="preserve"><value>추가…</value></data>
+  <data name="Settings_ConnectionsEmpty" xml:space="preserve"><value>아직 연결이 없습니다.</value></data>
+  <data name="Settings_ConnectionEdit" xml:space="preserve"><value>&quot;{0}&quot; 편집</value></data>
+  <data name="Settings_ConnectionDelete" xml:space="preserve"><value>&quot;{0}&quot; 제거</value></data>
+  <data name="Connection_DialogTitle" xml:space="preserve"><value>연결</value></data>
+  <data name="Connection_Save" xml:space="preserve"><value>저장</value></data>
+  <data name="Connection_Cancel" xml:space="preserve"><value>취소</value></data>
+  <data name="Connection_Kind" xml:space="preserve"><value>유형</value></data>
+  <data name="Connection_Name" xml:space="preserve"><value>이름</value></data>
+  <data name="Connection_Host" xml:space="preserve"><value>서버</value></data>
+  <data name="Connection_Url" xml:space="preserve"><value>주소(https://…)</value></data>
+  <data name="Connection_Endpoint" xml:space="preserve"><value>엔드포인트(비우면 AWS)</value></data>
+  <data name="Connection_Port" xml:space="preserve"><value>포트(0 = 기본값)</value></data>
+  <data name="Connection_User" xml:space="preserve"><value>사용자</value></data>
+  <data name="Connection_AccessKey" xml:space="preserve"><value>액세스 키</value></data>
+  <data name="Connection_Password" xml:space="preserve"><value>암호</value></data>
+  <data name="Connection_SecretKey" xml:space="preserve"><value>비밀 키</value></data>
+  <data name="Connection_PasswordOrKey" xml:space="preserve"><value>암호 또는 개인 키(전체 붙여넣기)</value></data>
+  <data name="Connection_Root" xml:space="preserve"><value>폴더(비우면 시작 폴더)</value></data>
+  <data name="Connection_Bucket" xml:space="preserve"><value>버킷(및 폴더): bucket/폴더</value></data>
+  <data name="Connection_Region" xml:space="preserve"><value>지역(비우면 us-east-1, R2는 auto)</value></data>
+  <data name="Connection_AcceptAny" xml:space="preserve"><value>잘못된 인증서 허용(서버가 자체 인증서를 쓸 때만)</value></data>
+  <data name="Connection_Test" xml:space="preserve"><value>연결 테스트</value></data>
+  <data name="Connection_Testing" xml:space="preserve"><value>테스트하는 중…</value></data>
+  <data name="Connection_TestOk" xml:space="preserve"><value>연결 성공: 폴더에 항목 {0}개가 있습니다.</value></data>
+  <data name="Connection_TestFailed" xml:space="preserve"><value>연결할 수 없습니다: {0}</value></data>
 </root>

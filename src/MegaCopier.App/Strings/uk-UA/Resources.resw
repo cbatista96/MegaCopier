@@ -808,17 +808,17 @@
   <data name="DragConfirm_Always.Content" xml:space="preserve"><value>Завжди</value></data>
   <data name="Drag_ConfirmMove" xml:space="preserve"><value>Перемістити {0} до «{1}» через MegaCopier?</value></data>
   <data name="Drag_ConfirmCopy" xml:space="preserve"><value>Копіювати {0} до «{1}» через MegaCopier?</value></data>
-  <data name="Tool_MtpImport.Text" xml:space="preserve"><value>Копіювати з телефона чи камери…</value></data>
-  <data name="Tool_MtpExport.Text" xml:space="preserve"><value>Копіювати файли на телефон чи камеру…</value></data>
+  <data name="Tool_MtpImport.Text" xml:space="preserve"><value>Копіювати з телефона, камери чи сервера…</value></data>
+  <data name="Tool_MtpExport.Text" xml:space="preserve"><value>Копіювати файли на телефон, камеру чи сервер…</value></data>
   <data name="MtpDialog.CloseButtonText" xml:space="preserve"><value>Скасувати</value></data>
-  <data name="Mtp_ImportTitle" xml:space="preserve"><value>Копіювати з телефона чи камери</value></data>
-  <data name="Mtp_ExportTitle" xml:space="preserve"><value>Копіювати на телефон чи камеру</value></data>
+  <data name="Mtp_ImportTitle" xml:space="preserve"><value>Копіювати з телефона, камери чи сервера</value></data>
+  <data name="Mtp_ExportTitle" xml:space="preserve"><value>Копіювати на телефон, камеру чи сервер</value></data>
   <data name="Mtp_ImportButton" xml:space="preserve"><value>Копіювати в…</value></data>
   <data name="Mtp_ExportButton" xml:space="preserve"><value>Копіювати сюди</value></data>
   <data name="Mtp_ImportSummary" xml:space="preserve"><value>Позначте, що потрібно скопіювати. Якщо нічого не позначено, копіюється вся відкрита папка.</value></data>
   <data name="Mtp_ExportSummaryOne" xml:space="preserve"><value>Відкрийте папку пристрою, куди скопіювати «{0}».</value></data>
   <data name="Mtp_ExportSummaryMany" xml:space="preserve"><value>Відкрийте папку пристрою, куди скопіювати елементи ({0}).</value></data>
-  <data name="Mtp_NoDevices" xml:space="preserve"><value>Телефон чи камеру не під&apos;єднано. Під&apos;єднайте через USB, розблокуйте й виберіть «Передавання файлів».</value></data>
+  <data name="Mtp_NoDevices" xml:space="preserve"><value>Телефон чи камеру не під&apos;єднано (під&apos;єднайте через USB, розблокуйте й виберіть «Передавання файлів»), і немає серверів у «Налаштування &gt; Підключення».</value></data>
   <data name="Mtp_Loading" xml:space="preserve"><value>Читання пристрою…</value></data>
   <data name="Mtp_Empty" xml:space="preserve"><value>Папка порожня.</value></data>
   <data name="Mtp_Error" xml:space="preserve"><value>Не вдалося прочитати пристрій: {0}</value></data>
@@ -885,4 +885,38 @@
   <data name="Compare_ChangedAndDeleted" xml:space="preserve"><value>Видалено з одного боку, але змінено з іншого: зберігається</value></data>
   <data name="Compare_Extra" xml:space="preserve"><value>Немає в джерелі</value></data>
   <data name="Compare_Same" xml:space="preserve"><value>Однаково з обох боків</value></data>
+  <data name="Drive_Disk" xml:space="preserve"><value>Диск</value></data>
+  <data name="Drive_Usb" xml:space="preserve"><value>USB</value></data>
+  <data name="Drive_Network" xml:space="preserve"><value>Мережа</value></data>
+  <data name="Drive_Server" xml:space="preserve"><value>Сервер</value></data>
+  <data name="Drive_Phone" xml:space="preserve"><value>Телефон</value></data>
+  <data name="Settings_Connections.Text" xml:space="preserve"><value>Підключення до серверів</value></data>
+  <data name="Settings_ConnectionsTitle.Text" xml:space="preserve"><value>Сервери та хмари</value></data>
+  <data name="Settings_ConnectionsDescription.Text" xml:space="preserve"><value>FTP, FTPS, SFTP, WebDAV (Nextcloud, ownCloud, NAS…) і S3 (AWS, Backblaze B2, Cloudflare R2, Wasabi, MinIO…). Вони з&apos;являються під час копіювання з «телефона, камери чи сервера» і на них. Паролі зберігаються в диспетчері облікових даних Windows. OneDrive, Google Drive і Dropbox тут не потрібні: з їхніми програмами це звичайні папки.</value></data>
+  <data name="Settings_ConnectionsAdd.Text" xml:space="preserve"><value>Додати…</value></data>
+  <data name="Settings_ConnectionsEmpty" xml:space="preserve"><value>Підключень поки немає.</value></data>
+  <data name="Settings_ConnectionEdit" xml:space="preserve"><value>Змінити «{0}»</value></data>
+  <data name="Settings_ConnectionDelete" xml:space="preserve"><value>Видалити «{0}»</value></data>
+  <data name="Connection_DialogTitle" xml:space="preserve"><value>Підключення</value></data>
+  <data name="Connection_Save" xml:space="preserve"><value>Зберегти</value></data>
+  <data name="Connection_Cancel" xml:space="preserve"><value>Скасувати</value></data>
+  <data name="Connection_Kind" xml:space="preserve"><value>Тип</value></data>
+  <data name="Connection_Name" xml:space="preserve"><value>Назва</value></data>
+  <data name="Connection_Host" xml:space="preserve"><value>Сервер</value></data>
+  <data name="Connection_Url" xml:space="preserve"><value>Адреса (https://…)</value></data>
+  <data name="Connection_Endpoint" xml:space="preserve"><value>Кінцева точка (порожньо = AWS)</value></data>
+  <data name="Connection_Port" xml:space="preserve"><value>Порт (0 = стандартний)</value></data>
+  <data name="Connection_User" xml:space="preserve"><value>Користувач</value></data>
+  <data name="Connection_AccessKey" xml:space="preserve"><value>Ключ доступу</value></data>
+  <data name="Connection_Password" xml:space="preserve"><value>Пароль</value></data>
+  <data name="Connection_SecretKey" xml:space="preserve"><value>Секретний ключ</value></data>
+  <data name="Connection_PasswordOrKey" xml:space="preserve"><value>Пароль або закритий ключ (вставте повністю)</value></data>
+  <data name="Connection_Root" xml:space="preserve"><value>Папка (порожньо = домашня)</value></data>
+  <data name="Connection_Bucket" xml:space="preserve"><value>Бакет (і папка): bucket/папка</value></data>
+  <data name="Connection_Region" xml:space="preserve"><value>Регіон (порожньо = us-east-1; у R2 — auto)</value></data>
+  <data name="Connection_AcceptAny" xml:space="preserve"><value>Приймати недійсні сертифікати (лише якщо в сервера власний)</value></data>
+  <data name="Connection_Test" xml:space="preserve"><value>Перевірити підключення</value></data>
+  <data name="Connection_Testing" xml:space="preserve"><value>Перевірка…</value></data>
+  <data name="Connection_TestOk" xml:space="preserve"><value>Підключення працює: елементів у папці — {0}.</value></data>
+  <data name="Connection_TestFailed" xml:space="preserve"><value>Не вдалося підключитися: {0}</value></data>
 </root>

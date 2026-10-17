@@ -244,6 +244,7 @@ public static partial class Texts
             ["U_Seconds"] = "{0} s",
             ["U_MinSec"] = "{0} min {1} s",
             ["U_HourMin"] = "{0} h {1} min",
+            ["E_HostKeyChanged"] = "La identidad de {0} ha cambiado (huella {1}). Podría ser otro equipo haciéndose pasar por él: no se conecta. Si cambiaste el servidor a propósito, vuelve a crear la conexión.",
         },
         ["en-US"] = new()
         {
@@ -466,6 +467,7 @@ public static partial class Texts
             ["U_Seconds"] = "{0} s",
             ["U_MinSec"] = "{0} min {1} s",
             ["U_HourMin"] = "{0} h {1} min",
+            ["E_HostKeyChanged"] = "The identity of {0} has changed (fingerprint {1}). It could be another computer impersonating it: not connecting. If you changed the server on purpose, create the connection again.",
         },
         ["fr-FR"] = new()
         {
@@ -688,6 +690,7 @@ public static partial class Texts
             ["U_Seconds"] = "{0} s",
             ["U_MinSec"] = "{0} min {1} s",
             ["U_HourMin"] = "{0} h {1} min",
+            ["E_HostKeyChanged"] = "L'identité de {0} a changé (empreinte {1}). Un autre ordinateur pourrait se faire passer pour lui : connexion refusée. Si vous avez changé de serveur volontairement, recréez la connexion.",
         },
         ["de-DE"] = new()
         {
@@ -910,6 +913,7 @@ public static partial class Texts
             ["U_Seconds"] = "{0} s",
             ["U_MinSec"] = "{0} min {1} s",
             ["U_HourMin"] = "{0} h {1} min",
+            ["E_HostKeyChanged"] = "Die Identität von {0} hat sich geändert (Fingerabdruck {1}). Ein anderer Computer könnte sich als dieser ausgeben: keine Verbindung. Wenn Sie den Server absichtlich gewechselt haben, erstellen Sie die Verbindung neu.",
         },
         ["it-IT"] = new()
         {
@@ -1132,6 +1136,7 @@ public static partial class Texts
             ["U_Seconds"] = "{0} s",
             ["U_MinSec"] = "{0} min {1} s",
             ["U_HourMin"] = "{0} h {1} min",
+            ["E_HostKeyChanged"] = "L'identità di {0} è cambiata (impronta {1}). Potrebbe essere un altro computer che si spaccia per lui: nessuna connessione. Se hai cambiato server di proposito, ricrea la connessione.",
         },
         ["pt-BR"] = new()
         {
@@ -1354,6 +1359,7 @@ public static partial class Texts
             ["U_Seconds"] = "{0} s",
             ["U_MinSec"] = "{0} min {1} s",
             ["U_HourMin"] = "{0} h {1} min",
+            ["E_HostKeyChanged"] = "A identidade de {0} mudou (impressão {1}). Pode ser outro computador se passando por ele: não conecta. Se você trocou o servidor de propósito, crie a conexão de novo.",
         },
         ["ru-RU"] = new()
         {
@@ -1576,6 +1582,7 @@ public static partial class Texts
             ["U_Seconds"] = "{0} с",
             ["U_MinSec"] = "{0} мин {1} с",
             ["U_HourMin"] = "{0} ч {1} мин",
+            ["E_HostKeyChanged"] = "Подлинность {0} изменилась (отпечаток {1}). Возможно, другой компьютер выдаёт себя за него: подключение отменено. Если вы сменили сервер намеренно, создайте подключение заново.",
         },
         ["uk-UA"] = new()
         {
@@ -1798,6 +1805,7 @@ public static partial class Texts
             ["U_Seconds"] = "{0} с",
             ["U_MinSec"] = "{0} хв {1} с",
             ["U_HourMin"] = "{0} год {1} хв",
+            ["E_HostKeyChanged"] = "Ідентичність {0} змінилася (відбиток {1}). Можливо, інший комп'ютер видає себе за нього: підключення скасовано. Якщо ви змінили сервер навмисно, створіть підключення знову.",
         },
         ["pl-PL"] = new()
         {
@@ -2020,6 +2028,7 @@ public static partial class Texts
             ["U_Seconds"] = "{0} s",
             ["U_MinSec"] = "{0} min {1} s",
             ["U_HourMin"] = "{0} godz. {1} min",
+            ["E_HostKeyChanged"] = "Tożsamość {0} się zmieniła (odcisk {1}). Może to być inny komputer podszywający się pod niego: brak połączenia. Jeśli celowo zmieniłeś serwer, utwórz połączenie od nowa.",
         },
         ["nl-NL"] = new()
         {
@@ -2242,6 +2251,7 @@ public static partial class Texts
             ["U_Seconds"] = "{0} s",
             ["U_MinSec"] = "{0} min {1} s",
             ["U_HourMin"] = "{0} u {1} min",
+            ["E_HostKeyChanged"] = "De identiteit van {0} is gewijzigd (vingerafdruk {1}). Mogelijk doet een andere computer zich ervoor uit: er wordt geen verbinding gemaakt. Als je de server bewust hebt gewijzigd, maak de verbinding dan opnieuw.",
         },
         ["tr-TR"] = new()
         {
@@ -2464,6 +2474,7 @@ public static partial class Texts
             ["U_Seconds"] = "{0} sn",
             ["U_MinSec"] = "{0} dk {1} sn",
             ["U_HourMin"] = "{0} sa {1} dk",
+            ["E_HostKeyChanged"] = "{0} kimliği değişti (parmak izi {1}). Başka bir bilgisayar onun gibi davranıyor olabilir: bağlanılmıyor. Sunucuyu bilerek değiştirdiyseniz bağlantıyı yeniden oluşturun.",
         },
         ["zh-CN"] = new()
         {
@@ -2686,6 +2697,7 @@ public static partial class Texts
             ["U_Seconds"] = "{0} 秒",
             ["U_MinSec"] = "{0} 分 {1} 秒",
             ["U_HourMin"] = "{0} 小时 {1} 分",
+            ["E_HostKeyChanged"] = "{0} 的身份已更改（指纹 {1}）。可能是另一台计算机冒充它：不会连接。如果你是有意更换了服务器，请重新创建连接。",
         },
         ["ja-JP"] = new()
         {
@@ -2908,6 +2920,7 @@ public static partial class Texts
             ["U_Seconds"] = "{0} 秒",
             ["U_MinSec"] = "{0} 分 {1} 秒",
             ["U_HourMin"] = "{0} 時間 {1} 分",
+            ["E_HostKeyChanged"] = "{0} の識別情報が変わりました（フィンガープリント {1}）。別のコンピューターがなりすましている可能性があるため接続しません。意図的にサーバーを変えた場合は、接続を作り直してください。",
         },
         ["ko-KR"] = new()
         {
@@ -3130,6 +3143,7 @@ public static partial class Texts
             ["U_Seconds"] = "{0}초",
             ["U_MinSec"] = "{0}분 {1}초",
             ["U_HourMin"] = "{0}시간 {1}분",
+            ["E_HostKeyChanged"] = "{0}의 신원이 변경되었습니다(지문 {1}). 다른 컴퓨터가 사칭하는 것일 수 있어 연결하지 않습니다. 의도적으로 서버를 바꿨다면 연결을 다시 만드세요.",
         },
     };
 }

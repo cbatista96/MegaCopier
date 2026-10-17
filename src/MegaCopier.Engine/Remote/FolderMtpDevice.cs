@@ -1,11 +1,11 @@
-namespace MegaCopier.Engine.Mtp;
+namespace MegaCopier.Engine.Remote;
 
 /// <summary>
 /// Un "móvil" de prueba que en realidad es una carpeta del disco: con la variable MEGACOPIER_TEST_MTP=&lt;carpeta&gt;
 /// aparece como dispositivo conectado, para probar la ventana y las copias sin un móvil de verdad.
 /// Los ids de objeto son rutas relativas a esa carpeta ("" es la raíz).
 /// </summary>
-internal sealed class FolderMtpDevice(string root) : IMtpDevice
+internal sealed class FolderMtpDevice(string root) : IRemoteStore
 {
     public const string TestId = @"\\?\test#megacopier-mtp";
 
@@ -13,13 +13,13 @@ internal sealed class FolderMtpDevice(string root) : IMtpDevice
 
     private string Full(string id) => id.Length == 0 ? root : Path.Combine(root, id);
 
-    public IReadOnlyList<MtpObject> Children(string parentId)
+    public IReadOnlyList<RemoteItem> Children(string parentId)
     {
         var folder = new DirectoryInfo(Full(parentId));
         return
         [
-            .. folder.EnumerateDirectories().Select(d => new MtpObject(Path.GetRelativePath(root, d.FullName), d.Name, true, 0, null)),
-            .. folder.EnumerateFiles().Select(f => new MtpObject(Path.GetRelativePath(root, f.FullName), f.Name, false, f.Length, f.LastWriteTimeUtc)),
+            .. folder.EnumerateDirectories().Select(d => new RemoteItem(Path.GetRelativePath(root, d.FullName), d.Name, true, 0, null)),
+            .. folder.EnumerateFiles().Select(f => new RemoteItem(Path.GetRelativePath(root, f.FullName), f.Name, false, f.Length, f.LastWriteTimeUtc)),
         ];
     }
 

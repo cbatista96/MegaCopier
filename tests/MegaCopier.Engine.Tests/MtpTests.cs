@@ -1,10 +1,10 @@
 using System.Text;
-using MegaCopier.Engine.Mtp;
+using MegaCopier.Engine.Remote;
 
 namespace MegaCopier.Engine.Tests;
 
 /// <summary>Un móvil de mentira en memoria: carpetas, archivos con fecha y un registro de lo que se borra.</summary>
-internal sealed class FakePhone : IMtpDevice
+internal sealed class FakePhone : IRemoteStore
 {
     private int _next = 1;
 
@@ -67,8 +67,8 @@ internal sealed class FakePhone : IMtpDevice
         return Objects[current].Data is { } data ? Encoding.UTF8.GetString(data) : null;
     }
 
-    public IReadOnlyList<MtpObject> Children(string parentId) =>
-        [.. Objects.Where(o => o.Value.Parent == parentId).Select(o => new MtpObject(o.Key, o.Value.Name, o.Value.Data is null, o.Value.Data?.Length ?? 0, o.Value.Modified))];
+    public IReadOnlyList<RemoteItem> Children(string parentId) =>
+        [.. Objects.Where(o => o.Value.Parent == parentId).Select(o => new RemoteItem(o.Key, o.Value.Name, o.Value.Data is null, o.Value.Data?.Length ?? 0, o.Value.Modified))];
 
     public Stream OpenRead(string objectId)
     {
@@ -108,27 +108,27 @@ public sealed class MtpTests : IDisposable
 
     public void Dispose() => _temp.Dispose();
 
-    private static string Phone(string inner) => MtpPath.Format(Id, "Pixel 8", inner);
+    private static string Phone(string inner) => RemotePath.Format(Id, "Pixel 8", inner);
 
     private CopyEngine Engine(CopyOptions? options = null)
     {
         options ??= new CopyOptions();
         options.ProgressInterval = TimeSpan.Zero;
-        return new CopyEngine(options) { MtpOpener = id => { Assert.Equal(Id, id); _phone.Opened++; return _phone; } };
+        return new CopyEngine(options) { RemoteOpener = id => { Assert.Equal(Id, id); _phone.Opened++; return _phone; } };
     }
 
     [Fact]
     public void PathsRoundTripAndDisplayNicely()
     {
         string path = Phone(@"Almacenamiento interno\DCIM/Camera/");
-        Assert.True(MtpPath.TryParse(path, out string id, out string name, out string inner));
+        Assert.True(RemotePath.TryParse(path, out string id, out string name, out string inner));
         Assert.Equal((Id, "Pixel 8", "Almacenamiento interno/DCIM/Camera"), (id, name, inner));
-        Assert.Equal(@"Pixel 8\Almacenamiento interno\DCIM\Camera", MtpPath.Display(path));
-        Assert.Equal("Camera", MtpPath.Name(path));
-        Assert.Equal(Phone("Almacenamiento interno/DCIM"), MtpPath.Parent(path));
-        Assert.Equal(Phone("Almacenamiento interno/DCIM/Camera/a.jpg"), MtpPath.Combine(path, "a.jpg"));
-        Assert.Equal(MtpPath.DeviceKey(Phone("x")), Native.VolumeInfo.DeviceKey(Phone("y/z")));
-        Assert.False(MtpPath.IsMtp(@"C:\fotos"));
+        Assert.Equal(@"Pixel 8\Almacenamiento interno\DCIM\Camera", RemotePath.Display(path));
+        Assert.Equal("Camera", RemotePath.Name(path));
+        Assert.Equal(Phone("Almacenamiento interno/DCIM"), RemotePath.Parent(path));
+        Assert.Equal(Phone("Almacenamiento interno/DCIM/Camera/a.jpg"), RemotePath.Combine(path, "a.jpg"));
+        Assert.Equal(RemotePath.DeviceKey(Phone("x")), Native.VolumeInfo.DeviceKey(Phone("y/z")));
+        Assert.False(RemotePath.IsRemote(@"C:\fotos"));
     }
 
     [Fact]

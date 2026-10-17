@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="Blake3" Version="3.0.2" />
+    <PackageReference Include="SSH.NET" Version="2026.0.0" />
     <PackageReference Include="System.IO.Hashing" Version="10.0.13" />
   </ItemGroup>
 

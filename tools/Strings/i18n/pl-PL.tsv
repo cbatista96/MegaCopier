@@ -802,17 +802,17 @@ DragConfirm_Moves.Content	Tylko przy przenoszeniu
 DragConfirm_Always.Content	Zawsze
 Drag_ConfirmMove	Przenieść {0} do „{1}” przez MegaCopier?
 Drag_ConfirmCopy	Skopiować {0} do „{1}” przez MegaCopier?
-Tool_MtpImport.Text	Kopiuj z telefonu lub aparatu…
-Tool_MtpExport.Text	Kopiuj pliki na telefon lub aparat…
+Tool_MtpImport.Text	Kopiuj z telefonu, aparatu lub serwera…
+Tool_MtpExport.Text	Kopiuj pliki na telefon, aparat lub serwer…
 MtpDialog.CloseButtonText	Anuluj
-Mtp_ImportTitle	Kopiuj z telefonu lub aparatu
-Mtp_ExportTitle	Kopiuj na telefon lub aparat
+Mtp_ImportTitle	Kopiuj z telefonu, aparatu lub serwera
+Mtp_ExportTitle	Kopiuj na telefon, aparat lub serwer
 Mtp_ImportButton	Kopiuj do…
 Mtp_ExportButton	Kopiuj tutaj
 Mtp_ImportSummary	Zaznacz, co chcesz skopiować. Bez zaznaczenia kopiowany jest cały otwarty folder.
 Mtp_ExportSummaryOne	Otwórz folder urządzenia, do którego skopiować „{0}”.
 Mtp_ExportSummaryMany	Otwórz folder urządzenia, do którego skopiować elementy ({0}).
-Mtp_NoDevices	Nie podłączono telefonu ani aparatu. Podłącz go przez USB, odblokuj i wybierz „Przesyłanie plików”.
+Mtp_NoDevices	Nie podłączono telefonu ani aparatu (podłącz przez USB, odblokuj i wybierz „Przesyłanie plików”) i nie ma serwerów w Ustawienia > Połączenia.
 Mtp_Loading	Odczytywanie urządzenia…
 Mtp_Empty	Pusty folder.
 Mtp_Error	Nie udało się odczytać urządzenia: {0}
@@ -879,3 +879,37 @@ Compare_BothChanged	Zmienione po obu stronach: wygrywa nowsze
 Compare_ChangedAndDeleted	Usunięte po jednej stronie, zmienione po drugiej: zostaje
 Compare_Extra	Brak w źródle
 Compare_Same	Identyczne po obu stronach
+Drive_Disk	Dysk
+Drive_Usb	USB
+Drive_Network	Sieć
+Drive_Server	Serwer
+Drive_Phone	Telefon
+Settings_Connections.Text	Połączenia z serwerami
+Settings_ConnectionsTitle.Text	Serwery i chmury
+Settings_ConnectionsDescription.Text	FTP, FTPS, SFTP, WebDAV (Nextcloud, ownCloud, NAS…) i S3 (AWS, Backblaze B2, Cloudflare R2, Wasabi, MinIO…). Pojawiają się przy kopiowaniu z lub na „telefon, aparat lub serwer”. Hasła trafiają do Menedżera poświadczeń Windows. OneDrive, Google Drive i Dropbox nie są tu potrzebne: z ich aplikacjami to zwykłe foldery.
+Settings_ConnectionsAdd.Text	Dodaj…
+Settings_ConnectionsEmpty	Brak połączeń.
+Settings_ConnectionEdit	Edytuj „{0}”
+Settings_ConnectionDelete	Usuń „{0}”
+Connection_DialogTitle	Połączenie
+Connection_Save	Zapisz
+Connection_Cancel	Anuluj
+Connection_Kind	Typ
+Connection_Name	Nazwa
+Connection_Host	Serwer
+Connection_Url	Adres (https://…)
+Connection_Endpoint	Punkt końcowy (puste = AWS)
+Connection_Port	Port (0 = domyślny)
+Connection_User	Użytkownik
+Connection_AccessKey	Klucz dostępu
+Connection_Password	Hasło
+Connection_SecretKey	Klucz tajny
+Connection_PasswordOrKey	Hasło lub klucz prywatny (wklej w całości)
+Connection_Root	Folder (pusty = startowy)
+Connection_Bucket	Zasobnik (i folder): bucket/folder
+Connection_Region	Region (pusty = us-east-1; w R2 auto)
+Connection_AcceptAny	Akceptuj nieprawidłowe certyfikaty (tylko gdy serwer ma własny)
+Connection_Test	Testuj połączenie
+Connection_Testing	Testowanie…
+Connection_TestOk	Połączenie działa: elementów w folderze: {0}.
+Connection_TestFailed	Nie udało się połączyć: {0}

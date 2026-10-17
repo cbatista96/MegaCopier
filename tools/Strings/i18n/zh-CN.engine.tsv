@@ -218,3 +218,4 @@ C_Usage	MegaCopier — 断电也不怕的复制\n\n用法：\n  mcopy copy <源>
 U_Seconds	{0} 秒
 U_MinSec	{0} 分 {1} 秒
 U_HourMin	{0} 小时 {1} 分
+E_HostKeyChanged	{0} 的身份已更改（指纹 {1}）。可能是另一台计算机冒充它：不会连接。如果你是有意更换了服务器，请重新创建连接。

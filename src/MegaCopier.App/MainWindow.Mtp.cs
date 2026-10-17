@@ -1,7 +1,7 @@
 using MegaCopier.App.Services;
 using MegaCopier.App.ViewModels;
 using MegaCopier.Engine.Ipc;
-using MegaCopier.Engine.Mtp;
+using MegaCopier.Engine.Remote;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 
@@ -14,9 +14,9 @@ namespace MegaCopier.App;
 /// </summary>
 public sealed partial class MainWindow
 {
-    private IMtpDevice? _mtpDevice;
+    private IRemoteStore? _mtpDevice;
     private MtpDeviceInfo? _mtpInfo;
-    private readonly List<MtpObject> _mtpStack = [];
+    private readonly List<RemoteItem> _mtpStack = [];
     private bool _mtpExport;
     private int _mtpGeneration;
 
@@ -87,9 +87,9 @@ public sealed partial class MainWindow
                 return null;
             }
 
-            string current = MtpPath.Format(info.Id, info.Name, string.Join('/', _mtpStack.Select(o => o.Name)));
-            var selected = MtpList.SelectedItems.OfType<ListViewItem>().Select(i => (MtpObject)i.Tag).ToList();
-            return _mtpExport || selected.Count == 0 ? [current] : [.. selected.Select(o => MtpPath.Combine(current, o.Name))];
+            string current = RemotePath.Format(info.Id, info.Name, string.Join('/', _mtpStack.Select(o => o.Name)));
+            var selected = MtpList.SelectedItems.OfType<ListViewItem>().Select(i => (RemoteItem)i.Tag).ToList();
+            return _mtpExport || selected.Count == 0 ? [current] : [.. selected.Select(o => RemotePath.Combine(current, o.Name))];
         }
         finally
         {
@@ -115,7 +115,8 @@ public sealed partial class MainWindow
         MtpDeviceBox.Items.Clear();
         MtpStatus.Text = L.Get("Mtp_Loading");
         UpdateMtpButtons();
-        var devices = await Task.Run(MtpDevices.List);
+        // Móviles y cámaras conectados, y después los servidores guardados en Ajustes > Conexiones.
+        var devices = await Task.Run(() => (IReadOnlyList<MtpDeviceInfo>)[.. MtpDevices.List(), .. Connections.Load().Select(c => new MtpDeviceInfo(c.Id, c.Name))]);
         if (generation != _mtpGeneration)
         {
             return;
@@ -162,7 +163,7 @@ public sealed partial class MainWindow
         MtpStatus.Text = L.Get("Mtp_Loading");
         try
         {
-            var device = await Task.Run(() => MtpDevices.Open(info.Id));
+            var device = await Task.Run(() => RemoteStores.Open(info.Id));
             if (generation != _mtpGeneration)
             {
                 _ = Task.Run(device.Dispose);
@@ -245,7 +246,7 @@ public sealed partial class MainWindow
 
     private async void MtpOpen_Click(object sender, RoutedEventArgs e)
     {
-        if (sender is Button { Tag: MtpObject folder })
+        if (sender is Button { Tag: RemoteItem folder })
         {
             await OpenMtpFolderAsync(folder);
         }
@@ -253,14 +254,14 @@ public sealed partial class MainWindow
 
     private async void MtpItem_DoubleTapped(object sender, Microsoft.UI.Xaml.Input.DoubleTappedRoutedEventArgs e)
     {
-        if (sender is ListViewItem { Tag: MtpObject { IsFolder: true } folder })
+        if (sender is ListViewItem { Tag: RemoteItem { IsFolder: true } folder })
         {
             e.Handled = true;
             await OpenMtpFolderAsync(folder);
         }
     }
 
-    private async Task OpenMtpFolderAsync(MtpObject folder)
+    private async Task OpenMtpFolderAsync(RemoteItem folder)
     {
         _mtpStack.Add(folder);
         await ShowMtpFolderAsync();

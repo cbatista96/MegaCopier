@@ -1,13 +1,13 @@
 using System.Runtime.InteropServices;
 
-namespace MegaCopier.Engine.Mtp;
+namespace MegaCopier.Engine.Remote;
 
 /// <summary>
 /// Un móvil o cámara por Windows Portable Devices (la misma interfaz que usa el Explorador para "Este equipo > Pixel").
 /// Llamadas COM por la tabla de métodos (índices y firmas comprobados con PortableDeviceApi.h y PortableDeviceTypes.h
 /// del SDK 10.0.26100), así que funciona con Native AOT. Los objetos son "free-threaded": vale cualquier hilo.
 /// </summary>
-public sealed unsafe partial class WpdDevice : IMtpDevice
+public sealed unsafe partial class WpdDevice : IRemoteStore
 {
     private static readonly Guid ClsidManager = new("0AF10CEC-2ECD-4B92-9581-34F6AE0637F3");
     private static readonly Guid IidManager = new("A1567595-4C2F-4574-A6FA-ECEF917B9A40");
@@ -177,7 +177,7 @@ public sealed unsafe partial class WpdDevice : IMtpDevice
         throw new IOException("No se pudo abrir el dispositivo.");
     }
 
-    public IReadOnlyList<MtpObject> Children(string parentId)
+    public IReadOnlyList<RemoteItem> Children(string parentId)
     {
         var ids = new List<string>();
         void* enumerator = null;
@@ -217,7 +217,7 @@ public sealed unsafe partial class WpdDevice : IMtpDevice
             Release(enumerator);
         }
 
-        var result = new List<MtpObject>(ids.Count);
+        var result = new List<RemoteItem>(ids.Count);
         foreach (string id in ids)
         {
             if (Describe(id) is { } item)
@@ -230,7 +230,7 @@ public sealed unsafe partial class WpdDevice : IMtpDevice
     }
 
     /// <summary>Nombre, tipo, tamaño y fecha de un objeto; null si es un objeto funcional que no es un almacenamiento.</summary>
-    private MtpObject? Describe(string id)
+    private RemoteItem? Describe(string id)
     {
         void* values = null;
         try
@@ -253,7 +253,7 @@ public sealed unsafe partial class WpdDevice : IMtpDevice
             bool folder = type == ContentFolder || type == ContentFunctional;
             string name = (folder ? null : GetString(values, KeyOriginalFileName)) ?? GetString(values, KeyName) ?? id;
             long size = folder ? 0 : (long)GetULong(values, KeySize);
-            return new MtpObject(id, name, folder, size, GetDate(values, KeyDateModified));
+            return new RemoteItem(id, name, folder, size, GetDate(values, KeyDateModified));
         }
         finally
         {

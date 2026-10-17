@@ -808,17 +808,17 @@
   <data name="DragConfirm_Always.Content" xml:space="preserve"><value>Her zaman</value></data>
   <data name="Drag_ConfirmMove" xml:space="preserve"><value>{0} MegaCopier ile &quot;{1}&quot; konumuna taşınsın mı?</value></data>
   <data name="Drag_ConfirmCopy" xml:space="preserve"><value>{0} MegaCopier ile &quot;{1}&quot; konumuna kopyalansın mı?</value></data>
-  <data name="Tool_MtpImport.Text" xml:space="preserve"><value>Telefondan veya kameradan kopyala…</value></data>
-  <data name="Tool_MtpExport.Text" xml:space="preserve"><value>Dosyaları telefona veya kameraya kopyala…</value></data>
+  <data name="Tool_MtpImport.Text" xml:space="preserve"><value>Telefon, kamera veya sunucudan kopyala…</value></data>
+  <data name="Tool_MtpExport.Text" xml:space="preserve"><value>Dosyaları telefona, kameraya veya sunucuya kopyala…</value></data>
   <data name="MtpDialog.CloseButtonText" xml:space="preserve"><value>İptal</value></data>
-  <data name="Mtp_ImportTitle" xml:space="preserve"><value>Telefondan veya kameradan kopyala</value></data>
-  <data name="Mtp_ExportTitle" xml:space="preserve"><value>Telefona veya kameraya kopyala</value></data>
+  <data name="Mtp_ImportTitle" xml:space="preserve"><value>Telefon, kamera veya sunucudan kopyala</value></data>
+  <data name="Mtp_ExportTitle" xml:space="preserve"><value>Telefona, kameraya veya sunucuya kopyala</value></data>
   <data name="Mtp_ImportButton" xml:space="preserve"><value>Şuraya kopyala…</value></data>
   <data name="Mtp_ExportButton" xml:space="preserve"><value>Buraya kopyala</value></data>
   <data name="Mtp_ImportSummary" xml:space="preserve"><value>Kopyalamak istediklerinizi işaretleyin. Hiçbir şey işaretlenmezse açık klasörün tamamı kopyalanır.</value></data>
   <data name="Mtp_ExportSummaryOne" xml:space="preserve"><value>&quot;{0}&quot; öğesinin kopyalanacağı cihaz klasörünü açın.</value></data>
   <data name="Mtp_ExportSummaryMany" xml:space="preserve"><value>{0} öğenin kopyalanacağı cihaz klasörünü açın.</value></data>
-  <data name="Mtp_NoDevices" xml:space="preserve"><value>Bağlı telefon veya kamera yok. USB ile bağlayın, kilidini açın ve &quot;Dosya aktarımı&quot;nı seçin.</value></data>
+  <data name="Mtp_NoDevices" xml:space="preserve"><value>Bağlı telefon veya kamera yok (USB ile bağlayın, kilidini açın ve &quot;Dosya aktarımı&quot;nı seçin) ve Ayarlar &gt; Bağlantılar&apos;da sunucu yok.</value></data>
   <data name="Mtp_Loading" xml:space="preserve"><value>Cihaz okunuyor…</value></data>
   <data name="Mtp_Empty" xml:space="preserve"><value>Boş klasör.</value></data>
   <data name="Mtp_Error" xml:space="preserve"><value>Cihaz okunamadı: {0}</value></data>
@@ -885,4 +885,38 @@
   <data name="Compare_ChangedAndDeleted" xml:space="preserve"><value>Bir tarafta silindi ama diğerinde değişti: korunur</value></data>
   <data name="Compare_Extra" xml:space="preserve"><value>Kaynakta yok</value></data>
   <data name="Compare_Same" xml:space="preserve"><value>İki tarafta aynı</value></data>
+  <data name="Drive_Disk" xml:space="preserve"><value>Disk</value></data>
+  <data name="Drive_Usb" xml:space="preserve"><value>USB</value></data>
+  <data name="Drive_Network" xml:space="preserve"><value>Ağ</value></data>
+  <data name="Drive_Server" xml:space="preserve"><value>Sunucu</value></data>
+  <data name="Drive_Phone" xml:space="preserve"><value>Telefon</value></data>
+  <data name="Settings_Connections.Text" xml:space="preserve"><value>Sunucu bağlantıları</value></data>
+  <data name="Settings_ConnectionsTitle.Text" xml:space="preserve"><value>Sunucular ve bulutlar</value></data>
+  <data name="Settings_ConnectionsDescription.Text" xml:space="preserve"><value>FTP, FTPS, SFTP, WebDAV (Nextcloud, ownCloud, NAS…) ve S3 (AWS, Backblaze B2, Cloudflare R2, Wasabi, MinIO…). &quot;Telefon, kamera veya sunucu&quot;dan ya da oraya kopyalarken görünürler. Parolalar Windows Kimlik Bilgileri Yöneticisi&apos;nde saklanır. OneDrive, Google Drive ve Dropbox&apos;a burada gerek yok: uygulamalarıyla normal klasörlerdir.</value></data>
+  <data name="Settings_ConnectionsAdd.Text" xml:space="preserve"><value>Ekle…</value></data>
+  <data name="Settings_ConnectionsEmpty" xml:space="preserve"><value>Henüz bağlantı yok.</value></data>
+  <data name="Settings_ConnectionEdit" xml:space="preserve"><value>&quot;{0}&quot; düzenle</value></data>
+  <data name="Settings_ConnectionDelete" xml:space="preserve"><value>&quot;{0}&quot; kaldır</value></data>
+  <data name="Connection_DialogTitle" xml:space="preserve"><value>Bağlantı</value></data>
+  <data name="Connection_Save" xml:space="preserve"><value>Kaydet</value></data>
+  <data name="Connection_Cancel" xml:space="preserve"><value>İptal</value></data>
+  <data name="Connection_Kind" xml:space="preserve"><value>Tür</value></data>
+  <data name="Connection_Name" xml:space="preserve"><value>Ad</value></data>
+  <data name="Connection_Host" xml:space="preserve"><value>Sunucu</value></data>
+  <data name="Connection_Url" xml:space="preserve"><value>Adres (https://…)</value></data>
+  <data name="Connection_Endpoint" xml:space="preserve"><value>Uç nokta (boş = AWS)</value></data>
+  <data name="Connection_Port" xml:space="preserve"><value>Bağlantı noktası (0 = varsayılan)</value></data>
+  <data name="Connection_User" xml:space="preserve"><value>Kullanıcı</value></data>
+  <data name="Connection_AccessKey" xml:space="preserve"><value>Erişim anahtarı</value></data>
+  <data name="Connection_Password" xml:space="preserve"><value>Parola</value></data>
+  <data name="Connection_SecretKey" xml:space="preserve"><value>Gizli anahtar</value></data>
+  <data name="Connection_PasswordOrKey" xml:space="preserve"><value>Parola veya özel anahtar (tamamını yapıştırın)</value></data>
+  <data name="Connection_Root" xml:space="preserve"><value>Klasör (boş = başlangıç klasörü)</value></data>
+  <data name="Connection_Bucket" xml:space="preserve"><value>Kova (ve klasör): bucket/klasör</value></data>
+  <data name="Connection_Region" xml:space="preserve"><value>Bölge (boş = us-east-1; R2&apos;de auto)</value></data>
+  <data name="Connection_AcceptAny" xml:space="preserve"><value>Geçersiz sertifikaları kabul et (yalnızca sunucunun kendi sertifikası varsa)</value></data>
+  <data name="Connection_Test" xml:space="preserve"><value>Bağlantıyı sına</value></data>
+  <data name="Connection_Testing" xml:space="preserve"><value>Sınanıyor…</value></data>
+  <data name="Connection_TestOk" xml:space="preserve"><value>Bağlantı çalışıyor: klasörde {0} öğe var.</value></data>
+  <data name="Connection_TestFailed" xml:space="preserve"><value>Bağlanılamadı: {0}</value></data>
 </root>

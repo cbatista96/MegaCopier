@@ -802,17 +802,17 @@ DragConfirm_Moves.Content	Solo al mover	Only when moving
 DragConfirm_Always.Content	Siempre	Always
 Drag_ConfirmMove	¿Mover {0} a «{1}» con MegaCopier?	Move {0} to "{1}" with MegaCopier?
 Drag_ConfirmCopy	¿Copiar {0} a «{1}» con MegaCopier?	Copy {0} to "{1}" with MegaCopier?
-Tool_MtpImport.Text	Copiar desde el móvil o la cámara…	Copy from a phone or camera…
-Tool_MtpExport.Text	Copiar archivos al móvil o la cámara…	Copy files to a phone or camera…
+Tool_MtpImport.Text	Copiar desde un móvil, cámara o servidor…	Copy from a phone, camera or server…
+Tool_MtpExport.Text	Copiar archivos a un móvil, cámara o servidor…	Copy files to a phone, camera or server…
 MtpDialog.CloseButtonText	Cancelar	Cancel
-Mtp_ImportTitle	Copiar desde el móvil o la cámara	Copy from a phone or camera
-Mtp_ExportTitle	Copiar al móvil o la cámara	Copy to a phone or camera
+Mtp_ImportTitle	Copiar desde un móvil, cámara o servidor	Copy from a phone, camera or server
+Mtp_ExportTitle	Copiar a un móvil, cámara o servidor	Copy to a phone, camera or server
 Mtp_ImportButton	Copiar a…	Copy to…
 Mtp_ExportButton	Copiar aquí	Copy here
 Mtp_ImportSummary	Marca lo que quieras copiar. Sin marcar nada, se copia entera la carpeta que tengas abierta.	Check what you want to copy. With nothing checked, the whole open folder is copied.
 Mtp_ExportSummaryOne	Abre la carpeta del dispositivo donde copiar «{0}».	Open the device folder to copy "{0}" into.
 Mtp_ExportSummaryMany	Abre la carpeta del dispositivo donde copiar {0} elementos.	Open the device folder to copy {0} items into.
-Mtp_NoDevices	No hay ningún móvil ni cámara conectado. Conéctalo por USB, desbloquéalo y elige «Transferencia de archivos».	No phone or camera is connected. Plug it in over USB, unlock it and choose "File transfer".
+Mtp_NoDevices	No hay ningún móvil ni cámara conectado (conéctalo por USB, desbloquéalo y elige «Transferencia de archivos») ni servidores en Ajustes > Conexiones.	No phone or camera is connected (plug it in over USB, unlock it and choose "File transfer") and there are no servers in Settings > Connections.
 Mtp_Loading	Leyendo el dispositivo…	Reading the device…
 Mtp_Empty	Carpeta vacía.	Empty folder.
 Mtp_Error	No se pudo leer el dispositivo: {0}	Couldn't read the device: {0}
@@ -879,3 +879,37 @@ Compare_BothChanged	Cambió en los dos lados: gana el más reciente	Changed on b
 Compare_ChangedAndDeleted	Borrado en un lado pero cambiado en el otro: se conserva	Deleted on one side but changed on the other: kept
 Compare_Extra	No está en el origen	Not in the source
 Compare_Same	Igual en los dos lados	Identical on both sides
+Drive_Disk	Disco	Disk
+Drive_Usb	USB	USB
+Drive_Network	Red	Network
+Drive_Server	Servidor	Server
+Drive_Phone	Móvil	Phone
+Settings_Connections.Text	Conexiones a servidores	Server connections
+Settings_ConnectionsTitle.Text	Servidores y nubes	Servers and clouds
+Settings_ConnectionsDescription.Text	FTP, FTPS, SFTP, WebDAV (Nextcloud, ownCloud, NAS…) y S3 (AWS, Backblaze B2, Cloudflare R2, Wasabi, MinIO…). Aparecen al copiar desde o a «un móvil, cámara o servidor». Las contraseñas van al Administrador de credenciales de Windows. OneDrive, Google Drive y Dropbox no hacen falta aquí: con sus apps son carpetas normales.	FTP, FTPS, SFTP, WebDAV (Nextcloud, ownCloud, NAS…) and S3 (AWS, Backblaze B2, Cloudflare R2, Wasabi, MinIO…). They show up when copying from or to "a phone, camera or server". Passwords go to the Windows Credential Manager. OneDrive, Google Drive and Dropbox aren't needed here: with their apps they're normal folders.
+Settings_ConnectionsAdd.Text	Añadir…	Add…
+Settings_ConnectionsEmpty	Todavía no hay conexiones.	No connections yet.
+Settings_ConnectionEdit	Editar «{0}»	Edit "{0}"
+Settings_ConnectionDelete	Quitar «{0}»	Remove "{0}"
+Connection_DialogTitle	Conexión	Connection
+Connection_Save	Guardar	Save
+Connection_Cancel	Cancelar	Cancel
+Connection_Kind	Tipo	Type
+Connection_Name	Nombre	Name
+Connection_Host	Servidor	Server
+Connection_Url	Dirección (https://…)	Address (https://…)
+Connection_Endpoint	Punto de acceso (vacío = AWS)	Endpoint (empty = AWS)
+Connection_Port	Puerto (0 = el habitual)	Port (0 = the usual one)
+Connection_User	Usuario	User
+Connection_AccessKey	Clave de acceso	Access key
+Connection_Password	Contraseña	Password
+Connection_SecretKey	Clave secreta	Secret key
+Connection_PasswordOrKey	Contraseña o clave privada (pégala entera)	Password or private key (paste all of it)
+Connection_Root	Carpeta (vacía = la de inicio)	Folder (empty = the home one)
+Connection_Bucket	Bucket (y carpeta): bucket/carpeta	Bucket (and folder): bucket/folder
+Connection_Region	Región (vacía = us-east-1; en R2, auto)	Region (empty = us-east-1; on R2, auto)
+Connection_AcceptAny	Aceptar certificados no válidos (solo si el servidor tiene uno propio)	Accept invalid certificates (only if the server uses its own)
+Connection_Test	Probar conexión	Test connection
+Connection_Testing	Probando…	Testing…
+Connection_TestOk	Conexión correcta: {0} elementos en la carpeta.	Connection works: {0} items in the folder.
+Connection_TestFailed	No se pudo conectar: {0}	Couldn't connect: {0}

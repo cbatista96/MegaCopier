@@ -1,7 +1,7 @@
 using System.Diagnostics;
 using System.Text;
 using MegaCopier.Engine.IO;
-using MegaCopier.Engine.Mtp;
+using MegaCopier.Engine.Remote;
 using MegaCopier.Engine.Native;
 
 namespace MegaCopier.Engine;
@@ -109,9 +109,9 @@ public sealed partial class CopyEngine
     public CopyJobResult Run(CopyJobRequest request, CancellationToken cancellationToken = default)
     {
         var stopwatch = Stopwatch.StartNew();
-        if (_options.Operation == JobOperation.Copy && IsMtpJob(request))
+        if (_options.Operation == JobOperation.Copy && IsRemoteJob(request))
         {
-            return request.Sources.Any(MtpPath.IsMtp) ? RunMtpImport(request, stopwatch, cancellationToken) : RunMtpExport(request, stopwatch, cancellationToken);
+            return request.Sources.Any(RemotePath.IsRemote) ? RunMtpImport(request, stopwatch, cancellationToken) : RunMtpExport(request, stopwatch, cancellationToken);
         }
 
         switch (_options.Operation)

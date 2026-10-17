@@ -377,6 +377,19 @@
                         </StackPanel>
                     </StackPanel>
                 </Border>
+                <!-- Conexiones a servidores -->
+                <TextBlock x:Uid="Settings_Connections" Style="{StaticResource McSection}" />
+                <Border Style="{StaticResource McSettingCard}">
+                    <StackPanel Spacing="8">
+                        <Grid Style="{StaticResource Row}" Tag="SettingRow">
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                            <FontIcon VerticalAlignment="Center" Glyph="&#xE753;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
+                            <StackPanel Grid.Column="1"><TextBlock x:Uid="Settings_ConnectionsTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="Settings_ConnectionsDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                            <Button Grid.Column="2" Style="{StaticResource McButton}" Click="ConnectionAdd_Click"><TextBlock x:Uid="Settings_ConnectionsAdd" /></Button>
+                        </Grid>
+                        <StackPanel x:Name="ConnectionList" Spacing="6" Margin="30,0,0,0" />
+                    </StackPanel>
+                </Border>
                 <!-- Sincronización en tiempo real -->
                 <TextBlock x:Uid="Settings_LiveSync" Style="{StaticResource McSection}" />
                 <Border Style="{StaticResource McSettingCard}">

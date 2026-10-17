@@ -802,17 +802,17 @@ DragConfirm_Moves.Content	Só ao mover
 DragConfirm_Always.Content	Sempre
 Drag_ConfirmMove	Mover {0} para "{1}" com o MegaCopier?
 Drag_ConfirmCopy	Copiar {0} para "{1}" com o MegaCopier?
-Tool_MtpImport.Text	Copiar do celular ou da câmera…
-Tool_MtpExport.Text	Copiar arquivos para o celular ou a câmera…
+Tool_MtpImport.Text	Copiar do celular, câmera ou servidor…
+Tool_MtpExport.Text	Copiar arquivos para celular, câmera ou servidor…
 MtpDialog.CloseButtonText	Cancelar
-Mtp_ImportTitle	Copiar do celular ou da câmera
-Mtp_ExportTitle	Copiar para o celular ou a câmera
+Mtp_ImportTitle	Copiar do celular, câmera ou servidor
+Mtp_ExportTitle	Copiar para celular, câmera ou servidor
 Mtp_ImportButton	Copiar para…
 Mtp_ExportButton	Copiar aqui
 Mtp_ImportSummary	Marque o que quer copiar. Sem marcar nada, a pasta aberta é copiada inteira.
 Mtp_ExportSummaryOne	Abra a pasta do dispositivo onde copiar "{0}".
 Mtp_ExportSummaryMany	Abra a pasta do dispositivo onde copiar {0} itens.
-Mtp_NoDevices	Nenhum celular ou câmera conectado. Conecte-o por USB, desbloqueie e escolha "Transferência de arquivos".
+Mtp_NoDevices	Nenhum celular ou câmera conectado (conecte por USB, desbloqueie e escolha "Transferência de arquivos") e nenhum servidor em Configurações > Conexões.
 Mtp_Loading	Lendo o dispositivo…
 Mtp_Empty	Pasta vazia.
 Mtp_Error	Não foi possível ler o dispositivo: {0}
@@ -879,3 +879,37 @@ Compare_BothChanged	Alterado nos dois lados: vence o mais recente
 Compare_ChangedAndDeleted	Apagado de um lado mas alterado do outro: é mantido
 Compare_Extra	Não está na origem
 Compare_Same	Igual nos dois lados
+Drive_Disk	Disco
+Drive_Usb	USB
+Drive_Network	Rede
+Drive_Server	Servidor
+Drive_Phone	Celular
+Settings_Connections.Text	Conexões com servidores
+Settings_ConnectionsTitle.Text	Servidores e nuvens
+Settings_ConnectionsDescription.Text	FTP, FTPS, SFTP, WebDAV (Nextcloud, ownCloud, NAS…) e S3 (AWS, Backblaze B2, Cloudflare R2, Wasabi, MinIO…). Aparecem ao copiar de ou para "celular, câmera ou servidor". As senhas vão para o Gerenciador de Credenciais do Windows. OneDrive, Google Drive e Dropbox não são necessários aqui: com seus apps são pastas normais.
+Settings_ConnectionsAdd.Text	Adicionar…
+Settings_ConnectionsEmpty	Ainda não há conexões.
+Settings_ConnectionEdit	Editar "{0}"
+Settings_ConnectionDelete	Remover "{0}"
+Connection_DialogTitle	Conexão
+Connection_Save	Salvar
+Connection_Cancel	Cancelar
+Connection_Kind	Tipo
+Connection_Name	Nome
+Connection_Host	Servidor
+Connection_Url	Endereço (https://…)
+Connection_Endpoint	Endpoint (vazio = AWS)
+Connection_Port	Porta (0 = a padrão)
+Connection_User	Usuário
+Connection_AccessKey	Chave de acesso
+Connection_Password	Senha
+Connection_SecretKey	Chave secreta
+Connection_PasswordOrKey	Senha ou chave privada (cole inteira)
+Connection_Root	Pasta (vazia = a inicial)
+Connection_Bucket	Bucket (e pasta): bucket/pasta
+Connection_Region	Região (vazia = us-east-1; no R2, auto)
+Connection_AcceptAny	Aceitar certificados inválidos (só se o servidor usar um próprio)
+Connection_Test	Testar conexão
+Connection_Testing	Testando…
+Connection_TestOk	Conexão funcionando: {0} itens na pasta.
+Connection_TestFailed	Não foi possível conectar: {0}
