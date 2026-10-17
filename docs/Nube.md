@@ -4,9 +4,10 @@ MegaCopier copia a y desde OneDrive, Google Drive y Dropbox con su propio inicio
 con tu cuenta y aceptas. MegaCopier nunca ve tu contraseña; solo guarda un "token de renovación" en el Administrador de
 credenciales de Windows, igual que las contraseñas de los servidores FTP o WebDAV.
 
-Cada servicio exige que el programa esté **registrado** una vez (es gratis). Quien distribuye MegaCopier lo registra y
-pone el identificador en la versión publicada; si usas una versión propia, regístralo tú siguiendo estos pasos. En todos
-los casos la dirección de vuelta es `http://127.0.0.1` (MegaCopier escucha solo en este equipo, en un puerto libre).
+Cada servicio exige que el programa esté **registrado** una vez. Es gratis y lleva unos 10 minutos. La versión
+publicada de MegaCopier **no trae identificadores incluidos**, así que cada persona registra el suyo siguiendo estos pasos
+(así además nadie depende de una cuenta ajena). En todos los casos la dirección de vuelta es `http://127.0.0.1`
+(MegaCopier escucha solo en este equipo, en un puerto libre).
 
 ## OneDrive (Microsoft)
 

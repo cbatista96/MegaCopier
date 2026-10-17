@@ -20,7 +20,11 @@ su archivo en `tools/Strings/i18n/` y envía los cambios. Para uno nuevo, abre a
 1. Haz un *fork* y crea una rama desde `main` con un nombre claro (`arreglo-conflictos-ftp`, `idioma-catalan`...).
 2. Compila y pasa las pruebas: `.\build.ps1` (ver [Compilar.md](docs/Compilar.md)).
 3. Añade pruebas para lo que cambies en el motor. Las de red usan solo `127.0.0.1` y servidores de prueba, nunca internet.
-4. Abre un *pull request* explicando qué cambia y por qué. La integración continua tiene que pasar.
+4. Si el cambio se nota al usar MegaCopier, añade una línea en `## [Sin publicar]` de [CHANGELOG.md](CHANGELOG.md), en su
+   apartado (*Añadido*, *Cambiado*, *Arreglado*…), escrita para quien usa el programa. Ver [Versiones.md](docs/Versiones.md).
+5. Abre un *pull request* explicando qué cambia y por qué. La integración continua tiene que pasar.
+
+Las versiones las publica quien mantiene el proyecto con `tools\publicar-version.ps1` ([cómo](docs/Versiones.md)).
 
 ### Estilo
 

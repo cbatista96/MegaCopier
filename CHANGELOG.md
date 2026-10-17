@@ -5,6 +5,11 @@ y las versiones, [SemVer](https://semver.org/lang/es/).
 
 ## [Sin publicar]
 
+### Cambiado
+- Documentación nueva y completa: guía de uso paso a paso, preguntas frecuentes, guía de versiones y capturas de todas
+  las vistas y de los 11 temas.
+- `tools\publicar-version.ps1` publica una versión nueva con un solo comando.
+
 ## [1.0.0] - 2026-10-17
 
 Primera versión pública.
