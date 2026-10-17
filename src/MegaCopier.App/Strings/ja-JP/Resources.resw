@@ -1009,4 +1009,5 @@
   <data name="Job_StateRestoring" xml:space="preserve"><value>復元中</value></data>
   <data name="Job_FilesRestoredOne" xml:space="preserve"><value>{0} 個のファイルを復元</value></data>
   <data name="Job_FilesRestoredMany" xml:space="preserve"><value>{0} 個のファイルを復元</value></data>
+  <data name="Rules_Forensic.Content" xml:space="preserve"><value>フォレンジック モード: すべての SHA-256 と署名付きマニフェストをコピー先に</value></data>
 </root>

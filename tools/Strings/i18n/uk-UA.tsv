@@ -1003,3 +1003,4 @@ Job_TitleRestored	Відновлено в {0}
 Job_StateRestoring	Відновлення
 Job_FilesRestoredOne	Відновлено файлів: {0}
 Job_FilesRestoredMany	Відновлено файлів: {0}
+Rules_Forensic.Content	Криміналістичний режим: SHA-256 усього й підписаний маніфест у місці призначення

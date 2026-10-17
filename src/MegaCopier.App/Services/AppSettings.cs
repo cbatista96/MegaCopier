@@ -172,6 +172,8 @@ public sealed class AppSettings
 
     public int RecoveryPercent { get; set; }
 
+    public bool Forensic { get; set; }
+
     public bool WaitForDevice { get; set; } = true;
 
     public bool WaitForSpace { get; set; } = true;
@@ -208,7 +210,7 @@ public sealed class AppSettings
         {
             Filter = Filter, Links = Links, KeepBothPattern = KeepBothPattern, RetryCount = RetryCount, RetryDelaySeconds = RetryDelaySeconds, OnError = OnError,
             VersionsFolder = VersionsFolder, VersionsDaily = VersionsDaily, VersionsWeekly = VersionsWeekly, VersionsMonthly = VersionsMonthly, FolderConflict = FolderConflict, TimeToleranceSeconds = TimeToleranceSeconds, VerifySource = VerifySource,
-            SaveHashStream = SaveHashStream, PreserveHardLinks = PreserveHardLinks, WipeSource = WipeSource, WipeMethod = WipeMethod, EfsRaw = EfsRaw, RansomwareShield = RansomwareShield, RecoveryPercent = RecoveryPercent, WaitForDevice = WaitForDevice, WaitForSpace = WaitForSpace,
+            SaveHashStream = SaveHashStream, PreserveHardLinks = PreserveHardLinks, WipeSource = WipeSource, WipeMethod = WipeMethod, EfsRaw = EfsRaw, RansomwareShield = RansomwareShield, RecoveryPercent = RecoveryPercent, Forensic = Forensic, WaitForDevice = WaitForDevice, WaitForSpace = WaitForSpace,
             AllOrNothing = AllOrNothing,
             RescueMode = RescueMode,
             DeltaCopy = DeltaCopy,
@@ -236,6 +238,7 @@ public sealed class AppSettings
             EfsRaw = value.EfsRaw;
             RansomwareShield = value.RansomwareShield;
             RecoveryPercent = value.RecoveryPercent;
+            Forensic = value.Forensic;
             WaitForDevice = value.WaitForDevice;
             WaitForSpace = value.WaitForSpace;
             AllOrNothing = value.AllOrNothing;
@@ -433,6 +436,7 @@ public sealed class AppSettings
             EfsRaw = EfsRaw,
             RansomwareShield = RansomwareShield,
             RecoveryPercent = RecoveryPercent,
+            Forensic = Forensic,
             WaitForDevice = WaitForDevice,
             WaitForSpace = WaitForSpace,
             AllOrNothing = AllOrNothing,

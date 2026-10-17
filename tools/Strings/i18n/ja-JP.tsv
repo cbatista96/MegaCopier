@@ -1003,3 +1003,4 @@ Job_TitleRestored	{0} に復元しました
 Job_StateRestoring	復元中
 Job_FilesRestoredOne	{0} 個のファイルを復元
 Job_FilesRestoredMany	{0} 個のファイルを復元
+Rules_Forensic.Content	フォレンジック モード: すべての SHA-256 と署名付きマニフェストをコピー先に

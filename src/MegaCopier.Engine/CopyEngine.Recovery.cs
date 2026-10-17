@@ -48,6 +48,44 @@ public sealed partial class CopyEngine
         Log(LogLevel.Info, Texts.F("E_RecoveryCreated", created, _options.RecoveryPercent));
     }
 
+    /// <summary>El manifiesto firmado de la última copia en modo forense.</summary>
+    public string? LastManifest { get; private set; }
+
+    /// <summary>Modo forense: al terminar, el manifiesto firmado con la SHA-256 de cada archivo copiado y comprobado.</summary>
+    private void WriteForensicManifest(CopyJobRequest request, DateTime startedUtc)
+    {
+        if (!_options.Forensic || _options.DryRun)
+        {
+            return;
+        }
+
+        var manifest = new Forensics.Manifest
+        {
+            Machine = Environment.MachineName,
+            User = Environment.UserDomainName + "\\" + Environment.UserName,
+            StartedUtc = startedUtc,
+            FinishedUtc = DateTime.UtcNow,
+            Sources = [.. request.Sources.Select(Path.GetFullPath)],
+            Destination = _destinationRoot,
+        };
+        foreach (var item in Files.Snapshot().Where(i => i.State == FileState.Verified && i.SourceHash is not null && i.DestinationHash is not null))
+        {
+            manifest.Files.Add(new Forensics.ManifestEntry
+            {
+                Path = Path.GetRelativePath(_destinationRoot, item.Destination),
+                Source = item.Source,
+                Size = item.Length,
+                ModifiedUtc = item.LastWriteUtc,
+                Sha256Source = item.SourceHash!.ToLowerInvariant(),
+                Sha256Copy = item.DestinationHash!.ToLowerInvariant(),
+            });
+        }
+
+        string path = Path.Combine(_destinationRoot, $"{Forensics.ForensicManifest.FilePrefix}{DateTime.Now:yyyy-MM-dd HHmmss}.json");
+        LastManifest = Forensics.ForensicManifest.Write(path, manifest);
+        Log(LogLevel.Info, Texts.F("E_ManifestWritten", path, manifest.Files.Count, manifest.KeyFingerprint));
+    }
+
     /// <summary>
     /// Reparar: revisa los archivos que tienen datos de recuperación y reconstruye los bloques dañados o ilegibles.
     /// </summary>

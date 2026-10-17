@@ -1003,3 +1003,4 @@ Job_TitleRestored	Restaurado en {0}	Restored to {0}
 Job_StateRestoring	Restaurando	Restoring
 Job_FilesRestoredOne	{0} archivo restaurado	{0} file restored
 Job_FilesRestoredMany	{0} archivos restaurados	{0} files restored
+Rules_Forensic.Content	Modo forense: SHA-256 de todo y un manifiesto firmado en el destino	Forensic mode: SHA-256 of everything and a signed manifest in the destination
