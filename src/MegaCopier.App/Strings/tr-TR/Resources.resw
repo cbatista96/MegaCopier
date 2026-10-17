@@ -947,4 +947,11 @@
   <data name="Destinations_PasswordHintZip" xml:space="preserve"><value>ZIP, AES-256 ile şifrelenir ve 7-Zip, WinZip veya WinRAR ile açılır (Windows Gezgini şifreli ZIP&apos;leri açamaz). Dosya adları parola olmadan görünür. Parolayı unutursanız dosyaları kurtarmanın yolu yoktur.</value></data>
   <data name="Settings_RemoteConnectionsTitle.Text" xml:space="preserve"><value>Eşzamanlı bağlantılar</value></data>
   <data name="Settings_RemoteConnectionsDescription.Text" xml:space="preserve"><value>Çok sayıda dosyada sunucuyla aynı anda birkaç bağlantı çok daha hızlıdır (1 ile 255 arası). Sunucu bağlantıları sınırlıyorsa izin verdikleri kullanılır.</value></data>
+  <data name="Settings_DefenderTitle.Text" xml:space="preserve"><value>MegaCopier&apos;ı Windows Defender taramasından hariç tut</value></data>
+  <data name="Settings_DefenderDescription.Text" xml:space="preserve"><value>Çok sayıda küçük dosyada kopyalama belirgin şekilde hızlanır, çünkü Defender MegaCopier&apos;ın yazdığı her dosyayı taramayı bırakır. Kopyalanan dosyalar başka bir program açtığında yine taranır. Yönetici izni gerekir.</value></data>
+  <data name="Settings_DefenderAdd" xml:space="preserve"><value>Dışlama ekle</value></data>
+  <data name="Settings_DefenderRemove" xml:space="preserve"><value>Dışlamayı kaldır</value></data>
+  <data name="Settings_DefenderOn" xml:space="preserve"><value>Açık: Defender, MegaCopier&apos;ın yazdıklarını taramıyor.</value></data>
+  <data name="Settings_DefenderCancelled" xml:space="preserve"><value>Yönetici izni verilmedi: hiçbir şey değiştirilmedi.</value></data>
+  <data name="Settings_DefenderFailed" xml:space="preserve"><value>Windows Defender değişikliği kabul etmedi (başka bir virüsten koruma programı yerini almış veya bir ilke engelliyor olabilir).</value></data>
 </root>

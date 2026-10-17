@@ -947,4 +947,11 @@
   <data name="Destinations_PasswordHintZip" xml:space="preserve"><value>De ZIP wordt versleuteld met AES-256 en opent met 7-Zip, WinZip of WinRAR (Windows Verkenner opent geen versleutelde ZIP&apos;s). Bestandsnamen zijn zichtbaar zonder wachtwoord. Als je het vergeet, zijn de bestanden niet te herstellen.</value></data>
   <data name="Settings_RemoteConnectionsTitle.Text" xml:space="preserve"><value>Gelijktijdige verbindingen</value></data>
   <data name="Settings_RemoteConnectionsDescription.Text" xml:space="preserve"><value>Bij veel bestanden gaan meerdere verbindingen tegelijk met de server veel sneller (1 tot 255). Als de server verbindingen beperkt, worden de toegestane gebruikt.</value></data>
+  <data name="Settings_DefenderTitle.Text" xml:space="preserve"><value>MegaCopier uitsluiten van scannen door Windows Defender</value></data>
+  <data name="Settings_DefenderDescription.Text" xml:space="preserve"><value>Met veel kleine bestanden gaat kopiëren merkbaar sneller, omdat Defender niet meer elk bestand scant dat MegaCopier schrijft. Gekopieerde bestanden worden nog steeds gescand als een ander programma ze opent. Vereist beheerdersrechten.</value></data>
+  <data name="Settings_DefenderAdd" xml:space="preserve"><value>Uitsluiting toevoegen</value></data>
+  <data name="Settings_DefenderRemove" xml:space="preserve"><value>Uitsluiting verwijderen</value></data>
+  <data name="Settings_DefenderOn" xml:space="preserve"><value>Aan: Defender scant niet wat MegaCopier schrijft.</value></data>
+  <data name="Settings_DefenderCancelled" xml:space="preserve"><value>Geen beheerdersmachtiging gegeven: er is niets gewijzigd.</value></data>
+  <data name="Settings_DefenderFailed" xml:space="preserve"><value>Windows Defender heeft de wijziging niet geaccepteerd (mogelijk vervangt een andere antivirus hem of verhindert een beleid dit).</value></data>
 </root>

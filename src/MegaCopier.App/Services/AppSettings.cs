@@ -92,6 +92,9 @@ public sealed class AppSettings
     /// <summary>Conexiones a la vez con un servidor (FTP, SFTP, WebDAV, S3).</summary>
     public int RemoteConnections { get; set; } = 4;
 
+    /// <summary>Se añadió la exclusión de Windows Defender (ver DefenderExclusion).</summary>
+    public bool DefenderExcluded { get; set; }
+
     /// <summary>Rutas de dispositivos rápidos separadas por comas ("C:, D:\Datos, \\servidor\recurso").</summary>
     public string FastDevices { get; set; } = "";
 

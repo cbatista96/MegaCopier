@@ -517,6 +517,18 @@
                     </Grid>
                 </Border>
                 <Border Style="{StaticResource McSettingCard}">
+                    <Grid Style="{StaticResource Row}">
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                        <FontIcon VerticalAlignment="Center" Glyph="&#xE83D;" FontSize="18" Foreground="{StaticResource McAccentBrush}" />
+                        <StackPanel Grid.Column="1">
+                            <TextBlock x:Uid="Settings_DefenderTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" />
+                            <TextBlock x:Uid="Settings_DefenderDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" />
+                            <TextBlock x:Name="DefenderState" Style="{StaticResource McSecondary}" TextWrapping="Wrap" Margin="0,4,0,0" />
+                        </StackPanel>
+                        <Button x:Name="DefenderButton" Grid.Column="2" Style="{StaticResource McButton}" Click="Defender_Click"><TextBlock x:Name="DefenderButtonText" /></Button>
+                    </Grid>
+                </Border>
+                <Border Style="{StaticResource McSettingCard}">
                     <Grid Style="{StaticResource Row}" RowSpacing="8">
                         <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
                         <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>

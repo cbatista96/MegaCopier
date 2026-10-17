@@ -941,3 +941,10 @@ Destinations_Zip.Content	保存为 ZIP 文件
 Destinations_PasswordHintZip	ZIP 使用 AES-256 加密，可用 7-Zip、WinZip 或 WinRAR 打开（Windows 资源管理器无法打开加密的 ZIP）。文件名无需密码即可看到。如果忘记密码，将无法恢复文件。
 Settings_RemoteConnectionsTitle.Text	同时连接数
 Settings_RemoteConnectionsDescription.Text	文件很多时，同时使用多个服务器连接会快得多（1 到 255）。如果服务器限制连接数，则使用其允许的数量。
+Settings_DefenderTitle.Text	将 MegaCopier 排除在 Windows Defender 扫描之外
+Settings_DefenderDescription.Text	复制大量小文件时会明显更快，因为 Defender 不再扫描 MegaCopier 写入的每个文件。其他程序打开已复制的文件时仍会扫描。需要管理员权限。
+Settings_DefenderAdd	添加排除项
+Settings_DefenderRemove	删除排除项
+Settings_DefenderOn	已启用：Defender 不扫描 MegaCopier 写入的内容。
+Settings_DefenderCancelled	未授予管理员权限：未做任何更改。
+Settings_DefenderFailed	Windows Defender 未接受此更改（可能被其他防病毒软件取代，或被策略阻止）。

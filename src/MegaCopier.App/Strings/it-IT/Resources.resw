@@ -947,4 +947,11 @@
   <data name="Destinations_PasswordHintZip" xml:space="preserve"><value>Lo ZIP è crittografato con AES-256 e si apre con 7-Zip, WinZip o WinRAR (Esplora file di Windows non apre gli ZIP crittografati). I nomi dei file sono visibili senza password. Se la dimentichi, non c&apos;è modo di recuperare i file.</value></data>
   <data name="Settings_RemoteConnectionsTitle.Text" xml:space="preserve"><value>Connessioni simultanee</value></data>
   <data name="Settings_RemoteConnectionsDescription.Text" xml:space="preserve"><value>Con molti file, più connessioni simultanee al server sono molto più veloci (da 1 a 255). Se il server limita le connessioni, si usano quelle consentite.</value></data>
+  <data name="Settings_DefenderTitle.Text" xml:space="preserve"><value>Escludi MegaCopier dall&apos;analisi di Windows Defender</value></data>
+  <data name="Settings_DefenderDescription.Text" xml:space="preserve"><value>Con molti file piccoli la copia è molto più veloce perché Defender smette di analizzare ogni file scritto da MegaCopier. I file copiati vengono comunque analizzati quando un altro programma li apre. Richiede i diritti di amministratore.</value></data>
+  <data name="Settings_DefenderAdd" xml:space="preserve"><value>Aggiungi esclusione</value></data>
+  <data name="Settings_DefenderRemove" xml:space="preserve"><value>Rimuovi esclusione</value></data>
+  <data name="Settings_DefenderOn" xml:space="preserve"><value>Attiva: Defender non analizza ciò che scrive MegaCopier.</value></data>
+  <data name="Settings_DefenderCancelled" xml:space="preserve"><value>Autorizzazione di amministratore non concessa: non è stato modificato nulla.</value></data>
+  <data name="Settings_DefenderFailed" xml:space="preserve"><value>Windows Defender non ha accettato la modifica (forse è sostituito da un altro antivirus o lo impedisce un criterio).</value></data>
 </root>

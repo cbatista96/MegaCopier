@@ -947,4 +947,11 @@
   <data name="Destinations_PasswordHintZip" xml:space="preserve"><value>ZIP jest szyfrowany AES-256 i otwiera się w 7-Zip, WinZip lub WinRAR (Eksplorator Windows nie otwiera zaszyfrowanych plików ZIP). Nazwy plików są widoczne bez hasła. Jeśli je zapomnisz, nie da się odzyskać plików.</value></data>
   <data name="Settings_RemoteConnectionsTitle.Text" xml:space="preserve"><value>Jednoczesne połączenia</value></data>
   <data name="Settings_RemoteConnectionsDescription.Text" xml:space="preserve"><value>Przy wielu plikach kilka jednoczesnych połączeń z serwerem działa znacznie szybciej (od 1 do 255). Jeśli serwer ogranicza połączenia, używane są te, na które pozwala.</value></data>
+  <data name="Settings_DefenderTitle.Text" xml:space="preserve"><value>Wyklucz MegaCopier ze skanowania przez Windows Defender</value></data>
+  <data name="Settings_DefenderDescription.Text" xml:space="preserve"><value>Przy wielu małych plikach kopiowanie jest wyraźnie szybsze, bo Defender przestaje skanować każdy plik zapisywany przez MegaCopier. Skopiowane pliki są nadal skanowane, gdy otwiera je inny program. Wymaga uprawnień administratora.</value></data>
+  <data name="Settings_DefenderAdd" xml:space="preserve"><value>Dodaj wykluczenie</value></data>
+  <data name="Settings_DefenderRemove" xml:space="preserve"><value>Usuń wykluczenie</value></data>
+  <data name="Settings_DefenderOn" xml:space="preserve"><value>Włączone: Defender nie skanuje tego, co zapisuje MegaCopier.</value></data>
+  <data name="Settings_DefenderCancelled" xml:space="preserve"><value>Nie udzielono uprawnień administratora: nic nie zmieniono.</value></data>
+  <data name="Settings_DefenderFailed" xml:space="preserve"><value>Windows Defender nie przyjął zmiany (może zastępuje go inny antywirus lub blokuje to zasada).</value></data>
 </root>

@@ -941,3 +941,10 @@ Destinations_Zip.Content	Сохранить в ZIP-архив
 Destinations_PasswordHintZip	ZIP шифруется AES-256 и открывается в 7-Zip, WinZip или WinRAR (Проводник Windows не открывает зашифрованные ZIP). Имена файлов видны без пароля. Если вы его забудете, восстановить файлы будет невозможно.
 Settings_RemoteConnectionsTitle.Text	Одновременные подключения
 Settings_RemoteConnectionsDescription.Text	При большом числе файлов несколько одновременных подключений к серверу работают намного быстрее (от 1 до 255). Если сервер ограничивает подключения, используются разрешённые.
+Settings_DefenderTitle.Text	Исключить MegaCopier из проверки Защитником Windows
+Settings_DefenderDescription.Text	При большом количестве мелких файлов копирование заметно быстрее, потому что Защитник перестаёт проверять каждый файл, записываемый MegaCopier. Скопированные файлы по-прежнему проверяются при открытии другой программой. Нужны права администратора.
+Settings_DefenderAdd	Добавить исключение
+Settings_DefenderRemove	Удалить исключение
+Settings_DefenderOn	Включено: Защитник не проверяет то, что записывает MegaCopier.
+Settings_DefenderCancelled	Разрешение администратора не получено: ничего не изменено.
+Settings_DefenderFailed	Защитник Windows не принял изменение (возможно, его заменяет другой антивирус или это запрещено политикой).

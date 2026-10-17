@@ -941,3 +941,10 @@ Destinations_Zip.Content	ZIP ファイルに保存する
 Destinations_PasswordHintZip	ZIP は AES-256 で暗号化され、7-Zip、WinZip、WinRAR で開けます（Windows エクスプローラーでは暗号化された ZIP を開けません）。ファイル名はパスワードなしで見えます。パスワードを忘れるとファイルは復元できません。
 Settings_RemoteConnectionsTitle.Text	同時接続数
 Settings_RemoteConnectionsDescription.Text	ファイルが多い場合、サーバーへの同時接続を増やすとずっと速くなります（1～255）。サーバーが接続数を制限している場合は、許可された数を使います。
+Settings_DefenderTitle.Text	MegaCopier を Windows Defender のスキャン対象から除外する
+Settings_DefenderDescription.Text	小さなファイルが多いとき、Defender が MegaCopier の書き込む各ファイルをスキャンしなくなるため、コピーがかなり速くなります。コピーしたファイルは、他のプログラムで開くときに引き続きスキャンされます。管理者権限が必要です。
+Settings_DefenderAdd	除外を追加
+Settings_DefenderRemove	除外を削除
+Settings_DefenderOn	オン: Defender は MegaCopier が書き込むものをスキャンしません。
+Settings_DefenderCancelled	管理者の許可がなかったため、何も変更していません。
+Settings_DefenderFailed	Windows Defender が変更を受け付けませんでした（別のウイルス対策ソフトに置き換えられているか、ポリシーで禁止されている可能性があります）。

@@ -941,3 +941,10 @@ Destinations_Zip.Content	ZIP dosyasına kaydet
 Destinations_PasswordHintZip	ZIP, AES-256 ile şifrelenir ve 7-Zip, WinZip veya WinRAR ile açılır (Windows Gezgini şifreli ZIP'leri açamaz). Dosya adları parola olmadan görünür. Parolayı unutursanız dosyaları kurtarmanın yolu yoktur.
 Settings_RemoteConnectionsTitle.Text	Eşzamanlı bağlantılar
 Settings_RemoteConnectionsDescription.Text	Çok sayıda dosyada sunucuyla aynı anda birkaç bağlantı çok daha hızlıdır (1 ile 255 arası). Sunucu bağlantıları sınırlıyorsa izin verdikleri kullanılır.
+Settings_DefenderTitle.Text	MegaCopier'ı Windows Defender taramasından hariç tut
+Settings_DefenderDescription.Text	Çok sayıda küçük dosyada kopyalama belirgin şekilde hızlanır, çünkü Defender MegaCopier'ın yazdığı her dosyayı taramayı bırakır. Kopyalanan dosyalar başka bir program açtığında yine taranır. Yönetici izni gerekir.
+Settings_DefenderAdd	Dışlama ekle
+Settings_DefenderRemove	Dışlamayı kaldır
+Settings_DefenderOn	Açık: Defender, MegaCopier'ın yazdıklarını taramıyor.
+Settings_DefenderCancelled	Yönetici izni verilmedi: hiçbir şey değiştirilmedi.
+Settings_DefenderFailed	Windows Defender değişikliği kabul etmedi (başka bir virüsten koruma programı yerini almış veya bir ilke engelliyor olabilir).
