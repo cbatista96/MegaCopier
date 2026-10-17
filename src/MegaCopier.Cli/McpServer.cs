@@ -97,8 +97,7 @@ internal static partial class Cli
         static JsonObject Text(string description) => new() { ["type"] = "string", ["description"] = description };
         static JsonObject Flag(string description) => new() { ["type"] = "boolean", ["description"] = description };
 
-        return
-        [
+        return new JsonArray(
             Tool("copy", "Copia (o mueve) archivos y carpetas a una carpeta de destino con MegaCopier. La copia aparece en la ventana de MegaCopier, se puede pausar y sigue tras un corte de luz.",
                 new JsonObject
                 {
@@ -126,8 +125,7 @@ internal static partial class Cli
                     ["destination"] = Text("Carpeta donde restaurar."),
                 },
                 "repository", "destination"),
-            Tool("status", "Estado de MegaCopier: si está abierto y qué copias hay en marcha o en cola.", []),
-        ];
+            Tool("status", "Estado de MegaCopier: si está abierto y qué copias hay en marcha o en cola.", []));
     }
 
     private static JsonObject McpCall(JsonObject parameters)
