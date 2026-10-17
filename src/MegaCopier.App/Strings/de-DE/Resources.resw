@@ -942,4 +942,5 @@
   <data name="Rules_WipeRandom.Content" xml:space="preserve"><value>Ein zufälliger Durchgang</value></data>
   <data name="Rules_WipeDod3.Content" xml:space="preserve"><value>DoD 5220.22-M, 3 Durchgänge</value></data>
   <data name="Rules_WipeDod7.Content" xml:space="preserve"><value>DoD 5220.22-M ECE, 7 Durchgänge (langsam)</value></data>
+  <data name="Rules_EfsRaw.Content" xml:space="preserve"><value>EFS-verschlüsselte Dateien ohne Entschlüsseln kopieren</value></data>
 </root>

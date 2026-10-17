@@ -936,3 +936,4 @@ Rules_WipeZeros.Content	Eén keer nullen (snel)
 Rules_WipeRandom.Content	Eén keer willekeurig
 Rules_WipeDod3.Content	DoD 5220.22-M, 3 keer
 Rules_WipeDod7.Content	DoD 5220.22-M ECE, 7 keer (traag)
+Rules_EfsRaw.Content	EFS-versleutelde bestanden kopiëren zonder ze te ontsleutelen

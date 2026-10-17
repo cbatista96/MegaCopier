@@ -942,4 +942,5 @@
   <data name="Rules_WipeRandom.Content" xml:space="preserve"><value>무작위로 1회 덮어쓰기</value></data>
   <data name="Rules_WipeDod3.Content" xml:space="preserve"><value>DoD 5220.22-M, 3회</value></data>
   <data name="Rules_WipeDod7.Content" xml:space="preserve"><value>DoD 5220.22-M ECE, 7회(느림)</value></data>
+  <data name="Rules_EfsRaw.Content" xml:space="preserve"><value>EFS로 암호화된 파일을 해독하지 않고 복사</value></data>
 </root>

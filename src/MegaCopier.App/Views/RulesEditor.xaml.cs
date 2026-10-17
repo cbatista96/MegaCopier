@@ -36,6 +36,8 @@ public sealed class CopyRules
 
     public WipeMethod WipeMethod { get; set; }
 
+    public bool EfsRaw { get; set; }
+
     public bool WaitForDevice { get; set; } = true;
 
     public bool WaitForSpace { get; set; } = true;
@@ -64,6 +66,7 @@ public sealed class CopyRules
         PreserveHardLinks = r.PreserveHardLinks,
         WipeSource = r.WipeSource,
         WipeMethod = r.WipeMethod,
+        EfsRaw = r.EfsRaw,
         WaitForDevice = r.WaitForDevice,
         WaitForSpace = r.WaitForSpace,
         AllOrNothing = r.AllOrNothing,
@@ -88,6 +91,7 @@ public sealed class CopyRules
         r.PreserveHardLinks = PreserveHardLinks;
         r.WipeSource = WipeSource;
         r.WipeMethod = WipeMethod;
+        r.EfsRaw = EfsRaw;
         r.WaitForDevice = WaitForDevice;
         r.WaitForSpace = WaitForSpace;
         r.AllOrNothing = AllOrNothing;
@@ -155,6 +159,7 @@ public sealed partial class RulesEditor : UserControl
         HardLinksBox.IsChecked = rules.PreserveHardLinks;
         WipeBox.IsChecked = rules.WipeSource;
         WipeMethodBox.SelectedIndex = (int)rules.WipeMethod;
+        EfsRawBox.IsChecked = rules.EfsRaw;
         WaitDeviceBox.IsChecked = rules.WaitForDevice;
         WaitSpaceBox.IsChecked = rules.WaitForSpace;
         AllOrNothingBox.IsChecked = rules.AllOrNothing;
@@ -194,6 +199,7 @@ public sealed partial class RulesEditor : UserControl
         PreserveHardLinks = HardLinksBox.IsChecked == true,
         WipeSource = WipeBox.IsChecked == true,
         WipeMethod = (WipeMethod)Math.Max(0, WipeMethodBox.SelectedIndex),
+        EfsRaw = EfsRawBox.IsChecked == true,
         WaitForDevice = WaitDeviceBox.IsChecked == true,
         WaitForSpace = WaitSpaceBox.IsChecked == true,
         AllOrNothing = AllOrNothingBox.IsChecked == true,

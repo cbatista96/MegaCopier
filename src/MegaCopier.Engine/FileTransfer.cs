@@ -100,6 +100,11 @@ internal sealed partial class FileTransfer
             return CopyEncrypted(sourcePath, destinationPath, cancellationToken);
         }
 
+        if (_options.EfsRaw && File.GetAttributes(sourcePath).HasFlag(FileAttributes.Encrypted))
+        {
+            return CopyEfsRaw(sourcePath, destinationPath, cancellationToken);
+        }
+
         if (delta && lengthHint >= DeltaThreshold && _faults is null
             && CopyDelta(sourcePath, destinationPath, cancellationToken) is { } updated)
         {

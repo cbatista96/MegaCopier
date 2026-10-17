@@ -936,3 +936,4 @@ Rules_WipeZeros.Content	Una pasada con ceros (rápido)	One pass of zeros (fast)
 Rules_WipeRandom.Content	Una pasada aleatoria	One random pass
 Rules_WipeDod3.Content	DoD 5220.22-M, 3 pasadas	DoD 5220.22-M, 3 passes
 Rules_WipeDod7.Content	DoD 5220.22-M ECE, 7 pasadas (lento)	DoD 5220.22-M ECE, 7 passes (slow)
+Rules_EfsRaw.Content	Copiar los archivos cifrados con EFS sin descifrarlos	Copy EFS-encrypted files without decrypting them

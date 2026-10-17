@@ -942,4 +942,5 @@
   <data name="Rules_WipeRandom.Content" xml:space="preserve"><value>一次随机填充</value></data>
   <data name="Rules_WipeDod3.Content" xml:space="preserve"><value>DoD 5220.22-M，3 次</value></data>
   <data name="Rules_WipeDod7.Content" xml:space="preserve"><value>DoD 5220.22-M ECE，7 次（慢）</value></data>
+  <data name="Rules_EfsRaw.Content" xml:space="preserve"><value>不解密直接复制 EFS 加密的文件</value></data>
 </root>

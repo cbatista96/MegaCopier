@@ -936,3 +936,4 @@ Rules_WipeZeros.Content	Ein Durchgang mit Nullen (schnell)
 Rules_WipeRandom.Content	Ein zufälliger Durchgang
 Rules_WipeDod3.Content	DoD 5220.22-M, 3 Durchgänge
 Rules_WipeDod7.Content	DoD 5220.22-M ECE, 7 Durchgänge (langsam)
+Rules_EfsRaw.Content	EFS-verschlüsselte Dateien ohne Entschlüsseln kopieren

@@ -303,6 +303,7 @@ public sealed class FeatureTests : IDisposable
         options.Operation = JobOperation.Delete;
         options.SecureDelete = true;
         options.WipeMethod = WipeMethod.Dod7;
+        options.EfsRaw = true;
         options.Links = LinkHandling.Skip;
         options.KeepBothPattern = "{name}-{n}{ext}";
         options.Filter = new FileFilter { Exclude = ["*.tmp"], MinSize = 10 };
@@ -313,6 +314,7 @@ public sealed class FeatureTests : IDisposable
         Assert.Equal(JobOperation.Delete, restored.Operation);
         Assert.True(restored.SecureDelete);
         Assert.Equal(WipeMethod.Dod7, restored.WipeMethod);
+        Assert.True(restored.EfsRaw);
         Assert.Equal(LinkHandling.Skip, restored.Links);
         Assert.Equal("{name}-{n}{ext}", restored.KeepBothPattern);
         Assert.Equal(["*.tmp"], restored.Filter.Exclude);
