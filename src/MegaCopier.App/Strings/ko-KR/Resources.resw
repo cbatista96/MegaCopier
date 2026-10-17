@@ -1034,4 +1034,12 @@
   <data name="Remote_StateInterrupted" xml:space="preserve"><value>중지됨(계속 가능)</value></data>
   <data name="Rules_ImageText.Header" xml:space="preserve"><value>이 텍스트가 있는 이미지만(Windows OCR로 오프라인 인식)</value></data>
   <data name="Rules_ImageText.PlaceholderText" xml:space="preserve"><value>청구서</value></data>
+  <data name="Connection_ClientId" xml:space="preserve"><value>앱 식별자(Client ID)</value></data>
+  <data name="Connection_ClientSecret" xml:space="preserve"><value>앱 비밀(Google에서 필요)</value></data>
+  <data name="Connection_CloudHelp" xml:space="preserve"><value>MegaCopier를 Microsoft, Google 또는 Dropbox에 한 번 등록해야 합니다(무료). 단계는 docs\Nube.md에 있습니다. 그런 다음 브라우저에서 로그인하며, MegaCopier는 암호를 보지 않습니다.</value></data>
+  <data name="Connection_SignIn" xml:space="preserve"><value>브라우저에서 로그인</value></data>
+  <data name="Connection_CloudRoot" xml:space="preserve"><value>클라우드 폴더(비우면 전체)</value></data>
+  <data name="Connection_NeedClientId" xml:space="preserve"><value>먼저 앱 식별자를 입력하세요(docs\Nube.md 참고).</value></data>
+  <data name="Connection_SigningIn" xml:space="preserve"><value>브라우저에서 로그인하기를 기다리는 중…</value></data>
+  <data name="Connection_SignedIn" xml:space="preserve"><value>로그인되었습니다. 연결을 저장하세요.</value></data>
 </root>

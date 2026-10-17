@@ -21,6 +21,15 @@ public enum ConnectionKind
 
     /// <summary>SFTP (SSH).</summary>
     Sftp,
+
+    /// <summary>OneDrive (personal o de empresa), con inicio de sesión de Microsoft.</summary>
+    OneDrive,
+
+    /// <summary>Google Drive, con inicio de sesión de Google.</summary>
+    GoogleDrive,
+
+    /// <summary>Dropbox, con inicio de sesión de Dropbox.</summary>
+    Dropbox,
 }
 
 /// <summary>Un servidor guardado. La contraseña (o la clave secreta de S3) no está aquí: va al Administrador de credenciales.</summary>
@@ -53,6 +62,17 @@ public sealed class Connection
 
     /// <summary>SFTP: huella SHA-256 de la clave del servidor, guardada la primera vez; si cambia, no se conecta.</summary>
     public string HostKey { get; set; } = "";
+
+    /// <summary>Nubes: el identificador de la app registrada en Microsoft, Google o Dropbox (ver docs/Nube.md).</summary>
+    public string ClientId { get; set; } = "";
+
+    /// <summary>Google: el "secreto" de la app de escritorio (Google lo pide aunque en una app instalada no es secreto).</summary>
+    public string ClientSecret { get; set; } = "";
+
+    /// <summary>Solo pruebas: otras direcciones de inicio de sesión (vacío = las del servicio).</summary>
+    public string AuthUrl { get; set; } = "";
+
+    public string TokenUrl { get; set; } = "";
 }
 
 /// <summary>Las conexiones guardadas (connections.json en la carpeta de datos) y sus contraseñas (Administrador de credenciales).</summary>
@@ -103,6 +123,9 @@ public static unsafe partial class Connections
         ConnectionKind.WebDav => new WebDavStore(connection, secret),
         ConnectionKind.S3 => new S3Store(connection, secret),
         ConnectionKind.Sftp => new SftpStore(connection, secret),
+        ConnectionKind.OneDrive => new OneDriveStore(connection, secret),
+        ConnectionKind.GoogleDrive => new GoogleDriveStore(connection, secret),
+        ConnectionKind.Dropbox => new DropboxStore(connection, secret),
         _ => throw new NotSupportedException(connection.Kind.ToString()),
     };
 

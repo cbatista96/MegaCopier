@@ -261,3 +261,6 @@ E_RemoteConnectionsAuto	サーバーへの接続: 速度に応じて自動調整
 E_RemoteConnectionsTuned	現在の同時接続数: {0}（{1}/秒）。
 E_MultiSourceUsed	{0} か所から同時に読み込みました。
 E_F_ImageText	「{0}」という文字を含む画像
+E_CloudSignedIn	サインインしました。このタブを閉じて MegaCopier に戻ってください。
+E_CloudSignInFailed	サインインできませんでした。MegaCopier に戻って理由を確認してください。
+E_CloudSignInError	サインインできませんでした: {0}

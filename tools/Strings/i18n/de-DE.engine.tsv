@@ -261,3 +261,6 @@ E_RemoteConnectionsAuto	Verbindungen zum Server: werden je nach Geschwindigkeit 
 E_RemoteConnectionsTuned	Jetzt {0} gleichzeitige Verbindungen ({1}/s).
 E_MultiSourceUsed	Von {0} Orten gleichzeitig gelesen.
 E_F_ImageText	Bilder mit dem Text „{0}“
+E_CloudSignedIn	Angemeldet. Du kannst diesen Tab schließen und zu MegaCopier zurückkehren.
+E_CloudSignInFailed	Anmeldung fehlgeschlagen. Kehre zu MegaCopier zurück, um den Grund zu sehen.
+E_CloudSignInError	Anmeldung nicht möglich: {0}

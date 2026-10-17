@@ -1028,3 +1028,11 @@ Remote_StateFailed	Başarısız
 Remote_StateInterrupted	Durduruldu (sürdürülebilir)
 Rules_ImageText.Header	Yalnızca bu metni içeren görüntüler (Windows OCR ile, çevrimdışı okunur)
 Rules_ImageText.PlaceholderText	fatura
+Connection_ClientId	Uygulama kimliği (Client ID)
+Connection_ClientSecret	Uygulama gizli anahtarı (Google ister)
+Connection_CloudHelp	MegaCopier'ın Microsoft, Google veya Dropbox'a bir kez kaydedilmesi gerekir (ücretsiz): adımlar docs\Nube.md içinde. Sonra tarayıcıda oturum açılır; MegaCopier parolayı hiç görmez.
+Connection_SignIn	Tarayıcıda oturum aç
+Connection_CloudRoot	Bulut klasörü (boş = tümü)
+Connection_NeedClientId	Önce uygulama kimliğini girin (bkz. docs\Nube.md).
+Connection_SigningIn	Tarayıcıda oturum açmanız bekleniyor…
+Connection_SignedIn	Oturum açıldı. Bağlantıyı kaydedin.

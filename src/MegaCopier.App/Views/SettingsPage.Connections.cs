@@ -16,6 +16,7 @@ public sealed partial class SettingsPage
     [
         (ConnectionKind.WebDav, "WebDAV"), (ConnectionKind.Sftp, "SFTP"), (ConnectionKind.Ftps, "FTPS (TLS)"),
         (ConnectionKind.Ftp, "FTP"), (ConnectionKind.S3, "S3"),
+        (ConnectionKind.OneDrive, "OneDrive"), (ConnectionKind.GoogleDrive, "Google Drive"), (ConnectionKind.Dropbox, "Dropbox"),
     ];
 
     private void LoadConnections()
@@ -87,6 +88,11 @@ public sealed partial class SettingsPage
         var acceptAny = new CheckBox { Content = L.Get("Connection_AcceptAny"), IsChecked = connection.AcceptAnyCertificate };
         var result = new TextBlock { TextWrapping = TextWrapping.Wrap, Foreground = ThemeManager.TextSecondaryBrush };
         var test = new Button { Content = L.Get("Connection_Test") };
+        var clientId = new TextBox { Header = L.Get("Connection_ClientId"), Text = connection.ClientId };
+        var clientSecret = new TextBox { Header = L.Get("Connection_ClientSecret"), Text = connection.ClientSecret };
+        var cloudHelp = new TextBlock { Text = L.Get("Connection_CloudHelp"), TextWrapping = TextWrapping.Wrap, FontSize = 12, Foreground = ThemeManager.TextSecondaryBrush };
+        var signIn = new Button { Content = L.Get("Connection_SignIn") };
+        string cloudToken = existing is not null && CloudAuth.IsCloud(existing.Kind) ? Connections.GetSecret(existing.Id) : "";
 
         // Los campos cambian con el tipo: dirección para WebDAV, bucket y región para S3, clave privada en SFTP...
         void Adapt()
@@ -99,6 +105,22 @@ public sealed partial class SettingsPage
             region.Visibility = selected == ConnectionKind.S3 ? Visibility.Visible : Visibility.Collapsed;
             port.Visibility = selected is ConnectionKind.WebDav or ConnectionKind.S3 ? Visibility.Collapsed : Visibility.Visible;
             acceptAny.Visibility = selected is ConnectionKind.Ftp or ConnectionKind.Sftp ? Visibility.Collapsed : Visibility.Visible;
+
+            // Nubes: en lugar de servidor y contraseña, el identificador de la app y el inicio de sesión en el navegador.
+            bool cloud = CloudAuth.IsCloud(selected);
+            foreach (var control in new FrameworkElement[] { host, user, secret })
+            {
+                control.Visibility = cloud ? Visibility.Collapsed : Visibility.Visible;
+            }
+
+            if (cloud)
+            {
+                port.Visibility = region.Visibility = acceptAny.Visibility = Visibility.Collapsed;
+                root.Header = L.Get("Connection_CloudRoot");
+            }
+
+            clientId.Visibility = signIn.Visibility = cloudHelp.Visibility = cloud ? Visibility.Visible : Visibility.Collapsed;
+            clientSecret.Visibility = selected == ConnectionKind.GoogleDrive ? Visibility.Visible : Visibility.Collapsed;
         }
 
         Connection Read() => new()
@@ -113,6 +135,10 @@ public sealed partial class SettingsPage
             Region = region.Text.Trim(),
             AcceptAnyCertificate = acceptAny.IsChecked == true,
             HostKey = connection.HostKey,
+            ClientId = clientId.Text.Trim(),
+            ClientSecret = clientSecret.Text.Trim(),
+            AuthUrl = connection.AuthUrl,
+            TokenUrl = connection.TokenUrl,
         };
 
         kind.SelectionChanged += (_, _) => Adapt();
@@ -120,7 +146,7 @@ public sealed partial class SettingsPage
         {
             result.Text = L.Get("Connection_Testing");
             var candidate = Read();
-            string password = secret.Password;
+            string password = CloudAuth.IsCloud(candidate.Kind) ? cloudToken : secret.Password;
             try
             {
                 int count = await Task.Run(() =>
@@ -136,10 +162,30 @@ public sealed partial class SettingsPage
                 result.Text = L.F("Connection_TestFailed", ex.Message);
             }
         };
+        signIn.Click += async (_, _) =>
+        {
+            var candidate = Read();
+            if (candidate.ClientId.Length == 0)
+            {
+                result.Text = L.Get("Connection_NeedClientId");
+                return;
+            }
+
+            result.Text = L.Get("Connection_SigningIn");
+            try
+            {
+                cloudToken = await CloudAuth.SignInAsync(candidate, OpenBrowser);
+                result.Text = L.Get("Connection_SignedIn");
+            }
+            catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or OperationCanceledException or System.Net.Http.HttpRequestException or System.Text.Json.JsonException)
+            {
+                result.Text = L.F("Connection_TestFailed", ex.Message);
+            }
+        };
         Adapt();
 
         var panel = new StackPanel { Spacing = 10, MinWidth = 380, MaxWidth = 480 };
-        foreach (var control in new UIElement[] { kind, name, host, port, user, secret, root, region, acceptAny, test, result })
+        foreach (var control in new UIElement[] { kind, name, host, port, user, secret, clientId, clientSecret, cloudHelp, signIn, root, region, acceptAny, test, result })
         {
             panel.Children.Add(control);
         }
@@ -172,7 +218,19 @@ public sealed partial class SettingsPage
         }
 
         Connections.Save(all);
-        Connections.SetSecret(saved.Id, secret.Password);
+        Connections.SetSecret(saved.Id, CloudAuth.IsCloud(saved.Kind) ? cloudToken : secret.Password);
         LoadConnections();
+    }
+
+    /// <summary>El inicio de sesión de una nube se hace en el navegador del usuario (en pruebas solo se anota la dirección).</summary>
+    private static void OpenBrowser(string url)
+    {
+        if (App.TestMode)
+        {
+            App.TestLog("cloud.log", url);
+            return;
+        }
+
+        System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(url) { UseShellExecute = true });
     }
 }

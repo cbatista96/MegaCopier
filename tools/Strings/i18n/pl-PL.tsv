@@ -1028,3 +1028,11 @@ Remote_StateFailed	Niepowodzenie
 Remote_StateInterrupted	Zatrzymano (można wznowić)
 Rules_ImageText.Header	Tylko obrazy zawierające ten tekst (odczytany przez OCR Windows, offline)
 Rules_ImageText.PlaceholderText	faktura
+Connection_ClientId	Identyfikator aplikacji (Client ID)
+Connection_ClientSecret	Sekret aplikacji (wymagany przez Google)
+Connection_CloudHelp	MegaCopier trzeba raz zarejestrować w Microsoft, Google lub Dropbox (bezpłatnie): kroki są w docs\Nube.md. Potem logujesz się w przeglądarce; MegaCopier nigdy nie widzi hasła.
+Connection_SignIn	Zaloguj się w przeglądarce
+Connection_CloudRoot	Folder w chmurze (puste = całość)
+Connection_NeedClientId	Najpierw wpisz identyfikator aplikacji (zob. docs\Nube.md).
+Connection_SigningIn	Czekam na zalogowanie w przeglądarce…
+Connection_SignedIn	Zalogowano. Zapisz połączenie.

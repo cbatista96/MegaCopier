@@ -1028,3 +1028,11 @@ Remote_StateFailed	失败
 Remote_StateInterrupted	已停止（可继续）
 Rules_ImageText.Header	仅包含此文字的图片（用 Windows OCR 离线识别）
 Rules_ImageText.PlaceholderText	发票
+Connection_ClientId	应用标识（Client ID）
+Connection_ClientSecret	应用密钥（Google 需要）
+Connection_CloudHelp	需要在 Microsoft、Google 或 Dropbox 注册一次 MegaCopier（免费）：步骤见 docs\Nube.md。之后在浏览器中登录；MegaCopier 永远看不到密码。
+Connection_SignIn	在浏览器中登录
+Connection_CloudRoot	云文件夹（空 = 全部）
+Connection_NeedClientId	请先输入应用标识（见 docs\Nube.md）。
+Connection_SigningIn	正在等待你在浏览器中登录…
+Connection_SignedIn	已登录。请保存连接。

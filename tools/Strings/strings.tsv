@@ -1028,3 +1028,11 @@ Remote_StateFailed	Falló	Failed
 Remote_StateInterrupted	Detenida (se puede seguir)	Stopped (can be resumed)
 Rules_ImageText.Header	Solo imágenes que contengan este texto (se lee con el OCR de Windows, sin internet)	Only images containing this text (read with Windows OCR, offline)
 Rules_ImageText.PlaceholderText	factura	invoice
+Connection_ClientId	Identificador de la app (Client ID)	App identifier (Client ID)
+Connection_ClientSecret	Secreto de la app (Google lo pide)	App secret (required by Google)
+Connection_CloudHelp	Hay que registrar MegaCopier una vez en Microsoft, Google o Dropbox (es gratis): los pasos están en docs\Nube.md. Luego se inicia sesión en el navegador; MegaCopier nunca ve la contraseña.	MegaCopier must be registered once with Microsoft, Google or Dropbox (free): the steps are in docs\Nube.md. Then you sign in in the browser; MegaCopier never sees the password.
+Connection_SignIn	Iniciar sesión en el navegador	Sign in in the browser
+Connection_CloudRoot	Carpeta de la nube (vacío = toda)	Cloud folder (empty = all of it)
+Connection_NeedClientId	Escribe primero el identificador de la app (ver docs\Nube.md).	Enter the app identifier first (see docs\Nube.md).
+Connection_SigningIn	Esperando a que inicies sesión en el navegador…	Waiting for you to sign in in the browser…
+Connection_SignedIn	Sesión iniciada. Guarda la conexión.	Signed in. Save the connection.

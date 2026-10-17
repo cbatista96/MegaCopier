@@ -1034,4 +1034,12 @@
   <data name="Remote_StateInterrupted" xml:space="preserve"><value>Зупинено (можна продовжити)</value></data>
   <data name="Rules_ImageText.Header" xml:space="preserve"><value>Лише зображення з цим текстом (розпізнається OCR Windows, без інтернету)</value></data>
   <data name="Rules_ImageText.PlaceholderText" xml:space="preserve"><value>рахунок</value></data>
+  <data name="Connection_ClientId" xml:space="preserve"><value>Ідентифікатор застосунку (Client ID)</value></data>
+  <data name="Connection_ClientSecret" xml:space="preserve"><value>Секрет застосунку (вимагає Google)</value></data>
+  <data name="Connection_CloudHelp" xml:space="preserve"><value>MegaCopier треба один раз зареєструвати в Microsoft, Google або Dropbox (безкоштовно): кроки в docs\Nube.md. Потім вхід виконується в браузері; MegaCopier ніколи не бачить пароля.</value></data>
+  <data name="Connection_SignIn" xml:space="preserve"><value>Увійти в браузері</value></data>
+  <data name="Connection_CloudRoot" xml:space="preserve"><value>Тека в хмарі (порожньо — усе)</value></data>
+  <data name="Connection_NeedClientId" xml:space="preserve"><value>Спершу введіть ідентифікатор застосунку (див. docs\Nube.md).</value></data>
+  <data name="Connection_SigningIn" xml:space="preserve"><value>Очікування входу в браузері…</value></data>
+  <data name="Connection_SignedIn" xml:space="preserve"><value>Вхід виконано. Збережіть з&apos;єднання.</value></data>
 </root>

@@ -1028,3 +1028,11 @@ Remote_StateFailed	失敗
 Remote_StateInterrupted	停止中（再開可能）
 Rules_ImageText.Header	この文字を含む画像のみ（Windows の OCR でオフライン認識）
 Rules_ImageText.PlaceholderText	請求書
+Connection_ClientId	アプリの識別子（Client ID）
+Connection_ClientSecret	アプリのシークレット（Google で必要）
+Connection_CloudHelp	MegaCopier を Microsoft、Google、Dropbox に一度登録する必要があります（無料）。手順は docs\Nube.md にあります。その後ブラウザーでサインインします。MegaCopier がパスワードを見ることはありません。
+Connection_SignIn	ブラウザーでサインイン
+Connection_CloudRoot	クラウドのフォルダー（空 = すべて）
+Connection_NeedClientId	先にアプリの識別子を入力してください（docs\Nube.md を参照）。
+Connection_SigningIn	ブラウザーでのサインインを待っています…
+Connection_SignedIn	サインインしました。接続を保存してください。

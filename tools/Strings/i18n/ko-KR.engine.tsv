@@ -261,3 +261,6 @@ E_RemoteConnectionsAuto	서버 연결: 속도에 따라 자동 조정(최대 {0}
 E_RemoteConnectionsTuned	현재 동시 연결 {0}개({1}/초).
 E_MultiSourceUsed	{0}곳에서 동시에 읽었습니다.
 E_F_ImageText	"{0}" 텍스트가 있는 이미지
+E_CloudSignedIn	로그인되었습니다. 이 탭을 닫고 MegaCopier로 돌아가세요.
+E_CloudSignInFailed	로그인하지 못했습니다. MegaCopier로 돌아가 이유를 확인하세요.
+E_CloudSignInError	로그인할 수 없습니다: {0}

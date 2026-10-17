@@ -261,3 +261,6 @@ E_RemoteConnectionsAuto	Połączenia z serwerem: dostosowywane automatycznie do 
 E_RemoteConnectionsTuned	Teraz {0} jednoczesnych połączeń ({1}/s).
 E_MultiSourceUsed	Odczytano z {0} miejsc jednocześnie.
 E_F_ImageText	obrazy z tekstem „{0}”
+E_CloudSignedIn	Zalogowano. Możesz zamknąć tę kartę i wrócić do MegaCopier.
+E_CloudSignInFailed	Logowanie nie powiodło się. Wróć do MegaCopier, aby zobaczyć powód.
+E_CloudSignInError	Nie udało się zalogować: {0}

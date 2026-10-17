@@ -261,3 +261,6 @@ E_RemoteConnectionsAuto	Sunucu bağlantıları: hıza göre otomatik ayarlanır 
 E_RemoteConnectionsTuned	Şimdi aynı anda {0} bağlantı ({1}/sn).
 E_MultiSourceUsed	Aynı anda {0} konumdan okundu.
 E_F_ImageText	"{0}" metnini içeren görüntüler
+E_CloudSignedIn	Oturum açıldı. Bu sekmeyi kapatıp MegaCopier'a dönebilirsiniz.
+E_CloudSignInFailed	Oturum açılamadı. Nedenini görmek için MegaCopier'a dönün.
+E_CloudSignInError	Oturum açılamadı: {0}

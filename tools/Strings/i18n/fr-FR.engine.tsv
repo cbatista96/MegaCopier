@@ -261,3 +261,6 @@ E_RemoteConnectionsAuto	Connexions au serveur : ajustées automatiquement selon 
 E_RemoteConnectionsTuned	Maintenant {0} connexions simultanées ({1}/s).
 E_MultiSourceUsed	Lu depuis {0} emplacements à la fois.
 E_F_ImageText	images contenant le texte « {0} »
+E_CloudSignedIn	Connecté. Vous pouvez fermer cet onglet et revenir à MegaCopier.
+E_CloudSignInFailed	La connexion a échoué. Revenez à MegaCopier pour voir pourquoi.
+E_CloudSignInError	Impossible de se connecter : {0}
