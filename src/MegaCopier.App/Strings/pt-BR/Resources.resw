@@ -968,4 +968,12 @@
   <data name="Rules_VersionsMonth.Content" xml:space="preserve"><value>30 diárias, 12 semanais e 24 mensais</value></data>
   <data name="Rules_VersionsLast.Content" xml:space="preserve"><value>Só a mais recente</value></data>
   <data name="Task_Monthly.Content" xml:space="preserve"><value>Todo mês</value></data>
+  <data name="Files_Details" xml:space="preserve"><value>{0} bytes · modificado {1}\nDestino: {2}\nAtributos: {3}</value></data>
+  <data name="Files_AttrReadOnly" xml:space="preserve"><value>somente leitura</value></data>
+  <data name="Files_AttrHidden" xml:space="preserve"><value>oculto</value></data>
+  <data name="Files_AttrSystem" xml:space="preserve"><value>sistema</value></data>
+  <data name="Files_AttrCompressed" xml:space="preserve"><value>compactado (NTFS)</value></data>
+  <data name="Files_AttrEncrypted" xml:space="preserve"><value>criptografado (EFS)</value></data>
+  <data name="Files_AttrSparse" xml:space="preserve"><value>esparso</value></data>
+  <data name="Files_AttrCloud" xml:space="preserve"><value>somente na nuvem</value></data>
 </root>

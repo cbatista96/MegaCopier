@@ -968,4 +968,12 @@
   <data name="Rules_VersionsMonth.Content" xml:space="preserve"><value>일별 30개, 주별 12개, 월별 24개</value></data>
   <data name="Rules_VersionsLast.Content" xml:space="preserve"><value>최신 버전만</value></data>
   <data name="Task_Monthly.Content" xml:space="preserve"><value>매월</value></data>
+  <data name="Files_Details" xml:space="preserve"><value>{0}바이트 · 수정 {1}\n대상: {2}\n특성: {3}</value></data>
+  <data name="Files_AttrReadOnly" xml:space="preserve"><value>읽기 전용</value></data>
+  <data name="Files_AttrHidden" xml:space="preserve"><value>숨김</value></data>
+  <data name="Files_AttrSystem" xml:space="preserve"><value>시스템</value></data>
+  <data name="Files_AttrCompressed" xml:space="preserve"><value>압축됨(NTFS)</value></data>
+  <data name="Files_AttrEncrypted" xml:space="preserve"><value>암호화됨(EFS)</value></data>
+  <data name="Files_AttrSparse" xml:space="preserve"><value>스파스</value></data>
+  <data name="Files_AttrCloud" xml:space="preserve"><value>클라우드 전용</value></data>
 </root>

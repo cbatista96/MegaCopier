@@ -962,3 +962,11 @@ Rules_VersionsWeek.Content	7 dziennych, 4 tygodniowe i 12 miesięcznych
 Rules_VersionsMonth.Content	30 dziennych, 12 tygodniowych i 24 miesięczne
 Rules_VersionsLast.Content	Tylko najnowszą
 Task_Monthly.Content	Co miesiąc
+Files_Details	{0} bajtów · zmodyfikowano {1}\nCel: {2}\nAtrybuty: {3}
+Files_AttrReadOnly	tylko do odczytu
+Files_AttrHidden	ukryty
+Files_AttrSystem	systemowy
+Files_AttrCompressed	skompresowany (NTFS)
+Files_AttrEncrypted	zaszyfrowany (EFS)
+Files_AttrSparse	rozrzedzony
+Files_AttrCloud	tylko w chmurze

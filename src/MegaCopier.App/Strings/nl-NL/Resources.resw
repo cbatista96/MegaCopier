@@ -968,4 +968,12 @@
   <data name="Rules_VersionsMonth.Content" xml:space="preserve"><value>30 dagelijkse, 12 wekelijkse en 24 maandelijkse</value></data>
   <data name="Rules_VersionsLast.Content" xml:space="preserve"><value>Alleen de nieuwste</value></data>
   <data name="Task_Monthly.Content" xml:space="preserve"><value>Elke maand</value></data>
+  <data name="Files_Details" xml:space="preserve"><value>{0} bytes · gewijzigd {1}\nDoel: {2}\nKenmerken: {3}</value></data>
+  <data name="Files_AttrReadOnly" xml:space="preserve"><value>alleen-lezen</value></data>
+  <data name="Files_AttrHidden" xml:space="preserve"><value>verborgen</value></data>
+  <data name="Files_AttrSystem" xml:space="preserve"><value>systeem</value></data>
+  <data name="Files_AttrCompressed" xml:space="preserve"><value>gecomprimeerd (NTFS)</value></data>
+  <data name="Files_AttrEncrypted" xml:space="preserve"><value>versleuteld (EFS)</value></data>
+  <data name="Files_AttrSparse" xml:space="preserve"><value>sparse</value></data>
+  <data name="Files_AttrCloud" xml:space="preserve"><value>alleen in de cloud</value></data>
 </root>

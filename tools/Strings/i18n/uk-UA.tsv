@@ -962,3 +962,11 @@ Rules_VersionsWeek.Content	7 щоденних, 4 щотижневих і 12 що
 Rules_VersionsMonth.Content	30 щоденних, 12 щотижневих і 24 щомісячних
 Rules_VersionsLast.Content	Лише останню
 Task_Monthly.Content	Щомісяця
+Files_Details	{0} байт · змінено {1}\nПризначення: {2}\nАтрибути: {3}
+Files_AttrReadOnly	лише читання
+Files_AttrHidden	прихований
+Files_AttrSystem	системний
+Files_AttrCompressed	стиснутий (NTFS)
+Files_AttrEncrypted	зашифрований (EFS)
+Files_AttrSparse	розріджений
+Files_AttrCloud	лише в хмарі

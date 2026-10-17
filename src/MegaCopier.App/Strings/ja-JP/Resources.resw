@@ -968,4 +968,12 @@
   <data name="Rules_VersionsMonth.Content" xml:space="preserve"><value>日次 30、週次 12、月次 24</value></data>
   <data name="Rules_VersionsLast.Content" xml:space="preserve"><value>最新のみ</value></data>
   <data name="Task_Monthly.Content" xml:space="preserve"><value>毎月</value></data>
+  <data name="Files_Details" xml:space="preserve"><value>{0} バイト · 更新 {1}\n宛先: {2}\n属性: {3}</value></data>
+  <data name="Files_AttrReadOnly" xml:space="preserve"><value>読み取り専用</value></data>
+  <data name="Files_AttrHidden" xml:space="preserve"><value>隠し</value></data>
+  <data name="Files_AttrSystem" xml:space="preserve"><value>システム</value></data>
+  <data name="Files_AttrCompressed" xml:space="preserve"><value>圧縮 (NTFS)</value></data>
+  <data name="Files_AttrEncrypted" xml:space="preserve"><value>暗号化 (EFS)</value></data>
+  <data name="Files_AttrSparse" xml:space="preserve"><value>スパース</value></data>
+  <data name="Files_AttrCloud" xml:space="preserve"><value>クラウドのみ</value></data>
 </root>

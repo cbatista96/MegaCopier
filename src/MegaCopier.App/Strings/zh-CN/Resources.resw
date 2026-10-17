@@ -968,4 +968,12 @@
   <data name="Rules_VersionsMonth.Content" xml:space="preserve"><value>30 个每日、12 个每周和 24 个每月</value></data>
   <data name="Rules_VersionsLast.Content" xml:space="preserve"><value>仅最新一个</value></data>
   <data name="Task_Monthly.Content" xml:space="preserve"><value>每月</value></data>
+  <data name="Files_Details" xml:space="preserve"><value>{0} 字节 · 修改于 {1}\n目标：{2}\n属性：{3}</value></data>
+  <data name="Files_AttrReadOnly" xml:space="preserve"><value>只读</value></data>
+  <data name="Files_AttrHidden" xml:space="preserve"><value>隐藏</value></data>
+  <data name="Files_AttrSystem" xml:space="preserve"><value>系统</value></data>
+  <data name="Files_AttrCompressed" xml:space="preserve"><value>已压缩 (NTFS)</value></data>
+  <data name="Files_AttrEncrypted" xml:space="preserve"><value>已加密 (EFS)</value></data>
+  <data name="Files_AttrSparse" xml:space="preserve"><value>稀疏</value></data>
+  <data name="Files_AttrCloud" xml:space="preserve"><value>仅在云端</value></data>
 </root>

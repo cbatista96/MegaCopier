@@ -962,3 +962,11 @@ Rules_VersionsWeek.Content	7 ежедневных, 4 еженедельных и
 Rules_VersionsMonth.Content	30 ежедневных, 12 еженедельных и 24 ежемесячных
 Rules_VersionsLast.Content	Только последнюю
 Task_Monthly.Content	Каждый месяц
+Files_Details	{0} байт · изменён {1}\nНазначение: {2}\nАтрибуты: {3}
+Files_AttrReadOnly	только чтение
+Files_AttrHidden	скрытый
+Files_AttrSystem	системный
+Files_AttrCompressed	сжатый (NTFS)
+Files_AttrEncrypted	зашифрован (EFS)
+Files_AttrSparse	разреженный
+Files_AttrCloud	только в облаке

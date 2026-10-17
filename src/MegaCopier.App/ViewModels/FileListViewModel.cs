@@ -47,6 +47,41 @@ public sealed partial class FileRowViewModel(TransferItem item, string root) : I
 
     public string SizeText => Format.Bytes(Item.Length);
 
+    /// <summary>Al pasar el ratón por el tamaño: los bytes exactos, la fecha, el destino y los atributos.</summary>
+    public string DetailsText => L.F("Files_Details", Item.Length.ToString("N0", System.Globalization.CultureInfo.CurrentCulture),
+        Item.LastWriteUtc > DateTime.MinValue ? Item.LastWriteUtc.ToLocalTime().ToString("g", System.Globalization.CultureInfo.CurrentCulture) : "-",
+        DestinationPath, Attributes());
+
+    public string SourceHashFull => Item.SourceHash ?? "";
+
+    public string DestinationHashFull => Item.DestinationHash ?? "";
+
+    private string Attributes()
+    {
+        if (Item.Source.StartsWith(@"\\", StringComparison.Ordinal) || MegaCopier.Engine.Remote.RemotePath.IsRemote(Item.Source))
+        {
+            return "-"; // en red, un móvil o un servidor: preguntar por cada fila frenaría la lista
+        }
+
+        try
+        {
+            var attributes = File.GetAttributes(Item.Source);
+            var parts = new List<string>();
+            if (attributes.HasFlag(FileAttributes.ReadOnly)) parts.Add(L.Get("Files_AttrReadOnly"));
+            if (attributes.HasFlag(FileAttributes.Hidden)) parts.Add(L.Get("Files_AttrHidden"));
+            if (attributes.HasFlag(FileAttributes.System)) parts.Add(L.Get("Files_AttrSystem"));
+            if (attributes.HasFlag(FileAttributes.Compressed)) parts.Add(L.Get("Files_AttrCompressed"));
+            if (attributes.HasFlag(FileAttributes.Encrypted)) parts.Add(L.Get("Files_AttrEncrypted"));
+            if (attributes.HasFlag(FileAttributes.SparseFile)) parts.Add(L.Get("Files_AttrSparse"));
+            if (attributes.HasFlag(FileAttributes.Offline) || ((int)attributes & 0x400000) != 0 /* FILE_ATTRIBUTE_RECALL_ON_DATA_ACCESS */) parts.Add(L.Get("Files_AttrCloud"));
+            return parts.Count == 0 ? "-" : string.Join(", ", parts);
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or ArgumentException or NotSupportedException)
+        {
+            return "-"; // ya no está (se movió) o es de un móvil o servidor
+        }
+    }
+
     public string SourceHash => Short(Item.SourceHash);
 
     public string DestinationHash => Short(Item.DestinationHash);

@@ -962,3 +962,11 @@ Rules_VersionsWeek.Content	일별 7개, 주별 4개, 월별 12개
 Rules_VersionsMonth.Content	일별 30개, 주별 12개, 월별 24개
 Rules_VersionsLast.Content	최신 버전만
 Task_Monthly.Content	매월
+Files_Details	{0}바이트 · 수정 {1}\n대상: {2}\n특성: {3}
+Files_AttrReadOnly	읽기 전용
+Files_AttrHidden	숨김
+Files_AttrSystem	시스템
+Files_AttrCompressed	압축됨(NTFS)
+Files_AttrEncrypted	암호화됨(EFS)
+Files_AttrSparse	스파스
+Files_AttrCloud	클라우드 전용

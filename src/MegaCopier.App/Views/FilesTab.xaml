@@ -131,9 +131,9 @@
                             <TextBlock Text="{x:Bind Message, Mode=OneWay}" ToolTipService.ToolTip="{x:Bind TechnicalMessage, Mode=OneWay}" Style="{StaticResource McSecondary}" Foreground="{x:Bind MessageBrush, Mode=OneWay}"
                                        Visibility="{x:Bind HasMessage, Mode=OneWay}" TextWrapping="Wrap" />
                         </StackPanel>
-                        <TextBlock Grid.Column="2" Width="96" Visibility="{x:Bind HashesVisible, Mode=OneWay}" Text="{x:Bind SourceHash, Mode=OneWay}" Style="{StaticResource McSecondary}" FontFamily="Consolas" VerticalAlignment="Center" />
-                        <TextBlock Grid.Column="3" Width="96" Visibility="{x:Bind HashesVisible, Mode=OneWay}" Text="{x:Bind DestinationHash, Mode=OneWay}" Style="{StaticResource McSecondary}" FontFamily="Consolas" VerticalAlignment="Center" />
-                        <TextBlock Grid.Column="4" Text="{x:Bind SizeText}" Style="{StaticResource McSecondary}" VerticalAlignment="Center" TextAlignment="Right" />
+                        <TextBlock Grid.Column="2" Width="96" Visibility="{x:Bind HashesVisible, Mode=OneWay}" Text="{x:Bind SourceHash, Mode=OneWay}" ToolTipService.ToolTip="{x:Bind SourceHashFull, Mode=OneWay}" Style="{StaticResource McSecondary}" FontFamily="Consolas" VerticalAlignment="Center" />
+                        <TextBlock Grid.Column="3" Width="96" Visibility="{x:Bind HashesVisible, Mode=OneWay}" Text="{x:Bind DestinationHash, Mode=OneWay}" ToolTipService.ToolTip="{x:Bind DestinationHashFull, Mode=OneWay}" Style="{StaticResource McSecondary}" FontFamily="Consolas" VerticalAlignment="Center" />
+                        <TextBlock Grid.Column="4" Text="{x:Bind SizeText}" ToolTipService.ToolTip="{x:Bind DetailsText}" Style="{StaticResource McSecondary}" VerticalAlignment="Center" TextAlignment="Right" />
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
