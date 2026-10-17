@@ -13,7 +13,7 @@ namespace MegaCopier.Engine.IO;
 /// cifran (el formato no lo permite). Los archivos que ya vienen comprimidos (fotos, vídeos, ZIP...) se guardan sin
 /// volver a comprimir.
 /// </summary>
-internal sealed class ZipArchiveWriter
+internal sealed class ZipArchiveWriter : IArchiveWriter
 {
     internal const ushort MethodStored = 0;
     internal const ushort MethodDeflate = 8;
@@ -28,6 +28,9 @@ internal sealed class ZipArchiveWriter
         ".mp3", ".aac", ".m4a", ".ogg", ".opus", ".flac", ".mp4", ".m4v", ".mkv", ".mov", ".avi", ".webm", ".docx", ".xlsx",
         ".pptx", ".odt", ".ods", ".epub", ".pdf", ".apk", ".jar", ".msi", ".iso", ".mcenc",
     };
+
+    /// <summary>Ya viene comprimido (fotos, vídeos, ZIP...): se guarda tal cual, comprimirlo otra vez solo gasta tiempo.</summary>
+    internal static bool IsCompressed(string name) => Compressed.Contains(Path.GetExtension(name));
 
     private readonly Stream _output;
     private readonly string? _password;
@@ -58,7 +61,7 @@ internal sealed class ZipArchiveWriter
     public void AddFile(string name, Stream source, DateTime lastWriteUtc, Action<ReadOnlySpan<byte>> onRead, CancellationToken cancellationToken)
     {
         name = name.Replace('\\', '/');
-        ushort method = Compressed.Contains(Path.GetExtension(name)) ? MethodStored : MethodDeflate;
+        ushort method = IsCompressed(name) ? MethodStored : MethodDeflate;
         long start = _output.Position;
         var entry = new Entry(name, lastWriteUtc, start, IsDirectory: false, Method: method, Encrypted: _password is not null);
         try
@@ -123,6 +126,20 @@ internal sealed class ZipArchiveWriter
             _output.Position = start;
             throw;
         }
+    }
+
+    private Dictionary<string, ZipEntryInfo>? _written;
+
+    /// <summary>Relee un archivo ya escrito leyendo el ZIP como cualquier programa (después de <see cref="Finish"/>).</summary>
+    public void ReadBack(string name, Action<ReadOnlySpan<byte>> onData, CancellationToken cancellationToken)
+    {
+        _written ??= ZipArchiveReader.Entries(_output).ToDictionary(e => e.Name, StringComparer.Ordinal);
+        if (!_written.TryGetValue(name.Replace('\\', '/'), out var entry))
+        {
+            throw new InvalidDataException(Texts.Get("E_ZipDamaged"));
+        }
+
+        ZipArchiveReader.Extract(_output, entry, _password, onData, cancellationToken);
     }
 
     /// <summary>Escribe el directorio central: sin él no se puede abrir el ZIP.</summary>

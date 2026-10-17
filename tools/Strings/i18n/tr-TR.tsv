@@ -952,3 +952,7 @@ Compare_RenameRight	Sağda yeniden adlandır (eskiden {0})
 Compare_RenameLeft	Solda yeniden adlandır (eskiden {0})
 Compare_Renamed	Yeniden adlandırıldı veya taşındı
 Send_LocalSendDevice	{0} · LocalSend {1} ({2})
+Destinations_Format.Header	Biçim
+Destinations_FormatZip.Content	ZIP (her yerde açılır)
+Destinations_Format7z.Content	7z (parolayla adlar da gizlenir)
+Destinations_PasswordHint7z	7z, dosya listesi dahil AES-256 ile şifrelenir: parola olmadan adlar bile görünmez. 7-Zip, WinRAR veya PeaZip ile açılır. Parolayı unutursanız dosyaları kurtarmanın yolu yoktur.

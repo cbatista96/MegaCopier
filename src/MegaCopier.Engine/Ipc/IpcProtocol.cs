@@ -57,6 +57,8 @@ public sealed class IpcRequest
     /// <summary>Copiar a un ZIP (cifrado con AES-256 si además va <see cref="Encrypt"/>).</summary>
     public bool? Zip { get; set; }
 
+    public IO.ArchiveFormat? ArchiveFormat { get; set; }
+
     /// <summary>Copia cifrada (con <see cref="Password"/>).</summary>
     public bool? Encrypt { get; set; }
 

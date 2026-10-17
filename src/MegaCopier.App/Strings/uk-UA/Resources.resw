@@ -958,4 +958,8 @@
   <data name="Compare_RenameLeft" xml:space="preserve"><value>Перейменувати ліворуч (було {0})</value></data>
   <data name="Compare_Renamed" xml:space="preserve"><value>Перейменовано або переміщено</value></data>
   <data name="Send_LocalSendDevice" xml:space="preserve"><value>{0} · LocalSend {1} ({2})</value></data>
+  <data name="Destinations_Format.Header" xml:space="preserve"><value>Формат</value></data>
+  <data name="Destinations_FormatZip.Content" xml:space="preserve"><value>ZIP (відкривається будь-де)</value></data>
+  <data name="Destinations_Format7z.Content" xml:space="preserve"><value>7z (з паролем приховує й імена)</value></data>
+  <data name="Destinations_PasswordHint7z" xml:space="preserve"><value>7z шифрується AES-256 разом зі списком файлів: без пароля не видно навіть імен. Відкривається в 7-Zip, WinRAR або PeaZip. Якщо ви забудете пароль, відновити файли буде неможливо.</value></data>
 </root>

@@ -65,6 +65,8 @@ public sealed class CopyJobRecord
 
     public bool Zip { get; set; }
 
+    public IO.ArchiveFormat ArchiveFormat { get; set; }
+
     public int RemoteConnections { get; set; } = 4;
 
     public LinkHandling Links { get; set; } = LinkHandling.CopyLink;
@@ -157,6 +159,7 @@ public sealed class CopyJobRecord
         WipeMethod = options.WipeMethod,
         EfsRaw = options.EfsRaw,
         Zip = options.Zip,
+        ArchiveFormat = options.ArchiveFormat,
         RemoteConnections = options.RemoteConnections,
         Links = options.Links,
         KeepBothPattern = options.KeepBothPattern,
@@ -215,6 +218,7 @@ public sealed class CopyJobRecord
             WipeMethod = WipeMethod,
             EfsRaw = EfsRaw,
             Zip = Zip,
+            ArchiveFormat = ArchiveFormat,
             RemoteConnections = RemoteConnections,
             Links = Links,
             KeepBothPattern = KeepBothPattern,

@@ -1100,6 +1100,8 @@ public sealed partial class MainWindow : Window
         DestinationsMode.SelectedIndex = 0;
         DestinationsDryRun.IsChecked = false;
         DestinationsZip.IsChecked = false;
+        DestinationsFormat.SelectedIndex = 0;
+        DestinationsFormat.Visibility = Visibility.Collapsed;
         DestinationsEncrypt.IsChecked = false;
         DestinationsEncryptPanel.Visibility = Visibility.Collapsed;
         DestinationsPassword.Password = "";
@@ -1156,6 +1158,7 @@ public sealed partial class MainWindow : Window
             Mode = (Engine.CopyMode)Math.Max(0, DestinationsMode.SelectedIndex),
             DryRun = DestinationsDryRun.IsChecked == true ? true : null,
             Zip = DestinationsZip.IsChecked == true ? true : null,
+            ArchiveFormat = DestinationsZip.IsChecked == true && DestinationsFormat.SelectedIndex == 1 ? Engine.IO.ArchiveFormat.SevenZip : null,
             Encrypt = DestinationsEncrypt.IsChecked == true ? true : null,
             Password = DestinationsEncrypt.IsChecked == true ? DestinationsPassword.Password : null,
         });
@@ -1328,8 +1331,9 @@ public sealed partial class MainWindow : Window
 
     private void DestinationsEncrypt_Click(object sender, RoutedEventArgs e)
     {
+        DestinationsFormat.Visibility = DestinationsZip.IsChecked == true ? Visibility.Visible : Visibility.Collapsed;
         DestinationsEncryptPanel.Visibility = DestinationsEncrypt.IsChecked == true ? Visibility.Visible : Visibility.Collapsed;
-        DestinationsPasswordInfo.Text = L.Get(DestinationsZip.IsChecked == true ? "Destinations_PasswordHintZip" : "Destinations_PasswordHint");
+        DestinationsPasswordInfo.Text = L.Get(DestinationsZip.IsChecked != true ? "Destinations_PasswordHint" : DestinationsFormat.SelectedIndex == 1 ? "Destinations_PasswordHint7z" : "Destinations_PasswordHintZip");
         DestinationsPasswordInfo.ClearValue(TextBlock.ForegroundProperty);
     }
 

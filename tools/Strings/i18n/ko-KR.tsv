@@ -952,3 +952,7 @@ Compare_RenameRight	오른쪽에서 이름 바꾸기(이전 {0})
 Compare_RenameLeft	왼쪽에서 이름 바꾸기(이전 {0})
 Compare_Renamed	이름 바뀜 또는 이동됨
 Send_LocalSendDevice	{0} · LocalSend {1}({2})
+Destinations_Format.Header	형식
+Destinations_FormatZip.Content	ZIP(어디서나 열림)
+Destinations_Format7z.Content	7z(암호 설정 시 이름도 숨김)
+Destinations_PasswordHint7z	7z는 파일 목록까지 AES-256으로 암호화됩니다. 암호 없이는 이름도 보이지 않습니다. 7-Zip, WinRAR 또는 PeaZip으로 열 수 있습니다. 암호를 잊으면 파일을 복구할 방법이 없습니다.

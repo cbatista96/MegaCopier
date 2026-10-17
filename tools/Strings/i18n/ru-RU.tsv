@@ -952,3 +952,7 @@ Compare_RenameRight	Переименовать справа (было {0})
 Compare_RenameLeft	Переименовать слева (было {0})
 Compare_Renamed	Переименован или перемещён
 Send_LocalSendDevice	{0} · LocalSend {1} ({2})
+Destinations_Format.Header	Формат
+Destinations_FormatZip.Content	ZIP (открывается везде)
+Destinations_Format7z.Content	7z (с паролем скрывает и имена)
+Destinations_PasswordHint7z	7z шифруется AES-256 вместе со списком файлов: без пароля не видны даже имена. Открывается в 7-Zip, WinRAR или PeaZip. Если вы забудете пароль, восстановить файлы будет невозможно.

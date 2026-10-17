@@ -952,3 +952,7 @@ Compare_RenameRight	Renombrar a la derecha (era {0})	Rename on the right (was {0
 Compare_RenameLeft	Renombrar a la izquierda (era {0})	Rename on the left (was {0})
 Compare_Renamed	Renombrado o movido	Renamed or moved
 Send_LocalSendDevice	{0} · LocalSend {1} ({2})	{0} · LocalSend {1} ({2})
+Destinations_Format.Header	Formato	Format
+Destinations_FormatZip.Content	ZIP (lo abre cualquier programa)	ZIP (opens anywhere)
+Destinations_Format7z.Content	7z (con contraseña oculta también los nombres)	7z (with a password, names are hidden too)
+Destinations_PasswordHint7z	El 7z se cifra con AES-256, incluida la lista de archivos: sin la contraseña no se ven ni los nombres. Se abre con 7-Zip, WinRAR o PeaZip. Si la olvidas, no hay forma de recuperarlos.	The 7z is encrypted with AES-256, including the file list: without the password not even the names are visible. Opens with 7-Zip, WinRAR or PeaZip. If you forget it, there is no way to recover the files.
