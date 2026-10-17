@@ -144,7 +144,6 @@ public sealed partial class SettingsPage : UserControl
         ThreadsBox.Value = s.QueueDepth;
         MaxJobsBox.Value = s.MaxActiveJobs;
         RemoteConnectionsBox.Value = s.RemoteConnections;
-        Microsoft.UI.Xaml.Automation.AutomationProperties.SetName(RemoteConnectionsBox, L.Get("Settings_RemoteConnectionsTitle/Text"));
         FastBox.Text = s.FastDevices;
         PriorityBox.SelectedIndex = (int)s.Priority;
         UnitsBox.SelectedIndex = (int)s.Units;
