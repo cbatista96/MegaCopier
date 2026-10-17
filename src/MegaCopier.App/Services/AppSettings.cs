@@ -350,6 +350,11 @@ public sealed class AppSettings
     public int ReceivePort { get; set; } = Engine.Network.PeerProtocol.DefaultPort;
 
     /// <summary>Recibir lo que se envíe desde un móvil con LocalSend (en la misma carpeta).</summary>
+    /// <summary>Control desde el móvil (página web en la red local, con código).</summary>
+    public bool RemoteControlEnabled { get; set; }
+
+    public string RemoteControlCode { get; set; } = "";
+
     public bool LocalSendEnabled { get; set; }
 
     /// <summary>Aceptar los envíos de LocalSend sin preguntar (solo en redes de confianza).</summary>

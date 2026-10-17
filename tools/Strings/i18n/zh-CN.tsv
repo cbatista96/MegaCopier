@@ -1006,3 +1006,23 @@ Job_FilesRestoredMany	已还原 {0} 个文件
 Rules_Forensic.Content	取证模式：全部计算 SHA-256，并在目标中生成签名清单
 Rules_Alternates.Header	存有相同数据的其他位置（每行一个）：大文件同时从所有位置读取
 Rules_Alternates.PlaceholderText	\\NAS2\照片
+Settings_RemoteTitle.Text	用手机控制
+Settings_RemoteDescription.Text	在手机浏览器中（同一网络）查看复制任务，并可暂停、继续或取消。无需安装任何东西。
+Settings_RemoteNewCode.Text	新代码
+Settings_RemoteInfo	在手机上打开 {0} 并输入代码 {1}
+Settings_RemoteError	无法打开端口：{0}
+Remote_PageCode	MegaCopier 代码（在电脑的设置中）
+Remote_PageEnter	进入
+Remote_PageEmpty	目前没有复制任务。
+Remote_PagePause	暂停
+Remote_PageResume	继续
+Remote_PageCancel	停止
+Remote_PageWrong	代码错误。
+Remote_TitleMany	{0} 等 {1} 项
+Remote_StateQueued	排队中
+Remote_StateRunning	正在复制
+Remote_StatePaused	已暂停
+Remote_StateCompleted	已完成
+Remote_StateCompletedWithErrors	已完成但有错误
+Remote_StateFailed	失败
+Remote_StateInterrupted	已停止（可继续）

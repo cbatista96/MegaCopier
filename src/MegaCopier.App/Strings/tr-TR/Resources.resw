@@ -1012,4 +1012,24 @@
   <data name="Rules_Forensic.Content" xml:space="preserve"><value>Adli mod: her şeyin SHA-256&apos;sı ve hedefte imzalı bir bildirim</value></data>
   <data name="Rules_Alternates.Header" xml:space="preserve"><value>Aynı verilerin bulunduğu diğer konumlar (her satıra bir tane): büyük dosyalar hepsinden aynı anda okunur</value></data>
   <data name="Rules_Alternates.PlaceholderText" xml:space="preserve"><value>\\NAS2\fotograflar</value></data>
+  <data name="Settings_RemoteTitle.Text" xml:space="preserve"><value>Telefondan kontrol et</value></data>
+  <data name="Settings_RemoteDescription.Text" xml:space="preserve"><value>Telefonun tarayıcısından (aynı ağda) kopyalamaları görür, duraklatır, sürdürür veya iptal edersiniz. Hiçbir şey kurmanız gerekmez.</value></data>
+  <data name="Settings_RemoteNewCode.Text" xml:space="preserve"><value>Yeni kod</value></data>
+  <data name="Settings_RemoteInfo" xml:space="preserve"><value>Telefonda {0} adresini açın ve {1} kodunu yazın</value></data>
+  <data name="Settings_RemoteError" xml:space="preserve"><value>Bağlantı noktası açılamadı: {0}</value></data>
+  <data name="Remote_PageCode" xml:space="preserve"><value>MegaCopier kodu (bilgisayardaki Ayarlar&apos;da)</value></data>
+  <data name="Remote_PageEnter" xml:space="preserve"><value>Gir</value></data>
+  <data name="Remote_PageEmpty" xml:space="preserve"><value>Şu anda kopyalama yok.</value></data>
+  <data name="Remote_PagePause" xml:space="preserve"><value>Duraklat</value></data>
+  <data name="Remote_PageResume" xml:space="preserve"><value>Sürdür</value></data>
+  <data name="Remote_PageCancel" xml:space="preserve"><value>Durdur</value></data>
+  <data name="Remote_PageWrong" xml:space="preserve"><value>Yanlış kod.</value></data>
+  <data name="Remote_TitleMany" xml:space="preserve"><value>{0} ve {1} tane daha</value></data>
+  <data name="Remote_StateQueued" xml:space="preserve"><value>Sırada</value></data>
+  <data name="Remote_StateRunning" xml:space="preserve"><value>Kopyalanıyor</value></data>
+  <data name="Remote_StatePaused" xml:space="preserve"><value>Duraklatıldı</value></data>
+  <data name="Remote_StateCompleted" xml:space="preserve"><value>Tamamlandı</value></data>
+  <data name="Remote_StateCompletedWithErrors" xml:space="preserve"><value>Hatalarla tamamlandı</value></data>
+  <data name="Remote_StateFailed" xml:space="preserve"><value>Başarısız</value></data>
+  <data name="Remote_StateInterrupted" xml:space="preserve"><value>Durduruldu (sürdürülebilir)</value></data>
 </root>

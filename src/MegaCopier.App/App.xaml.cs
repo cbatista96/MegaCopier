@@ -30,6 +30,8 @@ public partial class App : Application
 
     internal PeerService? Peers { get; private set; }
 
+    internal RemoteControlService? Remote { get; private set; }
+
     internal LiveSyncService? LiveSyncs { get; private set; }
 
     internal DiskWatcher? Disks { get; private set; }
@@ -135,6 +137,8 @@ public partial class App : Application
         Disks.Refresh(force: true);
         Peers = new PeerService(this);
         Peers.Apply();
+        Remote = new RemoteControlService(this);
+        Remote.Apply();
         LiveSyncs = new LiveSyncService(this);
         LiveSyncs.Apply();
 

@@ -1006,3 +1006,23 @@ Job_FilesRestoredMany	파일 {0}개 복원됨
 Rules_Forensic.Content	포렌식 모드: 모든 파일의 SHA-256과 대상에 서명된 매니페스트
 Rules_Alternates.Header	같은 데이터가 있는 다른 위치(한 줄에 하나씩): 큰 파일은 모든 위치에서 동시에 읽음
 Rules_Alternates.PlaceholderText	\\NAS2\사진
+Settings_RemoteTitle.Text	휴대폰으로 제어
+Settings_RemoteDescription.Text	휴대폰 브라우저(같은 네트워크)에서 복사를 보고 일시 중지, 계속 또는 취소할 수 있습니다. 설치할 것이 없습니다.
+Settings_RemoteNewCode.Text	새 코드
+Settings_RemoteInfo	휴대폰에서 {0}을(를) 열고 코드 {1}을(를) 입력하세요
+Settings_RemoteError	포트를 열 수 없습니다: {0}
+Remote_PageCode	MegaCopier 코드(PC의 설정에 표시됨)
+Remote_PageEnter	들어가기
+Remote_PageEmpty	지금은 복사가 없습니다.
+Remote_PagePause	일시 중지
+Remote_PageResume	계속
+Remote_PageCancel	중지
+Remote_PageWrong	코드가 틀렸습니다.
+Remote_TitleMany	{0} 외 {1}개
+Remote_StateQueued	대기 중
+Remote_StateRunning	복사 중
+Remote_StatePaused	일시 중지됨
+Remote_StateCompleted	완료
+Remote_StateCompletedWithErrors	오류와 함께 완료
+Remote_StateFailed	실패
+Remote_StateInterrupted	중지됨(계속 가능)

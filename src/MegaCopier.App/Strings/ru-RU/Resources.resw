@@ -1012,4 +1012,24 @@
   <data name="Rules_Forensic.Content" xml:space="preserve"><value>Криминалистический режим: SHA-256 всего и подписанный манифест в месте назначения</value></data>
   <data name="Rules_Alternates.Header" xml:space="preserve"><value>Другие места с теми же данными (по одному в строке): большие файлы читаются отовсюду сразу</value></data>
   <data name="Rules_Alternates.PlaceholderText" xml:space="preserve"><value>\\NAS2\фото</value></data>
+  <data name="Settings_RemoteTitle.Text" xml:space="preserve"><value>Управление с телефона</value></data>
+  <data name="Settings_RemoteDescription.Text" xml:space="preserve"><value>В браузере телефона (в той же сети) видны копирования; их можно приостановить, продолжить или отменить. Ничего не нужно устанавливать.</value></data>
+  <data name="Settings_RemoteNewCode.Text" xml:space="preserve"><value>Новый код</value></data>
+  <data name="Settings_RemoteInfo" xml:space="preserve"><value>Откройте на телефоне {0} и введите код {1}</value></data>
+  <data name="Settings_RemoteError" xml:space="preserve"><value>Не удалось открыть порт: {0}</value></data>
+  <data name="Remote_PageCode" xml:space="preserve"><value>Код MegaCopier (в настройках на ПК)</value></data>
+  <data name="Remote_PageEnter" xml:space="preserve"><value>Войти</value></data>
+  <data name="Remote_PageEmpty" xml:space="preserve"><value>Сейчас копирований нет.</value></data>
+  <data name="Remote_PagePause" xml:space="preserve"><value>Пауза</value></data>
+  <data name="Remote_PageResume" xml:space="preserve"><value>Продолжить</value></data>
+  <data name="Remote_PageCancel" xml:space="preserve"><value>Остановить</value></data>
+  <data name="Remote_PageWrong" xml:space="preserve"><value>Неверный код.</value></data>
+  <data name="Remote_TitleMany" xml:space="preserve"><value>{0} и ещё {1}</value></data>
+  <data name="Remote_StateQueued" xml:space="preserve"><value>В очереди</value></data>
+  <data name="Remote_StateRunning" xml:space="preserve"><value>Копирование</value></data>
+  <data name="Remote_StatePaused" xml:space="preserve"><value>Приостановлено</value></data>
+  <data name="Remote_StateCompleted" xml:space="preserve"><value>Готово</value></data>
+  <data name="Remote_StateCompletedWithErrors" xml:space="preserve"><value>Готово с ошибками</value></data>
+  <data name="Remote_StateFailed" xml:space="preserve"><value>Ошибка</value></data>
+  <data name="Remote_StateInterrupted" xml:space="preserve"><value>Остановлено (можно продолжить)</value></data>
 </root>

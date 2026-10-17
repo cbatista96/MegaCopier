@@ -1006,3 +1006,23 @@ Job_FilesRestoredMany	{0} 個のファイルを復元
 Rules_Forensic.Content	フォレンジック モード: すべての SHA-256 と署名付きマニフェストをコピー先に
 Rules_Alternates.Header	同じデータがあるほかの場所（1 行に 1 つ）: 大きなファイルはすべてから同時に読み込む
 Rules_Alternates.PlaceholderText	\\NAS2\写真
+Settings_RemoteTitle.Text	スマートフォンから操作
+Settings_RemoteDescription.Text	スマートフォンのブラウザー（同じネットワーク）でコピーを確認し、一時停止・再開・キャンセルできます。インストール不要です。
+Settings_RemoteNewCode.Text	新しいコード
+Settings_RemoteInfo	スマートフォンで {0} を開き、コード {1} を入力
+Settings_RemoteError	ポートを開けませんでした: {0}
+Remote_PageCode	MegaCopier のコード（PC の設定に表示）
+Remote_PageEnter	開く
+Remote_PageEmpty	現在コピーはありません。
+Remote_PagePause	一時停止
+Remote_PageResume	再開
+Remote_PageCancel	停止
+Remote_PageWrong	コードが違います。
+Remote_TitleMany	{0} ほか {1} 件
+Remote_StateQueued	待機中
+Remote_StateRunning	コピー中
+Remote_StatePaused	一時停止中
+Remote_StateCompleted	完了
+Remote_StateCompletedWithErrors	エラーありで完了
+Remote_StateFailed	失敗
+Remote_StateInterrupted	停止中（再開可能）

@@ -1012,4 +1012,24 @@
   <data name="Rules_Forensic.Content" xml:space="preserve"><value>Forensic mode: SHA-256 of everything and a signed manifest in the destination</value></data>
   <data name="Rules_Alternates.Header" xml:space="preserve"><value>Other places with the same data as the source (one per line): big files are read from all at once</value></data>
   <data name="Rules_Alternates.PlaceholderText" xml:space="preserve"><value>\\NAS2\photos</value></data>
+  <data name="Settings_RemoteTitle.Text" xml:space="preserve"><value>Control from your phone</value></data>
+  <data name="Settings_RemoteDescription.Text" xml:space="preserve"><value>From your phone&apos;s browser (on the same network) you can see the transfers and pause, resume or cancel them. Nothing to install.</value></data>
+  <data name="Settings_RemoteNewCode.Text" xml:space="preserve"><value>New code</value></data>
+  <data name="Settings_RemoteInfo" xml:space="preserve"><value>On your phone, open {0} and type the code {1}</value></data>
+  <data name="Settings_RemoteError" xml:space="preserve"><value>Could not open the port: {0}</value></data>
+  <data name="Remote_PageCode" xml:space="preserve"><value>MegaCopier code (shown in Settings on the PC)</value></data>
+  <data name="Remote_PageEnter" xml:space="preserve"><value>Enter</value></data>
+  <data name="Remote_PageEmpty" xml:space="preserve"><value>No transfers right now.</value></data>
+  <data name="Remote_PagePause" xml:space="preserve"><value>Pause</value></data>
+  <data name="Remote_PageResume" xml:space="preserve"><value>Resume</value></data>
+  <data name="Remote_PageCancel" xml:space="preserve"><value>Stop</value></data>
+  <data name="Remote_PageWrong" xml:space="preserve"><value>Wrong code.</value></data>
+  <data name="Remote_TitleMany" xml:space="preserve"><value>{0} and {1} more</value></data>
+  <data name="Remote_StateQueued" xml:space="preserve"><value>Queued</value></data>
+  <data name="Remote_StateRunning" xml:space="preserve"><value>Copying</value></data>
+  <data name="Remote_StatePaused" xml:space="preserve"><value>Paused</value></data>
+  <data name="Remote_StateCompleted" xml:space="preserve"><value>Done</value></data>
+  <data name="Remote_StateCompletedWithErrors" xml:space="preserve"><value>Done with errors</value></data>
+  <data name="Remote_StateFailed" xml:space="preserve"><value>Failed</value></data>
+  <data name="Remote_StateInterrupted" xml:space="preserve"><value>Stopped (can be resumed)</value></data>
 </root>

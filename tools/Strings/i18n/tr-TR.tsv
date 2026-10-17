@@ -1006,3 +1006,23 @@ Job_FilesRestoredMany	{0} dosya geri yüklendi
 Rules_Forensic.Content	Adli mod: her şeyin SHA-256'sı ve hedefte imzalı bir bildirim
 Rules_Alternates.Header	Aynı verilerin bulunduğu diğer konumlar (her satıra bir tane): büyük dosyalar hepsinden aynı anda okunur
 Rules_Alternates.PlaceholderText	\\NAS2\fotograflar
+Settings_RemoteTitle.Text	Telefondan kontrol et
+Settings_RemoteDescription.Text	Telefonun tarayıcısından (aynı ağda) kopyalamaları görür, duraklatır, sürdürür veya iptal edersiniz. Hiçbir şey kurmanız gerekmez.
+Settings_RemoteNewCode.Text	Yeni kod
+Settings_RemoteInfo	Telefonda {0} adresini açın ve {1} kodunu yazın
+Settings_RemoteError	Bağlantı noktası açılamadı: {0}
+Remote_PageCode	MegaCopier kodu (bilgisayardaki Ayarlar'da)
+Remote_PageEnter	Gir
+Remote_PageEmpty	Şu anda kopyalama yok.
+Remote_PagePause	Duraklat
+Remote_PageResume	Sürdür
+Remote_PageCancel	Durdur
+Remote_PageWrong	Yanlış kod.
+Remote_TitleMany	{0} ve {1} tane daha
+Remote_StateQueued	Sırada
+Remote_StateRunning	Kopyalanıyor
+Remote_StatePaused	Duraklatıldı
+Remote_StateCompleted	Tamamlandı
+Remote_StateCompletedWithErrors	Hatalarla tamamlandı
+Remote_StateFailed	Başarısız
+Remote_StateInterrupted	Durduruldu (sürdürülebilir)
