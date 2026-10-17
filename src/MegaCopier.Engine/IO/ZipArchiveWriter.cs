@@ -128,6 +128,28 @@ internal sealed class ZipArchiveWriter : IArchiveWriter
         }
     }
 
+    /// <summary>Comprime el archivo en un ZIP en memoria; su cabecera y sus datos se copian tal cual con <see cref="Append"/>.</summary>
+    public IPreparedEntry Prepare(string name, Stream source, DateTime lastWriteUtc, Action<ReadOnlySpan<byte>> onRead, CancellationToken cancellationToken)
+    {
+        var memory = new MemoryStream();
+        var single = new ZipArchiveWriter(memory, _password, _level);
+        single.AddFile(name, source, lastWriteUtc, onRead, cancellationToken);
+        return new Prepared(memory.ToArray(), single._entries[0]);
+    }
+
+    public void Append(IPreparedEntry prepared)
+    {
+        var (data, entry) = (Prepared)prepared;
+        long offset = _output.Position;
+        _output.Write(data);
+        _entries.Add(entry with { Offset = offset }); // en memoria empezaba en 0
+    }
+
+    private sealed record Prepared(byte[] Data, Entry Entry) : IPreparedEntry
+    {
+        public long Size => Entry.Size;
+    }
+
     private Dictionary<string, ZipEntryInfo>? _written;
 
     /// <summary>Relee un archivo ya escrito leyendo el ZIP como cualquier programa (después de <see cref="Finish"/>).</summary>

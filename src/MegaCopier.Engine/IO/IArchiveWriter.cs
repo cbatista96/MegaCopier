@@ -19,6 +19,20 @@ internal interface IArchiveWriter
 
     void Finish();
 
+    /// <summary>
+    /// Comprime (y cifra) un archivo aparte, en memoria, para poder hacer varios a la vez en distintos núcleos; luego se
+    /// añaden en orden con <see cref="Append"/>. Para archivos pequeños y medianos.
+    /// </summary>
+    IPreparedEntry Prepare(string name, Stream source, DateTime lastWriteUtc, Action<ReadOnlySpan<byte>> onRead, CancellationToken cancellationToken);
+
+    void Append(IPreparedEntry entry);
+
     /// <summary>Relee del disco lo escrito de un archivo (descifrando y descomprimiendo), para verificar la copia.</summary>
     void ReadBack(string name, Action<ReadOnlySpan<byte>> onData, CancellationToken cancellationToken);
+}
+
+/// <summary>Una entrada ya comprimida y cifrada, lista para añadirse al archivo.</summary>
+internal interface IPreparedEntry
+{
+    long Size { get; }
 }
