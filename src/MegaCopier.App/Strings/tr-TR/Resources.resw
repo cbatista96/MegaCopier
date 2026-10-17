@@ -1042,4 +1042,45 @@
   <data name="Connection_NeedClientId" xml:space="preserve"><value>Önce uygulama kimliğini girin (bkz. docs\Nube.md).</value></data>
   <data name="Connection_SigningIn" xml:space="preserve"><value>Tarayıcıda oturum açmanız bekleniyor…</value></data>
   <data name="Connection_SignedIn" xml:space="preserve"><value>Oturum açıldı. Bağlantıyı kaydedin.</value></data>
+  <data name="Theme_combustion" xml:space="preserve"><value>Yanma</value></data>
+  <data name="Theme_caja-negra" xml:space="preserve"><value>Kara kutu</value></data>
+  <data name="Theme_metro-oscuro" xml:space="preserve"><value>Koyu Metro</value></data>
+  <data name="Theme_robot" xml:space="preserve"><value>Yeşil robot</value></data>
+  <data name="Theme_cielo-otono" xml:space="preserve"><value>Sonbahar göğü</value></data>
+  <data name="Theme_ambar" xml:space="preserve"><value>Kehribar</value></data>
+  <data name="Theme_granate" xml:space="preserve"><value>Lal</value></data>
+  <data name="Theme_codigo-verde" xml:space="preserve"><value>Yeşil kod</value></data>
+  <data name="Theme_vapor" xml:space="preserve"><value>Buhar</value></data>
+  <data name="Theme_metro-gris" xml:space="preserve"><value>Gri Metro</value></data>
+  <data name="Theme_television" xml:space="preserve"><value>Televizyon</value></data>
+  <data name="Theme_reproductor" xml:space="preserve"><value>Oynatıcı</value></data>
+  <data name="Theme_humo" xml:space="preserve"><value>Duman</value></data>
+  <data name="Theme_berenjena" xml:space="preserve"><value>Patlıcan</value></data>
+  <data name="Theme_sc3-azul" xml:space="preserve"><value>SuperCopier 3 mavi</value></data>
+  <data name="Theme_sc3-verde" xml:space="preserve"><value>SuperCopier 3 yeşil</value></data>
+  <data name="Theme_sc3-naranja" xml:space="preserve"><value>SuperCopier 3 turuncu</value></data>
+  <data name="Theme_aurora" xml:space="preserve"><value>Kutup ışığı</value></data>
+  <data name="Theme_galaxia" xml:space="preserve"><value>Galaksi</value></data>
+  <data name="Theme_neon" xml:space="preserve"><value>Neon</value></data>
+  <data name="Theme_aire" xml:space="preserve"><value>Hava</value></data>
+  <data name="Theme_metro-claro" xml:space="preserve"><value>Açık Metro</value></data>
+  <data name="Theme_pez-azul" xml:space="preserve"><value>Mavi balık</value></data>
+  <data name="Theme_linea-plana" xml:space="preserve"><value>Düz çizgi</value></data>
+  <data name="Theme_plus" xml:space="preserve"><value>Artı</value></data>
+  <data name="Theme_cristal" xml:space="preserve"><value>Cam</value></data>
+  <data name="Theme_cielo" xml:space="preserve"><value>Gökyüzü</value></data>
+  <data name="Theme_menta" xml:space="preserve"><value>Nane</value></data>
+  <data name="Theme_cuaderno" xml:space="preserve"><value>Defter</value></data>
+  <data name="Theme_madera" xml:space="preserve"><value>Ahşap</value></data>
+  <data name="Theme_brillo" xml:space="preserve"><value>Parıltı</value></data>
+  <data name="Theme_nieve" xml:space="preserve"><value>Kar</value></data>
+  <data name="Theme_burbuja-azul" xml:space="preserve"><value>Mavi kabarcık</value></data>
+  <data name="Theme_burbuja-lima" xml:space="preserve"><value>Limon kabarcık</value></data>
+  <data name="Theme_toxico" xml:space="preserve"><value>Zehirli</value></data>
+  <data name="Theme_naranja-tierra" xml:space="preserve"><value>Toprak turuncusu</value></data>
+  <data name="Theme_aero" xml:space="preserve"><value>Aero</value></data>
+  <data name="Theme_moderno-8" xml:space="preserve"><value>Modern 8</value></data>
+  <data name="Theme_mensajero" xml:space="preserve"><value>Haberci</value></data>
+  <data name="Theme_luna" xml:space="preserve"><value>Luna</value></data>
+  <data name="Theme_plata" xml:space="preserve"><value>Gümüş</value></data>
 </root>

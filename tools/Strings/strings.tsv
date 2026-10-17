@@ -1036,3 +1036,44 @@ Connection_CloudRoot	Carpeta de la nube (vacío = toda)	Cloud folder (empty = al
 Connection_NeedClientId	Escribe primero el identificador de la app (ver docs\Nube.md).	Enter the app identifier first (see docs\Nube.md).
 Connection_SigningIn	Esperando a que inicies sesión en el navegador…	Waiting for you to sign in in the browser…
 Connection_SignedIn	Sesión iniciada. Guarda la conexión.	Signed in. Save the connection.
+Theme_combustion	Combustión	Afterburn
+Theme_caja-negra	Caja negra	Black box
+Theme_metro-oscuro	Metro oscuro	Dark Metro
+Theme_robot	Robot verde	Green robot
+Theme_cielo-otono	Cielo de otoño	Autumn sky
+Theme_ambar	Ámbar	Amber
+Theme_granate	Granate	Garnet
+Theme_codigo-verde	Código verde	Green code
+Theme_vapor	Vapor	Steam
+Theme_metro-gris	Metro gris	Grey Metro
+Theme_television	Televisión	Television
+Theme_reproductor	Reproductor	Media player
+Theme_humo	Humo	Smoke
+Theme_berenjena	Berenjena	Aubergine
+Theme_sc3-azul	SuperCopier 3 azul	SuperCopier 3 blue
+Theme_sc3-verde	SuperCopier 3 verde	SuperCopier 3 green
+Theme_sc3-naranja	SuperCopier 3 naranja	SuperCopier 3 orange
+Theme_aurora	Aurora	Aurora
+Theme_galaxia	Galaxia	Galaxy
+Theme_neon	Neón	Neon
+Theme_aire	Aire	Air
+Theme_metro-claro	Metro claro	Light Metro
+Theme_pez-azul	Pez azul	Blue fish
+Theme_linea-plana	Línea plana	Flatline
+Theme_plus	Plus	Plus
+Theme_cristal	Cristal	Glass
+Theme_cielo	Cielo	Sky
+Theme_menta	Menta	Mint
+Theme_cuaderno	Cuaderno	Notebook
+Theme_madera	Madera	Wood
+Theme_brillo	Brillo	Shine
+Theme_nieve	Nieve	Snow
+Theme_burbuja-azul	Burbuja azul	Blue bubble
+Theme_burbuja-lima	Burbuja lima	Lime bubble
+Theme_toxico	Tóxico	Toxic
+Theme_naranja-tierra	Naranja tierra	Earth orange
+Theme_aero	Aero	Aero
+Theme_moderno-8	Moderno 8	Modern 8
+Theme_mensajero	Mensajero	Messenger
+Theme_luna	Luna	Luna
+Theme_plata	Plata	Silver

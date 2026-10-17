@@ -412,14 +412,17 @@ public partial class App : Application
     /// </summary>
     private bool ApplyControlAccent(ThemeDefinition theme)
     {
+        // El acento y, en los temas que lo piden, los colores de todos los controles (barras de desplazamiento, menús...).
         string accent = Appearance.ToRgbHex(theme.Accent);
-        if (accent == _controlAccent)
+        string controls = ControlColors.Apply(theme, Resources);
+        string signature = accent + controls;
+        if (signature == _controlAccent)
         {
             return false;
         }
 
         bool first = _controlAccent.Length == 0;
-        _controlAccent = accent;
+        _controlAccent = signature;
         Appearance.ApplyAccent(accent);
         if (first)
         {

@@ -1036,3 +1036,44 @@ Connection_CloudRoot	Dossier du cloud (vide = tout)
 Connection_NeedClientId	Saisissez d'abord l'identifiant de l'application (voir docs\Nube.md).
 Connection_SigningIn	En attente de votre connexion dans le navigateur…
 Connection_SignedIn	Connecté. Enregistrez la connexion.
+Theme_combustion	Combustion
+Theme_caja-negra	Boîte noire
+Theme_metro-oscuro	Metro sombre
+Theme_robot	Robot vert
+Theme_cielo-otono	Ciel d'automne
+Theme_ambar	Ambre
+Theme_granate	Grenat
+Theme_codigo-verde	Code vert
+Theme_vapor	Vapeur
+Theme_metro-gris	Metro gris
+Theme_television	Télévision
+Theme_reproductor	Lecteur
+Theme_humo	Fumée
+Theme_berenjena	Aubergine
+Theme_sc3-azul	SuperCopier 3 bleu
+Theme_sc3-verde	SuperCopier 3 vert
+Theme_sc3-naranja	SuperCopier 3 orange
+Theme_aurora	Aurore
+Theme_galaxia	Galaxie
+Theme_neon	Néon
+Theme_aire	Air
+Theme_metro-claro	Metro clair
+Theme_pez-azul	Poisson bleu
+Theme_linea-plana	Ligne plate
+Theme_plus	Plus
+Theme_cristal	Cristal
+Theme_cielo	Ciel
+Theme_menta	Menthe
+Theme_cuaderno	Cahier
+Theme_madera	Bois
+Theme_brillo	Éclat
+Theme_nieve	Neige
+Theme_burbuja-azul	Bulle bleue
+Theme_burbuja-lima	Bulle citron vert
+Theme_toxico	Toxique
+Theme_naranja-tierra	Orange terre
+Theme_aero	Aero
+Theme_moderno-8	Moderne 8
+Theme_mensajero	Messager
+Theme_luna	Luna
+Theme_plata	Argent

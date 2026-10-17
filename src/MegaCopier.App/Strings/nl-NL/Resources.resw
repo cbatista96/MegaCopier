@@ -1042,4 +1042,45 @@
   <data name="Connection_NeedClientId" xml:space="preserve"><value>Voer eerst de app-id in (zie docs\Nube.md).</value></data>
   <data name="Connection_SigningIn" xml:space="preserve"><value>Wachten tot je je aanmeldt in de browser…</value></data>
   <data name="Connection_SignedIn" xml:space="preserve"><value>Aangemeld. Sla de verbinding op.</value></data>
+  <data name="Theme_combustion" xml:space="preserve"><value>Naverbrander</value></data>
+  <data name="Theme_caja-negra" xml:space="preserve"><value>Zwarte doos</value></data>
+  <data name="Theme_metro-oscuro" xml:space="preserve"><value>Metro donker</value></data>
+  <data name="Theme_robot" xml:space="preserve"><value>Groene robot</value></data>
+  <data name="Theme_cielo-otono" xml:space="preserve"><value>Herfstlucht</value></data>
+  <data name="Theme_ambar" xml:space="preserve"><value>Amber</value></data>
+  <data name="Theme_granate" xml:space="preserve"><value>Granaat</value></data>
+  <data name="Theme_codigo-verde" xml:space="preserve"><value>Groene code</value></data>
+  <data name="Theme_vapor" xml:space="preserve"><value>Stoom</value></data>
+  <data name="Theme_metro-gris" xml:space="preserve"><value>Metro grijs</value></data>
+  <data name="Theme_television" xml:space="preserve"><value>Televisie</value></data>
+  <data name="Theme_reproductor" xml:space="preserve"><value>Mediaspeler</value></data>
+  <data name="Theme_humo" xml:space="preserve"><value>Rook</value></data>
+  <data name="Theme_berenjena" xml:space="preserve"><value>Aubergine</value></data>
+  <data name="Theme_sc3-azul" xml:space="preserve"><value>SuperCopier 3 blauw</value></data>
+  <data name="Theme_sc3-verde" xml:space="preserve"><value>SuperCopier 3 groen</value></data>
+  <data name="Theme_sc3-naranja" xml:space="preserve"><value>SuperCopier 3 oranje</value></data>
+  <data name="Theme_aurora" xml:space="preserve"><value>Noorderlicht</value></data>
+  <data name="Theme_galaxia" xml:space="preserve"><value>Sterrenstelsel</value></data>
+  <data name="Theme_neon" xml:space="preserve"><value>Neon</value></data>
+  <data name="Theme_aire" xml:space="preserve"><value>Lucht</value></data>
+  <data name="Theme_metro-claro" xml:space="preserve"><value>Metro licht</value></data>
+  <data name="Theme_pez-azul" xml:space="preserve"><value>Blauwe vis</value></data>
+  <data name="Theme_linea-plana" xml:space="preserve"><value>Vlakke lijn</value></data>
+  <data name="Theme_plus" xml:space="preserve"><value>Plus</value></data>
+  <data name="Theme_cristal" xml:space="preserve"><value>Glas</value></data>
+  <data name="Theme_cielo" xml:space="preserve"><value>Lucht</value></data>
+  <data name="Theme_menta" xml:space="preserve"><value>Munt</value></data>
+  <data name="Theme_cuaderno" xml:space="preserve"><value>Schrift</value></data>
+  <data name="Theme_madera" xml:space="preserve"><value>Hout</value></data>
+  <data name="Theme_brillo" xml:space="preserve"><value>Glans</value></data>
+  <data name="Theme_nieve" xml:space="preserve"><value>Sneeuw</value></data>
+  <data name="Theme_burbuja-azul" xml:space="preserve"><value>Blauwe bel</value></data>
+  <data name="Theme_burbuja-lima" xml:space="preserve"><value>Limoenbel</value></data>
+  <data name="Theme_toxico" xml:space="preserve"><value>Giftig</value></data>
+  <data name="Theme_naranja-tierra" xml:space="preserve"><value>Aardeoranje</value></data>
+  <data name="Theme_aero" xml:space="preserve"><value>Aero</value></data>
+  <data name="Theme_moderno-8" xml:space="preserve"><value>Modern 8</value></data>
+  <data name="Theme_mensajero" xml:space="preserve"><value>Messenger</value></data>
+  <data name="Theme_luna" xml:space="preserve"><value>Luna</value></data>
+  <data name="Theme_plata" xml:space="preserve"><value>Zilver</value></data>
 </root>

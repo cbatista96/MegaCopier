@@ -1036,3 +1036,44 @@ Connection_CloudRoot	クラウドのフォルダー（空 = すべて）
 Connection_NeedClientId	先にアプリの識別子を入力してください（docs\Nube.md を参照）。
 Connection_SigningIn	ブラウザーでのサインインを待っています…
 Connection_SignedIn	サインインしました。接続を保存してください。
+Theme_combustion	燃焼
+Theme_caja-negra	ブラックボックス
+Theme_metro-oscuro	メトロ（ダーク）
+Theme_robot	グリーンロボット
+Theme_cielo-otono	秋の空
+Theme_ambar	琥珀
+Theme_granate	ガーネット
+Theme_codigo-verde	グリーンコード
+Theme_vapor	スチーム
+Theme_metro-gris	メトロ（グレー）
+Theme_television	テレビ
+Theme_reproductor	プレーヤー
+Theme_humo	スモーク
+Theme_berenjena	ナス紺
+Theme_sc3-azul	SuperCopier 3 ブルー
+Theme_sc3-verde	SuperCopier 3 グリーン
+Theme_sc3-naranja	SuperCopier 3 オレンジ
+Theme_aurora	オーロラ
+Theme_galaxia	銀河
+Theme_neon	ネオン
+Theme_aire	エアー
+Theme_metro-claro	メトロ（ライト）
+Theme_pez-azul	ブルーフィッシュ
+Theme_linea-plana	フラットライン
+Theme_plus	プラス
+Theme_cristal	クリスタル
+Theme_cielo	空
+Theme_menta	ミント
+Theme_cuaderno	ノート
+Theme_madera	ウッド
+Theme_brillo	シャイン
+Theme_nieve	スノー
+Theme_burbuja-azul	ブルーバブル
+Theme_burbuja-lima	ライムバブル
+Theme_toxico	トキシック
+Theme_naranja-tierra	アースオレンジ
+Theme_aero	エアロ
+Theme_moderno-8	モダン 8
+Theme_mensajero	メッセンジャー
+Theme_luna	ルナ
+Theme_plata	シルバー

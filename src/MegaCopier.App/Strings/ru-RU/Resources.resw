@@ -1042,4 +1042,45 @@
   <data name="Connection_NeedClientId" xml:space="preserve"><value>Сначала введите идентификатор приложения (см. docs\Nube.md).</value></data>
   <data name="Connection_SigningIn" xml:space="preserve"><value>Ожидание входа в браузере…</value></data>
   <data name="Connection_SignedIn" xml:space="preserve"><value>Вход выполнен. Сохраните подключение.</value></data>
+  <data name="Theme_combustion" xml:space="preserve"><value>Форсаж</value></data>
+  <data name="Theme_caja-negra" xml:space="preserve"><value>Чёрный ящик</value></data>
+  <data name="Theme_metro-oscuro" xml:space="preserve"><value>Тёмное метро</value></data>
+  <data name="Theme_robot" xml:space="preserve"><value>Зелёный робот</value></data>
+  <data name="Theme_cielo-otono" xml:space="preserve"><value>Осеннее небо</value></data>
+  <data name="Theme_ambar" xml:space="preserve"><value>Янтарь</value></data>
+  <data name="Theme_granate" xml:space="preserve"><value>Гранат</value></data>
+  <data name="Theme_codigo-verde" xml:space="preserve"><value>Зелёный код</value></data>
+  <data name="Theme_vapor" xml:space="preserve"><value>Пар</value></data>
+  <data name="Theme_metro-gris" xml:space="preserve"><value>Серое метро</value></data>
+  <data name="Theme_television" xml:space="preserve"><value>Телевизор</value></data>
+  <data name="Theme_reproductor" xml:space="preserve"><value>Проигрыватель</value></data>
+  <data name="Theme_humo" xml:space="preserve"><value>Дым</value></data>
+  <data name="Theme_berenjena" xml:space="preserve"><value>Баклажан</value></data>
+  <data name="Theme_sc3-azul" xml:space="preserve"><value>SuperCopier 3 синий</value></data>
+  <data name="Theme_sc3-verde" xml:space="preserve"><value>SuperCopier 3 зелёный</value></data>
+  <data name="Theme_sc3-naranja" xml:space="preserve"><value>SuperCopier 3 оранжевый</value></data>
+  <data name="Theme_aurora" xml:space="preserve"><value>Сияние</value></data>
+  <data name="Theme_galaxia" xml:space="preserve"><value>Галактика</value></data>
+  <data name="Theme_neon" xml:space="preserve"><value>Неон</value></data>
+  <data name="Theme_aire" xml:space="preserve"><value>Воздух</value></data>
+  <data name="Theme_metro-claro" xml:space="preserve"><value>Светлое метро</value></data>
+  <data name="Theme_pez-azul" xml:space="preserve"><value>Синяя рыба</value></data>
+  <data name="Theme_linea-plana" xml:space="preserve"><value>Ровная линия</value></data>
+  <data name="Theme_plus" xml:space="preserve"><value>Плюс</value></data>
+  <data name="Theme_cristal" xml:space="preserve"><value>Стекло</value></data>
+  <data name="Theme_cielo" xml:space="preserve"><value>Небо</value></data>
+  <data name="Theme_menta" xml:space="preserve"><value>Мята</value></data>
+  <data name="Theme_cuaderno" xml:space="preserve"><value>Тетрадь</value></data>
+  <data name="Theme_madera" xml:space="preserve"><value>Дерево</value></data>
+  <data name="Theme_brillo" xml:space="preserve"><value>Блеск</value></data>
+  <data name="Theme_nieve" xml:space="preserve"><value>Снег</value></data>
+  <data name="Theme_burbuja-azul" xml:space="preserve"><value>Синий пузырь</value></data>
+  <data name="Theme_burbuja-lima" xml:space="preserve"><value>Лаймовый пузырь</value></data>
+  <data name="Theme_toxico" xml:space="preserve"><value>Токсичный</value></data>
+  <data name="Theme_naranja-tierra" xml:space="preserve"><value>Земляной оранжевый</value></data>
+  <data name="Theme_aero" xml:space="preserve"><value>Аэро</value></data>
+  <data name="Theme_moderno-8" xml:space="preserve"><value>Модерн 8</value></data>
+  <data name="Theme_mensajero" xml:space="preserve"><value>Мессенджер</value></data>
+  <data name="Theme_luna" xml:space="preserve"><value>Луна</value></data>
+  <data name="Theme_plata" xml:space="preserve"><value>Серебро</value></data>
 </root>

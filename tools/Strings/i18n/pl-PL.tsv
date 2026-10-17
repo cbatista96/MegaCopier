@@ -1036,3 +1036,44 @@ Connection_CloudRoot	Folder w chmurze (puste = całość)
 Connection_NeedClientId	Najpierw wpisz identyfikator aplikacji (zob. docs\Nube.md).
 Connection_SigningIn	Czekam na zalogowanie w przeglądarce…
 Connection_SignedIn	Zalogowano. Zapisz połączenie.
+Theme_combustion	Dopalacz
+Theme_caja-negra	Czarna skrzynka
+Theme_metro-oscuro	Metro ciemne
+Theme_robot	Zielony robot
+Theme_cielo-otono	Jesienne niebo
+Theme_ambar	Bursztyn
+Theme_granate	Granat
+Theme_codigo-verde	Zielony kod
+Theme_vapor	Para
+Theme_metro-gris	Metro szare
+Theme_television	Telewizja
+Theme_reproductor	Odtwarzacz
+Theme_humo	Dym
+Theme_berenjena	Bakłażan
+Theme_sc3-azul	SuperCopier 3 niebieski
+Theme_sc3-verde	SuperCopier 3 zielony
+Theme_sc3-naranja	SuperCopier 3 pomarańczowy
+Theme_aurora	Zorza
+Theme_galaxia	Galaktyka
+Theme_neon	Neon
+Theme_aire	Powietrze
+Theme_metro-claro	Metro jasne
+Theme_pez-azul	Niebieska ryba
+Theme_linea-plana	Płaska linia
+Theme_plus	Plus
+Theme_cristal	Szkło
+Theme_cielo	Niebo
+Theme_menta	Mięta
+Theme_cuaderno	Zeszyt
+Theme_madera	Drewno
+Theme_brillo	Połysk
+Theme_nieve	Śnieg
+Theme_burbuja-azul	Niebieska bańka
+Theme_burbuja-lima	Limonkowa bańka
+Theme_toxico	Toksyczny
+Theme_naranja-tierra	Pomarańcz ziemi
+Theme_aero	Aero
+Theme_moderno-8	Nowoczesny 8
+Theme_mensajero	Komunikator
+Theme_luna	Luna
+Theme_plata	Srebro

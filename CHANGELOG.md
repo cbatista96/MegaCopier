@@ -5,6 +5,14 @@ y las versiones, [SemVer](https://semver.org/lang/es/).
 
 ## [Sin publicar]
 
+### Añadido
+- 41 temas nuevos (52 en total), muchos inspirados en los clásicos de SuperCopier y rehechos al estilo de Windows 11:
+  Combustión, Caja negra, Código verde, Aurora, Galaxia, Neón, Madera, Cuaderno, Cristal, Aero, Luna, Plata y más.
+- Los temas pueden tener fondo en degradado y textura (brasas, madera, papel, fibra de carbono, aurora, galaxia, metal,
+  ondas, rejilla de neón y lluvia digital).
+- Los temas colorean también todos los controles: barras de desplazamiento, botones, desplegables, cuadros de texto,
+  interruptores, casillas, listas, menús, diálogos y avisos.
+
 ### Cambiado
 - Documentación nueva y completa: guía de uso paso a paso, preguntas frecuentes, guía de versiones y capturas de todas
   las vistas y de los 11 temas.

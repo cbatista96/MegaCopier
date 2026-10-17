@@ -13,8 +13,16 @@ internal static class L
 
     public static string Get(string key)
     {
-        string text = Loader.GetString(key);
-        return string.IsNullOrEmpty(text) ? key : text;
+        try
+        {
+            string text = Loader.GetString(key);
+            return string.IsNullOrEmpty(text) ? key : text;
+        }
+        catch (Exception ex) when (ex is System.Runtime.InteropServices.COMException or ArgumentException)
+        {
+            // Un texto que no existe no puede tumbar la app (WinUI lanza 0x80073B17 en vez de devolver vacío).
+            return key;
+        }
     }
 
     public static string F(string key, params object[] args) => string.Format(CultureInfo.CurrentCulture, Get(key), args);

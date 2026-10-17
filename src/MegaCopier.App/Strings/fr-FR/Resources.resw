@@ -1042,4 +1042,45 @@
   <data name="Connection_NeedClientId" xml:space="preserve"><value>Saisissez d&apos;abord l&apos;identifiant de l&apos;application (voir docs\Nube.md).</value></data>
   <data name="Connection_SigningIn" xml:space="preserve"><value>En attente de votre connexion dans le navigateur…</value></data>
   <data name="Connection_SignedIn" xml:space="preserve"><value>Connecté. Enregistrez la connexion.</value></data>
+  <data name="Theme_combustion" xml:space="preserve"><value>Combustion</value></data>
+  <data name="Theme_caja-negra" xml:space="preserve"><value>Boîte noire</value></data>
+  <data name="Theme_metro-oscuro" xml:space="preserve"><value>Metro sombre</value></data>
+  <data name="Theme_robot" xml:space="preserve"><value>Robot vert</value></data>
+  <data name="Theme_cielo-otono" xml:space="preserve"><value>Ciel d&apos;automne</value></data>
+  <data name="Theme_ambar" xml:space="preserve"><value>Ambre</value></data>
+  <data name="Theme_granate" xml:space="preserve"><value>Grenat</value></data>
+  <data name="Theme_codigo-verde" xml:space="preserve"><value>Code vert</value></data>
+  <data name="Theme_vapor" xml:space="preserve"><value>Vapeur</value></data>
+  <data name="Theme_metro-gris" xml:space="preserve"><value>Metro gris</value></data>
+  <data name="Theme_television" xml:space="preserve"><value>Télévision</value></data>
+  <data name="Theme_reproductor" xml:space="preserve"><value>Lecteur</value></data>
+  <data name="Theme_humo" xml:space="preserve"><value>Fumée</value></data>
+  <data name="Theme_berenjena" xml:space="preserve"><value>Aubergine</value></data>
+  <data name="Theme_sc3-azul" xml:space="preserve"><value>SuperCopier 3 bleu</value></data>
+  <data name="Theme_sc3-verde" xml:space="preserve"><value>SuperCopier 3 vert</value></data>
+  <data name="Theme_sc3-naranja" xml:space="preserve"><value>SuperCopier 3 orange</value></data>
+  <data name="Theme_aurora" xml:space="preserve"><value>Aurore</value></data>
+  <data name="Theme_galaxia" xml:space="preserve"><value>Galaxie</value></data>
+  <data name="Theme_neon" xml:space="preserve"><value>Néon</value></data>
+  <data name="Theme_aire" xml:space="preserve"><value>Air</value></data>
+  <data name="Theme_metro-claro" xml:space="preserve"><value>Metro clair</value></data>
+  <data name="Theme_pez-azul" xml:space="preserve"><value>Poisson bleu</value></data>
+  <data name="Theme_linea-plana" xml:space="preserve"><value>Ligne plate</value></data>
+  <data name="Theme_plus" xml:space="preserve"><value>Plus</value></data>
+  <data name="Theme_cristal" xml:space="preserve"><value>Cristal</value></data>
+  <data name="Theme_cielo" xml:space="preserve"><value>Ciel</value></data>
+  <data name="Theme_menta" xml:space="preserve"><value>Menthe</value></data>
+  <data name="Theme_cuaderno" xml:space="preserve"><value>Cahier</value></data>
+  <data name="Theme_madera" xml:space="preserve"><value>Bois</value></data>
+  <data name="Theme_brillo" xml:space="preserve"><value>Éclat</value></data>
+  <data name="Theme_nieve" xml:space="preserve"><value>Neige</value></data>
+  <data name="Theme_burbuja-azul" xml:space="preserve"><value>Bulle bleue</value></data>
+  <data name="Theme_burbuja-lima" xml:space="preserve"><value>Bulle citron vert</value></data>
+  <data name="Theme_toxico" xml:space="preserve"><value>Toxique</value></data>
+  <data name="Theme_naranja-tierra" xml:space="preserve"><value>Orange terre</value></data>
+  <data name="Theme_aero" xml:space="preserve"><value>Aero</value></data>
+  <data name="Theme_moderno-8" xml:space="preserve"><value>Moderne 8</value></data>
+  <data name="Theme_mensajero" xml:space="preserve"><value>Messager</value></data>
+  <data name="Theme_luna" xml:space="preserve"><value>Luna</value></data>
+  <data name="Theme_plata" xml:space="preserve"><value>Argent</value></data>
 </root>

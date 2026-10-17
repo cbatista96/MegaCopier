@@ -1036,3 +1036,44 @@ Connection_CloudRoot	Pasta da nuvem (vazio = tudo)
 Connection_NeedClientId	Digite primeiro o identificador do app (veja docs\Nube.md).
 Connection_SigningIn	Aguardando seu login no navegador…
 Connection_SignedIn	Login feito. Salve a conexão.
+Theme_combustion	Combustão
+Theme_caja-negra	Caixa-preta
+Theme_metro-oscuro	Metro escuro
+Theme_robot	Robô verde
+Theme_cielo-otono	Céu de outono
+Theme_ambar	Âmbar
+Theme_granate	Granada
+Theme_codigo-verde	Código verde
+Theme_vapor	Vapor
+Theme_metro-gris	Metro cinza
+Theme_television	Televisão
+Theme_reproductor	Reprodutor
+Theme_humo	Fumaça
+Theme_berenjena	Berinjela
+Theme_sc3-azul	SuperCopier 3 azul
+Theme_sc3-verde	SuperCopier 3 verde
+Theme_sc3-naranja	SuperCopier 3 laranja
+Theme_aurora	Aurora
+Theme_galaxia	Galáxia
+Theme_neon	Neon
+Theme_aire	Ar
+Theme_metro-claro	Metro claro
+Theme_pez-azul	Peixe azul
+Theme_linea-plana	Linha plana
+Theme_plus	Plus
+Theme_cristal	Cristal
+Theme_cielo	Céu
+Theme_menta	Menta
+Theme_cuaderno	Caderno
+Theme_madera	Madeira
+Theme_brillo	Brilho
+Theme_nieve	Neve
+Theme_burbuja-azul	Bolha azul
+Theme_burbuja-lima	Bolha lima
+Theme_toxico	Tóxico
+Theme_naranja-tierra	Laranja terra
+Theme_aero	Aero
+Theme_moderno-8	Moderno 8
+Theme_mensajero	Mensageiro
+Theme_luna	Luna
+Theme_plata	Prata

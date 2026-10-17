@@ -1036,3 +1036,44 @@ Connection_CloudRoot	Cloud-Ordner (leer = alles)
 Connection_NeedClientId	Gib zuerst die App-Kennung ein (siehe docs\Nube.md).
 Connection_SigningIn	Warte auf deine Anmeldung im Browser…
 Connection_SignedIn	Angemeldet. Speichere die Verbindung.
+Theme_combustion	Nachbrenner
+Theme_caja-negra	Blackbox
+Theme_metro-oscuro	Metro dunkel
+Theme_robot	Grüner Roboter
+Theme_cielo-otono	Herbsthimmel
+Theme_ambar	Bernstein
+Theme_granate	Granat
+Theme_codigo-verde	Grüner Code
+Theme_vapor	Dampf
+Theme_metro-gris	Metro grau
+Theme_television	Fernsehen
+Theme_reproductor	Mediaplayer
+Theme_humo	Rauch
+Theme_berenjena	Aubergine
+Theme_sc3-azul	SuperCopier 3 blau
+Theme_sc3-verde	SuperCopier 3 grün
+Theme_sc3-naranja	SuperCopier 3 orange
+Theme_aurora	Polarlicht
+Theme_galaxia	Galaxie
+Theme_neon	Neon
+Theme_aire	Luft
+Theme_metro-claro	Metro hell
+Theme_pez-azul	Blauer Fisch
+Theme_linea-plana	Nulllinie
+Theme_plus	Plus
+Theme_cristal	Glas
+Theme_cielo	Himmel
+Theme_menta	Minze
+Theme_cuaderno	Notizheft
+Theme_madera	Holz
+Theme_brillo	Glanz
+Theme_nieve	Schnee
+Theme_burbuja-azul	Blaue Blase
+Theme_burbuja-lima	Limettenblase
+Theme_toxico	Giftig
+Theme_naranja-tierra	Erdorange
+Theme_aero	Aero
+Theme_moderno-8	Modern 8
+Theme_mensajero	Messenger
+Theme_luna	Luna
+Theme_plata	Silber

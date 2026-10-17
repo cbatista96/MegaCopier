@@ -1036,3 +1036,44 @@ Connection_CloudRoot	클라우드 폴더(비우면 전체)
 Connection_NeedClientId	먼저 앱 식별자를 입력하세요(docs\Nube.md 참고).
 Connection_SigningIn	브라우저에서 로그인하기를 기다리는 중…
 Connection_SignedIn	로그인되었습니다. 연결을 저장하세요.
+Theme_combustion	연소
+Theme_caja-negra	블랙박스
+Theme_metro-oscuro	메트로 다크
+Theme_robot	초록 로봇
+Theme_cielo-otono	가을 하늘
+Theme_ambar	호박색
+Theme_granate	가넷
+Theme_codigo-verde	초록 코드
+Theme_vapor	증기
+Theme_metro-gris	메트로 그레이
+Theme_television	텔레비전
+Theme_reproductor	플레이어
+Theme_humo	연기
+Theme_berenjena	가지색
+Theme_sc3-azul	SuperCopier 3 파랑
+Theme_sc3-verde	SuperCopier 3 초록
+Theme_sc3-naranja	SuperCopier 3 주황
+Theme_aurora	오로라
+Theme_galaxia	은하
+Theme_neon	네온
+Theme_aire	공기
+Theme_metro-claro	메트로 라이트
+Theme_pez-azul	파란 물고기
+Theme_linea-plana	플랫라인
+Theme_plus	플러스
+Theme_cristal	크리스털
+Theme_cielo	하늘
+Theme_menta	민트
+Theme_cuaderno	공책
+Theme_madera	나무
+Theme_brillo	광택
+Theme_nieve	눈
+Theme_burbuja-azul	파란 거품
+Theme_burbuja-lima	라임 거품
+Theme_toxico	독성
+Theme_naranja-tierra	흙빛 주황
+Theme_aero	에어로
+Theme_moderno-8	모던 8
+Theme_mensajero	메신저
+Theme_luna	루나
+Theme_plata	실버
