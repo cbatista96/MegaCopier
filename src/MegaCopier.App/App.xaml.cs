@@ -124,6 +124,11 @@ public partial class App : Application
         _tray.Activated += () => ShowWindow();
         _tray.DoubleClicked += () => SetEnabled(!Settings.Enabled, notify: true);
         Queue.JobFinished += job => Dispatcher.TryEnqueue(() => OnJobFinished(job));
+        if (TestMode)
+        {
+            Engine.Remote.Connections.UseMemorySecrets(); // las pruebas nunca tocan el Administrador de credenciales
+        }
+
         Guard = new IntegrityGuard(this);
         Comfort = new Comfort(this);
         Disks = new DiskWatcher(this);
@@ -845,6 +850,12 @@ public partial class App : Application
             string url = Settings.WebhookUrl;
             string text = JobNotices.Summary(job);
             _ = Task.Run(() => JobNotices.SendWebhookAsync(url, text, job));
+        }
+
+        if (Settings.EmailEnabled && (!Settings.EmailOnlyProblems || job.State != CopyJobState.Completed))
+        {
+            var smtp = Settings.SmtpSettings();
+            _ = Task.Run(() => JobNotices.SendEmailAsync(smtp, job));
         }
 
         if (job.Record.Scripts.Count > 0)

@@ -913,3 +913,17 @@ Connection_Test	接続をテスト
 Connection_Testing	テスト中…
 Connection_TestOk	接続できました: フォルダーに {0} 個の項目があります。
 Connection_TestFailed	接続できませんでした: {0}
+Settings_EmailTitle.Text	メールで通知
+Settings_EmailDescription.Text	各コピーが終わるたびに、概要と失敗したファイルをメールで送ります。Gmail と Outlook では「アプリ パスワード」が必要です。
+Email_Server.Header	SMTP サーバー
+Email_Port.Header	ポート（0 = 標準）
+Email_Security.Header	暗号化
+Email_SecurityNone.Content	なし（ローカル ネットワークのみ）
+Email_User.Header	ユーザー
+Email_Password.Header	パスワード
+Email_From.Header	差出人
+Email_To.Header	宛先（コンマ区切り）
+Email_OnlyProblems.Content	問題があるときだけ
+Email_Sent	メールを送信しました。
+Email_Failed	送信できませんでした: {0}
+Email_Test.Text	テスト メールを送信

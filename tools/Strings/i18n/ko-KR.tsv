@@ -913,3 +913,17 @@ Connection_Test	연결 테스트
 Connection_Testing	테스트하는 중…
 Connection_TestOk	연결 성공: 폴더에 항목 {0}개가 있습니다.
 Connection_TestFailed	연결할 수 없습니다: {0}
+Settings_EmailTitle.Text	이메일로 알림
+Settings_EmailDescription.Text	각 복사가 끝날 때 요약과 실패한 파일이 담긴 이메일을 보냅니다. Gmail과 Outlook은 "앱 비밀번호"가 필요합니다.
+Email_Server.Header	SMTP 서버
+Email_Port.Header	포트(0 = 기본값)
+Email_Security.Header	암호화
+Email_SecurityNone.Content	없음(로컬 네트워크만)
+Email_User.Header	사용자
+Email_Password.Header	암호
+Email_From.Header	보낸 사람
+Email_To.Header	받는 사람(쉼표로 구분)
+Email_OnlyProblems.Content	문제가 있을 때만
+Email_Sent	이메일을 보냈습니다.
+Email_Failed	보낼 수 없습니다: {0}
+Email_Test.Text	테스트 이메일 보내기

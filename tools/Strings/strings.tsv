@@ -913,3 +913,17 @@ Connection_Test	Probar conexión	Test connection
 Connection_Testing	Probando…	Testing…
 Connection_TestOk	Conexión correcta: {0} elementos en la carpeta.	Connection works: {0} items in the folder.
 Connection_TestFailed	No se pudo conectar: {0}	Couldn't connect: {0}
+Settings_EmailTitle.Text	Avisar por correo	Email notification
+Settings_EmailDescription.Text	Al terminar cada copia, un correo con el resumen y los archivos que fallaron. Gmail y Outlook piden una «contraseña de aplicación».	When each copy finishes, an email with the summary and the files that failed. Gmail and Outlook require an "app password".
+Email_Server.Header	Servidor SMTP	SMTP server
+Email_Port.Header	Puerto (0 = habitual)	Port (0 = usual)
+Email_Security.Header	Cifrado	Encryption
+Email_SecurityNone.Content	Ninguno (solo red local)	None (local network only)
+Email_User.Header	Usuario	User
+Email_Password.Header	Contraseña	Password
+Email_From.Header	Remitente	From
+Email_To.Header	Para (separados por comas)	To (comma-separated)
+Email_OnlyProblems.Content	Solo si hay problemas	Only when there are problems
+Email_Sent	Correo enviado.	Email sent.
+Email_Failed	No se pudo enviar: {0}	Couldn't send: {0}
+Email_Test.Text	Enviar correo de prueba	Send test email

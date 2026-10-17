@@ -268,6 +268,34 @@ public sealed class AppSettings
     /// <summary>Dirección a la que avisar (POST con JSON) al terminar cada copia: Discord, Slack, Teams, ntfy, Home Assistant...</summary>
     public string WebhookUrl { get; set; } = "";
 
+    /// <summary>Avisar por correo al terminar cada copia (la contraseña va al Administrador de credenciales).</summary>
+    public bool EmailEnabled { get; set; }
+
+    public string EmailServer { get; set; } = "";
+
+    /// <summary>0 = el habitual del cifrado elegido (587, 465 o 25).</summary>
+    public int EmailPort { get; set; }
+
+    public Engine.Network.SmtpSecurity EmailSecurity { get; set; }
+
+    public string EmailUser { get; set; } = "";
+
+    public string EmailFrom { get; set; } = "";
+
+    /// <summary>Destinatarios separados por comas o puntos y comas.</summary>
+    public string EmailTo { get; set; } = "";
+
+    /// <summary>Solo cuando una copia termina con errores o falla.</summary>
+    public bool EmailOnlyProblems { get; set; }
+
+    /// <summary>Cómo enviar, con la contraseña guardada.</summary>
+    public Engine.Network.SmtpSettings SmtpSettings() => new(
+        EmailServer.Trim(), EmailPort, EmailSecurity, EmailUser.Trim(), Engine.Remote.Connections.GetSecret(SmtpSecretId),
+        EmailFrom.Trim(), [.. EmailTo.Split([',', ';'], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)]);
+
+    /// <summary>Nombre de la contraseña del correo en el Administrador de credenciales ("MegaCopier:smtp").</summary>
+    public const string SmtpSecretId = "smtp";
+
     /// <summary>Carpetas vigiladas por el guardián de integridad.</summary>
     public List<GuardedFolder> GuardedFolders { get; set; } = [];
 

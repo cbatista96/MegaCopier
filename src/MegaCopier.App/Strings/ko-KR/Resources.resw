@@ -919,4 +919,18 @@
   <data name="Connection_Testing" xml:space="preserve"><value>테스트하는 중…</value></data>
   <data name="Connection_TestOk" xml:space="preserve"><value>연결 성공: 폴더에 항목 {0}개가 있습니다.</value></data>
   <data name="Connection_TestFailed" xml:space="preserve"><value>연결할 수 없습니다: {0}</value></data>
+  <data name="Settings_EmailTitle.Text" xml:space="preserve"><value>이메일로 알림</value></data>
+  <data name="Settings_EmailDescription.Text" xml:space="preserve"><value>각 복사가 끝날 때 요약과 실패한 파일이 담긴 이메일을 보냅니다. Gmail과 Outlook은 &quot;앱 비밀번호&quot;가 필요합니다.</value></data>
+  <data name="Email_Server.Header" xml:space="preserve"><value>SMTP 서버</value></data>
+  <data name="Email_Port.Header" xml:space="preserve"><value>포트(0 = 기본값)</value></data>
+  <data name="Email_Security.Header" xml:space="preserve"><value>암호화</value></data>
+  <data name="Email_SecurityNone.Content" xml:space="preserve"><value>없음(로컬 네트워크만)</value></data>
+  <data name="Email_User.Header" xml:space="preserve"><value>사용자</value></data>
+  <data name="Email_Password.Header" xml:space="preserve"><value>암호</value></data>
+  <data name="Email_From.Header" xml:space="preserve"><value>보낸 사람</value></data>
+  <data name="Email_To.Header" xml:space="preserve"><value>받는 사람(쉼표로 구분)</value></data>
+  <data name="Email_OnlyProblems.Content" xml:space="preserve"><value>문제가 있을 때만</value></data>
+  <data name="Email_Sent" xml:space="preserve"><value>이메일을 보냈습니다.</value></data>
+  <data name="Email_Failed" xml:space="preserve"><value>보낼 수 없습니다: {0}</value></data>
+  <data name="Email_Test.Text" xml:space="preserve"><value>테스트 이메일 보내기</value></data>
 </root>

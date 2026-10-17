@@ -919,4 +919,18 @@
   <data name="Connection_Testing" xml:space="preserve"><value>Проверка…</value></data>
   <data name="Connection_TestOk" xml:space="preserve"><value>Подключение работает: элементов в папке — {0}.</value></data>
   <data name="Connection_TestFailed" xml:space="preserve"><value>Не удалось подключиться: {0}</value></data>
+  <data name="Settings_EmailTitle.Text" xml:space="preserve"><value>Уведомлять по почте</value></data>
+  <data name="Settings_EmailDescription.Text" xml:space="preserve"><value>По окончании каждого копирования — письмо со сводкой и файлами с ошибками. Gmail и Outlook требуют «пароль приложения».</value></data>
+  <data name="Email_Server.Header" xml:space="preserve"><value>SMTP-сервер</value></data>
+  <data name="Email_Port.Header" xml:space="preserve"><value>Порт (0 = стандартный)</value></data>
+  <data name="Email_Security.Header" xml:space="preserve"><value>Шифрование</value></data>
+  <data name="Email_SecurityNone.Content" xml:space="preserve"><value>Нет (только локальная сеть)</value></data>
+  <data name="Email_User.Header" xml:space="preserve"><value>Пользователь</value></data>
+  <data name="Email_Password.Header" xml:space="preserve"><value>Пароль</value></data>
+  <data name="Email_From.Header" xml:space="preserve"><value>Отправитель</value></data>
+  <data name="Email_To.Header" xml:space="preserve"><value>Кому (через запятую)</value></data>
+  <data name="Email_OnlyProblems.Content" xml:space="preserve"><value>Только при проблемах</value></data>
+  <data name="Email_Sent" xml:space="preserve"><value>Письмо отправлено.</value></data>
+  <data name="Email_Failed" xml:space="preserve"><value>Не удалось отправить: {0}</value></data>
+  <data name="Email_Test.Text" xml:space="preserve"><value>Отправить тестовое письмо</value></data>
 </root>

@@ -913,3 +913,17 @@ Connection_Test	Verbindung testen
 Connection_Testing	Wird getestet…
 Connection_TestOk	Verbindung funktioniert: {0} Elemente im Ordner.
 Connection_TestFailed	Verbindung nicht möglich: {0}
+Settings_EmailTitle.Text	Per E-Mail benachrichtigen
+Settings_EmailDescription.Text	Nach jeder Kopie eine E-Mail mit der Zusammenfassung und den fehlgeschlagenen Dateien. Gmail und Outlook verlangen ein „App-Kennwort“.
+Email_Server.Header	SMTP-Server
+Email_Port.Header	Port (0 = Standard)
+Email_Security.Header	Verschlüsselung
+Email_SecurityNone.Content	Keine (nur lokales Netzwerk)
+Email_User.Header	Benutzer
+Email_Password.Header	Kennwort
+Email_From.Header	Absender
+Email_To.Header	An (durch Kommas getrennt)
+Email_OnlyProblems.Content	Nur bei Problemen
+Email_Sent	E-Mail gesendet.
+Email_Failed	Senden nicht möglich: {0}
+Email_Test.Text	Test-E-Mail senden

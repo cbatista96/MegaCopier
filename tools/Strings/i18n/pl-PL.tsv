@@ -913,3 +913,17 @@ Connection_Test	Testuj połączenie
 Connection_Testing	Testowanie…
 Connection_TestOk	Połączenie działa: elementów w folderze: {0}.
 Connection_TestFailed	Nie udało się połączyć: {0}
+Settings_EmailTitle.Text	Powiadamiaj e-mailem
+Settings_EmailDescription.Text	Po każdym kopiowaniu e-mail z podsumowaniem i plikami, które się nie powiodły. Gmail i Outlook wymagają „hasła aplikacji”.
+Email_Server.Header	Serwer SMTP
+Email_Port.Header	Port (0 = domyślny)
+Email_Security.Header	Szyfrowanie
+Email_SecurityNone.Content	Brak (tylko sieć lokalna)
+Email_User.Header	Użytkownik
+Email_Password.Header	Hasło
+Email_From.Header	Nadawca
+Email_To.Header	Do (oddzielone przecinkami)
+Email_OnlyProblems.Content	Tylko przy problemach
+Email_Sent	Wysłano e-mail.
+Email_Failed	Nie udało się wysłać: {0}
+Email_Test.Text	Wyślij testowy e-mail

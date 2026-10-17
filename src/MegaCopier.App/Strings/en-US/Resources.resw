@@ -919,4 +919,18 @@
   <data name="Connection_Testing" xml:space="preserve"><value>Testing…</value></data>
   <data name="Connection_TestOk" xml:space="preserve"><value>Connection works: {0} items in the folder.</value></data>
   <data name="Connection_TestFailed" xml:space="preserve"><value>Couldn&apos;t connect: {0}</value></data>
+  <data name="Settings_EmailTitle.Text" xml:space="preserve"><value>Email notification</value></data>
+  <data name="Settings_EmailDescription.Text" xml:space="preserve"><value>When each copy finishes, an email with the summary and the files that failed. Gmail and Outlook require an &quot;app password&quot;.</value></data>
+  <data name="Email_Server.Header" xml:space="preserve"><value>SMTP server</value></data>
+  <data name="Email_Port.Header" xml:space="preserve"><value>Port (0 = usual)</value></data>
+  <data name="Email_Security.Header" xml:space="preserve"><value>Encryption</value></data>
+  <data name="Email_SecurityNone.Content" xml:space="preserve"><value>None (local network only)</value></data>
+  <data name="Email_User.Header" xml:space="preserve"><value>User</value></data>
+  <data name="Email_Password.Header" xml:space="preserve"><value>Password</value></data>
+  <data name="Email_From.Header" xml:space="preserve"><value>From</value></data>
+  <data name="Email_To.Header" xml:space="preserve"><value>To (comma-separated)</value></data>
+  <data name="Email_OnlyProblems.Content" xml:space="preserve"><value>Only when there are problems</value></data>
+  <data name="Email_Sent" xml:space="preserve"><value>Email sent.</value></data>
+  <data name="Email_Failed" xml:space="preserve"><value>Couldn&apos;t send: {0}</value></data>
+  <data name="Email_Test.Text" xml:space="preserve"><value>Send test email</value></data>
 </root>

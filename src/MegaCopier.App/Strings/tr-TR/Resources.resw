@@ -919,4 +919,18 @@
   <data name="Connection_Testing" xml:space="preserve"><value>Sınanıyor…</value></data>
   <data name="Connection_TestOk" xml:space="preserve"><value>Bağlantı çalışıyor: klasörde {0} öğe var.</value></data>
   <data name="Connection_TestFailed" xml:space="preserve"><value>Bağlanılamadı: {0}</value></data>
+  <data name="Settings_EmailTitle.Text" xml:space="preserve"><value>E-postayla bildir</value></data>
+  <data name="Settings_EmailDescription.Text" xml:space="preserve"><value>Her kopyalama bittiğinde özet ve başarısız dosyalarla bir e-posta. Gmail ve Outlook &quot;uygulama parolası&quot; ister.</value></data>
+  <data name="Email_Server.Header" xml:space="preserve"><value>SMTP sunucusu</value></data>
+  <data name="Email_Port.Header" xml:space="preserve"><value>Bağlantı noktası (0 = varsayılan)</value></data>
+  <data name="Email_Security.Header" xml:space="preserve"><value>Şifreleme</value></data>
+  <data name="Email_SecurityNone.Content" xml:space="preserve"><value>Yok (yalnızca yerel ağ)</value></data>
+  <data name="Email_User.Header" xml:space="preserve"><value>Kullanıcı</value></data>
+  <data name="Email_Password.Header" xml:space="preserve"><value>Parola</value></data>
+  <data name="Email_From.Header" xml:space="preserve"><value>Gönderen</value></data>
+  <data name="Email_To.Header" xml:space="preserve"><value>Alıcı (virgülle ayırın)</value></data>
+  <data name="Email_OnlyProblems.Content" xml:space="preserve"><value>Yalnızca sorun olduğunda</value></data>
+  <data name="Email_Sent" xml:space="preserve"><value>E-posta gönderildi.</value></data>
+  <data name="Email_Failed" xml:space="preserve"><value>Gönderilemedi: {0}</value></data>
+  <data name="Email_Test.Text" xml:space="preserve"><value>Deneme e-postası gönder</value></data>
 </root>

@@ -63,6 +63,9 @@ public static unsafe partial class Connections
 
     internal static Dictionary<string, string>? SecretsOverride { get; set; }
 
+    /// <summary>Modo de prueba de la app: las contraseñas solo en memoria (nunca al Administrador de credenciales del usuario).</summary>
+    public static void UseMemorySecrets() => SecretsOverride ??= [];
+
     private static string FilePath => Path.Combine(FolderOverride ?? DataFolder.Path, "connections.json");
 
     public static List<Connection> Load()

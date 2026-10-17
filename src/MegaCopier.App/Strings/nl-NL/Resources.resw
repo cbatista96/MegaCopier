@@ -919,4 +919,18 @@
   <data name="Connection_Testing" xml:space="preserve"><value>Testen…</value></data>
   <data name="Connection_TestOk" xml:space="preserve"><value>Verbinding werkt: {0} items in de map.</value></data>
   <data name="Connection_TestFailed" xml:space="preserve"><value>Kan geen verbinding maken: {0}</value></data>
+  <data name="Settings_EmailTitle.Text" xml:space="preserve"><value>Melden per e-mail</value></data>
+  <data name="Settings_EmailDescription.Text" xml:space="preserve"><value>Na elke kopie een e-mail met de samenvatting en de mislukte bestanden. Gmail en Outlook vragen om een &apos;app-wachtwoord&apos;.</value></data>
+  <data name="Email_Server.Header" xml:space="preserve"><value>SMTP-server</value></data>
+  <data name="Email_Port.Header" xml:space="preserve"><value>Poort (0 = standaard)</value></data>
+  <data name="Email_Security.Header" xml:space="preserve"><value>Versleuteling</value></data>
+  <data name="Email_SecurityNone.Content" xml:space="preserve"><value>Geen (alleen lokaal netwerk)</value></data>
+  <data name="Email_User.Header" xml:space="preserve"><value>Gebruiker</value></data>
+  <data name="Email_Password.Header" xml:space="preserve"><value>Wachtwoord</value></data>
+  <data name="Email_From.Header" xml:space="preserve"><value>Afzender</value></data>
+  <data name="Email_To.Header" xml:space="preserve"><value>Aan (gescheiden door komma&apos;s)</value></data>
+  <data name="Email_OnlyProblems.Content" xml:space="preserve"><value>Alleen bij problemen</value></data>
+  <data name="Email_Sent" xml:space="preserve"><value>E-mail verzonden.</value></data>
+  <data name="Email_Failed" xml:space="preserve"><value>Kan niet verzenden: {0}</value></data>
+  <data name="Email_Test.Text" xml:space="preserve"><value>Testmail verzenden</value></data>
 </root>

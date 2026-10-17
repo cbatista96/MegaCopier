@@ -913,3 +913,17 @@ Connection_Test	Bağlantıyı sına
 Connection_Testing	Sınanıyor…
 Connection_TestOk	Bağlantı çalışıyor: klasörde {0} öğe var.
 Connection_TestFailed	Bağlanılamadı: {0}
+Settings_EmailTitle.Text	E-postayla bildir
+Settings_EmailDescription.Text	Her kopyalama bittiğinde özet ve başarısız dosyalarla bir e-posta. Gmail ve Outlook "uygulama parolası" ister.
+Email_Server.Header	SMTP sunucusu
+Email_Port.Header	Bağlantı noktası (0 = varsayılan)
+Email_Security.Header	Şifreleme
+Email_SecurityNone.Content	Yok (yalnızca yerel ağ)
+Email_User.Header	Kullanıcı
+Email_Password.Header	Parola
+Email_From.Header	Gönderen
+Email_To.Header	Alıcı (virgülle ayırın)
+Email_OnlyProblems.Content	Yalnızca sorun olduğunda
+Email_Sent	E-posta gönderildi.
+Email_Failed	Gönderilemedi: {0}
+Email_Test.Text	Deneme e-postası gönder

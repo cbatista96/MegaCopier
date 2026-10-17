@@ -913,3 +913,17 @@ Connection_Test	Проверить подключение
 Connection_Testing	Проверка…
 Connection_TestOk	Подключение работает: элементов в папке — {0}.
 Connection_TestFailed	Не удалось подключиться: {0}
+Settings_EmailTitle.Text	Уведомлять по почте
+Settings_EmailDescription.Text	По окончании каждого копирования — письмо со сводкой и файлами с ошибками. Gmail и Outlook требуют «пароль приложения».
+Email_Server.Header	SMTP-сервер
+Email_Port.Header	Порт (0 = стандартный)
+Email_Security.Header	Шифрование
+Email_SecurityNone.Content	Нет (только локальная сеть)
+Email_User.Header	Пользователь
+Email_Password.Header	Пароль
+Email_From.Header	Отправитель
+Email_To.Header	Кому (через запятую)
+Email_OnlyProblems.Content	Только при проблемах
+Email_Sent	Письмо отправлено.
+Email_Failed	Не удалось отправить: {0}
+Email_Test.Text	Отправить тестовое письмо

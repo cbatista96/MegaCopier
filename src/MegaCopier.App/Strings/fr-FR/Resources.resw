@@ -919,4 +919,18 @@
   <data name="Connection_Testing" xml:space="preserve"><value>Test en cours…</value></data>
   <data name="Connection_TestOk" xml:space="preserve"><value>Connexion réussie : {0} éléments dans le dossier.</value></data>
   <data name="Connection_TestFailed" xml:space="preserve"><value>Connexion impossible : {0}</value></data>
+  <data name="Settings_EmailTitle.Text" xml:space="preserve"><value>Avertir par e-mail</value></data>
+  <data name="Settings_EmailDescription.Text" xml:space="preserve"><value>À la fin de chaque copie, un e-mail avec le résumé et les fichiers en échec. Gmail et Outlook demandent un « mot de passe d&apos;application ».</value></data>
+  <data name="Email_Server.Header" xml:space="preserve"><value>Serveur SMTP</value></data>
+  <data name="Email_Port.Header" xml:space="preserve"><value>Port (0 = habituel)</value></data>
+  <data name="Email_Security.Header" xml:space="preserve"><value>Chiffrement</value></data>
+  <data name="Email_SecurityNone.Content" xml:space="preserve"><value>Aucun (réseau local uniquement)</value></data>
+  <data name="Email_User.Header" xml:space="preserve"><value>Utilisateur</value></data>
+  <data name="Email_Password.Header" xml:space="preserve"><value>Mot de passe</value></data>
+  <data name="Email_From.Header" xml:space="preserve"><value>Expéditeur</value></data>
+  <data name="Email_To.Header" xml:space="preserve"><value>À (séparés par des virgules)</value></data>
+  <data name="Email_OnlyProblems.Content" xml:space="preserve"><value>Seulement en cas de problème</value></data>
+  <data name="Email_Sent" xml:space="preserve"><value>E-mail envoyé.</value></data>
+  <data name="Email_Failed" xml:space="preserve"><value>Envoi impossible : {0}</value></data>
+  <data name="Email_Test.Text" xml:space="preserve"><value>Envoyer un e-mail de test</value></data>
 </root>
