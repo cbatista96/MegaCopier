@@ -1,0 +1,12 @@
+clave	texto
+S_CopyHere	Kopiuj tutaj przez MegaCopier
+S_MoveHere	Przenieś tutaj przez MegaCopier
+S_Paste	Wklej przez MegaCopier
+S_PasteIntoFolder	Wklej do tego folderu przez MegaCopier
+S_MoveIntoFolder	Przenieś do tego folderu przez MegaCopier
+S_TestChecksums	Sprawdź sumy kontrolne
+S_CreateChecksums	Utwórz plik sum kontrolnych
+S_SecureDelete	Usuń bezpiecznie…
+S_HelpText	Kopiowanie przez MegaCopier: wznawia się po zaniku zasilania
+S_DeliverFailed	Nie udało się przekazać kopiowania do MegaCopier.
+S_OpenFailed	Nie udało się otworzyć MegaCopier.

@@ -1,0 +1,803 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generado por tools/Strings/gen.cs: no editar a mano. -->
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="JobsSection.Text" xml:space="preserve"><value>복사</value></data>
+  <data name="SettingsSection.Text" xml:space="preserve"><value>설정</value></data>
+  <data name="FinishButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>모든 복사가 끝나면 할 일</value></data>
+  <data name="FinishNothing.Text" xml:space="preserve"><value>아무것도 안 함</value></data>
+  <data name="FinishSleep.Text" xml:space="preserve"><value>절전</value></data>
+  <data name="FinishShutdown.Text" xml:space="preserve"><value>시스템 종료</value></data>
+  <data name="NewCopyText.Text" xml:space="preserve"><value>새 복사</value></data>
+  <data name="CopyFilesItem.Text" xml:space="preserve"><value>파일 복사…</value></data>
+  <data name="CopyFolderItem.Text" xml:space="preserve"><value>폴더 복사…</value></data>
+  <data name="EmptyTitle.Text" xml:space="preserve"><value>복사 작업 없음</value></data>
+  <data name="EmptyDescription.Text" xml:space="preserve"><value>시작한 복사가 여기에 표시됩니다. 정전이 되어도 전원이 돌아오면 중단된 곳부터 이어서 할 수 있습니다.</value></data>
+  <data name="PauseButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>일시 중지</value></data>
+  <data name="StopButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>중지(나중에 이어서 가능)</value></data>
+  <data name="OpenFolderButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>대상 폴더 열기</value></data>
+  <data name="ClearButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>목록에서 제거</value></data>
+  <data name="DiscardButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>취소하고 미완성 복사본 삭제</value></data>
+  <data name="ConflictDialog.Title" xml:space="preserve"><value>파일이 이미 있습니다</value></data>
+  <data name="ConflictDialog.PrimaryButtonText" xml:space="preserve"><value>바꾸기</value></data>
+  <data name="ConflictDialog.SecondaryButtonText" xml:space="preserve"><value>둘 다 유지</value></data>
+  <data name="ConflictDialog.CloseButtonText" xml:space="preserve"><value>건너뛰기</value></data>
+  <data name="ConflictExistingTitle.Text" xml:space="preserve"><value>기존 파일</value></data>
+  <data name="ConflictApplyAll.Content" xml:space="preserve"><value>이 복사의 다른 충돌에도 동일하게 적용</value></data>
+  <data name="RestartInfo.Title" xml:space="preserve"><value>변경 사항을 적용하려면 MegaCopier를 다시 시작하세요</value></data>
+  <data name="RestartInfo.Message" xml:space="preserve"><value>진행 중인 복사는 중지되며 나중에 이어서 할 수 있습니다.</value></data>
+  <data name="RestartButton.Content" xml:space="preserve"><value>지금 다시 시작</value></data>
+  <data name="AppearanceHeader.Text" xml:space="preserve"><value>모양</value></data>
+  <data name="ThemeTitle.Text" xml:space="preserve"><value>테마</value></data>
+  <data name="ThemeDescription.Text" xml:space="preserve"><value>밝게, 어둡게 또는 Windows와 동일</value></data>
+  <data name="ThemeSystem.Content" xml:space="preserve"><value>Windows와 동일</value></data>
+  <data name="ThemeLight.Content" xml:space="preserve"><value>밝게</value></data>
+  <data name="ThemeDark.Content" xml:space="preserve"><value>어둡게</value></data>
+  <data name="AccentTitle.Text" xml:space="preserve"><value>강조 색</value></data>
+  <data name="AccentDescription.Text" xml:space="preserve"><value>단추, 진행률 표시줄, 강조 요소의 색</value></data>
+  <data name="BackdropTitle.Text" xml:space="preserve"><value>창 배경</value></data>
+  <data name="BackdropDescription.Text" xml:space="preserve"><value>Windows 11 소재로 바탕 화면이 은은하게 비칩니다</value></data>
+  <data name="BackdropMica.Content" xml:space="preserve"><value>Mica</value></data>
+  <data name="BackdropMicaAlt.Content" xml:space="preserve"><value>Mica Alt(색조가 더 진함)</value></data>
+  <data name="BackdropAcrylic.Content" xml:space="preserve"><value>아크릴</value></data>
+  <data name="BackdropSolid.Content" xml:space="preserve"><value>단색</value></data>
+  <data name="LanguageTitle.Text" xml:space="preserve"><value>언어</value></data>
+  <data name="LanguageDescription.Text" xml:space="preserve"><value>MegaCopier와 파일 탐색기 메뉴 항목의 언어</value></data>
+  <data name="LanguageAuto.Content" xml:space="preserve"><value>Windows와 동일</value></data>
+  <data name="OnTopTitle.Text" xml:space="preserve"><value>항상 위에 표시</value></data>
+  <data name="OnTopDescription.Text" xml:space="preserve"><value>복사 중에는 창을 다른 창보다 위에 둡니다</value></data>
+  <data name="CopyHeader.Text" xml:space="preserve"><value>복사</value></data>
+  <data name="VerifyTitle.Text" xml:space="preserve"><value>복사 후 확인</value></data>
+  <data name="VerifyDescription.Text" xml:space="preserve"><value>캐시 없이 대상을 다시 읽고 원본과 다른 블록을 모두 복구합니다</value></data>
+  <data name="ConflictTitle.Text" xml:space="preserve"><value>파일이 이미 있을 때</value></data>
+  <data name="ConflictDescription.Text" xml:space="preserve"><value>동일한 파일(크기와 날짜가 같음)은 항상 건너뜁니다</value></data>
+  <data name="ConflictAsk.Content" xml:space="preserve"><value>묻기</value></data>
+  <data name="ConflictReplace.Content" xml:space="preserve"><value>바꾸기</value></data>
+  <data name="ConflictSkip.Content" xml:space="preserve"><value>건너뛰기</value></data>
+  <data name="ConflictNewer.Content" xml:space="preserve"><value>더 최신이면 바꾸기</value></data>
+  <data name="ConflictKeepBoth.Content" xml:space="preserve"><value>둘 다 유지</value></data>
+  <data name="SpeedTitle.Text" xml:space="preserve"><value>속도 제한</value></data>
+  <data name="SpeedDescription.Text" xml:space="preserve"><value>다른 작업을 위해 디스크나 네트워크 대역폭을 남겨 둡니다(새 복사에 적용)</value></data>
+  <data name="SpeedUnlimited.Content" xml:space="preserve"><value>제한 없음</value></data>
+  <data name="AutoResumeTitle.Text" xml:space="preserve"><value>중단된 복사 자동 재개</value></data>
+  <data name="AutoResumeDescription.Text" xml:space="preserve"><value>정전이나 다시 시작 후 MegaCopier를 열면 묻지 않고 이어서 합니다</value></data>
+  <data name="ExplorerHeader.Text" xml:space="preserve"><value>파일 탐색기</value></data>
+  <data name="PasteTitle.Text" xml:space="preserve"><value>붙여넣기(Ctrl+V) 시 MegaCopier로 복사 및 이동</value></data>
+  <data name="PasteDescription.Text" xml:space="preserve"><value>복사(Ctrl+C)하거나 잘라낸(Ctrl+X) 파일을 파일 탐색기나 바탕 화면에 붙여 넣으면 MegaCopier가 처리합니다. 같은 폴더에 붙여 넣으면 파일 탐색기가 처리합니다</value></data>
+  <data name="ShellMenuTitle.Text" xml:space="preserve"><value>오른쪽 클릭 메뉴 항목</value></data>
+  <data name="ShellMenuDescription.Text" xml:space="preserve"><value>&quot;MegaCopier로 붙여넣기&quot;(&quot;추가 옵션 표시&quot; 안)와 오른쪽 단추로 끌 때의 &quot;MegaCopier로 여기에 복사 / 이동&quot;</value></data>
+  <data name="SystemHeader.Text" xml:space="preserve"><value>시스템</value></data>
+  <data name="StartupTitle.Text" xml:space="preserve"><value>Windows와 함께 시작</value></data>
+  <data name="StartupDescription.Text" xml:space="preserve"><value>알림 영역에 머물러 복사를 즉시 시작합니다</value></data>
+  <data name="NotifyTitle.Text" xml:space="preserve"><value>완료 시 알림</value></data>
+  <data name="NotifyDescription.Text" xml:space="preserve"><value>복사가 끝났을 때 창이 보이지 않으면 시스템 알림을 표시합니다</value></data>
+  <data name="Accent_System" xml:space="preserve"><value>Windows와 동일</value></data>
+  <data name="Accent_Blue" xml:space="preserve"><value>파랑</value></data>
+  <data name="Accent_Violet" xml:space="preserve"><value>보라</value></data>
+  <data name="Accent_Teal" xml:space="preserve"><value>청록</value></data>
+  <data name="Accent_Green" xml:space="preserve"><value>초록</value></data>
+  <data name="Accent_Orange" xml:space="preserve"><value>주황</value></data>
+  <data name="Accent_Pink" xml:space="preserve"><value>분홍</value></data>
+  <data name="Accent_Red" xml:space="preserve"><value>빨강</value></data>
+  <data name="About" xml:space="preserve"><value>MegaCopier {0} · 정전에도 끄떡없는 복사</value></data>
+  <data name="Picker_CopyHere" xml:space="preserve"><value>여기에 복사</value></data>
+  <data name="Finish_Label" xml:space="preserve"><value>완료 후</value></data>
+  <data name="Finish_LabelSleep" xml:space="preserve"><value>완료 후: 절전</value></data>
+  <data name="Finish_LabelShutdown" xml:space="preserve"><value>완료 후: 시스템 종료</value></data>
+  <data name="Conflict_Message" xml:space="preserve"><value>&quot;{1}&quot;에 &quot;{0}&quot;(이)라는 파일이 이미 있습니다.</value></data>
+  <data name="Conflict_SourceCopy" xml:space="preserve"><value>복사할 파일</value></data>
+  <data name="Conflict_SourceMove" xml:space="preserve"><value>이동할 파일</value></data>
+  <data name="Conflict_Newer" xml:space="preserve"><value> · 더 최신</value></data>
+  <data name="Job_OneItem" xml:space="preserve"><value>&quot;{0}&quot;</value></data>
+  <data name="Job_ManyItems" xml:space="preserve"><value>항목 {0}개</value></data>
+  <data name="Job_TitleCopying" xml:space="preserve"><value>{0} 복사 중</value></data>
+  <data name="Job_TitleMoving" xml:space="preserve"><value>{0} 이동 중</value></data>
+  <data name="Job_TitleCopied" xml:space="preserve"><value>{0} 복사됨</value></data>
+  <data name="Job_TitleMoved" xml:space="preserve"><value>{0} 이동됨</value></data>
+  <data name="Job_TitleQueued" xml:space="preserve"><value>대기 중: {0}</value></data>
+  <data name="Job_Destination" xml:space="preserve"><value>→ {0}</value></data>
+  <data name="Job_StateQueued" xml:space="preserve"><value>대기 중: 디스크 사용 중</value></data>
+  <data name="Job_StateVerifying" xml:space="preserve"><value>확인 중</value></data>
+  <data name="Job_StateValidating" xml:space="preserve"><value>복사된 부분 확인 중</value></data>
+  <data name="Job_StateWaiting" xml:space="preserve"><value>결정 대기 중: 파일이 이미 있음</value></data>
+  <data name="Job_StateCopying" xml:space="preserve"><value>복사 중</value></data>
+  <data name="Job_StateMoving" xml:space="preserve"><value>이동 중</value></data>
+  <data name="Job_StatePaused" xml:space="preserve"><value>일시 중지됨</value></data>
+  <data name="Job_StateCompleted" xml:space="preserve"><value>완료됨</value></data>
+  <data name="Job_StateCompletedErrors" xml:space="preserve"><value>완료됨(오류 있음)</value></data>
+  <data name="Job_StateFailed" xml:space="preserve"><value>오류</value></data>
+  <data name="Job_StateInterrupted" xml:space="preserve"><value>중단됨 · 이어서 할 수 있음</value></data>
+  <data name="Job_ResumeHint" xml:space="preserve"><value>계속하려면 &quot;재개&quot;를 누르세요</value></data>
+  <data name="Job_Preparing" xml:space="preserve"><value>준비 중…</value></data>
+  <data name="Job_Progress" xml:space="preserve"><value>{0} / {1}</value></data>
+  <data name="Job_Remaining" xml:space="preserve"><value>{0} 남음</value></data>
+  <data name="Job_Files" xml:space="preserve"><value>파일 {0} / {1}</value></data>
+  <data name="Job_FilesCopiedOne" xml:space="preserve"><value>파일 {0}개 복사됨</value></data>
+  <data name="Job_FilesCopiedMany" xml:space="preserve"><value>파일 {0}개 복사됨</value></data>
+  <data name="Job_FilesMovedOne" xml:space="preserve"><value>파일 {0}개 이동됨</value></data>
+  <data name="Job_FilesMovedMany" xml:space="preserve"><value>파일 {0}개 이동됨</value></data>
+  <data name="Job_TransferredIn" xml:space="preserve"><value>{0}, {1} 소요</value></data>
+  <data name="Job_Recovered" xml:space="preserve"><value>{0} 복구</value></data>
+  <data name="Job_Skipped" xml:space="preserve"><value>{0} 건너뜀</value></data>
+  <data name="Job_Verified" xml:space="preserve"><value>확인됨</value></data>
+  <data name="Job_Repaired" xml:space="preserve"><value>(블록 {0}개 복구)</value></data>
+  <data name="Job_FailedFiles" xml:space="preserve"><value>파일 {0}개 오류</value></data>
+  <data name="Job_Resume" xml:space="preserve"><value>재개</value></data>
+  <data name="Job_Retry" xml:space="preserve"><value>다시 시도</value></data>
+  <data name="Job_FailuresHeader" xml:space="preserve"><value>문제가 있는 파일 {0}개 보기</value></data>
+  <data name="Job_FailuresMore" xml:space="preserve"><value>… 그 외 {0}개</value></data>
+  <data name="Tray_Open" xml:space="preserve"><value>MegaCopier 열기</value></data>
+  <data name="Tray_PauseAll" xml:space="preserve"><value>모두 일시 중지</value></data>
+  <data name="Tray_ResumeAll" xml:space="preserve"><value>모두 재개</value></data>
+  <data name="Tray_Startup" xml:space="preserve"><value>Windows와 함께 시작</value></data>
+  <data name="Tray_Exit" xml:space="preserve"><value>끝내기</value></data>
+  <data name="Tray_OneJob" xml:space="preserve"><value>복사 1개</value></data>
+  <data name="Tray_ManyJobs" xml:space="preserve"><value>복사 {0}개</value></data>
+  <data name="Notify_InterruptedTitle" xml:space="preserve"><value>중단된 복사가 있습니다</value></data>
+  <data name="Notify_InterruptedOne" xml:space="preserve"><value>끝나지 않은 복사가 1개 있습니다. 열면 중단된 곳부터 이어서 합니다.</value></data>
+  <data name="Notify_InterruptedMany" xml:space="preserve"><value>끝나지 않은 복사가 {0}개 있습니다. 열어서 이어서 하세요.</value></data>
+  <data name="Notify_DoneTitle" xml:space="preserve"><value>복사 완료</value></data>
+  <data name="Notify_ProblemTitle" xml:space="preserve"><value>복사에 문제가 있습니다</value></data>
+  <data name="Notify_AllDoneTitle" xml:space="preserve"><value>모든 복사 완료</value></data>
+  <data name="Error_NeedsPaths" xml:space="preserve"><value>복사 요청에는 원본과 대상이 필요합니다.</value></data>
+  <data name="Tray_Disable" xml:space="preserve"><value>사용 안 함(Windows로 복사)</value></data>
+  <data name="Tray_Enable" xml:space="preserve"><value>MegaCopier 사용</value></data>
+  <data name="Tray_TooltipDisabled" xml:space="preserve"><value>MegaCopier · 사용 안 함(Windows가 복사)</value></data>
+  <data name="Notify_DisabledTitle" xml:space="preserve"><value>MegaCopier 사용 안 함</value></data>
+  <data name="Notify_DisabledBody" xml:space="preserve"><value>복사는 Windows가 합니다. 아이콘을 두 번 클릭하면 다시 사용합니다.</value></data>
+  <data name="Notify_EnabledTitle" xml:space="preserve"><value>MegaCopier 사용</value></data>
+  <data name="Notify_EnabledBody" xml:space="preserve"><value>파일 탐색기의 복사와 이동은 MegaCopier가 합니다.</value></data>
+  <data name="AboutDialog.Title" xml:space="preserve"><value>MegaCopier 정보</value></data>
+  <data name="AboutDialog.CloseButtonText" xml:space="preserve"><value>닫기</value></data>
+  <data name="About_DataFolder.Content" xml:space="preserve"><value>데이터 폴더 열기(설정, 테마, 기록, 보고서)</value></data>
+  <data name="About_Description.Text" xml:space="preserve"><value>Windows 11용 파일 복사 프로그램으로, 정전 후에도 아주 큰 파일 하나까지 이어서 복사하고 복사된 부분을 확인합니다.</value></data>
+  <data name="About_Features.Text" xml:space="preserve"><value>캐시 없는 비동기 I/O · 병렬 읽기/쓰기 · 해시 확인(CRC32, xxHash, MD5, SHA) · 디스크별 대기열 · 일시 중지 및 재개 · 이동 · 충돌 처리 · 속도 제한 · 복사 목록 · 보고서 · 테마.</value></data>
+  <data name="CopyFiles.Text" xml:space="preserve"><value>파일 복사…</value></data>
+  <data name="CopyFolder.Text" xml:space="preserve"><value>폴더 복사…</value></data>
+  <data name="CopyFilesText.Text" xml:space="preserve"><value>파일 복사</value></data>
+  <data name="CopyFolderText.Text" xml:space="preserve"><value>폴더 복사</value></data>
+  <data name="Files_AddFiles.Text" xml:space="preserve"><value>파일 추가…</value></data>
+  <data name="Files_AddFolder.Text" xml:space="preserve"><value>폴더 추가…</value></data>
+  <data name="Files_AutoScroll.Content" xml:space="preserve"><value>현재 파일 따라가기</value></data>
+  <data name="Files_CopyHashes.Text" xml:space="preserve"><value>해시 복사</value></data>
+  <data name="Files_CopyPath.Text" xml:space="preserve"><value>경로 복사</value></data>
+  <data name="Files_Empty.Text" xml:space="preserve"><value>표시할 파일이 없습니다</value></data>
+  <data name="Files_ExportCsv.Text" xml:space="preserve"><value>CSV로 내보내기…</value></data>
+  <data name="Files_ExportHtml.Text" xml:space="preserve"><value>HTML 보고서 내보내기…</value></data>
+  <data name="Files_FilterAll.Content" xml:space="preserve"><value>모두</value></data>
+  <data name="Files_FilterDone.Content" xml:space="preserve"><value>복사됨</value></data>
+  <data name="Files_FilterErrors.Content" xml:space="preserve"><value>오류</value></data>
+  <data name="Files_FilterPending.Content" xml:space="preserve"><value>대기 중</value></data>
+  <data name="Files_FilterSkipped.Content" xml:space="preserve"><value>건너뜀</value></data>
+  <data name="Files_HideFinished.Content" xml:space="preserve"><value>완료된 항목 숨기기</value></data>
+  <data name="Files_Menu.Text" xml:space="preserve"><value>목록</value></data>
+  <data name="Files_MoveBottom.Text" xml:space="preserve"><value>맨 끝으로 이동</value></data>
+  <data name="Files_MoveDown.Text" xml:space="preserve"><value>아래로 이동</value></data>
+  <data name="Files_MoveTop.Text" xml:space="preserve"><value>맨 앞으로 이동</value></data>
+  <data name="Files_MoveUp.Text" xml:space="preserve"><value>위로 이동</value></data>
+  <data name="Files_OpenSource.Text" xml:space="preserve"><value>원본 표시</value></data>
+  <data name="Files_OpenTarget.Text" xml:space="preserve"><value>대상 표시</value></data>
+  <data name="Files_Remove.Text" xml:space="preserve"><value>복사에서 제거</value></data>
+  <data name="Files_Retry.Text" xml:space="preserve"><value>실패한 파일 다시 시도</value></data>
+  <data name="Files_SaveList.Text" xml:space="preserve"><value>복사 목록 저장…</value></data>
+  <data name="Files_Search.PlaceholderText" xml:space="preserve"><value>파일 검색</value></data>
+  <data name="Files_Size.Text" xml:space="preserve"><value>크기</value></data>
+  <data name="Files_SourceHash.Text" xml:space="preserve"><value>원본 해시</value></data>
+  <data name="Files_TargetHash.Text" xml:space="preserve"><value>대상 해시</value></data>
+  <data name="History_Clear.Text" xml:space="preserve"><value>지우기</value></data>
+  <data name="History_Empty.Text" xml:space="preserve"><value>아직 완료된 복사가 없습니다</value></data>
+  <data name="History_Open.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>대상 열기</value></data>
+  <data name="History_Repeat.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>반복(새로운 항목이나 변경된 항목만 복사)</value></data>
+  <data name="History_Title.Text" xml:space="preserve"><value>기록</value></data>
+  <data name="Log_Export.Text" xml:space="preserve"><value>로그 내보내기</value></data>
+  <data name="Options_Acl.Content" xml:space="preserve"><value>권한(ACL)</value></data>
+  <data name="Options_Attributes.Content" xml:space="preserve"><value>특성</value></data>
+  <data name="Options_Audit.Content" xml:space="preserve"><value>감사(SACL)</value></data>
+  <data name="Options_BufferSize.Text" xml:space="preserve"><value>버퍼 크기</value></data>
+  <data name="Options_Data.Content" xml:space="preserve"><value>데이터</value></data>
+  <data name="Options_ExportReport.Content" xml:space="preserve"><value>HTML 보고서 저장</value></data>
+  <data name="Options_FilesFolders.Text" xml:space="preserve"><value>파일 및 폴더</value></data>
+  <data name="Options_OnFinish.Text" xml:space="preserve"><value>완료 후</value></data>
+  <data name="Options_Owner.Content" xml:space="preserve"><value>소유자</value></data>
+  <data name="Options_ResetDefault.Text" xml:space="preserve"><value>초기화</value></data>
+  <data name="Options_RunningInfo.Message" xml:space="preserve"><value>복사 진행 중: 이 변경 사항은 재개할 때 적용됩니다(&quot;확인&quot;과 &quot;무인&quot;은 즉시 적용).</value></data>
+  <data name="Options_SaveChecksum.Content" xml:space="preserve"><value>체크섬 파일 저장</value></data>
+  <data name="Options_SaveDefault.Text" xml:space="preserve"><value>기본값으로 저장</value></data>
+  <data name="Options_Scripts.Text" xml:space="preserve"><value>완료 후 명령</value></data>
+  <data name="Options_ScriptsHelp.Text" xml:space="preserve"><value>한 줄에 하나씩 cmd.exe로 실행합니다. &quot;ok:&quot;로 시작하면 성공했을 때만, &quot;error:&quot;로 시작하면 실패했을 때만 실행합니다. 변수: %MEGACOPIER_STATE%, %MEGACOPIER_DESTINATION%, %MEGACOPIER_SOURCES%, %MEGACOPIER_FILES%, %MEGACOPIER_BYTES%, %MEGACOPIER_FAILED%, %MEGACOPIER_CHECKSUM%.</value></data>
+  <data name="Options_Security.Text" xml:space="preserve"><value>보안(NTFS)</value></data>
+  <data name="Options_Streams.Content" xml:space="preserve"><value>대체 데이터 스트림(ADS)</value></data>
+  <data name="Options_SystemCache.Content" xml:space="preserve"><value>시스템 캐시 사용</value></data>
+  <data name="Options_Threads.Text" xml:space="preserve"><value>병렬</value></data>
+  <data name="Options_ThreadsShort.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>동시에 진행하는 읽기/쓰기 수</value></data>
+  <data name="Options_Timestamps.Content" xml:space="preserve"><value>날짜</value></data>
+  <data name="Options_Transfer.Text" xml:space="preserve"><value>복사할 항목</value></data>
+  <data name="Options_TransferOptions.Text" xml:space="preserve"><value>전송</value></data>
+  <data name="Options_Verify.Content" xml:space="preserve"><value>복사 후 확인</value></data>
+  <data name="Options_VerifySkipped.Content" xml:space="preserve"><value>건너뛴 파일도 확인</value></data>
+  <data name="Page_Back.Text" xml:space="preserve"><value>뒤로</value></data>
+  <data name="Pager_Next.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>다음 복사</value></data>
+  <data name="Pager_Previous.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>이전 복사</value></data>
+  <data name="Pager_Text" xml:space="preserve"><value>{0} / {1}</value></data>
+  <data name="Panel_Discard.Text" xml:space="preserve"><value>취소</value></data>
+  <data name="Panel_File.Text" xml:space="preserve"><value>파일</value></data>
+  <data name="Panel_OpenFolder.Text" xml:space="preserve"><value>폴더 열기</value></data>
+  <data name="Panel_Pause.Text" xml:space="preserve"><value>일시 중지</value></data>
+  <data name="Panel_Skip.Text" xml:space="preserve"><value>건너뛰기</value></data>
+  <data name="Panel_Stop.Text" xml:space="preserve"><value>중지</value></data>
+  <data name="Panel_More" xml:space="preserve"><value>자세히</value></data>
+  <data name="Panel_Less" xml:space="preserve"><value>간단히</value></data>
+  <data name="Priority_Low.Content" xml:space="preserve"><value>낮음</value></data>
+  <data name="Priority_BelowNormal.Content" xml:space="preserve"><value>보통 이하</value></data>
+  <data name="Priority_Normal.Content" xml:space="preserve"><value>보통</value></data>
+  <data name="Priority_AboveNormal.Content" xml:space="preserve"><value>보통 이상</value></data>
+  <data name="Priority_High.Content" xml:space="preserve"><value>높음</value></data>
+  <data name="Settings_Advanced.Text" xml:space="preserve"><value>고급</value></data>
+  <data name="Settings_EnabledTitle.Text" xml:space="preserve"><value>Windows 대신 MegaCopier로 복사</value></data>
+  <data name="Settings_EnabledDescription.Text" xml:space="preserve"><value>알림 영역 아이콘을 두 번 클릭해도 전환됩니다. 끄면 아이콘이 회색에 빨간 X로 바뀌고 파일 탐색기가 복사합니다.</value></data>
+  <data name="Settings_FastTitle.Text" xml:space="preserve"><value>빠른 장치</value></data>
+  <data name="Settings_FastDescription.Text" xml:space="preserve"><value>여러 복사를 동시에 할 수 있는 드라이브나 경로(NVMe SSD, RAID). 나머지는 디스크별로 하나씩 진행합니다.</value></data>
+  <data name="Settings_FinishTitle.Text" xml:space="preserve"><value>복사 완료 후</value></data>
+  <data name="Settings_FinishDescription.Text" xml:space="preserve"><value>진행 중인 작업이 없을 때 창의 동작</value></data>
+  <data name="Settings_FinishAuto.Content" xml:space="preserve"><value>문제가 없으면 닫기</value></data>
+  <data name="Settings_FinishClose.Content" xml:space="preserve"><value>항상 닫기</value></data>
+  <data name="Settings_FinishKeep.Content" xml:space="preserve"><value>열어 두기</value></data>
+  <data name="Settings_FreeSpace.Content" xml:space="preserve"><value>먼저 여유 공간 확인</value></data>
+  <data name="Settings_General.Text" xml:space="preserve"><value>일반</value></data>
+  <data name="Settings_HashTitle.Text" xml:space="preserve"><value>해시 알고리즘</value></data>
+  <data name="Settings_HashDescription.Text" xml:space="preserve"><value>확인과 저장하는 체크섬에 사용합니다. xxHash3가 가장 빠르고 SHA-256이 가장 호환성이 좋습니다.</value></data>
+  <data name="Settings_MaxJobsTitle.Text" xml:space="preserve"><value>동시 복사 수</value></data>
+  <data name="Settings_MaxJobsDescription.Text" xml:space="preserve"><value>동시에 진행하는 복사의 최대 수(0 = 제한 없음). 같은 디스크를 사용하는 복사는 항상 차례를 기다립니다.</value></data>
+  <data name="Settings_ModeAuto.Content" xml:space="preserve"><value>자동</value></data>
+  <data name="Settings_ModeCompact.Content" xml:space="preserve"><value>간단</value></data>
+  <data name="Settings_ModeExpanded.Content" xml:space="preserve"><value>전체</value></data>
+  <data name="Settings_PerformanceTitle.Text" xml:space="preserve"><value>성능</value></data>
+  <data name="Settings_PerformanceDescription.Text" xml:space="preserve"><value>속도 제한, 버퍼 크기, 병렬 작업</value></data>
+  <data name="Settings_PriorityTitle.Text" xml:space="preserve"><value>프로세스 우선순위</value></data>
+  <data name="Settings_PriorityDescription.Text" xml:space="preserve"><value>낮으면 복사하는 동안에도 PC가 원활하게 작동합니다</value></data>
+  <data name="Settings_Queue.Text" xml:space="preserve"><value>대기열</value></data>
+  <data name="Settings_Themes.Text" xml:space="preserve"><value>테마</value></data>
+  <data name="Settings_WhatToCopy.Text" xml:space="preserve"><value>복사할 항목과 이후 동작</value></data>
+  <data name="Settings_Window.Text" xml:space="preserve"><value>창</value></data>
+  <data name="Settings_WindowModeTitle.Text" xml:space="preserve"><value>복사 창</value></data>
+  <data name="Settings_WindowModeDescription.Text" xml:space="preserve"><value>자동: 복사가 하나면 간단, 여러 개면 전체. &quot;자세히&quot;와 &quot;간단히&quot;로 언제든 바꿀 수 있습니다.</value></data>
+  <data name="Status_Bytes.Text" xml:space="preserve"><value>크기</value></data>
+  <data name="Status_Category.Text" xml:space="preserve"><value>상태</value></data>
+  <data name="Status_Copied.Text" xml:space="preserve"><value>복사됨</value></data>
+  <data name="Status_Failed.Text" xml:space="preserve"><value>오류</value></data>
+  <data name="Status_Files.Text" xml:space="preserve"><value>파일</value></data>
+  <data name="Status_Pending.Text" xml:space="preserve"><value>대기 중</value></data>
+  <data name="Status_Skipped.Text" xml:space="preserve"><value>건너뜀</value></data>
+  <data name="Status_Total.Text" xml:space="preserve"><value>합계</value></data>
+  <data name="Status_Verified.Text" xml:space="preserve"><value>확인됨</value></data>
+  <data name="Tab_Files.Text" xml:space="preserve"><value>파일</value></data>
+  <data name="Tab_Log.Text" xml:space="preserve"><value>로그</value></data>
+  <data name="Tab_Options.Text" xml:space="preserve"><value>옵션</value></data>
+  <data name="Tab_Status.Text" xml:space="preserve"><value>상태</value></data>
+  <data name="Tab_Target.Text" xml:space="preserve"><value>대상</value></data>
+  <data name="Target_Destination.Text" xml:space="preserve"><value>대상</value></data>
+  <data name="Target_Source.Text" xml:space="preserve"><value>원본</value></data>
+  <data name="Target_Space" xml:space="preserve"><value>{1} 중 {0} 사용 가능</value></data>
+  <data name="Theme_BarHeight.Header" xml:space="preserve"><value>막대 높이</value></data>
+  <data name="Theme_Radius.Header" xml:space="preserve"><value>모서리 둥글기</value></data>
+  <data name="Theme_Customize.Text" xml:space="preserve"><value>테마 사용자 지정(색, 막대, 배경)</value></data>
+  <data name="Theme_Delete.Text" xml:space="preserve"><value>삭제</value></data>
+  <data name="Theme_Export.Text" xml:space="preserve"><value>내보내기…</value></data>
+  <data name="Theme_Import.Text" xml:space="preserve"><value>가져오기…</value></data>
+  <data name="Theme_Name.Header" xml:space="preserve"><value>이름</value></data>
+  <data name="Theme_Save" xml:space="preserve"><value>저장</value></data>
+  <data name="Theme_SaveAsNew" xml:space="preserve"><value>새 테마로 저장</value></data>
+  <data name="Theme_Auto" xml:space="preserve"><value>Fluent(Windows와 동일)</value></data>
+  <data name="Theme_CopyOf" xml:space="preserve"><value>{0}(사용자 지정)</value></data>
+  <data name="Theme_Custom" xml:space="preserve"><value>내 테마</value></data>
+  <data name="Theme_FileType" xml:space="preserve"><value>MegaCopier 테마</value></data>
+  <data name="Theme_ImportFailed" xml:space="preserve"><value>테마를 가져올 수 없습니다</value></data>
+  <data name="Theme_ColorBackground" xml:space="preserve"><value>배경</value></data>
+  <data name="Theme_ColorSurface" xml:space="preserve"><value>카드</value></data>
+  <data name="Theme_ColorSurfaceStrong" xml:space="preserve"><value>강조 카드</value></data>
+  <data name="Theme_ColorBorder" xml:space="preserve"><value>테두리</value></data>
+  <data name="Theme_ColorText" xml:space="preserve"><value>텍스트</value></data>
+  <data name="Theme_ColorTextSecondary" xml:space="preserve"><value>보조 텍스트</value></data>
+  <data name="Theme_ColorAccent" xml:space="preserve"><value>강조</value></data>
+  <data name="Theme_ColorAccentText" xml:space="preserve"><value>강조 위 텍스트</value></data>
+  <data name="Theme_ColorTotalStart" xml:space="preserve"><value>전체 막대: 시작</value></data>
+  <data name="Theme_ColorTotalEnd" xml:space="preserve"><value>전체 막대: 끝</value></data>
+  <data name="Theme_ColorFileStart" xml:space="preserve"><value>파일 막대: 시작</value></data>
+  <data name="Theme_ColorFileEnd" xml:space="preserve"><value>파일 막대: 끝</value></data>
+  <data name="Theme_ColorTrack" xml:space="preserve"><value>막대 바탕</value></data>
+  <data name="Theme_ColorSuccess" xml:space="preserve"><value>성공</value></data>
+  <data name="Theme_ColorWarning" xml:space="preserve"><value>경고</value></data>
+  <data name="Theme_ColorError" xml:space="preserve"><value>오류</value></data>
+  <data name="Theme_fluent-dark" xml:space="preserve"><value>Fluent 어둡게</value></data>
+  <data name="Theme_fluent-light" xml:space="preserve"><value>Fluent 밝게</value></data>
+  <data name="Theme_midnight" xml:space="preserve"><value>한밤</value></data>
+  <data name="Theme_graphite" xml:space="preserve"><value>흑연</value></data>
+  <data name="Theme_ocean" xml:space="preserve"><value>바다</value></data>
+  <data name="Theme_forest" xml:space="preserve"><value>숲</value></data>
+  <data name="Theme_sunset" xml:space="preserve"><value>노을</value></data>
+  <data name="Theme_supercopier" xml:space="preserve"><value>클래식 SuperCopier</value></data>
+  <data name="Theme_ultracopier" xml:space="preserve"><value>클래식 Ultracopier</value></data>
+  <data name="Theme_contrast" xml:space="preserve"><value>고대비</value></data>
+  <data name="Tool_About.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>정보</value></data>
+  <data name="Tool_ClearDone.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>완료된 복사 제거</value></data>
+  <data name="Tool_History.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>기록</value></data>
+  <data name="Tool_HistoryText.Text" xml:space="preserve"><value>기록</value></data>
+  <data name="Tool_LoadList.Text" xml:space="preserve"><value>복사 목록 불러오기…</value></data>
+  <data name="Tool_LoadListText.Text" xml:space="preserve"><value>목록 불러오기</value></data>
+  <data name="Tool_MoveFiles.Text" xml:space="preserve"><value>파일 이동…</value></data>
+  <data name="Tool_NewCopy.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>새 복사</value></data>
+  <data name="Tool_NewCopyText.Text" xml:space="preserve"><value>새로 만들기</value></data>
+  <data name="Tool_PauseAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>모두 일시 중지</value></data>
+  <data name="Tool_ResumeAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>모두 재개</value></data>
+  <data name="Tool_Settings.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>설정</value></data>
+  <data name="Tool_Sidebar.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>복사 목록 표시/숨기기</value></data>
+  <data name="Drop_Caption" xml:space="preserve"><value>MegaCopier로 복사</value></data>
+  <data name="File_Pending" xml:space="preserve"><value>대기 중</value></data>
+  <data name="File_Copying" xml:space="preserve"><value>복사 중</value></data>
+  <data name="File_Verifying" xml:space="preserve"><value>확인 중</value></data>
+  <data name="File_Copied" xml:space="preserve"><value>복사됨</value></data>
+  <data name="File_Verified" xml:space="preserve"><value>확인됨</value></data>
+  <data name="File_Skipped" xml:space="preserve"><value>건너뜀</value></data>
+  <data name="File_Failed" xml:space="preserve"><value>오류</value></data>
+  <data name="Files_AddFailed" xml:space="preserve"><value>추가할 수 없습니다</value></data>
+  <data name="Files_Count" xml:space="preserve"><value>파일 {0} / {1}</value></data>
+  <data name="Files_ListType" xml:space="preserve"><value>MegaCopier 복사 목록</value></data>
+  <data name="Files_LoadFailed" xml:space="preserve"><value>목록을 불러올 수 없습니다</value></data>
+  <data name="Hash_None" xml:space="preserve"><value>해시: 없음</value></data>
+  <data name="Jobs_Header" xml:space="preserve"><value>복사: {0} · 진행 중: {1}</value></data>
+  <data name="Language_Auto" xml:space="preserve"><value>Windows와 동일</value></data>
+  <data name="Log_FileType" xml:space="preserve"><value>텍스트</value></data>
+  <data name="Picker_MoveHere" xml:space="preserve"><value>여기로 이동</value></data>
+  <data name="Settings_AutoResume.Content" xml:space="preserve"><value>시작할 때 자동 재개</value></data>
+  <data name="Panel_Options.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>이 복사의 옵션</value></data>
+  <data name="Panel_UnattendedItem.Text" xml:space="preserve"><value>무인(묻지 않음: 기존 파일 건너뛰기)</value></data>
+  <data name="Panel_VerifyItem.Text" xml:space="preserve"><value>완료 시 확인</value></data>
+  <data name="Panel_OpenFolderItem.Text" xml:space="preserve"><value>대상 폴더 열기</value></data>
+  <data name="Status_ExactBytes" xml:space="preserve"><value>{0}바이트</value></data>
+  <data name="Notify_SettingsResetTitle" xml:space="preserve"><value>설정이 초기화되었습니다</value></data>
+  <data name="Notify_SettingsResetBody" xml:space="preserve"><value>설정을 읽을 수 없어 기본 설정을 사용합니다. 원래 파일은 settings.json.bad에 저장되어 있습니다.</value></data>
+  <data name="Job_TitleCopy" xml:space="preserve"><value>{0} 복사</value></data>
+  <data name="Job_TitleMove" xml:space="preserve"><value>{0} 이동</value></data>
+  <data name="Job_FailedOne" xml:space="preserve"><value>파일 1개 오류</value></data>
+  <data name="Error_InUse" xml:space="preserve"><value>다른 프로그램이 이 파일을 열고 있습니다. 닫은 후 &quot;다시 시도&quot;를 누르세요.</value></data>
+  <data name="Error_AccessDenied" xml:space="preserve"><value>액세스 거부: 이 파일을 읽거나 쓸 권한이 없습니다.</value></data>
+  <data name="Error_DiskFull" xml:space="preserve"><value>대상 디스크가 가득 찼습니다.</value></data>
+  <data name="Error_NotFound" xml:space="preserve"><value>파일이나 폴더가 더 이상 없습니다(이동, 삭제되었거나 드라이브 연결이 끊겼나요?).</value></data>
+  <data name="Error_PathTooLong" xml:space="preserve"><value>경로가 대상에 비해 너무 깁니다.</value></data>
+  <data name="Error_NetworkLost" xml:space="preserve"><value>네트워크 연결이 끊겼습니다. 복구되면 &quot;다시 시도&quot;를 눌러 이어서 하세요.</value></data>
+  <data name="Error_HashMismatch" xml:space="preserve"><value>복사본이 원본과 일치하지 않습니다(확인 실패).</value></data>
+  <data name="Error_DeleteFailed" xml:space="preserve"><value>올바르게 복사되었지만 원본을 삭제할 수 없었습니다.</value></data>
+  <data name="Report_State" xml:space="preserve"><value>상태</value></data>
+  <data name="Report_File" xml:space="preserve"><value>파일</value></data>
+  <data name="Report_Source" xml:space="preserve"><value>원본</value></data>
+  <data name="Report_Destination" xml:space="preserve"><value>대상</value></data>
+  <data name="Report_Size" xml:space="preserve"><value>크기</value></data>
+  <data name="Report_SourceHash" xml:space="preserve"><value>원본 해시</value></data>
+  <data name="Report_TargetHash" xml:space="preserve"><value>대상 해시</value></data>
+  <data name="Report_Message" xml:space="preserve"><value>메시지</value></data>
+  <data name="Report_Copied" xml:space="preserve"><value>복사됨</value></data>
+  <data name="Report_Verified" xml:space="preserve"><value>확인됨</value></data>
+  <data name="Report_Skipped" xml:space="preserve"><value>건너뜀</value></data>
+  <data name="Report_Failed" xml:space="preserve"><value>오류</value></data>
+  <data name="Job_SkippedOne" xml:space="preserve"><value>1개 건너뜀</value></data>
+  <data name="Rules_Filters.Text" xml:space="preserve"><value>필터</value></data>
+  <data name="Rules_Include.Header" xml:space="preserve"><value>이것만 포함(; 로 구분한 마스크)</value></data>
+  <data name="Rules_Include.PlaceholderText" xml:space="preserve"><value>*.jpg; *.png; 사진\*</value></data>
+  <data name="Rules_Exclude.Header" xml:space="preserve"><value>제외</value></data>
+  <data name="Rules_Exclude.PlaceholderText" xml:space="preserve"><value>node_modules; *.tmp; Thumbs.db</value></data>
+  <data name="Rules_MinSize.Header" xml:space="preserve"><value>최소 크기(MB)</value></data>
+  <data name="Rules_MaxSize.Header" xml:space="preserve"><value>최대 크기(MB)</value></data>
+  <data name="Rules_After.Header" xml:space="preserve"><value>이 날짜 이후 수정</value></data>
+  <data name="Rules_Before.Header" xml:space="preserve"><value>이 날짜 이전 수정</value></data>
+  <data name="Rules_SkipHidden.Content" xml:space="preserve"><value>숨김 파일 건너뛰기</value></data>
+  <data name="Rules_SkipSystem.Content" xml:space="preserve"><value>시스템 파일 건너뛰기</value></data>
+  <data name="Rules_Rules.Text" xml:space="preserve"><value>규칙</value></data>
+  <data name="Rules_Links.Header" xml:space="preserve"><value>심볼릭 링크와 정션</value></data>
+  <data name="Rules_LinksCopy.Content" xml:space="preserve"><value>링크로 복사</value></data>
+  <data name="Rules_LinksFollow.Content" xml:space="preserve"><value>링크가 가리키는 내용 복사</value></data>
+  <data name="Rules_LinksSkip.Content" xml:space="preserve"><value>건너뛰기</value></data>
+  <data name="Rules_Pattern.Header" xml:space="preserve"><value>둘 다 유지할 때의 이름({name}, {n}, {ext}, {date})</value></data>
+  <data name="Rules_PatternPreview" xml:space="preserve"><value>예: {0}</value></data>
+  <data name="Rules_Retries.Header" xml:space="preserve"><value>재시도 횟수</value></data>
+  <data name="Rules_Delay.Header" xml:space="preserve"><value>재시도 간격(초)</value></data>
+  <data name="Rules_OnError.Header" xml:space="preserve"><value>파일이 계속 실패하면</value></data>
+  <data name="Rules_OnErrorSkip.Content" xml:space="preserve"><value>기록하고 다음으로 진행</value></data>
+  <data name="Rules_OnErrorStop.Content" xml:space="preserve"><value>복사 중지(이어서 할 수 있음)</value></data>
+  <data name="ConflictDifferentSize.Content" xml:space="preserve"><value>크기가 다르면 바꾸기</value></data>
+  <data name="ConflictRenameExisting.Content" xml:space="preserve"><value>기존 파일 이름 바꾸기</value></data>
+  <data name="Conflict_RenameExisting.Text" xml:space="preserve"><value>기존 파일 이름을 바꾸고 이 파일 복사</value></data>
+  <data name="Schedule_Title.Text" xml:space="preserve"><value>시작 시간 예약</value></data>
+  <data name="Schedule_Set.Text" xml:space="preserve"><value>예약</value></data>
+  <data name="Schedule_Now.Text" xml:space="preserve"><value>지금 시작</value></data>
+  <data name="Schedule_InThePast" xml:space="preserve"><value>미래의 시간을 선택하세요.</value></data>
+  <data name="Job_StateScheduled" xml:space="preserve"><value>{0}에 예약됨</value></data>
+  <data name="Settings_Favorites.Text" xml:space="preserve"><value>즐겨찾는 폴더</value></data>
+  <data name="Settings_FavoritesTitle.Text" xml:space="preserve"><value>즐겨찾는 대상</value></data>
+  <data name="Settings_FavoritesDescription.Text" xml:space="preserve"><value>&quot;새로 만들기 &gt; 복사 위치&quot;와 대상 대화 상자에 표시되어 여러 폴더에 동시에 복사할 수 있습니다.</value></data>
+  <data name="Settings_FavoritesAdd.Text" xml:space="preserve"><value>폴더 추가</value></data>
+  <data name="Settings_FavoritesRemove" xml:space="preserve"><value>{0} 제거</value></data>
+  <data name="Settings_FavoritesEmpty" xml:space="preserve"><value>아직 즐겨찾기가 없습니다.</value></data>
+  <data name="Tool_CopyTo.Text" xml:space="preserve"><value>복사 위치</value></data>
+  <data name="Tool_CopyToEmpty" xml:space="preserve"><value>즐겨찾기나 최근 폴더가 없습니다</value></data>
+  <data name="Tool_CopyToManage" xml:space="preserve"><value>즐겨찾기 관리…</value></data>
+  <data name="Tool_TestFiles.Text" xml:space="preserve"><value>체크섬 파일 확인…</value></data>
+  <data name="Tool_TestFolder.Text" xml:space="preserve"><value>폴더 체크섬 확인…</value></data>
+  <data name="Tool_Delete.Text" xml:space="preserve"><value>삭제…</value></data>
+  <data name="Tool_Wipe.Text" xml:space="preserve"><value>안전하게 삭제…</value></data>
+  <data name="DestinationsDialog.Title" xml:space="preserve"><value>어디로 복사할까요?</value></data>
+  <data name="DestinationsDialog.PrimaryButtonText" xml:space="preserve"><value>시작</value></data>
+  <data name="DestinationsDialog.CloseButtonText" xml:space="preserve"><value>취소</value></data>
+  <data name="Destinations_SummaryOne" xml:space="preserve"><value>&quot;{0}&quot;의 대상을 하나 이상 선택하세요.</value></data>
+  <data name="Destinations_SummaryMany" xml:space="preserve"><value>항목 {0}개의 대상을 하나 이상 선택하세요.</value></data>
+  <data name="Destinations_Add.Text" xml:space="preserve"><value>폴더 추가…</value></data>
+  <data name="Destinations_Move.Content" xml:space="preserve"><value>복사 대신 이동</value></data>
+  <data name="Destinations_Schedule.Content" xml:space="preserve"><value>나중에 시작</value></data>
+  <data name="DeleteDialog.Title" xml:space="preserve"><value>삭제</value></data>
+  <data name="DeleteDialog.PrimaryButtonText" xml:space="preserve"><value>삭제</value></data>
+  <data name="DeleteDialog.CloseButtonText" xml:space="preserve"><value>취소</value></data>
+  <data name="Delete_ConfirmOne" xml:space="preserve"><value>&quot;{0}&quot;을(를) 삭제할까요? 휴지통으로 가지 않습니다.</value></data>
+  <data name="Delete_ConfirmMany" xml:space="preserve"><value>항목 {0}개를 삭제할까요? 휴지통으로 가지 않습니다.</value></data>
+  <data name="Delete_ConfirmSecureOne" xml:space="preserve"><value>&quot;{0}&quot;을(를) 안전하게 삭제할까요?</value></data>
+  <data name="Delete_ConfirmSecureMany" xml:space="preserve"><value>항목 {0}개를 안전하게 삭제할까요?</value></data>
+  <data name="Delete_SecureWarning.Title" xml:space="preserve"><value>복구할 수 없게 됩니다</value></data>
+  <data name="Delete_SecureWarning.Message" xml:space="preserve"><value>삭제하기 전에 내용을 덮어씁니다. SSD에서는 디스크 자체에 흔적이 남을 수 있으므로 최고 수준의 보안이 필요하면 BitLocker로 암호화하세요.</value></data>
+  <data name="FinishHibernate.Text" xml:space="preserve"><value>최대 절전</value></data>
+  <data name="FinishSignOut.Text" xml:space="preserve"><value>로그아웃</value></data>
+  <data name="FinishExit.Text" xml:space="preserve"><value>MegaCopier 닫기</value></data>
+  <data name="Finish_LabelHibernate" xml:space="preserve"><value>완료 후: 최대 절전</value></data>
+  <data name="Finish_LabelSignOut" xml:space="preserve"><value>완료 후: 로그아웃</value></data>
+  <data name="Finish_LabelExit" xml:space="preserve"><value>완료 후: MegaCopier 닫기</value></data>
+  <data name="Notify_FinishSleep" xml:space="preserve"><value>절전 모드로 전환합니다…</value></data>
+  <data name="Notify_FinishHibernate" xml:space="preserve"><value>최대 절전 모드로 전환합니다…</value></data>
+  <data name="Notify_FinishShutdown" xml:space="preserve"><value>1분 후 PC가 종료됩니다(취소: shutdown /a).</value></data>
+  <data name="Notify_FinishSignOut" xml:space="preserve"><value>로그아웃합니다…</value></data>
+  <data name="Notify_FinishExitApp" xml:space="preserve"><value>MegaCopier를 닫습니다.</value></data>
+  <data name="Files_SelectAll.Text" xml:space="preserve"><value>모두 선택</value></data>
+  <data name="Files_SelectSameExtension.Text" xml:space="preserve"><value>같은 확장자 선택</value></data>
+  <data name="Files_SelectSameFolder.Text" xml:space="preserve"><value>같은 폴더의 항목 선택</value></data>
+  <data name="Files_InvertSelection.Text" xml:space="preserve"><value>선택 반전</value></data>
+  <data name="Job_TitleTest" xml:space="preserve"><value>{0} 확인</value></data>
+  <data name="Job_TitleTesting" xml:space="preserve"><value>{0} 확인 중</value></data>
+  <data name="Job_TitleTested" xml:space="preserve"><value>{0} 확인됨</value></data>
+  <data name="Job_TitleDelete" xml:space="preserve"><value>{0} 삭제</value></data>
+  <data name="Job_TitleDeleting" xml:space="preserve"><value>{0} 삭제 중</value></data>
+  <data name="Job_TitleDeleted" xml:space="preserve"><value>{0} 삭제됨</value></data>
+  <data name="Job_StateTesting" xml:space="preserve"><value>확인 중</value></data>
+  <data name="Job_StateDeleting" xml:space="preserve"><value>삭제 중</value></data>
+  <data name="Job_FilesTestedOne" xml:space="preserve"><value>파일 {0}개 정상</value></data>
+  <data name="Job_FilesTestedMany" xml:space="preserve"><value>파일 {0}개 정상</value></data>
+  <data name="Job_FilesDeletedOne" xml:space="preserve"><value>파일 {0}개 삭제됨</value></data>
+  <data name="Job_FilesDeletedMany" xml:space="preserve"><value>파일 {0}개 삭제됨</value></data>
+  <data name="Job_TitleScheduled" xml:space="preserve"><value>예약됨: {0}</value></data>
+  <data name="Error_ChecksumMismatch" xml:space="preserve"><value>내용이 저장된 체크섬과 일치하지 않습니다: 파일이 변경되었거나 손상되었습니다.</value></data>
+  <data name="Job_FilteredOut" xml:space="preserve"><value>이 복사의 필터를 통과한 파일이 없습니다</value></data>
+  <data name="Rules_After.PlaceholderText" xml:space="preserve"><value>모든 날짜</value></data>
+  <data name="Rules_Before.PlaceholderText" xml:space="preserve"><value>모든 날짜</value></data>
+  <data name="Drop_MoveTo" xml:space="preserve"><value>{0}번째로 이동</value></data>
+  <data name="Drop_InsertAt" xml:space="preserve"><value>{0}번째에 추가</value></data>
+  <data name="Drop_AddToJob" xml:space="preserve"><value>이 복사에 추가</value></data>
+  <data name="Drop_AddToNamedJob" xml:space="preserve"><value>{0}에 추가</value></data>
+  <data name="Drop_JobOrder" xml:space="preserve"><value>대기열 {0}번째에 넣기</value></data>
+  <data name="Settings_Sounds.Text" xml:space="preserve"><value>소리</value></data>
+  <data name="Settings_SoundsTitle.Text" xml:space="preserve"><value>소리 알림</value></data>
+  <data name="Settings_SoundsDescription.Text" xml:space="preserve"><value>상황별로 소리를 선택하세요: Windows 소리, PC의 아무 파일 또는 소리 없음.</value></data>
+  <data name="Settings_Volume.Header" xml:space="preserve"><value>볼륨</value></data>
+  <data name="Settings_SoundsQuiet.Content" xml:space="preserve"><value>전체 화면 게임이나 프레젠테이션 중, &quot;방해 금지&quot; 중에는 소리 내지 않기</value></data>
+  <data name="Sound_Done" xml:space="preserve"><value>복사가 문제없이 완료됨</value></data>
+  <data name="Sound_Errors" xml:space="preserve"><value>복사가 오류와 함께 완료됨</value></data>
+  <data name="Sound_AllDone" xml:space="preserve"><value>모든 복사 완료</value></data>
+  <data name="Sound_Attention" xml:space="preserve"><value>결정 필요(파일이 이미 있음)</value></data>
+  <data name="Sound_Test" xml:space="preserve"><value>미리 듣기</value></data>
+  <data name="Sound_None" xml:space="preserve"><value>소리 없음</value></data>
+  <data name="Sound_Default" xml:space="preserve"><value>Windows 기본값</value></data>
+  <data name="Sound_Choose" xml:space="preserve"><value>파일 선택…</value></data>
+  <data name="File_Planned" xml:space="preserve"><value>시뮬레이션됨</value></data>
+  <data name="File_Deleted" xml:space="preserve"><value>제거됨</value></data>
+  <data name="File_RemovedExtra" xml:space="preserve"><value>대상에서 제거됨: 원본에 더 이상 없음</value></data>
+  <data name="Plan_Copy" xml:space="preserve"><value>복사됩니다</value></data>
+  <data name="Plan_Replace" xml:space="preserve"><value>대상의 파일을 바꿉니다</value></data>
+  <data name="Plan_ReplaceNewer" xml:space="preserve"><value>대상의 파일을 바꿉니다: 원본이 더 최신</value></data>
+  <data name="Plan_ReplaceSize" xml:space="preserve"><value>대상의 파일을 바꿉니다: 크기가 다름</value></data>
+  <data name="Plan_KeepBoth" xml:space="preserve"><value>이미 있음: 다른 이름으로 복사합니다</value></data>
+  <data name="Plan_RenameExisting" xml:space="preserve"><value>이미 있음: 대상의 파일 이름을 바꾸고 이 파일을 복사합니다</value></data>
+  <data name="Plan_Ask" xml:space="preserve"><value>이미 있음: 어떻게 할지 묻습니다</value></data>
+  <data name="Plan_SkipIdentical" xml:space="preserve"><value>건너뜀: 대상에 동일한 파일이 있음</value></data>
+  <data name="Plan_SkipExists" xml:space="preserve"><value>건너뜀: 이미 있음</value></data>
+  <data name="Plan_SkipOlder" xml:space="preserve"><value>건너뜀: 대상이 같거나 더 최신</value></data>
+  <data name="Plan_SkipSameSize" xml:space="preserve"><value>건너뜀: 크기가 같음</value></data>
+  <data name="Plan_SkipNotInDestination" xml:space="preserve"><value>건너뜀: 대상에 없음(업데이트만)</value></data>
+  <data name="Plan_SkipSamePath" xml:space="preserve"><value>건너뜀: 원본과 대상이 같음</value></data>
+  <data name="Plan_Delete" xml:space="preserve"><value>대상에서 제거: 원본에 더 이상 없음</value></data>
+  <data name="Plan_Fail" xml:space="preserve"><value>실패: 대상이 이미 있음</value></data>
+  <data name="Plan_None" xml:space="preserve"><value>시뮬레이션됨</value></data>
+  <data name="Skip_SkipIdentical" xml:space="preserve"><value>대상에 동일한 파일이 있음</value></data>
+  <data name="Skip_SkipExists" xml:space="preserve"><value>이미 있음: 건너뜀</value></data>
+  <data name="Skip_SkipOlder" xml:space="preserve"><value>대상의 파일이 같거나 더 최신</value></data>
+  <data name="Skip_SkipSameSize" xml:space="preserve"><value>대상의 파일과 크기가 같음</value></data>
+  <data name="Skip_SkipNotInDestination" xml:space="preserve"><value>대상에 없음(기존 파일만 업데이트)</value></data>
+  <data name="Skip_SkipSamePath" xml:space="preserve"><value>원본과 대상이 같은 파일</value></data>
+  <data name="Skip_SkipByUser" xml:space="preserve"><value>사용자가 건너뜀</value></data>
+  <data name="Job_TitleSync" xml:space="preserve"><value>{0} 동기화</value></data>
+  <data name="Job_TitleSyncing" xml:space="preserve"><value>{0} 동기화 중</value></data>
+  <data name="Job_TitleSynced" xml:space="preserve"><value>{0} 동기화됨</value></data>
+  <data name="Job_StateSyncing" xml:space="preserve"><value>동기화 중</value></data>
+  <data name="Job_FilesSyncedOne" xml:space="preserve"><value>파일 {0}개 업데이트됨</value></data>
+  <data name="Job_FilesSyncedMany" xml:space="preserve"><value>파일 {0}개 업데이트됨</value></data>
+  <data name="Job_TitleSimulate" xml:space="preserve"><value>{0} 시뮬레이션</value></data>
+  <data name="Job_TitleSimulating" xml:space="preserve"><value>{0} 시뮬레이션 중</value></data>
+  <data name="Job_TitleSimulated" xml:space="preserve"><value>시뮬레이션: {0}</value></data>
+  <data name="Job_StateSimulating" xml:space="preserve"><value>시뮬레이션 중</value></data>
+  <data name="Job_FilesSimulatedOne" xml:space="preserve"><value>파일 {0}개가 복사됩니다</value></data>
+  <data name="Job_FilesSimulatedMany" xml:space="preserve"><value>파일 {0}개가 복사됩니다</value></data>
+  <data name="Job_WouldTransfer" xml:space="preserve"><value>총 {0}</value></data>
+  <data name="Job_TitleHash" xml:space="preserve"><value>{0} 체크섬 만들기</value></data>
+  <data name="Job_TitleHashing" xml:space="preserve"><value>{0} 체크섬 계산 중</value></data>
+  <data name="Job_TitleHashed" xml:space="preserve"><value>{0} 체크섬</value></data>
+  <data name="Job_StateHashing" xml:space="preserve"><value>체크섬 계산 중</value></data>
+  <data name="Job_FilesHashedOne" xml:space="preserve"><value>체크섬 목록에 파일 {0}개</value></data>
+  <data name="Job_FilesHashedMany" xml:space="preserve"><value>체크섬 목록에 파일 {0}개</value></data>
+  <data name="Job_StateWaitingDevice" xml:space="preserve"><value>디스크나 네트워크가 돌아오기를 기다리는 중…</value></data>
+  <data name="Job_StateWaitingSpace" xml:space="preserve"><value>대상에 여유 공간이 생기기를 기다리는 중…</value></data>
+  <data name="Job_RemovedOne" xml:space="preserve"><value>대상에서 1개 제거됨</value></data>
+  <data name="Job_Removed" xml:space="preserve"><value>대상에서 {0}개 제거됨</value></data>
+  <data name="Job_WouldRemove" xml:space="preserve"><value>대상에서 {0}개가 제거됩니다</value></data>
+  <data name="Panel_RunForReal.Text" xml:space="preserve"><value>실제로 실행</value></data>
+  <data name="Options_Mode.Header" xml:space="preserve"><value>모드</value></data>
+  <data name="Mode_Copy.Content" xml:space="preserve"><value>복사</value></data>
+  <data name="Mode_Mirror.Content" xml:space="preserve"><value>동기화(미러)</value></data>
+  <data name="Mode_Update.Content" xml:space="preserve"><value>기존 파일만 업데이트</value></data>
+  <data name="Mode_Folders.Content" xml:space="preserve"><value>폴더 구조만</value></data>
+  <data name="Options_MirrorInfo.Title" xml:space="preserve"><value>동기화하면 원본에 더 이상 없는 항목이 대상에서 제거됩니다</value></data>
+  <data name="Options_MirrorInfo.Message" xml:space="preserve"><value>필터로 제외한 항목은 건드리지 않습니다. 제거되거나 바뀐 파일을 보관하려면 버전 폴더를 설정하세요.</value></data>
+  <data name="Options_DryRun.Content" xml:space="preserve"><value>시뮬레이션: 무슨 일이 일어날지 보여 주기만 하고 아무것도 바꾸지 않음</value></data>
+  <data name="Destinations_DryRun.Content" xml:space="preserve"><value>먼저 시뮬레이션(아무것도 바꾸지 않음)</value></data>
+  <data name="Tool_HashFolder.Text" xml:space="preserve"><value>폴더의 체크섬 파일 만들기…</value></data>
+  <data name="Tool_HashFiles.Text" xml:space="preserve"><value>파일의 체크섬 파일 만들기…</value></data>
+  <data name="Rules_SkipJunk.Content" xml:space="preserve"><value>불필요한 파일 건너뛰기(Thumbs.db, desktop.ini, .DS_Store, ~$…)</value></data>
+  <data name="Rules_OnErrorEnd.Content" xml:space="preserve"><value>대기열 끝에서 다시 시도</value></data>
+  <data name="Rules_Safety.Text" xml:space="preserve"><value>동기화 및 안전</value></data>
+  <data name="Rules_FolderConflict.Header" xml:space="preserve"><value>대상에 폴더가 이미 있으면</value></data>
+  <data name="Rules_FolderMerge.Content" xml:space="preserve"><value>내용 합치기</value></data>
+  <data name="Rules_FolderSkip.Content" xml:space="preserve"><value>통째로 건너뛰기</value></data>
+  <data name="Rules_Versions.Header" xml:space="preserve"><value>바뀌거나 제거된 파일을 폴더에 보관</value></data>
+  <data name="Rules_Versions.PlaceholderText" xml:space="preserve"><value>비워 두면 보관 안 함(예: .versions)</value></data>
+  <data name="Rules_Tolerance.Header" xml:space="preserve"><value>&quot;같음&quot;으로 볼 날짜 허용 오차(초)</value></data>
+  <data name="Rules_VerifySource.Content" xml:space="preserve"><value>완료 시 원본 다시 읽기</value></data>
+  <data name="Rules_HashStream.Content" xml:space="preserve"><value>각 파일 안에 해시 저장</value></data>
+  <data name="Rules_HardLinks.Content" xml:space="preserve"><value>하드 링크 유지</value></data>
+  <data name="Rules_Wipe.Content" xml:space="preserve"><value>이동할 때 원본 안전하게 삭제</value></data>
+  <data name="Rules_WaitDevice.Content" xml:space="preserve"><value>디스크나 네트워크가 끊기면 기다리기</value></data>
+  <data name="Rules_WaitSpace.Content" xml:space="preserve"><value>공간이 부족하면 기다리기</value></data>
+  <data name="Rules_VerifySource.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>원본의 해시를 다시 계산합니다: 복사 중에 바뀌었거나 원본 디스크가 잘못 읽었는지 감지합니다.</value></data>
+  <data name="Rules_HashStream.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>파일 자체의 숨겨진 스트림에 저장합니다(NTFS). 나중에 &quot;폴더 체크섬 확인&quot;이 체크섬 파일 없이도 손상을 찾아냅니다.</value></data>
+  <data name="Rules_HardLinks.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>여러 이름이 같은 파일이면 대상에서도 그렇게 됩니다(공간을 두 배로 쓰지 않음).</value></data>
+  <data name="Rules_Tolerance.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>FAT32와 exFAT는 시간을 2초 단위로 기록합니다: 이 허용 오차가 있으면 같은 파일을 다시 복사하지 않습니다.</value></data>
+  <data name="Rules_Versions.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>파일을 바꾸거나 제거하기 전에 이름에 날짜를 붙여 대상의 이 폴더로 옮깁니다.</value></data>
+  <data name="Settings_UnitsTitle.Text" xml:space="preserve"><value>크기 단위</value></data>
+  <data name="Settings_UnitsDescription.Text" xml:space="preserve"><value>크기와 속도를 표시하는 방법.</value></data>
+  <data name="Units_Classic.Content" xml:space="preserve"><value>KB, MB, GB(파일 탐색기와 동일)</value></data>
+  <data name="Units_Iec.Content" xml:space="preserve"><value>KiB, MiB, GiB(이진)</value></data>
+  <data name="Units_Decimal.Content" xml:space="preserve"><value>1000 단위 kB, MB, GB(제조사와 동일)</value></data>
+  <data name="Settings_SlowTitle.Text" xml:space="preserve"><value>PC를 사용하는 동안 속도 낮추기</value></data>
+  <data name="Settings_SlowDescription.Text" xml:space="preserve"><value>키보드나 마우스를 사용하는 동안 복사가 이 속도를 넘지 않고, 자리를 비우면 원래 속도로 돌아갑니다.</value></data>
+  <data name="Slow_Off.Content" xml:space="preserve"><value>아니요</value></data>
+  <data name="Settings_LogsTitle.Text" xml:space="preserve"><value>복사마다 로그 저장</value></data>
+  <data name="Settings_LogsDescription.Text" xml:space="preserve"><value>복사마다 로그 폴더에 파일을 만듭니다. 30일 후 자동으로 삭제됩니다.</value></data>
+  <data name="Settings_LogsOpen.Text" xml:space="preserve"><value>폴더 열기</value></data>
+  <data name="Settings_WebhookTitle.Text" xml:space="preserve"><value>완료 시 알릴 URL</value></data>
+  <data name="Settings_WebhookDescription.Text" xml:space="preserve"><value>휴대폰이나 채팅으로 알림을 받으세요: Discord, Slack, Teams, ntfy.sh, Home Assistant… JSON이 담긴 POST를 보냅니다.</value></data>
+  <data name="Settings_WebhookBox.PlaceholderText" xml:space="preserve"><value>https://ntfy.sh/my-secret-topic</value></data>
+  <data name="Settings_WebhookTest.Text" xml:space="preserve"><value>테스트</value></data>
+  <data name="Settings_WebhookSending" xml:space="preserve"><value>보내는 중…</value></data>
+  <data name="Settings_WebhookOk" xml:space="preserve"><value>알림을 보냈습니다.</value></data>
+  <data name="Settings_WebhookFailed" xml:space="preserve"><value>보낼 수 없습니다: URL과 연결을 확인하세요.</value></data>
+  <data name="Settings_WebhookTestMessage" xml:space="preserve"><value>✔ MegaCopier: 테스트 알림</value></data>
+  <data name="FinishDialog.Title" xml:space="preserve"><value>모든 복사 완료</value></data>
+  <data name="FinishDialog.PrimaryButtonText" xml:space="preserve"><value>지금 하기</value></data>
+  <data name="FinishDialog.CloseButtonText" xml:space="preserve"><value>취소</value></data>
+  <data name="Finish_CountdownSleep" xml:space="preserve"><value>{0}초 후 PC가 절전 모드로 전환됩니다.</value></data>
+  <data name="Finish_CountdownHibernate" xml:space="preserve"><value>{0}초 후 PC가 최대 절전 모드로 전환됩니다.</value></data>
+  <data name="Finish_CountdownShutdown" xml:space="preserve"><value>{0}초 후 PC가 종료됩니다.</value></data>
+  <data name="Finish_CountdownSignOut" xml:space="preserve"><value>{0}초 후 로그아웃됩니다.</value></data>
+  <data name="Finish_CountdownExitApp" xml:space="preserve"><value>{0}초 후 MegaCopier가 닫힙니다.</value></data>
+  <data name="Job_SlowedDown" xml:space="preserve"><value>PC를 사용 중이라 속도를 낮춤</value></data>
+  <data name="History_Undone" xml:space="preserve"><value>실행 취소됨</value></data>
+  <data name="History_Undo.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>실행 취소: 이동한 항목을 되돌리거나 복사한 항목을 휴지통으로</value></data>
+  <data name="History_CopyBack.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>원본 폴더로 다시 복사(복원)</value></data>
+  <data name="History_UndoDialog.Title" xml:space="preserve"><value>이 복사를 실행 취소할까요?</value></data>
+  <data name="History_UndoDialog.PrimaryButtonText" xml:space="preserve"><value>실행 취소</value></data>
+  <data name="History_UndoDialog.CloseButtonText" xml:space="preserve"><value>취소</value></data>
+  <data name="History_UndoMoveConfirm" xml:space="preserve"><value>이동한 모든 항목이 &quot;{0}&quot;에서 원래 폴더로 돌아갑니다.</value></data>
+  <data name="History_UndoCopyConfirm" xml:space="preserve"><value>복사한 파일 {0}개가 휴지통으로 이동합니다(복원 가능). 나중에 수정된 파일이나 다른 파일을 바꾼 파일은 그대로 둡니다.</value></data>
+  <data name="History_UndoDone" xml:space="preserve"><value>파일 {0}개를 휴지통으로 옮겼습니다.</value></data>
+  <data name="History_UndoKept" xml:space="preserve"><value>나중에 수정된 파일 {0}개와 다른 파일을 바꾼 파일 {1}개는 그대로 두었습니다.</value></data>
+  <data name="History_UndoTitleBar.Title" xml:space="preserve"><value>복사를 실행 취소했습니다</value></data>
+  <data name="History_Undo.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>실행 취소: 이동한 항목을 되돌리거나 복사한 항목을 휴지통으로</value></data>
+  <data name="History_CopyBack.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>원본 폴더로 다시 복사(복원)</value></data>
+  <data name="History_Open.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>대상 열기</value></data>
+  <data name="History_Repeat.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>반복(새로운 항목이나 변경된 항목만 복사)</value></data>
+  <data name="Task_Header.Text" xml:space="preserve"><value>또는 작업으로 저장해 위에서 고른 시간에 Windows가 자동으로 반복하게 하세요:</value></data>
+  <data name="Task_Name.PlaceholderText" xml:space="preserve"><value>작업 이름</value></data>
+  <data name="Task_Once.Content" xml:space="preserve"><value>한 번</value></data>
+  <data name="Task_Daily.Content" xml:space="preserve"><value>매일</value></data>
+  <data name="Task_Weekly.Content" xml:space="preserve"><value>매주</value></data>
+  <data name="Task_Save.Text" xml:space="preserve"><value>작업으로 저장</value></data>
+  <data name="Task_SavedOnce" xml:space="preserve"><value>작업 &quot;{0}&quot; 저장됨: {2} {1}에 실행됩니다.</value></data>
+  <data name="Task_SavedDaily" xml:space="preserve"><value>작업 &quot;{0}&quot; 저장됨: 매일 {1}에 실행됩니다.</value></data>
+  <data name="Task_SavedWeekly" xml:space="preserve"><value>작업 &quot;{0}&quot; 저장됨: 매주 {2}와 같은 요일 {1}에 실행됩니다.</value></data>
+  <data name="Task_Failed" xml:space="preserve"><value>예약할 수 없습니다: {0}</value></data>
+  <data name="Settings_Tasks.Text" xml:space="preserve"><value>예약된 작업</value></data>
+  <data name="Settings_TasksTitle.Text" xml:space="preserve"><value>자동으로 반복되는 복사</value></data>
+  <data name="Settings_TasksDescription.Text" xml:space="preserve"><value>복사의 &quot;옵션&quot; 탭에서 만듭니다(&quot;작업으로 저장&quot;). MegaCopier가 닫혀 있어도 Windows 작업 스케줄러가 실행합니다.</value></data>
+  <data name="Settings_TasksEmpty" xml:space="preserve"><value>아직 작업이 없습니다.</value></data>
+  <data name="Settings_TaskRun" xml:space="preserve"><value>&quot;{0}&quot; 지금 실행</value></data>
+  <data name="Settings_TaskDelete" xml:space="preserve"><value>작업 &quot;{0}&quot; 삭제</value></data>
+  <data name="About_Portable" xml:space="preserve"><value>포터블 버전(데이터 위치: {0})</value></data>
+  <data name="Job_Estimate" xml:space="preserve"><value>{0}, 약 {1}</value></data>
+  <data name="Job_EstimateSize" xml:space="preserve"><value>총 {0}</value></data>
+  <data name="Settings_SmbCompression.Content" xml:space="preserve"><value>네트워크 압축(SMB)</value></data>
+  <data name="Settings_SmbCompression.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>서버에 전송 중 데이터 압축을 요청합니다(Windows 11 및 Windows Server 2022 이상). 원본과 대상이 같은 서버에 있으면 복사는 항상 서버가 직접 하며 이 PC를 거치지 않습니다.</value></data>
+  <data name="Error_TooLargeForFileSystem" xml:space="preserve"><value>이 디스크에 들어가지 않습니다: FAT32는 4GB 이상의 파일을 허용하지 않습니다. exFAT 또는 NTFS로 포맷하세요.</value></data>
+  <data name="Rules_AllOrNothing.Content" xml:space="preserve"><value>&quot;전부 아니면 전무&quot; 폴더</value></data>
+  <data name="Rules_AllOrNothing.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>새 폴더는 숨긴 채 복사되고, 모두 성공했을 때만 원래 이름으로 나타납니다: 완성된 것처럼 보이지만 반만 복사된 폴더는 절대 남지 않습니다.</value></data>
+  <data name="Rules_Rescue.Content" xml:space="preserve"><value>손상된 디스크 구조 모드</value></data>
+  <data name="Rules_Rescue.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>원본에 불량 섹터가 있으면 섹터 단위로 읽어 읽을 수 있는 모든 것을 구해 냅니다. 읽을 수 없는 부분은 0으로 채우고 로그에 기록합니다. 이동할 때도 원본은 삭제하지 않습니다.</value></data>
+  <data name="Error_PartlyUnreadable" xml:space="preserve"><value>일부 구조됨: 원본의 일부 섹터가 손상되어 0으로 채웠습니다(로그 참조).</value></data>
+  <data name="Settings_Guard.Text" xml:space="preserve"><value>무결성 보호</value></data>
+  <data name="Settings_GuardTitle.Text" xml:space="preserve"><value>시간이 지나며 파일이 손상되는 것을 방지</value></data>
+  <data name="Settings_GuardDescription.Text" xml:space="preserve"><value>각 파일이 자신의 해시를 내부에 저장합니다. PC가 유휴 상태일 때 MegaCopier가 확인하여, 아무도 편집하지 않았는데 파일이 바뀌었으면(디스크에서 손상) 알려 줍니다. 편집한 내용은 자동으로 업데이트됩니다. NTFS가 필요합니다.</value></data>
+  <data name="Guard_Daily.Content" xml:space="preserve"><value>매일</value></data>
+  <data name="Guard_Weekly.Content" xml:space="preserve"><value>매주</value></data>
+  <data name="Guard_Monthly.Content" xml:space="preserve"><value>매월</value></data>
+  <data name="Settings_GuardAdd.Text" xml:space="preserve"><value>폴더 보호…</value></data>
+  <data name="Settings_GuardEmpty" xml:space="preserve"><value>아직 보호 중인 폴더가 없습니다.</value></data>
+  <data name="Settings_GuardCheck" xml:space="preserve"><value>&quot;{0}&quot; 지금 확인</value></data>
+  <data name="Settings_GuardRemove" xml:space="preserve"><value>&quot;{0}&quot; 보호 중지</value></data>
+  <data name="Guard_NotYet" xml:space="preserve"><value>첫 확인 대기 중</value></data>
+  <data name="Guard_LastOk" xml:space="preserve"><value>{0}에 확인: 모두 정상</value></data>
+  <data name="Guard_LastDamaged" xml:space="preserve"><value>{0}에 확인: 파일 {1}개 손상(기록 참조)</value></data>
+  <data name="Guard_DamagedTitle" xml:space="preserve"><value>무결성 보호</value></data>
+  <data name="Guard_DamagedOne" xml:space="preserve"><value>&quot;{0}&quot;의 파일 1개가 디스크에서 손상되었습니다.</value></data>
+  <data name="Guard_DamagedMany" xml:space="preserve"><value>&quot;{1}&quot;의 파일 {0}개가 디스크에서 손상되었습니다.</value></data>
+  <data name="Guard_LastDamagedOne" xml:space="preserve"><value>{0}에 확인: 파일 1개 손상(기록 참조)</value></data>
+  <data name="Settings_ScheduleLimitTitle.Text" xml:space="preserve"><value>시간대별 속도 제한</value></data>
+  <data name="Settings_ScheduleLimitDescription.Text" xml:space="preserve"><value>예를 들어 업무 시간 동안: 선택한 시간대에는 복사가 이 속도를 넘지 않습니다.</value></data>
+  <data name="Settings_ScheduleFrom.Text" xml:space="preserve"><value>시작</value></data>
+  <data name="Settings_ScheduleTo.Text" xml:space="preserve"><value>끝</value></data>
+  <data name="Settings_PauseBatteryTitle.Text" xml:space="preserve"><value>배터리 사용 시 일시 중지</value></data>
+  <data name="Settings_PauseBatteryDescription.Text" xml:space="preserve"><value>노트북이 전원에 연결되어 있지 않으면 복사가 기다리고, 연결하면 자동으로 이어서 합니다.</value></data>
+  <data name="Settings_PauseFullTitle.Text" xml:space="preserve"><value>게임 및 프레젠테이션 중 일시 중지</value></data>
+  <data name="Settings_PauseFullDescription.Text" xml:space="preserve"><value>전체 화면 게임이나 프레젠테이션이 있으면 방해하지 않도록 복사가 기다립니다.</value></data>
+  <data name="Comfort_PausedTitle" xml:space="preserve"><value>복사 일시 중지됨</value></data>
+  <data name="Comfort_PausedBattery" xml:space="preserve"><value>PC가 배터리로 작동 중입니다: 전원을 연결하면 복사를 이어서 합니다.</value></data>
+  <data name="Comfort_PausedFullScreen" xml:space="preserve"><value>전체 화면 게임이나 프레젠테이션이 실행 중입니다: 끝나면 복사를 이어서 합니다.</value></data>
+  <data name="Job_StatePausedBattery" xml:space="preserve"><value>일시 중지: 배터리 사용 중</value></data>
+  <data name="Job_StatePausedFullScreen" xml:space="preserve"><value>일시 중지: 전체 화면</value></data>
+  <data name="Job_SlowedSchedule" xml:space="preserve"><value>선택한 시간대로 인해 속도를 낮춤</value></data>
+  <data name="Rules_Delta.Content" xml:space="preserve"><value>큰 파일을 바꿀 때 변경된 부분만 쓰기</value></data>
+  <data name="Rules_Delta.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>16MB 이상 파일(가상 디스크, 메일, 프로젝트)의 차등 복사: 다른 블록만 씁니다. 취소하거나 정전되면 파일이 이전 버전으로 돌아갑니다.</value></data>
+  <data name="Panel_CopyLocked.Text" xml:space="preserve"><value>사용 중인 파일 복사</value></data>
+  <data name="Locked_Title" xml:space="preserve"><value>사용 중인 파일</value></data>
+  <data name="Locked_Cancelled" xml:space="preserve"><value>관리자 권한이 없어 사용 중인 파일은 복사되지 않았습니다.</value></data>
+  <data name="Locked_Done" xml:space="preserve"><value>디스크 스냅숏에서 사용 중인 파일 {0}개를 복사했습니다.</value></data>
+  <data name="Locked_Partial" xml:space="preserve"><value>스냅숏에서 {0}개를 복사했습니다. 나머지는 복사할 수 없었습니다: {1}</value></data>
+  <data name="Settings_Peer.Text" xml:space="preserve"><value>다른 PC에서 받기</value></data>
+  <data name="Settings_PeerTitle.Text" xml:space="preserve"><value>MegaCopier가 있는 다른 PC에서 파일 받기</value></data>
+  <data name="Settings_PeerDescription.Text" xml:space="preserve"><value>공유 폴더 없이 가정이나 사무실 네트워크를 통해 받습니다. 보내는 쪽에 아래 코드가 필요합니다. 연결은 암호화되며 각 파일은 도착할 때 확인됩니다. 처음에는 Windows가 방화벽 허용을 요청할 수 있습니다.</value></data>
+  <data name="Settings_PeerCode.Text" xml:space="preserve"><value>파일을 보내는 데 필요한 코드:</value></data>
+  <data name="Settings_PeerNewCode.Text" xml:space="preserve"><value>새 코드</value></data>
+  <data name="Settings_PeerFolder.Text" xml:space="preserve"><value>폴더 변경…</value></data>
+  <data name="Settings_PeerFolderIs" xml:space="preserve"><value>{0}에 저장됩니다</value></data>
+  <data name="Settings_PeerListening" xml:space="preserve"><value>&quot;{0}&quot;에서 받기 대기 중(포트 {1}).</value></data>
+  <data name="Settings_PeerError" xml:space="preserve"><value>받기를 시작할 수 없습니다: {0}</value></data>
+  <data name="Peer_ReceivingTitle" xml:space="preserve"><value>파일 받는 중</value></data>
+  <data name="Peer_Receiving" xml:space="preserve"><value>{0}에서 파일 {1}개({2})를 보내고 있습니다.</value></data>
+  <data name="Peer_ReceivedTitle" xml:space="preserve"><value>파일 받음</value></data>
+  <data name="Peer_Received" xml:space="preserve"><value>{1}에서 받은 파일 {0}개를 {2}에 저장했습니다.</value></data>
+  <data name="Peer_RejectedTitle" xml:space="preserve"><value>보내기 거부됨</value></data>
+  <data name="Peer_Rejected" xml:space="preserve"><value>{0}에서 잘못된 코드로 파일을 보내려고 했습니다.</value></data>
+  <data name="Tool_SendFiles.Text" xml:space="preserve"><value>다른 PC로 파일 보내기…</value></data>
+  <data name="Tool_SendFolder.Text" xml:space="preserve"><value>다른 PC로 폴더 보내기…</value></data>
+  <data name="SendDialog.Title" xml:space="preserve"><value>다른 PC로 보내기</value></data>
+  <data name="SendDialog.PrimaryButtonText" xml:space="preserve"><value>보내기</value></data>
+  <data name="SendDialog.CloseButtonText" xml:space="preserve"><value>취소</value></data>
+  <data name="Send_SummaryOne" xml:space="preserve"><value>MegaCopier로 받고 있는 다른 PC로 &quot;{0}&quot;을(를) 보냅니다.</value></data>
+  <data name="Send_SummaryMany" xml:space="preserve"><value>MegaCopier로 받고 있는 다른 PC로 항목 {0}개를 보냅니다.</value></data>
+  <data name="Send_Found.Text" xml:space="preserve"><value>네트워크에서 찾은 PC:</value></data>
+  <data name="Send_Searching" xml:space="preserve"><value>검색 중…</value></data>
+  <data name="Send_NoneFound" xml:space="preserve"><value>찾지 못했습니다: 이름이나 IP를 입력하세요.</value></data>
+  <data name="Send_Host.Header" xml:space="preserve"><value>PC(이름 또는 IP)</value></data>
+  <data name="Send_Host.PlaceholderText" xml:space="preserve"><value>거실PC 또는 192.168.1.20</value></data>
+  <data name="Send_Code.Header" xml:space="preserve"><value>그 PC의 &quot;설정&quot;에 표시된 코드</value></data>
+  <data name="Send_Code.PlaceholderText" xml:space="preserve"><value>XXXX-XXXX-XXXX</value></data>
+  <data name="Job_TitleSend" xml:space="preserve"><value>{0} 보내기</value></data>
+  <data name="Job_TitleSending" xml:space="preserve"><value>{0} 보내는 중</value></data>
+  <data name="Job_TitleSent" xml:space="preserve"><value>{0} 보냄</value></data>
+  <data name="Job_StateSending" xml:space="preserve"><value>보내는 중</value></data>
+  <data name="Job_FilesSentOne" xml:space="preserve"><value>파일 {0}개 보냄</value></data>
+  <data name="Job_FilesSentMany" xml:space="preserve"><value>파일 {0}개 보냄</value></data>
+  <data name="Rules_Describe.Header" xml:space="preserve"><value>직접 설명하기(영어 또는 스페인어)</value></data>
+  <data name="Rules_Describe.PlaceholderText" xml:space="preserve"><value>photos larger than 2 MB from last month except .tmp</value></data>
+  <data name="Rules_DescribeApply.Text" xml:space="preserve"><value>적용</value></data>
+  <data name="Rules_DescribeUnderstood" xml:space="preserve"><value>이해함: {0}.</value></data>
+  <data name="Rules_DescribeNothing" xml:space="preserve"><value>필터할 내용을 이해하지 못했습니다.</value></data>
+  <data name="Rules_DescribeUnknown" xml:space="preserve"><value>이해하지 못함: {0}.</value></data>
+  <data name="Mode_Organize.Content" xml:space="preserve"><value>사진을 날짜별로 정리</value></data>
+  <data name="Rules_Duplicates.Content" xml:space="preserve"><value>대상에 이미 있는 항목(중복)은 복사하지 않기</value></data>
+  <data name="Rules_Duplicates.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>이름이 아닌 내용을 비교합니다: 대상의 어느 폴더에든 이미 있는 사진은 이름이 달라도 다시 복사하지 않습니다.</value></data>
+  <data name="Skip_SkipDuplicate" xml:space="preserve"><value>대상에 다른 이름이나 폴더로 이미 있음</value></data>
+  <data name="Plan_SkipDuplicate" xml:space="preserve"><value>건너뜀: 대상에 이미 있음(중복)</value></data>
+  <data name="Destinations_Encrypt.Content" xml:space="preserve"><value>암호로 암호화(잃어버릴 수 있는 USB나 디스크용)</value></data>
+  <data name="Destinations_Password.Header" xml:space="preserve"><value>암호</value></data>
+  <data name="Destinations_Password2.Header" xml:space="preserve"><value>다시 입력</value></data>
+  <data name="Destinations_PasswordHint" xml:space="preserve"><value>AES-256으로 암호화합니다. 암호를 잊으면 파일을 복구할 수 없습니다. 읽으려면: &quot;새로 만들기&quot; 메뉴 &gt; &quot;암호 해독&quot;.</value></data>
+  <data name="Destinations_PasswordShort" xml:space="preserve"><value>암호는 8자 이상이어야 합니다.</value></data>
+  <data name="Destinations_PasswordMismatch" xml:space="preserve"><value>두 암호가 일치하지 않습니다.</value></data>
+  <data name="PasswordDialog.Title" xml:space="preserve"><value>암호</value></data>
+  <data name="PasswordDialog.PrimaryButtonText" xml:space="preserve"><value>확인</value></data>
+  <data name="PasswordDialog.CloseButtonText" xml:space="preserve"><value>취소</value></data>
+  <data name="Tool_Decrypt.Text" xml:space="preserve"><value>암호화된 파일 해독…</value></data>
+  <data name="Picker_DecryptHere" xml:space="preserve"><value>여기에 해독</value></data>
+  <data name="Decrypt_Ask" xml:space="preserve"><value>&quot;{0}&quot;에 있는 암호화된 파일의 암호:</value></data>
+  <data name="Resume_PasswordAsk" xml:space="preserve"><value>이 복사는 암호화되어 있고 암호는 저장되지 않습니다: 계속하려면 입력하세요.</value></data>
+  <data name="Job_TitleEncrypt" xml:space="preserve"><value>{0} 암호화</value></data>
+  <data name="Job_TitleEncrypting" xml:space="preserve"><value>{0} 암호화 중</value></data>
+  <data name="Job_TitleEncrypted" xml:space="preserve"><value>{0} 암호화됨</value></data>
+  <data name="Job_StateEncrypting" xml:space="preserve"><value>암호화 중</value></data>
+  <data name="Job_FilesEncryptedOne" xml:space="preserve"><value>파일 {0}개 암호화됨</value></data>
+  <data name="Job_FilesEncryptedMany" xml:space="preserve"><value>파일 {0}개 암호화됨</value></data>
+  <data name="Job_TitleDecrypt" xml:space="preserve"><value>{0} 해독</value></data>
+  <data name="Job_TitleDecrypting" xml:space="preserve"><value>{0} 해독 중</value></data>
+  <data name="Job_TitleDecrypted" xml:space="preserve"><value>{0} 해독됨</value></data>
+  <data name="Job_StateDecrypting" xml:space="preserve"><value>해독 중</value></data>
+  <data name="Job_FilesDecryptedOne" xml:space="preserve"><value>파일 {0}개 해독됨</value></data>
+  <data name="Job_FilesDecryptedMany" xml:space="preserve"><value>파일 {0}개 해독됨</value></data>
+  <data name="Settings_DisksTitle.Text" xml:space="preserve"><value>디스크 상태</value></data>
+  <data name="Settings_DisksDescription.Text" xml:space="preserve"><value>Windows가 보고하는 각 디스크의 상태(SMART). 고장 징후가 있는 디스크에서 또는 그 디스크로 복사하면 MegaCopier가 알려 줍니다.</value></data>
+  <data name="Settings_DisksCheck.Text" xml:space="preserve"><value>지금 확인</value></data>
+  <data name="Disk_Row" xml:space="preserve"><value>디스크 {0} · {1}: {2}</value></data>
+  <data name="Disk_Healthy" xml:space="preserve"><value>정상</value></data>
+  <data name="Disk_Unknown" xml:space="preserve"><value>상태 알 수 없음</value></data>
+  <data name="Disk_HealthWarning" xml:space="preserve"><value>문제 보고</value></data>
+  <data name="Disk_Checking" xml:space="preserve"><value>디스크 확인 중…</value></data>
+  <data name="Disk_WarningTitle" xml:space="preserve"><value>디스크가 고장을 보고했습니다</value></data>
+  <data name="Disk_Warning" xml:space="preserve"><value>&quot;{0}&quot;(디스크 {1}): {2}. 중요한 내용은 서둘러 다른 디스크로 복사하세요.</value></data>
+  <data name="Settings_TuneTitle.Text" xml:space="preserve"><value>디스크별 자동 조정</value></data>
+  <data name="Settings_TuneDescription.Text" xml:space="preserve"><value>여러 블록 크기와 병렬 작업 수로 각 디스크를 측정하고, 그 디스크로 복사할 때 가장 빠른 조합을 사용합니다(성능 설정을 직접 바꾼 경우 제외).</value></data>
+  <data name="Settings_TuneMeasure.Text" xml:space="preserve"><value>디스크 측정</value></data>
+  <data name="Settings_TuneNone" xml:space="preserve"><value>아직 측정한 디스크가 없습니다.</value></data>
+  <data name="Settings_TuneDisk" xml:space="preserve"><value>디스크</value></data>
+  <data name="Settings_TuneProfile" xml:space="preserve"><value>{0}: {1}MB 블록, 동시 {2}개({3:N0} MB/s)</value></data>
+  <data name="Settings_TuneMeasuring" xml:space="preserve"><value>{0} 측정 중({1} / {2})…</value></data>
+  <data name="Tool_Timeline.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>대기열 타임라인</value></data>
+  <data name="Timeline_Title.Text" xml:space="preserve"><value>타임라인</value></data>
+  <data name="Timeline_Info.Text" xml:space="preserve"><value>각 디스크의 속도로 예측합니다. 같은 디스크를 쓰는 복사는 하나씩 진행됩니다.</value></data>
+  <data name="Timeline_Empty.Text" xml:space="preserve"><value>진행 중이거나 대기 중인 복사가 없습니다.</value></data>
+  <data name="Timeline_Summary" xml:space="preserve"><value>모두 {0}쯤 끝날 예정입니다({1} 후).</value></data>
+  <data name="Timeline_Now" xml:space="preserve"><value>지금</value></data>
+  <data name="Timeline_Tomorrow" xml:space="preserve"><value>내일 {0}</value></data>
+  <data name="Timeline_Running" xml:space="preserve"><value>진행 중 · 예상 종료: {0}({1} 남음)</value></data>
+  <data name="Timeline_Paused" xml:space="preserve"><value>일시 중지됨 · 지금 재개하면 예상 종료: {0}</value></data>
+  <data name="Timeline_Queued" xml:space="preserve"><value>대기 중 · 시작: {0} · 예상 종료: {1}({2} 소요)</value></data>
+  <data name="Timeline_Scheduled" xml:space="preserve"><value>예약됨 · 시작: {0} · 예상 종료: {1}({2} 소요)</value></data>
+  <data name="Timeline_Measuring" xml:space="preserve"><value>아직 크기 측정 중</value></data>
+  <data name="Tool_Shelf.Text" xml:space="preserve"><value>드롭 선반</value></data>
+  <data name="Tray_Shelf" xml:space="preserve"><value>드롭 선반</value></data>
+  <data name="Shelf_WindowTitle" xml:space="preserve"><value>MegaCopier 드롭 선반</value></data>
+  <data name="Shelf_Title.Text" xml:space="preserve"><value>선반</value></data>
+  <data name="Shelf_Empty.Text" xml:space="preserve"><value>어디서든 파일과 폴더를 여기로 끌어 오세요. 그런 다음 한꺼번에 복사하거나 이동하고, 다시 끌어 낼 수도 있습니다.</value></data>
+  <data name="Shelf_DropCaption" xml:space="preserve"><value>선반에 추가</value></data>
+  <data name="Shelf_CopyTo.Text" xml:space="preserve"><value>복사 위치…</value></data>
+  <data name="Shelf_MoveTo.Text" xml:space="preserve"><value>이동 위치…</value></data>
+  <data name="Shelf_Clear.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>선반 비우기</value></data>
+  <data name="Shelf_Remove.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>선반에서 제거</value></data>
+  <data name="Shelf_One" xml:space="preserve"><value>항목 1개</value></data>
+  <data name="Shelf_Many" xml:space="preserve"><value>항목 {0}개</value></data>
+  <data name="Shelf_RemoveNamed" xml:space="preserve"><value>선반에서 &quot;{0}&quot; 제거</value></data>
+  <data name="Destinations_NoneChosen.Text" xml:space="preserve"><value>대상을 하나 이상 선택하세요(또는 폴더 추가).</value></data>
+  <data name="Finish_ShutdownMessage" xml:space="preserve"><value>MegaCopier가 복사를 마쳤습니다. 1분 후 PC가 종료됩니다.</value></data>
+  <data name="Hash_Name" xml:space="preserve"><value>해시: {0}</value></data>
+</root>

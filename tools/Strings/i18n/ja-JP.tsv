@@ -1,0 +1,796 @@
+clave	texto
+JobsSection.Text	コピー
+SettingsSection.Text	設定
+FinishButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	すべてのコピーが終わったら
+FinishNothing.Text	何もしない
+FinishSleep.Text	スリープ
+FinishShutdown.Text	シャットダウン
+NewCopyText.Text	新しいコピー
+CopyFilesItem.Text	ファイルをコピー…
+CopyFolderItem.Text	フォルダーをコピー…
+EmptyTitle.Text	コピーはありません
+EmptyDescription.Text	開始したコピーはここに表示されます。停電しても、復旧後に中断した場所から再開できます。
+PauseButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	一時停止
+StopButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	停止（後で再開できます）
+OpenFolderButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	コピー先フォルダーを開く
+ClearButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	一覧から削除
+DiscardButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	破棄して途中のコピーを削除
+ConflictDialog.Title	ファイルは既に存在します
+ConflictDialog.PrimaryButtonText	置き換える
+ConflictDialog.SecondaryButtonText	両方残す
+ConflictDialog.CloseButtonText	スキップ
+ConflictExistingTitle.Text	既存のファイル
+ConflictApplyAll.Content	このコピーの他の競合にも同じ操作を行う
+RestartInfo.Title	変更を適用するには MegaCopier を再起動してください
+RestartInfo.Message	実行中のコピーは停止し、後で再開できます。
+RestartButton.Content	今すぐ再起動
+AppearanceHeader.Text	外観
+ThemeTitle.Text	テーマ
+ThemeDescription.Text	ライト、ダーク、または Windows と同じ
+ThemeSystem.Content	Windows と同じ
+ThemeLight.Content	ライト
+ThemeDark.Content	ダーク
+AccentTitle.Text	アクセントカラー
+AccentDescription.Text	ボタン、進行状況バー、強調表示の色
+BackdropTitle.Text	ウィンドウの背景
+BackdropDescription.Text	Windows 11 の素材でデスクトップがうっすら透けて見えます
+BackdropMica.Content	Mica
+BackdropMicaAlt.Content	Mica Alt（色合いが濃い）
+BackdropAcrylic.Content	アクリル
+BackdropSolid.Content	単色
+LanguageTitle.Text	言語
+LanguageDescription.Text	MegaCopier とエクスプローラーのメニュー項目の言語
+LanguageAuto.Content	Windows と同じ
+OnTopTitle.Text	常に手前に表示
+OnTopDescription.Text	コピー中はウィンドウを他のウィンドウより手前に表示します
+CopyHeader.Text	コピー
+VerifyTitle.Text	コピー後に検証
+VerifyDescription.Text	キャッシュを使わずにコピー先を読み直し、コピー元と一致しないブロックを修復します
+ConflictTitle.Text	ファイルが既に存在する場合
+ConflictDescription.Text	同一のファイル（サイズと日付が同じ）は常にスキップされます
+ConflictAsk.Content	確認する
+ConflictReplace.Content	置き換える
+ConflictSkip.Content	スキップ
+ConflictNewer.Content	新しい場合は置き換える
+ConflictKeepBoth.Content	両方残す
+SpeedTitle.Text	速度制限
+SpeedDescription.Text	他の作業のためにディスクやネットワークの帯域を残します（新しいコピーに適用）
+SpeedUnlimited.Content	制限なし
+AutoResumeTitle.Text	中断したコピーを自動で再開
+AutoResumeDescription.Text	停電や再起動の後、MegaCopier を開いたときに確認せずに再開します
+ExplorerHeader.Text	エクスプローラー
+PasteTitle.Text	貼り付け (Ctrl+V) 時に MegaCopier でコピーと移動
+PasteDescription.Text	コピー (Ctrl+C) または切り取り (Ctrl+X) したファイルをエクスプローラーやデスクトップに貼り付けると、MegaCopier が処理します。同じフォルダーへの貼り付けはエクスプローラーのままです
+ShellMenuTitle.Text	右クリックメニューの項目
+ShellMenuDescription.Text	「MegaCopier で貼り付け」（「その他のオプションを確認」内）と、右ボタンでドラッグしたときの「MegaCopier でここにコピー / 移動」
+SystemHeader.Text	システム
+StartupTitle.Text	Windows と同時に起動
+StartupDescription.Text	通知領域に常駐し、コピーをすぐに開始します
+NotifyTitle.Text	完了時に通知
+NotifyDescription.Text	コピーが終わったときにウィンドウが見えていなければシステム通知を表示します
+Accent_System	Windows と同じ
+Accent_Blue	青
+Accent_Violet	紫
+Accent_Teal	青緑
+Accent_Green	緑
+Accent_Orange	オレンジ
+Accent_Pink	ピンク
+Accent_Red	赤
+About	MegaCopier {0} · 停電に強いコピー
+Picker_CopyHere	ここにコピー
+Finish_Label	完了後
+Finish_LabelSleep	完了後: スリープ
+Finish_LabelShutdown	完了後: シャットダウン
+Conflict_Message	「{1}」には既に「{0}」という名前のファイルがあります。
+Conflict_SourceCopy	コピーするファイル
+Conflict_SourceMove	移動するファイル
+Conflict_Newer	 · 新しい
+Job_OneItem	「{0}」
+Job_ManyItems	{0} 個の項目
+Job_TitleCopying	{0} をコピー中
+Job_TitleMoving	{0} を移動中
+Job_TitleCopied	{0} をコピーしました
+Job_TitleMoved	{0} を移動しました
+Job_TitleQueued	待機中: {0}
+Job_Destination	{0} へ
+Job_StateQueued	待機中: ディスク使用中
+Job_StateVerifying	検証中
+Job_StateValidating	コピー済みの部分を確認中
+Job_StateWaiting	判断待ち: ファイルが既に存在します
+Job_StateCopying	コピー中
+Job_StateMoving	移動中
+Job_StatePaused	一時停止中
+Job_StateCompleted	完了
+Job_StateCompletedErrors	完了（エラーあり）
+Job_StateFailed	エラー
+Job_StateInterrupted	中断 · 続きから再開できます
+Job_ResumeHint	「再開」を押して続行
+Job_Preparing	準備中…
+Job_Progress	{0} / {1}
+Job_Remaining	残り {0}
+Job_Files	{0} / {1} ファイル
+Job_FilesCopiedOne	{0} 個のファイルをコピーしました
+Job_FilesCopiedMany	{0} 個のファイルをコピーしました
+Job_FilesMovedOne	{0} 個のファイルを移動しました
+Job_FilesMovedMany	{0} 個のファイルを移動しました
+Job_TransferredIn	{0}（{1}）
+Job_Recovered	{0} を回復
+Job_Skipped	{0} スキップ
+Job_Verified	検証済み
+Job_Repaired	（{0} ブロックを修復）
+Job_FailedFiles	{0} 個のファイルでエラー
+Job_Resume	再開
+Job_Retry	再試行
+Job_FailuresHeader	問題のある {0} 個のファイルを表示
+Job_FailuresMore	… ほか {0} 個
+Tray_Open	MegaCopier を開く
+Tray_PauseAll	すべて一時停止
+Tray_ResumeAll	すべて再開
+Tray_Startup	Windows と同時に起動
+Tray_Exit	終了
+Tray_OneJob	1 件のコピー
+Tray_ManyJobs	{0} 件のコピー
+Notify_InterruptedTitle	中断されたコピーがあります
+Notify_InterruptedOne	未完了のコピーが 1 件あります。開くと中断した場所から再開できます。
+Notify_InterruptedMany	未完了のコピーが {0} 件あります。開いて再開してください。
+Notify_DoneTitle	コピー完了
+Notify_ProblemTitle	コピーで問題が発生しました
+Notify_AllDoneTitle	すべてのコピーが完了しました
+Error_NeedsPaths	コピー要求にはコピー元とコピー先が必要です。
+Tray_Disable	無効にする（Windows でコピー）
+Tray_Enable	MegaCopier を有効にする
+Tray_TooltipDisabled	MegaCopier · 無効（Windows がコピーします）
+Notify_DisabledTitle	MegaCopier を無効にしました
+Notify_DisabledBody	コピーは Windows が行います。アイコンをダブルクリックすると再び有効になります。
+Notify_EnabledTitle	MegaCopier を有効にしました
+Notify_EnabledBody	エクスプローラーでのコピーと移動は MegaCopier が行います。
+AboutDialog.Title	MegaCopier について
+AboutDialog.CloseButtonText	閉じる
+About_DataFolder.Content	データフォルダーを開く（設定、テーマ、履歴、レポート）
+About_Description.Text	Windows 11 用のファイルコピーツール。停電後も巨大なファイル 1 つでも続きからコピーし、コピー済みの部分を検証します。
+About_Features.Text	キャッシュなし非同期 I/O · 並列読み書き · ハッシュ検証 (CRC32、xxHash、MD5、SHA) · ディスクごとのキュー · 一時停止と再開 · 移動 · 競合処理 · 速度制限 · コピーリスト · レポート · テーマ。
+CopyFiles.Text	ファイルをコピー…
+CopyFolder.Text	フォルダーをコピー…
+CopyFilesText.Text	ファイルをコピー
+CopyFolderText.Text	フォルダーをコピー
+Files_AddFiles.Text	ファイルを追加…
+Files_AddFolder.Text	フォルダーを追加…
+Files_AutoScroll.Content	現在のファイルを追う
+Files_CopyHashes.Text	ハッシュをコピー
+Files_CopyPath.Text	パスをコピー
+Files_Empty.Text	表示するファイルはありません
+Files_ExportCsv.Text	CSV にエクスポート…
+Files_ExportHtml.Text	HTML レポートをエクスポート…
+Files_FilterAll.Content	すべて
+Files_FilterDone.Content	コピー済み
+Files_FilterErrors.Content	エラー
+Files_FilterPending.Content	保留中
+Files_FilterSkipped.Content	スキップ
+Files_HideFinished.Content	完了したものを隠す
+Files_Menu.Text	一覧
+Files_MoveBottom.Text	最後へ移動
+Files_MoveDown.Text	下へ移動
+Files_MoveTop.Text	先頭へ移動
+Files_MoveUp.Text	上へ移動
+Files_OpenSource.Text	コピー元を表示
+Files_OpenTarget.Text	コピー先を表示
+Files_Remove.Text	コピーから除外
+Files_Retry.Text	失敗したファイルを再試行
+Files_SaveList.Text	コピーリストを保存…
+Files_Search.PlaceholderText	ファイルを検索
+Files_Size.Text	サイズ
+Files_SourceHash.Text	コピー元のハッシュ
+Files_TargetHash.Text	コピー先のハッシュ
+History_Clear.Text	クリア
+History_Empty.Text	完了したコピーはまだありません
+History_Open.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	コピー先を開く
+History_Repeat.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	もう一度（新規または変更分のみコピー）
+History_Title.Text	履歴
+Log_Export.Text	ログをエクスポート
+Options_Acl.Content	アクセス許可 (ACL)
+Options_Attributes.Content	属性
+Options_Audit.Content	監査 (SACL)
+Options_BufferSize.Text	バッファーサイズ
+Options_Data.Content	データ
+Options_ExportReport.Content	HTML レポートを保存
+Options_FilesFolders.Text	ファイルとフォルダー
+Options_OnFinish.Text	完了後
+Options_Owner.Content	所有者
+Options_ResetDefault.Text	リセット
+Options_RunningInfo.Message	コピー実行中: これらの変更は再開時に適用されます（「検証」と「無人」はすぐに適用）。
+Options_SaveChecksum.Content	チェックサムファイルを保存
+Options_SaveDefault.Text	既定として保存
+Options_Scripts.Text	完了後のコマンド
+Options_ScriptsHelp.Text	1 行に 1 つ、cmd.exe で実行します。「ok:」で始めると成功時のみ、「error:」で始めると失敗時のみ実行します。変数: %MEGACOPIER_STATE%、%MEGACOPIER_DESTINATION%、%MEGACOPIER_SOURCES%、%MEGACOPIER_FILES%、%MEGACOPIER_BYTES%、%MEGACOPIER_FAILED%、%MEGACOPIER_CHECKSUM%。
+Options_Security.Text	セキュリティ (NTFS)
+Options_Streams.Content	代替データストリーム (ADS)
+Options_SystemCache.Content	システムキャッシュを使う
+Options_Threads.Text	並列
+Options_ThreadsShort.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	同時に行う読み書きの数
+Options_Timestamps.Content	日付
+Options_Transfer.Text	コピーする内容
+Options_TransferOptions.Text	転送
+Options_Verify.Content	コピー後に検証
+Options_VerifySkipped.Content	スキップしたファイルも検証
+Page_Back.Text	戻る
+Pager_Next.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	次のコピー
+Pager_Previous.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	前のコピー
+Pager_Text	{0} / {1}
+Panel_Discard.Text	破棄
+Panel_File.Text	ファイル
+Panel_OpenFolder.Text	フォルダーを開く
+Panel_Pause.Text	一時停止
+Panel_Skip.Text	スキップ
+Panel_Stop.Text	停止
+Panel_More	詳細
+Panel_Less	簡易
+Priority_Low.Content	低
+Priority_BelowNormal.Content	通常以下
+Priority_Normal.Content	通常
+Priority_AboveNormal.Content	通常以上
+Priority_High.Content	高
+Settings_Advanced.Text	詳細設定
+Settings_EnabledTitle.Text	Windows の代わりに MegaCopier でコピー
+Settings_EnabledDescription.Text	通知領域のアイコンをダブルクリックしても切り替えられます。オフにするとアイコンが灰色になって赤い X が付き、エクスプローラーがコピーします。
+Settings_FastTitle.Text	高速デバイス
+Settings_FastDescription.Text	複数のコピーを同時に行えるドライブやパス（NVMe SSD、RAID）。それ以外はディスクごとに 1 つずつ行います。
+Settings_FinishTitle.Text	コピー完了後
+Settings_FinishDescription.Text	何も実行されていないときのウィンドウの動作
+Settings_FinishAuto.Content	問題がなければ閉じる
+Settings_FinishClose.Content	常に閉じる
+Settings_FinishKeep.Content	開いたままにする
+Settings_FreeSpace.Content	先に空き容量を確認
+Settings_General.Text	全般
+Settings_HashTitle.Text	ハッシュアルゴリズム
+Settings_HashDescription.Text	検証と保存するチェックサムに使います。xxHash3 が最速、SHA-256 が最も互換性があります。
+Settings_MaxJobsTitle.Text	同時コピー数
+Settings_MaxJobsDescription.Text	同時に実行するコピーの上限（0 = 無制限）。同じディスクを使うコピーは常に順番待ちになります。
+Settings_ModeAuto.Content	自動
+Settings_ModeCompact.Content	コンパクト
+Settings_ModeExpanded.Content	フル
+Settings_PerformanceTitle.Text	パフォーマンス
+Settings_PerformanceDescription.Text	速度制限、バッファーサイズ、並列処理
+Settings_PriorityTitle.Text	プロセスの優先度
+Settings_PriorityDescription.Text	低くするとコピー中も PC が快適に動きます
+Settings_Queue.Text	キュー
+Settings_Themes.Text	テーマ
+Settings_WhatToCopy.Text	コピーする内容と、その後の動作
+Settings_Window.Text	ウィンドウ
+Settings_WindowModeTitle.Text	コピーウィンドウ
+Settings_WindowModeDescription.Text	自動: コピーが 1 つならコンパクト、複数ならフル。「詳細」と「簡易」でいつでも切り替えられます。
+Status_Bytes.Text	サイズ
+Status_Category.Text	状態
+Status_Copied.Text	コピー済み
+Status_Failed.Text	エラー
+Status_Files.Text	ファイル
+Status_Pending.Text	保留中
+Status_Skipped.Text	スキップ
+Status_Total.Text	合計
+Status_Verified.Text	検証済み
+Tab_Files.Text	ファイル
+Tab_Log.Text	ログ
+Tab_Options.Text	オプション
+Tab_Status.Text	状態
+Tab_Target.Text	コピー先
+Target_Destination.Text	コピー先
+Target_Source.Text	コピー元
+Target_Space	空き {0} / {1}
+Theme_BarHeight.Header	バーの高さ
+Theme_Radius.Header	角の丸み
+Theme_Customize.Text	テーマをカスタマイズ（色、バー、背景）
+Theme_Delete.Text	削除
+Theme_Export.Text	エクスポート…
+Theme_Import.Text	インポート…
+Theme_Name.Header	名前
+Theme_Save	保存
+Theme_SaveAsNew	新しいテーマとして保存
+Theme_Auto	Fluent（Windows と同じ）
+Theme_CopyOf	{0}（カスタム）
+Theme_Custom	マイテーマ
+Theme_FileType	MegaCopier テーマ
+Theme_ImportFailed	テーマをインポートできませんでした
+Theme_ColorBackground	背景
+Theme_ColorSurface	カード
+Theme_ColorSurfaceStrong	強調カード
+Theme_ColorBorder	枠線
+Theme_ColorText	テキスト
+Theme_ColorTextSecondary	補助テキスト
+Theme_ColorAccent	アクセント
+Theme_ColorAccentText	アクセント上のテキスト
+Theme_ColorTotalStart	全体バー: 始点
+Theme_ColorTotalEnd	全体バー: 終点
+Theme_ColorFileStart	ファイルバー: 始点
+Theme_ColorFileEnd	ファイルバー: 終点
+Theme_ColorTrack	バーの背景
+Theme_ColorSuccess	成功
+Theme_ColorWarning	警告
+Theme_ColorError	エラー
+Theme_fluent-dark	Fluent ダーク
+Theme_fluent-light	Fluent ライト
+Theme_midnight	ミッドナイト
+Theme_graphite	グラファイト
+Theme_ocean	オーシャン
+Theme_forest	フォレスト
+Theme_sunset	サンセット
+Theme_supercopier	クラシック SuperCopier
+Theme_ultracopier	クラシック Ultracopier
+Theme_contrast	ハイコントラスト
+Tool_About.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	バージョン情報
+Tool_ClearDone.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	完了したコピーを削除
+Tool_History.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	履歴
+Tool_HistoryText.Text	履歴
+Tool_LoadList.Text	コピーリストを読み込む…
+Tool_LoadListText.Text	リストを読み込む
+Tool_MoveFiles.Text	ファイルを移動…
+Tool_NewCopy.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	新しいコピー
+Tool_NewCopyText.Text	新規
+Tool_PauseAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	すべて一時停止
+Tool_ResumeAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	すべて再開
+Tool_Settings.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	設定
+Tool_Sidebar.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	コピー一覧の表示/非表示
+Drop_Caption	MegaCopier でコピー
+File_Pending	保留中
+File_Copying	コピー中
+File_Verifying	検証中
+File_Copied	コピー済み
+File_Verified	検証済み
+File_Skipped	スキップ
+File_Failed	エラー
+Files_AddFailed	追加できませんでした
+Files_Count	{0} / {1} ファイル
+Files_ListType	MegaCopier コピーリスト
+Files_LoadFailed	リストを読み込めませんでした
+Hash_None	ハッシュ: なし
+Jobs_Header	コピー: {0} · 実行中: {1}
+Language_Auto	Windows と同じ
+Log_FileType	テキスト
+Picker_MoveHere	ここに移動
+Settings_AutoResume.Content	起動時に自動で再開
+Panel_Options.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	このコピーのオプション
+Panel_UnattendedItem.Text	無人（確認しない: 既存のファイルはスキップ）
+Panel_VerifyItem.Text	完了時に検証
+Panel_OpenFolderItem.Text	コピー先フォルダーを開く
+Status_ExactBytes	{0} バイト
+Notify_SettingsResetTitle	設定をリセットしました
+Notify_SettingsResetBody	設定を読み込めなかったため、既定の設定を使用しています。元のファイルは settings.json.bad に保存されています。
+Job_TitleCopy	{0} をコピー
+Job_TitleMove	{0} を移動
+Job_FailedOne	1 個のファイルでエラー
+Error_InUse	別のプログラムがこのファイルを開いています。閉じてから「再試行」を押してください。
+Error_AccessDenied	アクセスが拒否されました: このファイルを読み書きする権限がありません。
+Error_DiskFull	コピー先のディスクがいっぱいです。
+Error_NotFound	ファイルまたはフォルダーが存在しません（移動、削除、またはドライブが切断された可能性があります）。
+Error_PathTooLong	パスがコピー先にとって長すぎます。
+Error_NetworkLost	ネットワーク接続が切れました。復旧したら「再試行」を押すと続きから再開します。
+Error_HashMismatch	コピーが元のファイルと一致しません（検証に失敗）。
+Error_DeleteFailed	正しくコピーされましたが、元のファイルを削除できませんでした。
+Report_State	状態
+Report_File	ファイル
+Report_Source	コピー元
+Report_Destination	コピー先
+Report_Size	サイズ
+Report_SourceHash	コピー元のハッシュ
+Report_TargetHash	コピー先のハッシュ
+Report_Message	メッセージ
+Report_Copied	コピー済み
+Report_Verified	検証済み
+Report_Skipped	スキップ
+Report_Failed	エラー
+Job_SkippedOne	1 個スキップ
+Rules_Filters.Text	フィルター
+Rules_Include.Header	これだけ含める（; 区切りのマスク）
+Rules_Include.PlaceholderText	*.jpg; *.png; 写真\*
+Rules_Exclude.Header	除外
+Rules_Exclude.PlaceholderText	node_modules; *.tmp; Thumbs.db
+Rules_MinSize.Header	最小サイズ (MB)
+Rules_MaxSize.Header	最大サイズ (MB)
+Rules_After.Header	この日以降に変更
+Rules_Before.Header	この日以前に変更
+Rules_SkipHidden.Content	隠しファイルをスキップ
+Rules_SkipSystem.Content	システムファイルをスキップ
+Rules_Rules.Text	ルール
+Rules_Links.Header	シンボリックリンクとジャンクション
+Rules_LinksCopy.Content	リンクとしてコピー
+Rules_LinksFollow.Content	リンク先の内容をコピー
+Rules_LinksSkip.Content	スキップ
+Rules_Pattern.Header	両方残すときの名前 ({name}, {n}, {ext}, {date})
+Rules_PatternPreview	例: {0}
+Rules_Retries.Header	再試行回数
+Rules_Delay.Header	再試行の間隔（秒）
+Rules_OnError.Header	ファイルが失敗し続ける場合
+Rules_OnErrorSkip.Content	記録して次へ進む
+Rules_OnErrorStop.Content	コピーを停止（再開できます）
+ConflictDifferentSize.Content	サイズが異なる場合は置き換える
+ConflictRenameExisting.Content	既存のファイルの名前を変更
+Conflict_RenameExisting.Text	既存のファイルの名前を変えてこれをコピー
+Schedule_Title.Text	開始時刻を予約
+Schedule_Set.Text	予約
+Schedule_Now.Text	今すぐ開始
+Schedule_InThePast	未来の時刻を選んでください。
+Job_StateScheduled	{0} に予約
+Settings_Favorites.Text	お気に入りのフォルダー
+Settings_FavoritesTitle.Text	お気に入りのコピー先
+Settings_FavoritesDescription.Text	「新規 > コピー先」とコピー先ダイアログに表示され、複数のフォルダーへ同時にコピーできます。
+Settings_FavoritesAdd.Text	フォルダーを追加
+Settings_FavoritesRemove	{0} を削除
+Settings_FavoritesEmpty	お気に入りはまだありません。
+Tool_CopyTo.Text	コピー先
+Tool_CopyToEmpty	お気に入りや最近使ったフォルダーはありません
+Tool_CopyToManage	お気に入りを管理…
+Tool_TestFiles.Text	チェックサムファイルを確認…
+Tool_TestFolder.Text	フォルダーのチェックサムを確認…
+Tool_Delete.Text	削除…
+Tool_Wipe.Text	完全に削除…
+DestinationsDialog.Title	どこにコピーしますか？
+DestinationsDialog.PrimaryButtonText	開始
+DestinationsDialog.CloseButtonText	キャンセル
+Destinations_SummaryOne	「{0}」のコピー先を 1 つ以上選んでください。
+Destinations_SummaryMany	{0} 個の項目のコピー先を 1 つ以上選んでください。
+Destinations_Add.Text	フォルダーを追加…
+Destinations_Move.Content	コピーではなく移動
+Destinations_Schedule.Content	後で開始
+DeleteDialog.Title	削除
+DeleteDialog.PrimaryButtonText	削除
+DeleteDialog.CloseButtonText	キャンセル
+Delete_ConfirmOne	「{0}」を削除しますか？ごみ箱には入りません。
+Delete_ConfirmMany	{0} 個の項目を削除しますか？ごみ箱には入りません。
+Delete_ConfirmSecureOne	「{0}」を完全に削除しますか？
+Delete_ConfirmSecureMany	{0} 個の項目を完全に削除しますか？
+Delete_SecureWarning.Title	復元できなくなります
+Delete_SecureWarning.Message	削除前に内容を上書きします。SSD ではディスク自体に残骸が残ることがあります。最高のセキュリティには BitLocker で暗号化してください。
+FinishHibernate.Text	休止状態
+FinishSignOut.Text	サインアウト
+FinishExit.Text	MegaCopier を閉じる
+Finish_LabelHibernate	完了後: 休止状態
+Finish_LabelSignOut	完了後: サインアウト
+Finish_LabelExit	完了後: MegaCopier を閉じる
+Notify_FinishSleep	スリープします…
+Notify_FinishHibernate	休止状態にします…
+Notify_FinishShutdown	1 分後に PC をシャットダウンします（キャンセル: shutdown /a）。
+Notify_FinishSignOut	サインアウトします…
+Notify_FinishExitApp	MegaCopier を閉じます。
+Files_SelectAll.Text	すべて選択
+Files_SelectSameExtension.Text	同じ拡張子を選択
+Files_SelectSameFolder.Text	同じフォルダーのものを選択
+Files_InvertSelection.Text	選択を反転
+Job_TitleTest	{0} を確認
+Job_TitleTesting	{0} を確認中
+Job_TitleTested	{0} を確認しました
+Job_TitleDelete	{0} を削除
+Job_TitleDeleting	{0} を削除中
+Job_TitleDeleted	{0} を削除しました
+Job_StateTesting	確認中
+Job_StateDeleting	削除中
+Job_FilesTestedOne	{0} 個のファイルは正常
+Job_FilesTestedMany	{0} 個のファイルは正常
+Job_FilesDeletedOne	{0} 個のファイルを削除しました
+Job_FilesDeletedMany	{0} 個のファイルを削除しました
+Job_TitleScheduled	予約済み: {0}
+Error_ChecksumMismatch	内容が保存されたチェックサムと一致しません: ファイルが変更されたか破損しています。
+Job_FilteredOut	このコピーのフィルターを通過したファイルはありません
+Rules_After.PlaceholderText	任意の日付
+Rules_Before.PlaceholderText	任意の日付
+Drop_MoveTo	{0} 番目へ移動
+Drop_InsertAt	{0} 番目に追加
+Drop_AddToJob	このコピーに追加
+Drop_AddToNamedJob	{0} に追加
+Drop_JobOrder	キューの {0} 番目に置く
+Settings_Sounds.Text	サウンド
+Settings_SoundsTitle.Text	サウンド通知
+Settings_SoundsDescription.Text	場面ごとにサウンドを選びます: Windows のサウンド、PC 上の任意のファイル、またはなし。
+Settings_Volume.Header	音量
+Settings_SoundsQuiet.Content	全画面のゲームやプレゼン中、および「応答不可」のときは鳴らさない
+Sound_Done	コピーが正常に完了
+Sound_Errors	コピーがエラーありで完了
+Sound_AllDone	すべてのコピーが完了
+Sound_Attention	判断が必要（ファイルが既に存在）
+Sound_Test	試聴
+Sound_None	サウンドなし
+Sound_Default	Windows の既定
+Sound_Choose	ファイルを選択…
+File_Planned	シミュレート済み
+File_Deleted	削除済み
+File_RemovedExtra	コピー先から削除: コピー元にもうありません
+Plan_Copy	コピーされます
+Plan_Replace	コピー先のファイルを置き換えます
+Plan_ReplaceNewer	コピー先のファイルを置き換えます: 元のほうが新しい
+Plan_ReplaceSize	コピー先のファイルを置き換えます: サイズが異なる
+Plan_KeepBoth	既に存在: 別の名前でコピーします
+Plan_RenameExisting	既に存在: コピー先のファイル名を変えてこれをコピーします
+Plan_Ask	既に存在: どうするか確認します
+Plan_SkipIdentical	スキップ: コピー先に同じファイルがあります
+Plan_SkipExists	スキップ: 既に存在します
+Plan_SkipOlder	スキップ: コピー先が同じか新しい
+Plan_SkipSameSize	スキップ: サイズが同じ
+Plan_SkipNotInDestination	スキップ: コピー先にない（更新のみ）
+Plan_SkipSamePath	スキップ: コピー元とコピー先が同じ
+Plan_Delete	コピー先から削除: コピー元にもうありません
+Plan_Fail	失敗します: コピー先が既に存在します
+Plan_None	シミュレート済み
+Skip_SkipIdentical	コピー先に同じファイルがあります
+Skip_SkipExists	既に存在: スキップしました
+Skip_SkipOlder	コピー先のファイルが同じか新しい
+Skip_SkipSameSize	コピー先のファイルとサイズが同じ
+Skip_SkipNotInDestination	コピー先にない（既存のファイルのみ更新）
+Skip_SkipSamePath	コピー元とコピー先が同じファイル
+Skip_SkipByUser	あなたがスキップしました
+Job_TitleSync	{0} を同期
+Job_TitleSyncing	{0} を同期中
+Job_TitleSynced	{0} を同期しました
+Job_StateSyncing	同期中
+Job_FilesSyncedOne	{0} 個のファイルを更新しました
+Job_FilesSyncedMany	{0} 個のファイルを更新しました
+Job_TitleSimulate	{0} をシミュレート
+Job_TitleSimulating	{0} をシミュレート中
+Job_TitleSimulated	シミュレーション: {0}
+Job_StateSimulating	シミュレート中
+Job_FilesSimulatedOne	{0} 個のファイルがコピーされます
+Job_FilesSimulatedMany	{0} 個のファイルがコピーされます
+Job_WouldTransfer	合計 {0}
+Job_TitleHash	{0} のチェックサムを作成
+Job_TitleHashing	{0} のチェックサムを計算中
+Job_TitleHashed	{0} のチェックサム
+Job_StateHashing	チェックサムを計算中
+Job_FilesHashedOne	チェックサムリストに {0} 個のファイル
+Job_FilesHashedMany	チェックサムリストに {0} 個のファイル
+Job_StateWaitingDevice	ディスクまたはネットワークの復帰を待っています…
+Job_StateWaitingSpace	コピー先の空き容量を待っています…
+Job_RemovedOne	コピー先から 1 個削除
+Job_Removed	コピー先から {0} 個削除
+Job_WouldRemove	コピー先から {0} 個削除されます
+Panel_RunForReal.Text	本番実行
+Options_Mode.Header	モード
+Mode_Copy.Content	コピー
+Mode_Mirror.Content	同期（ミラー）
+Mode_Update.Content	既存のファイルのみ更新
+Mode_Folders.Content	フォルダー構造のみ
+Options_MirrorInfo.Title	同期すると、コピー元にもうないものはコピー先から削除されます
+Options_MirrorInfo.Message	フィルターで除外したものは変更されません。削除・置換されたファイルを残すにはバージョン用フォルダーを設定してください。
+Options_DryRun.Content	シミュレーション: 何が起きるかを表示するだけで変更しない
+Destinations_DryRun.Content	先にシミュレート（何も変更しない）
+Tool_HashFolder.Text	フォルダーのチェックサムファイルを作成…
+Tool_HashFiles.Text	ファイルのチェックサムファイルを作成…
+Rules_SkipJunk.Content	不要ファイルをスキップ (Thumbs.db, desktop.ini, .DS_Store, ~$…)
+Rules_OnErrorEnd.Content	キューの最後で再試行
+Rules_Safety.Text	同期と安全
+Rules_FolderConflict.Header	コピー先に既にフォルダーがある場合
+Rules_FolderMerge.Content	内容を結合
+Rules_FolderSkip.Content	まるごとスキップ
+Rules_Versions.Header	置換・削除されたファイルをフォルダーに保存
+Rules_Versions.PlaceholderText	空欄: 保存しない（例: .versions）
+Rules_Tolerance.Header	「同じ」とみなす日付の誤差（秒）
+Rules_VerifySource.Content	完了時に元のファイルを読み直す
+Rules_HashStream.Content	各ファイル内にハッシュを保存
+Rules_HardLinks.Content	ハードリンクを保持
+Rules_Wipe.Content	移動時に元を完全に削除
+Rules_WaitDevice.Content	ディスクやネットワークが切れたら待つ
+Rules_WaitSpace.Content	空き容量がなければ待つ
+Rules_VerifySource.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	元のファイルのハッシュを再計算します: コピー中に変更されたか、コピー元のディスクが誤って読んだかを検出します。
+Rules_HashStream.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	ファイル自体の隠しストリームに保存します (NTFS)。後で「フォルダーのチェックサムを確認」すると、チェックサムファイルがなくても破損を検出できます。
+Rules_HardLinks.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	複数の名前が同じファイルなら、コピー先でもそうなります（容量を二重に使いません）。
+Rules_Tolerance.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	FAT32 と exFAT は時刻を 2 秒単位で記録します: この誤差があれば同じファイルを再コピーしません。
+Rules_Versions.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	ファイルを置換・削除する前に、名前に日付を付けてコピー先のこのフォルダーへ移動します。
+Settings_UnitsTitle.Text	サイズの単位
+Settings_UnitsDescription.Text	サイズと速度の表示方法。
+Units_Classic.Content	KB、MB、GB（エクスプローラーと同じ）
+Units_Iec.Content	KiB、MiB、GiB（2 進）
+Units_Decimal.Content	1000 単位の kB、MB、GB（メーカーと同じ）
+Settings_SlowTitle.Text	PC 使用中は速度を落とす
+Settings_SlowDescription.Text	キーボードやマウスを使っている間はこの速度を超えません。PC から離れると元の速度に戻ります。
+Slow_Off.Content	いいえ
+Settings_LogsTitle.Text	コピーごとにログを保存
+Settings_LogsDescription.Text	コピーごとにログフォルダーにファイルを作成します。30 日後に自動で削除されます。
+Settings_LogsOpen.Text	フォルダーを開く
+Settings_WebhookTitle.Text	完了時に通知する URL
+Settings_WebhookDescription.Text	スマートフォンやチャットで通知を受け取れます: Discord、Slack、Teams、ntfy.sh、Home Assistant… JSON 付きの POST を送信します。
+Settings_WebhookBox.PlaceholderText	https://ntfy.sh/my-secret-topic
+Settings_WebhookTest.Text	テスト
+Settings_WebhookSending	送信中…
+Settings_WebhookOk	通知を送信しました。
+Settings_WebhookFailed	送信できませんでした: URL と接続を確認してください。
+Settings_WebhookTestMessage	✔ MegaCopier: テスト通知
+FinishDialog.Title	すべてのコピーが完了しました
+FinishDialog.PrimaryButtonText	今すぐ実行
+FinishDialog.CloseButtonText	キャンセル
+Finish_CountdownSleep	{0} 秒後に PC をスリープします。
+Finish_CountdownHibernate	{0} 秒後に PC を休止状態にします。
+Finish_CountdownShutdown	{0} 秒後に PC をシャットダウンします。
+Finish_CountdownSignOut	{0} 秒後にサインアウトします。
+Finish_CountdownExitApp	{0} 秒後に MegaCopier を閉じます。
+Job_SlowedDown	PC 使用中のため速度を落としています
+History_Undone	取り消し済み
+History_Undo.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	元に戻す: 移動したものを戻すか、コピーしたものをごみ箱へ
+History_CopyBack.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	元のフォルダーにコピーし直す（復元）
+History_UndoDialog.Title	このコピーを元に戻しますか？
+History_UndoDialog.PrimaryButtonText	元に戻す
+History_UndoDialog.CloseButtonText	キャンセル
+History_UndoMoveConfirm	移動したものはすべて「{0}」から元のフォルダーへ戻ります。
+History_UndoCopyConfirm	コピーした {0} 個のファイルはごみ箱へ移されます（復元可能）。後から変更されたファイルや、他のファイルを置き換えたファイルはそのままです。
+History_UndoDone	{0} 個のファイルをごみ箱へ移しました。
+History_UndoKept	後から変更された {0} 個と、他のファイルを置き換えた {1} 個はそのままにしました。
+History_UndoTitleBar.Title	コピーを元に戻しました
+History_Undo.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	元に戻す: 移動したものを戻すか、コピーしたものをごみ箱へ
+History_CopyBack.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	元のフォルダーにコピーし直す（復元）
+History_Open.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	コピー先を開く
+History_Repeat.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	もう一度（新規または変更分のみコピー）
+Task_Header.Text	またはタスクとして保存し、上で選んだ時刻に Windows が自動で繰り返します:
+Task_Name.PlaceholderText	タスク名
+Task_Once.Content	1 回
+Task_Daily.Content	毎日
+Task_Weekly.Content	毎週
+Task_Save.Text	タスクとして保存
+Task_SavedOnce	タスク「{0}」を保存しました: {2} {1} に実行します。
+Task_SavedDaily	タスク「{0}」を保存しました: 毎日 {1} に実行します。
+Task_SavedWeekly	タスク「{0}」を保存しました: 毎週 {2} と同じ曜日の {1} に実行します。
+Task_Failed	予約できませんでした: {0}
+Settings_Tasks.Text	スケジュールされたタスク
+Settings_TasksTitle.Text	自動で繰り返すコピー
+Settings_TasksDescription.Text	コピーの「オプション」タブで作成します（「タスクとして保存」）。MegaCopier を閉じていても Windows タスク スケジューラが実行します。
+Settings_TasksEmpty	タスクはまだありません。
+Settings_TaskRun	「{0}」を今すぐ実行
+Settings_TaskDelete	タスク「{0}」を削除
+About_Portable	ポータブル版（データは {0}）
+Job_Estimate	{0}、約 {1}
+Job_EstimateSize	合計 {0}
+Settings_SmbCompression.Content	ネットワーク経由で圧縮 (SMB)
+Settings_SmbCompression.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	転送中にデータを圧縮するようサーバーに要求します（Windows 11 と Windows Server 2022 以降）。コピー元とコピー先が同じサーバーなら、コピーは常にサーバー自身が行い、この PC を経由しません。
+Error_TooLargeForFileSystem	このディスクには入りません: FAT32 では 4 GB 以上のファイルを扱えません。exFAT または NTFS でフォーマットしてください。
+Rules_AllOrNothing.Content	「全部か無か」のフォルダー
+Rules_AllOrNothing.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	新しいフォルダーはそれぞれ隠した状態でコピーされ、すべて成功したときにだけその名前で現れます: 完成したように見えて半分しかコピーされていないフォルダーは残りません。
+Rules_Rescue.Content	破損ディスクの救出モード
+Rules_Rescue.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	コピー元に不良セクターがある場合、セクターごとに読んで読めるものをすべて救出します。読めない部分はゼロで埋めてログに記録します。移動時でも元のファイルは削除しません。
+Error_PartlyUnreadable	一部救出: コピー元の一部のセクターが壊れていてゼロで埋めました（ログを参照）。
+Settings_Guard.Text	整合性ガード
+Settings_GuardTitle.Text	ファイルの経年劣化から守る
+Settings_GuardDescription.Text	各ファイルが自身のハッシュを内部に保存します。PC がアイドル状態のとき MegaCopier が確認し、誰も編集していないのにファイルが変わった（ディスクで破損した）場合に知らせます。編集した内容は自動で更新されます。NTFS が必要です。
+Guard_Daily.Content	毎日
+Guard_Weekly.Content	毎週
+Guard_Monthly.Content	毎月
+Settings_GuardAdd.Text	フォルダーを保護…
+Settings_GuardEmpty	まだ保護しているフォルダーはありません。
+Settings_GuardCheck	「{0}」を今すぐ確認
+Settings_GuardRemove	「{0}」の保護をやめる
+Guard_NotYet	最初の確認を待っています
+Guard_LastOk	{0} に確認: すべて正常
+Guard_LastDamaged	{0} に確認: {1} 個のファイルが破損（履歴を参照）
+Guard_DamagedTitle	整合性ガード
+Guard_DamagedOne	「{0}」のファイル 1 個がディスク上で破損しています。
+Guard_DamagedMany	「{1}」のファイル {0} 個がディスク上で破損しています。
+Guard_LastDamagedOne	{0} に確認: 1 個のファイルが破損（履歴を参照）
+Settings_ScheduleLimitTitle.Text	時間帯による速度制限
+Settings_ScheduleLimitDescription.Text	例えば勤務時間中: 選んだ時間帯はコピーがこの速度を超えません。
+Settings_ScheduleFrom.Text	開始
+Settings_ScheduleTo.Text	終了
+Settings_PauseBatteryTitle.Text	バッテリー駆動時は一時停止
+Settings_PauseBatteryDescription.Text	ノート PC が電源に接続されていないとコピーは待機し、接続すると自動で再開します。
+Settings_PauseFullTitle.Text	ゲームやプレゼン中は一時停止
+Settings_PauseFullDescription.Text	全画面のゲームやプレゼンがある間、邪魔をしないようコピーは待機します。
+Comfort_PausedTitle	コピーを一時停止しました
+Comfort_PausedBattery	PC がバッテリーで動作しています: 電源に接続するとコピーを再開します。
+Comfort_PausedFullScreen	全画面のゲームまたはプレゼンが実行中です: 終了するとコピーを再開します。
+Job_StatePausedBattery	一時停止: バッテリー駆動
+Job_StatePausedFullScreen	一時停止: 全画面
+Job_SlowedSchedule	選んだ時間帯のため速度を落としています
+Rules_Delta.Content	大きなファイルを置き換えるときは変更部分だけ書き込む
+Rules_Delta.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	16 MB 以上のファイル（仮想ディスク、メール、プロジェクト）を差分コピーします: 異なるブロックだけを書き込みます。キャンセルや停電の場合は以前のバージョンに戻ります。
+Panel_CopyLocked.Text	使用中のファイルをコピー
+Locked_Title	使用中のファイル
+Locked_Cancelled	管理者の許可が得られなかったため、使用中のファイルはコピーされませんでした。
+Locked_Done	ディスクのスナップショットから使用中のファイルを {0} 個コピーしました。
+Locked_Partial	スナップショットから {0} 個コピーしました。残りはコピーできませんでした: {1}
+Settings_Peer.Text	他の PC から受信
+Settings_PeerTitle.Text	MegaCopier を使っている他の PC からファイルを受け取る
+Settings_PeerDescription.Text	家庭やオフィスのネットワーク経由で、共有フォルダーは不要です。送信側には下のコードが必要です。接続は暗号化され、各ファイルは届いたときに検証されます。初回は Windows がファイアウォールの許可を求めることがあります。
+Settings_PeerCode.Text	あなたにファイルを送るためのコード:
+Settings_PeerNewCode.Text	新しいコード
+Settings_PeerFolder.Text	フォルダーを変更…
+Settings_PeerFolderIs	{0} に保存します
+Settings_PeerListening	「{0}」で受信待機中（ポート {1}）。
+Settings_PeerError	受信を開始できませんでした: {0}
+Peer_ReceivingTitle	ファイルを受信中
+Peer_Receiving	{0} が {1} 個のファイル ({2}) を送っています。
+Peer_ReceivedTitle	ファイルを受信しました
+Peer_Received	{1} から {0} 個のファイルを {2} に保存しました。
+Peer_RejectedTitle	送信を拒否しました
+Peer_Rejected	{0} が間違ったコードでファイルを送ろうとしました。
+Tool_SendFiles.Text	ファイルを他の PC に送る…
+Tool_SendFolder.Text	フォルダーを他の PC に送る…
+SendDialog.Title	他の PC に送る
+SendDialog.PrimaryButtonText	送信
+SendDialog.CloseButtonText	キャンセル
+Send_SummaryOne	「{0}」を MegaCopier で受信中の他の PC に送ります。
+Send_SummaryMany	{0} 個の項目を MegaCopier で受信中の他の PC に送ります。
+Send_Found.Text	ネットワーク上で見つかった PC:
+Send_Searching	検索中…
+Send_NoneFound	見つかりません: 名前か IP を入力してください。
+Send_Host.Header	PC（名前または IP）
+Send_Host.PlaceholderText	リビングのPC または 192.168.1.20
+Send_Code.Header	その PC の「設定」に表示されているコード
+Send_Code.PlaceholderText	XXXX-XXXX-XXXX
+Job_TitleSend	{0} を送信
+Job_TitleSending	{0} を送信中
+Job_TitleSent	{0} を送信しました
+Job_StateSending	送信中
+Job_FilesSentOne	{0} 個のファイルを送信しました
+Job_FilesSentMany	{0} 個のファイルを送信しました
+Rules_Describe.Header	自分の言葉で説明（英語またはスペイン語）
+Rules_Describe.PlaceholderText	photos larger than 2 MB from last month except .tmp
+Rules_DescribeApply.Text	適用
+Rules_DescribeUnderstood	理解しました: {0}。
+Rules_DescribeNothing	フィルターする内容を理解できませんでした。
+Rules_DescribeUnknown	理解できません: {0}。
+Mode_Organize.Content	写真を日付で整理
+Rules_Duplicates.Content	コピー先に既にあるもの（重複）はコピーしない
+Rules_Duplicates.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	名前ではなく内容を比較します: コピー先のどこかのフォルダーに既にある写真は、名前が違っても再びコピーしません。
+Skip_SkipDuplicate	コピー先に別の名前やフォルダーで既にあります
+Plan_SkipDuplicate	スキップ: コピー先に既にあります（重複）
+Destinations_Encrypt.Content	パスワードで暗号化（紛失する可能性のある USB やディスク用）
+Destinations_Password.Header	パスワード
+Destinations_Password2.Header	もう一度入力
+Destinations_PasswordHint	AES-256 で暗号化します。パスワードを忘れるとファイルは復元できません。読み取るには: 「新規」メニュー > 「復号」。
+Destinations_PasswordShort	パスワードは 8 文字以上必要です。
+Destinations_PasswordMismatch	2 つのパスワードが一致しません。
+PasswordDialog.Title	パスワード
+PasswordDialog.PrimaryButtonText	OK
+PasswordDialog.CloseButtonText	キャンセル
+Tool_Decrypt.Text	暗号化されたファイルを復号…
+Picker_DecryptHere	ここに復号
+Decrypt_Ask	「{0}」の暗号化ファイルのパスワード:
+Resume_PasswordAsk	このコピーは暗号化されていて、パスワードは保存されていません: 続けるには入力してください。
+Job_TitleEncrypt	{0} を暗号化
+Job_TitleEncrypting	{0} を暗号化中
+Job_TitleEncrypted	{0} を暗号化しました
+Job_StateEncrypting	暗号化中
+Job_FilesEncryptedOne	{0} 個のファイルを暗号化しました
+Job_FilesEncryptedMany	{0} 個のファイルを暗号化しました
+Job_TitleDecrypt	{0} を復号
+Job_TitleDecrypting	{0} を復号中
+Job_TitleDecrypted	{0} を復号しました
+Job_StateDecrypting	復号中
+Job_FilesDecryptedOne	{0} 個のファイルを復号しました
+Job_FilesDecryptedMany	{0} 個のファイルを復号しました
+Settings_DisksTitle.Text	ディスクの状態
+Settings_DisksDescription.Text	Windows が報告する各ディスクの状態 (SMART)。故障の予兆があるディスクとの間でコピーするとき、MegaCopier が知らせます。
+Settings_DisksCheck.Text	今すぐ確認
+Disk_Row	ディスク {0} · {1}: {2}
+Disk_Healthy	正常
+Disk_Unknown	状態不明
+Disk_HealthWarning	問題を報告
+Disk_Checking	ディスクを確認中…
+Disk_WarningTitle	ディスクが故障を報告しています
+Disk_Warning	「{0}」（ディスク {1}）: {2}。重要なものは早めに別のディスクへコピーしてください。
+Settings_TuneTitle.Text	ディスクごとの自動調整
+Settings_TuneDescription.Text	各ディスクをいくつかのブロックサイズと並列数で測定し、そのディスクへのコピーで最速の組み合わせを使います（パフォーマンス設定を手動で変更した場合を除く）。
+Settings_TuneMeasure.Text	ディスクを測定
+Settings_TuneNone	まだ測定したディスクはありません。
+Settings_TuneDisk	ディスク
+Settings_TuneProfile	{0}: {1} MB ブロック、同時 {2} ({3:N0} MB/s)
+Settings_TuneMeasuring	{0} を測定中（{1} / {2}）…
+Tool_Timeline.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	キューのタイムライン
+Timeline_Title.Text	タイムライン
+Timeline_Info.Text	各ディスクの速度から予測します。同じディスクを使うコピーは 1 つずつ行われます。
+Timeline_Empty.Text	実行中や待機中のコピーはありません。
+Timeline_Summary	すべて {0} 頃に完了する見込み（{1} 後）。
+Timeline_Now	現在
+Timeline_Tomorrow	明日 {0}
+Timeline_Running	実行中 · 終了予定: {0}（残り {1}）
+Timeline_Paused	一時停止中 · 今再開した場合の終了予定: {0}
+Timeline_Queued	待機中 · 開始: {0} · 終了予定: {1}（所要 {2}）
+Timeline_Scheduled	予約済み · 開始: {0} · 終了予定: {1}（所要 {2}）
+Timeline_Measuring	サイズを測定中
+Tool_Shelf.Text	ドロップシェルフ
+Tray_Shelf	ドロップシェルフ
+Shelf_WindowTitle	MegaCopier ドロップシェルフ
+Shelf_Title.Text	シェルフ
+Shelf_Empty.Text	どこからでもファイルやフォルダーをここにドラッグします。まとめてコピーや移動をしたり、再びドラッグして取り出したりできます。
+Shelf_DropCaption	シェルフに追加
+Shelf_CopyTo.Text	コピー先…
+Shelf_MoveTo.Text	移動先…
+Shelf_Clear.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	シェルフを空にする
+Shelf_Remove.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	シェルフから削除
+Shelf_One	1 個の項目
+Shelf_Many	{0} 個の項目
+Shelf_RemoveNamed	「{0}」をシェルフから削除
+Destinations_NoneChosen.Text	コピー先を 1 つ以上チェックしてください（またはフォルダーを追加）。
+Finish_ShutdownMessage	MegaCopier がコピーを完了しました。1 分後に PC をシャットダウンします。
+Hash_Name	ハッシュ: {0}

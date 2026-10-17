@@ -1,0 +1,12 @@
+clave	texto
+S_CopyHere	MegaCopier でここにコピー
+S_MoveHere	MegaCopier でここに移動
+S_Paste	MegaCopier で貼り付け
+S_PasteIntoFolder	MegaCopier でこのフォルダーに貼り付け
+S_MoveIntoFolder	MegaCopier でこのフォルダーに移動
+S_TestChecksums	チェックサムを確認
+S_CreateChecksums	チェックサムファイルを作成
+S_SecureDelete	完全に削除…
+S_HelpText	MegaCopier でコピー: 停電後も再開できます
+S_DeliverFailed	コピーを MegaCopier に渡せませんでした。
+S_OpenFailed	MegaCopier を開けませんでした。

@@ -1,0 +1,803 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generado por tools/Strings/gen.cs: no editar a mano. -->
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="JobsSection.Text" xml:space="preserve"><value>Kopyalamalar</value></data>
+  <data name="SettingsSection.Text" xml:space="preserve"><value>Ayarlar</value></data>
+  <data name="FinishButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Tüm kopyalamalar bitince ne yapılsın</value></data>
+  <data name="FinishNothing.Text" xml:space="preserve"><value>Hiçbir şey yapma</value></data>
+  <data name="FinishSleep.Text" xml:space="preserve"><value>Uyku moduna al</value></data>
+  <data name="FinishShutdown.Text" xml:space="preserve"><value>Bilgisayarı kapat</value></data>
+  <data name="NewCopyText.Text" xml:space="preserve"><value>Yeni kopyalama</value></data>
+  <data name="CopyFilesItem.Text" xml:space="preserve"><value>Dosyaları kopyala…</value></data>
+  <data name="CopyFolderItem.Text" xml:space="preserve"><value>Bir klasörü kopyala…</value></data>
+  <data name="EmptyTitle.Text" xml:space="preserve"><value>Kopyalama yok</value></data>
+  <data name="EmptyDescription.Text" xml:space="preserve"><value>Başlattığınız kopyalamalar burada görünür. Elektrik kesilirse, kaldıkları yerden devam ettirebilirsiniz.</value></data>
+  <data name="PauseButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Duraklat</value></data>
+  <data name="StopButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Durdur (sonra devam ettirilebilir)</value></data>
+  <data name="OpenFolderButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Hedef klasörü aç</value></data>
+  <data name="ClearButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Listeden kaldır</value></data>
+  <data name="DiscardButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Vazgeç ve yarım kopyayı sil</value></data>
+  <data name="ConflictDialog.Title" xml:space="preserve"><value>Dosya zaten var</value></data>
+  <data name="ConflictDialog.PrimaryButtonText" xml:space="preserve"><value>Değiştir</value></data>
+  <data name="ConflictDialog.SecondaryButtonText" xml:space="preserve"><value>İkisini de tut</value></data>
+  <data name="ConflictDialog.CloseButtonText" xml:space="preserve"><value>Atla</value></data>
+  <data name="ConflictExistingTitle.Text" xml:space="preserve"><value>Mevcut olan</value></data>
+  <data name="ConflictApplyAll.Content" xml:space="preserve"><value>Bu kopyalamadaki diğer çakışmalarda da aynısını yap</value></data>
+  <data name="RestartInfo.Title" xml:space="preserve"><value>Değişikliği uygulamak için MegaCopier&apos;ı yeniden başlatın</value></data>
+  <data name="RestartInfo.Message" xml:space="preserve"><value>Süren kopyalamalar durur ve ardından devam ettirebilirsiniz.</value></data>
+  <data name="RestartButton.Content" xml:space="preserve"><value>Şimdi yeniden başlat</value></data>
+  <data name="AppearanceHeader.Text" xml:space="preserve"><value>Görünüm</value></data>
+  <data name="ThemeTitle.Text" xml:space="preserve"><value>Tema</value></data>
+  <data name="ThemeDescription.Text" xml:space="preserve"><value>Açık, koyu veya Windows ile aynı</value></data>
+  <data name="ThemeSystem.Content" xml:space="preserve"><value>Windows ile aynı</value></data>
+  <data name="ThemeLight.Content" xml:space="preserve"><value>Açık</value></data>
+  <data name="ThemeDark.Content" xml:space="preserve"><value>Koyu</value></data>
+  <data name="AccentTitle.Text" xml:space="preserve"><value>Vurgu rengi</value></data>
+  <data name="AccentDescription.Text" xml:space="preserve"><value>Düğmelerin, ilerleme çubuklarının ve öne çıkan öğelerin rengi</value></data>
+  <data name="BackdropTitle.Text" xml:space="preserve"><value>Pencere arka planı</value></data>
+  <data name="BackdropDescription.Text" xml:space="preserve"><value>Windows 11 malzemeleri masaüstünün arkadan görünmesini sağlar</value></data>
+  <data name="BackdropMica.Content" xml:space="preserve"><value>Mica</value></data>
+  <data name="BackdropMicaAlt.Content" xml:space="preserve"><value>Mica Alt (daha renkli)</value></data>
+  <data name="BackdropAcrylic.Content" xml:space="preserve"><value>Akrilik</value></data>
+  <data name="BackdropSolid.Content" xml:space="preserve"><value>Düz</value></data>
+  <data name="LanguageTitle.Text" xml:space="preserve"><value>Dil</value></data>
+  <data name="LanguageDescription.Text" xml:space="preserve"><value>MegaCopier&apos;ın ve Dosya Gezgini&apos;ndeki seçeneklerinin dili</value></data>
+  <data name="LanguageAuto.Content" xml:space="preserve"><value>Windows ile aynı</value></data>
+  <data name="OnTopTitle.Text" xml:space="preserve"><value>Her zaman üstte</value></data>
+  <data name="OnTopDescription.Text" xml:space="preserve"><value>Kopyalarken pencere diğerlerinin üstünde kalır</value></data>
+  <data name="CopyHeader.Text" xml:space="preserve"><value>Kopyalama</value></data>
+  <data name="VerifyTitle.Text" xml:space="preserve"><value>Kopyaladıktan sonra doğrula</value></data>
+  <data name="VerifyDescription.Text" xml:space="preserve"><value>Hedefi önbelleksiz yeniden okur ve kaynakla eşleşmeyen her bloğu onarır</value></data>
+  <data name="ConflictTitle.Text" xml:space="preserve"><value>Dosya zaten varsa</value></data>
+  <data name="ConflictDescription.Text" xml:space="preserve"><value>Aynı dosyalar (aynı boyut ve tarih) her zaman atlanır</value></data>
+  <data name="ConflictAsk.Content" xml:space="preserve"><value>Sor</value></data>
+  <data name="ConflictReplace.Content" xml:space="preserve"><value>Değiştir</value></data>
+  <data name="ConflictSkip.Content" xml:space="preserve"><value>Atla</value></data>
+  <data name="ConflictNewer.Content" xml:space="preserve"><value>Daha yeniyse değiştir</value></data>
+  <data name="ConflictKeepBoth.Content" xml:space="preserve"><value>İkisini de tut</value></data>
+  <data name="SpeedTitle.Text" xml:space="preserve"><value>Hız sınırı</value></data>
+  <data name="SpeedDescription.Text" xml:space="preserve"><value>Disk veya ağ bant genişliğini diğer işlere bırakır (yeni kopyalamalara uygulanır)</value></data>
+  <data name="SpeedUnlimited.Content" xml:space="preserve"><value>Sınırsız</value></data>
+  <data name="AutoResumeTitle.Text" xml:space="preserve"><value>Kesilen kopyalamaları otomatik olarak sürdür</value></data>
+  <data name="AutoResumeDescription.Text" xml:space="preserve"><value>Elektrik kesintisi veya yeniden başlatmadan sonra MegaCopier açılınca sormadan devam et</value></data>
+  <data name="ExplorerHeader.Text" xml:space="preserve"><value>Dosya Gezgini</value></data>
+  <data name="PasteTitle.Text" xml:space="preserve"><value>Yapıştırırken (Ctrl+V) MegaCopier ile kopyala ve taşı</value></data>
+  <data name="PasteDescription.Text" xml:space="preserve"><value>Dosya Gezgini&apos;nde veya masaüstünde kopyalanmış (Ctrl+C) ya da kesilmiş (Ctrl+X) dosyaları yapıştırdığınızda işi MegaCopier yapar. Aynı klasöre yapıştırmayı yine Dosya Gezgini yapar</value></data>
+  <data name="ShellMenuTitle.Text" xml:space="preserve"><value>Bağlam menüsü seçenekleri</value></data>
+  <data name="ShellMenuDescription.Text" xml:space="preserve"><value>Sağ tuşla sürüklerken &quot;MegaCopier ile yapıştır&quot; (Daha fazla seçenek göster altında) ve &quot;MegaCopier ile buraya kopyala / taşı&quot;</value></data>
+  <data name="SystemHeader.Text" xml:space="preserve"><value>Sistem</value></data>
+  <data name="StartupTitle.Text" xml:space="preserve"><value>Windows ile başlat</value></data>
+  <data name="StartupDescription.Text" xml:space="preserve"><value>Kopyalamaların anında başlaması için bildirim alanında kalır</value></data>
+  <data name="NotifyTitle.Text" xml:space="preserve"><value>Bitince bildir</value></data>
+  <data name="NotifyDescription.Text" xml:space="preserve"><value>Bir kopyalama bittiğinde ve pencere görünür değilken sistem bildirimi</value></data>
+  <data name="Accent_System" xml:space="preserve"><value>Windows ile aynı</value></data>
+  <data name="Accent_Blue" xml:space="preserve"><value>Mavi</value></data>
+  <data name="Accent_Violet" xml:space="preserve"><value>Mor</value></data>
+  <data name="Accent_Teal" xml:space="preserve"><value>Turkuaz</value></data>
+  <data name="Accent_Green" xml:space="preserve"><value>Yeşil</value></data>
+  <data name="Accent_Orange" xml:space="preserve"><value>Turuncu</value></data>
+  <data name="Accent_Pink" xml:space="preserve"><value>Pembe</value></data>
+  <data name="Accent_Red" xml:space="preserve"><value>Kırmızı</value></data>
+  <data name="About" xml:space="preserve"><value>MegaCopier {0} · elektrik kesintilerinden sağ çıkan kopyalamalar</value></data>
+  <data name="Picker_CopyHere" xml:space="preserve"><value>Buraya kopyala</value></data>
+  <data name="Finish_Label" xml:space="preserve"><value>Bitince</value></data>
+  <data name="Finish_LabelSleep" xml:space="preserve"><value>Bitince: uyku</value></data>
+  <data name="Finish_LabelShutdown" xml:space="preserve"><value>Bitince: kapat</value></data>
+  <data name="Conflict_Message" xml:space="preserve"><value>&quot;{1}&quot; içinde &quot;{0}&quot; adlı bir dosya zaten var.</value></data>
+  <data name="Conflict_SourceCopy" xml:space="preserve"><value>Kopyaladığınız</value></data>
+  <data name="Conflict_SourceMove" xml:space="preserve"><value>Taşıdığınız</value></data>
+  <data name="Conflict_Newer" xml:space="preserve"><value> · daha yeni</value></data>
+  <data name="Job_OneItem" xml:space="preserve"><value>&quot;{0}&quot;</value></data>
+  <data name="Job_ManyItems" xml:space="preserve"><value>{0} öğe</value></data>
+  <data name="Job_TitleCopying" xml:space="preserve"><value>{0} kopyalanıyor</value></data>
+  <data name="Job_TitleMoving" xml:space="preserve"><value>{0} taşınıyor</value></data>
+  <data name="Job_TitleCopied" xml:space="preserve"><value>{0} kopyalandı</value></data>
+  <data name="Job_TitleMoved" xml:space="preserve"><value>{0} taşındı</value></data>
+  <data name="Job_TitleQueued" xml:space="preserve"><value>Bekliyor: {0}</value></data>
+  <data name="Job_Destination" xml:space="preserve"><value>{0} konumuna</value></data>
+  <data name="Job_StateQueued" xml:space="preserve"><value>Sırada: disk meşgul</value></data>
+  <data name="Job_StateVerifying" xml:space="preserve"><value>Doğrulanıyor</value></data>
+  <data name="Job_StateValidating" xml:space="preserve"><value>Kopyalanmış kısım denetleniyor</value></data>
+  <data name="Job_StateWaiting" xml:space="preserve"><value>Kararınızı bekliyor: dosya zaten var</value></data>
+  <data name="Job_StateCopying" xml:space="preserve"><value>Kopyalanıyor</value></data>
+  <data name="Job_StateMoving" xml:space="preserve"><value>Taşınıyor</value></data>
+  <data name="Job_StatePaused" xml:space="preserve"><value>Duraklatıldı</value></data>
+  <data name="Job_StateCompleted" xml:space="preserve"><value>Tamamlandı</value></data>
+  <data name="Job_StateCompletedErrors" xml:space="preserve"><value>Hatalarla tamamlandı</value></data>
+  <data name="Job_StateFailed" xml:space="preserve"><value>Hata</value></data>
+  <data name="Job_StateInterrupted" xml:space="preserve"><value>Kesildi · kaldığı yerden sürdürülebilir</value></data>
+  <data name="Job_ResumeHint" xml:space="preserve"><value>Devam etmek için Sürdür&apos;e basın</value></data>
+  <data name="Job_Preparing" xml:space="preserve"><value>Hazırlanıyor…</value></data>
+  <data name="Job_Progress" xml:space="preserve"><value>{0} / {1}</value></data>
+  <data name="Job_Remaining" xml:space="preserve"><value>{0} kaldı</value></data>
+  <data name="Job_Files" xml:space="preserve"><value>{0} / {1} dosya</value></data>
+  <data name="Job_FilesCopiedOne" xml:space="preserve"><value>{0} dosya kopyalandı</value></data>
+  <data name="Job_FilesCopiedMany" xml:space="preserve"><value>{0} dosya kopyalandı</value></data>
+  <data name="Job_FilesMovedOne" xml:space="preserve"><value>{0} dosya taşındı</value></data>
+  <data name="Job_FilesMovedMany" xml:space="preserve"><value>{0} dosya taşındı</value></data>
+  <data name="Job_TransferredIn" xml:space="preserve"><value>{1} içinde {0}</value></data>
+  <data name="Job_Recovered" xml:space="preserve"><value>{0} kurtarıldı</value></data>
+  <data name="Job_Skipped" xml:space="preserve"><value>{0} atlandı</value></data>
+  <data name="Job_Verified" xml:space="preserve"><value>doğrulandı</value></data>
+  <data name="Job_Repaired" xml:space="preserve"><value>({0} blok onarıldı)</value></data>
+  <data name="Job_FailedFiles" xml:space="preserve"><value>{0} dosyada hata</value></data>
+  <data name="Job_Resume" xml:space="preserve"><value>Sürdür</value></data>
+  <data name="Job_Retry" xml:space="preserve"><value>Yeniden dene</value></data>
+  <data name="Job_FailuresHeader" xml:space="preserve"><value>Sorunlu {0} dosyayı göster</value></data>
+  <data name="Job_FailuresMore" xml:space="preserve"><value>… ve {0} tane daha</value></data>
+  <data name="Tray_Open" xml:space="preserve"><value>MegaCopier&apos;ı aç</value></data>
+  <data name="Tray_PauseAll" xml:space="preserve"><value>Tümünü duraklat</value></data>
+  <data name="Tray_ResumeAll" xml:space="preserve"><value>Tümünü sürdür</value></data>
+  <data name="Tray_Startup" xml:space="preserve"><value>Windows ile başlat</value></data>
+  <data name="Tray_Exit" xml:space="preserve"><value>Çıkış</value></data>
+  <data name="Tray_OneJob" xml:space="preserve"><value>1 kopyalama</value></data>
+  <data name="Tray_ManyJobs" xml:space="preserve"><value>{0} kopyalama</value></data>
+  <data name="Notify_InterruptedTitle" xml:space="preserve"><value>Kesilmiş kopyalamalar var</value></data>
+  <data name="Notify_InterruptedOne" xml:space="preserve"><value>Bir kopyalama yarım kaldı. Kaldığı yerden sürdürmek için açın.</value></data>
+  <data name="Notify_InterruptedMany" xml:space="preserve"><value>{0} kopyalama yarım kaldı. Sürdürmek için açın.</value></data>
+  <data name="Notify_DoneTitle" xml:space="preserve"><value>Kopyalama bitti</value></data>
+  <data name="Notify_ProblemTitle" xml:space="preserve"><value>Kopyalamada sorunlar oldu</value></data>
+  <data name="Notify_AllDoneTitle" xml:space="preserve"><value>Kopyalamalar bitti</value></data>
+  <data name="Error_NeedsPaths" xml:space="preserve"><value>Bir kopyalama isteği kaynak ve hedef gerektirir.</value></data>
+  <data name="Tray_Disable" xml:space="preserve"><value>Devre dışı bırak (Windows kopyalamasını kullan)</value></data>
+  <data name="Tray_Enable" xml:space="preserve"><value>MegaCopier&apos;ı etkinleştir</value></data>
+  <data name="Tray_TooltipDisabled" xml:space="preserve"><value>MegaCopier · devre dışı (Windows kopyalıyor)</value></data>
+  <data name="Notify_DisabledTitle" xml:space="preserve"><value>MegaCopier devre dışı</value></data>
+  <data name="Notify_DisabledBody" xml:space="preserve"><value>Kopyalamaları Windows yapacak. Yeniden etkinleştirmek için simgeye çift tıklayın.</value></data>
+  <data name="Notify_EnabledTitle" xml:space="preserve"><value>MegaCopier etkin</value></data>
+  <data name="Notify_EnabledBody" xml:space="preserve"><value>Dosya Gezgini&apos;ndeki kopyalama ve taşımaları MegaCopier yapacak.</value></data>
+  <data name="AboutDialog.Title" xml:space="preserve"><value>MegaCopier hakkında</value></data>
+  <data name="AboutDialog.CloseButtonText" xml:space="preserve"><value>Kapat</value></data>
+  <data name="About_DataFolder.Content" xml:space="preserve"><value>Veri klasörünü aç (ayarlar, temalar, geçmiş, raporlar)</value></data>
+  <data name="About_Description.Text" xml:space="preserve"><value>Elektrik kesintisinden sonra tek bir dev dosyayı bile, kopyalanmış kısmı doğrulayarak sürdüren Windows 11 dosya kopyalayıcısı.</value></data>
+  <data name="About_Features.Text" xml:space="preserve"><value>Önbelleksiz eşzamansız G/Ç · paralel okuma ve yazma · karma ile doğrulama (CRC32, xxHash, MD5, SHA) · disk başına sıra · duraklatma ve sürdürme · taşıma · çakışmalar · hız sınırı · kopyalama listeleri · raporlar · temalar.</value></data>
+  <data name="CopyFiles.Text" xml:space="preserve"><value>Dosyaları kopyala…</value></data>
+  <data name="CopyFolder.Text" xml:space="preserve"><value>Bir klasörü kopyala…</value></data>
+  <data name="CopyFilesText.Text" xml:space="preserve"><value>Dosyaları kopyala</value></data>
+  <data name="CopyFolderText.Text" xml:space="preserve"><value>Klasörü kopyala</value></data>
+  <data name="Files_AddFiles.Text" xml:space="preserve"><value>Dosya ekle…</value></data>
+  <data name="Files_AddFolder.Text" xml:space="preserve"><value>Klasör ekle…</value></data>
+  <data name="Files_AutoScroll.Content" xml:space="preserve"><value>Geçerli dosyayı izle</value></data>
+  <data name="Files_CopyHashes.Text" xml:space="preserve"><value>Karmaları kopyala</value></data>
+  <data name="Files_CopyPath.Text" xml:space="preserve"><value>Yolu kopyala</value></data>
+  <data name="Files_Empty.Text" xml:space="preserve"><value>Gösterilecek dosya yok</value></data>
+  <data name="Files_ExportCsv.Text" xml:space="preserve"><value>CSV olarak dışa aktar…</value></data>
+  <data name="Files_ExportHtml.Text" xml:space="preserve"><value>HTML raporu dışa aktar…</value></data>
+  <data name="Files_FilterAll.Content" xml:space="preserve"><value>Tümü</value></data>
+  <data name="Files_FilterDone.Content" xml:space="preserve"><value>Kopyalanan</value></data>
+  <data name="Files_FilterErrors.Content" xml:space="preserve"><value>Hatalı</value></data>
+  <data name="Files_FilterPending.Content" xml:space="preserve"><value>Bekleyen</value></data>
+  <data name="Files_FilterSkipped.Content" xml:space="preserve"><value>Atlanan</value></data>
+  <data name="Files_HideFinished.Content" xml:space="preserve"><value>Bitenleri gizle</value></data>
+  <data name="Files_Menu.Text" xml:space="preserve"><value>Liste</value></data>
+  <data name="Files_MoveBottom.Text" xml:space="preserve"><value>Sona taşı</value></data>
+  <data name="Files_MoveDown.Text" xml:space="preserve"><value>Aşağı</value></data>
+  <data name="Files_MoveTop.Text" xml:space="preserve"><value>Başa taşı</value></data>
+  <data name="Files_MoveUp.Text" xml:space="preserve"><value>Yukarı</value></data>
+  <data name="Files_OpenSource.Text" xml:space="preserve"><value>Kaynağı göster</value></data>
+  <data name="Files_OpenTarget.Text" xml:space="preserve"><value>Hedefi göster</value></data>
+  <data name="Files_Remove.Text" xml:space="preserve"><value>Kopyalamadan kaldır</value></data>
+  <data name="Files_Retry.Text" xml:space="preserve"><value>Başarısız olanları yeniden dene</value></data>
+  <data name="Files_SaveList.Text" xml:space="preserve"><value>Kopyalama listesini kaydet…</value></data>
+  <data name="Files_Search.PlaceholderText" xml:space="preserve"><value>Dosya ara</value></data>
+  <data name="Files_Size.Text" xml:space="preserve"><value>Boyut</value></data>
+  <data name="Files_SourceHash.Text" xml:space="preserve"><value>Kaynak karması</value></data>
+  <data name="Files_TargetHash.Text" xml:space="preserve"><value>Hedef karması</value></data>
+  <data name="History_Clear.Text" xml:space="preserve"><value>Temizle</value></data>
+  <data name="History_Empty.Text" xml:space="preserve"><value>Henüz biten kopyalama yok</value></data>
+  <data name="History_Open.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Hedefi aç</value></data>
+  <data name="History_Repeat.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Yinele (yalnızca yeni veya değişeni kopyalar)</value></data>
+  <data name="History_Title.Text" xml:space="preserve"><value>Geçmiş</value></data>
+  <data name="Log_Export.Text" xml:space="preserve"><value>Günlüğü dışa aktar</value></data>
+  <data name="Options_Acl.Content" xml:space="preserve"><value>İzinler (ACL)</value></data>
+  <data name="Options_Attributes.Content" xml:space="preserve"><value>Öznitelikler</value></data>
+  <data name="Options_Audit.Content" xml:space="preserve"><value>Denetim (SACL)</value></data>
+  <data name="Options_BufferSize.Text" xml:space="preserve"><value>Arabellek boyutu</value></data>
+  <data name="Options_Data.Content" xml:space="preserve"><value>Veri</value></data>
+  <data name="Options_ExportReport.Content" xml:space="preserve"><value>HTML raporu kaydet</value></data>
+  <data name="Options_FilesFolders.Text" xml:space="preserve"><value>Dosyalar ve klasörler</value></data>
+  <data name="Options_OnFinish.Text" xml:space="preserve"><value>Bitince</value></data>
+  <data name="Options_Owner.Content" xml:space="preserve"><value>Sahip</value></data>
+  <data name="Options_ResetDefault.Text" xml:space="preserve"><value>Sıfırla</value></data>
+  <data name="Options_RunningInfo.Message" xml:space="preserve"><value>Kopyalama sürüyor: bu değişiklikler sürdürünce uygulanır (Doğrula ve Gözetimsiz hemen).</value></data>
+  <data name="Options_SaveChecksum.Content" xml:space="preserve"><value>Sağlama dosyası kaydet</value></data>
+  <data name="Options_SaveDefault.Text" xml:space="preserve"><value>Varsayılan olarak kaydet</value></data>
+  <data name="Options_Scripts.Text" xml:space="preserve"><value>Bitince komutlar</value></data>
+  <data name="Options_ScriptsHelp.Text" xml:space="preserve"><value>Her satıra bir tane, cmd.exe ile çalışır. Yalnızca başarıda çalışması için &quot;ok:&quot;, yalnızca hatada çalışması için &quot;error:&quot; ile başlayın. Değişkenler: %MEGACOPIER_STATE%, %MEGACOPIER_DESTINATION%, %MEGACOPIER_SOURCES%, %MEGACOPIER_FILES%, %MEGACOPIER_BYTES%, %MEGACOPIER_FAILED%, %MEGACOPIER_CHECKSUM%.</value></data>
+  <data name="Options_Security.Text" xml:space="preserve"><value>Güvenlik (NTFS)</value></data>
+  <data name="Options_Streams.Content" xml:space="preserve"><value>Alternatif veri akışları (ADS)</value></data>
+  <data name="Options_SystemCache.Content" xml:space="preserve"><value>Sistem önbelleğini kullan</value></data>
+  <data name="Options_Threads.Text" xml:space="preserve"><value>Paralel</value></data>
+  <data name="Options_ThreadsShort.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Eşzamanlı okuma ve yazmalar</value></data>
+  <data name="Options_Timestamps.Content" xml:space="preserve"><value>Tarihler</value></data>
+  <data name="Options_Transfer.Text" xml:space="preserve"><value>Ne kopyalanır</value></data>
+  <data name="Options_TransferOptions.Text" xml:space="preserve"><value>Aktarım</value></data>
+  <data name="Options_Verify.Content" xml:space="preserve"><value>Kopyaladıktan sonra doğrula</value></data>
+  <data name="Options_VerifySkipped.Content" xml:space="preserve"><value>Atlananları da doğrula</value></data>
+  <data name="Page_Back.Text" xml:space="preserve"><value>Geri</value></data>
+  <data name="Pager_Next.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Sonraki kopyalama</value></data>
+  <data name="Pager_Previous.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Önceki kopyalama</value></data>
+  <data name="Pager_Text" xml:space="preserve"><value>Kopyalama {0} / {1}</value></data>
+  <data name="Panel_Discard.Text" xml:space="preserve"><value>Vazgeç</value></data>
+  <data name="Panel_File.Text" xml:space="preserve"><value>Dosya</value></data>
+  <data name="Panel_OpenFolder.Text" xml:space="preserve"><value>Klasörü aç</value></data>
+  <data name="Panel_Pause.Text" xml:space="preserve"><value>Duraklat</value></data>
+  <data name="Panel_Skip.Text" xml:space="preserve"><value>Atla</value></data>
+  <data name="Panel_Stop.Text" xml:space="preserve"><value>Durdur</value></data>
+  <data name="Panel_More" xml:space="preserve"><value>Daha fazla</value></data>
+  <data name="Panel_Less" xml:space="preserve"><value>Daha az</value></data>
+  <data name="Priority_Low.Content" xml:space="preserve"><value>Düşük</value></data>
+  <data name="Priority_BelowNormal.Content" xml:space="preserve"><value>Normalin altında</value></data>
+  <data name="Priority_Normal.Content" xml:space="preserve"><value>Normal</value></data>
+  <data name="Priority_AboveNormal.Content" xml:space="preserve"><value>Normalin üstünde</value></data>
+  <data name="Priority_High.Content" xml:space="preserve"><value>Yüksek</value></data>
+  <data name="Settings_Advanced.Text" xml:space="preserve"><value>Gelişmiş</value></data>
+  <data name="Settings_EnabledTitle.Text" xml:space="preserve"><value>Windows kopyalaması yerine MegaCopier&apos;ı kullan</value></data>
+  <data name="Settings_EnabledDescription.Text" xml:space="preserve"><value>Bildirim alanı simgesine çift tıklayarak da olur. Kapalıyken simge kırmızı X ile griye döner ve Dosya Gezgini kopyalar.</value></data>
+  <data name="Settings_FastTitle.Text" xml:space="preserve"><value>Hızlı aygıtlar</value></data>
+  <data name="Settings_FastDescription.Text" xml:space="preserve"><value>Aynı anda birkaç kopyalamayı kaldıran sürücüler veya yollar (NVMe SSD, RAID); diğerleri disk başına tek tek gider.</value></data>
+  <data name="Settings_FinishTitle.Text" xml:space="preserve"><value>Kopyalamalar bitince</value></data>
+  <data name="Settings_FinishDescription.Text" xml:space="preserve"><value>Çalışan bir şey kalmayınca pencere ne yapar</value></data>
+  <data name="Settings_FinishAuto.Content" xml:space="preserve"><value>Her şey yolunda gittiyse kapat</value></data>
+  <data name="Settings_FinishClose.Content" xml:space="preserve"><value>Her zaman kapat</value></data>
+  <data name="Settings_FinishKeep.Content" xml:space="preserve"><value>Açık bırak</value></data>
+  <data name="Settings_FreeSpace.Content" xml:space="preserve"><value>Önce boş alanı denetle</value></data>
+  <data name="Settings_General.Text" xml:space="preserve"><value>Genel</value></data>
+  <data name="Settings_HashTitle.Text" xml:space="preserve"><value>Karma algoritması</value></data>
+  <data name="Settings_HashDescription.Text" xml:space="preserve"><value>Doğrulama ve kaydedilen sağlamalar için. xxHash3 en hızlısı, SHA-256 en uyumlusudur.</value></data>
+  <data name="Settings_MaxJobsTitle.Text" xml:space="preserve"><value>Eşzamanlı kopyalamalar</value></data>
+  <data name="Settings_MaxJobsDescription.Text" xml:space="preserve"><value>Aynı anda en fazla kaç kopyalama (0 = sınırsız). Aynı diskteki kopyalamalar her zaman sırasını bekler.</value></data>
+  <data name="Settings_ModeAuto.Content" xml:space="preserve"><value>Otomatik</value></data>
+  <data name="Settings_ModeCompact.Content" xml:space="preserve"><value>Kompakt</value></data>
+  <data name="Settings_ModeExpanded.Content" xml:space="preserve"><value>Tam</value></data>
+  <data name="Settings_PerformanceTitle.Text" xml:space="preserve"><value>Performans</value></data>
+  <data name="Settings_PerformanceDescription.Text" xml:space="preserve"><value>Hız sınırı, arabellek boyutu ve eşzamanlı işlemler</value></data>
+  <data name="Settings_PriorityTitle.Text" xml:space="preserve"><value>İşlem önceliği</value></data>
+  <data name="Settings_PriorityDescription.Text" xml:space="preserve"><value>Düşük, kopyalarken bilgisayarı daha akıcı tutar</value></data>
+  <data name="Settings_Queue.Text" xml:space="preserve"><value>Sıra</value></data>
+  <data name="Settings_Themes.Text" xml:space="preserve"><value>Temalar</value></data>
+  <data name="Settings_WhatToCopy.Text" xml:space="preserve"><value>Ne kopyalanır ve sonra ne olur</value></data>
+  <data name="Settings_Window.Text" xml:space="preserve"><value>Pencere</value></data>
+  <data name="Settings_WindowModeTitle.Text" xml:space="preserve"><value>Kopyalama penceresi</value></data>
+  <data name="Settings_WindowModeDescription.Text" xml:space="preserve"><value>Otomatik: tek kopyalamada kompakt, birkaç tane olunca tam. &quot;Daha fazla&quot; ve &quot;Daha az&quot; istediğiniz an değiştirir.</value></data>
+  <data name="Status_Bytes.Text" xml:space="preserve"><value>Boyut</value></data>
+  <data name="Status_Category.Text" xml:space="preserve"><value>Durum</value></data>
+  <data name="Status_Copied.Text" xml:space="preserve"><value>Kopyalanan</value></data>
+  <data name="Status_Failed.Text" xml:space="preserve"><value>Hatalı</value></data>
+  <data name="Status_Files.Text" xml:space="preserve"><value>Dosyalar</value></data>
+  <data name="Status_Pending.Text" xml:space="preserve"><value>Bekleyen</value></data>
+  <data name="Status_Skipped.Text" xml:space="preserve"><value>Atlanan</value></data>
+  <data name="Status_Total.Text" xml:space="preserve"><value>Toplam</value></data>
+  <data name="Status_Verified.Text" xml:space="preserve"><value>Doğrulanan</value></data>
+  <data name="Tab_Files.Text" xml:space="preserve"><value>Dosyalar</value></data>
+  <data name="Tab_Log.Text" xml:space="preserve"><value>Günlük</value></data>
+  <data name="Tab_Options.Text" xml:space="preserve"><value>Seçenekler</value></data>
+  <data name="Tab_Status.Text" xml:space="preserve"><value>Durum</value></data>
+  <data name="Tab_Target.Text" xml:space="preserve"><value>Hedef</value></data>
+  <data name="Target_Destination.Text" xml:space="preserve"><value>Hedef</value></data>
+  <data name="Target_Source.Text" xml:space="preserve"><value>Kaynak</value></data>
+  <data name="Target_Space" xml:space="preserve"><value>{1} içinde {0} boş</value></data>
+  <data name="Theme_BarHeight.Header" xml:space="preserve"><value>Çubuk yüksekliği</value></data>
+  <data name="Theme_Radius.Header" xml:space="preserve"><value>Köşe yuvarlaklığı</value></data>
+  <data name="Theme_Customize.Text" xml:space="preserve"><value>Temayı özelleştir (renkler, çubuklar, arka plan)</value></data>
+  <data name="Theme_Delete.Text" xml:space="preserve"><value>Sil</value></data>
+  <data name="Theme_Export.Text" xml:space="preserve"><value>Dışa aktar…</value></data>
+  <data name="Theme_Import.Text" xml:space="preserve"><value>İçe aktar…</value></data>
+  <data name="Theme_Name.Header" xml:space="preserve"><value>Ad</value></data>
+  <data name="Theme_Save" xml:space="preserve"><value>Kaydet</value></data>
+  <data name="Theme_SaveAsNew" xml:space="preserve"><value>Yeni tema olarak kaydet</value></data>
+  <data name="Theme_Auto" xml:space="preserve"><value>Fluent (Windows gibi)</value></data>
+  <data name="Theme_CopyOf" xml:space="preserve"><value>{0} (özel)</value></data>
+  <data name="Theme_Custom" xml:space="preserve"><value>Temam</value></data>
+  <data name="Theme_FileType" xml:space="preserve"><value>MegaCopier teması</value></data>
+  <data name="Theme_ImportFailed" xml:space="preserve"><value>Tema içe aktarılamadı</value></data>
+  <data name="Theme_ColorBackground" xml:space="preserve"><value>Arka plan</value></data>
+  <data name="Theme_ColorSurface" xml:space="preserve"><value>Kartlar</value></data>
+  <data name="Theme_ColorSurfaceStrong" xml:space="preserve"><value>Vurgulu kartlar</value></data>
+  <data name="Theme_ColorBorder" xml:space="preserve"><value>Kenarlıklar</value></data>
+  <data name="Theme_ColorText" xml:space="preserve"><value>Metin</value></data>
+  <data name="Theme_ColorTextSecondary" xml:space="preserve"><value>İkincil metin</value></data>
+  <data name="Theme_ColorAccent" xml:space="preserve"><value>Vurgu</value></data>
+  <data name="Theme_ColorAccentText" xml:space="preserve"><value>Vurgu üstü metin</value></data>
+  <data name="Theme_ColorTotalStart" xml:space="preserve"><value>Toplam çubuğu: başlangıç</value></data>
+  <data name="Theme_ColorTotalEnd" xml:space="preserve"><value>Toplam çubuğu: bitiş</value></data>
+  <data name="Theme_ColorFileStart" xml:space="preserve"><value>Dosya çubuğu: başlangıç</value></data>
+  <data name="Theme_ColorFileEnd" xml:space="preserve"><value>Dosya çubuğu: bitiş</value></data>
+  <data name="Theme_ColorTrack" xml:space="preserve"><value>Çubuk arka planı</value></data>
+  <data name="Theme_ColorSuccess" xml:space="preserve"><value>Başarılı</value></data>
+  <data name="Theme_ColorWarning" xml:space="preserve"><value>Uyarı</value></data>
+  <data name="Theme_ColorError" xml:space="preserve"><value>Hata</value></data>
+  <data name="Theme_fluent-dark" xml:space="preserve"><value>Fluent koyu</value></data>
+  <data name="Theme_fluent-light" xml:space="preserve"><value>Fluent açık</value></data>
+  <data name="Theme_midnight" xml:space="preserve"><value>Gece yarısı</value></data>
+  <data name="Theme_graphite" xml:space="preserve"><value>Grafit</value></data>
+  <data name="Theme_ocean" xml:space="preserve"><value>Okyanus</value></data>
+  <data name="Theme_forest" xml:space="preserve"><value>Orman</value></data>
+  <data name="Theme_sunset" xml:space="preserve"><value>Gün batımı</value></data>
+  <data name="Theme_supercopier" xml:space="preserve"><value>Klasik SuperCopier</value></data>
+  <data name="Theme_ultracopier" xml:space="preserve"><value>Klasik Ultracopier</value></data>
+  <data name="Theme_contrast" xml:space="preserve"><value>Yüksek karşıtlık</value></data>
+  <data name="Tool_About.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Hakkında</value></data>
+  <data name="Tool_ClearDone.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Biten kopyalamaları kaldır</value></data>
+  <data name="Tool_History.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Geçmiş</value></data>
+  <data name="Tool_HistoryText.Text" xml:space="preserve"><value>Geçmiş</value></data>
+  <data name="Tool_LoadList.Text" xml:space="preserve"><value>Kopyalama listesi yükle…</value></data>
+  <data name="Tool_LoadListText.Text" xml:space="preserve"><value>Liste yükle</value></data>
+  <data name="Tool_MoveFiles.Text" xml:space="preserve"><value>Dosyaları taşı…</value></data>
+  <data name="Tool_NewCopy.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Yeni kopyalama</value></data>
+  <data name="Tool_NewCopyText.Text" xml:space="preserve"><value>Yeni</value></data>
+  <data name="Tool_PauseAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Tümünü duraklat</value></data>
+  <data name="Tool_ResumeAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Tümünü sürdür</value></data>
+  <data name="Tool_Settings.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Ayarlar</value></data>
+  <data name="Tool_Sidebar.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Kopyalama listesini göster veya gizle</value></data>
+  <data name="Drop_Caption" xml:space="preserve"><value>MegaCopier ile kopyala</value></data>
+  <data name="File_Pending" xml:space="preserve"><value>Bekliyor</value></data>
+  <data name="File_Copying" xml:space="preserve"><value>Kopyalanıyor</value></data>
+  <data name="File_Verifying" xml:space="preserve"><value>Doğrulanıyor</value></data>
+  <data name="File_Copied" xml:space="preserve"><value>Kopyalandı</value></data>
+  <data name="File_Verified" xml:space="preserve"><value>Doğrulandı</value></data>
+  <data name="File_Skipped" xml:space="preserve"><value>Atlandı</value></data>
+  <data name="File_Failed" xml:space="preserve"><value>Hata</value></data>
+  <data name="Files_AddFailed" xml:space="preserve"><value>Eklenemedi</value></data>
+  <data name="Files_Count" xml:space="preserve"><value>{0} / {1} dosya</value></data>
+  <data name="Files_ListType" xml:space="preserve"><value>MegaCopier kopyalama listesi</value></data>
+  <data name="Files_LoadFailed" xml:space="preserve"><value>Liste yüklenemedi</value></data>
+  <data name="Hash_None" xml:space="preserve"><value>Karma: yok</value></data>
+  <data name="Jobs_Header" xml:space="preserve"><value>KOPYALAMA: {0} · ETKİN: {1}</value></data>
+  <data name="Language_Auto" xml:space="preserve"><value>Windows ile aynı</value></data>
+  <data name="Log_FileType" xml:space="preserve"><value>Metin</value></data>
+  <data name="Picker_MoveHere" xml:space="preserve"><value>Buraya taşı</value></data>
+  <data name="Settings_AutoResume.Content" xml:space="preserve"><value>Başlangıçta kendiliğinden sürdür</value></data>
+  <data name="Panel_Options.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Bu kopyalamanın seçenekleri</value></data>
+  <data name="Panel_UnattendedItem.Text" xml:space="preserve"><value>Gözetimsiz (sorma: var olanları atlar)</value></data>
+  <data name="Panel_VerifyItem.Text" xml:space="preserve"><value>Bitince doğrula</value></data>
+  <data name="Panel_OpenFolderItem.Text" xml:space="preserve"><value>Hedef klasörü aç</value></data>
+  <data name="Status_ExactBytes" xml:space="preserve"><value>{0} bayt</value></data>
+  <data name="Notify_SettingsResetTitle" xml:space="preserve"><value>Ayarlar sıfırlandı</value></data>
+  <data name="Notify_SettingsResetBody" xml:space="preserve"><value>Ayarlarınız okunamadı, bu yüzden varsayılanlar kullanılıyor. Özgün dosya settings.json.bad içinde.</value></data>
+  <data name="Job_TitleCopy" xml:space="preserve"><value>{0} kopyala</value></data>
+  <data name="Job_TitleMove" xml:space="preserve"><value>{0} taşı</value></data>
+  <data name="Job_FailedOne" xml:space="preserve"><value>1 dosyada hata</value></data>
+  <data name="Error_InUse" xml:space="preserve"><value>Dosyayı başka bir program açık tutuyor. Kapatın ve &quot;Yeniden dene&quot;ye basın.</value></data>
+  <data name="Error_AccessDenied" xml:space="preserve"><value>Erişim reddedildi: bu dosyayı okuma veya yazma izniniz yok.</value></data>
+  <data name="Error_DiskFull" xml:space="preserve"><value>Hedef diskte yer kalmadı.</value></data>
+  <data name="Error_NotFound" xml:space="preserve"><value>Dosya veya klasör artık yok (taşındı, silindi veya sürücü çıkarıldı mı?).</value></data>
+  <data name="Error_PathTooLong" xml:space="preserve"><value>Yol, hedef için çok uzun.</value></data>
+  <data name="Error_NetworkLost" xml:space="preserve"><value>Ağ bağlantısı koptu. Geri geldiğinde kaldığı yerden devam etmek için &quot;Yeniden dene&quot;ye basın.</value></data>
+  <data name="Error_HashMismatch" xml:space="preserve"><value>Kopya, özgünüyle eşleşmiyor (doğrulama başarısız).</value></data>
+  <data name="Error_DeleteFailed" xml:space="preserve"><value>Doğru kopyalandı ama özgün dosya silinemedi.</value></data>
+  <data name="Report_State" xml:space="preserve"><value>Durum</value></data>
+  <data name="Report_File" xml:space="preserve"><value>Dosya</value></data>
+  <data name="Report_Source" xml:space="preserve"><value>Kaynak</value></data>
+  <data name="Report_Destination" xml:space="preserve"><value>Hedef</value></data>
+  <data name="Report_Size" xml:space="preserve"><value>Boyut</value></data>
+  <data name="Report_SourceHash" xml:space="preserve"><value>Kaynak karması</value></data>
+  <data name="Report_TargetHash" xml:space="preserve"><value>Hedef karması</value></data>
+  <data name="Report_Message" xml:space="preserve"><value>İleti</value></data>
+  <data name="Report_Copied" xml:space="preserve"><value>Kopyalanan</value></data>
+  <data name="Report_Verified" xml:space="preserve"><value>Doğrulanan</value></data>
+  <data name="Report_Skipped" xml:space="preserve"><value>Atlanan</value></data>
+  <data name="Report_Failed" xml:space="preserve"><value>Hatalı</value></data>
+  <data name="Job_SkippedOne" xml:space="preserve"><value>1 atlandı</value></data>
+  <data name="Rules_Filters.Text" xml:space="preserve"><value>Filtreler</value></data>
+  <data name="Rules_Include.Header" xml:space="preserve"><value>Yalnızca dahil et (; ile ayrılmış maskeler)</value></data>
+  <data name="Rules_Include.PlaceholderText" xml:space="preserve"><value>*.jpg; *.png; Fotoğraflar\*</value></data>
+  <data name="Rules_Exclude.Header" xml:space="preserve"><value>Hariç tut</value></data>
+  <data name="Rules_Exclude.PlaceholderText" xml:space="preserve"><value>node_modules; *.tmp; Thumbs.db</value></data>
+  <data name="Rules_MinSize.Header" xml:space="preserve"><value>En küçük boyut (MB)</value></data>
+  <data name="Rules_MaxSize.Header" xml:space="preserve"><value>En büyük boyut (MB)</value></data>
+  <data name="Rules_After.Header" xml:space="preserve"><value>Şu tarihten beri değişen</value></data>
+  <data name="Rules_Before.Header" xml:space="preserve"><value>Şu tarihe kadar değişen</value></data>
+  <data name="Rules_SkipHidden.Content" xml:space="preserve"><value>Gizlileri atla</value></data>
+  <data name="Rules_SkipSystem.Content" xml:space="preserve"><value>Sistem dosyalarını atla</value></data>
+  <data name="Rules_Rules.Text" xml:space="preserve"><value>Kurallar</value></data>
+  <data name="Rules_Links.Header" xml:space="preserve"><value>Sembolik bağlantılar ve birleşim noktaları</value></data>
+  <data name="Rules_LinksCopy.Content" xml:space="preserve"><value>Bağlantı olarak kopyala</value></data>
+  <data name="Rules_LinksFollow.Content" xml:space="preserve"><value>Gösterdikleri yeri kopyala</value></data>
+  <data name="Rules_LinksSkip.Content" xml:space="preserve"><value>Atla</value></data>
+  <data name="Rules_Pattern.Header" xml:space="preserve"><value>İkisini de tutarken ad ({name}, {n}, {ext}, {date})</value></data>
+  <data name="Rules_PatternPreview" xml:space="preserve"><value>Örnek: {0}</value></data>
+  <data name="Rules_Retries.Header" xml:space="preserve"><value>Yeniden denemeler</value></data>
+  <data name="Rules_Delay.Header" xml:space="preserve"><value>Denemeler arası bekleme (sn)</value></data>
+  <data name="Rules_OnError.Header" xml:space="preserve"><value>Bir dosya başarısız olmaya devam ederse</value></data>
+  <data name="Rules_OnErrorSkip.Content" xml:space="preserve"><value>Not et ve sonrakine geç</value></data>
+  <data name="Rules_OnErrorStop.Content" xml:space="preserve"><value>Kopyalamayı durdur (sürdürülebilir)</value></data>
+  <data name="ConflictDifferentSize.Content" xml:space="preserve"><value>Boyut farklıysa değiştir</value></data>
+  <data name="ConflictRenameExisting.Content" xml:space="preserve"><value>Mevcudu yeniden adlandır</value></data>
+  <data name="Conflict_RenameExisting.Text" xml:space="preserve"><value>Mevcudu yeniden adlandır ve bunu kopyala</value></data>
+  <data name="Schedule_Title.Text" xml:space="preserve"><value>Başlangıcı zamanla</value></data>
+  <data name="Schedule_Set.Text" xml:space="preserve"><value>Zamanla</value></data>
+  <data name="Schedule_Now.Text" xml:space="preserve"><value>Şimdi başlat</value></data>
+  <data name="Schedule_InThePast" xml:space="preserve"><value>İleri bir saat seçin.</value></data>
+  <data name="Job_StateScheduled" xml:space="preserve"><value>{0} için zamanlandı</value></data>
+  <data name="Settings_Favorites.Text" xml:space="preserve"><value>Sık kullanılan klasörler</value></data>
+  <data name="Settings_FavoritesTitle.Text" xml:space="preserve"><value>Sık kullanılan hedefler</value></data>
+  <data name="Settings_FavoritesDescription.Text" xml:space="preserve"><value>Aynı anda birkaç klasöre kopyalamak için &quot;Yeni &gt; Şuraya kopyala&quot; altında ve hedefler penceresinde görünürler.</value></data>
+  <data name="Settings_FavoritesAdd.Text" xml:space="preserve"><value>Klasör ekle</value></data>
+  <data name="Settings_FavoritesRemove" xml:space="preserve"><value>{0} kaldır</value></data>
+  <data name="Settings_FavoritesEmpty" xml:space="preserve"><value>Henüz sık kullanılan yok.</value></data>
+  <data name="Tool_CopyTo.Text" xml:space="preserve"><value>Şuraya kopyala</value></data>
+  <data name="Tool_CopyToEmpty" xml:space="preserve"><value>Sık kullanılan veya son kullanılan yok</value></data>
+  <data name="Tool_CopyToManage" xml:space="preserve"><value>Sık kullanılanları yönet…</value></data>
+  <data name="Tool_TestFiles.Text" xml:space="preserve"><value>Sağlama dosyalarını sına…</value></data>
+  <data name="Tool_TestFolder.Text" xml:space="preserve"><value>Bir klasörün sağlamalarını sına…</value></data>
+  <data name="Tool_Delete.Text" xml:space="preserve"><value>Sil…</value></data>
+  <data name="Tool_Wipe.Text" xml:space="preserve"><value>Güvenli sil…</value></data>
+  <data name="DestinationsDialog.Title" xml:space="preserve"><value>Nereye?</value></data>
+  <data name="DestinationsDialog.PrimaryButtonText" xml:space="preserve"><value>Başlat</value></data>
+  <data name="DestinationsDialog.CloseButtonText" xml:space="preserve"><value>İptal</value></data>
+  <data name="Destinations_SummaryOne" xml:space="preserve"><value>&quot;{0}&quot; için bir veya daha fazla hedef seçin.</value></data>
+  <data name="Destinations_SummaryMany" xml:space="preserve"><value>{0} öğe için bir veya daha fazla hedef seçin.</value></data>
+  <data name="Destinations_Add.Text" xml:space="preserve"><value>Klasör ekle…</value></data>
+  <data name="Destinations_Move.Content" xml:space="preserve"><value>Kopyalamak yerine taşı</value></data>
+  <data name="Destinations_Schedule.Content" xml:space="preserve"><value>Daha sonra başlat</value></data>
+  <data name="DeleteDialog.Title" xml:space="preserve"><value>Sil</value></data>
+  <data name="DeleteDialog.PrimaryButtonText" xml:space="preserve"><value>Sil</value></data>
+  <data name="DeleteDialog.CloseButtonText" xml:space="preserve"><value>İptal</value></data>
+  <data name="Delete_ConfirmOne" xml:space="preserve"><value>&quot;{0}&quot; silinsin mi? Geri Dönüşüm Kutusu&apos;na gitmez.</value></data>
+  <data name="Delete_ConfirmMany" xml:space="preserve"><value>{0} öğe silinsin mi? Geri Dönüşüm Kutusu&apos;na gitmezler.</value></data>
+  <data name="Delete_ConfirmSecureOne" xml:space="preserve"><value>&quot;{0}&quot; güvenli silinsin mi?</value></data>
+  <data name="Delete_ConfirmSecureMany" xml:space="preserve"><value>{0} öğe güvenli silinsin mi?</value></data>
+  <data name="Delete_SecureWarning.Title" xml:space="preserve"><value>Kurtarılamaz</value></data>
+  <data name="Delete_SecureWarning.Message" xml:space="preserve"><value>İçerik silinmeden önce üzerine yazılır. SSD&apos;lerde disk kalıntı tutabilir; en yüksek güvenlik için BitLocker şifrelemesini kullanın.</value></data>
+  <data name="FinishHibernate.Text" xml:space="preserve"><value>Hazırda beklet</value></data>
+  <data name="FinishSignOut.Text" xml:space="preserve"><value>Oturumu kapat</value></data>
+  <data name="FinishExit.Text" xml:space="preserve"><value>MegaCopier&apos;ı kapat</value></data>
+  <data name="Finish_LabelHibernate" xml:space="preserve"><value>Bitince: hazırda beklet</value></data>
+  <data name="Finish_LabelSignOut" xml:space="preserve"><value>Bitince: oturumu kapat</value></data>
+  <data name="Finish_LabelExit" xml:space="preserve"><value>Bitince: MegaCopier&apos;ı kapat</value></data>
+  <data name="Notify_FinishSleep" xml:space="preserve"><value>Uyku moduna geçiliyor…</value></data>
+  <data name="Notify_FinishHibernate" xml:space="preserve"><value>Hazırda bekletiliyor…</value></data>
+  <data name="Notify_FinishShutdown" xml:space="preserve"><value>Bilgisayar 1 dakika içinde kapanacak (iptal: shutdown /a).</value></data>
+  <data name="Notify_FinishSignOut" xml:space="preserve"><value>Oturum kapatılıyor…</value></data>
+  <data name="Notify_FinishExitApp" xml:space="preserve"><value>MegaCopier kapanıyor.</value></data>
+  <data name="Files_SelectAll.Text" xml:space="preserve"><value>Tümünü seç</value></data>
+  <data name="Files_SelectSameExtension.Text" xml:space="preserve"><value>Aynı uzantılıları seç</value></data>
+  <data name="Files_SelectSameFolder.Text" xml:space="preserve"><value>Aynı klasördekileri seç</value></data>
+  <data name="Files_InvertSelection.Text" xml:space="preserve"><value>Seçimi ters çevir</value></data>
+  <data name="Job_TitleTest" xml:space="preserve"><value>{0} sına</value></data>
+  <data name="Job_TitleTesting" xml:space="preserve"><value>{0} sınanıyor</value></data>
+  <data name="Job_TitleTested" xml:space="preserve"><value>{0} sınandı</value></data>
+  <data name="Job_TitleDelete" xml:space="preserve"><value>{0} sil</value></data>
+  <data name="Job_TitleDeleting" xml:space="preserve"><value>{0} siliniyor</value></data>
+  <data name="Job_TitleDeleted" xml:space="preserve"><value>{0} silindi</value></data>
+  <data name="Job_StateTesting" xml:space="preserve"><value>Sınanıyor</value></data>
+  <data name="Job_StateDeleting" xml:space="preserve"><value>Siliniyor</value></data>
+  <data name="Job_FilesTestedOne" xml:space="preserve"><value>{0} dosya sağlam</value></data>
+  <data name="Job_FilesTestedMany" xml:space="preserve"><value>{0} dosya sağlam</value></data>
+  <data name="Job_FilesDeletedOne" xml:space="preserve"><value>{0} dosya silindi</value></data>
+  <data name="Job_FilesDeletedMany" xml:space="preserve"><value>{0} dosya silindi</value></data>
+  <data name="Job_TitleScheduled" xml:space="preserve"><value>Zamanlandı: {0}</value></data>
+  <data name="Error_ChecksumMismatch" xml:space="preserve"><value>İçerik kaydedilen sağlamayla eşleşmiyor: dosya değişmiş veya hasarlı.</value></data>
+  <data name="Job_FilteredOut" xml:space="preserve"><value>Bu kopyalamanın filtrelerinden geçen dosya yok</value></data>
+  <data name="Rules_After.PlaceholderText" xml:space="preserve"><value>Herhangi bir tarih</value></data>
+  <data name="Rules_Before.PlaceholderText" xml:space="preserve"><value>Herhangi bir tarih</value></data>
+  <data name="Drop_MoveTo" xml:space="preserve"><value>{0}. konuma taşı</value></data>
+  <data name="Drop_InsertAt" xml:space="preserve"><value>{0}. konuma ekle</value></data>
+  <data name="Drop_AddToJob" xml:space="preserve"><value>Bu kopyalamaya ekle</value></data>
+  <data name="Drop_AddToNamedJob" xml:space="preserve"><value>{0} öğesine ekle</value></data>
+  <data name="Drop_JobOrder" xml:space="preserve"><value>Sıranın {0}. yerine koy</value></data>
+  <data name="Settings_Sounds.Text" xml:space="preserve"><value>Sesler</value></data>
+  <data name="Settings_SoundsTitle.Text" xml:space="preserve"><value>Sesli uyarılar</value></data>
+  <data name="Settings_SoundsDescription.Text" xml:space="preserve"><value>Her an için bir ses seçin: Windows sesi, bilgisayarınızdaki herhangi bir dosya veya hiçbiri.</value></data>
+  <data name="Settings_Volume.Header" xml:space="preserve"><value>Ses düzeyi</value></data>
+  <data name="Settings_SoundsQuiet.Content" xml:space="preserve"><value>Tam ekran oyun veya sunumlarda ve Rahatsız etmeyin modunda sessiz kal</value></data>
+  <data name="Sound_Done" xml:space="preserve"><value>Bir kopyalama başarıyla bitti</value></data>
+  <data name="Sound_Errors" xml:space="preserve"><value>Bir kopyalama hatalarla bitti</value></data>
+  <data name="Sound_AllDone" xml:space="preserve"><value>Tüm kopyalamalar bitti</value></data>
+  <data name="Sound_Attention" xml:space="preserve"><value>Kararınız gerekiyor (dosya zaten var)</value></data>
+  <data name="Sound_Test" xml:space="preserve"><value>Sesi dene</value></data>
+  <data name="Sound_None" xml:space="preserve"><value>Ses yok</value></data>
+  <data name="Sound_Default" xml:space="preserve"><value>Windows sesi</value></data>
+  <data name="Sound_Choose" xml:space="preserve"><value>Dosya seç…</value></data>
+  <data name="File_Planned" xml:space="preserve"><value>Benzetildi</value></data>
+  <data name="File_Deleted" xml:space="preserve"><value>Kaldırıldı</value></data>
+  <data name="File_RemovedExtra" xml:space="preserve"><value>Hedeften kaldırıldı: artık kaynakta yoktu</value></data>
+  <data name="Plan_Copy" xml:space="preserve"><value>Kopyalanırdı</value></data>
+  <data name="Plan_Replace" xml:space="preserve"><value>Hedefteki dosyanın yerini alırdı</value></data>
+  <data name="Plan_ReplaceNewer" xml:space="preserve"><value>Hedefteki dosyanın yerini alırdı: özgün daha yeni</value></data>
+  <data name="Plan_ReplaceSize" xml:space="preserve"><value>Hedefteki dosyanın yerini alırdı: boyutu farklı</value></data>
+  <data name="Plan_KeepBoth" xml:space="preserve"><value>Zaten var: başka adla kopyalanırdı</value></data>
+  <data name="Plan_RenameExisting" xml:space="preserve"><value>Zaten var: hedefteki yeniden adlandırılır ve bu kopyalanırdı</value></data>
+  <data name="Plan_Ask" xml:space="preserve"><value>Zaten var: size sorulurdu</value></data>
+  <data name="Plan_SkipIdentical" xml:space="preserve"><value>Atlanırdı: hedefte zaten aynısı var</value></data>
+  <data name="Plan_SkipExists" xml:space="preserve"><value>Atlanırdı: zaten var</value></data>
+  <data name="Plan_SkipOlder" xml:space="preserve"><value>Atlanırdı: hedefteki aynı veya daha yeni</value></data>
+  <data name="Plan_SkipSameSize" xml:space="preserve"><value>Atlanırdı: aynı boyut</value></data>
+  <data name="Plan_SkipNotInDestination" xml:space="preserve"><value>Atlanırdı: hedefte yok (yalnızca güncelleme)</value></data>
+  <data name="Plan_SkipSamePath" xml:space="preserve"><value>Atlanırdı: kaynak ve hedef aynı</value></data>
+  <data name="Plan_Delete" xml:space="preserve"><value>Hedeften kaldırılırdı: artık kaynakta yok</value></data>
+  <data name="Plan_Fail" xml:space="preserve"><value>Başarısız olurdu: hedef zaten var</value></data>
+  <data name="Plan_None" xml:space="preserve"><value>Benzetildi</value></data>
+  <data name="Skip_SkipIdentical" xml:space="preserve"><value>Hedefte zaten aynısı vardı</value></data>
+  <data name="Skip_SkipExists" xml:space="preserve"><value>Zaten vardı: atlandı</value></data>
+  <data name="Skip_SkipOlder" xml:space="preserve"><value>Hedefteki aynı veya daha yeni</value></data>
+  <data name="Skip_SkipSameSize" xml:space="preserve"><value>Hedeftekiyle aynı boyut</value></data>
+  <data name="Skip_SkipNotInDestination" xml:space="preserve"><value>Hedefte yok (yalnızca var olanlar güncellenir)</value></data>
+  <data name="Skip_SkipSamePath" xml:space="preserve"><value>Kaynak ve hedef aynı dosya</value></data>
+  <data name="Skip_SkipByUser" xml:space="preserve"><value>Sizin tarafınızdan atlandı</value></data>
+  <data name="Job_TitleSync" xml:space="preserve"><value>{0} eşitle</value></data>
+  <data name="Job_TitleSyncing" xml:space="preserve"><value>{0} eşitleniyor</value></data>
+  <data name="Job_TitleSynced" xml:space="preserve"><value>{0} eşitlendi</value></data>
+  <data name="Job_StateSyncing" xml:space="preserve"><value>Eşitleniyor</value></data>
+  <data name="Job_FilesSyncedOne" xml:space="preserve"><value>{0} dosya güncellendi</value></data>
+  <data name="Job_FilesSyncedMany" xml:space="preserve"><value>{0} dosya güncellendi</value></data>
+  <data name="Job_TitleSimulate" xml:space="preserve"><value>{0} benzet</value></data>
+  <data name="Job_TitleSimulating" xml:space="preserve"><value>{0} benzetiliyor</value></data>
+  <data name="Job_TitleSimulated" xml:space="preserve"><value>Benzetim: {0}</value></data>
+  <data name="Job_StateSimulating" xml:space="preserve"><value>Benzetiliyor</value></data>
+  <data name="Job_FilesSimulatedOne" xml:space="preserve"><value>{0} dosya kopyalanırdı</value></data>
+  <data name="Job_FilesSimulatedMany" xml:space="preserve"><value>{0} dosya kopyalanırdı</value></data>
+  <data name="Job_WouldTransfer" xml:space="preserve"><value>toplam {0}</value></data>
+  <data name="Job_TitleHash" xml:space="preserve"><value>{0} için sağlama oluştur</value></data>
+  <data name="Job_TitleHashing" xml:space="preserve"><value>{0} için sağlama hesaplanıyor</value></data>
+  <data name="Job_TitleHashed" xml:space="preserve"><value>{0} sağlamaları</value></data>
+  <data name="Job_StateHashing" xml:space="preserve"><value>Sağlama hesaplanıyor</value></data>
+  <data name="Job_FilesHashedOne" xml:space="preserve"><value>Sağlama listesinde {0} dosya</value></data>
+  <data name="Job_FilesHashedMany" xml:space="preserve"><value>Sağlama listesinde {0} dosya</value></data>
+  <data name="Job_StateWaitingDevice" xml:space="preserve"><value>Disk veya ağın geri gelmesi bekleniyor…</value></data>
+  <data name="Job_StateWaitingSpace" xml:space="preserve"><value>Hedefte boş alan bekleniyor…</value></data>
+  <data name="Job_RemovedOne" xml:space="preserve"><value>1 tane hedeften kaldırıldı</value></data>
+  <data name="Job_Removed" xml:space="preserve"><value>{0} tane hedeften kaldırıldı</value></data>
+  <data name="Job_WouldRemove" xml:space="preserve"><value>{0} tane hedeften kaldırılırdı</value></data>
+  <data name="Panel_RunForReal.Text" xml:space="preserve"><value>Gerçekten yap</value></data>
+  <data name="Options_Mode.Header" xml:space="preserve"><value>Mod</value></data>
+  <data name="Mode_Copy.Content" xml:space="preserve"><value>Kopyala</value></data>
+  <data name="Mode_Mirror.Content" xml:space="preserve"><value>Eşitle (yansı)</value></data>
+  <data name="Mode_Update.Content" xml:space="preserve"><value>Yalnızca var olanları güncelle</value></data>
+  <data name="Mode_Folders.Content" xml:space="preserve"><value>Yalnızca klasör yapısı</value></data>
+  <data name="Options_MirrorInfo.Title" xml:space="preserve"><value>Eşitleme, kaynakta artık olmayanı hedeften kaldırır</value></data>
+  <data name="Options_MirrorInfo.Message" xml:space="preserve"><value>Filtrelerin dışladığına dokunulmaz. Kaldırılanı veya değiştirileni saklamak için bir sürümler klasörü belirtin.</value></data>
+  <data name="Options_DryRun.Content" xml:space="preserve"><value>Benzet: hiçbir şeyi değiştirmeden ne olacağını göster</value></data>
+  <data name="Destinations_DryRun.Content" xml:space="preserve"><value>Önce benzet (hiçbir şey değişmez)</value></data>
+  <data name="Tool_HashFolder.Text" xml:space="preserve"><value>Bir klasör için sağlama dosyası oluştur…</value></data>
+  <data name="Tool_HashFiles.Text" xml:space="preserve"><value>Dosyalar için sağlama dosyası oluştur…</value></data>
+  <data name="Rules_SkipJunk.Content" xml:space="preserve"><value>Gereksiz dosyaları atla (Thumbs.db, desktop.ini, .DS_Store, ~$…)</value></data>
+  <data name="Rules_OnErrorEnd.Content" xml:space="preserve"><value>Sıranın sonunda yeniden dene</value></data>
+  <data name="Rules_Safety.Text" xml:space="preserve"><value>Eşitleme ve güvenlik</value></data>
+  <data name="Rules_FolderConflict.Header" xml:space="preserve"><value>Bir klasör hedefte zaten varsa</value></data>
+  <data name="Rules_FolderMerge.Content" xml:space="preserve"><value>İçeriği birleştir</value></data>
+  <data name="Rules_FolderSkip.Content" xml:space="preserve"><value>Tamamen atla</value></data>
+  <data name="Rules_Versions.Header" xml:space="preserve"><value>Değiştirilen veya kaldırılanı şu klasörde sakla</value></data>
+  <data name="Rules_Versions.PlaceholderText" xml:space="preserve"><value>Boş: saklama (örneğin .surumler)</value></data>
+  <data name="Rules_Tolerance.Header" xml:space="preserve"><value>&quot;Aynı&quot; için tarih payı (saniye)</value></data>
+  <data name="Rules_VerifySource.Content" xml:space="preserve"><value>Bitince özgünü yeniden oku</value></data>
+  <data name="Rules_HashStream.Content" xml:space="preserve"><value>Karmayı her dosyanın içine kaydet</value></data>
+  <data name="Rules_HardLinks.Content" xml:space="preserve"><value>Sabit bağlantıları koru</value></data>
+  <data name="Rules_Wipe.Content" xml:space="preserve"><value>Taşırken özgünleri güvenli sil</value></data>
+  <data name="Rules_WaitDevice.Content" xml:space="preserve"><value>Disk veya ağ koparsa bekle</value></data>
+  <data name="Rules_WaitSpace.Content" xml:space="preserve"><value>Yer yoksa bekle</value></data>
+  <data name="Rules_VerifySource.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Özgünün karmasını yeniden hesaplar: kopyalama sırasında değişip değişmediğini veya kaynak diskin kötü okuyup okumadığını saptar.</value></data>
+  <data name="Rules_HashStream.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Dosyanın kendi gizli akışında saklanır (NTFS). &quot;Bir klasörün sağlamalarını sına&quot; daha sonra, sağlama dosyası olmasa bile her hasarı saptar.</value></data>
+  <data name="Rules_HardLinks.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Birkaç ad aynı dosyaysa hedefte de öyle olur (iki kat yer kaplamaz).</value></data>
+  <data name="Rules_Tolerance.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>FAT32 ve exFAT saati 2 saniye hassasiyetle kaydeder: bu payla aynı dosyalar yeniden kopyalanmaz.</value></data>
+  <data name="Rules_Versions.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Bir dosya değiştirilmeden veya kaldırılmadan önce, adında tarih olacak şekilde bu hedef klasöre taşınır.</value></data>
+  <data name="Settings_UnitsTitle.Text" xml:space="preserve"><value>Boyut birimleri</value></data>
+  <data name="Settings_UnitsDescription.Text" xml:space="preserve"><value>Boyutlar ve hızlar nasıl gösterilir.</value></data>
+  <data name="Units_Classic.Content" xml:space="preserve"><value>KB, MB, GB (Dosya Gezgini gibi)</value></data>
+  <data name="Units_Iec.Content" xml:space="preserve"><value>KiB, MiB, GiB (ikili)</value></data>
+  <data name="Units_Decimal.Content" xml:space="preserve"><value>1000&apos;lik kB, MB, GB (üretici gibi)</value></data>
+  <data name="Settings_SlowTitle.Text" xml:space="preserve"><value>Bilgisayarı kullanırken yavaşla</value></data>
+  <data name="Settings_SlowDescription.Text" xml:space="preserve"><value>Klavye veya fareyi kullanırken kopyalamalar bu hızı geçmez; bilgisayarı bırakınca yeniden hızlanır.</value></data>
+  <data name="Slow_Off.Content" xml:space="preserve"><value>Hayır</value></data>
+  <data name="Settings_LogsTitle.Text" xml:space="preserve"><value>Her kopyalamanın günlüğünü kaydet</value></data>
+  <data name="Settings_LogsDescription.Text" xml:space="preserve"><value>Günlükler klasöründe kopyalama başına bir dosya; 30 gün sonra kendiliğinden silinir.</value></data>
+  <data name="Settings_LogsOpen.Text" xml:space="preserve"><value>Klasörü aç</value></data>
+  <data name="Settings_WebhookTitle.Text" xml:space="preserve"><value>Bitince bir web adresine bildir</value></data>
+  <data name="Settings_WebhookDescription.Text" xml:space="preserve"><value>Bildirimi telefonda veya sohbette almak için: Discord, Slack, Teams, ntfy.sh, Home Assistant… JSON içeren bir POST gönderilir.</value></data>
+  <data name="Settings_WebhookBox.PlaceholderText" xml:space="preserve"><value>https://ntfy.sh/gizli-konum</value></data>
+  <data name="Settings_WebhookTest.Text" xml:space="preserve"><value>Dene</value></data>
+  <data name="Settings_WebhookSending" xml:space="preserve"><value>Gönderiliyor…</value></data>
+  <data name="Settings_WebhookOk" xml:space="preserve"><value>Bildirim gönderildi.</value></data>
+  <data name="Settings_WebhookFailed" xml:space="preserve"><value>Gönderilemedi: adresi ve bağlantıyı denetleyin.</value></data>
+  <data name="Settings_WebhookTestMessage" xml:space="preserve"><value>✔ MegaCopier: deneme bildirimi</value></data>
+  <data name="FinishDialog.Title" xml:space="preserve"><value>Tüm kopyalamalar bitti</value></data>
+  <data name="FinishDialog.PrimaryButtonText" xml:space="preserve"><value>Şimdi yap</value></data>
+  <data name="FinishDialog.CloseButtonText" xml:space="preserve"><value>İptal</value></data>
+  <data name="Finish_CountdownSleep" xml:space="preserve"><value>Bilgisayar {0} sn içinde uyku moduna geçecek.</value></data>
+  <data name="Finish_CountdownHibernate" xml:space="preserve"><value>Bilgisayar {0} sn içinde hazırda bekletilecek.</value></data>
+  <data name="Finish_CountdownShutdown" xml:space="preserve"><value>Bilgisayar {0} sn içinde kapanacak.</value></data>
+  <data name="Finish_CountdownSignOut" xml:space="preserve"><value>Oturum {0} sn içinde kapanacak.</value></data>
+  <data name="Finish_CountdownExitApp" xml:space="preserve"><value>MegaCopier {0} sn içinde kapanacak.</value></data>
+  <data name="Job_SlowedDown" xml:space="preserve"><value>Bilgisayarı kullanırken daha yavaş</value></data>
+  <data name="History_Undone" xml:space="preserve"><value>geri alındı</value></data>
+  <data name="History_Undo.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Geri al: taşınanı geri koy veya kopyalananı Geri Dönüşüm Kutusu&apos;na gönder</value></data>
+  <data name="History_CopyBack.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Kaynak klasöre geri kopyala (geri yükle)</value></data>
+  <data name="History_UndoDialog.Title" xml:space="preserve"><value>Bu kopyalama geri alınsın mı?</value></data>
+  <data name="History_UndoDialog.PrimaryButtonText" xml:space="preserve"><value>Geri al</value></data>
+  <data name="History_UndoDialog.CloseButtonText" xml:space="preserve"><value>İptal</value></data>
+  <data name="History_UndoMoveConfirm" xml:space="preserve"><value>Taşınan her şey &quot;{0}&quot; konumundan özgün klasörüne döner.</value></data>
+  <data name="History_UndoCopyConfirm" xml:space="preserve"><value>Kopyalanan {0} dosya Geri Dönüşüm Kutusu&apos;na gider (geri alınabilir). Sonradan değişenlere veya başka bir dosyanın yerini alanlara dokunulmaz.</value></data>
+  <data name="History_UndoDone" xml:space="preserve"><value>{0} dosya Geri Dönüşüm Kutusu&apos;na gönderildi.</value></data>
+  <data name="History_UndoKept" xml:space="preserve"><value>Sonradan değişen {0} ve başkalarının yerini alan {1} dosya bırakıldı.</value></data>
+  <data name="History_UndoTitleBar.Title" xml:space="preserve"><value>Kopyalama geri alındı</value></data>
+  <data name="History_Undo.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Geri al: taşınanı geri koy veya kopyalananı Geri Dönüşüm Kutusu&apos;na gönder</value></data>
+  <data name="History_CopyBack.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Kaynak klasöre geri kopyala (geri yükle)</value></data>
+  <data name="History_Open.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Hedefi aç</value></data>
+  <data name="History_Repeat.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Yinele (yalnızca yeni veya değişeni kopyalar)</value></data>
+  <data name="Task_Header.Text" xml:space="preserve"><value>Ya da Windows&apos;un yukarıda seçilen saatte kendiliğinden yinelemesi için görev olarak kaydedin:</value></data>
+  <data name="Task_Name.PlaceholderText" xml:space="preserve"><value>Görev adı</value></data>
+  <data name="Task_Once.Content" xml:space="preserve"><value>Bir kez</value></data>
+  <data name="Task_Daily.Content" xml:space="preserve"><value>Her gün</value></data>
+  <data name="Task_Weekly.Content" xml:space="preserve"><value>Her hafta</value></data>
+  <data name="Task_Save.Text" xml:space="preserve"><value>Görev olarak kaydet</value></data>
+  <data name="Task_SavedOnce" xml:space="preserve"><value>&quot;{0}&quot; görevi kaydedildi: {2} günü saat {1} için çalışacak.</value></data>
+  <data name="Task_SavedDaily" xml:space="preserve"><value>&quot;{0}&quot; görevi kaydedildi: her gün saat {1} için çalışacak.</value></data>
+  <data name="Task_SavedWeekly" xml:space="preserve"><value>&quot;{0}&quot; görevi kaydedildi: her hafta, {2} ile aynı gün, saat {1} için çalışacak.</value></data>
+  <data name="Task_Failed" xml:space="preserve"><value>Zamanlanamadı: {0}</value></data>
+  <data name="Settings_Tasks.Text" xml:space="preserve"><value>Zamanlanmış görevler</value></data>
+  <data name="Settings_TasksTitle.Text" xml:space="preserve"><value>Kendiliğinden yinelenen kopyalamalar</value></data>
+  <data name="Settings_TasksDescription.Text" xml:space="preserve"><value>Bir kopyalamanın Seçenekler sekmesinden (&quot;Görev olarak kaydet&quot;) oluşturulur; MegaCopier kapalı olsa bile Windows Görev Zamanlayıcı başlatır.</value></data>
+  <data name="Settings_TasksEmpty" xml:space="preserve"><value>Henüz görev yok.</value></data>
+  <data name="Settings_TaskRun" xml:space="preserve"><value>&quot;{0}&quot; şimdi çalıştır</value></data>
+  <data name="Settings_TaskDelete" xml:space="preserve"><value>&quot;{0}&quot; görevini sil</value></data>
+  <data name="About_Portable" xml:space="preserve"><value>taşınabilir (veriler {0} içinde)</value></data>
+  <data name="Job_Estimate" xml:space="preserve"><value>{0}, yaklaşık {1}</value></data>
+  <data name="Job_EstimateSize" xml:space="preserve"><value>toplam {0}</value></data>
+  <data name="Settings_SmbCompression.Content" xml:space="preserve"><value>Ağ üzerinden sıkıştır (SMB)</value></data>
+  <data name="Settings_SmbCompression.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Sunucudan verileri yolda sıkıştırmasını ister (Windows 11 ve Windows Server 2022 veya sonrası). Kaynak ve hedef aynı sunucudaysa kopyalamayı her zaman sunucunun kendisi yapar, bu bilgisayardan geçmez.</value></data>
+  <data name="Error_TooLargeForFileSystem" xml:space="preserve"><value>Bu diske sığmaz: FAT32 4 GB ve üzeri dosyalara izin vermez. exFAT veya NTFS olarak biçimlendirin.</value></data>
+  <data name="Rules_AllOrNothing.Content" xml:space="preserve"><value>&quot;Ya hep ya hiç&quot; klasörler</value></data>
+  <data name="Rules_AllOrNothing.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Her yeni klasör gizli kopyalanır ve yalnızca her şey yolunda gittiğinde kendi adıyla görünür: tamam gibi görünen yarım kopyalanmış bir klasör asla kalmaz.</value></data>
+  <data name="Rules_Rescue.Content" xml:space="preserve"><value>Hasarlı diskler için kurtarma modu</value></data>
+  <data name="Rules_Rescue.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Kaynakta bozuk kesimler varsa kesim kesim okunur ve okunabilen her şey kurtarılır; okunamayan sıfır olur ve günlüğe yazılır. Taşırken özgün dosya silinmez.</value></data>
+  <data name="Error_PartlyUnreadable" xml:space="preserve"><value>Kısmen kurtarıldı: kaynağın bazı kesimleri hasarlıydı ve sıfır oldu (ayrıntılar Günlük&apos;te).</value></data>
+  <data name="Settings_Guard.Text" xml:space="preserve"><value>Bütünlük bekçisi</value></data>
+  <data name="Settings_GuardTitle.Text" xml:space="preserve"><value>Dosyalarınızın zamanla bozulmadığını gözet</value></data>
+  <data name="Settings_GuardDescription.Text" xml:space="preserve"><value>Her dosya kendi karmasını içinde saklar. Bilgisayar boştayken MegaCopier bunları denetler: biri kimse düzenlemeden değiştiyse (disk bozduysa) uyarılırsınız. Düzenledikleriniz kendiliğinden yenilenir. NTFS gerekir.</value></data>
+  <data name="Guard_Daily.Content" xml:space="preserve"><value>Her gün</value></data>
+  <data name="Guard_Weekly.Content" xml:space="preserve"><value>Her hafta</value></data>
+  <data name="Guard_Monthly.Content" xml:space="preserve"><value>Her ay</value></data>
+  <data name="Settings_GuardAdd.Text" xml:space="preserve"><value>Bir klasörü gözet…</value></data>
+  <data name="Settings_GuardEmpty" xml:space="preserve"><value>Henüz hiçbir klasörü gözetmiyorsunuz.</value></data>
+  <data name="Settings_GuardCheck" xml:space="preserve"><value>&quot;{0}&quot; şimdi denetle</value></data>
+  <data name="Settings_GuardRemove" xml:space="preserve"><value>&quot;{0}&quot; gözetmeyi bırak</value></data>
+  <data name="Guard_NotYet" xml:space="preserve"><value>İlk denetimi bekliyor</value></data>
+  <data name="Guard_LastOk" xml:space="preserve"><value>{0} tarihinde denetlendi: her şey yolunda</value></data>
+  <data name="Guard_LastDamaged" xml:space="preserve"><value>{0} tarihinde denetlendi: {1} hasarlı dosya (Geçmiş&apos;e bakın)</value></data>
+  <data name="Guard_DamagedTitle" xml:space="preserve"><value>Bütünlük bekçisi</value></data>
+  <data name="Guard_DamagedOne" xml:space="preserve"><value>&quot;{0}&quot; içindeki bir dosya diskte hasar gördü.</value></data>
+  <data name="Guard_DamagedMany" xml:space="preserve"><value>&quot;{1}&quot; içindeki {0} dosya diskte hasar gördü.</value></data>
+  <data name="Guard_LastDamagedOne" xml:space="preserve"><value>{0} tarihinde denetlendi: bir hasarlı dosya (Geçmiş&apos;e bakın)</value></data>
+  <data name="Settings_ScheduleLimitTitle.Text" xml:space="preserve"><value>Saate göre hız sınırı</value></data>
+  <data name="Settings_ScheduleLimitDescription.Text" xml:space="preserve"><value>Örneğin mesai saatlerinde: kopyalamalar seçilen saatler arasında bu hızı geçmez.</value></data>
+  <data name="Settings_ScheduleFrom.Text" xml:space="preserve"><value>Başlangıç</value></data>
+  <data name="Settings_ScheduleTo.Text" xml:space="preserve"><value>bitiş</value></data>
+  <data name="Settings_PauseBatteryTitle.Text" xml:space="preserve"><value>Pildeyken duraklat</value></data>
+  <data name="Settings_PauseBatteryDescription.Text" xml:space="preserve"><value>Fişe takılı olmayan bir dizüstünde kopyalamalar bekler ve takınca kendiliğinden devam eder.</value></data>
+  <data name="Settings_PauseFullTitle.Text" xml:space="preserve"><value>Oyun ve sunumlarda duraklat</value></data>
+  <data name="Settings_PauseFullDescription.Text" xml:space="preserve"><value>Tam ekran bir oyun veya sunum varken kopyalamalar onu yavaşlatmamak için bekler.</value></data>
+  <data name="Comfort_PausedTitle" xml:space="preserve"><value>Kopyalamalar duraklatıldı</value></data>
+  <data name="Comfort_PausedBattery" xml:space="preserve"><value>Bilgisayar pille çalışıyor: kopyalamalar fişe takınca devam edecek.</value></data>
+  <data name="Comfort_PausedFullScreen" xml:space="preserve"><value>Tam ekran bir oyun veya sunum açık: kopyalamalar çıkınca devam edecek.</value></data>
+  <data name="Job_StatePausedBattery" xml:space="preserve"><value>Duraklatıldı: pilde</value></data>
+  <data name="Job_StatePausedFullScreen" xml:space="preserve"><value>Duraklatıldı: tam ekran</value></data>
+  <data name="Job_SlowedSchedule" xml:space="preserve"><value>Seçilen zamanlama nedeniyle daha yavaş</value></data>
+  <data name="Rules_Delta.Content" xml:space="preserve"><value>Büyük dosyaları değiştirirken yalnızca değişeni yaz</value></data>
+  <data name="Rules_Delta.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>16 MB ve üzeri dosyalar için fark kopyalaması (sanal diskler, posta, projeler): yalnızca farklı bloklar yazılır. İptal edilir veya elektrik kesilirse dosya önceki sürümüne döner.</value></data>
+  <data name="Panel_CopyLocked.Text" xml:space="preserve"><value>Kullanımdaki dosyaları kopyala</value></data>
+  <data name="Locked_Title" xml:space="preserve"><value>Kullanımdaki dosyalar</value></data>
+  <data name="Locked_Cancelled" xml:space="preserve"><value>Yönetici izni verilmedi: kullanımdaki dosyalar kopyalanmadı.</value></data>
+  <data name="Locked_Done" xml:space="preserve"><value>Diskin anlık görüntüsünden {0} kullanımdaki dosya kopyalandı.</value></data>
+  <data name="Locked_Partial" xml:space="preserve"><value>Anlık görüntüden {0} kopyalandı; geri kalanı kopyalanamadı: {1}</value></data>
+  <data name="Settings_Peer.Text" xml:space="preserve"><value>Diğer bilgisayarlardan al</value></data>
+  <data name="Settings_PeerTitle.Text" xml:space="preserve"><value>MegaCopier olan diğer bilgisayarlardan dosya al</value></data>
+  <data name="Settings_PeerDescription.Text" xml:space="preserve"><value>Ev veya ofis ağı üzerinden, paylaşılan klasör olmadan. Gönderenin aşağıdaki koda ihtiyacı var; bağlantı şifrelidir ve her dosya varışta denetlenir. İlk seferde Windows güvenlik duvarı izni isteyebilir.</value></data>
+  <data name="Settings_PeerCode.Text" xml:space="preserve"><value>Size dosya göndermek için kod:</value></data>
+  <data name="Settings_PeerNewCode.Text" xml:space="preserve"><value>Yeni kod</value></data>
+  <data name="Settings_PeerFolder.Text" xml:space="preserve"><value>Klasörü değiştir…</value></data>
+  <data name="Settings_PeerFolderIs" xml:space="preserve"><value>{0} içine kaydedilir</value></data>
+  <data name="Settings_PeerListening" xml:space="preserve"><value>&quot;{0}&quot; üzerinde gönderim bekleniyor (bağlantı noktası {1}).</value></data>
+  <data name="Settings_PeerError" xml:space="preserve"><value>Alım başlatılamadı: {0}</value></data>
+  <data name="Peer_ReceivingTitle" xml:space="preserve"><value>Dosyalar alınıyor</value></data>
+  <data name="Peer_Receiving" xml:space="preserve"><value>{0} size {1} dosya gönderiyor ({2}).</value></data>
+  <data name="Peer_ReceivedTitle" xml:space="preserve"><value>Dosyalar alındı</value></data>
+  <data name="Peer_Received" xml:space="preserve"><value>{1} kaynağından {0} dosya, {2} içine.</value></data>
+  <data name="Peer_RejectedTitle" xml:space="preserve"><value>Gönderim reddedildi</value></data>
+  <data name="Peer_Rejected" xml:space="preserve"><value>{0} size yanlış kodla dosya göndermeye çalıştı.</value></data>
+  <data name="Tool_SendFiles.Text" xml:space="preserve"><value>Dosyaları başka bir bilgisayara gönder…</value></data>
+  <data name="Tool_SendFolder.Text" xml:space="preserve"><value>Bir klasörü başka bir bilgisayara gönder…</value></data>
+  <data name="SendDialog.Title" xml:space="preserve"><value>Başka bir bilgisayara gönder</value></data>
+  <data name="SendDialog.PrimaryButtonText" xml:space="preserve"><value>Gönder</value></data>
+  <data name="SendDialog.CloseButtonText" xml:space="preserve"><value>İptal</value></data>
+  <data name="Send_SummaryOne" xml:space="preserve"><value>&quot;{0}&quot; öğesini MegaCopier&apos;ın alım yaptığı başka bir bilgisayara gönder.</value></data>
+  <data name="Send_SummaryMany" xml:space="preserve"><value>{0} öğeyi MegaCopier&apos;ın alım yaptığı başka bir bilgisayara gönder.</value></data>
+  <data name="Send_Found.Text" xml:space="preserve"><value>Ağda bulunan bilgisayarlar:</value></data>
+  <data name="Send_Searching" xml:space="preserve"><value>Aranıyor…</value></data>
+  <data name="Send_NoneFound" xml:space="preserve"><value>Hiçbiri bulunamadı: adını veya IP&apos;sini yazın.</value></data>
+  <data name="Send_Host.Header" xml:space="preserve"><value>Bilgisayar (ad veya IP)</value></data>
+  <data name="Send_Host.PlaceholderText" xml:space="preserve"><value>SALON-PC veya 192.168.1.20</value></data>
+  <data name="Send_Code.Header" xml:space="preserve"><value>O bilgisayarın Ayarlar&apos;da gösterdiği kod</value></data>
+  <data name="Send_Code.PlaceholderText" xml:space="preserve"><value>XXXX-XXXX-XXXX</value></data>
+  <data name="Job_TitleSend" xml:space="preserve"><value>{0} gönder</value></data>
+  <data name="Job_TitleSending" xml:space="preserve"><value>{0} gönderiliyor</value></data>
+  <data name="Job_TitleSent" xml:space="preserve"><value>{0} gönderildi</value></data>
+  <data name="Job_StateSending" xml:space="preserve"><value>Gönderiliyor</value></data>
+  <data name="Job_FilesSentOne" xml:space="preserve"><value>{0} dosya gönderildi</value></data>
+  <data name="Job_FilesSentMany" xml:space="preserve"><value>{0} dosya gönderildi</value></data>
+  <data name="Rules_Describe.Header" xml:space="preserve"><value>Kendi sözlerinizle söyleyin (İngilizce veya İspanyolca)</value></data>
+  <data name="Rules_Describe.PlaceholderText" xml:space="preserve"><value>photos larger than 2 MB from last month except .tmp</value></data>
+  <data name="Rules_DescribeApply.Text" xml:space="preserve"><value>Uygula</value></data>
+  <data name="Rules_DescribeUnderstood" xml:space="preserve"><value>Anlaşıldı: {0}.</value></data>
+  <data name="Rules_DescribeNothing" xml:space="preserve"><value>Filtrelenecek bir şey anlaşılmadı.</value></data>
+  <data name="Rules_DescribeUnknown" xml:space="preserve"><value>Anlaşılmadı: {0}.</value></data>
+  <data name="Mode_Organize.Content" xml:space="preserve"><value>Fotoğrafları tarihe göre düzenle</value></data>
+  <data name="Rules_Duplicates.Content" xml:space="preserve"><value>Hedefte zaten olanı kopyalama (yinelenenler)</value></data>
+  <data name="Rules_Duplicates.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Adı değil içeriği karşılaştırır: hedefin herhangi bir klasöründe, başka adla bile olsa zaten bulunan bir fotoğraf yeniden kopyalanmaz.</value></data>
+  <data name="Skip_SkipDuplicate" xml:space="preserve"><value>Hedefte başka ad veya başka klasörde zaten var</value></data>
+  <data name="Plan_SkipDuplicate" xml:space="preserve"><value>Atlanırdı: hedefte zaten var (yinelenen)</value></data>
+  <data name="Destinations_Encrypt.Content" xml:space="preserve"><value>Parolayla şifrele (kaybedebileceğiniz bir USB bellek veya disk için)</value></data>
+  <data name="Destinations_Password.Header" xml:space="preserve"><value>Parola</value></data>
+  <data name="Destinations_Password2.Header" xml:space="preserve"><value>Yineleyin</value></data>
+  <data name="Destinations_PasswordHint" xml:space="preserve"><value>AES-256 ile şifrelenir. Parolayı unutursanız dosyalar kurtarılamaz. Okumak için: Yeni menüsü &gt; Şifreyi çöz.</value></data>
+  <data name="Destinations_PasswordShort" xml:space="preserve"><value>Parola en az 8 karakter olmalı.</value></data>
+  <data name="Destinations_PasswordMismatch" xml:space="preserve"><value>İki parola eşleşmiyor.</value></data>
+  <data name="PasswordDialog.Title" xml:space="preserve"><value>Parola</value></data>
+  <data name="PasswordDialog.PrimaryButtonText" xml:space="preserve"><value>Tamam</value></data>
+  <data name="PasswordDialog.CloseButtonText" xml:space="preserve"><value>İptal</value></data>
+  <data name="Tool_Decrypt.Text" xml:space="preserve"><value>Şifreli dosyaların şifresini çöz…</value></data>
+  <data name="Picker_DecryptHere" xml:space="preserve"><value>Buraya şifresini çöz</value></data>
+  <data name="Decrypt_Ask" xml:space="preserve"><value>&quot;{0}&quot; içindeki şifreli dosyaların parolası:</value></data>
+  <data name="Resume_PasswordAsk" xml:space="preserve"><value>Bu kopyalama şifreli ve parola kaydedilmiyor: devam etmek için yazın.</value></data>
+  <data name="Job_TitleEncrypt" xml:space="preserve"><value>{0} şifrele</value></data>
+  <data name="Job_TitleEncrypting" xml:space="preserve"><value>{0} şifreleniyor</value></data>
+  <data name="Job_TitleEncrypted" xml:space="preserve"><value>{0} şifrelendi</value></data>
+  <data name="Job_StateEncrypting" xml:space="preserve"><value>Şifreleniyor</value></data>
+  <data name="Job_FilesEncryptedOne" xml:space="preserve"><value>{0} dosya şifrelendi</value></data>
+  <data name="Job_FilesEncryptedMany" xml:space="preserve"><value>{0} dosya şifrelendi</value></data>
+  <data name="Job_TitleDecrypt" xml:space="preserve"><value>{0} şifresini çöz</value></data>
+  <data name="Job_TitleDecrypting" xml:space="preserve"><value>{0} şifresi çözülüyor</value></data>
+  <data name="Job_TitleDecrypted" xml:space="preserve"><value>{0} şifresi çözüldü</value></data>
+  <data name="Job_StateDecrypting" xml:space="preserve"><value>Şifre çözülüyor</value></data>
+  <data name="Job_FilesDecryptedOne" xml:space="preserve"><value>{0} dosyanın şifresi çözüldü</value></data>
+  <data name="Job_FilesDecryptedMany" xml:space="preserve"><value>{0} dosyanın şifresi çözüldü</value></data>
+  <data name="Settings_DisksTitle.Text" xml:space="preserve"><value>Disklerin durumu</value></data>
+  <data name="Settings_DisksDescription.Text" xml:space="preserve"><value>Windows&apos;un her disk için bildirdiği (SMART). Biri arıza uyarısı verirse MegaCopier ondan veya ona kopyalarken size söyler.</value></data>
+  <data name="Settings_DisksCheck.Text" xml:space="preserve"><value>Şimdi denetle</value></data>
+  <data name="Disk_Row" xml:space="preserve"><value>Disk {0} · {1}: {2}</value></data>
+  <data name="Disk_Healthy" xml:space="preserve"><value>sağlıklı</value></data>
+  <data name="Disk_Unknown" xml:space="preserve"><value>durum bilinmiyor</value></data>
+  <data name="Disk_HealthWarning" xml:space="preserve"><value>sorun bildiriyor</value></data>
+  <data name="Disk_Checking" xml:space="preserve"><value>Diskler denetleniyor…</value></data>
+  <data name="Disk_WarningTitle" xml:space="preserve"><value>Bir disk arıza bildiriyor</value></data>
+  <data name="Disk_Warning" xml:space="preserve"><value>&quot;{0}&quot; (disk {1}): {2}. Önemli olanı en kısa sürede başka bir diske kopyalayın.</value></data>
+  <data name="Settings_TuneTitle.Text" xml:space="preserve"><value>Her disk için otomatik ayar</value></data>
+  <data name="Settings_TuneDescription.Text" xml:space="preserve"><value>Her diski farklı blok boyutları ve eşzamanlı işlemlerle ölçer ve ona kopyalarken en hızlısını kullanır (performansı elle değiştirmediyseniz).</value></data>
+  <data name="Settings_TuneMeasure.Text" xml:space="preserve"><value>Diskleri ölç</value></data>
+  <data name="Settings_TuneNone" xml:space="preserve"><value>Henüz hiçbir disk ölçülmedi.</value></data>
+  <data name="Settings_TuneDisk" xml:space="preserve"><value>Disk</value></data>
+  <data name="Settings_TuneProfile" xml:space="preserve"><value>{0}: {1} MB&apos;lık bloklar, aynı anda {2} ({3:N0} MB/sn)</value></data>
+  <data name="Settings_TuneMeasuring" xml:space="preserve"><value>{0} ölçülüyor ({1} / {2})…</value></data>
+  <data name="Tool_Timeline.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Sıranın zaman çizelgesi</value></data>
+  <data name="Timeline_Title.Text" xml:space="preserve"><value>Zaman çizelgesi</value></data>
+  <data name="Timeline_Info.Text" xml:space="preserve"><value>Her diskin hızına göre tahmin. Aynı diski kullanan kopyalamalar tek tek gider.</value></data>
+  <data name="Timeline_Empty.Text" xml:space="preserve"><value>Süren veya sırada bekleyen kopyalama yok.</value></data>
+  <data name="Timeline_Summary" xml:space="preserve"><value>Her şey {0} civarında bitmeli ({1} sonra).</value></data>
+  <data name="Timeline_Now" xml:space="preserve"><value>Şimdi</value></data>
+  <data name="Timeline_Tomorrow" xml:space="preserve"><value>yarın {0}</value></data>
+  <data name="Timeline_Running" xml:space="preserve"><value>Sürüyor · tahmini bitiş: {0} ({1} kaldı)</value></data>
+  <data name="Timeline_Paused" xml:space="preserve"><value>Duraklatıldı · şimdi sürdürülürse tahmini bitiş: {0}</value></data>
+  <data name="Timeline_Queued" xml:space="preserve"><value>Sırada · başlangıç: {0} · tahmini bitiş: {1} ({2} sürer)</value></data>
+  <data name="Timeline_Scheduled" xml:space="preserve"><value>Zamanlandı · başlangıç: {0} · tahmini bitiş: {1} ({2} sürer)</value></data>
+  <data name="Timeline_Measuring" xml:space="preserve"><value>boyutu hâlâ ölçülüyor</value></data>
+  <data name="Tool_Shelf.Text" xml:space="preserve"><value>Bırakma rafı</value></data>
+  <data name="Tray_Shelf" xml:space="preserve"><value>Bırakma rafı</value></data>
+  <data name="Shelf_WindowTitle" xml:space="preserve"><value>MegaCopier bırakma rafı</value></data>
+  <data name="Shelf_Title.Text" xml:space="preserve"><value>Bırakma rafı</value></data>
+  <data name="Shelf_Empty.Text" xml:space="preserve"><value>Her yerden dosya ve klasörleri buraya bırakın. Sonra hepsini birlikte kopyalayın veya taşıyın ya da dışarı sürükleyin.</value></data>
+  <data name="Shelf_DropCaption" xml:space="preserve"><value>Rafa ekle</value></data>
+  <data name="Shelf_CopyTo.Text" xml:space="preserve"><value>Şuraya kopyala…</value></data>
+  <data name="Shelf_MoveTo.Text" xml:space="preserve"><value>Şuraya taşı…</value></data>
+  <data name="Shelf_Clear.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Rafı boşalt</value></data>
+  <data name="Shelf_Remove.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Raftan kaldır</value></data>
+  <data name="Shelf_One" xml:space="preserve"><value>1 öğe</value></data>
+  <data name="Shelf_Many" xml:space="preserve"><value>{0} öğe</value></data>
+  <data name="Shelf_RemoveNamed" xml:space="preserve"><value>&quot;{0}&quot; öğesini raftan kaldır</value></data>
+  <data name="Destinations_NoneChosen.Text" xml:space="preserve"><value>En az bir hedef işaretleyin (veya bir klasör ekleyin).</value></data>
+  <data name="Finish_ShutdownMessage" xml:space="preserve"><value>MegaCopier kopyalamaları bitirdi. Bilgisayar 1 dakika içinde kapanacak.</value></data>
+  <data name="Hash_Name" xml:space="preserve"><value>Karma: {0}</value></data>
+</root>

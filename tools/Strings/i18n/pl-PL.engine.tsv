@@ -1,0 +1,220 @@
+clave	texto
+E_WouldMove	Zostałby przeniesiony
+E_WouldCopy	Zostałby skopiowany
+E_WouldReplace	Zastąpiłby istniejący plik
+E_WouldReplaceNewer	Zostałby zastąpiony: źródło jest nowsze
+E_WouldReplaceSize	Zostałby zastąpiony: zmienił się rozmiar
+E_WouldKeepBoth	Zostałby skopiowany pod inną nazwą (oba zostają)
+E_WouldRenameExisting	Istniejący zmieniłby nazwę, a ten zostałby skopiowany
+E_WouldAsk	Zostałbyś zapytany
+E_WouldSkipIdentical	Zostałby pominięty: identyczny
+E_WouldSkipExists	Zostałby pominięty: już istnieje
+E_WouldSkipOlder	Zostałby pominięty: cel jest taki sam lub nowszy
+E_WouldSkipSameSize	Zostałby pominięty: ten sam rozmiar
+E_WouldSkipNotInDestination	Zostałby pominięty: brak w celu
+E_WouldDelete	Zostałby usunięty z celu: brak w źródle
+E_Deleted	Usunięto z celu: nie było w źródle
+E_WouldFail	Zostałby oznaczony jako błąd
+E_WouldSkipSamePath	Zostałby pominięty: źródło i cel są tym samym
+E_SkipIdentical	Identyczny z istniejącym
+E_SkipOlder	Cel jest taki sam lub nowszy
+E_SkipSameSize	Ten sam rozmiar co istniejący
+E_SkipNotInDestination	Brak w celu (aktualizowane są tylko istniejące)
+E_SkipSamePath	Źródło i cel to ten sam plik
+E_SkipExisted	Już istniał: pominięto
+E_DeletedLog	Usunięto z celu (brak w źródle).
+E_FolderExistsSkipped	Folder już istnieje w celu: pominięto.
+E_VersionSaved	Poprzednią wersję zapisano w {0}
+E_HardLinkTo	Twarde dowiązanie do {0}
+E_HardLinkCreated	Utworzono twarde dowiązanie (ten sam plik co {0}).
+E_HardLinkFailed	Nie udało się utworzyć twardego dowiązania ({0}); plik jest kopiowany.
+E_HashStreamFailed	Nie udało się zapisać skrótu w pliku (cel nie jest NTFS?): {0}
+E_DeviceLost	Utracono sieć lub dysk: kopiowanie czeka na ich powrót i wznowi się samo.
+E_DeviceBack	Dysk wrócił: kontynuacja od miejsca zatrzymania.
+E_DiskFull	Cel jest pełny: zwolnij miejsce, a kopiowanie wznowi się samo.
+E_SpaceBack	Znów jest miejsce: kontynuacja.
+E_HashStreamsSaved	Skrót zapisano wewnątrz plików: {0}.
+E_ChecksumSaved	Zapisano plik sum: {0}
+E_HashStart	Oblicz {0} dla plików: {1} ({2}).
+E_Added	Dodano pliki: {0} ({1}).
+E_NeedPassword	To kopiowanie jest zaszyfrowane: wpisz ponownie hasło, aby kontynuować.
+E_DryRunSummary	Symulacja: skopiowane byłyby {0}, pominięte {1} i usunięte {2}.
+E_DoneCopy	Zakończono w {0}: skopiowano {1}, pominięto {2}, z błędami {3}.
+E_DuplicateInDestination	Już jest w celu: {0}
+E_Repaired	Weryfikacja naprawiła uszkodzone bloki: {0}.
+E_DeltaCopy	Kopia różnicowa: zapisano {0}; {1} było już identycznych.
+E_Cloned	Bloki sklonowane natychmiast (ReFS/Dev Drive): nie zajmuje dodatkowego miejsca, dopóki się nie zmieni.
+E_SmbCompressed	Skopiowano przez Windows z kompresją SMB.
+E_ServerSide	Skopiowano na samym serwerze (dane nie przechodziły przez ten komputer).
+E_Resumed	Wznowiono od {0}.
+E_HashMismatch	Skróty się nie zgadzają
+E_SourceChanged	Ponownie odczytane źródło nie zgadza się ze skopiowanym (błąd odczytu lub zmiana w trakcie kopiowania)
+E_SkippedByUser	Pominięty przez użytkownika
+E_SkippedByUserLog	Pominięty przez użytkownika.
+E_ExistingDiffers	Istniejący plik nie zgadza się ze źródłem
+E_ExistingDiffersLog	Istniejący plik ma ten sam rozmiar i datę, ale inną zawartość.
+E_IdenticalVerified	Identyczny (zweryfikowano skrótem)
+E_SkippedNotVerified	Nie udało się zweryfikować pominiętego pliku: {0}
+E_RetryAtEnd	Zostanie ponowiony na końcu: {0}
+E_DestinationExists	Cel już istnieje: {0}
+E_ExistingRenamed	Istniejący plik przemianowano na {0}.
+E_NoSpace	Za mało miejsca w celu: potrzeba {0:F2} GB, wolne {1:F2} GB.
+E_RescuedZeros	Uratowano: {0} ze źródła było nieczytelne i zastąpiono je zerami (szczegóły w dzienniku).
+E_LinkExists	Już istnieje w celu; dowiązanie nie zostało utworzone ponownie: {0}
+E_LinkCreated	Utworzono dowiązanie: {0} → {1}
+E_JunctionCreated	Utworzono punkt połączenia: {0} → {1}
+E_LinkFallback	Nie udało się utworzyć dowiązania ({0}); skopiowano plik, na który wskazuje.
+E_LinkFailed	Nie udało się utworzyć dowiązania: {0}
+E_NoChecksums	Nie znaleziono plików sum (.sha256, .md5, .sfv, .xxh3...) ani plików z zapisanym skrótem.
+E_TestStart	Sprawdź pliki ({0}) z list sum ({1}), {2}.
+E_NotFound	Nie istnieje: {0}
+E_NoStoredHash	Brak zapisanego skrótu: nie sprawdzono
+E_ModifiedAfterHash	Zmieniony po zapisaniu skrótu: nie sprawdzono
+E_NowProtected	Brak zapisanego skrótu: teraz chroniony
+E_HashRenewed	Zmieniony po zapisaniu skrótu: skrót odnowiony
+E_ChecksumMismatch	Zawartość nie zgadza się z zapisaną sumą
+E_DoneTest	Sprawdzono w {0}: poprawne {1}, z błędami {2}.
+E_UnsupportedAlgorithm	Nieobsługiwany algorytm: {0}
+E_DeleteStart	Usuń pliki: {0} ({1}).
+E_WipeStart	Bezpiecznie usuń pliki: {0} ({1}).
+E_DoneDelete	Zakończono w {0}: usunięto {1}, z błędami {2}.
+E_NoSources	Nie podano żadnego źródła.
+E_WholeDrive	Kopiowanie całego dysku nie jest jeszcze obsługiwane: {0}
+E_SourceMissing	Źródło nie istnieje: {0}
+E_IntoItself	Nie można skopiować folderu do niego samego: {0}
+E_SourceUnreadable	Nie udało się odczytać źródła: {0}
+E_LinkSkipped	Pominięto dowiązanie: {0}
+E_BrokenLinkSkipped	Pominięto uszkodzone dowiązanie: {0} → {1}
+E_LinkLoop	Uniknięto pętli dowiązań: {0}
+E_StreamsFailed	Nie skopiowano alternatywnych strumieni danych: {0}
+E_RescueGap	Tryb ratunkowy: nie udało się odczytać bajtów {0:N0}–{1:N0} ({2:N0} B); zastąpiono je zerami.
+E_BlockUnrepairable	Blok {0} pliku „{1}” nie zgadza się ze źródłem nawet po naprawie.
+E_SourceChangedSinceStart	Plik źródłowy nie zgadza się już z tym, co skopiowano na początku.
+E_SourceSizeChanged	Plik źródłowy zmienił rozmiar podczas kopiowania.
+E_Disk_Degraded	pogorszony
+E_Disk_Predictive	przewidywana awaria (SMART)
+E_Disk_Error	błąd
+E_Disk_Unrecoverable	nienaprawialny
+E_Disk_Stopped	zatrzymany
+E_Disk_Lost	utracono komunikację
+E_Disk_Transient	przejściowe błędy
+E_Disk_Metadata	nierozpoznane metadane
+E_JunctionOpenFailed	Nie udało się otworzyć {0}, aby utworzyć punkt połączenia.
+E_JunctionFailed	Nie udało się utworzyć punktu połączenia {0} → {1}.
+E_HardLinkCreateFailed	Nie udało się utworzyć twardego dowiązania {0}.
+E_SnapshotFailed	Nie udało się utworzyć migawki {0}: {1}
+E_SnapshotOpenFailed	Nie udało się otworzyć migawki ({0}).
+E_NoWmiAnswer	Brak odpowiedzi od Win32_ShadowCopy.
+E_PowerShellExit	PowerShell zakończył się kodem {0}.
+E_ReadSecurityAdmin	Nie udało się odczytać zabezpieczeń źródła: potrzebne są uprawnienia administratora.
+E_ReadSecurityFailed	Nie udało się odczytać zabezpieczeń źródła (błąd {0}).
+E_WriteSecurityAdmin	Nie udało się zastosować zabezpieczeń w celu: potrzebne są uprawnienia administratora.
+E_WriteSecurityFailed	Nie udało się zastosować zabezpieczeń w celu (błąd {0}).
+E_AtomicExists	Już istnieje w celu: kopiowanie do istniejącego folderu (bez „wszystko albo nic”).
+E_AtomicNotPublished	Wystąpiły błędy: folder nie jest jeszcze publikowany (pozostaje ukryty jako {0}). Ponów, a pojawi się kompletny.
+E_AtomicPublished	Folder kompletny: opublikowany pod swoją nazwą.
+E_AtomicRenameFailed	Nie udało się nadać folderowi ostatecznej nazwy: {0}
+E_BadFileHeader	Nieprawidłowy nagłówek pliku.
+E_PartialChanged	Częściowy plik się zmienił.
+E_NotEncrypted	To nie jest plik zaszyfrowany przez MegaCopier.
+E_BadEncryptedHeader	Nieprawidłowy nagłówek zaszyfrowanego pliku.
+E_EncryptedExtra	Zaszyfrowany plik ma nadmiarowe dane.
+E_ConnectFailed	Nie udało się połączyć z {0}:{1} (czy MegaCopier tam odbiera i czy zapora na to pozwala?): {2}
+E_AlreadyOnPeer	Już był na drugim komputerze
+E_DamagedTwice	Dwukrotnie dotarł uszkodzony na drugi komputer
+E_Fat32	Nie mieści się w FAT32 (maksymalnie 4 GB na plik); sformatuj dysk jako exFAT lub NTFS.
+E_FatLimits	Cel to {0}: nie przechowuje alternatywnych strumieni ani uprawnień, a daty mają dokładność 2 s.
+E_CaseCollisions	Nazwy powtarzające się w celu ({0}) różnią się tylko wielkością liter: zostaną potraktowane jako konflikty.
+E_BadName	Problematyczna nazwa w Windows (zastrzeżona lub kończąca się kropką albo spacją): niektóre programy nie będą mogły jej otworzyć.
+E_LongPaths	Pliki ({0}) będą miały ścieżki dłuższe niż 260 znaków: Eksplorator i inne programy mogą ich nie otworzyć.
+E_WrongCode	Kod nie jest tym, który pokazuje drugi komputer.
+E_PeerUnknownCode	Drugi komputer nie zna kodu: połączenie nie jest bezpieczne.
+E_FlushFailed	Nie udało się zapisać danych na dysku.
+E_SourceInfoFailed	Nie udało się odczytać informacji o pliku źródłowym.
+E_JobNotRunning	Zadanie nie jest uruchomione.
+E_StopBeforeDiscard	Zatrzymaj zadanie, zanim je odrzucisz.
+E_JobErrors	Pliki z błędami: {0}
+E_NoEncryptedFiles	W wybranych elementach nie ma plików zaszyfrowanych przez MegaCopier (.mcenc).
+E_WrongPassword	Nieprawidłowe hasło albo zaszyfrowany plik jest uszkodzony lub zmodyfikowany.
+E_BadPeerMessage	Nieprawidłowa wiadomość od drugiego komputera.
+E_NoPhotoDate	Pliki bez daty wykonania ani nagrania: {0}. Są porządkowane według daty modyfikacji.
+E_F_NoHidden	bez ukrytych
+E_F_NoSystem	bez plików systemowych
+E_F_NoJunk	bez zbędnych plików
+E_F_Without	bez {0}
+E_F_Today	z dzisiaj
+E_F_Yesterday	od wczoraj
+E_F_ThisWeek	z tego tygodnia
+E_F_ThisMonth	z tego miesiąca
+E_F_ThisYear	z tego roku
+E_F_LastDay	ostatni dzień
+E_F_LastWeek	ostatni tydzień
+E_F_LastMonth	ostatni miesiąc
+E_F_LastYear	ostatni rok
+E_F_LastDays	ostatnie dni: {0}
+E_F_LastWeeks	ostatnie tygodnie: {0}
+E_F_LastMonths	ostatnie miesiące: {0}
+E_F_LastYears	ostatnie lata: {0}
+E_F_Before	przed {0}
+E_F_Since	od {0}
+E_F_InYear	z {0}
+E_Kind_fotos	zdjęcia
+E_Kind_videos	filmy
+E_Kind_musica	muzyka
+E_Kind_documentos	dokumenty
+E_Kind_comprimidos	archiwa
+E_Kind_programas	programy
+E_Kind_temporales	pliki tymczasowe
+C_UnknownCommand	Nieznane polecenie: {0}
+C_UnknownConflict	Nieznany tryb konfliktu: {0}
+C_UnknownOption	Nieznana opcja: {0}
+C_NeedSourceAndDestination	Podaj co najmniej jedno źródło i folder docelowy.
+C_UnknownSendOption	Nieznana opcja dla send: {0}
+C_NeedItem	Podaj co najmniej jeden plik lub folder.
+C_Delivered	Kopiowanie przekazano do MegaCopier (zadanie {0}) w {1:F0} ms.
+C_Rejected	MegaCopier odrzucił kopiowanie: {0}
+C_AppNotFound	MegaCopier nie jest otwarty i nie znaleziono MegaCopier.exe (ustaw MEGACOPIER_APP na jego ścieżkę).
+C_AppStarted	MegaCopier nie był otwarty: został uruchomiony z kopiowaniem.
+C_BadTime	Nieprawidłowa godzina: {0} (użyj HH:mm lub daty i godziny).
+C_NeedChecksums	Podaj pliki sum lub foldery, które je zawierają.
+C_Ok	OK
+C_Failed	BŁĄD
+C_TestDone	Poprawne {0}, z błędami {1}, w {2:F1} s.
+C_NeedDelete	Podaj, co usunąć.
+C_NeedYes	Usunięcia nie można cofnąć: dodaj --yes, aby potwierdzić.
+C_DeleteDone	Usunięte pliki: {0}, z błędami: {1}.
+C_WipeDone	Bezpiecznie usunięte pliki: {0}, z błędami: {1}.
+C_NoJob	Zadanie {0} nie istnieje.
+C_NoPendingJobs	Brak oczekujących zadań.
+C_Resuming	Wznawianie {0}: {1} → {2}
+C_TestKill	[test] Zabijanie procesu po potwierdzeniu {0} z {1}.
+C_TestContinue	[test] Kontynuuj: mcopy resume {0}
+C_DryRunNote	Symulacja: nic nie zmieniono. Usuń --dry-run, aby wykonać naprawdę.
+C_RetryHint	Są pliki z błędami. Ponów: mcopy resume {0}
+C_PausedHint	Kopiowanie wstrzymane. Wznów od miejsca zatrzymania: mcopy resume {0}
+C_Error	Błąd: {0}
+C_JobPending	Zadanie pozostaje oczekujące: mcopy resume {0}
+C_Exists	Już istnieje: {0}
+C_New	nowy
+C_Existing	istniejący
+C_ConflictPrompt	[z]astąp, [p]omiń, z[a]chowaj oba (wielka litera = dla wszystkich):
+C_ConflictKeys	zpa
+C_DoneIn	Zakończono w {0}
+C_Summary	Skopiowane: {0} (wznowione: {1})   Pominięte: {2}   Błędy: {3}
+C_Transferred	Przesłano: {0}   Nieskopiowane ponownie dzięki wznowieniu: {1}
+C_AverageSpeed	Średnia prędkość: {0}/s
+C_Blocks	Bloki odrzucone przy wznowieniu: {0}   Bloki naprawione weryfikacją: {1}
+C_MissingValue	Brak wartości dla {0}.
+C_NeedPositive	{0} wymaga liczby dodatniej.
+C_Password	Hasło:
+C_Repeat	Powtórz:
+C_PasswordShort	Hasło musi mieć co najmniej 8 znaków.
+C_PasswordMismatch	Hasła nie są zgodne.
+C_Checking	sprawdzanie
+C_Verifying	weryfikowanie
+C_Left	zostało {0}
+C_Of	{0} z {1}
+C_Usage	MegaCopier — kopiowanie, które przetrwa awarie prądu\n\nUżycie:\n  mcopy copy <źródło>... <folder-docelowy> [opcje]\n  mcopy move <źródło>... <folder-docelowy> [opcje]   Przenosi (natychmiast na tym samym dysku)\n  mcopy send <źródło>... <folder-docelowy> [--verify] [--move] [--also <inny-folder>]... [--at HH:mm]\n                              Przekazuje kopiowanie do aplikacji MegaCopier (okno i obszar powiadomień)\n  mcopy send --test <sumy|folder>...           Sprawdza pliki sum w aplikacji\n  mcopy send --delete [--secure] <ścieżka>...  Usuwa (bezpiecznie) przez aplikację\n  mcopy send --hash <folder|pliki>...          Tworzy plik sum w aplikacji\n  mcopy send ... [--mirror|--update-only|--folders-only] [--dry-run]\n  mcopy test <sumy|folder>...   Sprawdza .sha256, .md5, .sfv, .xxh3... bez aplikacji\n  mcopy decrypt <zaszyfrowane|folder>... <folder-docelowy>   Odszyfrowuje pliki .mcenc\n  mcopy delete [--secure] --yes <ścieżka>...   Usuwa bez aplikacji (--secure: najpierw nadpisuje)\n  mcopy resume [id]      Wznawia przerwane zadania (lub jedno)\n  mcopy jobs             Lista oczekujących zadań\n\nOpcje copy:\n  --verify               Ponownie czyta cel bez pamięci podręcznej, porównuje skróty i naprawia uszkodzone bloki\n  --conflict <tryb>      overwrite (domyślnie) | skip | newer | rename | fail | ask\n  --limit-mb <n>         Ogranicza prędkość do n MB/s\n  --force                Kopiuje, nawet jeśli cel jest identyczny\n  --chunk-mb <n>         Co ile MB postęp jest potwierdzany na dysku (domyślnie 64)\n  --block-mb <n>         Rozmiar każdego odczytu/zapisu w MB\n  --queue <n>            Jednoczesne odczyty i zapisy\n  --no-unbuffered        Używa pamięci podręcznej Windows zamiast bezpośredniego we/wy\n  --mirror               Synchronizuje: usuwa z celu to, czego nie ma już w źródle\n  --update-only          Aktualizuje tylko pliki, które już są w celu\n  --folders-only         Tworzy tylko strukturę folderów\n  --dry-run              Symuluje: mówi, co stałoby się z każdym plikiem, nic nie zmieniając\n  --versions <folder>    Zachowuje zastąpione lub usunięte w tym folderze celu\n  --skip-junk            Pomija Thumbs.db, desktop.ini, .DS_Store, ~$...\n  --smb-compress         Prosi o kompresję SMB przy kopiowaniu przez sieć (wolne sieci)\n  --atomic               Wszystko albo nic: folder pojawia się dopiero, gdy jest kompletny\n  --rescue               Tryb ratunkowy: ratuje czytelne dane z uszkodzonego dysku (nieczytelne jako zera)\n  --delta                Przy zastępowaniu dużych plików zapisuje tylko zmienione bloki\n  --organize             Porządkuje zdjęcia i filmy w folderach rok-miesiąc według daty wykonania\n  --skip-duplicates      Nie kopiuje tego, co już jest w celu (ta sama zawartość, dowolna nazwa)\n  --encrypt              Kopia zaszyfrowana hasłem (AES-256, pliki .mcenc)\n  --crash-after-mb <n>   [test] Zabija proces po potwierdzeniu n MB pliku\n\nCtrl+C wstrzymuje kopiowanie; 'resume' wznawia od ostatniego potwierdzonego bloku.
+U_Seconds	{0} s
+U_MinSec	{0} min {1} s
+U_HourMin	{0} godz. {1} min

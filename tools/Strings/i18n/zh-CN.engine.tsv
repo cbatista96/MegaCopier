@@ -1,0 +1,220 @@
+clave	texto
+E_WouldMove	将被移动
+E_WouldCopy	将被复制
+E_WouldReplace	将替换现有文件
+E_WouldReplaceNewer	将被替换：源较新
+E_WouldReplaceSize	将被替换：大小已变化
+E_WouldKeepBoth	将以其他名称复制（两者都保留）
+E_WouldRenameExisting	将重命名现有文件并复制此文件
+E_WouldAsk	将询问你怎么做
+E_WouldSkipIdentical	将跳过：相同
+E_WouldSkipExists	将跳过：已存在
+E_WouldSkipOlder	将跳过：目标相同或更新
+E_WouldSkipSameSize	将跳过：大小相同
+E_WouldSkipNotInDestination	将跳过：目标中没有
+E_WouldDelete	将从目标删除：源中没有
+E_Deleted	已从目标删除：源中没有
+E_WouldFail	将标记为错误
+E_WouldSkipSamePath	将跳过：源和目标相同
+E_SkipIdentical	与现有文件相同
+E_SkipOlder	目标相同或更新
+E_SkipSameSize	与现有文件大小相同
+E_SkipNotInDestination	目标中没有（只更新已存在的文件）
+E_SkipSamePath	源和目标是同一个文件
+E_SkipExisted	已存在：已跳过
+E_DeletedLog	已从目标删除（源中没有）。
+E_FolderExistsSkipped	目标中已有该文件夹：已跳过。
+E_VersionSaved	旧版本已保存在 {0}
+E_HardLinkTo	指向 {0} 的硬链接
+E_HardLinkCreated	已创建硬链接（与 {0} 是同一文件）。
+E_HardLinkFailed	无法创建硬链接 ({0})；改为复制文件。
+E_HashStreamFailed	无法将哈希保存到文件中（目标不是 NTFS？）：{0}
+E_DeviceLost	网络或驱动器丢失：复制会等待其恢复并自动继续。
+E_DeviceBack	驱动器已恢复：从中断处继续。
+E_DiskFull	目标已满：释放空间后复制会自动继续。
+E_SpaceBack	已有可用空间：继续。
+E_HashStreamsSaved	已在 {0} 个文件内保存哈希。
+E_ChecksumSaved	校验和文件已保存：{0}
+E_HashStart	计算 {1} 个文件的 {0} ({2})。
+E_Added	已添加 {0} 个文件 ({1})。
+E_NeedPassword	此复制已加密：请重新输入密码以继续。
+E_DryRunSummary	模拟：将复制 {0} 个，跳过 {1} 个，删除 {2} 个。
+E_DoneCopy	用时 {0} 完成：复制 {1} 个，跳过 {2} 个，出错 {3} 个。
+E_DuplicateInDestination	目标中已有：{0}
+E_Repaired	校验修复了 {0} 个损坏的数据块。
+E_DeltaCopy	差异复制：写入 {0}；{1} 已经相同。
+E_Cloned	数据块已瞬间克隆 (ReFS/Dev Drive)：修改前不占用额外空间。
+E_SmbCompressed	由 Windows 使用 SMB 压缩复制。
+E_ServerSide	在服务器本身上复制（数据未经过这台电脑）。
+E_Resumed	从 {0} 处继续。
+E_HashMismatch	哈希不一致
+E_SourceChanged	重新读取的源与已复制的内容不一致（读取有误，或在复制过程中发生了变化）
+E_SkippedByUser	被用户跳过
+E_SkippedByUserLog	被用户跳过。
+E_ExistingDiffers	现有文件与源不一致
+E_ExistingDiffersLog	现有文件大小和日期相同，但内容不同。
+E_IdenticalVerified	相同（已通过哈希校验）
+E_SkippedNotVerified	无法校验跳过的文件：{0}
+E_RetryAtEnd	将在最后重试：{0}
+E_DestinationExists	目标已存在：{0}
+E_ExistingRenamed	现有文件已重命名为 {0}。
+E_NoSpace	目标空间不足：需要 {0:F2} GB，可用 {1:F2} GB。
+E_RescuedZeros	已救出：源中无法读取的 {0} 已填零（详见日志）。
+E_LinkExists	目标中已存在；未重新创建链接：{0}
+E_LinkCreated	已创建链接：{0} → {1}
+E_JunctionCreated	已创建联接：{0} → {1}
+E_LinkFallback	无法创建链接 ({0})；已复制其指向的文件。
+E_LinkFailed	无法创建链接：{0}
+E_NoChecksums	未找到校验和文件 (.sha256, .md5, .sfv, .xxh3...)，也没有保存了哈希的文件。
+E_TestStart	检查来自 {1} 个校验和列表的 {0} 个文件 ({2})。
+E_NotFound	不存在：{0}
+E_NoStoredHash	没有保存的哈希：未检查
+E_ModifiedAfterHash	保存哈希后被修改：未检查
+E_NowProtected	没有保存的哈希：现已保护
+E_HashRenewed	保存哈希后被修改：已更新哈希
+E_ChecksumMismatch	内容与保存的校验和不一致
+E_DoneTest	用时 {0} 检查完毕：{1} 个正常，{2} 个出错。
+E_UnsupportedAlgorithm	不支持的算法：{0}
+E_DeleteStart	删除 {0} 个文件 ({1})。
+E_WipeStart	安全删除 {0} 个文件 ({1})。
+E_DoneDelete	用时 {0} 完成：删除 {1} 个，出错 {2} 个。
+E_NoSources	未指定源。
+E_WholeDrive	暂不支持复制整个驱动器：{0}
+E_SourceMissing	源不存在：{0}
+E_IntoItself	不能把文件夹复制到它自身中：{0}
+E_SourceUnreadable	无法读取源：{0}
+E_LinkSkipped	已跳过链接：{0}
+E_BrokenLinkSkipped	已跳过损坏的链接：{0} → {1}
+E_LinkLoop	已避免链接循环：{0}
+E_StreamsFailed	未复制备用数据流：{0}
+E_RescueGap	救援模式：无法读取字节 {0:N0}–{1:N0}（{2:N0} 字节）；已填零。
+E_BlockUnrepairable	“{1}”的第 {0} 块即使修复后仍与源不一致。
+E_SourceChangedSinceStart	源文件已与开始时复制的内容不一致。
+E_SourceSizeChanged	源文件在复制期间大小发生了变化。
+E_Disk_Degraded	性能下降
+E_Disk_Predictive	预测故障 (SMART)
+E_Disk_Error	错误
+E_Disk_Unrecoverable	不可恢复
+E_Disk_Stopped	已停止
+E_Disk_Lost	通信中断
+E_Disk_Transient	暂时性错误
+E_Disk_Metadata	无法识别的元数据
+E_JunctionOpenFailed	无法打开 {0} 来创建联接。
+E_JunctionFailed	无法创建联接 {0} → {1}。
+E_HardLinkCreateFailed	无法创建硬链接 {0}。
+E_SnapshotFailed	无法创建 {0} 的快照：{1}
+E_SnapshotOpenFailed	无法打开快照 ({0})。
+E_NoWmiAnswer	Win32_ShadowCopy 没有响应。
+E_PowerShellExit	PowerShell 以代码 {0} 结束。
+E_ReadSecurityAdmin	无法读取源的安全设置：需要管理员权限。
+E_ReadSecurityFailed	无法读取源的安全设置（错误 {0}）。
+E_WriteSecurityAdmin	无法将安全设置应用到目标：需要管理员权限。
+E_WriteSecurityFailed	无法将安全设置应用到目标（错误 {0}）。
+E_AtomicExists	目标中已存在：复制到现有文件夹中（不使用“全有或全无”）。
+E_AtomicNotPublished	出现错误：文件夹暂不发布（仍以 {0} 隐藏）。重试后它会完整出现。
+E_AtomicPublished	文件夹完整：已以其名称发布。
+E_AtomicRenameFailed	无法为文件夹设置最终名称：{0}
+E_BadFileHeader	文件头无效。
+E_PartialChanged	未完成的文件已更改。
+E_NotEncrypted	这不是 MegaCopier 加密的文件。
+E_BadEncryptedHeader	加密文件头无效。
+E_EncryptedExtra	加密文件包含多余数据。
+E_ConnectFailed	无法连接到 {0}:{1}（那里的 MegaCopier 是否在接收，防火墙是否允许？）：{2}
+E_AlreadyOnPeer	另一台电脑上已有
+E_DamagedTwice	两次到达另一台电脑时都已损坏
+E_Fat32	FAT32 放不下（每个文件最大 4 GB）；请将磁盘格式化为 exFAT 或 NTFS。
+E_FatLimits	目标是 {0}：不保存备用数据流和权限，日期精度为 2 秒。
+E_CaseCollisions	目标中有 {0} 个名称重复（仅大小写不同）：将按冲突处理。
+E_BadName	在 Windows 中有问题的名称（保留名称或以句点、空格结尾）：有些程序将无法打开它。
+E_LongPaths	{0} 个文件的路径将超过 260 个字符：文件资源管理器和其他程序可能无法打开它们。
+E_WrongCode	代码与另一台电脑显示的不一致。
+E_PeerUnknownCode	另一台电脑不知道此代码：连接不安全。
+E_FlushFailed	无法将数据写入磁盘。
+E_SourceInfoFailed	无法读取源文件的信息。
+E_JobNotRunning	任务未在运行。
+E_StopBeforeDiscard	请先停止任务再放弃。
+E_JobErrors	{0} 个文件出错
+E_NoEncryptedFiles	所选内容中没有 MegaCopier 加密的文件 (.mcenc)。
+E_WrongPassword	密码错误，或加密文件已损坏或被篡改。
+E_BadPeerMessage	来自另一台电脑的消息无效。
+E_NoPhotoDate	{0} 个文件没有拍摄或录制日期：将按修改日期整理。
+E_F_NoHidden	不含隐藏文件
+E_F_NoSystem	不含系统文件
+E_F_NoJunk	不含垃圾文件
+E_F_Without	不含 {0}
+E_F_Today	今天的
+E_F_Yesterday	昨天以来的
+E_F_ThisWeek	本周的
+E_F_ThisMonth	本月的
+E_F_ThisYear	今年的
+E_F_LastDay	最近一天
+E_F_LastWeek	最近一周
+E_F_LastMonth	最近一个月
+E_F_LastYear	最近一年
+E_F_LastDays	最近 {0} 天
+E_F_LastWeeks	最近 {0} 周
+E_F_LastMonths	最近 {0} 个月
+E_F_LastYears	最近 {0} 年
+E_F_Before	{0} 之前
+E_F_Since	{0} 以来
+E_F_InYear	{0} 年的
+E_Kind_fotos	照片
+E_Kind_videos	视频
+E_Kind_musica	音乐
+E_Kind_documentos	文档
+E_Kind_comprimidos	压缩包
+E_Kind_programas	程序
+E_Kind_temporales	临时文件
+C_UnknownCommand	未知命令：{0}
+C_UnknownConflict	未知冲突模式：{0}
+C_UnknownOption	未知选项：{0}
+C_NeedSourceAndDestination	请至少指定一个源和一个目标文件夹。
+C_UnknownSendOption	send 的未知选项：{0}
+C_NeedItem	请至少指定一个文件或文件夹。
+C_Delivered	已在 {1:F0} 毫秒内交给 MegaCopier（任务 {0}）。
+C_Rejected	MegaCopier 拒绝了复制：{0}
+C_AppNotFound	MegaCopier 未打开，且找不到 MegaCopier.exe（请将 MEGACOPIER_APP 设为其路径）。
+C_AppStarted	MegaCopier 未打开：已随复制一起启动。
+C_BadTime	时间无效：{0}（请使用 HH:mm 或日期和时间）。
+C_NeedChecksums	请指定校验和文件或包含它们的文件夹。
+C_Ok	正常
+C_Failed	失败
+C_TestDone	{0} 个正常，{1} 个出错，用时 {2:F1} 秒。
+C_NeedDelete	请指定要删除的内容。
+C_NeedYes	删除无法撤销：请添加 --yes 确认。
+C_DeleteDone	已删除 {0} 个文件，{1} 个出错。
+C_WipeDone	已安全删除 {0} 个文件，{1} 个出错。
+C_NoJob	任务 {0} 不存在。
+C_NoPendingJobs	没有待处理的任务。
+C_Resuming	正在继续 {0}：{1} → {2}
+C_TestKill	[测试] 确认 {1} 的 {0} 后终止进程。
+C_TestContinue	[测试] 继续：mcopy resume {0}
+C_DryRunNote	模拟：没有做任何更改。去掉 --dry-run 即可正式执行。
+C_RetryHint	有文件出错。重试：mcopy resume {0}
+C_PausedHint	复制已暂停。从中断处继续：mcopy resume {0}
+C_Error	错误：{0}
+C_JobPending	任务仍待处理：mcopy resume {0}
+C_Exists	已存在：{0}
+C_New	新文件
+C_Existing	现有文件
+C_ConflictPrompt	[r] 替换，[s] 跳过，[k] 保留两者（大写 = 应用于全部）：
+C_ConflictKeys	rsk
+C_DoneIn	用时 {0} 完成
+C_Summary	已复制：{0}（继续：{1}）   跳过：{2}   错误：{3}
+C_Transferred	已传输：{0}   因断点续传无需重复复制：{1}
+C_AverageSpeed	平均速度：{0}/s
+C_Blocks	继续时丢弃的块：{0}   校验修复的块：{1}
+C_MissingValue	缺少 {0} 的值。
+C_NeedPositive	{0} 需要正数。
+C_Password	密码：
+C_Repeat	再次输入：
+C_PasswordShort	密码至少需要 8 个字符。
+C_PasswordMismatch	密码不一致。
+C_Checking	检查中
+C_Verifying	校验中
+C_Left	剩余 {0}
+C_Of	{0} / {1}
+C_Usage	MegaCopier — 断电也不怕的复制\n\n用法：\n  mcopy copy <源>... <目标文件夹> [选项]\n  mcopy move <源>... <目标文件夹> [选项]   移动（同一磁盘上瞬间完成）\n  mcopy send <源>... <目标文件夹> [--verify] [--move] [--also <其他文件夹>]... [--at HH:mm]\n                              把复制交给 MegaCopier 应用（窗口和通知区域）\n  mcopy send --test <校验和|文件夹>...         在应用中检查校验和文件\n  mcopy send --delete [--secure] <路径>...     通过应用（安全）删除\n  mcopy send --hash <文件夹|文件>...           在应用中创建校验和文件\n  mcopy send ... [--mirror|--update-only|--folders-only] [--dry-run]\n  mcopy test <校验和|文件夹>...   不用应用检查 .sha256, .md5, .sfv, .xxh3...\n  mcopy decrypt <加密文件|文件夹>... <目标文件夹>   解密 .mcenc 文件\n  mcopy delete [--secure] --yes <路径>...   不用应用删除（--secure：先覆盖）\n  mcopy resume [id]      继续中断的任务（或其中一个）\n  mcopy jobs             列出待处理的任务\n\ncopy 选项：\n  --verify               不经缓存重读目标，比较哈希并修复损坏的块\n  --conflict <模式>      overwrite（默认）| skip | newer | rename | fail | ask\n  --limit-mb <n>         限速 n MB/s\n  --force                即使目标相同也复制\n  --chunk-mb <n>         每多少 MB 在磁盘上确认一次进度（默认 64）\n  --block-mb <n>         每次读写的大小 (MB)\n  --queue <n>            同时进行的读写数\n  --no-unbuffered        使用 Windows 缓存而不是直接 I/O\n  --mirror               同步：从目标移除源中已没有的内容\n  --update-only          只更新目标中已存在的文件\n  --folders-only         只创建文件夹结构\n  --dry-run              模拟：说明每个文件会怎样处理，不做任何更改\n  --versions <文件夹>    把替换或移除的文件保存在目标中的该文件夹\n  --skip-junk            跳过 Thumbs.db, desktop.ini, .DS_Store, ~$...\n  --smb-compress         通过网络复制时请求 SMB 压缩（慢速网络）\n  --atomic               全有或全无：文件夹完整后才出现\n  --rescue               救援模式：从损坏磁盘救出可读内容（不可读部分填零）\n  --delta                替换大文件时只写入变化的块\n  --organize             按拍摄日期把照片和视频整理到“年-月”文件夹\n  --skip-duplicates      不复制目标中已有的内容（内容相同，名称任意）\n  --encrypt              用密码加密的副本 (AES-256，.mcenc 文件)\n  --crash-after-mb <n>   [测试] 确认文件的 n MB 后终止进程\n\nCtrl+C 暂停复制；'resume' 从最后确认的块继续。
+U_Seconds	{0} 秒
+U_MinSec	{0} 分 {1} 秒
+U_HourMin	{0} 小时 {1} 分

@@ -1,0 +1,796 @@
+clave	texto
+JobsSection.Text	복사
+SettingsSection.Text	설정
+FinishButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	모든 복사가 끝나면 할 일
+FinishNothing.Text	아무것도 안 함
+FinishSleep.Text	절전
+FinishShutdown.Text	시스템 종료
+NewCopyText.Text	새 복사
+CopyFilesItem.Text	파일 복사…
+CopyFolderItem.Text	폴더 복사…
+EmptyTitle.Text	복사 작업 없음
+EmptyDescription.Text	시작한 복사가 여기에 표시됩니다. 정전이 되어도 전원이 돌아오면 중단된 곳부터 이어서 할 수 있습니다.
+PauseButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	일시 중지
+StopButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	중지(나중에 이어서 가능)
+OpenFolderButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	대상 폴더 열기
+ClearButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	목록에서 제거
+DiscardButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	취소하고 미완성 복사본 삭제
+ConflictDialog.Title	파일이 이미 있습니다
+ConflictDialog.PrimaryButtonText	바꾸기
+ConflictDialog.SecondaryButtonText	둘 다 유지
+ConflictDialog.CloseButtonText	건너뛰기
+ConflictExistingTitle.Text	기존 파일
+ConflictApplyAll.Content	이 복사의 다른 충돌에도 동일하게 적용
+RestartInfo.Title	변경 사항을 적용하려면 MegaCopier를 다시 시작하세요
+RestartInfo.Message	진행 중인 복사는 중지되며 나중에 이어서 할 수 있습니다.
+RestartButton.Content	지금 다시 시작
+AppearanceHeader.Text	모양
+ThemeTitle.Text	테마
+ThemeDescription.Text	밝게, 어둡게 또는 Windows와 동일
+ThemeSystem.Content	Windows와 동일
+ThemeLight.Content	밝게
+ThemeDark.Content	어둡게
+AccentTitle.Text	강조 색
+AccentDescription.Text	단추, 진행률 표시줄, 강조 요소의 색
+BackdropTitle.Text	창 배경
+BackdropDescription.Text	Windows 11 소재로 바탕 화면이 은은하게 비칩니다
+BackdropMica.Content	Mica
+BackdropMicaAlt.Content	Mica Alt(색조가 더 진함)
+BackdropAcrylic.Content	아크릴
+BackdropSolid.Content	단색
+LanguageTitle.Text	언어
+LanguageDescription.Text	MegaCopier와 파일 탐색기 메뉴 항목의 언어
+LanguageAuto.Content	Windows와 동일
+OnTopTitle.Text	항상 위에 표시
+OnTopDescription.Text	복사 중에는 창을 다른 창보다 위에 둡니다
+CopyHeader.Text	복사
+VerifyTitle.Text	복사 후 확인
+VerifyDescription.Text	캐시 없이 대상을 다시 읽고 원본과 다른 블록을 모두 복구합니다
+ConflictTitle.Text	파일이 이미 있을 때
+ConflictDescription.Text	동일한 파일(크기와 날짜가 같음)은 항상 건너뜁니다
+ConflictAsk.Content	묻기
+ConflictReplace.Content	바꾸기
+ConflictSkip.Content	건너뛰기
+ConflictNewer.Content	더 최신이면 바꾸기
+ConflictKeepBoth.Content	둘 다 유지
+SpeedTitle.Text	속도 제한
+SpeedDescription.Text	다른 작업을 위해 디스크나 네트워크 대역폭을 남겨 둡니다(새 복사에 적용)
+SpeedUnlimited.Content	제한 없음
+AutoResumeTitle.Text	중단된 복사 자동 재개
+AutoResumeDescription.Text	정전이나 다시 시작 후 MegaCopier를 열면 묻지 않고 이어서 합니다
+ExplorerHeader.Text	파일 탐색기
+PasteTitle.Text	붙여넣기(Ctrl+V) 시 MegaCopier로 복사 및 이동
+PasteDescription.Text	복사(Ctrl+C)하거나 잘라낸(Ctrl+X) 파일을 파일 탐색기나 바탕 화면에 붙여 넣으면 MegaCopier가 처리합니다. 같은 폴더에 붙여 넣으면 파일 탐색기가 처리합니다
+ShellMenuTitle.Text	오른쪽 클릭 메뉴 항목
+ShellMenuDescription.Text	"MegaCopier로 붙여넣기"("추가 옵션 표시" 안)와 오른쪽 단추로 끌 때의 "MegaCopier로 여기에 복사 / 이동"
+SystemHeader.Text	시스템
+StartupTitle.Text	Windows와 함께 시작
+StartupDescription.Text	알림 영역에 머물러 복사를 즉시 시작합니다
+NotifyTitle.Text	완료 시 알림
+NotifyDescription.Text	복사가 끝났을 때 창이 보이지 않으면 시스템 알림을 표시합니다
+Accent_System	Windows와 동일
+Accent_Blue	파랑
+Accent_Violet	보라
+Accent_Teal	청록
+Accent_Green	초록
+Accent_Orange	주황
+Accent_Pink	분홍
+Accent_Red	빨강
+About	MegaCopier {0} · 정전에도 끄떡없는 복사
+Picker_CopyHere	여기에 복사
+Finish_Label	완료 후
+Finish_LabelSleep	완료 후: 절전
+Finish_LabelShutdown	완료 후: 시스템 종료
+Conflict_Message	"{1}"에 "{0}"(이)라는 파일이 이미 있습니다.
+Conflict_SourceCopy	복사할 파일
+Conflict_SourceMove	이동할 파일
+Conflict_Newer	 · 더 최신
+Job_OneItem	"{0}"
+Job_ManyItems	항목 {0}개
+Job_TitleCopying	{0} 복사 중
+Job_TitleMoving	{0} 이동 중
+Job_TitleCopied	{0} 복사됨
+Job_TitleMoved	{0} 이동됨
+Job_TitleQueued	대기 중: {0}
+Job_Destination	→ {0}
+Job_StateQueued	대기 중: 디스크 사용 중
+Job_StateVerifying	확인 중
+Job_StateValidating	복사된 부분 확인 중
+Job_StateWaiting	결정 대기 중: 파일이 이미 있음
+Job_StateCopying	복사 중
+Job_StateMoving	이동 중
+Job_StatePaused	일시 중지됨
+Job_StateCompleted	완료됨
+Job_StateCompletedErrors	완료됨(오류 있음)
+Job_StateFailed	오류
+Job_StateInterrupted	중단됨 · 이어서 할 수 있음
+Job_ResumeHint	계속하려면 "재개"를 누르세요
+Job_Preparing	준비 중…
+Job_Progress	{0} / {1}
+Job_Remaining	{0} 남음
+Job_Files	파일 {0} / {1}
+Job_FilesCopiedOne	파일 {0}개 복사됨
+Job_FilesCopiedMany	파일 {0}개 복사됨
+Job_FilesMovedOne	파일 {0}개 이동됨
+Job_FilesMovedMany	파일 {0}개 이동됨
+Job_TransferredIn	{0}, {1} 소요
+Job_Recovered	{0} 복구
+Job_Skipped	{0} 건너뜀
+Job_Verified	확인됨
+Job_Repaired	(블록 {0}개 복구)
+Job_FailedFiles	파일 {0}개 오류
+Job_Resume	재개
+Job_Retry	다시 시도
+Job_FailuresHeader	문제가 있는 파일 {0}개 보기
+Job_FailuresMore	… 그 외 {0}개
+Tray_Open	MegaCopier 열기
+Tray_PauseAll	모두 일시 중지
+Tray_ResumeAll	모두 재개
+Tray_Startup	Windows와 함께 시작
+Tray_Exit	끝내기
+Tray_OneJob	복사 1개
+Tray_ManyJobs	복사 {0}개
+Notify_InterruptedTitle	중단된 복사가 있습니다
+Notify_InterruptedOne	끝나지 않은 복사가 1개 있습니다. 열면 중단된 곳부터 이어서 합니다.
+Notify_InterruptedMany	끝나지 않은 복사가 {0}개 있습니다. 열어서 이어서 하세요.
+Notify_DoneTitle	복사 완료
+Notify_ProblemTitle	복사에 문제가 있습니다
+Notify_AllDoneTitle	모든 복사 완료
+Error_NeedsPaths	복사 요청에는 원본과 대상이 필요합니다.
+Tray_Disable	사용 안 함(Windows로 복사)
+Tray_Enable	MegaCopier 사용
+Tray_TooltipDisabled	MegaCopier · 사용 안 함(Windows가 복사)
+Notify_DisabledTitle	MegaCopier 사용 안 함
+Notify_DisabledBody	복사는 Windows가 합니다. 아이콘을 두 번 클릭하면 다시 사용합니다.
+Notify_EnabledTitle	MegaCopier 사용
+Notify_EnabledBody	파일 탐색기의 복사와 이동은 MegaCopier가 합니다.
+AboutDialog.Title	MegaCopier 정보
+AboutDialog.CloseButtonText	닫기
+About_DataFolder.Content	데이터 폴더 열기(설정, 테마, 기록, 보고서)
+About_Description.Text	Windows 11용 파일 복사 프로그램으로, 정전 후에도 아주 큰 파일 하나까지 이어서 복사하고 복사된 부분을 확인합니다.
+About_Features.Text	캐시 없는 비동기 I/O · 병렬 읽기/쓰기 · 해시 확인(CRC32, xxHash, MD5, SHA) · 디스크별 대기열 · 일시 중지 및 재개 · 이동 · 충돌 처리 · 속도 제한 · 복사 목록 · 보고서 · 테마.
+CopyFiles.Text	파일 복사…
+CopyFolder.Text	폴더 복사…
+CopyFilesText.Text	파일 복사
+CopyFolderText.Text	폴더 복사
+Files_AddFiles.Text	파일 추가…
+Files_AddFolder.Text	폴더 추가…
+Files_AutoScroll.Content	현재 파일 따라가기
+Files_CopyHashes.Text	해시 복사
+Files_CopyPath.Text	경로 복사
+Files_Empty.Text	표시할 파일이 없습니다
+Files_ExportCsv.Text	CSV로 내보내기…
+Files_ExportHtml.Text	HTML 보고서 내보내기…
+Files_FilterAll.Content	모두
+Files_FilterDone.Content	복사됨
+Files_FilterErrors.Content	오류
+Files_FilterPending.Content	대기 중
+Files_FilterSkipped.Content	건너뜀
+Files_HideFinished.Content	완료된 항목 숨기기
+Files_Menu.Text	목록
+Files_MoveBottom.Text	맨 끝으로 이동
+Files_MoveDown.Text	아래로 이동
+Files_MoveTop.Text	맨 앞으로 이동
+Files_MoveUp.Text	위로 이동
+Files_OpenSource.Text	원본 표시
+Files_OpenTarget.Text	대상 표시
+Files_Remove.Text	복사에서 제거
+Files_Retry.Text	실패한 파일 다시 시도
+Files_SaveList.Text	복사 목록 저장…
+Files_Search.PlaceholderText	파일 검색
+Files_Size.Text	크기
+Files_SourceHash.Text	원본 해시
+Files_TargetHash.Text	대상 해시
+History_Clear.Text	지우기
+History_Empty.Text	아직 완료된 복사가 없습니다
+History_Open.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	대상 열기
+History_Repeat.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	반복(새로운 항목이나 변경된 항목만 복사)
+History_Title.Text	기록
+Log_Export.Text	로그 내보내기
+Options_Acl.Content	권한(ACL)
+Options_Attributes.Content	특성
+Options_Audit.Content	감사(SACL)
+Options_BufferSize.Text	버퍼 크기
+Options_Data.Content	데이터
+Options_ExportReport.Content	HTML 보고서 저장
+Options_FilesFolders.Text	파일 및 폴더
+Options_OnFinish.Text	완료 후
+Options_Owner.Content	소유자
+Options_ResetDefault.Text	초기화
+Options_RunningInfo.Message	복사 진행 중: 이 변경 사항은 재개할 때 적용됩니다("확인"과 "무인"은 즉시 적용).
+Options_SaveChecksum.Content	체크섬 파일 저장
+Options_SaveDefault.Text	기본값으로 저장
+Options_Scripts.Text	완료 후 명령
+Options_ScriptsHelp.Text	한 줄에 하나씩 cmd.exe로 실행합니다. "ok:"로 시작하면 성공했을 때만, "error:"로 시작하면 실패했을 때만 실행합니다. 변수: %MEGACOPIER_STATE%, %MEGACOPIER_DESTINATION%, %MEGACOPIER_SOURCES%, %MEGACOPIER_FILES%, %MEGACOPIER_BYTES%, %MEGACOPIER_FAILED%, %MEGACOPIER_CHECKSUM%.
+Options_Security.Text	보안(NTFS)
+Options_Streams.Content	대체 데이터 스트림(ADS)
+Options_SystemCache.Content	시스템 캐시 사용
+Options_Threads.Text	병렬
+Options_ThreadsShort.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	동시에 진행하는 읽기/쓰기 수
+Options_Timestamps.Content	날짜
+Options_Transfer.Text	복사할 항목
+Options_TransferOptions.Text	전송
+Options_Verify.Content	복사 후 확인
+Options_VerifySkipped.Content	건너뛴 파일도 확인
+Page_Back.Text	뒤로
+Pager_Next.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	다음 복사
+Pager_Previous.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	이전 복사
+Pager_Text	{0} / {1}
+Panel_Discard.Text	취소
+Panel_File.Text	파일
+Panel_OpenFolder.Text	폴더 열기
+Panel_Pause.Text	일시 중지
+Panel_Skip.Text	건너뛰기
+Panel_Stop.Text	중지
+Panel_More	자세히
+Panel_Less	간단히
+Priority_Low.Content	낮음
+Priority_BelowNormal.Content	보통 이하
+Priority_Normal.Content	보통
+Priority_AboveNormal.Content	보통 이상
+Priority_High.Content	높음
+Settings_Advanced.Text	고급
+Settings_EnabledTitle.Text	Windows 대신 MegaCopier로 복사
+Settings_EnabledDescription.Text	알림 영역 아이콘을 두 번 클릭해도 전환됩니다. 끄면 아이콘이 회색에 빨간 X로 바뀌고 파일 탐색기가 복사합니다.
+Settings_FastTitle.Text	빠른 장치
+Settings_FastDescription.Text	여러 복사를 동시에 할 수 있는 드라이브나 경로(NVMe SSD, RAID). 나머지는 디스크별로 하나씩 진행합니다.
+Settings_FinishTitle.Text	복사 완료 후
+Settings_FinishDescription.Text	진행 중인 작업이 없을 때 창의 동작
+Settings_FinishAuto.Content	문제가 없으면 닫기
+Settings_FinishClose.Content	항상 닫기
+Settings_FinishKeep.Content	열어 두기
+Settings_FreeSpace.Content	먼저 여유 공간 확인
+Settings_General.Text	일반
+Settings_HashTitle.Text	해시 알고리즘
+Settings_HashDescription.Text	확인과 저장하는 체크섬에 사용합니다. xxHash3가 가장 빠르고 SHA-256이 가장 호환성이 좋습니다.
+Settings_MaxJobsTitle.Text	동시 복사 수
+Settings_MaxJobsDescription.Text	동시에 진행하는 복사의 최대 수(0 = 제한 없음). 같은 디스크를 사용하는 복사는 항상 차례를 기다립니다.
+Settings_ModeAuto.Content	자동
+Settings_ModeCompact.Content	간단
+Settings_ModeExpanded.Content	전체
+Settings_PerformanceTitle.Text	성능
+Settings_PerformanceDescription.Text	속도 제한, 버퍼 크기, 병렬 작업
+Settings_PriorityTitle.Text	프로세스 우선순위
+Settings_PriorityDescription.Text	낮으면 복사하는 동안에도 PC가 원활하게 작동합니다
+Settings_Queue.Text	대기열
+Settings_Themes.Text	테마
+Settings_WhatToCopy.Text	복사할 항목과 이후 동작
+Settings_Window.Text	창
+Settings_WindowModeTitle.Text	복사 창
+Settings_WindowModeDescription.Text	자동: 복사가 하나면 간단, 여러 개면 전체. "자세히"와 "간단히"로 언제든 바꿀 수 있습니다.
+Status_Bytes.Text	크기
+Status_Category.Text	상태
+Status_Copied.Text	복사됨
+Status_Failed.Text	오류
+Status_Files.Text	파일
+Status_Pending.Text	대기 중
+Status_Skipped.Text	건너뜀
+Status_Total.Text	합계
+Status_Verified.Text	확인됨
+Tab_Files.Text	파일
+Tab_Log.Text	로그
+Tab_Options.Text	옵션
+Tab_Status.Text	상태
+Tab_Target.Text	대상
+Target_Destination.Text	대상
+Target_Source.Text	원본
+Target_Space	{1} 중 {0} 사용 가능
+Theme_BarHeight.Header	막대 높이
+Theme_Radius.Header	모서리 둥글기
+Theme_Customize.Text	테마 사용자 지정(색, 막대, 배경)
+Theme_Delete.Text	삭제
+Theme_Export.Text	내보내기…
+Theme_Import.Text	가져오기…
+Theme_Name.Header	이름
+Theme_Save	저장
+Theme_SaveAsNew	새 테마로 저장
+Theme_Auto	Fluent(Windows와 동일)
+Theme_CopyOf	{0}(사용자 지정)
+Theme_Custom	내 테마
+Theme_FileType	MegaCopier 테마
+Theme_ImportFailed	테마를 가져올 수 없습니다
+Theme_ColorBackground	배경
+Theme_ColorSurface	카드
+Theme_ColorSurfaceStrong	강조 카드
+Theme_ColorBorder	테두리
+Theme_ColorText	텍스트
+Theme_ColorTextSecondary	보조 텍스트
+Theme_ColorAccent	강조
+Theme_ColorAccentText	강조 위 텍스트
+Theme_ColorTotalStart	전체 막대: 시작
+Theme_ColorTotalEnd	전체 막대: 끝
+Theme_ColorFileStart	파일 막대: 시작
+Theme_ColorFileEnd	파일 막대: 끝
+Theme_ColorTrack	막대 바탕
+Theme_ColorSuccess	성공
+Theme_ColorWarning	경고
+Theme_ColorError	오류
+Theme_fluent-dark	Fluent 어둡게
+Theme_fluent-light	Fluent 밝게
+Theme_midnight	한밤
+Theme_graphite	흑연
+Theme_ocean	바다
+Theme_forest	숲
+Theme_sunset	노을
+Theme_supercopier	클래식 SuperCopier
+Theme_ultracopier	클래식 Ultracopier
+Theme_contrast	고대비
+Tool_About.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	정보
+Tool_ClearDone.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	완료된 복사 제거
+Tool_History.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	기록
+Tool_HistoryText.Text	기록
+Tool_LoadList.Text	복사 목록 불러오기…
+Tool_LoadListText.Text	목록 불러오기
+Tool_MoveFiles.Text	파일 이동…
+Tool_NewCopy.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	새 복사
+Tool_NewCopyText.Text	새로 만들기
+Tool_PauseAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	모두 일시 중지
+Tool_ResumeAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	모두 재개
+Tool_Settings.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	설정
+Tool_Sidebar.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	복사 목록 표시/숨기기
+Drop_Caption	MegaCopier로 복사
+File_Pending	대기 중
+File_Copying	복사 중
+File_Verifying	확인 중
+File_Copied	복사됨
+File_Verified	확인됨
+File_Skipped	건너뜀
+File_Failed	오류
+Files_AddFailed	추가할 수 없습니다
+Files_Count	파일 {0} / {1}
+Files_ListType	MegaCopier 복사 목록
+Files_LoadFailed	목록을 불러올 수 없습니다
+Hash_None	해시: 없음
+Jobs_Header	복사: {0} · 진행 중: {1}
+Language_Auto	Windows와 동일
+Log_FileType	텍스트
+Picker_MoveHere	여기로 이동
+Settings_AutoResume.Content	시작할 때 자동 재개
+Panel_Options.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	이 복사의 옵션
+Panel_UnattendedItem.Text	무인(묻지 않음: 기존 파일 건너뛰기)
+Panel_VerifyItem.Text	완료 시 확인
+Panel_OpenFolderItem.Text	대상 폴더 열기
+Status_ExactBytes	{0}바이트
+Notify_SettingsResetTitle	설정이 초기화되었습니다
+Notify_SettingsResetBody	설정을 읽을 수 없어 기본 설정을 사용합니다. 원래 파일은 settings.json.bad에 저장되어 있습니다.
+Job_TitleCopy	{0} 복사
+Job_TitleMove	{0} 이동
+Job_FailedOne	파일 1개 오류
+Error_InUse	다른 프로그램이 이 파일을 열고 있습니다. 닫은 후 "다시 시도"를 누르세요.
+Error_AccessDenied	액세스 거부: 이 파일을 읽거나 쓸 권한이 없습니다.
+Error_DiskFull	대상 디스크가 가득 찼습니다.
+Error_NotFound	파일이나 폴더가 더 이상 없습니다(이동, 삭제되었거나 드라이브 연결이 끊겼나요?).
+Error_PathTooLong	경로가 대상에 비해 너무 깁니다.
+Error_NetworkLost	네트워크 연결이 끊겼습니다. 복구되면 "다시 시도"를 눌러 이어서 하세요.
+Error_HashMismatch	복사본이 원본과 일치하지 않습니다(확인 실패).
+Error_DeleteFailed	올바르게 복사되었지만 원본을 삭제할 수 없었습니다.
+Report_State	상태
+Report_File	파일
+Report_Source	원본
+Report_Destination	대상
+Report_Size	크기
+Report_SourceHash	원본 해시
+Report_TargetHash	대상 해시
+Report_Message	메시지
+Report_Copied	복사됨
+Report_Verified	확인됨
+Report_Skipped	건너뜀
+Report_Failed	오류
+Job_SkippedOne	1개 건너뜀
+Rules_Filters.Text	필터
+Rules_Include.Header	이것만 포함(; 로 구분한 마스크)
+Rules_Include.PlaceholderText	*.jpg; *.png; 사진\*
+Rules_Exclude.Header	제외
+Rules_Exclude.PlaceholderText	node_modules; *.tmp; Thumbs.db
+Rules_MinSize.Header	최소 크기(MB)
+Rules_MaxSize.Header	최대 크기(MB)
+Rules_After.Header	이 날짜 이후 수정
+Rules_Before.Header	이 날짜 이전 수정
+Rules_SkipHidden.Content	숨김 파일 건너뛰기
+Rules_SkipSystem.Content	시스템 파일 건너뛰기
+Rules_Rules.Text	규칙
+Rules_Links.Header	심볼릭 링크와 정션
+Rules_LinksCopy.Content	링크로 복사
+Rules_LinksFollow.Content	링크가 가리키는 내용 복사
+Rules_LinksSkip.Content	건너뛰기
+Rules_Pattern.Header	둘 다 유지할 때의 이름({name}, {n}, {ext}, {date})
+Rules_PatternPreview	예: {0}
+Rules_Retries.Header	재시도 횟수
+Rules_Delay.Header	재시도 간격(초)
+Rules_OnError.Header	파일이 계속 실패하면
+Rules_OnErrorSkip.Content	기록하고 다음으로 진행
+Rules_OnErrorStop.Content	복사 중지(이어서 할 수 있음)
+ConflictDifferentSize.Content	크기가 다르면 바꾸기
+ConflictRenameExisting.Content	기존 파일 이름 바꾸기
+Conflict_RenameExisting.Text	기존 파일 이름을 바꾸고 이 파일 복사
+Schedule_Title.Text	시작 시간 예약
+Schedule_Set.Text	예약
+Schedule_Now.Text	지금 시작
+Schedule_InThePast	미래의 시간을 선택하세요.
+Job_StateScheduled	{0}에 예약됨
+Settings_Favorites.Text	즐겨찾는 폴더
+Settings_FavoritesTitle.Text	즐겨찾는 대상
+Settings_FavoritesDescription.Text	"새로 만들기 > 복사 위치"와 대상 대화 상자에 표시되어 여러 폴더에 동시에 복사할 수 있습니다.
+Settings_FavoritesAdd.Text	폴더 추가
+Settings_FavoritesRemove	{0} 제거
+Settings_FavoritesEmpty	아직 즐겨찾기가 없습니다.
+Tool_CopyTo.Text	복사 위치
+Tool_CopyToEmpty	즐겨찾기나 최근 폴더가 없습니다
+Tool_CopyToManage	즐겨찾기 관리…
+Tool_TestFiles.Text	체크섬 파일 확인…
+Tool_TestFolder.Text	폴더 체크섬 확인…
+Tool_Delete.Text	삭제…
+Tool_Wipe.Text	안전하게 삭제…
+DestinationsDialog.Title	어디로 복사할까요?
+DestinationsDialog.PrimaryButtonText	시작
+DestinationsDialog.CloseButtonText	취소
+Destinations_SummaryOne	"{0}"의 대상을 하나 이상 선택하세요.
+Destinations_SummaryMany	항목 {0}개의 대상을 하나 이상 선택하세요.
+Destinations_Add.Text	폴더 추가…
+Destinations_Move.Content	복사 대신 이동
+Destinations_Schedule.Content	나중에 시작
+DeleteDialog.Title	삭제
+DeleteDialog.PrimaryButtonText	삭제
+DeleteDialog.CloseButtonText	취소
+Delete_ConfirmOne	"{0}"을(를) 삭제할까요? 휴지통으로 가지 않습니다.
+Delete_ConfirmMany	항목 {0}개를 삭제할까요? 휴지통으로 가지 않습니다.
+Delete_ConfirmSecureOne	"{0}"을(를) 안전하게 삭제할까요?
+Delete_ConfirmSecureMany	항목 {0}개를 안전하게 삭제할까요?
+Delete_SecureWarning.Title	복구할 수 없게 됩니다
+Delete_SecureWarning.Message	삭제하기 전에 내용을 덮어씁니다. SSD에서는 디스크 자체에 흔적이 남을 수 있으므로 최고 수준의 보안이 필요하면 BitLocker로 암호화하세요.
+FinishHibernate.Text	최대 절전
+FinishSignOut.Text	로그아웃
+FinishExit.Text	MegaCopier 닫기
+Finish_LabelHibernate	완료 후: 최대 절전
+Finish_LabelSignOut	완료 후: 로그아웃
+Finish_LabelExit	완료 후: MegaCopier 닫기
+Notify_FinishSleep	절전 모드로 전환합니다…
+Notify_FinishHibernate	최대 절전 모드로 전환합니다…
+Notify_FinishShutdown	1분 후 PC가 종료됩니다(취소: shutdown /a).
+Notify_FinishSignOut	로그아웃합니다…
+Notify_FinishExitApp	MegaCopier를 닫습니다.
+Files_SelectAll.Text	모두 선택
+Files_SelectSameExtension.Text	같은 확장자 선택
+Files_SelectSameFolder.Text	같은 폴더의 항목 선택
+Files_InvertSelection.Text	선택 반전
+Job_TitleTest	{0} 확인
+Job_TitleTesting	{0} 확인 중
+Job_TitleTested	{0} 확인됨
+Job_TitleDelete	{0} 삭제
+Job_TitleDeleting	{0} 삭제 중
+Job_TitleDeleted	{0} 삭제됨
+Job_StateTesting	확인 중
+Job_StateDeleting	삭제 중
+Job_FilesTestedOne	파일 {0}개 정상
+Job_FilesTestedMany	파일 {0}개 정상
+Job_FilesDeletedOne	파일 {0}개 삭제됨
+Job_FilesDeletedMany	파일 {0}개 삭제됨
+Job_TitleScheduled	예약됨: {0}
+Error_ChecksumMismatch	내용이 저장된 체크섬과 일치하지 않습니다: 파일이 변경되었거나 손상되었습니다.
+Job_FilteredOut	이 복사의 필터를 통과한 파일이 없습니다
+Rules_After.PlaceholderText	모든 날짜
+Rules_Before.PlaceholderText	모든 날짜
+Drop_MoveTo	{0}번째로 이동
+Drop_InsertAt	{0}번째에 추가
+Drop_AddToJob	이 복사에 추가
+Drop_AddToNamedJob	{0}에 추가
+Drop_JobOrder	대기열 {0}번째에 넣기
+Settings_Sounds.Text	소리
+Settings_SoundsTitle.Text	소리 알림
+Settings_SoundsDescription.Text	상황별로 소리를 선택하세요: Windows 소리, PC의 아무 파일 또는 소리 없음.
+Settings_Volume.Header	볼륨
+Settings_SoundsQuiet.Content	전체 화면 게임이나 프레젠테이션 중, "방해 금지" 중에는 소리 내지 않기
+Sound_Done	복사가 문제없이 완료됨
+Sound_Errors	복사가 오류와 함께 완료됨
+Sound_AllDone	모든 복사 완료
+Sound_Attention	결정 필요(파일이 이미 있음)
+Sound_Test	미리 듣기
+Sound_None	소리 없음
+Sound_Default	Windows 기본값
+Sound_Choose	파일 선택…
+File_Planned	시뮬레이션됨
+File_Deleted	제거됨
+File_RemovedExtra	대상에서 제거됨: 원본에 더 이상 없음
+Plan_Copy	복사됩니다
+Plan_Replace	대상의 파일을 바꿉니다
+Plan_ReplaceNewer	대상의 파일을 바꿉니다: 원본이 더 최신
+Plan_ReplaceSize	대상의 파일을 바꿉니다: 크기가 다름
+Plan_KeepBoth	이미 있음: 다른 이름으로 복사합니다
+Plan_RenameExisting	이미 있음: 대상의 파일 이름을 바꾸고 이 파일을 복사합니다
+Plan_Ask	이미 있음: 어떻게 할지 묻습니다
+Plan_SkipIdentical	건너뜀: 대상에 동일한 파일이 있음
+Plan_SkipExists	건너뜀: 이미 있음
+Plan_SkipOlder	건너뜀: 대상이 같거나 더 최신
+Plan_SkipSameSize	건너뜀: 크기가 같음
+Plan_SkipNotInDestination	건너뜀: 대상에 없음(업데이트만)
+Plan_SkipSamePath	건너뜀: 원본과 대상이 같음
+Plan_Delete	대상에서 제거: 원본에 더 이상 없음
+Plan_Fail	실패: 대상이 이미 있음
+Plan_None	시뮬레이션됨
+Skip_SkipIdentical	대상에 동일한 파일이 있음
+Skip_SkipExists	이미 있음: 건너뜀
+Skip_SkipOlder	대상의 파일이 같거나 더 최신
+Skip_SkipSameSize	대상의 파일과 크기가 같음
+Skip_SkipNotInDestination	대상에 없음(기존 파일만 업데이트)
+Skip_SkipSamePath	원본과 대상이 같은 파일
+Skip_SkipByUser	사용자가 건너뜀
+Job_TitleSync	{0} 동기화
+Job_TitleSyncing	{0} 동기화 중
+Job_TitleSynced	{0} 동기화됨
+Job_StateSyncing	동기화 중
+Job_FilesSyncedOne	파일 {0}개 업데이트됨
+Job_FilesSyncedMany	파일 {0}개 업데이트됨
+Job_TitleSimulate	{0} 시뮬레이션
+Job_TitleSimulating	{0} 시뮬레이션 중
+Job_TitleSimulated	시뮬레이션: {0}
+Job_StateSimulating	시뮬레이션 중
+Job_FilesSimulatedOne	파일 {0}개가 복사됩니다
+Job_FilesSimulatedMany	파일 {0}개가 복사됩니다
+Job_WouldTransfer	총 {0}
+Job_TitleHash	{0} 체크섬 만들기
+Job_TitleHashing	{0} 체크섬 계산 중
+Job_TitleHashed	{0} 체크섬
+Job_StateHashing	체크섬 계산 중
+Job_FilesHashedOne	체크섬 목록에 파일 {0}개
+Job_FilesHashedMany	체크섬 목록에 파일 {0}개
+Job_StateWaitingDevice	디스크나 네트워크가 돌아오기를 기다리는 중…
+Job_StateWaitingSpace	대상에 여유 공간이 생기기를 기다리는 중…
+Job_RemovedOne	대상에서 1개 제거됨
+Job_Removed	대상에서 {0}개 제거됨
+Job_WouldRemove	대상에서 {0}개가 제거됩니다
+Panel_RunForReal.Text	실제로 실행
+Options_Mode.Header	모드
+Mode_Copy.Content	복사
+Mode_Mirror.Content	동기화(미러)
+Mode_Update.Content	기존 파일만 업데이트
+Mode_Folders.Content	폴더 구조만
+Options_MirrorInfo.Title	동기화하면 원본에 더 이상 없는 항목이 대상에서 제거됩니다
+Options_MirrorInfo.Message	필터로 제외한 항목은 건드리지 않습니다. 제거되거나 바뀐 파일을 보관하려면 버전 폴더를 설정하세요.
+Options_DryRun.Content	시뮬레이션: 무슨 일이 일어날지 보여 주기만 하고 아무것도 바꾸지 않음
+Destinations_DryRun.Content	먼저 시뮬레이션(아무것도 바꾸지 않음)
+Tool_HashFolder.Text	폴더의 체크섬 파일 만들기…
+Tool_HashFiles.Text	파일의 체크섬 파일 만들기…
+Rules_SkipJunk.Content	불필요한 파일 건너뛰기(Thumbs.db, desktop.ini, .DS_Store, ~$…)
+Rules_OnErrorEnd.Content	대기열 끝에서 다시 시도
+Rules_Safety.Text	동기화 및 안전
+Rules_FolderConflict.Header	대상에 폴더가 이미 있으면
+Rules_FolderMerge.Content	내용 합치기
+Rules_FolderSkip.Content	통째로 건너뛰기
+Rules_Versions.Header	바뀌거나 제거된 파일을 폴더에 보관
+Rules_Versions.PlaceholderText	비워 두면 보관 안 함(예: .versions)
+Rules_Tolerance.Header	"같음"으로 볼 날짜 허용 오차(초)
+Rules_VerifySource.Content	완료 시 원본 다시 읽기
+Rules_HashStream.Content	각 파일 안에 해시 저장
+Rules_HardLinks.Content	하드 링크 유지
+Rules_Wipe.Content	이동할 때 원본 안전하게 삭제
+Rules_WaitDevice.Content	디스크나 네트워크가 끊기면 기다리기
+Rules_WaitSpace.Content	공간이 부족하면 기다리기
+Rules_VerifySource.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	원본의 해시를 다시 계산합니다: 복사 중에 바뀌었거나 원본 디스크가 잘못 읽었는지 감지합니다.
+Rules_HashStream.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	파일 자체의 숨겨진 스트림에 저장합니다(NTFS). 나중에 "폴더 체크섬 확인"이 체크섬 파일 없이도 손상을 찾아냅니다.
+Rules_HardLinks.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	여러 이름이 같은 파일이면 대상에서도 그렇게 됩니다(공간을 두 배로 쓰지 않음).
+Rules_Tolerance.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	FAT32와 exFAT는 시간을 2초 단위로 기록합니다: 이 허용 오차가 있으면 같은 파일을 다시 복사하지 않습니다.
+Rules_Versions.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	파일을 바꾸거나 제거하기 전에 이름에 날짜를 붙여 대상의 이 폴더로 옮깁니다.
+Settings_UnitsTitle.Text	크기 단위
+Settings_UnitsDescription.Text	크기와 속도를 표시하는 방법.
+Units_Classic.Content	KB, MB, GB(파일 탐색기와 동일)
+Units_Iec.Content	KiB, MiB, GiB(이진)
+Units_Decimal.Content	1000 단위 kB, MB, GB(제조사와 동일)
+Settings_SlowTitle.Text	PC를 사용하는 동안 속도 낮추기
+Settings_SlowDescription.Text	키보드나 마우스를 사용하는 동안 복사가 이 속도를 넘지 않고, 자리를 비우면 원래 속도로 돌아갑니다.
+Slow_Off.Content	아니요
+Settings_LogsTitle.Text	복사마다 로그 저장
+Settings_LogsDescription.Text	복사마다 로그 폴더에 파일을 만듭니다. 30일 후 자동으로 삭제됩니다.
+Settings_LogsOpen.Text	폴더 열기
+Settings_WebhookTitle.Text	완료 시 알릴 URL
+Settings_WebhookDescription.Text	휴대폰이나 채팅으로 알림을 받으세요: Discord, Slack, Teams, ntfy.sh, Home Assistant… JSON이 담긴 POST를 보냅니다.
+Settings_WebhookBox.PlaceholderText	https://ntfy.sh/my-secret-topic
+Settings_WebhookTest.Text	테스트
+Settings_WebhookSending	보내는 중…
+Settings_WebhookOk	알림을 보냈습니다.
+Settings_WebhookFailed	보낼 수 없습니다: URL과 연결을 확인하세요.
+Settings_WebhookTestMessage	✔ MegaCopier: 테스트 알림
+FinishDialog.Title	모든 복사 완료
+FinishDialog.PrimaryButtonText	지금 하기
+FinishDialog.CloseButtonText	취소
+Finish_CountdownSleep	{0}초 후 PC가 절전 모드로 전환됩니다.
+Finish_CountdownHibernate	{0}초 후 PC가 최대 절전 모드로 전환됩니다.
+Finish_CountdownShutdown	{0}초 후 PC가 종료됩니다.
+Finish_CountdownSignOut	{0}초 후 로그아웃됩니다.
+Finish_CountdownExitApp	{0}초 후 MegaCopier가 닫힙니다.
+Job_SlowedDown	PC를 사용 중이라 속도를 낮춤
+History_Undone	실행 취소됨
+History_Undo.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	실행 취소: 이동한 항목을 되돌리거나 복사한 항목을 휴지통으로
+History_CopyBack.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	원본 폴더로 다시 복사(복원)
+History_UndoDialog.Title	이 복사를 실행 취소할까요?
+History_UndoDialog.PrimaryButtonText	실행 취소
+History_UndoDialog.CloseButtonText	취소
+History_UndoMoveConfirm	이동한 모든 항목이 "{0}"에서 원래 폴더로 돌아갑니다.
+History_UndoCopyConfirm	복사한 파일 {0}개가 휴지통으로 이동합니다(복원 가능). 나중에 수정된 파일이나 다른 파일을 바꾼 파일은 그대로 둡니다.
+History_UndoDone	파일 {0}개를 휴지통으로 옮겼습니다.
+History_UndoKept	나중에 수정된 파일 {0}개와 다른 파일을 바꾼 파일 {1}개는 그대로 두었습니다.
+History_UndoTitleBar.Title	복사를 실행 취소했습니다
+History_Undo.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	실행 취소: 이동한 항목을 되돌리거나 복사한 항목을 휴지통으로
+History_CopyBack.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	원본 폴더로 다시 복사(복원)
+History_Open.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	대상 열기
+History_Repeat.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	반복(새로운 항목이나 변경된 항목만 복사)
+Task_Header.Text	또는 작업으로 저장해 위에서 고른 시간에 Windows가 자동으로 반복하게 하세요:
+Task_Name.PlaceholderText	작업 이름
+Task_Once.Content	한 번
+Task_Daily.Content	매일
+Task_Weekly.Content	매주
+Task_Save.Text	작업으로 저장
+Task_SavedOnce	작업 "{0}" 저장됨: {2} {1}에 실행됩니다.
+Task_SavedDaily	작업 "{0}" 저장됨: 매일 {1}에 실행됩니다.
+Task_SavedWeekly	작업 "{0}" 저장됨: 매주 {2}와 같은 요일 {1}에 실행됩니다.
+Task_Failed	예약할 수 없습니다: {0}
+Settings_Tasks.Text	예약된 작업
+Settings_TasksTitle.Text	자동으로 반복되는 복사
+Settings_TasksDescription.Text	복사의 "옵션" 탭에서 만듭니다("작업으로 저장"). MegaCopier가 닫혀 있어도 Windows 작업 스케줄러가 실행합니다.
+Settings_TasksEmpty	아직 작업이 없습니다.
+Settings_TaskRun	"{0}" 지금 실행
+Settings_TaskDelete	작업 "{0}" 삭제
+About_Portable	포터블 버전(데이터 위치: {0})
+Job_Estimate	{0}, 약 {1}
+Job_EstimateSize	총 {0}
+Settings_SmbCompression.Content	네트워크 압축(SMB)
+Settings_SmbCompression.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	서버에 전송 중 데이터 압축을 요청합니다(Windows 11 및 Windows Server 2022 이상). 원본과 대상이 같은 서버에 있으면 복사는 항상 서버가 직접 하며 이 PC를 거치지 않습니다.
+Error_TooLargeForFileSystem	이 디스크에 들어가지 않습니다: FAT32는 4GB 이상의 파일을 허용하지 않습니다. exFAT 또는 NTFS로 포맷하세요.
+Rules_AllOrNothing.Content	"전부 아니면 전무" 폴더
+Rules_AllOrNothing.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	새 폴더는 숨긴 채 복사되고, 모두 성공했을 때만 원래 이름으로 나타납니다: 완성된 것처럼 보이지만 반만 복사된 폴더는 절대 남지 않습니다.
+Rules_Rescue.Content	손상된 디스크 구조 모드
+Rules_Rescue.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	원본에 불량 섹터가 있으면 섹터 단위로 읽어 읽을 수 있는 모든 것을 구해 냅니다. 읽을 수 없는 부분은 0으로 채우고 로그에 기록합니다. 이동할 때도 원본은 삭제하지 않습니다.
+Error_PartlyUnreadable	일부 구조됨: 원본의 일부 섹터가 손상되어 0으로 채웠습니다(로그 참조).
+Settings_Guard.Text	무결성 보호
+Settings_GuardTitle.Text	시간이 지나며 파일이 손상되는 것을 방지
+Settings_GuardDescription.Text	각 파일이 자신의 해시를 내부에 저장합니다. PC가 유휴 상태일 때 MegaCopier가 확인하여, 아무도 편집하지 않았는데 파일이 바뀌었으면(디스크에서 손상) 알려 줍니다. 편집한 내용은 자동으로 업데이트됩니다. NTFS가 필요합니다.
+Guard_Daily.Content	매일
+Guard_Weekly.Content	매주
+Guard_Monthly.Content	매월
+Settings_GuardAdd.Text	폴더 보호…
+Settings_GuardEmpty	아직 보호 중인 폴더가 없습니다.
+Settings_GuardCheck	"{0}" 지금 확인
+Settings_GuardRemove	"{0}" 보호 중지
+Guard_NotYet	첫 확인 대기 중
+Guard_LastOk	{0}에 확인: 모두 정상
+Guard_LastDamaged	{0}에 확인: 파일 {1}개 손상(기록 참조)
+Guard_DamagedTitle	무결성 보호
+Guard_DamagedOne	"{0}"의 파일 1개가 디스크에서 손상되었습니다.
+Guard_DamagedMany	"{1}"의 파일 {0}개가 디스크에서 손상되었습니다.
+Guard_LastDamagedOne	{0}에 확인: 파일 1개 손상(기록 참조)
+Settings_ScheduleLimitTitle.Text	시간대별 속도 제한
+Settings_ScheduleLimitDescription.Text	예를 들어 업무 시간 동안: 선택한 시간대에는 복사가 이 속도를 넘지 않습니다.
+Settings_ScheduleFrom.Text	시작
+Settings_ScheduleTo.Text	끝
+Settings_PauseBatteryTitle.Text	배터리 사용 시 일시 중지
+Settings_PauseBatteryDescription.Text	노트북이 전원에 연결되어 있지 않으면 복사가 기다리고, 연결하면 자동으로 이어서 합니다.
+Settings_PauseFullTitle.Text	게임 및 프레젠테이션 중 일시 중지
+Settings_PauseFullDescription.Text	전체 화면 게임이나 프레젠테이션이 있으면 방해하지 않도록 복사가 기다립니다.
+Comfort_PausedTitle	복사 일시 중지됨
+Comfort_PausedBattery	PC가 배터리로 작동 중입니다: 전원을 연결하면 복사를 이어서 합니다.
+Comfort_PausedFullScreen	전체 화면 게임이나 프레젠테이션이 실행 중입니다: 끝나면 복사를 이어서 합니다.
+Job_StatePausedBattery	일시 중지: 배터리 사용 중
+Job_StatePausedFullScreen	일시 중지: 전체 화면
+Job_SlowedSchedule	선택한 시간대로 인해 속도를 낮춤
+Rules_Delta.Content	큰 파일을 바꿀 때 변경된 부분만 쓰기
+Rules_Delta.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	16MB 이상 파일(가상 디스크, 메일, 프로젝트)의 차등 복사: 다른 블록만 씁니다. 취소하거나 정전되면 파일이 이전 버전으로 돌아갑니다.
+Panel_CopyLocked.Text	사용 중인 파일 복사
+Locked_Title	사용 중인 파일
+Locked_Cancelled	관리자 권한이 없어 사용 중인 파일은 복사되지 않았습니다.
+Locked_Done	디스크 스냅숏에서 사용 중인 파일 {0}개를 복사했습니다.
+Locked_Partial	스냅숏에서 {0}개를 복사했습니다. 나머지는 복사할 수 없었습니다: {1}
+Settings_Peer.Text	다른 PC에서 받기
+Settings_PeerTitle.Text	MegaCopier가 있는 다른 PC에서 파일 받기
+Settings_PeerDescription.Text	공유 폴더 없이 가정이나 사무실 네트워크를 통해 받습니다. 보내는 쪽에 아래 코드가 필요합니다. 연결은 암호화되며 각 파일은 도착할 때 확인됩니다. 처음에는 Windows가 방화벽 허용을 요청할 수 있습니다.
+Settings_PeerCode.Text	파일을 보내는 데 필요한 코드:
+Settings_PeerNewCode.Text	새 코드
+Settings_PeerFolder.Text	폴더 변경…
+Settings_PeerFolderIs	{0}에 저장됩니다
+Settings_PeerListening	"{0}"에서 받기 대기 중(포트 {1}).
+Settings_PeerError	받기를 시작할 수 없습니다: {0}
+Peer_ReceivingTitle	파일 받는 중
+Peer_Receiving	{0}에서 파일 {1}개({2})를 보내고 있습니다.
+Peer_ReceivedTitle	파일 받음
+Peer_Received	{1}에서 받은 파일 {0}개를 {2}에 저장했습니다.
+Peer_RejectedTitle	보내기 거부됨
+Peer_Rejected	{0}에서 잘못된 코드로 파일을 보내려고 했습니다.
+Tool_SendFiles.Text	다른 PC로 파일 보내기…
+Tool_SendFolder.Text	다른 PC로 폴더 보내기…
+SendDialog.Title	다른 PC로 보내기
+SendDialog.PrimaryButtonText	보내기
+SendDialog.CloseButtonText	취소
+Send_SummaryOne	MegaCopier로 받고 있는 다른 PC로 "{0}"을(를) 보냅니다.
+Send_SummaryMany	MegaCopier로 받고 있는 다른 PC로 항목 {0}개를 보냅니다.
+Send_Found.Text	네트워크에서 찾은 PC:
+Send_Searching	검색 중…
+Send_NoneFound	찾지 못했습니다: 이름이나 IP를 입력하세요.
+Send_Host.Header	PC(이름 또는 IP)
+Send_Host.PlaceholderText	거실PC 또는 192.168.1.20
+Send_Code.Header	그 PC의 "설정"에 표시된 코드
+Send_Code.PlaceholderText	XXXX-XXXX-XXXX
+Job_TitleSend	{0} 보내기
+Job_TitleSending	{0} 보내는 중
+Job_TitleSent	{0} 보냄
+Job_StateSending	보내는 중
+Job_FilesSentOne	파일 {0}개 보냄
+Job_FilesSentMany	파일 {0}개 보냄
+Rules_Describe.Header	직접 설명하기(영어 또는 스페인어)
+Rules_Describe.PlaceholderText	photos larger than 2 MB from last month except .tmp
+Rules_DescribeApply.Text	적용
+Rules_DescribeUnderstood	이해함: {0}.
+Rules_DescribeNothing	필터할 내용을 이해하지 못했습니다.
+Rules_DescribeUnknown	이해하지 못함: {0}.
+Mode_Organize.Content	사진을 날짜별로 정리
+Rules_Duplicates.Content	대상에 이미 있는 항목(중복)은 복사하지 않기
+Rules_Duplicates.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	이름이 아닌 내용을 비교합니다: 대상의 어느 폴더에든 이미 있는 사진은 이름이 달라도 다시 복사하지 않습니다.
+Skip_SkipDuplicate	대상에 다른 이름이나 폴더로 이미 있음
+Plan_SkipDuplicate	건너뜀: 대상에 이미 있음(중복)
+Destinations_Encrypt.Content	암호로 암호화(잃어버릴 수 있는 USB나 디스크용)
+Destinations_Password.Header	암호
+Destinations_Password2.Header	다시 입력
+Destinations_PasswordHint	AES-256으로 암호화합니다. 암호를 잊으면 파일을 복구할 수 없습니다. 읽으려면: "새로 만들기" 메뉴 > "암호 해독".
+Destinations_PasswordShort	암호는 8자 이상이어야 합니다.
+Destinations_PasswordMismatch	두 암호가 일치하지 않습니다.
+PasswordDialog.Title	암호
+PasswordDialog.PrimaryButtonText	확인
+PasswordDialog.CloseButtonText	취소
+Tool_Decrypt.Text	암호화된 파일 해독…
+Picker_DecryptHere	여기에 해독
+Decrypt_Ask	"{0}"에 있는 암호화된 파일의 암호:
+Resume_PasswordAsk	이 복사는 암호화되어 있고 암호는 저장되지 않습니다: 계속하려면 입력하세요.
+Job_TitleEncrypt	{0} 암호화
+Job_TitleEncrypting	{0} 암호화 중
+Job_TitleEncrypted	{0} 암호화됨
+Job_StateEncrypting	암호화 중
+Job_FilesEncryptedOne	파일 {0}개 암호화됨
+Job_FilesEncryptedMany	파일 {0}개 암호화됨
+Job_TitleDecrypt	{0} 해독
+Job_TitleDecrypting	{0} 해독 중
+Job_TitleDecrypted	{0} 해독됨
+Job_StateDecrypting	해독 중
+Job_FilesDecryptedOne	파일 {0}개 해독됨
+Job_FilesDecryptedMany	파일 {0}개 해독됨
+Settings_DisksTitle.Text	디스크 상태
+Settings_DisksDescription.Text	Windows가 보고하는 각 디스크의 상태(SMART). 고장 징후가 있는 디스크에서 또는 그 디스크로 복사하면 MegaCopier가 알려 줍니다.
+Settings_DisksCheck.Text	지금 확인
+Disk_Row	디스크 {0} · {1}: {2}
+Disk_Healthy	정상
+Disk_Unknown	상태 알 수 없음
+Disk_HealthWarning	문제 보고
+Disk_Checking	디스크 확인 중…
+Disk_WarningTitle	디스크가 고장을 보고했습니다
+Disk_Warning	"{0}"(디스크 {1}): {2}. 중요한 내용은 서둘러 다른 디스크로 복사하세요.
+Settings_TuneTitle.Text	디스크별 자동 조정
+Settings_TuneDescription.Text	여러 블록 크기와 병렬 작업 수로 각 디스크를 측정하고, 그 디스크로 복사할 때 가장 빠른 조합을 사용합니다(성능 설정을 직접 바꾼 경우 제외).
+Settings_TuneMeasure.Text	디스크 측정
+Settings_TuneNone	아직 측정한 디스크가 없습니다.
+Settings_TuneDisk	디스크
+Settings_TuneProfile	{0}: {1}MB 블록, 동시 {2}개({3:N0} MB/s)
+Settings_TuneMeasuring	{0} 측정 중({1} / {2})…
+Tool_Timeline.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	대기열 타임라인
+Timeline_Title.Text	타임라인
+Timeline_Info.Text	각 디스크의 속도로 예측합니다. 같은 디스크를 쓰는 복사는 하나씩 진행됩니다.
+Timeline_Empty.Text	진행 중이거나 대기 중인 복사가 없습니다.
+Timeline_Summary	모두 {0}쯤 끝날 예정입니다({1} 후).
+Timeline_Now	지금
+Timeline_Tomorrow	내일 {0}
+Timeline_Running	진행 중 · 예상 종료: {0}({1} 남음)
+Timeline_Paused	일시 중지됨 · 지금 재개하면 예상 종료: {0}
+Timeline_Queued	대기 중 · 시작: {0} · 예상 종료: {1}({2} 소요)
+Timeline_Scheduled	예약됨 · 시작: {0} · 예상 종료: {1}({2} 소요)
+Timeline_Measuring	아직 크기 측정 중
+Tool_Shelf.Text	드롭 선반
+Tray_Shelf	드롭 선반
+Shelf_WindowTitle	MegaCopier 드롭 선반
+Shelf_Title.Text	선반
+Shelf_Empty.Text	어디서든 파일과 폴더를 여기로 끌어 오세요. 그런 다음 한꺼번에 복사하거나 이동하고, 다시 끌어 낼 수도 있습니다.
+Shelf_DropCaption	선반에 추가
+Shelf_CopyTo.Text	복사 위치…
+Shelf_MoveTo.Text	이동 위치…
+Shelf_Clear.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	선반 비우기
+Shelf_Remove.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	선반에서 제거
+Shelf_One	항목 1개
+Shelf_Many	항목 {0}개
+Shelf_RemoveNamed	선반에서 "{0}" 제거
+Destinations_NoneChosen.Text	대상을 하나 이상 선택하세요(또는 폴더 추가).
+Finish_ShutdownMessage	MegaCopier가 복사를 마쳤습니다. 1분 후 PC가 종료됩니다.
+Hash_Name	해시: {0}

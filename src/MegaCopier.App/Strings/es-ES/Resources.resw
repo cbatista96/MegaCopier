@@ -799,4 +799,5 @@
   <data name="Shelf_RemoveNamed" xml:space="preserve"><value>Quitar «{0}» de la bandeja</value></data>
   <data name="Destinations_NoneChosen.Text" xml:space="preserve"><value>Marca al menos un destino (o añade una carpeta).</value></data>
   <data name="Finish_ShutdownMessage" xml:space="preserve"><value>MegaCopier terminó las copias. El equipo se apagará en 1 minuto.</value></data>
+  <data name="Hash_Name" xml:space="preserve"><value>Hash: {0}</value></data>
 </root>

@@ -1,0 +1,12 @@
+clave	texto
+S_CopyHere	MegaCopier ile buraya kopyala
+S_MoveHere	MegaCopier ile buraya taşı
+S_Paste	MegaCopier ile yapıştır
+S_PasteIntoFolder	MegaCopier ile bu klasöre yapıştır
+S_MoveIntoFolder	MegaCopier ile bu klasöre taşı
+S_TestChecksums	Sağlamaları sına
+S_CreateChecksums	Sağlama dosyası oluştur
+S_SecureDelete	Güvenli sil…
+S_HelpText	MegaCopier ile kopyala: elektrik kesintisinden sonra devam eder
+S_DeliverFailed	Kopyalama MegaCopier'a aktarılamadı.
+S_OpenFailed	MegaCopier açılamadı.

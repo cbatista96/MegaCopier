@@ -1,0 +1,12 @@
+clave	texto
+S_CopyHere	用 MegaCopier 复制到这里
+S_MoveHere	用 MegaCopier 移动到这里
+S_Paste	用 MegaCopier 粘贴
+S_PasteIntoFolder	用 MegaCopier 粘贴到此文件夹
+S_MoveIntoFolder	用 MegaCopier 移动到此文件夹
+S_TestChecksums	检查校验和
+S_CreateChecksums	创建校验和文件
+S_SecureDelete	安全删除…
+S_HelpText	用 MegaCopier 复制：断电后可继续
+S_DeliverFailed	无法将复制交给 MegaCopier。
+S_OpenFailed	无法打开 MegaCopier。

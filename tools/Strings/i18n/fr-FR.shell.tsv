@@ -1,0 +1,12 @@
+clave	texto
+S_CopyHere	Copier ici avec MegaCopier
+S_MoveHere	Déplacer ici avec MegaCopier
+S_Paste	Coller avec MegaCopier
+S_PasteIntoFolder	Coller dans ce dossier avec MegaCopier
+S_MoveIntoFolder	Déplacer dans ce dossier avec MegaCopier
+S_TestChecksums	Contrôler les sommes
+S_CreateChecksums	Créer un fichier de sommes
+S_SecureDelete	Supprimer de façon sécurisée…
+S_HelpText	Copie avec MegaCopier : reprend après une coupure de courant
+S_DeliverFailed	Impossible de transmettre la copie à MegaCopier.
+S_OpenFailed	Impossible d'ouvrir MegaCopier.

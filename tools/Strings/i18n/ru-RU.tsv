@@ -1,0 +1,796 @@
+clave	texto
+JobsSection.Text	Копирования
+SettingsSection.Text	Настройки
+FinishButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Что сделать, когда все копирования закончатся
+FinishNothing.Text	Ничего не делать
+FinishSleep.Text	Спящий режим
+FinishShutdown.Text	Выключить компьютер
+NewCopyText.Text	Новое копирование
+CopyFilesItem.Text	Копировать файлы…
+CopyFolderItem.Text	Копировать папку…
+EmptyTitle.Text	Нет копирований
+EmptyDescription.Text	Здесь появятся копирования, которые вы запустите. Если отключится свет, их можно будет продолжить с того места, где они остановились.
+PauseButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Пауза
+StopButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Остановить (можно будет продолжить позже)
+OpenFolderButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Открыть папку назначения
+ClearButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Убрать из списка
+DiscardButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Отменить и удалить частичную копию
+ConflictDialog.Title	Файл уже существует
+ConflictDialog.PrimaryButtonText	Заменить
+ConflictDialog.SecondaryButtonText	Оставить оба
+ConflictDialog.CloseButtonText	Пропустить
+ConflictExistingTitle.Text	Существующий
+ConflictApplyAll.Content	Так же поступить с остальными конфликтами этого копирования
+RestartInfo.Title	Перезапустите MegaCopier, чтобы применить изменение
+RestartInfo.Message	Текущие копирования остановятся, и их можно будет продолжить после перезапуска.
+RestartButton.Content	Перезапустить
+AppearanceHeader.Text	Внешний вид
+ThemeTitle.Text	Тема
+ThemeDescription.Text	Светлая, тёмная или как в Windows
+ThemeSystem.Content	Как в Windows
+ThemeLight.Content	Светлая
+ThemeDark.Content	Тёмная
+AccentTitle.Text	Цвет акцента
+AccentDescription.Text	Цвет кнопок, индикаторов выполнения и выделенных элементов
+BackdropTitle.Text	Фон окна
+BackdropDescription.Text	Материалы Windows 11 позволяют видеть рабочий стол сквозь окно
+BackdropMica.Content	Mica
+BackdropMicaAlt.Content	Mica Alt (насыщеннее)
+BackdropAcrylic.Content	Акрил
+BackdropSolid.Content	Сплошной
+LanguageTitle.Text	Язык
+LanguageDescription.Text	Язык MegaCopier и его команд в Проводнике
+LanguageAuto.Content	Как в Windows
+OnTopTitle.Text	Поверх других окон
+OnTopDescription.Text	Окно остаётся над остальными во время копирования
+CopyHeader.Text	Копирование
+VerifyTitle.Text	Проверять после копирования
+VerifyDescription.Text	Перечитывает назначение без кэша и исправляет каждый блок, не совпадающий с источником
+ConflictTitle.Text	Если файл уже существует
+ConflictDescription.Text	Одинаковые файлы (тот же размер и дата) всегда пропускаются
+ConflictAsk.Content	Спрашивать
+ConflictReplace.Content	Заменять
+ConflictSkip.Content	Пропускать
+ConflictNewer.Content	Заменять, если новее
+ConflictKeepBoth.Content	Оставлять оба
+SpeedTitle.Text	Ограничение скорости
+SpeedDescription.Text	Оставляет пропускную способность диска или сети для других задач (действует для новых копирований)
+SpeedUnlimited.Content	Без ограничений
+AutoResumeTitle.Text	Автоматически продолжать прерванные копирования
+AutoResumeDescription.Text	После отключения питания или перезагрузки продолжать без вопросов при запуске MegaCopier
+ExplorerHeader.Text	Проводник
+PasteTitle.Text	Копировать и перемещать через MegaCopier при вставке (Ctrl+V)
+PasteDescription.Text	Когда вы вставляете в Проводнике или на рабочем столе скопированные (Ctrl+C) или вырезанные (Ctrl+X) файлы, это делает MegaCopier. Вставку в ту же папку по-прежнему выполняет Проводник
+ShellMenuTitle.Text	Команды в контекстном меню
+ShellMenuDescription.Text	«Вставить через MegaCopier» (в «Показать дополнительные параметры») и «Копировать / Переместить сюда через MegaCopier» при перетаскивании правой кнопкой
+SystemHeader.Text	Система
+StartupTitle.Text	Запускать вместе с Windows
+StartupDescription.Text	Остаётся в области уведомлений, чтобы копирование начиналось мгновенно
+NotifyTitle.Text	Уведомлять о завершении
+NotifyDescription.Text	Системное уведомление, когда копирование заканчивается, а окно не видно
+Accent_System	Как в Windows
+Accent_Blue	Синий
+Accent_Violet	Фиолетовый
+Accent_Teal	Бирюзовый
+Accent_Green	Зелёный
+Accent_Orange	Оранжевый
+Accent_Pink	Розовый
+Accent_Red	Красный
+About	MegaCopier {0} · копирование, которое переживает отключения света
+Picker_CopyHere	Копировать сюда
+Finish_Label	По завершении
+Finish_LabelSleep	По завершении: сон
+Finish_LabelShutdown	По завершении: выключить
+Conflict_Message	В «{1}» уже есть файл с именем «{0}».
+Conflict_SourceCopy	Тот, что вы копируете
+Conflict_SourceMove	Тот, что вы перемещаете
+Conflict_Newer	 · новее
+Job_OneItem	«{0}»
+Job_ManyItems	Элементов: {0}
+Job_TitleCopying	Копирование {0}
+Job_TitleMoving	Перемещение {0}
+Job_TitleCopied	Скопировано: {0}
+Job_TitleMoved	Перемещено: {0}
+Job_TitleQueued	Ожидает: {0}
+Job_Destination	в {0}
+Job_StateQueued	В очереди: диск занят
+Job_StateVerifying	Проверка
+Job_StateValidating	Проверка уже скопированного
+Job_StateWaiting	Ждёт вашего решения: файл уже существует
+Job_StateCopying	Копирование
+Job_StateMoving	Перемещение
+Job_StatePaused	Приостановлено
+Job_StateCompleted	Завершено
+Job_StateCompletedErrors	Завершено с ошибками
+Job_StateFailed	Ошибка
+Job_StateInterrupted	Прервано · можно продолжить с места остановки
+Job_ResumeHint	Нажмите «Продолжить»
+Job_Preparing	Подготовка…
+Job_Progress	{0} из {1}
+Job_Remaining	осталось {0}
+Job_Files	{0} из {1} файлов
+Job_FilesCopiedOne	Скопировано файлов: {0}
+Job_FilesCopiedMany	Скопировано файлов: {0}
+Job_FilesMovedOne	Перемещено файлов: {0}
+Job_FilesMovedMany	Перемещено файлов: {0}
+Job_TransferredIn	{0} за {1}
+Job_Recovered	восстановлено: {0}
+Job_Skipped	пропущено: {0}
+Job_Verified	проверено
+Job_Repaired	(исправлено блоков: {0})
+Job_FailedFiles	Файлов с ошибками: {0}
+Job_Resume	Продолжить
+Job_Retry	Повторить
+Job_FailuresHeader	Показать файлы с проблемами ({0})
+Job_FailuresMore	… и ещё {0}
+Tray_Open	Открыть MegaCopier
+Tray_PauseAll	Приостановить все
+Tray_ResumeAll	Возобновить все
+Tray_Startup	Запускать вместе с Windows
+Tray_Exit	Выход
+Tray_OneJob	1 копирование
+Tray_ManyJobs	Копирований: {0}
+Notify_InterruptedTitle	Есть прерванные копирования
+Notify_InterruptedOne	Одно копирование не завершено. Откройте его, чтобы продолжить с места остановки.
+Notify_InterruptedMany	Незавершённых копирований: {0}. Откройте их, чтобы продолжить.
+Notify_DoneTitle	Копирование завершено
+Notify_ProblemTitle	При копировании возникли проблемы
+Notify_AllDoneTitle	Копирования завершены
+Error_NeedsPaths	Для запроса на копирование нужны источники и назначение.
+Tray_Disable	Отключить (использовать копирование Windows)
+Tray_Enable	Включить MegaCopier
+Tray_TooltipDisabled	MegaCopier · отключён (копирует Windows)
+Notify_DisabledTitle	MegaCopier отключён
+Notify_DisabledBody	Копированием займётся Windows. Дважды щёлкните значок, чтобы снова включить MegaCopier.
+Notify_EnabledTitle	MegaCopier включён
+Notify_EnabledBody	Копированием и перемещением в Проводнике займётся MegaCopier.
+AboutDialog.Title	О программе MegaCopier
+AboutDialog.CloseButtonText	Закрыть
+About_DataFolder.Content	Открыть папку данных (параметры, темы, журнал, отчёты)
+About_Description.Text	Программа копирования для Windows 11, которая продолжает даже один огромный файл после отключения питания, проверяя уже скопированное.
+About_Features.Text	Асинхронный ввод-вывод без кэша · параллельное чтение и запись · проверка хешем (CRC32, xxHash, MD5, SHA) · очередь по дискам · пауза и продолжение · перемещение · конфликты · ограничение скорости · списки копирования · отчёты · темы.
+CopyFiles.Text	Копировать файлы…
+CopyFolder.Text	Копировать папку…
+CopyFilesText.Text	Копировать файлы
+CopyFolderText.Text	Копировать папку
+Files_AddFiles.Text	Добавить файлы…
+Files_AddFolder.Text	Добавить папку…
+Files_AutoScroll.Content	Следить за текущим
+Files_CopyHashes.Text	Копировать хеши
+Files_CopyPath.Text	Копировать путь
+Files_Empty.Text	Нет файлов для показа
+Files_ExportCsv.Text	Экспорт в CSV…
+Files_ExportHtml.Text	Экспорт HTML-отчёта…
+Files_FilterAll.Content	Все
+Files_FilterDone.Content	Скопированные
+Files_FilterErrors.Content	С ошибками
+Files_FilterPending.Content	Ожидающие
+Files_FilterSkipped.Content	Пропущенные
+Files_HideFinished.Content	Скрывать завершённые
+Files_Menu.Text	Список
+Files_MoveBottom.Text	В конец
+Files_MoveDown.Text	Ниже
+Files_MoveTop.Text	В начало
+Files_MoveUp.Text	Выше
+Files_OpenSource.Text	Показать источник
+Files_OpenTarget.Text	Показать назначение
+Files_Remove.Text	Убрать из копирования
+Files_Retry.Text	Повторить неудачные
+Files_SaveList.Text	Сохранить список копирования…
+Files_Search.PlaceholderText	Поиск файлов
+Files_Size.Text	Размер
+Files_SourceHash.Text	Хеш источника
+Files_TargetHash.Text	Хеш назначения
+History_Clear.Text	Очистить
+History_Empty.Text	Завершённых копирований пока нет
+History_Open.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Открыть назначение
+History_Repeat.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Повторить (копирует только новое или изменённое)
+History_Title.Text	Журнал
+Log_Export.Text	Экспортировать протокол
+Options_Acl.Content	Разрешения (ACL)
+Options_Attributes.Content	Атрибуты
+Options_Audit.Content	Аудит (SACL)
+Options_BufferSize.Text	Размер буфера
+Options_Data.Content	Данные
+Options_ExportReport.Content	Сохранять HTML-отчёт
+Options_FilesFolders.Text	Файлы и папки
+Options_OnFinish.Text	По завершении
+Options_Owner.Content	Владелец
+Options_ResetDefault.Text	Сбросить
+Options_RunningInfo.Message	Копирование идёт: эти изменения применятся при продолжении («Проверять» и «Без вопросов» — сразу).
+Options_SaveChecksum.Content	Сохранять файл контрольных сумм
+Options_SaveDefault.Text	Сохранить по умолчанию
+Options_Scripts.Text	Команды по завершении
+Options_ScriptsHelp.Text	По одной в строке, выполняются через cmd.exe. Начните с «ok:», чтобы выполнить только при успехе, или с «error:» — только при ошибке. Переменные: %MEGACOPIER_STATE%, %MEGACOPIER_DESTINATION%, %MEGACOPIER_SOURCES%, %MEGACOPIER_FILES%, %MEGACOPIER_BYTES%, %MEGACOPIER_FAILED%, %MEGACOPIER_CHECKSUM%.
+Options_Security.Text	Безопасность (NTFS)
+Options_Streams.Content	Альтернативные потоки (ADS)
+Options_SystemCache.Content	Использовать системный кэш
+Options_Threads.Text	Параллельно
+Options_ThreadsShort.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Одновременные операции чтения и записи
+Options_Timestamps.Content	Даты
+Options_Transfer.Text	Что копируется
+Options_TransferOptions.Text	Передача
+Options_Verify.Content	Проверять после копирования
+Options_VerifySkipped.Content	Проверять и пропущенные
+Page_Back.Text	Назад
+Pager_Next.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Следующее копирование
+Pager_Previous.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Предыдущее копирование
+Pager_Text	Копирование {0} из {1}
+Panel_Discard.Text	Отменить
+Panel_File.Text	Файл
+Panel_OpenFolder.Text	Открыть папку
+Panel_Pause.Text	Пауза
+Panel_Skip.Text	Пропустить
+Panel_Stop.Text	Остановить
+Panel_More	Больше
+Panel_Less	Меньше
+Priority_Low.Content	Низкий
+Priority_BelowNormal.Content	Ниже среднего
+Priority_Normal.Content	Обычный
+Priority_AboveNormal.Content	Выше среднего
+Priority_High.Content	Высокий
+Settings_Advanced.Text	Дополнительно
+Settings_EnabledTitle.Text	Использовать MegaCopier вместо копирования Windows
+Settings_EnabledDescription.Text	Также двойным щелчком по значку в области уведомлений. Если выключено, значок становится серым с красным крестиком и копирует Проводник.
+Settings_FastTitle.Text	Быстрые устройства
+Settings_FastDescription.Text	Диски или пути (NVMe SSD, RAID), которые выдерживают несколько копирований сразу; остальные идут по одному на диск.
+Settings_FinishTitle.Text	Когда копирования закончатся
+Settings_FinishDescription.Text	Что делает окно, когда больше ничего не выполняется
+Settings_FinishAuto.Content	Закрывать, если всё прошло хорошо
+Settings_FinishClose.Content	Всегда закрывать
+Settings_FinishKeep.Content	Оставлять открытым
+Settings_FreeSpace.Content	Сначала проверять свободное место
+Settings_General.Text	Общие
+Settings_HashTitle.Text	Алгоритм хеширования
+Settings_HashDescription.Text	Для проверки и сохранённых контрольных сумм. xxHash3 — самый быстрый, SHA-256 — самый совместимый.
+Settings_MaxJobsTitle.Text	Одновременные копирования
+Settings_MaxJobsDescription.Text	Максимум одновременных копирований (0 = без ограничений). Копирования на одном диске всегда ждут своей очереди.
+Settings_ModeAuto.Content	Автоматически
+Settings_ModeCompact.Content	Компактно
+Settings_ModeExpanded.Content	Полностью
+Settings_PerformanceTitle.Text	Производительность
+Settings_PerformanceDescription.Text	Ограничение скорости, размер буфера и одновременные операции
+Settings_PriorityTitle.Text	Приоритет процесса
+Settings_PriorityDescription.Text	Низкий сохраняет отзывчивость компьютера во время копирования
+Settings_Queue.Text	Очередь
+Settings_Themes.Text	Темы
+Settings_WhatToCopy.Text	Что копируется и что происходит потом
+Settings_Window.Text	Окно
+Settings_WindowModeTitle.Text	Окно копирования
+Settings_WindowModeDescription.Text	Автоматически: компактное при одном копировании, полное при нескольких. «Больше» и «Меньше» переключают его в любой момент.
+Status_Bytes.Text	Размер
+Status_Category.Text	Состояние
+Status_Copied.Text	Скопировано
+Status_Failed.Text	С ошибками
+Status_Files.Text	Файлы
+Status_Pending.Text	Ожидают
+Status_Skipped.Text	Пропущено
+Status_Total.Text	Всего
+Status_Verified.Text	Проверено
+Tab_Files.Text	Файлы
+Tab_Log.Text	Протокол
+Tab_Options.Text	Параметры
+Tab_Status.Text	Состояние
+Tab_Target.Text	Назначение
+Target_Destination.Text	Назначение
+Target_Source.Text	Источник
+Target_Space	свободно {0} из {1}
+Theme_BarHeight.Header	Высота полос
+Theme_Radius.Header	Скругление углов
+Theme_Customize.Text	Настроить тему (цвета, полосы, фон)
+Theme_Delete.Text	Удалить
+Theme_Export.Text	Экспорт…
+Theme_Import.Text	Импорт…
+Theme_Name.Header	Название
+Theme_Save	Сохранить
+Theme_SaveAsNew	Сохранить как новую тему
+Theme_Auto	Fluent (как Windows)
+Theme_CopyOf	{0} (своя)
+Theme_Custom	Моя тема
+Theme_FileType	Тема MegaCopier
+Theme_ImportFailed	Не удалось импортировать тему
+Theme_ColorBackground	Фон
+Theme_ColorSurface	Карточки
+Theme_ColorSurfaceStrong	Выделенные карточки
+Theme_ColorBorder	Границы
+Theme_ColorText	Текст
+Theme_ColorTextSecondary	Второстепенный текст
+Theme_ColorAccent	Акцент
+Theme_ColorAccentText	Текст на акценте
+Theme_ColorTotalStart	Общая полоса: начало
+Theme_ColorTotalEnd	Общая полоса: конец
+Theme_ColorFileStart	Полоса файла: начало
+Theme_ColorFileEnd	Полоса файла: конец
+Theme_ColorTrack	Фон полос
+Theme_ColorSuccess	Успех
+Theme_ColorWarning	Предупреждение
+Theme_ColorError	Ошибка
+Theme_fluent-dark	Fluent тёмная
+Theme_fluent-light	Fluent светлая
+Theme_midnight	Полночь
+Theme_graphite	Графит
+Theme_ocean	Океан
+Theme_forest	Лес
+Theme_sunset	Закат
+Theme_supercopier	Классический SuperCopier
+Theme_ultracopier	Классический Ultracopier
+Theme_contrast	Высокая контрастность
+Tool_About.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	О программе
+Tool_ClearDone.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Убрать завершённые копирования
+Tool_History.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Журнал
+Tool_HistoryText.Text	Журнал
+Tool_LoadList.Text	Загрузить список копирования…
+Tool_LoadListText.Text	Загрузить список
+Tool_MoveFiles.Text	Переместить файлы…
+Tool_NewCopy.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Новое копирование
+Tool_NewCopyText.Text	Новое
+Tool_PauseAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Приостановить все
+Tool_ResumeAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Возобновить все
+Tool_Settings.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Настройки
+Tool_Sidebar.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Показать или скрыть список копирований
+Drop_Caption	Копировать через MegaCopier
+File_Pending	Ожидает
+File_Copying	Копирование
+File_Verifying	Проверка
+File_Copied	Скопирован
+File_Verified	Проверен
+File_Skipped	Пропущен
+File_Failed	Ошибка
+Files_AddFailed	Не удалось добавить
+Files_Count	{0} из {1} файлов
+Files_ListType	Список копирования MegaCopier
+Files_LoadFailed	Не удалось загрузить список
+Hash_None	Хеш: нет
+Jobs_Header	КОПИРОВАНИЙ: {0} · АКТИВНЫХ: {1}
+Language_Auto	Как в Windows
+Log_FileType	Текст
+Picker_MoveHere	Переместить сюда
+Settings_AutoResume.Content	Продолжать сами при запуске
+Panel_Options.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Параметры этого копирования
+Panel_UnattendedItem.Text	Без вопросов (существующие пропускаются)
+Panel_VerifyItem.Text	Проверить по завершении
+Panel_OpenFolderItem.Text	Открыть папку назначения
+Status_ExactBytes	{0} байт
+Notify_SettingsResetTitle	Настройки сброшены
+Notify_SettingsResetBody	Не удалось прочитать ваши параметры, поэтому используются стандартные. Исходный файл — settings.json.bad.
+Job_TitleCopy	Копировать {0}
+Job_TitleMove	Переместить {0}
+Job_FailedOne	1 файл с ошибками
+Error_InUse	Файл открыт другой программой. Закройте её и нажмите «Повторить».
+Error_AccessDenied	Доступ запрещён: у вас нет прав на чтение или запись этого файла.
+Error_DiskFull	На диске назначения не осталось места.
+Error_NotFound	Файл или папка больше не существует (перемещены, удалены или диск отключён?).
+Error_PathTooLong	Путь слишком длинный для назначения.
+Error_NetworkLost	Сетевое подключение потеряно. Когда оно восстановится, нажмите «Повторить», чтобы продолжить с места остановки.
+Error_HashMismatch	Копия не совпадает с оригиналом (проверка не пройдена).
+Error_DeleteFailed	Скопировано правильно, но удалить оригинал не удалось.
+Report_State	Состояние
+Report_File	Файл
+Report_Source	Источник
+Report_Destination	Назначение
+Report_Size	Размер
+Report_SourceHash	Хеш источника
+Report_TargetHash	Хеш назначения
+Report_Message	Сообщение
+Report_Copied	Скопировано
+Report_Verified	Проверено
+Report_Skipped	Пропущено
+Report_Failed	С ошибками
+Job_SkippedOne	1 пропущен
+Rules_Filters.Text	Фильтры
+Rules_Include.Header	Включать только (маски через ;)
+Rules_Include.PlaceholderText	*.jpg; *.png; Фото\*
+Rules_Exclude.Header	Исключать
+Rules_Exclude.PlaceholderText	node_modules; *.tmp; Thumbs.db
+Rules_MinSize.Header	Мин. размер (МБ)
+Rules_MaxSize.Header	Макс. размер (МБ)
+Rules_After.Header	Изменены с
+Rules_Before.Header	Изменены по
+Rules_SkipHidden.Content	Пропускать скрытые
+Rules_SkipSystem.Content	Пропускать системные
+Rules_Rules.Text	Правила
+Rules_Links.Header	Символические ссылки и соединения
+Rules_LinksCopy.Content	Копировать как ссылки
+Rules_LinksFollow.Content	Копировать то, на что они указывают
+Rules_LinksSkip.Content	Пропускать
+Rules_Pattern.Header	Имя при сохранении обоих ({name}, {n}, {ext}, {date})
+Rules_PatternPreview	Пример: {0}
+Rules_Retries.Header	Повторы
+Rules_Delay.Header	Пауза между повторами (с)
+Rules_OnError.Header	Если файл продолжает сбоить
+Rules_OnErrorSkip.Content	Записать и перейти к следующему
+Rules_OnErrorStop.Content	Остановить копирование (можно продолжить)
+ConflictDifferentSize.Content	Заменять при другом размере
+ConflictRenameExisting.Content	Переименовывать существующий
+Conflict_RenameExisting.Text	Переименовать существующий и скопировать этот
+Schedule_Title.Text	Запланировать запуск
+Schedule_Set.Text	Запланировать
+Schedule_Now.Text	Начать сейчас
+Schedule_InThePast	Выберите время в будущем.
+Job_StateScheduled	Запланировано на {0}
+Settings_Favorites.Text	Избранные папки
+Settings_FavoritesTitle.Text	Избранные назначения
+Settings_FavoritesDescription.Text	Они появляются в «Новое > Копировать в» и в окне назначений, чтобы копировать сразу в несколько папок.
+Settings_FavoritesAdd.Text	Добавить папку
+Settings_FavoritesRemove	Убрать {0}
+Settings_FavoritesEmpty	Избранного пока нет.
+Tool_CopyTo.Text	Копировать в
+Tool_CopyToEmpty	Нет избранных и недавних
+Tool_CopyToManage	Управление избранным…
+Tool_TestFiles.Text	Проверить файлы контрольных сумм…
+Tool_TestFolder.Text	Проверить контрольные суммы папки…
+Tool_Delete.Text	Удалить…
+Tool_Wipe.Text	Удалить без возможности восстановления…
+DestinationsDialog.Title	Куда?
+DestinationsDialog.PrimaryButtonText	Начать
+DestinationsDialog.CloseButtonText	Отмена
+Destinations_SummaryOne	Выберите одно или несколько назначений для «{0}».
+Destinations_SummaryMany	Выберите одно или несколько назначений для элементов ({0}).
+Destinations_Add.Text	Добавить папку…
+Destinations_Move.Content	Переместить вместо копирования
+Destinations_Schedule.Content	Начать позже
+DeleteDialog.Title	Удалить
+DeleteDialog.PrimaryButtonText	Удалить
+DeleteDialog.CloseButtonText	Отмена
+Delete_ConfirmOne	Удалить «{0}»? Он не попадёт в корзину.
+Delete_ConfirmMany	Удалить элементы ({0})? Они не попадут в корзину.
+Delete_ConfirmSecureOne	Удалить «{0}» без возможности восстановления?
+Delete_ConfirmSecureMany	Удалить элементы ({0}) без возможности восстановления?
+Delete_SecureWarning.Title	Восстановить будет нельзя
+Delete_SecureWarning.Message	Содержимое перезаписывается перед удалением. На SSD сам диск может хранить остатки; для максимальной защиты используйте шифрование BitLocker.
+FinishHibernate.Text	Гибернация
+FinishSignOut.Text	Выйти из системы
+FinishExit.Text	Закрыть MegaCopier
+Finish_LabelHibernate	По завершении: гибернация
+Finish_LabelSignOut	По завершении: выход
+Finish_LabelExit	По завершении: закрыть MegaCopier
+Notify_FinishSleep	Переход в спящий режим…
+Notify_FinishHibernate	Переход в гибернацию…
+Notify_FinishShutdown	Компьютер выключится через 1 минуту (отмена: shutdown /a).
+Notify_FinishSignOut	Выход из системы…
+Notify_FinishExitApp	MegaCopier закрывается.
+Files_SelectAll.Text	Выделить все
+Files_SelectSameExtension.Text	Выделить с таким же расширением
+Files_SelectSameFolder.Text	Выделить из той же папки
+Files_InvertSelection.Text	Обратить выделение
+Job_TitleTest	Проверить {0}
+Job_TitleTesting	Проверка {0}
+Job_TitleTested	Проверено: {0}
+Job_TitleDelete	Удалить {0}
+Job_TitleDeleting	Удаление {0}
+Job_TitleDeleted	Удалено: {0}
+Job_StateTesting	Проверка
+Job_StateDeleting	Удаление
+Job_FilesTestedOne	Исправных файлов: {0}
+Job_FilesTestedMany	Исправных файлов: {0}
+Job_FilesDeletedOne	Удалено файлов: {0}
+Job_FilesDeletedMany	Удалено файлов: {0}
+Job_TitleScheduled	Запланировано: {0}
+Error_ChecksumMismatch	Содержимое не совпадает с сохранённой контрольной суммой: файл изменён или повреждён.
+Job_FilteredOut	Ни один файл не проходит фильтры этого копирования
+Rules_After.PlaceholderText	Любая дата
+Rules_Before.PlaceholderText	Любая дата
+Drop_MoveTo	Переместить на позицию {0}
+Drop_InsertAt	Добавить на позицию {0}
+Drop_AddToJob	Добавить к этому копированию
+Drop_AddToNamedJob	Добавить к {0}
+Drop_JobOrder	Поставить на место {0} в очереди
+Settings_Sounds.Text	Звуки
+Settings_SoundsTitle.Text	Звуковые оповещения
+Settings_SoundsDescription.Text	Выберите звук для каждого момента: звук Windows, любой файл на компьютере или без звука.
+Settings_Volume.Header	Громкость
+Settings_SoundsQuiet.Content	Не звучать во время полноэкранных игр и презентаций и в режиме «Не беспокоить»
+Sound_Done	Копирование прошло успешно
+Sound_Errors	Копирование завершилось с ошибками
+Sound_AllDone	Все копирования завершены
+Sound_Attention	Нужно ваше решение (файл уже существует)
+Sound_Test	Проверить звук
+Sound_None	Без звука
+Sound_Default	Звук Windows
+Sound_Choose	Выбрать файл…
+File_Planned	Смоделировано
+File_Deleted	Удалён
+File_RemovedExtra	Удалён из назначения: его больше нет в источнике
+Plan_Copy	Будет скопирован
+Plan_Replace	Заменит файл в назначении
+Plan_ReplaceNewer	Заменит файл в назначении: оригинал новее
+Plan_ReplaceSize	Заменит файл в назначении: другой размер
+Plan_KeepBoth	Уже есть: будет скопирован под другим именем
+Plan_RenameExisting	Уже есть: файл в назначении будет переименован, а этот скопирован
+Plan_Ask	Уже есть: вас спросят, что делать
+Plan_SkipIdentical	Будет пропущен: в назначении уже такой же
+Plan_SkipExists	Будет пропущен: уже существует
+Plan_SkipOlder	Будет пропущен: в назначении такой же или новее
+Plan_SkipSameSize	Будет пропущен: тот же размер
+Plan_SkipNotInDestination	Будет пропущен: нет в назначении (только обновление)
+Plan_SkipSamePath	Будет пропущен: источник и назначение совпадают
+Plan_Delete	Будет удалён из назначения: его больше нет в источнике
+Plan_Fail	Завершится ошибкой: назначение уже существует
+Plan_None	Смоделировано
+Skip_SkipIdentical	В назначении уже такой же
+Skip_SkipExists	Уже существовал: пропущен
+Skip_SkipOlder	В назначении такой же или новее
+Skip_SkipSameSize	Тот же размер, что в назначении
+Skip_SkipNotInDestination	Нет в назначении (обновляются только существующие)
+Skip_SkipSamePath	Источник и назначение — один и тот же файл
+Skip_SkipByUser	Пропущен вами
+Job_TitleSync	Синхронизировать {0}
+Job_TitleSyncing	Синхронизация {0}
+Job_TitleSynced	Синхронизировано: {0}
+Job_StateSyncing	Синхронизация
+Job_FilesSyncedOne	Обновлено файлов: {0}
+Job_FilesSyncedMany	Обновлено файлов: {0}
+Job_TitleSimulate	Смоделировать {0}
+Job_TitleSimulating	Моделирование {0}
+Job_TitleSimulated	Моделирование: {0}
+Job_StateSimulating	Моделирование
+Job_FilesSimulatedOne	Будет скопировано файлов: {0}
+Job_FilesSimulatedMany	Будет скопировано файлов: {0}
+Job_WouldTransfer	всего {0}
+Job_TitleHash	Создать контрольные суммы для {0}
+Job_TitleHashing	Вычисление контрольных сумм для {0}
+Job_TitleHashed	Контрольные суммы для {0}
+Job_StateHashing	Вычисление контрольных сумм
+Job_FilesHashedOne	Файлов в списке сумм: {0}
+Job_FilesHashedMany	Файлов в списке сумм: {0}
+Job_StateWaitingDevice	Ожидание возвращения диска или сети…
+Job_StateWaitingSpace	Ожидание свободного места в назначении…
+Job_RemovedOne	1 удалён из назначения
+Job_Removed	удалено из назначения: {0}
+Job_WouldRemove	будет удалено из назначения: {0}
+Panel_RunForReal.Text	Выполнить по-настоящему
+Options_Mode.Header	Режим
+Mode_Copy.Content	Копировать
+Mode_Mirror.Content	Синхронизировать (зеркало)
+Mode_Update.Content	Только обновлять существующие
+Mode_Folders.Content	Только структура папок
+Options_MirrorInfo.Title	Синхронизация удаляет из назначения то, чего больше нет в источнике
+Options_MirrorInfo.Message	То, что исключено фильтрами, не трогается. Укажите папку версий, чтобы сохранять удалённое или заменённое.
+Options_DryRun.Content	Смоделировать: показать, что будет сделано, ничего не меняя
+Destinations_DryRun.Content	Сначала смоделировать (ничего не меняет)
+Tool_HashFolder.Text	Создать файл контрольных сумм для папки…
+Tool_HashFiles.Text	Создать файл контрольных сумм для файлов…
+Rules_SkipJunk.Content	Пропускать мусорные файлы (Thumbs.db, desktop.ini, .DS_Store, ~$…)
+Rules_OnErrorEnd.Content	Повторить в конце очереди
+Rules_Safety.Text	Синхронизация и безопасность
+Rules_FolderConflict.Header	Если папка уже есть в назначении
+Rules_FolderMerge.Content	Объединить содержимое
+Rules_FolderSkip.Content	Пропустить целиком
+Rules_Versions.Header	Сохранять заменённое или удалённое в папке
+Rules_Versions.PlaceholderText	Пусто: не сохранять (например, .versions)
+Rules_Tolerance.Header	Допуск даты для «одинаковых» (секунды)
+Rules_VerifySource.Content	Перечитать оригинал в конце
+Rules_HashStream.Content	Сохранять хеш внутри каждого файла
+Rules_HardLinks.Content	Сохранять жёсткие ссылки
+Rules_Wipe.Content	При перемещении удалять оригиналы без возможности восстановления
+Rules_WaitDevice.Content	Ждать, если отключится диск или сеть
+Rules_WaitSpace.Content	Ждать, если не хватает места
+Rules_VerifySource.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Заново вычисляет хеш оригинала: обнаруживает, изменился ли он во время копирования или плохо ли читает исходный диск.
+Rules_HashStream.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Хранится в скрытом потоке самого файла (NTFS). «Проверить контрольные суммы папки» потом найдёт любое повреждение, даже без файла сумм.
+Rules_HardLinks.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Если несколько имён — один и тот же файл, в назначении будет так же (без двойного места).
+Rules_Tolerance.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	FAT32 и exFAT хранят время с точностью до 2 секунд: с этим допуском одинаковые файлы не копируются заново.
+Rules_Versions.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Перед заменой или удалением файл перемещается в эту папку назначения с датой в имени.
+Settings_UnitsTitle.Text	Единицы размера
+Settings_UnitsDescription.Text	Как показываются размеры и скорости.
+Units_Classic.Content	КБ, МБ, ГБ (как в Проводнике)
+Units_Iec.Content	КиБ, МиБ, ГиБ (двоичные)
+Units_Decimal.Content	кБ, МБ, ГБ по 1000 (как у производителя)
+Settings_SlowTitle.Text	Медленнее, пока вы работаете за компьютером
+Settings_SlowDescription.Text	Пока вы пользуетесь клавиатурой или мышью, копирование не превышает эту скорость; когда вы отходите, оно снова ускоряется.
+Slow_Off.Content	Нет
+Settings_LogsTitle.Text	Сохранять протокол каждого копирования
+Settings_LogsDescription.Text	Один файл на копирование в папке протоколов; удаляются через 30 дней.
+Settings_LogsOpen.Text	Открыть папку
+Settings_WebhookTitle.Text	Уведомлять веб-адрес по завершении
+Settings_WebhookDescription.Text	Чтобы получать уведомление на телефон или в чат: Discord, Slack, Teams, ntfy.sh, Home Assistant… Отправляется POST с JSON.
+Settings_WebhookBox.PlaceholderText	https://ntfy.sh/moya-sekretnaya-tema
+Settings_WebhookTest.Text	Проверить
+Settings_WebhookSending	Отправка…
+Settings_WebhookOk	Уведомление отправлено.
+Settings_WebhookFailed	Не удалось отправить: проверьте адрес и подключение.
+Settings_WebhookTestMessage	✔ MegaCopier: тестовое уведомление
+FinishDialog.Title	Все копирования завершены
+FinishDialog.PrimaryButtonText	Выполнить сейчас
+FinishDialog.CloseButtonText	Отмена
+Finish_CountdownSleep	Компьютер перейдёт в спящий режим через {0} с.
+Finish_CountdownHibernate	Компьютер перейдёт в гибернацию через {0} с.
+Finish_CountdownShutdown	Компьютер выключится через {0} с.
+Finish_CountdownSignOut	Выход из системы через {0} с.
+Finish_CountdownExitApp	MegaCopier закроется через {0} с.
+Job_SlowedDown	Медленнее, пока вы работаете за компьютером
+History_Undone	отменено
+History_Undo.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Отменить: вернуть перемещённое или отправить скопированное в корзину
+History_CopyBack.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Скопировать обратно в исходную папку (восстановить)
+History_UndoDialog.Title	Отменить это копирование?
+History_UndoDialog.PrimaryButtonText	Отменить копирование
+History_UndoDialog.CloseButtonText	Закрыть
+History_UndoMoveConfirm	Всё перемещённое вернётся из «{0}» в исходную папку.
+History_UndoCopyConfirm	Скопированные файлы ({0}) отправятся в корзину (их можно восстановить). Файлы, изменённые позже или заменившие другой файл, не трогаются.
+History_UndoDone	Отправлено в корзину файлов: {0}.
+History_UndoKept	Оставлено: изменённых позже — {0}, заменивших другие — {1}.
+History_UndoTitleBar.Title	Копирование отменено
+History_Undo.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Отменить: вернуть перемещённое или отправить скопированное в корзину
+History_CopyBack.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Скопировать обратно в исходную папку (восстановить)
+History_Open.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Открыть назначение
+History_Repeat.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Повторить (копирует только новое или изменённое)
+Task_Header.Text	Или сохраните его как задачу, чтобы Windows сама повторяла его в выбранное выше время:
+Task_Name.PlaceholderText	Имя задачи
+Task_Once.Content	Один раз
+Task_Daily.Content	Ежедневно
+Task_Weekly.Content	Еженедельно
+Task_Save.Text	Сохранить как задачу
+Task_SavedOnce	Задача «{0}» сохранена: она выполнится {2} в {1}.
+Task_SavedDaily	Задача «{0}» сохранена: она будет выполняться ежедневно в {1}.
+Task_SavedWeekly	Задача «{0}» сохранена: она будет выполняться еженедельно в тот же день недели, что и {2}, в {1}.
+Task_Failed	Не удалось запланировать: {0}
+Settings_Tasks.Text	Запланированные задачи
+Settings_TasksTitle.Text	Копирования, которые повторяются сами
+Settings_TasksDescription.Text	Создаются на вкладке «Параметры» копирования («Сохранить как задачу»); их запускает Планировщик заданий Windows, даже если MegaCopier закрыт.
+Settings_TasksEmpty	Задач пока нет.
+Settings_TaskRun	Выполнить «{0}» сейчас
+Settings_TaskDelete	Удалить задачу «{0}»
+About_Portable	портативная (данные в {0})
+Job_Estimate	{0}, примерно {1}
+Job_EstimateSize	всего {0}
+Settings_SmbCompression.Content	Сжимать в сети (SMB)
+Settings_SmbCompression.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Просит сервер сжимать данные в пути (Windows 11 и Windows Server 2022 или новее). Если источник и назначение на одном сервере, копирует всегда сам сервер, не через этот компьютер.
+Error_TooLargeForFileSystem	Не помещается на этот диск: FAT32 не допускает файлы 4 ГБ и больше. Отформатируйте его в exFAT или NTFS.
+Rules_AllOrNothing.Content	Папки «всё или ничего»
+Rules_AllOrNothing.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Каждая новая папка копируется скрытой и появляется под своим именем, только когда всё прошло хорошо: никогда не останется наполовину скопированной папки, которая выглядит полной.
+Rules_Rescue.Content	Режим спасения для повреждённых дисков
+Rules_Rescue.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Если у источника есть повреждённые секторы, он читается посекторно и спасается всё читаемое; нечитаемое заполняется нулями и записывается в протокол. При перемещении оригинал не удаляется.
+Error_PartlyUnreadable	Спасено частично: некоторые секторы источника были повреждены и заполнены нулями (подробности в протоколе).
+Settings_Guard.Text	Страж целостности
+Settings_GuardTitle.Text	Следить, чтобы ваши файлы не портились со временем
+Settings_GuardDescription.Text	Каждый файл хранит свой хеш внутри. Когда компьютер простаивает, MegaCopier проверяет их: если какой-то изменился без правки (его повредил диск), вы получите предупреждение. То, что вы редактируете, обновляется само. Требуется NTFS.
+Guard_Daily.Content	Ежедневно
+Guard_Weekly.Content	Еженедельно
+Guard_Monthly.Content	Ежемесячно
+Settings_GuardAdd.Text	Следить за папкой…
+Settings_GuardEmpty	Вы пока не следите ни за одной папкой.
+Settings_GuardCheck	Проверить «{0}» сейчас
+Settings_GuardRemove	Перестать следить за «{0}»
+Guard_NotYet	Ожидает первой проверки
+Guard_LastOk	Проверено {0}: всё в порядке
+Guard_LastDamaged	Проверено {0}: повреждённых файлов — {1} (см. журнал)
+Guard_DamagedTitle	Страж целостности
+Guard_DamagedOne	Файл из «{0}» повреждён на диске.
+Guard_DamagedMany	Повреждено на диске файлов из «{1}»: {0}.
+Guard_LastDamagedOne	Проверено {0}: один повреждённый файл (см. журнал)
+Settings_ScheduleLimitTitle.Text	Ограничение скорости по расписанию
+Settings_ScheduleLimitDescription.Text	Например, в рабочее время: копирование не превышает эту скорость между выбранными часами.
+Settings_ScheduleFrom.Text	С
+Settings_ScheduleTo.Text	до
+Settings_PauseBatteryTitle.Text	Пауза при работе от батареи
+Settings_PauseBatteryDescription.Text	На ноутбуке без зарядки копирование ждёт и продолжается само при подключении.
+Settings_PauseFullTitle.Text	Пауза во время игр и презентаций
+Settings_PauseFullDescription.Text	При полноэкранной игре или презентации копирование ждёт, чтобы не замедлять её.
+Comfort_PausedTitle	Копирование приостановлено
+Comfort_PausedBattery	Компьютер работает от батареи: копирование продолжится при подключении к сети.
+Comfort_PausedFullScreen	Идёт полноэкранная игра или презентация: копирование продолжится после выхода из неё.
+Job_StatePausedBattery	Пауза: от батареи
+Job_StatePausedFullScreen	Пауза: полный экран
+Job_SlowedSchedule	Медленнее по выбранному расписанию
+Rules_Delta.Content	При замене больших файлов записывать только изменения
+Rules_Delta.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Разностное копирование для файлов от 16 МБ (виртуальные диски, почта, проекты): записываются только отличающиеся блоки. При отмене или отключении питания файл возвращается к прежней версии.
+Panel_CopyLocked.Text	Копировать используемые файлы
+Locked_Title	Используемые файлы
+Locked_Cancelled	Права администратора не предоставлены: используемые файлы не скопированы.
+Locked_Done	Скопировано используемых файлов из теневой копии диска: {0}.
+Locked_Partial	Скопировано из теневой копии: {0}; остальные скопировать не удалось: {1}
+Settings_Peer.Text	Приём с других компьютеров
+Settings_PeerTitle.Text	Принимать файлы с других компьютеров с MegaCopier
+Settings_PeerDescription.Text	По домашней или офисной сети, без общих папок. Отправителю нужен код ниже; соединение зашифровано, и каждый файл проверяется при получении. В первый раз Windows может запросить разрешение брандмауэра.
+Settings_PeerCode.Text	Код для отправки вам файлов:
+Settings_PeerNewCode.Text	Новый код
+Settings_PeerFolder.Text	Сменить папку…
+Settings_PeerFolderIs	Сохраняются в {0}
+Settings_PeerListening	Ожидание отправок на «{0}» (порт {1}).
+Settings_PeerError	Не удалось начать приём: {0}
+Peer_ReceivingTitle	Приём файлов
+Peer_Receiving	{0} отправляет вам файлы: {1} ({2}).
+Peer_ReceivedTitle	Файлы получены
+Peer_Received	Файлов от {1}: {0}, в {2}.
+Peer_RejectedTitle	Отправка отклонена
+Peer_Rejected	{0} пытался отправить вам файлы с неверным кодом.
+Tool_SendFiles.Text	Отправить файлы на другой компьютер…
+Tool_SendFolder.Text	Отправить папку на другой компьютер…
+SendDialog.Title	Отправить на другой компьютер
+SendDialog.PrimaryButtonText	Отправить
+SendDialog.CloseButtonText	Отмена
+Send_SummaryOne	Отправить «{0}» на другой компьютер, где MegaCopier принимает файлы.
+Send_SummaryMany	Отправить элементы ({0}) на другой компьютер, где MegaCopier принимает файлы.
+Send_Found.Text	Компьютеры в сети:
+Send_Searching	Поиск…
+Send_NoneFound	Ничего не найдено: введите имя или IP.
+Send_Host.Header	Компьютер (имя или IP)
+Send_Host.PlaceholderText	PC-GOSTINAYA или 192.168.1.20
+Send_Code.Header	Код, который этот компьютер показывает в настройках
+Send_Code.PlaceholderText	XXXX-XXXX-XXXX
+Job_TitleSend	Отправить {0}
+Job_TitleSending	Отправка {0}
+Job_TitleSent	Отправлено: {0}
+Job_StateSending	Отправка
+Job_FilesSentOne	Отправлено файлов: {0}
+Job_FilesSentMany	Отправлено файлов: {0}
+Rules_Describe.Header	Скажите своими словами (на английском или испанском)
+Rules_Describe.PlaceholderText	photos larger than 2 MB from last month except .tmp
+Rules_DescribeApply.Text	Применить
+Rules_DescribeUnderstood	Понятно: {0}.
+Rules_DescribeNothing	Не понял, что фильтровать.
+Rules_DescribeUnknown	Не понял: {0}.
+Mode_Organize.Content	Упорядочить фото по дате
+Rules_Duplicates.Content	Не копировать то, что уже есть в назначении (дубликаты)
+Rules_Duplicates.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Сравнивает содержимое, а не имя: фото, которое уже есть в любой папке назначения, даже под другим именем, не копируется снова.
+Skip_SkipDuplicate	Уже есть в назначении под другим именем или в другой папке
+Plan_SkipDuplicate	Будет пропущен: уже есть в назначении (дубликат)
+Destinations_Encrypt.Content	Зашифровать паролем (для флешки или диска, который можно потерять)
+Destinations_Password.Header	Пароль
+Destinations_Password2.Header	Повторите пароль
+Destinations_PasswordHint	Шифруется AES-256. Если вы забудете пароль, восстановить файлы будет невозможно. Чтобы прочитать их: меню «Новое» > «Расшифровать».
+Destinations_PasswordShort	Пароль должен быть не короче 8 символов.
+Destinations_PasswordMismatch	Пароли не совпадают.
+PasswordDialog.Title	Пароль
+PasswordDialog.PrimaryButtonText	ОК
+PasswordDialog.CloseButtonText	Отмена
+Tool_Decrypt.Text	Расшифровать зашифрованные файлы…
+Picker_DecryptHere	Расшифровать сюда
+Decrypt_Ask	Пароль зашифрованных файлов в «{0}»:
+Resume_PasswordAsk	Это копирование зашифровано, а пароль не сохраняется: введите его, чтобы продолжить.
+Job_TitleEncrypt	Зашифровать {0}
+Job_TitleEncrypting	Шифрование {0}
+Job_TitleEncrypted	Зашифровано: {0}
+Job_StateEncrypting	Шифрование
+Job_FilesEncryptedOne	Зашифровано файлов: {0}
+Job_FilesEncryptedMany	Зашифровано файлов: {0}
+Job_TitleDecrypt	Расшифровать {0}
+Job_TitleDecrypting	Расшифровка {0}
+Job_TitleDecrypted	Расшифровано: {0}
+Job_StateDecrypting	Расшифровка
+Job_FilesDecryptedOne	Расшифровано файлов: {0}
+Job_FilesDecryptedMany	Расшифровано файлов: {0}
+Settings_DisksTitle.Text	Состояние дисков
+Settings_DisksDescription.Text	Что Windows сообщает о каждом диске (SMART). Если какой-то предупреждает о сбое, MegaCopier скажет вам об этом при копировании с него или на него.
+Settings_DisksCheck.Text	Проверить сейчас
+Disk_Row	Диск {0} · {1}: {2}
+Disk_Healthy	исправен
+Disk_Unknown	состояние неизвестно
+Disk_HealthWarning	сообщает о проблеме
+Disk_Checking	Проверка дисков…
+Disk_WarningTitle	Диск сообщает о сбое
+Disk_Warning	«{0}» (диск {1}): {2}. Как можно скорее скопируйте важное на другой диск.
+Settings_TuneTitle.Text	Автонастройка для каждого диска
+Settings_TuneDescription.Text	Измеряет каждый диск с разными размерами блока и числом операций и использует самый быстрый вариант при копировании на него (если вы не меняли производительность вручную).
+Settings_TuneMeasure.Text	Измерить диски
+Settings_TuneNone	Ни один диск ещё не измерен.
+Settings_TuneDisk	Диск
+Settings_TuneProfile	{0}: блоки по {1} МБ, {2} одновременно ({3:N0} МБ/с)
+Settings_TuneMeasuring	Измерение {0} ({1} из {2})…
+Tool_Timeline.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Временная шкала очереди
+Timeline_Title.Text	Временная шкала
+Timeline_Info.Text	Прогноз по скорости каждого диска. Копирования на одном диске идут по очереди.
+Timeline_Empty.Text	Нет выполняющихся и ожидающих копирований.
+Timeline_Summary	Всё должно завершиться около {0} (через {1}).
+Timeline_Now	Сейчас
+Timeline_Tomorrow	завтра {0}
+Timeline_Running	Выполняется · ожидаемое окончание: {0} (осталось {1})
+Timeline_Paused	Пауза · если продолжить сейчас, окончание: {0}
+Timeline_Queued	В очереди · начало: {0} · окончание: {1} (займёт {2})
+Timeline_Scheduled	Запланировано · начало: {0} · окончание: {1} (займёт {2})
+Timeline_Measuring	размер ещё измеряется
+Tool_Shelf.Text	Полка для перетаскивания
+Tray_Shelf	Полка для перетаскивания
+Shelf_WindowTitle	Полка для перетаскивания MegaCopier
+Shelf_Title.Text	Полка для перетаскивания
+Shelf_Empty.Text	Перетащите сюда файлы и папки откуда угодно. Затем скопируйте или переместите их все вместе либо перетащите обратно.
+Shelf_DropCaption	Добавить на полку
+Shelf_CopyTo.Text	Копировать в…
+Shelf_MoveTo.Text	Переместить в…
+Shelf_Clear.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Очистить полку
+Shelf_Remove.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Убрать с полки
+Shelf_One	1 элемент
+Shelf_Many	Элементов: {0}
+Shelf_RemoveNamed	Убрать «{0}» с полки
+Destinations_NoneChosen.Text	Отметьте хотя бы одно назначение (или добавьте папку).
+Finish_ShutdownMessage	MegaCopier завершил копирование. Компьютер выключится через 1 минуту.
+Hash_Name	Хеш: {0}

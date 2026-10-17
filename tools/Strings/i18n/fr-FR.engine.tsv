@@ -1,0 +1,220 @@
+clave	texto
+E_WouldMove	Serait déplacé
+E_WouldCopy	Serait copié
+E_WouldReplace	Remplacerait le fichier existant
+E_WouldReplaceNewer	Le remplacerait : la source est plus récente
+E_WouldReplaceSize	Le remplacerait : la taille a changé
+E_WouldKeepBoth	Serait copié sous un autre nom (les deux sont gardés)
+E_WouldRenameExisting	Le fichier existant serait renommé et celui-ci copié
+E_WouldAsk	Vous seriez consulté
+E_WouldSkipIdentical	Serait ignoré : identique
+E_WouldSkipExists	Serait ignoré : existe déjà
+E_WouldSkipOlder	Serait ignoré : la destination est identique ou plus récente
+E_WouldSkipSameSize	Serait ignoré : même taille
+E_WouldSkipNotInDestination	Serait ignoré : absent de la destination
+E_WouldDelete	Serait supprimé de la destination : absent de la source
+E_Deleted	Supprimé de la destination : absent de la source
+E_WouldFail	Serait marqué en erreur
+E_WouldSkipSamePath	Serait ignoré : la source et la destination sont identiques
+E_SkipIdentical	Identique au fichier existant
+E_SkipOlder	La destination est identique ou plus récente
+E_SkipSameSize	Même taille que le fichier existant
+E_SkipNotInDestination	Absent de la destination (seuls les fichiers existants sont mis à jour)
+E_SkipSamePath	La source et la destination sont le même fichier
+E_SkipExisted	Existait déjà : ignoré
+E_DeletedLog	Supprimé de la destination (absent de la source).
+E_FolderExistsSkipped	Le dossier existe déjà dans la destination : ignoré.
+E_VersionSaved	Version précédente enregistrée dans {0}
+E_HardLinkTo	Lien physique vers {0}
+E_HardLinkCreated	Lien physique créé (même fichier que {0}).
+E_HardLinkFailed	Impossible de créer le lien physique ({0}) ; le fichier est copié à la place.
+E_HashStreamFailed	Impossible d'enregistrer le hachage dans le fichier (la destination n'est pas en NTFS ?) : {0}
+E_DeviceLost	Le réseau ou le lecteur a été perdu : la copie attend son retour et reprendra toute seule.
+E_DeviceBack	Le lecteur est revenu : reprise là où elle s'était arrêtée.
+E_DiskFull	La destination est pleine : libérez de l'espace et la copie reprendra toute seule.
+E_SpaceBack	Il y a de nouveau de l'espace : reprise.
+E_HashStreamsSaved	Hachage enregistré dans {0} fichiers.
+E_ChecksumSaved	Fichier de sommes enregistré : {0}
+E_HashStart	Calculer {0} pour {1} fichiers ({2}).
+E_Added	{0} fichiers ajoutés ({1}).
+E_NeedPassword	Cette copie est chiffrée : saisissez à nouveau le mot de passe pour continuer.
+E_DryRunSummary	Simulation : {0} seraient copiés, {1} ignorés et {2} supprimés.
+E_DoneCopy	Terminé en {0} : {1} copiés, {2} ignorés, {3} en erreur.
+E_DuplicateInDestination	Déjà dans la destination : {0}
+E_Repaired	La vérification a réparé {0} blocs endommagés.
+E_DeltaCopy	Copie différentielle : {0} écrits ; {1} étaient déjà identiques.
+E_Cloned	Blocs clonés instantanément (ReFS/Dev Drive) : n'occupe pas plus d'espace tant qu'il n'est pas modifié.
+E_SmbCompressed	Copié par Windows avec compression SMB.
+E_ServerSide	Copié sur le serveur lui-même (les données ne sont pas passées par cet ordinateur).
+E_Resumed	Repris à partir de {0}.
+E_HashMismatch	Les hachages ne correspondent pas
+E_SourceChanged	La source relue ne correspond pas à ce qui a été copié (lecture défectueuse, ou elle a changé pendant la copie)
+E_SkippedByUser	Passé par l'utilisateur
+E_SkippedByUserLog	Passé par l'utilisateur.
+E_ExistingDiffers	Le fichier existant ne correspond pas à la source
+E_ExistingDiffersLog	Le fichier existant a la même taille et la même date mais un contenu différent.
+E_IdenticalVerified	Identique (vérifié par hachage)
+E_SkippedNotVerified	Impossible de vérifier le fichier ignoré : {0}
+E_RetryAtEnd	Sera réessayé à la fin : {0}
+E_DestinationExists	La destination existe déjà : {0}
+E_ExistingRenamed	Le fichier existant a été renommé en {0}.
+E_NoSpace	Espace insuffisant sur la destination : {0:F2} Go nécessaires et {1:F2} Go libres.
+E_RescuedZeros	Sauvé : {0} illisibles de la source sont devenus des zéros (détails dans le journal).
+E_LinkExists	Existe déjà dans la destination ; le lien n'a pas été recréé : {0}
+E_LinkCreated	Lien créé : {0} → {1}
+E_JunctionCreated	Jonction créée : {0} → {1}
+E_LinkFallback	Impossible de créer le lien ({0}) ; le fichier vers lequel il pointe a été copié.
+E_LinkFailed	Impossible de créer le lien : {0}
+E_NoChecksums	Aucun fichier de sommes (.sha256, .md5, .sfv, .xxh3...) ni fichier avec un hachage enregistré n'a été trouvé.
+E_TestStart	Contrôler {0} fichiers de {1} listes de sommes ({2}).
+E_NotFound	Introuvable : {0}
+E_NoStoredHash	Aucun hachage enregistré : non contrôlé
+E_ModifiedAfterHash	Modifié après l'enregistrement de son hachage : non contrôlé
+E_NowProtected	Aucun hachage enregistré : désormais protégé
+E_HashRenewed	Modifié après l'enregistrement de son hachage : hachage renouvelé
+E_ChecksumMismatch	Le contenu ne correspond pas à la somme enregistrée
+E_DoneTest	Contrôlés en {0} : {1} corrects, {2} en erreur.
+E_UnsupportedAlgorithm	Algorithme non pris en charge : {0}
+E_DeleteStart	Supprimer {0} fichiers ({1}).
+E_WipeStart	Supprimer de façon sécurisée {0} fichiers ({1}).
+E_DoneDelete	Terminé en {0} : {1} supprimés, {2} en erreur.
+E_NoSources	Aucune source n'a été indiquée.
+E_WholeDrive	Copier un lecteur entier n'est pas encore pris en charge : {0}
+E_SourceMissing	La source n'existe pas : {0}
+E_IntoItself	Un dossier ne peut pas être copié dans lui-même : {0}
+E_SourceUnreadable	Impossible de lire la source : {0}
+E_LinkSkipped	Lien ignoré : {0}
+E_BrokenLinkSkipped	Lien rompu ignoré : {0} → {1}
+E_LinkLoop	Boucle de liens évitée : {0}
+E_StreamsFailed	Les flux de données alternatifs n'ont pas été copiés : {0}
+E_RescueGap	Mode sauvetage : les octets {0:N0}–{1:N0} ({2:N0} octets) n'ont pas pu être lus ; ils sont devenus des zéros.
+E_BlockUnrepairable	Le bloc {0} de « {1} » ne correspond pas à la source, même après réparation.
+E_SourceChangedSinceStart	Le fichier source ne correspond plus à ce qui a été copié au début.
+E_SourceSizeChanged	Le fichier source a changé de taille pendant la copie.
+E_Disk_Degraded	dégradé
+E_Disk_Predictive	panne prévue (SMART)
+E_Disk_Error	erreur
+E_Disk_Unrecoverable	irrécupérable
+E_Disk_Stopped	arrêté
+E_Disk_Lost	communication perdue
+E_Disk_Transient	erreurs passagères
+E_Disk_Metadata	métadonnées non reconnues
+E_JunctionOpenFailed	Impossible d'ouvrir {0} pour créer la jonction.
+E_JunctionFailed	Impossible de créer la jonction {0} → {1}.
+E_HardLinkCreateFailed	Impossible de créer le lien physique {0}.
+E_SnapshotFailed	Impossible de créer l'instantané de {0} : {1}
+E_SnapshotOpenFailed	Impossible d'ouvrir l'instantané ({0}).
+E_NoWmiAnswer	Aucune réponse de Win32_ShadowCopy.
+E_PowerShellExit	PowerShell s'est terminé avec le code {0}.
+E_ReadSecurityAdmin	Impossible de lire la sécurité de la source : des privilèges d'administrateur sont nécessaires.
+E_ReadSecurityFailed	Impossible de lire la sécurité de la source (erreur {0}).
+E_WriteSecurityAdmin	Impossible d'appliquer la sécurité à la destination : des privilèges d'administrateur sont nécessaires.
+E_WriteSecurityFailed	Impossible d'appliquer la sécurité à la destination (erreur {0}).
+E_AtomicExists	Existe déjà dans la destination : copie dans le dossier existant (sans « tout ou rien »).
+E_AtomicNotPublished	Il y a eu des erreurs : le dossier n'est pas encore publié (il reste caché sous {0}). Réessayez et il apparaîtra complet.
+E_AtomicPublished	Dossier complet : publié sous son nom.
+E_AtomicRenameFailed	Impossible de donner au dossier son nom final : {0}
+E_BadFileHeader	En-tête de fichier non valide.
+E_PartialChanged	Le fichier partiel a changé.
+E_NotEncrypted	Ce n'est pas un fichier chiffré par MegaCopier.
+E_BadEncryptedHeader	En-tête de fichier chiffré non valide.
+E_EncryptedExtra	Le fichier chiffré contient des données en trop.
+E_ConnectFailed	Impossible de se connecter à {0}:{1} (MegaCopier y est-il en réception et le pare-feu l'autorise-t-il ?) : {2}
+E_AlreadyOnPeer	Déjà sur l'autre ordinateur
+E_DamagedTwice	Arrivé endommagé deux fois sur l'autre ordinateur
+E_Fat32	Ne tient pas en FAT32 (4 Go maximum par fichier) ; formatez le disque en exFAT ou NTFS.
+E_FatLimits	La destination est en {0} : elle ne garde ni flux alternatifs ni autorisations, et les dates ont une précision de 2 s.
+E_CaseCollisions	{0} noms se répètent dans la destination (ils ne diffèrent que par la casse) : ils seront traités comme des conflits.
+E_BadName	Nom problématique sous Windows (réservé, ou finissant par un point ou une espace) : certains programmes ne pourront pas l'ouvrir.
+E_LongPaths	{0} fichiers auront des chemins de plus de 260 caractères : l'Explorateur et d'autres programmes pourraient ne pas les ouvrir.
+E_WrongCode	Le code n'est pas celui affiché sur l'autre ordinateur.
+E_PeerUnknownCode	L'autre ordinateur ne connaît pas le code : la connexion n'est pas sûre.
+E_FlushFailed	Impossible d'écrire les données sur le disque.
+E_SourceInfoFailed	Impossible de lire les informations du fichier source.
+E_JobNotRunning	La tâche n'est pas en cours.
+E_StopBeforeDiscard	Arrêtez la tâche avant de l'abandonner.
+E_JobErrors	{0} fichier(s) en erreur
+E_NoEncryptedFiles	Aucun fichier chiffré par MegaCopier (.mcenc) dans la sélection.
+E_WrongPassword	Mot de passe incorrect, ou le fichier chiffré est endommagé ou a été altéré.
+E_BadPeerMessage	Message non valide de l'autre ordinateur.
+E_NoPhotoDate	{0} fichiers n'ont pas de date de prise de vue ni d'enregistrement : ils sont classés selon leur date de modification.
+E_F_NoHidden	sans fichiers cachés
+E_F_NoSystem	sans fichiers système
+E_F_NoJunk	sans fichiers inutiles
+E_F_Without	sans {0}
+E_F_Today	d'aujourd'hui
+E_F_Yesterday	depuis hier
+E_F_ThisWeek	de cette semaine
+E_F_ThisMonth	de ce mois-ci
+E_F_ThisYear	de cette année
+E_F_LastDay	dernier jour
+E_F_LastWeek	dernière semaine
+E_F_LastMonth	dernier mois
+E_F_LastYear	dernière année
+E_F_LastDays	{0} derniers jours
+E_F_LastWeeks	{0} dernières semaines
+E_F_LastMonths	{0} derniers mois
+E_F_LastYears	{0} dernières années
+E_F_Before	avant {0}
+E_F_Since	depuis {0}
+E_F_InYear	de {0}
+E_Kind_fotos	photos
+E_Kind_videos	vidéos
+E_Kind_musica	musique
+E_Kind_documentos	documents
+E_Kind_comprimidos	archives
+E_Kind_programas	programmes
+E_Kind_temporales	fichiers temporaires
+C_UnknownCommand	Commande inconnue : {0}
+C_UnknownConflict	Mode de conflit inconnu : {0}
+C_UnknownOption	Option inconnue : {0}
+C_NeedSourceAndDestination	Indiquez au moins une source et un dossier de destination.
+C_UnknownSendOption	Option inconnue pour send : {0}
+C_NeedItem	Indiquez au moins un fichier ou un dossier.
+C_Delivered	Copie transmise à MegaCopier (tâche {0}) en {1:F0} ms.
+C_Rejected	MegaCopier a refusé la copie : {0}
+C_AppNotFound	MegaCopier n'est pas ouvert et MegaCopier.exe est introuvable (définissez MEGACOPIER_APP avec son chemin).
+C_AppStarted	MegaCopier n'était pas ouvert : il a été lancé avec la copie.
+C_BadTime	Heure non valide : {0} (utilisez HH:mm ou une date et une heure).
+C_NeedChecksums	Indiquez des fichiers de sommes ou des dossiers qui en contiennent.
+C_Ok	OK
+C_Failed	ÉCHEC
+C_TestDone	{0} corrects, {1} en erreur en {2:F1} s.
+C_NeedDelete	Indiquez quoi supprimer.
+C_NeedYes	La suppression est irréversible : ajoutez --yes pour confirmer.
+C_DeleteDone	{0} fichiers supprimés, {1} en erreur.
+C_WipeDone	{0} fichiers supprimés de façon sécurisée, {1} en erreur.
+C_NoJob	La tâche {0} n'existe pas.
+C_NoPendingJobs	Aucune tâche en attente.
+C_Resuming	Reprise de {0} : {1} → {2}
+C_TestKill	[test] Arrêt du processus après confirmation de {0} de {1}.
+C_TestContinue	[test] Continuez avec : mcopy resume {0}
+C_DryRunNote	Simulation : rien n'a été modifié. Retirez --dry-run pour le faire pour de vrai.
+C_RetryHint	Des fichiers sont en erreur. Réessayez avec : mcopy resume {0}
+C_PausedHint	Copie en pause. Reprenez là où elle s'est arrêtée avec : mcopy resume {0}
+C_Error	Erreur : {0}
+C_JobPending	La tâche reste en attente : mcopy resume {0}
+C_Exists	Existe déjà : {0}
+C_New	nouveau
+C_Existing	existant
+C_ConflictPrompt	[r]emplacer, [i]gnorer, [g]arder les deux (majuscule = pour tous) :
+C_ConflictKeys	rig
+C_DoneIn	Terminé en {0}
+C_Summary	Copiés : {0} (repris : {1})   Ignorés : {2}   Erreurs : {3}
+C_Transferred	Transféré : {0}   Non recopié grâce à la reprise : {1}
+C_AverageSpeed	Vitesse moyenne : {0}/s
+C_Blocks	Blocs écartés à la reprise : {0}   Blocs réparés par la vérification : {1}
+C_MissingValue	Valeur manquante pour {0}.
+C_NeedPositive	{0} nécessite un nombre positif.
+C_Password	Mot de passe :
+C_Repeat	Répétez-le :
+C_PasswordShort	Le mot de passe doit contenir au moins 8 caractères.
+C_PasswordMismatch	Les mots de passe ne correspondent pas.
+C_Checking	contrôle
+C_Verifying	vérification
+C_Left	reste {0}
+C_Of	{0} sur {1}
+C_Usage	MegaCopier — la copie qui survit aux coupures de courant\n\nUtilisation :\n  mcopy copy <source>... <dossier-destination> [options]\n  mcopy move <source>... <dossier-destination> [options]   Déplace (instantané sur le même disque)\n  mcopy send <source>... <dossier-destination> [--verify] [--move] [--also <autre-dossier>]... [--at HH:mm]\n                              Confie la copie à l'application MegaCopier (fenêtre et zone de notification)\n  mcopy send --test <sommes|dossier>...        Contrôle des fichiers de sommes dans l'application\n  mcopy send --delete [--secure] <chemin>...   Supprime (de façon sécurisée) depuis l'application\n  mcopy send --hash <dossier|fichiers>...      Crée un fichier de sommes dans l'application\n  mcopy send ... [--mirror|--update-only|--folders-only] [--dry-run]\n  mcopy test <sommes|dossier>...   Contrôle .sha256, .md5, .sfv, .xxh3... sans l'application\n  mcopy decrypt <chiffrés|dossier>... <dossier-destination>   Déchiffre des fichiers .mcenc\n  mcopy delete [--secure] --yes <chemin>...   Supprime sans l'application (--secure : écrase d'abord)\n  mcopy resume [id]      Reprend les tâches interrompues (ou une seule)\n  mcopy jobs             Liste les tâches en attente\n\nOptions de copy :\n  --verify               Relit la destination sans cache, compare les hachages et répare les blocs endommagés\n  --conflict <mode>      overwrite (par défaut) | skip | newer | rename | fail | ask\n  --limit-mb <n>         Limite la vitesse à n Mo/s\n  --force                Copie même si la destination est identique\n  --chunk-mb <n>         Tous les combien de Mo la progression est confirmée sur disque (64 par défaut)\n  --block-mb <n>         Taille de chaque lecture/écriture en Mo\n  --queue <n>            Lectures et écritures simultanées en vol\n  --no-unbuffered        Utilise le cache de Windows au lieu des E/S directes\n  --mirror               Synchronise : retire de la destination ce qui n'est plus dans la source\n  --update-only          Met à jour seulement les fichiers qui existent déjà dans la destination\n  --folders-only         Crée seulement la structure des dossiers\n  --dry-run              Simule : indique ce qui arriverait à chaque fichier sans rien changer\n  --versions <dossier>   Garde ce qui est remplacé ou retiré dans ce dossier de la destination\n  --skip-junk            Ignore Thumbs.db, desktop.ini, .DS_Store, ~$...\n  --smb-compress         Demande la compression SMB pour les copies réseau (réseaux lents)\n  --atomic               Tout ou rien : le dossier n'apparaît que lorsqu'il est complet\n  --rescue               Mode sauvetage : sauve ce qui est lisible d'un disque endommagé (l'illisible en zéros)\n  --delta                En remplaçant de gros fichiers, n'écrit que les blocs modifiés\n  --organize             Range photos et vidéos dans des dossiers année-mois selon la date de prise de vue\n  --skip-duplicates      Ne copie pas ce qui est déjà dans la destination (même contenu, n'importe quel nom)\n  --encrypt              Copie chiffrée par mot de passe (AES-256, fichiers .mcenc)\n  --crash-after-mb <n>   [test] Tue le processus après confirmation de n Mo d'un fichier\n\nCtrl+C met la copie en pause ; 'resume' reprend depuis le dernier bloc confirmé.
+U_Seconds	{0} s
+U_MinSec	{0} min {1} s
+U_HourMin	{0} h {1} min

@@ -1,0 +1,220 @@
+clave	texto
+E_WouldMove	Taşınırdı
+E_WouldCopy	Kopyalanırdı
+E_WouldReplace	Mevcut dosyanın yerini alırdı
+E_WouldReplaceNewer	Yerini alırdı: kaynak daha yeni
+E_WouldReplaceSize	Yerini alırdı: boyut değişti
+E_WouldKeepBoth	Başka adla kopyalanırdı (ikisi de tutulur)
+E_WouldRenameExisting	Mevcut yeniden adlandırılır ve bu kopyalanırdı
+E_WouldAsk	Size sorulurdu
+E_WouldSkipIdentical	Atlanırdı: aynı
+E_WouldSkipExists	Atlanırdı: zaten var
+E_WouldSkipOlder	Atlanırdı: hedef aynı veya daha yeni
+E_WouldSkipSameSize	Atlanırdı: aynı boyut
+E_WouldSkipNotInDestination	Atlanırdı: hedefte yok
+E_WouldDelete	Hedeften silinirdi: kaynakta yok
+E_Deleted	Hedeften silindi: kaynakta yoktu
+E_WouldFail	Hata olarak işaretlenirdi
+E_WouldSkipSamePath	Atlanırdı: kaynak ve hedef aynı
+E_SkipIdentical	Mevcutla aynı
+E_SkipOlder	Hedef aynı veya daha yeni
+E_SkipSameSize	Mevcutla aynı boyut
+E_SkipNotInDestination	Hedefte yok (yalnızca var olanlar güncellenir)
+E_SkipSamePath	Kaynak ve hedef aynı dosya
+E_SkipExisted	Zaten vardı: atlandı
+E_DeletedLog	Hedeften silindi (kaynakta yok).
+E_FolderExistsSkipped	Klasör hedefte zaten var: atlandı.
+E_VersionSaved	Önceki sürüm {0} içine kaydedildi
+E_HardLinkTo	{0} için sabit bağlantı
+E_HardLinkCreated	Sabit bağlantı oluşturuldu ({0} ile aynı dosya).
+E_HardLinkFailed	Sabit bağlantı oluşturulamadı ({0}); dosya kopyalanıyor.
+E_HashStreamFailed	Karma dosyaya kaydedilemedi (hedef NTFS değil mi?): {0}
+E_DeviceLost	Ağ veya sürücü kayboldu: kopyalama geri gelmesini bekler ve kendiliğinden devam eder.
+E_DeviceBack	Sürücü geri geldi: kalınan yerden devam ediliyor.
+E_DiskFull	Hedef dolu: yer açın, kopyalama kendiliğinden devam eder.
+E_SpaceBack	Yine yer var: devam ediliyor.
+E_HashStreamsSaved	Karma {0} dosyanın içine kaydedildi.
+E_ChecksumSaved	Sağlama dosyası kaydedildi: {0}
+E_HashStart	{1} dosya için {0} hesapla ({2}).
+E_Added	{0} dosya eklendi ({1}).
+E_NeedPassword	Bu kopyalama şifreli: devam etmek için parolayı yeniden yazın.
+E_DryRunSummary	Benzetim: {0} kopyalanır, {1} atlanır ve {2} silinirdi.
+E_DoneCopy	{0} içinde bitti: {1} kopyalandı, {2} atlandı, {3} hatalı.
+E_DuplicateInDestination	Hedefte zaten var: {0}
+E_Repaired	Doğrulama {0} hasarlı bloğu onardı.
+E_DeltaCopy	Fark kopyalaması: {0} yazıldı; {1} zaten aynıydı.
+E_Cloned	Bloklar anında klonlandı (ReFS/Dev Drive): değiştirilene kadar ek yer kaplamaz.
+E_SmbCompressed	Windows tarafından SMB sıkıştırmasıyla kopyalandı.
+E_ServerSide	Sunucunun kendisinde kopyalandı (veriler bu bilgisayardan geçmedi).
+E_Resumed	{0} noktasından sürdürüldü.
+E_HashMismatch	Karmalar eşleşmiyor
+E_SourceChanged	Yeniden okunan kaynak kopyalananla eşleşmiyor (okuma hatası veya kopyalama sırasında değişti)
+E_SkippedByUser	Kullanıcı atladı
+E_SkippedByUserLog	Kullanıcı atladı.
+E_ExistingDiffers	Mevcut dosya kaynakla eşleşmiyor
+E_ExistingDiffersLog	Mevcut dosya aynı boyut ve tarihte ama içeriği farklı.
+E_IdenticalVerified	Aynı (karma ile doğrulandı)
+E_SkippedNotVerified	Atlanan dosya doğrulanamadı: {0}
+E_RetryAtEnd	Sonda yeniden denenecek: {0}
+E_DestinationExists	Hedef zaten var: {0}
+E_ExistingRenamed	Mevcut dosyanın adı {0} olarak değiştirildi.
+E_NoSpace	Hedefte yeterli yer yok: {0:F2} GB gerekli, {1:F2} GB boş.
+E_RescuedZeros	Kurtarıldı: kaynağın okunamayan {0} kısmı sıfır oldu (ayrıntılar günlükte).
+E_LinkExists	Hedefte zaten var; bağlantı yeniden oluşturulmadı: {0}
+E_LinkCreated	Bağlantı oluşturuldu: {0} → {1}
+E_JunctionCreated	Birleşim noktası oluşturuldu: {0} → {1}
+E_LinkFallback	Bağlantı oluşturulamadı ({0}); gösterdiği dosya kopyalandı.
+E_LinkFailed	Bağlantı oluşturulamadı: {0}
+E_NoChecksums	Hiç sağlama dosyası (.sha256, .md5, .sfv, .xxh3...) veya karması kaydedilmiş dosya bulunamadı.
+E_TestStart	{1} sağlama listesinden {0} dosya sına ({2}).
+E_NotFound	Yok: {0}
+E_NoStoredHash	Kayıtlı karma yok: denetlenmedi
+E_ModifiedAfterHash	Karma kaydedildikten sonra değişti: denetlenmedi
+E_NowProtected	Kayıtlı karma yok: artık korunuyor
+E_HashRenewed	Karma kaydedildikten sonra değişti: karma yenilendi
+E_ChecksumMismatch	İçerik kaydedilen sağlamayla eşleşmiyor
+E_DoneTest	{0} içinde sınandı: {1} sağlam, {2} hatalı.
+E_UnsupportedAlgorithm	Desteklenmeyen algoritma: {0}
+E_DeleteStart	{0} dosya sil ({1}).
+E_WipeStart	{0} dosya güvenli sil ({1}).
+E_DoneDelete	{0} içinde bitti: {1} silindi, {2} hatalı.
+E_NoSources	Hiç kaynak belirtilmedi.
+E_WholeDrive	Bütün bir sürücüyü kopyalamak henüz desteklenmiyor: {0}
+E_SourceMissing	Kaynak yok: {0}
+E_IntoItself	Bir klasör kendi içine kopyalanamaz: {0}
+E_SourceUnreadable	Kaynak okunamadı: {0}
+E_LinkSkipped	Bağlantı atlandı: {0}
+E_BrokenLinkSkipped	Bozuk bağlantı atlandı: {0} → {1}
+E_LinkLoop	Bağlantı döngüsü önlendi: {0}
+E_StreamsFailed	Alternatif veri akışları kopyalanmadı: {0}
+E_RescueGap	Kurtarma modu: {0:N0}–{1:N0} baytları ({2:N0} bayt) okunamadı; sıfır oldular.
+E_BlockUnrepairable	"{1}" dosyasının {0}. bloğu onarımdan sonra bile kaynakla eşleşmiyor.
+E_SourceChangedSinceStart	Kaynak dosya artık başta kopyalananla eşleşmiyor.
+E_SourceSizeChanged	Kaynak dosyanın boyutu kopyalama sırasında değişti.
+E_Disk_Degraded	bozulmuş
+E_Disk_Predictive	arıza öngörülüyor (SMART)
+E_Disk_Error	hata
+E_Disk_Unrecoverable	kurtarılamaz
+E_Disk_Stopped	durdu
+E_Disk_Lost	iletişim kayboldu
+E_Disk_Transient	geçici hatalar
+E_Disk_Metadata	tanınmayan meta veri
+E_JunctionOpenFailed	Birleşim noktası oluşturmak için {0} açılamadı.
+E_JunctionFailed	{0} → {1} birleşim noktası oluşturulamadı.
+E_HardLinkCreateFailed	{0} sabit bağlantısı oluşturulamadı.
+E_SnapshotFailed	{0} için anlık görüntü oluşturulamadı: {1}
+E_SnapshotOpenFailed	Anlık görüntü açılamadı ({0}).
+E_NoWmiAnswer	Win32_ShadowCopy yanıt vermedi.
+E_PowerShellExit	PowerShell {0} koduyla bitti.
+E_ReadSecurityAdmin	Kaynağın güvenlik bilgileri okunamadı: yönetici ayrıcalıkları gerekli.
+E_ReadSecurityFailed	Kaynağın güvenlik bilgileri okunamadı (hata {0}).
+E_WriteSecurityAdmin	Güvenlik bilgileri hedefe uygulanamadı: yönetici ayrıcalıkları gerekli.
+E_WriteSecurityFailed	Güvenlik bilgileri hedefe uygulanamadı (hata {0}).
+E_AtomicExists	Hedefte zaten var: mevcut klasörün içine kopyalanıyor ("ya hep ya hiç" olmadan).
+E_AtomicNotPublished	Hatalar oldu: klasör henüz yayımlanmıyor ({0} olarak gizli kalıyor). Yeniden deneyin, tam olarak görünecek.
+E_AtomicPublished	Klasör tamam: kendi adıyla yayımlandı.
+E_AtomicRenameFailed	Klasöre son adı verilemedi: {0}
+E_BadFileHeader	Geçersiz dosya üst bilgisi.
+E_PartialChanged	Yarım dosya değişti.
+E_NotEncrypted	Bu, MegaCopier ile şifrelenmiş bir dosya değil.
+E_BadEncryptedHeader	Geçersiz şifreli dosya üst bilgisi.
+E_EncryptedExtra	Şifreli dosyada fazla veri var.
+E_ConnectFailed	{0}:{1} adresine bağlanılamadı (orada MegaCopier alım yapıyor ve güvenlik duvarı izin veriyor mu?): {2}
+E_AlreadyOnPeer	Diğer bilgisayarda zaten vardı
+E_DamagedTwice	Diğer bilgisayara iki kez hasarlı ulaştı
+E_Fat32	FAT32'ye sığmaz (dosya başına en fazla 4 GB); diski exFAT veya NTFS olarak biçimlendirin.
+E_FatLimits	Hedef {0}: alternatif akışları ve izinleri saklamaz, tarihler 2 sn hassasiyetlidir.
+E_CaseCollisions	Hedefte {0} ad yineleniyor (yalnızca büyük/küçük harf farkı): çakışma olarak ele alınacaklar.
+E_BadName	Windows'ta sorunlu ad (ayrılmış veya nokta ya da boşlukla biten): bazı programlar onu açamayacak.
+E_LongPaths	{0} dosyanın yolu 260 karakterden uzun olacak: Dosya Gezgini ve diğer programlar bunları açamayabilir.
+E_WrongCode	Kod, diğer bilgisayarın gösterdiği değil.
+E_PeerUnknownCode	Diğer bilgisayar kodu bilmiyor: bağlantı güvenli değil.
+E_FlushFailed	Veriler diske yazılamadı.
+E_SourceInfoFailed	Kaynak dosyanın bilgileri okunamadı.
+E_JobNotRunning	İş çalışmıyor.
+E_StopBeforeDiscard	Vazgeçmeden önce işi durdurun.
+E_JobErrors	{0} dosyada hata
+E_NoEncryptedFiles	Seçilenlerde MegaCopier ile şifrelenmiş dosya (.mcenc) yok.
+E_WrongPassword	Yanlış parola ya da şifreli dosya hasarlı veya üzerinde oynanmış.
+E_BadPeerMessage	Diğer bilgisayardan geçersiz ileti.
+E_NoPhotoDate	Çekim veya kayıt tarihi olmayan {0} dosya: değiştirilme tarihlerine göre sıralanıyor.
+E_F_NoHidden	gizliler hariç
+E_F_NoSystem	sistem dosyaları hariç
+E_F_NoJunk	gereksiz dosyalar hariç
+E_F_Without	{0} hariç
+E_F_Today	bugünün
+E_F_Yesterday	dünden beri
+E_F_ThisWeek	bu haftanın
+E_F_ThisMonth	bu ayın
+E_F_ThisYear	bu yılın
+E_F_LastDay	son gün
+E_F_LastWeek	son hafta
+E_F_LastMonth	son ay
+E_F_LastYear	son yıl
+E_F_LastDays	son {0} gün
+E_F_LastWeeks	son {0} hafta
+E_F_LastMonths	son {0} ay
+E_F_LastYears	son {0} yıl
+E_F_Before	{0} öncesi
+E_F_Since	{0} sonrası
+E_F_InYear	{0} yılından
+E_Kind_fotos	fotoğraflar
+E_Kind_videos	videolar
+E_Kind_musica	müzik
+E_Kind_documentos	belgeler
+E_Kind_comprimidos	arşivler
+E_Kind_programas	programlar
+E_Kind_temporales	geçici dosyalar
+C_UnknownCommand	Bilinmeyen komut: {0}
+C_UnknownConflict	Bilinmeyen çakışma modu: {0}
+C_UnknownOption	Bilinmeyen seçenek: {0}
+C_NeedSourceAndDestination	En az bir kaynak ve bir hedef klasör belirtin.
+C_UnknownSendOption	send için bilinmeyen seçenek: {0}
+C_NeedItem	En az bir dosya veya klasör belirtin.
+C_Delivered	Kopyalama {1:F0} ms içinde MegaCopier'a teslim edildi (iş {0}).
+C_Rejected	MegaCopier kopyalamayı reddetti: {0}
+C_AppNotFound	MegaCopier açık değil ve MegaCopier.exe bulunamadı (MEGACOPIER_APP'i yoluna ayarlayın).
+C_AppStarted	MegaCopier açık değildi: kopyalamayla başlatıldı.
+C_BadTime	Geçersiz saat: {0} (HH:mm veya tarih ve saat kullanın).
+C_NeedChecksums	Sağlama dosyalarını veya bunları içeren klasörleri belirtin.
+C_Ok	TAMAM
+C_Failed	HATA
+C_TestDone	{0} sağlam, {1} hatalı, {2:F1} sn.
+C_NeedDelete	Neyin silineceğini belirtin.
+C_NeedYes	Silme geri alınamaz: onaylamak için --yes ekleyin.
+C_DeleteDone	{0} dosya silindi, {1} hatalı.
+C_WipeDone	{0} dosya güvenli silindi, {1} hatalı.
+C_NoJob	{0} işi yok.
+C_NoPendingJobs	Bekleyen iş yok.
+C_Resuming	{0} sürdürülüyor: {1} → {2}
+C_TestKill	[deneme] {1} dosyasının {0} kadarı onaylandıktan sonra işlem sonlandırılıyor.
+C_TestContinue	[deneme] Şununla devam edin: mcopy resume {0}
+C_DryRunNote	Benzetim: hiçbir şey değişmedi. Gerçekten yapmak için --dry-run'ı kaldırın.
+C_RetryHint	Hatalı dosyalar var. Şununla yeniden deneyin: mcopy resume {0}
+C_PausedHint	Kopyalama duraklatıldı. Kaldığı yerden şununla sürdürün: mcopy resume {0}
+C_Error	Hata: {0}
+C_JobPending	İş beklemede kalıyor: mcopy resume {0}
+C_Exists	Zaten var: {0}
+C_New	yeni
+C_Existing	mevcut
+C_ConflictPrompt	[d]eğiştir, [a]tla, [i]kisini de tut (büyük harf = tümü için):
+C_ConflictKeys	dai
+C_DoneIn	{0} içinde bitti
+C_Summary	Kopyalanan: {0} (sürdürülen: {1})   Atlanan: {2}   Hata: {3}
+C_Transferred	Aktarılan: {0}   Sürdürme sayesinde yeniden kopyalanmayan: {1}
+C_AverageSpeed	Ortalama hız: {0}/sn
+C_Blocks	Sürdürürken atılan bloklar: {0}   Doğrulamanın onardığı bloklar: {1}
+C_MissingValue	{0} için değer eksik.
+C_NeedPositive	{0} pozitif bir sayı gerektirir.
+C_Password	Parola:
+C_Repeat	Yineleyin:
+C_PasswordShort	Parola en az 8 karakter olmalı.
+C_PasswordMismatch	Parolalar eşleşmiyor.
+C_Checking	denetleniyor
+C_Verifying	doğrulanıyor
+C_Left	{0} kaldı
+C_Of	{0} / {1}
+C_Usage	MegaCopier — elektrik kesintilerinden sağ çıkan kopyalama\n\nKullanım:\n  mcopy copy <kaynak>... <hedef-klasör> [seçenekler]\n  mcopy move <kaynak>... <hedef-klasör> [seçenekler]   Taşır (aynı diskte anında)\n  mcopy send <kaynak>... <hedef-klasör> [--verify] [--move] [--also <başka-klasör>]... [--at HH:mm]\n                              Kopyalamayı MegaCopier uygulamasına verir (pencere ve bildirim alanı)\n  mcopy send --test <sağlamalar|klasör>...     Uygulamada sağlama dosyalarını sınar\n  mcopy send --delete [--secure] <yol>...      Uygulamadan (güvenli) siler\n  mcopy send --hash <klasör|dosyalar>...       Uygulamada sağlama dosyası oluşturur\n  mcopy send ... [--mirror|--update-only|--folders-only] [--dry-run]\n  mcopy test <sağlamalar|klasör>...   Uygulama olmadan .sha256, .md5, .sfv, .xxh3... sınar\n  mcopy decrypt <şifreli|klasör>... <hedef-klasör>   .mcenc dosyalarının şifresini çözer\n  mcopy delete [--secure] --yes <yol>...   Uygulama olmadan siler (--secure: önce üzerine yazar)\n  mcopy resume [id]      Kesilen işleri (veya birini) sürdürür\n  mcopy jobs             Bekleyen işleri listeler\n\ncopy seçenekleri:\n  --verify               Hedefi önbelleksiz yeniden okur, karmaları karşılaştırır ve hasarlı blokları onarır\n  --conflict <mod>       overwrite (varsayılan) | skip | newer | rename | fail | ask\n  --limit-mb <n>         Hızı n MB/sn ile sınırlar\n  --force                Hedef aynı olsa bile kopyalar\n  --chunk-mb <n>         İlerlemenin diske kaç MB'da bir onaylanacağı (varsayılan 64)\n  --block-mb <n>         Her okuma/yazmanın MB cinsinden boyutu\n  --queue <n>            Eşzamanlı okuma ve yazmalar\n  --no-unbuffered        Doğrudan G/Ç yerine Windows önbelleğini kullanır\n  --mirror               Eşitler: kaynakta artık olmayanı hedeften kaldırır\n  --update-only          Yalnızca hedefte zaten olan dosyaları günceller\n  --folders-only         Yalnızca klasör yapısını oluşturur\n  --dry-run              Benzetir: hiçbir şeyi değiştirmeden her dosyaya ne olacağını söyler\n  --versions <klasör>    Değiştirilen veya kaldırılanı hedefteki o klasörde saklar\n  --skip-junk            Thumbs.db, desktop.ini, .DS_Store, ~$... atlar\n  --smb-compress         Ağ üzerinden kopyalarken SMB sıkıştırması ister (yavaş ağlar)\n  --atomic               Ya hep ya hiç: klasör yalnızca tamamlanınca görünür\n  --rescue               Kurtarma modu: hasarlı diskten okunabileni kurtarır (okunamayan sıfır olur)\n  --delta                Büyük dosyaları değiştirirken yalnızca değişen blokları yazar\n  --organize             Fotoğraf ve videoları çekim tarihine göre yıl-ay klasörlerine düzenler\n  --skip-duplicates      Hedefte zaten olanı kopyalamaz (aynı içerik, herhangi bir ad)\n  --encrypt              Parolayla şifreli kopya (AES-256, .mcenc dosyaları)\n  --crash-after-mb <n>   [deneme] Bir dosyanın n MB'ı onaylanınca işlemi sonlandırır\n\nCtrl+C kopyalamayı duraklatır; 'resume' son onaylanan bloktan sürdürür.
+U_Seconds	{0} sn
+U_MinSec	{0} dk {1} sn
+U_HourMin	{0} sa {1} dk

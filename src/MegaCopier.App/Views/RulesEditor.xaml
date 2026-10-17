@@ -41,10 +41,8 @@
                 <CalendarDatePicker x:Name="AfterBox" x:Uid="Rules_After" HorizontalAlignment="Stretch" DateChanged="Date_Changed" />
                 <CalendarDatePicker x:Name="BeforeBox" x:Uid="Rules_Before" Grid.Column="1" HorizontalAlignment="Stretch" DateChanged="Date_Changed" />
             </Grid>
-            <StackPanel Orientation="Horizontal" Spacing="12">
-                <CheckBox x:Name="SkipHiddenBox" x:Uid="Rules_SkipHidden" Click="Changed" />
-                <CheckBox x:Name="SkipSystemBox" x:Uid="Rules_SkipSystem" Click="Changed" />
-            </StackPanel>
+            <CheckBox x:Name="SkipHiddenBox" x:Uid="Rules_SkipHidden" Click="Changed" />
+            <CheckBox x:Name="SkipSystemBox" x:Uid="Rules_SkipSystem" Click="Changed" />
             <CheckBox x:Name="SkipJunkBox" x:Uid="Rules_SkipJunk" Click="Changed" />
         </StackPanel>
 

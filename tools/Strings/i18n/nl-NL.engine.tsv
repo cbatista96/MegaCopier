@@ -1,0 +1,220 @@
+clave	texto
+E_WouldMove	Zou worden verplaatst
+E_WouldCopy	Zou worden gekopieerd
+E_WouldReplace	Zou het bestaande bestand vervangen
+E_WouldReplaceNewer	Zou worden vervangen: de bron is nieuwer
+E_WouldReplaceSize	Zou worden vervangen: de grootte is gewijzigd
+E_WouldKeepBoth	Zou onder een andere naam worden gekopieerd (beide blijven)
+E_WouldRenameExisting	Het bestaande zou worden hernoemd en dit gekopieerd
+E_WouldAsk	Je zou worden gevraagd wat te doen
+E_WouldSkipIdentical	Zou worden overgeslagen: identiek
+E_WouldSkipExists	Zou worden overgeslagen: bestaat al
+E_WouldSkipOlder	Zou worden overgeslagen: het doel is even oud of nieuwer
+E_WouldSkipSameSize	Zou worden overgeslagen: zelfde grootte
+E_WouldSkipNotInDestination	Zou worden overgeslagen: niet in het doel
+E_WouldDelete	Zou uit het doel worden verwijderd: niet in de bron
+E_Deleted	Uit het doel verwijderd: stond niet in de bron
+E_WouldFail	Zou als fout worden gemarkeerd
+E_WouldSkipSamePath	Zou worden overgeslagen: bron en doel zijn hetzelfde
+E_SkipIdentical	Identiek aan het bestaande
+E_SkipOlder	Het doel is even oud of nieuwer
+E_SkipSameSize	Zelfde grootte als het bestaande
+E_SkipNotInDestination	Niet in het doel (alleen bestaande worden bijgewerkt)
+E_SkipSamePath	Bron en doel zijn hetzelfde bestand
+E_SkipExisted	Bestond al: overgeslagen
+E_DeletedLog	Uit het doel verwijderd (niet in de bron).
+E_FolderExistsSkipped	De map bestaat al in het doel: overgeslagen.
+E_VersionSaved	Vorige versie opgeslagen in {0}
+E_HardLinkTo	Harde koppeling naar {0}
+E_HardLinkCreated	Harde koppeling gemaakt (zelfde bestand als {0}).
+E_HardLinkFailed	Kon geen harde koppeling maken ({0}); het bestand wordt gekopieerd.
+E_HashStreamFailed	Kon de hash niet in het bestand opslaan (is het doel geen NTFS?): {0}
+E_DeviceLost	Netwerk of station is weggevallen: de kopie wacht tot het terug is en gaat vanzelf verder.
+E_DeviceBack	Het station is terug: verder waar het stopte.
+E_DiskFull	Het doel is vol: maak ruimte vrij en de kopie gaat vanzelf verder.
+E_SpaceBack	Er is weer ruimte: verder.
+E_HashStreamsSaved	Hash opgeslagen in {0} bestanden.
+E_ChecksumSaved	Controlesombestand opgeslagen: {0}
+E_HashStart	{0} berekenen van {1} bestanden ({2}).
+E_Added	{0} bestanden toegevoegd ({1}).
+E_NeedPassword	Deze kopie is versleuteld: typ het wachtwoord opnieuw om verder te gaan.
+E_DryRunSummary	Simulatie: {0} zouden worden gekopieerd, {1} overgeslagen en {2} verwijderd.
+E_DoneCopy	Klaar in {0}: {1} gekopieerd, {2} overgeslagen, {3} met fouten.
+E_DuplicateInDestination	Staat al in het doel: {0}
+E_Repaired	De controle heeft {0} beschadigde blokken hersteld.
+E_DeltaCopy	Deltakopie: {0} geschreven; {1} waren al identiek.
+E_Cloned	Blokken direct gekloond (ReFS/Dev Drive): neemt geen extra ruimte in tot het wordt gewijzigd.
+E_SmbCompressed	Door Windows gekopieerd met SMB-compressie.
+E_ServerSide	Op de server zelf gekopieerd (de gegevens gingen niet via deze computer).
+E_Resumed	Hervat vanaf {0}.
+E_HashMismatch	De hashes komen niet overeen
+E_SourceChanged	De opnieuw gelezen bron komt niet overeen met wat is gekopieerd (leesfout of tijdens het kopiëren gewijzigd)
+E_SkippedByUser	Overgeslagen door de gebruiker
+E_SkippedByUserLog	Overgeslagen door de gebruiker.
+E_ExistingDiffers	Het bestaande bestand komt niet overeen met de bron
+E_ExistingDiffersLog	Het bestaande bestand heeft dezelfde grootte en datum maar een andere inhoud.
+E_IdenticalVerified	Identiek (gecontroleerd met hash)
+E_SkippedNotVerified	Kon het overgeslagen bestand niet controleren: {0}
+E_RetryAtEnd	Wordt aan het einde opnieuw geprobeerd: {0}
+E_DestinationExists	Het doel bestaat al: {0}
+E_ExistingRenamed	Het bestaande bestand is hernoemd naar {0}.
+E_NoSpace	Niet genoeg ruimte in het doel: {0:F2} GB nodig en {1:F2} GB vrij.
+E_RescuedZeros	Gered: {0} van de bron was onleesbaar en werd nullen (details in het logboek).
+E_LinkExists	Bestaat al in het doel; de koppeling is niet opnieuw gemaakt: {0}
+E_LinkCreated	Koppeling gemaakt: {0} → {1}
+E_JunctionCreated	Junctie gemaakt: {0} → {1}
+E_LinkFallback	Kon de koppeling niet maken ({0}); het bestand waarnaar ze verwijst is gekopieerd.
+E_LinkFailed	Kon de koppeling niet maken: {0}
+E_NoChecksums	Geen controlesombestanden (.sha256, .md5, .sfv, .xxh3...) of bestanden met opgeslagen hash gevonden.
+E_TestStart	{0} bestanden testen uit {1} controlesomlijsten ({2}).
+E_NotFound	Bestaat niet: {0}
+E_NoStoredHash	Geen opgeslagen hash: niet gecontroleerd
+E_ModifiedAfterHash	Gewijzigd na het opslaan van de hash: niet gecontroleerd
+E_NowProtected	Geen opgeslagen hash: nu beschermd
+E_HashRenewed	Gewijzigd na het opslaan van de hash: hash vernieuwd
+E_ChecksumMismatch	De inhoud komt niet overeen met de opgeslagen controlesom
+E_DoneTest	Getest in {0}: {1} in orde, {2} met fouten.
+E_UnsupportedAlgorithm	Niet-ondersteund algoritme: {0}
+E_DeleteStart	{0} bestanden verwijderen ({1}).
+E_WipeStart	{0} bestanden veilig verwijderen ({1}).
+E_DoneDelete	Klaar in {0}: {1} verwijderd, {2} met fouten.
+E_NoSources	Er is geen bron opgegeven.
+E_WholeDrive	Een volledig station kopiëren wordt nog niet ondersteund: {0}
+E_SourceMissing	De bron bestaat niet: {0}
+E_IntoItself	Een map kan niet in zichzelf worden gekopieerd: {0}
+E_SourceUnreadable	Kon de bron niet lezen: {0}
+E_LinkSkipped	Koppeling overgeslagen: {0}
+E_BrokenLinkSkipped	Verbroken koppeling overgeslagen: {0} → {1}
+E_LinkLoop	Koppelingslus vermeden: {0}
+E_StreamsFailed	Alternatieve gegevensstromen zijn niet gekopieerd: {0}
+E_RescueGap	Reddingsmodus: bytes {0:N0}–{1:N0} ({2:N0} bytes) konden niet worden gelezen; ze werden nullen.
+E_BlockUnrepairable	Blok {0} van '{1}' komt zelfs na herstel niet overeen met de bron.
+E_SourceChangedSinceStart	Het bronbestand komt niet meer overeen met wat aan het begin is gekopieerd.
+E_SourceSizeChanged	Het bronbestand is tijdens het kopiëren van grootte veranderd.
+E_Disk_Degraded	gedegradeerd
+E_Disk_Predictive	storing voorspeld (SMART)
+E_Disk_Error	fout
+E_Disk_Unrecoverable	onherstelbaar
+E_Disk_Stopped	gestopt
+E_Disk_Lost	communicatie verloren
+E_Disk_Transient	tijdelijke fouten
+E_Disk_Metadata	onbekende metagegevens
+E_JunctionOpenFailed	Kon {0} niet openen om de junctie te maken.
+E_JunctionFailed	Kon de junctie {0} → {1} niet maken.
+E_HardLinkCreateFailed	Kon de harde koppeling {0} niet maken.
+E_SnapshotFailed	Kon de momentopname van {0} niet maken: {1}
+E_SnapshotOpenFailed	Kon de momentopname niet openen ({0}).
+E_NoWmiAnswer	Geen antwoord van Win32_ShadowCopy.
+E_PowerShellExit	PowerShell eindigde met code {0}.
+E_ReadSecurityAdmin	Kon de beveiliging van de bron niet lezen: beheerdersrechten zijn nodig.
+E_ReadSecurityFailed	Kon de beveiliging van de bron niet lezen (fout {0}).
+E_WriteSecurityAdmin	Kon de beveiliging niet op het doel toepassen: beheerdersrechten zijn nodig.
+E_WriteSecurityFailed	Kon de beveiliging niet op het doel toepassen (fout {0}).
+E_AtomicExists	Bestaat al in het doel: er wordt in de bestaande map gekopieerd (zonder 'alles of niets').
+E_AtomicNotPublished	Er waren fouten: de map wordt nog niet gepubliceerd (blijft verborgen als {0}). Probeer opnieuw en ze verschijnt compleet.
+E_AtomicPublished	Map compleet: onder haar naam gepubliceerd.
+E_AtomicRenameFailed	Kon de map haar definitieve naam niet geven: {0}
+E_BadFileHeader	Ongeldige bestandsheader.
+E_PartialChanged	Het gedeeltelijke bestand is gewijzigd.
+E_NotEncrypted	Dit is geen door MegaCopier versleuteld bestand.
+E_BadEncryptedHeader	Ongeldige header van versleuteld bestand.
+E_EncryptedExtra	Het versleutelde bestand bevat te veel gegevens.
+E_ConnectFailed	Kon geen verbinding maken met {0}:{1} (ontvangt MegaCopier daar en staat de firewall het toe?): {2}
+E_AlreadyOnPeer	Stond al op de andere computer
+E_DamagedTwice	Kwam twee keer beschadigd aan op de andere computer
+E_Fat32	Past niet op FAT32 (maximaal 4 GB per bestand); formatteer de schijf als exFAT of NTFS.
+E_FatLimits	Het doel is {0}: het bewaart geen alternatieve gegevensstromen of machtigingen, en datums zijn tot op 2 s nauwkeurig.
+E_CaseCollisions	{0} namen komen dubbel voor in het doel (alleen verschil in hoofdletters): ze worden als conflicten behandeld.
+E_BadName	Problematische naam in Windows (gereserveerd of eindigend op een punt of spatie): sommige programma's kunnen hem niet openen.
+E_LongPaths	{0} bestanden krijgen paden langer dan 260 tekens: Verkenner en andere programma's openen ze mogelijk niet.
+E_WrongCode	De code is niet die van de andere computer.
+E_PeerUnknownCode	De andere computer kent de code niet: de verbinding is niet veilig.
+E_FlushFailed	Kon de gegevens niet naar de schijf schrijven.
+E_SourceInfoFailed	Kon de informatie van het bronbestand niet lezen.
+E_JobNotRunning	De taak loopt niet.
+E_StopBeforeDiscard	Stop de taak voordat je haar verwerpt.
+E_JobErrors	{0} bestand(en) met fouten
+E_NoEncryptedFiles	Er zijn geen door MegaCopier versleutelde bestanden (.mcenc) in de selectie.
+E_WrongPassword	Verkeerd wachtwoord, of het versleutelde bestand is beschadigd of gemanipuleerd.
+E_BadPeerMessage	Ongeldig bericht van de andere computer.
+E_NoPhotoDate	{0} bestanden zonder opname- of vastlegdatum: ze worden op wijzigingsdatum geordend.
+E_F_NoHidden	zonder verborgen
+E_F_NoSystem	zonder systeembestanden
+E_F_NoJunk	zonder overbodige bestanden
+E_F_Without	zonder {0}
+E_F_Today	van vandaag
+E_F_Yesterday	sinds gisteren
+E_F_ThisWeek	van deze week
+E_F_ThisMonth	van deze maand
+E_F_ThisYear	van dit jaar
+E_F_LastDay	afgelopen dag
+E_F_LastWeek	afgelopen week
+E_F_LastMonth	afgelopen maand
+E_F_LastYear	afgelopen jaar
+E_F_LastDays	afgelopen {0} dagen
+E_F_LastWeeks	afgelopen {0} weken
+E_F_LastMonths	afgelopen {0} maanden
+E_F_LastYears	afgelopen {0} jaar
+E_F_Before	voor {0}
+E_F_Since	sinds {0}
+E_F_InYear	uit {0}
+E_Kind_fotos	foto's
+E_Kind_videos	video's
+E_Kind_musica	muziek
+E_Kind_documentos	documenten
+E_Kind_comprimidos	archieven
+E_Kind_programas	programma's
+E_Kind_temporales	tijdelijke bestanden
+C_UnknownCommand	Onbekende opdracht: {0}
+C_UnknownConflict	Onbekende conflictmodus: {0}
+C_UnknownOption	Onbekende optie: {0}
+C_NeedSourceAndDestination	Geef minstens één bron en een doelmap op.
+C_UnknownSendOption	Onbekende optie voor send: {0}
+C_NeedItem	Geef minstens één bestand of map op.
+C_Delivered	Kopie overgedragen aan MegaCopier (taak {0}) in {1:F0} ms.
+C_Rejected	MegaCopier heeft de kopie geweigerd: {0}
+C_AppNotFound	MegaCopier is niet geopend en MegaCopier.exe is niet gevonden (stel MEGACOPIER_APP in op het pad).
+C_AppStarted	MegaCopier was niet geopend: het is gestart met de kopie.
+C_BadTime	Ongeldige tijd: {0} (gebruik HH:mm of een datum en tijd).
+C_NeedChecksums	Geef controlesombestanden of mappen die ze bevatten op.
+C_Ok	OK
+C_Failed	FOUT
+C_TestDone	{0} in orde, {1} met fouten in {2:F1} s.
+C_NeedDelete	Geef op wat er verwijderd moet worden.
+C_NeedYes	Verwijderen kan niet ongedaan worden gemaakt: voeg --yes toe om te bevestigen.
+C_DeleteDone	{0} bestanden verwijderd, {1} met fouten.
+C_WipeDone	{0} bestanden veilig verwijderd, {1} met fouten.
+C_NoJob	Taak {0} bestaat niet.
+C_NoPendingJobs	Geen taken in behandeling.
+C_Resuming	{0} hervatten: {1} → {2}
+C_TestKill	[test] Proces wordt beëindigd na bevestiging van {0} van {1}.
+C_TestContinue	[test] Ga verder met: mcopy resume {0}
+C_DryRunNote	Simulatie: er is niets gewijzigd. Haal --dry-run weg om het echt te doen.
+C_RetryHint	Er zijn bestanden met fouten. Probeer opnieuw met: mcopy resume {0}
+C_PausedHint	Kopie gepauzeerd. Ga verder waar ze stopte met: mcopy resume {0}
+C_Error	Fout: {0}
+C_JobPending	De taak blijft in behandeling: mcopy resume {0}
+C_Exists	Bestaat al: {0}
+C_New	nieuw
+C_Existing	bestaand
+C_ConflictPrompt	[v]ervangen, [o]verslaan, [b]eide houden (hoofdletter = voor alle):
+C_ConflictKeys	vob
+C_DoneIn	Klaar in {0}
+C_Summary	Gekopieerd: {0} (hervat: {1})   Overgeslagen: {2}   Fouten: {3}
+C_Transferred	Overgedragen: {0}   Niet opnieuw gekopieerd dankzij hervatten: {1}
+C_AverageSpeed	Gemiddelde snelheid: {0}/s
+C_Blocks	Blokken verworpen bij hervatten: {0}   Blokken hersteld door controle: {1}
+C_MissingValue	Waarde ontbreekt voor {0}.
+C_NeedPositive	{0} heeft een positief getal nodig.
+C_Password	Wachtwoord:
+C_Repeat	Herhaal:
+C_PasswordShort	Het wachtwoord moet minstens 8 tekens hebben.
+C_PasswordMismatch	De wachtwoorden komen niet overeen.
+C_Checking	controleren
+C_Verifying	verifiëren
+C_Left	nog {0}
+C_Of	{0} van {1}
+C_Usage	MegaCopier — kopiëren dat stroomstoringen overleeft\n\nGebruik:\n  mcopy copy <bron>... <doelmap> [opties]\n  mcopy move <bron>... <doelmap> [opties]   Verplaatst (direct op dezelfde schijf)\n  mcopy send <bron>... <doelmap> [--verify] [--move] [--also <andere-map>]... [--at HH:mm]\n                              Draagt de kopie over aan de MegaCopier-app (venster en systeemvak)\n  mcopy send --test <sommen|map>...            Test controlesombestanden in de app\n  mcopy send --delete [--secure] <pad>...      Verwijdert (veilig) via de app\n  mcopy send --hash <map|bestanden>...         Maakt een controlesombestand in de app\n  mcopy send ... [--mirror|--update-only|--folders-only] [--dry-run]\n  mcopy test <sommen|map>...   Test .sha256, .md5, .sfv, .xxh3... zonder de app\n  mcopy decrypt <versleuteld|map>... <doelmap>   Ontsleutelt .mcenc-bestanden\n  mcopy delete [--secure] --yes <pad>...   Verwijdert zonder de app (--secure: eerst overschrijven)\n  mcopy resume [id]      Hervat onderbroken taken (of één)\n  mcopy jobs             Toont taken in behandeling\n\nOpties voor copy:\n  --verify               Leest het doel opnieuw zonder cache, vergelijkt hashes en herstelt beschadigde blokken\n  --conflict <modus>     overwrite (standaard) | skip | newer | rename | fail | ask\n  --limit-mb <n>         Beperkt de snelheid tot n MB/s\n  --force                Kopieert ook als het doel identiek is\n  --chunk-mb <n>         Om de hoeveel MB de voortgang op schijf wordt bevestigd (standaard 64)\n  --block-mb <n>         Grootte van elke lees-/schrijfactie in MB\n  --queue <n>            Gelijktijdige lees- en schrijfacties\n  --no-unbuffered        Gebruikt de Windows-cache in plaats van directe I/O\n  --mirror               Synchroniseert: verwijdert uit het doel wat niet meer in de bron staat\n  --update-only          Werkt alleen bestanden bij die al in het doel staan\n  --folders-only         Maakt alleen de mapstructuur\n  --dry-run              Simuleert: zegt wat er met elk bestand zou gebeuren zonder iets te wijzigen\n  --versions <map>       Bewaart vervangen of verwijderde bestanden in die doelmap\n  --skip-junk            Slaat Thumbs.db, desktop.ini, .DS_Store, ~$... over\n  --smb-compress         Vraagt SMB-compressie bij kopiëren via het netwerk (trage netwerken)\n  --atomic               Alles of niets: de map verschijnt pas als ze compleet is\n  --rescue               Reddingsmodus: redt het leesbare van een beschadigde schijf (onleesbaar als nullen)\n  --delta                Schrijft bij het vervangen van grote bestanden alleen gewijzigde blokken\n  --organize             Ordent foto's en video's in jaar-maand-mappen op opnamedatum\n  --skip-duplicates      Kopieert niet wat al in het doel staat (zelfde inhoud, elke naam)\n  --encrypt              Met wachtwoord versleutelde kopie (AES-256, .mcenc-bestanden)\n  --crash-after-mb <n>   [test] Beëindigt het proces na bevestiging van n MB van een bestand\n\nCtrl+C pauzeert de kopie; 'resume' gaat verder vanaf het laatst bevestigde blok.
+U_Seconds	{0} s
+U_MinSec	{0} min {1} s
+U_HourMin	{0} u {1} min

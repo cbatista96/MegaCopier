@@ -17,6 +17,7 @@
 #include <string>
 #include <vector>
 #include <new>
+#include "Texts.g.h"
 
 // {E2B6C3A1-5F47-4C8E-A1D2-7B3F9C0E6A54}
 static const CLSID CLSID_ContextMenu = { 0xe2b6c3a1, 0x5f47, 0x4c8e, { 0xa1, 0xd2, 0x7b, 0x3f, 0x9c, 0x0e, 0x6a, 0x54 } };
@@ -32,22 +33,58 @@ namespace {
 // ---------------------------------------------------------------------------------------------------------------
 // Idioma: el que publica la app en HKCU\Software\MegaCopier\Language, o el de Windows.
 
-// Se lee cada vez (es instantáneo): el Explorador mantiene la DLL cargada y el usuario puede cambiar el idioma.
-bool UseSpanish()
+// La traducción exacta ("pt-BR") o la primera del mismo idioma ("pt-PT" → "pt-BR"); si no hay, nullptr.
+const TextLanguage* FindLanguage(const wchar_t* name)
 {
-    wchar_t value[16] = {};
+    for (const auto& language : TextLanguages)
+    {
+        if (_wcsicmp(language.code, name) == 0)
+        {
+            return &language;
+        }
+    }
+
+    const wchar_t* dash = wcschr(name, L'-');
+    size_t length = dash ? static_cast<size_t>(dash - name) : wcslen(name);
+    for (const auto& language : TextLanguages)
+    {
+        if (length > 0 && _wcsnicmp(language.code, name, length) == 0 && language.code[length] == L'-')
+        {
+            return &language;
+        }
+    }
+
+    return nullptr;
+}
+
+// Se lee cada vez (es instantáneo): el Explorador mantiene la DLL cargada y el usuario puede cambiar el idioma.
+const TextLanguage& CurrentLanguage()
+{
+    wchar_t value[LOCALE_NAME_MAX_LENGTH] = {};
     DWORD size = sizeof(value);
     if (RegGetValueW(HKEY_CURRENT_USER, L"Software\\MegaCopier", L"Language", RRF_RT_REG_SZ, nullptr, value, &size) == ERROR_SUCCESS && value[0] != L'\0')
     {
-        return _wcsnicmp(value, L"es", 2) == 0;
+        if (const TextLanguage* language = FindLanguage(value))
+        {
+            return *language;
+        }
     }
 
-    return PRIMARYLANGID(GetUserDefaultUILanguage()) == LANG_SPANISH;
+    wchar_t ui[LOCALE_NAME_MAX_LENGTH] = {};
+    if (LCIDToLocaleName(MAKELCID(GetUserDefaultUILanguage(), SORT_DEFAULT), ui, LOCALE_NAME_MAX_LENGTH, 0) > 0)
+    {
+        if (const TextLanguage* language = FindLanguage(ui))
+        {
+            return *language;
+        }
+    }
+
+    return *FindLanguage(L"en-US");
 }
 
-const wchar_t* T(const wchar_t* spanish, const wchar_t* english)
+const wchar_t* T(Text text)
 {
-    return UseSpanish() ? spanish : english;
+    return CurrentLanguage().texts[static_cast<int>(text)];
 }
 
 // Interruptor general de la app (doble clic en el icono de la bandeja). Sin valor: activado.
@@ -386,7 +423,7 @@ bool StartCopy(HWND owner, const std::vector<std::wstring>& sources, const std::
         return true;
     }
 
-    std::wstring message = T(L"No se pudo entregar la copia a MegaCopier.", L"Couldn't hand the transfer over to MegaCopier.");
+    std::wstring message = T(Text::DeliverFailed);
     if (!error.empty())
     {
         int size = MultiByteToWideChar(CP_UTF8, 0, error.data(), static_cast<int>(error.size()), nullptr, 0);
@@ -540,8 +577,8 @@ public:
             // Arrastre con el botón derecho: lo arrastrado va a la carpeta destino.
             m_sources = m_items;
             m_destination = m_folder;
-            m_commands.push_back({ T(L"Copiar aquí con MegaCopier", L"Copy here with MegaCopier"), false });
-            m_commands.push_back({ T(L"Mover aquí con MegaCopier", L"Move here with MegaCopier"), true });
+            m_commands.push_back({ T(Text::CopyHere), false });
+            m_commands.push_back({ T(Text::MoveHere), true });
         }
         else
         {
@@ -555,14 +592,14 @@ public:
             else if (m_items.empty())
             {
                 m_destination = m_folder; // fondo de una carpeta o del Escritorio
-                m_commands.push_back({ clipboard.cut ? T(L"Mover aquí con MegaCopier", L"Move here with MegaCopier")
-                                                     : T(L"Pegar con MegaCopier", L"Paste with MegaCopier"), clipboard.cut });
+                m_commands.push_back({ clipboard.cut ? T(Text::MoveHere)
+                                                     : T(Text::Paste), clipboard.cut });
             }
             else if (attributes != INVALID_FILE_ATTRIBUTES && (attributes & FILE_ATTRIBUTE_DIRECTORY))
             {
                 m_destination = m_items[0]; // sobre una carpeta o una unidad
-                m_commands.push_back({ clipboard.cut ? T(L"Mover a esta carpeta con MegaCopier", L"Move into this folder with MegaCopier")
-                                                     : T(L"Pegar en esta carpeta con MegaCopier", L"Paste into this folder with MegaCopier"), clipboard.cut });
+                m_commands.push_back({ clipboard.cut ? T(Text::MoveIntoFolder)
+                                                     : T(Text::PasteIntoFolder), clipboard.cut });
             }
 
             if (!clipboard.files.empty())
@@ -574,9 +611,9 @@ public:
             // Sobre archivos o carpetas: el submenú MegaCopier (comprobar sumas, crear sumas, borrar de forma segura).
             if (!m_items.empty())
             {
-                m_tools.push_back({ T(L"Comprobar sumas", L"Test checksums"), Action::Test });
-                m_tools.push_back({ T(L"Crear archivo de sumas", L"Create checksum file"), Action::Hash });
-                m_tools.push_back({ T(L"Borrar de forma segura…", L"Securely delete…"), Action::Wipe });
+                m_tools.push_back({ T(Text::TestChecksums), Action::Test });
+                m_tools.push_back({ T(Text::CreateChecksums), Action::Hash });
+                m_tools.push_back({ T(Text::SecureDelete), Action::Wipe });
             }
         }
 
@@ -682,7 +719,7 @@ public:
         std::string error;
         if (!SendToApp(ToolRequestJson(command, operation, m_items), error) && !LaunchTool(verb, m_items))
         {
-            MessageBoxW(info->hwnd, T(L"No se pudo abrir MegaCopier.", L"Couldn't open MegaCopier."), L"MegaCopier", MB_OK | MB_ICONWARNING);
+            MessageBoxW(info->hwnd, T(Text::OpenFailed), L"MegaCopier", MB_OK | MB_ICONWARNING);
         }
 
         return S_OK;
@@ -708,7 +745,7 @@ public:
         case GCS_HELPTEXTW:
             lstrcpynW(reinterpret_cast<LPWSTR>(name),
                       tool ? m_tools[command - m_pasteCount].text.c_str()
-                           : T(L"Copia con MegaCopier: reanudable tras un corte de luz", L"Copy with MegaCopier: resumes after a power cut"),
+                           : T(Text::HelpText),
                       maxLength);
             return S_OK;
         default:
