@@ -40,10 +40,23 @@ public sealed class LiveSyncTests : IDisposable
     private void WaitFor(Func<bool> condition)
     {
         var limit = DateTime.UtcNow.AddSeconds(20);
-        while (!condition())
+        while (!Holds(condition))
         {
             Assert.True(DateTime.UtcNow < limit, "la copia no se puso al día");
             _passes.TryTake(out _, TimeSpan.FromMilliseconds(200));
+        }
+    }
+
+    /// <summary>Un archivo que la sincronización está reemplazando en ese momento cuenta como «todavía no».</summary>
+    private static bool Holds(Func<bool> condition)
+    {
+        try
+        {
+            return condition();
+        }
+        catch (IOException)
+        {
+            return false;
         }
     }
 

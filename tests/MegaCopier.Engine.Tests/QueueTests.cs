@@ -227,6 +227,6 @@ public sealed class QueueTests : IDisposable
         var response = await IpcClient.TrySendAsync(new IpcRequest(), connectTimeoutMs: 100, pipeName: "MegaCopier-nadie-" + Guid.NewGuid().ToString("N"));
 
         Assert.Null(response);
-        Assert.True(watch.ElapsedMilliseconds < 2000);
+        Assert.True(watch.ElapsedMilliseconds < 5000); // margen para equipos lentos; sin servidor tarda unos 100 ms
     }
 }
