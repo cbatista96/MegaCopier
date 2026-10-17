@@ -30,6 +30,16 @@ public enum WindowMode
     Expanded,
 }
 
+/// <summary>Cuándo preguntar antes de copiar o mover un arrastre del Explorador.</summary>
+public enum DragConfirm
+{
+    Never,
+
+    /// <summary>Solo al mover: un arrastre sin querer no se lleva los archivos de su sitio.</summary>
+    Moves,
+    Always,
+}
+
 /// <summary>Qué hace la ventana cuando terminan las copias.</summary>
 public enum FinishWindow
 {
@@ -289,6 +299,14 @@ public sealed class AppSettings
 
     /// <summary>Al pegar archivos con Ctrl+V en el Explorador, copiar con MegaCopier.</summary>
     public bool InterceptExplorerPaste { get; set; } = true;
+
+    /// <summary>
+    /// Al arrastrar archivos con el botón izquierdo entre ventanas del Explorador, copiar con MegaCopier.
+    /// Desactivado de serie: cambia un gesto muy usado y conviene que el usuario lo elija.
+    /// </summary>
+    public bool InterceptExplorerDrag { get; set; }
+
+    public DragConfirm DragConfirm { get; set; } = DragConfirm.Moves;
 
     /// <summary>
     /// Interruptor general (doble clic en el icono de la bandeja). Desactivado, MegaCopier no intercepta nada

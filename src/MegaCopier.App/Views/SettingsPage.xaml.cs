@@ -92,7 +92,7 @@ public sealed partial class SettingsPage : UserControl
         {
             // Filas de ajuste "icono · texto · control": si no cabe, el control baja bajo el texto.
             bool stacked = e.NewSize.Width < 720;
-            foreach (var row in Responsive.Descendants<Grid>(this).Where(g => g.ColumnDefinitions.Count >= 3 && g.Parent is Border).ToList())
+            foreach (var row in Responsive.Descendants<Grid>(this).Where(g => g.ColumnDefinitions.Count >= 3 && (g.Parent is Border || g.Tag is "SettingRow")).ToList())
             {
                 Responsive.StackSettingRow(row, stacked);
             }
@@ -108,6 +108,9 @@ public sealed partial class SettingsPage : UserControl
         var s = _app.Settings;
         EnabledToggle.IsOn = s.Enabled;
         PasteToggle.IsOn = s.InterceptExplorerPaste;
+        DragToggle.IsOn = s.InterceptExplorerDrag;
+        DragConfirmBox.SelectedIndex = (int)s.DragConfirm;
+        DragConfirmBox.IsEnabled = s.InterceptExplorerDrag;
         ShellMenuToggle.IsOn = ShellExtensionRegistration.IsRegistered;
         ShellMenuToggle.IsEnabled = App.ShellExtensionPath is not null;
         StartupToggle.IsOn = StartupRegistration.IsEnabled;
@@ -194,6 +197,14 @@ public sealed partial class SettingsPage : UserControl
         {
             s.InterceptExplorerPaste = PasteToggle.IsOn;
             _app.SetExplorerPaste(PasteToggle.IsOn);
+        }
+
+        s.DragConfirm = (DragConfirm)Math.Max(0, DragConfirmBox.SelectedIndex);
+        DragConfirmBox.IsEnabled = DragToggle.IsOn;
+        if (DragToggle.IsOn != s.InterceptExplorerDrag)
+        {
+            s.InterceptExplorerDrag = DragToggle.IsOn;
+            _app.SetExplorerDrag(DragToggle.IsOn);
         }
 
         s.WindowMode = (WindowMode)Math.Max(0, WindowModeBox.SelectedIndex);

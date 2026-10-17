@@ -794,3 +794,11 @@ Shelf_RemoveNamed	선반에서 "{0}" 제거
 Destinations_NoneChosen.Text	대상을 하나 이상 선택하세요(또는 폴더 추가).
 Finish_ShutdownMessage	MegaCopier가 복사를 마쳤습니다. 1분 후 PC가 종료됩니다.
 Hash_Name	해시: {0}
+DragTitle.Text	왼쪽 단추 끌기를 MegaCopier로
+DragDescription.Text	파일 탐색기나 바탕 화면 창 사이에서 파일을 끌면 MegaCopier가 복사하거나 이동합니다(규칙 동일: 같은 드라이브는 이동, Ctrl은 복사, Shift는 이동). 파일, ZIP, 탐색 창에 놓는 것은 계속 파일 탐색기가 처리합니다.
+DragConfirmTitle.Text	먼저 묻기
+DragConfirm_Never.Content	안 함
+DragConfirm_Moves.Content	이동할 때만
+DragConfirm_Always.Content	항상
+Drag_ConfirmMove	MegaCopier로 {0}을(를) "{1}"(으)로 이동할까요?
+Drag_ConfirmCopy	MegaCopier로 {0}을(를) "{1}"(으)로 복사할까요?

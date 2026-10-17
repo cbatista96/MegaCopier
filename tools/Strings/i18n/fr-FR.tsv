@@ -794,3 +794,11 @@ Shelf_RemoveNamed	Retirer « {0} » de l'étagère
 Destinations_NoneChosen.Text	Cochez au moins une destination (ou ajoutez un dossier).
 Finish_ShutdownMessage	MegaCopier a terminé les copies. L'ordinateur s'arrêtera dans 1 minute.
 Hash_Name	Hachage : {0}
+DragTitle.Text	Glisser avec le bouton gauche avec MegaCopier
+DragDescription.Text	Quand vous faites glisser des fichiers d'une fenêtre de l'Explorateur ou du Bureau vers une autre, MegaCopier les copie ou les déplace (mêmes règles : sur le même lecteur il déplace, Ctrl copie, Maj déplace). Déposer sur un fichier, un ZIP ou le volet de navigation reste géré par l'Explorateur.
+DragConfirmTitle.Text	Demander avant
+DragConfirm_Never.Content	Jamais
+DragConfirm_Moves.Content	Seulement pour déplacer
+DragConfirm_Always.Content	Toujours
+Drag_ConfirmMove	Déplacer {0} vers « {1} » avec MegaCopier ?
+Drag_ConfirmCopy	Copier {0} vers « {1} » avec MegaCopier ?

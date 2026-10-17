@@ -800,4 +800,12 @@
   <data name="Destinations_NoneChosen.Text" xml:space="preserve"><value>대상을 하나 이상 선택하세요(또는 폴더 추가).</value></data>
   <data name="Finish_ShutdownMessage" xml:space="preserve"><value>MegaCopier가 복사를 마쳤습니다. 1분 후 PC가 종료됩니다.</value></data>
   <data name="Hash_Name" xml:space="preserve"><value>해시: {0}</value></data>
+  <data name="DragTitle.Text" xml:space="preserve"><value>왼쪽 단추 끌기를 MegaCopier로</value></data>
+  <data name="DragDescription.Text" xml:space="preserve"><value>파일 탐색기나 바탕 화면 창 사이에서 파일을 끌면 MegaCopier가 복사하거나 이동합니다(규칙 동일: 같은 드라이브는 이동, Ctrl은 복사, Shift는 이동). 파일, ZIP, 탐색 창에 놓는 것은 계속 파일 탐색기가 처리합니다.</value></data>
+  <data name="DragConfirmTitle.Text" xml:space="preserve"><value>먼저 묻기</value></data>
+  <data name="DragConfirm_Never.Content" xml:space="preserve"><value>안 함</value></data>
+  <data name="DragConfirm_Moves.Content" xml:space="preserve"><value>이동할 때만</value></data>
+  <data name="DragConfirm_Always.Content" xml:space="preserve"><value>항상</value></data>
+  <data name="Drag_ConfirmMove" xml:space="preserve"><value>MegaCopier로 {0}을(를) &quot;{1}&quot;(으)로 이동할까요?</value></data>
+  <data name="Drag_ConfirmCopy" xml:space="preserve"><value>MegaCopier로 {0}을(를) &quot;{1}&quot;(으)로 복사할까요?</value></data>
 </root>

@@ -20,6 +20,7 @@ public partial class App : Application
     private TrayIcon? _tray;
     private IpcServer? _server;
     private PasteInterceptor? _paste;
+    private DragInterceptor? _drag;
     private TaskbarProgress? _taskbar;
     private DispatcherQueueTimer? _statusTimer;
 
@@ -139,6 +140,8 @@ public partial class App : Application
 
         _paste = new PasteInterceptor(OnExplorerPaste);
         _paste.PassedThrough += reason => Debug.WriteLine($"Ctrl+V devuelto al Explorador: {reason}");
+        _drag = new DragInterceptor(OnExplorerDrag);
+        _drag.PassedThrough += reason => Debug.WriteLine($"Arrastre devuelto al Explorador: {reason}");
         SetEnabled(Settings.Enabled, notify: false);
 
         if (Settings.AutoResumeInterrupted)
@@ -405,6 +408,7 @@ public partial class App : Application
         }
 
         SetExplorerPaste(Settings.InterceptExplorerPaste);
+        SetExplorerDrag(Settings.InterceptExplorerDrag);
         _tray?.SetDisabled(!enabled);
         _tray?.SetTooltip(enabled ? "MegaCopier" : L.Get("Tray_TooltipDisabled"));
         if (notify)
@@ -431,6 +435,39 @@ public partial class App : Application
         {
             _paste?.Disable();
         }
+    }
+
+    /// <summary>Activa o desactiva la sustitución del arrastre con el botón izquierdo (solo si MegaCopier está activado).</summary>
+    internal void SetExplorerDrag(bool enabled)
+    {
+        if (enabled && Settings.Enabled && !TestMode)
+        {
+            _drag?.Enable();
+        }
+        else
+        {
+            _drag?.Disable();
+        }
+    }
+
+    /// <summary>
+    /// Un arrastre del Explorador que MegaCopier se ha quedado (en el hilo del gancho de arrastre). El arrastre del
+    /// Explorador ya está cancelado: si el usuario dice que no en la confirmación, no se hace nada, como al pulsar Esc.
+    /// </summary>
+    private bool OnExplorerDrag(DragRequest drag)
+    {
+        bool ask = Settings.DragConfirm == DragConfirm.Always || (Settings.DragConfirm == DragConfirm.Moves && drag.Move);
+        if (ask)
+        {
+            string what = drag.Sources.Count == 1 ? L.F("Job_OneItem", Path.GetFileName(drag.Sources[0])) : L.F("Job_ManyItems", drag.Sources.Count);
+            string question = L.F(drag.Move ? "Drag_ConfirmMove" : "Drag_ConfirmCopy", what, drag.Destination);
+            if (!SystemActions.Confirm(question))
+            {
+                return true;
+            }
+        }
+
+        return OnExplorerPaste(new PasteRequest(drag.Sources, drag.Destination, drag.Move ? ClipboardOperation.Move : ClipboardOperation.Copy));
     }
 
     /// <summary>Reinicia la app (para aplicar el idioma). Las copias en curso quedan reanudables.</summary>
@@ -815,6 +852,7 @@ public partial class App : Application
 
         // Las copias en curso se detienen conservando lo copiado: al volver se continúan.
         _paste?.Dispose();
+        _drag?.Dispose();
         await Task.Run(() => Queue.StopAll(TimeSpan.FromSeconds(5)));
         _statusTimer?.Stop();
         _taskbar?.Dispose();

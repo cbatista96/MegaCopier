@@ -36,6 +36,28 @@ internal static unsafe partial class Native
         return GetGUIThreadInfo(thread, &info) ? info.hwndFocus : 0;
     }
 
+    /// <summary>La ventana que tiene capturado el ratón en ese hilo (durante un arrastre OLE, una CLIPBRDWNDCLASS).</summary>
+    public static nint CaptureWindow(uint thread)
+    {
+        if (thread == 0)
+        {
+            return 0;
+        }
+
+        var info = new GuiThreadInfo { cbSize = (uint)sizeof(GuiThreadInfo) };
+        return GetGUIThreadInfo(thread, &info) ? info.hwndCapture : 0;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    public readonly struct Point(int x, int y)
+    {
+        public readonly int X = x;
+        public readonly int Y = y;
+    }
+
+    [LibraryImport("user32.dll")]
+    public static partial nint WindowFromPoint(Point point);
+
     [StructLayout(LayoutKind.Sequential)]
     private struct GuiThreadInfo
     {

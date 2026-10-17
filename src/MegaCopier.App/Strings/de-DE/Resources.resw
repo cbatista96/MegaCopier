@@ -800,4 +800,12 @@
   <data name="Destinations_NoneChosen.Text" xml:space="preserve"><value>Markieren Sie mindestens ein Ziel (oder fügen Sie einen Ordner hinzu).</value></data>
   <data name="Finish_ShutdownMessage" xml:space="preserve"><value>MegaCopier hat die Kopien abgeschlossen. Der PC fährt in 1 Minute herunter.</value></data>
   <data name="Hash_Name" xml:space="preserve"><value>Hash: {0}</value></data>
+  <data name="DragTitle.Text" xml:space="preserve"><value>Ziehen mit der linken Maustaste über MegaCopier</value></data>
+  <data name="DragDescription.Text" xml:space="preserve"><value>Wenn Sie Dateien von einem Explorer- oder Desktopfenster in ein anderes ziehen, kopiert oder verschiebt MegaCopier sie (gleiche Regeln: auf demselben Laufwerk wird verschoben, Strg kopiert, Umschalt verschiebt). Ablegen auf einer Datei, einem ZIP oder im Navigationsbereich übernimmt weiterhin der Explorer.</value></data>
+  <data name="DragConfirmTitle.Text" xml:space="preserve"><value>Vorher fragen</value></data>
+  <data name="DragConfirm_Never.Content" xml:space="preserve"><value>Nie</value></data>
+  <data name="DragConfirm_Moves.Content" xml:space="preserve"><value>Nur beim Verschieben</value></data>
+  <data name="DragConfirm_Always.Content" xml:space="preserve"><value>Immer</value></data>
+  <data name="Drag_ConfirmMove" xml:space="preserve"><value>{0} mit MegaCopier nach „{1}“ verschieben?</value></data>
+  <data name="Drag_ConfirmCopy" xml:space="preserve"><value>{0} mit MegaCopier nach „{1}“ kopieren?</value></data>
 </root>

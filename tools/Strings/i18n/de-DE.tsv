@@ -794,3 +794,11 @@ Shelf_RemoveNamed	„{0}“ aus der Ablage entfernen
 Destinations_NoneChosen.Text	Markieren Sie mindestens ein Ziel (oder fügen Sie einen Ordner hinzu).
 Finish_ShutdownMessage	MegaCopier hat die Kopien abgeschlossen. Der PC fährt in 1 Minute herunter.
 Hash_Name	Hash: {0}
+DragTitle.Text	Ziehen mit der linken Maustaste über MegaCopier
+DragDescription.Text	Wenn Sie Dateien von einem Explorer- oder Desktopfenster in ein anderes ziehen, kopiert oder verschiebt MegaCopier sie (gleiche Regeln: auf demselben Laufwerk wird verschoben, Strg kopiert, Umschalt verschiebt). Ablegen auf einer Datei, einem ZIP oder im Navigationsbereich übernimmt weiterhin der Explorer.
+DragConfirmTitle.Text	Vorher fragen
+DragConfirm_Never.Content	Nie
+DragConfirm_Moves.Content	Nur beim Verschieben
+DragConfirm_Always.Content	Immer
+Drag_ConfirmMove	{0} mit MegaCopier nach „{1}“ verschieben?
+Drag_ConfirmCopy	{0} mit MegaCopier nach „{1}“ kopieren?

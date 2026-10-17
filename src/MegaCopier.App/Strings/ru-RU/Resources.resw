@@ -800,4 +800,12 @@
   <data name="Destinations_NoneChosen.Text" xml:space="preserve"><value>Отметьте хотя бы одно назначение (или добавьте папку).</value></data>
   <data name="Finish_ShutdownMessage" xml:space="preserve"><value>MegaCopier завершил копирование. Компьютер выключится через 1 минуту.</value></data>
   <data name="Hash_Name" xml:space="preserve"><value>Хеш: {0}</value></data>
+  <data name="DragTitle.Text" xml:space="preserve"><value>Перетаскивание левой кнопкой через MegaCopier</value></data>
+  <data name="DragDescription.Text" xml:space="preserve"><value>Когда вы перетаскиваете файлы из одного окна Проводника или рабочего стола в другое, их копирует или перемещает MegaCopier (те же правила: на том же диске — перемещение, Ctrl — копирование, Shift — перемещение). Перетаскивание на файл, ZIP или в область навигации по-прежнему выполняет Проводник.</value></data>
+  <data name="DragConfirmTitle.Text" xml:space="preserve"><value>Спрашивать</value></data>
+  <data name="DragConfirm_Never.Content" xml:space="preserve"><value>Никогда</value></data>
+  <data name="DragConfirm_Moves.Content" xml:space="preserve"><value>Только при перемещении</value></data>
+  <data name="DragConfirm_Always.Content" xml:space="preserve"><value>Всегда</value></data>
+  <data name="Drag_ConfirmMove" xml:space="preserve"><value>Переместить {0} в «{1}» через MegaCopier?</value></data>
+  <data name="Drag_ConfirmCopy" xml:space="preserve"><value>Копировать {0} в «{1}» через MegaCopier?</value></data>
 </root>

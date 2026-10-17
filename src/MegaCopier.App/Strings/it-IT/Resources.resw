@@ -800,4 +800,12 @@
   <data name="Destinations_NoneChosen.Text" xml:space="preserve"><value>Seleziona almeno una destinazione (o aggiungi una cartella).</value></data>
   <data name="Finish_ShutdownMessage" xml:space="preserve"><value>MegaCopier ha finito le copie. Il PC si spegnerà tra 1 minuto.</value></data>
   <data name="Hash_Name" xml:space="preserve"><value>Hash: {0}</value></data>
+  <data name="DragTitle.Text" xml:space="preserve"><value>Trascinamento con il tasto sinistro con MegaCopier</value></data>
+  <data name="DragDescription.Text" xml:space="preserve"><value>Quando trascini file da una finestra di Esplora file o dal desktop a un&apos;altra, li copia o sposta MegaCopier (stesse regole: sulla stessa unità sposta, Ctrl copia, Maiusc sposta). Il rilascio su un file, uno ZIP o il riquadro di spostamento resta a Esplora file.</value></data>
+  <data name="DragConfirmTitle.Text" xml:space="preserve"><value>Chiedi prima</value></data>
+  <data name="DragConfirm_Never.Content" xml:space="preserve"><value>Mai</value></data>
+  <data name="DragConfirm_Moves.Content" xml:space="preserve"><value>Solo quando sposta</value></data>
+  <data name="DragConfirm_Always.Content" xml:space="preserve"><value>Sempre</value></data>
+  <data name="Drag_ConfirmMove" xml:space="preserve"><value>Spostare {0} in «{1}» con MegaCopier?</value></data>
+  <data name="Drag_ConfirmCopy" xml:space="preserve"><value>Copiare {0} in «{1}» con MegaCopier?</value></data>
 </root>

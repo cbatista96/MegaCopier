@@ -794,3 +794,11 @@ Shelf_RemoveNamed	从拖放架移除“{0}”
 Destinations_NoneChosen.Text	请至少勾选一个目标（或添加文件夹）。
 Finish_ShutdownMessage	MegaCopier 已完成复制。电脑将在 1 分钟后关机。
 Hash_Name	哈希：{0}
+DragTitle.Text	用 MegaCopier 处理左键拖动
+DragDescription.Text	在文件资源管理器或桌面窗口之间拖动文件时，由 MegaCopier 复制或移动（规则相同：同一驱动器上移动，Ctrl 复制，Shift 移动）。拖放到文件、ZIP 或导航窗格上仍由文件资源管理器处理。
+DragConfirmTitle.Text	先询问
+DragConfirm_Never.Content	从不
+DragConfirm_Moves.Content	仅移动时
+DragConfirm_Always.Content	总是
+Drag_ConfirmMove	用 MegaCopier 将 {0} 移动到“{1}”？
+Drag_ConfirmCopy	用 MegaCopier 将 {0} 复制到“{1}”？

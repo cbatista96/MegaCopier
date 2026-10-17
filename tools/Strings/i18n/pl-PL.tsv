@@ -794,3 +794,11 @@ Shelf_RemoveNamed	Usuń „{0}” z półki
 Destinations_NoneChosen.Text	Zaznacz co najmniej jedno miejsce docelowe (lub dodaj folder).
 Finish_ShutdownMessage	MegaCopier zakończył kopiowanie. Komputer wyłączy się za 1 minutę.
 Hash_Name	Skrót: {0}
+DragTitle.Text	Przeciąganie lewym przyciskiem przez MegaCopier
+DragDescription.Text	Gdy przeciągasz pliki z jednego okna Eksploratora lub pulpitu do innego, kopiuje je lub przenosi MegaCopier (te same zasady: na tym samym dysku przenosi, Ctrl kopiuje, Shift przenosi). Upuszczenie na plik, ZIP lub okienko nawigacji nadal obsługuje Eksplorator.
+DragConfirmTitle.Text	Pytaj wcześniej
+DragConfirm_Never.Content	Nigdy
+DragConfirm_Moves.Content	Tylko przy przenoszeniu
+DragConfirm_Always.Content	Zawsze
+Drag_ConfirmMove	Przenieść {0} do „{1}” przez MegaCopier?
+Drag_ConfirmCopy	Skopiować {0} do „{1}” przez MegaCopier?

@@ -794,3 +794,11 @@ Shelf_RemoveNamed	Rimuovi «{0}» dal ripiano
 Destinations_NoneChosen.Text	Seleziona almeno una destinazione (o aggiungi una cartella).
 Finish_ShutdownMessage	MegaCopier ha finito le copie. Il PC si spegnerà tra 1 minuto.
 Hash_Name	Hash: {0}
+DragTitle.Text	Trascinamento con il tasto sinistro con MegaCopier
+DragDescription.Text	Quando trascini file da una finestra di Esplora file o dal desktop a un'altra, li copia o sposta MegaCopier (stesse regole: sulla stessa unità sposta, Ctrl copia, Maiusc sposta). Il rilascio su un file, uno ZIP o il riquadro di spostamento resta a Esplora file.
+DragConfirmTitle.Text	Chiedi prima
+DragConfirm_Never.Content	Mai
+DragConfirm_Moves.Content	Solo quando sposta
+DragConfirm_Always.Content	Sempre
+Drag_ConfirmMove	Spostare {0} in «{1}» con MegaCopier?
+Drag_ConfirmCopy	Copiare {0} in «{1}» con MegaCopier?

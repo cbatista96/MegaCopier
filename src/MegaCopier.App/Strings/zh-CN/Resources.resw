@@ -800,4 +800,12 @@
   <data name="Destinations_NoneChosen.Text" xml:space="preserve"><value>请至少勾选一个目标（或添加文件夹）。</value></data>
   <data name="Finish_ShutdownMessage" xml:space="preserve"><value>MegaCopier 已完成复制。电脑将在 1 分钟后关机。</value></data>
   <data name="Hash_Name" xml:space="preserve"><value>哈希：{0}</value></data>
+  <data name="DragTitle.Text" xml:space="preserve"><value>用 MegaCopier 处理左键拖动</value></data>
+  <data name="DragDescription.Text" xml:space="preserve"><value>在文件资源管理器或桌面窗口之间拖动文件时，由 MegaCopier 复制或移动（规则相同：同一驱动器上移动，Ctrl 复制，Shift 移动）。拖放到文件、ZIP 或导航窗格上仍由文件资源管理器处理。</value></data>
+  <data name="DragConfirmTitle.Text" xml:space="preserve"><value>先询问</value></data>
+  <data name="DragConfirm_Never.Content" xml:space="preserve"><value>从不</value></data>
+  <data name="DragConfirm_Moves.Content" xml:space="preserve"><value>仅移动时</value></data>
+  <data name="DragConfirm_Always.Content" xml:space="preserve"><value>总是</value></data>
+  <data name="Drag_ConfirmMove" xml:space="preserve"><value>用 MegaCopier 将 {0} 移动到“{1}”？</value></data>
+  <data name="Drag_ConfirmCopy" xml:space="preserve"><value>用 MegaCopier 将 {0} 复制到“{1}”？</value></data>
 </root>

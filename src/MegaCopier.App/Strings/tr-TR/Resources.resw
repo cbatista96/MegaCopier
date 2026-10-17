@@ -800,4 +800,12 @@
   <data name="Destinations_NoneChosen.Text" xml:space="preserve"><value>En az bir hedef işaretleyin (veya bir klasör ekleyin).</value></data>
   <data name="Finish_ShutdownMessage" xml:space="preserve"><value>MegaCopier kopyalamaları bitirdi. Bilgisayar 1 dakika içinde kapanacak.</value></data>
   <data name="Hash_Name" xml:space="preserve"><value>Karma: {0}</value></data>
+  <data name="DragTitle.Text" xml:space="preserve"><value>Sol tuşla sürüklemeyi MegaCopier ile yap</value></data>
+  <data name="DragDescription.Text" xml:space="preserve"><value>Dosyaları bir Dosya Gezgini veya masaüstü penceresinden diğerine sürüklediğinizde MegaCopier kopyalar ya da taşır (aynı kurallar: aynı sürücüde taşır, Ctrl kopyalar, Shift taşır). Bir dosyanın, ZIP&apos;in veya gezinti bölmesinin üzerine bırakmayı yine Dosya Gezgini yapar.</value></data>
+  <data name="DragConfirmTitle.Text" xml:space="preserve"><value>Önce sor</value></data>
+  <data name="DragConfirm_Never.Content" xml:space="preserve"><value>Hiçbir zaman</value></data>
+  <data name="DragConfirm_Moves.Content" xml:space="preserve"><value>Yalnızca taşırken</value></data>
+  <data name="DragConfirm_Always.Content" xml:space="preserve"><value>Her zaman</value></data>
+  <data name="Drag_ConfirmMove" xml:space="preserve"><value>{0} MegaCopier ile &quot;{1}&quot; konumuna taşınsın mı?</value></data>
+  <data name="Drag_ConfirmCopy" xml:space="preserve"><value>{0} MegaCopier ile &quot;{1}&quot; konumuna kopyalansın mı?</value></data>
 </root>
