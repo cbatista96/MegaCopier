@@ -51,6 +51,7 @@ internal static partial class Cli
                 "restore" => Copy(args[1..], move: false, operation: JobOperation.Restore),
                 "snapshots" => Snapshots(args[1..]),
                 "mcp" => McpServe(),
+                "verify-manifest" => VerifyManifest(args[1..]),
                 "delete" => Delete(args[1..]),
                 "resume" => Resume(args.Length > 1 ? args[1] : null),
                 "jobs" => Jobs(),
@@ -139,6 +140,9 @@ internal static partial class Cli
                     break;
                 case "--recovery":
                     options.RecoveryPercent = Math.Clamp(NextInt(args, ref i), 0, 25);
+                    break;
+                case "--forensic":
+                    options.Forensic = true;
                     break;
                 case "--no-shield":
                     options.RansomwareShield = false;
@@ -417,6 +421,38 @@ internal static partial class Cli
         }
 
         return ExitOk;
+    }
+
+    /// <summary>mcopy verify-manifest &lt;manifiesto.json&gt;: comprueba la firma y que ningún archivo haya cambiado.</summary>
+    private static int VerifyManifest(string[] args)
+    {
+        if (args.Length == 0)
+        {
+            throw new UsageException(Texts.Get("C_NeedItem"));
+        }
+
+        var check = MegaCopier.Engine.Forensics.ForensicManifest.Verify(Path.GetFullPath(args[0]));
+        if (!check.SignatureValid)
+        {
+            Console.WriteLine(Texts.Get("C_ManifestBadSignature"));
+        }
+
+        foreach (string path in check.Changed)
+        {
+            Console.WriteLine($"{Texts.Get("C_ManifestChanged")} {path}");
+        }
+
+        foreach (string path in check.Missing)
+        {
+            Console.WriteLine($"{Texts.Get("C_ManifestMissing")} {path}");
+        }
+
+        if (check.AllGood)
+        {
+            Console.WriteLine(Texts.F("C_ManifestOk", check.KeyFingerprint, check.Files));
+        }
+
+        return check.AllGood ? ExitOk : ExitFailures;
     }
 
     /// <summary>mcopy repair &lt;carpeta&gt;: repara con los datos de recuperación lo que el disco haya estropeado.</summary>

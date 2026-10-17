@@ -1003,3 +1003,4 @@ Job_TitleRestored	已还原到 {0}
 Job_StateRestoring	正在还原
 Job_FilesRestoredOne	已还原 {0} 个文件
 Job_FilesRestoredMany	已还原 {0} 个文件
+Rules_Forensic.Content	取证模式：全部计算 SHA-256，并在目标中生成签名清单

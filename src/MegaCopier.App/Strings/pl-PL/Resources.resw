@@ -1009,4 +1009,5 @@
   <data name="Job_StateRestoring" xml:space="preserve"><value>Przywracanie</value></data>
   <data name="Job_FilesRestoredOne" xml:space="preserve"><value>Przywrócono plików: {0}</value></data>
   <data name="Job_FilesRestoredMany" xml:space="preserve"><value>Przywrócono plików: {0}</value></data>
+  <data name="Rules_Forensic.Content" xml:space="preserve"><value>Tryb śledczy: SHA-256 wszystkiego i podpisany manifest w miejscu docelowym</value></data>
 </root>

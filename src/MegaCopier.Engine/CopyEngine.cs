@@ -112,6 +112,14 @@ public sealed partial class CopyEngine
     public CopyJobResult Run(CopyJobRequest request, CancellationToken cancellationToken = default)
     {
         var stopwatch = Stopwatch.StartNew();
+        var startedUtc = DateTime.UtcNow;
+        if (_options.Forensic && _options.Operation == JobOperation.Copy)
+        {
+            // Con valor de prueba: SHA-256 de cada archivo, en el origen y en la copia releída.
+            _options.HashAlgorithm = FileHashAlgorithm.Sha256;
+            _options.Verify = true;
+        }
+
         if (_options.BackupMode && !SkipBackupPrivilegeCheck && !Native.BackupPrivileges.Enable())
         {
             throw new CopyPlanException(Texts.Get("E_BackupNeedsAdmin"));
@@ -333,6 +341,7 @@ public sealed partial class CopyEngine
 
         PruneVersions();
         CreateRecoveryData(progress, cancellationToken);
+        WriteForensicManifest(request, startedUtc);
 
         progress.Finish();
         result.Elapsed = stopwatch.Elapsed;

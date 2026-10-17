@@ -67,6 +67,8 @@ public sealed class CopyJobRecord
 
     public int RecoveryPercent { get; set; }
 
+    public bool Forensic { get; set; }
+
     public string SnapshotId { get; set; } = "";
 
     public bool Zip { get; set; }
@@ -172,6 +174,7 @@ public sealed class CopyJobRecord
         EfsRaw = options.EfsRaw,
         RansomwareShield = options.RansomwareShield,
         RecoveryPercent = options.RecoveryPercent,
+        Forensic = options.Forensic,
         SnapshotId = options.SnapshotId,
         Zip = options.Zip,
         ArchiveFormat = options.ArchiveFormat,
@@ -237,6 +240,7 @@ public sealed class CopyJobRecord
             EfsRaw = EfsRaw,
             RansomwareShield = RansomwareShield,
             RecoveryPercent = RecoveryPercent,
+            Forensic = Forensic,
             SnapshotId = SnapshotId ?? "",
             Zip = Zip,
             ArchiveFormat = ArchiveFormat,

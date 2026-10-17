@@ -1003,3 +1003,4 @@ Job_TitleRestored	Przywrócono do {0}
 Job_StateRestoring	Przywracanie
 Job_FilesRestoredOne	Przywrócono plików: {0}
 Job_FilesRestoredMany	Przywrócono plików: {0}
+Rules_Forensic.Content	Tryb śledczy: SHA-256 wszystkiego i podpisany manifest w miejscu docelowym

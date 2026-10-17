@@ -1003,3 +1003,4 @@ Job_TitleRestored	{0} konumuna geri yüklendi
 Job_StateRestoring	Geri yükleniyor
 Job_FilesRestoredOne	{0} dosya geri yüklendi
 Job_FilesRestoredMany	{0} dosya geri yüklendi
+Rules_Forensic.Content	Adli mod: her şeyin SHA-256'sı ve hedefte imzalı bir bildirim

@@ -106,6 +106,7 @@
             </ComboBox>
             <CheckBox x:Name="EfsRawBox" x:Uid="Rules_EfsRaw" Click="Changed" />
             <CheckBox x:Name="ShieldBox" x:Uid="Rules_Shield" Click="Changed" />
+            <CheckBox x:Name="ForensicBox" x:Uid="Rules_Forensic" Click="Changed" />
             <ComboBox x:Name="RecoveryBox" x:Uid="Rules_Recovery" HorizontalAlignment="Stretch" SelectionChanged="Selection_Changed">
                 <ComboBoxItem x:Uid="Rules_RecoveryNone" />
                 <ComboBoxItem x:Uid="Rules_Recovery5" />

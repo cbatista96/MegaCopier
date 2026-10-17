@@ -158,6 +158,11 @@ public sealed partial class CopyEngine
                 continue; // tampoco los datos de recuperación ni lo apartado al sincronizar
             }
 
+            if (entry is FileInfo manifest && manifest.Name.StartsWith(Forensics.ForensicManifest.FilePrefix, StringComparison.OrdinalIgnoreCase))
+            {
+                continue; // los manifiestos forenses de copias anteriores se conservan
+            }
+
             if (entry is FileInfo file && CopyPlanner.IsTransferArtifact(file.Name))
             {
                 continue;

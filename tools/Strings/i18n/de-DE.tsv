@@ -1003,3 +1003,4 @@ Job_TitleRestored	Nach {0} wiederhergestellt
 Job_StateRestoring	Wiederherstellung
 Job_FilesRestoredOne	{0} Datei wiederhergestellt
 Job_FilesRestoredMany	{0} Dateien wiederhergestellt
+Rules_Forensic.Content	Forensik-Modus: SHA-256 von allem und ein signiertes Manifest im Ziel

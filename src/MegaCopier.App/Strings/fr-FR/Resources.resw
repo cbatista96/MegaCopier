@@ -1009,4 +1009,5 @@
   <data name="Job_StateRestoring" xml:space="preserve"><value>Restauration</value></data>
   <data name="Job_FilesRestoredOne" xml:space="preserve"><value>{0} fichier restauré</value></data>
   <data name="Job_FilesRestoredMany" xml:space="preserve"><value>{0} fichiers restaurés</value></data>
+  <data name="Rules_Forensic.Content" xml:space="preserve"><value>Mode forensique : SHA-256 de tout et un manifeste signé dans la destination</value></data>
 </root>

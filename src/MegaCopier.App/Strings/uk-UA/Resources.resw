@@ -1009,4 +1009,5 @@
   <data name="Job_StateRestoring" xml:space="preserve"><value>Відновлення</value></data>
   <data name="Job_FilesRestoredOne" xml:space="preserve"><value>Відновлено файлів: {0}</value></data>
   <data name="Job_FilesRestoredMany" xml:space="preserve"><value>Відновлено файлів: {0}</value></data>
+  <data name="Rules_Forensic.Content" xml:space="preserve"><value>Криміналістичний режим: SHA-256 усього й підписаний маніфест у місці призначення</value></data>
 </root>

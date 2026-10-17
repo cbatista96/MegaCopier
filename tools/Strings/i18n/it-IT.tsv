@@ -1003,3 +1003,4 @@ Job_TitleRestored	Ripristinato in {0}
 Job_StateRestoring	Ripristino
 Job_FilesRestoredOne	{0} file ripristinato
 Job_FilesRestoredMany	{0} file ripristinati
+Rules_Forensic.Content	Modalità forense: SHA-256 di tutto e un manifesto firmato nella destinazione

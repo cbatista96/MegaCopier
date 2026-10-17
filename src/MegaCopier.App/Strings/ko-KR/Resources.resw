@@ -1009,4 +1009,5 @@
   <data name="Job_StateRestoring" xml:space="preserve"><value>복원 중</value></data>
   <data name="Job_FilesRestoredOne" xml:space="preserve"><value>파일 {0}개 복원됨</value></data>
   <data name="Job_FilesRestoredMany" xml:space="preserve"><value>파일 {0}개 복원됨</value></data>
+  <data name="Rules_Forensic.Content" xml:space="preserve"><value>포렌식 모드: 모든 파일의 SHA-256과 대상에 서명된 매니페스트</value></data>
 </root>

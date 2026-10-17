@@ -1003,3 +1003,4 @@ Job_TitleRestored	{0}(으)로 복원됨
 Job_StateRestoring	복원 중
 Job_FilesRestoredOne	파일 {0}개 복원됨
 Job_FilesRestoredMany	파일 {0}개 복원됨
+Rules_Forensic.Content	포렌식 모드: 모든 파일의 SHA-256과 대상에 서명된 매니페스트

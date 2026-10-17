@@ -1009,4 +1009,5 @@
   <data name="Job_StateRestoring" xml:space="preserve"><value>正在还原</value></data>
   <data name="Job_FilesRestoredOne" xml:space="preserve"><value>已还原 {0} 个文件</value></data>
   <data name="Job_FilesRestoredMany" xml:space="preserve"><value>已还原 {0} 个文件</value></data>
+  <data name="Rules_Forensic.Content" xml:space="preserve"><value>取证模式：全部计算 SHA-256，并在目标中生成签名清单</value></data>
 </root>

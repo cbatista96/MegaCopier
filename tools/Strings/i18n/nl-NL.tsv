@@ -1003,3 +1003,4 @@ Job_TitleRestored	Hersteld naar {0}
 Job_StateRestoring	Herstellen
 Job_FilesRestoredOne	{0} bestand hersteld
 Job_FilesRestoredMany	{0} bestanden hersteld
+Rules_Forensic.Content	Forensische modus: SHA-256 van alles en een ondertekend manifest in het doel

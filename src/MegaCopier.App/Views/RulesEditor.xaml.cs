@@ -48,6 +48,8 @@ public sealed class CopyRules
 
     public int RecoveryPercent { get; set; }
 
+    public bool Forensic { get; set; }
+
     public bool WaitForDevice { get; set; } = true;
 
     public bool WaitForSpace { get; set; } = true;
@@ -82,6 +84,7 @@ public sealed class CopyRules
         EfsRaw = r.EfsRaw,
         RansomwareShield = r.RansomwareShield,
         RecoveryPercent = r.RecoveryPercent,
+        Forensic = r.Forensic,
         WaitForDevice = r.WaitForDevice,
         WaitForSpace = r.WaitForSpace,
         AllOrNothing = r.AllOrNothing,
@@ -112,6 +115,7 @@ public sealed class CopyRules
         r.EfsRaw = EfsRaw;
         r.RansomwareShield = RansomwareShield;
         r.RecoveryPercent = RecoveryPercent;
+        r.Forensic = Forensic;
         r.WaitForDevice = WaitForDevice;
         r.WaitForSpace = WaitForSpace;
         r.AllOrNothing = AllOrNothing;
@@ -188,6 +192,7 @@ public sealed partial class RulesEditor : UserControl
         WipeMethodBox.SelectedIndex = (int)rules.WipeMethod;
         EfsRawBox.IsChecked = rules.EfsRaw;
         ShieldBox.IsChecked = rules.RansomwareShield;
+        ForensicBox.IsChecked = rules.Forensic;
         RecoveryBox.SelectedIndex = Math.Max(0, Array.IndexOf(RecoveryPresets, rules.RecoveryPercent));
         WaitDeviceBox.IsChecked = rules.WaitForDevice;
         WaitSpaceBox.IsChecked = rules.WaitForSpace;
@@ -233,6 +238,7 @@ public sealed partial class RulesEditor : UserControl
         WipeMethod = (WipeMethod)Math.Max(0, WipeMethodBox.SelectedIndex),
         EfsRaw = EfsRawBox.IsChecked == true,
         RansomwareShield = ShieldBox.IsChecked == true,
+        Forensic = ForensicBox.IsChecked == true,
         RecoveryPercent = RecoveryPresets[Math.Max(0, RecoveryBox.SelectedIndex)],
         WaitForDevice = WaitDeviceBox.IsChecked == true,
         WaitForSpace = WaitSpaceBox.IsChecked == true,

@@ -226,6 +226,9 @@ public sealed class CopyOptions
     /// <summary>Datos de recuperación (paridad Reed-Solomon) para reparar la copia si el disco la estropea: % del tamaño, 0 = no.</summary>
     public int RecoveryPercent { get; set; }
 
+    /// <summary>Modo forense: SHA-256 de todo y, al terminar, un manifiesto firmado en el destino (ver ForensicManifest).</summary>
+    public bool Forensic { get; set; }
+
     /// <summary>Con <see cref="JobOperation.Restore"/>: qué instantánea (vacío = la última).</summary>
     public string SnapshotId { get; set; } = "";
 
