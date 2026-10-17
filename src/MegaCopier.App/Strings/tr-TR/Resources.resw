@@ -829,4 +829,9 @@
   <data name="Mtp_MoveImport" xml:space="preserve"><value>Kopyalananları cihazdan kaldır (taşı)</value></data>
   <data name="Mtp_MoveExport" xml:space="preserve"><value>Kopyalananları bilgisayardan kaldır (taşı)</value></data>
   <data name="Mtp_Open" xml:space="preserve"><value>&quot;{0}&quot; öğesini aç</value></data>
+  <data name="Settings_LocalSendTitle.Text" xml:space="preserve"><value>LocalSend ile telefondan al</value></data>
+  <data name="Settings_LocalSendDescription" xml:space="preserve"><value>Aynı ağdaki bir telefona LocalSend&apos;i (ücretsiz, iPhone ve Android için) yükleyin: bu bilgisayar &quot;{0}&quot; olarak görünür. Gönderdikleriniz {1} konumuna gelir.</value></data>
+  <data name="LocalSend_AutoAccept.Content" xml:space="preserve"><value>Sormadan kabul et (yalnızca güvenilir ağlarda)</value></data>
+  <data name="LocalSend_Listening" xml:space="preserve"><value>LocalSend gönderimleri bekleniyor (bağlantı noktası {0}).</value></data>
+  <data name="LocalSend_Ask" xml:space="preserve"><value>&quot;{0}&quot; size LocalSend ile {1} dosya ({2}) göndermek istiyor. Kabul edilsin mi?</value></data>
 </root>

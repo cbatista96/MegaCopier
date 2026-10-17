@@ -829,4 +829,9 @@
   <data name="Mtp_MoveImport" xml:space="preserve"><value>Rimuovi dal dispositivo ciò che viene copiato (sposta)</value></data>
   <data name="Mtp_MoveExport" xml:space="preserve"><value>Rimuovi dal PC ciò che viene copiato (sposta)</value></data>
   <data name="Mtp_Open" xml:space="preserve"><value>Apri «{0}»</value></data>
+  <data name="Settings_LocalSendTitle.Text" xml:space="preserve"><value>Ricevi dal telefono con LocalSend</value></data>
+  <data name="Settings_LocalSendDescription" xml:space="preserve"><value>Installa LocalSend (gratis, per iPhone e Android) su un telefono della stessa rete: questo PC appare come «{0}». Ciò che invii arriva in {1}.</value></data>
+  <data name="LocalSend_AutoAccept.Content" xml:space="preserve"><value>Accetta senza chiedere (solo reti attendibili)</value></data>
+  <data name="LocalSend_Listening" xml:space="preserve"><value>In attesa di invii LocalSend (porta {0}).</value></data>
+  <data name="LocalSend_Ask" xml:space="preserve"><value>«{0}» vuole inviarti {1} file ({2}) con LocalSend. Accettarli?</value></data>
 </root>

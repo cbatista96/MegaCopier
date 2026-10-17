@@ -12,6 +12,14 @@ internal sealed class PeerService(App app) : IDisposable
 {
     private PeerReceiver? _receiver;
     private PeerDiscovery? _discovery;
+    private LocalSendReceiver? _localSend;
+
+    /// <summary>LocalSend escuchando (para Ajustes).</summary>
+    public bool LocalSendRunning => _localSend is not null;
+
+    public int LocalSendPort => _localSend?.Port ?? LocalSendProtocol.DefaultPort;
+
+    public string? LocalSendError { get; private set; }
 
     private AppSettings Settings => app.Settings;
 
@@ -46,6 +54,7 @@ internal sealed class PeerService(App app) : IDisposable
     {
         Stop();
         Error = null;
+        ApplyLocalSend();
         if (!Settings.ReceiveEnabled)
         {
             return;
@@ -65,7 +74,10 @@ internal sealed class PeerService(App app) : IDisposable
         catch (Exception ex) when (ex is System.Net.Sockets.SocketException or IOException or UnauthorizedAccessException or System.Security.Cryptography.CryptographicException)
         {
             Error = ex.Message;
-            Stop();
+            _discovery?.Dispose();
+            _discovery = null;
+            _receiver?.Dispose();
+            _receiver = null; // LocalSend sigue: es independiente
         }
     }
 
@@ -85,6 +97,65 @@ internal sealed class PeerService(App app) : IDisposable
         _discovery = null;
         _receiver?.Dispose();
         _receiver = null;
+        _localSend?.Dispose();
+        _localSend = null;
+    }
+
+    /// <summary>
+    /// LocalSend: el PC aparece con su nombre en la app del móvil. En pruebas solo escucha en este equipo y en un puerto
+    /// libre (sin aviso del cortafuegos ni multidifusión), y no pregunta con una ventana encima del escritorio.
+    /// </summary>
+    private void ApplyLocalSend()
+    {
+        LocalSendError = null;
+        if (!Settings.LocalSendEnabled)
+        {
+            return;
+        }
+
+        if (Settings.LocalSendFingerprint.Length == 0)
+        {
+            Settings.LocalSendFingerprint = Convert.ToHexString(System.Security.Cryptography.RandomNumberGenerator.GetBytes(16));
+            Settings.Save();
+        }
+
+        try
+        {
+            Directory.CreateDirectory(Folder);
+            bool test = App.TestMode;
+            _localSend = new LocalSendReceiver(Folder, Environment.MachineName, Settings.LocalSendFingerprint, AskAsync,
+                port: test ? 0 : LocalSendProtocol.DefaultPort, loopbackOnly: test);
+            _localSend.Event += e => app.Dispatcher.TryEnqueue(() => OnEvent(e));
+            _localSend.Start();
+            if (test)
+            {
+                App.TestLog("peer.log", $"localsend puerto={_localSend.Port}");
+            }
+        }
+        catch (Exception ex) when (ex is System.Net.Sockets.SocketException or IOException or UnauthorizedAccessException)
+        {
+            LocalSendError = ex.Message;
+            _localSend?.Dispose();
+            _localSend = null;
+        }
+    }
+
+    /// <summary>¿Se acepta este envío? Sin "aceptar sin preguntar", con el cuadro Sí/No de Windows.</summary>
+    private Task<bool> AskAsync(LocalSendOffer offer)
+    {
+        if (Settings.LocalSendAutoAccept)
+        {
+            return Task.FromResult(true);
+        }
+
+        if (App.TestMode)
+        {
+            App.TestLog("peer.log", $"localsend pregunta {offer.Sender} archivos={offer.Files} bytes={offer.Bytes}");
+            return Task.FromResult(Environment.GetEnvironmentVariable("MEGACOPIER_TEST_LOCALSEND") != "reject");
+        }
+
+        string question = L.F("LocalSend_Ask", offer.Sender, offer.Files, ViewModels.Format.Bytes(offer.Bytes));
+        return Task.Run(() => SystemActions.Confirm(question));
     }
 
     private static X509Certificate2 Certificate()

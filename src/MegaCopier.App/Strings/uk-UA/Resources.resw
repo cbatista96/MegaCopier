@@ -829,4 +829,9 @@
   <data name="Mtp_MoveImport" xml:space="preserve"><value>Видалити скопійоване з пристрою (перемістити)</value></data>
   <data name="Mtp_MoveExport" xml:space="preserve"><value>Видалити скопійоване з ПК (перемістити)</value></data>
   <data name="Mtp_Open" xml:space="preserve"><value>Відкрити «{0}»</value></data>
+  <data name="Settings_LocalSendTitle.Text" xml:space="preserve"><value>Отримувати з телефона через LocalSend</value></data>
+  <data name="Settings_LocalSendDescription" xml:space="preserve"><value>Установіть LocalSend (безкоштовно, для iPhone і Android) на телефон у тій самій мережі: цей ПК показується як «{0}». Надіслане потрапляє до {1}.</value></data>
+  <data name="LocalSend_AutoAccept.Content" xml:space="preserve"><value>Приймати без запитань (лише в довірених мережах)</value></data>
+  <data name="LocalSend_Listening" xml:space="preserve"><value>Очікування надсилань LocalSend (порт {0}).</value></data>
+  <data name="LocalSend_Ask" xml:space="preserve"><value>«{0}» хоче надіслати вам файли ({1}, {2}) через LocalSend. Прийняти?</value></data>
 </root>

@@ -829,4 +829,9 @@
   <data name="Mtp_MoveImport" xml:space="preserve"><value>コピーしたものをデバイスから削除（移動）</value></data>
   <data name="Mtp_MoveExport" xml:space="preserve"><value>コピーしたものを PC から削除（移動）</value></data>
   <data name="Mtp_Open" xml:space="preserve"><value>「{0}」を開く</value></data>
+  <data name="Settings_LocalSendTitle.Text" xml:space="preserve"><value>LocalSend でスマートフォンから受信</value></data>
+  <data name="Settings_LocalSendDescription" xml:space="preserve"><value>同じネットワークのスマートフォンに LocalSend（無料、iPhone と Android 用）をインストールしてください。この PC は「{0}」と表示されます。送ったものは {1} に届きます。</value></data>
+  <data name="LocalSend_AutoAccept.Content" xml:space="preserve"><value>確認せずに受け入れる（信頼できるネットワークのみ）</value></data>
+  <data name="LocalSend_Listening" xml:space="preserve"><value>LocalSend からの送信を待っています（ポート {0}）。</value></data>
+  <data name="LocalSend_Ask" xml:space="preserve"><value>「{0}」が LocalSend で {1} 個のファイル（{2}）を送ろうとしています。受け入れますか？</value></data>
 </root>

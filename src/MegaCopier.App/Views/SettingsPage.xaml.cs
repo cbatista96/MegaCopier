@@ -568,6 +568,36 @@ public sealed partial class SettingsPage : UserControl
         ReceiveInfo.Text = peers is { Error: { } error } ? L.F("Settings_PeerError", error)
             : peers?.IsRunning == true ? L.F("Settings_PeerListening", Environment.MachineName, peers.Port)
             : "";
+
+        loading = _loading;
+        _loading = true;
+        LocalSendToggle.IsOn = _app.Settings.LocalSendEnabled;
+        LocalSendAutoAcceptBox.IsChecked = _app.Settings.LocalSendAutoAccept;
+        _loading = loading;
+        LocalSendDescription.Text = L.F("Settings_LocalSendDescription", Environment.MachineName, peers?.Folder ?? "");
+        LocalSendPanel.Visibility = _app.Settings.LocalSendEnabled ? Visibility.Visible : Visibility.Collapsed;
+        LocalSendInfo.Text = peers is { LocalSendError: { } localError } ? L.F("Settings_PeerError", localError)
+            : peers?.LocalSendRunning == true ? L.F("LocalSend_Listening", peers.LocalSendPort)
+            : "";
+    }
+
+    private void LocalSend_Toggled(object sender, RoutedEventArgs e)
+    {
+        if (_loading)
+        {
+            return;
+        }
+
+        _app.Settings.LocalSendEnabled = LocalSendToggle.IsOn;
+        _app.Settings.Save();
+        _app.Peers?.Apply();
+        LoadReceive();
+    }
+
+    private void LocalSendAutoAccept_Click(object sender, RoutedEventArgs e)
+    {
+        _app.Settings.LocalSendAutoAccept = LocalSendAutoAcceptBox.IsChecked == true;
+        _app.Settings.Save();
     }
 
     private void Receive_Toggled(object sender, RoutedEventArgs e)

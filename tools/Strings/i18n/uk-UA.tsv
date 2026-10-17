@@ -823,3 +823,8 @@ Mtp_Refresh.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Шук
 Mtp_MoveImport	Видалити скопійоване з пристрою (перемістити)
 Mtp_MoveExport	Видалити скопійоване з ПК (перемістити)
 Mtp_Open	Відкрити «{0}»
+Settings_LocalSendTitle.Text	Отримувати з телефона через LocalSend
+Settings_LocalSendDescription	Установіть LocalSend (безкоштовно, для iPhone і Android) на телефон у тій самій мережі: цей ПК показується як «{0}». Надіслане потрапляє до {1}.
+LocalSend_AutoAccept.Content	Приймати без запитань (лише в довірених мережах)
+LocalSend_Listening	Очікування надсилань LocalSend (порт {0}).
+LocalSend_Ask	«{0}» хоче надіслати вам файли ({1}, {2}) через LocalSend. Прийняти?

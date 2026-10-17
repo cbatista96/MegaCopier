@@ -829,4 +829,9 @@
   <data name="Mtp_MoveImport" xml:space="preserve"><value>从设备上删除已复制的内容（移动）</value></data>
   <data name="Mtp_MoveExport" xml:space="preserve"><value>从电脑上删除已复制的内容（移动）</value></data>
   <data name="Mtp_Open" xml:space="preserve"><value>打开“{0}”</value></data>
+  <data name="Settings_LocalSendTitle.Text" xml:space="preserve"><value>用 LocalSend 从手机接收</value></data>
+  <data name="Settings_LocalSendDescription" xml:space="preserve"><value>在同一网络中的手机上安装 LocalSend（免费，支持 iPhone 和 Android）：此电脑显示为“{0}”。发送的内容会保存到 {1}。</value></data>
+  <data name="LocalSend_AutoAccept.Content" xml:space="preserve"><value>不询问直接接受（仅限可信网络）</value></data>
+  <data name="LocalSend_Listening" xml:space="preserve"><value>正在等待 LocalSend 发送（端口 {0}）。</value></data>
+  <data name="LocalSend_Ask" xml:space="preserve"><value>“{0}”想通过 LocalSend 向你发送 {1} 个文件（{2}）。是否接受？</value></data>
 </root>
