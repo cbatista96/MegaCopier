@@ -55,11 +55,11 @@ Son la copia a medias de un archivo y su diario. Desaparecen al terminar. Si aba
 borran. No los borres a mano mientras la copia está pendiente o tendrá que empezar ese archivo de cero.
 
 ### La copia va más lenta de lo que esperaba
-- Mira si hay un **límite de velocidad** (*Ajustes > Copia > Rendimiento* o *Ajustes > Cola > Límite por horario*), o si
+- Mira si hay un **límite de velocidad** (*Ajustes > Copia > Rendimiento* o *Ajustes > Cola y rendimiento > Límite de velocidad por horario*), o si
   están activados *Ir más despacio mientras usas el equipo*, *Pausar con batería* o *Pausar en juegos*.
 - Dos copias en el **mismo disco** van de una en una a propósito (a la vez serían más lentas).
-- Muchos archivos pequeños: activa *Ajustes > Avanzado > Excluir MegaCopier del análisis de Windows Defender*.
-- *Ajustes > Avanzado > Ajuste automático para cada disco > Medir los discos* elige el mejor tamaño de bloque para cada uno.
+- Muchos archivos pequeños: activa *Ajustes > Cola y rendimiento > Excluir MegaCopier del análisis de Windows Defender*.
+- *Ajustes > Cola y rendimiento > Ajuste automático para cada disco > Medir los discos* elige el mejor tamaño de bloque para cada uno.
 - En un SSD, tras escribir unos GB seguidos la velocidad baja (se llena su caché interna): pasa con cualquier programa.
 
 ### ¿Verifica siempre lo que copia?
