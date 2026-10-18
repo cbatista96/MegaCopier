@@ -34,7 +34,7 @@ publicada de MegaCopier **no trae identificadores incluidos**, así que cada per
 
 ## Usarlo
 
-Ajustes > Conexiones > **Añadir** > tipo OneDrive, Google Drive o Dropbox > pega el identificador > **Iniciar sesión en el
+Ajustes > Red y dispositivos > Servidores y nubes > **Añadir…** > tipo OneDrive, Google Drive o Dropbox > pega el identificador > **Iniciar sesión en el
 navegador** > acepta en la página del servicio > **Guardar**. Después la nube aparece en "Nueva > Copiar desde un móvil,
 cámara o servidor…" y como destino, como cualquier servidor.
 

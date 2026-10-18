@@ -24,7 +24,7 @@ necesites.
 15. [Tareas programadas y avisos](#15-tareas-programadas-y-avisos)
 16. [Controlar desde el móvil y con asistentes de IA](#16-controlar-desde-el-móvil-y-con-asistentes-de-ia)
 17. [Ajustes](#17-ajustes)
-18. [Temas](#18-temas)
+18. [Temas e iconos](#18-temas-e-iconos)
 19. [La consola `mcopy`](#19-la-consola-mcopy)
 20. [Versión portátil](#20-versión-portátil)
 21. [Cómo funciona por dentro](#21-cómo-funciona-por-dentro)
@@ -117,12 +117,12 @@ Con varias copias aparece un paginador **‹ ›** para pasar de una a otra.
 
 ![Ventana ampliada con la gráfica de velocidad](capturas/ampliada-estado.png)
 
-En *Ajustes > Ventana > Ventana de copia* eliges si empieza **compacta**, **completa** o **automática** (compacta con
+En *Ajustes > Interfaz > Ventana de copia* eliges si empieza **compacta**, **completa** o **automática** (compacta con
 una copia y completa cuando hay varias a la vez).
 
 ### Al terminar
 
-Según *Ajustes > Ventana > Al terminar las copias*, la ventana se **cierra si todo fue bien** (lo normal), se **cierra
+Según *Ajustes > Interfaz > Al terminar las copias*, la ventana se **cierra si todo fue bien** (lo normal), se **cierra
 siempre** o **se queda abierta**. Si se queda abierta verás el resumen y el botón **Abrir carpeta**:
 
 ![Copias terminadas](capturas/terminadas.png)
@@ -199,7 +199,7 @@ El botón **Nueva** de la vista completa reúne todo lo que MegaCopier sabe hace
 Al elegir el destino (por ejemplo, con *Copiar archivos…*) se abre la ventana de destinos, donde puedes:
 
 - **Añadir varios destinos**: la misma copia va a la vez a dos discos o a un disco y un NAS. Se lee el origen una sola vez.
-- Usar **favoritos** (se gestionan en *Ajustes > Carpetas favoritas*), **recientes** o las **carpetas abiertas** en el
+- Usar **favoritos** (se gestionan en *Ajustes > Red y dispositivos > Carpetas favoritas*), **recientes** o las **carpetas abiertas** en el
   Explorador, Total Commander y Directory Opus.
 - **Mover** en vez de copiar, **simular** (dice qué haría sin cambiar nada) y elegir el **modo**:
   - **Copiar** (normal).
@@ -263,7 +263,7 @@ el origen se borra en el destino (con la carpeta de versiones, se guarda allí e
 
 ### Sincronización en tiempo real
 
-*Ajustes > Sincronización en tiempo real > Añadir carpeta…*: MegaCopier vigila la carpeta y copia cada cambio al momento
+*Ajustes > Automatización > Añadir carpeta…*: MegaCopier vigila la carpeta y copia cada cambio al momento
 a su destino, mientras esté abierto en la bandeja. Puede ser en espejo (también borra) o solo añadir y actualizar.
 
 ---
@@ -299,7 +299,7 @@ más rápido, y se puede deshacer desde el historial.
 - **Datos de recuperación** (`--recovery`): guarda junto a la copia un pequeño porcentaje de datos extra (paridad
   Reed-Solomon, como PAR2). Si con los años el disco o el USB estropea bloques de la copia, *Nueva > Reparar con datos de
   recuperación…* (o `mcopy repair`) los reconstruye **sin necesitar el original**.
-- **Guardián de integridad** (*Ajustes > Guardián de integridad*): guarda la suma de cada archivo de las carpetas que
+- **Guardián de integridad** (*Ajustes > Automatización > Guardián de integridad*): guarda la suma de cada archivo de las carpetas que
   elijas y las revisa cada día, semana o mes. Si un archivo se ha dañado sin que nadie lo tocara (corrupción silenciosa
   del disco), te avisa.
 - **Aviso SMART** (*Ajustes > Avanzado > Estado de los discos*): avisa cuando un disco empieza a fallar.
@@ -333,19 +333,19 @@ servidor…* para traer fotos, o *Copiar archivos a un móvil, cámara o servido
 
 ### LocalSend (iPhone y Android, sin cables)
 
-[LocalSend](https://localsend.org) es una app gratuita para el móvil. Con *Ajustes > Recibir de otros equipos > Recibir
+[LocalSend](https://localsend.org) es una app gratuita para el móvil. Con *Ajustes > Red y dispositivos > Recibir
 desde el móvil con LocalSend* activado, el PC aparece en LocalSend y lo que envíes llega a la carpeta que elijas. Para
 **enviar al móvil**: *Nueva > Enviar archivos a otro equipo…* y elige el móvil.
 
 ### Otro PC con MegaCopier
 
-En el PC que recibe: *Ajustes > Recibir de otros equipos > Recibir archivos de otros equipos con MegaCopier*. Te da un
+En el PC que recibe: *Ajustes > Red y dispositivos > Recibir archivos de otros equipos con MegaCopier*. Te da un
 **código**. En el que envía: *Nueva > Enviar archivos a otro equipo…*, elige el equipo (o escribe su nombre o IP) y el
 código. Va cifrado y por la red local.
 
 ### Servidores
 
-*Ajustes > Conexiones a servidores > Añadir…*: **FTP**, **FTPS**, **SFTP**, **WebDAV** (Nextcloud, ownCloud, NAS…) y **S3**
+*Ajustes > Red y dispositivos > Añadir…*: **FTP**, **FTPS**, **SFTP**, **WebDAV** (Nextcloud, ownCloud, NAS…) y **S3**
 y compatibles (AWS, Backblaze B2, Cloudflare R2, Wasabi, MinIO). Después aparecen como origen y destino. Las contraseñas
 se guardan en el Administrador de credenciales de Windows, nunca en archivos.
 
@@ -366,7 +366,7 @@ Un botón que llame a `mcopy send` hace que copien con MegaCopier: [Integracione
 ## 14. La cola, la línea de tiempo y el historial
 
 - **Cola por disco**: dos copias en el mismo disco van **de una en una** (a la vez serían más lentas); en discos distintos
-  van **a la vez**. *Ajustes > Cola* fija el máximo de copias a la vez y qué discos son «rápidos» (pueden con varias).
+  van **a la vez**. *Ajustes > Cola y rendimiento* fija el máximo de copias a la vez y qué discos son «rápidos» (pueden con varias).
 - **Línea de tiempo** (icono del reloj): cuándo empezará y terminará cada copia, según la velocidad de cada disco.
 
   ![Línea de tiempo](capturas/linea-tiempo.png)
@@ -381,9 +381,9 @@ Un botón que llame a `mcopy send` hace que copien con MegaCopier: [Integracione
 ## 15. Tareas programadas y avisos
 
 - **Tareas programadas**: en la ventana de destinos, *Guardar como tarea*. Se repiten una vez, cada día, semana o mes.
-  Si el PC estaba apagado a esa hora, **se hacen al encenderlo**. Se gestionan en *Ajustes > Tareas programadas*.
+  Si el PC estaba apagado a esa hora, **se hacen al encenderlo**. Se gestionan en *Ajustes > Automatización > Tareas programadas*.
 - **Avisar al terminar** con una notificación de Windows y sonido (*Ajustes > Sonidos*).
-- **Avisar por correo** (*Ajustes > Avanzado*): servidor SMTP, remitente y destinatarios, o solo si hay problemas. Tiene
+- **Avisar por correo** (*Ajustes > Automatización*): servidor SMTP, remitente y destinatarios, o solo si hay problemas. Tiene
   botón de prueba.
 - **Avisar a una dirección web** (webhook) al terminar, para Slack, Discord, Teams, Home Assistant o lo que uses.
 - **Al terminar** (barra de herramientas): suspender, hibernar, apagar, cerrar sesión o cerrar MegaCopier.
@@ -395,7 +395,7 @@ Un botón que llame a `mcopy send` hace que copien con MegaCopier: [Integracione
 
 ## 16. Controlar desde el móvil y con asistentes de IA
 
-- **Controlar desde el móvil** (*Ajustes > Recibir de otros equipos > Controlar desde el móvil*): abre en el navegador del
+- **Controlar desde el móvil** (*Ajustes > Red y dispositivos > Controlar desde el móvil*): abre en el navegador del
   móvil la dirección que te da, escribe el código y verás las copias con su progreso, y podrás pausarlas, seguirlas o
   detenerlas. Solo funciona en tu red local y se bloquea tras 10 códigos erróneos.
 - **Asistentes de IA** (Claude, Copilot y otros): `mcopy mcp` es un servidor MCP. El asistente puede pedir copias,
@@ -406,47 +406,75 @@ Un botón que llame a `mcopy send` hace que copien con MegaCopier: [Integracione
 
 ## 17. Ajustes
 
-Botón del engranaje en la vista completa. Cada ajuste tiene su explicación debajo.
+Botón del engranaje en la vista completa. Están organizados **como la Configuración de Windows 11**: las secciones a la
+izquierda, cada una con su icono, y sus opciones a la derecha, cada una con su icono y su explicación debajo. Arriba a la
+izquierda hay un **buscador**: escribe, por ejemplo, «sonido» o «USB» y aparecen solo los ajustes que lo mencionan, de
+cualquier sección. Al cambiar de sección el contenido entra deslizándose y, al pulsar una opción, su icono da un salto.
+En una ventana estrecha la lista de secciones se queda solo con los iconos.
 
 ![Ajustes](capturas/ajustes.png)
 
 | Sección | Qué se ajusta |
 |---|---|
 | **General** | Usar MegaCopier en lugar del copiador de Windows · Copiar y mover al pegar (Ctrl+V) · Arrastrar con el botón izquierdo (y si preguntar antes) · Opciones en el menú contextual · Iniciar con Windows. |
-| **Ventana** | Ventana compacta, completa o automática · Qué hacer al terminar · Siempre visible · Avisar al terminar · **Idioma** · Unidades de tamaño (KB como el Explorador, KiB binarias o kB de 1000). |
-| **Sonidos** | Sonido para cada momento (terminar, error, pregunta…), volumen, sonidos propios y no sonar con juegos, presentaciones o «No molestar». |
-| **Temas** | El tema y su editor (ver [Temas](#18-temas)). |
-| **Copia** | Verificar después de copiar · Si el archivo ya existe · Algoritmo de suma · Qué se copia (fechas, atributos, ADS, permisos, propietario, auditoría) · Archivo de sumas e informe · Comprobar el espacio libre antes · Caché del sistema · Comprimir por la red (SMB) · Reanudar solas al arrancar · Rendimiento (límite de velocidad, búfer, operaciones en paralelo). |
-| **Carpetas favoritas** | Destinos favoritos para *Copiar a*. |
-| **Recibir de otros equipos** | Recibir de otro PC con MegaCopier (código y carpeta) · Recibir con LocalSend · Controlar desde el móvil. |
-| **Conexiones a servidores** | Servidores y nubes · Conexiones a la vez (máximo). |
-| **Sincronización en tiempo real** | Carpetas que se copian al momento. |
-| **Tareas programadas** | Copias que se repiten solas. |
-| **Guardián de integridad** | Carpetas vigiladas y cada cuánto. |
-| **Cola** | Copias a la vez · Dispositivos rápidos · Ir más despacio mientras usas el equipo · Límite de velocidad por horario · Pausar con batería · Pausar en juegos y presentaciones. |
-| **Avanzado** | Prioridad del proceso · Excluir MegaCopier de Windows Defender (más rápido con muchos archivos; pide permiso de administrador) · Comandos al terminar · Guardar el registro de cada copia · Avisos por webhook y por correo · Estado de los discos (SMART) · Ajuste automático para cada disco. |
+| **Interfaz** | Ventana compacta, completa o automática · Qué hacer al terminar · Siempre visible · Avisar al terminar · **Idioma** · Unidades de tamaño · Mostrar el icono en la bandeja · Iniciar las copias con la ventana minimizada · Recordar la posición y el tamaño de la ventana · Ventana translúcida · **Temas** y su editor · **Conjuntos de iconos** (ver [Temas e iconos](#18-temas-e-iconos)). |
+| **Sonidos** | Sonido para cada momento (copia terminada, todas terminadas, error, pregunta), volumen y no sonar con juegos, presentaciones o «No molestar». Por defecto suenan los **sonidos propios de MegaCopier** (campanillas originales, no los avisos de Windows); en cada momento puedes elegir el de Windows, uno de `C:\Windows\Media` o un archivo tuyo, y probarlo con ▶. |
+| **Copia** | Verificar después de copiar · Si el archivo ya existe · Algoritmo de suma · Qué se copia (fechas, atributos, ADS, permisos, propietario, auditoría) · Archivo de sumas e informe · Comprobar el espacio libre antes · Caché del sistema · Comprimir por la red (SMB) · Reanudar solas al arrancar · Rendimiento · Filtros y reglas. |
+| **Comportamiento** | **Añadir las copias nuevas a una que ya está en marcha** (nunca, si van a la misma carpeta, si usan los mismos discos o siempre; preguntando antes o no) · **Al mover, conservar también** atributos, permisos, propietario y auditoría · **Al detener una copia, borrar lo que quedó a medias** (y no hacerlo si paró por un error) · **Al terminar, expulsar la unidad de destino** si es extraíble (y forzarlo). |
+| **Errores** | **Si un archivo sigue fallando**: omitirlo y seguir, detener la copia, reintentarlo al final o **preguntar qué hacer** · Reintentos y espera entre ellos · **Informe de errores** automático (en la carpeta de destino o en una fija, con el nombre que quieras) · Guardar el registro de cada copia. |
+| **Cola y rendimiento** | Copias a la vez · Dispositivos rápidos · Ir más despacio mientras usas el equipo · Límite de velocidad por horario · Pausar con batería · Pausar en juegos · Prioridad del proceso · Excluir MegaCopier de Windows Defender · Ajuste automático para cada disco. |
+| **Red y dispositivos** | Carpetas favoritas · Recibir de otro PC con MegaCopier · Recibir con LocalSend · Controlar desde el móvil · Servidores y nubes. |
+| **Automatización** | Sincronización en tiempo real · Tareas programadas · Guardián de integridad · Comandos al terminar · Avisos por webhook y por correo. |
+| **Avanzado** | Estado de los discos (SMART) · Carpeta de datos (dónde guarda MegaCopier sus ajustes) · **Restablecer los ajustes** de fábrica. |
+
+### Si un archivo sigue fallando: preguntar
+
+Con *Errores > Si un archivo sigue fallando > Preguntar qué hacer*, cuando un archivo no se puede copiar (por ejemplo,
+porque otro programa lo tiene abierto) la copia se para y pregunta, explicando el motivo:
+
+- **Reintentar**: cierra el programa que lo usa y pulsa; sigue desde el journal.
+- **Omitir**: lo deja apuntado como fallido y sigue con el siguiente. Con *Omitir también los siguientes errores de esta
+  copia* ya no vuelve a preguntar.
+- **Detener la copia**: se para y se puede continuar más tarde.
 
 Cambiar el **idioma** pide reiniciar MegaCopier (la app lo ofrece con un botón). Hay 14: español, inglés, francés, alemán,
 italiano, portugués de Brasil, ruso, ucraniano, polaco, neerlandés, turco, chino, japonés y coreano.
 
 ---
 
-## 18. Temas
+## 18. Temas e iconos
 
-*Ajustes > Temas*. Cambian toda la interfaz al momento:
+*Ajustes > Interfaz > Temas*. **52 temas** que cambian toda la interfaz al momento, también los botones, las listas, los
+menús, los cuadros de texto, los interruptores y hasta las barras de desplazamiento. Muchos se inspiran en los temas
+clásicos de SuperCopier (Afterburner, Air, Metro, Matrix, Ubuntu, Vista, XP…), rehechos al estilo de Windows 11, y
+algunos tienen **textura** de fondo:
 
-| | | |
-|---|---|---|
-| **Fluent (como Windows)**: sigue el modo claro u oscuro y el color de acento de Windows | **Fluent oscuro** | **Fluent claro** |
-| **Medianoche** | **Grafito** | **Océano** |
-| **Bosque** | **Atardecer** | **SuperCopier clásico** |
-| **Ultracopier clásico** | **Alto contraste** | |
+| Oscuros | Claros |
+|---|---|
+| Fluent oscuro · Medianoche · Grafito · Océano · Bosque · Atardecer · Alto contraste · **Combustión** (brasas) · **Caja negra** (fibra de carbono) · Metro oscuro · Robot verde · Cielo de otoño · Ámbar · Granate · **Código verde** (lluvia digital) · Vapor · Metro gris · Televisión · Reproductor · Humo · Berenjena · SuperCopier 3 azul, verde y naranja · **Aurora** · **Galaxia** · **Neón** (rejilla) · **Burbuja azul** (ondas) | Fluent claro · SuperCopier clásico · Ultracopier clásico · Aire · Metro claro · Pez azul · Línea plana · Plus · **Cristal** (metal cepillado) · Cielo · Menta · **Cuaderno** (papel) · **Madera** · Brillo · Nieve · Burbuja lima · Tóxico · Naranja tierra · Aero · Moderno 8 · Mensajero · Luna · Plata |
+
+El tema **Fluent (como Windows)** sigue solo el modo claro u oscuro y el color de acento de Windows.
 
 Con **Personalizar el tema** cambias los 16 colores (lo ves al momento en toda la interfaz), el degradado y el alto de las
 barras, el redondeo y el fondo (Mica, Mica Alt, Acrílico o sólido). Guarda tus temas con nombre y compártelos con
 **Exportar…** / **Importar…** (archivos `.json`).
 
-Todos los temas en imágenes: [README > Temas](../README.md#temas).
+### Conjuntos de iconos
+
+*Ajustes > Interfaz > Iconos*. Los iconos se eligen **aparte del tema**: cualquier tema con cualquier conjunto. Todos usan
+los iconos modernos de Windows 11:
+
+| Conjunto | Cómo se ven |
+|---|---|
+| **Fluent** | Como Windows: del color del texto (o del acento del tema). |
+| **Color** | Cada icono con su color: reproducir verde, pausa ámbar, detener rojo, carpetas amarillas… |
+| **Mosaico** | Icono blanco sobre un cuadrado de su color, como la Configuración de Windows 11. |
+| **Suave** | Icono de su color sobre un fondo suave del mismo color. |
+| **Degradado** | Relleno con el degradado de las barras del tema. |
+| **Neón** | Color vivo con un halo de luz alrededor (luce en los temas oscuros). |
+| **Windows 10** | Los iconos clásicos de Windows 10. |
+
+Todos los temas y conjuntos en imágenes: [README > Temas](../README.md#temas).
 
 ---
 

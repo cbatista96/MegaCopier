@@ -63,8 +63,19 @@ Todo lo que hace MegaCopier, por temas. Para usarlo, la [guía](Guia.md); para c
   **7z cifrado**, que oculta también los nombres de los archivos.
 - **Borrado seguro**: una pasada de ceros, aleatoria, DoD de 3 pasadas o DoD de 7 pasadas.
 
-## Sincronizar
+## Comportamiento y errores (como SuperCopier)
+- **Si un archivo sigue fallando, preguntar qué hacer**: reintentar, omitir, omitir todos los siguientes o detener (o
+  decidirlo de antemano: omitir, detener o reintentar al final).
+- **Añadir las copias nuevas a una que ya está en marcha**: nunca, si van a la misma carpeta, si usan los mismos discos o
+  siempre, preguntando antes o no.
+- **Informe de errores** automático al terminar con problemas, en la carpeta de destino o en una fija.
+- **Expulsar la unidad de destino** (USB, tarjeta) al terminar, también a la fuerza.
+- **Al detener una copia, borrar lo que quedó a medias** (salvo si paró por un error).
+- Atributos y permisos que se conservan **al mover**, aparte de los de copiar.
+- Icono de la bandeja opcional, empezar las copias minimizadas, recordar la posición y el tamaño de la ventana y
+  ventana translúcida.
 
+## Sincronizar
 - **Espejo** de una carpeta en otra.
 - **Sincronización en los dos sentidos**, que recuerda el estado anterior, detecta borrados y **renombrados o movidos**
   (los renombra en el otro lado sin volver a copiarlos); lo sustituido va a la Papelera.
@@ -100,5 +111,7 @@ Todo lo que hace MegaCopier, por temas. Para usarlo, la [guía](Guia.md); para c
 - **Consola** `mcopy` con todas las funciones y **modo portátil** (ZIP, sin instalar).
 - **14 idiomas**: español, inglés, francés, alemán, italiano, portugués de Brasil, ruso, ucraniano, polaco, neerlandés,
   turco, chino, japonés y coreano.
-- 11 temas, editor de colores, sonidos propios y modo claro u oscuro; accesible con lectores de pantalla.
+- **52 temas** que colorean toda la interfaz (hasta las barras de desplazamiento), con degradados y texturas (brasas, madera, papel, fibra de carbono, aurora, galaxia, metal, ondas, neón y lluvia digital), y **7 conjuntos de iconos** (Fluent, Color, Mosaico, Suave, Degradado, Neón y Windows 10) que se combinan con cualquier tema; editor de colores y modo claro u oscuro; accesible con lectores de pantalla.
+- **Ajustes como la Configuración de Windows 11**: secciones a la izquierda con sus iconos, buscador de ajustes y animaciones.
+- **Sonidos propios** (campanillas originales) al terminar, en los errores y cuando hace falta decidir algo, activados por defecto; se pueden cambiar por los de Windows o por un archivo tuyo.
 - Sin telemetría: no envía nada a ningún sitio salvo lo que configures tú.

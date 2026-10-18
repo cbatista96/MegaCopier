@@ -31,7 +31,7 @@ y las versiones, [SemVer](https://semver.org/lang/es/).
 
 ### Cambiado
 - Documentación nueva y completa: guía de uso paso a paso, preguntas frecuentes, guía de versiones y capturas de todas
-  las vistas y de los 11 temas.
+  las vistas, de los temas y de los conjuntos de iconos.
 - `tools\publicar-version.ps1` publica una versión nueva con un solo comando.
 - Una copia en cola muestra la barra quieta y vacía mientras espera su turno, en vez de la animación de «cargando».
 
