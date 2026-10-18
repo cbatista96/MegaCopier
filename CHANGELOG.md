@@ -5,6 +5,8 @@ y las versiones, [SemVer](https://semver.org/lang/es/).
 
 ## [Sin publicar]
 
+## [1.1.0] - 2026-10-17
+
 Ajustes rehechos como la Configuración de Windows 11, 41 temas nuevos inspirados en SuperCopier, conjuntos de iconos que
 se combinan con cualquier tema, sonidos propios y todas las opciones de SuperCopier que faltaban.
 
@@ -184,5 +186,6 @@ Primera versión pública.
 - Aviso SMART, avisos por correo y webhook, control desde el móvil y servidor MCP para asistentes de IA.
 - Consola `mcopy`, modo portátil, 14 idiomas, 11 temas y accesibilidad con lectores de pantalla.
 
-[Sin publicar]: https://github.com/cbatista96/MegaCopier/compare/v1.0.0...HEAD
+[Sin publicar]: https://github.com/cbatista96/MegaCopier/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/cbatista96/MegaCopier/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/cbatista96/MegaCopier/releases/tag/v1.0.0
