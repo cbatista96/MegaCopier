@@ -492,7 +492,7 @@
   <data name="Sound_Attention" xml:space="preserve"><value>需要你做决定（文件已存在）</value></data>
   <data name="Sound_Test" xml:space="preserve"><value>试听</value></data>
   <data name="Sound_None" xml:space="preserve"><value>无声音</value></data>
-  <data name="Sound_Default" xml:space="preserve"><value>Windows 默认</value></data>
+  <data name="Sound_Default" xml:space="preserve"><value>MegaCopier（自带声音）</value></data>
   <data name="Sound_Choose" xml:space="preserve"><value>选择文件…</value></data>
   <data name="File_Planned" xml:space="preserve"><value>已模拟</value></data>
   <data name="File_Deleted" xml:space="preserve"><value>已移除</value></data>
@@ -1083,4 +1083,84 @@
   <data name="Theme_mensajero" xml:space="preserve"><value>信使</value></data>
   <data name="Theme_luna" xml:space="preserve"><value>Luna</value></data>
   <data name="Theme_plata" xml:space="preserve"><value>银色</value></data>
+  <data name="Section_General" xml:space="preserve"><value>常规</value></data>
+  <data name="Section_Interface" xml:space="preserve"><value>界面</value></data>
+  <data name="Section_Sounds" xml:space="preserve"><value>声音</value></data>
+  <data name="Section_Copy" xml:space="preserve"><value>复制</value></data>
+  <data name="Section_Behavior" xml:space="preserve"><value>行为</value></data>
+  <data name="Section_Errors" xml:space="preserve"><value>错误</value></data>
+  <data name="Section_Performance" xml:space="preserve"><value>队列与性能</value></data>
+  <data name="Section_Network" xml:space="preserve"><value>网络和设备</value></data>
+  <data name="Section_Automation" xml:space="preserve"><value>自动化</value></data>
+  <data name="Section_Advanced" xml:space="preserve"><value>高级</value></data>
+  <data name="Settings_Search.PlaceholderText" xml:space="preserve"><value>查找设置</value></data>
+  <data name="Settings_SearchResults" xml:space="preserve"><value>“{0}”的结果</value></data>
+  <data name="Settings_SearchNone" xml:space="preserve"><value>没有与“{0}”匹配的设置。</value></data>
+  <data name="Settings_TrayTitle.Text" xml:space="preserve"><value>在通知区域显示图标</value></data>
+  <data name="Settings_TrayDescription.Text" xml:space="preserve"><value>隐藏后 MegaCopier 仍在运行：再次启动即可打开。没有图标就没有系统通知。</value></data>
+  <data name="Settings_StartMinimizedTitle.Text" xml:space="preserve"><value>以最小化窗口开始复制</value></data>
+  <data name="Settings_StartMinimizedDescription.Text" xml:space="preserve"><value>窗口显示在任务栏中，不会遮挡你正在做的事。</value></data>
+  <data name="Settings_RememberTitle.Text" xml:space="preserve"><value>记住窗口</value></data>
+  <data name="Settings_RememberDescription.Text" xml:space="preserve"><value>在原来的位置以相同大小打开。</value></data>
+  <data name="Settings_RememberPosition.Content" xml:space="preserve"><value>位置</value></data>
+  <data name="Settings_RememberSize.Content" xml:space="preserve"><value>大小</value></data>
+  <data name="Settings_TranslucentTitle.Text" xml:space="preserve"><value>半透明窗口</value></data>
+  <data name="Settings_TranslucentDescription.Text" xml:space="preserve"><value>亚克力、更透明的背景：任何主题下都能透过窗口看到桌面。</value></data>
+  <data name="Settings_Icons.Text" xml:space="preserve"><value>图标</value></data>
+  <data name="Settings_IconsDescription.Text" xml:space="preserve"><value>选择图标的样式，可与任意主题搭配。</value></data>
+  <data name="IconPack_fluent" xml:space="preserve"><value>Fluent（同 Windows）</value></data>
+  <data name="IconPack_color" xml:space="preserve"><value>彩色</value></data>
+  <data name="IconPack_mosaico" xml:space="preserve"><value>磁贴</value></data>
+  <data name="IconPack_suave" xml:space="preserve"><value>柔和</value></data>
+  <data name="IconPack_degradado" xml:space="preserve"><value>渐变</value></data>
+  <data name="IconPack_neon" xml:space="preserve"><value>霓虹</value></data>
+  <data name="IconPack_windows10" xml:space="preserve"><value>Windows 10</value></data>
+  <data name="Settings_MergeTitle.Text" xml:space="preserve"><value>将新复制添加到正在进行的复制中</value></data>
+  <data name="Settings_MergeDescription.Text" xml:space="preserve"><value>文件不必排队，而是加入正在进行的复制列表。</value></data>
+  <data name="Merge_Never.Content" xml:space="preserve"><value>从不</value></data>
+  <data name="Merge_SameDestination.Content" xml:space="preserve"><value>如果目标是同一文件夹</value></data>
+  <data name="Merge_SameDisks.Content" xml:space="preserve"><value>如果使用相同的磁盘</value></data>
+  <data name="Merge_Always.Content" xml:space="preserve"><value>总是</value></data>
+  <data name="Settings_MergeConfirm.Content" xml:space="preserve"><value>添加前询问</value></data>
+  <data name="Settings_MoveAttributesTitle.Text" xml:space="preserve"><value>移动时还保留</value></data>
+  <data name="Settings_MoveAttributesDescription.Text" xml:space="preserve"><value>移动到其他磁盘时。在同一磁盘上移动只是重命名，所有内容都会保留。</value></data>
+  <data name="Settings_DeleteIncompleteTitle.Text" xml:space="preserve"><value>停止复制时删除未完成的部分</value></data>
+  <data name="Settings_DeleteIncompleteDescription.Text" xml:space="preserve"><value>将无法从中断处继续，目标位置也不会留下不完整的文件 (.mcpart)。</value></data>
+  <data name="Settings_KeepOnError.Content" xml:space="preserve"><value>如果复制因错误而停止则不删除</value></data>
+  <data name="Settings_EjectTitle.Text" xml:space="preserve"><value>完成后弹出目标驱动器</value></data>
+  <data name="Settings_EjectDescription.Text" xml:space="preserve"><value>仅限 U 盘、存储卡和 USB 硬盘，且没有其他复制正在使用时。</value></data>
+  <data name="Settings_EjectForce.Content" xml:space="preserve"><value>即使有程序正在使用也弹出</value></data>
+  <data name="Settings_OnErrorTitle.Text" xml:space="preserve"><value>如果文件仍然失败</value></data>
+  <data name="Settings_OnErrorDescription.Text" xml:space="preserve"><value>在用完所有重试之后。</value></data>
+  <data name="Rules_OnErrorAsk.Content" xml:space="preserve"><value>询问如何处理</value></data>
+  <data name="Settings_RetriesTitle.Text" xml:space="preserve"><value>重试</value></data>
+  <data name="Settings_RetriesDescription.Text" xml:space="preserve"><value>失败文件的重试次数以及每次尝试之间的等待时间。</value></data>
+  <data name="Settings_ErrorReportTitle.Text" xml:space="preserve"><value>保存错误报告</value></data>
+  <data name="Settings_ErrorReportDescription.Text" xml:space="preserve"><value>复制出错结束时，生成一个文本文件，列出每个失败的文件及原因。</value></data>
+  <data name="ErrorReport_Destination.Content" xml:space="preserve"><value>在目标文件夹中</value></data>
+  <data name="ErrorReport_Folder.Content" xml:space="preserve"><value>在固定文件夹中</value></data>
+  <data name="Settings_ErrorReportName.Header" xml:space="preserve"><value>文件名</value></data>
+  <data name="ErrorReport_NoFolder" xml:space="preserve"><value>未选择文件夹</value></data>
+  <data name="ErrorReport_Count" xml:space="preserve"><value>{0} 个文件出错：</value></data>
+  <data name="Settings_DataTitle.Text" xml:space="preserve"><value>数据文件夹</value></data>
+  <data name="Settings_DataDescription.Text" xml:space="preserve"><value>MegaCopier 的设置、主题、历史记录和日志。</value></data>
+  <data name="Settings_ResetTitle.Text" xml:space="preserve"><value>重置设置</value></data>
+  <data name="Settings_ResetDescription.Text" xml:space="preserve"><value>将一切恢复为刚安装时的状态。复制、历史记录和自定义主题会保留。</value></data>
+  <data name="Settings_ResetButton.Text" xml:space="preserve"><value>重置…</value></data>
+  <data name="Reset_Title" xml:space="preserve"><value>要重置所有设置吗？</value></data>
+  <data name="Reset_Message" xml:space="preserve"><value>MegaCopier 将以出厂设置重新启动。复制、历史记录和自定义主题会保留。</value></data>
+  <data name="Reset_Yes" xml:space="preserve"><value>重置</value></data>
+  <data name="Reset_No" xml:space="preserve"><value>取消</value></data>
+  <data name="ErrorAsk_Title" xml:space="preserve"><value>无法复制某个文件</value></data>
+  <data name="ErrorAsk_Retry" xml:space="preserve"><value>重试</value></data>
+  <data name="ErrorAsk_Skip" xml:space="preserve"><value>跳过</value></data>
+  <data name="ErrorAsk_SkipAll" xml:space="preserve"><value>同时跳过此复制中的后续错误</value></data>
+  <data name="ErrorAsk_Stop" xml:space="preserve"><value>停止复制（可继续）</value></data>
+  <data name="Merge_Title" xml:space="preserve"><value>添加到正在进行的复制</value></data>
+  <data name="Merge_Message" xml:space="preserve"><value>将 {0} 个项目添加到复制到“{1}”的任务吗？否则轮到它们时会单独复制。</value></data>
+  <data name="Merge_Add" xml:space="preserve"><value>添加</value></data>
+  <data name="Merge_Separate" xml:space="preserve"><value>单独</value></data>
+  <data name="Eject_DoneTitle" xml:space="preserve"><value>驱动器已弹出，可以拔下</value></data>
+  <data name="Eject_FailedTitle" xml:space="preserve"><value>无法弹出驱动器：有程序正在使用</value></data>
+  <data name="Sound_Windows" xml:space="preserve"><value>Windows 的声音</value></data>
 </root>

@@ -486,7 +486,7 @@ Sound_AllDone	모든 복사 완료
 Sound_Attention	결정 필요(파일이 이미 있음)
 Sound_Test	미리 듣기
 Sound_None	소리 없음
-Sound_Default	Windows 기본값
+Sound_Default	MegaCopier (자체 소리)
 Sound_Choose	파일 선택…
 File_Planned	시뮬레이션됨
 File_Deleted	제거됨
@@ -1077,3 +1077,83 @@ Theme_moderno-8	모던 8
 Theme_mensajero	메신저
 Theme_luna	루나
 Theme_plata	실버
+Section_General	일반
+Section_Interface	인터페이스
+Section_Sounds	소리
+Section_Copy	복사
+Section_Behavior	동작
+Section_Errors	오류
+Section_Performance	대기열 및 성능
+Section_Network	네트워크 및 장치
+Section_Automation	자동화
+Section_Advanced	고급
+Settings_Search.PlaceholderText	설정 찾기
+Settings_SearchResults	‘{0}’ 검색 결과
+Settings_SearchNone	‘{0}’와 일치하는 설정이 없습니다.
+Settings_TrayTitle.Text	알림 영역에 아이콘 표시
+Settings_TrayDescription.Text	숨겨도 MegaCopier는 계속 실행됩니다. 다시 실행하면 열립니다. 아이콘이 없으면 시스템 알림이 표시되지 않습니다.
+Settings_StartMinimizedTitle.Text	창을 최소화한 상태로 복사 시작
+Settings_StartMinimizedDescription.Text	창이 작업을 가리지 않고 작업 표시줄에 나타납니다.
+Settings_RememberTitle.Text	창 기억
+Settings_RememberDescription.Text	이전 위치와 크기로 엽니다.
+Settings_RememberPosition.Content	위치
+Settings_RememberSize.Content	크기
+Settings_TranslucentTitle.Text	반투명 창
+Settings_TranslucentDescription.Text	아크릴, 더 투명한 배경: 어떤 테마에서도 창 너머로 바탕 화면이 보입니다.
+Settings_Icons.Text	아이콘
+Settings_IconsDescription.Text	아이콘 모양을 선택하세요. 어떤 테마와도 함께 사용할 수 있습니다.
+IconPack_fluent	Fluent (Windows와 동일)
+IconPack_color	컬러
+IconPack_mosaico	타일
+IconPack_suave	부드러움
+IconPack_degradado	그라데이션
+IconPack_neon	네온
+IconPack_windows10	Windows 10
+Settings_MergeTitle.Text	새 복사를 진행 중인 복사에 추가
+Settings_MergeDescription.Text	차례를 기다리지 않고 진행 중인 복사 목록에 파일이 추가됩니다.
+Merge_Never.Content	안 함
+Merge_SameDestination.Content	같은 폴더로 가는 경우
+Merge_SameDisks.Content	같은 드라이브를 사용하는 경우
+Merge_Always.Content	항상
+Settings_MergeConfirm.Content	추가하기 전에 묻기
+Settings_MoveAttributesTitle.Text	이동할 때 함께 유지
+Settings_MoveAttributesDescription.Text	다른 드라이브로 이동할 때. 같은 드라이브에서는 이름만 바뀌므로 모두 유지됩니다.
+Settings_DeleteIncompleteTitle.Text	복사를 중지하면 완료되지 않은 파일 삭제
+Settings_DeleteIncompleteDescription.Text	중지한 곳부터 이어서 할 수 없게 됩니다. 대상에 불완전한 파일(.mcpart)이 남지 않습니다.
+Settings_KeepOnError.Content	오류로 중지된 경우에는 삭제하지 않음
+Settings_EjectTitle.Text	완료되면 대상 드라이브 꺼내기
+Settings_EjectDescription.Text	USB 메모리, 메모리 카드, USB 드라이브만 해당하며 다른 복사가 사용하지 않을 때입니다.
+Settings_EjectForce.Content	프로그램이 사용 중이어도 꺼내기
+Settings_OnErrorTitle.Text	파일이 계속 실패하면
+Settings_OnErrorDescription.Text	모든 재시도를 사용한 후.
+Rules_OnErrorAsk.Content	어떻게 할지 묻기
+Settings_RetriesTitle.Text	재시도
+Settings_RetriesDescription.Text	실패한 파일의 재시도 횟수와 시도 사이의 대기 시간입니다.
+Settings_ErrorReportTitle.Text	오류 보고서 저장
+Settings_ErrorReportDescription.Text	복사가 오류로 끝나면 실패한 파일과 그 이유를 적은 텍스트 파일을 만듭니다.
+ErrorReport_Destination.Content	대상 폴더에
+ErrorReport_Folder.Content	고정 폴더에
+Settings_ErrorReportName.Header	파일 이름
+ErrorReport_NoFolder	선택한 폴더 없음
+ErrorReport_Count	오류가 있는 파일 {0}개:
+Settings_DataTitle.Text	데이터 폴더
+Settings_DataDescription.Text	MegaCopier의 설정, 테마, 기록 및 로그입니다.
+Settings_ResetTitle.Text	설정 초기화
+Settings_ResetDescription.Text	모든 것을 처음 설치한 상태로 되돌립니다. 복사, 기록, 사용자 테마는 유지됩니다.
+Settings_ResetButton.Text	초기화…
+Reset_Title	모든 설정을 초기화할까요?
+Reset_Message	MegaCopier가 초기 설정으로 다시 시작됩니다. 복사, 기록, 사용자 테마는 유지됩니다.
+Reset_Yes	초기화
+Reset_No	취소
+ErrorAsk_Title	파일을 복사할 수 없습니다
+ErrorAsk_Retry	다시 시도
+ErrorAsk_Skip	건너뛰기
+ErrorAsk_SkipAll	이 복사의 다음 오류도 건너뛰기
+ErrorAsk_Stop	복사 중지 (다시 시작 가능)
+Merge_Title	진행 중인 복사에 추가
+Merge_Message	{0}개 항목을 ‘{1}’(으)로 가는 복사에 추가할까요? 아니면 차례가 되었을 때 따로 복사됩니다.
+Merge_Add	추가
+Merge_Separate	따로
+Eject_DoneTitle	드라이브를 꺼냈습니다. 이제 분리할 수 있습니다
+Eject_FailedTitle	드라이브를 꺼낼 수 없습니다. 사용 중입니다
+Sound_Windows	Windows 소리

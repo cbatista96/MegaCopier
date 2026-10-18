@@ -17,7 +17,7 @@
                 <StackPanel Spacing="8">
                     <TextBlock x:Uid="Target_Source" Style="{StaticResource McSecondary}" />
                     <StackPanel Orientation="Horizontal" Spacing="12">
-                        <c:McIcon VerticalAlignment="Center" x:Name="SourceGlyph" FontSize="32" Foreground="{StaticResource McAccentBrush}" />
+                        <c:McIcon VerticalAlignment="Center" x:Name="SourceGlyph" FontSize="32" Accent="True" />
                         <StackPanel>
                             <TextBlock x:Name="SourceName" Style="{StaticResource McTitle}" />
                             <TextBlock x:Name="SourceKind" Style="{StaticResource McSecondary}" />
@@ -39,7 +39,7 @@
                 <StackPanel Spacing="8">
                     <TextBlock x:Uid="Target_Destination" Style="{StaticResource McSecondary}" />
                     <StackPanel Orientation="Horizontal" Spacing="12">
-                        <c:McIcon VerticalAlignment="Center" x:Name="TargetGlyph" FontSize="32" Foreground="{StaticResource McAccentBrush}" />
+                        <c:McIcon VerticalAlignment="Center" x:Name="TargetGlyph" FontSize="32" Accent="True" />
                         <StackPanel>
                             <TextBlock x:Name="TargetName" Style="{StaticResource McTitle}" />
                             <TextBlock x:Name="TargetKind" Style="{StaticResource McSecondary}" />

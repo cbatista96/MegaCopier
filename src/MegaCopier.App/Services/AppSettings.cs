@@ -634,8 +634,17 @@ public sealed class AppSettings
         return new AppSettings();
     }
 
+    /// <summary>Tras «Restablecer los ajustes»: estos ya no se guardan (la app se reinicia con los de fábrica).</summary>
+    [JsonIgnore]
+    public bool Frozen { get; set; }
+
     public void Save()
     {
+        if (Frozen)
+        {
+            return;
+        }
+
         Directory.CreateDirectory(Path.GetDirectoryName(FilePath)!);
         string temp = FilePath + ".tmp";
         using (var stream = new FileStream(temp, FileMode.Create, FileAccess.Write, FileShare.None))

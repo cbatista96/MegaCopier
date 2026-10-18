@@ -18,7 +18,7 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal" Spacing="10">
-                <c:McIcon VerticalAlignment="Center" Glyph="&#xE121;" FontSize="20" Foreground="{StaticResource McAccentBrush}" />
+                <c:McIcon VerticalAlignment="Center" Glyph="&#xE121;" FontSize="20" Accent="True" />
                 <TextBlock x:Uid="Timeline_Title" Style="{StaticResource McTitle}" TextTrimming="CharacterEllipsis" />
             </StackPanel>
             <Button Grid.Column="1" Style="{StaticResource McButton}" Click="Close_Click">

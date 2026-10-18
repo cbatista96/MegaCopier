@@ -144,6 +144,13 @@ public sealed partial class RulesEditor : UserControl
 
     private bool _loading;
 
+    /// <summary>Reintentos y «si un archivo sigue fallando» (en Ajustes están en su propia sección, Errores).</summary>
+    public bool ErrorOptionsVisible
+    {
+        get => ErrorOptions.Visibility == Visibility.Visible;
+        set => ErrorOptions.Visibility = value ? Visibility.Visible : Visibility.Collapsed;
+    }
+
     public RulesEditor()
     {
         InitializeComponent();

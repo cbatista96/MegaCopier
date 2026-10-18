@@ -492,7 +492,7 @@
   <data name="Sound_Attention" xml:space="preserve"><value>判断が必要（ファイルが既に存在）</value></data>
   <data name="Sound_Test" xml:space="preserve"><value>試聴</value></data>
   <data name="Sound_None" xml:space="preserve"><value>サウンドなし</value></data>
-  <data name="Sound_Default" xml:space="preserve"><value>Windows の既定</value></data>
+  <data name="Sound_Default" xml:space="preserve"><value>MegaCopier (独自のサウンド)</value></data>
   <data name="Sound_Choose" xml:space="preserve"><value>ファイルを選択…</value></data>
   <data name="File_Planned" xml:space="preserve"><value>シミュレート済み</value></data>
   <data name="File_Deleted" xml:space="preserve"><value>削除済み</value></data>
@@ -1083,4 +1083,84 @@
   <data name="Theme_mensajero" xml:space="preserve"><value>メッセンジャー</value></data>
   <data name="Theme_luna" xml:space="preserve"><value>ルナ</value></data>
   <data name="Theme_plata" xml:space="preserve"><value>シルバー</value></data>
+  <data name="Section_General" xml:space="preserve"><value>全般</value></data>
+  <data name="Section_Interface" xml:space="preserve"><value>インターフェイス</value></data>
+  <data name="Section_Sounds" xml:space="preserve"><value>サウンド</value></data>
+  <data name="Section_Copy" xml:space="preserve"><value>コピー</value></data>
+  <data name="Section_Behavior" xml:space="preserve"><value>動作</value></data>
+  <data name="Section_Errors" xml:space="preserve"><value>エラー</value></data>
+  <data name="Section_Performance" xml:space="preserve"><value>キューとパフォーマンス</value></data>
+  <data name="Section_Network" xml:space="preserve"><value>ネットワークとデバイス</value></data>
+  <data name="Section_Automation" xml:space="preserve"><value>自動化</value></data>
+  <data name="Section_Advanced" xml:space="preserve"><value>詳細設定</value></data>
+  <data name="Settings_Search.PlaceholderText" xml:space="preserve"><value>設定を検索</value></data>
+  <data name="Settings_SearchResults" xml:space="preserve"><value>「{0}」の検索結果</value></data>
+  <data name="Settings_SearchNone" xml:space="preserve"><value>「{0}」に一致する設定はありません。</value></data>
+  <data name="Settings_TrayTitle.Text" xml:space="preserve"><value>通知領域にアイコンを表示する</value></data>
+  <data name="Settings_TrayDescription.Text" xml:space="preserve"><value>非表示にしても MegaCopier は動作し続けます。もう一度起動すると開きます。アイコンがないとシステム通知は表示されません。</value></data>
+  <data name="Settings_StartMinimizedTitle.Text" xml:space="preserve"><value>ウィンドウを最小化してコピーを開始する</value></data>
+  <data name="Settings_StartMinimizedDescription.Text" xml:space="preserve"><value>ウィンドウは作業の邪魔をせず、タスク バーに表示されます。</value></data>
+  <data name="Settings_RememberTitle.Text" xml:space="preserve"><value>ウィンドウを記憶する</value></data>
+  <data name="Settings_RememberDescription.Text" xml:space="preserve"><value>前回の位置とサイズで開きます。</value></data>
+  <data name="Settings_RememberPosition.Content" xml:space="preserve"><value>位置</value></data>
+  <data name="Settings_RememberSize.Content" xml:space="preserve"><value>サイズ</value></data>
+  <data name="Settings_TranslucentTitle.Text" xml:space="preserve"><value>半透明ウィンドウ</value></data>
+  <data name="Settings_TranslucentDescription.Text" xml:space="preserve"><value>アクリルの透明な背景: どのテーマでもウィンドウ越しにデスクトップが見えます。</value></data>
+  <data name="Settings_Icons.Text" xml:space="preserve"><value>アイコン</value></data>
+  <data name="Settings_IconsDescription.Text" xml:space="preserve"><value>アイコンの見た目を選びます。どのテーマとも組み合わせられます。</value></data>
+  <data name="IconPack_fluent" xml:space="preserve"><value>Fluent (Windows と同じ)</value></data>
+  <data name="IconPack_color" xml:space="preserve"><value>カラー</value></data>
+  <data name="IconPack_mosaico" xml:space="preserve"><value>タイル</value></data>
+  <data name="IconPack_suave" xml:space="preserve"><value>ソフト</value></data>
+  <data name="IconPack_degradado" xml:space="preserve"><value>グラデーション</value></data>
+  <data name="IconPack_neon" xml:space="preserve"><value>ネオン</value></data>
+  <data name="IconPack_windows10" xml:space="preserve"><value>Windows 10</value></data>
+  <data name="Settings_MergeTitle.Text" xml:space="preserve"><value>新しいコピーを実行中のコピーに追加する</value></data>
+  <data name="Settings_MergeDescription.Text" xml:space="preserve"><value>順番を待たずに、実行中のコピーの一覧にファイルが追加されます。</value></data>
+  <data name="Merge_Never.Content" xml:space="preserve"><value>しない</value></data>
+  <data name="Merge_SameDestination.Content" xml:space="preserve"><value>同じフォルダーへのコピーなら</value></data>
+  <data name="Merge_SameDisks.Content" xml:space="preserve"><value>同じドライブを使うなら</value></data>
+  <data name="Merge_Always.Content" xml:space="preserve"><value>常に</value></data>
+  <data name="Settings_MergeConfirm.Content" xml:space="preserve"><value>追加する前に確認する</value></data>
+  <data name="Settings_MoveAttributesTitle.Text" xml:space="preserve"><value>移動時にも保持する</value></data>
+  <data name="Settings_MoveAttributesDescription.Text" xml:space="preserve"><value>別のドライブに移動するとき。同じドライブでは名前の変更なので、すべて保持されます。</value></data>
+  <data name="Settings_DeleteIncompleteTitle.Text" xml:space="preserve"><value>コピーを停止したら途中のファイルを削除する</value></data>
+  <data name="Settings_DeleteIncompleteDescription.Text" xml:space="preserve"><value>中断した所から再開できなくなります。コピー先に不完全なファイル (.mcpart) は残りません。</value></data>
+  <data name="Settings_KeepOnError.Content" xml:space="preserve"><value>エラーで停止した場合は削除しない</value></data>
+  <data name="Settings_EjectTitle.Text" xml:space="preserve"><value>完了したらコピー先のドライブを取り出す</value></data>
+  <data name="Settings_EjectDescription.Text" xml:space="preserve"><value>USB メモリ、メモリー カード、USB ドライブのみ。ほかのコピーが使っていない場合。</value></data>
+  <data name="Settings_EjectForce.Content" xml:space="preserve"><value>プログラムが使用中でも取り出す</value></data>
+  <data name="Settings_OnErrorTitle.Text" xml:space="preserve"><value>ファイルが失敗し続けるとき</value></data>
+  <data name="Settings_OnErrorDescription.Text" xml:space="preserve"><value>すべての再試行を使い切った後。</value></data>
+  <data name="Rules_OnErrorAsk.Content" xml:space="preserve"><value>どうするか確認する</value></data>
+  <data name="Settings_RetriesTitle.Text" xml:space="preserve"><value>再試行</value></data>
+  <data name="Settings_RetriesDescription.Text" xml:space="preserve"><value>失敗したファイルの再試行回数と、試行間の待ち時間。</value></data>
+  <data name="Settings_ErrorReportTitle.Text" xml:space="preserve"><value>エラー レポートを保存する</value></data>
+  <data name="Settings_ErrorReportDescription.Text" xml:space="preserve"><value>コピーがエラーで終わったとき、失敗した各ファイルと理由を記したテキスト ファイル。</value></data>
+  <data name="ErrorReport_Destination.Content" xml:space="preserve"><value>コピー先のフォルダー</value></data>
+  <data name="ErrorReport_Folder.Content" xml:space="preserve"><value>決まったフォルダー</value></data>
+  <data name="Settings_ErrorReportName.Header" xml:space="preserve"><value>ファイル名</value></data>
+  <data name="ErrorReport_NoFolder" xml:space="preserve"><value>フォルダーが選択されていません</value></data>
+  <data name="ErrorReport_Count" xml:space="preserve"><value>エラーのあるファイル: {0} 件</value></data>
+  <data name="Settings_DataTitle.Text" xml:space="preserve"><value>データ フォルダー</value></data>
+  <data name="Settings_DataDescription.Text" xml:space="preserve"><value>MegaCopier の設定、テーマ、履歴、ログ。</value></data>
+  <data name="Settings_ResetTitle.Text" xml:space="preserve"><value>設定をリセット</value></data>
+  <data name="Settings_ResetDescription.Text" xml:space="preserve"><value>すべてをインストール直後の状態に戻します。コピー、履歴、独自のテーマは保持されます。</value></data>
+  <data name="Settings_ResetButton.Text" xml:space="preserve"><value>リセット…</value></data>
+  <data name="Reset_Title" xml:space="preserve"><value>すべての設定をリセットしますか?</value></data>
+  <data name="Reset_Message" xml:space="preserve"><value>MegaCopier は初期設定で再起動します。コピー、履歴、独自のテーマは保持されます。</value></data>
+  <data name="Reset_Yes" xml:space="preserve"><value>リセット</value></data>
+  <data name="Reset_No" xml:space="preserve"><value>キャンセル</value></data>
+  <data name="ErrorAsk_Title" xml:space="preserve"><value>ファイルをコピーできません</value></data>
+  <data name="ErrorAsk_Retry" xml:space="preserve"><value>再試行</value></data>
+  <data name="ErrorAsk_Skip" xml:space="preserve"><value>スキップ</value></data>
+  <data name="ErrorAsk_SkipAll" xml:space="preserve"><value>このコピーの以降のエラーもスキップする</value></data>
+  <data name="ErrorAsk_Stop" xml:space="preserve"><value>コピーを停止 (再開できます)</value></data>
+  <data name="Merge_Title" xml:space="preserve"><value>実行中のコピーに追加</value></data>
+  <data name="Merge_Message" xml:space="preserve"><value>{0} 個の項目を「{1}」へのコピーに追加しますか? 追加しない場合は、順番が来たときに別にコピーされます。</value></data>
+  <data name="Merge_Add" xml:space="preserve"><value>追加</value></data>
+  <data name="Merge_Separate" xml:space="preserve"><value>別々に</value></data>
+  <data name="Eject_DoneTitle" xml:space="preserve"><value>ドライブを取り出しました。取り外せます</value></data>
+  <data name="Eject_FailedTitle" xml:space="preserve"><value>ドライブを取り出せませんでした。使用中です</value></data>
+  <data name="Sound_Windows" xml:space="preserve"><value>Windows のサウンド</value></data>
 </root>

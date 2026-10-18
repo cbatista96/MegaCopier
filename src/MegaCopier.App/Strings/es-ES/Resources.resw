@@ -492,7 +492,7 @@
   <data name="Sound_Attention" xml:space="preserve"><value>Hace falta tu decisión (el archivo ya existe)</value></data>
   <data name="Sound_Test" xml:space="preserve"><value>Probar el sonido</value></data>
   <data name="Sound_None" xml:space="preserve"><value>Sin sonido</value></data>
-  <data name="Sound_Default" xml:space="preserve"><value>El de Windows</value></data>
+  <data name="Sound_Default" xml:space="preserve"><value>MegaCopier (sonido propio)</value></data>
   <data name="Sound_Choose" xml:space="preserve"><value>Elegir un archivo…</value></data>
   <data name="File_Planned" xml:space="preserve"><value>Simulado</value></data>
   <data name="File_Deleted" xml:space="preserve"><value>Quitado</value></data>
@@ -1083,4 +1083,84 @@
   <data name="Theme_mensajero" xml:space="preserve"><value>Mensajero</value></data>
   <data name="Theme_luna" xml:space="preserve"><value>Luna</value></data>
   <data name="Theme_plata" xml:space="preserve"><value>Plata</value></data>
+  <data name="Section_General" xml:space="preserve"><value>General</value></data>
+  <data name="Section_Interface" xml:space="preserve"><value>Interfaz</value></data>
+  <data name="Section_Sounds" xml:space="preserve"><value>Sonidos</value></data>
+  <data name="Section_Copy" xml:space="preserve"><value>Copia</value></data>
+  <data name="Section_Behavior" xml:space="preserve"><value>Comportamiento</value></data>
+  <data name="Section_Errors" xml:space="preserve"><value>Errores</value></data>
+  <data name="Section_Performance" xml:space="preserve"><value>Cola y rendimiento</value></data>
+  <data name="Section_Network" xml:space="preserve"><value>Red y dispositivos</value></data>
+  <data name="Section_Automation" xml:space="preserve"><value>Automatización</value></data>
+  <data name="Section_Advanced" xml:space="preserve"><value>Avanzado</value></data>
+  <data name="Settings_Search.PlaceholderText" xml:space="preserve"><value>Buscar un ajuste</value></data>
+  <data name="Settings_SearchResults" xml:space="preserve"><value>Resultados de «{0}»</value></data>
+  <data name="Settings_SearchNone" xml:space="preserve"><value>No hay ningún ajuste con «{0}».</value></data>
+  <data name="Settings_TrayTitle.Text" xml:space="preserve"><value>Mostrar el icono en la bandeja</value></data>
+  <data name="Settings_TrayDescription.Text" xml:space="preserve"><value>Si lo ocultas, MegaCopier sigue en marcha: ábrelo ejecutándolo otra vez. Sin icono no hay avisos del sistema.</value></data>
+  <data name="Settings_StartMinimizedTitle.Text" xml:space="preserve"><value>Iniciar las copias con la ventana minimizada</value></data>
+  <data name="Settings_StartMinimizedDescription.Text" xml:space="preserve"><value>La ventana aparece en la barra de tareas sin taparte lo que estás haciendo.</value></data>
+  <data name="Settings_RememberTitle.Text" xml:space="preserve"><value>Recordar la ventana</value></data>
+  <data name="Settings_RememberDescription.Text" xml:space="preserve"><value>Abrirla donde estaba y con el mismo tamaño.</value></data>
+  <data name="Settings_RememberPosition.Content" xml:space="preserve"><value>Posición</value></data>
+  <data name="Settings_RememberSize.Content" xml:space="preserve"><value>Tamaño</value></data>
+  <data name="Settings_TranslucentTitle.Text" xml:space="preserve"><value>Ventana translúcida</value></data>
+  <data name="Settings_TranslucentDescription.Text" xml:space="preserve"><value>Fondo acrílico y más transparente: se ve el escritorio a través de la ventana, con cualquier tema.</value></data>
+  <data name="Settings_Icons.Text" xml:space="preserve"><value>Iconos</value></data>
+  <data name="Settings_IconsDescription.Text" xml:space="preserve"><value>Elige cómo se ven los iconos. Se combinan con cualquier tema.</value></data>
+  <data name="IconPack_fluent" xml:space="preserve"><value>Fluent (como Windows)</value></data>
+  <data name="IconPack_color" xml:space="preserve"><value>Color</value></data>
+  <data name="IconPack_mosaico" xml:space="preserve"><value>Mosaico</value></data>
+  <data name="IconPack_suave" xml:space="preserve"><value>Suave</value></data>
+  <data name="IconPack_degradado" xml:space="preserve"><value>Degradado</value></data>
+  <data name="IconPack_neon" xml:space="preserve"><value>Neón</value></data>
+  <data name="IconPack_windows10" xml:space="preserve"><value>Windows 10</value></data>
+  <data name="Settings_MergeTitle.Text" xml:space="preserve"><value>Añadir las copias nuevas a una que ya está en marcha</value></data>
+  <data name="Settings_MergeDescription.Text" xml:space="preserve"><value>En vez de esperar su turno, los archivos se suman a la lista de la copia en marcha.</value></data>
+  <data name="Merge_Never.Content" xml:space="preserve"><value>Nunca</value></data>
+  <data name="Merge_SameDestination.Content" xml:space="preserve"><value>Si van a la misma carpeta</value></data>
+  <data name="Merge_SameDisks.Content" xml:space="preserve"><value>Si usan los mismos discos</value></data>
+  <data name="Merge_Always.Content" xml:space="preserve"><value>Siempre</value></data>
+  <data name="Settings_MergeConfirm.Content" xml:space="preserve"><value>Preguntar antes de añadirlas</value></data>
+  <data name="Settings_MoveAttributesTitle.Text" xml:space="preserve"><value>Al mover, conservar también</value></data>
+  <data name="Settings_MoveAttributesDescription.Text" xml:space="preserve"><value>Al mover a otro disco. En el mismo disco, mover es un renombrado y se conserva todo.</value></data>
+  <data name="Settings_DeleteIncompleteTitle.Text" xml:space="preserve"><value>Al detener una copia, borrar lo que quedó a medias</value></data>
+  <data name="Settings_DeleteIncompleteDescription.Text" xml:space="preserve"><value>Ya no se podrá continuar desde donde quedó. Así no quedan archivos incompletos (.mcpart) en el destino.</value></data>
+  <data name="Settings_KeepOnError.Content" xml:space="preserve"><value>No borrarlo si la copia paró por un error</value></data>
+  <data name="Settings_EjectTitle.Text" xml:space="preserve"><value>Al terminar, expulsar la unidad de destino</value></data>
+  <data name="Settings_EjectDescription.Text" xml:space="preserve"><value>Solo memorias USB, tarjetas y discos USB, cuando ninguna otra copia la está usando.</value></data>
+  <data name="Settings_EjectForce.Content" xml:space="preserve"><value>Expulsarla aunque algún programa la esté usando</value></data>
+  <data name="Settings_OnErrorTitle.Text" xml:space="preserve"><value>Si un archivo sigue fallando</value></data>
+  <data name="Settings_OnErrorDescription.Text" xml:space="preserve"><value>Después de agotar los reintentos.</value></data>
+  <data name="Rules_OnErrorAsk.Content" xml:space="preserve"><value>Preguntar qué hacer</value></data>
+  <data name="Settings_RetriesTitle.Text" xml:space="preserve"><value>Reintentos</value></data>
+  <data name="Settings_RetriesDescription.Text" xml:space="preserve"><value>Cuántas veces se reintenta un archivo que falla y cuánto se espera entre intentos.</value></data>
+  <data name="Settings_ErrorReportTitle.Text" xml:space="preserve"><value>Guardar un informe de errores</value></data>
+  <data name="Settings_ErrorReportDescription.Text" xml:space="preserve"><value>Al terminar una copia con errores, un archivo de texto con cada archivo que falló y por qué.</value></data>
+  <data name="ErrorReport_Destination.Content" xml:space="preserve"><value>En la carpeta de destino</value></data>
+  <data name="ErrorReport_Folder.Content" xml:space="preserve"><value>En una carpeta fija</value></data>
+  <data name="Settings_ErrorReportName.Header" xml:space="preserve"><value>Nombre del archivo</value></data>
+  <data name="ErrorReport_NoFolder" xml:space="preserve"><value>Ninguna carpeta elegida</value></data>
+  <data name="ErrorReport_Count" xml:space="preserve"><value>{0} archivos con errores:</value></data>
+  <data name="Settings_DataTitle.Text" xml:space="preserve"><value>Carpeta de datos</value></data>
+  <data name="Settings_DataDescription.Text" xml:space="preserve"><value>Ajustes, temas, historial y registros de MegaCopier.</value></data>
+  <data name="Settings_ResetTitle.Text" xml:space="preserve"><value>Restablecer los ajustes</value></data>
+  <data name="Settings_ResetDescription.Text" xml:space="preserve"><value>Vuelve a dejar todo como recién instalado. Las copias, el historial y los temas propios se conservan.</value></data>
+  <data name="Settings_ResetButton.Text" xml:space="preserve"><value>Restablecer…</value></data>
+  <data name="Reset_Title" xml:space="preserve"><value>¿Restablecer todos los ajustes?</value></data>
+  <data name="Reset_Message" xml:space="preserve"><value>MegaCopier se reiniciará con los ajustes de fábrica. Las copias, el historial y los temas propios se conservan.</value></data>
+  <data name="Reset_Yes" xml:space="preserve"><value>Restablecer</value></data>
+  <data name="Reset_No" xml:space="preserve"><value>Cancelar</value></data>
+  <data name="ErrorAsk_Title" xml:space="preserve"><value>No se puede copiar un archivo</value></data>
+  <data name="ErrorAsk_Retry" xml:space="preserve"><value>Reintentar</value></data>
+  <data name="ErrorAsk_Skip" xml:space="preserve"><value>Omitir</value></data>
+  <data name="ErrorAsk_SkipAll" xml:space="preserve"><value>Omitir también los siguientes errores de esta copia</value></data>
+  <data name="ErrorAsk_Stop" xml:space="preserve"><value>Detener la copia (se podrá reanudar)</value></data>
+  <data name="Merge_Title" xml:space="preserve"><value>Añadir a la copia en marcha</value></data>
+  <data name="Merge_Message" xml:space="preserve"><value>¿Añadir {0} elementos a la copia que va a «{1}»? Si no, se copiarán por separado cuando les toque.</value></data>
+  <data name="Merge_Add" xml:space="preserve"><value>Añadir</value></data>
+  <data name="Merge_Separate" xml:space="preserve"><value>Por separado</value></data>
+  <data name="Eject_DoneTitle" xml:space="preserve"><value>Unidad expulsada: ya puedes retirarla</value></data>
+  <data name="Eject_FailedTitle" xml:space="preserve"><value>No se pudo expulsar la unidad: algo la está usando</value></data>
+  <data name="Sound_Windows" xml:space="preserve"><value>El de Windows</value></data>
 </root>

@@ -486,7 +486,7 @@ Sound_AllDone	Alle kopieën zijn klaar
 Sound_Attention	Je beslissing is nodig (het bestand bestaat al)
 Sound_Test	Geluid testen
 Sound_None	Geen geluid
-Sound_Default	Standaard van Windows
+Sound_Default	MegaCopier (eigen geluid)
 Sound_Choose	Een bestand kiezen…
 File_Planned	Gesimuleerd
 File_Deleted	Verwijderd
@@ -1077,3 +1077,83 @@ Theme_moderno-8	Modern 8
 Theme_mensajero	Messenger
 Theme_luna	Luna
 Theme_plata	Zilver
+Section_General	Algemeen
+Section_Interface	Interface
+Section_Sounds	Geluiden
+Section_Copy	Kopiëren
+Section_Behavior	Gedrag
+Section_Errors	Fouten
+Section_Performance	Wachtrij en prestaties
+Section_Network	Netwerk en apparaten
+Section_Automation	Automatisering
+Section_Advanced	Geavanceerd
+Settings_Search.PlaceholderText	Instelling zoeken
+Settings_SearchResults	Resultaten voor ‘{0}’
+Settings_SearchNone	Geen instellingen gevonden voor ‘{0}’.
+Settings_TrayTitle.Text	Pictogram in systeemvak tonen
+Settings_TrayDescription.Text	Verborgen blijft MegaCopier actief: open het door het opnieuw te starten. Zonder pictogram zijn er geen systeemmeldingen.
+Settings_StartMinimizedTitle.Text	Kopieën starten met geminimaliseerd venster
+Settings_StartMinimizedDescription.Text	Het venster verschijnt in de taakbalk zonder je werk te bedekken.
+Settings_RememberTitle.Text	Venster onthouden
+Settings_RememberDescription.Text	Openen waar het was, met dezelfde grootte.
+Settings_RememberPosition.Content	Positie
+Settings_RememberSize.Content	Grootte
+Settings_TranslucentTitle.Text	Doorschijnend venster
+Settings_TranslucentDescription.Text	Acryl, meer transparante achtergrond: het bureaublad schijnt door het venster, met elk thema.
+Settings_Icons.Text	Pictogrammen
+Settings_IconsDescription.Text	Kies hoe de pictogrammen eruitzien. Ze passen bij elk thema.
+IconPack_fluent	Fluent (zoals Windows)
+IconPack_color	Kleur
+IconPack_mosaico	Tegels
+IconPack_suave	Zacht
+IconPack_degradado	Verloop
+IconPack_neon	Neon
+IconPack_windows10	Windows 10
+Settings_MergeTitle.Text	Nieuwe kopieën toevoegen aan een lopende
+Settings_MergeDescription.Text	In plaats van te wachten komen de bestanden in de lijst van de lopende kopie.
+Merge_Never.Content	Nooit
+Merge_SameDestination.Content	Als ze naar dezelfde map gaan
+Merge_SameDisks.Content	Als ze dezelfde schijven gebruiken
+Merge_Always.Content	Altijd
+Settings_MergeConfirm.Content	Vragen voor toevoegen
+Settings_MoveAttributesTitle.Text	Bij verplaatsen ook behouden
+Settings_MoveAttributesDescription.Text	Bij verplaatsen naar een andere schijf. Op dezelfde schijf is verplaatsen hernoemen en blijft alles behouden.
+Settings_DeleteIncompleteTitle.Text	Bij het stoppen van een kopie het halve werk verwijderen
+Settings_DeleteIncompleteDescription.Text	Hervatten waar hij stopte kan dan niet meer. Er blijven geen onvolledige bestanden (.mcpart) achter.
+Settings_KeepOnError.Content	Niet verwijderen als de kopie door een fout stopte
+Settings_EjectTitle.Text	Na afloop het doelstation uitwerpen
+Settings_EjectDescription.Text	Alleen USB-sticks, geheugenkaarten en USB-schijven, als geen andere kopie ze gebruikt.
+Settings_EjectForce.Content	Uitwerpen, ook als een programma het gebruikt
+Settings_OnErrorTitle.Text	Als een bestand blijft mislukken
+Settings_OnErrorDescription.Text	Nadat alle nieuwe pogingen op zijn.
+Rules_OnErrorAsk.Content	Vragen wat te doen
+Settings_RetriesTitle.Text	Nieuwe pogingen
+Settings_RetriesDescription.Text	Hoe vaak een mislukt bestand opnieuw wordt geprobeerd en hoe lang tussen pogingen wordt gewacht.
+Settings_ErrorReportTitle.Text	Foutrapport opslaan
+Settings_ErrorReportDescription.Text	Als een kopie met fouten eindigt, een tekstbestand met elk mislukt bestand en de reden.
+ErrorReport_Destination.Content	In de doelmap
+ErrorReport_Folder.Content	In een vaste map
+Settings_ErrorReportName.Header	Bestandsnaam
+ErrorReport_NoFolder	Geen map gekozen
+ErrorReport_Count	{0} bestanden met fouten:
+Settings_DataTitle.Text	Gegevensmap
+Settings_DataDescription.Text	Instellingen, thema's, geschiedenis en logboeken van MegaCopier.
+Settings_ResetTitle.Text	Instellingen herstellen
+Settings_ResetDescription.Text	Zet alles terug zoals na de installatie. Kopieën, geschiedenis en eigen thema's blijven behouden.
+Settings_ResetButton.Text	Herstellen…
+Reset_Title	Alle instellingen herstellen?
+Reset_Message	MegaCopier start opnieuw met de fabrieksinstellingen. Kopieën, geschiedenis en eigen thema's blijven behouden.
+Reset_Yes	Herstellen
+Reset_No	Annuleren
+ErrorAsk_Title	Een bestand kan niet worden gekopieerd
+ErrorAsk_Retry	Opnieuw
+ErrorAsk_Skip	Overslaan
+ErrorAsk_SkipAll	Ook de volgende fouten in deze kopie overslaan
+ErrorAsk_Stop	Kopie stoppen (kan worden hervat)
+Merge_Title	Toevoegen aan lopende kopie
+Merge_Message	{0} items toevoegen aan de kopie naar ‘{1}’? Anders worden ze later apart gekopieerd.
+Merge_Add	Toevoegen
+Merge_Separate	Apart
+Eject_DoneTitle	Station uitgeworpen: je kunt het nu verwijderen
+Eject_FailedTitle	Kan station niet uitwerpen: het wordt gebruikt
+Sound_Windows	Die van Windows

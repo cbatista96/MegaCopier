@@ -20,6 +20,14 @@ public sealed partial class McIcon : UserControl
     public static readonly DependencyProperty GlyphProperty =
         DependencyProperty.Register(nameof(Glyph), typeof(string), typeof(McIcon), new PropertyMetadata("", (d, _) => ((McIcon)d).Render()));
 
+    /// <summary>Dibujarlo con este conjunto en vez del elegido (para las muestras de la galería).</summary>
+    public static readonly DependencyProperty PackOverrideProperty =
+        DependencyProperty.Register(nameof(PackOverride), typeof(string), typeof(McIcon), new PropertyMetadata("", (d, _) => ((McIcon)d).Render()));
+
+    /// <summary>En el conjunto monocromo, del color de acento del tema (en los de color, cada icono lleva el suyo).</summary>
+    public static readonly DependencyProperty AccentProperty =
+        DependencyProperty.Register(nameof(Accent), typeof(bool), typeof(McIcon), new PropertyMetadata(false, (d, _) => ((McIcon)d).Render()));
+
     private readonly Grid _root = new();
     private readonly Border _tile = new() { Visibility = Visibility.Collapsed };
     private readonly TextBlock _glyph = new()
@@ -69,11 +77,23 @@ public sealed partial class McIcon : UserControl
         set => SetValue(GlyphProperty, value);
     }
 
+    public string PackOverride
+    {
+        get => (string)GetValue(PackOverrideProperty);
+        set => SetValue(PackOverrideProperty, value);
+    }
+
+    public bool Accent
+    {
+        get => (bool)GetValue(AccentProperty);
+        set => SetValue(AccentProperty, value);
+    }
+
     private void OnThemeChanged(ThemeDefinition theme) => Render();
 
     private void Render()
     {
-        var pack = IconPacks.Current;
+        var pack = PackOverride.Length > 0 ? IconPacks.Find(PackOverride) : IconPacks.Current;
         _glyph.Text = Glyph;
         _glyph.FontFamily = new FontFamily(pack.FontFamily);
 
@@ -96,6 +116,10 @@ public sealed partial class McIcon : UserControl
                 if (fixedColor is { } c)
                 {
                     _glyph.Foreground = new SolidColorBrush(c);
+                }
+                else if (Accent)
+                {
+                    _glyph.Foreground = ThemeManager.AccentBrush;
                 }
 
                 break;

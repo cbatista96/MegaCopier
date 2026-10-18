@@ -486,7 +486,7 @@ Sound_AllDone	全部复制完成
 Sound_Attention	需要你做决定（文件已存在）
 Sound_Test	试听
 Sound_None	无声音
-Sound_Default	Windows 默认
+Sound_Default	MegaCopier（自带声音）
 Sound_Choose	选择文件…
 File_Planned	已模拟
 File_Deleted	已移除
@@ -1077,3 +1077,83 @@ Theme_moderno-8	现代 8
 Theme_mensajero	信使
 Theme_luna	Luna
 Theme_plata	银色
+Section_General	常规
+Section_Interface	界面
+Section_Sounds	声音
+Section_Copy	复制
+Section_Behavior	行为
+Section_Errors	错误
+Section_Performance	队列与性能
+Section_Network	网络和设备
+Section_Automation	自动化
+Section_Advanced	高级
+Settings_Search.PlaceholderText	查找设置
+Settings_SearchResults	“{0}”的结果
+Settings_SearchNone	没有与“{0}”匹配的设置。
+Settings_TrayTitle.Text	在通知区域显示图标
+Settings_TrayDescription.Text	隐藏后 MegaCopier 仍在运行：再次启动即可打开。没有图标就没有系统通知。
+Settings_StartMinimizedTitle.Text	以最小化窗口开始复制
+Settings_StartMinimizedDescription.Text	窗口显示在任务栏中，不会遮挡你正在做的事。
+Settings_RememberTitle.Text	记住窗口
+Settings_RememberDescription.Text	在原来的位置以相同大小打开。
+Settings_RememberPosition.Content	位置
+Settings_RememberSize.Content	大小
+Settings_TranslucentTitle.Text	半透明窗口
+Settings_TranslucentDescription.Text	亚克力、更透明的背景：任何主题下都能透过窗口看到桌面。
+Settings_Icons.Text	图标
+Settings_IconsDescription.Text	选择图标的样式，可与任意主题搭配。
+IconPack_fluent	Fluent（同 Windows）
+IconPack_color	彩色
+IconPack_mosaico	磁贴
+IconPack_suave	柔和
+IconPack_degradado	渐变
+IconPack_neon	霓虹
+IconPack_windows10	Windows 10
+Settings_MergeTitle.Text	将新复制添加到正在进行的复制中
+Settings_MergeDescription.Text	文件不必排队，而是加入正在进行的复制列表。
+Merge_Never.Content	从不
+Merge_SameDestination.Content	如果目标是同一文件夹
+Merge_SameDisks.Content	如果使用相同的磁盘
+Merge_Always.Content	总是
+Settings_MergeConfirm.Content	添加前询问
+Settings_MoveAttributesTitle.Text	移动时还保留
+Settings_MoveAttributesDescription.Text	移动到其他磁盘时。在同一磁盘上移动只是重命名，所有内容都会保留。
+Settings_DeleteIncompleteTitle.Text	停止复制时删除未完成的部分
+Settings_DeleteIncompleteDescription.Text	将无法从中断处继续，目标位置也不会留下不完整的文件 (.mcpart)。
+Settings_KeepOnError.Content	如果复制因错误而停止则不删除
+Settings_EjectTitle.Text	完成后弹出目标驱动器
+Settings_EjectDescription.Text	仅限 U 盘、存储卡和 USB 硬盘，且没有其他复制正在使用时。
+Settings_EjectForce.Content	即使有程序正在使用也弹出
+Settings_OnErrorTitle.Text	如果文件仍然失败
+Settings_OnErrorDescription.Text	在用完所有重试之后。
+Rules_OnErrorAsk.Content	询问如何处理
+Settings_RetriesTitle.Text	重试
+Settings_RetriesDescription.Text	失败文件的重试次数以及每次尝试之间的等待时间。
+Settings_ErrorReportTitle.Text	保存错误报告
+Settings_ErrorReportDescription.Text	复制出错结束时，生成一个文本文件，列出每个失败的文件及原因。
+ErrorReport_Destination.Content	在目标文件夹中
+ErrorReport_Folder.Content	在固定文件夹中
+Settings_ErrorReportName.Header	文件名
+ErrorReport_NoFolder	未选择文件夹
+ErrorReport_Count	{0} 个文件出错：
+Settings_DataTitle.Text	数据文件夹
+Settings_DataDescription.Text	MegaCopier 的设置、主题、历史记录和日志。
+Settings_ResetTitle.Text	重置设置
+Settings_ResetDescription.Text	将一切恢复为刚安装时的状态。复制、历史记录和自定义主题会保留。
+Settings_ResetButton.Text	重置…
+Reset_Title	要重置所有设置吗？
+Reset_Message	MegaCopier 将以出厂设置重新启动。复制、历史记录和自定义主题会保留。
+Reset_Yes	重置
+Reset_No	取消
+ErrorAsk_Title	无法复制某个文件
+ErrorAsk_Retry	重试
+ErrorAsk_Skip	跳过
+ErrorAsk_SkipAll	同时跳过此复制中的后续错误
+ErrorAsk_Stop	停止复制（可继续）
+Merge_Title	添加到正在进行的复制
+Merge_Message	将 {0} 个项目添加到复制到“{1}”的任务吗？否则轮到它们时会单独复制。
+Merge_Add	添加
+Merge_Separate	单独
+Eject_DoneTitle	驱动器已弹出，可以拔下
+Eject_FailedTitle	无法弹出驱动器：有程序正在使用
+Sound_Windows	Windows 的声音

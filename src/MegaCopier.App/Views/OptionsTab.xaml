@@ -99,7 +99,7 @@
             <Border Style="{StaticResource McCard}">
                 <StackPanel Spacing="8">
                     <StackPanel Orientation="Horizontal" Spacing="8">
-                        <c:McIcon VerticalAlignment="Center" Glyph="&#xE823;" FontSize="14" Foreground="{StaticResource McAccentBrush}" />
+                        <c:McIcon VerticalAlignment="Center" Glyph="&#xE823;" FontSize="14" Accent="True" />
                         <TextBlock x:Uid="Schedule_Title" Style="{StaticResource McStrong}" />
                     </StackPanel>
                     <StackPanel x:Name="ScheduleRow" Orientation="Horizontal" Spacing="8">

@@ -492,7 +492,7 @@
   <data name="Sound_Attention" xml:space="preserve"><value>Je beslissing is nodig (het bestand bestaat al)</value></data>
   <data name="Sound_Test" xml:space="preserve"><value>Geluid testen</value></data>
   <data name="Sound_None" xml:space="preserve"><value>Geen geluid</value></data>
-  <data name="Sound_Default" xml:space="preserve"><value>Standaard van Windows</value></data>
+  <data name="Sound_Default" xml:space="preserve"><value>MegaCopier (eigen geluid)</value></data>
   <data name="Sound_Choose" xml:space="preserve"><value>Een bestand kiezen…</value></data>
   <data name="File_Planned" xml:space="preserve"><value>Gesimuleerd</value></data>
   <data name="File_Deleted" xml:space="preserve"><value>Verwijderd</value></data>
@@ -1083,4 +1083,84 @@
   <data name="Theme_mensajero" xml:space="preserve"><value>Messenger</value></data>
   <data name="Theme_luna" xml:space="preserve"><value>Luna</value></data>
   <data name="Theme_plata" xml:space="preserve"><value>Zilver</value></data>
+  <data name="Section_General" xml:space="preserve"><value>Algemeen</value></data>
+  <data name="Section_Interface" xml:space="preserve"><value>Interface</value></data>
+  <data name="Section_Sounds" xml:space="preserve"><value>Geluiden</value></data>
+  <data name="Section_Copy" xml:space="preserve"><value>Kopiëren</value></data>
+  <data name="Section_Behavior" xml:space="preserve"><value>Gedrag</value></data>
+  <data name="Section_Errors" xml:space="preserve"><value>Fouten</value></data>
+  <data name="Section_Performance" xml:space="preserve"><value>Wachtrij en prestaties</value></data>
+  <data name="Section_Network" xml:space="preserve"><value>Netwerk en apparaten</value></data>
+  <data name="Section_Automation" xml:space="preserve"><value>Automatisering</value></data>
+  <data name="Section_Advanced" xml:space="preserve"><value>Geavanceerd</value></data>
+  <data name="Settings_Search.PlaceholderText" xml:space="preserve"><value>Instelling zoeken</value></data>
+  <data name="Settings_SearchResults" xml:space="preserve"><value>Resultaten voor ‘{0}’</value></data>
+  <data name="Settings_SearchNone" xml:space="preserve"><value>Geen instellingen gevonden voor ‘{0}’.</value></data>
+  <data name="Settings_TrayTitle.Text" xml:space="preserve"><value>Pictogram in systeemvak tonen</value></data>
+  <data name="Settings_TrayDescription.Text" xml:space="preserve"><value>Verborgen blijft MegaCopier actief: open het door het opnieuw te starten. Zonder pictogram zijn er geen systeemmeldingen.</value></data>
+  <data name="Settings_StartMinimizedTitle.Text" xml:space="preserve"><value>Kopieën starten met geminimaliseerd venster</value></data>
+  <data name="Settings_StartMinimizedDescription.Text" xml:space="preserve"><value>Het venster verschijnt in de taakbalk zonder je werk te bedekken.</value></data>
+  <data name="Settings_RememberTitle.Text" xml:space="preserve"><value>Venster onthouden</value></data>
+  <data name="Settings_RememberDescription.Text" xml:space="preserve"><value>Openen waar het was, met dezelfde grootte.</value></data>
+  <data name="Settings_RememberPosition.Content" xml:space="preserve"><value>Positie</value></data>
+  <data name="Settings_RememberSize.Content" xml:space="preserve"><value>Grootte</value></data>
+  <data name="Settings_TranslucentTitle.Text" xml:space="preserve"><value>Doorschijnend venster</value></data>
+  <data name="Settings_TranslucentDescription.Text" xml:space="preserve"><value>Acryl, meer transparante achtergrond: het bureaublad schijnt door het venster, met elk thema.</value></data>
+  <data name="Settings_Icons.Text" xml:space="preserve"><value>Pictogrammen</value></data>
+  <data name="Settings_IconsDescription.Text" xml:space="preserve"><value>Kies hoe de pictogrammen eruitzien. Ze passen bij elk thema.</value></data>
+  <data name="IconPack_fluent" xml:space="preserve"><value>Fluent (zoals Windows)</value></data>
+  <data name="IconPack_color" xml:space="preserve"><value>Kleur</value></data>
+  <data name="IconPack_mosaico" xml:space="preserve"><value>Tegels</value></data>
+  <data name="IconPack_suave" xml:space="preserve"><value>Zacht</value></data>
+  <data name="IconPack_degradado" xml:space="preserve"><value>Verloop</value></data>
+  <data name="IconPack_neon" xml:space="preserve"><value>Neon</value></data>
+  <data name="IconPack_windows10" xml:space="preserve"><value>Windows 10</value></data>
+  <data name="Settings_MergeTitle.Text" xml:space="preserve"><value>Nieuwe kopieën toevoegen aan een lopende</value></data>
+  <data name="Settings_MergeDescription.Text" xml:space="preserve"><value>In plaats van te wachten komen de bestanden in de lijst van de lopende kopie.</value></data>
+  <data name="Merge_Never.Content" xml:space="preserve"><value>Nooit</value></data>
+  <data name="Merge_SameDestination.Content" xml:space="preserve"><value>Als ze naar dezelfde map gaan</value></data>
+  <data name="Merge_SameDisks.Content" xml:space="preserve"><value>Als ze dezelfde schijven gebruiken</value></data>
+  <data name="Merge_Always.Content" xml:space="preserve"><value>Altijd</value></data>
+  <data name="Settings_MergeConfirm.Content" xml:space="preserve"><value>Vragen voor toevoegen</value></data>
+  <data name="Settings_MoveAttributesTitle.Text" xml:space="preserve"><value>Bij verplaatsen ook behouden</value></data>
+  <data name="Settings_MoveAttributesDescription.Text" xml:space="preserve"><value>Bij verplaatsen naar een andere schijf. Op dezelfde schijf is verplaatsen hernoemen en blijft alles behouden.</value></data>
+  <data name="Settings_DeleteIncompleteTitle.Text" xml:space="preserve"><value>Bij het stoppen van een kopie het halve werk verwijderen</value></data>
+  <data name="Settings_DeleteIncompleteDescription.Text" xml:space="preserve"><value>Hervatten waar hij stopte kan dan niet meer. Er blijven geen onvolledige bestanden (.mcpart) achter.</value></data>
+  <data name="Settings_KeepOnError.Content" xml:space="preserve"><value>Niet verwijderen als de kopie door een fout stopte</value></data>
+  <data name="Settings_EjectTitle.Text" xml:space="preserve"><value>Na afloop het doelstation uitwerpen</value></data>
+  <data name="Settings_EjectDescription.Text" xml:space="preserve"><value>Alleen USB-sticks, geheugenkaarten en USB-schijven, als geen andere kopie ze gebruikt.</value></data>
+  <data name="Settings_EjectForce.Content" xml:space="preserve"><value>Uitwerpen, ook als een programma het gebruikt</value></data>
+  <data name="Settings_OnErrorTitle.Text" xml:space="preserve"><value>Als een bestand blijft mislukken</value></data>
+  <data name="Settings_OnErrorDescription.Text" xml:space="preserve"><value>Nadat alle nieuwe pogingen op zijn.</value></data>
+  <data name="Rules_OnErrorAsk.Content" xml:space="preserve"><value>Vragen wat te doen</value></data>
+  <data name="Settings_RetriesTitle.Text" xml:space="preserve"><value>Nieuwe pogingen</value></data>
+  <data name="Settings_RetriesDescription.Text" xml:space="preserve"><value>Hoe vaak een mislukt bestand opnieuw wordt geprobeerd en hoe lang tussen pogingen wordt gewacht.</value></data>
+  <data name="Settings_ErrorReportTitle.Text" xml:space="preserve"><value>Foutrapport opslaan</value></data>
+  <data name="Settings_ErrorReportDescription.Text" xml:space="preserve"><value>Als een kopie met fouten eindigt, een tekstbestand met elk mislukt bestand en de reden.</value></data>
+  <data name="ErrorReport_Destination.Content" xml:space="preserve"><value>In de doelmap</value></data>
+  <data name="ErrorReport_Folder.Content" xml:space="preserve"><value>In een vaste map</value></data>
+  <data name="Settings_ErrorReportName.Header" xml:space="preserve"><value>Bestandsnaam</value></data>
+  <data name="ErrorReport_NoFolder" xml:space="preserve"><value>Geen map gekozen</value></data>
+  <data name="ErrorReport_Count" xml:space="preserve"><value>{0} bestanden met fouten:</value></data>
+  <data name="Settings_DataTitle.Text" xml:space="preserve"><value>Gegevensmap</value></data>
+  <data name="Settings_DataDescription.Text" xml:space="preserve"><value>Instellingen, thema&apos;s, geschiedenis en logboeken van MegaCopier.</value></data>
+  <data name="Settings_ResetTitle.Text" xml:space="preserve"><value>Instellingen herstellen</value></data>
+  <data name="Settings_ResetDescription.Text" xml:space="preserve"><value>Zet alles terug zoals na de installatie. Kopieën, geschiedenis en eigen thema&apos;s blijven behouden.</value></data>
+  <data name="Settings_ResetButton.Text" xml:space="preserve"><value>Herstellen…</value></data>
+  <data name="Reset_Title" xml:space="preserve"><value>Alle instellingen herstellen?</value></data>
+  <data name="Reset_Message" xml:space="preserve"><value>MegaCopier start opnieuw met de fabrieksinstellingen. Kopieën, geschiedenis en eigen thema&apos;s blijven behouden.</value></data>
+  <data name="Reset_Yes" xml:space="preserve"><value>Herstellen</value></data>
+  <data name="Reset_No" xml:space="preserve"><value>Annuleren</value></data>
+  <data name="ErrorAsk_Title" xml:space="preserve"><value>Een bestand kan niet worden gekopieerd</value></data>
+  <data name="ErrorAsk_Retry" xml:space="preserve"><value>Opnieuw</value></data>
+  <data name="ErrorAsk_Skip" xml:space="preserve"><value>Overslaan</value></data>
+  <data name="ErrorAsk_SkipAll" xml:space="preserve"><value>Ook de volgende fouten in deze kopie overslaan</value></data>
+  <data name="ErrorAsk_Stop" xml:space="preserve"><value>Kopie stoppen (kan worden hervat)</value></data>
+  <data name="Merge_Title" xml:space="preserve"><value>Toevoegen aan lopende kopie</value></data>
+  <data name="Merge_Message" xml:space="preserve"><value>{0} items toevoegen aan de kopie naar ‘{1}’? Anders worden ze later apart gekopieerd.</value></data>
+  <data name="Merge_Add" xml:space="preserve"><value>Toevoegen</value></data>
+  <data name="Merge_Separate" xml:space="preserve"><value>Apart</value></data>
+  <data name="Eject_DoneTitle" xml:space="preserve"><value>Station uitgeworpen: je kunt het nu verwijderen</value></data>
+  <data name="Eject_FailedTitle" xml:space="preserve"><value>Kan station niet uitwerpen: het wordt gebruikt</value></data>
+  <data name="Sound_Windows" xml:space="preserve"><value>Die van Windows</value></data>
 </root>

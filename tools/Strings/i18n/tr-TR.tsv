@@ -486,7 +486,7 @@ Sound_AllDone	Tüm kopyalamalar bitti
 Sound_Attention	Kararınız gerekiyor (dosya zaten var)
 Sound_Test	Sesi dene
 Sound_None	Ses yok
-Sound_Default	Windows sesi
+Sound_Default	MegaCopier (kendi sesi)
 Sound_Choose	Dosya seç…
 File_Planned	Benzetildi
 File_Deleted	Kaldırıldı
@@ -1077,3 +1077,83 @@ Theme_moderno-8	Modern 8
 Theme_mensajero	Haberci
 Theme_luna	Luna
 Theme_plata	Gümüş
+Section_General	Genel
+Section_Interface	Arayüz
+Section_Sounds	Sesler
+Section_Copy	Kopyalama
+Section_Behavior	Davranış
+Section_Errors	Hatalar
+Section_Performance	Kuyruk ve performans
+Section_Network	Ağ ve cihazlar
+Section_Automation	Otomasyon
+Section_Advanced	Gelişmiş
+Settings_Search.PlaceholderText	Ayar bul
+Settings_SearchResults	“{0}” için sonuçlar
+Settings_SearchNone	“{0}” ile eşleşen ayar yok.
+Settings_TrayTitle.Text	Simgeyi bildirim alanında göster
+Settings_TrayDescription.Text	Gizlersen MegaCopier çalışmaya devam eder: yeniden çalıştırarak aç. Simge olmadan sistem bildirimi gösterilmez.
+Settings_StartMinimizedTitle.Text	Kopyalamayı simge durumundaki pencereyle başlat
+Settings_StartMinimizedDescription.Text	Pencere, yaptığın işi örtmeden görev çubuğunda görünür.
+Settings_RememberTitle.Text	Pencereyi hatırla
+Settings_RememberDescription.Text	Bulunduğu yerde ve aynı boyutta aç.
+Settings_RememberPosition.Content	Konum
+Settings_RememberSize.Content	Boyut
+Settings_TranslucentTitle.Text	Yarı saydam pencere
+Settings_TranslucentDescription.Text	Akrilik ve daha saydam arka plan: her temada masaüstü pencereden görünür.
+Settings_Icons.Text	Simgeler
+Settings_IconsDescription.Text	Simgelerin görünümünü seç. Her temayla birlikte kullanılabilir.
+IconPack_fluent	Fluent (Windows gibi)
+IconPack_color	Renkli
+IconPack_mosaico	Döşeme
+IconPack_suave	Yumuşak
+IconPack_degradado	Gradyan
+IconPack_neon	Neon
+IconPack_windows10	Windows 10
+Settings_MergeTitle.Text	Yeni kopyaları süren bir kopyaya ekle
+Settings_MergeDescription.Text	Sırasını beklemek yerine dosyalar süren kopyanın listesine eklenir.
+Merge_Never.Content	Asla
+Merge_SameDestination.Content	Aynı klasöre gidiyorsa
+Merge_SameDisks.Content	Aynı diskleri kullanıyorsa
+Merge_Always.Content	Her zaman
+Settings_MergeConfirm.Content	Eklemeden önce sor
+Settings_MoveAttributesTitle.Text	Taşırken şunları da koru
+Settings_MoveAttributesDescription.Text	Başka bir diske taşırken. Aynı diskte taşıma yeniden adlandırmadır ve her şey korunur.
+Settings_DeleteIncompleteTitle.Text	Kopyalama durdurulunca yarım kalanları sil
+Settings_DeleteIncompleteDescription.Text	Kaldığı yerden devam edilemez. Hedefte eksik dosya (.mcpart) kalmaz.
+Settings_KeepOnError.Content	Kopyalama bir hata yüzünden durduysa silme
+Settings_EjectTitle.Text	Bitince hedef sürücüyü çıkar
+Settings_EjectDescription.Text	Yalnızca USB bellekler, hafıza kartları ve USB diskler; başka bir kopya kullanmıyorsa.
+Settings_EjectForce.Content	Bir program kullanıyor olsa bile çıkar
+Settings_OnErrorTitle.Text	Bir dosya başarısız olmaya devam ederse
+Settings_OnErrorDescription.Text	Tüm yeniden denemeler bittikten sonra.
+Rules_OnErrorAsk.Content	Ne yapılacağını sor
+Settings_RetriesTitle.Text	Yeniden denemeler
+Settings_RetriesDescription.Text	Başarısız bir dosyanın kaç kez yeniden deneneceği ve denemeler arasında ne kadar bekleneceği.
+Settings_ErrorReportTitle.Text	Hata raporu kaydet
+Settings_ErrorReportDescription.Text	Bir kopya hatalarla bitince, başarısız her dosyayı ve nedenini içeren bir metin dosyası.
+ErrorReport_Destination.Content	Hedef klasörde
+ErrorReport_Folder.Content	Sabit bir klasörde
+Settings_ErrorReportName.Header	Dosya adı
+ErrorReport_NoFolder	Klasör seçilmedi
+ErrorReport_Count	Hatalı {0} dosya:
+Settings_DataTitle.Text	Veri klasörü
+Settings_DataDescription.Text	MegaCopier ayarları, temaları, geçmişi ve günlükleri.
+Settings_ResetTitle.Text	Ayarları sıfırla
+Settings_ResetDescription.Text	Her şeyi yeni yüklenmiş hâline getirir. Kopyalar, geçmiş ve kendi temaların korunur.
+Settings_ResetButton.Text	Sıfırla…
+Reset_Title	Tüm ayarlar sıfırlansın mı?
+Reset_Message	MegaCopier fabrika ayarlarıyla yeniden başlayacak. Kopyalar, geçmiş ve kendi temaların korunur.
+Reset_Yes	Sıfırla
+Reset_No	İptal
+ErrorAsk_Title	Bir dosya kopyalanamıyor
+ErrorAsk_Retry	Yeniden dene
+ErrorAsk_Skip	Atla
+ErrorAsk_SkipAll	Bu kopyadaki sonraki hataları da atla
+ErrorAsk_Stop	Kopyalamayı durdur (devam ettirilebilir)
+Merge_Title	Süren kopyaya ekle
+Merge_Message	{0} öğe “{1}” konumuna giden kopyaya eklensin mi? Aksi hâlde sıraları gelince ayrı kopyalanırlar.
+Merge_Add	Ekle
+Merge_Separate	Ayrı
+Eject_DoneTitle	Sürücü çıkarıldı: artık çıkarabilirsin
+Eject_FailedTitle	Sürücü çıkarılamadı: bir şey kullanıyor
+Sound_Windows	Windows sesi

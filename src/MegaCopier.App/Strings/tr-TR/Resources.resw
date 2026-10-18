@@ -492,7 +492,7 @@
   <data name="Sound_Attention" xml:space="preserve"><value>Kararınız gerekiyor (dosya zaten var)</value></data>
   <data name="Sound_Test" xml:space="preserve"><value>Sesi dene</value></data>
   <data name="Sound_None" xml:space="preserve"><value>Ses yok</value></data>
-  <data name="Sound_Default" xml:space="preserve"><value>Windows sesi</value></data>
+  <data name="Sound_Default" xml:space="preserve"><value>MegaCopier (kendi sesi)</value></data>
   <data name="Sound_Choose" xml:space="preserve"><value>Dosya seç…</value></data>
   <data name="File_Planned" xml:space="preserve"><value>Benzetildi</value></data>
   <data name="File_Deleted" xml:space="preserve"><value>Kaldırıldı</value></data>
@@ -1083,4 +1083,84 @@
   <data name="Theme_mensajero" xml:space="preserve"><value>Haberci</value></data>
   <data name="Theme_luna" xml:space="preserve"><value>Luna</value></data>
   <data name="Theme_plata" xml:space="preserve"><value>Gümüş</value></data>
+  <data name="Section_General" xml:space="preserve"><value>Genel</value></data>
+  <data name="Section_Interface" xml:space="preserve"><value>Arayüz</value></data>
+  <data name="Section_Sounds" xml:space="preserve"><value>Sesler</value></data>
+  <data name="Section_Copy" xml:space="preserve"><value>Kopyalama</value></data>
+  <data name="Section_Behavior" xml:space="preserve"><value>Davranış</value></data>
+  <data name="Section_Errors" xml:space="preserve"><value>Hatalar</value></data>
+  <data name="Section_Performance" xml:space="preserve"><value>Kuyruk ve performans</value></data>
+  <data name="Section_Network" xml:space="preserve"><value>Ağ ve cihazlar</value></data>
+  <data name="Section_Automation" xml:space="preserve"><value>Otomasyon</value></data>
+  <data name="Section_Advanced" xml:space="preserve"><value>Gelişmiş</value></data>
+  <data name="Settings_Search.PlaceholderText" xml:space="preserve"><value>Ayar bul</value></data>
+  <data name="Settings_SearchResults" xml:space="preserve"><value>“{0}” için sonuçlar</value></data>
+  <data name="Settings_SearchNone" xml:space="preserve"><value>“{0}” ile eşleşen ayar yok.</value></data>
+  <data name="Settings_TrayTitle.Text" xml:space="preserve"><value>Simgeyi bildirim alanında göster</value></data>
+  <data name="Settings_TrayDescription.Text" xml:space="preserve"><value>Gizlersen MegaCopier çalışmaya devam eder: yeniden çalıştırarak aç. Simge olmadan sistem bildirimi gösterilmez.</value></data>
+  <data name="Settings_StartMinimizedTitle.Text" xml:space="preserve"><value>Kopyalamayı simge durumundaki pencereyle başlat</value></data>
+  <data name="Settings_StartMinimizedDescription.Text" xml:space="preserve"><value>Pencere, yaptığın işi örtmeden görev çubuğunda görünür.</value></data>
+  <data name="Settings_RememberTitle.Text" xml:space="preserve"><value>Pencereyi hatırla</value></data>
+  <data name="Settings_RememberDescription.Text" xml:space="preserve"><value>Bulunduğu yerde ve aynı boyutta aç.</value></data>
+  <data name="Settings_RememberPosition.Content" xml:space="preserve"><value>Konum</value></data>
+  <data name="Settings_RememberSize.Content" xml:space="preserve"><value>Boyut</value></data>
+  <data name="Settings_TranslucentTitle.Text" xml:space="preserve"><value>Yarı saydam pencere</value></data>
+  <data name="Settings_TranslucentDescription.Text" xml:space="preserve"><value>Akrilik ve daha saydam arka plan: her temada masaüstü pencereden görünür.</value></data>
+  <data name="Settings_Icons.Text" xml:space="preserve"><value>Simgeler</value></data>
+  <data name="Settings_IconsDescription.Text" xml:space="preserve"><value>Simgelerin görünümünü seç. Her temayla birlikte kullanılabilir.</value></data>
+  <data name="IconPack_fluent" xml:space="preserve"><value>Fluent (Windows gibi)</value></data>
+  <data name="IconPack_color" xml:space="preserve"><value>Renkli</value></data>
+  <data name="IconPack_mosaico" xml:space="preserve"><value>Döşeme</value></data>
+  <data name="IconPack_suave" xml:space="preserve"><value>Yumuşak</value></data>
+  <data name="IconPack_degradado" xml:space="preserve"><value>Gradyan</value></data>
+  <data name="IconPack_neon" xml:space="preserve"><value>Neon</value></data>
+  <data name="IconPack_windows10" xml:space="preserve"><value>Windows 10</value></data>
+  <data name="Settings_MergeTitle.Text" xml:space="preserve"><value>Yeni kopyaları süren bir kopyaya ekle</value></data>
+  <data name="Settings_MergeDescription.Text" xml:space="preserve"><value>Sırasını beklemek yerine dosyalar süren kopyanın listesine eklenir.</value></data>
+  <data name="Merge_Never.Content" xml:space="preserve"><value>Asla</value></data>
+  <data name="Merge_SameDestination.Content" xml:space="preserve"><value>Aynı klasöre gidiyorsa</value></data>
+  <data name="Merge_SameDisks.Content" xml:space="preserve"><value>Aynı diskleri kullanıyorsa</value></data>
+  <data name="Merge_Always.Content" xml:space="preserve"><value>Her zaman</value></data>
+  <data name="Settings_MergeConfirm.Content" xml:space="preserve"><value>Eklemeden önce sor</value></data>
+  <data name="Settings_MoveAttributesTitle.Text" xml:space="preserve"><value>Taşırken şunları da koru</value></data>
+  <data name="Settings_MoveAttributesDescription.Text" xml:space="preserve"><value>Başka bir diske taşırken. Aynı diskte taşıma yeniden adlandırmadır ve her şey korunur.</value></data>
+  <data name="Settings_DeleteIncompleteTitle.Text" xml:space="preserve"><value>Kopyalama durdurulunca yarım kalanları sil</value></data>
+  <data name="Settings_DeleteIncompleteDescription.Text" xml:space="preserve"><value>Kaldığı yerden devam edilemez. Hedefte eksik dosya (.mcpart) kalmaz.</value></data>
+  <data name="Settings_KeepOnError.Content" xml:space="preserve"><value>Kopyalama bir hata yüzünden durduysa silme</value></data>
+  <data name="Settings_EjectTitle.Text" xml:space="preserve"><value>Bitince hedef sürücüyü çıkar</value></data>
+  <data name="Settings_EjectDescription.Text" xml:space="preserve"><value>Yalnızca USB bellekler, hafıza kartları ve USB diskler; başka bir kopya kullanmıyorsa.</value></data>
+  <data name="Settings_EjectForce.Content" xml:space="preserve"><value>Bir program kullanıyor olsa bile çıkar</value></data>
+  <data name="Settings_OnErrorTitle.Text" xml:space="preserve"><value>Bir dosya başarısız olmaya devam ederse</value></data>
+  <data name="Settings_OnErrorDescription.Text" xml:space="preserve"><value>Tüm yeniden denemeler bittikten sonra.</value></data>
+  <data name="Rules_OnErrorAsk.Content" xml:space="preserve"><value>Ne yapılacağını sor</value></data>
+  <data name="Settings_RetriesTitle.Text" xml:space="preserve"><value>Yeniden denemeler</value></data>
+  <data name="Settings_RetriesDescription.Text" xml:space="preserve"><value>Başarısız bir dosyanın kaç kez yeniden deneneceği ve denemeler arasında ne kadar bekleneceği.</value></data>
+  <data name="Settings_ErrorReportTitle.Text" xml:space="preserve"><value>Hata raporu kaydet</value></data>
+  <data name="Settings_ErrorReportDescription.Text" xml:space="preserve"><value>Bir kopya hatalarla bitince, başarısız her dosyayı ve nedenini içeren bir metin dosyası.</value></data>
+  <data name="ErrorReport_Destination.Content" xml:space="preserve"><value>Hedef klasörde</value></data>
+  <data name="ErrorReport_Folder.Content" xml:space="preserve"><value>Sabit bir klasörde</value></data>
+  <data name="Settings_ErrorReportName.Header" xml:space="preserve"><value>Dosya adı</value></data>
+  <data name="ErrorReport_NoFolder" xml:space="preserve"><value>Klasör seçilmedi</value></data>
+  <data name="ErrorReport_Count" xml:space="preserve"><value>Hatalı {0} dosya:</value></data>
+  <data name="Settings_DataTitle.Text" xml:space="preserve"><value>Veri klasörü</value></data>
+  <data name="Settings_DataDescription.Text" xml:space="preserve"><value>MegaCopier ayarları, temaları, geçmişi ve günlükleri.</value></data>
+  <data name="Settings_ResetTitle.Text" xml:space="preserve"><value>Ayarları sıfırla</value></data>
+  <data name="Settings_ResetDescription.Text" xml:space="preserve"><value>Her şeyi yeni yüklenmiş hâline getirir. Kopyalar, geçmiş ve kendi temaların korunur.</value></data>
+  <data name="Settings_ResetButton.Text" xml:space="preserve"><value>Sıfırla…</value></data>
+  <data name="Reset_Title" xml:space="preserve"><value>Tüm ayarlar sıfırlansın mı?</value></data>
+  <data name="Reset_Message" xml:space="preserve"><value>MegaCopier fabrika ayarlarıyla yeniden başlayacak. Kopyalar, geçmiş ve kendi temaların korunur.</value></data>
+  <data name="Reset_Yes" xml:space="preserve"><value>Sıfırla</value></data>
+  <data name="Reset_No" xml:space="preserve"><value>İptal</value></data>
+  <data name="ErrorAsk_Title" xml:space="preserve"><value>Bir dosya kopyalanamıyor</value></data>
+  <data name="ErrorAsk_Retry" xml:space="preserve"><value>Yeniden dene</value></data>
+  <data name="ErrorAsk_Skip" xml:space="preserve"><value>Atla</value></data>
+  <data name="ErrorAsk_SkipAll" xml:space="preserve"><value>Bu kopyadaki sonraki hataları da atla</value></data>
+  <data name="ErrorAsk_Stop" xml:space="preserve"><value>Kopyalamayı durdur (devam ettirilebilir)</value></data>
+  <data name="Merge_Title" xml:space="preserve"><value>Süren kopyaya ekle</value></data>
+  <data name="Merge_Message" xml:space="preserve"><value>{0} öğe “{1}” konumuna giden kopyaya eklensin mi? Aksi hâlde sıraları gelince ayrı kopyalanırlar.</value></data>
+  <data name="Merge_Add" xml:space="preserve"><value>Ekle</value></data>
+  <data name="Merge_Separate" xml:space="preserve"><value>Ayrı</value></data>
+  <data name="Eject_DoneTitle" xml:space="preserve"><value>Sürücü çıkarıldı: artık çıkarabilirsin</value></data>
+  <data name="Eject_FailedTitle" xml:space="preserve"><value>Sürücü çıkarılamadı: bir şey kullanıyor</value></data>
+  <data name="Sound_Windows" xml:space="preserve"><value>Windows sesi</value></data>
 </root>

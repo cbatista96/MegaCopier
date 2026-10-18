@@ -15,7 +15,7 @@
         <!-- Filtros -->
         <StackPanel x:Name="FiltersColumn" Spacing="8">
             <StackPanel Orientation="Horizontal" Spacing="8">
-                <c:McIcon VerticalAlignment="Center" Glyph="&#xE71C;" FontSize="14" Foreground="{StaticResource McAccentBrush}" />
+                <c:McIcon VerticalAlignment="Center" Glyph="&#xE71C;" FontSize="14" Accent="True" />
                 <TextBlock x:Uid="Rules_Filters" Style="{StaticResource McStrong}" />
             </StackPanel>
             <Grid ColumnSpacing="8">
@@ -51,7 +51,7 @@
         <!-- Reglas -->
         <StackPanel x:Name="RulesColumn" Grid.Column="1" Spacing="8">
             <StackPanel Orientation="Horizontal" Spacing="8">
-                <c:McIcon VerticalAlignment="Center" Glyph="&#xE71B;" FontSize="14" Foreground="{StaticResource McAccentBrush}" />
+                <c:McIcon VerticalAlignment="Center" Glyph="&#xE71B;" FontSize="14" Accent="True" />
                 <TextBlock x:Uid="Rules_Rules" Style="{StaticResource McStrong}" />
             </StackPanel>
             <ComboBox x:Name="LinksBox" x:Uid="Rules_Links" HorizontalAlignment="Stretch" SelectionChanged="Selection_Changed">
@@ -61,24 +61,27 @@
             </ComboBox>
             <TextBox x:Name="PatternBox" x:Uid="Rules_Pattern" TextChanged="Pattern_TextChanged" LostFocus="Changed" />
             <TextBlock x:Name="PatternPreview" Style="{StaticResource McSecondary}" />
-            <Grid ColumnSpacing="8">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <NumberBox x:Name="RetriesBox" x:Uid="Rules_Retries" Minimum="0" Maximum="100" SpinButtonPlacementMode="Compact" ValueChanged="Number_Changed" />
-                <NumberBox x:Name="DelayBox" x:Uid="Rules_Delay" Grid.Column="1" Minimum="0" Maximum="3600" SpinButtonPlacementMode="Compact" ValueChanged="Number_Changed" />
-            </Grid>
-            <ComboBox x:Name="OnErrorBox" x:Uid="Rules_OnError" HorizontalAlignment="Stretch" SelectionChanged="Selection_Changed">
-                <ComboBoxItem x:Uid="Rules_OnErrorSkip" />
-                <ComboBoxItem x:Uid="Rules_OnErrorStop" />
-                <ComboBoxItem x:Uid="Rules_OnErrorEnd" />
-            </ComboBox>
+            <StackPanel x:Name="ErrorOptions" Spacing="8">
+                <Grid ColumnSpacing="8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <NumberBox x:Name="RetriesBox" x:Uid="Rules_Retries" Minimum="0" Maximum="100" SpinButtonPlacementMode="Compact" ValueChanged="Number_Changed" />
+                    <NumberBox x:Name="DelayBox" x:Uid="Rules_Delay" Grid.Column="1" Minimum="0" Maximum="3600" SpinButtonPlacementMode="Compact" ValueChanged="Number_Changed" />
+                </Grid>
+                <ComboBox x:Name="OnErrorBox" x:Uid="Rules_OnError" HorizontalAlignment="Stretch" SelectionChanged="Selection_Changed">
+                    <ComboBoxItem x:Uid="Rules_OnErrorSkip" />
+                    <ComboBoxItem x:Uid="Rules_OnErrorStop" />
+                    <ComboBoxItem x:Uid="Rules_OnErrorEnd" />
+                    <ComboBoxItem x:Uid="Rules_OnErrorAsk" />
+                </ComboBox>
+            </StackPanel>
         </StackPanel>
 
         <!-- Sincronización y seguridad -->
         <StackPanel x:Name="SafetyHeader" Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" Spacing="8" Margin="0,4,0,-8">
-            <c:McIcon VerticalAlignment="Center" Glyph="&#xE8F7;" FontSize="14" Foreground="{StaticResource McAccentBrush}" />
+            <c:McIcon VerticalAlignment="Center" Glyph="&#xE8F7;" FontSize="14" Accent="True" />
             <TextBlock x:Uid="Rules_Safety" Style="{StaticResource McStrong}" />
         </StackPanel>
         <StackPanel x:Name="SafetyLeft" Grid.Row="2" Spacing="8">
