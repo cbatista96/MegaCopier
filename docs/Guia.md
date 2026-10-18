@@ -105,6 +105,8 @@ Se puede pulsar en casi todo:
 Si una pregunta (por ejemplo, «la carpeta ya existe») llega con la ventana pequeña, aparece **dentro de ella**, en el
 sitio del progreso: las opciones en una fila, con la explicación de cada una al pasar el ratón.
 
+![La carpeta ya existe, preguntado dentro de la ventana pequeña](capturas/carpeta-pequena.png)
+
 Cuando todo termina bien, la ventana se cierra sola (*Ajustes > Interfaz > Al terminar las copias*).
 
 ### Completa

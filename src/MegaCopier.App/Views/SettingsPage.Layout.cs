@@ -40,7 +40,6 @@ public sealed partial class SettingsPage
 
     private static void PolishRow(Grid row)
     {
-        bool hasControl = row.Children.OfType<FrameworkElement>().Any(c => Grid.GetColumn(c) >= 2 && c is not InfoTip);
         foreach (var child in row.Children.OfType<FrameworkElement>())
         {
             if (Grid.GetColumn(child) >= 1)
@@ -49,7 +48,7 @@ public sealed partial class SettingsPage
             }
         }
 
-        if (!hasControl || row.Children.OfType<StackPanel>().FirstOrDefault(s => Grid.GetColumn(s) == 1) is not { } texts
+        if (row.Children.OfType<StackPanel>().FirstOrDefault(s => Grid.GetColumn(s) == 1) is not { } texts
             || texts.Children.OfType<Grid>().FirstOrDefault(g => g.Children.OfType<InfoTip>().Any()) is not { } titleLine)
         {
             return;
@@ -59,9 +58,17 @@ public sealed partial class SettingsPage
         var info = titleLine.Children.OfType<InfoTip>().First();
         info.Label ??= titleLine.Children.OfType<TextBlock>().FirstOrDefault()?.Text;
         titleLine.Children.Remove(info);
-        foreach (var child in row.Children.OfType<FrameworkElement>().Where(c => Grid.GetColumn(c) >= 2))
+        foreach (var child in row.Children.OfType<FrameworkElement>())
         {
-            Grid.SetColumn(child, Grid.GetColumn(child) + 1);
+            int column = Grid.GetColumn(child);
+            if (column >= 2)
+            {
+                Grid.SetColumn(child, column + 1);
+            }
+            else if (column + Grid.GetColumnSpan(child) > 2)
+            {
+                Grid.SetColumnSpan(child, Grid.GetColumnSpan(child) + 1); // lo que ocupaba hasta el control sigue llegando
+            }
         }
 
         row.ColumnDefinitions.Insert(2, new ColumnDefinition { Width = GridLength.Auto });
@@ -80,7 +87,10 @@ public sealed partial class SettingsPage
     {
         var below = stack.Children.Skip(1).OfType<FrameworkElement>().ToList();
         bool hasControl = row.Children.OfType<FrameworkElement>().Any(c => Grid.GetColumn(c) >= 2 && c is not InfoTip);
-        if (!hasControl || below.Count == 0 || below.Any(e => e.Margin.Left < TextIndent)
+        // Los campos para escribir (horas, números, rutas) necesitan su ancho: con ellos la tarjeta se queda como está.
+        static bool HasInput(object element) => element is TextBox or NumberBox or ComboBox or Slider or TimePicker or PasswordBox
+            || LogicalDescendants<Control>(element).Any(c => c is TextBox or NumberBox or ComboBox or Slider or TimePicker or PasswordBox);
+        if (!hasControl || below.Count == 0 || below.Any(e => e.Margin.Left < TextIndent || e is VariableSizedWrapGrid || HasInput(e))
             || row.Children.OfType<StackPanel>().FirstOrDefault(s => Grid.GetColumn(s) == 1) is not { } texts)
         {
             return;
