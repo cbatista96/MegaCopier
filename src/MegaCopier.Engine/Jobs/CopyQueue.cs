@@ -395,6 +395,9 @@ public sealed class CopyQueue
     /// </summary>
     public Func<CopyJob, ConflictInfo, CancellationToken, ConflictAnswer>? ConflictResolver { get; set; }
 
+    /// <summary>Pregunta qué hacer con un archivo que sigue fallando (copias con OnError = Ask). Sin él, se omite.</summary>
+    public Func<CopyJob, ErrorInfo, CancellationToken, ErrorDecision>? ErrorResolver { get; set; }
+
     /// <summary>Máximo de trabajos en marcha a la vez (0 = sin límite; siempre de uno en uno por disco).</summary>
     public int MaxActiveJobs { get; set; }
 
@@ -596,6 +599,19 @@ public sealed class CopyQueue
         Remove(job);
     }
 
+    /// <summary>Retira una copia que aún no ha empezado (por ejemplo, porque se sumó a otra). Devuelve si se pudo.</summary>
+    public bool Withdraw(CopyJob job)
+    {
+        if (job.State != CopyJobState.Queued || job.Record.Started)
+        {
+            return false;
+        }
+
+        _store.Delete(job.Id);
+        Remove(job);
+        return true;
+    }
+
     /// <summary>Quita de la lista un trabajo terminado.</summary>
     public void Clear(CopyJob job)
     {
@@ -717,6 +733,7 @@ public sealed class CopyQueue
         engine.ProgressChanged += job.SetProgress;
         engine.ConflictResolver = (info, token) =>
             ConflictResolver?.Invoke(job, info, token) ?? new ConflictAnswer(ConflictDecision.Skip, ApplyToAll: false);
+        engine.ErrorResolver = (info, token) => ErrorResolver?.Invoke(job, info, token) ?? ErrorDecision.Skip;
         engine.Logged += job.AddLog;
 
         bool resumed = job.Record.Started;

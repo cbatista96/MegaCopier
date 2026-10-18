@@ -39,6 +39,9 @@ public partial class App : Application
     private Views.ShelfWindow? _shelf;
     private bool _exiting;
 
+    /// <summary>Copias que el usuario detuvo con el botón (no las que se interrumpen al salir o por un apagón).</summary>
+    internal readonly HashSet<string> StoppedByUser = [];
+
     public App()
     {
         InitializeComponent();
@@ -109,6 +112,7 @@ public partial class App : Application
         DispatcherShutdownMode = DispatcherShutdownMode.OnExplicitShutdown;
         Dispatcher = DispatcherQueue.GetForCurrentThread();
         var theme = ThemeManager.Find(Settings.ThemeId);
+        theme = Settings.Translucent ? Translucent(theme) : theme;
         ThemeManager.Apply(theme);
         IconPacks.Apply(Settings.IconPack);
         ApplyControlAccent(theme);
@@ -118,6 +122,7 @@ public partial class App : Application
         _window.ApplyTheme(theme);
         ApplySettings();
         Queue.ConflictResolver = (job, conflict, cancellation) => Window.AskConflict(job, conflict, cancellation);
+        Queue.ErrorResolver = (job, error, cancellation) => Window.AskError(job, error, cancellation);
 
         _tray = new TrayIcon(
             Path.Combine(AppContext.BaseDirectory, "Assets", "MegaCopier.ico"),
@@ -341,7 +346,22 @@ public partial class App : Application
                 options.Move = false;
             }
 
-            var job = Queue.Submit(request.Sources, destination, options, request.StartAtUtc, request.Excluded);
+            // Sumar a una copia en marcha (como SuperCopier), sin preguntar o preguntando antes.
+            var mergeInto = operation == JobOperation.Copy && request.StartAtUtc is null ? FindMergeTarget(request.Sources, destination, options) : null;
+            if (mergeInto is not null && !Settings.MergeConfirm)
+            {
+                Queue.AddToJob(mergeInto, request.Sources);
+                firstJob ??= mergeInto;
+                continue;
+            }
+
+            // Si hay que preguntar, la copia nueva espera en pausa (programada) hasta la respuesta.
+            var job = Queue.Submit(request.Sources, destination, options, mergeInto is null ? request.StartAtUtc : DateTime.UtcNow.AddYears(50), request.Excluded);
+            if (mergeInto is not null)
+            {
+                _ = AskMergeAsync(job, mergeInto, [.. request.Sources]);
+            }
+
             Disks?.Check(request.Sources.Append(destination));
             if (operation == JobOperation.Copy && (Settings.ExportReport || Settings.Scripts.Count > 0))
             {
@@ -366,11 +386,130 @@ public partial class App : Application
         return firstJob!;
     }
 
+    /// <summary>
+    /// Opciones de fin de copia (como SuperCopier): informe de errores, borrar lo que quedó a medias al detener y
+    /// expulsar la unidad de destino.
+    /// </summary>
+    private void ApplyEndOfJobOptions(CopyJob job)
+    {
+        if (Settings.SaveErrorReport && job.Result is { Failures.Count: > 0 } result)
+        {
+            WriteErrorReport(job, result);
+        }
+
+        bool stoppedByUser = job.State == CopyJobState.Interrupted && StoppedByUser.Remove(job.Id) && !_exiting;
+        bool failed = job.State == CopyJobState.Failed;
+        if (Settings.DeleteIncomplete && (stoppedByUser || (failed && !Settings.KeepIncompleteOnError)) && !job.IsActive)
+        {
+            try
+            {
+                Queue.Discard(job);
+            }
+            catch (InvalidOperationException)
+            {
+            }
+        }
+
+        if (Settings.EjectWhenDone && job.State is CopyJobState.Completed or CopyJobState.CompletedWithErrors)
+        {
+            string root = Path.GetPathRoot(job.Record.Destination) ?? "";
+            bool inUse = Queue.Jobs.Any(j => j != job && j.IsActive && string.Equals(Path.GetPathRoot(j.Record.Destination), root, StringComparison.OrdinalIgnoreCase));
+            if (root.Length > 0 && !inUse && DriveEject.IsRemovable(root))
+            {
+                if (TestMode)
+                {
+                    TestLog("eject.log", $"{root} force={Settings.EjectForce}");
+                }
+                else
+                {
+                    _ = Task.Run(() => DriveEject.Eject(root, Settings.EjectForce)).ContinueWith(
+                        t => Dispatcher.TryEnqueue(() => Notify(L.Get(t.Result ? "Eject_DoneTitle" : "Eject_FailedTitle"), root)),
+                        TaskScheduler.Default);
+                }
+            }
+        }
+    }
+
+    /// <summary>Informe de errores: los archivos que fallaron y por qué, en la carpeta de destino o en la elegida.</summary>
+    private void WriteErrorReport(CopyJob job, CopyJobResult result)
+    {
+        try
+        {
+            string folder = Settings.ErrorReportInDestination || Settings.ErrorReportFolder.Length == 0
+                ? job.Record.Destination
+                : Settings.ErrorReportFolder;
+            string name = string.Join("_", Settings.ErrorReportName.Split(Path.GetInvalidFileNameChars())).Trim();
+            if (name.Length == 0)
+            {
+                name = "errorlog.txt";
+            }
+
+            Directory.CreateDirectory(folder);
+            var lines = new List<string>
+            {
+                $"MegaCopier · {DateTime.Now:yyyy-MM-dd HH:mm:ss}",
+                $"{string.Join(" | ", job.Record.Sources)} → {job.Record.Destination}",
+                L.F("ErrorReport_Count", result.Failures.Count),
+                "",
+            };
+            lines.AddRange(result.Failures.Select(f => $"{f.Source}\t{f.Message}"));
+            File.AppendAllLines(Path.Combine(folder, name), lines.Append(""));
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or ArgumentException or NotSupportedException)
+        {
+            LogCrash(ex, "Informe de errores");
+        }
+    }
+
+    /// <summary>La copia en marcha a la que se suma una nueva según «Añadir las copias nuevas a una en marcha».</summary>
+    private CopyJob? FindMergeTarget(IReadOnlyList<string> sources, string destination, CopyOptions options)
+    {
+        var mode = Settings.MergeNewCopies;
+        if (mode == MergeMode.Never || sources.Count == 0)
+        {
+            return null;
+        }
+
+        static string Root(string path) => Path.GetPathRoot(Path.GetFullPath(path))?.ToUpperInvariant() ?? "";
+        string destinationRoot = Root(destination);
+        string sourceRoot = Root(sources[0]);
+        return Queue.Jobs.FirstOrDefault(job =>
+            job.IsActive
+            && job.Record.Operation == JobOperation.Copy
+            && job.Record.Mode == options.Mode
+            && job.Record.Move == options.Move
+            && job.Record.StartAtUtc is null
+            && mode switch
+            {
+                MergeMode.SameDestination => string.Equals(
+                    Path.TrimEndingDirectorySeparator(Path.GetFullPath(job.Record.Destination)),
+                    Path.TrimEndingDirectorySeparator(Path.GetFullPath(destination)),
+                    StringComparison.OrdinalIgnoreCase),
+                MergeMode.SameDisks => Root(job.Record.Destination) == destinationRoot
+                    && job.Record.Sources.Count > 0 && Root(job.Record.Sources[0]) == sourceRoot,
+                _ => true,
+            });
+    }
+
+    /// <summary>Pregunta si sumar la copia nueva a la que ya está en marcha; si no, la nueva sigue por su cuenta.</summary>
+    private async Task AskMergeAsync(CopyJob added, CopyJob target, List<string> sources)
+    {
+        bool merge = await Window.ConfirmMergeAsync(target, sources.Count);
+        if (merge && Queue.Withdraw(added))
+        {
+            Queue.AddToJob(target, sources);
+            return;
+        }
+
+        Queue.ScheduleAt(added, null);
+    }
+
     /// <summary>Preferencias que no son de cada copia: cola, prioridad del proceso y ventana siempre visible.</summary>
     internal void ApplySettings()
     {
         Queue.MaxActiveJobs = Math.Max(0, Settings.MaxActiveJobs);
         Queue.FastDevices = Settings.FastDevices.Split([',', ';'], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+        _tray?.SetVisible(Settings.ShowTrayIcon);
         Format.SizeUnits = Settings.Units;
         // Primero el modo de segundo plano (al entrar o salir, Windows deja la clase en Normal) y después la clase.
         SystemActions.SetBackgroundMode(Settings.Priority == ProcessPriority.Low);
@@ -397,8 +536,26 @@ public partial class App : Application
     internal void ApplyTheme() => ApplyTheme(ThemeManager.Find(Settings.ThemeId));
 
     /// <summary>Aplica un tema (también la vista previa del editor, sin guardarlo).</summary>
+    /// <summary>«Ventana translúcida»: el mismo tema, con fondo acrílico y más transparente (se ve el escritorio).</summary>
+    private static ThemeDefinition Translucent(ThemeDefinition theme)
+    {
+        static string Fade(string color, double keep)
+        {
+            var c = ThemeManager.Parse(color);
+            return ThemeManager.ToHex(Windows.UI.Color.FromArgb((byte)(c.A * keep), c.R, c.G, c.B));
+        }
+
+        var clone = theme.Clone();
+        clone.Backdrop = AppBackdrop.Acrylic;
+        clone.Background = Fade(theme.Background, 0.45);
+        clone.BackgroundEnd = theme.BackgroundEnd.Length > 0 ? Fade(theme.BackgroundEnd, 0.45) : "";
+        clone.TextureOpacity = theme.TextureOpacity * 0.5;
+        return clone;
+    }
+
     internal void ApplyTheme(ThemeDefinition theme)
     {
+        theme = Settings.Translucent ? Translucent(theme) : theme;
         ThemeManager.Apply(theme);
         bool accentChanged = ApplyControlAccent(theme);
         _window?.ApplyTheme(theme, accentChanged);
@@ -591,7 +748,14 @@ public partial class App : Application
                 if (Settings.ShowWindowOnNewCopy)
                 {
                     Window.ShowJobs();
-                    ShowWindow();
+                    if (Settings.StartMinimized)
+                    {
+                        Window.ShowMinimized();
+                    }
+                    else
+                    {
+                        ShowWindow();
+                    }
                 }
 
                 return new IpcResponse { Ok = true, JobId = job.Id };
@@ -792,6 +956,7 @@ public partial class App : Application
 
     private void OnJobFinished(CopyJob job)
     {
+        ApplyEndOfJobOptions(job);
         bool finished = job.State is CopyJobState.Completed or CopyJobState.CompletedWithErrors or CopyJobState.Failed;
         if (finished)
         {
