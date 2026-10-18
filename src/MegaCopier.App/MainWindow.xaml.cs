@@ -81,11 +81,13 @@ public sealed partial class MainWindow : Window
         var (width, height) = TargetSize(_expanded);
         AppWindow.Resize(new Windows.Graphics.SizeInt32(Scaled(width), Scaled(height)));
         CenterOnScreen();
+        RestorePosition();
 
         // Cerrar la ventana no cierra la app: sigue en la bandeja con las copias en marcha.
         AppWindow.Closing += (_, args) =>
         {
             args.Cancel = true;
+            SavePlacement();
             AppWindow.Hide();
         };
 
@@ -205,7 +207,66 @@ public sealed partial class MainWindow : Window
         }
     }
 
-    internal void Hide() => AppWindow.Hide();
+    /// <summary>«Iniciar las copias con la ventana minimizada»: en la barra de tareas, sin taparle nada al usuario.</summary>
+    internal void ShowMinimized()
+    {
+        if (AppWindow.IsVisible)
+        {
+            return;
+        }
+
+        AppWindow.Show(activateWindow: false);
+        if (AppWindow.Presenter is OverlappedPresenter presenter)
+        {
+            presenter.Minimize();
+        }
+    }
+
+    internal void Hide()
+    {
+        SavePlacement();
+        AppWindow.Hide();
+    }
+
+    /// <summary>«Recordar la posición / el tamaño de la ventana» (como SuperCopier).</summary>
+    private void SavePlacement()
+    {
+        var s = _app.Settings;
+        if (!s.RememberPosition && !s.RememberSize)
+        {
+            return;
+        }
+
+        if (s.RememberPosition)
+        {
+            s.WindowX = AppWindow.Position.X;
+            s.WindowY = AppWindow.Position.Y;
+        }
+
+        if (s.RememberSize && _expanded)
+        {
+            double scale = Scaled(1000) / 1000.0;
+            s.WindowWidth = (int)(AppWindow.Size.Width / scale);
+            s.WindowHeight = (int)(AppWindow.Size.Height / scale);
+        }
+
+        s.Save();
+    }
+
+    private void RestorePosition()
+    {
+        var s = _app.Settings;
+        if (!s.RememberPosition || s.WindowX == int.MinValue)
+        {
+            return;
+        }
+
+        // Dentro de la pantalla aunque haya cambiado la configuración de monitores.
+        var area = DisplayArea.GetFromPoint(new Windows.Graphics.PointInt32(s.WindowX, s.WindowY), DisplayAreaFallback.Nearest).WorkArea;
+        int x = Math.Clamp(s.WindowX, area.X, Math.Max(area.X, area.X + area.Width - AppWindow.Size.Width));
+        int y = Math.Clamp(s.WindowY, area.Y, Math.Max(area.Y, area.Y + area.Height - AppWindow.Size.Height));
+        AppWindow.Move(new Windows.Graphics.PointInt32(x, y));
+    }
 
     /// <summary>Cuenta atrás antes de apagar, suspender... Devuelve false si el usuario la cancela.</summary>
     internal async Task<bool> ConfirmFinishAsync(FinishAction action)
@@ -522,7 +583,9 @@ public sealed partial class MainWindow : Window
     }
 
     private (double Width, double Height) TargetSize(bool expanded) =>
-        expanded ? (ExpandedWidth, ExpandedHeight)
+        expanded ? (_app.Settings.RememberSize && _app.Settings.WindowWidth >= 640
+            ? (_app.Settings.WindowWidth, Math.Max(480, _app.Settings.WindowHeight))
+            : (ExpandedWidth, ExpandedHeight))
         : Jobs.Count == 0 ? (CompactWidth, EmptyHeight)
         : (CompactWidth, CompactHeight + (Jobs.Count > 1 ? PagerHeight : 0));
 

@@ -88,6 +88,28 @@ internal sealed unsafe partial class TrayIcon : IDisposable
     /// <summary>Doble clic sobre el icono.</summary>
     public event Action? DoubleClicked;
 
+    /// <summary>Muestra u oculta el icono (MegaCopier sigue en marcha; se abre ejecutándolo otra vez).</summary>
+    public void SetVisible(bool visible)
+    {
+        if (visible == _visible || _disposed)
+        {
+            return;
+        }
+
+        _visible = visible;
+        if (visible)
+        {
+            Add();
+        }
+        else
+        {
+            var data = NewData(0);
+            Shell_NotifyIconW(NimDelete, &data);
+        }
+    }
+
+    private bool _visible = true;
+
     /// <summary>Muestra el icono normal o el de "desactivado".</summary>
     public void SetDisabled(bool disabled)
     {
@@ -288,7 +310,10 @@ internal sealed unsafe partial class TrayIcon : IDisposable
 
                 if (message == WmTaskbarCreated)
                 {
-                    tray.Add(); // el Explorador se reinició: hay que volver a poner el icono
+                    if (tray._visible)
+                    {
+                        tray.Add(); // el Explorador se reinició: hay que volver a poner el icono
+                    }
                     return 0;
                 }
             }

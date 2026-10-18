@@ -30,6 +30,19 @@ public enum WindowMode
     Expanded,
 }
 
+/// <summary>Cuándo una copia nueva se suma a otra que ya está en marcha (como SuperCopier).</summary>
+public enum MergeMode
+{
+    Never,
+
+    /// <summary>Si va a la misma carpeta de destino.</summary>
+    SameDestination,
+
+    /// <summary>Si usa los mismos discos (origen y destino).</summary>
+    SameDisks,
+    Always,
+}
+
 /// <summary>Cuándo preguntar antes de copiar o mover un arrastre del Explorador.</summary>
 public enum DragConfirm
 {
@@ -395,6 +408,70 @@ public sealed class AppSettings
     /// </summary>
     public bool Enabled { get; set; } = true;
 
+    // --- Comportamiento (como SuperCopier) ---
+
+    /// <summary>Al mover entre discos: copiar también los atributos.</summary>
+    public bool MovePreserveAttributes { get; set; } = true;
+
+    /// <summary>Al mover entre discos: permisos, propietario y auditoría que se conservan.</summary>
+    public Engine.Native.SecurityParts MoveCopySecurity { get; set; }
+
+    /// <summary>Cuándo una copia nueva se suma a otra que ya está en marcha en vez de esperar su turno.</summary>
+    public MergeMode MergeNewCopies { get; set; } = MergeMode.Never;
+
+    /// <summary>Preguntar antes de sumar una copia nueva a otra.</summary>
+    public bool MergeConfirm { get; set; } = true;
+
+    /// <summary>Al detener una copia (o si falla), borrar lo que quedó a medias: ya no se podrá continuar.</summary>
+    public bool DeleteIncomplete { get; set; }
+
+    /// <summary>Con DeleteIncomplete, no borrar lo que quedó a medias si la copia paró por un error.</summary>
+    public bool KeepIncompleteOnError { get; set; } = true;
+
+    /// <summary>Al terminar, expulsar la unidad de destino si es extraíble (USB, tarjeta).</summary>
+    public bool EjectWhenDone { get; set; }
+
+    /// <summary>Expulsarla aunque algún programa la esté usando.</summary>
+    public bool EjectForce { get; set; }
+
+    // --- Errores ---
+
+    /// <summary>Guardar un informe con los archivos que fallaron al terminar una copia con errores.</summary>
+    public bool SaveErrorReport { get; set; }
+
+    /// <summary>El informe va a la carpeta de destino de la copia (si no, a ErrorReportFolder).</summary>
+    public bool ErrorReportInDestination { get; set; } = true;
+
+    public string ErrorReportFolder { get; set; } = "";
+
+    public string ErrorReportName { get; set; } = "errorlog.txt";
+
+    // --- Interfaz ---
+
+    /// <summary>Mostrar el icono de MegaCopier en la bandeja del sistema.</summary>
+    public bool ShowTrayIcon { get; set; } = true;
+
+    /// <summary>Las copias nuevas empiezan con la ventana minimizada.</summary>
+    public bool StartMinimized { get; set; }
+
+    /// <summary>Recordar dónde estaba la ventana y abrirla en el mismo sitio.</summary>
+    public bool RememberPosition { get; set; }
+
+    /// <summary>Recordar el tamaño de la ventana completa.</summary>
+    public bool RememberSize { get; set; }
+
+    /// <summary>Posición y tamaño guardados (en píxeles de pantalla).</summary>
+    public int WindowX { get; set; } = int.MinValue;
+
+    public int WindowY { get; set; } = int.MinValue;
+
+    public int WindowWidth { get; set; }
+
+    public int WindowHeight { get; set; }
+
+    /// <summary>Ventana translúcida: se ve el escritorio a través del fondo, sea cual sea el tema.</summary>
+    public bool Translucent { get; set; }
+
     /// <summary>settings.json no se pudo leer (se guardó una copia en settings.json.bad).</summary>
     [JsonIgnore]
     public bool LoadFailed { get; private init; }
@@ -456,6 +533,13 @@ public sealed class AppSettings
             DeltaCopy = DeltaCopy,
             SkipDuplicates = SkipDuplicates,
         };
+
+        // Al mover, sus propias preferencias de atributos y seguridad (como SuperCopier: copiar y mover por separado).
+        if (options.Move)
+        {
+            options.PreserveAttributes = MovePreserveAttributes;
+            options.CopySecurity = MoveCopySecurity;
+        }
 
         // Autoajuste: si se midió el disco de destino y no se cambiaron a mano los valores de rendimiento, se usan los medidos.
         int blockMB = BlockSizeMB;

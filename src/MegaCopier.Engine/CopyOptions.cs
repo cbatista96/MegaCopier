@@ -125,6 +125,22 @@ public enum ErrorPolicy
 
     /// <summary>Tras agotar los reintentos, se vuelve a intentar una vez al final de la cola (como Ultracopier).</summary>
     MoveToEnd,
+
+    /// <summary>Tras agotar los reintentos, pregunta qué hacer: reintentar, omitir, omitir todos o detener (como SuperCopier).</summary>
+    Ask,
+}
+
+/// <summary>Un archivo que sigue fallando tras los reintentos (para preguntar qué hacer).</summary>
+public sealed record ErrorInfo(string Source, string Destination, string Message, FileErrorKind Kind);
+
+public enum ErrorDecision
+{
+    Retry,
+    Skip,
+
+    /// <summary>Omitir este y todos los errores que vengan en esta copia sin volver a preguntar.</summary>
+    SkipAll,
+    Stop,
 }
 
 public sealed class CopyOptions

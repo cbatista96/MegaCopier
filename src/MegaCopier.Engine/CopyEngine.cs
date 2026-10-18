@@ -18,6 +18,10 @@ public sealed partial class CopyEngine
     private readonly Lock _lock = new();
     private readonly Dictionary<string, string?> _volumeCache = new(StringComparer.OrdinalIgnoreCase);
     private ConflictAnswer? _conflictForAll;
+    private bool _skipAllErrors;
+
+    /// <summary>Las preguntas de error van de una en una (los archivos pequeños se copian en paralelo).</summary>
+    private readonly Lock _errorQuestion = new();
     private CancellationTokenSource? _currentFile;
     private ProgressTracker? _progress;
     private string _destinationRoot = "";
@@ -57,6 +61,9 @@ public sealed partial class CopyEngine
     /// copia y puede bloquear hasta que el usuario responda.
     /// </summary>
     public Func<ConflictInfo, CancellationToken, ConflictAnswer>? ConflictResolver { get; set; }
+
+    /// <summary>Pregunta qué hacer con un archivo que sigue fallando (con OnError = Ask). Sin él, se omite.</summary>
+    public Func<ErrorInfo, CancellationToken, ErrorDecision>? ErrorResolver { get; set; }
 
     /// <summary>Velocidad por segundo desde el inicio (para la gráfica).</summary>
     public float[] SpeedHistory => _progress?.SpeedHistory() ?? [];
@@ -850,6 +857,43 @@ public sealed partial class CopyEngine
 
                 if (attempt >= _options.RetryCount)
                 {
+                    if (_options.OnError == ErrorPolicy.Ask && !_skipAllErrors && ErrorResolver is { } askError)
+                    {
+                        ErrorDecision decision = ErrorDecision.SkipAll;
+                        lock (_errorQuestion)
+                        {
+                            // Mientras esperaba su turno, otra pregunta pudo contestarse con «omitir todos».
+                            if (!_skipAllErrors)
+                            {
+                                progress.SetPhase(CopyPhase.WaitingForUser);
+                                try
+                                {
+                                    decision = askError(new ErrorInfo(item.Source, target, ex.Message, kind), cancellationToken);
+                                }
+                                finally
+                                {
+                                    progress.SetPhase(CopyPhase.Copying);
+                                }
+
+                                _skipAllErrors |= decision == ErrorDecision.SkipAll; // dentro del turno: nadie más pregunta
+                            }
+                        }
+
+                        cancellationToken.ThrowIfCancellationRequested();
+                        switch (decision)
+                        {
+                            case ErrorDecision.Retry:
+                                attempt = -1; // vuelve a empezar los reintentos, desde el journal
+                                progress.RestartFile();
+                                continue;
+                            case ErrorDecision.Stop:
+                                throw;
+                        }
+
+                        Fail(item, result, ex.Message, kind);
+                        return null;
+                    }
+
                     if (_options.OnError == ErrorPolicy.Stop)
                     {
                         throw;

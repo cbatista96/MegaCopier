@@ -234,6 +234,62 @@ public sealed class MoreFeatureTests : IDisposable
     }
 
     [Fact]
+    public void AsksWhatToDoAndRetriesWhenTheFileIsFree()
+    {
+        string locked = Write("src/a.txt", "a");
+        Write("src/b.txt", "b");
+        var options = Options();
+        options.RetryCount = 0;
+        options.OnError = ErrorPolicy.Ask;
+        var engine = new CopyEngine(options);
+        var handle = File.Open(locked, FileMode.Open, FileAccess.ReadWrite, FileShare.None);
+        var asked = new List<ErrorInfo>();
+        engine.ErrorResolver = (info, _) =>
+        {
+            asked.Add(info);
+            handle.Dispose(); // el usuario cierra el programa que lo tenía abierto y pulsa «Reintentar»
+            return ErrorDecision.Retry;
+        };
+
+        var result = engine.Run(new CopyJobRequest([_temp.Combine("src")], _temp.Combine("dst")));
+
+        Assert.True(result.Success);
+        var question = Assert.Single(asked);
+        Assert.Equal(Path.GetFullPath(locked), Path.GetFullPath(question.Source));
+        Assert.Equal(FileErrorKind.InUse, question.Kind);
+        Assert.Equal("a", File.ReadAllText(_temp.Combine("dst/src/a.txt")));
+    }
+
+    [Fact]
+    public void SkipAllErrorsAsksOnlyOnce()
+    {
+        string first = Write("src/a.txt", "a");
+        string second = Write("src/b.txt", "b");
+        Write("src/c.txt", "c");
+        var options = Options();
+        options.RetryCount = 0;
+        options.OnError = ErrorPolicy.Ask;
+        var engine = new CopyEngine(options);
+        int questions = 0;
+        engine.ErrorResolver = (_, _) =>
+        {
+            questions++;
+            return ErrorDecision.SkipAll;
+        };
+
+        CopyJobResult result;
+        using (File.Open(first, FileMode.Open, FileAccess.ReadWrite, FileShare.None))
+        using (File.Open(second, FileMode.Open, FileAccess.ReadWrite, FileShare.None))
+        {
+            result = engine.Run(new CopyJobRequest([_temp.Combine("src")], _temp.Combine("dst")));
+        }
+
+        Assert.Equal(1, questions);
+        Assert.Equal(2, result.Failures.Count);
+        Assert.Equal("c", File.ReadAllText(_temp.Combine("dst/src/c.txt")));
+    }
+
+    [Fact]
     public async Task WaitsForADisconnectedSourceToComeBack()
     {
         Write("uno/a.txt", new string('a', 10));

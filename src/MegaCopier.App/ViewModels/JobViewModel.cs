@@ -429,7 +429,11 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
 
     public bool CanSchedule => State is CopyJobState.Queued or CopyJobState.Running or CopyJobState.Paused or CopyJobState.Interrupted;
 
-    public void Stop() => _queue.Stop(Job);
+    public void Stop()
+    {
+        ((App)Microsoft.UI.Xaml.Application.Current).StoppedByUser.Add(Job.Id); // para «borrar lo que quedó a medias»
+        _queue.Stop(Job);
+    }
 
     public void Discard() => _queue.Discard(Job);
 
