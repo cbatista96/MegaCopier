@@ -5,6 +5,8 @@ y las versiones, [SemVer](https://semver.org/lang/es/).
 
 ## [Sin publicar]
 
+## [1.3.0] - 2026-10-18
+
 Renovamos la ventana de copia con tres vistas (la pequeña, la de la lista y la de varias copias), reconstruimos el menú
 «Nueva» con un único selector para archivos y carpetas, añadimos 16 conjuntos de iconos al estilo de otros sistemas y 19
 sonidos originales, y pulimos los detalles: botones con animación, rutas que se pueden pulsar, preguntas que caben en la
@@ -392,7 +394,8 @@ Primera versión pública.
 - Aviso SMART, avisos por correo y webhook, control desde el móvil y servidor MCP para asistentes de IA.
 - Consola `mcopy`, modo portátil, 14 idiomas, 11 temas y accesibilidad con lectores de pantalla.
 
-[Sin publicar]: https://github.com/cbatista96/MegaCopier/compare/v1.2.0...HEAD
+[Sin publicar]: https://github.com/cbatista96/MegaCopier/compare/v1.3.0...HEAD
+[1.3.0]: https://github.com/cbatista96/MegaCopier/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/cbatista96/MegaCopier/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/cbatista96/MegaCopier/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/cbatista96/MegaCopier/releases/tag/v1.0.0
