@@ -486,7 +486,7 @@ Sound_AllDone	Alle Kopien sind fertig
 Sound_Attention	Ihre Entscheidung ist nötig (Datei existiert bereits)
 Sound_Test	Ton testen
 Sound_None	Kein Ton
-Sound_Default	Windows-Standard
+Sound_Default	MegaCopier (eigener Ton)
 Sound_Choose	Datei auswählen…
 File_Planned	Simuliert
 File_Deleted	Entfernt
@@ -1077,3 +1077,83 @@ Theme_moderno-8	Modern 8
 Theme_mensajero	Messenger
 Theme_luna	Luna
 Theme_plata	Silber
+Section_General	Allgemein
+Section_Interface	Oberfläche
+Section_Sounds	Töne
+Section_Copy	Kopieren
+Section_Behavior	Verhalten
+Section_Errors	Fehler
+Section_Performance	Warteschlange und Leistung
+Section_Network	Netzwerk und Geräte
+Section_Automation	Automatisierung
+Section_Advanced	Erweitert
+Settings_Search.PlaceholderText	Einstellung suchen
+Settings_SearchResults	Ergebnisse für „{0}“
+Settings_SearchNone	Keine Einstellung passt zu „{0}“.
+Settings_TrayTitle.Text	Symbol im Infobereich anzeigen
+Settings_TrayDescription.Text	Ausgeblendet läuft MegaCopier weiter: zum Öffnen erneut starten. Ohne Symbol gibt es keine Systembenachrichtigungen.
+Settings_StartMinimizedTitle.Text	Kopien mit minimiertem Fenster starten
+Settings_StartMinimizedDescription.Text	Das Fenster erscheint in der Taskleiste, ohne Ihre Arbeit zu verdecken.
+Settings_RememberTitle.Text	Fenster merken
+Settings_RememberDescription.Text	Dort und in derselben Größe öffnen, wo es war.
+Settings_RememberPosition.Content	Position
+Settings_RememberSize.Content	Größe
+Settings_TranslucentTitle.Text	Durchscheinendes Fenster
+Settings_TranslucentDescription.Text	Acryl-Hintergrund, durchsichtiger: Der Desktop scheint durch das Fenster, bei jedem Design.
+Settings_Icons.Text	Symbole
+Settings_IconsDescription.Text	Wählen Sie das Aussehen der Symbole. Sie passen zu jedem Design.
+IconPack_fluent	Fluent (wie Windows)
+IconPack_color	Farbe
+IconPack_mosaico	Kacheln
+IconPack_suave	Sanft
+IconPack_degradado	Verlauf
+IconPack_neon	Neon
+IconPack_windows10	Windows 10
+Settings_MergeTitle.Text	Neue Kopien zu einer laufenden hinzufügen
+Settings_MergeDescription.Text	Statt zu warten, kommen die Dateien in die Liste der laufenden Kopie.
+Merge_Never.Content	Nie
+Merge_SameDestination.Content	Wenn sie in denselben Ordner gehen
+Merge_SameDisks.Content	Wenn dieselben Laufwerke
+Merge_Always.Content	Immer
+Settings_MergeConfirm.Content	Vor dem Hinzufügen fragen
+Settings_MoveAttributesTitle.Text	Beim Verschieben auch behalten
+Settings_MoveAttributesDescription.Text	Beim Verschieben auf ein anderes Laufwerk. Auf demselben Laufwerk ist es ein Umbenennen und alles bleibt erhalten.
+Settings_DeleteIncompleteTitle.Text	Beim Stoppen einer Kopie Unfertiges löschen
+Settings_DeleteIncompleteDescription.Text	Sie kann dann nicht mehr fortgesetzt werden. Es bleiben keine unvollständigen Dateien (.mcpart) im Ziel.
+Settings_KeepOnError.Content	Nicht löschen, wenn die Kopie wegen eines Fehlers stoppte
+Settings_EjectTitle.Text	Danach das Ziellaufwerk auswerfen
+Settings_EjectDescription.Text	Nur USB-Sticks, Speicherkarten und USB-Laufwerke, wenn keine andere Kopie es nutzt.
+Settings_EjectForce.Content	Auch auswerfen, wenn ein Programm es nutzt
+Settings_OnErrorTitle.Text	Wenn eine Datei weiterhin fehlschlägt
+Settings_OnErrorDescription.Text	Nachdem alle Wiederholungen aufgebraucht sind.
+Rules_OnErrorAsk.Content	Fragen, was zu tun ist
+Settings_RetriesTitle.Text	Wiederholungen
+Settings_RetriesDescription.Text	Wie oft eine fehlerhafte Datei wiederholt wird und wie lange zwischen den Versuchen gewartet wird.
+Settings_ErrorReportTitle.Text	Fehlerbericht speichern
+Settings_ErrorReportDescription.Text	Wenn eine Kopie mit Fehlern endet, eine Textdatei mit jeder fehlgeschlagenen Datei und dem Grund.
+ErrorReport_Destination.Content	Im Zielordner
+ErrorReport_Folder.Content	In einem festen Ordner
+Settings_ErrorReportName.Header	Dateiname
+ErrorReport_NoFolder	Kein Ordner gewählt
+ErrorReport_Count	{0} Dateien mit Fehlern:
+Settings_DataTitle.Text	Datenordner
+Settings_DataDescription.Text	Einstellungen, Designs, Verlauf und Protokolle von MegaCopier.
+Settings_ResetTitle.Text	Einstellungen zurücksetzen
+Settings_ResetDescription.Text	Setzt alles auf den Zustand nach der Installation zurück. Kopien, Verlauf und eigene Designs bleiben erhalten.
+Settings_ResetButton.Text	Zurücksetzen…
+Reset_Title	Alle Einstellungen zurücksetzen?
+Reset_Message	MegaCopier startet mit den Werkseinstellungen neu. Kopien, Verlauf und eigene Designs bleiben erhalten.
+Reset_Yes	Zurücksetzen
+Reset_No	Abbrechen
+ErrorAsk_Title	Eine Datei kann nicht kopiert werden
+ErrorAsk_Retry	Wiederholen
+ErrorAsk_Skip	Überspringen
+ErrorAsk_SkipAll	Auch die nächsten Fehler dieser Kopie überspringen
+ErrorAsk_Stop	Kopie stoppen (kann fortgesetzt werden)
+Merge_Title	Zur laufenden Kopie hinzufügen
+Merge_Message	{0} Elemente zur Kopie nach „{1}“ hinzufügen? Sonst werden sie später separat kopiert.
+Merge_Add	Hinzufügen
+Merge_Separate	Separat
+Eject_DoneTitle	Laufwerk ausgeworfen: Sie können es jetzt entfernen
+Eject_FailedTitle	Laufwerk konnte nicht ausgeworfen werden: Es wird verwendet
+Sound_Windows	Der von Windows

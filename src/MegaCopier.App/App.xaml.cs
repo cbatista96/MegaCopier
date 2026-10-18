@@ -452,7 +452,7 @@ public partial class App : Application
                 L.F("ErrorReport_Count", result.Failures.Count),
                 "",
             };
-            lines.AddRange(result.Failures.Select(f => $"{f.Source}\t{f.Message}"));
+            lines.AddRange(result.Failures.Select(f => $"{f.Source}\t{(f.Kind == FileErrorKind.Other ? f.Message : L.Get("Error_" + f.Kind))}"));
             File.AppendAllLines(Path.Combine(folder, name), lines.Append(""));
         }
         catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or ArgumentException or NotSupportedException)

@@ -486,7 +486,7 @@ Sound_AllDone	Terminaron todas las copias	All transfers finished
 Sound_Attention	Hace falta tu decisión (el archivo ya existe)	Your decision is needed (file already exists)
 Sound_Test	Probar el sonido	Test the sound
 Sound_None	Sin sonido	No sound
-Sound_Default	El de Windows	Windows default
+Sound_Default	MegaCopier (sonido propio)	MegaCopier (own sound)
 Sound_Choose	Elegir un archivo…	Choose a file…
 File_Planned	Simulado	Simulated
 File_Deleted	Quitado	Removed
@@ -1077,3 +1077,83 @@ Theme_moderno-8	Moderno 8	Modern 8
 Theme_mensajero	Mensajero	Messenger
 Theme_luna	Luna	Luna
 Theme_plata	Plata	Silver
+Section_General	General	General
+Section_Interface	Interfaz	Interface
+Section_Sounds	Sonidos	Sounds
+Section_Copy	Copia	Copying
+Section_Behavior	Comportamiento	Behavior
+Section_Errors	Errores	Errors
+Section_Performance	Cola y rendimiento	Queue and performance
+Section_Network	Red y dispositivos	Network and devices
+Section_Automation	Automatización	Automation
+Section_Advanced	Avanzado	Advanced
+Settings_Search.PlaceholderText	Buscar un ajuste	Find a setting
+Settings_SearchResults	Resultados de «{0}»	Results for “{0}”
+Settings_SearchNone	No hay ningún ajuste con «{0}».	No settings match “{0}”.
+Settings_TrayTitle.Text	Mostrar el icono en la bandeja	Show the tray icon
+Settings_TrayDescription.Text	Si lo ocultas, MegaCopier sigue en marcha: ábrelo ejecutándolo otra vez. Sin icono no hay avisos del sistema.	If you hide it, MegaCopier keeps running: open it by starting it again. Without the icon there are no system notifications.
+Settings_StartMinimizedTitle.Text	Iniciar las copias con la ventana minimizada	Start copies with the window minimized
+Settings_StartMinimizedDescription.Text	La ventana aparece en la barra de tareas sin taparte lo que estás haciendo.	The window appears in the taskbar without covering what you are doing.
+Settings_RememberTitle.Text	Recordar la ventana	Remember the window
+Settings_RememberDescription.Text	Abrirla donde estaba y con el mismo tamaño.	Open it where it was, with the same size.
+Settings_RememberPosition.Content	Posición	Position
+Settings_RememberSize.Content	Tamaño	Size
+Settings_TranslucentTitle.Text	Ventana translúcida	Translucent window
+Settings_TranslucentDescription.Text	Fondo acrílico y más transparente: se ve el escritorio a través de la ventana, con cualquier tema.	Acrylic, more transparent background: the desktop shows through the window, with any theme.
+Settings_Icons.Text	Iconos	Icons
+Settings_IconsDescription.Text	Elige cómo se ven los iconos. Se combinan con cualquier tema.	Choose how the icons look. They work with any theme.
+IconPack_fluent	Fluent (como Windows)	Fluent (like Windows)
+IconPack_color	Color	Color
+IconPack_mosaico	Mosaico	Tiles
+IconPack_suave	Suave	Soft
+IconPack_degradado	Degradado	Gradient
+IconPack_neon	Neón	Neon
+IconPack_windows10	Windows 10	Windows 10
+Settings_MergeTitle.Text	Añadir las copias nuevas a una que ya está en marcha	Add new copies to one already running
+Settings_MergeDescription.Text	En vez de esperar su turno, los archivos se suman a la lista de la copia en marcha.	Instead of waiting their turn, the files join the running copy's list.
+Merge_Never.Content	Nunca	Never
+Merge_SameDestination.Content	Si van a la misma carpeta	If they go to the same folder
+Merge_SameDisks.Content	Si usan los mismos discos	If they use the same drives
+Merge_Always.Content	Siempre	Always
+Settings_MergeConfirm.Content	Preguntar antes de añadirlas	Ask before adding them
+Settings_MoveAttributesTitle.Text	Al mover, conservar también	When moving, also keep
+Settings_MoveAttributesDescription.Text	Al mover a otro disco. En el mismo disco, mover es un renombrado y se conserva todo.	When moving to another drive. On the same drive, moving is a rename and everything is kept.
+Settings_DeleteIncompleteTitle.Text	Al detener una copia, borrar lo que quedó a medias	When stopping a copy, delete what was left half-done
+Settings_DeleteIncompleteDescription.Text	Ya no se podrá continuar desde donde quedó. Así no quedan archivos incompletos (.mcpart) en el destino.	It can no longer be continued from where it stopped. No incomplete files (.mcpart) are left in the destination.
+Settings_KeepOnError.Content	No borrarlo si la copia paró por un error	Don't delete it if the copy stopped because of an error
+Settings_EjectTitle.Text	Al terminar, expulsar la unidad de destino	When done, eject the destination drive
+Settings_EjectDescription.Text	Solo memorias USB, tarjetas y discos USB, cuando ninguna otra copia la está usando.	Only USB sticks, memory cards and USB drives, when no other copy is using it.
+Settings_EjectForce.Content	Expulsarla aunque algún programa la esté usando	Eject it even if a program is using it
+Settings_OnErrorTitle.Text	Si un archivo sigue fallando	If a file keeps failing
+Settings_OnErrorDescription.Text	Después de agotar los reintentos.	After all the retries are used up.
+Rules_OnErrorAsk.Content	Preguntar qué hacer	Ask what to do
+Settings_RetriesTitle.Text	Reintentos	Retries
+Settings_RetriesDescription.Text	Cuántas veces se reintenta un archivo que falla y cuánto se espera entre intentos.	How many times a failing file is retried and how long to wait between attempts.
+Settings_ErrorReportTitle.Text	Guardar un informe de errores	Save an error report
+Settings_ErrorReportDescription.Text	Al terminar una copia con errores, un archivo de texto con cada archivo que falló y por qué.	When a copy finishes with errors, a text file listing each file that failed and why.
+ErrorReport_Destination.Content	En la carpeta de destino	In the destination folder
+ErrorReport_Folder.Content	En una carpeta fija	In a fixed folder
+Settings_ErrorReportName.Header	Nombre del archivo	File name
+ErrorReport_NoFolder	Ninguna carpeta elegida	No folder chosen
+ErrorReport_Count	{0} archivos con errores:	{0} files with errors:
+Settings_DataTitle.Text	Carpeta de datos	Data folder
+Settings_DataDescription.Text	Ajustes, temas, historial y registros de MegaCopier.	MegaCopier's settings, themes, history and logs.
+Settings_ResetTitle.Text	Restablecer los ajustes	Reset settings
+Settings_ResetDescription.Text	Vuelve a dejar todo como recién instalado. Las copias, el historial y los temas propios se conservan.	Puts everything back as freshly installed. Copies, history and your own themes are kept.
+Settings_ResetButton.Text	Restablecer…	Reset…
+Reset_Title	¿Restablecer todos los ajustes?	Reset all settings?
+Reset_Message	MegaCopier se reiniciará con los ajustes de fábrica. Las copias, el historial y los temas propios se conservan.	MegaCopier will restart with the factory settings. Copies, history and your own themes are kept.
+Reset_Yes	Restablecer	Reset
+Reset_No	Cancelar	Cancel
+ErrorAsk_Title	No se puede copiar un archivo	A file can't be copied
+ErrorAsk_Retry	Reintentar	Retry
+ErrorAsk_Skip	Omitir	Skip
+ErrorAsk_SkipAll	Omitir también los siguientes errores de esta copia	Also skip the next errors in this copy
+ErrorAsk_Stop	Detener la copia (se podrá reanudar)	Stop the copy (it can be resumed)
+Merge_Title	Añadir a la copia en marcha	Add to the running copy
+Merge_Message	¿Añadir {0} elementos a la copia que va a «{1}»? Si no, se copiarán por separado cuando les toque.	Add {0} items to the copy going to “{1}”? Otherwise they will be copied separately when their turn comes.
+Merge_Add	Añadir	Add
+Merge_Separate	Por separado	Separately
+Eject_DoneTitle	Unidad expulsada: ya puedes retirarla	Drive ejected: you can remove it now
+Eject_FailedTitle	No se pudo expulsar la unidad: algo la está usando	Couldn't eject the drive: something is using it
+Sound_Windows	El de Windows	The Windows one

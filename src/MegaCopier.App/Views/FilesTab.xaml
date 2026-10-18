@@ -123,7 +123,7 @@
                             <c:McIcon HorizontalAlignment="Center" VerticalAlignment="Center" Glyph="&#xE930;" FontSize="15" Foreground="{StaticResource McSuccessBrush}" Visibility="{x:Bind IsVerified, Mode=OneWay}" />
                             <c:McIcon HorizontalAlignment="Center" VerticalAlignment="Center" Glyph="&#xE893;" FontSize="14" Foreground="{StaticResource McTextSecondaryBrush}" Visibility="{x:Bind IsSkipped, Mode=OneWay}" />
                             <c:McIcon HorizontalAlignment="Center" VerticalAlignment="Center" Glyph="&#xE7BA;" FontSize="14" Foreground="{StaticResource McWarningBrush}" Visibility="{x:Bind IsFailed, Mode=OneWay}" />
-                            <c:McIcon HorizontalAlignment="Center" VerticalAlignment="Center" Glyph="&#xE7B3;" FontSize="14" Foreground="{StaticResource McAccentBrush}" Visibility="{x:Bind IsPlanned, Mode=OneWay}" />
+                            <c:McIcon HorizontalAlignment="Center" VerticalAlignment="Center" Glyph="&#xE7B3;" FontSize="14" Accent="True" Visibility="{x:Bind IsPlanned, Mode=OneWay}" />
                             <c:McIcon HorizontalAlignment="Center" VerticalAlignment="Center" Glyph="&#xE74D;" FontSize="14" Foreground="{StaticResource McTextSecondaryBrush}" Visibility="{x:Bind IsDeleted, Mode=OneWay}" />
                         </Grid>
                         <StackPanel Grid.Column="1" VerticalAlignment="Center">

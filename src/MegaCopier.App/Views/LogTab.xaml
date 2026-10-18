@@ -34,7 +34,7 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Grid>
-                            <c:McIcon VerticalAlignment="Center" Glyph="&#xE946;" FontSize="13" Foreground="{StaticResource McAccentBrush}" Visibility="{x:Bind IsInfo}" />
+                            <c:McIcon VerticalAlignment="Center" Glyph="&#xE946;" FontSize="13" Accent="True" Visibility="{x:Bind IsInfo}" />
                             <c:McIcon VerticalAlignment="Center" Glyph="&#xE7BA;" FontSize="13" Foreground="{StaticResource McWarningBrush}" Visibility="{x:Bind IsWarning}" />
                             <c:McIcon VerticalAlignment="Center" Glyph="&#xEA39;" FontSize="13" Foreground="{StaticResource McErrorBrush}" Visibility="{x:Bind IsError}" />
                         </Grid>

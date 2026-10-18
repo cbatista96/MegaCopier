@@ -486,7 +486,7 @@ Sound_AllDone	Tutte le copie sono finite
 Sound_Attention	Serve la tua decisione (il file esiste già)
 Sound_Test	Prova il suono
 Sound_None	Nessun suono
-Sound_Default	Quello di Windows
+Sound_Default	MegaCopier (suono proprio)
 Sound_Choose	Scegli un file…
 File_Planned	Simulato
 File_Deleted	Rimosso
@@ -1077,3 +1077,83 @@ Theme_moderno-8	Moderno 8
 Theme_mensajero	Messaggero
 Theme_luna	Luna
 Theme_plata	Argento
+Section_General	Generale
+Section_Interface	Interfaccia
+Section_Sounds	Suoni
+Section_Copy	Copia
+Section_Behavior	Comportamento
+Section_Errors	Errori
+Section_Performance	Coda e prestazioni
+Section_Network	Rete e dispositivi
+Section_Automation	Automazione
+Section_Advanced	Avanzate
+Settings_Search.PlaceholderText	Cerca un'impostazione
+Settings_SearchResults	Risultati per «{0}»
+Settings_SearchNone	Nessuna impostazione corrisponde a «{0}».
+Settings_TrayTitle.Text	Mostra l'icona nell'area di notifica
+Settings_TrayDescription.Text	Se la nascondi, MegaCopier continua a funzionare: aprilo avviandolo di nuovo. Senza icona non ci sono notifiche di sistema.
+Settings_StartMinimizedTitle.Text	Avvia le copie con la finestra ridotta a icona
+Settings_StartMinimizedDescription.Text	La finestra compare nella barra delle applicazioni senza coprire quello che stai facendo.
+Settings_RememberTitle.Text	Ricorda la finestra
+Settings_RememberDescription.Text	Aprirla dov'era e con le stesse dimensioni.
+Settings_RememberPosition.Content	Posizione
+Settings_RememberSize.Content	Dimensioni
+Settings_TranslucentTitle.Text	Finestra traslucida
+Settings_TranslucentDescription.Text	Sfondo acrilico più trasparente: si vede il desktop attraverso la finestra, con qualsiasi tema.
+Settings_Icons.Text	Icone
+Settings_IconsDescription.Text	Scegli l'aspetto delle icone. Si combinano con qualsiasi tema.
+IconPack_fluent	Fluent (come Windows)
+IconPack_color	Colore
+IconPack_mosaico	Mosaico
+IconPack_suave	Morbido
+IconPack_degradado	Sfumato
+IconPack_neon	Neon
+IconPack_windows10	Windows 10
+Settings_MergeTitle.Text	Aggiungi le nuove copie a una già in corso
+Settings_MergeDescription.Text	Invece di aspettare il proprio turno, i file si aggiungono all'elenco della copia in corso.
+Merge_Never.Content	Mai
+Merge_SameDestination.Content	Se vanno nella stessa cartella
+Merge_SameDisks.Content	Se usano gli stessi dischi
+Merge_Always.Content	Sempre
+Settings_MergeConfirm.Content	Chiedi prima di aggiungerle
+Settings_MoveAttributesTitle.Text	Durante lo spostamento, conserva anche
+Settings_MoveAttributesDescription.Text	Verso un altro disco. Sullo stesso disco spostare è una rinomina e si conserva tutto.
+Settings_DeleteIncompleteTitle.Text	Quando fermi una copia, elimina ciò che è rimasto a metà
+Settings_DeleteIncompleteDescription.Text	Non si potrà più continuare da dove si era fermata. Nella destinazione non restano file incompleti (.mcpart).
+Settings_KeepOnError.Content	Non eliminarlo se la copia si è fermata per un errore
+Settings_EjectTitle.Text	Al termine, espelli l'unità di destinazione
+Settings_EjectDescription.Text	Solo chiavette USB, schede di memoria e dischi USB, quando nessun'altra copia la usa.
+Settings_EjectForce.Content	Espellila anche se un programma la sta usando
+Settings_OnErrorTitle.Text	Se un file continua a non riuscire
+Settings_OnErrorDescription.Text	Dopo aver esaurito i tentativi.
+Rules_OnErrorAsk.Content	Chiedi cosa fare
+Settings_RetriesTitle.Text	Tentativi
+Settings_RetriesDescription.Text	Quante volte riprovare un file che non riesce e quanto attendere tra i tentativi.
+Settings_ErrorReportTitle.Text	Salva un rapporto degli errori
+Settings_ErrorReportDescription.Text	Quando una copia termina con errori, un file di testo con ogni file non riuscito e il motivo.
+ErrorReport_Destination.Content	Nella cartella di destinazione
+ErrorReport_Folder.Content	In una cartella fissa
+Settings_ErrorReportName.Header	Nome del file
+ErrorReport_NoFolder	Nessuna cartella scelta
+ErrorReport_Count	{0} file con errori:
+Settings_DataTitle.Text	Cartella dei dati
+Settings_DataDescription.Text	Impostazioni, temi, cronologia e registri di MegaCopier.
+Settings_ResetTitle.Text	Ripristina le impostazioni
+Settings_ResetDescription.Text	Riporta tutto come appena installato. Le copie, la cronologia e i temi personali vengono conservati.
+Settings_ResetButton.Text	Ripristina…
+Reset_Title	Ripristinare tutte le impostazioni?
+Reset_Message	MegaCopier si riavvierà con le impostazioni predefinite. Le copie, la cronologia e i temi personali vengono conservati.
+Reset_Yes	Ripristina
+Reset_No	Annulla
+ErrorAsk_Title	Impossibile copiare un file
+ErrorAsk_Retry	Riprova
+ErrorAsk_Skip	Salta
+ErrorAsk_SkipAll	Salta anche gli errori successivi di questa copia
+ErrorAsk_Stop	Ferma la copia (si potrà riprendere)
+Merge_Title	Aggiungi alla copia in corso
+Merge_Message	Aggiungere {0} elementi alla copia verso «{1}»? Altrimenti verranno copiati separatamente quando sarà il loro turno.
+Merge_Add	Aggiungi
+Merge_Separate	Separatamente
+Eject_DoneTitle	Unità espulsa: ora puoi rimuoverla
+Eject_FailedTitle	Impossibile espellere l'unità: è in uso
+Sound_Windows	Quello di Windows

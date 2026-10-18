@@ -19,14 +19,14 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <c:McIcon Glyph="&#xE7B8;" FontSize="14" VerticalAlignment="Center" Foreground="{StaticResource McAccentBrush}" />
+            <c:McIcon Glyph="&#xE7B8;" FontSize="14" VerticalAlignment="Center" Accent="True" />
             <TextBlock x:Uid="Shelf_Title" Grid.Column="1" Style="{StaticResource McStrong}" FontSize="12" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
         </Grid>
 
         <!-- Vacía: zona para soltar -->
         <Border x:Name="DropZone" Grid.Row="1" Margin="10,0,10,0" CornerRadius="10" BorderThickness="2" BorderBrush="{StaticResource McBorderBrush}" Background="{StaticResource McSurfaceBrush}">
             <StackPanel Spacing="10" VerticalAlignment="Center" Padding="16">
-                <c:McIcon Glyph="&#xE896;" FontSize="32" Foreground="{StaticResource McAccentBrush}" />
+                <c:McIcon Glyph="&#xE896;" FontSize="32" Accent="True" />
                 <TextBlock x:Uid="Shelf_Empty" Style="{StaticResource McSecondary}" TextAlignment="Center" TextWrapping="Wrap" />
             </StackPanel>
         </Border>
@@ -52,7 +52,7 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <c:McIcon Glyph="{x:Bind Glyph}" FontSize="16" VerticalAlignment="Center" Foreground="{StaticResource McAccentBrush}" />
+                        <c:McIcon Glyph="{x:Bind Glyph}" FontSize="16" VerticalAlignment="Center" Accent="True" />
                         <StackPanel Grid.Column="1" VerticalAlignment="Center">
                             <TextBlock Text="{x:Bind Name}" Style="{StaticResource McBody}" TextTrimming="CharacterEllipsis" ToolTipService.ToolTip="{x:Bind Path}" />
                             <TextBlock Text="{x:Bind Folder}" Style="{StaticResource McSecondary}" TextTrimming="CharacterEllipsis" ToolTipService.ToolTip="{x:Bind FullFolder}" />

@@ -486,7 +486,7 @@ Sound_AllDone	すべてのコピーが完了
 Sound_Attention	判断が必要（ファイルが既に存在）
 Sound_Test	試聴
 Sound_None	サウンドなし
-Sound_Default	Windows の既定
+Sound_Default	MegaCopier (独自のサウンド)
 Sound_Choose	ファイルを選択…
 File_Planned	シミュレート済み
 File_Deleted	削除済み
@@ -1077,3 +1077,83 @@ Theme_moderno-8	モダン 8
 Theme_mensajero	メッセンジャー
 Theme_luna	ルナ
 Theme_plata	シルバー
+Section_General	全般
+Section_Interface	インターフェイス
+Section_Sounds	サウンド
+Section_Copy	コピー
+Section_Behavior	動作
+Section_Errors	エラー
+Section_Performance	キューとパフォーマンス
+Section_Network	ネットワークとデバイス
+Section_Automation	自動化
+Section_Advanced	詳細設定
+Settings_Search.PlaceholderText	設定を検索
+Settings_SearchResults	「{0}」の検索結果
+Settings_SearchNone	「{0}」に一致する設定はありません。
+Settings_TrayTitle.Text	通知領域にアイコンを表示する
+Settings_TrayDescription.Text	非表示にしても MegaCopier は動作し続けます。もう一度起動すると開きます。アイコンがないとシステム通知は表示されません。
+Settings_StartMinimizedTitle.Text	ウィンドウを最小化してコピーを開始する
+Settings_StartMinimizedDescription.Text	ウィンドウは作業の邪魔をせず、タスク バーに表示されます。
+Settings_RememberTitle.Text	ウィンドウを記憶する
+Settings_RememberDescription.Text	前回の位置とサイズで開きます。
+Settings_RememberPosition.Content	位置
+Settings_RememberSize.Content	サイズ
+Settings_TranslucentTitle.Text	半透明ウィンドウ
+Settings_TranslucentDescription.Text	アクリルの透明な背景: どのテーマでもウィンドウ越しにデスクトップが見えます。
+Settings_Icons.Text	アイコン
+Settings_IconsDescription.Text	アイコンの見た目を選びます。どのテーマとも組み合わせられます。
+IconPack_fluent	Fluent (Windows と同じ)
+IconPack_color	カラー
+IconPack_mosaico	タイル
+IconPack_suave	ソフト
+IconPack_degradado	グラデーション
+IconPack_neon	ネオン
+IconPack_windows10	Windows 10
+Settings_MergeTitle.Text	新しいコピーを実行中のコピーに追加する
+Settings_MergeDescription.Text	順番を待たずに、実行中のコピーの一覧にファイルが追加されます。
+Merge_Never.Content	しない
+Merge_SameDestination.Content	同じフォルダーへのコピーなら
+Merge_SameDisks.Content	同じドライブを使うなら
+Merge_Always.Content	常に
+Settings_MergeConfirm.Content	追加する前に確認する
+Settings_MoveAttributesTitle.Text	移動時にも保持する
+Settings_MoveAttributesDescription.Text	別のドライブに移動するとき。同じドライブでは名前の変更なので、すべて保持されます。
+Settings_DeleteIncompleteTitle.Text	コピーを停止したら途中のファイルを削除する
+Settings_DeleteIncompleteDescription.Text	中断した所から再開できなくなります。コピー先に不完全なファイル (.mcpart) は残りません。
+Settings_KeepOnError.Content	エラーで停止した場合は削除しない
+Settings_EjectTitle.Text	完了したらコピー先のドライブを取り出す
+Settings_EjectDescription.Text	USB メモリ、メモリー カード、USB ドライブのみ。ほかのコピーが使っていない場合。
+Settings_EjectForce.Content	プログラムが使用中でも取り出す
+Settings_OnErrorTitle.Text	ファイルが失敗し続けるとき
+Settings_OnErrorDescription.Text	すべての再試行を使い切った後。
+Rules_OnErrorAsk.Content	どうするか確認する
+Settings_RetriesTitle.Text	再試行
+Settings_RetriesDescription.Text	失敗したファイルの再試行回数と、試行間の待ち時間。
+Settings_ErrorReportTitle.Text	エラー レポートを保存する
+Settings_ErrorReportDescription.Text	コピーがエラーで終わったとき、失敗した各ファイルと理由を記したテキスト ファイル。
+ErrorReport_Destination.Content	コピー先のフォルダー
+ErrorReport_Folder.Content	決まったフォルダー
+Settings_ErrorReportName.Header	ファイル名
+ErrorReport_NoFolder	フォルダーが選択されていません
+ErrorReport_Count	エラーのあるファイル: {0} 件
+Settings_DataTitle.Text	データ フォルダー
+Settings_DataDescription.Text	MegaCopier の設定、テーマ、履歴、ログ。
+Settings_ResetTitle.Text	設定をリセット
+Settings_ResetDescription.Text	すべてをインストール直後の状態に戻します。コピー、履歴、独自のテーマは保持されます。
+Settings_ResetButton.Text	リセット…
+Reset_Title	すべての設定をリセットしますか?
+Reset_Message	MegaCopier は初期設定で再起動します。コピー、履歴、独自のテーマは保持されます。
+Reset_Yes	リセット
+Reset_No	キャンセル
+ErrorAsk_Title	ファイルをコピーできません
+ErrorAsk_Retry	再試行
+ErrorAsk_Skip	スキップ
+ErrorAsk_SkipAll	このコピーの以降のエラーもスキップする
+ErrorAsk_Stop	コピーを停止 (再開できます)
+Merge_Title	実行中のコピーに追加
+Merge_Message	{0} 個の項目を「{1}」へのコピーに追加しますか? 追加しない場合は、順番が来たときに別にコピーされます。
+Merge_Add	追加
+Merge_Separate	別々に
+Eject_DoneTitle	ドライブを取り出しました。取り外せます
+Eject_FailedTitle	ドライブを取り出せませんでした。使用中です
+Sound_Windows	Windows のサウンド

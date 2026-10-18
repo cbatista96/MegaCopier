@@ -19,7 +19,7 @@
         <Grid ColumnSpacing="8">
             <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal" Spacing="10">
-                <c:McIcon VerticalAlignment="Center" Glyph="&#xE8FD;" FontSize="20" Foreground="{StaticResource McAccentBrush}" />
+                <c:McIcon VerticalAlignment="Center" Glyph="&#xE8FD;" FontSize="20" Accent="True" />
                 <TextBlock x:Uid="Compare_Title" Style="{StaticResource McTitle}" TextTrimming="CharacterEllipsis" />
             </StackPanel>
             <Button Grid.Column="1" Style="{StaticResource McButton}" Click="Close_Click">
@@ -83,7 +83,7 @@
                             <TextBlock Text="{x:Bind ReasonText}" Style="{StaticResource McSecondary}" FontSize="12" />
                         </StackPanel>
                         <TextBlock Grid.Column="2" Text="{x:Bind LeftText}" Style="{StaticResource McSecondary}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
-                        <c:McIcon Grid.Column="3" Glyph="{x:Bind ActionGlyph}" FontSize="16" Foreground="{StaticResource McAccentBrush}" ToolTipService.ToolTip="{x:Bind ActionText}" AutomationProperties.Name="{x:Bind ActionText}" />
+                        <c:McIcon Grid.Column="3" Glyph="{x:Bind ActionGlyph}" FontSize="16" Accent="True" ToolTipService.ToolTip="{x:Bind ActionText}" AutomationProperties.Name="{x:Bind ActionText}" />
                         <TextBlock Grid.Column="4" Text="{x:Bind RightText}" Style="{StaticResource McSecondary}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
                     </Grid>
                 </DataTemplate>

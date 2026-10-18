@@ -492,7 +492,7 @@
   <data name="Sound_Attention" xml:space="preserve"><value>Нужно ваше решение (файл уже существует)</value></data>
   <data name="Sound_Test" xml:space="preserve"><value>Проверить звук</value></data>
   <data name="Sound_None" xml:space="preserve"><value>Без звука</value></data>
-  <data name="Sound_Default" xml:space="preserve"><value>Звук Windows</value></data>
+  <data name="Sound_Default" xml:space="preserve"><value>MegaCopier (собственный звук)</value></data>
   <data name="Sound_Choose" xml:space="preserve"><value>Выбрать файл…</value></data>
   <data name="File_Planned" xml:space="preserve"><value>Смоделировано</value></data>
   <data name="File_Deleted" xml:space="preserve"><value>Удалён</value></data>
@@ -1083,4 +1083,84 @@
   <data name="Theme_mensajero" xml:space="preserve"><value>Мессенджер</value></data>
   <data name="Theme_luna" xml:space="preserve"><value>Луна</value></data>
   <data name="Theme_plata" xml:space="preserve"><value>Серебро</value></data>
+  <data name="Section_General" xml:space="preserve"><value>Общие</value></data>
+  <data name="Section_Interface" xml:space="preserve"><value>Интерфейс</value></data>
+  <data name="Section_Sounds" xml:space="preserve"><value>Звуки</value></data>
+  <data name="Section_Copy" xml:space="preserve"><value>Копирование</value></data>
+  <data name="Section_Behavior" xml:space="preserve"><value>Поведение</value></data>
+  <data name="Section_Errors" xml:space="preserve"><value>Ошибки</value></data>
+  <data name="Section_Performance" xml:space="preserve"><value>Очередь и производительность</value></data>
+  <data name="Section_Network" xml:space="preserve"><value>Сеть и устройства</value></data>
+  <data name="Section_Automation" xml:space="preserve"><value>Автоматизация</value></data>
+  <data name="Section_Advanced" xml:space="preserve"><value>Дополнительно</value></data>
+  <data name="Settings_Search.PlaceholderText" xml:space="preserve"><value>Найти параметр</value></data>
+  <data name="Settings_SearchResults" xml:space="preserve"><value>Результаты для «{0}»</value></data>
+  <data name="Settings_SearchNone" xml:space="preserve"><value>Нет параметров, соответствующих «{0}».</value></data>
+  <data name="Settings_TrayTitle.Text" xml:space="preserve"><value>Показывать значок в области уведомлений</value></data>
+  <data name="Settings_TrayDescription.Text" xml:space="preserve"><value>Если скрыть значок, MegaCopier продолжит работать: откройте его, запустив снова. Без значка нет системных уведомлений.</value></data>
+  <data name="Settings_StartMinimizedTitle.Text" xml:space="preserve"><value>Начинать копирование со свёрнутым окном</value></data>
+  <data name="Settings_StartMinimizedDescription.Text" xml:space="preserve"><value>Окно появляется на панели задач, не закрывая то, чем вы заняты.</value></data>
+  <data name="Settings_RememberTitle.Text" xml:space="preserve"><value>Запоминать окно</value></data>
+  <data name="Settings_RememberDescription.Text" xml:space="preserve"><value>Открывать на прежнем месте и того же размера.</value></data>
+  <data name="Settings_RememberPosition.Content" xml:space="preserve"><value>Положение</value></data>
+  <data name="Settings_RememberSize.Content" xml:space="preserve"><value>Размер</value></data>
+  <data name="Settings_TranslucentTitle.Text" xml:space="preserve"><value>Полупрозрачное окно</value></data>
+  <data name="Settings_TranslucentDescription.Text" xml:space="preserve"><value>Акриловый, более прозрачный фон: рабочий стол просвечивает сквозь окно при любой теме.</value></data>
+  <data name="Settings_Icons.Text" xml:space="preserve"><value>Значки</value></data>
+  <data name="Settings_IconsDescription.Text" xml:space="preserve"><value>Выберите вид значков. Они сочетаются с любой темой.</value></data>
+  <data name="IconPack_fluent" xml:space="preserve"><value>Fluent (как в Windows)</value></data>
+  <data name="IconPack_color" xml:space="preserve"><value>Цвет</value></data>
+  <data name="IconPack_mosaico" xml:space="preserve"><value>Плитки</value></data>
+  <data name="IconPack_suave" xml:space="preserve"><value>Мягкие</value></data>
+  <data name="IconPack_degradado" xml:space="preserve"><value>Градиент</value></data>
+  <data name="IconPack_neon" xml:space="preserve"><value>Неон</value></data>
+  <data name="IconPack_windows10" xml:space="preserve"><value>Windows 10</value></data>
+  <data name="Settings_MergeTitle.Text" xml:space="preserve"><value>Добавлять новые копирования к уже идущему</value></data>
+  <data name="Settings_MergeDescription.Text" xml:space="preserve"><value>Вместо ожидания очереди файлы добавляются в список текущего копирования.</value></data>
+  <data name="Merge_Never.Content" xml:space="preserve"><value>Никогда</value></data>
+  <data name="Merge_SameDestination.Content" xml:space="preserve"><value>Если в ту же папку</value></data>
+  <data name="Merge_SameDisks.Content" xml:space="preserve"><value>Если те же диски</value></data>
+  <data name="Merge_Always.Content" xml:space="preserve"><value>Всегда</value></data>
+  <data name="Settings_MergeConfirm.Content" xml:space="preserve"><value>Спрашивать перед добавлением</value></data>
+  <data name="Settings_MoveAttributesTitle.Text" xml:space="preserve"><value>При перемещении также сохранять</value></data>
+  <data name="Settings_MoveAttributesDescription.Text" xml:space="preserve"><value>При перемещении на другой диск. На том же диске перемещение — это переименование, всё сохраняется.</value></data>
+  <data name="Settings_DeleteIncompleteTitle.Text" xml:space="preserve"><value>При остановке копирования удалять незавершённое</value></data>
+  <data name="Settings_DeleteIncompleteDescription.Text" xml:space="preserve"><value>Продолжить с места остановки будет нельзя. В папке назначения не останется незавершённых файлов (.mcpart).</value></data>
+  <data name="Settings_KeepOnError.Content" xml:space="preserve"><value>Не удалять, если копирование остановилось из-за ошибки</value></data>
+  <data name="Settings_EjectTitle.Text" xml:space="preserve"><value>По завершении извлекать диск назначения</value></data>
+  <data name="Settings_EjectDescription.Text" xml:space="preserve"><value>Только USB-флешки, карты памяти и USB-диски, если их не использует другое копирование.</value></data>
+  <data name="Settings_EjectForce.Content" xml:space="preserve"><value>Извлекать, даже если её использует программа</value></data>
+  <data name="Settings_OnErrorTitle.Text" xml:space="preserve"><value>Если файл продолжает вызывать ошибку</value></data>
+  <data name="Settings_OnErrorDescription.Text" xml:space="preserve"><value>После исчерпания повторных попыток.</value></data>
+  <data name="Rules_OnErrorAsk.Content" xml:space="preserve"><value>Спрашивать, что делать</value></data>
+  <data name="Settings_RetriesTitle.Text" xml:space="preserve"><value>Повторные попытки</value></data>
+  <data name="Settings_RetriesDescription.Text" xml:space="preserve"><value>Сколько раз повторять неудавшийся файл и сколько ждать между попытками.</value></data>
+  <data name="Settings_ErrorReportTitle.Text" xml:space="preserve"><value>Сохранять отчёт об ошибках</value></data>
+  <data name="Settings_ErrorReportDescription.Text" xml:space="preserve"><value>Если копирование завершилось с ошибками — текстовый файл со списком неудачных файлов и причинами.</value></data>
+  <data name="ErrorReport_Destination.Content" xml:space="preserve"><value>В папке назначения</value></data>
+  <data name="ErrorReport_Folder.Content" xml:space="preserve"><value>В постоянной папке</value></data>
+  <data name="Settings_ErrorReportName.Header" xml:space="preserve"><value>Имя файла</value></data>
+  <data name="ErrorReport_NoFolder" xml:space="preserve"><value>Папка не выбрана</value></data>
+  <data name="ErrorReport_Count" xml:space="preserve"><value>Файлов с ошибками: {0}</value></data>
+  <data name="Settings_DataTitle.Text" xml:space="preserve"><value>Папка данных</value></data>
+  <data name="Settings_DataDescription.Text" xml:space="preserve"><value>Параметры, темы, журнал и логи MegaCopier.</value></data>
+  <data name="Settings_ResetTitle.Text" xml:space="preserve"><value>Сбросить параметры</value></data>
+  <data name="Settings_ResetDescription.Text" xml:space="preserve"><value>Возвращает всё к состоянию после установки. Копирования, журнал и свои темы сохраняются.</value></data>
+  <data name="Settings_ResetButton.Text" xml:space="preserve"><value>Сбросить…</value></data>
+  <data name="Reset_Title" xml:space="preserve"><value>Сбросить все параметры?</value></data>
+  <data name="Reset_Message" xml:space="preserve"><value>MegaCopier перезапустится с заводскими параметрами. Копирования, журнал и свои темы сохранятся.</value></data>
+  <data name="Reset_Yes" xml:space="preserve"><value>Сбросить</value></data>
+  <data name="Reset_No" xml:space="preserve"><value>Отмена</value></data>
+  <data name="ErrorAsk_Title" xml:space="preserve"><value>Не удаётся скопировать файл</value></data>
+  <data name="ErrorAsk_Retry" xml:space="preserve"><value>Повторить</value></data>
+  <data name="ErrorAsk_Skip" xml:space="preserve"><value>Пропустить</value></data>
+  <data name="ErrorAsk_SkipAll" xml:space="preserve"><value>Пропускать и следующие ошибки этого копирования</value></data>
+  <data name="ErrorAsk_Stop" xml:space="preserve"><value>Остановить копирование (можно продолжить)</value></data>
+  <data name="Merge_Title" xml:space="preserve"><value>Добавить к текущему копированию</value></data>
+  <data name="Merge_Message" xml:space="preserve"><value>Добавить элементы ({0}) к копированию в «{1}»? Иначе они будут скопированы отдельно в свою очередь.</value></data>
+  <data name="Merge_Add" xml:space="preserve"><value>Добавить</value></data>
+  <data name="Merge_Separate" xml:space="preserve"><value>Отдельно</value></data>
+  <data name="Eject_DoneTitle" xml:space="preserve"><value>Диск извлечён: его можно отключить</value></data>
+  <data name="Eject_FailedTitle" xml:space="preserve"><value>Не удалось извлечь диск: он используется</value></data>
+  <data name="Sound_Windows" xml:space="preserve"><value>Звук Windows</value></data>
 </root>

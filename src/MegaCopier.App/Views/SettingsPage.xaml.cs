@@ -88,6 +88,8 @@ public sealed partial class SettingsPage : UserControl
             + (Engine.DataFolder.IsPortable ? " · " + L.F("About_Portable", Engine.DataFolder.Path) : "");
         _app.EnabledChanged += () => DispatcherQueue.TryEnqueue(Load);
         Rules.RulesChanged += Store;
+        Rules.ErrorOptionsVisible = false;
+        BuildSections();
         SizeChanged += (_, e) =>
         {
             // Filas de ajuste "icono · texto · control": si no cabe, el control baja bajo el texto.
@@ -177,6 +179,36 @@ public sealed partial class SettingsPage : UserControl
         PauseBatteryToggle.IsOn = s.PauseOnBattery;
         PauseFullToggle.IsOn = s.PauseOnFullScreen;
         GuardIntervalBox.SelectedItem = GuardIntervalBox.Items.OfType<ComboBoxItem>().FirstOrDefault(i => (string)i.Tag == s.GuardIntervalDays.ToString()) ?? GuardIntervalBox.Items[1];
+
+        TrayToggle.IsOn = s.ShowTrayIcon;
+        StartMinimizedToggle.IsOn = s.StartMinimized;
+        RememberPositionBox.IsChecked = s.RememberPosition;
+        RememberSizeBox.IsChecked = s.RememberSize;
+        TranslucentToggle.IsOn = s.Translucent;
+        MergeBox.SelectedIndex = (int)s.MergeNewCopies;
+        MergeConfirmBox.IsChecked = s.MergeConfirm;
+        MergeConfirmBox.IsEnabled = s.MergeNewCopies != MergeMode.Never;
+        MoveAttributesBox.IsChecked = s.MovePreserveAttributes;
+        MoveAclBox.IsChecked = s.MoveCopySecurity.HasFlag(SecurityParts.Acl);
+        MoveOwnerBox.IsChecked = s.MoveCopySecurity.HasFlag(SecurityParts.Owner);
+        MoveAuditBox.IsChecked = s.MoveCopySecurity.HasFlag(SecurityParts.Audit);
+        DeleteIncompleteToggle.IsOn = s.DeleteIncomplete;
+        KeepOnErrorBox.IsChecked = s.KeepIncompleteOnError;
+        KeepOnErrorBox.IsEnabled = s.DeleteIncomplete;
+        EjectToggle.IsOn = s.EjectWhenDone;
+        EjectForceBox.IsChecked = s.EjectForce;
+        EjectForceBox.IsEnabled = s.EjectWhenDone;
+        ErrorPolicyBox.SelectedIndex = (int)s.OnError;
+        RetryCountBox.Value = s.RetryCount;
+        RetryDelayBox.Value = s.RetryDelaySeconds;
+        ErrorReportToggle.IsOn = s.SaveErrorReport;
+        ErrorReportPanel.Visibility = s.SaveErrorReport ? Visibility.Visible : Visibility.Collapsed;
+        ErrorReportWhereBox.SelectedIndex = s.ErrorReportInDestination || s.ErrorReportFolder.Length == 0 ? 0 : 1;
+        ErrorReportNameBox.Text = s.ErrorReportName;
+        ErrorReportFolderText.Text = s.ErrorReportFolder.Length > 0 ? s.ErrorReportFolder : L.Get("ErrorReport_NoFolder");
+        ErrorReportFolderRow.Visibility = ErrorReportWhereBox.SelectedIndex == 1 ? Visibility.Visible : Visibility.Collapsed;
+        DataFolderText.Text = Engine.DataFolder.Path;
+        LoadIconGallery();
 
         LoadThemes();
         UpdateRestartInfo();
@@ -304,6 +336,40 @@ public sealed partial class SettingsPage : UserControl
         }
         s.Scripts = [.. ScriptsBox.Text.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)];
         s.Rules = Rules.Read();
+        s.OnError = (ErrorPolicy)Math.Max(0, ErrorPolicyBox.SelectedIndex);
+        if (!double.IsNaN(RetryCountBox.Value))
+        {
+            s.RetryCount = Math.Clamp((int)RetryCountBox.Value, 0, 100);
+        }
+
+        if (!double.IsNaN(RetryDelayBox.Value))
+        {
+            s.RetryDelaySeconds = Math.Clamp(RetryDelayBox.Value, 0, 3600);
+        }
+
+        s.ShowTrayIcon = TrayToggle.IsOn;
+        s.StartMinimized = StartMinimizedToggle.IsOn;
+        s.RememberPosition = RememberPositionBox.IsChecked == true;
+        s.RememberSize = RememberSizeBox.IsChecked == true;
+        s.Translucent = TranslucentToggle.IsOn;
+        s.MergeNewCopies = (MergeMode)Math.Max(0, MergeBox.SelectedIndex);
+        s.MergeConfirm = MergeConfirmBox.IsChecked == true;
+        MergeConfirmBox.IsEnabled = s.MergeNewCopies != MergeMode.Never;
+        s.MovePreserveAttributes = MoveAttributesBox.IsChecked == true;
+        s.MoveCopySecurity = (MoveAclBox.IsChecked == true ? SecurityParts.Acl : 0)
+            | (MoveOwnerBox.IsChecked == true ? SecurityParts.Owner : 0)
+            | (MoveAuditBox.IsChecked == true ? SecurityParts.Audit : 0);
+        s.DeleteIncomplete = DeleteIncompleteToggle.IsOn;
+        s.KeepIncompleteOnError = KeepOnErrorBox.IsChecked == true;
+        KeepOnErrorBox.IsEnabled = s.DeleteIncomplete;
+        s.EjectWhenDone = EjectToggle.IsOn;
+        s.EjectForce = EjectForceBox.IsChecked == true;
+        EjectForceBox.IsEnabled = s.EjectWhenDone;
+        s.SaveErrorReport = ErrorReportToggle.IsOn;
+        ErrorReportPanel.Visibility = s.SaveErrorReport ? Visibility.Visible : Visibility.Collapsed;
+        s.ErrorReportInDestination = ErrorReportWhereBox.SelectedIndex != 1;
+        ErrorReportFolderRow.Visibility = s.ErrorReportInDestination ? Visibility.Collapsed : Visibility.Visible;
+        s.ErrorReportName = ErrorReportNameBox.Text.Trim().Length > 0 ? ErrorReportNameBox.Text.Trim() : "errorlog.txt";
         s.Save();
         _app.ApplySettings();
     }
@@ -394,13 +460,14 @@ public sealed partial class SettingsPage : UserControl
         box.Items.Clear();
         box.Items.Add(new ComboBoxItem { Content = L.Get("Sound_None"), Tag = "" });
         box.Items.Add(new ComboBoxItem { Content = L.Get("Sound_Default"), Tag = "default" });
+        box.Items.Add(new ComboBoxItem { Content = L.Get("Sound_Windows"), Tag = "windows" });
         foreach (string path in Sounds.WindowsSounds)
         {
             box.Items.Add(new ComboBoxItem { Content = Path.GetFileNameWithoutExtension(path), Tag = path });
         }
 
         // Un archivo propio que no está en la lista de Windows.
-        if (current.Length > 0 && current != "default" && !Sounds.WindowsSounds.Contains(current, StringComparer.OrdinalIgnoreCase))
+        if (current.Length > 0 && current is not ("default" or "windows") && !Sounds.WindowsSounds.Contains(current, StringComparer.OrdinalIgnoreCase))
         {
             box.Items.Add(new ComboBoxItem { Content = Path.GetFileName(current), Tag = current });
         }

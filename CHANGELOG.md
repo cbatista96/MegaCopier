@@ -12,6 +12,22 @@ y las versiones, [SemVer](https://semver.org/lang/es/).
   ondas, rejilla de neón y lluvia digital).
 - Los temas colorean también todos los controles: barras de desplazamiento, botones, desplegables, cuadros de texto,
   interruptores, casillas, listas, menús, diálogos y avisos.
+- Siete conjuntos de iconos, independientes del tema: Fluent, Color, Mosaico, Suave, Degradado, Neón y Windows 10.
+- Ajustes rehechos como la Configuración de Windows 11: secciones a la izquierda (General, Interfaz, Sonidos, Copia,
+  Comportamiento, Errores, Cola y rendimiento, Red y dispositivos, Automatización y Avanzado), buscador de ajustes,
+  iconos en cada opción y animaciones al cambiar de sección y al pulsar.
+- Opciones al estilo de SuperCopier:
+  - **Si un archivo sigue fallando: preguntar qué hacer** (reintentar, omitir, omitir todos o detener).
+  - Añadir las copias nuevas a una que ya está en marcha (nunca, misma carpeta, mismos discos o siempre), preguntando o no.
+  - Al detener una copia, borrar lo que quedó a medias (salvo si paró por un error).
+  - Al terminar, expulsar la unidad de destino si es extraíble (y forzarlo).
+  - Informe de errores automático en la carpeta de destino o en una carpeta fija, con el nombre que quieras.
+  - Atributos y permisos que se conservan al mover, aparte de los de copiar.
+  - Mostrar u ocultar el icono de la bandeja, empezar las copias con la ventana minimizada, recordar la posición y el
+    tamaño de la ventana, y ventana translúcida.
+  - Carpeta de datos a la vista y botón para restablecer los ajustes.
+- Sonidos propios de MegaCopier (campanillas originales) para copia terminada, todas terminadas, error y atención; ya no
+  se usan los avisos de Windows salvo que los elijas.
 
 ### Cambiado
 - Documentación nueva y completa: guía de uso paso a paso, preguntas frecuentes, guía de versiones y capturas de todas

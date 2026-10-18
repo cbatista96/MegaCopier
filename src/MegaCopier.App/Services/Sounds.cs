@@ -21,7 +21,10 @@ public enum SoundEvent
     Attention,
 }
 
-/// <summary>Sonidos elegidos: "" = silencio, "default" = el de Windows para ese momento, o la ruta de un archivo.</summary>
+/// <summary>
+/// Sonidos elegidos: "" = silencio, "default" = el propio de MegaCopier para ese momento (Assets/Sounds), "windows" = el
+/// que Windows usa para ese tipo de aviso, o la ruta de un archivo del usuario.
+/// </summary>
 public sealed class SoundSettings
 {
     public bool Enabled { get; set; } = true;

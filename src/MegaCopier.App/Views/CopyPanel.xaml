@@ -26,7 +26,7 @@
             </Grid.ColumnDefinitions>
             <Border x:Name="StateChip" Style="{StaticResource McChip}">
                 <StackPanel Orientation="Horizontal" Spacing="6">
-                    <c:McIcon VerticalAlignment="Center" Glyph="{x:Bind Job.Glyph, Mode=OneWay}" FontSize="12" Foreground="{StaticResource McAccentBrush}" />
+                    <c:McIcon VerticalAlignment="Center" Glyph="{x:Bind Job.Glyph, Mode=OneWay}" FontSize="12" Accent="True" />
                     <TextBlock x:Name="StateChipText" Text="{x:Bind Job.ChipText, Mode=OneWay}" Style="{StaticResource McChipText}" MaxWidth="220" TextTrimming="CharacterEllipsis" ToolTipService.ToolTip="{x:Bind Job.StateText, Mode=OneWay}" />
                 </StackPanel>
             </Border>
@@ -53,7 +53,7 @@
             </Grid.ColumnDefinitions>
             <Border x:Name="FileChip" Style="{StaticResource McChip}">
                 <StackPanel Orientation="Horizontal" Spacing="6">
-                    <c:McIcon VerticalAlignment="Center" Glyph="&#xE8A5;" FontSize="12" Foreground="{StaticResource McAccentBrush}" />
+                    <c:McIcon VerticalAlignment="Center" Glyph="&#xE8A5;" FontSize="12" Accent="True" />
                     <TextBlock x:Name="FileChipText" x:Uid="Panel_File" Style="{StaticResource McChipText}" />
                 </StackPanel>
             </Border>
@@ -81,7 +81,7 @@
                 <TextBlock Grid.Column="1" Text="{x:Bind Job.SourceDriveText, Mode=OneWay}" Style="{StaticResource McStrong}" VerticalAlignment="Center" />
                 <TextBlock Grid.Column="2" Text="{x:Bind Job.SourceFolderShort, Mode=OneWay}" Style="{StaticResource McSecondary}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
             </Grid>
-            <c:McIcon VerticalAlignment="Center" Grid.Column="1" Glyph="&#xE72A;" FontSize="14" Foreground="{StaticResource McAccentBrush}" />
+            <c:McIcon VerticalAlignment="Center" Grid.Column="1" Glyph="&#xE72A;" FontSize="14" Accent="True" />
             <Grid Grid.Column="2" ColumnSpacing="8" ToolTipService.ToolTip="{x:Bind Job.DestinationFolder, Mode=OneWay}">
                 <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
                 <c:McIcon VerticalAlignment="Center" Glyph="{x:Bind Job.DestinationDriveGlyph, Mode=OneWay}" FontSize="16" Foreground="{StaticResource McTextSecondaryBrush}" />

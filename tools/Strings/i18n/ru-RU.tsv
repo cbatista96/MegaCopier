@@ -486,7 +486,7 @@ Sound_AllDone	Все копирования завершены
 Sound_Attention	Нужно ваше решение (файл уже существует)
 Sound_Test	Проверить звук
 Sound_None	Без звука
-Sound_Default	Звук Windows
+Sound_Default	MegaCopier (собственный звук)
 Sound_Choose	Выбрать файл…
 File_Planned	Смоделировано
 File_Deleted	Удалён
@@ -1077,3 +1077,83 @@ Theme_moderno-8	Модерн 8
 Theme_mensajero	Мессенджер
 Theme_luna	Луна
 Theme_plata	Серебро
+Section_General	Общие
+Section_Interface	Интерфейс
+Section_Sounds	Звуки
+Section_Copy	Копирование
+Section_Behavior	Поведение
+Section_Errors	Ошибки
+Section_Performance	Очередь и производительность
+Section_Network	Сеть и устройства
+Section_Automation	Автоматизация
+Section_Advanced	Дополнительно
+Settings_Search.PlaceholderText	Найти параметр
+Settings_SearchResults	Результаты для «{0}»
+Settings_SearchNone	Нет параметров, соответствующих «{0}».
+Settings_TrayTitle.Text	Показывать значок в области уведомлений
+Settings_TrayDescription.Text	Если скрыть значок, MegaCopier продолжит работать: откройте его, запустив снова. Без значка нет системных уведомлений.
+Settings_StartMinimizedTitle.Text	Начинать копирование со свёрнутым окном
+Settings_StartMinimizedDescription.Text	Окно появляется на панели задач, не закрывая то, чем вы заняты.
+Settings_RememberTitle.Text	Запоминать окно
+Settings_RememberDescription.Text	Открывать на прежнем месте и того же размера.
+Settings_RememberPosition.Content	Положение
+Settings_RememberSize.Content	Размер
+Settings_TranslucentTitle.Text	Полупрозрачное окно
+Settings_TranslucentDescription.Text	Акриловый, более прозрачный фон: рабочий стол просвечивает сквозь окно при любой теме.
+Settings_Icons.Text	Значки
+Settings_IconsDescription.Text	Выберите вид значков. Они сочетаются с любой темой.
+IconPack_fluent	Fluent (как в Windows)
+IconPack_color	Цвет
+IconPack_mosaico	Плитки
+IconPack_suave	Мягкие
+IconPack_degradado	Градиент
+IconPack_neon	Неон
+IconPack_windows10	Windows 10
+Settings_MergeTitle.Text	Добавлять новые копирования к уже идущему
+Settings_MergeDescription.Text	Вместо ожидания очереди файлы добавляются в список текущего копирования.
+Merge_Never.Content	Никогда
+Merge_SameDestination.Content	Если в ту же папку
+Merge_SameDisks.Content	Если те же диски
+Merge_Always.Content	Всегда
+Settings_MergeConfirm.Content	Спрашивать перед добавлением
+Settings_MoveAttributesTitle.Text	При перемещении также сохранять
+Settings_MoveAttributesDescription.Text	При перемещении на другой диск. На том же диске перемещение — это переименование, всё сохраняется.
+Settings_DeleteIncompleteTitle.Text	При остановке копирования удалять незавершённое
+Settings_DeleteIncompleteDescription.Text	Продолжить с места остановки будет нельзя. В папке назначения не останется незавершённых файлов (.mcpart).
+Settings_KeepOnError.Content	Не удалять, если копирование остановилось из-за ошибки
+Settings_EjectTitle.Text	По завершении извлекать диск назначения
+Settings_EjectDescription.Text	Только USB-флешки, карты памяти и USB-диски, если их не использует другое копирование.
+Settings_EjectForce.Content	Извлекать, даже если её использует программа
+Settings_OnErrorTitle.Text	Если файл продолжает вызывать ошибку
+Settings_OnErrorDescription.Text	После исчерпания повторных попыток.
+Rules_OnErrorAsk.Content	Спрашивать, что делать
+Settings_RetriesTitle.Text	Повторные попытки
+Settings_RetriesDescription.Text	Сколько раз повторять неудавшийся файл и сколько ждать между попытками.
+Settings_ErrorReportTitle.Text	Сохранять отчёт об ошибках
+Settings_ErrorReportDescription.Text	Если копирование завершилось с ошибками — текстовый файл со списком неудачных файлов и причинами.
+ErrorReport_Destination.Content	В папке назначения
+ErrorReport_Folder.Content	В постоянной папке
+Settings_ErrorReportName.Header	Имя файла
+ErrorReport_NoFolder	Папка не выбрана
+ErrorReport_Count	Файлов с ошибками: {0}
+Settings_DataTitle.Text	Папка данных
+Settings_DataDescription.Text	Параметры, темы, журнал и логи MegaCopier.
+Settings_ResetTitle.Text	Сбросить параметры
+Settings_ResetDescription.Text	Возвращает всё к состоянию после установки. Копирования, журнал и свои темы сохраняются.
+Settings_ResetButton.Text	Сбросить…
+Reset_Title	Сбросить все параметры?
+Reset_Message	MegaCopier перезапустится с заводскими параметрами. Копирования, журнал и свои темы сохранятся.
+Reset_Yes	Сбросить
+Reset_No	Отмена
+ErrorAsk_Title	Не удаётся скопировать файл
+ErrorAsk_Retry	Повторить
+ErrorAsk_Skip	Пропустить
+ErrorAsk_SkipAll	Пропускать и следующие ошибки этого копирования
+ErrorAsk_Stop	Остановить копирование (можно продолжить)
+Merge_Title	Добавить к текущему копированию
+Merge_Message	Добавить элементы ({0}) к копированию в «{1}»? Иначе они будут скопированы отдельно в свою очередь.
+Merge_Add	Добавить
+Merge_Separate	Отдельно
+Eject_DoneTitle	Диск извлечён: его можно отключить
+Eject_FailedTitle	Не удалось извлечь диск: он используется
+Sound_Windows	Звук Windows
