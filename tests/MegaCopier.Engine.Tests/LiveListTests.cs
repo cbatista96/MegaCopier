@@ -164,7 +164,7 @@ public sealed class LiveListTests : IDisposable
     }
 
     [Fact]
-    public void Saltar_en_pausa_descarta_el_archivo_y_la_copia_sigue_en_pausa()
+    public async Task Saltar_en_pausa_descarta_el_archivo_y_la_copia_sigue_en_pausa()
     {
         string folder = _temp.Combine("src");
         NewFile(Path.Combine("src", "a-grande.bin"), 6 * 1024 * 1024, 1);
@@ -195,7 +195,7 @@ public sealed class LiveListTests : IDisposable
         Assert.True(engine.Controller.IsPaused);
 
         engine.Controller.Resume();
-        var result = run.GetAwaiter().GetResult();
+        var result = await run;
 
         Assert.True(File.Exists(small));
         Assert.Equal(1, result.FilesSkipped);
