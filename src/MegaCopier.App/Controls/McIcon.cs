@@ -169,7 +169,11 @@ public sealed partial class McIcon : UserControl
 
             case IconStyle.Neon:
                 _glyph.Foreground = new SolidColorBrush(Lighten(color, 0.25));
-                AddGlow(color);
+                if (IsLoaded)
+                {
+                    AddGlow(color); // al cargarse se vuelve a dibujar: el halo necesita el icono ya en pantalla
+                }
+
                 break;
         }
     }
@@ -203,7 +207,7 @@ public sealed partial class McIcon : UserControl
 
     private void UpdateGlowSize()
     {
-        if (_glow is not null)
+        if (_glow is not null && _glyph.IsLoaded && _tile.IsLoaded)
         {
             var size = new Vector2((float)_glyph.ActualWidth, (float)_glyph.ActualHeight);
             _glow.Size = size;

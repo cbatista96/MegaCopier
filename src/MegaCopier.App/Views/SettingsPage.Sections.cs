@@ -245,6 +245,8 @@ public sealed partial class SettingsPage
     /// <summary>La sección nueva entra deslizándose y apareciendo.</summary>
     private static void SlideIn(UIElement element)
     {
+        // Translation (no Offset): Offset lo pone el diseño de la página y animarlo descoloca el contenido.
+        ElementCompositionPreview.SetIsTranslationEnabled(element, true);
         var visual = ElementCompositionPreview.GetElementVisual(element);
         var compositor = visual.Compositor;
         var fade = compositor.CreateScalarKeyFrameAnimation();
@@ -256,7 +258,7 @@ public sealed partial class SettingsPage
         slide.InsertKeyFrame(1, Vector3.Zero, compositor.CreateCubicBezierEasingFunction(new Vector2(0.1f, 0.9f), new Vector2(0.2f, 1f)));
         slide.Duration = TimeSpan.FromMilliseconds(320);
         visual.StartAnimation("Opacity", fade);
-        visual.StartAnimation("Offset", slide);
+        visual.StartAnimation("Translation", slide);
     }
 
     // ---------------------------------------------------------------------------------------------------------
