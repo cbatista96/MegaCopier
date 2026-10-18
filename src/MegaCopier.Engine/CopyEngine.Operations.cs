@@ -4,7 +4,7 @@ using MegaCopier.Engine.Native;
 
 namespace MegaCopier.Engine;
 
-/// <summary>Enlaces, "Comprobar sumas" (como el modo Test de TeraCopy) y "Borrar" (con borrado seguro opcional).</summary>
+/// <summary>Enlaces, "Comprobar sumas" y "Borrar" (con borrado seguro opcional).</summary>
 public sealed partial class CopyEngine
 {
     private void CreateLinks(IEnumerable<PlannedLink> links, CopyJobResult result)

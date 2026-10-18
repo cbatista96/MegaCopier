@@ -7,7 +7,7 @@ using Microsoft.UI.Xaml.Controls;
 
 namespace MegaCopier.App;
 
-/// <summary>Preguntas de SuperCopier: qué hacer con un archivo que sigue fallando y si sumar una copia a otra.</summary>
+/// <summary>Preguntas durante la copia: qué hacer con un archivo que sigue fallando y si sumar una copia a otra.</summary>
 public sealed partial class MainWindow
 {
     /// <summary>
@@ -80,7 +80,7 @@ public sealed partial class MainWindow
         }
     }
 
-    /// <summary>¿Sumar los archivos nuevos a la copia que ya está en marcha? (como SuperCopier, «Pedir confirmación»).</summary>
+    /// <summary>¿Sumar los archivos nuevos a la copia que ya está en marcha?.</summary>
     internal async Task<bool> ConfirmMergeAsync(CopyJob target, int count)
     {
         await _dialogGate.WaitAsync();

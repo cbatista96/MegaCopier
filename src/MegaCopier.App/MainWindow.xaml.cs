@@ -228,7 +228,7 @@ public sealed partial class MainWindow : Window
         AppWindow.Hide();
     }
 
-    /// <summary>«Recordar la posición / el tamaño de la ventana» (como SuperCopier).</summary>
+    /// <summary>«Recordar la posición / el tamaño de la ventana».</summary>
     private void SavePlacement()
     {
         var s = _app.Settings;
@@ -381,7 +381,7 @@ public sealed partial class MainWindow : Window
             return;
         }
 
-        // Como Ultracopier: al terminar bien, la ventana se va y las copias acabadas pasan al historial.
+        // Al terminar bien, la ventana se va y las copias acabadas pasan al historial.
         foreach (var job in Jobs.Where(j => j.IsDone).ToList())
         {
             job.Clear();

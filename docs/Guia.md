@@ -445,13 +445,12 @@ italiano, portugués de Brasil, ruso, ucraniano, polaco, neerlandés, turco, chi
 ## 18. Temas e iconos
 
 *Ajustes > Interfaz > Temas*. **52 temas** que cambian toda la interfaz al momento, también los botones, las listas, los
-menús, los cuadros de texto, los interruptores y hasta las barras de desplazamiento. Muchos se inspiran en los temas
-clásicos de SuperCopier (Afterburner, Air, Metro, Matrix, Ubuntu, Vista, XP…), rehechos al estilo de Windows 11, y
-algunos tienen **textura** de fondo:
+menús, los cuadros de texto, los interruptores y hasta las barras de desplazamiento. Todos están diseñados para Windows 11, con
+degradados, y algunos tienen **textura** de fondo:
 
 | Oscuros | Claros |
 |---|---|
-| Fluent oscuro · Medianoche · Grafito · Océano · Bosque · Atardecer · Alto contraste · **Combustión** (brasas) · **Caja negra** (fibra de carbono) · Metro oscuro · Robot verde · Cielo de otoño · Ámbar · Granate · **Código verde** (lluvia digital) · Vapor · Metro gris · Televisión · Reproductor · Humo · Berenjena · SuperCopier 3 azul, verde y naranja · **Aurora** · **Galaxia** · **Neón** (rejilla) · **Burbuja azul** (ondas) | Fluent claro · SuperCopier clásico · Ultracopier clásico · Aire · Metro claro · Pez azul · Línea plana · Plus · **Cristal** (metal cepillado) · Cielo · Menta · **Cuaderno** (papel) · **Madera** · Brillo · Nieve · Burbuja lima · Tóxico · Naranja tierra · Aero · Moderno 8 · Mensajero · Luna · Plata |
+| Fluent oscuro · Medianoche · Grafito · Océano · Bosque · Atardecer · Alto contraste · **Combustión** (brasas) · **Caja negra** (fibra de carbono) · Metro oscuro · Robot verde · Cielo de otoño · Ámbar · Granate · **Código verde** (lluvia digital) · Vapor · Metro gris · Televisión · Reproductor · Humo · Berenjena · Cobalto · Esmeralda · Mandarina · **Aurora** · **Galaxia** · **Neón** (rejilla) · **Burbuja azul** (ondas) | Fluent claro · Azul clásico · Gris clásico · Aire · Metro claro · Pez azul · Línea plana · Plus · **Cristal** (metal cepillado) · Cielo · Menta · **Cuaderno** (papel) · **Madera** · Brillo · Nieve · Burbuja lima · Tóxico · Naranja tierra · Aero · Moderno 8 · Mensajero · Luna · Plata |
 
 El tema **Fluent (como Windows)** sigue solo el modo claro u oscuro y el color de acento de Windows.
 

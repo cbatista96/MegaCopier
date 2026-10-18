@@ -4,7 +4,7 @@ using MegaCopier.Shell;
 namespace MegaCopier.App.Services;
 
 /// <summary>
-/// Carpetas abiertas ahora mismo en ventanas del Explorador (y de Total Commander y Directory Opus), para ofrecerlas como destino (como TeraCopy). Usa la
+/// Carpetas abiertas ahora mismo en ventanas del Explorador (y de Total Commander y Directory Opus), para ofrecerlas como destino. Usa la
 /// interfaz documentada IShellWindows (la misma que usan los scripts de Windows): nada se inyecta en el Explorador.
 /// Debe llamarse desde un hilo STA (el de la interfaz).
 /// </summary>

@@ -160,14 +160,14 @@ internal static class ThemeManager
         },
         new()
         {
-            Id = "supercopier", Name = "SuperCopier clásico", Dark = false, BuiltIn = true, Backdrop = AppBackdrop.Solid, CornerRadius = 2,
+            Id = "supercopier", Name = "Azul clásico", Dark = false, BuiltIn = true, Backdrop = AppBackdrop.Solid, CornerRadius = 2,
             Background = "#FFE9EEF6", Surface = "#FFFFFFFF", SurfaceStrong = "#FFDCE6F5", Border = "#FFB9C8E0",
             Text = "#FF102A43", TextSecondary = "#FF486581", Accent = "#1F6FD1",
             TotalStart = "#1C5FC4", TotalEnd = "#5AA2F0", FileStart = "#3D8BEB", FileEnd = "#8CC4FF", Track = "#FFC9D6EA", BarHeight = 14,
         },
         new()
         {
-            Id = "ultracopier", Name = "Ultracopier clásico", Dark = false, BuiltIn = true, Backdrop = AppBackdrop.Solid, CornerRadius = 3,
+            Id = "ultracopier", Name = "Gris clásico", Dark = false, BuiltIn = true, Backdrop = AppBackdrop.Solid, CornerRadius = 3,
             Background = "#FFF2F2F2", Surface = "#FFFFFFFF", SurfaceStrong = "#FFE6E6E6", Border = "#FFC8C8C8",
             Text = "#FF1A1A1A", TextSecondary = "#FF5C5C5C", Accent = "#2E8B2E",
             TotalStart = "#2EA043", TotalEnd = "#7BD88F", FileStart = "#2EA043", FileEnd = "#7BD88F", Track = "#FFD5D5D5", BarHeight = 16,

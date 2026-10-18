@@ -318,8 +318,8 @@
   <data name="Theme_ocean" xml:space="preserve"><value>Oceaan</value></data>
   <data name="Theme_forest" xml:space="preserve"><value>Bos</value></data>
   <data name="Theme_sunset" xml:space="preserve"><value>Zonsondergang</value></data>
-  <data name="Theme_supercopier" xml:space="preserve"><value>SuperCopier klassiek</value></data>
-  <data name="Theme_ultracopier" xml:space="preserve"><value>Ultracopier klassiek</value></data>
+  <data name="Theme_supercopier" xml:space="preserve"><value>Klassiek blauw</value></data>
+  <data name="Theme_ultracopier" xml:space="preserve"><value>Klassiek grijs</value></data>
   <data name="Theme_contrast" xml:space="preserve"><value>Hoog contrast</value></data>
   <data name="Tool_About.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Over</value></data>
   <data name="Tool_ClearDone.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Voltooide kopieën verwijderen</value></data>
@@ -1056,9 +1056,9 @@
   <data name="Theme_reproductor" xml:space="preserve"><value>Mediaspeler</value></data>
   <data name="Theme_humo" xml:space="preserve"><value>Rook</value></data>
   <data name="Theme_berenjena" xml:space="preserve"><value>Aubergine</value></data>
-  <data name="Theme_sc3-azul" xml:space="preserve"><value>SuperCopier 3 blauw</value></data>
-  <data name="Theme_sc3-verde" xml:space="preserve"><value>SuperCopier 3 groen</value></data>
-  <data name="Theme_sc3-naranja" xml:space="preserve"><value>SuperCopier 3 oranje</value></data>
+  <data name="Theme_sc3-azul" xml:space="preserve"><value>Kobalt</value></data>
+  <data name="Theme_sc3-verde" xml:space="preserve"><value>Smaragd</value></data>
+  <data name="Theme_sc3-naranja" xml:space="preserve"><value>Mandarijn</value></data>
   <data name="Theme_aurora" xml:space="preserve"><value>Noorderlicht</value></data>
   <data name="Theme_galaxia" xml:space="preserve"><value>Sterrenstelsel</value></data>
   <data name="Theme_neon" xml:space="preserve"><value>Neon</value></data>

@@ -147,8 +147,8 @@ Todo explicado paso a paso en la **[guía de uso](docs/Guia.md)**.
 
 ### Temas
 
-**52 temas** que cambian toda la interfaz al momento, hasta los botones, los menús y las barras de desplazamiento. Muchos
-se inspiran en los temas clásicos de SuperCopier, rehechos al estilo de Windows 11, y algunos tienen textura de fondo.
+**52 temas** que cambian toda la interfaz al momento, hasta los botones, los menús y las barras de desplazamiento. Todos
+están diseñados para Windows 11, con degradados, y algunos tienen textura de fondo.
 Además, un editor para crear los tuyos.
 
 <table>
@@ -173,7 +173,7 @@ Además, un editor para crear los tuyos.
 <td><img src="docs/capturas/temas/humo.png" alt="Humo"><br>Humo</td>
 </tr>
 <tr>
-<td><img src="docs/capturas/temas/sc3-azul.png" alt="SuperCopier 3 azul"><br>SuperCopier 3 azul</td>
+<td><img src="docs/capturas/temas/cobalto.png" alt="Cobalto"><br>Cobalto</td>
 <td><img src="docs/capturas/temas/metro-oscuro.png" alt="Metro oscuro"><br>Metro oscuro</td>
 <td><img src="docs/capturas/temas/aero.png" alt="Aero"><br>Aero</td>
 </tr>
@@ -193,14 +193,14 @@ Además, un editor para crear los tuyos.
 <td><img src="docs/capturas/temas/sunset.png" alt="Atardecer"><br>Atardecer</td>
 </tr>
 <tr>
-<td><img src="docs/capturas/temas/supercopier.png" alt="SuperCopier clásico"><br>SuperCopier clásico</td>
-<td><img src="docs/capturas/temas/ultracopier.png" alt="Ultracopier clásico"><br>Ultracopier clásico</td>
+<td><img src="docs/capturas/temas/azul-clasico.png" alt="Azul clásico"><br>Azul clásico</td>
+<td><img src="docs/capturas/temas/gris-clasico.png" alt="Gris clásico"><br>Gris clásico</td>
 <td><img src="docs/capturas/temas/contrast.png" alt="Alto contraste"><br>Alto contraste</td>
 </tr>
 </table>
 
 Y otros 24: Grafito, Robot verde, Cielo de otoño, Ámbar, Granate, Vapor, Metro gris, Televisión, Reproductor,
-SuperCopier 3 verde y naranja, Metro claro, Pez azul, Línea plana, Plus, Cielo, Brillo, Nieve, Burbuja lima, Tóxico,
+Esmeralda, Mandarina, Metro claro, Pez azul, Línea plana, Plus, Cielo, Brillo, Nieve, Burbuja lima, Tóxico,
 Naranja tierra, Moderno 8, Mensajero y Plata. **Fluent (como Windows)** sigue el modo claro u oscuro y el color de acento
 de Windows.
 
@@ -283,7 +283,7 @@ Siete estilos de iconos, todos con los iconos modernos de Windows 11, que se com
   también los nombres.
 - **Borrado seguro**: ceros, aleatorio, DoD de 3 pasadas o DoD de 7 pasadas.
 
-### Comportamiento y errores (como SuperCopier)
+### Comportamiento y errores
 - **Si un archivo sigue fallando, preguntar qué hacer**: reintentar, omitir, omitir todos los siguientes o detener (o
   decidirlo de antemano: omitir, detener o reintentar al final).
 - **Añadir las copias nuevas a una que ya está en marcha**: nunca, si van a la misma carpeta, si usan los mismos discos o

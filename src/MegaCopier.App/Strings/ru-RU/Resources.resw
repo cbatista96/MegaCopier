@@ -318,8 +318,8 @@
   <data name="Theme_ocean" xml:space="preserve"><value>Океан</value></data>
   <data name="Theme_forest" xml:space="preserve"><value>Лес</value></data>
   <data name="Theme_sunset" xml:space="preserve"><value>Закат</value></data>
-  <data name="Theme_supercopier" xml:space="preserve"><value>Классический SuperCopier</value></data>
-  <data name="Theme_ultracopier" xml:space="preserve"><value>Классический Ultracopier</value></data>
+  <data name="Theme_supercopier" xml:space="preserve"><value>Классический синий</value></data>
+  <data name="Theme_ultracopier" xml:space="preserve"><value>Классический серый</value></data>
   <data name="Theme_contrast" xml:space="preserve"><value>Высокая контрастность</value></data>
   <data name="Tool_About.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>О программе</value></data>
   <data name="Tool_ClearDone.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Убрать завершённые копирования</value></data>
@@ -1056,9 +1056,9 @@
   <data name="Theme_reproductor" xml:space="preserve"><value>Проигрыватель</value></data>
   <data name="Theme_humo" xml:space="preserve"><value>Дым</value></data>
   <data name="Theme_berenjena" xml:space="preserve"><value>Баклажан</value></data>
-  <data name="Theme_sc3-azul" xml:space="preserve"><value>SuperCopier 3 синий</value></data>
-  <data name="Theme_sc3-verde" xml:space="preserve"><value>SuperCopier 3 зелёный</value></data>
-  <data name="Theme_sc3-naranja" xml:space="preserve"><value>SuperCopier 3 оранжевый</value></data>
+  <data name="Theme_sc3-azul" xml:space="preserve"><value>Кобальт</value></data>
+  <data name="Theme_sc3-verde" xml:space="preserve"><value>Изумруд</value></data>
+  <data name="Theme_sc3-naranja" xml:space="preserve"><value>Мандарин</value></data>
   <data name="Theme_aurora" xml:space="preserve"><value>Сияние</value></data>
   <data name="Theme_galaxia" xml:space="preserve"><value>Галактика</value></data>
   <data name="Theme_neon" xml:space="preserve"><value>Неон</value></data>

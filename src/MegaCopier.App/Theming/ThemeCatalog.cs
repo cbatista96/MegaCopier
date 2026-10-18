@@ -3,8 +3,7 @@ using MegaCopier.App.Services;
 namespace MegaCopier.App.Theming;
 
 /// <summary>
-/// Temas adicionales. Muchos se inspiran en las paletas de los temas clásicos de SuperCopier (Afterburner, Air, Metro,
-/// Matrix, Ubuntu, Vista, XP...), rehechos con el estilo de Windows 11: degradados, texturas y controles coloreados.
+/// Temas adicionales con el estilo de Windows 11: degradados, texturas y controles coloreados.
 /// </summary>
 internal static class ThemeCatalog
 {
@@ -40,11 +39,11 @@ internal static class ThemeCatalog
             text: "#FFF4FCFF", secondary: "#CCC6DDEC", surface: "#26FFFFFF", strong: "#3DFFFFFF", accentText: "#FF2B2A00", radius: 12);
         yield return Dark("berenjena", "Berenjena", "#FF2C001E", "#FF4A1238", "#FFE95420", "#FFE95420", "#FFF7A35C", "#FFC34113", "#FFFFAC89",
             text: "#FFFFF5F0", secondary: "#B3E8CCD8", radius: 10, barHeight: 10);
-        yield return Dark("sc3-azul", "SuperCopier 3 azul", "#FF333333", "#FF492421", "#FF7CCFFF", "#FF8ECEF3", "#FF4FB6F0", "#FFA4DDFD", "#FFE2F5FF",
+        yield return Dark("sc3-azul", "Cobalto", "#FF333333", "#FF492421", "#FF7CCFFF", "#FF8ECEF3", "#FF4FB6F0", "#FFA4DDFD", "#FFE2F5FF",
             accentText: "#FF06263A", radius: 6, barHeight: 12);
-        yield return Dark("sc3-verde", "SuperCopier 3 verde", "#FF333333", "#FF2B3A22", "#FF8CDE93", "#FF8CDE93", "#FF2FA84F", "#FF00FF80", "#FFFFFF00",
+        yield return Dark("sc3-verde", "Esmeralda", "#FF333333", "#FF2B3A22", "#FF8CDE93", "#FF8CDE93", "#FF2FA84F", "#FF00FF80", "#FFFFFF00",
             accentText: "#FF06260C", radius: 6, barHeight: 12);
-        yield return Dark("sc3-naranja", "SuperCopier 3 naranja", "#FF333333", "#FF492421", "#FFFA5900", "#FFFFC21D", "#FFFA5800", "#FFFF7709", "#FFFFC21D",
+        yield return Dark("sc3-naranja", "Mandarina", "#FF333333", "#FF492421", "#FFFA5900", "#FFFFC21D", "#FFFA5800", "#FFFF7709", "#FFFFC21D",
             radius: 6, barHeight: 12);
         yield return Dark("aurora", "Aurora", "#FF061026", "#FF0E1A34", "#FF3EE6B0", "#FF28E6A0", "#FF3C9CFF", "#FFAA5AFF", "#FF3C9CFF",
             accentText: "#FF002418", texture: "aurora", textureOpacity: 0.9, surface: "#33FFFFFF", strong: "#45FFFFFF", radius: 14, barHeight: 10);

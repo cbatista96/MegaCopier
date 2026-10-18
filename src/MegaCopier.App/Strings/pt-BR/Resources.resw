@@ -318,8 +318,8 @@
   <data name="Theme_ocean" xml:space="preserve"><value>Oceano</value></data>
   <data name="Theme_forest" xml:space="preserve"><value>Floresta</value></data>
   <data name="Theme_sunset" xml:space="preserve"><value>Pôr do sol</value></data>
-  <data name="Theme_supercopier" xml:space="preserve"><value>SuperCopier clássico</value></data>
-  <data name="Theme_ultracopier" xml:space="preserve"><value>Ultracopier clássico</value></data>
+  <data name="Theme_supercopier" xml:space="preserve"><value>Azul clássico</value></data>
+  <data name="Theme_ultracopier" xml:space="preserve"><value>Cinza clássico</value></data>
   <data name="Theme_contrast" xml:space="preserve"><value>Alto contraste</value></data>
   <data name="Tool_About.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Sobre</value></data>
   <data name="Tool_ClearDone.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Remover as cópias concluídas</value></data>
@@ -1056,9 +1056,9 @@
   <data name="Theme_reproductor" xml:space="preserve"><value>Reprodutor</value></data>
   <data name="Theme_humo" xml:space="preserve"><value>Fumaça</value></data>
   <data name="Theme_berenjena" xml:space="preserve"><value>Berinjela</value></data>
-  <data name="Theme_sc3-azul" xml:space="preserve"><value>SuperCopier 3 azul</value></data>
-  <data name="Theme_sc3-verde" xml:space="preserve"><value>SuperCopier 3 verde</value></data>
-  <data name="Theme_sc3-naranja" xml:space="preserve"><value>SuperCopier 3 laranja</value></data>
+  <data name="Theme_sc3-azul" xml:space="preserve"><value>Cobalto</value></data>
+  <data name="Theme_sc3-verde" xml:space="preserve"><value>Esmeralda</value></data>
+  <data name="Theme_sc3-naranja" xml:space="preserve"><value>Tangerina</value></data>
   <data name="Theme_aurora" xml:space="preserve"><value>Aurora</value></data>
   <data name="Theme_galaxia" xml:space="preserve"><value>Galáxia</value></data>
   <data name="Theme_neon" xml:space="preserve"><value>Neon</value></data>

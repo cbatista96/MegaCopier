@@ -63,7 +63,7 @@ Todo lo que hace MegaCopier, por temas. Para usarlo, la [guía](Guia.md); para c
   **7z cifrado**, que oculta también los nombres de los archivos.
 - **Borrado seguro**: una pasada de ceros, aleatoria, DoD de 3 pasadas o DoD de 7 pasadas.
 
-## Comportamiento y errores (como SuperCopier)
+## Comportamiento y errores
 - **Si un archivo sigue fallando, preguntar qué hacer**: reintentar, omitir, omitir todos los siguientes o detener (o
   decidirlo de antemano: omitir, detener o reintentar al final).
 - **Añadir las copias nuevas a una que ya está en marcha**: nunca, si van a la misma carpeta, si usan los mismos discos o

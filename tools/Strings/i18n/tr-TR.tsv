@@ -312,8 +312,8 @@ Theme_graphite	Grafit
 Theme_ocean	Okyanus
 Theme_forest	Orman
 Theme_sunset	Gün batımı
-Theme_supercopier	Klasik SuperCopier
-Theme_ultracopier	Klasik Ultracopier
+Theme_supercopier	Klasik mavi
+Theme_ultracopier	Klasik gri
 Theme_contrast	Yüksek karşıtlık
 Tool_About.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Hakkında
 Tool_ClearDone.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Biten kopyalamaları kaldır
@@ -1050,9 +1050,9 @@ Theme_television	Televizyon
 Theme_reproductor	Oynatıcı
 Theme_humo	Duman
 Theme_berenjena	Patlıcan
-Theme_sc3-azul	SuperCopier 3 mavi
-Theme_sc3-verde	SuperCopier 3 yeşil
-Theme_sc3-naranja	SuperCopier 3 turuncu
+Theme_sc3-azul	Kobalt
+Theme_sc3-verde	Zümrüt
+Theme_sc3-naranja	Mandalina
 Theme_aurora	Kutup ışığı
 Theme_galaxia	Galaksi
 Theme_neon	Neon

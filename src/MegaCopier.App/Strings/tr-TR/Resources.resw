@@ -318,8 +318,8 @@
   <data name="Theme_ocean" xml:space="preserve"><value>Okyanus</value></data>
   <data name="Theme_forest" xml:space="preserve"><value>Orman</value></data>
   <data name="Theme_sunset" xml:space="preserve"><value>Gün batımı</value></data>
-  <data name="Theme_supercopier" xml:space="preserve"><value>Klasik SuperCopier</value></data>
-  <data name="Theme_ultracopier" xml:space="preserve"><value>Klasik Ultracopier</value></data>
+  <data name="Theme_supercopier" xml:space="preserve"><value>Klasik mavi</value></data>
+  <data name="Theme_ultracopier" xml:space="preserve"><value>Klasik gri</value></data>
   <data name="Theme_contrast" xml:space="preserve"><value>Yüksek karşıtlık</value></data>
   <data name="Tool_About.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Hakkında</value></data>
   <data name="Tool_ClearDone.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Biten kopyalamaları kaldır</value></data>
@@ -1056,9 +1056,9 @@
   <data name="Theme_reproductor" xml:space="preserve"><value>Oynatıcı</value></data>
   <data name="Theme_humo" xml:space="preserve"><value>Duman</value></data>
   <data name="Theme_berenjena" xml:space="preserve"><value>Patlıcan</value></data>
-  <data name="Theme_sc3-azul" xml:space="preserve"><value>SuperCopier 3 mavi</value></data>
-  <data name="Theme_sc3-verde" xml:space="preserve"><value>SuperCopier 3 yeşil</value></data>
-  <data name="Theme_sc3-naranja" xml:space="preserve"><value>SuperCopier 3 turuncu</value></data>
+  <data name="Theme_sc3-azul" xml:space="preserve"><value>Kobalt</value></data>
+  <data name="Theme_sc3-verde" xml:space="preserve"><value>Zümrüt</value></data>
+  <data name="Theme_sc3-naranja" xml:space="preserve"><value>Mandalina</value></data>
   <data name="Theme_aurora" xml:space="preserve"><value>Kutup ışığı</value></data>
   <data name="Theme_galaxia" xml:space="preserve"><value>Galaksi</value></data>
   <data name="Theme_neon" xml:space="preserve"><value>Neon</value></data>

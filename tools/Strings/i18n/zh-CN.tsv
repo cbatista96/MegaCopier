@@ -312,8 +312,8 @@ Theme_graphite	石墨
 Theme_ocean	海洋
 Theme_forest	森林
 Theme_sunset	日落
-Theme_supercopier	经典 SuperCopier
-Theme_ultracopier	经典 Ultracopier
+Theme_supercopier	经典蓝
+Theme_ultracopier	经典灰
 Theme_contrast	高对比度
 Tool_About.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	关于
 Tool_ClearDone.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	移除已完成的复制
@@ -1050,9 +1050,9 @@ Theme_television	电视
 Theme_reproductor	播放器
 Theme_humo	烟雾
 Theme_berenjena	茄紫
-Theme_sc3-azul	SuperCopier 3 蓝
-Theme_sc3-verde	SuperCopier 3 绿
-Theme_sc3-naranja	SuperCopier 3 橙
+Theme_sc3-azul	钴蓝
+Theme_sc3-verde	翡翠
+Theme_sc3-naranja	橘橙
 Theme_aurora	极光
 Theme_galaxia	星系
 Theme_neon	霓虹
