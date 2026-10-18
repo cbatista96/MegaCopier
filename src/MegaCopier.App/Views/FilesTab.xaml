@@ -3,6 +3,7 @@
     x:Class="MegaCopier.App.Views.FilesTab"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:c="using:MegaCopier.App.Controls"
     xmlns:vm="using:MegaCopier.App.ViewModels">
 
     <Grid RowSpacing="8">
@@ -26,7 +27,7 @@
             </Grid.RowDefinitions>
             <DropDownButton Style="{StaticResource DefaultButtonStyle}" CornerRadius="6">
                 <StackPanel Orientation="Horizontal" Spacing="8">
-                    <FontIcon VerticalAlignment="Center" Glyph="&#xE700;" FontSize="13" />
+                    <c:McIcon VerticalAlignment="Center" Glyph="&#xE700;" FontSize="13" />
                     <TextBlock x:Uid="Files_Menu" />
                 </StackPanel>
                 <DropDownButton.Flyout>
@@ -116,14 +117,14 @@
                             <ColumnDefinition Width="84" />
                         </Grid.ColumnDefinitions>
                         <Grid ToolTipService.ToolTip="{x:Bind StateText, Mode=OneWay}">
-                            <FontIcon HorizontalAlignment="Center" VerticalAlignment="Center" Glyph="&#xEA3A;" FontSize="11" Foreground="{StaticResource McTextSecondaryBrush}" Visibility="{x:Bind IsPending, Mode=OneWay}" />
+                            <c:McIcon HorizontalAlignment="Center" VerticalAlignment="Center" Glyph="&#xEA3A;" FontSize="11" Foreground="{StaticResource McTextSecondaryBrush}" Visibility="{x:Bind IsPending, Mode=OneWay}" />
                             <ProgressRing HorizontalAlignment="Center" VerticalAlignment="Center" Width="16" Height="16" IsActive="{x:Bind IsCurrent, Mode=OneWay}" Visibility="{x:Bind IsCurrent, Mode=OneWay}" Foreground="{StaticResource McAccentBrush}" />
-                            <FontIcon HorizontalAlignment="Center" VerticalAlignment="Center" Glyph="&#xE73E;" FontSize="14" Foreground="{StaticResource McSuccessBrush}" Visibility="{x:Bind IsCopiedOnly, Mode=OneWay}" />
-                            <FontIcon HorizontalAlignment="Center" VerticalAlignment="Center" Glyph="&#xE930;" FontSize="15" Foreground="{StaticResource McSuccessBrush}" Visibility="{x:Bind IsVerified, Mode=OneWay}" />
-                            <FontIcon HorizontalAlignment="Center" VerticalAlignment="Center" Glyph="&#xE893;" FontSize="14" Foreground="{StaticResource McTextSecondaryBrush}" Visibility="{x:Bind IsSkipped, Mode=OneWay}" />
-                            <FontIcon HorizontalAlignment="Center" VerticalAlignment="Center" Glyph="&#xE7BA;" FontSize="14" Foreground="{StaticResource McWarningBrush}" Visibility="{x:Bind IsFailed, Mode=OneWay}" />
-                            <FontIcon HorizontalAlignment="Center" VerticalAlignment="Center" Glyph="&#xE7B3;" FontSize="14" Foreground="{StaticResource McAccentBrush}" Visibility="{x:Bind IsPlanned, Mode=OneWay}" />
-                            <FontIcon HorizontalAlignment="Center" VerticalAlignment="Center" Glyph="&#xE74D;" FontSize="14" Foreground="{StaticResource McTextSecondaryBrush}" Visibility="{x:Bind IsDeleted, Mode=OneWay}" />
+                            <c:McIcon HorizontalAlignment="Center" VerticalAlignment="Center" Glyph="&#xE73E;" FontSize="14" Foreground="{StaticResource McSuccessBrush}" Visibility="{x:Bind IsCopiedOnly, Mode=OneWay}" />
+                            <c:McIcon HorizontalAlignment="Center" VerticalAlignment="Center" Glyph="&#xE930;" FontSize="15" Foreground="{StaticResource McSuccessBrush}" Visibility="{x:Bind IsVerified, Mode=OneWay}" />
+                            <c:McIcon HorizontalAlignment="Center" VerticalAlignment="Center" Glyph="&#xE893;" FontSize="14" Foreground="{StaticResource McTextSecondaryBrush}" Visibility="{x:Bind IsSkipped, Mode=OneWay}" />
+                            <c:McIcon HorizontalAlignment="Center" VerticalAlignment="Center" Glyph="&#xE7BA;" FontSize="14" Foreground="{StaticResource McWarningBrush}" Visibility="{x:Bind IsFailed, Mode=OneWay}" />
+                            <c:McIcon HorizontalAlignment="Center" VerticalAlignment="Center" Glyph="&#xE7B3;" FontSize="14" Foreground="{StaticResource McAccentBrush}" Visibility="{x:Bind IsPlanned, Mode=OneWay}" />
+                            <c:McIcon HorizontalAlignment="Center" VerticalAlignment="Center" Glyph="&#xE74D;" FontSize="14" Foreground="{StaticResource McTextSecondaryBrush}" Visibility="{x:Bind IsDeleted, Mode=OneWay}" />
                         </Grid>
                         <StackPanel Grid.Column="1" VerticalAlignment="Center">
                             <TextBlock Text="{x:Bind Name}" Style="{StaticResource McBody}" TextTrimming="CharacterEllipsis" ToolTipService.ToolTip="{x:Bind SourcePath}" />
@@ -149,7 +150,7 @@
         <Border x:Name="DropHint" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,12" Padding="14,8" CornerRadius="8"
                 Background="{StaticResource McAccentBrush}" IsHitTestVisible="False" Visibility="Collapsed">
             <StackPanel Orientation="Horizontal" Spacing="8">
-                <FontIcon x:Name="DropHintIcon" VerticalAlignment="Center" Glyph="&#xE8DE;" FontSize="14" Foreground="{StaticResource McAccentTextBrush}" />
+                <c:McIcon x:Name="DropHintIcon" VerticalAlignment="Center" Glyph="&#xE8DE;" FontSize="14" Foreground="{StaticResource McAccentTextBrush}" />
                 <TextBlock x:Name="DropHintText" VerticalAlignment="Center" Foreground="{StaticResource McAccentTextBrush}" FontWeight="SemiBold" />
             </StackPanel>
         </Border>

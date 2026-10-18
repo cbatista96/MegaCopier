@@ -72,6 +72,9 @@ public sealed class AppSettings
     /// <summary>Tema completo de la interfaz ("fluent-auto" sigue el modo claro/oscuro de Windows).</summary>
     public string ThemeId { get; set; } = "fluent-auto";
 
+    /// <summary>Conjunto de iconos, independiente del tema (fluent, color, mosaico, suave, degradado, neon, windows10).</summary>
+    public string IconPack { get; set; } = "fluent";
+
     public WindowMode WindowMode { get; set; } = WindowMode.Auto;
 
     public FinishWindow FinishWindow { get; set; } = FinishWindow.Auto;

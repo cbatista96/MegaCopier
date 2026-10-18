@@ -3,6 +3,7 @@
     x:Class="MegaCopier.App.Views.LogTab"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:c="using:MegaCopier.App.Controls"
     xmlns:vm="using:MegaCopier.App.ViewModels">
 
     <Grid RowSpacing="8">
@@ -13,7 +14,7 @@
         <StackPanel Orientation="Horizontal" Spacing="8">
             <Button Style="{StaticResource McButton}" Click="Export_Click">
                 <StackPanel Orientation="Horizontal" Spacing="8">
-                    <FontIcon VerticalAlignment="Center" Glyph="&#xE74E;" FontSize="12" />
+                    <c:McIcon VerticalAlignment="Center" Glyph="&#xE74E;" FontSize="12" />
                     <TextBlock x:Uid="Log_Export" />
                 </StackPanel>
             </Button>
@@ -33,9 +34,9 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Grid>
-                            <FontIcon VerticalAlignment="Center" Glyph="&#xE946;" FontSize="13" Foreground="{StaticResource McAccentBrush}" Visibility="{x:Bind IsInfo}" />
-                            <FontIcon VerticalAlignment="Center" Glyph="&#xE7BA;" FontSize="13" Foreground="{StaticResource McWarningBrush}" Visibility="{x:Bind IsWarning}" />
-                            <FontIcon VerticalAlignment="Center" Glyph="&#xEA39;" FontSize="13" Foreground="{StaticResource McErrorBrush}" Visibility="{x:Bind IsError}" />
+                            <c:McIcon VerticalAlignment="Center" Glyph="&#xE946;" FontSize="13" Foreground="{StaticResource McAccentBrush}" Visibility="{x:Bind IsInfo}" />
+                            <c:McIcon VerticalAlignment="Center" Glyph="&#xE7BA;" FontSize="13" Foreground="{StaticResource McWarningBrush}" Visibility="{x:Bind IsWarning}" />
+                            <c:McIcon VerticalAlignment="Center" Glyph="&#xEA39;" FontSize="13" Foreground="{StaticResource McErrorBrush}" Visibility="{x:Bind IsError}" />
                         </Grid>
                         <TextBlock Grid.Column="1" Text="{x:Bind Time}" Style="{StaticResource McSecondary}" FontFamily="Consolas" />
                         <StackPanel Grid.Column="2">

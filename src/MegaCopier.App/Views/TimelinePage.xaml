@@ -2,7 +2,8 @@
 <UserControl
     x:Class="MegaCopier.App.Views.TimelinePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:c="using:MegaCopier.App.Controls">
 
     <Grid Padding="20,8,20,20" RowSpacing="12">
         <Grid.RowDefinitions>
@@ -17,12 +18,12 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal" Spacing="10">
-                <FontIcon VerticalAlignment="Center" Glyph="&#xE121;" FontSize="20" Foreground="{StaticResource McAccentBrush}" />
+                <c:McIcon VerticalAlignment="Center" Glyph="&#xE121;" FontSize="20" Foreground="{StaticResource McAccentBrush}" />
                 <TextBlock x:Uid="Timeline_Title" Style="{StaticResource McTitle}" TextTrimming="CharacterEllipsis" />
             </StackPanel>
             <Button Grid.Column="1" Style="{StaticResource McButton}" Click="Close_Click">
                 <StackPanel Orientation="Horizontal" Spacing="8">
-                    <FontIcon VerticalAlignment="Center" Glyph="&#xE72B;" FontSize="12" />
+                    <c:McIcon VerticalAlignment="Center" Glyph="&#xE72B;" FontSize="12" />
                     <TextBlock x:Uid="Page_Back" />
                 </StackPanel>
             </Button>
