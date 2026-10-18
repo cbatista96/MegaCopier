@@ -39,8 +39,11 @@ public sealed partial class InfoTip : Button
             return title;
         }
 
-        return (Parent as Panel)?.Children.OfType<TextBlock>().FirstOrDefault()?.Text ?? "";
+        return Label ?? (Parent as Panel)?.Children.OfType<TextBlock>().FirstOrDefault()?.Text ?? "";
     }
+
+    /// <summary>Nombre de la opción que explica (si no tiene título propio ni un texto al lado).</summary>
+    public string? Label { get; set; }
 
     /// <summary>Tema de la ayuda: la clave de sus textos.</summary>
     public string Topic { get; set; } = "";

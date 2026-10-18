@@ -149,12 +149,6 @@ AboutDialog.CloseButtonText	Sluiten
 About_DataFolder.Content	De gegevensmap openen (instellingen, thema's, geschiedenis, rapporten)
 About_Description.Text	Bestandskopieerder voor Windows 11 die zelfs één enorm bestand hervat na een stroomstoring, en controleert wat al gekopieerd is.
 About_Features.Text	Asynchrone I/O zonder cache · parallelle lees- en schrijfacties · controle met hash (CRC32, xxHash, MD5, SHA) · wachtrij per schijf · pauzeren en hervatten · verplaatsen · conflicten · snelheidslimiet · kopieerlijsten · rapporten · thema's.
-CopyFiles.Text	Bestanden kopiëren…
-CopyFolder.Text	Een map kopiëren…
-CopyFilesText.Text	Bestanden kopiëren
-CopyFolderText.Text	Map kopiëren
-Files_AddFiles.Text	Bestanden toevoegen…
-Files_AddFolder.Text	Map toevoegen…
 Files_AutoScroll.Content	Huidige volgen
 Files_CopyHashes.Text	Hashes kopiëren
 Files_CopyPath.Text	Pad kopiëren
@@ -321,7 +315,6 @@ Tool_History.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Geschieden
 Tool_HistoryText.Text	Geschiedenis
 Tool_LoadList.Text	Een kopieerlijst laden…
 Tool_LoadListText.Text	Lijst laden
-Tool_MoveFiles.Text	Bestanden verplaatsen…
 Tool_NewCopy.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Nieuwe kopie
 Tool_NewCopyText.Text	Nieuw
 Tool_PauseAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Alle pauzeren
@@ -417,8 +410,6 @@ Settings_FavoritesEmpty	Nog geen favorieten.
 Tool_CopyTo.Text	Kopiëren naar
 Tool_CopyToEmpty	Geen favorieten of recente mappen
 Tool_CopyToManage	Favorieten beheren…
-Tool_TestFiles.Text	Controlesombestanden testen…
-Tool_TestFolder.Text	Controlesommen van een map testen…
 Tool_Delete.Text	Verwijderen…
 Tool_Wipe.Text	Veilig verwijderen…
 DestinationsDialog.Title	Waarheen?
@@ -548,8 +539,6 @@ Options_MirrorInfo.Title	Synchroniseren verwijdert uit het doel wat niet meer in
 Options_MirrorInfo.Message	Wat de filters uitsluiten, blijft onaangeroerd. Geef een versiemap op om verwijderde of vervangen bestanden te bewaren.
 Options_DryRun.Content	Simuleren: tonen wat er zou gebeuren zonder iets te wijzigen
 Destinations_DryRun.Content	Eerst simuleren (wijzigt niets)
-Tool_HashFolder.Text	Controlesombestand van een map maken…
-Tool_HashFiles.Text	Controlesombestand van bestanden maken…
 Rules_SkipJunk.Content	Overbodige bestanden overslaan (Thumbs.db, desktop.ini, .DS_Store, ~$…)
 Rules_OnErrorEnd.Content	Opnieuw proberen aan het einde van de wachtrij
 Rules_Safety.Text	Synchronisatie en veiligheid
@@ -693,8 +682,6 @@ Peer_ReceivedTitle	Bestanden ontvangen
 Peer_Received	{0} bestanden van {1}, in {2}.
 Peer_RejectedTitle	Zending geweigerd
 Peer_Rejected	{0} probeerde je bestanden te sturen met een verkeerde code.
-Tool_SendFiles.Text	Bestanden naar een andere computer sturen…
-Tool_SendFolder.Text	Een map naar een andere computer sturen…
 SendDialog.Title	Naar een andere computer sturen
 SendDialog.PrimaryButtonText	Verzenden
 SendDialog.CloseButtonText	Annuleren
@@ -1336,7 +1323,7 @@ Theme_solar-claro	Zonnig licht
 Theme_capuchino-claro	Lichte cappuccino
 Info_Paste_Text	Als je bestanden kopieert (Ctrl+C) of knipt (Ctrl+X) en plakt (Ctrl+V) in Verkenner of op het bureaublad, kopieert MegaCopier in plaats van Windows: met wachtrij, pauze, verificatie en hervatten na een onderbreking.\n• Grote kopieën naar een externe schijf: pauzeer en ga later verder.\n• Meerdere kopieën achter elkaar: ze wachten op hun beurt in plaats van om de schijf te vechten.\nPlak je in dezelfde map (om een bestand te dupliceren), dan doet Verkenner dat nog steeds.
 Info_Drag_Text	Als je bestanden met de linkerknop van het ene venster naar het andere sleept, kopieert (of verplaatst) MegaCopier met dezelfde regels als Windows: op hetzelfde station verplaatsen, Ctrl dwingt kopiëren af en Shift verplaatsen.\n• Foto’s sorteren door ze tussen mappen op verschillende schijven te slepen.\n• Grote projecten verplaatsen zonder dat Verkenner vastloopt.\nNeerzetten op een bestand, een ZIP of het linkerdeelvenster doet Verkenner nog steeds.
-Info_WindowMode_Text	Hoe het venster eruitziet tijdens het kopiëren.\n• Compact: alleen de balken en knoppen; neemt weinig ruimte.\n• Volledig: met bestandslijst, bestemming, opties, grafiek en logboek.\n• Automatisch: compact bij één kopie en volledig bij meerdere.\nMet "Meer" en "Minder" wissel je op elk moment.
+Info_WindowMode_Text	Het kopieervenster heeft drie weergaven.\n• Klein: alleen de balken en knoppen. De gewone tijdens het kopiëren; je kunt hem breder maken, maar niet hoger.\n• Met de lijst (‘Meer’): bestanden, bestemming, opties, grafiek en logboek. Kan groter of gemaximaliseerd.\n• Meerdere kopieën: dezelfde, met de lijst van kopieën links; verschijnt vanzelf als er meer dan één is.\n‘Automatisch’ begint klein en gaat naar de volledige weergave als er meerdere kopieën lopen. ‘Meer’ en ‘Minder’ wisselen op elk moment.
 Info_Verify_Text	Na elk bestand leest MegaCopier het opnieuw rechtstreeks van de doelschijf en vergelijkt de vingerafdruk (hash) met die van het origineel. Klopt er iets niet, dan wordt alleen het beschadigde deel opnieuw gekopieerd.\n• Back-ups, foto’s en belangrijke documenten.\n• Oude of goedkope USB-sticks en schijven, die zonder waarschuwing kunnen falen.\n• Kopieën via het netwerk of wifi.\nHet kopiëren duurt iets langer (alles wordt opnieuw gelezen), maar je weet zeker dat het identiek is.
 Info_Conflict_Text	Wat te doen als de bestemming al een bestand met dezelfde naam heeft.\n• Vragen: toont beide met grootte, datum en miniatuur, en jij kiest.\n• Vervangen, Overslaan, Vervangen als nieuwer of bij andere grootte, Beide behouden ("naam (2)") of De bestaande hernoemen.\nIdentieke bestanden (zelfde grootte en datum) worden nooit opnieuw gekopieerd: een herhaalde kopie kopieert alleen nieuwe of gewijzigde bestanden. Bestaat een hele map al, dan vraagt MegaCopier het vóór de start.
 Info_Hash_Text	De hash is als een vingerafdruk van een bestand: verandert er één byte, dan verandert de vingerafdruk. Hij wordt gebruikt bij verificatie en in opgeslagen controlesommen.\n• xxHash3: de snelste; ideaal om kopieën te verifiëren.\n• SHA-256: die gebruiken websites en programma’s het meest om downloads te controleren.\n• MD5, SHA-1, BLAKE3…: voor als een ander programma om een bepaalde vraagt.\nVoor dagelijks gebruik: houd xxHash3.
@@ -1360,3 +1347,77 @@ Info_Tasks_Text	Een opgeslagen kopie die Windows zelf elke dag, week of maand op
 Info_Guard_Text	Schijven kunnen bestanden in de loop der jaren ongemerkt beschadigen. MegaCopier bewaart de vingerafdruk van elk bestand in het bestand zelf en controleert ze opnieuw als de computer vrij is. Is er een veranderd zonder dat iemand eraan kwam, dan waarschuwt het je op tijd om hem uit een back-up te halen.\n• Familiefoto’s en -video’s.\n• Back-upschijven die zelden worden geopend.\nWat jij bewerkt, wordt vanzelf bijgewerkt. Vereist NTFS-schijven.
 Info_Webhook_Text	Na elke kopie stuurt MegaCopier de samenvatting naar een webadres, zodat de melding op je telefoon of in een chat komt.\n• Discord, Slack of Teams: meldingen in een kanaal.\n• ntfy.sh: een melding op je telefoon met bijna niets te installeren.\n• Home Assistant: automatiseringen (een lamp aan als het klaar is…).
 Info_Connections_Text	Bewaar hier de servers waarnaar je kopieert: FTP, SFTP, WebDAV (Nextcloud, NAS…) of S3 (Backblaze, Wasabi, R2…). Ze verschijnen daarna bij het kiezen van bron of bestemming.\n• Back-ups naar de cloud uploaden.\n• Bestanden van een bedrijfsserver downloaden.\nWachtwoorden staan in Windows Referentiebeheer, nooit als platte tekst.
+IconPack_android	Android
+IconPack_android-tonal	Android tonaal
+IconPack_macos	macOS
+IconPack_macos-color	macOS kleur
+IconPack_ubuntu	Ubuntu
+IconPack_kde	KDE Plasma
+IconPack_gnome	GNOME
+IconPack_elementary	elementary OS
+IconPack_mint	Linux Mint
+IconPack_fedora	Fedora
+IconPack_popos	Pop!_OS
+IconPack_arch	Arch Linux
+IconPack_winxp	Windows XP
+IconPack_win7	Windows 7 Aero
+IconPack_metro	Windows 8 Metro
+IconPack_steam	Steam
+Gallery_More	Meer tonen ({0})
+Gallery_Less	Minder tonen
+Sound_GroupOwn	MegaCopier-geluiden
+Sound_GroupWindows	Windows-geluiden
+SoundName_bip	Piep · 0,3 s
+SoundName_pop	Plop · 0,3 s
+SoundName_doble-bip	Dubbele piep · 0,6 s
+SoundName_gota	Druppel · 0,6 s
+SoundName_burbuja	Bubbels · 0,8 s
+SoundName_toque	Tik · 0,9 s
+SoundName_pregunta	Vraag · 1,4 s
+SoundName_aviso	Melding · 1,5 s
+SoundName_alerta	Laag alarm · 1,6 s
+SoundName_marimba	Marimba · 1,8 s
+SoundName_brillo	Fonkeling · 2 s
+SoundName_cristal	Kristal · 2,2 s
+SoundName_eco	Echo · 2,4 s
+SoundName_arpa	Harp · 2,6 s
+SoundName_logro	Prestatie · 2,6 s
+SoundName_cascada	Waterval · 3,6 s
+SoundName_aurora	Poollicht · 3,8 s
+SoundName_orbital	Orbitaal · 3,8 s
+SoundName_amanecer	Zonsopgang · 4 s
+Panel_OpenCopied.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	De map openen die wordt gekopieerd
+Panel_RevealFile.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Dit bestand in de map tonen
+Panel_RevealSource.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Bron tonen in Verkenner
+Panel_RevealDestination.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Kopie op de bestemming tonen
+FolderAsk_Short	{0} van {1} bestanden ({2}) staan al in {3}.
+FolderAsk_SkipShort	Overslaan
+FolderAsk_AskEachShort	Een voor een
+FolderAsk_CancelShort	Annuleren
+Settings_AutoAdminTitle.Text	Om beheerdersrechten vragen als Windows een bestand niet laat kopiëren
+Settings_AutoAdminDescription.Text	Blijven er aan het eind bestanden over met ‘toegang geweigerd’ (beveiligde games, mappen van andere gebruikers), dan vraagt Windows één keer toestemming en worden ze gekopieerd, zoals in Verkenner.
+Info_AutoAdmin_Text	Sommige bestanden zijn alleen met beheerdersrechten te lezen. Dat gebeurt als Verkenner zegt ‘U hebt toestemming nodig om deze actie uit te voeren’.\n• Xbox- of Microsoft Store-games: hun .exe-bestanden worden door Windows beschermd.\n• Mappen van andere gebruikers of van Windows.\nMegaCopier kopieert al het andere en vraagt aan het eind één keer toestemming voor die bestanden. Zeg je nee, dan blijven ze gemarkeerd met hun fout en kun je het opnieuw proberen met ‘Kopiëren als beheerder’.
+Tool_Copy.Text	Kopiëren…
+Tool_Move.Text	Verplaatsen…
+Tool_CopyText.Text	Kopiëren…
+Tool_MoveText.Text	Verplaatsen…
+Tool_Send.Text	Naar een andere pc sturen…
+Tool_Devices.Text	Telefoons, camera’s en servers
+Tool_Checksums.Text	Controleren en herstellen
+Tool_Test.Text	Controleren met checksumbestanden…
+Tool_Hash.Text	Checksumbestand maken…
+Tool_Backups.Text	Back-ups
+Picker_Open	Openen
+Picker_AllFiles	Alle bestanden
+Picker_SelectHere	Deze map kiezen
+Picker_SelectOne	Gemarkeerde kiezen
+Picker_SelectMany	{0} items kiezen
+Picker_CopyTitle	Kies wat je kopieert: bestanden of mappen
+Picker_MoveTitle	Kies wat je verplaatst: bestanden of mappen
+Picker_TestTitle	Kies checksumbestanden of mappen om te controleren
+Picker_ChecksumFiles	Checksumbestanden
+Picker_HashTitle	Kies bestanden of mappen om checksums te maken
+Picker_SendTitle	Kies wat je verstuurt: bestanden of mappen
+Picker_DeleteTitle	Kies wat je verwijdert: bestanden of mappen
+Picker_WipeTitle	Kies wat je veilig verwijdert: bestanden of mappen
+Picker_AddTitle	Kies wat je aan de lijst toevoegt: bestanden of mappen

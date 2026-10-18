@@ -114,6 +114,19 @@ public sealed partial class FileRowViewModel(TransferItem item, string root) : I
 
     public bool IsCurrent => Item.State is FileState.Copying or FileState.Verifying;
 
+    /// <summary>Lo copiado del archivo en curso (0-100): el círculo de la fila se va llenando hasta cerrarse.</summary>
+    public double Percent { get; private set; }
+
+    internal void SetPercent(double fraction)
+    {
+        double percent = Math.Round(Math.Clamp(fraction, 0, 1) * 100, 1);
+        if (percent != Percent)
+        {
+            Percent = percent;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Percent)));
+        }
+    }
+
     public bool IsPending => Item.State == FileState.Pending;
 
     public bool IsOk => Item.State is FileState.Copied or FileState.Verified;
@@ -376,8 +389,22 @@ public sealed partial class FileListViewModel : INotifyPropertyChanged, IDisposa
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CountText)));
         if (current is not null)
         {
+            _progressRow = current;
             CurrentChanged?.Invoke(current);
         }
+    }
+
+    private FileRowViewModel? _progressRow;
+
+    /// <summary>Progreso del archivo en curso en su fila (el resto de filas no cambian).</summary>
+    public void ShowCurrentProgress(int id, double fraction)
+    {
+        if (_progressRow?.Item.Id != id)
+        {
+            _progressRow = _rows.GetValueOrDefault(id);
+        }
+
+        _progressRow?.SetPercent(fraction);
     }
 
     private void InsertInOrder(FileRowViewModel row)

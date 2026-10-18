@@ -16,6 +16,14 @@ public static unsafe partial class BackupPrivileges
     public static bool Enable() =>
         EnablePrivilege("SeBackupPrivilege") & EnablePrivilege("SeRestorePrivilege") & (EnablePrivilege("SeSecurityPrivilege") || true);
 
+    private static readonly Lazy<bool> s_available = new(Enable);
+
+    /// <summary>
+    /// El proceso tiene permisos de administrador y pudo activar los privilegios: un archivo que no se deja abrir por sus
+    /// permisos se reintenta saltándoselos (lo que hace el Explorador al pedir "permiso de administrador").
+    /// </summary>
+    public static bool Available => s_available.Value;
+
     private static bool EnablePrivilege(string name)
     {
         if (!OpenProcessToken(GetCurrentProcess(), 0x0020 | 0x0008 /* TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY */, out nint token))

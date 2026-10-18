@@ -37,6 +37,7 @@ public sealed partial class SettingsPage
     private double _barClock;
     private FlowBar? _barPreview;
     private GridView? _barGallery;
+    private GalleryMore? _barMore;
     private ComboBox? _barColorBox;
     private StackPanel? _barCustomColors;
     private Button? _barStartButton;
@@ -91,7 +92,7 @@ public sealed partial class SettingsPage
         BarsHost.Children.Add(roles);
 
         // Vista previa grande con los estados.
-        _barPreview = new FlowBar { IsActive = true, Margin = new Thickness(0, 6, 0, 0) };
+        _barPreview = new FlowBar { IsActive = true, Value = PreviewValue, Margin = new Thickness(0, 6, 0, 0) };
         _barPreviews.Add(_barPreview);
         var states = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 6 };
         foreach (string state in new[] { "Running", "Paused", "Error", "Done" })
@@ -128,8 +129,9 @@ public sealed partial class SettingsPage
 
         // Galería de estilos, cada uno moviéndose.
         BarsHost.Children.Add(new TextBlock { Text = L.Get("Bars_Styles"), Style = Res<Style>("McStrong"), Margin = new Thickness(2, 8, 0, 0) });
-        _barGallery = new GridView { SelectionMode = ListViewSelectionMode.Single, Margin = new Thickness(-4, 0, 0, 0) };
+        _barGallery = new GridView { SelectionMode = ListViewSelectionMode.Single, Margin = new Thickness(-8, -4, 0, 0), Padding = new Thickness(4, 4, 0, 0) };
         AutomationProperties.SetName(_barGallery, L.Get("Bars_Styles"));
+        var barItems = new List<object>();
         foreach (var style in AllBarStyles)
         {
             var bar = new FlowBar { IsActive = true, Margin = new Thickness(0, 4, 0, 4) };
@@ -141,7 +143,7 @@ public sealed partial class SettingsPage
             var item = new GridViewItem { Content = tile, Tag = style };
             AutomationProperties.SetName(item, L.Get("BarStyle_" + style));
             ToolTipService.SetToolTip(item, L.Get("BarStyle_" + style + "_Hint"));
-            _barGallery.Items.Add(item);
+            barItems.Add(item);
         }
 
         _barGallery.SelectionChanged += (_, _) =>
@@ -153,6 +155,17 @@ public sealed partial class SettingsPage
             }
         };
         BarsHost.Children.Add(_barGallery);
+        _barMore = new GalleryMore(
+            _barGallery,
+            () => barItems.OfType<GridViewItem>().FirstOrDefault(i => (BarStyle)i.Tag == _bar.Style),
+            item =>
+            {
+                bool was = _barLoading;
+                _barLoading = true;
+                _barGallery.SelectedItem = item;
+                _barLoading = was;
+            });
+        _barMore.SetItems(barItems);
 
         // Opciones.
         _barColorBox = Combo("Bars_ColorTheme", "Bars_ColorCustom", "Bars_ColorTraffic", "Bars_ColorRainbow");
@@ -437,7 +450,7 @@ public sealed partial class SettingsPage
             BarRole.Mini => _app.Settings.MiniBar,
             _ => _app.Settings.TotalBar,
         }).Clone();
-        _barGallery.SelectedItem = _barGallery.Items.OfType<GridViewItem>().FirstOrDefault(i => (BarStyle)i.Tag == _bar.Style);
+        _barMore!.Refresh();
         _barColorBox!.SelectedIndex = (int)_bar.ColorMode;
         ((Border)_barStartButton!.Tag).Background = new SolidColorBrush(ThemeManager.Parse(_bar.ColorStart));
         ((Border)_barEndButton!.Tag).Background = new SolidColorBrush(ThemeManager.Parse(_bar.ColorEnd));
@@ -521,7 +534,15 @@ public sealed partial class SettingsPage
             _barPreview.Value = 1;
             _barPreview.IsActive = false;
         }
+        else
+        {
+            // Copiando, en pausa o con error: siempre a media barra, para ver bien el estilo y su movimiento.
+            _barPreview.Value = PreviewValue;
+        }
     }
+
+    /// <summary>Hasta dónde llega la vista previa grande mientras no está «Terminada».</summary>
+    private const double PreviewValue = 0.48;
 
     /// <summary>Las vistas previas avanzan solas (cada una con su ritmo) y vuelven a empezar.</summary>
     private void AnimatePreviews()
@@ -535,14 +556,9 @@ public sealed partial class SettingsPage
         for (int i = 0; i < _barPreviews.Count; i++)
         {
             var bar = _barPreviews[i];
-            if (bar == _barPreview && _barPreviewState is "Done" or "Error" or "Paused")
+            if (bar == _barPreview)
             {
-                if (_barPreviewState != "Done")
-                {
-                    bar.Value = 0.62;
-                }
-
-                continue;
+                continue; // la vista previa grande no avanza: se queda a media barra (o llena, si está «Terminada»)
             }
 
             double t = (_barClock + (i * 0.11)) % 1.25;

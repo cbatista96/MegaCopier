@@ -194,7 +194,12 @@ public sealed class AppSettings
             FolderConflict = FolderConflictPolicy.Ask; // 1.2: preguntar qué hacer cuando la carpeta ya existe
         }
 
-        SettingsVersion = 2;
+        if (SettingsVersion < 3)
+        {
+            InterceptExplorerDrag = true; // 1.3: arrastrar entre ventanas del Explorador también copia con MegaCopier
+        }
+
+        SettingsVersion = 3;
     }
 
     public double TimeToleranceSeconds { get; set; } = 2;
@@ -422,10 +427,15 @@ public sealed class AppSettings
     public bool InterceptExplorerPaste { get; set; } = true;
 
     /// <summary>
-    /// Al arrastrar archivos con el botón izquierdo entre ventanas del Explorador, copiar con MegaCopier.
-    /// Desactivado de serie: cambia un gesto muy usado y conviene que el usuario lo elija.
+    /// Al arrastrar archivos con el botón izquierdo entre ventanas del Explorador, copiar con MegaCopier (como Ctrl+V).
     /// </summary>
-    public bool InterceptExplorerDrag { get; set; }
+    public bool InterceptExplorerDrag { get; set; } = true;
+
+    /// <summary>
+    /// Si al terminar quedaron archivos que Windows no deja leer o escribir (juegos protegidos, carpetas de otros
+    /// usuarios...), pedir permiso de administrador y copiarlos sin preguntar más, como hace el Explorador.
+    /// </summary>
+    public bool AutoAdminCopy { get; set; } = true;
 
     public DragConfirm DragConfirm { get; set; } = DragConfirm.Moves;
 

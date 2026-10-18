@@ -20,6 +20,9 @@ internal static class Pickers
         return files?.Select(f => f.Path).ToList() ?? [];
     }
 
+    /// <summary>Archivos y carpetas con el mismo selector (ver <see cref="MixedPicker"/>).</summary>
+    public static IReadOnlyList<string> PickAny(string title, params (string Name, string Pattern)[] filters) => MixedPicker.Pick(title, filters);
+
     public static async Task<string?> PickFileAsync(params string[] extensions)
     {
         var picker = new FileOpenPicker(WindowId) { ViewMode = PickerViewMode.List };

@@ -149,12 +149,6 @@ AboutDialog.CloseButtonText	Закрити
 About_DataFolder.Content	Відкрити папку даних (параметри, теми, журнал, звіти)
 About_Description.Text	Програма копіювання для Windows 11, яка продовжує навіть один величезний файл після вимкнення живлення, перевіряючи вже скопійоване.
 About_Features.Text	Асинхронне введення-виведення без кешу · паралельне читання й запис · перевірка гешем (CRC32, xxHash, MD5, SHA) · черга за дисками · пауза й продовження · переміщення · конфлікти · обмеження швидкості · списки копіювання · звіти · теми.
-CopyFiles.Text	Копіювати файли…
-CopyFolder.Text	Копіювати папку…
-CopyFilesText.Text	Копіювати файли
-CopyFolderText.Text	Копіювати папку
-Files_AddFiles.Text	Додати файли…
-Files_AddFolder.Text	Додати папку…
 Files_AutoScroll.Content	Стежити за поточним
 Files_CopyHashes.Text	Копіювати геші
 Files_CopyPath.Text	Копіювати шлях
@@ -321,7 +315,6 @@ Tool_History.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Журна
 Tool_HistoryText.Text	Журнал
 Tool_LoadList.Text	Завантажити список копіювання…
 Tool_LoadListText.Text	Завантажити список
-Tool_MoveFiles.Text	Перемістити файли…
 Tool_NewCopy.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Нове копіювання
 Tool_NewCopyText.Text	Нове
 Tool_PauseAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Призупинити всі
@@ -417,8 +410,6 @@ Settings_FavoritesEmpty	Улюблених поки немає.
 Tool_CopyTo.Text	Копіювати в
 Tool_CopyToEmpty	Немає улюблених і нещодавніх
 Tool_CopyToManage	Керувати улюбленими…
-Tool_TestFiles.Text	Перевірити файли контрольних сум…
-Tool_TestFolder.Text	Перевірити контрольні суми папки…
 Tool_Delete.Text	Видалити…
 Tool_Wipe.Text	Видалити без можливості відновлення…
 DestinationsDialog.Title	Куди?
@@ -548,8 +539,6 @@ Options_MirrorInfo.Title	Синхронізація видаляє з призн
 Options_MirrorInfo.Message	Те, що виключено фільтрами, не змінюється. Вкажіть папку версій, щоб зберігати видалене чи замінене.
 Options_DryRun.Content	Змоделювати: показати, що буде зроблено, нічого не змінюючи
 Destinations_DryRun.Content	Спершу змоделювати (нічого не змінює)
-Tool_HashFolder.Text	Створити файл контрольних сум для папки…
-Tool_HashFiles.Text	Створити файл контрольних сум для файлів…
 Rules_SkipJunk.Content	Пропускати сміттєві файли (Thumbs.db, desktop.ini, .DS_Store, ~$…)
 Rules_OnErrorEnd.Content	Повторити в кінці черги
 Rules_Safety.Text	Синхронізація й безпека
@@ -693,8 +682,6 @@ Peer_ReceivedTitle	Файли отримано
 Peer_Received	Файлів від {1}: {0}, у {2}.
 Peer_RejectedTitle	Надсилання відхилено
 Peer_Rejected	{0} намагався надіслати вам файли з неправильним кодом.
-Tool_SendFiles.Text	Надіслати файли на інший комп'ютер…
-Tool_SendFolder.Text	Надіслати папку на інший комп'ютер…
 SendDialog.Title	Надіслати на інший комп'ютер
 SendDialog.PrimaryButtonText	Надіслати
 SendDialog.CloseButtonText	Скасувати
@@ -1336,7 +1323,7 @@ Theme_solar-claro	Сонячна світла
 Theme_capuchino-claro	Світлий капучино
 Info_Paste_Text	Коли ви копіюєте (Ctrl+C) або вирізаєте (Ctrl+X) файли й вставляєте їх (Ctrl+V) у Провіднику чи на робочому столі, копіює MegaCopier, а не Windows: з чергою, паузою, перевіркою та продовженням після обриву.\n• Великі копії на зовнішній диск: можна призупинити й продовжити пізніше.\n• Кілька копій поспіль: стають у чергу, а не змагаються за диск.\nЯкщо вставити в ту саму теку (щоб зробити дублікат), це й далі робить Провідник.
 Info_Drag_Text	Під час перетягування файлів лівою кнопкою з одного вікна в інше копіює (або переміщує) MegaCopier за тими самими правилами, що й Windows: на тому самому диску — переміщення, Ctrl — копіювання, Shift — переміщення.\n• Розбирати фото, перетягуючи їх між теками на різних дисках.\n• Переміщати великі проєкти, не блокуючи Провідник.\nКинути на файл, ZIP чи ліву панель — це й далі робить Провідник.
-Info_WindowMode_Text	Як виглядає вікно під час копіювання.\n• Компактне: лише індикатори й кнопки; займає мало місця.\n• Повне: зі списком файлів, місцем призначення, параметрами, графіком і журналом.\n• Автоматично: компактне з одним копіюванням і повне, коли їх кілька.\nКнопки «Більше» й «Менше» перемикають вигляд будь-коли.
+Info_WindowMode_Text	Вікно копіювання має три види.\n• Малий: лише смуги й кнопки. Звичайний під час копіювання; його можна розширити, але не зробити вищим.\n• Зі списком («Більше»): файли, призначення, параметри, графік і журнал. Можна збільшити або розгорнути.\n• Кілька копій: той самий, зі списком копій ліворуч; з’являється сам, коли копій більше однієї.\n«Автоматично» починає з малого й переходить до повного, коли йде кілька копій. «Більше» і «Менше» перемикають вид будь-коли.
 Info_Verify_Text	Після кожного файлу MegaCopier знову читає його просто з диска призначення й порівнює його відбиток (хеш) з оригіналом. Якщо щось не збігається, повторно копіюється лише пошкоджена частина.\n• Резервні копії, фото та важливі документи.\n• Старі чи дешеві флешки й диски, які можуть відмовити без попередження.\n• Копіювання мережею чи Wi-Fi.\nКопіювання триває трохи довше (усе читається ще раз), зате ви певні, що копія ідентична.
 Info_Conflict_Text	Що робити, коли в місці призначення вже є файл із таким самим ім’ям.\n• Запитати: показує обидва з розміром, датою та мініатюрою, а ви вибираєте.\n• Замінити, Пропустити, Замінити, якщо новіший чи іншого розміру, Залишити обидва («ім’я (2)») або Перейменувати наявний.\nОднакові файли (той самий розмір і дата) ніколи не копіюються повторно: повторне копіювання переносить лише нове чи змінене. Якщо вже є ціла тека, MegaCopier запитає перед початком.
 Info_Hash_Text	Хеш — це як відбиток пальця файлу: якщо змінюється хоча б один байт, змінюється й відбиток. Він використовується під час перевірки та в збережених контрольних сумах.\n• xxHash3: найшвидший; ідеальний для перевірки копій.\n• SHA-256: найчастіше його використовують сайти й програми для перевірки завантажень.\n• MD5, SHA-1, BLAKE3…: якщо інша програма просить конкретний.\nДля щоденної роботи залиште xxHash3.
@@ -1360,3 +1347,77 @@ Info_Tasks_Text	Збережене копіювання, яке Windows запу
 Info_Guard_Text	Диски можуть непомітно псувати файли з роками. MegaCopier зберігає відбиток кожного файлу всередині нього й, коли комп’ютер вільний, перевіряє їх знову. Якщо файл змінився, хоча його ніхто не чіпав, ви дізнаєтеся вчасно, щоб відновити його з резервної копії.\n• Сімейні фото й відео.\n• Диски з резервними копіями, які рідко відкривають.\nТе, що ви редагуєте, оновлюється саме. Потрібні диски NTFS.
 Info_Webhook_Text	Після кожного копіювання MegaCopier надсилає підсумок на вебадресу, і сповіщення приходить на телефон чи в чат.\n• Discord, Slack або Teams: повідомлення в канал.\n• ntfy.sh: сповіщення на телефон майже без встановлення.\n• Home Assistant: автоматизації (увімкнути світло наприкінці…).
 Info_Connections_Text	Збережіть тут сервери, на які копіюєте: FTP, SFTP, WebDAV (Nextcloud, NAS…) чи S3 (Backblaze, Wasabi, R2…). Потім вони з’являться під час вибору джерела чи призначення.\n• Вивантажувати резервні копії в хмару.\n• Завантажувати файли із сервера компанії.\nПаролі зберігаються в диспетчері облікових даних Windows, ніколи відкритим текстом.
+IconPack_android	Android
+IconPack_android-tonal	Android тональний
+IconPack_macos	macOS
+IconPack_macos-color	macOS кольоровий
+IconPack_ubuntu	Ubuntu
+IconPack_kde	KDE Plasma
+IconPack_gnome	GNOME
+IconPack_elementary	elementary OS
+IconPack_mint	Linux Mint
+IconPack_fedora	Fedora
+IconPack_popos	Pop!_OS
+IconPack_arch	Arch Linux
+IconPack_winxp	Windows XP
+IconPack_win7	Windows 7 Aero
+IconPack_metro	Windows 8 Metro
+IconPack_steam	Steam
+Gallery_More	Показати ще ({0})
+Gallery_Less	Показати менше
+Sound_GroupOwn	Звуки MegaCopier
+Sound_GroupWindows	Звуки Windows
+SoundName_bip	Біп · 0,3 с
+SoundName_pop	Поп · 0,3 с
+SoundName_doble-bip	Подвійний біп · 0,6 с
+SoundName_gota	Крапля · 0,6 с
+SoundName_burbuja	Бульбашки · 0,8 с
+SoundName_toque	Дотик · 0,9 с
+SoundName_pregunta	Питання · 1,4 с
+SoundName_aviso	Сповіщення · 1,5 с
+SoundName_alerta	Низький сигнал · 1,6 с
+SoundName_marimba	Марімба · 1,8 с
+SoundName_brillo	Іскри · 2 с
+SoundName_cristal	Кришталь · 2,2 с
+SoundName_eco	Відлуння · 2,4 с
+SoundName_arpa	Арфа · 2,6 с
+SoundName_logro	Досягнення · 2,6 с
+SoundName_cascada	Каскад · 3,6 с
+SoundName_aurora	Сяйво · 3,8 с
+SoundName_orbital	Орбіта · 3,8 с
+SoundName_amanecer	Світанок · 4 с
+Panel_OpenCopied.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Відкрити папку, що копіюється
+Panel_RevealFile.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Показати файл у папці
+Panel_RevealSource.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Показати джерело в провіднику
+Panel_RevealDestination.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Показати копію в місці призначення
+FolderAsk_Short	{0} з {1} файлів ({2}) вже є в {3}.
+FolderAsk_SkipShort	Пропустити
+FolderAsk_AskEachShort	По одному
+FolderAsk_CancelShort	Скасувати
+Settings_AutoAdminTitle.Text	Запитувати права адміністратора, якщо Windows не дає скопіювати файл
+Settings_AutoAdminDescription.Text	Якщо наприкінці лишилися файли з «відмовлено в доступі» (захищені ігри, папки інших користувачів), Windows один раз попросить дозвіл, і вони скопіюються, як у провіднику.
+Info_AutoAdmin_Text	Деякі файли можна прочитати лише з правами адміністратора. Так буває, коли провідник пише «Потрібен дозвіл на виконання цієї дії».\n• Ігри Xbox або Microsoft Store: їхні .exe захищені Windows.\n• Папки інших користувачів або Windows.\nMegaCopier копіює все інше й наприкінці один раз просить дозвіл для цих файлів. Якщо відмовити, вони лишаться з помилкою, і можна повторити через «Копіювати як адміністратор».
+Tool_Copy.Text	Копіювати…
+Tool_Move.Text	Перемістити…
+Tool_CopyText.Text	Копіювати…
+Tool_MoveText.Text	Перемістити…
+Tool_Send.Text	Надіслати на інший ПК…
+Tool_Devices.Text	Телефони, камери й сервери
+Tool_Checksums.Text	Перевірка й відновлення
+Tool_Test.Text	Перевірити за файлами сум…
+Tool_Hash.Text	Створити файл сум…
+Tool_Backups.Text	Резервні копії
+Picker_Open	Відкрити
+Picker_AllFiles	Усі файли
+Picker_SelectHere	Вибрати цю папку
+Picker_SelectOne	Вибрати позначене
+Picker_SelectMany	Вибрати елементи: {0}
+Picker_CopyTitle	Виберіть, що копіювати: файли чи папки
+Picker_MoveTitle	Виберіть, що перемістити: файли чи папки
+Picker_TestTitle	Виберіть файли сум або папки для перевірки
+Picker_ChecksumFiles	Файли сум
+Picker_HashTitle	Виберіть файли або папки для створення сум
+Picker_SendTitle	Виберіть, що надіслати: файли чи папки
+Picker_DeleteTitle	Виберіть, що видалити: файли чи папки
+Picker_WipeTitle	Виберіть, що надійно видалити: файли чи папки
+Picker_AddTitle	Виберіть, що додати до списку: файли чи папки

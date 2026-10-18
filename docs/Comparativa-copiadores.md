@@ -111,7 +111,7 @@ avisa o copia de la forma normal: nunca se pierde la copia por culpa de ellas.
 - ✅ Informes HTML/CSV, listas de copia, registros *(TeraCopy Pro, Ultracopier)*
 - ✅ Al terminar: sonido, apagar, suspender, hibernar, cerrar sesión, ejecutar un programa *(FastCopy)*
 - ✅ Línea de comandos (`mcopy`) y modo portátil *(FastCopy, Robocopy)*
-- ✅ 73 temas con texturas, 22 estilos de barra de progreso, 7 conjuntos de iconos combinables, editor de colores, sonidos propios, modo claro/oscuro *(SuperCopier y Ultracopier tienen "skins")*
+- ✅ 73 temas con texturas, 22 estilos de barra de progreso, 23 conjuntos de iconos combinables, editor de colores, 19 sonidos propios, modo claro/oscuro *(SuperCopier y Ultracopier tienen "skins")*
 - ✅ 14 idiomas: español, inglés, francés, alemán, italiano, portugués de Brasil, ruso, ucraniano, polaco, neerlandés, turco, chino, japonés y coreano *(TeraCopy, Ultracopier)*
 
 ---

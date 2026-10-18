@@ -645,6 +645,18 @@ public sealed class CopyQueue
         return true;
     }
 
+    /// <summary>
+    /// Quita de la lista una copia detenida, sin olvidarla: lo copiado y su registro se conservan y al volver a abrir
+    /// MegaCopier se ofrece continuarla.
+    /// </summary>
+    public void Dismiss(CopyJob job)
+    {
+        if (job.State == CopyJobState.Interrupted)
+        {
+            Remove(job);
+        }
+    }
+
     /// <summary>Quita de la lista un trabajo terminado.</summary>
     public void Clear(CopyJob job)
     {

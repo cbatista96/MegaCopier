@@ -92,7 +92,26 @@ internal static partial class Sounds
     /// <summary>Prueba un sonido desde Ajustes (suena aunque esté desactivado o haya pantalla completa).</summary>
     public static void Preview(string choice, SoundEvent e, int volume) => PlayFile(Resolve(choice, e), volume);
 
-    /// <summary>Archivo que corresponde a una elección ("default" = el que Windows usa para ese tipo de aviso).</summary>
+    /// <summary>Prefijo de los sonidos de la colección de MegaCopier ("mc:gota" = Assets/Sounds/mc-gota.wav).</summary>
+    public const string OwnPrefix = "mc:";
+
+    /// <summary>
+    /// Colección propia de MegaCopier, de más corto a más largo: avisos (menos de 1 s), notificaciones (1,5-3 s) y
+    /// melodías (hasta 4 s). Se generan con tools/SoundGen.
+    /// </summary>
+    public static IReadOnlyList<string> Collection { get; } =
+    [
+        "bip", "pop", "doble-bip", "gota", "burbuja", "toque",
+        "pregunta", "aviso", "alerta", "marimba", "brillo", "cristal", "eco", "arpa", "logro",
+        "cascada", "aurora", "orbital", "amanecer",
+    ];
+
+    private static string SoundsFolder => Path.Combine(AppContext.BaseDirectory, "Assets", "Sounds");
+
+    /// <summary>
+    /// Archivo que corresponde a una elección: "default" = el propio de MegaCopier para ese momento, "windows" = el que
+    /// Windows usa para ese tipo de aviso, "mc:nombre" = uno de la colección, o la ruta de un archivo.
+    /// </summary>
     public static string? Resolve(string choice, SoundEvent e)
     {
         if (string.IsNullOrWhiteSpace(choice))
@@ -100,7 +119,25 @@ internal static partial class Sounds
             return null;
         }
 
-        if (choice != "default")
+        if (choice == "default")
+        {
+            string own = Path.Combine(SoundsFolder, e switch
+            {
+                SoundEvent.Errors => "error.wav",
+                SoundEvent.Attention => "atencion.wav",
+                SoundEvent.AllDone => "todo-terminado.wav",
+                _ => "terminado.wav",
+            });
+            return File.Exists(own) ? own : Resolve("windows", e);
+        }
+
+        if (choice.StartsWith(OwnPrefix, StringComparison.Ordinal))
+        {
+            string own = Path.Combine(SoundsFolder, "mc-" + choice[OwnPrefix.Length..] + ".wav");
+            return File.Exists(own) ? own : null;
+        }
+
+        if (choice != "windows")
         {
             return File.Exists(choice) ? choice : null;
         }

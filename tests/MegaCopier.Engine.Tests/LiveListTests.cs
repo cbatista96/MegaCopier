@@ -164,6 +164,44 @@ public sealed class LiveListTests : IDisposable
     }
 
     [Fact]
+    public void Saltar_en_pausa_descarta_el_archivo_y_la_copia_sigue_en_pausa()
+    {
+        string folder = _temp.Combine("src");
+        NewFile(Path.Combine("src", "a-grande.bin"), 6 * 1024 * 1024, 1);
+        NewFile(Path.Combine("src", "b-siguiente.bin"), 4 * 1024 * 1024, 2);
+        bool paused = false;
+        var engine = new CopyEngine(Options());
+        engine.ChunkCommitted += (path, bytes) =>
+        {
+            if (!paused && path.EndsWith("a-grande.bin", StringComparison.Ordinal) && bytes >= 2 * Chunk)
+            {
+                paused = true;
+                engine.Controller.Pause();
+            }
+        };
+
+        var run = engine.RunAsync(new CopyJobRequest([folder], _temp.Combine("dst")));
+        Assert.True(SpinWait.SpinUntil(() => paused, TimeSpan.FromSeconds(20)));
+        engine.SkipCurrent();
+
+        // Sigue en pausa: el siguiente archivo espera sin copiarse.
+        string small = _temp.Combine("dst", "src", "b-siguiente.bin");
+        Assert.True(SpinWait.SpinUntil(
+            () => engine.Files.Snapshot().Any(i => i.Source.EndsWith("a-grande.bin", StringComparison.Ordinal) && i.State == FileState.Skipped),
+            TimeSpan.FromSeconds(20)));
+        Thread.Sleep(300);
+        Assert.False(run.IsCompleted);
+        Assert.False(File.Exists(small));
+        Assert.True(engine.Controller.IsPaused);
+
+        engine.Controller.Resume();
+        var result = run.GetAwaiter().GetResult();
+
+        Assert.True(File.Exists(small));
+        Assert.Equal(1, result.FilesSkipped);
+    }
+
+    [Fact]
     public void Anadir_origenes_durante_la_copia()
     {
         string first = NewFile("primero.bin", 4 * 1024 * 1024, 1);

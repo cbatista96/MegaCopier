@@ -38,7 +38,7 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal" Spacing="2">
-                <Button x:Uid="Tool_Sidebar" Style="{StaticResource McToolButton}" Click="Sidebar_Click">
+                <Button x:Name="SidebarButton" x:Uid="Tool_Sidebar" Style="{StaticResource McToolButton}" Click="Sidebar_Click">
                     <c:McIcon VerticalAlignment="Center" Glyph="&#xE700;" FontSize="15" />
                 </Button>
                 <DropDownButton x:Uid="Tool_NewCopy" Background="Transparent" BorderThickness="0">
@@ -48,30 +48,38 @@
                     </StackPanel>
                     <DropDownButton.Flyout>
                         <MenuFlyout x:Name="NewMenu" Placement="BottomEdgeAlignedLeft" Opening="NewMenu_Opening">
-                            <MenuFlyoutItem x:Uid="CopyFiles" Click="CopyFiles_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8A5;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
-                            <MenuFlyoutItem x:Uid="CopyFolder" Click="CopyFolder_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8B7;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
-                            <MenuFlyoutItem x:Uid="Tool_MoveFiles" Click="MoveFiles_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8DE;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
+                            <!-- Copiar y mover: un solo selector para archivos y carpetas -->
+                            <MenuFlyoutItem x:Uid="Tool_Copy" Click="CopyFiles_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8C8;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
+                            <MenuFlyoutItem x:Uid="Tool_Move" Click="MoveFiles_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8DE;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
                             <MenuFlyoutSubItem x:Name="CopyToMenu" x:Uid="Tool_CopyTo"><MenuFlyoutSubItem.Icon><FontIcon Glyph="&#xE734;" /></MenuFlyoutSubItem.Icon></MenuFlyoutSubItem>
+                            <MenuFlyoutItem x:Uid="Tool_LoadList" Click="LoadList_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8E5;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
                             <MenuFlyoutSeparator />
-                            <MenuFlyoutItem x:Uid="Tool_TestFiles" Click="TestFiles_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE9D5;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
-                            <MenuFlyoutItem x:Uid="Tool_TestFolder" Click="TestFolder_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE9D5;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
-                            <MenuFlyoutItem x:Uid="Tool_HashFolder" Click="HashFolder_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8EF;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
-                            <MenuFlyoutItem x:Uid="Tool_HashFiles" Click="HashFiles_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8EF;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
-                            <MenuFlyoutSeparator />
-                            <MenuFlyoutItem x:Uid="Tool_SendFiles" Click="SendFiles_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE724;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
-                            <MenuFlyoutItem x:Uid="Tool_SendFolder" Click="SendFolder_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE724;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
-                            <MenuFlyoutItem x:Uid="Tool_Decrypt" Click="Decrypt_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE785;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
-                            <MenuFlyoutItem x:Uid="Tool_Repair" Click="Repair_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE90F;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
-                            <MenuFlyoutItem x:Uid="Tool_Snapshot" Click="Snapshot_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE81C;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
-                            <MenuFlyoutItem x:Uid="Tool_Restore" Click="Restore_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE777;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
+                            <!-- Otros sitios: equipos, móviles, servidores -->
+                            <MenuFlyoutItem x:Uid="Tool_Send" Click="SendFiles_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE724;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
+                            <MenuFlyoutSubItem x:Uid="Tool_Devices"><MenuFlyoutSubItem.Icon><FontIcon Glyph="&#xE8EA;" /></MenuFlyoutSubItem.Icon>
+                                <MenuFlyoutItem x:Uid="Tool_MtpImport" Click="MtpImport_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE896;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
+                                <MenuFlyoutItem x:Uid="Tool_MtpExport" Click="MtpExport_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE898;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
+                            </MenuFlyoutSubItem>
                             <MenuFlyoutItem x:Uid="Tool_Compare" Click="Compare_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8FD;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
-                            <MenuFlyoutItem x:Uid="Tool_MtpImport" Click="MtpImport_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8EA;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
-                            <MenuFlyoutItem x:Uid="Tool_MtpExport" Click="MtpExport_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8EA;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
                             <MenuFlyoutSeparator />
+                            <!-- Comprobar que todo está bien -->
+                            <MenuFlyoutSubItem x:Uid="Tool_Checksums"><MenuFlyoutSubItem.Icon><FontIcon Glyph="&#xE9D5;" /></MenuFlyoutSubItem.Icon>
+                                <MenuFlyoutItem x:Uid="Tool_Test" Click="TestFiles_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE9D5;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
+                                <MenuFlyoutItem x:Uid="Tool_Hash" Click="HashFiles_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8EF;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
+                                <MenuFlyoutSeparator />
+                                <MenuFlyoutItem x:Uid="Tool_Repair" Click="Repair_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE90F;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
+                            </MenuFlyoutSubItem>
+                            <MenuFlyoutSubItem x:Uid="Tool_Backups"><MenuFlyoutSubItem.Icon><FontIcon Glyph="&#xE81C;" /></MenuFlyoutSubItem.Icon>
+                                <MenuFlyoutItem x:Uid="Tool_Snapshot" Click="Snapshot_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE81C;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
+                                <MenuFlyoutItem x:Uid="Tool_Restore" Click="Restore_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE777;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
+                                <MenuFlyoutSeparator />
+                                <MenuFlyoutItem x:Uid="Tool_Decrypt" Click="Decrypt_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE785;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
+                            </MenuFlyoutSubItem>
+                            <MenuFlyoutSeparator />
+                            <!-- Borrar -->
                             <MenuFlyoutItem x:Uid="Tool_Delete" Click="Delete_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE74D;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
                             <MenuFlyoutItem x:Uid="Tool_Wipe" Click="Wipe_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE72E;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
                             <MenuFlyoutSeparator />
-                            <MenuFlyoutItem x:Uid="Tool_LoadList" Click="LoadList_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8E5;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
                             <MenuFlyoutItem x:Uid="Tool_Shelf" Click="Shelf_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE7B8;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
                         </MenuFlyout>
                     </DropDownButton.Flyout>
@@ -198,6 +206,24 @@
                     <views:CopyPanel x:Name="Panel" />
                 </Border>
 
+                <!-- Preguntas en la ventana pequeña: ocupan el sitio del panel, sin diálogos que no caben -->
+                <Border x:Name="QuestionCard" Margin="10,0,10,0" CornerRadius="10" Padding="16,12,16,12" Visibility="Collapsed"
+                        Background="{StaticResource McSurfaceBrush}" BorderBrush="{StaticResource McAccentBrush}" BorderThickness="1">
+                    <Grid RowSpacing="10">
+                        <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="*" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
+                        <Grid ColumnSpacing="10">
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                            <c:McIcon x:Name="QuestionIcon" Glyph="&#xE8B7;" FontSize="20" Accent="True" VerticalAlignment="Center" />
+                            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                <TextBlock x:Name="QuestionTitle" Style="{StaticResource McStrong}" TextTrimming="CharacterEllipsis" />
+                                <TextBlock x:Name="QuestionText" Style="{StaticResource McSecondary}" TextWrapping="Wrap" MaxLines="2" TextTrimming="CharacterEllipsis" />
+                            </StackPanel>
+                            <ContentControl x:Name="QuestionCancelHost" Grid.Column="2" VerticalAlignment="Top" IsTabStop="False" />
+                        </Grid>
+                        <Grid x:Name="QuestionButtons" Grid.Row="2" ColumnSpacing="8" />
+                    </Grid>
+                </Border>
+
                 <!-- Paginador de la ventana compacta cuando hay varias copias -->
                 <Grid x:Name="Pager" Grid.Row="1" Margin="10,6,10,0" ColumnSpacing="6" Visibility="Collapsed">
                     <Grid.ColumnDefinitions>
@@ -240,10 +266,10 @@
                 <TextBlock x:Uid="EmptyDescription" Style="{StaticResource McSecondary}" TextAlignment="Center" TextWrapping="Wrap" MaxWidth="420" />
                 <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Center">
                     <Button Style="{StaticResource McAccentButton}" Click="CopyFiles_Click">
-                        <StackPanel Orientation="Horizontal" Spacing="8"><c:McIcon VerticalAlignment="Center" Glyph="&#xE8A5;" FontSize="14" /><TextBlock x:Uid="CopyFilesText" /></StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="8"><c:McIcon VerticalAlignment="Center" Glyph="&#xE8C8;" FontSize="14" /><TextBlock x:Uid="Tool_CopyText" /></StackPanel>
                     </Button>
-                    <Button Style="{StaticResource McButton}" Click="CopyFolder_Click">
-                        <StackPanel Orientation="Horizontal" Spacing="8"><c:McIcon VerticalAlignment="Center" Glyph="&#xE8B7;" FontSize="14" /><TextBlock x:Uid="CopyFolderText" /></StackPanel>
+                    <Button Style="{StaticResource McButton}" Click="MoveFiles_Click">
+                        <StackPanel Orientation="Horizontal" Spacing="8"><c:McIcon VerticalAlignment="Center" Glyph="&#xE8DE;" FontSize="14" /><TextBlock x:Uid="Tool_MoveText" /></StackPanel>
                     </Button>
                     <Button Style="{StaticResource McButton}" Click="LoadList_Click">
                         <StackPanel Orientation="Horizontal" Spacing="8"><c:McIcon VerticalAlignment="Center" Glyph="&#xE8E5;" FontSize="14" /><TextBlock x:Uid="Tool_LoadListText" /></StackPanel>
@@ -262,6 +288,9 @@
             <views:TimelinePage x:Name="TimelineView" Grid.ColumnSpan="2" Visibility="Collapsed" Background="Transparent" />
             <views:ComparePage x:Name="CompareView" Grid.ColumnSpan="2" Visibility="Collapsed" Background="Transparent" />
         </Grid>
+
+        <!-- Foto de la ventana antes de cambiar de tema: se desvanece sobre el tema nuevo (transición suave) -->
+        <Image x:Name="ThemeFade" Grid.RowSpan="3" Stretch="Fill" IsHitTestVisible="False" Visibility="Collapsed" Canvas.ZIndex="100" />
 
         <!-- Conflicto: el archivo ya existe -->
         <ContentDialog

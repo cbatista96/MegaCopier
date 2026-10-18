@@ -85,6 +85,83 @@ public sealed partial class MainWindow
     /// Una carpeta de origen ya existe en el destino con algunos de sus archivos: se pregunta una vez, antes de copiar
     /// nada. Cada opción es un botón grande con su icono y una frase que explica qué va a pasar.
     /// </summary>
+    /// <summary>
+    /// Pregunta dentro de la ventana pequeña: ocupa el sitio del panel de la copia (que no cambia de tamaño) con un
+    /// título, una línea de detalle y una fila de botones con icono y texto corto; la explicación de cada opción sale
+    /// al pasar el ratón. La primera opción es la recomendada; la última fila acaba en «Cancelar».
+    /// </summary>
+    private async Task<T> AskInlineAsync<T>(
+        string glyph,
+        string title,
+        string text,
+        IReadOnlyList<(T Value, string Glyph, string Label, string Tip)> options,
+        (T Value, string Label, string Tip) cancel,
+        CancellationToken cancellation)
+    {
+        var answer = new TaskCompletionSource<T>(TaskCreationOptions.RunContinuationsAsynchronously);
+        QuestionIcon.Glyph = glyph;
+        QuestionTitle.Text = title;
+        QuestionText.Text = text;
+        ToolTipService.SetToolTip(QuestionTitle, title);
+        QuestionButtons.Children.Clear();
+        QuestionButtons.ColumnDefinitions.Clear();
+
+        Button Add(T value, string? icon, string label, string tip, string style)
+        {
+            var content = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 6, HorizontalAlignment = HorizontalAlignment.Center };
+            if (icon is not null)
+            {
+                content.Children.Add(new Controls.McIcon { Glyph = icon, FontSize = 13, VerticalAlignment = VerticalAlignment.Center });
+            }
+
+            content.Children.Add(new TextBlock { Text = label, TextTrimming = TextTrimming.CharacterEllipsis, VerticalAlignment = VerticalAlignment.Center });
+            var button = new Button
+            {
+                Content = content,
+                Style = (Style)Application.Current.Resources[style],
+                MinWidth = 0,
+                Padding = new Thickness(8, 6, 8, 6),
+                HorizontalAlignment = HorizontalAlignment.Stretch,
+            };
+            ToolTipService.SetToolTip(button, tip);
+            AutomationProperties.SetName(button, label);
+            AutomationProperties.SetHelpText(button, tip);
+            button.Click += (_, _) => answer.TrySetResult(value);
+            return button;
+        }
+
+        // Las opciones, a partes iguales en una fila; «Cancelar», arriba a la derecha (así las opciones caben enteras).
+        for (int i = 0; i < options.Count; i++)
+        {
+            var (value, icon, label, tip) = options[i];
+            var button = Add(value, icon, label, tip, i == 0 ? "McAccentButton" : "McButton");
+            QuestionButtons.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+            Grid.SetColumn(button, i);
+            QuestionButtons.Children.Add(button);
+        }
+
+        var cancelButton = Add(cancel.Value, "", cancel.Label, cancel.Tip, "McButton");
+        cancelButton.HorizontalAlignment = HorizontalAlignment.Right;
+        QuestionCancelHost.Content = cancelButton;
+
+        PanelCard.Opacity = 0;
+        PanelCard.IsHitTestVisible = false;
+        QuestionCard.Visibility = Visibility.Visible;
+        Motion.FadeIn(QuestionCard);
+        using var registration = cancellation.Register(() => answer.TrySetResult(cancel.Value));
+        try
+        {
+            return await answer.Task;
+        }
+        finally
+        {
+            QuestionCard.Visibility = Visibility.Collapsed;
+            PanelCard.Opacity = 1;
+            PanelCard.IsHitTestVisible = true;
+            Motion.FadeIn(PanelCard);
+        }
+    }
+
     internal FolderDecision AskFolder(CopyJob job, FolderConflictInfo info, CancellationToken cancellation)
     {
         _dialogGate.Wait(cancellation);
@@ -101,6 +178,24 @@ public sealed partial class MainWindow
                     Sounds.Play(_app.Settings.Sounds, SoundEvent.Attention);
                     string name = Path.GetFileName(info.Destination);
                     string parent = Format.ShortPath(Path.GetDirectoryName(info.Destination) ?? "", 3);
+                    if (!_expanded)
+                    {
+                        // Ventana pequeña: la pregunta cabe entera en ella, con las explicaciones al pasar el ratón.
+                        answer.TrySetResult(await AskInlineAsync(
+                            "",
+                            info.Folders == 1 ? L.F("FolderAsk_Title", name) : L.F("FolderAsk_TitleMany", info.Folders),
+                            L.F("FolderAsk_Short", info.ExistingFiles, info.Files, Format.Bytes(info.ExistingBytes), parent),
+                            [
+                                (FolderDecision.SkipExisting, "", L.Get("FolderAsk_SkipShort"), L.Get("FolderAsk_Skip") + "\n" + L.Get("FolderAsk_SkipText")),
+                                (FolderDecision.Overwrite, "", L.Get("FolderAsk_Overwrite"), L.Get("FolderAsk_OverwriteText")),
+                                (FolderDecision.Rename, "", L.Get("FolderAsk_Rename"), L.F("FolderAsk_RenameText", name + " (2)")),
+                                (FolderDecision.AskEach, "", L.Get("FolderAsk_AskEachShort"), L.Get("FolderAsk_AskEach") + "\n" + L.Get("FolderAsk_AskEachText")),
+                            ],
+                            (FolderDecision.Cancel, L.Get("FolderAsk_CancelShort"), L.Get("FolderAsk_Cancel")),
+                            cancellation));
+                        return;
+                    }
+
                     var dialog = new ContentDialog
                     {
                         Title = info.Folders == 1 ? L.F("FolderAsk_Title", name) : L.F("FolderAsk_TitleMany", info.Folders),

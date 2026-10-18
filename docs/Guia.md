@@ -64,8 +64,8 @@ Una vez instalado, **no tienes que cambiar nada de lo que haces**:
 - **Clic derecho > Pegar con MegaCopier** en una carpeta o en el fondo de una ventana. En Windows 11 aparece en el menú
   corto, sin pasar por «Mostrar más opciones».
 - **Arrastrar con el botón derecho** y soltar: «Copiar aquí con MegaCopier» o «Mover aquí con MegaCopier».
-- **Arrastrar con el botón izquierdo** entre ventanas del Explorador (hay que activarlo en *Ajustes > General*; puede
-  preguntar antes, siempre o solo al mover).
+- **Arrastrar con el botón izquierdo** entre ventanas del Explorador, con las mismas reglas de Windows (activado de
+  serie; en *Ajustes > General* puedes desactivarlo o hacer que pregunte antes, siempre o solo al mover).
 
 MegaCopier solo actúa cuando el foco está en la lista de archivos: nunca al escribir en la barra de direcciones, en la
 búsqueda o al renombrar. Pegar en la misma carpeta y en carpetas especiales (*Este equipo*, dentro de un ZIP…) sigue
@@ -89,9 +89,23 @@ El menú del icono de la bandeja (clic derecho) tiene además: **Abrir MegaCopie
 Al empezar una copia se abre la **ventana compacta**: la barra de arriba es el progreso total y la de abajo el del archivo
 que se está copiando, con la velocidad y el tiempo que queda. Debajo, las unidades de origen y destino.
 
-Los botones: **⌄ Más** (amplía la ventana), **Pausa**, **Saltar** (deja el archivo actual y sigue con el siguiente) y
-**Detener** (para la copia; se puede continuar después desde donde quedó). El botón **…** tiene más opciones de esa copia.
-Con varias copias aparece un paginador **‹ ›** para pasar de una a otra.
+Los botones, siempre con su nombre: **⌄ Más** (amplía la ventana), **Pausa**, **Saltar** (deja el archivo actual y
+sigue con el siguiente; también en pausa: lo descarta y la copia sigue en pausa, lista para empezar el siguiente) y
+**Detener** (para la copia; si era la única, la ventana se cierra sola, y al volver a abrir MegaCopier se ofrece
+continuarla desde donde quedó). El botón **…** tiene más opciones de esa copia. Con varias copias aparece un paginador
+**‹ ›** para pasar de una a otra. Esta ventana se puede ensanchar, pero no hacer más alta: no habría nada más que ver.
+
+Se puede pulsar en casi todo:
+
+- **El título** («Copiando «Juegos»»): abre la carpeta que se está copiando.
+- **El archivo** en curso: lo muestra marcado en su carpeta.
+- **El origen** (la unidad y la ruta de la izquierda): muestra lo que se copia, marcado en la carpeta donde está.
+- **El destino**: muestra la copia ya en el destino, marcada.
+
+Si una pregunta (por ejemplo, «la carpeta ya existe») llega con la ventana pequeña, aparece **dentro de ella**, en el
+sitio del progreso: las opciones en una fila, con la explicación de cada una al pasar el ratón.
+
+Cuando todo termina bien, la ventana se cierra sola (*Ajustes > Interfaz > Al terminar las copias*).
 
 ### Completa
 
@@ -118,7 +132,14 @@ Con varias copias aparece un paginador **‹ ›** para pasar de una a otra.
 ![Ventana ampliada con la gráfica de velocidad](capturas/ampliada-estado.png)
 
 En *Ajustes > Interfaz > Ventana de copia* eliges si empieza **compacta**, **completa** o **automática** (compacta con
-una copia y completa cuando hay varias a la vez).
+una copia y completa cuando hay varias a la vez). Son tres vistas: la **pequeña**, la de **la lista** («Más», con un
+tamaño mínimo para que todo quepa y que se puede maximizar) y la de **varias copias**, que es la misma con la lista de
+copias a la izquierda (solo aparece cuando hay más de una).
+
+En la lista, la búsqueda va siempre a la izquierda y encoge si falta sitio; las casillas *Ocultar los terminados* y
+*Seguir al actual* van a su lado. Los botones de la izquierda empiezan a la altura de la cabecera y se ven siempre todos:
+si la lista es baja, se hacen algo más pequeños. El archivo que se está copiando lleva un **círculo que se va llenando**
+con su progreso y se cierra al terminarlo.
 
 ### La lista de archivos
 
@@ -220,19 +241,20 @@ El botón **Nueva** de la vista completa reúne todo lo que MegaCopier sabe hace
 
 | Opción | Qué hace |
 |---|---|
-| **Copiar archivos… / Copiar una carpeta… / Mover archivos…** | Eliges qué y adónde. |
+| **Copiar… / Mover…** | Eliges qué (archivos o carpetas, ver abajo) y adónde. |
 | **Copiar a** | Copia rápida a un favorito, un destino reciente o una carpeta abierta en el Explorador, Total Commander o Directory Opus. |
-| **Comprobar archivos de sumas… / Comprobar sumas de una carpeta…** | Comprueba un `.sha256`, `.md5`, `.sfv`, `.b3`, `.xxh3`… (ver [Comprobar](#8-comprobar-que-la-copia-está-bien)). |
-| **Crear archivo de sumas de una carpeta… / de archivos…** | Calcula y guarda las sumas. |
-| **Enviar archivos / una carpeta a otro equipo…** | Por la red local a otro PC con MegaCopier o a un móvil con LocalSend. |
-| **Descifrar archivos cifrados…** | Recupera los `.mcenc` con su contraseña. |
-| **Reparar con datos de recuperación…** | Repara una copia dañada (ver [Proteger](#11-proteger-tus-copias)). |
-| **Copia de seguridad sin duplicados… / Restaurar una copia de seguridad…** | Ver [Copias de seguridad](#10-copias-de-seguridad-y-versiones). |
-| **Comparar y sincronizar carpetas…** | Ver [Sincronizar](#9-sincronizar-carpetas). |
-| **Copiar desde / a un móvil, cámara o servidor…** | MTP, FTP, SFTP, WebDAV, S3 y nubes. |
-| **Borrar… / Borrar de forma segura…** | Siempre con confirmación. |
 | **Cargar una lista de copia…** | Repite una lista de archivos guardada. |
+| **Enviar a otro equipo…** | Por la red local a otro PC con MegaCopier o a un móvil con LocalSend. |
+| **Móviles, cámaras y servidores** | Copiar desde o hacia un móvil, una cámara o un servidor: MTP, FTP, SFTP, WebDAV, S3 y nubes. |
+| **Comparar y sincronizar carpetas…** | Ver [Sincronizar](#9-sincronizar-carpetas). |
+| **Comprobar y reparar** | Comprobar con archivos de sumas (`.sha256`, `.md5`, `.sfv`, `.b3`, `.xxh3`… o carpetas que los tengan, ver [Comprobar](#8-comprobar-que-la-copia-está-bien)), crear un archivo de sumas y reparar con datos de recuperación (ver [Proteger](#11-proteger-tus-copias)). |
+| **Copias de seguridad** | Copia sin duplicados, restaurar y descifrar archivos cifrados (ver [Copias de seguridad](#10-copias-de-seguridad-y-versiones)). |
+| **Borrar… / Borrar de forma segura…** | Archivos o carpetas, siempre con confirmación. |
 | **Bandeja de arrastre** | Una ventanita donde vas soltando archivos de distintas carpetas para copiarlos juntos después. |
+
+**Un solo selector para archivos y carpetas.** Es el diálogo «Abrir» de Windows con un botón más, **«Seleccionar»**:
+marca una carpeta y pulsa «Seleccionar» para elegirla entera; entra en ella y marca algunos archivos para elegir solo
+esos; sin nada marcado, elige la carpeta que estás viendo. «Abrir» sigue entrando en las carpetas como siempre.
 
 ---
 
@@ -460,7 +482,7 @@ En una ventana estrecha la lista de secciones se queda solo con los iconos.
 |---|---|
 | **General** | Usar MegaCopier en lugar del copiador de Windows · Copiar y mover al pegar (Ctrl+V) · Arrastrar con el botón izquierdo (y si preguntar antes) · Opciones en el menú contextual · Iniciar con Windows. |
 | **Interfaz** | Ventana compacta, completa o automática · Qué hacer al terminar · Siempre visible · Avisar al terminar · **Idioma** · Unidades de tamaño · Mostrar el icono en la bandeja · Iniciar las copias con la ventana minimizada · Recordar la posición y el tamaño de la ventana · Ventana translúcida · **Temas** y su editor · **Conjuntos de iconos** (ver [Temas e iconos](#18-temas-e-iconos)). |
-| **Sonidos** | Sonido para cada momento (copia terminada, todas terminadas, error, pregunta), volumen y no sonar con juegos, presentaciones o «No molestar». Por defecto suenan los **sonidos propios de MegaCopier** (campanillas originales, no los avisos de Windows); en cada momento puedes elegir el de Windows, uno de `C:\Windows\Media` o un archivo tuyo, y probarlo con ▶. |
+| **Sonidos** | Sonido para cada momento (copia terminada, todas terminadas, error, pregunta), volumen y no sonar con juegos, presentaciones o «No molestar». Por defecto suenan los **sonidos propios de MegaCopier** (campanillas originales, no los avisos de Windows); en cada momento puedes elegir, de arriba abajo, **un archivo tuyo**, ninguno, el propio de ese momento, uno de la **colección de MegaCopier** (19 sonidos originales: avisos de menos de un segundo, notificaciones de 1,5 a 3 s y melodías de hasta 4 s) o uno de Windows, y probarlo con ▶. |
 | **Copia** | Verificar después de copiar · Si el archivo ya existe · Algoritmo de suma · Qué se copia (fechas, atributos, ADS, permisos, propietario, auditoría) · Archivo de sumas e informe · Comprobar el espacio libre antes · Caché del sistema · Comprimir por la red (SMB) · Reanudar solas al arrancar · Rendimiento · Filtros y reglas. |
 | **Comportamiento** | **Añadir las copias nuevas a una que ya está en marcha** (nunca, si van a la misma carpeta, si usan los mismos discos o siempre; preguntando antes o no) · **Al mover, conservar también** atributos, permisos, propietario y auditoría · **Al detener una copia, borrar lo que quedó a medias** (y no hacerlo si paró por un error) · **Al terminar, expulsar la unidad de destino** si es extraíble (y forzarlo). |
 | **Errores** | **Si un archivo sigue fallando**: omitirlo y seguir, detener la copia, reintentarlo al final o **preguntar qué hacer** · Reintentos y espera entre ellos · **Informe de errores** automático (en la carpeta de destino o en una fija, con el nombre que quieras) · Guardar el registro de cada copia. |
@@ -515,6 +537,15 @@ los iconos modernos de Windows 11:
 | **Degradado** | Relleno con el degradado de las barras del tema. |
 | **Neón** | Color vivo con un halo de luz alrededor (luce en los temas oscuros). |
 | **Windows 10** | Los iconos clásicos de Windows 10. |
+| **Android** y **Android tonal** | Círculos de color o tonos suaves, con la paleta de Material. |
+| **macOS** y **macOS color** | Cuadrados muy redondeados con degradado y reflejo, o iconos con los colores del sistema de Apple. |
+| **Ubuntu, KDE Plasma, GNOME, elementary OS, Linux Mint, Fedora, Pop!_OS y Arch Linux** | La forma y la paleta de cada escritorio Linux: naranjas y berenjena, azules Breeze, Adwaita, círculos con brillo, contornos… |
+| **Windows XP, Windows 7 Aero y Windows 8 Metro** | Brillo de cristal, Aero y los mosaicos planos de Metro. |
+| **Steam** | Fondos suaves con los azules y verdes de Steam. |
+
+Las galerías de temas, iconos y estilos de barra enseñan los 12 primeros; **«Mostrar más ⌄»** despliega todos y, al final,
+**«Mostrar menos ⌃»** los vuelve a recoger. Al cambiar de tema, la ventana pasa al nuevo con un fundido suave y la página
+se queda donde estaba.
 
 ### Barras de progreso
 
@@ -707,6 +738,10 @@ En el mismo disco manda el SSD: tras agotar su caché SLC baja a unos 500 MB/s c
 - En discos **SSD**, el borrado seguro no garantiza borrar las copias internas del disco (para eso, BitLocker).
 - Crear **enlaces simbólicos** de archivo en el destino requiere el modo de desarrollador o permisos de administrador; las
   carpetas enlazadas se recrean como uniones, que no lo requieren.
+- Algunos archivos solo se leen con **permisos de administrador** (los `.exe` de los juegos de Xbox y de la Microsoft
+  Store, carpetas de otros usuarios): ni la copia de Windows puede leerlos sin ellos. MegaCopier copia el resto y al
+  final pide permiso una vez (*Ajustes > Errores*), como el Explorador. Si Windows protege el archivo incluso para los
+  administradores, queda marcado con su error.
 - El instalador **no está firmado**: Windows muestra el aviso de SmartScreen hasta que se firme.
 - Solo para **Windows 11 de 64 bits**.
 

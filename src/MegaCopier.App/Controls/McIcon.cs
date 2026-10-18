@@ -30,6 +30,9 @@ public sealed partial class McIcon : UserControl
 
     private readonly Grid _root = new();
     private readonly Border _tile = new() { Visibility = Visibility.Collapsed };
+
+    /// <summary>Brillo de cristal sobre la mitad de arriba del fondo (Windows XP y 7, macOS, elementary).</summary>
+    private readonly Border _gloss = new() { Visibility = Visibility.Collapsed, VerticalAlignment = VerticalAlignment.Top, IsHitTestVisible = false };
     private readonly TextBlock _glyph = new()
     {
         HorizontalAlignment = HorizontalAlignment.Center,
@@ -46,6 +49,7 @@ public sealed partial class McIcon : UserControl
         IsTabStop = false;
         FontSize = 16;
         _root.Children.Add(_tile);
+        _root.Children.Add(_gloss);
         _root.Children.Add(_glyph);
         Content = _root;
         Loaded += (_, _) =>
@@ -100,10 +104,13 @@ public sealed partial class McIcon : UserControl
         // Un Foreground puesto a propósito (estado: error, aviso, éxito) manda sobre el color del conjunto.
         bool ownColor = ReadLocalValue(ForegroundProperty) != DependencyProperty.UnsetValue;
         Color? fixedColor = ownColor && Foreground is SolidColorBrush own ? own.Color : null;
-        Color color = AdjustForTheme(fixedColor ?? IconPacks.ColorFor(Glyph));
+        Color color = AdjustForTheme(fixedColor ?? IconPacks.ColorFor(Glyph, pack));
         double size = FontSize;
 
         _tile.Visibility = Visibility.Collapsed;
+        _gloss.Visibility = Visibility.Collapsed;
+        _tile.ClearValue(Border.BorderBrushProperty);
+        _tile.BorderThickness = new Thickness(0);
         _glyph.FontSize = size;
         _glyph.ClearValue(TextBlock.ForegroundProperty);
         RemoveGlow();
@@ -130,28 +137,59 @@ public sealed partial class McIcon : UserControl
 
             case IconStyle.Tile:
             case IconStyle.Soft:
+            case IconStyle.Outline:
             {
-                // El cuadrado ocupa lo mismo que ocupaba el icono (un poco más), para no mover nada de sitio.
+                // El fondo ocupa lo mismo que ocupaba el icono (un poco más), para no mover nada de sitio.
                 double box = Math.Round(size * 1.45);
                 Width = box;
                 Height = box;
                 _tile.Width = box;
                 _tile.Height = box;
-                _tile.CornerRadius = new CornerRadius(box * 0.28);
+                _tile.CornerRadius = new CornerRadius(pack.Shape switch
+                {
+                    IconShape.Circle => box / 2,
+                    IconShape.Squircle => box * 0.36,
+                    IconShape.Square => 0,
+                    _ => box * 0.28,
+                });
                 _tile.Visibility = Visibility.Visible;
-                _glyph.FontSize = Math.Round(size * 0.82);
+                _glyph.FontSize = Math.Round(size * (pack.Shape == IconShape.Circle ? 0.76 : 0.82));
                 if (pack.Style == IconStyle.Tile)
                 {
-                    var gradient = new LinearGradientBrush { StartPoint = new(0, 0), EndPoint = new(1, 1) };
+                    // macOS y Windows 7: degradado vertical, de claro arriba a oscuro abajo; el resto, en diagonal.
+                    bool vertical = pack.Shape == IconShape.Squircle;
+                    var gradient = new LinearGradientBrush { StartPoint = new(0, 0), EndPoint = vertical ? new(0, 1) : new(1, 1) };
                     gradient.GradientStops.Add(new GradientStop { Color = Lighten(color, 0.18), Offset = 0 });
                     gradient.GradientStops.Add(new GradientStop { Color = Darken(color, 0.18), Offset = 1 });
                     _tile.Background = gradient;
                     _glyph.Foreground = new SolidColorBrush(Colors.White);
                 }
-                else
+                else if (pack.Style == IconStyle.Soft)
                 {
                     _tile.Background = new SolidColorBrush(Color.FromArgb(48, color.R, color.G, color.B));
                     _glyph.Foreground = new SolidColorBrush(color);
+                }
+                else
+                {
+                    _tile.Background = new SolidColorBrush(Color.FromArgb(18, color.R, color.G, color.B));
+                    _tile.BorderBrush = new SolidColorBrush(color);
+                    _tile.BorderThickness = new Thickness(Math.Max(1, Math.Round(size / 14)));
+                    _glyph.Foreground = new SolidColorBrush(color);
+                }
+
+                if (pack.Gloss)
+                {
+                    // Reflejo de cristal: blanco que se desvanece en la mitad de arriba, con las mismas esquinas.
+                    var shine = new LinearGradientBrush { StartPoint = new(0, 0), EndPoint = new(0, 1) };
+                    shine.GradientStops.Add(new GradientStop { Color = Color.FromArgb(150, 255, 255, 255), Offset = 0 });
+                    shine.GradientStops.Add(new GradientStop { Color = Color.FromArgb(25, 255, 255, 255), Offset = 1 });
+                    var radius = _tile.CornerRadius;
+                    _gloss.Width = box - 2;
+                    _gloss.Height = box * 0.5;
+                    _gloss.Margin = new Thickness(0, 1, 0, 0);
+                    _gloss.CornerRadius = new CornerRadius(Math.Max(0, radius.TopLeft - 1), Math.Max(0, radius.TopRight - 1), radius.TopLeft * 0.25, radius.TopRight * 0.25);
+                    _gloss.Background = shine;
+                    _gloss.Visibility = Visibility.Visible;
                 }
 
                 break;

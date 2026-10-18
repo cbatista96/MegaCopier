@@ -54,30 +54,14 @@ public sealed partial class CopyPanel : UserControl
     }
 
     /// <summary>
-    /// Ancho disponible: con menos de 640 px los botones pasan a solo icono y se ocultan los datos secundarios; con
-    /// menos de 460, también el número de archivos y la velocidad (siguen en el título de la ventana y en Estado).
+    /// Ancho disponible. Los botones y los chips («En pausa», «Archivo») conservan siempre su texto: la ventana no
+    /// deja estrecharse tanto como para cortarlos. Con poco sitio se ocultan los datos secundarios (bytes, resumen) y,
+    /// con menos aún, el número de archivos y la velocidad (siguen en el título de la ventana y en Estado).
     /// </summary>
     private void Adapt(double width)
     {
-        bool narrow = width < 640;
-        bool tiny = width < 460;
-        Responsive.IconOnly(ButtonsPanel, narrow);
-        ExpandText.Visibility = narrow ? Visibility.Collapsed : Visibility.Visible;
-        StateChipText.Visibility = narrow ? Visibility.Collapsed : Visibility.Visible;
-        FileChipText.Visibility = narrow ? Visibility.Collapsed : Visibility.Visible;
-        foreach (var chip in new[] { StateChip, FileChip })
-        {
-            if (narrow)
-            {
-                chip.MinWidth = 0;
-                chip.Padding = new Thickness(7, 4, 7, 4);
-            }
-            else
-            {
-                chip.ClearValue(FrameworkElement.MinWidthProperty);
-                chip.ClearValue(Border.PaddingProperty);
-            }
-        }
+        bool narrow = width < 600;
+        bool tiny = width < 520;
         TotalBytesBlock.Visibility = narrow ? Visibility.Collapsed : Visibility.Visible;
         FileBytesBlock.Visibility = narrow ? Visibility.Collapsed : Visibility.Visible;
         DetailHost.Visibility = narrow ? Visibility.Collapsed : Visibility.Visible;

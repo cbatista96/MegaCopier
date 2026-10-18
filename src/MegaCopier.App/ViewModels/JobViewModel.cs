@@ -347,7 +347,7 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
 
     public bool CanResume => State is CopyJobState.Paused or CopyJobState.Interrupted or CopyJobState.CompletedWithErrors;
 
-    public bool CanSkip => State == CopyJobState.Running;
+    public bool CanSkip => State is CopyJobState.Running or CopyJobState.Paused;
 
     public bool CanStop => State is CopyJobState.Running or CopyJobState.Paused or CopyJobState.Queued;
 
@@ -439,13 +439,58 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
 
     public void Clear() => _queue.Clear(Job);
 
-    public void OpenDestination()
+    /// <summary>Origen: lo que se copia, marcado en la carpeta donde está (sin entrar en ello).</summary>
+    public void RevealSource()
     {
-        if (Directory.Exists(Job.Record.Destination))
+        var local = Job.Record.Sources.Where(s => !Engine.Remote.RemotePath.IsRemote(s)).ToList();
+        if (local.Count > 0)
         {
-            Process.Start(new ProcessStartInfo("explorer.exe", $"\"{Job.Record.Destination}\"") { UseShellExecute = true });
+            ShellReveal.Select(local);
         }
     }
+
+    /// <summary>Destino: lo mismo que se copia, ya en el destino, marcado (sin entrar en ello).</summary>
+    public void RevealDestination()
+    {
+        string destination = Job.Record.Destination;
+        if (Engine.Remote.RemotePath.IsRemote(destination))
+        {
+            return;
+        }
+
+        var copied = Job.Record.Sources.Select(source =>
+        {
+            string trimmed = Path.TrimEndingDirectorySeparator(source);
+            string name = Job.Record.RenamedFolders.TryGetValue(trimmed, out string? renamed) ? renamed : Path.GetFileName(trimmed);
+            return name.Length == 0 ? destination : Path.Combine(destination, name);
+        }).ToList();
+        ShellReveal.Select(copied);
+    }
+
+    /// <summary>El título: abre la carpeta que se está copiando, para ver lo que tiene dentro.</summary>
+    public void OpenCopiedFolder()
+    {
+        var sources = Job.Record.Sources;
+        string first = Path.TrimEndingDirectorySeparator(sources.FirstOrDefault() ?? "");
+        if (first.Length == 0 || Engine.Remote.RemotePath.IsRemote(first))
+        {
+            return;
+        }
+
+        ShellReveal.Open(sources.Count == 1 && Directory.Exists(first) ? first : Path.GetDirectoryName(first) ?? first);
+    }
+
+    /// <summary>El archivo que se está copiando ahora, marcado en su carpeta.</summary>
+    public void RevealCurrentFile()
+    {
+        string? path = IsActive && _current is { } item ? item.Source : null;
+        if (path is not null && !Engine.Remote.RemotePath.IsRemote(path))
+        {
+            ShellReveal.Select([path]);
+        }
+    }
+
+    public void OpenDestination() => ShellReveal.Open(Job.Record.Destination);
 
     public TransferStatistics Statistics() => TransferStatistics.From(Job.Files?.Snapshot() ?? []);
 
@@ -593,6 +638,10 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
                 {
                     WatchFiles();
                     Refresh();
+                    if (Progress is { CurrentFileLength: > 0 } p && _current is { } current)
+                    {
+                        _files?.ShowCurrentProgress(current.Id, p.CurrentFileBytes / (double)p.CurrentFileLength);
+                    }
                 }
                 catch (Exception ex)
                 {

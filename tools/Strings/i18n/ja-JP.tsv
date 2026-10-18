@@ -149,12 +149,6 @@ AboutDialog.CloseButtonText	閉じる
 About_DataFolder.Content	データフォルダーを開く（設定、テーマ、履歴、レポート）
 About_Description.Text	Windows 11 用のファイルコピーツール。停電後も巨大なファイル 1 つでも続きからコピーし、コピー済みの部分を検証します。
 About_Features.Text	キャッシュなし非同期 I/O · 並列読み書き · ハッシュ検証 (CRC32、xxHash、MD5、SHA) · ディスクごとのキュー · 一時停止と再開 · 移動 · 競合処理 · 速度制限 · コピーリスト · レポート · テーマ。
-CopyFiles.Text	ファイルをコピー…
-CopyFolder.Text	フォルダーをコピー…
-CopyFilesText.Text	ファイルをコピー
-CopyFolderText.Text	フォルダーをコピー
-Files_AddFiles.Text	ファイルを追加…
-Files_AddFolder.Text	フォルダーを追加…
 Files_AutoScroll.Content	現在のファイルを追う
 Files_CopyHashes.Text	ハッシュをコピー
 Files_CopyPath.Text	パスをコピー
@@ -321,7 +315,6 @@ Tool_History.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	履歴
 Tool_HistoryText.Text	履歴
 Tool_LoadList.Text	コピーリストを読み込む…
 Tool_LoadListText.Text	リストを読み込む
-Tool_MoveFiles.Text	ファイルを移動…
 Tool_NewCopy.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	新しいコピー
 Tool_NewCopyText.Text	新規
 Tool_PauseAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	すべて一時停止
@@ -417,8 +410,6 @@ Settings_FavoritesEmpty	お気に入りはまだありません。
 Tool_CopyTo.Text	コピー先
 Tool_CopyToEmpty	お気に入りや最近使ったフォルダーはありません
 Tool_CopyToManage	お気に入りを管理…
-Tool_TestFiles.Text	チェックサムファイルを確認…
-Tool_TestFolder.Text	フォルダーのチェックサムを確認…
 Tool_Delete.Text	削除…
 Tool_Wipe.Text	完全に削除…
 DestinationsDialog.Title	どこにコピーしますか？
@@ -548,8 +539,6 @@ Options_MirrorInfo.Title	同期すると、コピー元にもうないものは�
 Options_MirrorInfo.Message	フィルターで除外したものは変更されません。削除・置換されたファイルを残すにはバージョン用フォルダーを設定してください。
 Options_DryRun.Content	シミュレーション: 何が起きるかを表示するだけで変更しない
 Destinations_DryRun.Content	先にシミュレート（何も変更しない）
-Tool_HashFolder.Text	フォルダーのチェックサムファイルを作成…
-Tool_HashFiles.Text	ファイルのチェックサムファイルを作成…
 Rules_SkipJunk.Content	不要ファイルをスキップ (Thumbs.db, desktop.ini, .DS_Store, ~$…)
 Rules_OnErrorEnd.Content	キューの最後で再試行
 Rules_Safety.Text	同期と安全
@@ -693,8 +682,6 @@ Peer_ReceivedTitle	ファイルを受信しました
 Peer_Received	{1} から {0} 個のファイルを {2} に保存しました。
 Peer_RejectedTitle	送信を拒否しました
 Peer_Rejected	{0} が間違ったコードでファイルを送ろうとしました。
-Tool_SendFiles.Text	ファイルを他の PC に送る…
-Tool_SendFolder.Text	フォルダーを他の PC に送る…
 SendDialog.Title	他の PC に送る
 SendDialog.PrimaryButtonText	送信
 SendDialog.CloseButtonText	キャンセル
@@ -1336,7 +1323,7 @@ Theme_solar-claro	ソーラー ライト
 Theme_capuchino-claro	ライト カプチーノ
 Info_Paste_Text	エクスプローラーやデスクトップでファイルをコピー (Ctrl+C) または切り取り (Ctrl+X) して貼り付ける (Ctrl+V) と、Windows の代わりに MegaCopier がコピーします。キュー、一時停止、検証、中断後の再開ができます。\n• 外付けディスクへの大きなコピー: 一時停止して後で続けられます。\n• 続けて何度もコピー: ディスクを奪い合わずに順番待ちします。\n同じフォルダーに貼り付ける (複製を作る) 場合は、これまでどおりエクスプローラーが行います。
 Info_Drag_Text	左ボタンでウィンドウからウィンドウへファイルをドラッグすると、Windows と同じルールで MegaCopier がコピー (または移動) します。同じドライブなら移動、Ctrl でコピー、Shift で移動です。\n• 別のディスクのフォルダー間で写真をドラッグして整理。\n• エクスプローラーを固まらせずに大きなプロジェクトを移動。\nファイル、ZIP、左側のウィンドウにドロップした場合はエクスプローラーが処理します。
-Info_WindowMode_Text	コピー中のウィンドウの見た目。\n• コンパクト: バーとボタンだけで場所を取りません。\n• フル: ファイル一覧、コピー先、オプション、グラフ、ログ付き。\n• 自動: コピーが 1 つならコンパクト、複数ならフル。\n「詳細」「簡易」ボタンでいつでも切り替えられます。
+Info_WindowMode_Text	コピー ウィンドウには 3 つの表示があります。\n• 小: バーとボタンだけ。コピー中の通常の表示で、横には広げられますが縦には伸ばせません。\n• 一覧付き (「詳細」): ファイル、コピー先、オプション、グラフ、ログ。拡大や最大化ができます。\n• 複数のコピー: 同じ表示で左にコピーの一覧。複数あると自動で表示されます。\n「自動」は小で始まり、同時に複数のコピーがあると完全表示に切り替わります。「詳細」と「簡易」でいつでも切り替えられます。
 Info_Verify_Text	各ファイルが終わるたびに、MegaCopier はコピー先のディスクから直接読み直し、指紋 (ハッシュ) を元のファイルと比べます。一致しない部分があれば、その部分だけをコピーし直します。\n• バックアップ、写真、大切な書類。\n• 予告なく壊れることがある古い・安価な USB メモリーやディスク。\n• ネットワークや Wi-Fi 経由のコピー。\nすべてを読み直すので少し時間がかかりますが、完全に同じだと確信できます。
 Info_Conflict_Text	コピー先に同じ名前のファイルがすでにあるときの動作。\n• 確認する: 両方のサイズ、日付、サムネイルを表示して選べます。\n• 置き換える、スキップ、新しい場合やサイズが違う場合に置き換える、両方残す (「名前 (2)」)、既存のファイルの名前を変える。\n同じファイル (サイズと日付が同じ) は二度とコピーしません。もう一度コピーすると、新しいものや変更されたものだけをコピーします。フォルダーごと存在する場合は、始める前に確認します。
 Info_Hash_Text	ハッシュはファイルの指紋のようなもので、1 バイトでも変わると指紋も変わります。検証や保存するチェックサムに使います。\n• xxHash3: 最速。コピーの検証に最適。\n• SHA-256: ウェブサイトやソフトがダウンロードの確認に最もよく使います。\n• MD5、SHA-1、BLAKE3…: ほかのソフトから特定のものを求められたときに。\n普段は xxHash3 のままで大丈夫です。
@@ -1360,3 +1347,77 @@ Info_Tasks_Text	保存したコピーを、MegaCopier が閉じていても、�
 Info_Guard_Text	ディスクは何年もかけて気づかないうちにファイルを壊すことがあります。MegaCopier は各ファイルの指紋をファイル自体に保存し、PC が空いているときに確認し直します。誰も触っていないのに変わったファイルがあれば、バックアップから戻せるうちに知らせます。\n• 家族の写真や動画。\n• めったに開かないバックアップ用ディスク。\n自分で編集したファイルは自動で更新されます。NTFS ディスクが必要です。
 Info_Webhook_Text	コピーが終わるたびに MegaCopier が概要を Web アドレスへ送るので、スマートフォンやチャットに通知が届きます。\n• Discord、Slack、Teams: チャンネルに通知。\n• ntfy.sh: ほぼ何もインストールせずにスマートフォンへ通知。\n• Home Assistant: 自動化 (終わったら照明をつける…)。
 Info_Connections_Text	コピー先のサーバーをここに保存します: FTP、SFTP、WebDAV (Nextcloud、NAS…)、S3 (Backblaze、Wasabi、R2…)。保存すると、コピー元やコピー先を選ぶときに表示されます。\n• バックアップをクラウドへアップロード。\n• 会社のサーバーからファイルをダウンロード。\nパスワードは平文ではなく、Windows の資格情報マネージャーに保存されます。
+IconPack_android	Android
+IconPack_android-tonal	Android トーナル
+IconPack_macos	macOS
+IconPack_macos-color	macOS カラー
+IconPack_ubuntu	Ubuntu
+IconPack_kde	KDE Plasma
+IconPack_gnome	GNOME
+IconPack_elementary	elementary OS
+IconPack_mint	Linux Mint
+IconPack_fedora	Fedora
+IconPack_popos	Pop!_OS
+IconPack_arch	Arch Linux
+IconPack_winxp	Windows XP
+IconPack_win7	Windows 7 Aero
+IconPack_metro	Windows 8 Metro
+IconPack_steam	Steam
+Gallery_More	さらに表示 ({0})
+Gallery_Less	表示を減らす
+Sound_GroupOwn	MegaCopier のサウンド
+Sound_GroupWindows	Windows のサウンド
+SoundName_bip	ビープ · 0.3 秒
+SoundName_pop	ポン · 0.3 秒
+SoundName_doble-bip	ダブルビープ · 0.6 秒
+SoundName_gota	しずく · 0.6 秒
+SoundName_burbuja	泡 · 0.8 秒
+SoundName_toque	タップ · 0.9 秒
+SoundName_pregunta	質問 · 1.4 秒
+SoundName_aviso	お知らせ · 1.5 秒
+SoundName_alerta	低い警告 · 1.6 秒
+SoundName_marimba	マリンバ · 1.8 秒
+SoundName_brillo	きらめき · 2 秒
+SoundName_cristal	クリスタル · 2.2 秒
+SoundName_eco	エコー · 2.4 秒
+SoundName_arpa	ハープ · 2.6 秒
+SoundName_logro	達成 · 2.6 秒
+SoundName_cascada	カスケード · 3.6 秒
+SoundName_aurora	オーロラ · 3.8 秒
+SoundName_orbital	オービタル · 3.8 秒
+SoundName_amanecer	夜明け · 4 秒
+Panel_OpenCopied.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	コピー中のフォルダーを開く
+Panel_RevealFile.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	このファイルをフォルダーで表示
+Panel_RevealSource.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	エクスプローラーで元の場所を表示
+Panel_RevealDestination.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	コピー先でコピーを表示
+FolderAsk_Short	{3} に {1} 個中 {0} 個のファイル ({2}) が既にあります。
+FolderAsk_SkipShort	スキップ
+FolderAsk_AskEachShort	1 つずつ
+FolderAsk_CancelShort	キャンセル
+Settings_AutoAdminTitle.Text	Windows がファイルのコピーを許可しないときに管理者権限を求める
+Settings_AutoAdminDescription.Text	終了時に「アクセス拒否」のファイル (保護されたゲーム、他のユーザーのフォルダー) が残ったら、Windows が一度だけ許可を求め、エクスプローラーと同じようにコピーします。
+Info_AutoAdmin_Text	一部のファイルは管理者権限がないと読めません。エクスプローラーが「この操作を実行するためのアクセス許可が必要です」と表示するときと同じです。\n• Xbox や Microsoft Store のゲーム: .exe は Windows が保護しています。\n• 他のユーザーや Windows のフォルダー。\nMegaCopier はそれ以外をすべてコピーし、最後にそれらのファイルのために一度だけ許可を求めます。拒否するとエラーのまま残り、「管理者としてコピー」で再試行できます。
+Tool_Copy.Text	コピー…
+Tool_Move.Text	移動…
+Tool_CopyText.Text	コピー…
+Tool_MoveText.Text	移動…
+Tool_Send.Text	別の PC に送る…
+Tool_Devices.Text	スマホ、カメラ、サーバー
+Tool_Checksums.Text	確認と修復
+Tool_Test.Text	チェックサム ファイルで確認…
+Tool_Hash.Text	チェックサム ファイルを作成…
+Tool_Backups.Text	バックアップ
+Picker_Open	開く
+Picker_AllFiles	すべてのファイル
+Picker_SelectHere	このフォルダーを選択
+Picker_SelectOne	選んだ項目を選択
+Picker_SelectMany	{0} 個を選択
+Picker_CopyTitle	コピーするものを選択: ファイルまたはフォルダー
+Picker_MoveTitle	移動するものを選択: ファイルまたはフォルダー
+Picker_TestTitle	確認するチェックサム ファイルまたはフォルダーを選択
+Picker_ChecksumFiles	チェックサム ファイル
+Picker_HashTitle	チェックサムを作るファイルまたはフォルダーを選択
+Picker_SendTitle	送るものを選択: ファイルまたはフォルダー
+Picker_DeleteTitle	削除するものを選択: ファイルまたはフォルダー
+Picker_WipeTitle	安全に削除するものを選択: ファイルまたはフォルダー
+Picker_AddTitle	一覧に追加するものを選択: ファイルまたはフォルダー

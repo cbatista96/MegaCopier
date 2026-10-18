@@ -149,12 +149,6 @@ AboutDialog.CloseButtonText	Fermer
 About_DataFolder.Content	Ouvrir le dossier de données (paramètres, thèmes, historique, rapports)
 About_Description.Text	Copieur de fichiers pour Windows 11 qui reprend même un seul fichier énorme après une coupure de courant, en vérifiant ce qui est déjà copié.
 About_Features.Text	E/S asynchrones sans cache · lectures et écritures en parallèle · vérification par hachage (CRC32, xxHash, MD5, SHA) · file par disque · pause et reprise · déplacement · conflits · limite de vitesse · listes de copie · rapports · thèmes.
-CopyFiles.Text	Copier des fichiers…
-CopyFolder.Text	Copier un dossier…
-CopyFilesText.Text	Copier des fichiers
-CopyFolderText.Text	Copier un dossier
-Files_AddFiles.Text	Ajouter des fichiers…
-Files_AddFolder.Text	Ajouter un dossier…
 Files_AutoScroll.Content	Suivre le fichier en cours
 Files_CopyHashes.Text	Copier les hachages
 Files_CopyPath.Text	Copier le chemin
@@ -321,7 +315,6 @@ Tool_History.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Historique
 Tool_HistoryText.Text	Historique
 Tool_LoadList.Text	Charger une liste de copie…
 Tool_LoadListText.Text	Charger une liste
-Tool_MoveFiles.Text	Déplacer des fichiers…
 Tool_NewCopy.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Nouvelle copie
 Tool_NewCopyText.Text	Nouvelle
 Tool_PauseAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Tout mettre en pause
@@ -417,8 +410,6 @@ Settings_FavoritesEmpty	Aucun favori pour l'instant.
 Tool_CopyTo.Text	Copier vers
 Tool_CopyToEmpty	Ni favoris ni dossiers récents
 Tool_CopyToManage	Gérer les favoris…
-Tool_TestFiles.Text	Contrôler des fichiers de sommes…
-Tool_TestFolder.Text	Contrôler les sommes d'un dossier…
 Tool_Delete.Text	Supprimer…
 Tool_Wipe.Text	Supprimer de façon sécurisée…
 DestinationsDialog.Title	Où ?
@@ -548,8 +539,6 @@ Options_MirrorInfo.Title	Synchroniser retire de la destination ce qui n'est plus
 Options_MirrorInfo.Message	Ce que les filtres excluent n'est pas touché. Indiquez un dossier de versions pour garder ce qui est retiré ou remplacé.
 Options_DryRun.Content	Simuler : montrer ce qui se passerait sans rien changer
 Destinations_DryRun.Content	Simuler d'abord (ne change rien)
-Tool_HashFolder.Text	Créer un fichier de sommes d'un dossier…
-Tool_HashFiles.Text	Créer un fichier de sommes de fichiers…
 Rules_SkipJunk.Content	Ignorer les fichiers inutiles (Thumbs.db, desktop.ini, .DS_Store, ~$…)
 Rules_OnErrorEnd.Content	Le réessayer à la fin de la file
 Rules_Safety.Text	Synchronisation et sécurité
@@ -693,8 +682,6 @@ Peer_ReceivedTitle	Fichiers reçus
 Peer_Received	{0} fichiers de {1}, dans {2}.
 Peer_RejectedTitle	Envoi refusé
 Peer_Rejected	{0} a essayé de vous envoyer des fichiers avec un mauvais code.
-Tool_SendFiles.Text	Envoyer des fichiers à un autre ordinateur…
-Tool_SendFolder.Text	Envoyer un dossier à un autre ordinateur…
 SendDialog.Title	Envoyer à un autre ordinateur
 SendDialog.PrimaryButtonText	Envoyer
 SendDialog.CloseButtonText	Annuler
@@ -1336,7 +1323,7 @@ Theme_solar-claro	Solaire clair
 Theme_capuchino-claro	Cappuccino clair
 Info_Paste_Text	Quand vous copiez (Ctrl+C) ou coupez (Ctrl+X) des fichiers et les collez (Ctrl+V) dans l’Explorateur ou sur le Bureau, c’est MegaCopier qui copie au lieu de Windows : file d’attente, pause, vérification et reprise en cas de coupure.\n• Grosses copies vers un disque externe : vous pouvez les mettre en pause et reprendre plus tard.\n• Plusieurs copies d’affilée : elles attendent leur tour au lieu de se disputer le disque.\nSi vous collez dans le même dossier (pour dupliquer un fichier), l’Explorateur s’en charge toujours.
 Info_Drag_Text	En glissant des fichiers avec le bouton gauche d’une fenêtre à une autre, MegaCopier copie (ou déplace) avec les mêmes règles que Windows : sur le même lecteur il déplace, Ctrl force la copie et Maj force le déplacement.\n• Trier des photos en les glissant entre des dossiers de disques différents.\n• Déplacer de gros projets sans bloquer l’Explorateur.\nDéposer sur un fichier, un ZIP ou le volet de gauche reste géré par l’Explorateur.
-Info_WindowMode_Text	L’aspect de la fenêtre pendant la copie.\n• Compacte : seulement les barres et les boutons ; prend peu de place.\n• Complète : avec la liste des fichiers, la destination, les options, le graphique et le journal.\n• Automatique : compacte avec une seule copie et complète s’il y en a plusieurs.\nLes boutons « Plus » et « Moins » passent de l’une à l’autre à tout moment.
+Info_WindowMode_Text	La fenêtre de copie a trois vues.\n• Petite : seulement les barres et les boutons. C’est celle de toujours pendant la copie ; on peut l’élargir, mais pas l’agrandir en hauteur.\n• Avec la liste (« Plus ») : fichiers, destination, options, graphique et journal. Elle peut être agrandie ou maximisée.\n• Plusieurs copies : la même, avec la liste des copies à gauche ; elle apparaît seule quand il y en a plus d’une.\n« Automatique » commence en petit et passe à la vue complète quand plusieurs copies tournent. « Plus » et « Moins » changent de vue à tout moment.
 Info_Verify_Text	À la fin de chaque fichier, MegaCopier le relit directement sur le disque de destination et compare son empreinte (hash) avec celle de l’original. Si quelque chose ne correspond pas, il recopie seulement la partie abîmée.\n• Sauvegardes, photos et documents importants.\n• Clés USB ou disques anciens ou bon marché, qui peuvent lâcher sans prévenir.\n• Copies par le réseau ou en Wi-Fi.\nLa copie prend un peu plus de temps (il faut tout relire), en échange de la certitude qu’elle est identique.
 Info_Conflict_Text	Que faire quand la destination contient déjà un fichier du même nom.\n• Demander : affiche les deux, avec leur taille, leur date et une miniature, et vous choisissez.\n• Remplacer, Ignorer, Remplacer si plus récent ou si la taille diffère, Garder les deux (« nom (2) ») ou Renommer l’existant.\nLes fichiers identiques (même taille et même date) ne sont jamais recopiés : refaire une copie ne copie que le nouveau ou le modifié. Si tout un dossier existe déjà, MegaCopier demande avant de commencer.
 Info_Hash_Text	Le hash est comme l’empreinte digitale d’un fichier : si un seul octet change, l’empreinte change. Il sert à la vérification et aux sommes enregistrées.\n• xxHash3 : le plus rapide ; idéal pour vérifier les copies.\n• SHA-256 : le plus utilisé par les sites et logiciels pour vérifier les téléchargements.\n• MD5, SHA-1, BLAKE3… : si un autre logiciel en demande un en particulier.\nAu quotidien, gardez xxHash3.
@@ -1360,3 +1347,77 @@ Info_Tasks_Text	Une copie enregistrée que Windows lance seul chaque jour, semai
 Info_Guard_Text	Les disques peuvent abîmer des fichiers au fil des ans sans prévenir. MegaCopier enregistre l’empreinte de chaque fichier à l’intérieur et, quand l’ordinateur est libre, les revérifie. Si l’un a changé sans que personne n’y touche, il vous prévient à temps pour le récupérer d’une sauvegarde.\n• Photos et vidéos de famille.\n• Disques de sauvegarde rarement ouverts.\nCe que vous modifiez se met à jour seul. Nécessite des disques NTFS.
 Info_Webhook_Text	À la fin de chaque copie, MegaCopier envoie le résumé à une adresse web : l’alerte arrive sur votre téléphone ou dans une messagerie.\n• Discord, Slack ou Teams : alertes dans un canal.\n• ntfy.sh : notification sur le téléphone presque sans rien installer.\n• Home Assistant : automatisations (allumer une lampe à la fin…).
 Info_Connections_Text	Enregistrez ici les serveurs vers lesquels vous copiez : FTP, SFTP, WebDAV (Nextcloud, NAS…) ou S3 (Backblaze, Wasabi, R2…). Ils apparaissent ensuite au choix de la source ou de la destination.\n• Envoyer des sauvegardes dans le cloud.\n• Récupérer des fichiers d’un serveur d’entreprise.\nLes mots de passe vont dans le Gestionnaire d’identification de Windows, jamais en clair.
+IconPack_android	Android
+IconPack_android-tonal	Android tonal
+IconPack_macos	macOS
+IconPack_macos-color	macOS couleur
+IconPack_ubuntu	Ubuntu
+IconPack_kde	KDE Plasma
+IconPack_gnome	GNOME
+IconPack_elementary	elementary OS
+IconPack_mint	Linux Mint
+IconPack_fedora	Fedora
+IconPack_popos	Pop!_OS
+IconPack_arch	Arch Linux
+IconPack_winxp	Windows XP
+IconPack_win7	Windows 7 Aero
+IconPack_metro	Windows 8 Metro
+IconPack_steam	Steam
+Gallery_More	Afficher plus ({0})
+Gallery_Less	Afficher moins
+Sound_GroupOwn	Sons de MegaCopier
+Sound_GroupWindows	Sons de Windows
+SoundName_bip	Bip · 0,3 s
+SoundName_pop	Pop · 0,3 s
+SoundName_doble-bip	Double bip · 0,6 s
+SoundName_gota	Goutte · 0,6 s
+SoundName_burbuja	Bulles · 0,8 s
+SoundName_toque	Tapotement · 0,9 s
+SoundName_pregunta	Question · 1,4 s
+SoundName_aviso	Avis · 1,5 s
+SoundName_alerta	Alerte grave · 1,6 s
+SoundName_marimba	Marimba · 1,8 s
+SoundName_brillo	Étincelles · 2 s
+SoundName_cristal	Cristal · 2,2 s
+SoundName_eco	Écho · 2,4 s
+SoundName_arpa	Harpe · 2,6 s
+SoundName_logro	Réussite · 2,6 s
+SoundName_cascada	Cascade · 3,6 s
+SoundName_aurora	Aurore · 3,8 s
+SoundName_orbital	Orbital · 3,8 s
+SoundName_amanecer	Lever du soleil · 4 s
+Panel_OpenCopied.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Ouvrir le dossier en cours de copie
+Panel_RevealFile.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Afficher ce fichier dans son dossier
+Panel_RevealSource.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Afficher la source dans l’Explorateur
+Panel_RevealDestination.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Afficher la copie dans la destination
+FolderAsk_Short	{0} des {1} fichiers ({2}) sont déjà dans {3}.
+FolderAsk_SkipShort	Ignorer
+FolderAsk_AskEachShort	Un par un
+FolderAsk_CancelShort	Annuler
+Settings_AutoAdminTitle.Text	Demander l’autorisation d’administrateur quand Windows refuse de copier un fichier
+Settings_AutoAdminDescription.Text	À la fin, s’il reste des fichiers en « accès refusé » (jeux protégés, dossiers d’autres utilisateurs), Windows demande l’autorisation une fois et ils sont copiés, comme dans l’Explorateur.
+Info_AutoAdmin_Text	Certains fichiers ne se lisent qu’avec des droits d’administrateur. C’est ce qui arrive quand l’Explorateur dit « Vous devez disposer d’une autorisation pour effectuer cette action ».\n• Jeux Xbox ou du Microsoft Store : leurs .exe sont protégés par Windows.\n• Dossiers d’autres utilisateurs ou de Windows.\nMegaCopier copie tout le reste et, à la fin, demande l’autorisation une seule fois pour ces fichiers. Si vous refusez, ils restent marqués avec leur erreur et vous pouvez réessayer avec « Copier en administrateur ».
+Tool_Copy.Text	Copier…
+Tool_Move.Text	Déplacer…
+Tool_CopyText.Text	Copier…
+Tool_MoveText.Text	Déplacer…
+Tool_Send.Text	Envoyer vers un autre PC…
+Tool_Devices.Text	Téléphones, appareils photo et serveurs
+Tool_Checksums.Text	Vérifier et réparer
+Tool_Test.Text	Vérifier avec des fichiers de sommes…
+Tool_Hash.Text	Créer un fichier de sommes…
+Tool_Backups.Text	Sauvegardes
+Picker_Open	Ouvrir
+Picker_AllFiles	Tous les fichiers
+Picker_SelectHere	Sélectionner ce dossier
+Picker_SelectOne	Sélectionner l’élément choisi
+Picker_SelectMany	Sélectionner {0} éléments
+Picker_CopyTitle	Choisissez quoi copier : fichiers ou dossiers
+Picker_MoveTitle	Choisissez quoi déplacer : fichiers ou dossiers
+Picker_TestTitle	Choisissez des fichiers de sommes ou des dossiers à vérifier
+Picker_ChecksumFiles	Fichiers de sommes
+Picker_HashTitle	Choisissez des fichiers ou dossiers pour créer leurs sommes
+Picker_SendTitle	Choisissez quoi envoyer : fichiers ou dossiers
+Picker_DeleteTitle	Choisissez quoi supprimer : fichiers ou dossiers
+Picker_WipeTitle	Choisissez quoi effacer définitivement : fichiers ou dossiers
+Picker_AddTitle	Choisissez quoi ajouter à la liste : fichiers ou dossiers

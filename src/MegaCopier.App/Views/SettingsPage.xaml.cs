@@ -91,6 +91,7 @@ public sealed partial class SettingsPage : UserControl
         Rules.ErrorOptionsVisible = false;
         BuildSections();
         BuildBarsSection();
+        PolishCards();
         SizeChanged += (_, e) =>
         {
             // Filas de ajuste "icono · texto · control": si no cabe, el control baja bajo el texto.
@@ -123,6 +124,7 @@ public sealed partial class SettingsPage : UserControl
         FinishWindowBox.SelectedIndex = (int)s.FinishWindow;
         OnTopToggle.IsOn = s.AlwaysOnTop;
         NotifyToggle.IsOn = s.NotifyOnFinish;
+        AutoAdminToggle.IsOn = s.AutoAdminCopy;
         LoadSounds();
         LanguageBox.SelectedItem = LanguageBox.Items.OfType<ComboBoxItem>().FirstOrDefault(i => (string)i.Tag == s.Language) ?? LanguageBox.Items[0];
 
@@ -258,6 +260,7 @@ public sealed partial class SettingsPage : UserControl
         s.FinishWindow = (FinishWindow)Math.Max(0, FinishWindowBox.SelectedIndex);
         s.AlwaysOnTop = OnTopToggle.IsOn;
         s.NotifyOnFinish = NotifyToggle.IsOn;
+        s.AutoAdminCopy = AutoAdminToggle.IsOn;
         s.Sounds.Enabled = SoundBox.IsOn;
         s.Sounds.QuietWhenBusy = QuietBox.IsChecked == true;
 
@@ -465,24 +468,53 @@ public sealed partial class SettingsPage : UserControl
     private static void FillSoundChoices(ComboBox box, string current)
     {
         box.Items.Clear();
+
+        // Lo primero, elegir un archivo propio; después, los de MegaCopier; al final, los de Windows.
+        box.Items.Add(new ComboBoxItem
+        {
+            Content = new StackPanel
+            {
+                Orientation = Orientation.Horizontal,
+                Spacing = 8,
+                Children = { new FontIcon { Glyph = "", FontSize = 13 }, new TextBlock { Text = L.Get("Sound_Choose") } },
+            },
+            Tag = ChooseFileTag,
+        });
+        Microsoft.UI.Xaml.Automation.AutomationProperties.SetName((ComboBoxItem)box.Items[0], L.Get("Sound_Choose"));
+
+        // Un archivo propio ya elegido.
+        if (current.Length > 0 && current is not ("default" or "windows") && !current.StartsWith(Sounds.OwnPrefix, StringComparison.Ordinal)
+            && !Sounds.WindowsSounds.Contains(current, StringComparer.OrdinalIgnoreCase))
+        {
+            box.Items.Add(new ComboBoxItem { Content = Path.GetFileName(current), Tag = current });
+        }
+
         box.Items.Add(new ComboBoxItem { Content = L.Get("Sound_None"), Tag = "" });
         box.Items.Add(new ComboBoxItem { Content = L.Get("Sound_Default"), Tag = "default" });
+        box.Items.Add(SoundHeader("Sound_GroupOwn"));
+        foreach (string name in Sounds.Collection)
+        {
+            box.Items.Add(new ComboBoxItem { Content = L.Get("SoundName_" + name), Tag = Sounds.OwnPrefix + name });
+        }
+
+        box.Items.Add(SoundHeader("Sound_GroupWindows"));
         box.Items.Add(new ComboBoxItem { Content = L.Get("Sound_Windows"), Tag = "windows" });
         foreach (string path in Sounds.WindowsSounds)
         {
             box.Items.Add(new ComboBoxItem { Content = Path.GetFileNameWithoutExtension(path), Tag = path });
         }
 
-        // Un archivo propio que no está en la lista de Windows.
-        if (current.Length > 0 && current is not ("default" or "windows") && !Sounds.WindowsSounds.Contains(current, StringComparer.OrdinalIgnoreCase))
-        {
-            box.Items.Add(new ComboBoxItem { Content = Path.GetFileName(current), Tag = current });
-        }
-
-        box.Items.Add(new ComboBoxItem { Content = L.Get("Sound_Choose"), Tag = ChooseFileTag });
-        box.SelectedItem = box.Items.OfType<ComboBoxItem>().FirstOrDefault(i => string.Equals((string)i.Tag, current, StringComparison.OrdinalIgnoreCase))
-            ?? box.Items[1];
+        box.SelectedItem = box.Items.OfType<ComboBoxItem>().FirstOrDefault(i => i.Tag is string tag && string.Equals(tag, current, StringComparison.OrdinalIgnoreCase))
+            ?? box.Items.OfType<ComboBoxItem>().First(i => i.Tag is "default");
     }
+
+    /// <summary>Título de grupo dentro de la lista de sonidos (no se puede elegir).</summary>
+    private static ComboBoxItem SoundHeader(string key) => new()
+    {
+        Content = new TextBlock { Text = L.Get(key), Style = (Style)Application.Current.Resources["McSecondary"], FontWeight = Microsoft.UI.Text.FontWeights.SemiBold },
+        IsEnabled = false,
+        Tag = null,
+    };
 
     private async Task SoundChosen(ComboBox box, SoundEvent e)
     {
@@ -1071,18 +1103,50 @@ public sealed partial class SettingsPage : UserControl
         auto.Id = ThemeManager.AutoId;
         var tiles = new List<ThemeTile> { new(auto, L.Get("Theme_Auto")) };
         tiles.AddRange(ThemeManager.All().Select(t => new ThemeTile(t, t.BuiltIn ? L.Get("Theme_" + t.Id) : t.Name)));
-        ThemeGallery.ItemsSource = tiles;
-        ThemeGallery.SelectedItem = tiles.FirstOrDefault(t => t.Id == _app.Settings.ThemeId) ?? tiles[0];
+        _themeMore ??= new GalleryMore(
+            ThemeGallery,
+            () => (ThemeGallery.Tag as List<ThemeTile>)?.FirstOrDefault(t => t.Id == _app.Settings.ThemeId),
+            item =>
+            {
+                bool was = _loading;
+                _loading = true;
+                ThemeGallery.SelectedItem = item;
+                _loading = was;
+            });
+        ThemeGallery.Tag = tiles;
+        _themeMore.SetItems(tiles);
         LoadEditor(ThemeManager.Current);
     }
 
-    private void ThemeGallery_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private async void ThemeGallery_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        if (_loading || ThemeGallery.SelectedItem is not ThemeTile tile)
+        if (_loading || ThemeGallery.SelectedItem is not ThemeTile tile || tile.Id == _app.Settings.ThemeId)
         {
             return;
         }
 
+        // Al cambiar de tema se recargan los estilos de todos los controles: la página se queda donde estaba.
+        double offset = SectionScroll.VerticalOffset;
+        await _app.Window.CrossfadeAsync(() => ApplyChosenTheme(tile));
+        KeepScroll(offset);
+    }
+
+    /// <summary>Vuelve a dejar la página en su sitio cuando termine de recolocarse (y otra vez por si tarda un poco más).</summary>
+    private void KeepScroll(double offset)
+    {
+        SectionScroll.ChangeView(null, offset, null, disableAnimation: true);
+        void Again(object? sender, object e)
+        {
+            SectionScroll.LayoutUpdated -= Again;
+            SectionScroll.ChangeView(null, offset, null, disableAnimation: true);
+        }
+
+        SectionScroll.LayoutUpdated += Again;
+        DispatcherQueue.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.Low, () => SectionScroll.ChangeView(null, offset, null, disableAnimation: true));
+    }
+
+    private void ApplyChosenTheme(ThemeTile tile)
+    {
         _app.Settings.ThemeId = tile.Id;
         if (ThemeManager.Find(tile.Id) is { TotalBar: { } total, FileBar: { } file })
         {

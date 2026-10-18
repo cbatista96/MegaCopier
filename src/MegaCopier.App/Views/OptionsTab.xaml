@@ -47,7 +47,6 @@
                     <TextBlock x:Uid="Options_Transfer" Style="{StaticResource McStrong}" Margin="0,0,0,6" />
                     <StackPanel Orientation="Horizontal" Spacing="6">
                         <c:McIcon VerticalAlignment="Center" Glyph="&#xE8B7;" FontSize="14" Foreground="{StaticResource McWarningBrush}" />
-                        <c:McIcon VerticalAlignment="Center" Glyph="&#xE8A5;" FontSize="14" Foreground="{StaticResource McTextSecondaryBrush}" />
                         <TextBlock x:Uid="Options_FilesFolders" Style="{StaticResource McStrong}" />
                     </StackPanel>
                     <CheckBox x:Uid="Options_Data" IsChecked="True" IsEnabled="False" />

@@ -39,6 +39,8 @@ public sealed partial class SettingsPage
 
     private bool _sectionsReady;
     private bool _searching;
+    private GalleryMore? _iconMore;
+    private GalleryMore? _themeMore;
 
     private void BuildSections()
     {
@@ -90,7 +92,7 @@ public sealed partial class SettingsPage
         ShowSection(SectionList.SelectedIndex);
         if (SectionList.SelectedItem is ListViewItem { Content: StackPanel { Children: [McIcon icon, ..] } })
         {
-            Bounce(icon);
+            Motion.Icon(icon);
         }
     }
 
@@ -217,29 +219,10 @@ public sealed partial class SettingsPage
             {
                 if (Responsive.Descendants<McIcon>(card).FirstOrDefault() is { } icon)
                 {
-                    Bounce(icon);
+                    Motion.Icon(icon);
                 }
             }), handledEventsToo: true);
         }
-    }
-
-    private static void Bounce(UIElement element)
-    {
-        var visual = ElementCompositionPreview.GetElementVisual(element);
-        var compositor = visual.Compositor;
-        visual.CenterPoint = new Vector3((float)(element.ActualSize.X / 2), (float)(element.ActualSize.Y / 2), 0);
-        var scale = compositor.CreateVector3KeyFrameAnimation();
-        scale.InsertKeyFrame(0.25f, new Vector3(0.78f, 0.78f, 1));
-        scale.InsertKeyFrame(0.6f, new Vector3(1.18f, 1.18f, 1));
-        scale.InsertKeyFrame(1f, Vector3.One);
-        scale.Duration = TimeSpan.FromMilliseconds(420);
-        var rotation = compositor.CreateScalarKeyFrameAnimation();
-        rotation.InsertKeyFrame(0.3f, -12);
-        rotation.InsertKeyFrame(0.7f, 8);
-        rotation.InsertKeyFrame(1f, 0);
-        rotation.Duration = TimeSpan.FromMilliseconds(420);
-        visual.StartAnimation("Scale", scale);
-        visual.StartAnimation("RotationAngleInDegrees", rotation);
     }
 
     /// <summary>La sección nueva entra deslizándose y apareciendo.</summary>
@@ -266,8 +249,9 @@ public sealed partial class SettingsPage
 
     private void LoadIconGallery()
     {
-        if (IconGallery.Items.Count == 0)
+        if (_iconMore is null)
         {
+            var items = new List<object>();
             foreach (var pack in IconPacks.All)
             {
                 var icons = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 10, HorizontalAlignment = HorizontalAlignment.Center };
@@ -289,11 +273,24 @@ public sealed partial class SettingsPage
                 tile.Children.Add(new TextBlock { Text = L.Get("IconPack_" + pack.Id), Style = (Style)Application.Current.Resources["McBody"] });
                 var item = new GridViewItem { Content = tile, Tag = pack.Id };
                 AutomationProperties.SetName(item, L.Get("IconPack_" + pack.Id));
-                IconGallery.Items.Add(item);
+                items.Add(item);
             }
+
+            _iconMore = new GalleryMore(
+                IconGallery,
+                () => items.OfType<GridViewItem>().FirstOrDefault(i => (string)i.Tag == IconPacks.Current.Id),
+                item =>
+                {
+                    bool was = _loading;
+                    _loading = true;
+                    IconGallery.SelectedItem = item;
+                    _loading = was;
+                });
+            _iconMore.SetItems(items);
+            return;
         }
 
-        IconGallery.SelectedItem = IconGallery.Items.OfType<GridViewItem>().FirstOrDefault(i => (string)i.Tag == IconPacks.Current.Id);
+        _iconMore.Refresh();
     }
 
     private void IconGallery_SelectionChanged(object sender, SelectionChangedEventArgs e)
