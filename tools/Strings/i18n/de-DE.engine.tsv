@@ -264,3 +264,7 @@ E_F_ImageText	Bilder mit dem Text „{0}“
 E_CloudSignedIn	Angemeldet. Du kannst diesen Tab schließen und zu MegaCopier zurückkehren.
 E_CloudSignInFailed	Anmeldung fehlgeschlagen. Kehre zu MegaCopier zurück, um den Grund zu sehen.
 E_CloudSignInError	Anmeldung nicht möglich: {0}
+E_FolderCancelled	Kopie abgebrochen: Der Ordner war im Ziel bereits vorhanden.
+E_FolderSkipExisting	Der Ordner war schon vorhanden: Die {0} vorhandenen Dateien werden übersprungen, der Rest wird kopiert.
+E_FolderOverwrite	Der Ordner war schon vorhanden: Die {0} vorhandenen Dateien werden überschrieben.
+E_FolderRenamed	Der Ordner „{0}“ war schon vorhanden: Er wird als „{1}“ kopiert.

@@ -90,6 +90,7 @@ public sealed partial class SettingsPage : UserControl
         Rules.RulesChanged += Store;
         Rules.ErrorOptionsVisible = false;
         BuildSections();
+        BuildBarsSection();
         SizeChanged += (_, e) =>
         {
             // Filas de ajuste "icono · texto · control": si no cabe, el control baja bajo el texto.
@@ -276,9 +277,15 @@ public sealed partial class SettingsPage : UserControl
         s.UseSystemCache = CacheBox.IsChecked == true;
         s.SmbCompression = SmbBox.IsChecked == true;
         s.AutoResumeInterrupted = AutoResumeBox.IsChecked == true;
-        if (SpeedBox.SelectedItem is ComboBoxItem { Tag: string speed } && int.TryParse(speed, out int limit))
+        if (SpeedBox.SelectedItem is ComboBoxItem { Tag: string speed } && int.TryParse(speed, out int limit) && limit != s.SpeedLimitMBps)
         {
+            // Las copias que siguen con el límite general (no se les puso uno propio) cambian también, al momento.
+            long before = s.SpeedLimitMBps * (long)CopyOptions.MiB;
             s.SpeedLimitMBps = limit;
+            foreach (var job in ((App)Application.Current).Queue.Jobs.Where(j => (j.IsActive || j.State == MegaCopier.Engine.Jobs.CopyJobState.Interrupted) && j.Record.MaxBytesPerSecond == before))
+            {
+                job.SetSpeedLimit(limit * (long)CopyOptions.MiB);
+            }
         }
 
         if (BufferBox.SelectedItem is ComboBoxItem { Tag: string buffer } && int.TryParse(buffer, out int block))
@@ -1077,6 +1084,15 @@ public sealed partial class SettingsPage : UserControl
         }
 
         _app.Settings.ThemeId = tile.Id;
+        if (ThemeManager.Find(tile.Id) is { TotalBar: { } total, FileBar: { } file })
+        {
+            // Un tema propio que guardó sus barras las trae consigo.
+            _app.Settings.TotalBar = total.Clone();
+            _app.Settings.FileBar = file.Clone();
+            BarAppearance.Apply(_app.Settings.TotalBar, _app.Settings.FileBar, _app.Settings.MiniBar, _app.Settings.ReduceBarMotion);
+            LoadBar();
+        }
+
         _app.Settings.Save();
         _app.ApplyTheme();
         _loading = true;
@@ -1262,6 +1278,8 @@ public sealed partial class SettingsPage : UserControl
     private void ThemeSave_Click(object sender, RoutedEventArgs e)
     {
         var theme = _editing.Clone();
+        theme.TotalBar = _app.Settings.TotalBar.Clone(); // las barras elegidas viajan con el tema (también al exportarlo)
+        theme.FileBar = _app.Settings.FileBar.Clone();
         if (theme.BuiltIn || theme.Id == ThemeManager.AutoId || string.IsNullOrEmpty(theme.Id))
         {
             theme.Id = "custom-" + Guid.NewGuid().ToString("N")[..8];

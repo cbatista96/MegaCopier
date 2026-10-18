@@ -88,6 +88,16 @@ public sealed class AppSettings
     /// <summary>Conjunto de iconos, independiente del tema (fluent, color, mosaico, suave, degradado, neon, windows10).</summary>
     public string IconPack { get; set; } = "fluent";
 
+    /// <summary>Aspecto de la barra del total, de la del archivo y de las mini-barras de la lista de copias.</summary>
+    public Theming.BarSettings TotalBar { get; set; } = new();
+
+    public Theming.BarSettings FileBar { get; set; } = new();
+
+    public Theming.BarSettings MiniBar { get; set; } = new();
+
+    /// <summary>Barras sin animaciones continuas (también si Windows tiene desactivados los efectos de animación).</summary>
+    public bool ReduceBarMotion { get; set; }
+
     public WindowMode WindowMode { get; set; } = WindowMode.Auto;
 
     public FinishWindow FinishWindow { get; set; } = FinishWindow.Auto;
@@ -124,6 +134,9 @@ public sealed class AppSettings
     public bool SmbCompression { get; set; }
 
     public bool HideFinishedFiles { get; set; } = true;
+
+    /// <summary>Columnas de sumas (hash) en la lista de archivos.</summary>
+    public bool FilesShowHashes { get; set; }
 
     public bool VerifySkipped { get; set; }
 
@@ -168,7 +181,21 @@ public sealed class AppSettings
 
     public int VersionsMonthly { get; set; }
 
-    public FolderConflictPolicy FolderConflict { get; set; }
+    public FolderConflictPolicy FolderConflict { get; set; } = FolderConflictPolicy.Ask;
+
+    /// <summary>Versión de los ajustes guardados, para cambiar valores por defecto en las actualizaciones.</summary>
+    public int SettingsVersion { get; set; }
+
+    /// <summary>Ajustes guardados por una versión anterior: se ponen al día los valores por defecto que cambiaron.</summary>
+    private void Upgrade()
+    {
+        if (SettingsVersion < 2 && FolderConflict == FolderConflictPolicy.Merge)
+        {
+            FolderConflict = FolderConflictPolicy.Ask; // 1.2: preguntar qué hacer cuando la carpeta ya existe
+        }
+
+        SettingsVersion = 2;
+    }
 
     public double TimeToleranceSeconds { get; set; } = 2;
 
@@ -611,7 +638,9 @@ public sealed class AppSettings
             if (File.Exists(FilePath))
             {
                 using var stream = File.OpenRead(FilePath);
-                return JsonSerializer.Deserialize(stream, SettingsJsonContext.Default.AppSettings) ?? new AppSettings();
+                var settings = JsonSerializer.Deserialize(stream, SettingsJsonContext.Default.AppSettings) ?? new AppSettings();
+                settings.Upgrade();
+                return settings;
             }
         }
         catch (JsonException)

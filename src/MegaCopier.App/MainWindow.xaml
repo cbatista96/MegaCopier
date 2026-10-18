@@ -167,7 +167,7 @@
                                 </Border>
                                 <TextBlock Grid.Column="1" Text="{x:Bind Title, Mode=OneWay}" Style="{StaticResource McStrong}" TextTrimming="CharacterEllipsis" ToolTipService.ToolTip="{x:Bind Title, Mode=OneWay}" />
                                 <TextBlock Grid.Column="2" Text="{x:Bind TotalPercentText, Mode=OneWay}" Style="{StaticResource McSecondary}" MinWidth="50" TextAlignment="Right" />
-                                <c:FlowBar Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" FixedHeight="4" Fill="{StaticResource McTotalBrush}"
+                                <c:FlowBar Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" FixedHeight="4" Role="Mini" Fill="{StaticResource McTotalBrush}"
                                            Value="{x:Bind TotalFraction, Mode=OneWay}" IsActive="{x:Bind IsRunning, Mode=OneWay}"
                                            IsPaused="{x:Bind IsPaused, Mode=OneWay}" IsError="{x:Bind IsFailed, Mode=OneWay}" IsWarning="{x:Bind HasWarnings, Mode=OneWay}"
                                            IsIndeterminate="{x:Bind BarIndeterminate, Mode=OneWay}" />
@@ -186,15 +186,15 @@
             </Grid>
 
             <!-- Detalle del trabajo elegido -->
-            <Grid x:Name="Detail" Grid.Column="1" RowSpacing="0" PointerPressed="Detail_PointerPressed">
+            <Grid x:Name="Detail" Grid.Column="1" RowSpacing="0" PointerPressed="Detail_PointerPressed" Background="Transparent"
+                  AllowDrop="True" DragOver="PanelCard_DragOver" DragLeave="PanelCard_DragLeave" Drop="PanelCard_Drop">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <Border x:Name="PanelCard" Margin="10,0,10,0" CornerRadius="10" Background="{StaticResource McSurfaceBrush}" BorderBrush="{StaticResource McBorderBrush}" BorderThickness="1"
-                        AllowDrop="True" DragOver="PanelCard_DragOver" DragLeave="PanelCard_DragLeave" Drop="PanelCard_Drop">
+                <Border x:Name="PanelCard" Margin="10,0,10,0" CornerRadius="10" Background="{StaticResource McSurfaceBrush}" BorderBrush="{StaticResource McBorderBrush}" BorderThickness="1">
                     <views:CopyPanel x:Name="Panel" />
                 </Border>
 

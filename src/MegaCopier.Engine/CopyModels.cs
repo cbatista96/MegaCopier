@@ -12,6 +12,9 @@ public sealed record CopyJobRequest(IReadOnlyList<string> Sources, string Destin
 
     /// <summary>El trabajo ya empezó antes (se está reanudando): la regla de carpetas existentes no se vuelve a aplicar.</summary>
     public bool Resumed { get; init; }
+
+    /// <summary>Carpetas de origen que se copian con otro nombre (ruta de origen → nombre nuevo en el destino).</summary>
+    public IReadOnlyDictionary<string, string> RenamedFolders { get; init; } = new Dictionary<string, string>();
 }
 
 public enum CopyPhase
@@ -53,6 +56,35 @@ public sealed record ConflictInfo(
 
 /// <param name="ApplyToAll">Usar la misma respuesta en el resto de conflictos de este trabajo.</param>
 public sealed record ConflictAnswer(ConflictDecision Decision, bool ApplyToAll);
+
+/// <summary>
+/// Carpetas de origen que ya existen en el destino con algunos de sus archivos (para preguntar qué hacer antes de empezar).
+/// </summary>
+/// <param name="Folders">Cuántas carpetas de origen ya existen en el destino.</param>
+/// <param name="Files">Archivos de esas carpetas que se van a copiar.</param>
+/// <param name="ExistingFiles">De ellos, cuántos ya están en el destino.</param>
+public sealed record FolderConflictInfo(string Source, string Destination, int Folders, int Files, int ExistingFiles, long ExistingBytes);
+
+public enum FolderDecision
+{
+    /// <summary>Pasar: los archivos que ya están no se copian ni se tocan; se copia el resto.</summary>
+    SkipExisting,
+
+    /// <summary>Sobrescribir los que ya están (los idénticos se omiten igualmente).</summary>
+    Overwrite,
+
+    /// <summary>Copiar la carpeta con otro nombre: «Fotos (2)».</summary>
+    Rename,
+
+    /// <summary>Preguntar archivo por archivo.</summary>
+    AskEach,
+
+    /// <summary>No copiar nada.</summary>
+    Cancel,
+}
+
+/// <summary>La copia no se hizo porque el usuario la canceló al ver que la carpeta ya existía.</summary>
+public sealed class FolderConflictCancelledException : OperationCanceledException;
 
 public readonly record struct CopyProgress(
     CopyPhase Phase,

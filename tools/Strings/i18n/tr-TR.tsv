@@ -45,9 +45,9 @@ OnTopTitle.Text	Her zaman üstte
 OnTopDescription.Text	Kopyalarken pencere diğerlerinin üstünde kalır
 CopyHeader.Text	Kopyalama
 VerifyTitle.Text	Kopyaladıktan sonra doğrula
-VerifyDescription.Text	Hedefi önbelleksiz yeniden okur ve kaynakla eşleşmeyen her bloğu onarır
+VerifyDescription.Text	Her dosyadan sonra yeniden okur ve aslıyla karşılaştırır; uyuşmayan bir şey varsa düzeltir.
 ConflictTitle.Text	Dosya zaten varsa
-ConflictDescription.Text	Aynı dosyalar (aynı boyut ve tarih) her zaman atlanır
+ConflictDescription.Text	Hedefte aynı adlı bir dosya zaten varsa. Aynı dosyalar asla yeniden kopyalanmaz.
 ConflictAsk.Content	Sor
 ConflictReplace.Content	Değiştir
 ConflictSkip.Content	Atla
@@ -197,7 +197,7 @@ Options_FilesFolders.Text	Dosyalar ve klasörler
 Options_OnFinish.Text	Bitince
 Options_Owner.Content	Sahip
 Options_ResetDefault.Text	Sıfırla
-Options_RunningInfo.Message	Kopyalama sürüyor: bu değişiklikler sürdürünce uygulanır (Doğrula ve Gözetimsiz hemen).
+Options_RunningInfo.Message	Kopyalama sürüyor: neredeyse her şey hemen uygulanır. Mod, filtreler, blok boyutu, iş parçacıkları ve sağlama toplamı devam ettirildiğinde uygulanır.
 Options_SaveChecksum.Content	Sağlama dosyası kaydet
 Options_SaveDefault.Text	Varsayılan olarak kaydet
 Options_Scripts.Text	Bitince komutlar
@@ -241,17 +241,17 @@ Settings_FinishClose.Content	Her zaman kapat
 Settings_FinishKeep.Content	Açık bırak
 Settings_FreeSpace.Content	Önce boş alanı denetle
 Settings_General.Text	Genel
-Settings_HashTitle.Text	Karma algoritması
-Settings_HashDescription.Text	Doğrulama ve kaydedilen sağlamalar için. xxHash3 en hızlısı, SHA-256 en uyumlusudur.
+Settings_HashTitle.Text	Denetim türü (hash)
+Settings_HashDescription.Text	Asıl ile kopyayı karşılaştıran "parmak izi". xxHash3 en hızlısı; SHA-256 web siteleri ve programların en çok istediği.
 Settings_MaxJobsTitle.Text	Eşzamanlı kopyalamalar
 Settings_MaxJobsDescription.Text	Aynı anda en fazla kaç kopyalama (0 = sınırsız). Aynı diskteki kopyalamalar her zaman sırasını bekler.
 Settings_ModeAuto.Content	Otomatik
 Settings_ModeCompact.Content	Kompakt
 Settings_ModeExpanded.Content	Tam
 Settings_PerformanceTitle.Text	Performans
-Settings_PerformanceDescription.Text	Hız sınırı, arabellek boyutu ve eşzamanlı işlemler
+Settings_PerformanceDescription.Text	Kopyanın ne kadar hızlı gidebileceği: hız sınırı, blok boyutu ve aynı anda kaç tane.
 Settings_PriorityTitle.Text	İşlem önceliği
-Settings_PriorityDescription.Text	Düşük, kopyalarken bilgisayarı daha akıcı tutar
+Settings_PriorityDescription.Text	"Düşük" ile kopyalarken diğer programlar akıcı kalır; "Yüksek" ile kopya önceliklidir.
 Settings_Queue.Text	Sıra
 Settings_Themes.Text	Temalar
 Settings_WhatToCopy.Text	Ne kopyalanır ve sonra ne olur
@@ -1157,3 +1157,206 @@ Merge_Separate	Ayrı
 Eject_DoneTitle	Sürücü çıkarıldı: artık çıkarabilirsin
 Eject_FailedTitle	Sürücü çıkarılamadı: bir şey kullanıyor
 Sound_Windows	Windows sesi
+FolderAsk_Title	"{0}" hedefte zaten var
+FolderAsk_TitleMany	{0} klasör hedefte zaten var
+FolderAsk_Message	Kopyaladığınız {2} dosyanın {1} tanesi zaten {0} içinde ({3}). Bunlarla ne yapmak istersiniz?
+FolderAsk_Skip	Var olanları atla
+FolderAsk_SkipText	Her dosya kontrol edilir: var olanlar kopyalanmaz ve değiştirilmez, yalnızca eksikler kopyalanır. Yarıda kalan bir kopyayı bitirmek için ideal.
+FolderAsk_Overwrite	Üzerine yaz
+FolderAsk_OverwriteText	Var olan dosyalar kaynaktakilerle değiştirilir. Aynı olanlar zaman kazanmak için olduğu gibi bırakılır.
+FolderAsk_Rename	Yeniden adlandır
+FolderAsk_RenameText	Her şey yeni bir klasöre, "{0}", kopyalanır ve var olana dokunulmaz.
+FolderAsk_AskEach	Tek tek sor
+FolderAsk_AskEachText	Her tekrar eden dosyayı boyutu ve tarihiyle görür, ne yapacağınıza karar verirsiniz.
+FolderAsk_Cancel	Kopyalamayı iptal et
+FolderAsk_Recommended	Önerilen
+Rules_FolderAsk.Content	Ne yapılacağını sor
+Files_More.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Diğer liste seçenekleri
+Files_ShowHashes.Text	Sağlama toplamlarını (hash) göster
+Files_Source.Text	Kaynak
+Files_Destination.Text	Hedef
+Files_RailTop.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Listenin başına (Alt+Home): seçilen dosyalar sıradaki olarak kopyalanır.
+Files_RailTop.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Başa
+Files_RailUp.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Bir sıra yukarı (Alt+↑)
+Files_RailUp.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Yukarı
+Files_RailDown.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Bir sıra aşağı (Alt+↓)
+Files_RailDown.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Aşağı
+Files_RailBottom.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Listenin sonuna (Alt+End): seçilen dosyalar en son kopyalanır.
+Files_RailBottom.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Sona
+Files_RailAdd.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Bu kopyaya dosya veya klasör ekle: listenin sonuna eklenir ve aynı hedefe gider.
+Files_RailAdd.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Ekle
+Files_RailRemove.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Kopyadan çıkar (Del): hiçbir şey silinmez, yalnızca kopyalanmaz.
+Files_RailRemove.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Çıkar
+Files_RailSave.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Listeyi kaydet: kopyalanacak kalanları kaydeder, bilgisayarı kapatsanız bile sonra devam edebilirsiniz.
+Files_RailSave.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Listeyi kaydet
+Files_RailLoad.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Liste yükle: kalanları aynı hedefe ve aynı seçeneklerle kopyalamaya devam eder.
+Files_RailLoad.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Liste yükle
+Files_ListSaved	Liste kaydedildi
+Files_ListSavedText	"{1}" içinde kopyalanacak {0} dosya. Kaldığınız yerden devam etmek için "Liste yükle" ile açın.
+ListMissing_Title	Asıl hedef artık yok
+ListMissing_Message	Kopyalanan klasör artık yok (belki çıkarılmış bir USB bellek ya da disk). Kalanını başka bir yere kopyalamak ister misiniz?
+ListMissing_Choose	Başka bir yer seç…
+ListMissing_Cancel	İptal
+Speed_Title.Text	Bu kopyanın hız sınırı
+Speed_Description.Text	Siz çalışırken disk veya ağ tam yükte olmasın diye kopyayı yavaşlatır. Kopyayı durdurmadan hemen uygulanır.
+Speed_Switch.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Hızı sınırla
+Speed_Slider.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	En yüksek hız
+Speed_NoLimit	Sınırsız
+Drop_AddToEnd	{0} sonuna ekle
+Bars_Title	İlerleme çubukları
+Bars_Description	Çubukların nasıl görüneceğini ve hareket edeceğini seçin. Her çubuğun kendi stili olabilir ve değişiklikler hemen görünür.
+Bars_Which	Hangi çubuk değişsin
+Bars_RoleTotal	Toplam çubuğu
+Bars_RoleFile	Dosya çubuğu
+Bars_RoleMini	Kopya listesi
+Bars_Preview	Önizleme
+Bars_StateRunning	Kopyalanıyor
+Bars_StatePaused	Duraklatıldı
+Bars_StateError	Hatalı
+Bars_StateDone	Bitti
+Bars_Styles	Stiller
+Bars_ColorTheme	Temadan
+Bars_ColorCustom	Kendi renklerim
+Bars_ColorTraffic	Trafik ışığı (ilerledikçe)
+Bars_ColorRainbow	Gökkuşağı
+Bars_SwatchGreen	Yeşil
+Bars_SwatchViolet	Maviden mora
+Bars_SwatchTeal	Turkuaz
+Bars_SwatchOrange	Turuncu
+Bars_SwatchPink	Pembe
+Bars_SwatchSilver	Gümüş
+Bars_ColorStart	Başlangıç
+Bars_ColorEnd	Bitiş
+Bars_TextOutside	Sağda
+Bars_TextInside	Çubuğun içinde
+Bars_TextHidden	Gizli
+Bars_MotionSmooth	Yumuşak
+Bars_MotionElastic	Esnek (biraz seker)
+Bars_MotionSteps	Adım adım (her %5)
+Bars_ApplyAll	Bu görünümü üç çubukta da kullan
+Bars_Reset	Bu çubuğu sıfırla
+Bars_FromTheme	Temadan
+Info_More	Daha fazla bilgi: {0}
+BarStyle_Fluent	Fluent
+BarStyle_Fluent_Hint	Sade, üzerinden yumuşak bir parıltı geçer.
+BarStyle_Aero	Aero
+BarStyle_Aero_Hint	Parlak, tekrar tekrar geçen bir yansımayla.
+BarStyle_Wave	Dalga
+BarStyle_Wave_Hint	Kenarı sıvı gibi dalgalanır.
+BarStyle_Stripes	Hareketli çizgiler
+BarStyle_Stripes_Hint	İlerleyen çapraz çizgiler.
+BarStyle_Neon	Neon
+BarStyle_Neon_Hint	Canlı renkler ve nefes alan bir ışık halesi.
+BarStyle_Blocks	Bloklar
+BarStyle_Blocks_Hint	Eski çubuklardaki gibi ayrı bloklar.
+BarStyle_Led	LED
+BarStyle_Led_Hint	Işık noktaları; sonuncusu yanıp söner.
+BarStyle_Rainbow	Gökkuşağı
+BarStyle_Rainbow_Hint	Tüm renkler durmadan akar.
+BarStyle_Pulse	Nabız
+BarStyle_Pulse_Hint	Yavaşça parlar ve söner.
+BarStyle_Comet	Kuyruklu yıldız
+BarStyle_Comet_Hint	Kuyruklu ve kıvılcımlı parlak bir baş.
+BarStyle_Glass	Cam
+BarStyle_Glass_Hint	Yarı saydam, ışıklı kenarlı.
+BarStyle_Fire	Ateş
+BarStyle_Fire_Hint	Hareket eden ve titreyen alevler.
+BarStyle_Terminal	Terminal
+BarStyle_Terminal_Hint	[#####·····] konsoldaki gibi, imleçli.
+BarStyle_Line	İnce çizgi
+BarStyle_Line_Hint	Nabız gibi atan işaretli ince bir çizgi.
+BarStyle_Dual	Çift katman
+BarStyle_Dual_Hint	Açık katman önde gider, dolu katman onu izler.
+BarStyle_Pixels	Pikseller
+BarStyle_Pixels_Hint	Video oyunundaki gibi küçük kareler, ışıltılı.
+BarStyle_Metal	Metal
+BarStyle_Metal_Hint	Parıltılı fırçalanmış metal.
+BarStyle_Outline	Çerçeve
+BarStyle_Outline_Hint	Yalnızca kenar ve çizgili dolgu.
+BarStyle_Flow	Akan degrade
+BarStyle_Flow_Hint	İki rengi karışır ve akar.
+BarStyle_Bubbles	Kabarcıklar
+BarStyle_Bubbles_Hint	İçinde süzülen kabarcıklar.
+BarStyle_Traffic	Trafik ışığı
+BarStyle_Traffic_Hint	Başta kırmızı, ortada kehribar, sonda yeşil.
+BarStyle_Segments	Bölümler
+BarStyle_Segments_Hint	Tek tek dolan yirmi bölüm.
+Info_Bars_Title	İlerleme çubukları
+Info_Bars_Text	MegaCopier’da üç çubuk vardır: toplam (tüm kopyadan ne kadar kaldığı), kopyalanan dosyanınki ve kopya listesindeki küçükler. Her birinin kendi stili olabilir.\nÜstten değiştirmek istediğinizi seçin, bir stile dokunun ve ayrıntıları ayarlayın. Önizleme; kopyalarken, duraklatılmışken, hatada ve bitince nasıl göründüğünü gösterir.\n• İlerlemeyi uzaktan bir bakışta görmek için dikkat çekici bir çubuk (Neon, Ateş, Gökkuşağı).\n• Kopyalarken çalışıp dikkatinizin dağılmasını istemiyorsanız sade bir çubuk (İnce çizgi, Fluent).\n• Sayı okumadan çok mu az mı kaldığını anlamak için Trafik ışığı.
+Info_BarColors_Title	Renkler
+Bars_ColorsDescription	Temanın, sizin, trafik ışığı veya gökkuşağı.
+Info_BarColors_Text	Çubuğun renklerinin nereden geldiği.\n• Temanın: başka bir tema seçince kendiliğinden değişir.\n• Kendi renklerim: seçtiğiniz iki renkle bir degrade (bir örneğe veya Başlangıç / Bitiş düğmesine dokunun).\n• Trafik ışığı: başta kırmızı, ortada kehribar, sonda yeşil; sayıyı okumadan ne kadar kaldığını bilirsiniz.\n• Gökkuşağı: tüm renkler.
+Info_BarThickness_Title	Kalınlık
+Bars_ThicknessDescription	Çubuğun yüksekliği.
+Info_BarThickness_Text	Çubuğun piksel cinsinden yüksekliği. "Temadan", seçilen temanınkini kullanır.\n• Daha kalın: uzaktan daha iyi görünür; Dalga, Ateş veya Pikseller stillerinde daha güzeldir.\n• Daha ince: daha sade; İnce çizgiyle veya küçük ekranlarda ideal.\nYüzdeyi içine koyarsanız çubuk okunacak kadar büyür.
+Info_BarRadius_Title	Yuvarlaklık
+Bars_RadiusDescription	Düz veya yuvarlak köşeler.
+Info_BarRadius_Text	Çubuğun uçlarının ne kadar yuvarlak olduğu. 0 klasik çubuklardaki gibi düz köşeler bırakır; en yüksek değer onu bir hapa dönüştürür. "Temadan", temanın yuvarlaklığını kullanır.\n• Düz: Bloklar, Pikseller ve Terminal ile çok iyi durur.\n• Yuvarlak: daha yumuşak ve modern; Fluent, Neon veya Cam ile mükemmel.
+Info_BarSpeed_Title	Efekt hızı
+Bars_SpeedDescription	Parıltı, dalga ve çizgilerin ne kadar hızlı hareket ettiği.
+Info_BarSpeed_Text	Kopyalama hızını değil, çubuk animasyonlarının temposunu değiştirir. 1× normaldir; 0,25× çok yavaş, 3× çok hızlıdır.\n• Daha yavaş: daha sakin; çubuk hep görünüyorsa ideal.\n• Daha hızlı: hareketlilik hissi verir ve dikkat çeker.
+Info_BarGlow_Title	Parlaklık ve hale
+Bars_GlowDescription	Yansımaların ve ışığın ne kadar yoğun olduğu.
+Info_BarGlow_Text	Parıltıların yoğunluğunu artırır veya azaltır: Aero yansıması, Neon halesi, Kuyruklu yıldızın başı, kabarcıklar ya da Metal parıltısı.\n• %0’da: çubuk düz ve sadedir.\n• %100’de: en parlak hâlindedir; koyu temalarla ideal.
+Info_BarText_Title	Yüzde
+Bars_TextDescription	Sağda, çubuğun içinde veya gizli.
+Info_BarText_Text	Yüzde sayısının nerede görüneceği.\n• Sağda: her zamanki gibi, çubuğun dışında.\n• Çubuğun içinde: sayı dolgunun üstünde durur ve çubuk okunacak kadar büyür; diğer bilgilere daha çok yer kalır.\n• Gizli: yalnızca çubuk, daha sade bir görünüm için (yüzde pencere başlığında kalır).
+Info_BarMotion_Title	Nasıl ilerler
+Bars_MotionDescription	Yumuşak, esnek veya adım adım.
+Info_BarMotion_Text	Kopya her ilerlediğinde dolgunun nasıl hareket ettiği.\n• Yumuşak: sarsıntısız kayar (önerilen).\n• Esnek: biraz ileri gidip yay gibi geri gelir; daha eğlenceli.\n• Adım adım: eski çubuklar gibi %5’lik adımlarla ilerler; Bloklar veya Piksellerle harika.
+Info_BarEffects_Title	Duruma göre efektler
+Bars_EffectsDescription	Duraklatınca çizgiler, hatada sarsıntı, bitince parlama.
+Info_BarEffects_Text	Çubuk, hiçbir şey okumadan ne olduğunu anlatır.\n• Duraklatınca: hareketsiz kehribar çizgiler belirir.\n• Hata olunca: kırmızıya döner ve hafifçe sarsılır.\n• Bitince: yeşil bir kutlama parlaması (toplam çubuğunda ve listede).\nYalnızca rengi değişen bir çubuk istiyorsanız kapatın.
+Info_BarBorder_Title	Kenarlık
+Bars_BorderDescription	Çubuğun çevresinde ince bir çizgi.
+Info_BarBorder_Text	Çubuğun arka plandan ayrılması için çevresine ince bir çizgi çizer.\n• Boş izin zor göründüğü açık veya dokulu temalarda işe yarar.\n• Cam ve Çerçeve ile çok güzel durur.
+Info_BarReduce_Title	Animasyonları azalt
+Bars_ReduceDescription	Tekrarlanan efektler olmadan sabit çubuklar (tümü için).
+Info_BarReduce_Text	Tekrarlanan hareketleri (parıltı, dalga, çizgi, yanıp sönme) kaldırır. Çubuk normal şekilde ilerlemeye devam eder.\n• Animasyonlar dikkatinizi dağıtıyor veya başınızı döndürüyorsa işe yarar.\n• Dizüstü bilgisayarlarda biraz pil tasarrufu sağlar.\nWindows’ta "Animasyon efektleri"ni kapatırsanız da kendiliğinden açılır (Ayarlar > Erişilebilirlik > Görsel efektler).
+Theme_material-oscuro	Material koyu
+Theme_cobre-oscuro	Koyu bakır
+Theme_silicio-oscuro	Koyu silisyum
+Theme_brisa-oscura	Koyu esinti
+Theme_pizarra	Arduvaz
+Theme_arcade	Arcade
+Theme_artico	Arktik
+Theme_vampiro	Vampir
+Theme_capuchino	Kapuçino
+Theme_noche-tokio	Tokyo gecesi
+Theme_retro-calido	Sıcak retro
+Theme_solar-oscuro	Koyu güneş
+Theme_atomo	Atom
+Theme_menta-oscura	Koyu nane
+Theme_material-claro	Material açık
+Theme_cobre-claro	Açık bakır
+Theme_silicio-claro	Açık silisyum
+Theme_brisa-clara	Açık esinti
+Theme_tiza	Tebeşir
+Theme_solar-claro	Açık güneş
+Theme_capuchino-claro	Açık kapuçino
+Info_Paste_Text	Dosyaları kopyalayıp (Ctrl+C) veya kesip (Ctrl+X) Dosya Gezgini’nde ya da masaüstünde yapıştırdığınızda (Ctrl+V) kopyalamayı Windows yerine MegaCopier yapar: sıra, duraklatma, doğrulama ve kesilirse devam etme ile.\n• Harici diske büyük kopyalar: duraklatıp sonra devam edebilirsiniz.\n• Art arda birkaç kopya: disk için çekişmek yerine sıraya girer.\nAynı klasöre yapıştırırsanız (dosyayı çoğaltmak için) bunu yine Dosya Gezgini yapar.
+Info_Drag_Text	Dosyaları sol tuşla bir pencereden diğerine sürüklediğinizde, MegaCopier Windows ile aynı kurallarla kopyalar (veya taşır): aynı sürücüde taşır, Ctrl kopyalamaya, Shift taşımaya zorlar.\n• Fotoğrafları farklı disklerdeki klasörler arasında sürükleyerek düzenlemek.\n• Dosya Gezgini’ni kilitlemeden büyük projeleri taşımak.\nBir dosyanın, ZIP’in veya sol bölmenin üzerine bırakmayı yine Dosya Gezgini yapar.
+Info_WindowMode_Text	Kopyalarken pencerenin nasıl görüneceği.\n• Kompakt: yalnızca çubuklar ve düğmeler; az yer kaplar.\n• Tam: dosya listesi, hedef, seçenekler, grafik ve günlükle.\n• Otomatik: tek kopyada kompakt, birden fazlasında tam.\n"Daha fazla" ve "Daha az" düğmeleri ikisi arasında istediğiniz zaman geçiş yapar.
+Info_Verify_Text	Her dosya bittiğinde MegaCopier onu doğrudan hedef diskten yeniden okur ve parmak izini (hash) asıl dosyanınkiyle karşılaştırır. Bir şey uyuşmazsa yalnızca hasarlı kısmı yeniden kopyalar.\n• Yedekler, fotoğraflar ve önemli belgeler.\n• Haber vermeden bozulabilen eski veya ucuz USB bellekler ve diskler.\n• Ağ veya Wi-Fi üzerinden kopyalar.\nKopyalama biraz daha uzun sürer (her şey yeniden okunur), karşılığında birebir aynı olduğundan emin olursunuz.
+Info_Conflict_Text	Hedefte aynı adlı bir dosya zaten varsa ne yapılacağı.\n• Sor: ikisini boyutu, tarihi ve küçük resmiyle gösterir, siz seçersiniz.\n• Değiştir, Atla, Daha yeniyse veya boyutu farklıysa değiştir, İkisini de tut ("ad (2)") ya da Var olanı yeniden adlandır.\nAynı dosyalar (aynı boyut ve tarih) asla yeniden kopyalanmaz: bir kopyayı tekrarlamak yalnızca yeni veya değişeni kopyalar. Bütün bir klasör zaten varsa MegaCopier başlamadan önce sorar.
+Info_Hash_Text	Hash bir dosyanın parmak izi gibidir: tek bir bayt değişse parmak izi de değişir. Doğrulamada ve kaydedilen sağlama toplamlarında kullanılır.\n• xxHash3: en hızlısı; kopyaları doğrulamak için ideal.\n• SHA-256: indirmeleri kontrol etmek için web siteleri ve programların en çok kullandığı.\n• MD5, SHA-1, BLAKE3…: başka bir program belirli birini isterse.\nGünlük kullanım için xxHash3’te bırakın.
+Info_Performance_Text	Kopyalamanın ne kadar hızlı gidebileceği.\n• Hız sınırı: siz çalışırken veya film izlerken kopya tüm ağı veya diski yemesin diye. Her kopyanın Seçenekler sekmesinde ayrıca kendi sınırı vardır; durdurmadan hemen değişir.\n• Arabellek boyutu: tek seferde okunan ve yazılan bloklar. Büyük dosyalarda daha büyüğü daha iyidir.\n• Aynı anda işlem: diskten aynı anda kaç blok istendiği. Hızlı SSD’ler daha fazlasıyla kazanır.\nEmin değilseniz varsayılanları bırakın: MegaCopier her diski zaten kendisi ayarlar.
+Info_Merge_Text	Başka bir kopya sürerken yeni bir kopya başlatırsanız sırasını beklemek yerine ona katılabilir: dosyaları listenin sonuna eklenir.\n• Asla: her kopya ayrı gider.\n• Aynı klasöre gidiyorsa veya aynı diskleri kullanıyorsa.\n• Her zaman.\n"Önce sor" ile her seferinde siz karar verirsiniz. Klasörleri tek tek aynı USB belleğe gönderirken kullanışlı.
+Info_MoveAttributes_Text	Başka bir diske taşırken dosyalar kopyalanır, sonra kaynaktan silinir. Burada içerik dışında neyi götüreceklerini seçersiniz: öznitelikler (salt okunur, gizli…), izinler, sahip ve denetim.\n• Kimin açabileceğini koruyarak çalışma klasörlerini sunucular arasında taşımak.\nAynı diskte taşımak yalnızca yer değiştirmektir ve her şey korunur.
+Info_DeleteIncomplete_Text	Kopyalanırken her dosya .mcpart uzantısıyla yazılır ve ancak düzgün bittiğinde adını alır. Bir kopyayı durdurursanız bu parçalar sayesinde sonra tam kaldığı yerden devam edilebilir.\n• Açık: Durdur’a basınca .mcpart dosyaları silinir ve hedef temiz kalır (ama artık devam edilemez).\n• Kapalı: devam etmek için saklanır.\nMegaCopier kapatılırken veya elektrik kesintisinden sonra hiçbir şey silinmez.
+Info_Eject_Text	Bitince MegaCopier hedef USB belleği, kartı veya USB diski "Donanımı güvenle kaldır" gibi güvenli şekilde çıkarır.\n• Art arda birkaç USB bellek doldurmak: çıkardığınızda hazırdır.\nYalnızca başka bir kopya kullanmıyorsa yapar. "Zorla", bir program açık tutsa bile çıkarır.
+Info_OnError_Text	Bir dosya yeniden denemelerden sonra bile kopyalanamazsa ne yapılacağı.\n• Sor: kopya durur, nedenini söyler ve yeniden denemeyi, atlamayı, sonrakileri atlamayı veya durdurmayı seçersiniz.\n• Atla ve devam et: gece büyük kopyalar için ideal; sonunda hata listesini görürsünüz.\n• Kopyayı durdur: hiçbir şey eksik olmamalıysa.\n• Sonda yeniden dene: kullanımdaysa ve serbest kalırsa diye sona bırakır.
+Info_ErrorReport_Text	Bir kopya hatalarla biterse, başarısız her dosyayı, nedenini ve saatini içeren bir metin dosyası kaydeder.\n• Gece bıraktığınız bir kopyayı sakince incelemek için.\n• Bilgisayarlarla ilgilenen kişiye iletmek için.
+Info_MaxJobs_Text	Aynı anda kaç kopyanın çalışabileceği. Aynı diski kullananlar her zaman sırasını bekler, çünkü bir sabit diske aynı anda iki şey kopyalamak her şeyi yavaşlatır.\n• 0 (sınırsız): her disk paralel olarak tam güçle çalışır.\n• 1: her şey sırayla, birbiri ardına.
+Info_Fast_Text	NVMe SSD’ler veya RAID gibi, hız kaybetmeden aynı anda birden fazla kopyalamayı kaldırabilen sürücüler. Buraya yazdıklarınız sıra beklemez.\n• Hızlı bir SSD’den aynı anda birkaç hedefe kopyalıyorsanız.
+Info_Slow_Text	Klavyeye veya fareye dokunursanız kopyalar bilgisayar ağırlaşmasın diye seçtiğiniz hıza düşer. Kullanmayı bıraktığınızda yeniden tam hıza çıkar.\n• Çalışırken, oyun oynarken veya görüntülü görüşmedeyken büyük kopyalar.
+Info_ScheduleLimit_Text	Seçtiğiniz saatler arasında kopyalar bu hızı aşmaz; bu saatler dışında tam hızla gider.\n• Ofiste, mesai saatlerinde ağı doldurmamak için.\n• Evde, öğleden sonra görüntülü görüşmeler kesilmesin diye.
+Info_Priority_Text	Windows’un diğer programlara göre MegaCopier’a ne kadar öncelik verdiği.\n• Düşük: diğer programlar akıcı kalır; kopya biraz daha uzun sürebilir.\n• Normal: her zamanki gibi.\n• Yüksek: kopya önce gelir; tek derdiniz bir an önce bitmesiyse kullanışlı.
+Info_Tune_Text	Bir diske ilk kez kopyaladığınızda MegaCopier birkaç blok boyutunu ve aynı anda işlem sayısını dener, o disk için en hızlısını tutar. Sonraki kopyalar için bunu hatırlar.\n• SSD’ler, sabit diskler, USB bellekler ve ağ sürücüleri çok farklı performans gösterir: böylece her biri en iyi hızında çalışır.\nPerformansı elle değiştirirseniz sizin seçiminiz geçerli olur.
+Info_Peer_Text	Aynı ağdaki MegaCopier yüklü bilgisayarlar arasında klasör paylaşmadan veya bir şey ayarlamadan dosya gönderip alın. Gönderen bu bilgisayarın kodunu yazar; her şey şifrelenir ve her dosya ulaştığında kontrol edilir.\n• Fotoğraf veya videoları dizüstünden masaüstü bilgisayara aktarmak.\n• Ofisteki bir iş arkadaşına proje göndermek.
+Info_Remote_Text	Telefonun tarayıcısında (aynı Wi-Fi ağında) kopyaların durumunu görüp duraklatabileceğiniz, sürdürebileceğiniz veya iptal edebileceğiniz bir sayfa açar.\n• Uzun bir kopyayı bırakıp koltuktan takip etmek.\nTelefona bir şey kurmak gerekmez; adres ve kod burada görünür.
+Info_LiveSync_Text	MegaCopier bir klasörü izler ve bir şeyi her değiştirdiğinizde, kaydetmeyi bitirir bitirmez başka bir yere (başka disk, USB bellek, ağ klasörü) kopyalar.\n• Belgelerinizin her zaman güncel bir kopyasının başka bir diskte olması.\n• Bir projenin değişikliklerini paylaşılan bir klasöre taşımak.\nAyna modunda sildikleriniz kopyadan da silinir.
+Info_Tasks_Text	Windows’un MegaCopier kapalı olsa bile seçtiğiniz saatte her gün, hafta veya ay kendiliğinden başlattığı kayıtlı bir kopya. Yalnızca yeni veya değişenler kopyalanır.\n• Her gece Belgeler’in yedeği.\n• Her pazar fotoğrafları NAS’a aktarmak.\nBir kopyanın Seçenekler sekmesinden "Görev olarak kaydet" ile oluşturulur.
+Info_Guard_Text	Diskler yıllar içinde dosyaları sessizce bozabilir. MegaCopier her dosyanın parmak izini dosyanın içine kaydeder ve bilgisayar boşta olduğunda yeniden kontrol eder. Biri kimse dokunmadan değiştiyse, yedekten kurtarmanız için zamanında uyarır.\n• Aile fotoğrafları ve videoları.\n• Nadiren açılan yedek diskler.\nDüzenledikleriniz kendiliğinden güncellenir. NTFS disk gerektirir.
+Info_Webhook_Text	Her kopya bittiğinde MegaCopier özeti bir web adresine gönderir; böylece bildirim telefonunuza veya bir sohbete gelir.\n• Discord, Slack veya Teams: bir kanala bildirim.\n• ntfy.sh: neredeyse hiçbir şey kurmadan telefonda bildirim.\n• Home Assistant: otomasyonlar (bitince bir ışığı yakmak…).
+Info_Connections_Text	Kopyaladığınız sunucuları buraya kaydedin: FTP, SFTP, WebDAV (Nextcloud, NAS…) veya S3 (Backblaze, Wasabi, R2…). Sonra kaynak veya hedef seçerken görünürler.\n• Yedekleri buluta yüklemek.\n• Şirket sunucusundan dosya indirmek.\nParolalar asla düz metin olarak değil, Windows Kimlik Bilgisi Yöneticisi’nde saklanır.

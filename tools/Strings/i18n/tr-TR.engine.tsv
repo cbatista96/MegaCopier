@@ -264,3 +264,7 @@ E_F_ImageText	"{0}" metnini içeren görüntüler
 E_CloudSignedIn	Oturum açıldı. Bu sekmeyi kapatıp MegaCopier'a dönebilirsiniz.
 E_CloudSignInFailed	Oturum açılamadı. Nedenini görmek için MegaCopier'a dönün.
 E_CloudSignInError	Oturum açılamadı: {0}
+E_FolderCancelled	Kopyalama iptal edildi: klasör hedefte zaten vardı.
+E_FolderSkipExisting	Klasör zaten vardı: mevcut {0} dosya atlanır, kalanı kopyalanır.
+E_FolderOverwrite	Klasör zaten vardı: mevcut {0} dosyanın üzerine yazılır.
+E_FolderRenamed	"{0}" klasörü zaten vardı: "{1}" olarak kopyalanır.

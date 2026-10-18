@@ -45,9 +45,9 @@ OnTopTitle.Text	Sempre in primo piano
 OnTopDescription.Text	La finestra resta sopra le altre durante la copia
 CopyHeader.Text	Copia
 VerifyTitle.Text	Verifica dopo la copia
-VerifyDescription.Text	Rilegge la destinazione senza cache e ripara ogni blocco che non corrisponde all'origine
+VerifyDescription.Text	Dopo ogni file lo rilegge e lo confronta con l’originale; se qualcosa non coincide, lo corregge.
 ConflictTitle.Text	Se il file esiste già
-ConflictDescription.Text	I file identici (stessa dimensione e data) vengono sempre saltati
+ConflictDescription.Text	Quando nella destinazione c’è già un file con lo stesso nome. I file identici non vengono mai ricopiati.
 ConflictAsk.Content	Chiedi
 ConflictReplace.Content	Sostituisci
 ConflictSkip.Content	Salta
@@ -197,7 +197,7 @@ Options_FilesFolders.Text	File e cartelle
 Options_OnFinish.Text	Al termine
 Options_Owner.Content	Proprietario
 Options_ResetDefault.Text	Ripristina
-Options_RunningInfo.Message	La copia è in corso: queste modifiche si applicano alla ripresa (Verifica e Automatico subito).
+Options_RunningInfo.Message	La copia è in corso: quasi tutto si applica subito. Modalità, filtri, dimensione del blocco, thread e somma di controllo si applicano alla ripresa.
 Options_SaveChecksum.Content	Salva il file dei checksum
 Options_SaveDefault.Text	Salva come predefinito
 Options_Scripts.Text	Comandi al termine
@@ -241,17 +241,17 @@ Settings_FinishClose.Content	Chiudi sempre
 Settings_FinishKeep.Content	Lascia aperta
 Settings_FreeSpace.Content	Controlla prima lo spazio libero
 Settings_General.Text	Generale
-Settings_HashTitle.Text	Algoritmo di hash
-Settings_HashDescription.Text	Per la verifica e i checksum salvati. xxHash3 è il più veloce; SHA-256 il più compatibile.
+Settings_HashTitle.Text	Tipo di verifica (hash)
+Settings_HashDescription.Text	L’«impronta» che confronta originale e copia. xxHash3 è il più veloce; SHA-256 è il più richiesto da siti e programmi.
 Settings_MaxJobsTitle.Text	Copie contemporanee
 Settings_MaxJobsDescription.Text	Massimo di copie in corso insieme (0 = nessun limite). Quelle sullo stesso disco aspettano sempre il loro turno.
 Settings_ModeAuto.Content	Automatica
 Settings_ModeCompact.Content	Compatta
 Settings_ModeExpanded.Content	Completa
 Settings_PerformanceTitle.Text	Prestazioni
-Settings_PerformanceDescription.Text	Limite di velocità, dimensione del buffer e operazioni simultanee
+Settings_PerformanceDescription.Text	Quanto può correre la copia: limite di velocità, dimensione dei blocchi e quanti alla volta.
 Settings_PriorityTitle.Text	Priorità del processo
-Settings_PriorityDescription.Text	Bassa mantiene il PC più reattivo durante la copia
+Settings_PriorityDescription.Text	Con «Bassa» gli altri programmi restano fluidi mentre copi; con «Alta» la copia ha la precedenza.
 Settings_Queue.Text	Coda
 Settings_Themes.Text	Temi
 Settings_WhatToCopy.Text	Cosa viene copiato e cosa succede dopo
@@ -1157,3 +1157,206 @@ Merge_Separate	Separatamente
 Eject_DoneTitle	Unità espulsa: ora puoi rimuoverla
 Eject_FailedTitle	Impossibile espellere l'unità: è in uso
 Sound_Windows	Quello di Windows
+FolderAsk_Title	«{0}» esiste già nella destinazione
+FolderAsk_TitleMany	{0} cartelle esistono già nella destinazione
+FolderAsk_Message	{1} dei {2} file che stai copiando sono già in {0} ({3}). Cosa vuoi farne?
+FolderAsk_Skip	Salta quelli già presenti
+FolderAsk_SkipText	Ogni file viene controllato: quelli già presenti non vengono copiati né toccati e si copiano solo quelli mancanti. Ideale per finire una copia interrotta.
+FolderAsk_Overwrite	Sovrascrivi
+FolderAsk_OverwriteText	I file già presenti vengono sostituiti con quelli dell’origine. Quelli identici restano come sono per fare prima.
+FolderAsk_Rename	Rinomina
+FolderAsk_RenameText	Tutto viene copiato in una nuova cartella, «{0}», e quella esistente non viene toccata.
+FolderAsk_AskEach	Chiedi uno per uno
+FolderAsk_AskEachText	Vedrai ogni file ripetuto, con dimensione e data, e deciderai cosa farne.
+FolderAsk_Cancel	Annulla la copia
+FolderAsk_Recommended	Consigliato
+Rules_FolderAsk.Content	Chiedi cosa fare
+Files_More.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Altre opzioni dell’elenco
+Files_ShowHashes.Text	Mostra le somme (hash)
+Files_Source.Text	Origine
+Files_Destination.Text	Destinazione
+Files_RailTop.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	In cima all’elenco (Alt+Home): i file scelti vengono copiati subito dopo.
+Files_RailTop.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	In cima
+Files_RailUp.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Sposta su di una posizione (Alt+↑)
+Files_RailUp.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Sposta su
+Files_RailDown.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Sposta giù di una posizione (Alt+↓)
+Files_RailDown.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Sposta giù
+Files_RailBottom.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	In fondo all’elenco (Alt+Fine): i file scelti vengono copiati per ultimi.
+Files_RailBottom.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	In fondo
+Files_RailAdd.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Aggiungi file o cartelle a questa copia: vanno in fondo all’elenco e nella stessa destinazione.
+Files_RailAdd.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Aggiungi
+Files_RailRemove.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Togli dalla copia (Canc): non si elimina nulla, semplicemente non viene copiato.
+Files_RailRemove.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Togli
+Files_RailSave.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Salva l’elenco: salva ciò che resta da copiare per continuare più tardi, anche dopo aver spento il computer.
+Files_RailSave.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Salva l’elenco
+Files_RailLoad.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Carica un elenco: continua a copiare ciò che mancava, nella stessa destinazione e con le stesse opzioni.
+Files_RailLoad.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Carica un elenco
+Files_ListSaved	Elenco salvato
+Files_ListSavedText	{0} file da copiare in «{1}». Aprilo con «Carica un elenco» per riprendere da dove avevi lasciato.
+ListMissing_Title	La destinazione originale non c’è più
+ListMissing_Message	La cartella in cui si stava copiando non esiste più (forse era una chiavetta USB o un disco scollegato). Vuoi copiare il resto in un altro posto?
+ListMissing_Choose	Scegli un altro posto…
+ListMissing_Cancel	Annulla
+Speed_Title.Text	Limite di velocità di questa copia
+Speed_Description.Text	Rallenta la copia così il disco o la rete non vanno al massimo mentre lavori. Si applica subito, senza fermare la copia.
+Speed_Switch.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Limita la velocità
+Speed_Slider.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Velocità massima
+Speed_NoLimit	Nessun limite
+Drop_AddToEnd	Aggiungi alla fine di {0}
+Bars_Title	Barre di avanzamento
+Bars_Description	Scegli come appaiono e si muovono le barre. Ogni barra può avere il suo stile e le modifiche si vedono subito.
+Bars_Which	Quale barra modificare
+Bars_RoleTotal	Barra del totale
+Bars_RoleFile	Barra del file
+Bars_RoleMini	Elenco delle copie
+Bars_Preview	Anteprima
+Bars_StateRunning	In copia
+Bars_StatePaused	In pausa
+Bars_StateError	Con errore
+Bars_StateDone	Terminata
+Bars_Styles	Stili
+Bars_ColorTheme	Quelli del tema
+Bars_ColorCustom	I miei colori
+Bars_ColorTraffic	Semaforo (in base all’avanzamento)
+Bars_ColorRainbow	Arcobaleno
+Bars_SwatchGreen	Verde
+Bars_SwatchViolet	Da blu a viola
+Bars_SwatchTeal	Turchese
+Bars_SwatchOrange	Arancione
+Bars_SwatchPink	Rosa
+Bars_SwatchSilver	Argento
+Bars_ColorStart	Inizio
+Bars_ColorEnd	Fine
+Bars_TextOutside	A destra
+Bars_TextInside	Dentro la barra
+Bars_TextHidden	Nascosto
+Bars_MotionSmooth	Fluido
+Bars_MotionElastic	Elastico (rimbalza un po’)
+Bars_MotionSteps	A scatti (ogni 5%)
+Bars_ApplyAll	Usa questo aspetto per tutte e tre le barre
+Bars_Reset	Ripristina questa barra
+Bars_FromTheme	Dal tema
+Info_More	Altre informazioni: {0}
+BarStyle_Fluent	Fluent
+BarStyle_Fluent_Hint	Pulita, con un riflesso morbido che la percorre.
+BarStyle_Aero	Aero
+BarStyle_Aero_Hint	Lucida, con un riflesso che passa più volte.
+BarStyle_Wave	Onda
+BarStyle_Wave_Hint	Il bordo ondeggia come un liquido.
+BarStyle_Stripes	Strisce in movimento
+BarStyle_Stripes_Hint	Strisce diagonali che avanzano.
+BarStyle_Neon	Neon
+BarStyle_Neon_Hint	Colori vivi con un alone di luce che respira.
+BarStyle_Blocks	Blocchi
+BarStyle_Blocks_Hint	Blocchi separati, come le barre di una volta.
+BarStyle_Led	LED
+BarStyle_Led_Hint	Punti luminosi; l’ultimo lampeggia.
+BarStyle_Rainbow	Arcobaleno
+BarStyle_Rainbow_Hint	Tutti i colori che scorrono senza sosta.
+BarStyle_Pulse	Battito
+BarStyle_Pulse_Hint	Si illumina e si spegne dolcemente.
+BarStyle_Comet	Cometa
+BarStyle_Comet_Hint	Testa luminosa con scia e scintille.
+BarStyle_Glass	Vetro
+BarStyle_Glass_Hint	Traslucida, con bordo luminoso.
+BarStyle_Fire	Fuoco
+BarStyle_Fire_Hint	Fiamme che si muovono e tremolano.
+BarStyle_Terminal	Terminale
+BarStyle_Terminal_Hint	[#####·····] come nella console, con cursore.
+BarStyle_Line	Linea sottile
+BarStyle_Line_Hint	Una linea discreta con un indicatore che pulsa.
+BarStyle_Dual	Doppio strato
+BarStyle_Dual_Hint	Uno strato chiaro va avanti e quello pieno lo segue.
+BarStyle_Pixels	Pixel
+BarStyle_Pixels_Hint	Quadratini come in un videogioco, con scintillii.
+BarStyle_Metal	Metallo
+BarStyle_Metal_Hint	Metallo spazzolato con un luccichio.
+BarStyle_Outline	Contorno
+BarStyle_Outline_Hint	Solo il bordo e un riempimento a righe.
+BarStyle_Flow	Sfumatura fluida
+BarStyle_Flow_Hint	I due colori si fondono e scorrono.
+BarStyle_Bubbles	Bolle
+BarStyle_Bubbles_Hint	Bolle che viaggiano all’interno.
+BarStyle_Traffic	Semaforo
+BarStyle_Traffic_Hint	Rosso all’inizio, ambra a metà e verde alla fine.
+BarStyle_Segments	Segmenti
+BarStyle_Segments_Hint	Venti tratti che si riempiono uno alla volta.
+Info_Bars_Title	Barre di avanzamento
+Info_Bars_Text	MegaCopier ha tre barre: quella del totale (quanto manca dell’intera copia), quella del file in copia e quelle piccole dell’elenco delle copie. Ognuna può avere il suo stile.\nScegli in alto quale modificare, tocca uno stile e regola i dettagli. L’anteprima mostra come appare in copia, in pausa, con errore e alla fine.\n• Una barra vistosa (Neon, Fuoco, Arcobaleno) per vedere l’avanzamento a colpo d’occhio anche da lontano.\n• Una discreta (Linea sottile, Fluent) se lavori mentre copi e non vuoi distrazioni.\n• Semaforo per capire, senza leggere numeri, se manca tanto o poco.
+Info_BarColors_Title	Colori
+Bars_ColorsDescription	Quelli del tema, i tuoi, semaforo o arcobaleno.
+Info_BarColors_Text	Da dove arrivano i colori della barra.\n• Quelli del tema: cambiano da soli scegliendo un altro tema.\n• I miei colori: una sfumatura con i due colori scelti (tocca un campione o il pulsante Inizio / Fine).\n• Semaforo: rosso all’inizio, ambra a metà e verde alla fine; sai quanto manca senza leggere il numero.\n• Arcobaleno: tutti i colori.
+Info_BarThickness_Title	Spessore
+Bars_ThicknessDescription	Quanto è alta la barra.
+Info_BarThickness_Text	L’altezza della barra in pixel. «Dal tema» usa quella del tema scelto.\n• Più spessa: si vede meglio da lontano e rende di più con Onda, Fuoco o Pixel.\n• Più sottile: più discreta, ideale con Linea sottile o su schermi piccoli.\nSe metti la percentuale dentro, la barra cresce quanto basta per leggerla.
+Info_BarRadius_Title	Arrotondamento
+Bars_RadiusDescription	Angoli dritti o arrotondati.
+Info_BarRadius_Text	Quanto sono arrotondate le estremità della barra. 0 lascia gli angoli dritti, come le barre classiche; il massimo la trasforma in una pillola. «Dal tema» usa l’arrotondamento del tema.\n• Dritti: stanno benissimo con Blocchi, Pixel e Terminale.\n• Arrotondati: più morbidi e moderni, perfetti con Fluent, Neon o Vetro.
+Info_BarSpeed_Title	Velocità degli effetti
+Bars_SpeedDescription	Quanto si muovono veloci riflessi, onde e strisce.
+Info_BarSpeed_Text	Cambia il ritmo delle animazioni della barra, non la velocità della copia. 1× è il ritmo normale; 0,25× è molto lento e 3× molto veloce.\n• Più lento: più rilassato, ideale se la barra è sempre in vista.\n• Più veloce: dà un senso di attività e attira l’attenzione.
+Info_BarGlow_Title	Riflesso e alone
+Bars_GlowDescription	Quanto sono intensi riflessi e luce.
+Info_BarGlow_Text	Alza o abbassa l’intensità dei riflessi: il riflesso di Aero, l’alone del Neon, la testa della Cometa, le bolle o il luccichio del Metallo.\n• Allo 0%: la barra è piatta e sobria.\n• Al 100%: brilla al massimo; ideale con i temi scuri.
+Info_BarText_Title	Percentuale
+Bars_TextDescription	A destra, dentro la barra o nascosta.
+Info_BarText_Text	Dove si vede la percentuale.\n• A destra: come sempre, fuori dalla barra.\n• Dentro la barra: il numero sta sopra il riempimento e la barra cresce per leggerlo; lascia più spazio agli altri dati.\n• Nascosta: solo la barra, per un aspetto più pulito (la percentuale resta nel titolo della finestra).
+Info_BarMotion_Title	Come avanza
+Bars_MotionDescription	Fluido, elastico o a scatti.
+Info_BarMotion_Text	Come si muove il riempimento a ogni avanzamento della copia.\n• Fluido: scivola senza scatti (consigliato).\n• Elastico: va un po’ oltre e torna indietro, come una molla; più divertente.\n• A scatti: avanza del 5% alla volta, come le barre di una volta; perfetto con Blocchi o Pixel.
+Info_BarEffects_Title	Effetti in base allo stato
+Bars_EffectsDescription	Strisce in pausa, scossa in caso di errore e lampo alla fine.
+Info_BarEffects_Text	La barra ti dice cosa succede senza dover leggere nulla.\n• In pausa: compaiono strisce ambra ferme.\n• Con un errore: diventa rossa e dà una piccola scossa.\n• Alla fine: un lampo verde di festa (barra del totale ed elenco).\nDisattivalo se preferisci una barra che cambi solo colore.
+Info_BarBorder_Title	Bordo
+Bars_BorderDescription	Una linea sottile attorno alla barra.
+Info_BarBorder_Text	Disegna una linea sottile attorno alla barra perché si distingua meglio dallo sfondo.\n• Utile con temi chiari o con texture, dove la traccia vuota si vede appena.\n• Sta benissimo con Vetro e Contorno.
+Info_BarReduce_Title	Riduci le animazioni
+Bars_ReduceDescription	Barre ferme, senza effetti ripetuti (per tutte).
+Info_BarReduce_Text	Toglie i movimenti ripetuti (riflessi, onde, strisce, lampeggi). La barra continua ad avanzare normalmente.\n• Utile se le animazioni ti distraggono o ti danno fastidio.\n• Risparmia un po’ di batteria sui portatili.\nSi attiva anche da solo se in Windows disattivi «Effetti di animazione» (Impostazioni > Accessibilità > Effetti visivi).
+Theme_material-oscuro	Material scuro
+Theme_cobre-oscuro	Rame scuro
+Theme_silicio-oscuro	Silicio scuro
+Theme_brisa-oscura	Brezza scura
+Theme_pizarra	Ardesia
+Theme_arcade	Arcade
+Theme_artico	Artico
+Theme_vampiro	Vampiro
+Theme_capuchino	Cappuccino
+Theme_noche-tokio	Notte di Tokyo
+Theme_retro-calido	Retrò caldo
+Theme_solar-oscuro	Solare scuro
+Theme_atomo	Atomo
+Theme_menta-oscura	Menta scura
+Theme_material-claro	Material chiaro
+Theme_cobre-claro	Rame chiaro
+Theme_silicio-claro	Silicio chiaro
+Theme_brisa-clara	Brezza chiara
+Theme_tiza	Gesso
+Theme_solar-claro	Solare chiaro
+Theme_capuchino-claro	Cappuccino chiaro
+Info_Paste_Text	Quando copi (Ctrl+C) o tagli (Ctrl+X) file e li incolli (Ctrl+V) in Esplora file o sul desktop, la copia la fa MegaCopier invece di Windows: con coda, pausa, verifica e ripresa se si interrompe.\n• Copie grandi su un disco esterno: puoi metterle in pausa e riprendere dopo.\n• Più copie di fila: aspettano il loro turno invece di contendersi il disco.\nSe incolli nella stessa cartella (per duplicare un file), lo fa ancora Esplora file.
+Info_Drag_Text	Trascinando file con il tasto sinistro da una finestra all’altra, MegaCopier copia (o sposta) con le stesse regole di Windows: sulla stessa unità sposta, Ctrl forza la copia e Maiusc lo spostamento.\n• Ordinare foto trascinandole tra cartelle di dischi diversi.\n• Spostare progetti grandi senza bloccare Esplora file.\nRilasciare su un file, uno ZIP o il riquadro a sinistra lo gestisce ancora Esplora file.
+Info_WindowMode_Text	Come appare la finestra durante la copia.\n• Compatta: solo barre e pulsanti; occupa poco.\n• Completa: con l’elenco dei file, la destinazione, le opzioni, il grafico e il registro.\n• Automatica: compatta con una sola copia e completa quando ce ne sono di più.\nI pulsanti «Altro» e «Meno» passano dall’una all’altra in qualsiasi momento.
+Info_Verify_Text	Alla fine di ogni file, MegaCopier lo rilegge direttamente dal disco di destinazione e confronta la sua impronta (hash) con quella dell’originale. Se qualcosa non coincide, ricopia solo la parte danneggiata.\n• Backup, foto e documenti importanti.\n• Chiavette USB o dischi vecchi o economici, che possono guastarsi senza preavviso.\n• Copie in rete o via Wi-Fi.\nLa copia richiede un po’ più di tempo (si rilegge tutto), in cambio della certezza che sia identica.
+Info_Conflict_Text	Cosa fare quando nella destinazione c’è già un file con lo stesso nome.\n• Chiedi: mostra entrambi, con dimensione, data e miniatura, e scegli tu.\n• Sostituisci, Salta, Sostituisci se più recente o se la dimensione è diversa, Mantieni entrambi («nome (2)») o Rinomina quello esistente.\nI file identici (stessa dimensione e data) non vengono mai ricopiati: ripetere una copia copia solo il nuovo o il modificato. Se esiste già un’intera cartella, MegaCopier chiede prima di iniziare.
+Info_Hash_Text	L’hash è come l’impronta digitale di un file: se cambia un solo byte, cambia l’impronta. Si usa per la verifica e nelle somme salvate.\n• xxHash3: il più veloce; ideale per verificare le copie.\n• SHA-256: il più usato da siti e programmi per controllare i download.\n• MD5, SHA-1, BLAKE3…: se un altro programma ne chiede uno preciso.\nNell’uso quotidiano, lascia xxHash3.
+Info_Performance_Text	Quanto può correre la copia.\n• Limite di velocità: perché la copia non occupi tutta la rete o il disco mentre lavori o guardi un film. Ogni copia ha anche il suo limite nella scheda Opzioni, che si cambia subito senza fermarla.\n• Dimensione del buffer: i blocchi letti e scritti alla volta. Più grande va meglio con file enormi.\n• Operazioni contemporanee: quanti blocchi si chiedono al disco nello stesso momento. Gli SSD veloci ci guadagnano.\nSe non sai cosa mettere, lascia i valori predefiniti: MegaCopier regola già ogni disco da solo.
+Info_Merge_Text	Se avvii una copia mentre un’altra è in corso, può unirsi a quella invece di aspettare il turno: i suoi file vanno in fondo all’elenco.\n• Mai: ogni copia va per conto suo.\n• Se vanno nella stessa cartella, o se usano gli stessi dischi.\n• Sempre.\nCon «Chiedi prima» decidi ogni volta. Utile quando mandi cartelle una alla volta sulla stessa chiavetta USB.
+Info_MoveAttributes_Text	Spostando su un altro disco, i file vengono copiati e poi eliminati dall’origine. Qui scegli cosa si portano oltre al contenuto: attributi (sola lettura, nascosto…), autorizzazioni, proprietario e controllo.\n• Spostare cartelle di lavoro tra server mantenendo chi può aprirle.\nSullo stesso disco, spostare è solo cambiare posto e si conserva tutto.
+Info_DeleteIncomplete_Text	Durante la copia, ogni file viene scritto con l’estensione .mcpart e riceve il suo nome solo quando finisce bene. Se fermi una copia, quei pezzi permettono di riprendere più tardi proprio da dove si era fermata.\n• Attivo: premendo Ferma si eliminano i .mcpart e la destinazione resta pulita (ma non si può più riprendere).\n• Disattivo: vengono conservati per riprendere.\nNon si elimina mai nulla chiudendo MegaCopier o dopo un blackout.
+Info_Eject_Text	Alla fine, MegaCopier espelle in sicurezza la chiavetta USB, la scheda o il disco USB di destinazione, come «Rimozione sicura dell’hardware».\n• Riempire più chiavette USB di fila: quando la togli, è già pronta.\nLo fa solo se nessun’altra copia la sta usando. «Forza» la espelle anche se un programma la tiene aperta.
+Info_OnError_Text	Cosa fare quando un file non si riesce a copiare nemmeno dopo i tentativi.\n• Chiedi: la copia si ferma, ti dice il motivo e scegli se riprovare, saltarlo, saltare i successivi o fermare.\n• Salta e continua: ideale per copie grandi di notte; alla fine vedi l’elenco degli errori.\n• Ferma la copia: quando non deve mancare nulla.\n• Riprova alla fine: lo lascia per ultimo, nel caso fosse in uso e si liberi.
+Info_ErrorReport_Text	Se una copia termina con errori, salva un file di testo con ogni file non riuscito, il motivo e l’ora.\n• Per rivedere con calma una copia lasciata di notte.\n• Per passarlo a chi si occupa dei computer.
+Info_MaxJobs_Text	Quante copie possono andare contemporaneamente. Quelle che usano lo stesso disco aspettano sempre il turno, perché copiare due cose insieme su un disco rigido rallenta tutto.\n• 0 (nessun limite): ogni disco lavora al massimo in parallelo.\n• 1: tutto in fila, una dopo l’altra.
+Info_Fast_Text	Unità che reggono più copie insieme senza rallentare, come gli SSD NVMe o i RAID. Quelle indicate qui non aspettano il turno.\n• Se copi da un SSD veloce verso più destinazioni contemporaneamente.
+Info_Slow_Text	Se tocchi tastiera o mouse, le copie scendono alla velocità scelta così il computer non rallenta. Quando smetti di usarlo, tornano al massimo.\n• Copie grandi mentre lavori, giochi o fai videochiamate.
+Info_ScheduleLimit_Text	Tra le ore che scegli, le copie non superano quella velocità; fuori da quell’orario vanno al massimo.\n• In ufficio, per non saturare la rete in orario di lavoro.\n• A casa, perché le videochiamate del pomeriggio non si interrompano.
+Info_Priority_Text	Quanta precedenza dà Windows a MegaCopier rispetto agli altri programmi.\n• Bassa: gli altri programmi restano fluidi; la copia può richiedere un po’ di più.\n• Normale: come sempre.\n• Alta: la copia va prima; utile quando conta solo finire il prima possibile.
+Info_Tune_Text	La prima volta che copi su un disco, MegaCopier prova varie dimensioni di blocco e numeri di operazioni contemporanee e tiene la più veloce per quel disco. Se la ricorda per le copie successive.\n• SSD, dischi rigidi, chiavette USB e unità di rete rendono in modo molto diverso: così ognuno va alla sua velocità migliore.\nSe cambi le prestazioni a mano, si rispetta la tua scelta.
+Info_Peer_Text	Invia e ricevi file tra computer con MegaCopier sulla stessa rete, senza condividere cartelle né configurare nulla. Chi invia scrive il codice di questo computer; tutto è cifrato e ogni file viene controllato all’arrivo.\n• Passare foto o video dal portatile al PC fisso.\n• Mandare un progetto a un collega in ufficio.
+Info_Remote_Text	Apre una pagina nel browser del telefono (sulla stessa rete Wi-Fi) per vedere come vanno le copie e metterle in pausa, riprenderle o annullarle.\n• Lasciare una copia lunga e controllarla dal divano.\nNon serve installare nulla sul telefono; indirizzo e codice compaiono qui.
+Info_LiveSync_Text	MegaCopier controlla una cartella e, ogni volta che cambi qualcosa, lo copia in un’altra (un altro disco, una chiavetta USB, una cartella di rete) appena finisci di salvarlo.\n• Avere sempre una copia aggiornata dei tuoi documenti su un altro disco.\n• Portare le modifiche di un progetto in una cartella condivisa.\nIn modalità specchio, ciò che elimini viene eliminato anche dalla copia.
+Info_Tasks_Text	Una copia salvata che Windows avvia da solo ogni giorno, settimana o mese all’ora che scegli, anche se MegaCopier è chiuso. Si copia solo il nuovo o il modificato.\n• Backup dei Documenti ogni notte.\n• Passare le foto sul NAS ogni domenica.\nSi crea dalla scheda Opzioni di una copia con «Salva come attività».
+Info_Guard_Text	I dischi possono rovinare i file negli anni senza avvisare. MegaCopier salva l’impronta di ogni file al suo interno e, quando il computer è libero, li ricontrolla. Se uno è cambiato senza che nessuno lo toccasse, ti avvisa in tempo per recuperarlo da un backup.\n• Foto e video di famiglia.\n• Dischi di backup che si aprono raramente.\nCiò che modifichi si aggiorna da solo. Richiede dischi NTFS.
+Info_Webhook_Text	Alla fine di ogni copia, MegaCopier invia il riepilogo a un indirizzo web, così l’avviso arriva sul telefono o in una chat.\n• Discord, Slack o Teams: avvisi in un canale.\n• ntfy.sh: notifica sul telefono quasi senza installare nulla.\n• Home Assistant: automazioni (accendere una luce alla fine…).
+Info_Connections_Text	Salva qui i server su cui copi: FTP, SFTP, WebDAV (Nextcloud, NAS…) o S3 (Backblaze, Wasabi, R2…). Poi compaiono quando scegli origine o destinazione.\n• Caricare backup nel cloud.\n• Scaricare file da un server aziendale.\nLe password vanno in Gestione credenziali di Windows, mai in chiaro.

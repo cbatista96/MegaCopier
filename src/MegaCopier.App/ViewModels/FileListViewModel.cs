@@ -43,6 +43,19 @@ public sealed partial class FileRowViewModel(TransferItem item, string root) : I
 
     public string SourcePath => Format.Display(Item.Source);
 
+    /// <summary>Carpeta completa de origen (columna Origen, debajo del nombre).</summary>
+    public string SourceFolder => Path.GetDirectoryName(SourcePath) ?? SourcePath;
+
+    /// <summary>Carpeta completa de destino (columna Destino).</summary>
+    public string DestinationFolder => Path.GetDirectoryName(DestinationPath) ?? DestinationPath;
+
+    /// <summary>Columna Destino visible (se oculta si la lista es estrecha; queda en la ayuda del nombre).</summary>
+    public static bool ShowDestination { get; set; } = true;
+
+    public bool DestinationVisible => ShowDestination;
+
+    public Microsoft.UI.Xaml.GridLength DestinationWidth => ShowDestination ? new(2, Microsoft.UI.Xaml.GridUnitType.Star) : new(0);
+
     public string DestinationPath => Format.Display(Item.Destination);
 
     public string SizeText => Format.Bytes(Item.Length);
@@ -135,8 +148,8 @@ public sealed partial class FileRowViewModel(TransferItem item, string root) : I
 
     public void Refresh() => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(string.Empty));
 
-    /// <summary>Columnas de hash visibles (se ocultan si la lista es estrecha).</summary>
-    public static bool ShowHashes { get; set; } = true;
+    /// <summary>Columnas de hash visibles (si se piden en el menú y la lista es ancha).</summary>
+    public static bool ShowHashes { get; set; }
 
     public bool HashesVisible => ShowHashes;
 

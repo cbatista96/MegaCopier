@@ -264,3 +264,7 @@ E_F_ImageText	"{0}" 텍스트가 있는 이미지
 E_CloudSignedIn	로그인되었습니다. 이 탭을 닫고 MegaCopier로 돌아가세요.
 E_CloudSignInFailed	로그인하지 못했습니다. MegaCopier로 돌아가 이유를 확인하세요.
 E_CloudSignInError	로그인할 수 없습니다: {0}
+E_FolderCancelled	복사 취소됨: 대상에 폴더가 이미 있었습니다.
+E_FolderSkipExisting	폴더가 이미 있었습니다: 이미 있는 파일 {0}개는 건너뛰고 나머지를 복사합니다.
+E_FolderOverwrite	폴더가 이미 있었습니다: 이미 있는 파일 {0}개를 덮어씁니다.
+E_FolderRenamed	"{0}" 폴더가 이미 있었습니다: "{1}"(으)로 복사합니다.

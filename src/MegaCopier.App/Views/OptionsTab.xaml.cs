@@ -138,6 +138,7 @@ public sealed partial class OptionsTab : UserControl
         ScheduleDate.Date = new DateTimeOffset(start.Date);
         ScheduleTime.Time = new TimeSpan(start.Hour, start.Minute, 0);
         ScheduleInfo.Text = r.StartAtUtc is { } at ? L.F("Job_StateScheduled", at.ToLocalTime().ToString("g")) : "";
+        LoadSpeed(r.MaxBytesPerSecond);
         _loading = false;
         Refresh();
     }
@@ -178,7 +179,43 @@ public sealed partial class OptionsTab : UserControl
         r.Mode = (CopyMode)Math.Max(0, ModeBox.SelectedIndex);
         r.DryRun = DryRunBox.IsChecked == true;
         MirrorInfo.IsOpen = r.Mode == CopyMode.Mirror;
-        job.SetLiveOptions(verify: VerifyBox.IsChecked == true);
+        r.Verify = VerifyBox.IsChecked == true;
+        job.ApplyLiveOptions();
+    }
+
+    // Límite de velocidad: escalones de 256 KB/s a 1 GB/s; se aplica al momento a la copia en marcha.
+
+    private static readonly double[] SpeedSteps = [0.25, 0.5, 1, 2, 3, 4, 5, 8, 10, 15, 20, 30, 40, 50, 75, 100, 150, 200, 300, 500, 750, 1000];
+
+    private static long StepBytes(int index) => (long)(SpeedSteps[Math.Clamp(index, 0, SpeedSteps.Length - 1)] * CopyOptions.MiB);
+
+    private static int StepFor(long bytes) =>
+        Array.FindIndex(SpeedSteps, s => s * CopyOptions.MiB >= bytes) is int i and >= 0 ? i : SpeedSteps.Length - 1;
+
+    private void LoadSpeed(long bytes)
+    {
+        SpeedSlider.Maximum = SpeedSteps.Length - 1;
+        SpeedSwitch.IsOn = bytes > 0;
+        SpeedSlider.Value = StepFor(bytes > 0 ? bytes : 20L * CopyOptions.MiB);
+        SpeedSlider.IsEnabled = bytes > 0;
+        ShowSpeed();
+    }
+
+    private void ShowSpeed() =>
+        SpeedValue.Text = SpeedSwitch.IsOn ? Format.Bytes(StepBytes((int)SpeedSlider.Value)) + "/s" : L.Get("Speed_NoLimit");
+
+    private void Speed_Changed(object sender, RoutedEventArgs e) => ApplySpeed();
+
+    private void SpeedSlider_ValueChanged(object sender, Microsoft.UI.Xaml.Controls.Primitives.RangeBaseValueChangedEventArgs e) => ApplySpeed();
+
+    private void ApplySpeed()
+    {
+        SpeedSlider.IsEnabled = SpeedSwitch.IsOn;
+        ShowSpeed();
+        if (!_loading && _job?.Job is { } job)
+        {
+            job.SetSpeedLimit(SpeedSwitch.IsOn ? StepBytes((int)SpeedSlider.Value) : 0);
+        }
     }
 
     private void Rules_Changed() => Save();

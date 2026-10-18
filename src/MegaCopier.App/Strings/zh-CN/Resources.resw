@@ -51,9 +51,9 @@
   <data name="OnTopDescription.Text" xml:space="preserve"><value>复制时窗口保持在其他窗口之上</value></data>
   <data name="CopyHeader.Text" xml:space="preserve"><value>复制</value></data>
   <data name="VerifyTitle.Text" xml:space="preserve"><value>复制后校验</value></data>
-  <data name="VerifyDescription.Text" xml:space="preserve"><value>不经缓存重新读取目标，并修复与源不一致的每个数据块</value></data>
+  <data name="VerifyDescription.Text" xml:space="preserve"><value>每个文件完成后重新读取并与原文件比较，如有不一致就修正。</value></data>
   <data name="ConflictTitle.Text" xml:space="preserve"><value>文件已存在时</value></data>
-  <data name="ConflictDescription.Text" xml:space="preserve"><value>相同的文件（大小和日期一致）总是跳过</value></data>
+  <data name="ConflictDescription.Text" xml:space="preserve"><value>目标位置已有同名文件时。完全相同的文件永不重复复制。</value></data>
   <data name="ConflictAsk.Content" xml:space="preserve"><value>询问</value></data>
   <data name="ConflictReplace.Content" xml:space="preserve"><value>替换</value></data>
   <data name="ConflictSkip.Content" xml:space="preserve"><value>跳过</value></data>
@@ -203,7 +203,7 @@
   <data name="Options_OnFinish.Text" xml:space="preserve"><value>完成后</value></data>
   <data name="Options_Owner.Content" xml:space="preserve"><value>所有者</value></data>
   <data name="Options_ResetDefault.Text" xml:space="preserve"><value>重置</value></data>
-  <data name="Options_RunningInfo.Message" xml:space="preserve"><value>复制正在进行：这些更改将在继续时生效（“校验”和“无人值守”立即生效）。</value></data>
+  <data name="Options_RunningInfo.Message" xml:space="preserve"><value>复制正在进行：几乎所有设置都会立即生效。模式、筛选、块大小、线程和校验和将在恢复时生效。</value></data>
   <data name="Options_SaveChecksum.Content" xml:space="preserve"><value>保存校验和文件</value></data>
   <data name="Options_SaveDefault.Text" xml:space="preserve"><value>保存为默认值</value></data>
   <data name="Options_Scripts.Text" xml:space="preserve"><value>完成后的命令</value></data>
@@ -247,17 +247,17 @@
   <data name="Settings_FinishKeep.Content" xml:space="preserve"><value>保持打开</value></data>
   <data name="Settings_FreeSpace.Content" xml:space="preserve"><value>先检查可用空间</value></data>
   <data name="Settings_General.Text" xml:space="preserve"><value>常规</value></data>
-  <data name="Settings_HashTitle.Text" xml:space="preserve"><value>哈希算法</value></data>
-  <data name="Settings_HashDescription.Text" xml:space="preserve"><value>用于校验和保存的校验和。xxHash3 最快；SHA-256 兼容性最好。</value></data>
+  <data name="Settings_HashTitle.Text" xml:space="preserve"><value>校验方式（哈希）</value></data>
+  <data name="Settings_HashDescription.Text" xml:space="preserve"><value>用来比较原文件和副本的“指纹”。xxHash3 最快；SHA-256 是网站和程序最常要求的。</value></data>
   <data name="Settings_MaxJobsTitle.Text" xml:space="preserve"><value>同时复制数</value></data>
   <data name="Settings_MaxJobsDescription.Text" xml:space="preserve"><value>同时进行的复制数上限（0 = 不限）。使用同一磁盘的复制总是排队等候。</value></data>
   <data name="Settings_ModeAuto.Content" xml:space="preserve"><value>自动</value></data>
   <data name="Settings_ModeCompact.Content" xml:space="preserve"><value>紧凑</value></data>
   <data name="Settings_ModeExpanded.Content" xml:space="preserve"><value>完整</value></data>
   <data name="Settings_PerformanceTitle.Text" xml:space="preserve"><value>性能</value></data>
-  <data name="Settings_PerformanceDescription.Text" xml:space="preserve"><value>速度限制、缓冲区大小和并行操作</value></data>
+  <data name="Settings_PerformanceDescription.Text" xml:space="preserve"><value>复制能跑多快：速度限制、块大小和同时数量。</value></data>
   <data name="Settings_PriorityTitle.Text" xml:space="preserve"><value>进程优先级</value></data>
-  <data name="Settings_PriorityDescription.Text" xml:space="preserve"><value>低优先级让电脑在复制时更流畅</value></data>
+  <data name="Settings_PriorityDescription.Text" xml:space="preserve"><value>选“低”时复制期间其他程序保持流畅；选“高”时复制优先。</value></data>
   <data name="Settings_Queue.Text" xml:space="preserve"><value>队列</value></data>
   <data name="Settings_Themes.Text" xml:space="preserve"><value>主题</value></data>
   <data name="Settings_WhatToCopy.Text" xml:space="preserve"><value>复制哪些内容以及之后做什么</value></data>
@@ -1163,4 +1163,207 @@
   <data name="Eject_DoneTitle" xml:space="preserve"><value>驱动器已弹出，可以拔下</value></data>
   <data name="Eject_FailedTitle" xml:space="preserve"><value>无法弹出驱动器：有程序正在使用</value></data>
   <data name="Sound_Windows" xml:space="preserve"><value>Windows 的声音</value></data>
+  <data name="FolderAsk_Title" xml:space="preserve"><value>目标中已存在“{0}”</value></data>
+  <data name="FolderAsk_TitleMany" xml:space="preserve"><value>目标中已存在 {0} 个文件夹</value></data>
+  <data name="FolderAsk_Message" xml:space="preserve"><value>要复制的 {2} 个文件中已有 {1} 个在 {0} 中（{3}）。要如何处理它们？</value></data>
+  <data name="FolderAsk_Skip" xml:space="preserve"><value>跳过已有的文件</value></data>
+  <data name="FolderAsk_SkipText" xml:space="preserve"><value>逐个检查文件：已有的文件不复制也不改动，只复制缺少的。非常适合完成中断的复制。</value></data>
+  <data name="FolderAsk_Overwrite" xml:space="preserve"><value>覆盖</value></data>
+  <data name="FolderAsk_OverwriteText" xml:space="preserve"><value>已有的文件将被源文件替换。完全相同的文件保持不变，以节省时间。</value></data>
+  <data name="FolderAsk_Rename" xml:space="preserve"><value>重命名</value></data>
+  <data name="FolderAsk_RenameText" xml:space="preserve"><value>全部复制到新文件夹“{0}”，原有文件夹保持不变。</value></data>
+  <data name="FolderAsk_AskEach" xml:space="preserve"><value>逐个询问</value></data>
+  <data name="FolderAsk_AskEachText" xml:space="preserve"><value>你会看到每个重复的文件及其大小和日期，并决定如何处理。</value></data>
+  <data name="FolderAsk_Cancel" xml:space="preserve"><value>取消复制</value></data>
+  <data name="FolderAsk_Recommended" xml:space="preserve"><value>推荐</value></data>
+  <data name="Rules_FolderAsk.Content" xml:space="preserve"><value>询问如何处理</value></data>
+  <data name="Files_More.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>更多列表选项</value></data>
+  <data name="Files_ShowHashes.Text" xml:space="preserve"><value>显示校验和（哈希）</value></data>
+  <data name="Files_Source.Text" xml:space="preserve"><value>源</value></data>
+  <data name="Files_Destination.Text" xml:space="preserve"><value>目标</value></data>
+  <data name="Files_RailTop.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>移到列表开头（Alt+Home）：所选文件将接着复制。</value></data>
+  <data name="Files_RailTop.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>移到开头</value></data>
+  <data name="Files_RailUp.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>上移一位（Alt+↑）</value></data>
+  <data name="Files_RailUp.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>上移</value></data>
+  <data name="Files_RailDown.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>下移一位（Alt+↓）</value></data>
+  <data name="Files_RailDown.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>下移</value></data>
+  <data name="Files_RailBottom.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>移到列表末尾（Alt+End）：所选文件最后复制。</value></data>
+  <data name="Files_RailBottom.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>移到末尾</value></data>
+  <data name="Files_RailAdd.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>向此次复制添加文件或文件夹：它们排在列表末尾，复制到同一目标。</value></data>
+  <data name="Files_RailAdd.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>添加</value></data>
+  <data name="Files_RailRemove.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>从复制中移除（Del）：不会删除任何内容，只是不再复制。</value></data>
+  <data name="Files_RailRemove.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>移除</value></data>
+  <data name="Files_RailSave.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>保存列表：保存尚未复制的内容，即使关机也能稍后继续。</value></data>
+  <data name="Files_RailSave.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>保存列表</value></data>
+  <data name="Files_RailLoad.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>加载列表：以相同目标和选项继续复制剩余内容。</value></data>
+  <data name="Files_RailLoad.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>加载列表</value></data>
+  <data name="Files_ListSaved" xml:space="preserve"><value>列表已保存</value></data>
+  <data name="Files_ListSavedText" xml:space="preserve"><value>“{1}”中还有 {0} 个文件待复制。用“加载列表”打开即可从中断处继续。</value></data>
+  <data name="ListMissing_Title" xml:space="preserve"><value>原目标已不存在</value></data>
+  <data name="ListMissing_Message" xml:space="preserve"><value>原来复制到的文件夹已不存在（可能是已拔出的 U 盘或磁盘）。要将剩余内容复制到其他位置吗？</value></data>
+  <data name="ListMissing_Choose" xml:space="preserve"><value>选择其他位置…</value></data>
+  <data name="ListMissing_Cancel" xml:space="preserve"><value>取消</value></data>
+  <data name="Speed_Title.Text" xml:space="preserve"><value>此次复制的速度限制</value></data>
+  <data name="Speed_Description.Text" xml:space="preserve"><value>降低复制速度，让你工作时磁盘或网络不会满负荷。立即生效，无需停止复制。</value></data>
+  <data name="Speed_Switch.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>限制速度</value></data>
+  <data name="Speed_Slider.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>最高速度</value></data>
+  <data name="Speed_NoLimit" xml:space="preserve"><value>不限速</value></data>
+  <data name="Drop_AddToEnd" xml:space="preserve"><value>添加到 {0} 的末尾</value></data>
+  <data name="Bars_Title" xml:space="preserve"><value>进度条</value></data>
+  <data name="Bars_Description" xml:space="preserve"><value>选择进度条的外观和动效。每条进度条都可以有自己的样式，修改立即可见。</value></data>
+  <data name="Bars_Which" xml:space="preserve"><value>要更改的进度条</value></data>
+  <data name="Bars_RoleTotal" xml:space="preserve"><value>总进度条</value></data>
+  <data name="Bars_RoleFile" xml:space="preserve"><value>文件进度条</value></data>
+  <data name="Bars_RoleMini" xml:space="preserve"><value>复制列表</value></data>
+  <data name="Bars_Preview" xml:space="preserve"><value>预览</value></data>
+  <data name="Bars_StateRunning" xml:space="preserve"><value>正在复制</value></data>
+  <data name="Bars_StatePaused" xml:space="preserve"><value>已暂停</value></data>
+  <data name="Bars_StateError" xml:space="preserve"><value>出错</value></data>
+  <data name="Bars_StateDone" xml:space="preserve"><value>已完成</value></data>
+  <data name="Bars_Styles" xml:space="preserve"><value>样式</value></data>
+  <data name="Bars_ColorTheme" xml:space="preserve"><value>跟随主题</value></data>
+  <data name="Bars_ColorCustom" xml:space="preserve"><value>自定义颜色</value></data>
+  <data name="Bars_ColorTraffic" xml:space="preserve"><value>红绿灯（随进度）</value></data>
+  <data name="Bars_ColorRainbow" xml:space="preserve"><value>彩虹</value></data>
+  <data name="Bars_SwatchGreen" xml:space="preserve"><value>绿色</value></data>
+  <data name="Bars_SwatchViolet" xml:space="preserve"><value>蓝到紫</value></data>
+  <data name="Bars_SwatchTeal" xml:space="preserve"><value>青绿</value></data>
+  <data name="Bars_SwatchOrange" xml:space="preserve"><value>橙色</value></data>
+  <data name="Bars_SwatchPink" xml:space="preserve"><value>粉色</value></data>
+  <data name="Bars_SwatchSilver" xml:space="preserve"><value>银色</value></data>
+  <data name="Bars_ColorStart" xml:space="preserve"><value>起始</value></data>
+  <data name="Bars_ColorEnd" xml:space="preserve"><value>结束</value></data>
+  <data name="Bars_TextOutside" xml:space="preserve"><value>右侧</value></data>
+  <data name="Bars_TextInside" xml:space="preserve"><value>进度条内</value></data>
+  <data name="Bars_TextHidden" xml:space="preserve"><value>隐藏</value></data>
+  <data name="Bars_MotionSmooth" xml:space="preserve"><value>平滑</value></data>
+  <data name="Bars_MotionElastic" xml:space="preserve"><value>弹性（略微回弹）</value></data>
+  <data name="Bars_MotionSteps" xml:space="preserve"><value>阶梯式（每 5%）</value></data>
+  <data name="Bars_ApplyAll" xml:space="preserve"><value>三条进度条都使用此外观</value></data>
+  <data name="Bars_Reset" xml:space="preserve"><value>重置此进度条</value></data>
+  <data name="Bars_FromTheme" xml:space="preserve"><value>跟随主题</value></data>
+  <data name="Info_More" xml:space="preserve"><value>详细信息：{0}</value></data>
+  <data name="BarStyle_Fluent" xml:space="preserve"><value>Fluent</value></data>
+  <data name="BarStyle_Fluent_Hint" xml:space="preserve"><value>简洁，带柔和流光。</value></data>
+  <data name="BarStyle_Aero" xml:space="preserve"><value>Aero</value></data>
+  <data name="BarStyle_Aero_Hint" xml:space="preserve"><value>光亮，反光一次次掠过。</value></data>
+  <data name="BarStyle_Wave" xml:space="preserve"><value>波浪</value></data>
+  <data name="BarStyle_Wave_Hint" xml:space="preserve"><value>边缘像液体一样起伏。</value></data>
+  <data name="BarStyle_Stripes" xml:space="preserve"><value>移动条纹</value></data>
+  <data name="BarStyle_Stripes_Hint" xml:space="preserve"><value>斜条纹向前移动。</value></data>
+  <data name="BarStyle_Neon" xml:space="preserve"><value>霓虹</value></data>
+  <data name="BarStyle_Neon_Hint" xml:space="preserve"><value>鲜艳色彩，光晕如呼吸般明灭。</value></data>
+  <data name="BarStyle_Blocks" xml:space="preserve"><value>方块</value></data>
+  <data name="BarStyle_Blocks_Hint" xml:space="preserve"><value>分开的方块，像以前的进度条。</value></data>
+  <data name="BarStyle_Led" xml:space="preserve"><value>LED 灯</value></data>
+  <data name="BarStyle_Led_Hint" xml:space="preserve"><value>光点排列，最后一个闪烁。</value></data>
+  <data name="BarStyle_Rainbow" xml:space="preserve"><value>彩虹</value></data>
+  <data name="BarStyle_Rainbow_Hint" xml:space="preserve"><value>所有颜色不停流动。</value></data>
+  <data name="BarStyle_Pulse" xml:space="preserve"><value>心跳</value></data>
+  <data name="BarStyle_Pulse_Hint" xml:space="preserve"><value>轻柔地明暗起伏。</value></data>
+  <data name="BarStyle_Comet" xml:space="preserve"><value>彗星</value></data>
+  <data name="BarStyle_Comet_Hint" xml:space="preserve"><value>明亮的头部，带尾迹和火花。</value></data>
+  <data name="BarStyle_Glass" xml:space="preserve"><value>玻璃</value></data>
+  <data name="BarStyle_Glass_Hint" xml:space="preserve"><value>半透明，边缘透光。</value></data>
+  <data name="BarStyle_Fire" xml:space="preserve"><value>火焰</value></data>
+  <data name="BarStyle_Fire_Hint" xml:space="preserve"><value>跳动闪烁的火焰。</value></data>
+  <data name="BarStyle_Terminal" xml:space="preserve"><value>终端</value></data>
+  <data name="BarStyle_Terminal_Hint" xml:space="preserve"><value>[#####·····] 像控制台，带光标。</value></data>
+  <data name="BarStyle_Line" xml:space="preserve"><value>细线</value></data>
+  <data name="BarStyle_Line_Hint" xml:space="preserve"><value>低调的细线，标记点跳动。</value></data>
+  <data name="BarStyle_Dual" xml:space="preserve"><value>双层</value></data>
+  <data name="BarStyle_Dual_Hint" xml:space="preserve"><value>浅色层领先，实心层紧随。</value></data>
+  <data name="BarStyle_Pixels" xml:space="preserve"><value>像素</value></data>
+  <data name="BarStyle_Pixels_Hint" xml:space="preserve"><value>像电子游戏的小方块，带闪光。</value></data>
+  <data name="BarStyle_Metal" xml:space="preserve"><value>金属</value></data>
+  <data name="BarStyle_Metal_Hint" xml:space="preserve"><value>拉丝金属，带闪光。</value></data>
+  <data name="BarStyle_Outline" xml:space="preserve"><value>轮廓</value></data>
+  <data name="BarStyle_Outline_Hint" xml:space="preserve"><value>只有边框和条纹填充。</value></data>
+  <data name="BarStyle_Flow" xml:space="preserve"><value>流动渐变</value></data>
+  <data name="BarStyle_Flow_Hint" xml:space="preserve"><value>两种颜色交融流动。</value></data>
+  <data name="BarStyle_Bubbles" xml:space="preserve"><value>气泡</value></data>
+  <data name="BarStyle_Bubbles_Hint" xml:space="preserve"><value>气泡在其中漂动。</value></data>
+  <data name="BarStyle_Traffic" xml:space="preserve"><value>红绿灯</value></data>
+  <data name="BarStyle_Traffic_Hint" xml:space="preserve"><value>开始红色，过半琥珀色，结束绿色。</value></data>
+  <data name="BarStyle_Segments" xml:space="preserve"><value>分段</value></data>
+  <data name="BarStyle_Segments_Hint" xml:space="preserve"><value>二十段逐一填满。</value></data>
+  <data name="Info_Bars_Title" xml:space="preserve"><value>进度条</value></data>
+  <data name="Info_Bars_Text" xml:space="preserve"><value>MegaCopier 有三条进度条：总进度条（整个复制还剩多少）、当前文件的进度条以及复制列表里的小进度条。每条都可以有自己的样式。\n在上方选择要修改的进度条，点一个样式并调整细节。预览会显示复制中、暂停、出错和完成时的样子。\n• 醒目的进度条（霓虹、火焰、彩虹），远远一看就知道进度。\n• 低调的进度条（细线、Fluent），适合边复制边工作、不想被打扰。\n• 红绿灯，不用看数字就知道还剩多少。</value></data>
+  <data name="Info_BarColors_Title" xml:space="preserve"><value>颜色</value></data>
+  <data name="Bars_ColorsDescription" xml:space="preserve"><value>主题色、自定义、红绿灯或彩虹。</value></data>
+  <data name="Info_BarColors_Text" xml:space="preserve"><value>进度条颜色的来源。\n• 跟随主题：换主题时自动改变。\n• 自定义颜色：由你选的两种颜色组成的渐变（点色块或“起始 / 结束”按钮）。\n• 红绿灯：开始红色，过半琥珀色，结束绿色，不看数字也知道还剩多少。\n• 彩虹：所有颜色。</value></data>
+  <data name="Info_BarThickness_Title" xml:space="preserve"><value>粗细</value></data>
+  <data name="Bars_ThicknessDescription" xml:space="preserve"><value>进度条的高度。</value></data>
+  <data name="Info_BarThickness_Text" xml:space="preserve"><value>进度条的高度（像素）。“跟随主题”使用所选主题的高度。\n• 更粗：远处看得更清楚，波浪、火焰、像素等样式更好看。\n• 更细：更低调，适合细线样式或小屏幕。\n如果把百分比放在进度条内，进度条会自动增高到刚好能看清。</value></data>
+  <data name="Info_BarRadius_Title" xml:space="preserve"><value>圆角</value></data>
+  <data name="Bars_RadiusDescription" xml:space="preserve"><value>直角或圆角。</value></data>
+  <data name="Info_BarRadius_Text" xml:space="preserve"><value>进度条两端的圆润程度。0 为直角，像经典进度条；最大值会变成胶囊形。“跟随主题”使用主题的圆角。\n• 直角：与方块、像素、终端样式很搭。\n• 圆角：更柔和现代，与 Fluent、霓虹、玻璃样式绝配。</value></data>
+  <data name="Info_BarSpeed_Title" xml:space="preserve"><value>效果速度</value></data>
+  <data name="Bars_SpeedDescription" xml:space="preserve"><value>流光、波浪和条纹的移动速度。</value></data>
+  <data name="Info_BarSpeed_Text" xml:space="preserve"><value>调整进度条动画的节奏，不影响复制速度。1× 为正常；0.25× 很慢，3× 很快。\n• 更慢：更舒缓，适合进度条一直在眼前时。\n• 更快：更有活力，更吸引注意。</value></data>
+  <data name="Info_BarGlow_Title" xml:space="preserve"><value>光泽与光晕</value></data>
+  <data name="Bars_GlowDescription" xml:space="preserve"><value>反光和光线的强度。</value></data>
+  <data name="Info_BarGlow_Text" xml:space="preserve"><value>调高或调低光效强度：Aero 的反光、霓虹的光晕、彗星的头部、气泡或金属的闪光。\n• 0%：进度条平整朴素。\n• 100%：光效最强，适合深色主题。</value></data>
+  <data name="Info_BarText_Title" xml:space="preserve"><value>百分比</value></data>
+  <data name="Bars_TextDescription" xml:space="preserve"><value>右侧、进度条内或隐藏。</value></data>
+  <data name="Info_BarText_Text" xml:space="preserve"><value>百分比数字显示的位置。\n• 右侧：和以前一样，在进度条外面。\n• 进度条内：数字显示在填充上，进度条会变高以便阅读，给其他信息留出更多空间。\n• 隐藏：只显示进度条，更简洁（窗口标题中仍有百分比）。</value></data>
+  <data name="Info_BarMotion_Title" xml:space="preserve"><value>前进方式</value></data>
+  <data name="Bars_MotionDescription" xml:space="preserve"><value>平滑、弹性或阶梯式。</value></data>
+  <data name="Info_BarMotion_Text" xml:space="preserve"><value>每次复制进度推进时填充的移动方式。\n• 平滑：顺滑无顿挫（推荐）。\n• 弹性：稍微冲过头再弹回来，像弹簧一样，更有趣。\n• 阶梯式：每次前进 5%，像以前的进度条，与方块或像素样式很搭。</value></data>
+  <data name="Info_BarEffects_Title" xml:space="preserve"><value>状态效果</value></data>
+  <data name="Bars_EffectsDescription" xml:space="preserve"><value>暂停时条纹、出错时抖动、完成时闪光。</value></data>
+  <data name="Info_BarEffects_Text" xml:space="preserve"><value>进度条不用看文字就能告诉你状态。\n• 暂停：出现静止的琥珀色条纹。\n• 出错：变红并轻轻抖动一下。\n• 完成：绿色庆祝闪光（总进度条和列表）。\n如果只想让进度条变色，可以关闭此项。</value></data>
+  <data name="Info_BarBorder_Title" xml:space="preserve"><value>边框</value></data>
+  <data name="Bars_BorderDescription" xml:space="preserve"><value>进度条周围的细线。</value></data>
+  <data name="Info_BarBorder_Text" xml:space="preserve"><value>在进度条周围画一条细线，让它与背景更好地区分。\n• 在浅色或带纹理的主题中很有用，因为空白轨道几乎看不见。\n• 与玻璃和轮廓样式很搭。</value></data>
+  <data name="Info_BarReduce_Title" xml:space="preserve"><value>减少动画</value></data>
+  <data name="Bars_ReduceDescription" xml:space="preserve"><value>静止的进度条，没有循环效果（全部适用）。</value></data>
+  <data name="Info_BarReduce_Text" xml:space="preserve"><value>去掉循环播放的动效（流光、波浪、条纹、闪烁），进度条仍正常前进。\n• 如果动画让你分心或头晕，这很有用。\n• 在笔记本上能省一点电。\n如果在 Windows 中关闭了“动画效果”（设置 &gt; 辅助功能 &gt; 视觉效果），也会自动开启。</value></data>
+  <data name="Theme_material-oscuro" xml:space="preserve"><value>Material 深色</value></data>
+  <data name="Theme_cobre-oscuro" xml:space="preserve"><value>深铜</value></data>
+  <data name="Theme_silicio-oscuro" xml:space="preserve"><value>深色硅</value></data>
+  <data name="Theme_brisa-oscura" xml:space="preserve"><value>暗夜微风</value></data>
+  <data name="Theme_pizarra" xml:space="preserve"><value>石板</value></data>
+  <data name="Theme_arcade" xml:space="preserve"><value>街机</value></data>
+  <data name="Theme_artico" xml:space="preserve"><value>北极</value></data>
+  <data name="Theme_vampiro" xml:space="preserve"><value>吸血鬼</value></data>
+  <data name="Theme_capuchino" xml:space="preserve"><value>卡布奇诺</value></data>
+  <data name="Theme_noche-tokio" xml:space="preserve"><value>东京之夜</value></data>
+  <data name="Theme_retro-calido" xml:space="preserve"><value>暖色复古</value></data>
+  <data name="Theme_solar-oscuro" xml:space="preserve"><value>深色日光</value></data>
+  <data name="Theme_atomo" xml:space="preserve"><value>原子</value></data>
+  <data name="Theme_menta-oscura" xml:space="preserve"><value>深色薄荷</value></data>
+  <data name="Theme_material-claro" xml:space="preserve"><value>Material 浅色</value></data>
+  <data name="Theme_cobre-claro" xml:space="preserve"><value>浅铜</value></data>
+  <data name="Theme_silicio-claro" xml:space="preserve"><value>浅色硅</value></data>
+  <data name="Theme_brisa-clara" xml:space="preserve"><value>清新微风</value></data>
+  <data name="Theme_tiza" xml:space="preserve"><value>粉笔</value></data>
+  <data name="Theme_solar-claro" xml:space="preserve"><value>浅色日光</value></data>
+  <data name="Theme_capuchino-claro" xml:space="preserve"><value>浅色卡布奇诺</value></data>
+  <data name="Info_Paste_Text" xml:space="preserve"><value>在资源管理器或桌面复制（Ctrl+C）或剪切（Ctrl+X）文件后粘贴（Ctrl+V）时，由 MegaCopier 代替 Windows 完成复制：有队列、暂停、校验，中断后还能继续。\n• 向外置硬盘复制大量文件：可以暂停，稍后继续。\n• 连续多次复制：会排队，而不是争抢同一块磁盘。\n如果粘贴到同一文件夹（复制出副本），仍由资源管理器完成。</value></data>
+  <data name="Info_Drag_Text" xml:space="preserve"><value>用左键把文件从一个窗口拖到另一个窗口时，由 MegaCopier 按与 Windows 相同的规则复制（或移动）：同一驱动器内为移动，按 Ctrl 强制复制，按 Shift 强制移动。\n• 在不同磁盘的文件夹之间拖动整理照片。\n• 移动大型项目而不让资源管理器卡住。\n拖放到文件、ZIP 或左侧窗格上时，仍由资源管理器处理。</value></data>
+  <data name="Info_WindowMode_Text" xml:space="preserve"><value>复制时窗口的样子。\n• 紧凑：只有进度条和按钮，占用空间小。\n• 完整：包含文件列表、目标、选项、图表和日志。\n• 自动：只有一个复制时为紧凑，有多个时为完整。\n“更多”和“更少”按钮可随时切换。</value></data>
+  <data name="Info_Verify_Text" xml:space="preserve"><value>每个文件完成后，MegaCopier 会直接从目标磁盘重新读取，并将其指纹（哈希）与原文件比较。如有不一致，只重新复制损坏的部分。\n• 备份、照片和重要文档。\n• 可能毫无征兆就出故障的旧 U 盘、廉价 U 盘和硬盘。\n• 通过网络或 Wi-Fi 复制。\n复制会稍慢一些（需要全部重新读取），换来的是确保副本完全一致。</value></data>
+  <data name="Info_Conflict_Text" xml:space="preserve"><value>目标位置已有同名文件时怎么办。\n• 询问：并排显示两个文件的大小、日期和缩略图，由你选择。\n• 替换、跳过、较新时替换或大小不同时替换、保留两者（“名称 (2)”）或重命名已有文件。\n完全相同的文件（大小和日期一致）永远不会重复复制：再次复制只会复制新增或改动的内容。如果整个文件夹已存在，MegaCopier 会在开始前询问。</value></data>
+  <data name="Info_Hash_Text" xml:space="preserve"><value>哈希就像文件的指纹：哪怕只改了一个字节，指纹也会变。用于校验和保存的校验和。\n• xxHash3：最快，适合校验复制结果。\n• SHA-256：网站和程序最常用来核对下载文件。\n• MD5、SHA-1、BLAKE3…：当其他程序要求特定算法时使用。\n日常使用保持 xxHash3 即可。</value></data>
+  <data name="Info_Performance_Text" xml:space="preserve"><value>复制能跑多快。\n• 速度限制：让复制在你工作或看电影时不会占满网络或磁盘。每个复制在其“选项”页还有自己的限速，可随时修改且无需停止。\n• 缓冲区大小：一次读写的数据块。处理超大文件时大一些更好。\n• 同时操作数：同时向磁盘请求多少个数据块。高速 SSD 设得多一些更快。\n不确定就保持默认：MegaCopier 已经会自动为每块磁盘调优。</value></data>
+  <data name="Info_Merge_Text" xml:space="preserve"><value>如果在一个复制进行中又开始新的复制，新复制可以并入正在进行的那个，而不是排队等待：它的文件排在列表末尾。\n• 从不：每个复制各自进行。\n• 目标是同一文件夹时，或使用相同磁盘时。\n• 总是。\n选中“先询问”则每次由你决定。适合一点点往同一个 U 盘里放文件夹时使用。</value></data>
+  <data name="Info_MoveAttributes_Text" xml:space="preserve"><value>移动到另一块磁盘时，文件会先复制，再从源位置删除。这里选择除内容外还带上什么：属性（只读、隐藏…）、权限、所有者和审核。\n• 在服务器之间移动工作文件夹，并保留谁能打开它们。\n在同一磁盘上移动只是换个位置，所有信息都会保留。</value></data>
+  <data name="Info_DeleteIncomplete_Text" xml:space="preserve"><value>复制时每个文件都先以 .mcpart 扩展名写入，只有顺利完成后才改为正式名称。如果停止复制，这些片段可以让你以后从中断处继续。\n• 开启：点“停止”会删除 .mcpart 文件，目标位置保持干净（但无法再继续）。\n• 关闭：保留它们以便继续。\n关闭 MegaCopier 或断电后都不会删除任何内容。</value></data>
+  <data name="Info_Eject_Text" xml:space="preserve"><value>完成后，MegaCopier 会像“安全删除硬件”一样安全弹出目标 U 盘、存储卡或 USB 硬盘。\n• 连续往多个 U 盘里拷文件：拔下时就已经准备好了。\n仅在没有其他复制使用它时才会弹出。“强制”即使有程序打开它也会弹出。</value></data>
+  <data name="Info_OnError_Text" xml:space="preserve"><value>文件重试后仍无法复制时怎么办。\n• 询问：复制暂停并告诉你原因，由你选择重试、跳过、跳过后续错误或停止。\n• 跳过并继续：适合夜间的大型复制，结束时可以看到失败列表。\n• 停止复制：不能缺任何文件时使用。\n• 最后重试：放到最后再试，以防它当时被占用、后来释放了。</value></data>
+  <data name="Info_ErrorReport_Text" xml:space="preserve"><value>复制结束时如有错误，会保存一个文本文件，列出每个失败的文件、原因和时间。\n• 方便从容地检查你夜里留着运行的复制。\n• 方便转交给负责电脑维护的人。</value></data>
+  <data name="Info_MaxJobs_Text" xml:space="preserve"><value>可以同时进行多少个复制。使用同一块磁盘的复制总会排队，因为在机械硬盘上同时复制两份会让一切变慢。\n• 0（不限）：每块磁盘都全速并行工作。\n• 1：全部排队，一个接一个。</value></data>
+  <data name="Info_Fast_Text" xml:space="preserve"><value>能同时承受多个复制而不降速的驱动器，例如 NVMe SSD 或 RAID。列在这里的驱动器不用排队。\n• 当你从高速 SSD 同时复制到多个目标时。</value></data>
+  <data name="Info_Slow_Text" xml:space="preserve"><value>只要你碰键盘或鼠标，复制就降到你选的速度，免得电脑变卡；你一停手，又会恢复全速。\n• 一边工作、玩游戏或视频通话，一边进行大复制。</value></data>
+  <data name="Info_ScheduleLimit_Text" xml:space="preserve"><value>在你选择的时间段内，复制不超过这个速度；其他时间全速。\n• 在办公室，上班时间不占满网络。\n• 在家，下午视频通话不卡断。</value></data>
+  <data name="Info_Priority_Text" xml:space="preserve"><value>Windows 相对其他程序给 MegaCopier 多少优先权。\n• 低：其他程序保持流畅，复制可能稍慢。\n• 正常：和平时一样。\n• 高：复制优先，适合只求尽快完成时。</value></data>
+  <data name="Info_Tune_Text" xml:space="preserve"><value>第一次复制到某块磁盘时，MegaCopier 会尝试几种块大小和同时操作数，并为这块磁盘保留最快的组合，之后的复制都会记住。\n• SSD、机械硬盘、U 盘和网络驱动器性能差别很大：这样每块盘都能跑出最佳速度。\n如果你手动设置了性能，会以你的设置为准。</value></data>
+  <data name="Info_Peer_Text" xml:space="preserve"><value>在同一网络中装有 MegaCopier 的电脑之间收发文件，无需共享文件夹，也无需任何设置。发送方输入这台电脑的代码即可；全程加密，每个文件到达后都会校验。\n• 把照片或视频从笔记本传到台式机。\n• 把项目发给办公室的同事。</value></data>
+  <data name="Info_Remote_Text" xml:space="preserve"><value>在手机浏览器（同一 Wi-Fi 网络）中打开一个页面，查看复制进度，并可暂停、继续或取消。\n• 让长时间的复制在后台跑，坐在沙发上就能看着。\n手机无需安装任何东西，地址和代码显示在这里。</value></data>
+  <data name="Info_LiveSync_Text" xml:space="preserve"><value>MegaCopier 监视一个文件夹，每次你修改内容并保存完毕后，立即把它复制到另一个位置（另一块磁盘、U 盘或网络文件夹）。\n• 在另一块磁盘上始终保有文档的最新副本。\n• 把项目的改动同步到共享文件夹。\n在镜像模式下，你删除的内容也会从副本中删除。</value></data>
+  <data name="Info_Tasks_Text" xml:space="preserve"><value>一个保存好的复制，由 Windows 在你选定的时间每天、每周或每月自动运行，即使 MegaCopier 已关闭。只复制新增或改动的内容。\n• 每晚备份“文档”。\n• 每周日把照片传到 NAS。\n在复制的“选项”页用“另存为任务”创建。</value></data>
+  <data name="Info_Guard_Text" xml:space="preserve"><value>磁盘可能在多年里悄悄损坏文件。MegaCopier 把每个文件的指纹保存在文件内部，电脑空闲时重新校验。如果某个文件在没人动过的情况下变了，会及时提醒你从备份中恢复。\n• 家庭照片和视频。\n• 很少打开的备份盘。\n你自己编辑的文件会自动更新指纹。需要 NTFS 磁盘。</value></data>
+  <data name="Info_Webhook_Text" xml:space="preserve"><value>每个复制完成后，MegaCopier 会把摘要发送到一个网址，提醒就能到达你的手机或聊天群。\n• Discord、Slack 或 Teams：在频道里收到提醒。\n• ntfy.sh：几乎无需安装就能在手机上收到通知。\n• Home Assistant：自动化（完成后开灯…）。</value></data>
+  <data name="Info_Connections_Text" xml:space="preserve"><value>在这里保存你要复制到的服务器：FTP、SFTP、WebDAV（Nextcloud、NAS…）或 S3（Backblaze、Wasabi、R2…）。之后选择源或目标时就会出现。\n• 把备份上传到云端。\n• 从公司服务器下载文件。\n密码保存在 Windows 凭据管理器中，绝不以明文保存。</value></data>
 </root>

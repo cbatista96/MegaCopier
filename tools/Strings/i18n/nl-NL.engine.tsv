@@ -264,3 +264,7 @@ E_F_ImageText	afbeeldingen met de tekst "{0}"
 E_CloudSignedIn	Aangemeld. Je kunt dit tabblad sluiten en teruggaan naar MegaCopier.
 E_CloudSignInFailed	Aanmelden mislukt. Ga terug naar MegaCopier om te zien waarom.
 E_CloudSignInError	Kan niet aanmelden: {0}
+E_FolderCancelled	Kopie geannuleerd: de map bestond al op de bestemming.
+E_FolderSkipExisting	De map bestond al: de {0} bestanden die er al zijn worden overgeslagen en de rest wordt gekopieerd.
+E_FolderOverwrite	De map bestond al: de {0} bestanden die er al zijn worden overschreven.
+E_FolderRenamed	De map "{0}" bestond al: hij wordt gekopieerd als "{1}".

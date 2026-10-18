@@ -45,9 +45,9 @@ OnTopTitle.Text	常に手前に表示
 OnTopDescription.Text	コピー中はウィンドウを他のウィンドウより手前に表示します
 CopyHeader.Text	コピー
 VerifyTitle.Text	コピー後に検証
-VerifyDescription.Text	キャッシュを使わずにコピー先を読み直し、コピー元と一致しないブロックを修復します
+VerifyDescription.Text	各ファイルの後で読み直して元と比べ、違いがあれば直します。
 ConflictTitle.Text	ファイルが既に存在する場合
-ConflictDescription.Text	同一のファイル（サイズと日付が同じ）は常にスキップされます
+ConflictDescription.Text	コピー先に同じ名前のファイルがあるとき。同じファイルは二度とコピーしません。
 ConflictAsk.Content	確認する
 ConflictReplace.Content	置き換える
 ConflictSkip.Content	スキップ
@@ -197,7 +197,7 @@ Options_FilesFolders.Text	ファイルとフォルダー
 Options_OnFinish.Text	完了後
 Options_Owner.Content	所有者
 Options_ResetDefault.Text	リセット
-Options_RunningInfo.Message	コピー実行中: これらの変更は再開時に適用されます（「検証」と「無人」はすぐに適用）。
+Options_RunningInfo.Message	コピー中です: ほとんどの変更はすぐ反映されます。モード、フィルター、ブロック サイズ、スレッド、チェックサムは再開時に反映されます。
 Options_SaveChecksum.Content	チェックサムファイルを保存
 Options_SaveDefault.Text	既定として保存
 Options_Scripts.Text	完了後のコマンド
@@ -241,17 +241,17 @@ Settings_FinishClose.Content	常に閉じる
 Settings_FinishKeep.Content	開いたままにする
 Settings_FreeSpace.Content	先に空き容量を確認
 Settings_General.Text	全般
-Settings_HashTitle.Text	ハッシュアルゴリズム
-Settings_HashDescription.Text	検証と保存するチェックサムに使います。xxHash3 が最速、SHA-256 が最も互換性があります。
+Settings_HashTitle.Text	確認の種類 (ハッシュ)
+Settings_HashDescription.Text	元とコピーを比べる「指紋」。xxHash3 が最速、SHA-256 はウェブやソフトで最もよく求められます。
 Settings_MaxJobsTitle.Text	同時コピー数
 Settings_MaxJobsDescription.Text	同時に実行するコピーの上限（0 = 無制限）。同じディスクを使うコピーは常に順番待ちになります。
 Settings_ModeAuto.Content	自動
 Settings_ModeCompact.Content	コンパクト
 Settings_ModeExpanded.Content	フル
 Settings_PerformanceTitle.Text	パフォーマンス
-Settings_PerformanceDescription.Text	速度制限、バッファーサイズ、並列処理
+Settings_PerformanceDescription.Text	コピーの速さの上限: 速度制限、ブロック サイズ、同時に扱う数。
 Settings_PriorityTitle.Text	プロセスの優先度
-Settings_PriorityDescription.Text	低くするとコピー中も PC が快適に動きます
+Settings_PriorityDescription.Text	「低」ならコピー中もほかのプログラムが快適、「高」ならコピーが優先されます。
 Settings_Queue.Text	キュー
 Settings_Themes.Text	テーマ
 Settings_WhatToCopy.Text	コピーする内容と、その後の動作
@@ -1157,3 +1157,206 @@ Merge_Separate	別々に
 Eject_DoneTitle	ドライブを取り出しました。取り外せます
 Eject_FailedTitle	ドライブを取り出せませんでした。使用中です
 Sound_Windows	Windows のサウンド
+FolderAsk_Title	「{0}」はコピー先にすでにあります
+FolderAsk_TitleMany	{0} 個のフォルダーがコピー先にすでにあります
+FolderAsk_Message	コピーする {2} 個のファイルのうち {1} 個が {0} にすでにあります ({3})。どうしますか?
+FolderAsk_Skip	既にあるものは飛ばす
+FolderAsk_SkipText	すべてのファイルを確認します。既にあるものはコピーも変更もせず、足りないものだけをコピーします。中断したコピーの続きに最適です。
+FolderAsk_Overwrite	上書きする
+FolderAsk_OverwriteText	既にあるファイルはコピー元のもので置き換えます。同一のファイルは時間短縮のためそのままにします。
+FolderAsk_Rename	名前を変える
+FolderAsk_RenameText	すべてを新しいフォルダー「{0}」にコピーし、既存のフォルダーには触れません。
+FolderAsk_AskEach	1 つずつ確認する
+FolderAsk_AskEachText	重複する各ファイルをサイズと日付付きで表示し、どうするかを決めます。
+FolderAsk_Cancel	コピーをキャンセル
+FolderAsk_Recommended	おすすめ
+Rules_FolderAsk.Content	どうするか確認する
+Files_More.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	リストのその他のオプション
+Files_ShowHashes.Text	チェックサム (ハッシュ) を表示
+Files_Source.Text	コピー元
+Files_Destination.Text	コピー先
+Files_RailTop.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	リストの先頭へ (Alt+Home): 選んだファイルを次にコピーします。
+Files_RailTop.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	先頭へ
+Files_RailUp.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	1 つ上へ (Alt+↑)
+Files_RailUp.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	上へ
+Files_RailDown.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	1 つ下へ (Alt+↓)
+Files_RailDown.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	下へ
+Files_RailBottom.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	リストの末尾へ (Alt+End): 選んだファイルを最後にコピーします。
+Files_RailBottom.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	末尾へ
+Files_RailAdd.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	このコピーにファイルやフォルダーを追加: リストの末尾に入り、同じコピー先へコピーします。
+Files_RailAdd.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	追加
+Files_RailRemove.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	コピーから外す (Del): 何も削除されず、コピーされなくなるだけです。
+Files_RailRemove.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	外す
+Files_RailSave.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	リストを保存: 残りのコピー内容を保存し、PC の電源を切っても後で続けられます。
+Files_RailSave.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	リストを保存
+Files_RailLoad.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	リストを読み込む: 残りを同じコピー先、同じオプションでコピーし続けます。
+Files_RailLoad.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	リストを読み込む
+Files_ListSaved	リストを保存しました
+Files_ListSavedText	「{1}」にコピー待ちのファイルが {0} 個あります。「リストを読み込む」で開くと続きから再開できます。
+ListMissing_Title	元のコピー先が見つかりません
+ListMissing_Message	コピー先のフォルダーがもうありません (取り外された USB メモリーやディスクかもしれません)。残りを別の場所にコピーしますか?
+ListMissing_Choose	別の場所を選ぶ…
+ListMissing_Cancel	キャンセル
+Speed_Title.Text	このコピーの速度制限
+Speed_Description.Text	作業中にディスクやネットワークが限界まで使われないよう、コピーの速度を抑えます。コピーを止めずにすぐ反映されます。
+Speed_Switch.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	速度を制限
+Speed_Slider.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	最大速度
+Speed_NoLimit	制限なし
+Drop_AddToEnd	{0} の末尾に追加
+Bars_Title	プログレス バー
+Bars_Description	バーの見た目と動きを選びます。バーごとに別のスタイルにでき、変更はすぐに反映されます。
+Bars_Which	変更するバー
+Bars_RoleTotal	全体のバー
+Bars_RoleFile	ファイルのバー
+Bars_RoleMini	コピーの一覧
+Bars_Preview	プレビュー
+Bars_StateRunning	コピー中
+Bars_StatePaused	一時停止中
+Bars_StateError	エラー
+Bars_StateDone	完了
+Bars_Styles	スタイル
+Bars_ColorTheme	テーマの色
+Bars_ColorCustom	自分の色
+Bars_ColorTraffic	信号 (進み具合で変化)
+Bars_ColorRainbow	虹色
+Bars_SwatchGreen	グリーン
+Bars_SwatchViolet	ブルーからバイオレット
+Bars_SwatchTeal	ターコイズ
+Bars_SwatchOrange	オレンジ
+Bars_SwatchPink	ピンク
+Bars_SwatchSilver	シルバー
+Bars_ColorStart	始点
+Bars_ColorEnd	終点
+Bars_TextOutside	右側
+Bars_TextInside	バーの中
+Bars_TextHidden	非表示
+Bars_MotionSmooth	なめらか
+Bars_MotionElastic	弾む (少し跳ねる)
+Bars_MotionSteps	段階的 (5% ごと)
+Bars_ApplyAll	3 つのバーすべてに適用
+Bars_Reset	このバーをリセット
+Bars_FromTheme	テーマ
+Info_More	詳しい情報: {0}
+BarStyle_Fluent	Fluent
+BarStyle_Fluent_Hint	すっきり、やわらかな光が流れます。
+BarStyle_Aero	Aero
+BarStyle_Aero_Hint	つややか、光の反射が何度も流れます。
+BarStyle_Wave	ウェーブ
+BarStyle_Wave_Hint	縁が液体のように波打ちます。
+BarStyle_Stripes	動くストライプ
+BarStyle_Stripes_Hint	斜めのストライプが進みます。
+BarStyle_Neon	ネオン
+BarStyle_Neon_Hint	鮮やかな色と呼吸するような光のにじみ。
+BarStyle_Blocks	ブロック
+BarStyle_Blocks_Hint	昔のバーのような区切られたブロック。
+BarStyle_Led	LED
+BarStyle_Led_Hint	光の点が並び、最後の点が点滅します。
+BarStyle_Rainbow	虹
+BarStyle_Rainbow_Hint	すべての色が流れ続けます。
+BarStyle_Pulse	鼓動
+BarStyle_Pulse_Hint	ゆっくり明るくなったり暗くなったりします。
+BarStyle_Comet	彗星
+BarStyle_Comet_Hint	輝く頭に尾と火花が続きます。
+BarStyle_Glass	ガラス
+BarStyle_Glass_Hint	半透明で、縁が光ります。
+BarStyle_Fire	炎
+BarStyle_Fire_Hint	揺らめく炎。
+BarStyle_Terminal	ターミナル
+BarStyle_Terminal_Hint	[#####·····] コンソール風、カーソル付き。
+BarStyle_Line	細い線
+BarStyle_Line_Hint	控えめな線と脈打つマーカー。
+BarStyle_Dual	二重レイヤー
+BarStyle_Dual_Hint	明るい層が先に進み、濃い層が追いかけます。
+BarStyle_Pixels	ピクセル
+BarStyle_Pixels_Hint	ゲームのような小さな四角、きらめき付き。
+BarStyle_Metal	メタル
+BarStyle_Metal_Hint	ヘアライン加工の金属にきらめき。
+BarStyle_Outline	アウトライン
+BarStyle_Outline_Hint	枠線とストライプの塗りだけ。
+BarStyle_Flow	流れるグラデーション
+BarStyle_Flow_Hint	2 色が混ざり合って流れます。
+BarStyle_Bubbles	泡
+BarStyle_Bubbles_Hint	中を泡が流れていきます。
+BarStyle_Traffic	信号
+BarStyle_Traffic_Hint	始めは赤、途中で黄、最後は緑。
+BarStyle_Segments	セグメント
+BarStyle_Segments_Hint	20 の区間が 1 つずつ埋まります。
+Info_Bars_Title	プログレス バー
+Info_Bars_Text	MegaCopier には 3 つのバーがあります。全体のバー (コピー全体の残り)、コピー中のファイルのバー、コピー一覧の小さなバーです。それぞれ別のスタイルにできます。\n上で変更するバーを選び、スタイルをタップして細かく調整します。プレビューでコピー中、一時停止、エラー、完了時の見え方を確認できます。\n• 遠くからでも進み具合が一目でわかる派手なバー (ネオン、炎、虹)。\n• コピー中も作業していて気を散らしたくないときの控えめなバー (細い線、Fluent)。\n• 数字を読まなくても残りが多いか少ないかわかる信号。
+Info_BarColors_Title	色
+Bars_ColorsDescription	テーマの色、自分の色、信号、虹。
+Info_BarColors_Text	バーの色をどこから取るか。\n• テーマの色: 別のテーマを選ぶと自動で変わります。\n• 自分の色: 選んだ 2 色のグラデーション (見本か「始点 / 終点」ボタンをタップ)。\n• 信号: 始めは赤、途中で黄、最後は緑。数字を読まなくても残りがわかります。\n• 虹: すべての色。
+Info_BarThickness_Title	太さ
+Bars_ThicknessDescription	バーの高さ。
+Info_BarThickness_Text	バーの高さ (ピクセル)。「テーマ」は選んだテーマの高さを使います。\n• 太く: 遠くからでも見やすく、ウェーブ、炎、ピクセルなどが映えます。\n• 細く: 控えめで、細い線スタイルや小さな画面に最適。\nパーセントをバーの中に表示すると、読める高さまで自動で太くなります。
+Info_BarRadius_Title	角の丸み
+Bars_RadiusDescription	角を四角にするか丸くするか。
+Info_BarRadius_Text	バーの端の丸み。0 は昔ながらのバーのような直角、最大にするとカプセル形になります。「テーマ」はテーマの丸みを使います。\n• 直角: ブロック、ピクセル、ターミナルによく合います。\n• 丸く: やわらかく現代的で、Fluent、ネオン、ガラスにぴったり。
+Info_BarSpeed_Title	エフェクトの速さ
+Bars_SpeedDescription	光、波、ストライプが動く速さ。
+Info_BarSpeed_Text	バーのアニメーションの速さを変えます (コピーの速度は変わりません)。1× が標準、0.25× はとてもゆっくり、3× はとても速くなります。\n• ゆっくり: 落ち着いた印象で、バーがいつも見えている場合に最適。\n• 速く: 活発な印象で目を引きます。
+Info_BarGlow_Title	光沢と輝き
+Bars_GlowDescription	反射や光の強さ。
+Info_BarGlow_Text	光の強さを上げ下げします: Aero の反射、ネオンの輝き、彗星の頭、泡、メタルのきらめきなど。\n• 0%: 平らで落ち着いたバーに。\n• 100%: 最大限に輝きます。ダーク テーマに最適。
+Info_BarText_Title	パーセント
+Bars_TextDescription	右側、バーの中、または非表示。
+Info_BarText_Text	パーセントの数字をどこに表示するか。\n• 右側: これまでどおりバーの外。\n• バーの中: 数字が塗りの上に重なり、読めるようにバーが太くなります。ほかの情報の場所が広がります。\n• 非表示: バーだけですっきり (パーセントはウィンドウのタイトルに残ります)。
+Info_BarMotion_Title	進み方
+Bars_MotionDescription	なめらか、弾む、段階的。
+Info_BarMotion_Text	コピーが進むたびの塗りの動き方。\n• なめらか: カクつかずに滑ります (おすすめ)。\n• 弾む: 少し行き過ぎてばねのように戻ります。遊び心があります。\n• 段階的: 昔のバーのように 5% ずつ進みます。ブロックやピクセルと相性抜群。
+Info_BarEffects_Title	状態に応じたエフェクト
+Bars_EffectsDescription	一時停止でストライプ、エラーで揺れ、完了で光ります。
+Info_BarEffects_Text	文字を読まなくてもバーが状況を教えてくれます。\n• 一時停止: 止まったオレンジのストライプが出ます。\n• エラー: 赤くなって小さく揺れます。\n• 完了: お祝いの緑の光 (全体のバーと一覧)。\n色が変わるだけのバーがよければオフにします。
+Info_BarBorder_Title	枠線
+Bars_BorderDescription	バーを囲む細い線。
+Info_BarBorder_Text	バーの周りに細い線を描き、背景から見分けやすくします。\n• 空のトラックが見えにくい明るいテーマやテクスチャ付きテーマで便利。\n• ガラスやアウトラインとよく合います。
+Info_BarReduce_Title	アニメーションを減らす
+Bars_ReduceDescription	繰り返す効果のない静かなバー (すべてに適用)。
+Info_BarReduce_Text	繰り返す動き (光、波、ストライプ、点滅) をなくします。バーは普段どおり進みます。\n• アニメーションが気になる、酔いやすい場合に便利です。\n• ノート PC のバッテリーを少し節約できます。\nWindows で「アニメーション効果」をオフにすると自動でオンになります (設定 > アクセシビリティ > 視覚効果)。
+Theme_material-oscuro	マテリアル ダーク
+Theme_cobre-oscuro	ダーク カッパー
+Theme_silicio-oscuro	ダーク シリコン
+Theme_brisa-oscura	ダーク ブリーズ
+Theme_pizarra	スレート
+Theme_arcade	アーケード
+Theme_artico	アークティック
+Theme_vampiro	ヴァンパイア
+Theme_capuchino	カプチーノ
+Theme_noche-tokio	東京の夜
+Theme_retro-calido	ウォーム レトロ
+Theme_solar-oscuro	ソーラー ダーク
+Theme_atomo	アトム
+Theme_menta-oscura	ダーク ミント
+Theme_material-claro	マテリアル ライト
+Theme_cobre-claro	ライト カッパー
+Theme_silicio-claro	ライト シリコン
+Theme_brisa-clara	ライト ブリーズ
+Theme_tiza	チョーク
+Theme_solar-claro	ソーラー ライト
+Theme_capuchino-claro	ライト カプチーノ
+Info_Paste_Text	エクスプローラーやデスクトップでファイルをコピー (Ctrl+C) または切り取り (Ctrl+X) して貼り付ける (Ctrl+V) と、Windows の代わりに MegaCopier がコピーします。キュー、一時停止、検証、中断後の再開ができます。\n• 外付けディスクへの大きなコピー: 一時停止して後で続けられます。\n• 続けて何度もコピー: ディスクを奪い合わずに順番待ちします。\n同じフォルダーに貼り付ける (複製を作る) 場合は、これまでどおりエクスプローラーが行います。
+Info_Drag_Text	左ボタンでウィンドウからウィンドウへファイルをドラッグすると、Windows と同じルールで MegaCopier がコピー (または移動) します。同じドライブなら移動、Ctrl でコピー、Shift で移動です。\n• 別のディスクのフォルダー間で写真をドラッグして整理。\n• エクスプローラーを固まらせずに大きなプロジェクトを移動。\nファイル、ZIP、左側のウィンドウにドロップした場合はエクスプローラーが処理します。
+Info_WindowMode_Text	コピー中のウィンドウの見た目。\n• コンパクト: バーとボタンだけで場所を取りません。\n• フル: ファイル一覧、コピー先、オプション、グラフ、ログ付き。\n• 自動: コピーが 1 つならコンパクト、複数ならフル。\n「詳細」「簡易」ボタンでいつでも切り替えられます。
+Info_Verify_Text	各ファイルが終わるたびに、MegaCopier はコピー先のディスクから直接読み直し、指紋 (ハッシュ) を元のファイルと比べます。一致しない部分があれば、その部分だけをコピーし直します。\n• バックアップ、写真、大切な書類。\n• 予告なく壊れることがある古い・安価な USB メモリーやディスク。\n• ネットワークや Wi-Fi 経由のコピー。\nすべてを読み直すので少し時間がかかりますが、完全に同じだと確信できます。
+Info_Conflict_Text	コピー先に同じ名前のファイルがすでにあるときの動作。\n• 確認する: 両方のサイズ、日付、サムネイルを表示して選べます。\n• 置き換える、スキップ、新しい場合やサイズが違う場合に置き換える、両方残す (「名前 (2)」)、既存のファイルの名前を変える。\n同じファイル (サイズと日付が同じ) は二度とコピーしません。もう一度コピーすると、新しいものや変更されたものだけをコピーします。フォルダーごと存在する場合は、始める前に確認します。
+Info_Hash_Text	ハッシュはファイルの指紋のようなもので、1 バイトでも変わると指紋も変わります。検証や保存するチェックサムに使います。\n• xxHash3: 最速。コピーの検証に最適。\n• SHA-256: ウェブサイトやソフトがダウンロードの確認に最もよく使います。\n• MD5、SHA-1、BLAKE3…: ほかのソフトから特定のものを求められたときに。\n普段は xxHash3 のままで大丈夫です。
+Info_Performance_Text	コピーがどこまで速く走れるか。\n• 速度制限: 作業中や映画を見ているときに、コピーがネットワークやディスクを使い切らないようにします。各コピーの [オプション] タブにも個別の制限があり、止めずにすぐ変えられます。\n• バッファー サイズ: 一度に読み書きするブロック。巨大なファイルでは大きいほうが有利です。\n• 同時操作数: ディスクに同時に要求するブロックの数。高速な SSD は多いほど速くなります。\nわからなければ既定のままで大丈夫です。MegaCopier がディスクごとに自動で調整します。
+Info_Merge_Text	コピー中に別のコピーを始めると、順番を待たずに実行中のコピーに加わることができます。ファイルはリストの末尾に入ります。\n• しない: それぞれ別に実行。\n• 同じフォルダーへ、または同じディスクを使う場合。\n• 常に。\n「先に確認する」をオンにすると毎回選べます。同じ USB メモリーにフォルダーを少しずつ送るときに便利です。
+Info_MoveAttributes_Text	別のディスクへ移動するときは、ファイルをコピーしてから元を削除します。ここでは内容以外に何を持っていくかを選びます: 属性 (読み取り専用、隠し…)、アクセス許可、所有者、監査。\n• 誰が開けるかを保ったまま、作業フォルダーをサーバー間で移動。\n同じディスク内の移動は場所が変わるだけなので、すべて保たれます。
+Info_DeleteIncomplete_Text	コピー中、各ファイルは拡張子 .mcpart で書き込まれ、正しく完了したときに初めて本来の名前になります。コピーを停止しても、この断片から後で止まったところの続きをコピーできます。\n• オン: [停止] を押すと .mcpart が削除され、コピー先がきれいに保たれます (ただし再開はできません)。\n• オフ: 再開用に残します。\nMegaCopier を閉じたときや停電後に何かが削除されることはありません。
+Info_Eject_Text	完了すると、MegaCopier はコピー先の USB メモリー、カード、USB ディスクを「ハードウェアの安全な取り外し」と同じように安全に取り外せる状態にします。\n• 何本もの USB メモリーに続けてコピー: 抜くときにはもう準備完了。\nほかのコピーが使っていないときだけ行います。「強制」はプログラムが開いていても取り外します。
+Info_OnError_Text	再試行してもコピーできないファイルがあるときの動作。\n• 確認する: コピーが止まって理由を表示し、再試行、スキップ、以降もスキップ、停止から選べます。\n• スキップして続行: 夜間の大きなコピーに最適。最後に失敗の一覧を確認できます。\n• コピーを停止: 何ひとつ欠けてはいけないときに。\n• 最後に再試行: 使用中だったものが空くかもしれないので、最後に回します。
+Info_ErrorReport_Text	コピーがエラーで終わったとき、失敗した各ファイル、理由、時刻を書いたテキスト ファイルを保存します。\n• 夜間に流しておいたコピーを落ち着いて確認するために。\n• パソコンの管理担当者に渡すために。
+Info_MaxJobs_Text	同時に実行できるコピーの数。同じディスクを使うコピーは必ず順番を待ちます。ハード ディスクに 2 つ同時に書くと全体が遅くなるためです。\n• 0 (制限なし): 各ディスクが並行して全力で動きます。\n• 1: すべて 1 つずつ順番に。
+Info_Fast_Text	NVMe SSD や RAID のように、複数のコピーを同時にこなしても速度が落ちないドライブ。ここに入れたドライブは順番を待ちません。\n• 高速な SSD から複数のコピー先へ同時にコピーするときに。
+Info_Slow_Text	キーボードやマウスに触れると、PC が重くならないようコピーが選んだ速度まで下がります。操作をやめると全速に戻ります。\n• 仕事、ゲーム、ビデオ通話をしながらの大きなコピー。
+Info_ScheduleLimit_Text	選んだ時間帯はコピーがその速度を超えず、それ以外は全速で進みます。\n• 職場で、勤務時間中にネットワークを圧迫しないように。\n• 自宅で、午後のビデオ通話が途切れないように。
+Info_Priority_Text	Windows がほかのプログラムより MegaCopier をどれだけ優先するか。\n• 低: ほかのプログラムが快適に動きます。コピーは少し遅くなることがあります。\n• 標準: いつもどおり。\n• 高: コピーが優先されます。とにかく早く終わらせたいときに。
+Info_Tune_Text	初めてディスクにコピーするとき、MegaCopier は複数のブロック サイズと同時操作数を試し、そのディスクで最速の組み合わせを選んで、以降のコピーでも覚えておきます。\n• SSD、HDD、USB メモリー、ネットワーク ドライブは性能がまったく違うため、それぞれが最高の速度で動きます。\n手動で性能を設定した場合は、その設定が優先されます。
+Info_Peer_Text	同じネットワーク内の MegaCopier 入りの PC 同士で、フォルダーを共有したり設定したりせずにファイルを送受信できます。送る側がこの PC のコードを入力するだけで、すべて暗号化され、各ファイルは届いたときに確認されます。\n• ノート PC からデスクトップ PC へ写真や動画を移す。\n• 職場の同僚にプロジェクトを送る。
+Info_Remote_Text	スマートフォンのブラウザー (同じ Wi-Fi) でページを開き、コピーの様子を見て一時停止、再開、キャンセルができます。\n• 長いコピーを流しておき、ソファーから見守る。\nスマートフォンに何もインストールする必要はありません。アドレスとコードはここに表示されます。
+Info_LiveSync_Text	MegaCopier がフォルダーを見張り、何かを変更して保存し終えるたびに、別の場所 (別のディスク、USB メモリー、ネットワーク フォルダー) にコピーします。\n• 書類の最新のコピーを常に別のディスクに置いておく。\n• プロジェクトの変更を共有フォルダーに反映する。\nミラー モードでは、削除したものはコピーからも削除されます。
+Info_Tasks_Text	保存したコピーを、MegaCopier が閉じていても、選んだ時刻に毎日・毎週・毎月 Windows が自動で実行します。新しいものや変更されたものだけをコピーします。\n• 毎晩「ドキュメント」をバックアップ。\n• 毎週日曜に写真を NAS へ。\nコピーの [オプション] タブの「タスクとして保存」で作成します。
+Info_Guard_Text	ディスクは何年もかけて気づかないうちにファイルを壊すことがあります。MegaCopier は各ファイルの指紋をファイル自体に保存し、PC が空いているときに確認し直します。誰も触っていないのに変わったファイルがあれば、バックアップから戻せるうちに知らせます。\n• 家族の写真や動画。\n• めったに開かないバックアップ用ディスク。\n自分で編集したファイルは自動で更新されます。NTFS ディスクが必要です。
+Info_Webhook_Text	コピーが終わるたびに MegaCopier が概要を Web アドレスへ送るので、スマートフォンやチャットに通知が届きます。\n• Discord、Slack、Teams: チャンネルに通知。\n• ntfy.sh: ほぼ何もインストールせずにスマートフォンへ通知。\n• Home Assistant: 自動化 (終わったら照明をつける…)。
+Info_Connections_Text	コピー先のサーバーをここに保存します: FTP、SFTP、WebDAV (Nextcloud、NAS…)、S3 (Backblaze、Wasabi、R2…)。保存すると、コピー元やコピー先を選ぶときに表示されます。\n• バックアップをクラウドへアップロード。\n• 会社のサーバーからファイルをダウンロード。\nパスワードは平文ではなく、Windows の資格情報マネージャーに保存されます。

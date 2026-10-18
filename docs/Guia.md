@@ -24,7 +24,7 @@ necesites.
 15. [Tareas programadas y avisos](#15-tareas-programadas-y-avisos)
 16. [Controlar desde el móvil y con asistentes de IA](#16-controlar-desde-el-móvil-y-con-asistentes-de-ia)
 17. [Ajustes](#17-ajustes)
-18. [Temas e iconos](#18-temas-e-iconos)
+18. [Temas, iconos y barras de progreso](#18-temas-iconos-y-barras-de-progreso)
 19. [La consola `mcopy`](#19-la-consola-mcopy)
 20. [Versión portátil](#20-versión-portátil)
 21. [Cómo funciona por dentro](#21-cómo-funciona-por-dentro)
@@ -109,9 +109,9 @@ Con varias copias aparece un paginador **‹ ›** para pasar de una a otra.
 
 | Pestaña | Qué tiene |
 |---|---|
-| **Archivos** | La lista viva de archivos: lo ya copiado desaparece si marcas *Ocultar los terminados*, y *Seguir al actual* mantiene a la vista el que se copia. Buscar, filtrar por estado, ver las sumas de origen y destino, reordenar, quitar o añadir archivos, guardar o cargar la lista y exportarla a CSV o HTML. Al pasar el ratón por un archivo se ven todos sus detalles. |
+| **Archivos** | La lista viva de archivos con su origen, su tamaño y su destino. Botones para llevar al principio, subir, bajar, llevar al final, añadir, quitar, guardar y cargar la lista (ver más abajo). Buscar, filtrar por estado, *Ocultar los terminados*, *Seguir al actual*, las sumas de origen y destino (menú «⋯») y exportar a CSV o HTML. |
 | **Destino** | El espacio libre de cada unidad de destino. |
-| **Opciones** | Qué se copia (fechas, atributos, ADS, permisos, propietario, auditoría), el modo, qué hacer si el archivo existe, el algoritmo de suma, el búfer, la verificación, archivo de sumas, informe HTML, comandos al terminar, filtros y reglas. Se pueden cambiar con la copia en marcha. |
+| **Opciones** | El **límite de velocidad** de esa copia (ver más abajo). Qué se copia (fechas, atributos, ADS, permisos, propietario, auditoría), el modo, qué hacer si el archivo existe, el algoritmo de suma, el búfer, la verificación, archivo de sumas, informe HTML, comandos al terminar, filtros y reglas. Se pueden cambiar con la copia en marcha. |
 | **Estado** | Gráfica de velocidad y totales: copiados, verificados, omitidos, con errores y pendientes. |
 | **Registro** | Todo lo que ha pasado, con la hora. |
 
@@ -119,6 +119,31 @@ Con varias copias aparece un paginador **‹ ›** para pasar de una a otra.
 
 En *Ajustes > Interfaz > Ventana de copia* eliges si empieza **compacta**, **completa** o **automática** (compacta con
 una copia y completa cuando hay varias a la vez).
+
+### La lista de archivos
+
+![Lista de archivos con sus botones](capturas/lista.png)
+
+- **Elegir varios**: clic, Ctrl+clic para sumar uno y Mayús+clic para un tramo seguido.
+- **Botones de la izquierda** (también en el menú del botón derecho):
+  - **Al principio** (Alt+Inicio) y **Al final** (Alt+Fin): los elegidos se copian los siguientes o los últimos.
+  - **Subir** (Alt+↑) y **Bajar** (Alt+↓): una posición.
+  - **Añadir** archivos o carpetas a la misma copia: van al final de la lista y al mismo destino.
+  - **Quitar** (Supr): deja de copiarlos; no se borra nada.
+  - **Guardar la lista**: guarda lo que falta por copiar, con su destino y sus opciones, para seguir más tarde aunque
+    apagues el equipo.
+  - **Cargar una lista**: empieza a copiar en seguida lo que faltaba, al mismo destino. Si ese destino ya no está (una
+    memoria USB que quitaste), MegaCopier lo avisa y te deja elegir otro sitio para el resto.
+- **Arrastrar**: los archivos pendientes se reordenan arrastrándolos. Si arrastras archivos del Explorador **sobre la
+  lista**, una línea marca dónde entrarán; si los sueltas **en cualquier otra parte de la copia** (el panel, las pestañas),
+  se añaden al final.
+
+### Límite de velocidad de cada copia
+
+En la pestaña **Opciones** de una copia, el interruptor **Límite de velocidad de esta copia** y su deslizador (de 256 KB/s
+a 1 GB/s) frenan esa copia **al momento**, sin pararla. Sirve para que una copia grande no se coma la red o el disco
+mientras trabajas. El límite general de *Ajustes > Copia > Rendimiento* se aplica a las copias nuevas y a las que están en
+marcha con él.
 
 ### Al terminar
 
@@ -169,6 +194,23 @@ reemplazar si es más nuevo, reemplazar si cambia el tamaño, conservar ambos o 
 nombres se puede cambiar (`{name} ({n}){ext}`, `{date}`…).
 
 Si el archivo de destino es idéntico al de origen, se omite sin preguntar.
+
+### Si la carpeta ya existe
+
+Si copias una carpeta que ya está en el destino con algunos de sus archivos, MegaCopier pregunta **una vez, antes de
+empezar**:
+
+![La carpeta ya existe en el destino](capturas/carpeta-existe.png)
+
+- **Pasar los que ya están** (recomendado): comprueba cada archivo; los que ya están no se copian ni se tocan y se copian
+  solo los que faltan. Ideal para terminar una copia que se cortó.
+- **Sobrescribir**: los que ya están se reemplazan (los idénticos se dejan como están).
+- **Renombrar**: se copia todo en una carpeta nueva, «Fotos (2)», y la que ya estaba no se toca.
+- **Preguntar uno por uno**: el diálogo de arriba, archivo por archivo.
+- **Cancelar la copia**: no se copia nada.
+
+Se cambia en *Ajustes > Copia > Reglas > Si una carpeta ya existe en el destino* (combinar su contenido, omitirla entera o
+preguntar).
 
 ---
 
@@ -442,15 +484,16 @@ italiano, portugués de Brasil, ruso, ucraniano, polaco, neerlandés, turco, chi
 
 ---
 
-## 18. Temas e iconos
+## 18. Temas, iconos y barras de progreso
 
-*Ajustes > Interfaz > Temas*. **52 temas** que cambian toda la interfaz al momento, también los botones, las listas, los
+*Ajustes > Interfaz > Temas*. **73 temas** que cambian toda la interfaz al momento, también los botones, las listas, los
 menús, los cuadros de texto, los interruptores y hasta las barras de desplazamiento. Todos están diseñados para Windows 11, con
 degradados, y algunos tienen **textura** de fondo:
 
 | Oscuros | Claros |
 |---|---|
 | Fluent oscuro · Medianoche · Grafito · Océano · Bosque · Atardecer · Alto contraste · **Combustión** (brasas) · **Caja negra** (fibra de carbono) · Metro oscuro · Robot verde · Cielo de otoño · Ámbar · Granate · **Código verde** (lluvia digital) · Vapor · Metro gris · Televisión · Reproductor · Humo · Berenjena · Cobalto · Esmeralda · Mandarina · **Aurora** · **Galaxia** · **Neón** (rejilla) · **Burbuja azul** (ondas) | Fluent claro · Azul clásico · Gris clásico · Aire · Metro claro · Pez azul · Línea plana · Plus · **Cristal** (metal cepillado) · Cielo · Menta · **Cuaderno** (papel) · **Madera** · Brillo · Nieve · Burbuja lima · Tóxico · Naranja tierra · Aero · Moderno 8 · Mensajero · Luna · Plata |
+| Material oscuro · Cobre oscuro · Silicio oscuro · Brisa oscura · Pizarra · Arcade · Ártico · Vampiro · Capuchino · Noche de Tokio · Retro cálido · Solar oscuro · Átomo · Menta oscura | Material claro · Cobre claro · Silicio claro · Brisa clara · Tiza · Solar claro · Capuchino claro |
 
 El tema **Fluent (como Windows)** sigue solo el modo claro u oscuro y el color de acento de Windows.
 
@@ -472,6 +515,44 @@ los iconos modernos de Windows 11:
 | **Degradado** | Relleno con el degradado de las barras del tema. |
 | **Neón** | Color vivo con un halo de luz alrededor (luce en los temas oscuros). |
 | **Windows 10** | Los iconos clásicos de Windows 10. |
+
+### Barras de progreso
+
+*Ajustes > Interfaz > Barras de progreso*. Arriba eliges **qué barra** cambias (la del total, la del archivo o las de la
+lista de copias); debajo, una **vista previa en movimiento** con los botones Copiando, En pausa, Con error y Terminada.
+
+![Estilos de barras de progreso](capturas/barras.png)
+
+| Estilo | Cómo es |
+|---|---|
+| Fluent | Limpia, con un brillo suave que la recorre. |
+| Aero | Brillante, con un reflejo que pasa una y otra vez. |
+| Ola | El borde ondula como un líquido. |
+| Rayas en movimiento | Rayas diagonales que avanzan. |
+| Neón | Colores vivos con un halo de luz que respira. |
+| Bloques | Bloques separados, como las barras de antes. |
+| LED | Puntos de luz; el último parpadea. |
+| Arcoíris | Todos los colores corriendo sin parar. |
+| Latido | Se ilumina y se apaga suavemente. |
+| Cometa | Cabeza brillante con estela y chispas. |
+| Cristal | Translúcida, con borde de luz. |
+| Fuego | Llamas que se mueven y parpadean. |
+| Terminal | `[#####·····]` como en la consola, con cursor. |
+| Línea fina | Una línea discreta con un marcador que late. |
+| Doble capa | Una capa clara va delante y la sólida la sigue. |
+| Píxeles | Cuadraditos como en un videojuego, con destellos. |
+| Metal | Metal cepillado con un destello. |
+| Contorno | Solo el borde y un relleno rayado. |
+| Degradado fluido | Sus dos colores se mezclan y fluyen. |
+| Burbujas | Burbujas que viajan por dentro. |
+| Semáforo | Rojo al empezar, ámbar a la mitad y verde al final. |
+| Segmentos | Veinte tramos que se llenan uno a uno. |
+
+Y para cada barra: **colores** (los del tema, los tuyos con muestras listas o el selector, semáforo o arcoíris),
+**grosor**, **redondeo**, **velocidad de los efectos**, **brillo y halo**, **porcentaje** (a la derecha, dentro de la barra u
+oculto), **cómo avanza** (suave, elástico o a saltos), **efectos según el estado** (rayas ámbar en pausa, sacudida con
+error y destello verde al terminar), **borde** y **reducir animaciones**. «Usar este aspecto en las tres barras» lo copia
+a todas. Si guardas un tema propio, guarda también sus barras.
 
 Todos los temas y conjuntos en imágenes: [README > Temas](../README.md#temas).
 

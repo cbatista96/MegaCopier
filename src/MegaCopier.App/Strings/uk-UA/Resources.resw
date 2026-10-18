@@ -51,9 +51,9 @@
   <data name="OnTopDescription.Text" xml:space="preserve"><value>Вікно залишається над іншими під час копіювання</value></data>
   <data name="CopyHeader.Text" xml:space="preserve"><value>Копіювання</value></data>
   <data name="VerifyTitle.Text" xml:space="preserve"><value>Перевіряти після копіювання</value></data>
-  <data name="VerifyDescription.Text" xml:space="preserve"><value>Перечитує призначення без кешу й виправляє кожен блок, що не збігається з джерелом</value></data>
+  <data name="VerifyDescription.Text" xml:space="preserve"><value>Після кожного файлу перечитує його й порівнює з оригіналом; якщо щось не збігається, виправляє.</value></data>
   <data name="ConflictTitle.Text" xml:space="preserve"><value>Якщо файл уже існує</value></data>
-  <data name="ConflictDescription.Text" xml:space="preserve"><value>Однакові файли (той самий розмір і дата) завжди пропускаються</value></data>
+  <data name="ConflictDescription.Text" xml:space="preserve"><value>Коли в місці призначення вже є файл із таким самим ім’ям. Однакові файли ніколи не копіюються повторно.</value></data>
   <data name="ConflictAsk.Content" xml:space="preserve"><value>Питати</value></data>
   <data name="ConflictReplace.Content" xml:space="preserve"><value>Замінювати</value></data>
   <data name="ConflictSkip.Content" xml:space="preserve"><value>Пропускати</value></data>
@@ -203,7 +203,7 @@
   <data name="Options_OnFinish.Text" xml:space="preserve"><value>Після завершення</value></data>
   <data name="Options_Owner.Content" xml:space="preserve"><value>Власник</value></data>
   <data name="Options_ResetDefault.Text" xml:space="preserve"><value>Скинути</value></data>
-  <data name="Options_RunningInfo.Message" xml:space="preserve"><value>Копіювання триває: ці зміни застосуються під час продовження («Перевіряти» й «Без запитань» — одразу).</value></data>
+  <data name="Options_RunningInfo.Message" xml:space="preserve"><value>Копіювання триває: майже все застосовується одразу. Режим, фільтри, розмір блоку, потоки й контрольна сума — під час відновлення.</value></data>
   <data name="Options_SaveChecksum.Content" xml:space="preserve"><value>Зберігати файл контрольних сум</value></data>
   <data name="Options_SaveDefault.Text" xml:space="preserve"><value>Зберегти за замовчуванням</value></data>
   <data name="Options_Scripts.Text" xml:space="preserve"><value>Команди після завершення</value></data>
@@ -247,17 +247,17 @@
   <data name="Settings_FinishKeep.Content" xml:space="preserve"><value>Залишати відкритим</value></data>
   <data name="Settings_FreeSpace.Content" xml:space="preserve"><value>Спершу перевіряти вільне місце</value></data>
   <data name="Settings_General.Text" xml:space="preserve"><value>Загальні</value></data>
-  <data name="Settings_HashTitle.Text" xml:space="preserve"><value>Алгоритм гешування</value></data>
-  <data name="Settings_HashDescription.Text" xml:space="preserve"><value>Для перевірки й збережених контрольних сум. xxHash3 — найшвидший, SHA-256 — найсумісніший.</value></data>
+  <data name="Settings_HashTitle.Text" xml:space="preserve"><value>Тип перевірки (хеш)</value></data>
+  <data name="Settings_HashDescription.Text" xml:space="preserve"><value>«Відбиток», за яким порівнюються оригінал і копія. xxHash3 — найшвидший; SHA-256 найчастіше вимагають сайти й програми.</value></data>
   <data name="Settings_MaxJobsTitle.Text" xml:space="preserve"><value>Одночасні копіювання</value></data>
   <data name="Settings_MaxJobsDescription.Text" xml:space="preserve"><value>Максимум одночасних копіювань (0 = без обмежень). Копіювання на одному диску завжди чекають своєї черги.</value></data>
   <data name="Settings_ModeAuto.Content" xml:space="preserve"><value>Автоматично</value></data>
   <data name="Settings_ModeCompact.Content" xml:space="preserve"><value>Компактно</value></data>
   <data name="Settings_ModeExpanded.Content" xml:space="preserve"><value>Повністю</value></data>
   <data name="Settings_PerformanceTitle.Text" xml:space="preserve"><value>Продуктивність</value></data>
-  <data name="Settings_PerformanceDescription.Text" xml:space="preserve"><value>Обмеження швидкості, розмір буфера й одночасні операції</value></data>
+  <data name="Settings_PerformanceDescription.Text" xml:space="preserve"><value>Наскільки швидко може йти копіювання: обмеження швидкості, розмір блоків і скільки одночасно.</value></data>
   <data name="Settings_PriorityTitle.Text" xml:space="preserve"><value>Пріоритет процесу</value></data>
-  <data name="Settings_PriorityDescription.Text" xml:space="preserve"><value>Низький зберігає чуйність комп&apos;ютера під час копіювання</value></data>
+  <data name="Settings_PriorityDescription.Text" xml:space="preserve"><value>З «Низьким» інші програми працюють плавно під час копіювання; з «Високим» копіювання в пріоритеті.</value></data>
   <data name="Settings_Queue.Text" xml:space="preserve"><value>Черга</value></data>
   <data name="Settings_Themes.Text" xml:space="preserve"><value>Теми</value></data>
   <data name="Settings_WhatToCopy.Text" xml:space="preserve"><value>Що копіюється і що відбувається потім</value></data>
@@ -1163,4 +1163,207 @@
   <data name="Eject_DoneTitle" xml:space="preserve"><value>Диск витягнуто: його можна від&apos;єднати</value></data>
   <data name="Eject_FailedTitle" xml:space="preserve"><value>Не вдалося витягти диск: він використовується</value></data>
   <data name="Sound_Windows" xml:space="preserve"><value>Звук Windows</value></data>
+  <data name="FolderAsk_Title" xml:space="preserve"><value>«{0}» вже є в місці призначення</value></data>
+  <data name="FolderAsk_TitleMany" xml:space="preserve"><value>{0} тек уже є в місці призначення</value></data>
+  <data name="FolderAsk_Message" xml:space="preserve"><value>{1} з {2} файлів, які ви копіюєте, уже є в {0} ({3}). Що з ними зробити?</value></data>
+  <data name="FolderAsk_Skip" xml:space="preserve"><value>Пропустити наявні</value></data>
+  <data name="FolderAsk_SkipText" xml:space="preserve"><value>Кожен файл перевіряється: наявні не копіюються й не змінюються, копіюються лише відсутні. Ідеально, щоб завершити перерване копіювання.</value></data>
+  <data name="FolderAsk_Overwrite" xml:space="preserve"><value>Перезаписати</value></data>
+  <data name="FolderAsk_OverwriteText" xml:space="preserve"><value>Наявні файли замінюються файлами з джерела. Однакові лишаються як є, щоб було швидше.</value></data>
+  <data name="FolderAsk_Rename" xml:space="preserve"><value>Перейменувати</value></data>
+  <data name="FolderAsk_RenameText" xml:space="preserve"><value>Усе копіюється в нову теку «{0}», а наявна не змінюється.</value></data>
+  <data name="FolderAsk_AskEach" xml:space="preserve"><value>Питати по одному</value></data>
+  <data name="FolderAsk_AskEachText" xml:space="preserve"><value>Ви побачите кожен повторюваний файл із розміром і датою та вирішите, що з ним робити.</value></data>
+  <data name="FolderAsk_Cancel" xml:space="preserve"><value>Скасувати копіювання</value></data>
+  <data name="FolderAsk_Recommended" xml:space="preserve"><value>Рекомендовано</value></data>
+  <data name="Rules_FolderAsk.Content" xml:space="preserve"><value>Питати, що робити</value></data>
+  <data name="Files_More.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Інші параметри списку</value></data>
+  <data name="Files_ShowHashes.Text" xml:space="preserve"><value>Показувати суми (хеш)</value></data>
+  <data name="Files_Source.Text" xml:space="preserve"><value>Джерело</value></data>
+  <data name="Files_Destination.Text" xml:space="preserve"><value>Призначення</value></data>
+  <data name="Files_RailTop.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>На початок списку (Alt+Home): вибрані файли копіюються наступними.</value></data>
+  <data name="Files_RailTop.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>На початок</value></data>
+  <data name="Files_RailUp.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Підняти на одну позицію (Alt+↑)</value></data>
+  <data name="Files_RailUp.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Вгору</value></data>
+  <data name="Files_RailDown.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Опустити на одну позицію (Alt+↓)</value></data>
+  <data name="Files_RailDown.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Вниз</value></data>
+  <data name="Files_RailBottom.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>У кінець списку (Alt+End): вибрані файли копіюються останніми.</value></data>
+  <data name="Files_RailBottom.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>У кінець</value></data>
+  <data name="Files_RailAdd.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Додати файли або теки до цього копіювання: вони стають у кінець списку та йдуть у те саме місце.</value></data>
+  <data name="Files_RailAdd.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Додати</value></data>
+  <data name="Files_RailRemove.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Прибрати з копіювання (Del): нічого не видаляється, файл просто не копіюється.</value></data>
+  <data name="Files_RailRemove.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Прибрати</value></data>
+  <data name="Files_RailSave.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Зберегти список: зберігає те, що лишилося скопіювати, щоб продовжити пізніше, навіть після вимкнення комп’ютера.</value></data>
+  <data name="Files_RailSave.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Зберегти список</value></data>
+  <data name="Files_RailLoad.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Завантажити список: продовжує копіювати те, що лишилося, у те саме місце й з тими самими параметрами.</value></data>
+  <data name="Files_RailLoad.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Завантажити список</value></data>
+  <data name="Files_ListSaved" xml:space="preserve"><value>Список збережено</value></data>
+  <data name="Files_ListSavedText" xml:space="preserve"><value>{0} файлів до копіювання в «{1}». Відкрийте його через «Завантажити список», щоб продовжити з того самого місця.</value></data>
+  <data name="ListMissing_Title" xml:space="preserve"><value>Початкового місця призначення більше немає</value></data>
+  <data name="ListMissing_Message" xml:space="preserve"><value>Теки, у яку йшло копіювання, більше немає (можливо, це була від’єднана флешка або диск). Скопіювати решту в інше місце?</value></data>
+  <data name="ListMissing_Choose" xml:space="preserve"><value>Вибрати інше місце…</value></data>
+  <data name="ListMissing_Cancel" xml:space="preserve"><value>Скасувати</value></data>
+  <data name="Speed_Title.Text" xml:space="preserve"><value>Обмеження швидкості цього копіювання</value></data>
+  <data name="Speed_Description.Text" xml:space="preserve"><value>Сповільнює копіювання, щоб диск або мережа не були завантажені повністю, поки ви працюєте. Діє одразу, без зупинки копіювання.</value></data>
+  <data name="Speed_Switch.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Обмежити швидкість</value></data>
+  <data name="Speed_Slider.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Максимальна швидкість</value></data>
+  <data name="Speed_NoLimit" xml:space="preserve"><value>Без обмеження</value></data>
+  <data name="Drop_AddToEnd" xml:space="preserve"><value>Додати в кінець: {0}</value></data>
+  <data name="Bars_Title" xml:space="preserve"><value>Індикатори виконання</value></data>
+  <data name="Bars_Description" xml:space="preserve"><value>Виберіть, як виглядають і рухаються індикатори. Кожен може мати свій стиль, зміни видно одразу.</value></data>
+  <data name="Bars_Which" xml:space="preserve"><value>Який індикатор змінити</value></data>
+  <data name="Bars_RoleTotal" xml:space="preserve"><value>Загальний індикатор</value></data>
+  <data name="Bars_RoleFile" xml:space="preserve"><value>Індикатор файлу</value></data>
+  <data name="Bars_RoleMini" xml:space="preserve"><value>Список копіювань</value></data>
+  <data name="Bars_Preview" xml:space="preserve"><value>Попередній перегляд</value></data>
+  <data name="Bars_StateRunning" xml:space="preserve"><value>Копіювання</value></data>
+  <data name="Bars_StatePaused" xml:space="preserve"><value>Пауза</value></data>
+  <data name="Bars_StateError" xml:space="preserve"><value>З помилкою</value></data>
+  <data name="Bars_StateDone" xml:space="preserve"><value>Завершено</value></data>
+  <data name="Bars_Styles" xml:space="preserve"><value>Стилі</value></data>
+  <data name="Bars_ColorTheme" xml:space="preserve"><value>З теми</value></data>
+  <data name="Bars_ColorCustom" xml:space="preserve"><value>Мої кольори</value></data>
+  <data name="Bars_ColorTraffic" xml:space="preserve"><value>Світлофор (за ходом)</value></data>
+  <data name="Bars_ColorRainbow" xml:space="preserve"><value>Веселка</value></data>
+  <data name="Bars_SwatchGreen" xml:space="preserve"><value>Зелений</value></data>
+  <data name="Bars_SwatchViolet" xml:space="preserve"><value>Від синього до фіолетового</value></data>
+  <data name="Bars_SwatchTeal" xml:space="preserve"><value>Бірюзовий</value></data>
+  <data name="Bars_SwatchOrange" xml:space="preserve"><value>Помаранчевий</value></data>
+  <data name="Bars_SwatchPink" xml:space="preserve"><value>Рожевий</value></data>
+  <data name="Bars_SwatchSilver" xml:space="preserve"><value>Срібний</value></data>
+  <data name="Bars_ColorStart" xml:space="preserve"><value>Початок</value></data>
+  <data name="Bars_ColorEnd" xml:space="preserve"><value>Кінець</value></data>
+  <data name="Bars_TextOutside" xml:space="preserve"><value>Праворуч</value></data>
+  <data name="Bars_TextInside" xml:space="preserve"><value>Усередині індикатора</value></data>
+  <data name="Bars_TextHidden" xml:space="preserve"><value>Приховано</value></data>
+  <data name="Bars_MotionSmooth" xml:space="preserve"><value>Плавно</value></data>
+  <data name="Bars_MotionElastic" xml:space="preserve"><value>Пружно (трохи відскакує)</value></data>
+  <data name="Bars_MotionSteps" xml:space="preserve"><value>Стрибками (кожні 5 %)</value></data>
+  <data name="Bars_ApplyAll" xml:space="preserve"><value>Застосувати до всіх трьох індикаторів</value></data>
+  <data name="Bars_Reset" xml:space="preserve"><value>Скинути цей індикатор</value></data>
+  <data name="Bars_FromTheme" xml:space="preserve"><value>З теми</value></data>
+  <data name="Info_More" xml:space="preserve"><value>Докладніше: {0}</value></data>
+  <data name="BarStyle_Fluent" xml:space="preserve"><value>Fluent</value></data>
+  <data name="BarStyle_Fluent_Hint" xml:space="preserve"><value>Чиста, з м’яким відблиском.</value></data>
+  <data name="BarStyle_Aero" xml:space="preserve"><value>Aero</value></data>
+  <data name="BarStyle_Aero_Hint" xml:space="preserve"><value>Глянцева, з відблиском, що пробігає знову й знову.</value></data>
+  <data name="BarStyle_Wave" xml:space="preserve"><value>Хвиля</value></data>
+  <data name="BarStyle_Wave_Hint" xml:space="preserve"><value>Край хвилюється, як рідина.</value></data>
+  <data name="BarStyle_Stripes" xml:space="preserve"><value>Рухомі смуги</value></data>
+  <data name="BarStyle_Stripes_Hint" xml:space="preserve"><value>Діагональні смуги рухаються вперед.</value></data>
+  <data name="BarStyle_Neon" xml:space="preserve"><value>Неон</value></data>
+  <data name="BarStyle_Neon_Hint" xml:space="preserve"><value>Яскраві кольори й «дихаюче» сяйво.</value></data>
+  <data name="BarStyle_Blocks" xml:space="preserve"><value>Блоки</value></data>
+  <data name="BarStyle_Blocks_Hint" xml:space="preserve"><value>Окремі блоки, як у старих індикаторів.</value></data>
+  <data name="BarStyle_Led" xml:space="preserve"><value>Світлодіоди</value></data>
+  <data name="BarStyle_Led_Hint" xml:space="preserve"><value>Світлові точки; остання блимає.</value></data>
+  <data name="BarStyle_Rainbow" xml:space="preserve"><value>Веселка</value></data>
+  <data name="BarStyle_Rainbow_Hint" xml:space="preserve"><value>Усі кольори біжать без зупинки.</value></data>
+  <data name="BarStyle_Pulse" xml:space="preserve"><value>Пульс</value></data>
+  <data name="BarStyle_Pulse_Hint" xml:space="preserve"><value>Плавно світлішає й тьмяніє.</value></data>
+  <data name="BarStyle_Comet" xml:space="preserve"><value>Комета</value></data>
+  <data name="BarStyle_Comet_Hint" xml:space="preserve"><value>Яскрава голова зі шлейфом та іскрами.</value></data>
+  <data name="BarStyle_Glass" xml:space="preserve"><value>Скло</value></data>
+  <data name="BarStyle_Glass_Hint" xml:space="preserve"><value>Напівпрозора, зі світлим краєм.</value></data>
+  <data name="BarStyle_Fire" xml:space="preserve"><value>Вогонь</value></data>
+  <data name="BarStyle_Fire_Hint" xml:space="preserve"><value>Язики полум’я рухаються й мерехтять.</value></data>
+  <data name="BarStyle_Terminal" xml:space="preserve"><value>Термінал</value></data>
+  <data name="BarStyle_Terminal_Hint" xml:space="preserve"><value>[#####·····] як у консолі, з курсором.</value></data>
+  <data name="BarStyle_Line" xml:space="preserve"><value>Тонка лінія</value></data>
+  <data name="BarStyle_Line_Hint" xml:space="preserve"><value>Непомітна лінія з пульсуючою позначкою.</value></data>
+  <data name="BarStyle_Dual" xml:space="preserve"><value>Подвійний шар</value></data>
+  <data name="BarStyle_Dual_Hint" xml:space="preserve"><value>Світлий шар попереду, щільний іде слідом.</value></data>
+  <data name="BarStyle_Pixels" xml:space="preserve"><value>Пікселі</value></data>
+  <data name="BarStyle_Pixels_Hint" xml:space="preserve"><value>Квадратики, як у відеогрі, з іскорками.</value></data>
+  <data name="BarStyle_Metal" xml:space="preserve"><value>Метал</value></data>
+  <data name="BarStyle_Metal_Hint" xml:space="preserve"><value>Шліфований метал із відблиском.</value></data>
+  <data name="BarStyle_Outline" xml:space="preserve"><value>Контур</value></data>
+  <data name="BarStyle_Outline_Hint" xml:space="preserve"><value>Лише рамка та смугаста заливка.</value></data>
+  <data name="BarStyle_Flow" xml:space="preserve"><value>Плавний градієнт</value></data>
+  <data name="BarStyle_Flow_Hint" xml:space="preserve"><value>Два кольори змішуються й течуть.</value></data>
+  <data name="BarStyle_Bubbles" xml:space="preserve"><value>Бульбашки</value></data>
+  <data name="BarStyle_Bubbles_Hint" xml:space="preserve"><value>Бульбашки пливуть усередині.</value></data>
+  <data name="BarStyle_Traffic" xml:space="preserve"><value>Світлофор</value></data>
+  <data name="BarStyle_Traffic_Hint" xml:space="preserve"><value>Червоний на початку, бурштиновий посередині, зелений наприкінці.</value></data>
+  <data name="BarStyle_Segments" xml:space="preserve"><value>Сегменти</value></data>
+  <data name="BarStyle_Segments_Hint" xml:space="preserve"><value>Двадцять ділянок заповнюються по одній.</value></data>
+  <data name="Info_Bars_Title" xml:space="preserve"><value>Індикатори виконання</value></data>
+  <data name="Info_Bars_Text" xml:space="preserve"><value>У MegaCopier три індикатори: загальний (скільки лишилося від усього копіювання), індикатор поточного файлу та маленькі в списку копіювань. Кожен може мати свій стиль.\nВиберіть угорі, який змінити, натисніть стиль і налаштуйте деталі. Попередній перегляд показує вигляд під час копіювання, на паузі, з помилкою та після завершення.\n• Яскравий індикатор (Неон, Вогонь, Веселка), щоб бачити хід копіювання здалеку.\n• Непомітний (Тонка лінія, Fluent), якщо ви працюєте під час копіювання й не хочете відволікатися.\n• Світлофор, щоб без чисел розуміти, багато чи мало лишилося.</value></data>
+  <data name="Info_BarColors_Title" xml:space="preserve"><value>Кольори</value></data>
+  <data name="Bars_ColorsDescription" xml:space="preserve"><value>З теми, власні, світлофор або веселка.</value></data>
+  <data name="Info_BarColors_Text" xml:space="preserve"><value>Звідки беруться кольори індикатора.\n• З теми: змінюються самі з іншою темою.\n• Мої кольори: градієнт із двох вибраних кольорів (натисніть зразок або кнопку «Початок» / «Кінець»).\n• Світлофор: червоний на початку, бурштиновий посередині, зелений наприкінці — видно, скільки лишилося, без чисел.\n• Веселка: усі кольори.</value></data>
+  <data name="Info_BarThickness_Title" xml:space="preserve"><value>Товщина</value></data>
+  <data name="Bars_ThicknessDescription" xml:space="preserve"><value>Висота індикатора.</value></data>
+  <data name="Info_BarThickness_Text" xml:space="preserve"><value>Висота індикатора в пікселях. «З теми» — як у вибраній темі.\n• Товщий: краще видно здалеку, гарніший у стилях Хвиля, Вогонь, Пікселі.\n• Тонший: непомітніший, добре з Тонкою лінією чи на малих екранах.\nЯкщо відсоток усередині, індикатор стає рівно таким, щоб його прочитати.</value></data>
+  <data name="Info_BarRadius_Title" xml:space="preserve"><value>Заокруглення</value></data>
+  <data name="Bars_RadiusDescription" xml:space="preserve"><value>Прямі чи заокруглені кути.</value></data>
+  <data name="Info_BarRadius_Text" xml:space="preserve"><value>Наскільки заокруглені кінці індикатора. 0 — прямі кути, як у класичних; максимум — «пігулка». «З теми» — як у темі.\n• Прямі: чудово з Блоками, Пікселями й Терміналом.\n• Заокруглені: м’якші й сучасніші, ідеально з Fluent, Неоном чи Склом.</value></data>
+  <data name="Info_BarSpeed_Title" xml:space="preserve"><value>Швидкість ефектів</value></data>
+  <data name="Bars_SpeedDescription" xml:space="preserve"><value>Як швидко рухаються відблиски, хвилі й смуги.</value></data>
+  <data name="Info_BarSpeed_Text" xml:space="preserve"><value>Змінює темп анімацій індикатора, а не швидкість копіювання. 1× — звичайно, 0,25× — дуже повільно, 3× — дуже швидко.\n• Повільніше: спокійніше, добре, якщо індикатор завжди на виду.\n• Швидше: створює відчуття активності й привертає увагу.</value></data>
+  <data name="Info_BarGlow_Title" xml:space="preserve"><value>Блиск і сяйво</value></data>
+  <data name="Bars_GlowDescription" xml:space="preserve"><value>Наскільки сильні відблиски й світло.</value></data>
+  <data name="Info_BarGlow_Text" xml:space="preserve"><value>Посилює чи послаблює блиск: відблиск Aero, сяйво Неону, голову Комети, бульбашки чи відблиск Металу.\n• 0 %: індикатор пласкій і стриманий.\n• 100 %: сяє на повну; ідеально з темними темами.</value></data>
+  <data name="Info_BarText_Title" xml:space="preserve"><value>Відсоток</value></data>
+  <data name="Bars_TextDescription" xml:space="preserve"><value>Праворуч, усередині або приховано.</value></data>
+  <data name="Info_BarText_Text" xml:space="preserve"><value>Де показується відсоток.\n• Праворуч: як завжди, поза індикатором.\n• Усередині: число поверх заливки, індикатор стає вищим, щоб його прочитати; більше місця для інших даних.\n• Приховано: лише індикатор, для чистого вигляду (відсоток лишається в заголовку вікна).</value></data>
+  <data name="Info_BarMotion_Title" xml:space="preserve"><value>Як рухається</value></data>
+  <data name="Bars_MotionDescription" xml:space="preserve"><value>Плавно, пружно або стрибками.</value></data>
+  <data name="Info_BarMotion_Text" xml:space="preserve"><value>Як рухається заливка щоразу, коли копіювання просувається.\n• Плавно: ковзає без ривків (рекомендовано).\n• Пружно: трохи проскакує й повертається, як пружина; веселіше.\n• Стрибками: по 5 %, як у старих індикаторів; чудово з Блоками чи Пікселями.</value></data>
+  <data name="Info_BarEffects_Title" xml:space="preserve"><value>Ефекти за станом</value></data>
+  <data name="Bars_EffectsDescription" xml:space="preserve"><value>Смуги на паузі, струс при помилці, спалах наприкінці.</value></data>
+  <data name="Info_BarEffects_Text" xml:space="preserve"><value>Індикатор показує, що відбувається, без читання тексту.\n• Пауза: з’являються нерухомі бурштинові смуги.\n• Помилка: стає червоним і трохи здригається.\n• Завершення: зелений святковий спалах (загальний індикатор і список).\nВимкніть, якщо хочете, щоб індикатор лише змінював колір.</value></data>
+  <data name="Info_BarBorder_Title" xml:space="preserve"><value>Рамка</value></data>
+  <data name="Bars_BorderDescription" xml:space="preserve"><value>Тонка лінія навколо індикатора.</value></data>
+  <data name="Info_BarBorder_Text" xml:space="preserve"><value>Малює тонку лінію навколо індикатора, щоб він краще виділявся на тлі.\n• Корисно зі світлими й текстурними темами, де порожню доріжку майже не видно.\n• Чудово зі Склом і Контуром.</value></data>
+  <data name="Info_BarReduce_Title" xml:space="preserve"><value>Менше анімації</value></data>
+  <data name="Bars_ReduceDescription" xml:space="preserve"><value>Нерухомі індикатори без повторюваних ефектів (для всіх).</value></data>
+  <data name="Info_BarReduce_Text" xml:space="preserve"><value>Прибирає повторюваний рух (відблиски, хвилі, смуги, блимання). Індикатор далі рухається як звичайно.\n• Корисно, якщо анімація відволікає чи паморочить.\n• Трохи економить заряд ноутбука.\nВмикається й саме, якщо в Windows вимкнути «Ефекти анімації» (Настройки &gt; Спеціальні можливості &gt; Візуальні ефекти).</value></data>
+  <data name="Theme_material-oscuro" xml:space="preserve"><value>Material темна</value></data>
+  <data name="Theme_cobre-oscuro" xml:space="preserve"><value>Темна мідь</value></data>
+  <data name="Theme_silicio-oscuro" xml:space="preserve"><value>Темний кремній</value></data>
+  <data name="Theme_brisa-oscura" xml:space="preserve"><value>Темний бриз</value></data>
+  <data name="Theme_pizarra" xml:space="preserve"><value>Сланець</value></data>
+  <data name="Theme_arcade" xml:space="preserve"><value>Аркада</value></data>
+  <data name="Theme_artico" xml:space="preserve"><value>Арктика</value></data>
+  <data name="Theme_vampiro" xml:space="preserve"><value>Вампір</value></data>
+  <data name="Theme_capuchino" xml:space="preserve"><value>Капучино</value></data>
+  <data name="Theme_noche-tokio" xml:space="preserve"><value>Ніч у Токіо</value></data>
+  <data name="Theme_retro-calido" xml:space="preserve"><value>Тепле ретро</value></data>
+  <data name="Theme_solar-oscuro" xml:space="preserve"><value>Сонячна темна</value></data>
+  <data name="Theme_atomo" xml:space="preserve"><value>Атом</value></data>
+  <data name="Theme_menta-oscura" xml:space="preserve"><value>Темна м’ята</value></data>
+  <data name="Theme_material-claro" xml:space="preserve"><value>Material світла</value></data>
+  <data name="Theme_cobre-claro" xml:space="preserve"><value>Світла мідь</value></data>
+  <data name="Theme_silicio-claro" xml:space="preserve"><value>Світлий кремній</value></data>
+  <data name="Theme_brisa-clara" xml:space="preserve"><value>Світлий бриз</value></data>
+  <data name="Theme_tiza" xml:space="preserve"><value>Крейда</value></data>
+  <data name="Theme_solar-claro" xml:space="preserve"><value>Сонячна світла</value></data>
+  <data name="Theme_capuchino-claro" xml:space="preserve"><value>Світлий капучино</value></data>
+  <data name="Info_Paste_Text" xml:space="preserve"><value>Коли ви копіюєте (Ctrl+C) або вирізаєте (Ctrl+X) файли й вставляєте їх (Ctrl+V) у Провіднику чи на робочому столі, копіює MegaCopier, а не Windows: з чергою, паузою, перевіркою та продовженням після обриву.\n• Великі копії на зовнішній диск: можна призупинити й продовжити пізніше.\n• Кілька копій поспіль: стають у чергу, а не змагаються за диск.\nЯкщо вставити в ту саму теку (щоб зробити дублікат), це й далі робить Провідник.</value></data>
+  <data name="Info_Drag_Text" xml:space="preserve"><value>Під час перетягування файлів лівою кнопкою з одного вікна в інше копіює (або переміщує) MegaCopier за тими самими правилами, що й Windows: на тому самому диску — переміщення, Ctrl — копіювання, Shift — переміщення.\n• Розбирати фото, перетягуючи їх між теками на різних дисках.\n• Переміщати великі проєкти, не блокуючи Провідник.\nКинути на файл, ZIP чи ліву панель — це й далі робить Провідник.</value></data>
+  <data name="Info_WindowMode_Text" xml:space="preserve"><value>Як виглядає вікно під час копіювання.\n• Компактне: лише індикатори й кнопки; займає мало місця.\n• Повне: зі списком файлів, місцем призначення, параметрами, графіком і журналом.\n• Автоматично: компактне з одним копіюванням і повне, коли їх кілька.\nКнопки «Більше» й «Менше» перемикають вигляд будь-коли.</value></data>
+  <data name="Info_Verify_Text" xml:space="preserve"><value>Після кожного файлу MegaCopier знову читає його просто з диска призначення й порівнює його відбиток (хеш) з оригіналом. Якщо щось не збігається, повторно копіюється лише пошкоджена частина.\n• Резервні копії, фото та важливі документи.\n• Старі чи дешеві флешки й диски, які можуть відмовити без попередження.\n• Копіювання мережею чи Wi-Fi.\nКопіювання триває трохи довше (усе читається ще раз), зате ви певні, що копія ідентична.</value></data>
+  <data name="Info_Conflict_Text" xml:space="preserve"><value>Що робити, коли в місці призначення вже є файл із таким самим ім’ям.\n• Запитати: показує обидва з розміром, датою та мініатюрою, а ви вибираєте.\n• Замінити, Пропустити, Замінити, якщо новіший чи іншого розміру, Залишити обидва («ім’я (2)») або Перейменувати наявний.\nОднакові файли (той самий розмір і дата) ніколи не копіюються повторно: повторне копіювання переносить лише нове чи змінене. Якщо вже є ціла тека, MegaCopier запитає перед початком.</value></data>
+  <data name="Info_Hash_Text" xml:space="preserve"><value>Хеш — це як відбиток пальця файлу: якщо змінюється хоча б один байт, змінюється й відбиток. Він використовується під час перевірки та в збережених контрольних сумах.\n• xxHash3: найшвидший; ідеальний для перевірки копій.\n• SHA-256: найчастіше його використовують сайти й програми для перевірки завантажень.\n• MD5, SHA-1, BLAKE3…: якщо інша програма просить конкретний.\nДля щоденної роботи залиште xxHash3.</value></data>
+  <data name="Info_Performance_Text" xml:space="preserve"><value>Наскільки швидко може йти копіювання.\n• Обмеження швидкості: щоб копіювання не займало всю мережу чи диск, поки ви працюєте чи дивитеся фільм. Кожне копіювання має й власне обмеження на вкладці «Параметри», яке змінюється одразу, без зупинки.\n• Розмір буфера: блоки, що читаються й пишуться за раз. Більший розмір кращий для величезних файлів.\n• Одночасні операції: скільки блоків запитується в диска одночасно. Швидким SSD більше — краще.\nЯкщо не знаєте, що вибрати, залиште типові: MegaCopier сам налаштовує кожен диск.</value></data>
+  <data name="Info_Merge_Text" xml:space="preserve"><value>Якщо почати копіювання, поки триває інше, воно може приєднатися до нього замість очікування: його файли стануть у кінець списку.\n• Ніколи: кожне копіювання окремо.\n• Якщо в ту саму теку або на ті самі диски.\n• Завжди.\nЗ «Питати спершу» ви вирішуєте щоразу. Зручно, коли надсилаєте теки по одній на ту саму флешку.</value></data>
+  <data name="Info_MoveAttributes_Text" xml:space="preserve"><value>Під час переміщення на інший диск файли копіюються, а потім видаляються з джерела. Тут ви вибираєте, що вони беруть із собою, крім вмісту: атрибути (лише читання, прихований…), дозволи, власника й аудит.\n• Перенесення робочих тек між серверами зі збереженням того, хто може їх відкривати.\nНа тому самому диску переміщення — це лише зміна місця, усе зберігається.</value></data>
+  <data name="Info_DeleteIncomplete_Text" xml:space="preserve"><value>Під час копіювання кожен файл записується з розширенням .mcpart і отримує своє ім’я, лише коли успішно завершений. Якщо зупинити копіювання, ці частини дозволяють згодом продовжити з того самого місця.\n• Увімкнено: кнопка «Стоп» видаляє файли .mcpart, і місце призначення лишається чистим (але продовжити вже не можна).\n• Вимкнено: вони зберігаються для відновлення.\nПід час закриття MegaCopier чи після вимкнення живлення нічого не видаляється.</value></data>
+  <data name="Info_Eject_Text" xml:space="preserve"><value>Наприкінці MegaCopier безпечно виймає флешку, картку чи USB-диск призначення, як «Безпечне видалення пристрою».\n• Записуєте кілька флешок поспіль: виймаєте — вона вже готова.\nЛише якщо її не використовує інше копіювання. «Примусово» виймає, навіть якщо вона відкрита в якійсь програмі.</value></data>
+  <data name="Info_OnError_Text" xml:space="preserve"><value>Що робити, якщо файл не вдається скопіювати навіть після повторів.\n• Запитати: копіювання зупиняється, пояснює причину, і ви вибираєте: повторити, пропустити, пропускати наступні чи зупинити.\n• Пропустити й продовжити: ідеально для великих нічних копій; наприкінці видно список збоїв.\n• Зупинити копіювання: коли нічого не повинно бракувати.\n• Повторити наприкінці: лишає файл наостанок, раптом він був зайнятий і звільниться.</value></data>
+  <data name="Info_ErrorReport_Text" xml:space="preserve"><value>Якщо копіювання завершилося з помилками, зберігається текстовий файл із кожним невдалим файлом, причиною та часом.\n• Щоб спокійно переглянути копіювання, залишене на ніч.\n• Щоб передати його тому, хто обслуговує комп’ютери.</value></data>
+  <data name="Info_MaxJobs_Text" xml:space="preserve"><value>Скільки копіювань може йти одночасно. Ті, що використовують один диск, завжди чекають черги: два копіювання одразу на жорсткий диск сповільнюють усе.\n• 0 (без обмеження): кожен диск працює на повну паралельно.\n• 1: усе по черзі, одне за одним.</value></data>
+  <data name="Info_Fast_Text" xml:space="preserve"><value>Диски, що витримують кілька копіювань одночасно без втрати швидкості, як-от SSD NVMe чи RAID. Указані тут не чекають черги.\n• Якщо ви копіюєте зі швидкого SSD одразу в кілька місць.</value></data>
+  <data name="Info_Slow_Text" xml:space="preserve"><value>Якщо ви торкаєтеся клавіатури чи миші, копіювання знижує швидкість до вибраної, щоб комп’ютер не гальмував. Коли ви перестаєте ним користуватися, воно знову йде на повну.\n• Великі копії, поки ви працюєте, граєте чи у відеодзвінку.</value></data>
+  <data name="Info_ScheduleLimit_Text" xml:space="preserve"><value>У вибрані години копіювання не перевищує цієї швидкості; поза ними йде на повну.\n• В офісі, щоб не перевантажувати мережу в робочий час.\n• Удома, щоб увечері не обривалися відеодзвінки.</value></data>
+  <data name="Info_Priority_Text" xml:space="preserve"><value>Наскільки Windows віддає перевагу MegaCopier перед іншими програмами.\n• Низький: інші програми працюють плавно; копіювання може тривати трохи довше.\n• Звичайний: як завжди.\n• Високий: копіювання перше; корисно, коли важливо лише закінчити якнайшвидше.</value></data>
+  <data name="Info_Tune_Text" xml:space="preserve"><value>Під час першого копіювання на диск MegaCopier пробує різні розміри блоку й кількість одночасних операцій і залишає найшвидше для цього диска. Він запам’ятовує це для наступних копіювань.\n• SSD, жорсткі диски, флешки й мережеві диски працюють дуже по-різному: так кожен іде на своїй найкращій швидкості.\nЯкщо ви змінюєте продуктивність вручну, враховується ваш вибір.</value></data>
+  <data name="Info_Peer_Text" xml:space="preserve"><value>Надсилайте й отримуйте файли між комп’ютерами з MegaCopier в одній мережі, без спільних тек і налаштувань. Відправник вводить код цього комп’ютера; усе шифрується, і кожен файл перевіряється після отримання.\n• Перенести фото чи відео з ноутбука на настільний ПК.\n• Надіслати проєкт колезі в офісі.</value></data>
+  <data name="Info_Remote_Text" xml:space="preserve"><value>Відкриває сторінку в браузері телефона (у тій самій мережі Wi-Fi), де видно, як ідуть копіювання, і їх можна призупинити, продовжити чи скасувати.\n• Залишити довге копіювання й стежити за ним із дивана.\nНа телефон нічого встановлювати не треба; адреса й код показані тут.</value></data>
+  <data name="Info_LiveSync_Text" xml:space="preserve"><value>MegaCopier стежить за текою і щоразу, коли ви щось змінюєте, копіює це в іншу (інший диск, флешку, мережеву теку), щойно ви закінчили зберігати.\n• Завжди мати свіжу копію документів на іншому диску.\n• Переносити зміни проєкту в спільну теку.\nУ режимі дзеркала видалене видаляється й з копії.</value></data>
+  <data name="Info_Tasks_Text" xml:space="preserve"><value>Збережене копіювання, яке Windows запускає сама щодня, щотижня чи щомісяця у вибраний час, навіть якщо MegaCopier закрито. Копіюється лише нове чи змінене.\n• Резервна копія «Документів» щоночі.\n• Перенесення фото на NAS щонеділі.\nСтворюється на вкладці «Параметри» копіювання кнопкою «Зберегти як завдання».</value></data>
+  <data name="Info_Guard_Text" xml:space="preserve"><value>Диски можуть непомітно псувати файли з роками. MegaCopier зберігає відбиток кожного файлу всередині нього й, коли комп’ютер вільний, перевіряє їх знову. Якщо файл змінився, хоча його ніхто не чіпав, ви дізнаєтеся вчасно, щоб відновити його з резервної копії.\n• Сімейні фото й відео.\n• Диски з резервними копіями, які рідко відкривають.\nТе, що ви редагуєте, оновлюється саме. Потрібні диски NTFS.</value></data>
+  <data name="Info_Webhook_Text" xml:space="preserve"><value>Після кожного копіювання MegaCopier надсилає підсумок на вебадресу, і сповіщення приходить на телефон чи в чат.\n• Discord, Slack або Teams: повідомлення в канал.\n• ntfy.sh: сповіщення на телефон майже без встановлення.\n• Home Assistant: автоматизації (увімкнути світло наприкінці…).</value></data>
+  <data name="Info_Connections_Text" xml:space="preserve"><value>Збережіть тут сервери, на які копіюєте: FTP, SFTP, WebDAV (Nextcloud, NAS…) чи S3 (Backblaze, Wasabi, R2…). Потім вони з’являться під час вибору джерела чи призначення.\n• Вивантажувати резервні копії в хмару.\n• Завантажувати файли із сервера компанії.\nПаролі зберігаються в диспетчері облікових даних Windows, ніколи відкритим текстом.</value></data>
 </root>

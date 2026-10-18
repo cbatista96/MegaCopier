@@ -12,6 +12,35 @@ internal static class Reports
     public static void SaveList(CopyJobRecord record, string path) =>
         File.WriteAllText(path, record.ToJson(), new UTF8Encoding(false));
 
+    /// <summary>
+    /// Guarda lo que le queda a una copia (pendientes, el que se estaba copiando y los fallidos) con su destino, sus
+    /// opciones y el orden de la lista. Lo ya copiado u omitido va a «quitados», así que al cargarla se sigue justo donde
+    /// estaba. Devuelve cuántos archivos quedan.
+    /// </summary>
+    public static int SaveRemaining(CopyJob job, string path)
+    {
+        var record = CopyJobRecord.FromJson(job.Record.ToJson())!;
+        var items = job.Files?.Snapshot() ?? [];
+        int remaining = items.Count;
+        if (items.Count > 0)
+        {
+            var left = items.Where(i => i.State is FileState.Pending or FileState.Copying or FileState.Verifying or FileState.Failed).ToList();
+            var done = items.Except(left).Select(i => i.Source);
+            record.Excluded = [.. record.Excluded.Union(done, StringComparer.OrdinalIgnoreCase)];
+            record.FileOrder = [.. left.Select(i => i.Source)];
+            remaining = left.Count;
+        }
+
+        record.Started = false;
+        record.StartAtUtc = null;
+        File.WriteAllText(path, record.ToJson(), new UTF8Encoding(false));
+        return remaining;
+    }
+
+    /// <summary>Nombre de archivo sugerido a partir del título de una copia.</summary>
+    public static string FileNameFor(string title) =>
+        string.Concat(title.Select(c => Path.GetInvalidFileNameChars().Contains(c) ? '_' : c)).Trim();
+
     public static CopyJobRecord? LoadList(string path)
     {
         try

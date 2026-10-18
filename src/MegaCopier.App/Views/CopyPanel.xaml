@@ -33,7 +33,7 @@
             <TextBlock Grid.Column="1" Text="{x:Bind Job.Title, Mode=OneWay}" Style="{StaticResource McStrong}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" ToolTipService.ToolTip="{x:Bind Job.Title, Mode=OneWay}" />
             <TextBlock x:Name="FilesCountBlock" Grid.Column="2" Text="{x:Bind Job.FilesCountText, Mode=OneWay}" Style="{StaticResource McSecondary}" VerticalAlignment="Center" />
             <TextBlock x:Name="TotalBytesBlock" Grid.Column="3" Text="{x:Bind Job.TotalBytesText, Mode=OneWay}" Style="{StaticResource McSecondary}" VerticalAlignment="Center" />
-            <TextBlock Grid.Column="4" Text="{x:Bind Job.TotalPercentText, Mode=OneWay}" Style="{StaticResource McStrong}" VerticalAlignment="Center" MinWidth="56" TextAlignment="Right" />
+            <TextBlock x:Name="TotalPercentBlock" Grid.Column="4" Text="{x:Bind Job.TotalPercentText, Mode=OneWay}" Style="{StaticResource McStrong}" VerticalAlignment="Center" MinWidth="56" TextAlignment="Right" />
         </Grid>
         <c:FlowBar Grid.Row="1" Fill="{StaticResource McTotalBrush}"
                    Value="{x:Bind Job.TotalFraction, Mode=OneWay}"
@@ -61,9 +61,9 @@
                        ToolTipService.ToolTip="{x:Bind Job.CurrentSourcePath, Mode=OneWay}" />
             <TextBlock x:Name="FileBytesBlock" Grid.Column="2" Text="{x:Bind Job.FileBytesText, Mode=OneWay}" Style="{StaticResource McSecondary}" VerticalAlignment="Center" />
             <TextBlock x:Name="SpeedBlock" Grid.Column="3" Text="{x:Bind Job.SpeedAndRemaining, Mode=OneWay}" Style="{StaticResource McSecondary}" VerticalAlignment="Center" />
-            <TextBlock Grid.Column="4" Text="{x:Bind Job.FilePercentText, Mode=OneWay}" Style="{StaticResource McStrong}" VerticalAlignment="Center" MinWidth="56" TextAlignment="Right" />
+            <TextBlock x:Name="FilePercentBlock" Grid.Column="4" Text="{x:Bind Job.FilePercentText, Mode=OneWay}" Style="{StaticResource McStrong}" VerticalAlignment="Center" MinWidth="56" TextAlignment="Right" />
         </Grid>
-        <c:FlowBar Grid.Row="3" Fill="{StaticResource McFileBrush}"
+        <c:FlowBar Grid.Row="3" Role="File" Fill="{StaticResource McFileBrush}"
                    Value="{x:Bind Job.FileFraction, Mode=OneWay}"
                    IsActive="{x:Bind Job.IsRunning, Mode=OneWay}"
                    IsPaused="{x:Bind Job.IsPaused, Mode=OneWay}" />

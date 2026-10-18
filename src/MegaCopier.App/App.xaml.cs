@@ -115,6 +115,7 @@ public partial class App : Application
         theme = Settings.Translucent ? Translucent(theme) : theme;
         ThemeManager.Apply(theme);
         IconPacks.Apply(Settings.IconPack);
+        BarAppearance.Apply(Settings.TotalBar, Settings.FileBar, Settings.MiniBar, Settings.ReduceBarMotion);
         ApplyControlAccent(theme);
 
         var interrupted = Queue.LoadInterrupted();
@@ -123,6 +124,7 @@ public partial class App : Application
         ApplySettings();
         Queue.ConflictResolver = (job, conflict, cancellation) => Window.AskConflict(job, conflict, cancellation);
         Queue.ErrorResolver = (job, error, cancellation) => Window.AskError(job, error, cancellation);
+        Queue.FolderResolver = (job, folder, cancellation) => Window.AskFolder(job, folder, cancellation);
 
         _tray = new TrayIcon(
             Path.Combine(AppContext.BaseDirectory, "Assets", "MegaCopier.ico"),
@@ -296,7 +298,13 @@ public partial class App : Application
             return null;
         }
 
-        var job = Queue.Submit(list.Sources, destination, list.ToOptions());
+        // Lo que ya se copió, el orden de la lista y las carpetas renombradas viajan con la lista.
+        var job = Queue.Submit(list.Sources, destination, list.ToOptions(), configure: record =>
+        {
+            record.Excluded = [.. list.Excluded];
+            record.FileOrder = [.. list.FileOrder];
+            record.RenamedFolders = new(list.RenamedFolders, StringComparer.OrdinalIgnoreCase);
+        });
         job.Record.ExportReport = list.ExportReport;
         job.Record.Scripts = [.. list.Scripts];
         job.SaveRecord();
@@ -775,6 +783,15 @@ public partial class App : Application
                 // Abrir la bandeja de arrastre (y dejar en ella estos archivos y carpetas).
                 ShowShelf(request.Sources);
                 return new IpcResponse { Ok = true, Status = string.Join(" | ", _shelf!.Paths) };
+
+            case "debug-savelist" when TestMode && request.Destination is { } savePath && Queue.Jobs.LastOrDefault(j => j.Files is not null) is { } saveJob:
+                // Solo pruebas: «Guardar la lista» de la última copia, sin el diálogo de guardar.
+                return new IpcResponse { Ok = true, Status = Reports.SaveRemaining(saveJob, savePath).ToString(System.Globalization.CultureInfo.InvariantCulture) };
+
+            case "debug-loadlist" when TestMode && request.Sources.Count == 1:
+                // Solo pruebas: «Cargar la lista», sin el diálogo de abrir.
+                _ = Window.RunListAsync(request.Sources[0]);
+                return new IpcResponse { Ok = true };
 
             case "debug-shelf" when TestMode:
                 // Solo pruebas: "copiar a…" (Destination = "copy") o "mover a…" ("move") de la bandeja.

@@ -45,9 +45,9 @@ OnTopTitle.Text	Altijd op voorgrond
 OnTopDescription.Text	Het venster blijft boven de andere tijdens het kopiëren
 CopyHeader.Text	Kopiëren
 VerifyTitle.Text	Controleren na het kopiëren
-VerifyDescription.Text	Leest het doel opnieuw zonder cache en herstelt elk blok dat niet met de bron overeenkomt
+VerifyDescription.Text	Na elk bestand leest het dit opnieuw en vergelijkt het met het origineel; klopt iets niet, dan wordt het hersteld.
 ConflictTitle.Text	Als het bestand al bestaat
-ConflictDescription.Text	Identieke bestanden (zelfde grootte en datum) worden altijd overgeslagen
+ConflictDescription.Text	Als de bestemming al een bestand met dezelfde naam heeft. Identieke bestanden worden nooit opnieuw gekopieerd.
 ConflictAsk.Content	Vragen
 ConflictReplace.Content	Vervangen
 ConflictSkip.Content	Overslaan
@@ -197,7 +197,7 @@ Options_FilesFolders.Text	Bestanden en mappen
 Options_OnFinish.Text	Na afloop
 Options_Owner.Content	Eigenaar
 Options_ResetDefault.Text	Herstellen
-Options_RunningInfo.Message	De kopie loopt: deze wijzigingen gelden bij het hervatten (Controleren en Onbeheerd meteen).
+Options_RunningInfo.Message	De kopie loopt: bijna alles geldt meteen. Modus, filters, blokgrootte, threads en controlesom gelden bij het hervatten.
 Options_SaveChecksum.Content	Controlesombestand opslaan
 Options_SaveDefault.Text	Als standaard opslaan
 Options_Scripts.Text	Opdrachten na afloop
@@ -241,17 +241,17 @@ Settings_FinishClose.Content	Altijd sluiten
 Settings_FinishKeep.Content	Open laten
 Settings_FreeSpace.Content	Eerst vrije ruimte controleren
 Settings_General.Text	Algemeen
-Settings_HashTitle.Text	Hash-algoritme
-Settings_HashDescription.Text	Voor controle en opgeslagen controlesommen. xxHash3 is het snelst; SHA-256 het meest compatibel.
+Settings_HashTitle.Text	Soort controle (hash)
+Settings_HashDescription.Text	De "vingerafdruk" die origineel en kopie vergelijkt. xxHash3 is de snelste; om SHA-256 vragen websites en programma’s het vaakst.
 Settings_MaxJobsTitle.Text	Gelijktijdige kopieën
 Settings_MaxJobsDescription.Text	Maximaal aantal kopieën tegelijk (0 = onbeperkt). Kopieën op dezelfde schijf wachten altijd op hun beurt.
 Settings_ModeAuto.Content	Automatisch
 Settings_ModeCompact.Content	Compact
 Settings_ModeExpanded.Content	Volledig
 Settings_PerformanceTitle.Text	Prestaties
-Settings_PerformanceDescription.Text	Snelheidslimiet, buffergrootte en gelijktijdige bewerkingen
+Settings_PerformanceDescription.Text	Hoe snel de kopie mag gaan: snelheidslimiet, blokgrootte en hoeveel tegelijk.
 Settings_PriorityTitle.Text	Procesprioriteit
-Settings_PriorityDescription.Text	Laag houdt de computer vlotter tijdens het kopiëren
+Settings_PriorityDescription.Text	Met "Laag" blijven andere programma’s soepel tijdens het kopiëren; met "Hoog" krijgt de kopie voorrang.
 Settings_Queue.Text	Wachtrij
 Settings_Themes.Text	Thema's
 Settings_WhatToCopy.Text	Wat wordt gekopieerd en wat daarna gebeurt
@@ -1157,3 +1157,206 @@ Merge_Separate	Apart
 Eject_DoneTitle	Station uitgeworpen: je kunt het nu verwijderen
 Eject_FailedTitle	Kan station niet uitwerpen: het wordt gebruikt
 Sound_Windows	Die van Windows
+FolderAsk_Title	"{0}" bestaat al op de bestemming
+FolderAsk_TitleMany	{0} mappen bestaan al op de bestemming
+FolderAsk_Message	{1} van de {2} bestanden die je kopieert staan al in {0} ({3}). Wat wil je ermee doen?
+FolderAsk_Skip	De bestaande overslaan
+FolderAsk_SkipText	Elk bestand wordt gecontroleerd: de bestaande worden niet gekopieerd of aangeraakt, alleen de ontbrekende worden gekopieerd. Ideaal om een onderbroken kopie af te maken.
+FolderAsk_Overwrite	Overschrijven
+FolderAsk_OverwriteText	De bestaande bestanden worden vervangen door die van de bron. Identieke blijven zoals ze zijn, dat scheelt tijd.
+FolderAsk_Rename	Naam wijzigen
+FolderAsk_RenameText	Alles wordt gekopieerd naar een nieuwe map, "{0}", en de bestaande blijft ongemoeid.
+FolderAsk_AskEach	Per bestand vragen
+FolderAsk_AskEachText	Je ziet elk dubbel bestand met grootte en datum en beslist wat ermee gebeurt.
+FolderAsk_Cancel	Kopie annuleren
+FolderAsk_Recommended	Aanbevolen
+Rules_FolderAsk.Content	Vragen wat te doen
+Files_More.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Meer lijstopties
+Files_ShowHashes.Text	Controlesommen (hash) tonen
+Files_Source.Text	Bron
+Files_Destination.Text	Bestemming
+Files_RailTop.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Bovenaan de lijst (Alt+Home): de gekozen bestanden worden als volgende gekopieerd.
+Files_RailTop.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Bovenaan
+Files_RailUp.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Eén plaats omhoog (Alt+↑)
+Files_RailUp.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Omhoog
+Files_RailDown.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Eén plaats omlaag (Alt+↓)
+Files_RailDown.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Omlaag
+Files_RailBottom.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Onderaan de lijst (Alt+End): de gekozen bestanden worden als laatste gekopieerd.
+Files_RailBottom.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Onderaan
+Files_RailAdd.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Bestanden of mappen aan deze kopie toevoegen: ze komen onderaan de lijst en gaan naar dezelfde bestemming.
+Files_RailAdd.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Toevoegen
+Files_RailRemove.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Uit de kopie halen (Del): er wordt niets verwijderd, het wordt alleen niet gekopieerd.
+Files_RailRemove.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Weghalen
+Files_RailSave.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Lijst opslaan: bewaart wat nog gekopieerd moet worden om later verder te gaan, zelfs na het uitzetten van de computer.
+Files_RailSave.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Lijst opslaan
+Files_RailLoad.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Lijst laden: kopieert verder wat nog ontbrak, naar dezelfde bestemming en met dezelfde opties.
+Files_RailLoad.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Lijst laden
+Files_ListSaved	Lijst opgeslagen
+Files_ListSavedText	{0} bestanden te kopiëren in "{1}". Open hem met "Lijst laden" om verder te gaan waar je gebleven was.
+ListMissing_Title	De oorspronkelijke bestemming is er niet meer
+ListMissing_Message	De map waarheen werd gekopieerd bestaat niet meer (misschien een losgekoppelde USB-stick of schijf). Wil je de rest ergens anders heen kopiëren?
+ListMissing_Choose	Andere plek kiezen…
+ListMissing_Cancel	Annuleren
+Speed_Title.Text	Snelheidslimiet van deze kopie
+Speed_Description.Text	Remt de kopie af zodat de schijf of het netwerk niet volledig belast wordt terwijl je werkt. Geldt meteen, zonder de kopie te stoppen.
+Speed_Switch.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Snelheid beperken
+Speed_Slider.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Maximale snelheid
+Speed_NoLimit	Geen limiet
+Drop_AddToEnd	Toevoegen aan het einde van {0}
+Bars_Title	Voortgangsbalken
+Bars_Description	Kies hoe de balken eruitzien en bewegen. Elke balk kan een eigen stijl hebben en wijzigingen zie je meteen.
+Bars_Which	Welke balk wijzigen
+Bars_RoleTotal	Totaalbalk
+Bars_RoleFile	Bestandsbalk
+Bars_RoleMini	Lijst met kopieën
+Bars_Preview	Voorbeeld
+Bars_StateRunning	Kopiëren
+Bars_StatePaused	Gepauzeerd
+Bars_StateError	Met fout
+Bars_StateDone	Klaar
+Bars_Styles	Stijlen
+Bars_ColorTheme	Van het thema
+Bars_ColorCustom	Mijn kleuren
+Bars_ColorTraffic	Verkeerslicht (naarmate het vordert)
+Bars_ColorRainbow	Regenboog
+Bars_SwatchGreen	Groen
+Bars_SwatchViolet	Blauw naar violet
+Bars_SwatchTeal	Turquoise
+Bars_SwatchOrange	Oranje
+Bars_SwatchPink	Roze
+Bars_SwatchSilver	Zilver
+Bars_ColorStart	Begin
+Bars_ColorEnd	Einde
+Bars_TextOutside	Rechts
+Bars_TextInside	In de balk
+Bars_TextHidden	Verborgen
+Bars_MotionSmooth	Vloeiend
+Bars_MotionElastic	Elastisch (veert een beetje)
+Bars_MotionSteps	In stappen (per 5%)
+Bars_ApplyAll	Dit uiterlijk voor alle drie de balken
+Bars_Reset	Deze balk herstellen
+Bars_FromTheme	Van het thema
+Info_More	Meer informatie: {0}
+BarStyle_Fluent	Fluent
+BarStyle_Fluent_Hint	Strak, met een zachte glans die eroverheen gaat.
+BarStyle_Aero	Aero
+BarStyle_Aero_Hint	Glanzend, met een weerkaatsing die steeds voorbijkomt.
+BarStyle_Wave	Golf
+BarStyle_Wave_Hint	De rand golft als een vloeistof.
+BarStyle_Stripes	Bewegende strepen
+BarStyle_Stripes_Hint	Diagonale strepen die vooruit bewegen.
+BarStyle_Neon	Neon
+BarStyle_Neon_Hint	Felle kleuren met een ademende lichtgloed.
+BarStyle_Blocks	Blokken
+BarStyle_Blocks_Hint	Losse blokken, zoals de balken van vroeger.
+BarStyle_Led	LED
+BarStyle_Led_Hint	Lichtpuntjes; de laatste knippert.
+BarStyle_Rainbow	Regenboog
+BarStyle_Rainbow_Hint	Alle kleuren stromen zonder te stoppen.
+BarStyle_Pulse	Hartslag
+BarStyle_Pulse_Hint	Wordt zachtjes lichter en donkerder.
+BarStyle_Comet	Komeet
+BarStyle_Comet_Hint	Heldere kop met staart en vonken.
+BarStyle_Glass	Glas
+BarStyle_Glass_Hint	Doorschijnend, met een lichte rand.
+BarStyle_Fire	Vuur
+BarStyle_Fire_Hint	Vlammen die bewegen en flakkeren.
+BarStyle_Terminal	Terminal
+BarStyle_Terminal_Hint	[#####·····] zoals in de console, met cursor.
+BarStyle_Line	Dunne lijn
+BarStyle_Line_Hint	Een subtiele lijn met een kloppende markering.
+BarStyle_Dual	Dubbele laag
+BarStyle_Dual_Hint	Een lichte laag gaat voorop, de volle volgt.
+BarStyle_Pixels	Pixels
+BarStyle_Pixels_Hint	Blokjes zoals in een videogame, met schittering.
+BarStyle_Metal	Metaal
+BarStyle_Metal_Hint	Geborsteld metaal met een glinstering.
+BarStyle_Outline	Omtrek
+BarStyle_Outline_Hint	Alleen de rand en een gestreepte vulling.
+BarStyle_Flow	Vloeiend verloop
+BarStyle_Flow_Hint	Twee kleuren mengen en stromen.
+BarStyle_Bubbles	Bellen
+BarStyle_Bubbles_Hint	Bellen die erin meedrijven.
+BarStyle_Traffic	Verkeerslicht
+BarStyle_Traffic_Hint	Rood aan het begin, oranje halverwege en groen aan het eind.
+BarStyle_Segments	Segmenten
+BarStyle_Segments_Hint	Twintig stukken die een voor een vollopen.
+Info_Bars_Title	Voortgangsbalken
+Info_Bars_Text	MegaCopier heeft drie balken: de totaalbalk (hoeveel er van de hele kopie over is), die van het bestand dat nu wordt gekopieerd en de kleine in de lijst met kopieën. Elke balk kan een eigen stijl hebben.\nKies bovenaan welke je wilt wijzigen, tik op een stijl en stel de details in. Het voorbeeld laat zien hoe het eruitziet tijdens het kopiëren, gepauzeerd, met een fout en aan het eind.\n• Een opvallende balk (Neon, Vuur, Regenboog) om de voortgang van een afstand te zien.\n• Een subtiele (Dunne lijn, Fluent) als je doorwerkt tijdens het kopiëren en geen afleiding wilt.\n• Verkeerslicht om zonder cijfers te zien of er nog veel of weinig over is.
+Info_BarColors_Title	Kleuren
+Bars_ColorsDescription	Van het thema, je eigen, verkeerslicht of regenboog.
+Info_BarColors_Text	Waar de kleuren van de balk vandaan komen.\n• Van het thema: ze veranderen vanzelf met een ander thema.\n• Mijn kleuren: een verloop met de twee kleuren die je kiest (tik op een staal of op Begin / Einde).\n• Verkeerslicht: rood aan het begin, oranje halverwege en groen aan het eind; je ziet zonder cijfer hoeveel er over is.\n• Regenboog: alle kleuren.
+Info_BarThickness_Title	Dikte
+Bars_ThicknessDescription	Hoe hoog de balk is.
+Info_BarThickness_Text	De hoogte van de balk in pixels. "Van het thema" gebruikt die van het gekozen thema.\n• Dikker: beter te zien van een afstand en mooier bij Golf, Vuur of Pixels.\n• Dunner: subtieler, ideaal met Dunne lijn of op kleine schermen.\nAls het percentage in de balk staat, groeit hij net genoeg om het te lezen.
+Info_BarRadius_Title	Afronding
+Bars_RadiusDescription	Rechte of ronde hoeken.
+Info_BarRadius_Text	Hoe rond de uiteinden van de balk zijn. 0 geeft rechte hoeken zoals bij klassieke balken; het maximum maakt er een pil van. "Van het thema" gebruikt de afronding van het thema.\n• Recht: staat goed bij Blokken, Pixels en Terminal.\n• Rond: zachter en moderner, perfect bij Fluent, Neon of Glas.
+Info_BarSpeed_Title	Snelheid van de effecten
+Bars_SpeedDescription	Hoe snel glans, golven en strepen bewegen.
+Info_BarSpeed_Text	Verandert het tempo van de animaties van de balk, niet de kopieersnelheid. 1× is normaal; 0,25× heel langzaam en 3× heel snel.\n• Langzamer: rustiger, ideaal als de balk altijd in beeld is.\n• Sneller: oogt drukker en valt op.
+Info_BarGlow_Title	Glans en gloed
+Bars_GlowDescription	Hoe sterk weerkaatsingen en licht zijn.
+Info_BarGlow_Text	Verhoogt of verlaagt de sterkte van de glans: de Aero-weerkaatsing, de Neon-gloed, de kop van de Komeet, de bellen of de Metaal-glinstering.\n• Op 0%: de balk is vlak en sober.\n• Op 100%: hij straalt maximaal; ideaal met donkere thema’s.
+Info_BarText_Title	Percentage
+Bars_TextDescription	Rechts, in de balk of verborgen.
+Info_BarText_Text	Waar het percentage staat.\n• Rechts: zoals altijd, buiten de balk.\n• In de balk: het getal staat op de vulling en de balk groeit zodat het leesbaar is; meer ruimte voor andere gegevens.\n• Verborgen: alleen de balk, voor een rustiger uiterlijk (het percentage staat nog in de venstertitel).
+Info_BarMotion_Title	Hoe hij vordert
+Bars_MotionDescription	Vloeiend, elastisch of in stappen.
+Info_BarMotion_Text	Hoe de vulling beweegt telkens als de kopie vordert.\n• Vloeiend: glijdt zonder schokken (aanbevolen).\n• Elastisch: schiet een tikje door en veert terug; speelser.\n• In stappen: per 5%, zoals vroeger; erg mooi met Blokken of Pixels.
+Info_BarEffects_Title	Effecten per status
+Bars_EffectsDescription	Strepen bij pauze, een schok bij een fout en een flits aan het eind.
+Info_BarEffects_Text	De balk laat zien wat er gebeurt zonder dat je iets hoeft te lezen.\n• Gepauzeerd: er verschijnen stilstaande oranje strepen.\n• Bij een fout: hij wordt rood en schudt even.\n• Aan het eind: een groene feestflits (totaalbalk en lijst).\nZet het uit als je een balk wilt die alleen van kleur verandert.
+Info_BarBorder_Title	Rand
+Bars_BorderDescription	Een dunne lijn rond de balk.
+Info_BarBorder_Text	Tekent een dunne lijn rond de balk zodat hij beter afsteekt tegen de achtergrond.\n• Handig bij lichte thema’s of thema’s met textuur, waar het lege spoor nauwelijks zichtbaar is.\n• Erg mooi met Glas en Omtrek.
+Info_BarReduce_Title	Animaties beperken
+Bars_ReduceDescription	Stille balken zonder herhalende effecten (voor allemaal).
+Info_BarReduce_Text	Haalt herhalende bewegingen weg (glans, golven, strepen, knipperen). De balk vordert gewoon.\n• Handig als animaties je afleiden of duizelig maken.\n• Spaart wat accu op laptops.\nGaat ook vanzelf aan als je in Windows "Animatie-effecten" uitzet (Instellingen > Toegankelijkheid > Visuele effecten).
+Theme_material-oscuro	Material donker
+Theme_cobre-oscuro	Donker koper
+Theme_silicio-oscuro	Donker silicium
+Theme_brisa-oscura	Donkere bries
+Theme_pizarra	Lei
+Theme_arcade	Arcade
+Theme_artico	Arctisch
+Theme_vampiro	Vampier
+Theme_capuchino	Cappuccino
+Theme_noche-tokio	Tokio bij nacht
+Theme_retro-calido	Warm retro
+Theme_solar-oscuro	Zonnig donker
+Theme_atomo	Atoom
+Theme_menta-oscura	Donkere munt
+Theme_material-claro	Material licht
+Theme_cobre-claro	Licht koper
+Theme_silicio-claro	Licht silicium
+Theme_brisa-clara	Lichte bries
+Theme_tiza	Krijt
+Theme_solar-claro	Zonnig licht
+Theme_capuchino-claro	Lichte cappuccino
+Info_Paste_Text	Als je bestanden kopieert (Ctrl+C) of knipt (Ctrl+X) en plakt (Ctrl+V) in Verkenner of op het bureaublad, kopieert MegaCopier in plaats van Windows: met wachtrij, pauze, verificatie en hervatten na een onderbreking.\n• Grote kopieën naar een externe schijf: pauzeer en ga later verder.\n• Meerdere kopieën achter elkaar: ze wachten op hun beurt in plaats van om de schijf te vechten.\nPlak je in dezelfde map (om een bestand te dupliceren), dan doet Verkenner dat nog steeds.
+Info_Drag_Text	Als je bestanden met de linkerknop van het ene venster naar het andere sleept, kopieert (of verplaatst) MegaCopier met dezelfde regels als Windows: op hetzelfde station verplaatsen, Ctrl dwingt kopiëren af en Shift verplaatsen.\n• Foto’s sorteren door ze tussen mappen op verschillende schijven te slepen.\n• Grote projecten verplaatsen zonder dat Verkenner vastloopt.\nNeerzetten op een bestand, een ZIP of het linkerdeelvenster doet Verkenner nog steeds.
+Info_WindowMode_Text	Hoe het venster eruitziet tijdens het kopiëren.\n• Compact: alleen de balken en knoppen; neemt weinig ruimte.\n• Volledig: met bestandslijst, bestemming, opties, grafiek en logboek.\n• Automatisch: compact bij één kopie en volledig bij meerdere.\nMet "Meer" en "Minder" wissel je op elk moment.
+Info_Verify_Text	Na elk bestand leest MegaCopier het opnieuw rechtstreeks van de doelschijf en vergelijkt de vingerafdruk (hash) met die van het origineel. Klopt er iets niet, dan wordt alleen het beschadigde deel opnieuw gekopieerd.\n• Back-ups, foto’s en belangrijke documenten.\n• Oude of goedkope USB-sticks en schijven, die zonder waarschuwing kunnen falen.\n• Kopieën via het netwerk of wifi.\nHet kopiëren duurt iets langer (alles wordt opnieuw gelezen), maar je weet zeker dat het identiek is.
+Info_Conflict_Text	Wat te doen als de bestemming al een bestand met dezelfde naam heeft.\n• Vragen: toont beide met grootte, datum en miniatuur, en jij kiest.\n• Vervangen, Overslaan, Vervangen als nieuwer of bij andere grootte, Beide behouden ("naam (2)") of De bestaande hernoemen.\nIdentieke bestanden (zelfde grootte en datum) worden nooit opnieuw gekopieerd: een herhaalde kopie kopieert alleen nieuwe of gewijzigde bestanden. Bestaat een hele map al, dan vraagt MegaCopier het vóór de start.
+Info_Hash_Text	De hash is als een vingerafdruk van een bestand: verandert er één byte, dan verandert de vingerafdruk. Hij wordt gebruikt bij verificatie en in opgeslagen controlesommen.\n• xxHash3: de snelste; ideaal om kopieën te verifiëren.\n• SHA-256: die gebruiken websites en programma’s het meest om downloads te controleren.\n• MD5, SHA-1, BLAKE3…: voor als een ander programma om een bepaalde vraagt.\nVoor dagelijks gebruik: houd xxHash3.
+Info_Performance_Text	Hoe snel de kopie mag gaan.\n• Snelheidslimiet: zodat de kopie niet het hele netwerk of de schijf opslokt terwijl je werkt of een film kijkt. Elke kopie heeft ook een eigen limiet op het tabblad Opties, die meteen verandert zonder te stoppen.\n• Buffergrootte: de blokken die in één keer gelezen en geschreven worden. Groter werkt beter bij enorme bestanden.\n• Bewerkingen tegelijk: hoeveel blokken tegelijk bij de schijf worden opgevraagd. Snelle SSD’s winnen erbij.\nTwijfel je, laat dan de standaard staan: MegaCopier stemt elke schijf zelf af.
+Info_Merge_Text	Start je een kopie terwijl er al een loopt, dan kan die aansluiten in plaats van te wachten: de bestanden komen onderaan de lijst.\n• Nooit: elke kopie apart.\n• Als ze naar dezelfde map gaan, of dezelfde schijven gebruiken.\n• Altijd.\nMet "Eerst vragen" beslis je elke keer. Handig als je mappen één voor één naar dezelfde USB-stick stuurt.
+Info_MoveAttributes_Text	Bij verplaatsen naar een andere schijf worden bestanden gekopieerd en daarna bij de bron verwijderd. Hier kies je wat ze naast de inhoud meenemen: kenmerken (alleen-lezen, verborgen…), machtigingen, eigenaar en controle.\n• Werkmappen tussen servers verplaatsen en behouden wie ze mag openen.\nOp dezelfde schijf is verplaatsen alleen van plek wisselen en blijft alles behouden.
+Info_DeleteIncomplete_Text	Tijdens het kopiëren wordt elk bestand geschreven met de extensie .mcpart en krijgt het pas zijn naam als het goed klaar is. Stop je een kopie, dan kun je dankzij die stukken later precies verdergaan waar je was.\n• Aan: Stoppen verwijdert de .mcpart-bestanden en de bestemming blijft schoon (maar hervatten kan niet meer).\n• Uit: ze blijven bewaard om te hervatten.\nBij het sluiten van MegaCopier of na een stroomstoring wordt nooit iets verwijderd.
+Info_Eject_Text	Na afloop werpt MegaCopier de USB-stick, kaart of USB-schijf van de bestemming veilig uit, zoals "Hardware veilig verwijderen".\n• Meerdere USB-sticks achter elkaar vullen: als je hem eruit haalt, is hij al klaar.\nAlleen als geen andere kopie hem gebruikt. "Forceren" werpt hem uit, ook als een programma hem open heeft.
+Info_OnError_Text	Wat te doen als een bestand zelfs na nieuwe pogingen niet gekopieerd kan worden.\n• Vragen: de kopie stopt, vertelt waarom en jij kiest opnieuw proberen, overslaan, de volgende overslaan of stoppen.\n• Overslaan en doorgaan: ideaal voor grote kopieën ’s nachts; aan het eind zie je de lijst met fouten.\n• De kopie stoppen: als er niets mag ontbreken.\n• Aan het eind opnieuw: bewaart het voor het laatst, voor het geval het in gebruik was en vrijkomt.
+Info_ErrorReport_Text	Eindigt een kopie met fouten, dan wordt een tekstbestand opgeslagen met elk mislukt bestand, de reden en het tijdstip.\n• Om een kopie die ’s nachts liep rustig na te lopen.\n• Om door te geven aan wie de computers beheert.
+Info_MaxJobs_Text	Hoeveel kopieën tegelijk mogen lopen. Kopieën op dezelfde schijf wachten altijd op hun beurt, want twee dingen tegelijk naar een harde schijf kopiëren maakt alles trager.\n• 0 (geen limiet): elke schijf werkt parallel op volle kracht.\n• 1: alles op een rij, de een na de ander.
+Info_Fast_Text	Stations die meerdere kopieën tegelijk aankunnen zonder trager te worden, zoals NVMe-SSD’s of RAID. Die je hier noemt wachten niet op hun beurt.\n• Als je van een snelle SSD tegelijk naar meerdere bestemmingen kopieert.
+Info_Slow_Text	Als je het toetsenbord of de muis aanraakt, zakken kopieën naar de gekozen snelheid zodat de computer soepel blijft. Stop je ermee, dan gaan ze weer op volle snelheid.\n• Grote kopieën terwijl je werkt, gamet of videobelt.
+Info_ScheduleLimit_Text	Tussen de gekozen uren gaan kopieën niet boven die snelheid; daarbuiten op volle snelheid.\n• Op kantoor, zodat het netwerk tijdens werktijd niet vol zit.\n• Thuis, zodat videogesprekken ’s middags niet wegvallen.
+Info_Priority_Text	Hoeveel voorrang Windows MegaCopier geeft boven andere programma’s.\n• Laag: andere programma’s blijven soepel; de kopie kan iets langer duren.\n• Normaal: zoals altijd.\n• Hoog: de kopie gaat voor; handig als alleen telt dat het zo snel mogelijk klaar is.
+Info_Tune_Text	De eerste keer dat je naar een schijf kopieert, probeert MegaCopier verschillende blokgroottes en aantallen gelijktijdige bewerkingen en houdt de snelste voor die schijf. Dat onthoudt het voor volgende kopieën.\n• SSD’s, harde schijven, USB-sticks en netwerkstations presteren heel verschillend: zo gaat elk op zijn beste snelheid.\nStel je de prestaties met de hand in, dan wordt jouw keuze gerespecteerd.
+Info_Peer_Text	Stuur en ontvang bestanden tussen computers met MegaCopier op hetzelfde netwerk, zonder mappen te delen of iets in te stellen. De afzender typt de code van deze computer; alles is versleuteld en elk bestand wordt bij aankomst gecontroleerd.\n• Foto’s of video’s van de laptop naar de desktop-pc zetten.\n• Een project naar een collega op kantoor sturen.
+Info_Remote_Text	Opent een pagina in de browser van je telefoon (op hetzelfde wifi-netwerk) om te zien hoe de kopieën gaan en ze te pauzeren, hervatten of annuleren.\n• Een lange kopie laten lopen en vanaf de bank in de gaten houden.\nOp de telefoon hoeft niets geïnstalleerd te worden; adres en code staan hier.
+Info_LiveSync_Text	MegaCopier houdt een map in de gaten en kopieert elke wijziging naar een andere (andere schijf, USB-stick, netwerkmap) zodra je klaar bent met opslaan.\n• Altijd een actuele kopie van je documenten op een andere schijf.\n• Wijzigingen van een project naar een gedeelde map brengen.\nIn spiegelmodus wordt wat je verwijdert ook uit de kopie verwijderd.
+Info_Tasks_Text	Een opgeslagen kopie die Windows zelf elke dag, week of maand op het gekozen tijdstip start, ook als MegaCopier gesloten is. Alleen nieuwe of gewijzigde bestanden worden gekopieerd.\n• Elke nacht een back-up van Documenten.\n• Elke zondag foto’s naar de NAS zetten.\nMaak hem aan op het tabblad Opties van een kopie met "Opslaan als taak".
+Info_Guard_Text	Schijven kunnen bestanden in de loop der jaren ongemerkt beschadigen. MegaCopier bewaart de vingerafdruk van elk bestand in het bestand zelf en controleert ze opnieuw als de computer vrij is. Is er een veranderd zonder dat iemand eraan kwam, dan waarschuwt het je op tijd om hem uit een back-up te halen.\n• Familiefoto’s en -video’s.\n• Back-upschijven die zelden worden geopend.\nWat jij bewerkt, wordt vanzelf bijgewerkt. Vereist NTFS-schijven.
+Info_Webhook_Text	Na elke kopie stuurt MegaCopier de samenvatting naar een webadres, zodat de melding op je telefoon of in een chat komt.\n• Discord, Slack of Teams: meldingen in een kanaal.\n• ntfy.sh: een melding op je telefoon met bijna niets te installeren.\n• Home Assistant: automatiseringen (een lamp aan als het klaar is…).
+Info_Connections_Text	Bewaar hier de servers waarnaar je kopieert: FTP, SFTP, WebDAV (Nextcloud, NAS…) of S3 (Backblaze, Wasabi, R2…). Ze verschijnen daarna bij het kiezen van bron of bestemming.\n• Back-ups naar de cloud uploaden.\n• Bestanden van een bedrijfsserver downloaden.\nWachtwoorden staan in Windows Referentiebeheer, nooit als platte tekst.

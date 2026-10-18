@@ -74,6 +74,11 @@ public sealed class ThemeDefinition
 
     public double CornerRadius { get; set; } = 8;
 
+    /// <summary>Aspecto de las barras guardado con el tema (solo en los temas propios; null = no cambiarlas).</summary>
+    public BarSettings? TotalBar { get; set; }
+
+    public BarSettings? FileBar { get; set; }
+
     /// <summary>Altura de las barras de progreso en píxeles.</summary>
     public double BarHeight { get; set; } = 8;
 

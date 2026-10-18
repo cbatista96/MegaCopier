@@ -264,3 +264,7 @@ E_F_ImageText	imagens com o texto "{0}"
 E_CloudSignedIn	Login feito. Você pode fechar esta guia e voltar ao MegaCopier.
 E_CloudSignInFailed	Falha no login. Volte ao MegaCopier para ver o motivo.
 E_CloudSignInError	Não foi possível entrar: {0}
+E_FolderCancelled	Cópia cancelada: a pasta já existia no destino.
+E_FolderSkipExisting	A pasta já existia: os {0} arquivos que já estão lá são pulados e o resto é copiado.
+E_FolderOverwrite	A pasta já existia: os {0} arquivos que já estão lá são substituídos.
+E_FolderRenamed	A pasta "{0}" já existia: é copiada como "{1}".

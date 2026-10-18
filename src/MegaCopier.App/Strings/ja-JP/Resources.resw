@@ -51,9 +51,9 @@
   <data name="OnTopDescription.Text" xml:space="preserve"><value>コピー中はウィンドウを他のウィンドウより手前に表示します</value></data>
   <data name="CopyHeader.Text" xml:space="preserve"><value>コピー</value></data>
   <data name="VerifyTitle.Text" xml:space="preserve"><value>コピー後に検証</value></data>
-  <data name="VerifyDescription.Text" xml:space="preserve"><value>キャッシュを使わずにコピー先を読み直し、コピー元と一致しないブロックを修復します</value></data>
+  <data name="VerifyDescription.Text" xml:space="preserve"><value>各ファイルの後で読み直して元と比べ、違いがあれば直します。</value></data>
   <data name="ConflictTitle.Text" xml:space="preserve"><value>ファイルが既に存在する場合</value></data>
-  <data name="ConflictDescription.Text" xml:space="preserve"><value>同一のファイル（サイズと日付が同じ）は常にスキップされます</value></data>
+  <data name="ConflictDescription.Text" xml:space="preserve"><value>コピー先に同じ名前のファイルがあるとき。同じファイルは二度とコピーしません。</value></data>
   <data name="ConflictAsk.Content" xml:space="preserve"><value>確認する</value></data>
   <data name="ConflictReplace.Content" xml:space="preserve"><value>置き換える</value></data>
   <data name="ConflictSkip.Content" xml:space="preserve"><value>スキップ</value></data>
@@ -203,7 +203,7 @@
   <data name="Options_OnFinish.Text" xml:space="preserve"><value>完了後</value></data>
   <data name="Options_Owner.Content" xml:space="preserve"><value>所有者</value></data>
   <data name="Options_ResetDefault.Text" xml:space="preserve"><value>リセット</value></data>
-  <data name="Options_RunningInfo.Message" xml:space="preserve"><value>コピー実行中: これらの変更は再開時に適用されます（「検証」と「無人」はすぐに適用）。</value></data>
+  <data name="Options_RunningInfo.Message" xml:space="preserve"><value>コピー中です: ほとんどの変更はすぐ反映されます。モード、フィルター、ブロック サイズ、スレッド、チェックサムは再開時に反映されます。</value></data>
   <data name="Options_SaveChecksum.Content" xml:space="preserve"><value>チェックサムファイルを保存</value></data>
   <data name="Options_SaveDefault.Text" xml:space="preserve"><value>既定として保存</value></data>
   <data name="Options_Scripts.Text" xml:space="preserve"><value>完了後のコマンド</value></data>
@@ -247,17 +247,17 @@
   <data name="Settings_FinishKeep.Content" xml:space="preserve"><value>開いたままにする</value></data>
   <data name="Settings_FreeSpace.Content" xml:space="preserve"><value>先に空き容量を確認</value></data>
   <data name="Settings_General.Text" xml:space="preserve"><value>全般</value></data>
-  <data name="Settings_HashTitle.Text" xml:space="preserve"><value>ハッシュアルゴリズム</value></data>
-  <data name="Settings_HashDescription.Text" xml:space="preserve"><value>検証と保存するチェックサムに使います。xxHash3 が最速、SHA-256 が最も互換性があります。</value></data>
+  <data name="Settings_HashTitle.Text" xml:space="preserve"><value>確認の種類 (ハッシュ)</value></data>
+  <data name="Settings_HashDescription.Text" xml:space="preserve"><value>元とコピーを比べる「指紋」。xxHash3 が最速、SHA-256 はウェブやソフトで最もよく求められます。</value></data>
   <data name="Settings_MaxJobsTitle.Text" xml:space="preserve"><value>同時コピー数</value></data>
   <data name="Settings_MaxJobsDescription.Text" xml:space="preserve"><value>同時に実行するコピーの上限（0 = 無制限）。同じディスクを使うコピーは常に順番待ちになります。</value></data>
   <data name="Settings_ModeAuto.Content" xml:space="preserve"><value>自動</value></data>
   <data name="Settings_ModeCompact.Content" xml:space="preserve"><value>コンパクト</value></data>
   <data name="Settings_ModeExpanded.Content" xml:space="preserve"><value>フル</value></data>
   <data name="Settings_PerformanceTitle.Text" xml:space="preserve"><value>パフォーマンス</value></data>
-  <data name="Settings_PerformanceDescription.Text" xml:space="preserve"><value>速度制限、バッファーサイズ、並列処理</value></data>
+  <data name="Settings_PerformanceDescription.Text" xml:space="preserve"><value>コピーの速さの上限: 速度制限、ブロック サイズ、同時に扱う数。</value></data>
   <data name="Settings_PriorityTitle.Text" xml:space="preserve"><value>プロセスの優先度</value></data>
-  <data name="Settings_PriorityDescription.Text" xml:space="preserve"><value>低くするとコピー中も PC が快適に動きます</value></data>
+  <data name="Settings_PriorityDescription.Text" xml:space="preserve"><value>「低」ならコピー中もほかのプログラムが快適、「高」ならコピーが優先されます。</value></data>
   <data name="Settings_Queue.Text" xml:space="preserve"><value>キュー</value></data>
   <data name="Settings_Themes.Text" xml:space="preserve"><value>テーマ</value></data>
   <data name="Settings_WhatToCopy.Text" xml:space="preserve"><value>コピーする内容と、その後の動作</value></data>
@@ -1163,4 +1163,207 @@
   <data name="Eject_DoneTitle" xml:space="preserve"><value>ドライブを取り出しました。取り外せます</value></data>
   <data name="Eject_FailedTitle" xml:space="preserve"><value>ドライブを取り出せませんでした。使用中です</value></data>
   <data name="Sound_Windows" xml:space="preserve"><value>Windows のサウンド</value></data>
+  <data name="FolderAsk_Title" xml:space="preserve"><value>「{0}」はコピー先にすでにあります</value></data>
+  <data name="FolderAsk_TitleMany" xml:space="preserve"><value>{0} 個のフォルダーがコピー先にすでにあります</value></data>
+  <data name="FolderAsk_Message" xml:space="preserve"><value>コピーする {2} 個のファイルのうち {1} 個が {0} にすでにあります ({3})。どうしますか?</value></data>
+  <data name="FolderAsk_Skip" xml:space="preserve"><value>既にあるものは飛ばす</value></data>
+  <data name="FolderAsk_SkipText" xml:space="preserve"><value>すべてのファイルを確認します。既にあるものはコピーも変更もせず、足りないものだけをコピーします。中断したコピーの続きに最適です。</value></data>
+  <data name="FolderAsk_Overwrite" xml:space="preserve"><value>上書きする</value></data>
+  <data name="FolderAsk_OverwriteText" xml:space="preserve"><value>既にあるファイルはコピー元のもので置き換えます。同一のファイルは時間短縮のためそのままにします。</value></data>
+  <data name="FolderAsk_Rename" xml:space="preserve"><value>名前を変える</value></data>
+  <data name="FolderAsk_RenameText" xml:space="preserve"><value>すべてを新しいフォルダー「{0}」にコピーし、既存のフォルダーには触れません。</value></data>
+  <data name="FolderAsk_AskEach" xml:space="preserve"><value>1 つずつ確認する</value></data>
+  <data name="FolderAsk_AskEachText" xml:space="preserve"><value>重複する各ファイルをサイズと日付付きで表示し、どうするかを決めます。</value></data>
+  <data name="FolderAsk_Cancel" xml:space="preserve"><value>コピーをキャンセル</value></data>
+  <data name="FolderAsk_Recommended" xml:space="preserve"><value>おすすめ</value></data>
+  <data name="Rules_FolderAsk.Content" xml:space="preserve"><value>どうするか確認する</value></data>
+  <data name="Files_More.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>リストのその他のオプション</value></data>
+  <data name="Files_ShowHashes.Text" xml:space="preserve"><value>チェックサム (ハッシュ) を表示</value></data>
+  <data name="Files_Source.Text" xml:space="preserve"><value>コピー元</value></data>
+  <data name="Files_Destination.Text" xml:space="preserve"><value>コピー先</value></data>
+  <data name="Files_RailTop.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>リストの先頭へ (Alt+Home): 選んだファイルを次にコピーします。</value></data>
+  <data name="Files_RailTop.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>先頭へ</value></data>
+  <data name="Files_RailUp.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>1 つ上へ (Alt+↑)</value></data>
+  <data name="Files_RailUp.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>上へ</value></data>
+  <data name="Files_RailDown.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>1 つ下へ (Alt+↓)</value></data>
+  <data name="Files_RailDown.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>下へ</value></data>
+  <data name="Files_RailBottom.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>リストの末尾へ (Alt+End): 選んだファイルを最後にコピーします。</value></data>
+  <data name="Files_RailBottom.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>末尾へ</value></data>
+  <data name="Files_RailAdd.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>このコピーにファイルやフォルダーを追加: リストの末尾に入り、同じコピー先へコピーします。</value></data>
+  <data name="Files_RailAdd.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>追加</value></data>
+  <data name="Files_RailRemove.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>コピーから外す (Del): 何も削除されず、コピーされなくなるだけです。</value></data>
+  <data name="Files_RailRemove.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>外す</value></data>
+  <data name="Files_RailSave.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>リストを保存: 残りのコピー内容を保存し、PC の電源を切っても後で続けられます。</value></data>
+  <data name="Files_RailSave.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>リストを保存</value></data>
+  <data name="Files_RailLoad.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>リストを読み込む: 残りを同じコピー先、同じオプションでコピーし続けます。</value></data>
+  <data name="Files_RailLoad.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>リストを読み込む</value></data>
+  <data name="Files_ListSaved" xml:space="preserve"><value>リストを保存しました</value></data>
+  <data name="Files_ListSavedText" xml:space="preserve"><value>「{1}」にコピー待ちのファイルが {0} 個あります。「リストを読み込む」で開くと続きから再開できます。</value></data>
+  <data name="ListMissing_Title" xml:space="preserve"><value>元のコピー先が見つかりません</value></data>
+  <data name="ListMissing_Message" xml:space="preserve"><value>コピー先のフォルダーがもうありません (取り外された USB メモリーやディスクかもしれません)。残りを別の場所にコピーしますか?</value></data>
+  <data name="ListMissing_Choose" xml:space="preserve"><value>別の場所を選ぶ…</value></data>
+  <data name="ListMissing_Cancel" xml:space="preserve"><value>キャンセル</value></data>
+  <data name="Speed_Title.Text" xml:space="preserve"><value>このコピーの速度制限</value></data>
+  <data name="Speed_Description.Text" xml:space="preserve"><value>作業中にディスクやネットワークが限界まで使われないよう、コピーの速度を抑えます。コピーを止めずにすぐ反映されます。</value></data>
+  <data name="Speed_Switch.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>速度を制限</value></data>
+  <data name="Speed_Slider.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>最大速度</value></data>
+  <data name="Speed_NoLimit" xml:space="preserve"><value>制限なし</value></data>
+  <data name="Drop_AddToEnd" xml:space="preserve"><value>{0} の末尾に追加</value></data>
+  <data name="Bars_Title" xml:space="preserve"><value>プログレス バー</value></data>
+  <data name="Bars_Description" xml:space="preserve"><value>バーの見た目と動きを選びます。バーごとに別のスタイルにでき、変更はすぐに反映されます。</value></data>
+  <data name="Bars_Which" xml:space="preserve"><value>変更するバー</value></data>
+  <data name="Bars_RoleTotal" xml:space="preserve"><value>全体のバー</value></data>
+  <data name="Bars_RoleFile" xml:space="preserve"><value>ファイルのバー</value></data>
+  <data name="Bars_RoleMini" xml:space="preserve"><value>コピーの一覧</value></data>
+  <data name="Bars_Preview" xml:space="preserve"><value>プレビュー</value></data>
+  <data name="Bars_StateRunning" xml:space="preserve"><value>コピー中</value></data>
+  <data name="Bars_StatePaused" xml:space="preserve"><value>一時停止中</value></data>
+  <data name="Bars_StateError" xml:space="preserve"><value>エラー</value></data>
+  <data name="Bars_StateDone" xml:space="preserve"><value>完了</value></data>
+  <data name="Bars_Styles" xml:space="preserve"><value>スタイル</value></data>
+  <data name="Bars_ColorTheme" xml:space="preserve"><value>テーマの色</value></data>
+  <data name="Bars_ColorCustom" xml:space="preserve"><value>自分の色</value></data>
+  <data name="Bars_ColorTraffic" xml:space="preserve"><value>信号 (進み具合で変化)</value></data>
+  <data name="Bars_ColorRainbow" xml:space="preserve"><value>虹色</value></data>
+  <data name="Bars_SwatchGreen" xml:space="preserve"><value>グリーン</value></data>
+  <data name="Bars_SwatchViolet" xml:space="preserve"><value>ブルーからバイオレット</value></data>
+  <data name="Bars_SwatchTeal" xml:space="preserve"><value>ターコイズ</value></data>
+  <data name="Bars_SwatchOrange" xml:space="preserve"><value>オレンジ</value></data>
+  <data name="Bars_SwatchPink" xml:space="preserve"><value>ピンク</value></data>
+  <data name="Bars_SwatchSilver" xml:space="preserve"><value>シルバー</value></data>
+  <data name="Bars_ColorStart" xml:space="preserve"><value>始点</value></data>
+  <data name="Bars_ColorEnd" xml:space="preserve"><value>終点</value></data>
+  <data name="Bars_TextOutside" xml:space="preserve"><value>右側</value></data>
+  <data name="Bars_TextInside" xml:space="preserve"><value>バーの中</value></data>
+  <data name="Bars_TextHidden" xml:space="preserve"><value>非表示</value></data>
+  <data name="Bars_MotionSmooth" xml:space="preserve"><value>なめらか</value></data>
+  <data name="Bars_MotionElastic" xml:space="preserve"><value>弾む (少し跳ねる)</value></data>
+  <data name="Bars_MotionSteps" xml:space="preserve"><value>段階的 (5% ごと)</value></data>
+  <data name="Bars_ApplyAll" xml:space="preserve"><value>3 つのバーすべてに適用</value></data>
+  <data name="Bars_Reset" xml:space="preserve"><value>このバーをリセット</value></data>
+  <data name="Bars_FromTheme" xml:space="preserve"><value>テーマ</value></data>
+  <data name="Info_More" xml:space="preserve"><value>詳しい情報: {0}</value></data>
+  <data name="BarStyle_Fluent" xml:space="preserve"><value>Fluent</value></data>
+  <data name="BarStyle_Fluent_Hint" xml:space="preserve"><value>すっきり、やわらかな光が流れます。</value></data>
+  <data name="BarStyle_Aero" xml:space="preserve"><value>Aero</value></data>
+  <data name="BarStyle_Aero_Hint" xml:space="preserve"><value>つややか、光の反射が何度も流れます。</value></data>
+  <data name="BarStyle_Wave" xml:space="preserve"><value>ウェーブ</value></data>
+  <data name="BarStyle_Wave_Hint" xml:space="preserve"><value>縁が液体のように波打ちます。</value></data>
+  <data name="BarStyle_Stripes" xml:space="preserve"><value>動くストライプ</value></data>
+  <data name="BarStyle_Stripes_Hint" xml:space="preserve"><value>斜めのストライプが進みます。</value></data>
+  <data name="BarStyle_Neon" xml:space="preserve"><value>ネオン</value></data>
+  <data name="BarStyle_Neon_Hint" xml:space="preserve"><value>鮮やかな色と呼吸するような光のにじみ。</value></data>
+  <data name="BarStyle_Blocks" xml:space="preserve"><value>ブロック</value></data>
+  <data name="BarStyle_Blocks_Hint" xml:space="preserve"><value>昔のバーのような区切られたブロック。</value></data>
+  <data name="BarStyle_Led" xml:space="preserve"><value>LED</value></data>
+  <data name="BarStyle_Led_Hint" xml:space="preserve"><value>光の点が並び、最後の点が点滅します。</value></data>
+  <data name="BarStyle_Rainbow" xml:space="preserve"><value>虹</value></data>
+  <data name="BarStyle_Rainbow_Hint" xml:space="preserve"><value>すべての色が流れ続けます。</value></data>
+  <data name="BarStyle_Pulse" xml:space="preserve"><value>鼓動</value></data>
+  <data name="BarStyle_Pulse_Hint" xml:space="preserve"><value>ゆっくり明るくなったり暗くなったりします。</value></data>
+  <data name="BarStyle_Comet" xml:space="preserve"><value>彗星</value></data>
+  <data name="BarStyle_Comet_Hint" xml:space="preserve"><value>輝く頭に尾と火花が続きます。</value></data>
+  <data name="BarStyle_Glass" xml:space="preserve"><value>ガラス</value></data>
+  <data name="BarStyle_Glass_Hint" xml:space="preserve"><value>半透明で、縁が光ります。</value></data>
+  <data name="BarStyle_Fire" xml:space="preserve"><value>炎</value></data>
+  <data name="BarStyle_Fire_Hint" xml:space="preserve"><value>揺らめく炎。</value></data>
+  <data name="BarStyle_Terminal" xml:space="preserve"><value>ターミナル</value></data>
+  <data name="BarStyle_Terminal_Hint" xml:space="preserve"><value>[#####·····] コンソール風、カーソル付き。</value></data>
+  <data name="BarStyle_Line" xml:space="preserve"><value>細い線</value></data>
+  <data name="BarStyle_Line_Hint" xml:space="preserve"><value>控えめな線と脈打つマーカー。</value></data>
+  <data name="BarStyle_Dual" xml:space="preserve"><value>二重レイヤー</value></data>
+  <data name="BarStyle_Dual_Hint" xml:space="preserve"><value>明るい層が先に進み、濃い層が追いかけます。</value></data>
+  <data name="BarStyle_Pixels" xml:space="preserve"><value>ピクセル</value></data>
+  <data name="BarStyle_Pixels_Hint" xml:space="preserve"><value>ゲームのような小さな四角、きらめき付き。</value></data>
+  <data name="BarStyle_Metal" xml:space="preserve"><value>メタル</value></data>
+  <data name="BarStyle_Metal_Hint" xml:space="preserve"><value>ヘアライン加工の金属にきらめき。</value></data>
+  <data name="BarStyle_Outline" xml:space="preserve"><value>アウトライン</value></data>
+  <data name="BarStyle_Outline_Hint" xml:space="preserve"><value>枠線とストライプの塗りだけ。</value></data>
+  <data name="BarStyle_Flow" xml:space="preserve"><value>流れるグラデーション</value></data>
+  <data name="BarStyle_Flow_Hint" xml:space="preserve"><value>2 色が混ざり合って流れます。</value></data>
+  <data name="BarStyle_Bubbles" xml:space="preserve"><value>泡</value></data>
+  <data name="BarStyle_Bubbles_Hint" xml:space="preserve"><value>中を泡が流れていきます。</value></data>
+  <data name="BarStyle_Traffic" xml:space="preserve"><value>信号</value></data>
+  <data name="BarStyle_Traffic_Hint" xml:space="preserve"><value>始めは赤、途中で黄、最後は緑。</value></data>
+  <data name="BarStyle_Segments" xml:space="preserve"><value>セグメント</value></data>
+  <data name="BarStyle_Segments_Hint" xml:space="preserve"><value>20 の区間が 1 つずつ埋まります。</value></data>
+  <data name="Info_Bars_Title" xml:space="preserve"><value>プログレス バー</value></data>
+  <data name="Info_Bars_Text" xml:space="preserve"><value>MegaCopier には 3 つのバーがあります。全体のバー (コピー全体の残り)、コピー中のファイルのバー、コピー一覧の小さなバーです。それぞれ別のスタイルにできます。\n上で変更するバーを選び、スタイルをタップして細かく調整します。プレビューでコピー中、一時停止、エラー、完了時の見え方を確認できます。\n• 遠くからでも進み具合が一目でわかる派手なバー (ネオン、炎、虹)。\n• コピー中も作業していて気を散らしたくないときの控えめなバー (細い線、Fluent)。\n• 数字を読まなくても残りが多いか少ないかわかる信号。</value></data>
+  <data name="Info_BarColors_Title" xml:space="preserve"><value>色</value></data>
+  <data name="Bars_ColorsDescription" xml:space="preserve"><value>テーマの色、自分の色、信号、虹。</value></data>
+  <data name="Info_BarColors_Text" xml:space="preserve"><value>バーの色をどこから取るか。\n• テーマの色: 別のテーマを選ぶと自動で変わります。\n• 自分の色: 選んだ 2 色のグラデーション (見本か「始点 / 終点」ボタンをタップ)。\n• 信号: 始めは赤、途中で黄、最後は緑。数字を読まなくても残りがわかります。\n• 虹: すべての色。</value></data>
+  <data name="Info_BarThickness_Title" xml:space="preserve"><value>太さ</value></data>
+  <data name="Bars_ThicknessDescription" xml:space="preserve"><value>バーの高さ。</value></data>
+  <data name="Info_BarThickness_Text" xml:space="preserve"><value>バーの高さ (ピクセル)。「テーマ」は選んだテーマの高さを使います。\n• 太く: 遠くからでも見やすく、ウェーブ、炎、ピクセルなどが映えます。\n• 細く: 控えめで、細い線スタイルや小さな画面に最適。\nパーセントをバーの中に表示すると、読める高さまで自動で太くなります。</value></data>
+  <data name="Info_BarRadius_Title" xml:space="preserve"><value>角の丸み</value></data>
+  <data name="Bars_RadiusDescription" xml:space="preserve"><value>角を四角にするか丸くするか。</value></data>
+  <data name="Info_BarRadius_Text" xml:space="preserve"><value>バーの端の丸み。0 は昔ながらのバーのような直角、最大にするとカプセル形になります。「テーマ」はテーマの丸みを使います。\n• 直角: ブロック、ピクセル、ターミナルによく合います。\n• 丸く: やわらかく現代的で、Fluent、ネオン、ガラスにぴったり。</value></data>
+  <data name="Info_BarSpeed_Title" xml:space="preserve"><value>エフェクトの速さ</value></data>
+  <data name="Bars_SpeedDescription" xml:space="preserve"><value>光、波、ストライプが動く速さ。</value></data>
+  <data name="Info_BarSpeed_Text" xml:space="preserve"><value>バーのアニメーションの速さを変えます (コピーの速度は変わりません)。1× が標準、0.25× はとてもゆっくり、3× はとても速くなります。\n• ゆっくり: 落ち着いた印象で、バーがいつも見えている場合に最適。\n• 速く: 活発な印象で目を引きます。</value></data>
+  <data name="Info_BarGlow_Title" xml:space="preserve"><value>光沢と輝き</value></data>
+  <data name="Bars_GlowDescription" xml:space="preserve"><value>反射や光の強さ。</value></data>
+  <data name="Info_BarGlow_Text" xml:space="preserve"><value>光の強さを上げ下げします: Aero の反射、ネオンの輝き、彗星の頭、泡、メタルのきらめきなど。\n• 0%: 平らで落ち着いたバーに。\n• 100%: 最大限に輝きます。ダーク テーマに最適。</value></data>
+  <data name="Info_BarText_Title" xml:space="preserve"><value>パーセント</value></data>
+  <data name="Bars_TextDescription" xml:space="preserve"><value>右側、バーの中、または非表示。</value></data>
+  <data name="Info_BarText_Text" xml:space="preserve"><value>パーセントの数字をどこに表示するか。\n• 右側: これまでどおりバーの外。\n• バーの中: 数字が塗りの上に重なり、読めるようにバーが太くなります。ほかの情報の場所が広がります。\n• 非表示: バーだけですっきり (パーセントはウィンドウのタイトルに残ります)。</value></data>
+  <data name="Info_BarMotion_Title" xml:space="preserve"><value>進み方</value></data>
+  <data name="Bars_MotionDescription" xml:space="preserve"><value>なめらか、弾む、段階的。</value></data>
+  <data name="Info_BarMotion_Text" xml:space="preserve"><value>コピーが進むたびの塗りの動き方。\n• なめらか: カクつかずに滑ります (おすすめ)。\n• 弾む: 少し行き過ぎてばねのように戻ります。遊び心があります。\n• 段階的: 昔のバーのように 5% ずつ進みます。ブロックやピクセルと相性抜群。</value></data>
+  <data name="Info_BarEffects_Title" xml:space="preserve"><value>状態に応じたエフェクト</value></data>
+  <data name="Bars_EffectsDescription" xml:space="preserve"><value>一時停止でストライプ、エラーで揺れ、完了で光ります。</value></data>
+  <data name="Info_BarEffects_Text" xml:space="preserve"><value>文字を読まなくてもバーが状況を教えてくれます。\n• 一時停止: 止まったオレンジのストライプが出ます。\n• エラー: 赤くなって小さく揺れます。\n• 完了: お祝いの緑の光 (全体のバーと一覧)。\n色が変わるだけのバーがよければオフにします。</value></data>
+  <data name="Info_BarBorder_Title" xml:space="preserve"><value>枠線</value></data>
+  <data name="Bars_BorderDescription" xml:space="preserve"><value>バーを囲む細い線。</value></data>
+  <data name="Info_BarBorder_Text" xml:space="preserve"><value>バーの周りに細い線を描き、背景から見分けやすくします。\n• 空のトラックが見えにくい明るいテーマやテクスチャ付きテーマで便利。\n• ガラスやアウトラインとよく合います。</value></data>
+  <data name="Info_BarReduce_Title" xml:space="preserve"><value>アニメーションを減らす</value></data>
+  <data name="Bars_ReduceDescription" xml:space="preserve"><value>繰り返す効果のない静かなバー (すべてに適用)。</value></data>
+  <data name="Info_BarReduce_Text" xml:space="preserve"><value>繰り返す動き (光、波、ストライプ、点滅) をなくします。バーは普段どおり進みます。\n• アニメーションが気になる、酔いやすい場合に便利です。\n• ノート PC のバッテリーを少し節約できます。\nWindows で「アニメーション効果」をオフにすると自動でオンになります (設定 &gt; アクセシビリティ &gt; 視覚効果)。</value></data>
+  <data name="Theme_material-oscuro" xml:space="preserve"><value>マテリアル ダーク</value></data>
+  <data name="Theme_cobre-oscuro" xml:space="preserve"><value>ダーク カッパー</value></data>
+  <data name="Theme_silicio-oscuro" xml:space="preserve"><value>ダーク シリコン</value></data>
+  <data name="Theme_brisa-oscura" xml:space="preserve"><value>ダーク ブリーズ</value></data>
+  <data name="Theme_pizarra" xml:space="preserve"><value>スレート</value></data>
+  <data name="Theme_arcade" xml:space="preserve"><value>アーケード</value></data>
+  <data name="Theme_artico" xml:space="preserve"><value>アークティック</value></data>
+  <data name="Theme_vampiro" xml:space="preserve"><value>ヴァンパイア</value></data>
+  <data name="Theme_capuchino" xml:space="preserve"><value>カプチーノ</value></data>
+  <data name="Theme_noche-tokio" xml:space="preserve"><value>東京の夜</value></data>
+  <data name="Theme_retro-calido" xml:space="preserve"><value>ウォーム レトロ</value></data>
+  <data name="Theme_solar-oscuro" xml:space="preserve"><value>ソーラー ダーク</value></data>
+  <data name="Theme_atomo" xml:space="preserve"><value>アトム</value></data>
+  <data name="Theme_menta-oscura" xml:space="preserve"><value>ダーク ミント</value></data>
+  <data name="Theme_material-claro" xml:space="preserve"><value>マテリアル ライト</value></data>
+  <data name="Theme_cobre-claro" xml:space="preserve"><value>ライト カッパー</value></data>
+  <data name="Theme_silicio-claro" xml:space="preserve"><value>ライト シリコン</value></data>
+  <data name="Theme_brisa-clara" xml:space="preserve"><value>ライト ブリーズ</value></data>
+  <data name="Theme_tiza" xml:space="preserve"><value>チョーク</value></data>
+  <data name="Theme_solar-claro" xml:space="preserve"><value>ソーラー ライト</value></data>
+  <data name="Theme_capuchino-claro" xml:space="preserve"><value>ライト カプチーノ</value></data>
+  <data name="Info_Paste_Text" xml:space="preserve"><value>エクスプローラーやデスクトップでファイルをコピー (Ctrl+C) または切り取り (Ctrl+X) して貼り付ける (Ctrl+V) と、Windows の代わりに MegaCopier がコピーします。キュー、一時停止、検証、中断後の再開ができます。\n• 外付けディスクへの大きなコピー: 一時停止して後で続けられます。\n• 続けて何度もコピー: ディスクを奪い合わずに順番待ちします。\n同じフォルダーに貼り付ける (複製を作る) 場合は、これまでどおりエクスプローラーが行います。</value></data>
+  <data name="Info_Drag_Text" xml:space="preserve"><value>左ボタンでウィンドウからウィンドウへファイルをドラッグすると、Windows と同じルールで MegaCopier がコピー (または移動) します。同じドライブなら移動、Ctrl でコピー、Shift で移動です。\n• 別のディスクのフォルダー間で写真をドラッグして整理。\n• エクスプローラーを固まらせずに大きなプロジェクトを移動。\nファイル、ZIP、左側のウィンドウにドロップした場合はエクスプローラーが処理します。</value></data>
+  <data name="Info_WindowMode_Text" xml:space="preserve"><value>コピー中のウィンドウの見た目。\n• コンパクト: バーとボタンだけで場所を取りません。\n• フル: ファイル一覧、コピー先、オプション、グラフ、ログ付き。\n• 自動: コピーが 1 つならコンパクト、複数ならフル。\n「詳細」「簡易」ボタンでいつでも切り替えられます。</value></data>
+  <data name="Info_Verify_Text" xml:space="preserve"><value>各ファイルが終わるたびに、MegaCopier はコピー先のディスクから直接読み直し、指紋 (ハッシュ) を元のファイルと比べます。一致しない部分があれば、その部分だけをコピーし直します。\n• バックアップ、写真、大切な書類。\n• 予告なく壊れることがある古い・安価な USB メモリーやディスク。\n• ネットワークや Wi-Fi 経由のコピー。\nすべてを読み直すので少し時間がかかりますが、完全に同じだと確信できます。</value></data>
+  <data name="Info_Conflict_Text" xml:space="preserve"><value>コピー先に同じ名前のファイルがすでにあるときの動作。\n• 確認する: 両方のサイズ、日付、サムネイルを表示して選べます。\n• 置き換える、スキップ、新しい場合やサイズが違う場合に置き換える、両方残す (「名前 (2)」)、既存のファイルの名前を変える。\n同じファイル (サイズと日付が同じ) は二度とコピーしません。もう一度コピーすると、新しいものや変更されたものだけをコピーします。フォルダーごと存在する場合は、始める前に確認します。</value></data>
+  <data name="Info_Hash_Text" xml:space="preserve"><value>ハッシュはファイルの指紋のようなもので、1 バイトでも変わると指紋も変わります。検証や保存するチェックサムに使います。\n• xxHash3: 最速。コピーの検証に最適。\n• SHA-256: ウェブサイトやソフトがダウンロードの確認に最もよく使います。\n• MD5、SHA-1、BLAKE3…: ほかのソフトから特定のものを求められたときに。\n普段は xxHash3 のままで大丈夫です。</value></data>
+  <data name="Info_Performance_Text" xml:space="preserve"><value>コピーがどこまで速く走れるか。\n• 速度制限: 作業中や映画を見ているときに、コピーがネットワークやディスクを使い切らないようにします。各コピーの [オプション] タブにも個別の制限があり、止めずにすぐ変えられます。\n• バッファー サイズ: 一度に読み書きするブロック。巨大なファイルでは大きいほうが有利です。\n• 同時操作数: ディスクに同時に要求するブロックの数。高速な SSD は多いほど速くなります。\nわからなければ既定のままで大丈夫です。MegaCopier がディスクごとに自動で調整します。</value></data>
+  <data name="Info_Merge_Text" xml:space="preserve"><value>コピー中に別のコピーを始めると、順番を待たずに実行中のコピーに加わることができます。ファイルはリストの末尾に入ります。\n• しない: それぞれ別に実行。\n• 同じフォルダーへ、または同じディスクを使う場合。\n• 常に。\n「先に確認する」をオンにすると毎回選べます。同じ USB メモリーにフォルダーを少しずつ送るときに便利です。</value></data>
+  <data name="Info_MoveAttributes_Text" xml:space="preserve"><value>別のディスクへ移動するときは、ファイルをコピーしてから元を削除します。ここでは内容以外に何を持っていくかを選びます: 属性 (読み取り専用、隠し…)、アクセス許可、所有者、監査。\n• 誰が開けるかを保ったまま、作業フォルダーをサーバー間で移動。\n同じディスク内の移動は場所が変わるだけなので、すべて保たれます。</value></data>
+  <data name="Info_DeleteIncomplete_Text" xml:space="preserve"><value>コピー中、各ファイルは拡張子 .mcpart で書き込まれ、正しく完了したときに初めて本来の名前になります。コピーを停止しても、この断片から後で止まったところの続きをコピーできます。\n• オン: [停止] を押すと .mcpart が削除され、コピー先がきれいに保たれます (ただし再開はできません)。\n• オフ: 再開用に残します。\nMegaCopier を閉じたときや停電後に何かが削除されることはありません。</value></data>
+  <data name="Info_Eject_Text" xml:space="preserve"><value>完了すると、MegaCopier はコピー先の USB メモリー、カード、USB ディスクを「ハードウェアの安全な取り外し」と同じように安全に取り外せる状態にします。\n• 何本もの USB メモリーに続けてコピー: 抜くときにはもう準備完了。\nほかのコピーが使っていないときだけ行います。「強制」はプログラムが開いていても取り外します。</value></data>
+  <data name="Info_OnError_Text" xml:space="preserve"><value>再試行してもコピーできないファイルがあるときの動作。\n• 確認する: コピーが止まって理由を表示し、再試行、スキップ、以降もスキップ、停止から選べます。\n• スキップして続行: 夜間の大きなコピーに最適。最後に失敗の一覧を確認できます。\n• コピーを停止: 何ひとつ欠けてはいけないときに。\n• 最後に再試行: 使用中だったものが空くかもしれないので、最後に回します。</value></data>
+  <data name="Info_ErrorReport_Text" xml:space="preserve"><value>コピーがエラーで終わったとき、失敗した各ファイル、理由、時刻を書いたテキスト ファイルを保存します。\n• 夜間に流しておいたコピーを落ち着いて確認するために。\n• パソコンの管理担当者に渡すために。</value></data>
+  <data name="Info_MaxJobs_Text" xml:space="preserve"><value>同時に実行できるコピーの数。同じディスクを使うコピーは必ず順番を待ちます。ハード ディスクに 2 つ同時に書くと全体が遅くなるためです。\n• 0 (制限なし): 各ディスクが並行して全力で動きます。\n• 1: すべて 1 つずつ順番に。</value></data>
+  <data name="Info_Fast_Text" xml:space="preserve"><value>NVMe SSD や RAID のように、複数のコピーを同時にこなしても速度が落ちないドライブ。ここに入れたドライブは順番を待ちません。\n• 高速な SSD から複数のコピー先へ同時にコピーするときに。</value></data>
+  <data name="Info_Slow_Text" xml:space="preserve"><value>キーボードやマウスに触れると、PC が重くならないようコピーが選んだ速度まで下がります。操作をやめると全速に戻ります。\n• 仕事、ゲーム、ビデオ通話をしながらの大きなコピー。</value></data>
+  <data name="Info_ScheduleLimit_Text" xml:space="preserve"><value>選んだ時間帯はコピーがその速度を超えず、それ以外は全速で進みます。\n• 職場で、勤務時間中にネットワークを圧迫しないように。\n• 自宅で、午後のビデオ通話が途切れないように。</value></data>
+  <data name="Info_Priority_Text" xml:space="preserve"><value>Windows がほかのプログラムより MegaCopier をどれだけ優先するか。\n• 低: ほかのプログラムが快適に動きます。コピーは少し遅くなることがあります。\n• 標準: いつもどおり。\n• 高: コピーが優先されます。とにかく早く終わらせたいときに。</value></data>
+  <data name="Info_Tune_Text" xml:space="preserve"><value>初めてディスクにコピーするとき、MegaCopier は複数のブロック サイズと同時操作数を試し、そのディスクで最速の組み合わせを選んで、以降のコピーでも覚えておきます。\n• SSD、HDD、USB メモリー、ネットワーク ドライブは性能がまったく違うため、それぞれが最高の速度で動きます。\n手動で性能を設定した場合は、その設定が優先されます。</value></data>
+  <data name="Info_Peer_Text" xml:space="preserve"><value>同じネットワーク内の MegaCopier 入りの PC 同士で、フォルダーを共有したり設定したりせずにファイルを送受信できます。送る側がこの PC のコードを入力するだけで、すべて暗号化され、各ファイルは届いたときに確認されます。\n• ノート PC からデスクトップ PC へ写真や動画を移す。\n• 職場の同僚にプロジェクトを送る。</value></data>
+  <data name="Info_Remote_Text" xml:space="preserve"><value>スマートフォンのブラウザー (同じ Wi-Fi) でページを開き、コピーの様子を見て一時停止、再開、キャンセルができます。\n• 長いコピーを流しておき、ソファーから見守る。\nスマートフォンに何もインストールする必要はありません。アドレスとコードはここに表示されます。</value></data>
+  <data name="Info_LiveSync_Text" xml:space="preserve"><value>MegaCopier がフォルダーを見張り、何かを変更して保存し終えるたびに、別の場所 (別のディスク、USB メモリー、ネットワーク フォルダー) にコピーします。\n• 書類の最新のコピーを常に別のディスクに置いておく。\n• プロジェクトの変更を共有フォルダーに反映する。\nミラー モードでは、削除したものはコピーからも削除されます。</value></data>
+  <data name="Info_Tasks_Text" xml:space="preserve"><value>保存したコピーを、MegaCopier が閉じていても、選んだ時刻に毎日・毎週・毎月 Windows が自動で実行します。新しいものや変更されたものだけをコピーします。\n• 毎晩「ドキュメント」をバックアップ。\n• 毎週日曜に写真を NAS へ。\nコピーの [オプション] タブの「タスクとして保存」で作成します。</value></data>
+  <data name="Info_Guard_Text" xml:space="preserve"><value>ディスクは何年もかけて気づかないうちにファイルを壊すことがあります。MegaCopier は各ファイルの指紋をファイル自体に保存し、PC が空いているときに確認し直します。誰も触っていないのに変わったファイルがあれば、バックアップから戻せるうちに知らせます。\n• 家族の写真や動画。\n• めったに開かないバックアップ用ディスク。\n自分で編集したファイルは自動で更新されます。NTFS ディスクが必要です。</value></data>
+  <data name="Info_Webhook_Text" xml:space="preserve"><value>コピーが終わるたびに MegaCopier が概要を Web アドレスへ送るので、スマートフォンやチャットに通知が届きます。\n• Discord、Slack、Teams: チャンネルに通知。\n• ntfy.sh: ほぼ何もインストールせずにスマートフォンへ通知。\n• Home Assistant: 自動化 (終わったら照明をつける…)。</value></data>
+  <data name="Info_Connections_Text" xml:space="preserve"><value>コピー先のサーバーをここに保存します: FTP、SFTP、WebDAV (Nextcloud、NAS…)、S3 (Backblaze、Wasabi、R2…)。保存すると、コピー元やコピー先を選ぶときに表示されます。\n• バックアップをクラウドへアップロード。\n• 会社のサーバーからファイルをダウンロード。\nパスワードは平文ではなく、Windows の資格情報マネージャーに保存されます。</value></data>
 </root>

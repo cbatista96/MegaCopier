@@ -14,6 +14,7 @@
         </Grid.RowDefinitions>
         <Grid>
             <StackPanel Orientation="Horizontal" Spacing="10">
+                <c:BackButton Click="Close_Click" Margin="-8,0,0,0" />
                 <c:McIcon VerticalAlignment="Center" Glyph="&#xE81C;" FontSize="20" Accent="True" />
                 <TextBlock x:Uid="History_Title" Style="{StaticResource McTitle}" />
             </StackPanel>
@@ -22,12 +23,6 @@
                     <StackPanel Orientation="Horizontal" Spacing="8">
                         <c:McIcon VerticalAlignment="Center" Glyph="&#xE74D;" FontSize="12" />
                         <TextBlock x:Uid="History_Clear" />
-                    </StackPanel>
-                </Button>
-                <Button Style="{StaticResource McButton}" Click="Close_Click">
-                    <StackPanel Orientation="Horizontal" Spacing="8">
-                        <c:McIcon VerticalAlignment="Center" Glyph="&#xE72B;" FontSize="12" />
-                        <TextBlock x:Uid="Page_Back" />
                     </StackPanel>
                 </Button>
             </StackPanel>

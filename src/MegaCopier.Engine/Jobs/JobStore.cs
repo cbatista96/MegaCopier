@@ -147,6 +147,9 @@ public sealed class CopyJobRecord
     /// <summary>Orden de los pendientes elegido arrastrando (rutas de origen).</summary>
     public List<string> FileOrder { get; set; } = [];
 
+    /// <summary>Carpetas de origen que el usuario eligió copiar con otro nombre (ruta de origen → nombre nuevo).</summary>
+    public Dictionary<string, string> RenamedFolders { get; set; } = new(StringComparer.OrdinalIgnoreCase);
+
     /// <summary>Hora programada de inicio (la cola no lo empieza antes).</summary>
     public DateTime? StartAtUtc { get; set; }
 

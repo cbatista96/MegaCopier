@@ -290,6 +290,10 @@ public static partial class Texts
             ["E_CloudSignedIn"] = "Sesión iniciada. Ya puedes cerrar esta pestaña y volver a MegaCopier.",
             ["E_CloudSignInFailed"] = "No se pudo iniciar sesión. Vuelve a MegaCopier para ver el motivo.",
             ["E_CloudSignInError"] = "No se pudo iniciar sesión: {0}",
+            ["E_FolderCancelled"] = "Copia cancelada: la carpeta ya existía en el destino.",
+            ["E_FolderSkipExisting"] = "La carpeta ya existía: se pasan los {0} archivos que ya están y se copia el resto.",
+            ["E_FolderOverwrite"] = "La carpeta ya existía: se sobrescriben los {0} archivos que ya están.",
+            ["E_FolderRenamed"] = "La carpeta «{0}» ya existía: se copia como «{1}».",
         },
         ["en-US"] = new()
         {
@@ -558,6 +562,10 @@ public static partial class Texts
             ["E_CloudSignedIn"] = "Signed in. You can close this tab and go back to MegaCopier.",
             ["E_CloudSignInFailed"] = "Sign-in failed. Go back to MegaCopier to see why.",
             ["E_CloudSignInError"] = "Could not sign in: {0}",
+            ["E_FolderCancelled"] = "Copy cancelled: the folder already existed in the destination.",
+            ["E_FolderSkipExisting"] = "The folder already existed: the {0} files already there are passed over and the rest is copied.",
+            ["E_FolderOverwrite"] = "The folder already existed: the {0} files already there are overwritten.",
+            ["E_FolderRenamed"] = "The folder \"{0}\" already existed: it is copied as \"{1}\".",
         },
         ["fr-FR"] = new()
         {
@@ -826,6 +834,10 @@ public static partial class Texts
             ["E_CloudSignedIn"] = "Connecté. Vous pouvez fermer cet onglet et revenir à MegaCopier.",
             ["E_CloudSignInFailed"] = "La connexion a échoué. Revenez à MegaCopier pour voir pourquoi.",
             ["E_CloudSignInError"] = "Impossible de se connecter : {0}",
+            ["E_FolderCancelled"] = "Copie annulée : le dossier existait déjà dans la destination.",
+            ["E_FolderSkipExisting"] = "Le dossier existait déjà : les {0} fichiers déjà présents sont passés et le reste est copié.",
+            ["E_FolderOverwrite"] = "Le dossier existait déjà : les {0} fichiers déjà présents sont remplacés.",
+            ["E_FolderRenamed"] = "Le dossier « {0} » existait déjà : il est copié sous le nom « {1} ».",
         },
         ["de-DE"] = new()
         {
@@ -1094,6 +1106,10 @@ public static partial class Texts
             ["E_CloudSignedIn"] = "Angemeldet. Du kannst diesen Tab schließen und zu MegaCopier zurückkehren.",
             ["E_CloudSignInFailed"] = "Anmeldung fehlgeschlagen. Kehre zu MegaCopier zurück, um den Grund zu sehen.",
             ["E_CloudSignInError"] = "Anmeldung nicht möglich: {0}",
+            ["E_FolderCancelled"] = "Kopie abgebrochen: Der Ordner war im Ziel bereits vorhanden.",
+            ["E_FolderSkipExisting"] = "Der Ordner war schon vorhanden: Die {0} vorhandenen Dateien werden übersprungen, der Rest wird kopiert.",
+            ["E_FolderOverwrite"] = "Der Ordner war schon vorhanden: Die {0} vorhandenen Dateien werden überschrieben.",
+            ["E_FolderRenamed"] = "Der Ordner „{0}“ war schon vorhanden: Er wird als „{1}“ kopiert.",
         },
         ["it-IT"] = new()
         {
@@ -1362,6 +1378,10 @@ public static partial class Texts
             ["E_CloudSignedIn"] = "Accesso eseguito. Puoi chiudere questa scheda e tornare a MegaCopier.",
             ["E_CloudSignInFailed"] = "Accesso non riuscito. Torna a MegaCopier per vedere il motivo.",
             ["E_CloudSignInError"] = "Impossibile accedere: {0}",
+            ["E_FolderCancelled"] = "Copia annullata: la cartella esisteva già nella destinazione.",
+            ["E_FolderSkipExisting"] = "La cartella esisteva già: i {0} file già presenti vengono saltati e il resto viene copiato.",
+            ["E_FolderOverwrite"] = "La cartella esisteva già: i {0} file già presenti vengono sovrascritti.",
+            ["E_FolderRenamed"] = "La cartella «{0}» esisteva già: viene copiata come «{1}».",
         },
         ["pt-BR"] = new()
         {
@@ -1630,6 +1650,10 @@ public static partial class Texts
             ["E_CloudSignedIn"] = "Login feito. Você pode fechar esta guia e voltar ao MegaCopier.",
             ["E_CloudSignInFailed"] = "Falha no login. Volte ao MegaCopier para ver o motivo.",
             ["E_CloudSignInError"] = "Não foi possível entrar: {0}",
+            ["E_FolderCancelled"] = "Cópia cancelada: a pasta já existia no destino.",
+            ["E_FolderSkipExisting"] = "A pasta já existia: os {0} arquivos que já estão lá são pulados e o resto é copiado.",
+            ["E_FolderOverwrite"] = "A pasta já existia: os {0} arquivos que já estão lá são substituídos.",
+            ["E_FolderRenamed"] = "A pasta \"{0}\" já existia: é copiada como \"{1}\".",
         },
         ["ru-RU"] = new()
         {
@@ -1898,6 +1922,10 @@ public static partial class Texts
             ["E_CloudSignedIn"] = "Вход выполнен. Можно закрыть вкладку и вернуться в MegaCopier.",
             ["E_CloudSignInFailed"] = "Не удалось войти. Вернитесь в MegaCopier, чтобы узнать причину.",
             ["E_CloudSignInError"] = "Не удалось войти: {0}",
+            ["E_FolderCancelled"] = "Копирование отменено: папка уже была в месте назначения.",
+            ["E_FolderSkipExisting"] = "Папка уже была: {0} существующих файлов пропускаются, остальные копируются.",
+            ["E_FolderOverwrite"] = "Папка уже была: {0} существующих файлов перезаписываются.",
+            ["E_FolderRenamed"] = "Папка «{0}» уже была: она копируется как «{1}».",
         },
         ["uk-UA"] = new()
         {
@@ -2166,6 +2194,10 @@ public static partial class Texts
             ["E_CloudSignedIn"] = "Вхід виконано. Можна закрити вкладку й повернутися до MegaCopier.",
             ["E_CloudSignInFailed"] = "Не вдалося увійти. Поверніться до MegaCopier, щоб побачити причину.",
             ["E_CloudSignInError"] = "Не вдалося увійти: {0}",
+            ["E_FolderCancelled"] = "Копіювання скасовано: тека вже була в місці призначення.",
+            ["E_FolderSkipExisting"] = "Тека вже була: {0} наявних файлів пропускаються, решта копіюється.",
+            ["E_FolderOverwrite"] = "Тека вже була: {0} наявних файлів перезаписуються.",
+            ["E_FolderRenamed"] = "Тека «{0}» вже була: вона копіюється як «{1}».",
         },
         ["pl-PL"] = new()
         {
@@ -2434,6 +2466,10 @@ public static partial class Texts
             ["E_CloudSignedIn"] = "Zalogowano. Możesz zamknąć tę kartę i wrócić do MegaCopier.",
             ["E_CloudSignInFailed"] = "Logowanie nie powiodło się. Wróć do MegaCopier, aby zobaczyć powód.",
             ["E_CloudSignInError"] = "Nie udało się zalogować: {0}",
+            ["E_FolderCancelled"] = "Kopiowanie anulowane: folder już istniał w miejscu docelowym.",
+            ["E_FolderSkipExisting"] = "Folder już istniał: {0} istniejących plików jest pomijanych, reszta jest kopiowana.",
+            ["E_FolderOverwrite"] = "Folder już istniał: {0} istniejących plików zostanie nadpisanych.",
+            ["E_FolderRenamed"] = "Folder „{0}” już istniał: zostanie skopiowany jako „{1}”.",
         },
         ["nl-NL"] = new()
         {
@@ -2702,6 +2738,10 @@ public static partial class Texts
             ["E_CloudSignedIn"] = "Aangemeld. Je kunt dit tabblad sluiten en teruggaan naar MegaCopier.",
             ["E_CloudSignInFailed"] = "Aanmelden mislukt. Ga terug naar MegaCopier om te zien waarom.",
             ["E_CloudSignInError"] = "Kan niet aanmelden: {0}",
+            ["E_FolderCancelled"] = "Kopie geannuleerd: de map bestond al op de bestemming.",
+            ["E_FolderSkipExisting"] = "De map bestond al: de {0} bestanden die er al zijn worden overgeslagen en de rest wordt gekopieerd.",
+            ["E_FolderOverwrite"] = "De map bestond al: de {0} bestanden die er al zijn worden overschreven.",
+            ["E_FolderRenamed"] = "De map \"{0}\" bestond al: hij wordt gekopieerd als \"{1}\".",
         },
         ["tr-TR"] = new()
         {
@@ -2970,6 +3010,10 @@ public static partial class Texts
             ["E_CloudSignedIn"] = "Oturum açıldı. Bu sekmeyi kapatıp MegaCopier'a dönebilirsiniz.",
             ["E_CloudSignInFailed"] = "Oturum açılamadı. Nedenini görmek için MegaCopier'a dönün.",
             ["E_CloudSignInError"] = "Oturum açılamadı: {0}",
+            ["E_FolderCancelled"] = "Kopyalama iptal edildi: klasör hedefte zaten vardı.",
+            ["E_FolderSkipExisting"] = "Klasör zaten vardı: mevcut {0} dosya atlanır, kalanı kopyalanır.",
+            ["E_FolderOverwrite"] = "Klasör zaten vardı: mevcut {0} dosyanın üzerine yazılır.",
+            ["E_FolderRenamed"] = "\"{0}\" klasörü zaten vardı: \"{1}\" olarak kopyalanır.",
         },
         ["zh-CN"] = new()
         {
@@ -3238,6 +3282,10 @@ public static partial class Texts
             ["E_CloudSignedIn"] = "已登录。可以关闭此标签页并返回 MegaCopier。",
             ["E_CloudSignInFailed"] = "登录失败。请返回 MegaCopier 查看原因。",
             ["E_CloudSignInError"] = "无法登录：{0}",
+            ["E_FolderCancelled"] = "已取消复制：目标中已存在该文件夹。",
+            ["E_FolderSkipExisting"] = "文件夹已存在：跳过已有的 {0} 个文件，复制其余文件。",
+            ["E_FolderOverwrite"] = "文件夹已存在：覆盖已有的 {0} 个文件。",
+            ["E_FolderRenamed"] = "文件夹“{0}”已存在：将复制为“{1}”。",
         },
         ["ja-JP"] = new()
         {
@@ -3506,6 +3554,10 @@ public static partial class Texts
             ["E_CloudSignedIn"] = "サインインしました。このタブを閉じて MegaCopier に戻ってください。",
             ["E_CloudSignInFailed"] = "サインインできませんでした。MegaCopier に戻って理由を確認してください。",
             ["E_CloudSignInError"] = "サインインできませんでした: {0}",
+            ["E_FolderCancelled"] = "コピーをキャンセルしました: フォルダーはコピー先にすでにありました。",
+            ["E_FolderSkipExisting"] = "フォルダーはすでにありました: 既存の {0} 個のファイルを飛ばし、残りをコピーします。",
+            ["E_FolderOverwrite"] = "フォルダーはすでにありました: 既存の {0} 個のファイルを上書きします。",
+            ["E_FolderRenamed"] = "フォルダー「{0}」はすでにありました: 「{1}」としてコピーします。",
         },
         ["ko-KR"] = new()
         {
@@ -3774,6 +3826,10 @@ public static partial class Texts
             ["E_CloudSignedIn"] = "로그인되었습니다. 이 탭을 닫고 MegaCopier로 돌아가세요.",
             ["E_CloudSignInFailed"] = "로그인하지 못했습니다. MegaCopier로 돌아가 이유를 확인하세요.",
             ["E_CloudSignInError"] = "로그인할 수 없습니다: {0}",
+            ["E_FolderCancelled"] = "복사 취소됨: 대상에 폴더가 이미 있었습니다.",
+            ["E_FolderSkipExisting"] = "폴더가 이미 있었습니다: 이미 있는 파일 {0}개는 건너뛰고 나머지를 복사합니다.",
+            ["E_FolderOverwrite"] = "폴더가 이미 있었습니다: 이미 있는 파일 {0}개를 덮어씁니다.",
+            ["E_FolderRenamed"] = "\"{0}\" 폴더가 이미 있었습니다: \"{1}\"(으)로 복사합니다.",
         },
     };
 }

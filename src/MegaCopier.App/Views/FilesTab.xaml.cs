@@ -21,6 +21,8 @@ public sealed partial class FilesTab : UserControl
         SizeChanged += (_, e) => Adapt(e.NewSize.Width);
         FilterBox.SelectedIndex = 0;
         HideFinishedBox.IsChecked = ((App)Application.Current).Settings.HideFinishedFiles;
+        ShowHashesItem.IsChecked = ((App)Application.Current).Settings.FilesShowHashes;
+        UpdateRail();
     }
 
     public JobViewModel? Job
@@ -31,18 +33,23 @@ public sealed partial class FilesTab : UserControl
 
     public FileListViewModel? Files => _files;
 
-    /// <summary>Estrecha: las casillas bajan a una segunda fila; muy estrecha: se ocultan las columnas de hash.</summary>
+    /// <summary>
+    /// Estrecha: las casillas bajan a una segunda fila y la columna Destino se oculta (queda en la ayuda de cada fila);
+    /// las sumas solo caben si la lista es ancha y se pidieron en el menú.
+    /// </summary>
     private void Adapt(double width)
     {
         bool twoRows = width < 760;
         Grid.SetRow(ListToggles, twoRows ? 1 : 0);
-        Grid.SetColumn(ListToggles, twoRows ? 0 : 2);
+        Grid.SetColumn(ListToggles, twoRows ? 0 : 1);
         Grid.SetColumnSpan(ListToggles, twoRows ? 4 : 1);
 
-        bool hashes = width >= 640;
-        if (hashes != FileRowViewModel.ShowHashes)
+        bool destination = width >= 620;
+        bool hashes = width >= 900 && ShowHashesItem.IsChecked;
+        if (hashes != FileRowViewModel.ShowHashes || destination != FileRowViewModel.ShowDestination)
         {
             FileRowViewModel.ShowHashes = hashes;
+            FileRowViewModel.ShowDestination = destination;
             foreach (var row in _files?.Items ?? [])
             {
                 row.Refresh();
@@ -51,6 +58,26 @@ public sealed partial class FilesTab : UserControl
 
         SourceHashHeader.Visibility = hashes ? Visibility.Visible : Visibility.Collapsed;
         TargetHashHeader.Visibility = hashes ? Visibility.Visible : Visibility.Collapsed;
+        DestinationHeader.Visibility = destination ? Visibility.Visible : Visibility.Collapsed;
+        HeaderDestinationColumn.Width = destination ? new GridLength(2, GridUnitType.Star) : new GridLength(0);
+    }
+
+    private void ShowHashes_Click(object sender, RoutedEventArgs e)
+    {
+        var settings = ((App)Application.Current).Settings;
+        settings.FilesShowHashes = ShowHashesItem.IsChecked;
+        settings.Save();
+        Adapt(ActualWidth);
+    }
+
+    private void List_SelectionChanged(object sender, SelectionChangedEventArgs e) => UpdateRail();
+
+    /// <summary>Ordenar y quitar solo valen para archivos que aún no han empezado.</summary>
+    private void UpdateRail()
+    {
+        bool pending = Selected().Any(r => r.IsPending);
+        TopButton.IsEnabled = UpButton.IsEnabled = DownButton.IsEnabled = BottomButton.IsEnabled = RemoveButton.IsEnabled = pending;
+        SaveButton.IsEnabled = Job is not null;
     }
 
     private void OnJobChanged()
@@ -73,6 +100,7 @@ public sealed partial class FilesTab : UserControl
 
         List.ItemsSource = _files?.Items;
         UpdateCount();
+        UpdateRail();
     }
 
     /// <summary>La lista se crea cuando el trabajo arranca: se reintenta al refrescar.</summary>
@@ -188,13 +216,18 @@ public sealed partial class FilesTab : UserControl
         }
     }
 
+    /// <summary>Guarda lo que queda por copiar (con su destino y sus opciones) para seguir más tarde con «Cargar».</summary>
     private async void SaveList_Click(object sender, RoutedEventArgs e)
     {
-        if (Job is not null && await Pickers.SaveAsync("MegaCopier", ".mclist", L.Get("Files_ListType")) is { } path)
+        if (Job is not null && await Pickers.SaveAsync(Reports.FileNameFor(Job.Title), ".mclist", L.Get("Files_ListType")) is { } path)
         {
-            Reports.SaveList(Job.Job.Record, path);
+            int remaining = Reports.SaveRemaining(Job.Job, path);
+            ((App)Application.Current).Notify(L.Get("Files_ListSaved"), L.F("Files_ListSavedText", remaining, Path.GetFileName(path)));
         }
     }
+
+    /// <summary>Carga una lista guardada y la copia en seguida a su destino (o a otro, si ese ya no está).</summary>
+    private void LoadList_Click(object sender, RoutedEventArgs e) => ((App)Application.Current).Window.LoadListAsync();
 
     private async void ExportHtml_Click(object sender, RoutedEventArgs e)
     {

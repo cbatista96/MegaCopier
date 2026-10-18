@@ -51,9 +51,9 @@
   <data name="OnTopDescription.Text" xml:space="preserve"><value>Kopyalarken pencere diğerlerinin üstünde kalır</value></data>
   <data name="CopyHeader.Text" xml:space="preserve"><value>Kopyalama</value></data>
   <data name="VerifyTitle.Text" xml:space="preserve"><value>Kopyaladıktan sonra doğrula</value></data>
-  <data name="VerifyDescription.Text" xml:space="preserve"><value>Hedefi önbelleksiz yeniden okur ve kaynakla eşleşmeyen her bloğu onarır</value></data>
+  <data name="VerifyDescription.Text" xml:space="preserve"><value>Her dosyadan sonra yeniden okur ve aslıyla karşılaştırır; uyuşmayan bir şey varsa düzeltir.</value></data>
   <data name="ConflictTitle.Text" xml:space="preserve"><value>Dosya zaten varsa</value></data>
-  <data name="ConflictDescription.Text" xml:space="preserve"><value>Aynı dosyalar (aynı boyut ve tarih) her zaman atlanır</value></data>
+  <data name="ConflictDescription.Text" xml:space="preserve"><value>Hedefte aynı adlı bir dosya zaten varsa. Aynı dosyalar asla yeniden kopyalanmaz.</value></data>
   <data name="ConflictAsk.Content" xml:space="preserve"><value>Sor</value></data>
   <data name="ConflictReplace.Content" xml:space="preserve"><value>Değiştir</value></data>
   <data name="ConflictSkip.Content" xml:space="preserve"><value>Atla</value></data>
@@ -203,7 +203,7 @@
   <data name="Options_OnFinish.Text" xml:space="preserve"><value>Bitince</value></data>
   <data name="Options_Owner.Content" xml:space="preserve"><value>Sahip</value></data>
   <data name="Options_ResetDefault.Text" xml:space="preserve"><value>Sıfırla</value></data>
-  <data name="Options_RunningInfo.Message" xml:space="preserve"><value>Kopyalama sürüyor: bu değişiklikler sürdürünce uygulanır (Doğrula ve Gözetimsiz hemen).</value></data>
+  <data name="Options_RunningInfo.Message" xml:space="preserve"><value>Kopyalama sürüyor: neredeyse her şey hemen uygulanır. Mod, filtreler, blok boyutu, iş parçacıkları ve sağlama toplamı devam ettirildiğinde uygulanır.</value></data>
   <data name="Options_SaveChecksum.Content" xml:space="preserve"><value>Sağlama dosyası kaydet</value></data>
   <data name="Options_SaveDefault.Text" xml:space="preserve"><value>Varsayılan olarak kaydet</value></data>
   <data name="Options_Scripts.Text" xml:space="preserve"><value>Bitince komutlar</value></data>
@@ -247,17 +247,17 @@
   <data name="Settings_FinishKeep.Content" xml:space="preserve"><value>Açık bırak</value></data>
   <data name="Settings_FreeSpace.Content" xml:space="preserve"><value>Önce boş alanı denetle</value></data>
   <data name="Settings_General.Text" xml:space="preserve"><value>Genel</value></data>
-  <data name="Settings_HashTitle.Text" xml:space="preserve"><value>Karma algoritması</value></data>
-  <data name="Settings_HashDescription.Text" xml:space="preserve"><value>Doğrulama ve kaydedilen sağlamalar için. xxHash3 en hızlısı, SHA-256 en uyumlusudur.</value></data>
+  <data name="Settings_HashTitle.Text" xml:space="preserve"><value>Denetim türü (hash)</value></data>
+  <data name="Settings_HashDescription.Text" xml:space="preserve"><value>Asıl ile kopyayı karşılaştıran &quot;parmak izi&quot;. xxHash3 en hızlısı; SHA-256 web siteleri ve programların en çok istediği.</value></data>
   <data name="Settings_MaxJobsTitle.Text" xml:space="preserve"><value>Eşzamanlı kopyalamalar</value></data>
   <data name="Settings_MaxJobsDescription.Text" xml:space="preserve"><value>Aynı anda en fazla kaç kopyalama (0 = sınırsız). Aynı diskteki kopyalamalar her zaman sırasını bekler.</value></data>
   <data name="Settings_ModeAuto.Content" xml:space="preserve"><value>Otomatik</value></data>
   <data name="Settings_ModeCompact.Content" xml:space="preserve"><value>Kompakt</value></data>
   <data name="Settings_ModeExpanded.Content" xml:space="preserve"><value>Tam</value></data>
   <data name="Settings_PerformanceTitle.Text" xml:space="preserve"><value>Performans</value></data>
-  <data name="Settings_PerformanceDescription.Text" xml:space="preserve"><value>Hız sınırı, arabellek boyutu ve eşzamanlı işlemler</value></data>
+  <data name="Settings_PerformanceDescription.Text" xml:space="preserve"><value>Kopyanın ne kadar hızlı gidebileceği: hız sınırı, blok boyutu ve aynı anda kaç tane.</value></data>
   <data name="Settings_PriorityTitle.Text" xml:space="preserve"><value>İşlem önceliği</value></data>
-  <data name="Settings_PriorityDescription.Text" xml:space="preserve"><value>Düşük, kopyalarken bilgisayarı daha akıcı tutar</value></data>
+  <data name="Settings_PriorityDescription.Text" xml:space="preserve"><value>&quot;Düşük&quot; ile kopyalarken diğer programlar akıcı kalır; &quot;Yüksek&quot; ile kopya önceliklidir.</value></data>
   <data name="Settings_Queue.Text" xml:space="preserve"><value>Sıra</value></data>
   <data name="Settings_Themes.Text" xml:space="preserve"><value>Temalar</value></data>
   <data name="Settings_WhatToCopy.Text" xml:space="preserve"><value>Ne kopyalanır ve sonra ne olur</value></data>
@@ -1163,4 +1163,207 @@
   <data name="Eject_DoneTitle" xml:space="preserve"><value>Sürücü çıkarıldı: artık çıkarabilirsin</value></data>
   <data name="Eject_FailedTitle" xml:space="preserve"><value>Sürücü çıkarılamadı: bir şey kullanıyor</value></data>
   <data name="Sound_Windows" xml:space="preserve"><value>Windows sesi</value></data>
+  <data name="FolderAsk_Title" xml:space="preserve"><value>&quot;{0}&quot; hedefte zaten var</value></data>
+  <data name="FolderAsk_TitleMany" xml:space="preserve"><value>{0} klasör hedefte zaten var</value></data>
+  <data name="FolderAsk_Message" xml:space="preserve"><value>Kopyaladığınız {2} dosyanın {1} tanesi zaten {0} içinde ({3}). Bunlarla ne yapmak istersiniz?</value></data>
+  <data name="FolderAsk_Skip" xml:space="preserve"><value>Var olanları atla</value></data>
+  <data name="FolderAsk_SkipText" xml:space="preserve"><value>Her dosya kontrol edilir: var olanlar kopyalanmaz ve değiştirilmez, yalnızca eksikler kopyalanır. Yarıda kalan bir kopyayı bitirmek için ideal.</value></data>
+  <data name="FolderAsk_Overwrite" xml:space="preserve"><value>Üzerine yaz</value></data>
+  <data name="FolderAsk_OverwriteText" xml:space="preserve"><value>Var olan dosyalar kaynaktakilerle değiştirilir. Aynı olanlar zaman kazanmak için olduğu gibi bırakılır.</value></data>
+  <data name="FolderAsk_Rename" xml:space="preserve"><value>Yeniden adlandır</value></data>
+  <data name="FolderAsk_RenameText" xml:space="preserve"><value>Her şey yeni bir klasöre, &quot;{0}&quot;, kopyalanır ve var olana dokunulmaz.</value></data>
+  <data name="FolderAsk_AskEach" xml:space="preserve"><value>Tek tek sor</value></data>
+  <data name="FolderAsk_AskEachText" xml:space="preserve"><value>Her tekrar eden dosyayı boyutu ve tarihiyle görür, ne yapacağınıza karar verirsiniz.</value></data>
+  <data name="FolderAsk_Cancel" xml:space="preserve"><value>Kopyalamayı iptal et</value></data>
+  <data name="FolderAsk_Recommended" xml:space="preserve"><value>Önerilen</value></data>
+  <data name="Rules_FolderAsk.Content" xml:space="preserve"><value>Ne yapılacağını sor</value></data>
+  <data name="Files_More.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Diğer liste seçenekleri</value></data>
+  <data name="Files_ShowHashes.Text" xml:space="preserve"><value>Sağlama toplamlarını (hash) göster</value></data>
+  <data name="Files_Source.Text" xml:space="preserve"><value>Kaynak</value></data>
+  <data name="Files_Destination.Text" xml:space="preserve"><value>Hedef</value></data>
+  <data name="Files_RailTop.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Listenin başına (Alt+Home): seçilen dosyalar sıradaki olarak kopyalanır.</value></data>
+  <data name="Files_RailTop.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Başa</value></data>
+  <data name="Files_RailUp.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Bir sıra yukarı (Alt+↑)</value></data>
+  <data name="Files_RailUp.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Yukarı</value></data>
+  <data name="Files_RailDown.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Bir sıra aşağı (Alt+↓)</value></data>
+  <data name="Files_RailDown.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Aşağı</value></data>
+  <data name="Files_RailBottom.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Listenin sonuna (Alt+End): seçilen dosyalar en son kopyalanır.</value></data>
+  <data name="Files_RailBottom.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Sona</value></data>
+  <data name="Files_RailAdd.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Bu kopyaya dosya veya klasör ekle: listenin sonuna eklenir ve aynı hedefe gider.</value></data>
+  <data name="Files_RailAdd.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Ekle</value></data>
+  <data name="Files_RailRemove.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Kopyadan çıkar (Del): hiçbir şey silinmez, yalnızca kopyalanmaz.</value></data>
+  <data name="Files_RailRemove.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Çıkar</value></data>
+  <data name="Files_RailSave.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Listeyi kaydet: kopyalanacak kalanları kaydeder, bilgisayarı kapatsanız bile sonra devam edebilirsiniz.</value></data>
+  <data name="Files_RailSave.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Listeyi kaydet</value></data>
+  <data name="Files_RailLoad.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Liste yükle: kalanları aynı hedefe ve aynı seçeneklerle kopyalamaya devam eder.</value></data>
+  <data name="Files_RailLoad.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Liste yükle</value></data>
+  <data name="Files_ListSaved" xml:space="preserve"><value>Liste kaydedildi</value></data>
+  <data name="Files_ListSavedText" xml:space="preserve"><value>&quot;{1}&quot; içinde kopyalanacak {0} dosya. Kaldığınız yerden devam etmek için &quot;Liste yükle&quot; ile açın.</value></data>
+  <data name="ListMissing_Title" xml:space="preserve"><value>Asıl hedef artık yok</value></data>
+  <data name="ListMissing_Message" xml:space="preserve"><value>Kopyalanan klasör artık yok (belki çıkarılmış bir USB bellek ya da disk). Kalanını başka bir yere kopyalamak ister misiniz?</value></data>
+  <data name="ListMissing_Choose" xml:space="preserve"><value>Başka bir yer seç…</value></data>
+  <data name="ListMissing_Cancel" xml:space="preserve"><value>İptal</value></data>
+  <data name="Speed_Title.Text" xml:space="preserve"><value>Bu kopyanın hız sınırı</value></data>
+  <data name="Speed_Description.Text" xml:space="preserve"><value>Siz çalışırken disk veya ağ tam yükte olmasın diye kopyayı yavaşlatır. Kopyayı durdurmadan hemen uygulanır.</value></data>
+  <data name="Speed_Switch.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Hızı sınırla</value></data>
+  <data name="Speed_Slider.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>En yüksek hız</value></data>
+  <data name="Speed_NoLimit" xml:space="preserve"><value>Sınırsız</value></data>
+  <data name="Drop_AddToEnd" xml:space="preserve"><value>{0} sonuna ekle</value></data>
+  <data name="Bars_Title" xml:space="preserve"><value>İlerleme çubukları</value></data>
+  <data name="Bars_Description" xml:space="preserve"><value>Çubukların nasıl görüneceğini ve hareket edeceğini seçin. Her çubuğun kendi stili olabilir ve değişiklikler hemen görünür.</value></data>
+  <data name="Bars_Which" xml:space="preserve"><value>Hangi çubuk değişsin</value></data>
+  <data name="Bars_RoleTotal" xml:space="preserve"><value>Toplam çubuğu</value></data>
+  <data name="Bars_RoleFile" xml:space="preserve"><value>Dosya çubuğu</value></data>
+  <data name="Bars_RoleMini" xml:space="preserve"><value>Kopya listesi</value></data>
+  <data name="Bars_Preview" xml:space="preserve"><value>Önizleme</value></data>
+  <data name="Bars_StateRunning" xml:space="preserve"><value>Kopyalanıyor</value></data>
+  <data name="Bars_StatePaused" xml:space="preserve"><value>Duraklatıldı</value></data>
+  <data name="Bars_StateError" xml:space="preserve"><value>Hatalı</value></data>
+  <data name="Bars_StateDone" xml:space="preserve"><value>Bitti</value></data>
+  <data name="Bars_Styles" xml:space="preserve"><value>Stiller</value></data>
+  <data name="Bars_ColorTheme" xml:space="preserve"><value>Temadan</value></data>
+  <data name="Bars_ColorCustom" xml:space="preserve"><value>Kendi renklerim</value></data>
+  <data name="Bars_ColorTraffic" xml:space="preserve"><value>Trafik ışığı (ilerledikçe)</value></data>
+  <data name="Bars_ColorRainbow" xml:space="preserve"><value>Gökkuşağı</value></data>
+  <data name="Bars_SwatchGreen" xml:space="preserve"><value>Yeşil</value></data>
+  <data name="Bars_SwatchViolet" xml:space="preserve"><value>Maviden mora</value></data>
+  <data name="Bars_SwatchTeal" xml:space="preserve"><value>Turkuaz</value></data>
+  <data name="Bars_SwatchOrange" xml:space="preserve"><value>Turuncu</value></data>
+  <data name="Bars_SwatchPink" xml:space="preserve"><value>Pembe</value></data>
+  <data name="Bars_SwatchSilver" xml:space="preserve"><value>Gümüş</value></data>
+  <data name="Bars_ColorStart" xml:space="preserve"><value>Başlangıç</value></data>
+  <data name="Bars_ColorEnd" xml:space="preserve"><value>Bitiş</value></data>
+  <data name="Bars_TextOutside" xml:space="preserve"><value>Sağda</value></data>
+  <data name="Bars_TextInside" xml:space="preserve"><value>Çubuğun içinde</value></data>
+  <data name="Bars_TextHidden" xml:space="preserve"><value>Gizli</value></data>
+  <data name="Bars_MotionSmooth" xml:space="preserve"><value>Yumuşak</value></data>
+  <data name="Bars_MotionElastic" xml:space="preserve"><value>Esnek (biraz seker)</value></data>
+  <data name="Bars_MotionSteps" xml:space="preserve"><value>Adım adım (her %5)</value></data>
+  <data name="Bars_ApplyAll" xml:space="preserve"><value>Bu görünümü üç çubukta da kullan</value></data>
+  <data name="Bars_Reset" xml:space="preserve"><value>Bu çubuğu sıfırla</value></data>
+  <data name="Bars_FromTheme" xml:space="preserve"><value>Temadan</value></data>
+  <data name="Info_More" xml:space="preserve"><value>Daha fazla bilgi: {0}</value></data>
+  <data name="BarStyle_Fluent" xml:space="preserve"><value>Fluent</value></data>
+  <data name="BarStyle_Fluent_Hint" xml:space="preserve"><value>Sade, üzerinden yumuşak bir parıltı geçer.</value></data>
+  <data name="BarStyle_Aero" xml:space="preserve"><value>Aero</value></data>
+  <data name="BarStyle_Aero_Hint" xml:space="preserve"><value>Parlak, tekrar tekrar geçen bir yansımayla.</value></data>
+  <data name="BarStyle_Wave" xml:space="preserve"><value>Dalga</value></data>
+  <data name="BarStyle_Wave_Hint" xml:space="preserve"><value>Kenarı sıvı gibi dalgalanır.</value></data>
+  <data name="BarStyle_Stripes" xml:space="preserve"><value>Hareketli çizgiler</value></data>
+  <data name="BarStyle_Stripes_Hint" xml:space="preserve"><value>İlerleyen çapraz çizgiler.</value></data>
+  <data name="BarStyle_Neon" xml:space="preserve"><value>Neon</value></data>
+  <data name="BarStyle_Neon_Hint" xml:space="preserve"><value>Canlı renkler ve nefes alan bir ışık halesi.</value></data>
+  <data name="BarStyle_Blocks" xml:space="preserve"><value>Bloklar</value></data>
+  <data name="BarStyle_Blocks_Hint" xml:space="preserve"><value>Eski çubuklardaki gibi ayrı bloklar.</value></data>
+  <data name="BarStyle_Led" xml:space="preserve"><value>LED</value></data>
+  <data name="BarStyle_Led_Hint" xml:space="preserve"><value>Işık noktaları; sonuncusu yanıp söner.</value></data>
+  <data name="BarStyle_Rainbow" xml:space="preserve"><value>Gökkuşağı</value></data>
+  <data name="BarStyle_Rainbow_Hint" xml:space="preserve"><value>Tüm renkler durmadan akar.</value></data>
+  <data name="BarStyle_Pulse" xml:space="preserve"><value>Nabız</value></data>
+  <data name="BarStyle_Pulse_Hint" xml:space="preserve"><value>Yavaşça parlar ve söner.</value></data>
+  <data name="BarStyle_Comet" xml:space="preserve"><value>Kuyruklu yıldız</value></data>
+  <data name="BarStyle_Comet_Hint" xml:space="preserve"><value>Kuyruklu ve kıvılcımlı parlak bir baş.</value></data>
+  <data name="BarStyle_Glass" xml:space="preserve"><value>Cam</value></data>
+  <data name="BarStyle_Glass_Hint" xml:space="preserve"><value>Yarı saydam, ışıklı kenarlı.</value></data>
+  <data name="BarStyle_Fire" xml:space="preserve"><value>Ateş</value></data>
+  <data name="BarStyle_Fire_Hint" xml:space="preserve"><value>Hareket eden ve titreyen alevler.</value></data>
+  <data name="BarStyle_Terminal" xml:space="preserve"><value>Terminal</value></data>
+  <data name="BarStyle_Terminal_Hint" xml:space="preserve"><value>[#####·····] konsoldaki gibi, imleçli.</value></data>
+  <data name="BarStyle_Line" xml:space="preserve"><value>İnce çizgi</value></data>
+  <data name="BarStyle_Line_Hint" xml:space="preserve"><value>Nabız gibi atan işaretli ince bir çizgi.</value></data>
+  <data name="BarStyle_Dual" xml:space="preserve"><value>Çift katman</value></data>
+  <data name="BarStyle_Dual_Hint" xml:space="preserve"><value>Açık katman önde gider, dolu katman onu izler.</value></data>
+  <data name="BarStyle_Pixels" xml:space="preserve"><value>Pikseller</value></data>
+  <data name="BarStyle_Pixels_Hint" xml:space="preserve"><value>Video oyunundaki gibi küçük kareler, ışıltılı.</value></data>
+  <data name="BarStyle_Metal" xml:space="preserve"><value>Metal</value></data>
+  <data name="BarStyle_Metal_Hint" xml:space="preserve"><value>Parıltılı fırçalanmış metal.</value></data>
+  <data name="BarStyle_Outline" xml:space="preserve"><value>Çerçeve</value></data>
+  <data name="BarStyle_Outline_Hint" xml:space="preserve"><value>Yalnızca kenar ve çizgili dolgu.</value></data>
+  <data name="BarStyle_Flow" xml:space="preserve"><value>Akan degrade</value></data>
+  <data name="BarStyle_Flow_Hint" xml:space="preserve"><value>İki rengi karışır ve akar.</value></data>
+  <data name="BarStyle_Bubbles" xml:space="preserve"><value>Kabarcıklar</value></data>
+  <data name="BarStyle_Bubbles_Hint" xml:space="preserve"><value>İçinde süzülen kabarcıklar.</value></data>
+  <data name="BarStyle_Traffic" xml:space="preserve"><value>Trafik ışığı</value></data>
+  <data name="BarStyle_Traffic_Hint" xml:space="preserve"><value>Başta kırmızı, ortada kehribar, sonda yeşil.</value></data>
+  <data name="BarStyle_Segments" xml:space="preserve"><value>Bölümler</value></data>
+  <data name="BarStyle_Segments_Hint" xml:space="preserve"><value>Tek tek dolan yirmi bölüm.</value></data>
+  <data name="Info_Bars_Title" xml:space="preserve"><value>İlerleme çubukları</value></data>
+  <data name="Info_Bars_Text" xml:space="preserve"><value>MegaCopier’da üç çubuk vardır: toplam (tüm kopyadan ne kadar kaldığı), kopyalanan dosyanınki ve kopya listesindeki küçükler. Her birinin kendi stili olabilir.\nÜstten değiştirmek istediğinizi seçin, bir stile dokunun ve ayrıntıları ayarlayın. Önizleme; kopyalarken, duraklatılmışken, hatada ve bitince nasıl göründüğünü gösterir.\n• İlerlemeyi uzaktan bir bakışta görmek için dikkat çekici bir çubuk (Neon, Ateş, Gökkuşağı).\n• Kopyalarken çalışıp dikkatinizin dağılmasını istemiyorsanız sade bir çubuk (İnce çizgi, Fluent).\n• Sayı okumadan çok mu az mı kaldığını anlamak için Trafik ışığı.</value></data>
+  <data name="Info_BarColors_Title" xml:space="preserve"><value>Renkler</value></data>
+  <data name="Bars_ColorsDescription" xml:space="preserve"><value>Temanın, sizin, trafik ışığı veya gökkuşağı.</value></data>
+  <data name="Info_BarColors_Text" xml:space="preserve"><value>Çubuğun renklerinin nereden geldiği.\n• Temanın: başka bir tema seçince kendiliğinden değişir.\n• Kendi renklerim: seçtiğiniz iki renkle bir degrade (bir örneğe veya Başlangıç / Bitiş düğmesine dokunun).\n• Trafik ışığı: başta kırmızı, ortada kehribar, sonda yeşil; sayıyı okumadan ne kadar kaldığını bilirsiniz.\n• Gökkuşağı: tüm renkler.</value></data>
+  <data name="Info_BarThickness_Title" xml:space="preserve"><value>Kalınlık</value></data>
+  <data name="Bars_ThicknessDescription" xml:space="preserve"><value>Çubuğun yüksekliği.</value></data>
+  <data name="Info_BarThickness_Text" xml:space="preserve"><value>Çubuğun piksel cinsinden yüksekliği. &quot;Temadan&quot;, seçilen temanınkini kullanır.\n• Daha kalın: uzaktan daha iyi görünür; Dalga, Ateş veya Pikseller stillerinde daha güzeldir.\n• Daha ince: daha sade; İnce çizgiyle veya küçük ekranlarda ideal.\nYüzdeyi içine koyarsanız çubuk okunacak kadar büyür.</value></data>
+  <data name="Info_BarRadius_Title" xml:space="preserve"><value>Yuvarlaklık</value></data>
+  <data name="Bars_RadiusDescription" xml:space="preserve"><value>Düz veya yuvarlak köşeler.</value></data>
+  <data name="Info_BarRadius_Text" xml:space="preserve"><value>Çubuğun uçlarının ne kadar yuvarlak olduğu. 0 klasik çubuklardaki gibi düz köşeler bırakır; en yüksek değer onu bir hapa dönüştürür. &quot;Temadan&quot;, temanın yuvarlaklığını kullanır.\n• Düz: Bloklar, Pikseller ve Terminal ile çok iyi durur.\n• Yuvarlak: daha yumuşak ve modern; Fluent, Neon veya Cam ile mükemmel.</value></data>
+  <data name="Info_BarSpeed_Title" xml:space="preserve"><value>Efekt hızı</value></data>
+  <data name="Bars_SpeedDescription" xml:space="preserve"><value>Parıltı, dalga ve çizgilerin ne kadar hızlı hareket ettiği.</value></data>
+  <data name="Info_BarSpeed_Text" xml:space="preserve"><value>Kopyalama hızını değil, çubuk animasyonlarının temposunu değiştirir. 1× normaldir; 0,25× çok yavaş, 3× çok hızlıdır.\n• Daha yavaş: daha sakin; çubuk hep görünüyorsa ideal.\n• Daha hızlı: hareketlilik hissi verir ve dikkat çeker.</value></data>
+  <data name="Info_BarGlow_Title" xml:space="preserve"><value>Parlaklık ve hale</value></data>
+  <data name="Bars_GlowDescription" xml:space="preserve"><value>Yansımaların ve ışığın ne kadar yoğun olduğu.</value></data>
+  <data name="Info_BarGlow_Text" xml:space="preserve"><value>Parıltıların yoğunluğunu artırır veya azaltır: Aero yansıması, Neon halesi, Kuyruklu yıldızın başı, kabarcıklar ya da Metal parıltısı.\n• %0’da: çubuk düz ve sadedir.\n• %100’de: en parlak hâlindedir; koyu temalarla ideal.</value></data>
+  <data name="Info_BarText_Title" xml:space="preserve"><value>Yüzde</value></data>
+  <data name="Bars_TextDescription" xml:space="preserve"><value>Sağda, çubuğun içinde veya gizli.</value></data>
+  <data name="Info_BarText_Text" xml:space="preserve"><value>Yüzde sayısının nerede görüneceği.\n• Sağda: her zamanki gibi, çubuğun dışında.\n• Çubuğun içinde: sayı dolgunun üstünde durur ve çubuk okunacak kadar büyür; diğer bilgilere daha çok yer kalır.\n• Gizli: yalnızca çubuk, daha sade bir görünüm için (yüzde pencere başlığında kalır).</value></data>
+  <data name="Info_BarMotion_Title" xml:space="preserve"><value>Nasıl ilerler</value></data>
+  <data name="Bars_MotionDescription" xml:space="preserve"><value>Yumuşak, esnek veya adım adım.</value></data>
+  <data name="Info_BarMotion_Text" xml:space="preserve"><value>Kopya her ilerlediğinde dolgunun nasıl hareket ettiği.\n• Yumuşak: sarsıntısız kayar (önerilen).\n• Esnek: biraz ileri gidip yay gibi geri gelir; daha eğlenceli.\n• Adım adım: eski çubuklar gibi %5’lik adımlarla ilerler; Bloklar veya Piksellerle harika.</value></data>
+  <data name="Info_BarEffects_Title" xml:space="preserve"><value>Duruma göre efektler</value></data>
+  <data name="Bars_EffectsDescription" xml:space="preserve"><value>Duraklatınca çizgiler, hatada sarsıntı, bitince parlama.</value></data>
+  <data name="Info_BarEffects_Text" xml:space="preserve"><value>Çubuk, hiçbir şey okumadan ne olduğunu anlatır.\n• Duraklatınca: hareketsiz kehribar çizgiler belirir.\n• Hata olunca: kırmızıya döner ve hafifçe sarsılır.\n• Bitince: yeşil bir kutlama parlaması (toplam çubuğunda ve listede).\nYalnızca rengi değişen bir çubuk istiyorsanız kapatın.</value></data>
+  <data name="Info_BarBorder_Title" xml:space="preserve"><value>Kenarlık</value></data>
+  <data name="Bars_BorderDescription" xml:space="preserve"><value>Çubuğun çevresinde ince bir çizgi.</value></data>
+  <data name="Info_BarBorder_Text" xml:space="preserve"><value>Çubuğun arka plandan ayrılması için çevresine ince bir çizgi çizer.\n• Boş izin zor göründüğü açık veya dokulu temalarda işe yarar.\n• Cam ve Çerçeve ile çok güzel durur.</value></data>
+  <data name="Info_BarReduce_Title" xml:space="preserve"><value>Animasyonları azalt</value></data>
+  <data name="Bars_ReduceDescription" xml:space="preserve"><value>Tekrarlanan efektler olmadan sabit çubuklar (tümü için).</value></data>
+  <data name="Info_BarReduce_Text" xml:space="preserve"><value>Tekrarlanan hareketleri (parıltı, dalga, çizgi, yanıp sönme) kaldırır. Çubuk normal şekilde ilerlemeye devam eder.\n• Animasyonlar dikkatinizi dağıtıyor veya başınızı döndürüyorsa işe yarar.\n• Dizüstü bilgisayarlarda biraz pil tasarrufu sağlar.\nWindows’ta &quot;Animasyon efektleri&quot;ni kapatırsanız da kendiliğinden açılır (Ayarlar &gt; Erişilebilirlik &gt; Görsel efektler).</value></data>
+  <data name="Theme_material-oscuro" xml:space="preserve"><value>Material koyu</value></data>
+  <data name="Theme_cobre-oscuro" xml:space="preserve"><value>Koyu bakır</value></data>
+  <data name="Theme_silicio-oscuro" xml:space="preserve"><value>Koyu silisyum</value></data>
+  <data name="Theme_brisa-oscura" xml:space="preserve"><value>Koyu esinti</value></data>
+  <data name="Theme_pizarra" xml:space="preserve"><value>Arduvaz</value></data>
+  <data name="Theme_arcade" xml:space="preserve"><value>Arcade</value></data>
+  <data name="Theme_artico" xml:space="preserve"><value>Arktik</value></data>
+  <data name="Theme_vampiro" xml:space="preserve"><value>Vampir</value></data>
+  <data name="Theme_capuchino" xml:space="preserve"><value>Kapuçino</value></data>
+  <data name="Theme_noche-tokio" xml:space="preserve"><value>Tokyo gecesi</value></data>
+  <data name="Theme_retro-calido" xml:space="preserve"><value>Sıcak retro</value></data>
+  <data name="Theme_solar-oscuro" xml:space="preserve"><value>Koyu güneş</value></data>
+  <data name="Theme_atomo" xml:space="preserve"><value>Atom</value></data>
+  <data name="Theme_menta-oscura" xml:space="preserve"><value>Koyu nane</value></data>
+  <data name="Theme_material-claro" xml:space="preserve"><value>Material açık</value></data>
+  <data name="Theme_cobre-claro" xml:space="preserve"><value>Açık bakır</value></data>
+  <data name="Theme_silicio-claro" xml:space="preserve"><value>Açık silisyum</value></data>
+  <data name="Theme_brisa-clara" xml:space="preserve"><value>Açık esinti</value></data>
+  <data name="Theme_tiza" xml:space="preserve"><value>Tebeşir</value></data>
+  <data name="Theme_solar-claro" xml:space="preserve"><value>Açık güneş</value></data>
+  <data name="Theme_capuchino-claro" xml:space="preserve"><value>Açık kapuçino</value></data>
+  <data name="Info_Paste_Text" xml:space="preserve"><value>Dosyaları kopyalayıp (Ctrl+C) veya kesip (Ctrl+X) Dosya Gezgini’nde ya da masaüstünde yapıştırdığınızda (Ctrl+V) kopyalamayı Windows yerine MegaCopier yapar: sıra, duraklatma, doğrulama ve kesilirse devam etme ile.\n• Harici diske büyük kopyalar: duraklatıp sonra devam edebilirsiniz.\n• Art arda birkaç kopya: disk için çekişmek yerine sıraya girer.\nAynı klasöre yapıştırırsanız (dosyayı çoğaltmak için) bunu yine Dosya Gezgini yapar.</value></data>
+  <data name="Info_Drag_Text" xml:space="preserve"><value>Dosyaları sol tuşla bir pencereden diğerine sürüklediğinizde, MegaCopier Windows ile aynı kurallarla kopyalar (veya taşır): aynı sürücüde taşır, Ctrl kopyalamaya, Shift taşımaya zorlar.\n• Fotoğrafları farklı disklerdeki klasörler arasında sürükleyerek düzenlemek.\n• Dosya Gezgini’ni kilitlemeden büyük projeleri taşımak.\nBir dosyanın, ZIP’in veya sol bölmenin üzerine bırakmayı yine Dosya Gezgini yapar.</value></data>
+  <data name="Info_WindowMode_Text" xml:space="preserve"><value>Kopyalarken pencerenin nasıl görüneceği.\n• Kompakt: yalnızca çubuklar ve düğmeler; az yer kaplar.\n• Tam: dosya listesi, hedef, seçenekler, grafik ve günlükle.\n• Otomatik: tek kopyada kompakt, birden fazlasında tam.\n&quot;Daha fazla&quot; ve &quot;Daha az&quot; düğmeleri ikisi arasında istediğiniz zaman geçiş yapar.</value></data>
+  <data name="Info_Verify_Text" xml:space="preserve"><value>Her dosya bittiğinde MegaCopier onu doğrudan hedef diskten yeniden okur ve parmak izini (hash) asıl dosyanınkiyle karşılaştırır. Bir şey uyuşmazsa yalnızca hasarlı kısmı yeniden kopyalar.\n• Yedekler, fotoğraflar ve önemli belgeler.\n• Haber vermeden bozulabilen eski veya ucuz USB bellekler ve diskler.\n• Ağ veya Wi-Fi üzerinden kopyalar.\nKopyalama biraz daha uzun sürer (her şey yeniden okunur), karşılığında birebir aynı olduğundan emin olursunuz.</value></data>
+  <data name="Info_Conflict_Text" xml:space="preserve"><value>Hedefte aynı adlı bir dosya zaten varsa ne yapılacağı.\n• Sor: ikisini boyutu, tarihi ve küçük resmiyle gösterir, siz seçersiniz.\n• Değiştir, Atla, Daha yeniyse veya boyutu farklıysa değiştir, İkisini de tut (&quot;ad (2)&quot;) ya da Var olanı yeniden adlandır.\nAynı dosyalar (aynı boyut ve tarih) asla yeniden kopyalanmaz: bir kopyayı tekrarlamak yalnızca yeni veya değişeni kopyalar. Bütün bir klasör zaten varsa MegaCopier başlamadan önce sorar.</value></data>
+  <data name="Info_Hash_Text" xml:space="preserve"><value>Hash bir dosyanın parmak izi gibidir: tek bir bayt değişse parmak izi de değişir. Doğrulamada ve kaydedilen sağlama toplamlarında kullanılır.\n• xxHash3: en hızlısı; kopyaları doğrulamak için ideal.\n• SHA-256: indirmeleri kontrol etmek için web siteleri ve programların en çok kullandığı.\n• MD5, SHA-1, BLAKE3…: başka bir program belirli birini isterse.\nGünlük kullanım için xxHash3’te bırakın.</value></data>
+  <data name="Info_Performance_Text" xml:space="preserve"><value>Kopyalamanın ne kadar hızlı gidebileceği.\n• Hız sınırı: siz çalışırken veya film izlerken kopya tüm ağı veya diski yemesin diye. Her kopyanın Seçenekler sekmesinde ayrıca kendi sınırı vardır; durdurmadan hemen değişir.\n• Arabellek boyutu: tek seferde okunan ve yazılan bloklar. Büyük dosyalarda daha büyüğü daha iyidir.\n• Aynı anda işlem: diskten aynı anda kaç blok istendiği. Hızlı SSD’ler daha fazlasıyla kazanır.\nEmin değilseniz varsayılanları bırakın: MegaCopier her diski zaten kendisi ayarlar.</value></data>
+  <data name="Info_Merge_Text" xml:space="preserve"><value>Başka bir kopya sürerken yeni bir kopya başlatırsanız sırasını beklemek yerine ona katılabilir: dosyaları listenin sonuna eklenir.\n• Asla: her kopya ayrı gider.\n• Aynı klasöre gidiyorsa veya aynı diskleri kullanıyorsa.\n• Her zaman.\n&quot;Önce sor&quot; ile her seferinde siz karar verirsiniz. Klasörleri tek tek aynı USB belleğe gönderirken kullanışlı.</value></data>
+  <data name="Info_MoveAttributes_Text" xml:space="preserve"><value>Başka bir diske taşırken dosyalar kopyalanır, sonra kaynaktan silinir. Burada içerik dışında neyi götüreceklerini seçersiniz: öznitelikler (salt okunur, gizli…), izinler, sahip ve denetim.\n• Kimin açabileceğini koruyarak çalışma klasörlerini sunucular arasında taşımak.\nAynı diskte taşımak yalnızca yer değiştirmektir ve her şey korunur.</value></data>
+  <data name="Info_DeleteIncomplete_Text" xml:space="preserve"><value>Kopyalanırken her dosya .mcpart uzantısıyla yazılır ve ancak düzgün bittiğinde adını alır. Bir kopyayı durdurursanız bu parçalar sayesinde sonra tam kaldığı yerden devam edilebilir.\n• Açık: Durdur’a basınca .mcpart dosyaları silinir ve hedef temiz kalır (ama artık devam edilemez).\n• Kapalı: devam etmek için saklanır.\nMegaCopier kapatılırken veya elektrik kesintisinden sonra hiçbir şey silinmez.</value></data>
+  <data name="Info_Eject_Text" xml:space="preserve"><value>Bitince MegaCopier hedef USB belleği, kartı veya USB diski &quot;Donanımı güvenle kaldır&quot; gibi güvenli şekilde çıkarır.\n• Art arda birkaç USB bellek doldurmak: çıkardığınızda hazırdır.\nYalnızca başka bir kopya kullanmıyorsa yapar. &quot;Zorla&quot;, bir program açık tutsa bile çıkarır.</value></data>
+  <data name="Info_OnError_Text" xml:space="preserve"><value>Bir dosya yeniden denemelerden sonra bile kopyalanamazsa ne yapılacağı.\n• Sor: kopya durur, nedenini söyler ve yeniden denemeyi, atlamayı, sonrakileri atlamayı veya durdurmayı seçersiniz.\n• Atla ve devam et: gece büyük kopyalar için ideal; sonunda hata listesini görürsünüz.\n• Kopyayı durdur: hiçbir şey eksik olmamalıysa.\n• Sonda yeniden dene: kullanımdaysa ve serbest kalırsa diye sona bırakır.</value></data>
+  <data name="Info_ErrorReport_Text" xml:space="preserve"><value>Bir kopya hatalarla biterse, başarısız her dosyayı, nedenini ve saatini içeren bir metin dosyası kaydeder.\n• Gece bıraktığınız bir kopyayı sakince incelemek için.\n• Bilgisayarlarla ilgilenen kişiye iletmek için.</value></data>
+  <data name="Info_MaxJobs_Text" xml:space="preserve"><value>Aynı anda kaç kopyanın çalışabileceği. Aynı diski kullananlar her zaman sırasını bekler, çünkü bir sabit diske aynı anda iki şey kopyalamak her şeyi yavaşlatır.\n• 0 (sınırsız): her disk paralel olarak tam güçle çalışır.\n• 1: her şey sırayla, birbiri ardına.</value></data>
+  <data name="Info_Fast_Text" xml:space="preserve"><value>NVMe SSD’ler veya RAID gibi, hız kaybetmeden aynı anda birden fazla kopyalamayı kaldırabilen sürücüler. Buraya yazdıklarınız sıra beklemez.\n• Hızlı bir SSD’den aynı anda birkaç hedefe kopyalıyorsanız.</value></data>
+  <data name="Info_Slow_Text" xml:space="preserve"><value>Klavyeye veya fareye dokunursanız kopyalar bilgisayar ağırlaşmasın diye seçtiğiniz hıza düşer. Kullanmayı bıraktığınızda yeniden tam hıza çıkar.\n• Çalışırken, oyun oynarken veya görüntülü görüşmedeyken büyük kopyalar.</value></data>
+  <data name="Info_ScheduleLimit_Text" xml:space="preserve"><value>Seçtiğiniz saatler arasında kopyalar bu hızı aşmaz; bu saatler dışında tam hızla gider.\n• Ofiste, mesai saatlerinde ağı doldurmamak için.\n• Evde, öğleden sonra görüntülü görüşmeler kesilmesin diye.</value></data>
+  <data name="Info_Priority_Text" xml:space="preserve"><value>Windows’un diğer programlara göre MegaCopier’a ne kadar öncelik verdiği.\n• Düşük: diğer programlar akıcı kalır; kopya biraz daha uzun sürebilir.\n• Normal: her zamanki gibi.\n• Yüksek: kopya önce gelir; tek derdiniz bir an önce bitmesiyse kullanışlı.</value></data>
+  <data name="Info_Tune_Text" xml:space="preserve"><value>Bir diske ilk kez kopyaladığınızda MegaCopier birkaç blok boyutunu ve aynı anda işlem sayısını dener, o disk için en hızlısını tutar. Sonraki kopyalar için bunu hatırlar.\n• SSD’ler, sabit diskler, USB bellekler ve ağ sürücüleri çok farklı performans gösterir: böylece her biri en iyi hızında çalışır.\nPerformansı elle değiştirirseniz sizin seçiminiz geçerli olur.</value></data>
+  <data name="Info_Peer_Text" xml:space="preserve"><value>Aynı ağdaki MegaCopier yüklü bilgisayarlar arasında klasör paylaşmadan veya bir şey ayarlamadan dosya gönderip alın. Gönderen bu bilgisayarın kodunu yazar; her şey şifrelenir ve her dosya ulaştığında kontrol edilir.\n• Fotoğraf veya videoları dizüstünden masaüstü bilgisayara aktarmak.\n• Ofisteki bir iş arkadaşına proje göndermek.</value></data>
+  <data name="Info_Remote_Text" xml:space="preserve"><value>Telefonun tarayıcısında (aynı Wi-Fi ağında) kopyaların durumunu görüp duraklatabileceğiniz, sürdürebileceğiniz veya iptal edebileceğiniz bir sayfa açar.\n• Uzun bir kopyayı bırakıp koltuktan takip etmek.\nTelefona bir şey kurmak gerekmez; adres ve kod burada görünür.</value></data>
+  <data name="Info_LiveSync_Text" xml:space="preserve"><value>MegaCopier bir klasörü izler ve bir şeyi her değiştirdiğinizde, kaydetmeyi bitirir bitirmez başka bir yere (başka disk, USB bellek, ağ klasörü) kopyalar.\n• Belgelerinizin her zaman güncel bir kopyasının başka bir diskte olması.\n• Bir projenin değişikliklerini paylaşılan bir klasöre taşımak.\nAyna modunda sildikleriniz kopyadan da silinir.</value></data>
+  <data name="Info_Tasks_Text" xml:space="preserve"><value>Windows’un MegaCopier kapalı olsa bile seçtiğiniz saatte her gün, hafta veya ay kendiliğinden başlattığı kayıtlı bir kopya. Yalnızca yeni veya değişenler kopyalanır.\n• Her gece Belgeler’in yedeği.\n• Her pazar fotoğrafları NAS’a aktarmak.\nBir kopyanın Seçenekler sekmesinden &quot;Görev olarak kaydet&quot; ile oluşturulur.</value></data>
+  <data name="Info_Guard_Text" xml:space="preserve"><value>Diskler yıllar içinde dosyaları sessizce bozabilir. MegaCopier her dosyanın parmak izini dosyanın içine kaydeder ve bilgisayar boşta olduğunda yeniden kontrol eder. Biri kimse dokunmadan değiştiyse, yedekten kurtarmanız için zamanında uyarır.\n• Aile fotoğrafları ve videoları.\n• Nadiren açılan yedek diskler.\nDüzenledikleriniz kendiliğinden güncellenir. NTFS disk gerektirir.</value></data>
+  <data name="Info_Webhook_Text" xml:space="preserve"><value>Her kopya bittiğinde MegaCopier özeti bir web adresine gönderir; böylece bildirim telefonunuza veya bir sohbete gelir.\n• Discord, Slack veya Teams: bir kanala bildirim.\n• ntfy.sh: neredeyse hiçbir şey kurmadan telefonda bildirim.\n• Home Assistant: otomasyonlar (bitince bir ışığı yakmak…).</value></data>
+  <data name="Info_Connections_Text" xml:space="preserve"><value>Kopyaladığınız sunucuları buraya kaydedin: FTP, SFTP, WebDAV (Nextcloud, NAS…) veya S3 (Backblaze, Wasabi, R2…). Sonra kaynak veya hedef seçerken görünürler.\n• Yedekleri buluta yüklemek.\n• Şirket sunucusundan dosya indirmek.\nParolalar asla düz metin olarak değil, Windows Kimlik Bilgisi Yöneticisi’nde saklanır.</value></data>
 </root>
