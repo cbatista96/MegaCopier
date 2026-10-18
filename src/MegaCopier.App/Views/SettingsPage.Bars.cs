@@ -129,7 +129,7 @@ public sealed partial class SettingsPage
 
         // Galería de estilos, cada uno moviéndose.
         BarsHost.Children.Add(new TextBlock { Text = L.Get("Bars_Styles"), Style = Res<Style>("McStrong"), Margin = new Thickness(2, 8, 0, 0) });
-        _barGallery = new GridView { SelectionMode = ListViewSelectionMode.Single, Margin = new Thickness(-8, -4, 0, 0), Padding = new Thickness(4, 4, 0, 0) };
+        _barGallery = new GridView { SelectionMode = ListViewSelectionMode.Single, Padding = new Thickness(4, 4, 4, 0) };
         AutomationProperties.SetName(_barGallery, L.Get("Bars_Styles"));
         var barItems = new List<object>();
         foreach (var style in AllBarStyles)

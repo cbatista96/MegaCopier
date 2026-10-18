@@ -5,72 +5,107 @@ y las versiones, [SemVer](https://semver.org/lang/es/).
 
 ## [Sin publicar]
 
+Renovamos la ventana de copia con tres vistas (la pequeña, la de la lista y la de varias copias), reconstruimos el menú
+«Nueva» con un único selector para archivos y carpetas, añadimos 16 conjuntos de iconos al estilo de otros sistemas y 19
+sonidos originales, y pulimos los detalles: botones con animación, rutas que se pueden pulsar, preguntas que caben en la
+ventana pequeña, ajustes perfectamente alineados y copias con «acceso denegado» que se resuelven solas.
+
+<img src="https://github.com/cbatista96/MegaCopier/raw/v1.3.0/docs/capturas/lista.png" width="620" alt="Vista con la lista de archivos, la búsqueda a la izquierda y el círculo de progreso del archivo en curso">
+
 ### Añadido
 
-- Tres vistas de la ventana de copia: la pequeña (la de siempre al copiar), la de la lista de archivos («Más») y la de
-  varias copias, que añade a la izquierda la lista de copias solo cuando hay más de una.
-- Se puede pulsar en el panel de la copia:
-  - el título abre la carpeta que se está copiando;
-  - el archivo en curso se muestra marcado en su carpeta;
-  - el origen y el destino muestran, marcado en el Explorador, lo que se copia y su copia.
-- Un solo selector para archivos y carpetas, con un botón «Seleccionar». Marcas una carpeta para elegirla entera, o
-  entras en ella y marcas solo algunos archivos. Se usa en Copiar, Mover, Enviar, Comprobar, Crear sumas, Borrar,
-  copiar a un móvil y el «+» de la lista.
-- 16 conjuntos de iconos nuevos inspirados en otros sistemas:
-  - Android y Android tonal;
-  - macOS y macOS color;
-  - Ubuntu, KDE Plasma, GNOME, elementary OS, Linux Mint, Fedora, Pop!_OS y Arch Linux;
-  - Windows XP, Windows 7 Aero y Windows 8 Metro;
-  - Steam.
+#### Tres vistas de la ventana de copia
 
-  Cada uno tiene su forma (círculos, «squircles», contornos, mosaicos planos), su paleta y su brillo de cristal.
-- 19 sonidos originales de MegaCopier para cualquier momento:
-  - avisos cortos (bip, gota, burbujas, pop…);
-  - notificaciones de 1,5 a 3 s (cristal, arpa, marimba, logro…);
-  - melodías de hasta 4 s (aurora, amanecer, cascada, orbital).
-- «Mostrar más / Mostrar menos» en las galerías de temas, iconos y estilos de barra: se ven los 12 primeros y el resto
+- **Pequeña**, la de siempre al copiar: solo las barras y los botones. Se puede ensanchar, pero no hacer más alta (no
+  habría nada más que ver) ni maximizar.
+- **Con la lista** («Más»): los archivos, el destino, las opciones, la gráfica y el registro. Empieza con un tamaño cómodo,
+  tiene un mínimo con el que todo cabe y se puede maximizar.
+- **Varias copias**: la misma vista, con la lista de copias a la izquierda. Aparece sola cuando hay más de una copia a la
+  vez.
+
+<img src="https://github.com/cbatista96/MegaCopier/raw/v1.3.0/docs/capturas/compacta.png" width="520" alt="Ventana pequeña en pausa, con Continuar, Saltar y Detener">
+
+#### Todo el panel se puede pulsar
+
+- **El título** («Copiando «Juegos»») abre la carpeta que se está copiando.
+- **El archivo** en curso se muestra marcado en su carpeta.
+- **El origen** muestra lo que se copia, marcado en la carpeta donde está.
+- **El destino** muestra la copia ya en el destino, marcada.
+
+#### Un solo selector para archivos y carpetas
+
+- Es el diálogo «Abrir» de Windows con un botón más, **«Seleccionar»**:
+  - marcas una carpeta y la eliges entera;
+  - entras en ella y marcas solo algunos archivos;
+  - sin nada marcado, eliges la carpeta que estás viendo.
+- Se usa en Copiar, Mover, Enviar a otro equipo, Comprobar, Crear archivo de sumas, Borrar, copiar a un móvil y el botón
+  «+» de la lista de archivos.
+
+#### 16 conjuntos de iconos inspirados en otros sistemas (23 en total)
+
+- **Android** y **Android tonal**: círculos de color o tonos suaves, con la paleta de Material.
+- **macOS** y **macOS color**: cuadrados muy redondeados con degradado y reflejo, o los colores del sistema de Apple.
+- **Ubuntu, KDE Plasma, GNOME, elementary OS, Linux Mint, Fedora, Pop!_OS y Arch Linux**: la forma y la paleta de cada
+  escritorio, con contornos, círculos con brillo y fondos suaves.
+- **Windows XP, Windows 7 Aero y Windows 8 Metro**: brillo de cristal, Aero y mosaicos planos.
+- **Steam**: fondos suaves con sus azules y verdes.
+
+<img src="https://github.com/cbatista96/MegaCopier/raw/v1.3.0/docs/capturas/iconos-sistemas.png" width="820" alt="Galería de conjuntos de iconos con Android, macOS, Ubuntu, KDE, GNOME y elementary OS">
+
+#### 19 sonidos originales
+
+- Sintetizados para MegaCopier, sin muestras de terceros, y para cualquier momento (copia terminada, con errores, todas
+  terminadas o cuando hace falta decidir algo):
+  - **avisos cortos** de menos de un segundo: bip, doble bip, pop, gota, burbujas y toque;
+  - **notificaciones** de 1,5 a 3 segundos: pregunta, aviso, alerta grave, marimba, destellos, cristal, eco, arpa y logro;
+  - **melodías** de hasta 4 segundos: cascada, aurora, orbital y amanecer.
+
+#### Más detalles
+
+- **«Mostrar más / Mostrar menos»** en las galerías de temas, iconos y estilos de barra: se ven los 12 primeros y el resto
   al desplegar.
-- Animaciones al pulsar cualquier botón: el botón se hunde y su icono se mueve según lo que significa. El engranaje
-  gira, reproducir avanza, pausa se aprieta y la papelera se sacude.
-- Copias con «acceso denegado» resueltas solas: al terminar, Windows pide permiso de administrador una vez y esos
-  archivos se copian, como en el Explorador (por ejemplo, los `.exe` de los juegos de Xbox). Se puede desactivar en
-  *Ajustes > Errores*. Con MegaCopier ya abierto como administrador, se copian sin preguntar.
+- **Animaciones al pulsar** cualquier botón: el botón se hunde y su icono se mueve según lo que significa. El engranaje
+  gira, reproducir avanza, pausa se aprieta, la papelera se sacude y el historial gira hacia atrás.
+- **Copias con «acceso denegado» resueltas solas**: algunos archivos solo se leen con permisos de administrador (por
+  ejemplo, los `.exe` de los juegos de Xbox y de la Microsoft Store; ni la copia de Windows puede leerlos sin ellos).
+  MegaCopier copia todo lo demás y al final pide permiso una sola vez, como el Explorador. Se puede desactivar en
+  *Ajustes > Errores*; con MegaCopier abierto como administrador, se copian sin preguntar.
 
 ### Cambiado
 
-- Arrastrar archivos con el botón izquierdo entre ventanas del Explorador copia con MegaCopier de serie, como Ctrl+V.
-  También se activa al actualizar.
-- La ventana pequeña:
-  - se puede ensanchar, pero no hacer más alta;
-  - no se maximiza;
-  - sus botones (Continuar, Saltar, Detener…) y los chips «En pausa» y «Archivo» siempre muestran su texto.
-- La vista con la lista tiene un tamaño mínimo con el que todo cabe, empieza con un tamaño cómodo y se puede maximizar.
-- «Saltar» se ve también con la copia en pausa: descarta el archivo y la copia sigue en pausa, lista para empezar el
-  siguiente.
-- «Detener» la única copia la detiene y cierra la ventana. Lo copiado se conserva y al volver a abrir MegaCopier se
+- **Arrastrar con el botón izquierdo** entre ventanas del Explorador copia con MegaCopier de serie, igual que Ctrl+V.
+  También se activa al actualizar; se puede desactivar en *Ajustes > General*.
+- **«Saltar» también en pausa**: descarta el archivo y la copia sigue en pausa, lista para empezar el siguiente.
+- **«Detener» la única copia** la detiene y cierra la ventana. Lo copiado se conserva y al volver a abrir MegaCopier se
   ofrece continuarla.
-- La pregunta «la carpeta ya existe» en la ventana pequeña aparece dentro de ella: las opciones en una fila y su
+- **La pregunta «la carpeta ya existe» en la ventana pequeña** aparece dentro de ella: las opciones en una fila, con su
   explicación al pasar el ratón, sin tener que desplazarse.
-- El menú «Nueva», ordenado en grupos y submenús:
-  - Copiar y Mover;
-  - Enviar y móviles;
-  - Comprobar y reparar;
-  - Copias de seguridad;
-  - Borrar.
 
-  Ya no repite cada opción para archivos y para carpetas.
-- La lista de archivos:
-  - la búsqueda queda pegada a la izquierda y encoge si falta sitio;
-  - las casillas van siempre a su lado;
+<img src="https://github.com/cbatista96/MegaCopier/raw/v1.3.0/docs/capturas/carpeta-pequena.png" width="520" alt="La carpeta ya existe, preguntado dentro de la ventana pequeña">
+
+- **La ventana pequeña** muestra siempre el texto de sus botones (Continuar, Saltar, Detener…) y los chips «En pausa» y
+  «Archivo» con su icono.
+- **El menú «Nueva»**, ordenado en grupos y submenús, sin opciones repetidas para archivos y para carpetas:
+  - Copiar, Mover, Copiar a y Cargar una lista;
+  - Enviar a otro equipo, Móviles, cámaras y servidores, Comparar y sincronizar;
+  - Comprobar y reparar, Copias de seguridad;
+  - Borrar y Borrar de forma segura.
+- **La lista de archivos**:
+  - la búsqueda queda pegada a la izquierda, crece hasta un máximo y encoge si falta sitio;
+  - *Ocultar los terminados* y *Seguir al actual* van siempre a su lado, en la misma fila;
   - la barra de botones empieza a la altura de «Origen» y enseña siempre todos sus botones (más pequeños si la lista es
     baja);
-  - el archivo en curso lleva un círculo que se llena con su progreso.
-- En Ajustes, cada control (desplegable, interruptor, número, botón) y su ⓘ quedan centrados en su tarjeta.
-- Cambiar de tema se hace con un fundido suave y la página ya no vuelve al principio.
-- La vista previa de las barras se queda a media barra mientras «copia» (también después de verla «Terminada»).
-- En Sonidos, «Elegir un archivo…» está al principio de la lista, con los sonidos agrupados en MegaCopier y Windows.
-- «Archivos y carpetas» en Opciones lleva un solo icono.
-- El menú «…» de la ventana pequeña lleva iconos en todas sus opciones.
+  - el archivo en curso lleva un círculo que se va llenando con su progreso y se cierra al terminarlo.
+- **Ajustes, alineados**: cada control (desplegable, interruptor, número, botón) y su ⓘ quedan centrados en su tarjeta, y
+  los campos de número tienen el valor centrado. Las horas del límite por horario pasan a dos líneas si no caben.
+
+<img src="https://github.com/cbatista96/MegaCopier/raw/v1.3.0/docs/capturas/ajustes-centrado.png" width="820" alt="Ajustes con los controles y la ayuda centrados en cada tarjeta">
+
+- **Cambiar de tema** se hace con un fundido suave y la página ya no vuelve al principio.
+- **La vista previa de las barras** se queda a media barra mientras «copia», también después de verla «Terminada».
+- **Sonidos**: «Elegir un archivo…» está el primero de la lista, con los sonidos agrupados en MegaCopier y Windows.
+- «Archivos y carpetas» en Opciones lleva un solo icono, y el menú «…» de la ventana pequeña lleva iconos en todas sus
+  opciones.
 
 ### Arreglado
 
