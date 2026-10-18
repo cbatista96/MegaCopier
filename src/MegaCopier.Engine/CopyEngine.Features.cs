@@ -272,6 +272,103 @@ public sealed partial class CopyEngine
             plan.Warnings);
     }
 
+    /// <summary>
+    /// Carpetas de origen que ya existen en el destino con alguno de sus archivos: se pregunta una vez, antes de copiar
+    /// nada, si pasar los que ya están, sobrescribirlos, copiar la carpeta con otro nombre, preguntar uno a uno o cancelar.
+    /// </summary>
+    private CopyPlan AskExistingFolders(CopyJobRequest request, CopyPlan plan, CancellationToken cancellationToken)
+    {
+        var folders = new List<(string Source, string Target)>();
+        foreach (string raw in request.Sources)
+        {
+            string source = Path.TrimEndingDirectorySeparator(Path.GetFullPath(raw));
+            string target = Path.Combine(_destinationRoot, Path.GetFileName(source));
+            if (Directory.Exists(source) && Directory.Exists(target))
+            {
+                folders.Add((source, target));
+            }
+        }
+
+        if (folders.Count == 0)
+        {
+            return plan;
+        }
+
+        // Lo que el usuario quitó (o ya se copió en una lista guardada) no cuenta.
+        var excluded = new HashSet<string>(request.Excluded.Select(Path.GetFullPath), StringComparer.OrdinalIgnoreCase);
+        var inside = plan.Files.Where(f => !excluded.Contains(f.Source) && folders.Any(x => IsInside(f.Source, x.Source))).ToList();
+        var existing = inside.Where(f => File.Exists(f.Destination)).ToList();
+        if (existing.Count == 0)
+        {
+            return plan; // la carpeta existe pero ninguno de estos archivos: no hay nada que decidir
+        }
+
+        var info = new FolderConflictInfo(folders[0].Source, folders[0].Target, folders.Count, inside.Count, existing.Count, existing.Sum(f => f.Length));
+        var decision = FolderResolver!(info, cancellationToken);
+        var renamed = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        switch (decision)
+        {
+            case FolderDecision.Cancel:
+                Log(LogLevel.Warning, Texts.Get("E_FolderCancelled"), folders[0].Target);
+                throw new FolderConflictCancelledException();
+            case FolderDecision.SkipExisting:
+                _options.Conflict = ConflictPolicy.Skip;
+                Log(LogLevel.Info, Texts.F("E_FolderSkipExisting", existing.Count));
+                break;
+            case FolderDecision.Overwrite:
+                _options.Conflict = ConflictPolicy.Overwrite;
+                Log(LogLevel.Info, Texts.F("E_FolderOverwrite", existing.Count));
+                break;
+            case FolderDecision.AskEach:
+                _options.Conflict = ConflictPolicy.Ask;
+                break;
+            case FolderDecision.Rename:
+                foreach (var (source, target) in folders)
+                {
+                    string name = Path.GetFileName(target);
+                    string parent = Path.GetDirectoryName(target)!;
+                    string free = Enumerable.Range(2, int.MaxValue - 2).Select(n => $"{name} ({n})")
+                        .First(candidate => !Directory.Exists(Path.Combine(parent, candidate)) && !File.Exists(Path.Combine(parent, candidate)));
+                    renamed[source] = free;
+                    Log(LogLevel.Info, Texts.F("E_FolderRenamed", name, free));
+                }
+
+                plan = RenameFolders(plan, renamed);
+                break;
+        }
+
+        FolderDecided?.Invoke(_options.Conflict, renamed);
+        return plan;
+    }
+
+    /// <summary>Lleva lo que hay dentro de cada carpeta de origen renombrada a su carpeta nueva del destino.</summary>
+    private CopyPlan RenameFolders(CopyPlan plan, IReadOnlyDictionary<string, string> renamed)
+    {
+        string Map(string source, string destination)
+        {
+            foreach (var (folder, name) in renamed)
+            {
+                if (IsInside(source, folder))
+                {
+                    string oldRoot = Path.Combine(_destinationRoot, Path.GetFileName(Path.TrimEndingDirectorySeparator(folder)));
+                    return Path.Combine(_destinationRoot, name) + destination[oldRoot.Length..];
+                }
+            }
+
+            return destination;
+        }
+
+        return new CopyPlan(
+            [.. plan.Files.Select(f => f with { Destination = Map(f.Source, f.Destination) })],
+            [.. plan.Directories.Select(d => d with { Destination = Map(d.Source, d.Destination) })],
+            [.. plan.Links.Select(l => l with { Destination = Map(l.Source, l.Destination) })],
+            plan.Warnings);
+    }
+
+    private static bool IsInside(string path, string folder) =>
+        string.Equals(path, folder, StringComparison.OrdinalIgnoreCase)
+        || path.StartsWith(Path.TrimEndingDirectorySeparator(folder) + Path.DirectorySeparatorChar, StringComparison.OrdinalIgnoreCase);
+
     // -------------------------------------------------------------------------------------------------------------
     // Versiones
 

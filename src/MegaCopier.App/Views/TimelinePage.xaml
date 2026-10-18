@@ -18,15 +18,10 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal" Spacing="10">
+                <c:BackButton Click="Close_Click" Margin="-8,0,0,0" />
                 <c:McIcon VerticalAlignment="Center" Glyph="&#xE121;" FontSize="20" Accent="True" />
                 <TextBlock x:Uid="Timeline_Title" Style="{StaticResource McTitle}" TextTrimming="CharacterEllipsis" />
             </StackPanel>
-            <Button Grid.Column="1" Style="{StaticResource McButton}" Click="Close_Click">
-                <StackPanel Orientation="Horizontal" Spacing="8">
-                    <c:McIcon VerticalAlignment="Center" Glyph="&#xE72B;" FontSize="12" />
-                    <TextBlock x:Uid="Page_Back" />
-                </StackPanel>
-            </Button>
         </Grid>
 
         <StackPanel Grid.Row="1" Spacing="2">

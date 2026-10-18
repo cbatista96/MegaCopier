@@ -51,9 +51,9 @@
   <data name="OnTopDescription.Text" xml:space="preserve"><value>Het venster blijft boven de andere tijdens het kopiëren</value></data>
   <data name="CopyHeader.Text" xml:space="preserve"><value>Kopiëren</value></data>
   <data name="VerifyTitle.Text" xml:space="preserve"><value>Controleren na het kopiëren</value></data>
-  <data name="VerifyDescription.Text" xml:space="preserve"><value>Leest het doel opnieuw zonder cache en herstelt elk blok dat niet met de bron overeenkomt</value></data>
+  <data name="VerifyDescription.Text" xml:space="preserve"><value>Na elk bestand leest het dit opnieuw en vergelijkt het met het origineel; klopt iets niet, dan wordt het hersteld.</value></data>
   <data name="ConflictTitle.Text" xml:space="preserve"><value>Als het bestand al bestaat</value></data>
-  <data name="ConflictDescription.Text" xml:space="preserve"><value>Identieke bestanden (zelfde grootte en datum) worden altijd overgeslagen</value></data>
+  <data name="ConflictDescription.Text" xml:space="preserve"><value>Als de bestemming al een bestand met dezelfde naam heeft. Identieke bestanden worden nooit opnieuw gekopieerd.</value></data>
   <data name="ConflictAsk.Content" xml:space="preserve"><value>Vragen</value></data>
   <data name="ConflictReplace.Content" xml:space="preserve"><value>Vervangen</value></data>
   <data name="ConflictSkip.Content" xml:space="preserve"><value>Overslaan</value></data>
@@ -203,7 +203,7 @@
   <data name="Options_OnFinish.Text" xml:space="preserve"><value>Na afloop</value></data>
   <data name="Options_Owner.Content" xml:space="preserve"><value>Eigenaar</value></data>
   <data name="Options_ResetDefault.Text" xml:space="preserve"><value>Herstellen</value></data>
-  <data name="Options_RunningInfo.Message" xml:space="preserve"><value>De kopie loopt: deze wijzigingen gelden bij het hervatten (Controleren en Onbeheerd meteen).</value></data>
+  <data name="Options_RunningInfo.Message" xml:space="preserve"><value>De kopie loopt: bijna alles geldt meteen. Modus, filters, blokgrootte, threads en controlesom gelden bij het hervatten.</value></data>
   <data name="Options_SaveChecksum.Content" xml:space="preserve"><value>Controlesombestand opslaan</value></data>
   <data name="Options_SaveDefault.Text" xml:space="preserve"><value>Als standaard opslaan</value></data>
   <data name="Options_Scripts.Text" xml:space="preserve"><value>Opdrachten na afloop</value></data>
@@ -247,17 +247,17 @@
   <data name="Settings_FinishKeep.Content" xml:space="preserve"><value>Open laten</value></data>
   <data name="Settings_FreeSpace.Content" xml:space="preserve"><value>Eerst vrije ruimte controleren</value></data>
   <data name="Settings_General.Text" xml:space="preserve"><value>Algemeen</value></data>
-  <data name="Settings_HashTitle.Text" xml:space="preserve"><value>Hash-algoritme</value></data>
-  <data name="Settings_HashDescription.Text" xml:space="preserve"><value>Voor controle en opgeslagen controlesommen. xxHash3 is het snelst; SHA-256 het meest compatibel.</value></data>
+  <data name="Settings_HashTitle.Text" xml:space="preserve"><value>Soort controle (hash)</value></data>
+  <data name="Settings_HashDescription.Text" xml:space="preserve"><value>De &quot;vingerafdruk&quot; die origineel en kopie vergelijkt. xxHash3 is de snelste; om SHA-256 vragen websites en programma’s het vaakst.</value></data>
   <data name="Settings_MaxJobsTitle.Text" xml:space="preserve"><value>Gelijktijdige kopieën</value></data>
   <data name="Settings_MaxJobsDescription.Text" xml:space="preserve"><value>Maximaal aantal kopieën tegelijk (0 = onbeperkt). Kopieën op dezelfde schijf wachten altijd op hun beurt.</value></data>
   <data name="Settings_ModeAuto.Content" xml:space="preserve"><value>Automatisch</value></data>
   <data name="Settings_ModeCompact.Content" xml:space="preserve"><value>Compact</value></data>
   <data name="Settings_ModeExpanded.Content" xml:space="preserve"><value>Volledig</value></data>
   <data name="Settings_PerformanceTitle.Text" xml:space="preserve"><value>Prestaties</value></data>
-  <data name="Settings_PerformanceDescription.Text" xml:space="preserve"><value>Snelheidslimiet, buffergrootte en gelijktijdige bewerkingen</value></data>
+  <data name="Settings_PerformanceDescription.Text" xml:space="preserve"><value>Hoe snel de kopie mag gaan: snelheidslimiet, blokgrootte en hoeveel tegelijk.</value></data>
   <data name="Settings_PriorityTitle.Text" xml:space="preserve"><value>Procesprioriteit</value></data>
-  <data name="Settings_PriorityDescription.Text" xml:space="preserve"><value>Laag houdt de computer vlotter tijdens het kopiëren</value></data>
+  <data name="Settings_PriorityDescription.Text" xml:space="preserve"><value>Met &quot;Laag&quot; blijven andere programma’s soepel tijdens het kopiëren; met &quot;Hoog&quot; krijgt de kopie voorrang.</value></data>
   <data name="Settings_Queue.Text" xml:space="preserve"><value>Wachtrij</value></data>
   <data name="Settings_Themes.Text" xml:space="preserve"><value>Thema&apos;s</value></data>
   <data name="Settings_WhatToCopy.Text" xml:space="preserve"><value>Wat wordt gekopieerd en wat daarna gebeurt</value></data>
@@ -1163,4 +1163,207 @@
   <data name="Eject_DoneTitle" xml:space="preserve"><value>Station uitgeworpen: je kunt het nu verwijderen</value></data>
   <data name="Eject_FailedTitle" xml:space="preserve"><value>Kan station niet uitwerpen: het wordt gebruikt</value></data>
   <data name="Sound_Windows" xml:space="preserve"><value>Die van Windows</value></data>
+  <data name="FolderAsk_Title" xml:space="preserve"><value>&quot;{0}&quot; bestaat al op de bestemming</value></data>
+  <data name="FolderAsk_TitleMany" xml:space="preserve"><value>{0} mappen bestaan al op de bestemming</value></data>
+  <data name="FolderAsk_Message" xml:space="preserve"><value>{1} van de {2} bestanden die je kopieert staan al in {0} ({3}). Wat wil je ermee doen?</value></data>
+  <data name="FolderAsk_Skip" xml:space="preserve"><value>De bestaande overslaan</value></data>
+  <data name="FolderAsk_SkipText" xml:space="preserve"><value>Elk bestand wordt gecontroleerd: de bestaande worden niet gekopieerd of aangeraakt, alleen de ontbrekende worden gekopieerd. Ideaal om een onderbroken kopie af te maken.</value></data>
+  <data name="FolderAsk_Overwrite" xml:space="preserve"><value>Overschrijven</value></data>
+  <data name="FolderAsk_OverwriteText" xml:space="preserve"><value>De bestaande bestanden worden vervangen door die van de bron. Identieke blijven zoals ze zijn, dat scheelt tijd.</value></data>
+  <data name="FolderAsk_Rename" xml:space="preserve"><value>Naam wijzigen</value></data>
+  <data name="FolderAsk_RenameText" xml:space="preserve"><value>Alles wordt gekopieerd naar een nieuwe map, &quot;{0}&quot;, en de bestaande blijft ongemoeid.</value></data>
+  <data name="FolderAsk_AskEach" xml:space="preserve"><value>Per bestand vragen</value></data>
+  <data name="FolderAsk_AskEachText" xml:space="preserve"><value>Je ziet elk dubbel bestand met grootte en datum en beslist wat ermee gebeurt.</value></data>
+  <data name="FolderAsk_Cancel" xml:space="preserve"><value>Kopie annuleren</value></data>
+  <data name="FolderAsk_Recommended" xml:space="preserve"><value>Aanbevolen</value></data>
+  <data name="Rules_FolderAsk.Content" xml:space="preserve"><value>Vragen wat te doen</value></data>
+  <data name="Files_More.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Meer lijstopties</value></data>
+  <data name="Files_ShowHashes.Text" xml:space="preserve"><value>Controlesommen (hash) tonen</value></data>
+  <data name="Files_Source.Text" xml:space="preserve"><value>Bron</value></data>
+  <data name="Files_Destination.Text" xml:space="preserve"><value>Bestemming</value></data>
+  <data name="Files_RailTop.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Bovenaan de lijst (Alt+Home): de gekozen bestanden worden als volgende gekopieerd.</value></data>
+  <data name="Files_RailTop.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Bovenaan</value></data>
+  <data name="Files_RailUp.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Eén plaats omhoog (Alt+↑)</value></data>
+  <data name="Files_RailUp.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Omhoog</value></data>
+  <data name="Files_RailDown.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Eén plaats omlaag (Alt+↓)</value></data>
+  <data name="Files_RailDown.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Omlaag</value></data>
+  <data name="Files_RailBottom.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Onderaan de lijst (Alt+End): de gekozen bestanden worden als laatste gekopieerd.</value></data>
+  <data name="Files_RailBottom.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Onderaan</value></data>
+  <data name="Files_RailAdd.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Bestanden of mappen aan deze kopie toevoegen: ze komen onderaan de lijst en gaan naar dezelfde bestemming.</value></data>
+  <data name="Files_RailAdd.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Toevoegen</value></data>
+  <data name="Files_RailRemove.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Uit de kopie halen (Del): er wordt niets verwijderd, het wordt alleen niet gekopieerd.</value></data>
+  <data name="Files_RailRemove.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Weghalen</value></data>
+  <data name="Files_RailSave.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Lijst opslaan: bewaart wat nog gekopieerd moet worden om later verder te gaan, zelfs na het uitzetten van de computer.</value></data>
+  <data name="Files_RailSave.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Lijst opslaan</value></data>
+  <data name="Files_RailLoad.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Lijst laden: kopieert verder wat nog ontbrak, naar dezelfde bestemming en met dezelfde opties.</value></data>
+  <data name="Files_RailLoad.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Lijst laden</value></data>
+  <data name="Files_ListSaved" xml:space="preserve"><value>Lijst opgeslagen</value></data>
+  <data name="Files_ListSavedText" xml:space="preserve"><value>{0} bestanden te kopiëren in &quot;{1}&quot;. Open hem met &quot;Lijst laden&quot; om verder te gaan waar je gebleven was.</value></data>
+  <data name="ListMissing_Title" xml:space="preserve"><value>De oorspronkelijke bestemming is er niet meer</value></data>
+  <data name="ListMissing_Message" xml:space="preserve"><value>De map waarheen werd gekopieerd bestaat niet meer (misschien een losgekoppelde USB-stick of schijf). Wil je de rest ergens anders heen kopiëren?</value></data>
+  <data name="ListMissing_Choose" xml:space="preserve"><value>Andere plek kiezen…</value></data>
+  <data name="ListMissing_Cancel" xml:space="preserve"><value>Annuleren</value></data>
+  <data name="Speed_Title.Text" xml:space="preserve"><value>Snelheidslimiet van deze kopie</value></data>
+  <data name="Speed_Description.Text" xml:space="preserve"><value>Remt de kopie af zodat de schijf of het netwerk niet volledig belast wordt terwijl je werkt. Geldt meteen, zonder de kopie te stoppen.</value></data>
+  <data name="Speed_Switch.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Snelheid beperken</value></data>
+  <data name="Speed_Slider.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Maximale snelheid</value></data>
+  <data name="Speed_NoLimit" xml:space="preserve"><value>Geen limiet</value></data>
+  <data name="Drop_AddToEnd" xml:space="preserve"><value>Toevoegen aan het einde van {0}</value></data>
+  <data name="Bars_Title" xml:space="preserve"><value>Voortgangsbalken</value></data>
+  <data name="Bars_Description" xml:space="preserve"><value>Kies hoe de balken eruitzien en bewegen. Elke balk kan een eigen stijl hebben en wijzigingen zie je meteen.</value></data>
+  <data name="Bars_Which" xml:space="preserve"><value>Welke balk wijzigen</value></data>
+  <data name="Bars_RoleTotal" xml:space="preserve"><value>Totaalbalk</value></data>
+  <data name="Bars_RoleFile" xml:space="preserve"><value>Bestandsbalk</value></data>
+  <data name="Bars_RoleMini" xml:space="preserve"><value>Lijst met kopieën</value></data>
+  <data name="Bars_Preview" xml:space="preserve"><value>Voorbeeld</value></data>
+  <data name="Bars_StateRunning" xml:space="preserve"><value>Kopiëren</value></data>
+  <data name="Bars_StatePaused" xml:space="preserve"><value>Gepauzeerd</value></data>
+  <data name="Bars_StateError" xml:space="preserve"><value>Met fout</value></data>
+  <data name="Bars_StateDone" xml:space="preserve"><value>Klaar</value></data>
+  <data name="Bars_Styles" xml:space="preserve"><value>Stijlen</value></data>
+  <data name="Bars_ColorTheme" xml:space="preserve"><value>Van het thema</value></data>
+  <data name="Bars_ColorCustom" xml:space="preserve"><value>Mijn kleuren</value></data>
+  <data name="Bars_ColorTraffic" xml:space="preserve"><value>Verkeerslicht (naarmate het vordert)</value></data>
+  <data name="Bars_ColorRainbow" xml:space="preserve"><value>Regenboog</value></data>
+  <data name="Bars_SwatchGreen" xml:space="preserve"><value>Groen</value></data>
+  <data name="Bars_SwatchViolet" xml:space="preserve"><value>Blauw naar violet</value></data>
+  <data name="Bars_SwatchTeal" xml:space="preserve"><value>Turquoise</value></data>
+  <data name="Bars_SwatchOrange" xml:space="preserve"><value>Oranje</value></data>
+  <data name="Bars_SwatchPink" xml:space="preserve"><value>Roze</value></data>
+  <data name="Bars_SwatchSilver" xml:space="preserve"><value>Zilver</value></data>
+  <data name="Bars_ColorStart" xml:space="preserve"><value>Begin</value></data>
+  <data name="Bars_ColorEnd" xml:space="preserve"><value>Einde</value></data>
+  <data name="Bars_TextOutside" xml:space="preserve"><value>Rechts</value></data>
+  <data name="Bars_TextInside" xml:space="preserve"><value>In de balk</value></data>
+  <data name="Bars_TextHidden" xml:space="preserve"><value>Verborgen</value></data>
+  <data name="Bars_MotionSmooth" xml:space="preserve"><value>Vloeiend</value></data>
+  <data name="Bars_MotionElastic" xml:space="preserve"><value>Elastisch (veert een beetje)</value></data>
+  <data name="Bars_MotionSteps" xml:space="preserve"><value>In stappen (per 5%)</value></data>
+  <data name="Bars_ApplyAll" xml:space="preserve"><value>Dit uiterlijk voor alle drie de balken</value></data>
+  <data name="Bars_Reset" xml:space="preserve"><value>Deze balk herstellen</value></data>
+  <data name="Bars_FromTheme" xml:space="preserve"><value>Van het thema</value></data>
+  <data name="Info_More" xml:space="preserve"><value>Meer informatie: {0}</value></data>
+  <data name="BarStyle_Fluent" xml:space="preserve"><value>Fluent</value></data>
+  <data name="BarStyle_Fluent_Hint" xml:space="preserve"><value>Strak, met een zachte glans die eroverheen gaat.</value></data>
+  <data name="BarStyle_Aero" xml:space="preserve"><value>Aero</value></data>
+  <data name="BarStyle_Aero_Hint" xml:space="preserve"><value>Glanzend, met een weerkaatsing die steeds voorbijkomt.</value></data>
+  <data name="BarStyle_Wave" xml:space="preserve"><value>Golf</value></data>
+  <data name="BarStyle_Wave_Hint" xml:space="preserve"><value>De rand golft als een vloeistof.</value></data>
+  <data name="BarStyle_Stripes" xml:space="preserve"><value>Bewegende strepen</value></data>
+  <data name="BarStyle_Stripes_Hint" xml:space="preserve"><value>Diagonale strepen die vooruit bewegen.</value></data>
+  <data name="BarStyle_Neon" xml:space="preserve"><value>Neon</value></data>
+  <data name="BarStyle_Neon_Hint" xml:space="preserve"><value>Felle kleuren met een ademende lichtgloed.</value></data>
+  <data name="BarStyle_Blocks" xml:space="preserve"><value>Blokken</value></data>
+  <data name="BarStyle_Blocks_Hint" xml:space="preserve"><value>Losse blokken, zoals de balken van vroeger.</value></data>
+  <data name="BarStyle_Led" xml:space="preserve"><value>LED</value></data>
+  <data name="BarStyle_Led_Hint" xml:space="preserve"><value>Lichtpuntjes; de laatste knippert.</value></data>
+  <data name="BarStyle_Rainbow" xml:space="preserve"><value>Regenboog</value></data>
+  <data name="BarStyle_Rainbow_Hint" xml:space="preserve"><value>Alle kleuren stromen zonder te stoppen.</value></data>
+  <data name="BarStyle_Pulse" xml:space="preserve"><value>Hartslag</value></data>
+  <data name="BarStyle_Pulse_Hint" xml:space="preserve"><value>Wordt zachtjes lichter en donkerder.</value></data>
+  <data name="BarStyle_Comet" xml:space="preserve"><value>Komeet</value></data>
+  <data name="BarStyle_Comet_Hint" xml:space="preserve"><value>Heldere kop met staart en vonken.</value></data>
+  <data name="BarStyle_Glass" xml:space="preserve"><value>Glas</value></data>
+  <data name="BarStyle_Glass_Hint" xml:space="preserve"><value>Doorschijnend, met een lichte rand.</value></data>
+  <data name="BarStyle_Fire" xml:space="preserve"><value>Vuur</value></data>
+  <data name="BarStyle_Fire_Hint" xml:space="preserve"><value>Vlammen die bewegen en flakkeren.</value></data>
+  <data name="BarStyle_Terminal" xml:space="preserve"><value>Terminal</value></data>
+  <data name="BarStyle_Terminal_Hint" xml:space="preserve"><value>[#####·····] zoals in de console, met cursor.</value></data>
+  <data name="BarStyle_Line" xml:space="preserve"><value>Dunne lijn</value></data>
+  <data name="BarStyle_Line_Hint" xml:space="preserve"><value>Een subtiele lijn met een kloppende markering.</value></data>
+  <data name="BarStyle_Dual" xml:space="preserve"><value>Dubbele laag</value></data>
+  <data name="BarStyle_Dual_Hint" xml:space="preserve"><value>Een lichte laag gaat voorop, de volle volgt.</value></data>
+  <data name="BarStyle_Pixels" xml:space="preserve"><value>Pixels</value></data>
+  <data name="BarStyle_Pixels_Hint" xml:space="preserve"><value>Blokjes zoals in een videogame, met schittering.</value></data>
+  <data name="BarStyle_Metal" xml:space="preserve"><value>Metaal</value></data>
+  <data name="BarStyle_Metal_Hint" xml:space="preserve"><value>Geborsteld metaal met een glinstering.</value></data>
+  <data name="BarStyle_Outline" xml:space="preserve"><value>Omtrek</value></data>
+  <data name="BarStyle_Outline_Hint" xml:space="preserve"><value>Alleen de rand en een gestreepte vulling.</value></data>
+  <data name="BarStyle_Flow" xml:space="preserve"><value>Vloeiend verloop</value></data>
+  <data name="BarStyle_Flow_Hint" xml:space="preserve"><value>Twee kleuren mengen en stromen.</value></data>
+  <data name="BarStyle_Bubbles" xml:space="preserve"><value>Bellen</value></data>
+  <data name="BarStyle_Bubbles_Hint" xml:space="preserve"><value>Bellen die erin meedrijven.</value></data>
+  <data name="BarStyle_Traffic" xml:space="preserve"><value>Verkeerslicht</value></data>
+  <data name="BarStyle_Traffic_Hint" xml:space="preserve"><value>Rood aan het begin, oranje halverwege en groen aan het eind.</value></data>
+  <data name="BarStyle_Segments" xml:space="preserve"><value>Segmenten</value></data>
+  <data name="BarStyle_Segments_Hint" xml:space="preserve"><value>Twintig stukken die een voor een vollopen.</value></data>
+  <data name="Info_Bars_Title" xml:space="preserve"><value>Voortgangsbalken</value></data>
+  <data name="Info_Bars_Text" xml:space="preserve"><value>MegaCopier heeft drie balken: de totaalbalk (hoeveel er van de hele kopie over is), die van het bestand dat nu wordt gekopieerd en de kleine in de lijst met kopieën. Elke balk kan een eigen stijl hebben.\nKies bovenaan welke je wilt wijzigen, tik op een stijl en stel de details in. Het voorbeeld laat zien hoe het eruitziet tijdens het kopiëren, gepauzeerd, met een fout en aan het eind.\n• Een opvallende balk (Neon, Vuur, Regenboog) om de voortgang van een afstand te zien.\n• Een subtiele (Dunne lijn, Fluent) als je doorwerkt tijdens het kopiëren en geen afleiding wilt.\n• Verkeerslicht om zonder cijfers te zien of er nog veel of weinig over is.</value></data>
+  <data name="Info_BarColors_Title" xml:space="preserve"><value>Kleuren</value></data>
+  <data name="Bars_ColorsDescription" xml:space="preserve"><value>Van het thema, je eigen, verkeerslicht of regenboog.</value></data>
+  <data name="Info_BarColors_Text" xml:space="preserve"><value>Waar de kleuren van de balk vandaan komen.\n• Van het thema: ze veranderen vanzelf met een ander thema.\n• Mijn kleuren: een verloop met de twee kleuren die je kiest (tik op een staal of op Begin / Einde).\n• Verkeerslicht: rood aan het begin, oranje halverwege en groen aan het eind; je ziet zonder cijfer hoeveel er over is.\n• Regenboog: alle kleuren.</value></data>
+  <data name="Info_BarThickness_Title" xml:space="preserve"><value>Dikte</value></data>
+  <data name="Bars_ThicknessDescription" xml:space="preserve"><value>Hoe hoog de balk is.</value></data>
+  <data name="Info_BarThickness_Text" xml:space="preserve"><value>De hoogte van de balk in pixels. &quot;Van het thema&quot; gebruikt die van het gekozen thema.\n• Dikker: beter te zien van een afstand en mooier bij Golf, Vuur of Pixels.\n• Dunner: subtieler, ideaal met Dunne lijn of op kleine schermen.\nAls het percentage in de balk staat, groeit hij net genoeg om het te lezen.</value></data>
+  <data name="Info_BarRadius_Title" xml:space="preserve"><value>Afronding</value></data>
+  <data name="Bars_RadiusDescription" xml:space="preserve"><value>Rechte of ronde hoeken.</value></data>
+  <data name="Info_BarRadius_Text" xml:space="preserve"><value>Hoe rond de uiteinden van de balk zijn. 0 geeft rechte hoeken zoals bij klassieke balken; het maximum maakt er een pil van. &quot;Van het thema&quot; gebruikt de afronding van het thema.\n• Recht: staat goed bij Blokken, Pixels en Terminal.\n• Rond: zachter en moderner, perfect bij Fluent, Neon of Glas.</value></data>
+  <data name="Info_BarSpeed_Title" xml:space="preserve"><value>Snelheid van de effecten</value></data>
+  <data name="Bars_SpeedDescription" xml:space="preserve"><value>Hoe snel glans, golven en strepen bewegen.</value></data>
+  <data name="Info_BarSpeed_Text" xml:space="preserve"><value>Verandert het tempo van de animaties van de balk, niet de kopieersnelheid. 1× is normaal; 0,25× heel langzaam en 3× heel snel.\n• Langzamer: rustiger, ideaal als de balk altijd in beeld is.\n• Sneller: oogt drukker en valt op.</value></data>
+  <data name="Info_BarGlow_Title" xml:space="preserve"><value>Glans en gloed</value></data>
+  <data name="Bars_GlowDescription" xml:space="preserve"><value>Hoe sterk weerkaatsingen en licht zijn.</value></data>
+  <data name="Info_BarGlow_Text" xml:space="preserve"><value>Verhoogt of verlaagt de sterkte van de glans: de Aero-weerkaatsing, de Neon-gloed, de kop van de Komeet, de bellen of de Metaal-glinstering.\n• Op 0%: de balk is vlak en sober.\n• Op 100%: hij straalt maximaal; ideaal met donkere thema’s.</value></data>
+  <data name="Info_BarText_Title" xml:space="preserve"><value>Percentage</value></data>
+  <data name="Bars_TextDescription" xml:space="preserve"><value>Rechts, in de balk of verborgen.</value></data>
+  <data name="Info_BarText_Text" xml:space="preserve"><value>Waar het percentage staat.\n• Rechts: zoals altijd, buiten de balk.\n• In de balk: het getal staat op de vulling en de balk groeit zodat het leesbaar is; meer ruimte voor andere gegevens.\n• Verborgen: alleen de balk, voor een rustiger uiterlijk (het percentage staat nog in de venstertitel).</value></data>
+  <data name="Info_BarMotion_Title" xml:space="preserve"><value>Hoe hij vordert</value></data>
+  <data name="Bars_MotionDescription" xml:space="preserve"><value>Vloeiend, elastisch of in stappen.</value></data>
+  <data name="Info_BarMotion_Text" xml:space="preserve"><value>Hoe de vulling beweegt telkens als de kopie vordert.\n• Vloeiend: glijdt zonder schokken (aanbevolen).\n• Elastisch: schiet een tikje door en veert terug; speelser.\n• In stappen: per 5%, zoals vroeger; erg mooi met Blokken of Pixels.</value></data>
+  <data name="Info_BarEffects_Title" xml:space="preserve"><value>Effecten per status</value></data>
+  <data name="Bars_EffectsDescription" xml:space="preserve"><value>Strepen bij pauze, een schok bij een fout en een flits aan het eind.</value></data>
+  <data name="Info_BarEffects_Text" xml:space="preserve"><value>De balk laat zien wat er gebeurt zonder dat je iets hoeft te lezen.\n• Gepauzeerd: er verschijnen stilstaande oranje strepen.\n• Bij een fout: hij wordt rood en schudt even.\n• Aan het eind: een groene feestflits (totaalbalk en lijst).\nZet het uit als je een balk wilt die alleen van kleur verandert.</value></data>
+  <data name="Info_BarBorder_Title" xml:space="preserve"><value>Rand</value></data>
+  <data name="Bars_BorderDescription" xml:space="preserve"><value>Een dunne lijn rond de balk.</value></data>
+  <data name="Info_BarBorder_Text" xml:space="preserve"><value>Tekent een dunne lijn rond de balk zodat hij beter afsteekt tegen de achtergrond.\n• Handig bij lichte thema’s of thema’s met textuur, waar het lege spoor nauwelijks zichtbaar is.\n• Erg mooi met Glas en Omtrek.</value></data>
+  <data name="Info_BarReduce_Title" xml:space="preserve"><value>Animaties beperken</value></data>
+  <data name="Bars_ReduceDescription" xml:space="preserve"><value>Stille balken zonder herhalende effecten (voor allemaal).</value></data>
+  <data name="Info_BarReduce_Text" xml:space="preserve"><value>Haalt herhalende bewegingen weg (glans, golven, strepen, knipperen). De balk vordert gewoon.\n• Handig als animaties je afleiden of duizelig maken.\n• Spaart wat accu op laptops.\nGaat ook vanzelf aan als je in Windows &quot;Animatie-effecten&quot; uitzet (Instellingen &gt; Toegankelijkheid &gt; Visuele effecten).</value></data>
+  <data name="Theme_material-oscuro" xml:space="preserve"><value>Material donker</value></data>
+  <data name="Theme_cobre-oscuro" xml:space="preserve"><value>Donker koper</value></data>
+  <data name="Theme_silicio-oscuro" xml:space="preserve"><value>Donker silicium</value></data>
+  <data name="Theme_brisa-oscura" xml:space="preserve"><value>Donkere bries</value></data>
+  <data name="Theme_pizarra" xml:space="preserve"><value>Lei</value></data>
+  <data name="Theme_arcade" xml:space="preserve"><value>Arcade</value></data>
+  <data name="Theme_artico" xml:space="preserve"><value>Arctisch</value></data>
+  <data name="Theme_vampiro" xml:space="preserve"><value>Vampier</value></data>
+  <data name="Theme_capuchino" xml:space="preserve"><value>Cappuccino</value></data>
+  <data name="Theme_noche-tokio" xml:space="preserve"><value>Tokio bij nacht</value></data>
+  <data name="Theme_retro-calido" xml:space="preserve"><value>Warm retro</value></data>
+  <data name="Theme_solar-oscuro" xml:space="preserve"><value>Zonnig donker</value></data>
+  <data name="Theme_atomo" xml:space="preserve"><value>Atoom</value></data>
+  <data name="Theme_menta-oscura" xml:space="preserve"><value>Donkere munt</value></data>
+  <data name="Theme_material-claro" xml:space="preserve"><value>Material licht</value></data>
+  <data name="Theme_cobre-claro" xml:space="preserve"><value>Licht koper</value></data>
+  <data name="Theme_silicio-claro" xml:space="preserve"><value>Licht silicium</value></data>
+  <data name="Theme_brisa-clara" xml:space="preserve"><value>Lichte bries</value></data>
+  <data name="Theme_tiza" xml:space="preserve"><value>Krijt</value></data>
+  <data name="Theme_solar-claro" xml:space="preserve"><value>Zonnig licht</value></data>
+  <data name="Theme_capuchino-claro" xml:space="preserve"><value>Lichte cappuccino</value></data>
+  <data name="Info_Paste_Text" xml:space="preserve"><value>Als je bestanden kopieert (Ctrl+C) of knipt (Ctrl+X) en plakt (Ctrl+V) in Verkenner of op het bureaublad, kopieert MegaCopier in plaats van Windows: met wachtrij, pauze, verificatie en hervatten na een onderbreking.\n• Grote kopieën naar een externe schijf: pauzeer en ga later verder.\n• Meerdere kopieën achter elkaar: ze wachten op hun beurt in plaats van om de schijf te vechten.\nPlak je in dezelfde map (om een bestand te dupliceren), dan doet Verkenner dat nog steeds.</value></data>
+  <data name="Info_Drag_Text" xml:space="preserve"><value>Als je bestanden met de linkerknop van het ene venster naar het andere sleept, kopieert (of verplaatst) MegaCopier met dezelfde regels als Windows: op hetzelfde station verplaatsen, Ctrl dwingt kopiëren af en Shift verplaatsen.\n• Foto’s sorteren door ze tussen mappen op verschillende schijven te slepen.\n• Grote projecten verplaatsen zonder dat Verkenner vastloopt.\nNeerzetten op een bestand, een ZIP of het linkerdeelvenster doet Verkenner nog steeds.</value></data>
+  <data name="Info_WindowMode_Text" xml:space="preserve"><value>Hoe het venster eruitziet tijdens het kopiëren.\n• Compact: alleen de balken en knoppen; neemt weinig ruimte.\n• Volledig: met bestandslijst, bestemming, opties, grafiek en logboek.\n• Automatisch: compact bij één kopie en volledig bij meerdere.\nMet &quot;Meer&quot; en &quot;Minder&quot; wissel je op elk moment.</value></data>
+  <data name="Info_Verify_Text" xml:space="preserve"><value>Na elk bestand leest MegaCopier het opnieuw rechtstreeks van de doelschijf en vergelijkt de vingerafdruk (hash) met die van het origineel. Klopt er iets niet, dan wordt alleen het beschadigde deel opnieuw gekopieerd.\n• Back-ups, foto’s en belangrijke documenten.\n• Oude of goedkope USB-sticks en schijven, die zonder waarschuwing kunnen falen.\n• Kopieën via het netwerk of wifi.\nHet kopiëren duurt iets langer (alles wordt opnieuw gelezen), maar je weet zeker dat het identiek is.</value></data>
+  <data name="Info_Conflict_Text" xml:space="preserve"><value>Wat te doen als de bestemming al een bestand met dezelfde naam heeft.\n• Vragen: toont beide met grootte, datum en miniatuur, en jij kiest.\n• Vervangen, Overslaan, Vervangen als nieuwer of bij andere grootte, Beide behouden (&quot;naam (2)&quot;) of De bestaande hernoemen.\nIdentieke bestanden (zelfde grootte en datum) worden nooit opnieuw gekopieerd: een herhaalde kopie kopieert alleen nieuwe of gewijzigde bestanden. Bestaat een hele map al, dan vraagt MegaCopier het vóór de start.</value></data>
+  <data name="Info_Hash_Text" xml:space="preserve"><value>De hash is als een vingerafdruk van een bestand: verandert er één byte, dan verandert de vingerafdruk. Hij wordt gebruikt bij verificatie en in opgeslagen controlesommen.\n• xxHash3: de snelste; ideaal om kopieën te verifiëren.\n• SHA-256: die gebruiken websites en programma’s het meest om downloads te controleren.\n• MD5, SHA-1, BLAKE3…: voor als een ander programma om een bepaalde vraagt.\nVoor dagelijks gebruik: houd xxHash3.</value></data>
+  <data name="Info_Performance_Text" xml:space="preserve"><value>Hoe snel de kopie mag gaan.\n• Snelheidslimiet: zodat de kopie niet het hele netwerk of de schijf opslokt terwijl je werkt of een film kijkt. Elke kopie heeft ook een eigen limiet op het tabblad Opties, die meteen verandert zonder te stoppen.\n• Buffergrootte: de blokken die in één keer gelezen en geschreven worden. Groter werkt beter bij enorme bestanden.\n• Bewerkingen tegelijk: hoeveel blokken tegelijk bij de schijf worden opgevraagd. Snelle SSD’s winnen erbij.\nTwijfel je, laat dan de standaard staan: MegaCopier stemt elke schijf zelf af.</value></data>
+  <data name="Info_Merge_Text" xml:space="preserve"><value>Start je een kopie terwijl er al een loopt, dan kan die aansluiten in plaats van te wachten: de bestanden komen onderaan de lijst.\n• Nooit: elke kopie apart.\n• Als ze naar dezelfde map gaan, of dezelfde schijven gebruiken.\n• Altijd.\nMet &quot;Eerst vragen&quot; beslis je elke keer. Handig als je mappen één voor één naar dezelfde USB-stick stuurt.</value></data>
+  <data name="Info_MoveAttributes_Text" xml:space="preserve"><value>Bij verplaatsen naar een andere schijf worden bestanden gekopieerd en daarna bij de bron verwijderd. Hier kies je wat ze naast de inhoud meenemen: kenmerken (alleen-lezen, verborgen…), machtigingen, eigenaar en controle.\n• Werkmappen tussen servers verplaatsen en behouden wie ze mag openen.\nOp dezelfde schijf is verplaatsen alleen van plek wisselen en blijft alles behouden.</value></data>
+  <data name="Info_DeleteIncomplete_Text" xml:space="preserve"><value>Tijdens het kopiëren wordt elk bestand geschreven met de extensie .mcpart en krijgt het pas zijn naam als het goed klaar is. Stop je een kopie, dan kun je dankzij die stukken later precies verdergaan waar je was.\n• Aan: Stoppen verwijdert de .mcpart-bestanden en de bestemming blijft schoon (maar hervatten kan niet meer).\n• Uit: ze blijven bewaard om te hervatten.\nBij het sluiten van MegaCopier of na een stroomstoring wordt nooit iets verwijderd.</value></data>
+  <data name="Info_Eject_Text" xml:space="preserve"><value>Na afloop werpt MegaCopier de USB-stick, kaart of USB-schijf van de bestemming veilig uit, zoals &quot;Hardware veilig verwijderen&quot;.\n• Meerdere USB-sticks achter elkaar vullen: als je hem eruit haalt, is hij al klaar.\nAlleen als geen andere kopie hem gebruikt. &quot;Forceren&quot; werpt hem uit, ook als een programma hem open heeft.</value></data>
+  <data name="Info_OnError_Text" xml:space="preserve"><value>Wat te doen als een bestand zelfs na nieuwe pogingen niet gekopieerd kan worden.\n• Vragen: de kopie stopt, vertelt waarom en jij kiest opnieuw proberen, overslaan, de volgende overslaan of stoppen.\n• Overslaan en doorgaan: ideaal voor grote kopieën ’s nachts; aan het eind zie je de lijst met fouten.\n• De kopie stoppen: als er niets mag ontbreken.\n• Aan het eind opnieuw: bewaart het voor het laatst, voor het geval het in gebruik was en vrijkomt.</value></data>
+  <data name="Info_ErrorReport_Text" xml:space="preserve"><value>Eindigt een kopie met fouten, dan wordt een tekstbestand opgeslagen met elk mislukt bestand, de reden en het tijdstip.\n• Om een kopie die ’s nachts liep rustig na te lopen.\n• Om door te geven aan wie de computers beheert.</value></data>
+  <data name="Info_MaxJobs_Text" xml:space="preserve"><value>Hoeveel kopieën tegelijk mogen lopen. Kopieën op dezelfde schijf wachten altijd op hun beurt, want twee dingen tegelijk naar een harde schijf kopiëren maakt alles trager.\n• 0 (geen limiet): elke schijf werkt parallel op volle kracht.\n• 1: alles op een rij, de een na de ander.</value></data>
+  <data name="Info_Fast_Text" xml:space="preserve"><value>Stations die meerdere kopieën tegelijk aankunnen zonder trager te worden, zoals NVMe-SSD’s of RAID. Die je hier noemt wachten niet op hun beurt.\n• Als je van een snelle SSD tegelijk naar meerdere bestemmingen kopieert.</value></data>
+  <data name="Info_Slow_Text" xml:space="preserve"><value>Als je het toetsenbord of de muis aanraakt, zakken kopieën naar de gekozen snelheid zodat de computer soepel blijft. Stop je ermee, dan gaan ze weer op volle snelheid.\n• Grote kopieën terwijl je werkt, gamet of videobelt.</value></data>
+  <data name="Info_ScheduleLimit_Text" xml:space="preserve"><value>Tussen de gekozen uren gaan kopieën niet boven die snelheid; daarbuiten op volle snelheid.\n• Op kantoor, zodat het netwerk tijdens werktijd niet vol zit.\n• Thuis, zodat videogesprekken ’s middags niet wegvallen.</value></data>
+  <data name="Info_Priority_Text" xml:space="preserve"><value>Hoeveel voorrang Windows MegaCopier geeft boven andere programma’s.\n• Laag: andere programma’s blijven soepel; de kopie kan iets langer duren.\n• Normaal: zoals altijd.\n• Hoog: de kopie gaat voor; handig als alleen telt dat het zo snel mogelijk klaar is.</value></data>
+  <data name="Info_Tune_Text" xml:space="preserve"><value>De eerste keer dat je naar een schijf kopieert, probeert MegaCopier verschillende blokgroottes en aantallen gelijktijdige bewerkingen en houdt de snelste voor die schijf. Dat onthoudt het voor volgende kopieën.\n• SSD’s, harde schijven, USB-sticks en netwerkstations presteren heel verschillend: zo gaat elk op zijn beste snelheid.\nStel je de prestaties met de hand in, dan wordt jouw keuze gerespecteerd.</value></data>
+  <data name="Info_Peer_Text" xml:space="preserve"><value>Stuur en ontvang bestanden tussen computers met MegaCopier op hetzelfde netwerk, zonder mappen te delen of iets in te stellen. De afzender typt de code van deze computer; alles is versleuteld en elk bestand wordt bij aankomst gecontroleerd.\n• Foto’s of video’s van de laptop naar de desktop-pc zetten.\n• Een project naar een collega op kantoor sturen.</value></data>
+  <data name="Info_Remote_Text" xml:space="preserve"><value>Opent een pagina in de browser van je telefoon (op hetzelfde wifi-netwerk) om te zien hoe de kopieën gaan en ze te pauzeren, hervatten of annuleren.\n• Een lange kopie laten lopen en vanaf de bank in de gaten houden.\nOp de telefoon hoeft niets geïnstalleerd te worden; adres en code staan hier.</value></data>
+  <data name="Info_LiveSync_Text" xml:space="preserve"><value>MegaCopier houdt een map in de gaten en kopieert elke wijziging naar een andere (andere schijf, USB-stick, netwerkmap) zodra je klaar bent met opslaan.\n• Altijd een actuele kopie van je documenten op een andere schijf.\n• Wijzigingen van een project naar een gedeelde map brengen.\nIn spiegelmodus wordt wat je verwijdert ook uit de kopie verwijderd.</value></data>
+  <data name="Info_Tasks_Text" xml:space="preserve"><value>Een opgeslagen kopie die Windows zelf elke dag, week of maand op het gekozen tijdstip start, ook als MegaCopier gesloten is. Alleen nieuwe of gewijzigde bestanden worden gekopieerd.\n• Elke nacht een back-up van Documenten.\n• Elke zondag foto’s naar de NAS zetten.\nMaak hem aan op het tabblad Opties van een kopie met &quot;Opslaan als taak&quot;.</value></data>
+  <data name="Info_Guard_Text" xml:space="preserve"><value>Schijven kunnen bestanden in de loop der jaren ongemerkt beschadigen. MegaCopier bewaart de vingerafdruk van elk bestand in het bestand zelf en controleert ze opnieuw als de computer vrij is. Is er een veranderd zonder dat iemand eraan kwam, dan waarschuwt het je op tijd om hem uit een back-up te halen.\n• Familiefoto’s en -video’s.\n• Back-upschijven die zelden worden geopend.\nWat jij bewerkt, wordt vanzelf bijgewerkt. Vereist NTFS-schijven.</value></data>
+  <data name="Info_Webhook_Text" xml:space="preserve"><value>Na elke kopie stuurt MegaCopier de samenvatting naar een webadres, zodat de melding op je telefoon of in een chat komt.\n• Discord, Slack of Teams: meldingen in een kanaal.\n• ntfy.sh: een melding op je telefoon met bijna niets te installeren.\n• Home Assistant: automatiseringen (een lamp aan als het klaar is…).</value></data>
+  <data name="Info_Connections_Text" xml:space="preserve"><value>Bewaar hier de servers waarnaar je kopieert: FTP, SFTP, WebDAV (Nextcloud, NAS…) of S3 (Backblaze, Wasabi, R2…). Ze verschijnen daarna bij het kiezen van bron of bestemming.\n• Back-ups naar de cloud uploaden.\n• Bestanden van een bedrijfsserver downloaden.\nWachtwoorden staan in Windows Referentiebeheer, nooit als platte tekst.</value></data>
 </root>

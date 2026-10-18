@@ -23,7 +23,7 @@
                             <TextBlock x:Name="SourceKind" Style="{StaticResource McSecondary}" />
                         </StackPanel>
                     </StackPanel>
-                    <c:FlowBar x:Name="SourceUsage" Fill="{StaticResource McTotalBrush}" FixedHeight="6" />
+                    <c:FlowBar x:Name="SourceUsage" Plain="True" Fill="{StaticResource McTotalBrush}" FixedHeight="6" />
                     <TextBlock x:Name="SourceSpace" Style="{StaticResource McSecondary}" />
                     <TextBlock x:Name="SourcePath" Style="{StaticResource McBody}" TextWrapping="Wrap" IsTextSelectionEnabled="True" />
                     <Button Style="{StaticResource McButton}" Click="OpenSource_Click" HorizontalAlignment="Left">
@@ -45,7 +45,7 @@
                             <TextBlock x:Name="TargetKind" Style="{StaticResource McSecondary}" />
                         </StackPanel>
                     </StackPanel>
-                    <c:FlowBar x:Name="TargetUsage" Fill="{StaticResource McFileBrush}" FixedHeight="6" />
+                    <c:FlowBar x:Name="TargetUsage" Plain="True" Fill="{StaticResource McFileBrush}" FixedHeight="6" />
                     <TextBlock x:Name="TargetSpace" Style="{StaticResource McSecondary}" />
                     <TextBlock x:Name="TargetPath" Style="{StaticResource McBody}" TextWrapping="Wrap" IsTextSelectionEnabled="True" />
                     <Button Style="{StaticResource McButton}" Click="OpenTarget_Click" HorizontalAlignment="Left">

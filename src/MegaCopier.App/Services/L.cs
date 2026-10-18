@@ -16,7 +16,7 @@ internal static class L
         try
         {
             string text = Loader.GetString(key);
-            return string.IsNullOrEmpty(text) ? key : text;
+            return string.IsNullOrEmpty(text) ? key : text.Replace(@"\n", "\n", StringComparison.Ordinal); // «\n» en la tabla = salto de línea
         }
         catch (Exception ex) when (ex is System.Runtime.InteropServices.COMException or ArgumentException)
         {

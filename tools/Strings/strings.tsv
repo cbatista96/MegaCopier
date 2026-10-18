@@ -45,9 +45,9 @@ OnTopTitle.Text	Siempre visible	Always on top
 OnTopDescription.Text	La ventana queda por encima de las demás mientras copias	The window stays above others while copying
 CopyHeader.Text	Copia	Copying
 VerifyTitle.Text	Verificar después de copiar	Verify after copying
-VerifyDescription.Text	Relee el destino sin caché y repara cualquier bloque que no coincida con el origen	Re-reads the destination without cache and repairs any block that doesn't match the source
+VerifyDescription.Text	Al terminar cada archivo lo vuelve a leer y lo compara con el original; si algo no coincide, lo corrige.	After each file, it reads it back and compares it with the original; if something doesn’t match, it fixes it.
 ConflictTitle.Text	Si el archivo ya existe	If the file already exists
-ConflictDescription.Text	Los archivos idénticos (mismo tamaño y fecha) siempre se omiten	Identical files (same size and date) are always skipped
+ConflictDescription.Text	Cuando en el destino ya hay un archivo con el mismo nombre. Los idénticos nunca se vuelven a copiar.	When the destination already has a file with the same name. Identical files are never copied again.
 ConflictAsk.Content	Preguntar	Ask
 ConflictReplace.Content	Reemplazar	Replace
 ConflictSkip.Content	Omitir	Skip
@@ -197,7 +197,7 @@ Options_FilesFolders.Text	Archivos y carpetas	Files and folders
 Options_OnFinish.Text	Al terminar	When finished
 Options_Owner.Content	Propietario	Owner
 Options_ResetDefault.Text	Restablecer	Reset
-Options_RunningInfo.Message	La copia está en marcha: estos cambios se aplican al reanudarla (Verificar y Desatendido, al momento).	The transfer is running: these changes apply when it resumes (Verify and Unattended apply now).
+Options_RunningInfo.Message	La copia está en marcha: casi todo se aplica al momento. El modo, los filtros, el tamaño del bloque, los hilos y la suma de verificación se aplican al reanudarla.	The copy is running: almost everything applies right away. Mode, filters, block size, threads and checksum apply when it resumes.
 Options_SaveChecksum.Content	Guardar archivo de sumas	Save checksum file
 Options_SaveDefault.Text	Guardar como predeterminado	Save as default
 Options_Scripts.Text	Comandos al terminar	Commands when finished
@@ -241,17 +241,17 @@ Settings_FinishClose.Content	Cerrar siempre	Always close
 Settings_FinishKeep.Content	Dejar abierta	Keep open
 Settings_FreeSpace.Content	Comprobar el espacio libre antes	Check free space first
 Settings_General.Text	General	General
-Settings_HashTitle.Text	Algoritmo de hash	Hash algorithm
-Settings_HashDescription.Text	Para verificar y para las sumas guardadas. xxHash3 es el más rápido; SHA-256 el más compatible.	For verification and saved checksums. xxHash3 is the fastest; SHA-256 the most compatible.
+Settings_HashTitle.Text	Tipo de comprobación (hash)	Check type (hash)
+Settings_HashDescription.Text	La «huella» que compara el original con la copia. xxHash3 es el más rápido; SHA-256, el que más piden webs y programas.	The "fingerprint" that compares original and copy. xxHash3 is the fastest; SHA-256 is what websites and programs ask for most.
 Settings_MaxJobsTitle.Text	Copias a la vez	Simultaneous transfers
 Settings_MaxJobsDescription.Text	Máximo de copias en marcha a la vez (0 = sin límite). Las que usan el mismo disco siempre esperan su turno.	Maximum transfers running at once (0 = no limit). Transfers on the same disk always wait their turn.
 Settings_ModeAuto.Content	Automática	Automatic
 Settings_ModeCompact.Content	Compacta	Compact
 Settings_ModeExpanded.Content	Completa	Full
 Settings_PerformanceTitle.Text	Rendimiento	Performance
-Settings_PerformanceDescription.Text	Límite de velocidad, tamaño del búfer y operaciones simultáneas	Speed limit, buffer size and parallel operations
+Settings_PerformanceDescription.Text	Hasta dónde puede correr la copia: límite de velocidad, tamaño de los bloques y cuántos a la vez.	How fast the copy may go: speed limit, block size and how many at once.
 Settings_PriorityTitle.Text	Prioridad del proceso	Process priority
-Settings_PriorityDescription.Text	Baja deja el equipo más ágil mientras copia	Low keeps the PC more responsive while copying
+Settings_PriorityDescription.Text	Con «Baja», los demás programas van fluidos mientras copias; con «Alta», la copia tiene preferencia.	With "Low", other programs stay smooth while you copy; with "High", the copy takes priority.
 Settings_Queue.Text	Cola	Queue
 Settings_Themes.Text	Temas	Themes
 Settings_WhatToCopy.Text	Qué se copia y qué se hace después	What is copied and what happens afterwards
@@ -1157,3 +1157,206 @@ Merge_Separate	Por separado	Separately
 Eject_DoneTitle	Unidad expulsada: ya puedes retirarla	Drive ejected: you can remove it now
 Eject_FailedTitle	No se pudo expulsar la unidad: algo la está usando	Couldn't eject the drive: something is using it
 Sound_Windows	El de Windows	The Windows one
+FolderAsk_Title	«{0}» ya existe en el destino	"{0}" already exists in the destination
+FolderAsk_TitleMany	{0} carpetas ya existen en el destino	{0} folders already exist in the destination
+FolderAsk_Message	En {0} ya están {1} de los {2} archivos que vas a copiar ({3}). ¿Qué quieres hacer con ellos?	{1} of the {2} files you are copying are already in {0} ({3}). What do you want to do with them?
+FolderAsk_Skip	Pasar los que ya están	Pass over the ones already there
+FolderAsk_SkipText	Se comprueba cada archivo: los que ya están no se copian ni se tocan y solo se copian los que faltan. Ideal para terminar una copia que se cortó.	Every file is checked: the ones already there are not copied or touched, and only the missing ones are copied. Ideal for finishing a copy that was cut off.
+FolderAsk_Overwrite	Sobrescribir	Overwrite
+FolderAsk_OverwriteText	Los archivos que ya están se reemplazan por los del origen. Los que son idénticos se dejan como están para ir más rápido.	The files already there are replaced with the ones from the source. Identical ones are left as they are to save time.
+FolderAsk_Rename	Renombrar	Rename
+FolderAsk_RenameText	Se copia todo en una carpeta nueva, «{0}», y la que ya estaba no se toca.	Everything is copied into a new folder, "{0}", and the existing one is left untouched.
+FolderAsk_AskEach	Preguntar uno por uno	Ask one by one
+FolderAsk_AskEachText	Verás cada archivo repetido, con su tamaño y su fecha, y decidirás qué hacer con él.	You will see each repeated file, with its size and date, and decide what to do with it.
+FolderAsk_Cancel	Cancelar la copia	Cancel the copy
+FolderAsk_Recommended	Recomendado	Recommended
+Rules_FolderAsk.Content	Preguntar qué hacer	Ask what to do
+Files_More.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Más opciones de la lista	More list options
+Files_ShowHashes.Text	Mostrar las sumas (hash)	Show checksums (hash)
+Files_Source.Text	Origen	Source
+Files_Destination.Text	Destino	Destination
+Files_RailTop.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Al principio de la lista (Alt+Inicio): los archivos elegidos se copian los siguientes.	To the top of the list (Alt+Home): the selected files are copied next.
+Files_RailTop.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Al principio	To the top
+Files_RailUp.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Subir una posición (Alt+↑)	Move up one place (Alt+↑)
+Files_RailUp.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Subir	Move up
+Files_RailDown.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Bajar una posición (Alt+↓)	Move down one place (Alt+↓)
+Files_RailDown.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Bajar	Move down
+Files_RailBottom.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Al final de la lista (Alt+Fin): los archivos elegidos se copian los últimos.	To the bottom of the list (Alt+End): the selected files are copied last.
+Files_RailBottom.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Al final	To the bottom
+Files_RailAdd.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Añadir archivos o carpetas a esta copia: van al final de la lista y al mismo destino.	Add files or folders to this copy: they go to the end of the list and to the same destination.
+Files_RailAdd.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Añadir	Add
+Files_RailRemove.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Quitar de la copia (Supr): no se borra nada, solo deja de copiarse.	Remove from the copy (Del): nothing is deleted, it just won’t be copied.
+Files_RailRemove.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Quitar	Remove
+Files_RailSave.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Guardar la lista: guarda lo que falta por copiar para seguir más tarde, aunque apagues el equipo.	Save the list: saves what is left to copy so you can continue later, even after turning off the computer.
+Files_RailSave.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Guardar la lista	Save the list
+Files_RailLoad.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Cargar una lista: sigue copiando lo que faltaba, al mismo destino y con las mismas opciones.	Load a list: continues copying what was left, to the same destination and with the same options.
+Files_RailLoad.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Cargar una lista	Load a list
+Files_ListSaved	Lista guardada	List saved
+Files_ListSavedText	{0} archivos por copiar en «{1}». Ábrela con «Cargar una lista» para seguir donde lo dejaste.	{0} files left to copy in "{1}". Open it with "Load a list" to continue where you left off.
+ListMissing_Title	El destino original ya no está	The original destination is no longer there
+ListMissing_Message	La carpeta a la que se estaba copiando ya no existe (quizá era una memoria USB o un disco que se desconectó). ¿Quieres copiar el resto en otro lugar?	The folder that was being copied to no longer exists (maybe it was a USB stick or a drive that was disconnected). Do you want to copy the rest somewhere else?
+ListMissing_Choose	Elegir otro lugar…	Choose another place…
+ListMissing_Cancel	Cancelar	Cancel
+Speed_Title.Text	Límite de velocidad de esta copia	Speed limit for this copy
+Speed_Description.Text	Frena la copia para que el disco o la red no vayan a tope mientras trabajas. Se aplica al momento, sin parar la copia.	Slows the copy down so the disk or network isn’t maxed out while you work. It applies right away, without stopping the copy.
+Speed_Switch.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Limitar la velocidad	Limit the speed
+Speed_Slider.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name	Velocidad máxima	Maximum speed
+Speed_NoLimit	Sin límite	No limit
+Drop_AddToEnd	Añadir al final de {0}	Add to the end of {0}
+Bars_Title	Barras de progreso	Progress bars
+Bars_Description	Elige cómo se ven y se mueven las barras. Cada barra puede tener su propio estilo y los cambios se ven al momento.	Choose how the bars look and move. Each bar can have its own style and changes show right away.
+Bars_Which	Qué barra quieres cambiar	Which bar to change
+Bars_RoleTotal	Barra del total	Total bar
+Bars_RoleFile	Barra del archivo	File bar
+Bars_RoleMini	Lista de copias	Copy list
+Bars_Preview	Vista previa	Preview
+Bars_StateRunning	Copiando	Copying
+Bars_StatePaused	En pausa	Paused
+Bars_StateError	Con error	With error
+Bars_StateDone	Terminada	Finished
+Bars_Styles	Estilos	Styles
+Bars_ColorTheme	Los del tema	From the theme
+Bars_ColorCustom	Mis colores	My colors
+Bars_ColorTraffic	Semáforo (según avanza)	Traffic light (as it progresses)
+Bars_ColorRainbow	Arcoíris	Rainbow
+Bars_SwatchGreen	Verde	Green
+Bars_SwatchViolet	Azul a violeta	Blue to violet
+Bars_SwatchTeal	Turquesa	Teal
+Bars_SwatchOrange	Naranja	Orange
+Bars_SwatchPink	Rosa	Pink
+Bars_SwatchSilver	Plata	Silver
+Bars_ColorStart	Inicio	Start
+Bars_ColorEnd	Fin	End
+Bars_TextOutside	A la derecha	On the right
+Bars_TextInside	Dentro de la barra	Inside the bar
+Bars_TextHidden	Oculto	Hidden
+Bars_MotionSmooth	Suave	Smooth
+Bars_MotionElastic	Elástico (rebota un poco)	Elastic (bounces a little)
+Bars_MotionSteps	A saltos (cada 5 %)	In steps (every 5%)
+Bars_ApplyAll	Usar este aspecto en las tres barras	Use this look on all three bars
+Bars_Reset	Restablecer esta barra	Reset this bar
+Bars_FromTheme	Del tema	From the theme
+Info_More	Más información: {0}	More information: {0}
+BarStyle_Fluent	Fluent	Fluent
+BarStyle_Fluent_Hint	Limpia, con un brillo suave que la recorre.	Clean, with a soft shine sweeping across.
+BarStyle_Aero	Aero	Aero
+BarStyle_Aero_Hint	Brillante, con un reflejo que pasa una y otra vez.	Glossy, with a reflection passing again and again.
+BarStyle_Wave	Ola	Wave
+BarStyle_Wave_Hint	El borde ondula como un líquido.	The edge ripples like a liquid.
+BarStyle_Stripes	Rayas en movimiento	Moving stripes
+BarStyle_Stripes_Hint	Rayas diagonales que avanzan.	Diagonal stripes moving along.
+BarStyle_Neon	Neón	Neon
+BarStyle_Neon_Hint	Colores vivos con un halo de luz que respira.	Vivid colors with a breathing halo of light.
+BarStyle_Blocks	Bloques	Blocks
+BarStyle_Blocks_Hint	Bloques separados, como las barras de antes.	Separate blocks, like the bars of old.
+BarStyle_Led	LED	LED
+BarStyle_Led_Hint	Puntos de luz; el último parpadea.	Dots of light; the last one blinks.
+BarStyle_Rainbow	Arcoíris	Rainbow
+BarStyle_Rainbow_Hint	Todos los colores corriendo sin parar.	Every color flowing nonstop.
+BarStyle_Pulse	Latido	Heartbeat
+BarStyle_Pulse_Hint	Se ilumina y se apaga suavemente.	Gently brightens and dims.
+BarStyle_Comet	Cometa	Comet
+BarStyle_Comet_Hint	Cabeza brillante con estela y chispas.	Bright head with a trail and sparks.
+BarStyle_Glass	Cristal	Glass
+BarStyle_Glass_Hint	Translúcida, con borde de luz.	Translucent, with a light edge.
+BarStyle_Fire	Fuego	Fire
+BarStyle_Fire_Hint	Llamas que se mueven y parpadean.	Flames that move and flicker.
+BarStyle_Terminal	Terminal	Terminal
+BarStyle_Terminal_Hint	[#####·····] como en la consola, con cursor.	[#####·····] like a console, with a cursor.
+BarStyle_Line	Línea fina	Thin line
+BarStyle_Line_Hint	Una línea discreta con un marcador que late.	A subtle line with a pulsing marker.
+BarStyle_Dual	Doble capa	Double layer
+BarStyle_Dual_Hint	Una capa clara va delante y la sólida la sigue.	A light layer leads and the solid one follows.
+BarStyle_Pixels	Píxeles	Pixels
+BarStyle_Pixels_Hint	Cuadraditos como en un videojuego, con destellos.	Little squares like a video game, with sparkles.
+BarStyle_Metal	Metal	Metal
+BarStyle_Metal_Hint	Metal cepillado con un destello.	Brushed metal with a glint.
+BarStyle_Outline	Contorno	Outline
+BarStyle_Outline_Hint	Solo el borde y un relleno rayado.	Just the border and a striped fill.
+BarStyle_Flow	Degradado fluido	Flowing gradient
+BarStyle_Flow_Hint	Sus dos colores se mezclan y fluyen.	Its two colors blend and flow.
+BarStyle_Bubbles	Burbujas	Bubbles
+BarStyle_Bubbles_Hint	Burbujas que viajan por dentro.	Bubbles drifting inside.
+BarStyle_Traffic	Semáforo	Traffic light
+BarStyle_Traffic_Hint	Rojo al empezar, ámbar a la mitad y verde al final.	Red at the start, amber halfway and green at the end.
+BarStyle_Segments	Segmentos	Segments
+BarStyle_Segments_Hint	Veinte tramos que se llenan uno a uno.	Twenty sections that fill one by one.
+Info_Bars_Title	Barras de progreso	Progress bars
+Info_Bars_Text	MegaCopier tiene tres barras: la del total (cuánto falta de toda la copia), la del archivo que se está copiando y las pequeñas de la lista de copias. Cada una puede tener su propio estilo.\nElige arriba cuál quieres cambiar, toca un estilo y ajusta los detalles. La vista previa muestra cómo queda copiando, en pausa, con error y al terminar.\n• Una barra llamativa (Neón, Fuego, Arcoíris) para ver el avance de un vistazo desde lejos.\n• Una discreta (Línea fina, Fluent) si trabajas mientras copias y no quieres distracciones.\n• Semáforo para saber, sin leer números, si falta mucho o poco.	MegaCopier has three bars: the total one (how much of the whole copy is left), the one for the file being copied and the small ones in the copy list. Each can have its own style.\nChoose which one to change at the top, tap a style and adjust the details. The preview shows how it looks while copying, paused, with an error and when finished.\n• A striking bar (Neon, Fire, Rainbow) to see progress at a glance from across the room.\n• A subtle one (Thin line, Fluent) if you work while copying and want no distractions.\n• Traffic light to know without reading numbers whether there is a lot or a little left.
+Info_BarColors_Title	Colores	Colors
+Bars_ColorsDescription	Los del tema, los tuyos, semáforo o arcoíris.	The theme’s, your own, traffic light or rainbow.
+Info_BarColors_Text	De dónde salen los colores de la barra.\n• Los del tema: cambian solos al elegir otro tema.\n• Mis colores: un degradado con los dos colores que elijas (toca una muestra o el botón Inicio / Fin).\n• Semáforo: rojo al empezar, ámbar a la mitad y verde al final; sabes cuánto falta sin leer el número.\n• Arcoíris: todos los colores.	Where the bar’s colors come from.\n• From the theme: they change by themselves when you pick another theme.\n• My colors: a gradient with the two colors you choose (tap a swatch or the Start / End button).\n• Traffic light: red at the start, amber halfway and green at the end; you know how much is left without reading the number.\n• Rainbow: every color.
+Info_BarThickness_Title	Grosor	Thickness
+Bars_ThicknessDescription	Lo alta que es la barra.	How tall the bar is.
+Info_BarThickness_Text	Lo alta que es la barra, en píxeles. «Del tema» usa la del tema elegido.\n• Más gruesa: se ve mejor de lejos y luce más en estilos como Ola, Fuego o Píxeles.\n• Más fina: más discreta, ideal con la Línea fina o en pantallas pequeñas.\nSi pones el porcentaje dentro, la barra crece lo justo para que se lea.	The height of the bar in pixels. "From the theme" uses the chosen theme’s.\n• Thicker: easier to see from afar and looks better in styles like Wave, Fire or Pixels.\n• Thinner: more subtle, ideal with Thin line or on small screens.\nIf you put the percentage inside, the bar grows just enough to read it.
+Info_BarRadius_Title	Redondeo	Rounding
+Bars_RadiusDescription	Esquinas rectas o redondeadas.	Square or rounded corners.
+Info_BarRadius_Text	Lo redondas que son las puntas de la barra. 0 deja las esquinas rectas, como en las barras clásicas; el máximo la convierte en una píldora. «Del tema» usa el redondeo del tema.\n• Rectas: quedan muy bien con Bloques, Píxeles y Terminal.\n• Redondas: más suaves y modernas, perfectas con Fluent, Neón o Cristal.	How round the ends of the bar are. 0 leaves square corners, like classic bars; the maximum turns it into a pill. "From the theme" uses the theme’s rounding.\n• Square: look great with Blocks, Pixels and Terminal.\n• Round: softer and more modern, perfect with Fluent, Neon or Glass.
+Info_BarSpeed_Title	Velocidad de los efectos	Effect speed
+Bars_SpeedDescription	Lo rápido que se mueven brillos, olas y rayas.	How fast shines, waves and stripes move.
+Info_BarSpeed_Text	Cambia el ritmo de las animaciones de la barra, no la velocidad de la copia. 1× es el ritmo normal; 0,25× va muy despacio y 3× muy rápido.\n• Más lento: más relajado, ideal si la barra está siempre a la vista.\n• Más rápido: da sensación de actividad y llama la atención.	Changes the pace of the bar’s animations, not the copy speed. 1× is normal; 0.25× is very slow and 3× very fast.\n• Slower: more relaxed, ideal if the bar is always in view.\n• Faster: feels busier and catches the eye.
+Info_BarGlow_Title	Brillo y halo	Shine and glow
+Bars_GlowDescription	Lo intensos que son los reflejos y la luz.	How intense reflections and light are.
+Info_BarGlow_Text	Sube o baja la intensidad de los brillos: el reflejo de Aero, el halo de Neón, la cabeza del Cometa, las burbujas o el destello del Metal.\n• Al 0 %: la barra queda plana y sobria.\n• Al 100 %: brilla al máximo; ideal con temas oscuros.	Raises or lowers how intense the shines are: the Aero reflection, the Neon glow, the Comet head, the bubbles or the Metal glint.\n• At 0%: the bar is flat and sober.\n• At 100%: it shines at full; ideal with dark themes.
+Info_BarText_Title	Porcentaje	Percentage
+Bars_TextDescription	A la derecha, dentro de la barra u oculto.	On the right, inside the bar or hidden.
+Info_BarText_Text	Dónde se ve el número del porcentaje.\n• A la derecha: como siempre, fuera de la barra.\n• Dentro de la barra: el número va encima del relleno y la barra crece para que se lea; deja más sitio a los demás datos.\n• Oculto: solo la barra, para un aspecto más limpio (el porcentaje sigue en el título de la ventana).	Where the percentage number is shown.\n• On the right: as always, outside the bar.\n• Inside the bar: the number sits on top of the fill and the bar grows so it can be read; leaves more room for other details.\n• Hidden: just the bar, for a cleaner look (the percentage is still in the window title).
+Info_BarMotion_Title	Cómo avanza	How it moves
+Bars_MotionDescription	Suave, elástico o a saltos.	Smooth, elastic or in steps.
+Info_BarMotion_Text	Cómo se mueve el relleno cada vez que avanza la copia.\n• Suave: se desliza sin tirones (recomendado).\n• Elástico: se pasa un pelín y vuelve, como un muelle; más divertido.\n• A saltos: avanza de 5 % en 5 %, como las barras de antes; con Bloques o Píxeles queda genial.	How the fill moves each time the copy advances.\n• Smooth: glides with no jerks (recommended).\n• Elastic: overshoots a touch and comes back, like a spring; more playful.\n• In steps: moves 5% at a time, like the bars of old; looks great with Blocks or Pixels.
+Info_BarEffects_Title	Efectos según el estado	State effects
+Bars_EffectsDescription	Rayas en pausa, sacudida con error y destello al terminar.	Stripes when paused, a shake on error and a flash when done.
+Info_BarEffects_Text	La barra te cuenta qué pasa sin tener que leer nada.\n• En pausa: aparecen rayas ámbar quietas.\n• Con un error: se pone roja y da una pequeña sacudida.\n• Al terminar: un destello verde de celebración (en la barra del total y en la lista).\nDesactívalo si prefieres una barra que solo cambie de color.	The bar tells you what is happening without reading anything.\n• Paused: still amber stripes appear.\n• On an error: it turns red and gives a small shake.\n• When finished: a green celebration flash (on the total bar and in the list).\nTurn it off if you prefer a bar that only changes color.
+Info_BarBorder_Title	Borde	Border
+Bars_BorderDescription	Una línea fina alrededor de la barra.	A thin line around the bar.
+Info_BarBorder_Text	Dibuja una línea fina alrededor de la barra para que se distinga mejor del fondo.\n• Útil con temas claros o con texturas, donde la pista vacía casi no se ve.\n• Queda muy bien con Cristal y Contorno.	Draws a thin line around the bar so it stands out from the background.\n• Useful with light or textured themes, where the empty track is barely visible.\n• Looks great with Glass and Outline.
+Info_BarReduce_Title	Reducir animaciones	Reduce animations
+Bars_ReduceDescription	Barras quietas, sin efectos que se repiten (para todas).	Still bars, with no repeating effects (for all of them).
+Info_BarReduce_Text	Quita los movimientos que se repiten (brillos, olas, rayas, parpadeos). La barra sigue avanzando con normalidad.\n• Útil si las animaciones te distraen o te marean.\n• Ahorra un poco de batería en portátiles.\nTambién se activa solo si en Windows desactivas «Efectos de animación» (Configuración > Accesibilidad > Efectos visuales).	Removes repeating motion (shines, waves, stripes, blinking). The bar still advances normally.\n• Useful if animations distract you or make you dizzy.\n• Saves a little battery on laptops.\nIt also turns on by itself if you turn off "Animation effects" in Windows (Settings > Accessibility > Visual effects).
+Theme_material-oscuro	Material oscuro	Material dark
+Theme_cobre-oscuro	Cobre oscuro	Dark copper
+Theme_silicio-oscuro	Silicio oscuro	Dark silicon
+Theme_brisa-oscura	Brisa oscura	Dark breeze
+Theme_pizarra	Pizarra	Slate
+Theme_arcade	Arcade	Arcade
+Theme_artico	Ártico	Arctic
+Theme_vampiro	Vampiro	Vampire
+Theme_capuchino	Capuchino	Cappuccino
+Theme_noche-tokio	Noche de Tokio	Tokyo night
+Theme_retro-calido	Retro cálido	Warm retro
+Theme_solar-oscuro	Solar oscuro	Dark solar
+Theme_atomo	Átomo	Atom
+Theme_menta-oscura	Menta oscura	Dark mint
+Theme_material-claro	Material claro	Material light
+Theme_cobre-claro	Cobre claro	Light copper
+Theme_silicio-claro	Silicio claro	Light silicon
+Theme_brisa-clara	Brisa clara	Light breeze
+Theme_tiza	Tiza	Chalk
+Theme_solar-claro	Solar claro	Light solar
+Theme_capuchino-claro	Capuchino claro	Light cappuccino
+Info_Paste_Text	Cuando copias (Ctrl+C) o cortas (Ctrl+X) archivos y los pegas (Ctrl+V) en el Explorador o en el Escritorio, la copia la hace MegaCopier en vez de Windows: con cola, pausa, verificación y la posibilidad de seguir si se corta.\n• Copias grandes a un disco externo: puedes pausarlas y seguir luego.\n• Varias copias seguidas: van en cola en vez de pelearse por el disco.\nSi pegas en la misma carpeta (para duplicar un archivo), lo sigue haciendo el Explorador.	When you copy (Ctrl+C) or cut (Ctrl+X) files and paste them (Ctrl+V) in File Explorer or on the desktop, MegaCopier does the copy instead of Windows: with a queue, pause, verification and the option to resume if it is interrupted.\n• Big copies to an external drive: you can pause them and continue later.\n• Several copies in a row: they queue up instead of fighting over the disk.\nIf you paste into the same folder (to duplicate a file), File Explorer still does it.
+Info_Drag_Text	Al arrastrar archivos con el botón izquierdo de una ventana a otra, la copia (o el movimiento) la hace MegaCopier con las mismas reglas de Windows: en la misma unidad mueve, Ctrl obliga a copiar y Mayús obliga a mover.\n• Ordenar fotos arrastrándolas entre carpetas de discos distintos.\n• Mover proyectos grandes sin bloquear el Explorador.\nSoltar sobre un archivo, un ZIP o el panel de la izquierda lo sigue haciendo el Explorador.	When you drag files with the left button from one window to another, MegaCopier copies (or moves) them with the same rules as Windows: on the same drive it moves, Ctrl forces a copy and Shift forces a move.\n• Sort photos by dragging them between folders on different drives.\n• Move big projects without freezing File Explorer.\nDropping onto a file, a ZIP or the left pane is still handled by File Explorer.
+Info_WindowMode_Text	Cómo se ve la ventana mientras copias.\n• Compacta: solo las barras y los botones; ocupa poco.\n• Completa: con la lista de archivos, el destino, las opciones, la gráfica y el registro.\n• Automática: compacta con una sola copia y completa cuando hay varias.\nLos botones «Más» y «Menos» cambian entre las dos en cualquier momento.	How the window looks while copying.\n• Compact: just the bars and buttons; takes little room.\n• Full: with the file list, destination, options, chart and log.\n• Automatic: compact with a single copy and full when there are several.\nThe "More" and "Less" buttons switch between the two at any time.
+Info_Verify_Text	Al terminar cada archivo, MegaCopier lo vuelve a leer directamente del disco de destino y compara su huella (hash) con la del original. Si algo no coincide, vuelve a copiar solo la parte dañada.\n• Copias de seguridad, fotos y documentos importantes.\n• Memorias USB o discos viejos o baratos, que pueden fallar sin avisar.\n• Copias por la red o por Wi-Fi.\nLa copia tarda algo más (hay que leerlo todo otra vez), a cambio de la seguridad de que es idéntica.	When each file finishes, MegaCopier reads it back straight from the destination disk and compares its fingerprint (hash) with the original’s. If anything doesn’t match, it re-copies only the damaged part.\n• Backups, photos and important documents.\n• Old or cheap USB sticks and drives, which can fail without warning.\n• Copies over the network or Wi-Fi.\nThe copy takes a bit longer (everything has to be read again), in exchange for knowing it is identical.
+Info_Conflict_Text	Qué hacer cuando en el destino ya hay un archivo con el mismo nombre.\n• Preguntar: te muestra los dos, con su tamaño, su fecha y una miniatura, y tú eliges.\n• Reemplazar, Omitir, Reemplazar si es más nuevo o si tiene otro tamaño, Conservar los dos («nombre (2)») o Renombrar el que ya estaba.\nLos archivos idénticos (mismo tamaño y fecha) nunca se vuelven a copiar: repetir una copia solo copia lo nuevo o lo cambiado. Si es una carpeta entera la que ya existe, MegaCopier pregunta antes de empezar.	What to do when the destination already has a file with the same name.\n• Ask: shows you both, with their size, date and a thumbnail, and you choose.\n• Replace, Skip, Replace if newer or if the size differs, Keep both ("name (2)") or Rename the existing one.\nIdentical files (same size and date) are never copied again: repeating a copy only copies what is new or changed. If a whole folder already exists, MegaCopier asks before starting.
+Info_Hash_Text	El hash es como la huella digital de un archivo: si cambia un solo byte, cambia la huella. Se usa al verificar y en las sumas que se guardan.\n• xxHash3: el más rápido; ideal para verificar copias.\n• SHA-256: el que más usan las webs y los programas para comprobar descargas.\n• MD5, SHA-1, BLAKE3…: por si otro programa te pide uno en concreto.\nPara el día a día, deja xxHash3.	The hash is like a file’s fingerprint: if a single byte changes, the fingerprint changes. It is used when verifying and in saved checksums.\n• xxHash3: the fastest; ideal for verifying copies.\n• SHA-256: the one websites and programs use most to check downloads.\n• MD5, SHA-1, BLAKE3…: in case another program asks for a specific one.\nFor everyday use, keep xxHash3.
+Info_Performance_Text	Cuánto puede correr la copia.\n• Límite de velocidad: para que la copia no se coma toda la red o el disco mientras trabajas o ves una película. Cada copia tiene además su propio límite en su pestaña Opciones, que se cambia al momento sin pararla.\n• Tamaño del búfer: los bloques que se leen y se escriben de una vez. Más grande va mejor con archivos enormes.\n• Operaciones a la vez: cuántos bloques se piden al disco al mismo tiempo. Los SSD rápidos ganan con más.\nSi no sabes qué poner, deja lo que viene: MegaCopier ya ajusta cada disco por su cuenta.	How fast the copy can go.\n• Speed limit: so the copy doesn’t eat up the whole network or disk while you work or watch a film. Each copy also has its own limit in its Options tab, which changes right away without stopping it.\n• Buffer size: the blocks read and written at a time. Larger is better for huge files.\n• Operations at once: how many blocks are requested from the disk at the same time. Fast SSDs gain with more.\nIf you’re not sure, keep the defaults: MegaCopier already tunes each disk by itself.
+Info_Merge_Text	Si empiezas una copia mientras otra está en marcha, puede sumarse a ella en vez de esperar su turno: sus archivos van al final de la lista.\n• Nunca: cada copia va por su cuenta.\n• Si van a la misma carpeta, o si usan los mismos discos.\n• Siempre.\nCon «Preguntar antes» decides cada vez. Útil cuando vas mandando carpetas poco a poco al mismo USB.	If you start a copy while another is running, it can join that one instead of waiting its turn: its files go to the end of the list.\n• Never: each copy goes on its own.\n• If they go to the same folder, or if they use the same disks.\n• Always.\nWith "Ask first" you decide each time. Handy when you send folders one by one to the same USB stick.
+Info_MoveAttributes_Text	Al mover a otro disco, los archivos se copian y luego se borran del origen. Aquí eliges qué se llevan además del contenido: atributos (solo lectura, oculto…), permisos, propietario y auditoría.\n• Mover carpetas de trabajo entre servidores conservando quién puede abrirlas.\nEn el mismo disco, mover es solo cambiar de sitio y se conserva todo.	When moving to another disk, files are copied and then deleted from the source. Here you choose what they take along besides the content: attributes (read-only, hidden…), permissions, owner and auditing.\n• Moving work folders between servers while keeping who can open them.\nOn the same disk, moving is just a change of place and everything is kept.
+Info_DeleteIncomplete_Text	Mientras se copia, cada archivo se escribe con la extensión .mcpart y solo recibe su nombre al terminar bien. Si detienes una copia, esos trozos permiten seguir luego justo donde se quedó.\n• Activado: al pulsar Detener se borran los .mcpart y el destino queda limpio (pero ya no se puede continuar).\n• Desactivado: se guardan para reanudar.\nNunca se borra nada al cerrar MegaCopier ni tras un apagón.	While copying, each file is written with the .mcpart extension and only gets its name when it finishes correctly. If you stop a copy, those pieces let you continue later right where it left off.\n• On: pressing Stop deletes the .mcpart files and leaves the destination clean (but it can no longer be resumed).\n• Off: they are kept so you can resume.\nNothing is ever deleted when closing MegaCopier or after a power cut.
+Info_Eject_Text	Al terminar, MegaCopier expulsa la memoria USB, la tarjeta o el disco USB de destino de forma segura, como «Quitar hardware con seguridad».\n• Llenar varias memorias USB seguidas: cuando la sacas, ya está lista.\nSolo lo hace si ninguna otra copia la está usando. «Forzar» la expulsa aunque algún programa la tenga abierta.	When finished, MegaCopier safely ejects the destination USB stick, card or USB drive, like "Safely remove hardware".\n• Filling several USB sticks in a row: when you pull one out, it is ready.\nIt only does so if no other copy is using it. "Force" ejects it even if some program has it open.
+Info_OnError_Text	Qué hacer cuando un archivo no se puede copiar ni después de reintentarlo.\n• Preguntar: la copia se para, te dice el motivo y eliges reintentar, omitirlo, omitir los siguientes o detener.\n• Omitir y seguir: ideal para copias grandes de noche; al final ves la lista de fallos.\n• Detener la copia: cuando no puede faltar nada.\n• Reintentar al final: lo deja para el final, por si estaba en uso y se libera.	What to do when a file can’t be copied even after retrying.\n• Ask: the copy stops, tells you why and you choose to retry, skip it, skip the following ones or stop.\n• Skip and continue: ideal for big overnight copies; at the end you see the list of failures.\n• Stop the copy: when nothing may be missing.\n• Retry at the end: leaves it for last, in case it was in use and gets freed.
+Info_ErrorReport_Text	Si una copia termina con errores, guarda un archivo de texto con cada archivo que falló, el motivo y la hora.\n• Para revisar con calma una copia que dejaste de noche.\n• Para pasárselo a quien se encarga de los equipos.	If a copy ends with errors, it saves a text file with each file that failed, the reason and the time.\n• To calmly review a copy you left running overnight.\n• To pass it on to whoever looks after the computers.
+Info_MaxJobs_Text	Cuántas copias pueden ir a la vez. Las que usan el mismo disco siempre esperan su turno, porque copiar dos cosas a la vez en un disco duro lo hace todo más lento.\n• 0 (sin límite): cada disco trabaja a tope en paralelo.\n• 1: todo en fila, una detrás de otra.	How many copies can run at the same time. Those using the same disk always wait their turn, because copying two things at once on a hard drive slows everything down.\n• 0 (no limit): every disk works at full speed in parallel.\n• 1: everything in a row, one after another.
+Info_Fast_Text	Unidades que aguantan varias copias a la vez sin perder velocidad, como los SSD NVMe o los RAID. Las que pongas aquí no esperan su turno.\n• Si copias desde un SSD rápido a varios destinos al mismo tiempo.	Drives that handle several copies at once without slowing down, such as NVMe SSDs or RAID. The ones you list here don’t wait their turn.\n• If you copy from a fast SSD to several destinations at the same time.
+Info_Slow_Text	Si tocas el teclado o el ratón, las copias bajan a la velocidad que elijas para que el equipo no vaya pesado. Cuando dejas de usarlo, vuelven a ir a tope.\n• Copias grandes mientras trabajas, juegas o haces videollamadas.	If you touch the keyboard or mouse, copies drop to the speed you choose so the computer doesn’t feel sluggish. When you stop using it, they go full speed again.\n• Big copies while you work, play or are on video calls.
+Info_ScheduleLimit_Text	Entre las horas que elijas, las copias no pasan de esa velocidad; fuera de ese horario van a tope.\n• En la oficina, para no saturar la red en horas de trabajo.\n• En casa, para que no se corten las videollamadas por la tarde.	Between the hours you choose, copies don’t go over that speed; outside those hours they go full speed.\n• At the office, so the network isn’t saturated during working hours.\n• At home, so video calls don’t drop in the afternoon.
+Info_Priority_Text	Cuánta preferencia le da Windows a MegaCopier frente al resto de programas.\n• Baja: los demás programas van fluidos; la copia puede tardar un poco más.\n• Normal: lo de siempre.\n• Alta: la copia va primero; útil cuando solo te importa que termine cuanto antes.	How much preference Windows gives MegaCopier over other programs.\n• Low: other programs stay smooth; the copy may take a bit longer.\n• Normal: as usual.\n• High: the copy comes first; useful when all you care about is finishing as soon as possible.
+Info_Tune_Text	La primera vez que copias a un disco, MegaCopier prueba varios tamaños de bloque y cuántas operaciones a la vez, y se queda con lo más rápido para ese disco. Lo recuerda para las siguientes copias.\n• SSD, discos duros, memorias USB y unidades de red rinden muy distinto: así cada uno va a su mejor velocidad.\nSi cambias el rendimiento a mano, se respeta lo que pongas.	The first time you copy to a disk, MegaCopier tries several block sizes and numbers of simultaneous operations and keeps the fastest for that disk. It remembers it for later copies.\n• SSDs, hard drives, USB sticks and network drives perform very differently: this way each one runs at its best speed.\nIf you change performance by hand, your choice is respected.
+Info_Peer_Text	Envía y recibe archivos entre equipos con MegaCopier de la misma red, sin compartir carpetas ni configurar nada. Quien envía escribe el código de este equipo; todo va cifrado y cada archivo se comprueba al llegar.\n• Pasar fotos o vídeos del portátil al PC de sobremesa.\n• Mandar un proyecto a un compañero de la oficina.	Send and receive files between computers running MegaCopier on the same network, without sharing folders or setting anything up. The sender types this computer’s code; everything is encrypted and each file is checked on arrival.\n• Moving photos or videos from the laptop to the desktop PC.\n• Sending a project to a colleague at the office.
+Info_Remote_Text	Abre una página en el navegador del móvil (en la misma red Wi-Fi) para ver cómo van las copias y pausarlas, seguirlas o cancelarlas.\n• Dejar una copia larga y vigilarla desde el sofá.\nNo hay que instalar nada en el móvil; la dirección y el código aparecen aquí.	Opens a page in your phone’s browser (on the same Wi-Fi network) to see how copies are going and pause, resume or cancel them.\n• Leave a long copy running and keep an eye on it from the couch.\nNothing needs installing on the phone; the address and code appear here.
+Info_LiveSync_Text	MegaCopier vigila una carpeta y, cada vez que cambias algo, lo copia a otra (otro disco, un USB, una carpeta de red) en cuanto terminas de guardarlo.\n• Tener siempre una copia al día de tus documentos en otro disco.\n• Llevar los cambios de un proyecto a una carpeta compartida.\nEn modo espejo, lo que borres también se borra de la copia.	MegaCopier watches a folder and, every time you change something, copies it to another (another disk, a USB stick, a network folder) as soon as you finish saving it.\n• Always having an up-to-date copy of your documents on another disk.\n• Carrying a project’s changes over to a shared folder.\nIn mirror mode, what you delete is also deleted from the copy.
+Info_Tasks_Text	Una copia guardada que Windows lanza sola cada día, semana o mes a la hora que elijas, aunque MegaCopier esté cerrado. Solo se copia lo nuevo o lo cambiado.\n• Copia de seguridad de Documentos cada noche.\n• Pasar las fotos al NAS cada domingo.\nSe crea desde la pestaña Opciones de una copia con «Guardar como tarea».	A saved copy that Windows runs by itself every day, week or month at the time you choose, even if MegaCopier is closed. Only new or changed files are copied.\n• Back up Documents every night.\n• Move photos to the NAS every Sunday.\nCreate it from a copy’s Options tab with "Save as task".
+Info_Guard_Text	Los discos pueden estropear archivos con los años sin avisar. MegaCopier guarda la huella de cada archivo dentro de él y, cuando el equipo está libre, los vuelve a comprobar. Si uno cambió sin que nadie lo tocara, te avisa a tiempo de recuperarlo de una copia.\n• Fotos y vídeos de familia.\n• Discos de copias de seguridad que casi no se abren.\nLo que tú edites se actualiza solo. Necesita discos NTFS.	Disks can silently damage files over the years. MegaCopier stores each file’s fingerprint inside it and, when the computer is idle, checks them again. If one changed without anyone touching it, it warns you in time to restore it from a backup.\n• Family photos and videos.\n• Backup disks that are rarely opened.\nWhat you edit updates by itself. Requires NTFS disks.
+Info_Webhook_Text	Al terminar cada copia, MegaCopier manda el resumen a una dirección web. Así te llega el aviso al móvil o a un chat.\n• Discord, Slack o Teams: avisos en un canal.\n• ntfy.sh: notificación en el móvil casi sin instalar nada.\n• Home Assistant: automatizaciones (encender una luz al terminar…).	When each copy finishes, MegaCopier sends the summary to a web address, so the notification reaches your phone or a chat.\n• Discord, Slack or Teams: notices in a channel.\n• ntfy.sh: a phone notification with almost nothing to install.\n• Home Assistant: automations (turn on a light when done…).
+Info_Connections_Text	Guarda aquí los servidores a los que copias: FTP, SFTP, WebDAV (Nextcloud, NAS…) o S3 (Backblaze, Wasabi, R2…). Luego aparecen al elegir el origen o el destino.\n• Subir copias de seguridad a la nube.\n• Bajar archivos de un servidor de la empresa.\nLas contraseñas se guardan en el Administrador de credenciales de Windows, nunca en texto.	Save the servers you copy to here: FTP, SFTP, WebDAV (Nextcloud, NAS…) or S3 (Backblaze, Wasabi, R2…). They then appear when choosing the source or destination.\n• Upload backups to the cloud.\n• Download files from a company server.\nPasswords are stored in Windows Credential Manager, never as plain text.

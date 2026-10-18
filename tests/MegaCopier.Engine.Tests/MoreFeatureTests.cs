@@ -289,6 +289,114 @@ public sealed class MoreFeatureTests : IDisposable
         Assert.Equal("c", File.ReadAllText(_temp.Combine("dst/src/c.txt")));
     }
 
+    /// <summary>Carpeta «src» que ya está en el destino con a.txt (distinto); b.txt aún no está.</summary>
+    private (CopyEngine Engine, List<FolderConflictInfo> Questions) FolderAlreadyThere(FolderDecision decision)
+    {
+        Write("src/a.txt", "nuevo");
+        Write("src/b.txt", "b");
+        Write("dst/src/a.txt", "el viejo");
+        var options = Options();
+        options.FolderConflict = FolderConflictPolicy.Ask;
+        options.Conflict = ConflictPolicy.Ask;
+        var engine = new CopyEngine(options);
+        var questions = new List<FolderConflictInfo>();
+        engine.FolderResolver = (info, _) =>
+        {
+            questions.Add(info);
+            return decision;
+        };
+        engine.ConflictResolver = (_, _) => throw new InvalidOperationException("no debería preguntar archivo por archivo");
+        return (engine, questions);
+    }
+
+    [Fact]
+    public void ExistingFolderSkipExistingCopiesOnlyWhatIsMissing()
+    {
+        var (engine, questions) = FolderAlreadyThere(FolderDecision.SkipExisting);
+        ConflictPolicy? decided = null;
+        engine.FolderDecided += (conflict, _) => decided = conflict;
+
+        var result = engine.Run(new CopyJobRequest([_temp.Combine("src")], _temp.Combine("dst")));
+
+        var question = Assert.Single(questions);
+        Assert.Equal((1, 2, 1), (question.Folders, question.Files, question.ExistingFiles));
+        Assert.True(result.Success);
+        Assert.Equal("el viejo", File.ReadAllText(_temp.Combine("dst/src/a.txt")));
+        Assert.Equal("b", File.ReadAllText(_temp.Combine("dst/src/b.txt")));
+        Assert.Equal(ConflictPolicy.Skip, decided);
+    }
+
+    [Fact]
+    public void ExistingFolderOverwriteReplacesWhatIsThere()
+    {
+        var (engine, _) = FolderAlreadyThere(FolderDecision.Overwrite);
+
+        engine.Run(new CopyJobRequest([_temp.Combine("src")], _temp.Combine("dst")));
+
+        Assert.Equal("nuevo", File.ReadAllText(_temp.Combine("dst/src/a.txt")));
+        Assert.Equal("b", File.ReadAllText(_temp.Combine("dst/src/b.txt")));
+    }
+
+    [Fact]
+    public void ExistingFolderRenameCopiesIntoANewFolderAndRemembersIt()
+    {
+        var (engine, _) = FolderAlreadyThere(FolderDecision.Rename);
+        IReadOnlyDictionary<string, string>? renamed = null;
+        engine.FolderDecided += (_, map) => renamed = map;
+
+        engine.Run(new CopyJobRequest([_temp.Combine("src")], _temp.Combine("dst")));
+
+        Assert.Equal("el viejo", File.ReadAllText(_temp.Combine("dst/src/a.txt")));
+        Assert.False(File.Exists(_temp.Combine("dst/src/b.txt")));
+        Assert.Equal("nuevo", File.ReadAllText(_temp.Combine("dst/src (2)/a.txt")));
+        Assert.Equal("b", File.ReadAllText(_temp.Combine("dst/src (2)/b.txt")));
+        Assert.Equal("src (2)", renamed![_temp.Combine("src")]);
+
+        // Al reanudar se respeta el nombre nuevo sin volver a preguntar.
+        File.Delete(_temp.Combine("dst/src (2)/b.txt"));
+        var again = new CopyEngine(Options());
+        again.Run(new CopyJobRequest([_temp.Combine("src")], _temp.Combine("dst")) { Resumed = true, RenamedFolders = renamed });
+        Assert.Equal("b", File.ReadAllText(_temp.Combine("dst/src (2)/b.txt")));
+        Assert.False(File.Exists(_temp.Combine("dst/src/b.txt")));
+    }
+
+    [Fact]
+    public void ExistingFolderCancelCopiesNothing()
+    {
+        var (engine, _) = FolderAlreadyThere(FolderDecision.Cancel);
+
+        Assert.Throws<FolderConflictCancelledException>(() => engine.Run(new CopyJobRequest([_temp.Combine("src")], _temp.Combine("dst"))));
+        Assert.False(File.Exists(_temp.Combine("dst/src/b.txt")));
+        Assert.Equal("el viejo", File.ReadAllText(_temp.Combine("dst/src/a.txt")));
+    }
+
+    [Fact]
+    public void ExistingFolderDoesNotAskForFilesAlreadyExcluded()
+    {
+        // Una lista guardada a medias: lo ya copiado va en «quitados» y no debe contar como repetido.
+        var (engine, _) = FolderAlreadyThere(FolderDecision.Cancel);
+        engine.FolderResolver = (_, _) => throw new InvalidOperationException("no debería preguntar");
+
+        var result = engine.Run(new CopyJobRequest([_temp.Combine("src")], _temp.Combine("dst")) { Excluded = [_temp.Combine("src", "a.txt")] });
+
+        Assert.True(result.Success);
+        Assert.Equal("b", File.ReadAllText(_temp.Combine("dst/src/b.txt")));
+    }
+
+    [Fact]
+    public void ExistingFolderWithoutAnyOfTheFilesDoesNotAsk()
+    {
+        Write("src/a.txt", "a");
+        Directory.CreateDirectory(_temp.Combine("dst/src"));
+        var options = Options();
+        options.FolderConflict = FolderConflictPolicy.Ask;
+        var engine = new CopyEngine(options);
+        engine.FolderResolver = (_, _) => throw new InvalidOperationException("no debería preguntar");
+
+        Assert.True(engine.Run(new CopyJobRequest([_temp.Combine("src")], _temp.Combine("dst"))).Success);
+        Assert.Equal("a", File.ReadAllText(_temp.Combine("dst/src/a.txt")));
+    }
+
     [Fact]
     public async Task WaitsForADisconnectedSourceToComeBack()
     {

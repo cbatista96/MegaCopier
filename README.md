@@ -44,7 +44,7 @@ copias de seguridad y copia a servidores, nubes y móviles.
 | 🌍 **Llega a todas partes** | Móviles y cámaras por USB, LocalSend, otro PC, FTP, SFTP, WebDAV, S3, OneDrive, Google Drive y Dropbox. |
 | 🪟 **Integrado en Windows** | Ctrl+V, menú contextual (también el corto de Windows 11) y arrastrar con cualquier botón. Un doble clic en la bandeja lo activa o lo desactiva. |
 | 🔒 **Sin telemetría** | No envía nada a ningún sitio salvo lo que tú configures (avisos por correo o webhook). |
-| 🎨 **A tu gusto** | 52 temas (con texturas y degradados), 7 conjuntos de iconos combinables, editor de colores, 14 idiomas, consola `mcopy` y versión portátil. |
+| 🎨 **A tu gusto** | 73 temas (con texturas y degradados), 22 estilos de barra de progreso, 7 conjuntos de iconos combinables, editor de colores, 14 idiomas, consola `mcopy` y versión portátil. |
 
 ---
 
@@ -147,7 +147,7 @@ Todo explicado paso a paso en la **[guía de uso](docs/Guia.md)**.
 
 ### Temas
 
-**52 temas** que cambian toda la interfaz al momento, hasta los botones, los menús y las barras de desplazamiento. Todos
+**73 temas** que cambian toda la interfaz al momento, hasta los botones, los menús y las barras de desplazamiento. Todos
 están diseñados para Windows 11, con degradados, y algunos tienen textura de fondo.
 Además, un editor para crear los tuyos.
 
@@ -204,6 +204,23 @@ Esmeralda, Mandarina, Metro claro, Pez azul, Línea plana, Plus, Cielo, Brillo, 
 Naranja tierra, Moderno 8, Mensajero y Plata. **Fluent (como Windows)** sigue el modo claro u oscuro y el color de acento
 de Windows.
 
+Nuevos en la 1.2, con el aire de los escritorios y las apps de hoy: Material oscuro y claro, Cobre oscuro y claro, Silicio
+oscuro y claro, Brisa oscura y clara, Pizarra, Tiza, Arcade, Ártico, Vampiro, Capuchino y Capuchino claro, Noche de Tokio,
+Retro cálido, Solar oscuro y claro, Átomo y Menta oscura.
+
+<table>
+<tr>
+<td><img src="docs/capturas/temas/material-oscuro.png" alt="Material oscuro"><br>Material oscuro</td>
+<td><img src="docs/capturas/temas/silicio-claro.png" alt="Silicio claro"><br>Silicio claro</td>
+<td><img src="docs/capturas/temas/capuchino.png" alt="Capuchino"><br>Capuchino</td>
+</tr>
+<tr>
+<td><img src="docs/capturas/temas/arcade.png" alt="Arcade"><br>Arcade</td>
+<td><img src="docs/capturas/temas/vampiro.png" alt="Vampiro"><br>Vampiro</td>
+<td><img src="docs/capturas/temas/tiza.png" alt="Tiza"><br>Tiza</td>
+</tr>
+</table>
+
 ### Conjuntos de iconos
 
 Siete estilos de iconos, todos con los iconos modernos de Windows 11, que se combinan con cualquier tema:
@@ -225,6 +242,17 @@ Siete estilos de iconos, todos con los iconos modernos de Windows 11, que se com
 <td colspan="2"><img src="docs/capturas/iconos/windows10.png" alt="Windows 10"><br><b>Windows 10</b>: los iconos clásicos.</td>
 </tr>
 </table>
+
+### Barras de progreso
+
+**22 estilos**, cada uno con su animación, y cada barra (la del total, la del archivo y las de la lista) con el suyo:
+Fluent, Aero (con el reflejo que pasa una y otra vez), Ola, Rayas en movimiento, Neón, Bloques, LED, Arcoíris, Latido,
+Cometa, Cristal, Fuego, Terminal, Línea fina, Doble capa, Píxeles, Metal, Contorno, Degradado fluido, Burbujas, Semáforo y
+Segmentos. Además: colores propios, semáforo o arcoíris, grosor, redondeo, velocidad de los efectos, brillo, porcentaje
+dentro de la barra, avance elástico o a saltos y efectos según el estado (rayas en pausa, sacudida con error y destello al
+terminar).
+
+<img src="docs/capturas/barras.png" width="820" alt="Galería de estilos de barras de progreso en los ajustes">
 
 ---
 
@@ -265,7 +293,8 @@ Siete estilos de iconos, todos con los iconos modernos de Windows 11, que se com
 - **Varios orígenes a la vez**: si lo mismo está en dos NAS o dos PC, los archivos grandes se leen de todos.
 - Hasta 255 conexiones con servidores y nubes, **ajustadas solas** según la velocidad.
 - ZIP y 7z **comprimidos en paralelo** en varios núcleos.
-- Exclusión opcional de Windows Defender, límite de velocidad, prioridad baja, pausa con batería o con juegos y horario.
+- **Límite de velocidad en vivo** para cada copia, con un deslizador que se aplica al momento.
+- Exclusión opcional de Windows Defender, prioridad baja, pausa con batería o con juegos y horario.
 
 ### Qué y cómo copiar
 - Modos: copiar, mover, **espejo**, solo actualizar, solo carpetas y **organizar fotos por fecha** de la cámara.
@@ -273,6 +302,8 @@ Siete estilos de iconos, todos con los iconos modernos de Windows 11, que se com
 - **Filtros** por nombre, tamaño, fecha y atributos, también **en lenguaje normal** («fotos de más de 2 MB del último mes
   sin los .tmp») y **por el texto que contienen las fotos** (OCR de Windows, sin internet).
 - **Conflictos**: preguntar (con miniaturas), reemplazar, omitir, el más reciente, conservar ambos o renombrar con un patrón.
+- **Carpeta que ya existe**: antes de empezar, pasar los archivos que ya están (copia solo los que faltan), sobrescribir,
+  copiar con otro nombre, preguntar uno por uno o cancelar.
 - Omitir **fotos duplicadas** (mismo contenido, cualquier nombre).
 - Permisos, propietario, flujos alternativos, atributos, fechas, enlaces simbólicos, uniones, enlaces duros, archivos
   dispersos y rutas de más de 260 caracteres.
@@ -316,6 +347,9 @@ Siete estilos de iconos, todos con los iconos modernos de Windows 11, que se com
 - Sustituye **Ctrl+V**, el **menú contextual** (también el corto de Windows 11) y el **arrastre** del Explorador.
 - **Varios destinos a la vez**, favoritos, recientes y las carpetas abiertas en el Explorador, Total Commander y Directory Opus.
 - **Cola por disco**: en el mismo disco, de una en una; en discos distintos, a la vez. Se reordena arrastrando.
+- **Lista de archivos de cada copia** con origen, tamaño y destino, selección múltiple y botones para llevar al principio,
+  subir, bajar, llevar al final, añadir y quitar. Soltar archivos en la copia los añade al final (o donde marque la línea).
+- **Guardar la lista** con lo que falta y **cargarla** para seguir donde quedó; si el destino ya no está, se elige otro.
 - **Línea de tiempo** de la cola y **bandeja de arrastre** para ir juntando archivos.
 - **Tareas programadas** (una vez, diarias, semanales o mensuales) que se hacen al encender si el PC estaba apagado.
 - **Historial** con repetir, deshacer y «copiar de vuelta».
@@ -327,8 +361,9 @@ Siete estilos de iconos, todos con los iconos modernos de Windows 11, que se com
 - **Consola `mcopy`** con todas las funciones y **versión portátil**.
 - **14 idiomas**: español, inglés, francés, alemán, italiano, portugués de Brasil, ruso, ucraniano, polaco, neerlandés,
   turco, chino, japonés y coreano.
-- **52 temas** que colorean toda la interfaz (hasta las barras de desplazamiento), con degradados y texturas, **7 conjuntos de iconos** que se combinan con cualquier tema, editor de colores, sonidos propios y modo claro u oscuro; accesible con lectores de pantalla.
-- **Ajustes como la Configuración de Windows 11**: secciones a la izquierda, buscador, iconos y animaciones.
+- **73 temas** que colorean toda la interfaz (hasta las barras de desplazamiento), con degradados y texturas, **22 estilos de barra de progreso**, **7 conjuntos de iconos** que se combinan con cualquier tema, editor de colores, sonidos propios y modo claro u oscuro; accesible con lectores de pantalla.
+- **Ajustes como la Configuración de Windows 11**: secciones a la izquierda, buscador, iconos, animaciones y un botón ⓘ que
+  explica las opciones complejas con ejemplos de uso.
 
 Cada característica explicada en detalle: **[Características](docs/Caracteristicas.md)**. Cómo se compara con TeraCopy,
 FastCopy, Ultracopier, robocopy y otros: **[Comparativa](docs/Comparativa-copiadores.md)**.
@@ -390,7 +425,7 @@ compartirlo; si distribuyes una versión modificada, tiene que seguir siendo lib
 last verified block, even inside a huge file, without corrupting it. It replaces Explorer's copy and paste and adds
 verification with block repair, two-way and real-time sync, deduplicated backups, ransomware protection, self-healing
 recovery data, phone and cloud transfers (MTP, LocalSend, FTP, SFTP, WebDAV, S3, OneDrive, Google Drive, Dropbox),
-52 themes, 7 icon sets, 14 languages and a `mcopy` command line. No telemetry.
+73 themes, 22 progress bar styles, 7 icon sets, 14 languages and a `mcopy` command line. No telemetry.
 
 - **Download:** [latest release](https://github.com/cbatista96/MegaCopier/releases/latest) — the `Setup` installer
   (per-user, no admin rights) or the portable ZIP. Windows 11, 64-bit.

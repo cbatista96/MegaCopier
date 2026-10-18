@@ -13,11 +13,11 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <!-- Barra de la lista (en dos filas si no cabe) -->
+        <!-- Buscar, filtrar y el resto de acciones de la lista -->
         <Grid x:Name="ListBar" ColumnSpacing="8" RowSpacing="6">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
@@ -25,135 +25,182 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <DropDownButton Style="{StaticResource DefaultButtonStyle}" CornerRadius="6">
-                <StackPanel Orientation="Horizontal" Spacing="8">
-                    <c:McIcon VerticalAlignment="Center" Glyph="&#xE700;" FontSize="13" />
-                    <TextBlock x:Uid="Files_Menu" />
-                </StackPanel>
-                <DropDownButton.Flyout>
-                    <MenuFlyout Placement="BottomEdgeAlignedLeft">
-                        <MenuFlyoutItem x:Uid="Files_MoveTop" Click="MoveTop_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE74A;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
-                        <MenuFlyoutItem x:Uid="Files_MoveUp" Click="MoveUp_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE70E;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
-                        <MenuFlyoutItem x:Uid="Files_MoveDown" Click="MoveDown_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE70D;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
-                        <MenuFlyoutItem x:Uid="Files_MoveBottom" Click="MoveBottom_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE74B;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
-                        <MenuFlyoutItem x:Uid="Files_Remove" Click="Remove_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE711;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
-                        <MenuFlyoutSeparator />
-                        <MenuFlyoutItem x:Uid="Files_SelectAll" Click="SelectAll_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8B3;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
-                        <MenuFlyoutItem x:Uid="Files_SelectSameExtension" Click="SelectSameExtension_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8A5;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
-                        <MenuFlyoutItem x:Uid="Files_SelectSameFolder" Click="SelectSameFolder_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8B7;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
-                        <MenuFlyoutItem x:Uid="Files_InvertSelection" Click="InvertSelection_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8AB;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
-                        <MenuFlyoutSeparator />
-                        <MenuFlyoutItem x:Uid="Files_AddFiles" Click="AddFiles_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8A5;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
-                        <MenuFlyoutItem x:Uid="Files_AddFolder" Click="AddFolder_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8B7;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
-                        <MenuFlyoutSeparator />
-                        <MenuFlyoutItem x:Uid="Files_SaveList" Click="SaveList_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE74E;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
-                        <MenuFlyoutItem x:Uid="Files_ExportHtml" Click="ExportHtml_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE774;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
-                        <MenuFlyoutItem x:Uid="Files_ExportCsv" Click="ExportCsv_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE9F9;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
-                        <MenuFlyoutItem x:Uid="Files_CopyHashes" Click="CopyHashes_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8C8;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
-                        <MenuFlyoutSeparator />
-                        <MenuFlyoutItem x:Uid="Files_Retry" Click="Retry_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE72C;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
-                    </MenuFlyout>
-                </DropDownButton.Flyout>
-            </DropDownButton>
-            <TextBox x:Name="SearchBox" x:Uid="Files_Search" Grid.Column="1" TextChanged="Search_TextChanged" MaxWidth="360" HorizontalAlignment="Stretch" MinWidth="120" />
-            <StackPanel x:Name="ListToggles" Grid.Column="2" Orientation="Horizontal" Spacing="12">
+            <TextBox x:Name="SearchBox" x:Uid="Files_Search" TextChanged="Search_TextChanged" MaxWidth="420" HorizontalAlignment="Stretch" MinWidth="120" />
+            <StackPanel x:Name="ListToggles" Grid.Column="1" Orientation="Horizontal" Spacing="12">
                 <CheckBox x:Name="HideFinishedBox" x:Uid="Files_HideFinished" Checked="HideFinished_Changed" Unchecked="HideFinished_Changed" MinWidth="0" />
                 <CheckBox x:Name="AutoScrollBox" x:Uid="Files_AutoScroll" IsChecked="True" MinWidth="0" />
             </StackPanel>
-            <ComboBox x:Name="FilterBox" Grid.Column="3" MinWidth="140" SelectionChanged="Filter_SelectionChanged">
+            <ComboBox x:Name="FilterBox" Grid.Column="2" MinWidth="140" SelectionChanged="Filter_SelectionChanged">
                 <ComboBoxItem x:Uid="Files_FilterAll" />
                 <ComboBoxItem x:Uid="Files_FilterPending" />
                 <ComboBoxItem x:Uid="Files_FilterDone" />
                 <ComboBoxItem x:Uid="Files_FilterErrors" />
                 <ComboBoxItem x:Uid="Files_FilterSkipped" />
             </ComboBox>
+            <Button x:Uid="Files_More" Grid.Column="3" Style="{StaticResource McToolButton}">
+                <c:McIcon VerticalAlignment="Center" Glyph="&#xE712;" FontSize="14" />
+                <Button.Flyout>
+                    <MenuFlyout Placement="BottomEdgeAlignedRight">
+                        <MenuFlyoutItem x:Uid="Files_SelectAll" Click="SelectAll_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8B3;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
+                        <MenuFlyoutItem x:Uid="Files_SelectSameExtension" Click="SelectSameExtension_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8A5;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
+                        <MenuFlyoutItem x:Uid="Files_SelectSameFolder" Click="SelectSameFolder_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8B7;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
+                        <MenuFlyoutItem x:Uid="Files_InvertSelection" Click="InvertSelection_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8AB;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
+                        <MenuFlyoutSeparator />
+                        <ToggleMenuFlyoutItem x:Name="ShowHashesItem" x:Uid="Files_ShowHashes" Click="ShowHashes_Click" />
+                        <MenuFlyoutSeparator />
+                        <MenuFlyoutItem x:Uid="Files_ExportHtml" Click="ExportHtml_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE774;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
+                        <MenuFlyoutItem x:Uid="Files_ExportCsv" Click="ExportCsv_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE9F9;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
+                        <MenuFlyoutItem x:Uid="Files_CopyHashes" Click="CopyHashes_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8C8;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
+                        <MenuFlyoutSeparator />
+                        <MenuFlyoutItem x:Uid="Files_Retry" Click="Retry_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE72C;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
+                    </MenuFlyout>
+                </Button.Flyout>
+            </Button>
         </Grid>
 
-        <!-- Cabecera de columnas -->
-        <Grid Grid.Row="1" Padding="12,0,16,0" ColumnSpacing="12">
+        <!-- Cabecera de columnas: origen, tamaño y destino (y las sumas, si se piden) -->
+        <Grid x:Name="Header" Grid.Row="1" Padding="68,0,16,0" ColumnSpacing="12">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="28" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="80" />
+                <ColumnDefinition x:Name="HeaderDestinationColumn" Width="2*" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="84" />
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="1" x:Name="CountText" Style="{StaticResource McSecondary}" TextTrimming="CharacterEllipsis" />
-            <TextBlock x:Name="SourceHashHeader" Grid.Column="2" Width="96" x:Uid="Files_SourceHash" Style="{StaticResource McSecondary}" TextWrapping="WrapWholeWords" MaxLines="2" TextTrimming="CharacterEllipsis" />
-            <TextBlock x:Name="TargetHashHeader" Grid.Column="3" Width="96" x:Uid="Files_TargetHash" Style="{StaticResource McSecondary}" TextWrapping="WrapWholeWords" MaxLines="2" TextTrimming="CharacterEllipsis" />
-            <TextBlock Grid.Column="4" x:Uid="Files_Size" Style="{StaticResource McSecondary}" TextAlignment="Right" />
+            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8">
+                <TextBlock x:Uid="Files_Source" Style="{StaticResource McSecondary}" FontWeight="SemiBold" />
+                <TextBlock x:Name="CountText" Style="{StaticResource McSecondary}" TextTrimming="CharacterEllipsis" Opacity="0.8" />
+            </StackPanel>
+            <TextBlock Grid.Column="2" x:Uid="Files_Size" Style="{StaticResource McSecondary}" FontWeight="SemiBold" TextAlignment="Right" />
+            <TextBlock x:Name="DestinationHeader" Grid.Column="3" x:Uid="Files_Destination" Style="{StaticResource McSecondary}" FontWeight="SemiBold" />
+            <TextBlock x:Name="SourceHashHeader" Grid.Column="4" Width="96" x:Uid="Files_SourceHash" Style="{StaticResource McSecondary}" TextWrapping="WrapWholeWords" MaxLines="2" TextTrimming="CharacterEllipsis" />
+            <TextBlock x:Name="TargetHashHeader" Grid.Column="5" Width="96" x:Uid="Files_TargetHash" Style="{StaticResource McSecondary}" TextWrapping="WrapWholeWords" MaxLines="2" TextTrimming="CharacterEllipsis" />
         </Grid>
 
-        <ListView x:Name="List" Grid.Row="2" SelectionMode="Extended" IsItemClickEnabled="False"
-                  CanDragItems="True" AllowDrop="True" DragItemsStarting="List_DragItemsStarting" DragItemsCompleted="List_DragItemsCompleted"
-                  DragOver="List_DragOver" DragLeave="List_DragLeave" Drop="List_Drop">
-            <ListView.ItemContainerTransitions>
-                <TransitionCollection>
-                    <AddDeleteThemeTransition />
-                    <RepositionThemeTransition />
-                </TransitionCollection>
-            </ListView.ItemContainerTransitions>
-            <ListView.ContextFlyout>
-                <MenuFlyout>
-                    <MenuFlyoutItem x:Uid="Files_MoveTop" Click="MoveTop_Click" />
-                    <MenuFlyoutItem x:Uid="Files_MoveUp" Click="MoveUp_Click" />
-                    <MenuFlyoutItem x:Uid="Files_MoveDown" Click="MoveDown_Click" />
-                    <MenuFlyoutItem x:Uid="Files_MoveBottom" Click="MoveBottom_Click" />
-                    <MenuFlyoutItem x:Uid="Files_Remove" Click="Remove_Click" />
-                    <MenuFlyoutSeparator />
-                    <MenuFlyoutItem x:Uid="Files_OpenSource" Click="OpenSource_Click" />
-                    <MenuFlyoutItem x:Uid="Files_OpenTarget" Click="OpenTarget_Click" />
-                    <MenuFlyoutItem x:Uid="Files_CopyPath" Click="CopyPath_Click" />
-                </MenuFlyout>
-            </ListView.ContextFlyout>
-            <ListView.ItemTemplate>
-                <DataTemplate x:DataType="vm:FileRowViewModel">
-                    <Grid Padding="0,6" ColumnSpacing="12">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="28" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="84" />
-                        </Grid.ColumnDefinitions>
-                        <Grid ToolTipService.ToolTip="{x:Bind StateText, Mode=OneWay}">
-                            <c:McIcon HorizontalAlignment="Center" VerticalAlignment="Center" Glyph="&#xEA3A;" FontSize="11" Foreground="{StaticResource McTextSecondaryBrush}" Visibility="{x:Bind IsPending, Mode=OneWay}" />
-                            <ProgressRing HorizontalAlignment="Center" VerticalAlignment="Center" Width="16" Height="16" IsActive="{x:Bind IsCurrent, Mode=OneWay}" Visibility="{x:Bind IsCurrent, Mode=OneWay}" Foreground="{StaticResource McAccentBrush}" />
-                            <c:McIcon HorizontalAlignment="Center" VerticalAlignment="Center" Glyph="&#xE73E;" FontSize="14" Foreground="{StaticResource McSuccessBrush}" Visibility="{x:Bind IsCopiedOnly, Mode=OneWay}" />
-                            <c:McIcon HorizontalAlignment="Center" VerticalAlignment="Center" Glyph="&#xE930;" FontSize="15" Foreground="{StaticResource McSuccessBrush}" Visibility="{x:Bind IsVerified, Mode=OneWay}" />
-                            <c:McIcon HorizontalAlignment="Center" VerticalAlignment="Center" Glyph="&#xE893;" FontSize="14" Foreground="{StaticResource McTextSecondaryBrush}" Visibility="{x:Bind IsSkipped, Mode=OneWay}" />
-                            <c:McIcon HorizontalAlignment="Center" VerticalAlignment="Center" Glyph="&#xE7BA;" FontSize="14" Foreground="{StaticResource McWarningBrush}" Visibility="{x:Bind IsFailed, Mode=OneWay}" />
-                            <c:McIcon HorizontalAlignment="Center" VerticalAlignment="Center" Glyph="&#xE7B3;" FontSize="14" Accent="True" Visibility="{x:Bind IsPlanned, Mode=OneWay}" />
-                            <c:McIcon HorizontalAlignment="Center" VerticalAlignment="Center" Glyph="&#xE74D;" FontSize="14" Foreground="{StaticResource McTextSecondaryBrush}" Visibility="{x:Bind IsDeleted, Mode=OneWay}" />
-                        </Grid>
-                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                            <TextBlock Text="{x:Bind Name}" Style="{StaticResource McBody}" TextTrimming="CharacterEllipsis" ToolTipService.ToolTip="{x:Bind SourcePath}" />
-                            <TextBlock Text="{x:Bind Folder}" Style="{StaticResource McSecondary}" TextTrimming="CharacterEllipsis" />
-                            <TextBlock Text="{x:Bind Message, Mode=OneWay}" ToolTipService.ToolTip="{x:Bind TechnicalMessage, Mode=OneWay}" Style="{StaticResource McSecondary}" Foreground="{x:Bind MessageBrush, Mode=OneWay}"
-                                       Visibility="{x:Bind HasMessage, Mode=OneWay}" TextWrapping="Wrap" />
-                        </StackPanel>
-                        <TextBlock Grid.Column="2" Width="96" Visibility="{x:Bind HashesVisible, Mode=OneWay}" Text="{x:Bind SourceHash, Mode=OneWay}" ToolTipService.ToolTip="{x:Bind SourceHashFull, Mode=OneWay}" Style="{StaticResource McSecondary}" FontFamily="Consolas" VerticalAlignment="Center" />
-                        <TextBlock Grid.Column="3" Width="96" Visibility="{x:Bind HashesVisible, Mode=OneWay}" Text="{x:Bind DestinationHash, Mode=OneWay}" ToolTipService.ToolTip="{x:Bind DestinationHashFull, Mode=OneWay}" Style="{StaticResource McSecondary}" FontFamily="Consolas" VerticalAlignment="Center" />
-                        <TextBlock Grid.Column="4" Text="{x:Bind SizeText}" ToolTipService.ToolTip="{x:Bind DetailsText}" Style="{StaticResource McSecondary}" VerticalAlignment="Center" TextAlignment="Right" />
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        <Grid Grid.Row="2" ColumnSpacing="8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
-        <!-- Capa del arrastre: línea de inserción y aviso de lo que va a pasar -->
-        <Canvas x:Name="DropLayer" Grid.Row="2" IsHitTestVisible="False">
-            <Grid x:Name="DropLine" Height="10" Visibility="Collapsed">
-                <Border Height="3" CornerRadius="1.5" VerticalAlignment="Center" Margin="6,0,0,0" Background="{StaticResource McAccentBrush}" />
-                <Ellipse Width="10" Height="10" HorizontalAlignment="Left" Stroke="{StaticResource McAccentBrush}" StrokeThickness="2.5" Fill="{StaticResource McBackgroundBrush}" />
-            </Grid>
-        </Canvas>
-        <Border x:Name="DropHint" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,12" Padding="14,8" CornerRadius="8"
-                Background="{StaticResource McAccentBrush}" IsHitTestVisible="False" Visibility="Collapsed">
-            <StackPanel Orientation="Horizontal" Spacing="8">
-                <c:McIcon x:Name="DropHintIcon" VerticalAlignment="Center" Glyph="&#xE8DE;" FontSize="14" Foreground="{StaticResource McAccentTextBrush}" />
-                <TextBlock x:Name="DropHintText" VerticalAlignment="Center" Foreground="{StaticResource McAccentTextBrush}" FontWeight="SemiBold" />
-            </StackPanel>
-        </Border>
-        <TextBlock x:Name="EmptyText" x:Uid="Files_Empty" Grid.Row="2" Style="{StaticResource McSecondary}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" />
+            <!-- Botones de la lista: ordenar, añadir, quitar, guardar y cargar -->
+            <Border VerticalAlignment="Top" Padding="4" CornerRadius="8" Background="{StaticResource McSurfaceBrush}" BorderBrush="{StaticResource McBorderBrush}" BorderThickness="1">
+                <StackPanel x:Name="Rail" Spacing="2">
+                    <Button x:Name="TopButton" x:Uid="Files_RailTop" Style="{StaticResource McToolButton}" Click="MoveTop_Click">
+                        <Button.KeyboardAccelerators><KeyboardAccelerator Modifiers="Menu" Key="Home" /></Button.KeyboardAccelerators>
+                        <c:McIcon Glyph="&#xE898;" FontSize="15" />
+                    </Button>
+                    <Button x:Name="UpButton" x:Uid="Files_RailUp" Style="{StaticResource McToolButton}" Click="MoveUp_Click">
+                        <Button.KeyboardAccelerators><KeyboardAccelerator Modifiers="Menu" Key="Up" /></Button.KeyboardAccelerators>
+                        <c:McIcon Glyph="&#xE74A;" FontSize="14" />
+                    </Button>
+                    <Button x:Name="DownButton" x:Uid="Files_RailDown" Style="{StaticResource McToolButton}" Click="MoveDown_Click">
+                        <Button.KeyboardAccelerators><KeyboardAccelerator Modifiers="Menu" Key="Down" /></Button.KeyboardAccelerators>
+                        <c:McIcon Glyph="&#xE74B;" FontSize="14" />
+                    </Button>
+                    <Button x:Name="BottomButton" x:Uid="Files_RailBottom" Style="{StaticResource McToolButton}" Click="MoveBottom_Click">
+                        <Button.KeyboardAccelerators><KeyboardAccelerator Modifiers="Menu" Key="End" /></Button.KeyboardAccelerators>
+                        <c:McIcon Glyph="&#xE896;" FontSize="15" />
+                    </Button>
+                    <Rectangle Height="1" Margin="6,4" Fill="{StaticResource McBorderBrush}" />
+                    <Button x:Name="AddButton" x:Uid="Files_RailAdd" Style="{StaticResource McToolButton}">
+                        <c:McIcon Glyph="&#xE710;" FontSize="14" Accent="True" />
+                        <Button.Flyout>
+                            <MenuFlyout Placement="RightEdgeAlignedTop">
+                                <MenuFlyoutItem x:Uid="Files_AddFiles" Click="AddFiles_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8A5;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
+                                <MenuFlyoutItem x:Uid="Files_AddFolder" Click="AddFolder_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8B7;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
+                            </MenuFlyout>
+                        </Button.Flyout>
+                    </Button>
+                    <Button x:Name="RemoveButton" x:Uid="Files_RailRemove" Style="{StaticResource McToolButton}" Click="Remove_Click">
+                        <Button.KeyboardAccelerators><KeyboardAccelerator Key="Delete" /></Button.KeyboardAccelerators>
+                        <c:McIcon Glyph="&#xE738;" FontSize="14" />
+                    </Button>
+                    <Rectangle Height="1" Margin="6,4" Fill="{StaticResource McBorderBrush}" />
+                    <Button x:Name="SaveButton" x:Uid="Files_RailSave" Style="{StaticResource McToolButton}" Click="SaveList_Click">
+                        <c:McIcon Glyph="&#xE74E;" FontSize="14" />
+                    </Button>
+                    <Button x:Name="LoadButton" x:Uid="Files_RailLoad" Style="{StaticResource McToolButton}" Click="LoadList_Click">
+                        <c:McIcon Glyph="&#xE8E5;" FontSize="14" />
+                    </Button>
+                </StackPanel>
+            </Border>
+
+            <ListView x:Name="List" Grid.Column="1" SelectionMode="Extended" IsItemClickEnabled="False" SelectionChanged="List_SelectionChanged"
+                      CanDragItems="True" AllowDrop="True" DragItemsStarting="List_DragItemsStarting" DragItemsCompleted="List_DragItemsCompleted"
+                      DragOver="List_DragOver" DragLeave="List_DragLeave" Drop="List_Drop">
+                <ListView.ItemContainerTransitions>
+                    <TransitionCollection>
+                        <AddDeleteThemeTransition />
+                        <RepositionThemeTransition />
+                    </TransitionCollection>
+                </ListView.ItemContainerTransitions>
+                <ListView.ContextFlyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem x:Uid="Files_MoveTop" Click="MoveTop_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE898;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
+                        <MenuFlyoutItem x:Uid="Files_MoveUp" Click="MoveUp_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE74A;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
+                        <MenuFlyoutItem x:Uid="Files_MoveDown" Click="MoveDown_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE74B;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
+                        <MenuFlyoutItem x:Uid="Files_MoveBottom" Click="MoveBottom_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE896;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
+                        <MenuFlyoutItem x:Uid="Files_Remove" Click="Remove_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE738;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
+                        <MenuFlyoutSeparator />
+                        <MenuFlyoutItem x:Uid="Files_OpenSource" Click="OpenSource_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8DA;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
+                        <MenuFlyoutItem x:Uid="Files_OpenTarget" Click="OpenTarget_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE838;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
+                        <MenuFlyoutItem x:Uid="Files_CopyPath" Click="CopyPath_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8C8;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
+                    </MenuFlyout>
+                </ListView.ContextFlyout>
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="vm:FileRowViewModel">
+                        <Grid Padding="0,5" ColumnSpacing="12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="28" />
+                                <ColumnDefinition Width="3*" />
+                                <ColumnDefinition Width="80" />
+                                <ColumnDefinition Width="{x:Bind DestinationWidth, Mode=OneWay}" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid ToolTipService.ToolTip="{x:Bind StateText, Mode=OneWay}">
+                                <c:McIcon HorizontalAlignment="Center" VerticalAlignment="Center" Glyph="&#xEA3A;" FontSize="11" Foreground="{StaticResource McTextSecondaryBrush}" Visibility="{x:Bind IsPending, Mode=OneWay}" />
+                                <ProgressRing HorizontalAlignment="Center" VerticalAlignment="Center" Width="16" Height="16" IsActive="{x:Bind IsCurrent, Mode=OneWay}" Visibility="{x:Bind IsCurrent, Mode=OneWay}" Foreground="{StaticResource McAccentBrush}" />
+                                <c:McIcon HorizontalAlignment="Center" VerticalAlignment="Center" Glyph="&#xE73E;" FontSize="14" Foreground="{StaticResource McSuccessBrush}" Visibility="{x:Bind IsCopiedOnly, Mode=OneWay}" />
+                                <c:McIcon HorizontalAlignment="Center" VerticalAlignment="Center" Glyph="&#xE930;" FontSize="15" Foreground="{StaticResource McSuccessBrush}" Visibility="{x:Bind IsVerified, Mode=OneWay}" />
+                                <c:McIcon HorizontalAlignment="Center" VerticalAlignment="Center" Glyph="&#xE893;" FontSize="14" Foreground="{StaticResource McTextSecondaryBrush}" Visibility="{x:Bind IsSkipped, Mode=OneWay}" />
+                                <c:McIcon HorizontalAlignment="Center" VerticalAlignment="Center" Glyph="&#xE7BA;" FontSize="14" Foreground="{StaticResource McWarningBrush}" Visibility="{x:Bind IsFailed, Mode=OneWay}" />
+                                <c:McIcon HorizontalAlignment="Center" VerticalAlignment="Center" Glyph="&#xE7B3;" FontSize="14" Accent="True" Visibility="{x:Bind IsPlanned, Mode=OneWay}" />
+                                <c:McIcon HorizontalAlignment="Center" VerticalAlignment="Center" Glyph="&#xE74D;" FontSize="14" Foreground="{StaticResource McTextSecondaryBrush}" Visibility="{x:Bind IsDeleted, Mode=OneWay}" />
+                            </Grid>
+                            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                <TextBlock Text="{x:Bind Name}" Style="{StaticResource McBody}" TextTrimming="CharacterEllipsis" ToolTipService.ToolTip="{x:Bind SourcePath}" />
+                                <TextBlock Text="{x:Bind SourceFolder}" Style="{StaticResource McSecondary}" TextTrimming="CharacterEllipsis" ToolTipService.ToolTip="{x:Bind SourceFolder}" />
+                                <TextBlock Text="{x:Bind Message, Mode=OneWay}" ToolTipService.ToolTip="{x:Bind TechnicalMessage, Mode=OneWay}" Style="{StaticResource McSecondary}" Foreground="{x:Bind MessageBrush, Mode=OneWay}"
+                                           Visibility="{x:Bind HasMessage, Mode=OneWay}" TextWrapping="Wrap" />
+                            </StackPanel>
+                            <TextBlock Grid.Column="2" Text="{x:Bind SizeText}" ToolTipService.ToolTip="{x:Bind DetailsText}" Style="{StaticResource McSecondary}" VerticalAlignment="Center" TextAlignment="Right" />
+                            <TextBlock Grid.Column="3" Text="{x:Bind DestinationFolder}" ToolTipService.ToolTip="{x:Bind DestinationPath}" Style="{StaticResource McSecondary}" VerticalAlignment="Center"
+                                       TextTrimming="CharacterEllipsis" Visibility="{x:Bind DestinationVisible, Mode=OneWay}" />
+                            <TextBlock Grid.Column="4" Width="96" Visibility="{x:Bind HashesVisible, Mode=OneWay}" Text="{x:Bind SourceHash, Mode=OneWay}" ToolTipService.ToolTip="{x:Bind SourceHashFull, Mode=OneWay}" Style="{StaticResource McSecondary}" FontFamily="Consolas" VerticalAlignment="Center" />
+                            <TextBlock Grid.Column="5" Width="96" Visibility="{x:Bind HashesVisible, Mode=OneWay}" Text="{x:Bind DestinationHash, Mode=OneWay}" ToolTipService.ToolTip="{x:Bind DestinationHashFull, Mode=OneWay}" Style="{StaticResource McSecondary}" FontFamily="Consolas" VerticalAlignment="Center" />
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <!-- Capa del arrastre: línea de inserción y aviso de lo que va a pasar -->
+            <Canvas x:Name="DropLayer" Grid.Column="1" IsHitTestVisible="False">
+                <Grid x:Name="DropLine" Height="10" Visibility="Collapsed">
+                    <Border Height="3" CornerRadius="1.5" VerticalAlignment="Center" Margin="6,0,0,0" Background="{StaticResource McAccentBrush}" />
+                    <Ellipse Width="10" Height="10" HorizontalAlignment="Left" Stroke="{StaticResource McAccentBrush}" StrokeThickness="2.5" Fill="{StaticResource McBackgroundBrush}" />
+                </Grid>
+            </Canvas>
+            <Border x:Name="DropHint" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,12" Padding="14,8" CornerRadius="8"
+                    Background="{StaticResource McAccentBrush}" IsHitTestVisible="False" Visibility="Collapsed">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <c:McIcon x:Name="DropHintIcon" VerticalAlignment="Center" Glyph="&#xE8DE;" FontSize="14" Foreground="{StaticResource McAccentTextBrush}" />
+                    <TextBlock x:Name="DropHintText" VerticalAlignment="Center" Foreground="{StaticResource McAccentTextBrush}" FontWeight="SemiBold" />
+                </StackPanel>
+            </Border>
+            <TextBlock x:Name="EmptyText" x:Uid="Files_Empty" Grid.Column="1" Style="{StaticResource McSecondary}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" />
+        </Grid>
     </Grid>
 </UserControl>

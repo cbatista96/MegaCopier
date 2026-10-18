@@ -264,3 +264,7 @@ E_F_ImageText	包含文字“{0}”的图片
 E_CloudSignedIn	已登录。可以关闭此标签页并返回 MegaCopier。
 E_CloudSignInFailed	登录失败。请返回 MegaCopier 查看原因。
 E_CloudSignInError	无法登录：{0}
+E_FolderCancelled	已取消复制：目标中已存在该文件夹。
+E_FolderSkipExisting	文件夹已存在：跳过已有的 {0} 个文件，复制其余文件。
+E_FolderOverwrite	文件夹已存在：覆盖已有的 {0} 个文件。
+E_FolderRenamed	文件夹“{0}”已存在：将复制为“{1}”。

@@ -65,6 +65,18 @@ public sealed partial class CopyEngine
     /// <summary>Pregunta qué hacer con un archivo que sigue fallando (con OnError = Ask). Sin él, se omite.</summary>
     public Func<ErrorInfo, CancellationToken, ErrorDecision>? ErrorResolver { get; set; }
 
+    /// <summary>
+    /// Pregunta qué hacer cuando una carpeta de origen ya existe en el destino con algunos de sus archivos (con
+    /// <see cref="FolderConflictPolicy.Ask"/>). Sin él, se mezcla como siempre.
+    /// </summary>
+    public Func<FolderConflictInfo, CancellationToken, FolderDecision>? FolderResolver { get; set; }
+
+    /// <summary>
+    /// El usuario decidió qué hacer con las carpetas que ya existían: la regla de conflictos que queda y, si eligió
+    /// renombrar, los nombres nuevos (para guardarlos en el trabajo y respetarlos al reanudar).
+    /// </summary>
+    public event Action<ConflictPolicy, IReadOnlyDictionary<string, string>>? FolderDecided;
+
     /// <summary>Velocidad por segundo desde el inicio (para la gráfica).</summary>
     public float[] SpeedHistory => _progress?.SpeedHistory() ?? [];
 
@@ -93,6 +105,9 @@ public sealed partial class CopyEngine
 
         Controller.Resume();
     }
+
+    /// <summary>La regla de conflictos cambió en caliente: olvidar el «hacer lo mismo con todos» que se eligió antes.</summary>
+    public void ForgetConflictAnswer() => Volatile.Write(ref _conflictForAll, null);
 
     /// <summary>Añade más orígenes al trabajo en curso (por ejemplo, arrastrados a la ventana).</summary>
     public int AddSources(IReadOnlyList<string> sources, int? beforeId = null)
@@ -187,6 +202,15 @@ public sealed partial class CopyEngine
         if (_options.FolderConflict == FolderConflictPolicy.Skip && !request.Resumed)
         {
             plan = SkipExistingFolders(request, plan);
+        }
+
+        if (request.RenamedFolders.Count > 0)
+        {
+            plan = RenameFolders(plan, request.RenamedFolders);
+        }
+        else if (_options.FolderConflict == FolderConflictPolicy.Ask && !request.Resumed && FolderResolver is not null && !_options.Unattended && !_options.DryRun)
+        {
+            plan = AskExistingFolders(request, plan, cancellationToken);
         }
 
         (plan, var staged) = StageFolders(request, plan);

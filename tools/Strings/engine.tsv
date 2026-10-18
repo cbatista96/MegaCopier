@@ -264,3 +264,7 @@ E_F_ImageText	imágenes con el texto «{0}»	images with the text "{0}"
 E_CloudSignedIn	Sesión iniciada. Ya puedes cerrar esta pestaña y volver a MegaCopier.	Signed in. You can close this tab and go back to MegaCopier.
 E_CloudSignInFailed	No se pudo iniciar sesión. Vuelve a MegaCopier para ver el motivo.	Sign-in failed. Go back to MegaCopier to see why.
 E_CloudSignInError	No se pudo iniciar sesión: {0}	Could not sign in: {0}
+E_FolderCancelled	Copia cancelada: la carpeta ya existía en el destino.	Copy cancelled: the folder already existed in the destination.
+E_FolderSkipExisting	La carpeta ya existía: se pasan los {0} archivos que ya están y se copia el resto.	The folder already existed: the {0} files already there are passed over and the rest is copied.
+E_FolderOverwrite	La carpeta ya existía: se sobrescriben los {0} archivos que ya están.	The folder already existed: the {0} files already there are overwritten.
+E_FolderRenamed	La carpeta «{0}» ya existía: se copia como «{1}».	The folder "{0}" already existed: it is copied as "{1}".

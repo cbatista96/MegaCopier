@@ -19,6 +19,21 @@ public sealed partial class CopyPanel : UserControl
         InitializeComponent();
         SetExpanded(false);
         SizeChanged += (_, e) => Adapt(e.NewSize.Width);
+        ShowPercents();
+        Loaded += (_, _) =>
+        {
+            Theming.BarAppearance.Changed -= ShowPercents;
+            Theming.BarAppearance.Changed += ShowPercents;
+            ShowPercents();
+        };
+        Unloaded += (_, _) => Theming.BarAppearance.Changed -= ShowPercents;
+    }
+
+    /// <summary>El porcentaje a la derecha de cada barra, salvo que se pida dentro de la barra u oculto.</summary>
+    private void ShowPercents()
+    {
+        TotalPercentBlock.Visibility = Theming.BarAppearance.For(Theming.BarRole.Total).Text == Theming.BarText.Outside ? Visibility.Visible : Visibility.Collapsed;
+        FilePercentBlock.Visibility = Theming.BarAppearance.For(Theming.BarRole.File).Text == Theming.BarText.Outside ? Visibility.Visible : Visibility.Collapsed;
     }
 
     /// <summary>"Más" / "Menos": pasar entre la ventana compacta y la completa.</summary>

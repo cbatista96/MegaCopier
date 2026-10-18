@@ -793,21 +793,106 @@ public sealed partial class MainWindow : Window
         }
     }
 
-    /// <summary>Carga una lista guardada (.mclist) y la copia de nuevo a su destino.</summary>
-    private async void LoadList_Click(object sender, RoutedEventArgs e)
+    private void LoadList_Click(object sender, RoutedEventArgs e) => LoadListAsync();
+
+    /// <summary>
+    /// Carga una lista guardada (.mclist) y empieza a copiar en seguida lo que le quedaba, al mismo destino y con las
+    /// mismas opciones. Si ese destino ya no está (una memoria USB que se quitó...), pregunta si copiar el resto en otro
+    /// sitio.
+    /// </summary>
+    internal async void LoadListAsync()
     {
         if (await Pickers.PickFileAsync(".mclist") is not { } path)
         {
             return;
         }
 
-        // Con todas las opciones guardadas (modo, filtros, verificar...); si la lista no trae destino, se pide.
-        string? destination = Reports.LoadList(path) is { } list && !Path.IsPathFullyQualified(list.Destination)
-            ? await Pickers.PickFolderAsync(L.Get("Picker_CopyHere"))
-            : null;
+        await RunListAsync(path);
+    }
+
+    internal async Task RunListAsync(string path)
+    {
+        if (Reports.LoadList(path) is not { } list)
+        {
+            _app.Notify(L.Get("Files_LoadFailed"), path);
+            return;
+        }
+
+        string? destination = null;
+        if (!Path.IsPathFullyQualified(list.Destination))
+        {
+            destination = await Pickers.PickFolderAsync(L.Get("Picker_CopyHere"));
+            if (destination is null)
+            {
+                return;
+            }
+        }
+        else if (!DestinationAvailable(list.Destination))
+        {
+            if (!await AskOtherDestinationAsync(list.Destination))
+            {
+                return;
+            }
+
+            destination = await Pickers.PickFolderAsync(L.Get("Picker_CopyHere"));
+            if (destination is null)
+            {
+                return;
+            }
+        }
+
         if (_app.RunList(path, destination) is not null)
         {
             ShowJobs();
+        }
+    }
+
+    /// <summary>La unidad (o el recurso de red) del destino sigue ahí; la carpeta en sí se crea si falta.</summary>
+    private static bool DestinationAvailable(string destination)
+    {
+        try
+        {
+            string? root = Path.GetPathRoot(destination);
+            return string.IsNullOrEmpty(root) || Directory.Exists(root) || Directory.Exists(destination);
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or ArgumentException)
+        {
+            return false;
+        }
+    }
+
+    /// <summary>«La carpeta de destino original ya no existe. ¿Copiar el resto en otro lugar?»</summary>
+    private async Task<bool> AskOtherDestinationAsync(string destination)
+    {
+        await _dialogGate.WaitAsync();
+        try
+        {
+            ShowAndActivate();
+            Sounds.Play(_app.Settings.Sounds, SoundEvent.Attention);
+            var dialog = new ContentDialog
+            {
+                Title = L.Get("ListMissing_Title"),
+                Content = new StackPanel
+                {
+                    Spacing = 10,
+                    MaxWidth = 460,
+                    Children =
+                    {
+                        new TextBlock { Text = L.Get("ListMissing_Message"), TextWrapping = TextWrapping.Wrap },
+                        new TextBlock { Text = destination, Opacity = 0.75, FontSize = 12, TextWrapping = TextWrapping.Wrap, IsTextSelectionEnabled = true },
+                    },
+                },
+                PrimaryButtonText = L.Get("ListMissing_Choose"),
+                CloseButtonText = L.Get("ListMissing_Cancel"),
+                DefaultButton = ContentDialogButton.Primary,
+                XamlRoot = Root.XamlRoot,
+                RequestedTheme = Root.RequestedTheme,
+            };
+            return await dialog.ShowAsync() == ContentDialogResult.Primary;
+        }
+        finally
+        {
+            _dialogGate.Release();
         }
     }
 
@@ -1103,7 +1188,8 @@ public sealed partial class MainWindow : Window
         }
     }
 
-    // Soltar sobre el panel (también en la ventana compacta): se añade a la copia que se está viendo.
+    // Soltar en cualquier parte de la copia que se está viendo (el panel, las pestañas; también en la ventana compacta):
+    // se añade al final de esa copia, al mismo destino. Sobre la lista de archivos se elige la posición exacta.
 
     private void PanelCard_DragOver(object sender, DragEventArgs e)
     {
@@ -1114,7 +1200,7 @@ public sealed partial class MainWindow : Window
 
         e.Handled = true;
         e.AcceptedOperation = DataPackageOperation.Copy;
-        e.DragUIOverride.Caption = L.F("Drop_AddToNamedJob", _selected.Title);
+        e.DragUIOverride.Caption = L.F("Drop_AddToEnd", _selected.Title);
         e.DragUIOverride.IsGlyphVisible = false;
         PanelCard.BorderBrush = ThemeManager.AccentBrush;
         PanelCard.BorderThickness = new Thickness(2);

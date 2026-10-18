@@ -101,6 +101,9 @@ public enum FolderConflictPolicy
 
     /// <summary>Omitir esa carpeta entera.</summary>
     Skip,
+
+    /// <summary>Preguntar al usuario qué hacer (pasar los que ya están, sobrescribir, renombrar la carpeta o cancelar).</summary>
+    Ask,
 }
 
 /// <summary>Qué hacer con los enlaces simbólicos y las uniones de carpetas.</summary>

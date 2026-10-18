@@ -111,7 +111,7 @@ Todo lo que hace MegaCopier, por temas. Para usarlo, la [guía](Guia.md); para c
 - **Consola** `mcopy` con todas las funciones y **modo portátil** (ZIP, sin instalar).
 - **14 idiomas**: español, inglés, francés, alemán, italiano, portugués de Brasil, ruso, ucraniano, polaco, neerlandés,
   turco, chino, japonés y coreano.
-- **52 temas** que colorean toda la interfaz (hasta las barras de desplazamiento), con degradados y texturas (brasas, madera, papel, fibra de carbono, aurora, galaxia, metal, ondas, neón y lluvia digital), y **7 conjuntos de iconos** (Fluent, Color, Mosaico, Suave, Degradado, Neón y Windows 10) que se combinan con cualquier tema; editor de colores y modo claro u oscuro; accesible con lectores de pantalla.
+- **73 temas** que colorean toda la interfaz (hasta las barras de desplazamiento), con degradados y texturas (brasas, madera, papel, fibra de carbono, aurora, galaxia, metal, ondas, neón y lluvia digital), y **7 conjuntos de iconos** (Fluent, Color, Mosaico, Suave, Degradado, Neón y Windows 10) que se combinan con cualquier tema; **22 estilos de barra de progreso** (Aero, Ola, Neón, Fuego, LED, Terminal…) con colores, grosor, redondeo, velocidad, brillo y efectos según el estado, distintos para cada barra; editor de colores y modo claro u oscuro; accesible con lectores de pantalla.
 - **Ajustes como la Configuración de Windows 11**: secciones a la izquierda con sus iconos, buscador de ajustes y animaciones.
 - **Sonidos propios** (campanillas originales) al terminar, en los errores y cuando hace falta decidir algo, activados por defecto; se pueden cambiar por los de Windows o por un archivo tuyo.
 - Sin telemetría: no envía nada a ningún sitio salvo lo que configures tú.

@@ -180,6 +180,35 @@ public sealed class CopyJob
         Changed?.Invoke(this);
     }
 
+    /// <summary>
+    /// Pasa a la copia en marcha las opciones del registro que se leen archivo a archivo: qué hacer si ya existe,
+    /// fechas, atributos, flujos, permisos, verificar los omitidos, errores y reintentos. Las que cambian el plan o los
+    /// búferes (modo, filtros, bloque, hilos, suma) se aplican al reanudar. Lo guarda.
+    /// </summary>
+    public void ApplyLiveOptions()
+    {
+        if (_lastEngine is { } engine)
+        {
+            var options = engine.Options;
+            options.Conflict = Record.Conflict;
+            options.PreserveTimestamps = Record.PreserveTimestamps;
+            options.PreserveAttributes = Record.PreserveAttributes;
+            options.CopyStreams = Record.CopyStreams;
+            options.CopySecurity = Record.CopySecurity;
+            options.VerifySkipped = Record.VerifySkipped;
+            options.Verify = Record.Verify;
+            options.OnError = Record.OnError;
+            options.RetryCount = Record.RetryCount;
+            options.RetryDelay = TimeSpan.FromSeconds(Record.RetryDelaySeconds);
+            options.SaveChecksumFile = Record.SaveChecksumFile;
+            engine.ForgetConflictAnswer();
+        }
+
+        ApplySpeed();
+        SaveIfPending();
+        Changed?.Invoke(this);
+    }
+
     /// <summary>Guarda el registro tras cambiarlo desde fuera (informe, scripts...).</summary>
     public void SaveRecord() => SaveIfPending();
 
@@ -398,6 +427,9 @@ public sealed class CopyQueue
     /// <summary>Pregunta qué hacer con un archivo que sigue fallando (copias con OnError = Ask). Sin él, se omite.</summary>
     public Func<CopyJob, ErrorInfo, CancellationToken, ErrorDecision>? ErrorResolver { get; set; }
 
+    /// <summary>Pregunta qué hacer cuando una carpeta de origen ya existe en el destino (con la regla «Preguntar»).</summary>
+    public Func<CopyJob, FolderConflictInfo, CancellationToken, FolderDecision>? FolderResolver { get; set; }
+
     /// <summary>Máximo de trabajos en marcha a la vez (0 = sin límite; siempre de uno en uno por disco).</summary>
     public int MaxActiveJobs { get; set; }
 
@@ -478,11 +510,12 @@ public sealed class CopyQueue
         return loaded;
     }
 
-    public CopyJob Submit(IEnumerable<string> sources, string destination, CopyOptions options, DateTime? startAtUtc = null, IEnumerable<string>? excluded = null)
+    public CopyJob Submit(IEnumerable<string> sources, string destination, CopyOptions options, DateTime? startAtUtc = null, IEnumerable<string>? excluded = null, Action<CopyJobRecord>? configure = null)
     {
         var record = CopyJobRecord.New(sources, destination, options);
         record.StartAtUtc = startAtUtc;
         record.Excluded = [.. excluded ?? []];
+        configure?.Invoke(record); // antes de guardarlo y de que pueda empezar
         if (startAtUtc is not null)
         {
             EnsureScheduleTimer();
@@ -734,6 +767,18 @@ public sealed class CopyQueue
         engine.ConflictResolver = (info, token) =>
             ConflictResolver?.Invoke(job, info, token) ?? new ConflictAnswer(ConflictDecision.Skip, ApplyToAll: false);
         engine.ErrorResolver = (info, token) => ErrorResolver?.Invoke(job, info, token) ?? ErrorDecision.Skip;
+        if (FolderResolver is not null)
+        {
+            engine.FolderResolver = (info, token) => FolderResolver(job, info, token);
+        }
+
+        // Lo decidido con las carpetas que ya existían se guarda en el trabajo: al reanudar no se vuelve a preguntar.
+        engine.FolderDecided += (conflict, renamed) =>
+        {
+            job.Record.Conflict = conflict;
+            job.Record.RenamedFolders = renamed.ToDictionary(StringComparer.OrdinalIgnoreCase);
+            _store.Save(job.Record);
+        };
         engine.Logged += job.AddLog;
 
         bool resumed = job.Record.Started;
@@ -743,13 +788,22 @@ public sealed class CopyQueue
             _store.Save(job.Record);
         }
 
-        var request = new CopyJobRequest(job.Record.Sources, job.Record.Destination) { Excluded = job.Record.Excluded, Order = job.Record.FileOrder, Resumed = resumed };
+        var request = new CopyJobRequest(job.Record.Sources, job.Record.Destination) { Excluded = job.Record.Excluded, Order = job.Record.FileOrder, Resumed = resumed, RenamedFolders = job.Record.RenamedFolders };
         _ = engine.RunAsync(request, cancellation.Token)
             .ContinueWith(
                 task =>
                 {
                     job.Detach();
                     job.FinishedAt = DateTime.Now;
+                    if (task.Exception?.InnerException is FolderConflictCancelledException)
+                    {
+                        // Cancelada al ver que la carpeta ya existía: no se copió nada, así que desaparece.
+                        _store.Delete(job.Id);
+                        Remove(job);
+                        Schedule();
+                        return;
+                    }
+
                     if (task.IsCanceled || task.Exception?.InnerException is OperationCanceledException)
                     {
                         job.SetState(CopyJobState.Interrupted);

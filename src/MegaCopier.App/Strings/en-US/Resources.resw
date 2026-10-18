@@ -51,9 +51,9 @@
   <data name="OnTopDescription.Text" xml:space="preserve"><value>The window stays above others while copying</value></data>
   <data name="CopyHeader.Text" xml:space="preserve"><value>Copying</value></data>
   <data name="VerifyTitle.Text" xml:space="preserve"><value>Verify after copying</value></data>
-  <data name="VerifyDescription.Text" xml:space="preserve"><value>Re-reads the destination without cache and repairs any block that doesn&apos;t match the source</value></data>
+  <data name="VerifyDescription.Text" xml:space="preserve"><value>After each file, it reads it back and compares it with the original; if something doesn’t match, it fixes it.</value></data>
   <data name="ConflictTitle.Text" xml:space="preserve"><value>If the file already exists</value></data>
-  <data name="ConflictDescription.Text" xml:space="preserve"><value>Identical files (same size and date) are always skipped</value></data>
+  <data name="ConflictDescription.Text" xml:space="preserve"><value>When the destination already has a file with the same name. Identical files are never copied again.</value></data>
   <data name="ConflictAsk.Content" xml:space="preserve"><value>Ask</value></data>
   <data name="ConflictReplace.Content" xml:space="preserve"><value>Replace</value></data>
   <data name="ConflictSkip.Content" xml:space="preserve"><value>Skip</value></data>
@@ -203,7 +203,7 @@
   <data name="Options_OnFinish.Text" xml:space="preserve"><value>When finished</value></data>
   <data name="Options_Owner.Content" xml:space="preserve"><value>Owner</value></data>
   <data name="Options_ResetDefault.Text" xml:space="preserve"><value>Reset</value></data>
-  <data name="Options_RunningInfo.Message" xml:space="preserve"><value>The transfer is running: these changes apply when it resumes (Verify and Unattended apply now).</value></data>
+  <data name="Options_RunningInfo.Message" xml:space="preserve"><value>The copy is running: almost everything applies right away. Mode, filters, block size, threads and checksum apply when it resumes.</value></data>
   <data name="Options_SaveChecksum.Content" xml:space="preserve"><value>Save checksum file</value></data>
   <data name="Options_SaveDefault.Text" xml:space="preserve"><value>Save as default</value></data>
   <data name="Options_Scripts.Text" xml:space="preserve"><value>Commands when finished</value></data>
@@ -247,17 +247,17 @@
   <data name="Settings_FinishKeep.Content" xml:space="preserve"><value>Keep open</value></data>
   <data name="Settings_FreeSpace.Content" xml:space="preserve"><value>Check free space first</value></data>
   <data name="Settings_General.Text" xml:space="preserve"><value>General</value></data>
-  <data name="Settings_HashTitle.Text" xml:space="preserve"><value>Hash algorithm</value></data>
-  <data name="Settings_HashDescription.Text" xml:space="preserve"><value>For verification and saved checksums. xxHash3 is the fastest; SHA-256 the most compatible.</value></data>
+  <data name="Settings_HashTitle.Text" xml:space="preserve"><value>Check type (hash)</value></data>
+  <data name="Settings_HashDescription.Text" xml:space="preserve"><value>The &quot;fingerprint&quot; that compares original and copy. xxHash3 is the fastest; SHA-256 is what websites and programs ask for most.</value></data>
   <data name="Settings_MaxJobsTitle.Text" xml:space="preserve"><value>Simultaneous transfers</value></data>
   <data name="Settings_MaxJobsDescription.Text" xml:space="preserve"><value>Maximum transfers running at once (0 = no limit). Transfers on the same disk always wait their turn.</value></data>
   <data name="Settings_ModeAuto.Content" xml:space="preserve"><value>Automatic</value></data>
   <data name="Settings_ModeCompact.Content" xml:space="preserve"><value>Compact</value></data>
   <data name="Settings_ModeExpanded.Content" xml:space="preserve"><value>Full</value></data>
   <data name="Settings_PerformanceTitle.Text" xml:space="preserve"><value>Performance</value></data>
-  <data name="Settings_PerformanceDescription.Text" xml:space="preserve"><value>Speed limit, buffer size and parallel operations</value></data>
+  <data name="Settings_PerformanceDescription.Text" xml:space="preserve"><value>How fast the copy may go: speed limit, block size and how many at once.</value></data>
   <data name="Settings_PriorityTitle.Text" xml:space="preserve"><value>Process priority</value></data>
-  <data name="Settings_PriorityDescription.Text" xml:space="preserve"><value>Low keeps the PC more responsive while copying</value></data>
+  <data name="Settings_PriorityDescription.Text" xml:space="preserve"><value>With &quot;Low&quot;, other programs stay smooth while you copy; with &quot;High&quot;, the copy takes priority.</value></data>
   <data name="Settings_Queue.Text" xml:space="preserve"><value>Queue</value></data>
   <data name="Settings_Themes.Text" xml:space="preserve"><value>Themes</value></data>
   <data name="Settings_WhatToCopy.Text" xml:space="preserve"><value>What is copied and what happens afterwards</value></data>
@@ -1163,4 +1163,207 @@
   <data name="Eject_DoneTitle" xml:space="preserve"><value>Drive ejected: you can remove it now</value></data>
   <data name="Eject_FailedTitle" xml:space="preserve"><value>Couldn&apos;t eject the drive: something is using it</value></data>
   <data name="Sound_Windows" xml:space="preserve"><value>The Windows one</value></data>
+  <data name="FolderAsk_Title" xml:space="preserve"><value>&quot;{0}&quot; already exists in the destination</value></data>
+  <data name="FolderAsk_TitleMany" xml:space="preserve"><value>{0} folders already exist in the destination</value></data>
+  <data name="FolderAsk_Message" xml:space="preserve"><value>{1} of the {2} files you are copying are already in {0} ({3}). What do you want to do with them?</value></data>
+  <data name="FolderAsk_Skip" xml:space="preserve"><value>Pass over the ones already there</value></data>
+  <data name="FolderAsk_SkipText" xml:space="preserve"><value>Every file is checked: the ones already there are not copied or touched, and only the missing ones are copied. Ideal for finishing a copy that was cut off.</value></data>
+  <data name="FolderAsk_Overwrite" xml:space="preserve"><value>Overwrite</value></data>
+  <data name="FolderAsk_OverwriteText" xml:space="preserve"><value>The files already there are replaced with the ones from the source. Identical ones are left as they are to save time.</value></data>
+  <data name="FolderAsk_Rename" xml:space="preserve"><value>Rename</value></data>
+  <data name="FolderAsk_RenameText" xml:space="preserve"><value>Everything is copied into a new folder, &quot;{0}&quot;, and the existing one is left untouched.</value></data>
+  <data name="FolderAsk_AskEach" xml:space="preserve"><value>Ask one by one</value></data>
+  <data name="FolderAsk_AskEachText" xml:space="preserve"><value>You will see each repeated file, with its size and date, and decide what to do with it.</value></data>
+  <data name="FolderAsk_Cancel" xml:space="preserve"><value>Cancel the copy</value></data>
+  <data name="FolderAsk_Recommended" xml:space="preserve"><value>Recommended</value></data>
+  <data name="Rules_FolderAsk.Content" xml:space="preserve"><value>Ask what to do</value></data>
+  <data name="Files_More.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>More list options</value></data>
+  <data name="Files_ShowHashes.Text" xml:space="preserve"><value>Show checksums (hash)</value></data>
+  <data name="Files_Source.Text" xml:space="preserve"><value>Source</value></data>
+  <data name="Files_Destination.Text" xml:space="preserve"><value>Destination</value></data>
+  <data name="Files_RailTop.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>To the top of the list (Alt+Home): the selected files are copied next.</value></data>
+  <data name="Files_RailTop.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>To the top</value></data>
+  <data name="Files_RailUp.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Move up one place (Alt+↑)</value></data>
+  <data name="Files_RailUp.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Move up</value></data>
+  <data name="Files_RailDown.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Move down one place (Alt+↓)</value></data>
+  <data name="Files_RailDown.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Move down</value></data>
+  <data name="Files_RailBottom.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>To the bottom of the list (Alt+End): the selected files are copied last.</value></data>
+  <data name="Files_RailBottom.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>To the bottom</value></data>
+  <data name="Files_RailAdd.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Add files or folders to this copy: they go to the end of the list and to the same destination.</value></data>
+  <data name="Files_RailAdd.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Add</value></data>
+  <data name="Files_RailRemove.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Remove from the copy (Del): nothing is deleted, it just won’t be copied.</value></data>
+  <data name="Files_RailRemove.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Remove</value></data>
+  <data name="Files_RailSave.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Save the list: saves what is left to copy so you can continue later, even after turning off the computer.</value></data>
+  <data name="Files_RailSave.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Save the list</value></data>
+  <data name="Files_RailLoad.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Load a list: continues copying what was left, to the same destination and with the same options.</value></data>
+  <data name="Files_RailLoad.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Load a list</value></data>
+  <data name="Files_ListSaved" xml:space="preserve"><value>List saved</value></data>
+  <data name="Files_ListSavedText" xml:space="preserve"><value>{0} files left to copy in &quot;{1}&quot;. Open it with &quot;Load a list&quot; to continue where you left off.</value></data>
+  <data name="ListMissing_Title" xml:space="preserve"><value>The original destination is no longer there</value></data>
+  <data name="ListMissing_Message" xml:space="preserve"><value>The folder that was being copied to no longer exists (maybe it was a USB stick or a drive that was disconnected). Do you want to copy the rest somewhere else?</value></data>
+  <data name="ListMissing_Choose" xml:space="preserve"><value>Choose another place…</value></data>
+  <data name="ListMissing_Cancel" xml:space="preserve"><value>Cancel</value></data>
+  <data name="Speed_Title.Text" xml:space="preserve"><value>Speed limit for this copy</value></data>
+  <data name="Speed_Description.Text" xml:space="preserve"><value>Slows the copy down so the disk or network isn’t maxed out while you work. It applies right away, without stopping the copy.</value></data>
+  <data name="Speed_Switch.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Limit the speed</value></data>
+  <data name="Speed_Slider.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve"><value>Maximum speed</value></data>
+  <data name="Speed_NoLimit" xml:space="preserve"><value>No limit</value></data>
+  <data name="Drop_AddToEnd" xml:space="preserve"><value>Add to the end of {0}</value></data>
+  <data name="Bars_Title" xml:space="preserve"><value>Progress bars</value></data>
+  <data name="Bars_Description" xml:space="preserve"><value>Choose how the bars look and move. Each bar can have its own style and changes show right away.</value></data>
+  <data name="Bars_Which" xml:space="preserve"><value>Which bar to change</value></data>
+  <data name="Bars_RoleTotal" xml:space="preserve"><value>Total bar</value></data>
+  <data name="Bars_RoleFile" xml:space="preserve"><value>File bar</value></data>
+  <data name="Bars_RoleMini" xml:space="preserve"><value>Copy list</value></data>
+  <data name="Bars_Preview" xml:space="preserve"><value>Preview</value></data>
+  <data name="Bars_StateRunning" xml:space="preserve"><value>Copying</value></data>
+  <data name="Bars_StatePaused" xml:space="preserve"><value>Paused</value></data>
+  <data name="Bars_StateError" xml:space="preserve"><value>With error</value></data>
+  <data name="Bars_StateDone" xml:space="preserve"><value>Finished</value></data>
+  <data name="Bars_Styles" xml:space="preserve"><value>Styles</value></data>
+  <data name="Bars_ColorTheme" xml:space="preserve"><value>From the theme</value></data>
+  <data name="Bars_ColorCustom" xml:space="preserve"><value>My colors</value></data>
+  <data name="Bars_ColorTraffic" xml:space="preserve"><value>Traffic light (as it progresses)</value></data>
+  <data name="Bars_ColorRainbow" xml:space="preserve"><value>Rainbow</value></data>
+  <data name="Bars_SwatchGreen" xml:space="preserve"><value>Green</value></data>
+  <data name="Bars_SwatchViolet" xml:space="preserve"><value>Blue to violet</value></data>
+  <data name="Bars_SwatchTeal" xml:space="preserve"><value>Teal</value></data>
+  <data name="Bars_SwatchOrange" xml:space="preserve"><value>Orange</value></data>
+  <data name="Bars_SwatchPink" xml:space="preserve"><value>Pink</value></data>
+  <data name="Bars_SwatchSilver" xml:space="preserve"><value>Silver</value></data>
+  <data name="Bars_ColorStart" xml:space="preserve"><value>Start</value></data>
+  <data name="Bars_ColorEnd" xml:space="preserve"><value>End</value></data>
+  <data name="Bars_TextOutside" xml:space="preserve"><value>On the right</value></data>
+  <data name="Bars_TextInside" xml:space="preserve"><value>Inside the bar</value></data>
+  <data name="Bars_TextHidden" xml:space="preserve"><value>Hidden</value></data>
+  <data name="Bars_MotionSmooth" xml:space="preserve"><value>Smooth</value></data>
+  <data name="Bars_MotionElastic" xml:space="preserve"><value>Elastic (bounces a little)</value></data>
+  <data name="Bars_MotionSteps" xml:space="preserve"><value>In steps (every 5%)</value></data>
+  <data name="Bars_ApplyAll" xml:space="preserve"><value>Use this look on all three bars</value></data>
+  <data name="Bars_Reset" xml:space="preserve"><value>Reset this bar</value></data>
+  <data name="Bars_FromTheme" xml:space="preserve"><value>From the theme</value></data>
+  <data name="Info_More" xml:space="preserve"><value>More information: {0}</value></data>
+  <data name="BarStyle_Fluent" xml:space="preserve"><value>Fluent</value></data>
+  <data name="BarStyle_Fluent_Hint" xml:space="preserve"><value>Clean, with a soft shine sweeping across.</value></data>
+  <data name="BarStyle_Aero" xml:space="preserve"><value>Aero</value></data>
+  <data name="BarStyle_Aero_Hint" xml:space="preserve"><value>Glossy, with a reflection passing again and again.</value></data>
+  <data name="BarStyle_Wave" xml:space="preserve"><value>Wave</value></data>
+  <data name="BarStyle_Wave_Hint" xml:space="preserve"><value>The edge ripples like a liquid.</value></data>
+  <data name="BarStyle_Stripes" xml:space="preserve"><value>Moving stripes</value></data>
+  <data name="BarStyle_Stripes_Hint" xml:space="preserve"><value>Diagonal stripes moving along.</value></data>
+  <data name="BarStyle_Neon" xml:space="preserve"><value>Neon</value></data>
+  <data name="BarStyle_Neon_Hint" xml:space="preserve"><value>Vivid colors with a breathing halo of light.</value></data>
+  <data name="BarStyle_Blocks" xml:space="preserve"><value>Blocks</value></data>
+  <data name="BarStyle_Blocks_Hint" xml:space="preserve"><value>Separate blocks, like the bars of old.</value></data>
+  <data name="BarStyle_Led" xml:space="preserve"><value>LED</value></data>
+  <data name="BarStyle_Led_Hint" xml:space="preserve"><value>Dots of light; the last one blinks.</value></data>
+  <data name="BarStyle_Rainbow" xml:space="preserve"><value>Rainbow</value></data>
+  <data name="BarStyle_Rainbow_Hint" xml:space="preserve"><value>Every color flowing nonstop.</value></data>
+  <data name="BarStyle_Pulse" xml:space="preserve"><value>Heartbeat</value></data>
+  <data name="BarStyle_Pulse_Hint" xml:space="preserve"><value>Gently brightens and dims.</value></data>
+  <data name="BarStyle_Comet" xml:space="preserve"><value>Comet</value></data>
+  <data name="BarStyle_Comet_Hint" xml:space="preserve"><value>Bright head with a trail and sparks.</value></data>
+  <data name="BarStyle_Glass" xml:space="preserve"><value>Glass</value></data>
+  <data name="BarStyle_Glass_Hint" xml:space="preserve"><value>Translucent, with a light edge.</value></data>
+  <data name="BarStyle_Fire" xml:space="preserve"><value>Fire</value></data>
+  <data name="BarStyle_Fire_Hint" xml:space="preserve"><value>Flames that move and flicker.</value></data>
+  <data name="BarStyle_Terminal" xml:space="preserve"><value>Terminal</value></data>
+  <data name="BarStyle_Terminal_Hint" xml:space="preserve"><value>[#####·····] like a console, with a cursor.</value></data>
+  <data name="BarStyle_Line" xml:space="preserve"><value>Thin line</value></data>
+  <data name="BarStyle_Line_Hint" xml:space="preserve"><value>A subtle line with a pulsing marker.</value></data>
+  <data name="BarStyle_Dual" xml:space="preserve"><value>Double layer</value></data>
+  <data name="BarStyle_Dual_Hint" xml:space="preserve"><value>A light layer leads and the solid one follows.</value></data>
+  <data name="BarStyle_Pixels" xml:space="preserve"><value>Pixels</value></data>
+  <data name="BarStyle_Pixels_Hint" xml:space="preserve"><value>Little squares like a video game, with sparkles.</value></data>
+  <data name="BarStyle_Metal" xml:space="preserve"><value>Metal</value></data>
+  <data name="BarStyle_Metal_Hint" xml:space="preserve"><value>Brushed metal with a glint.</value></data>
+  <data name="BarStyle_Outline" xml:space="preserve"><value>Outline</value></data>
+  <data name="BarStyle_Outline_Hint" xml:space="preserve"><value>Just the border and a striped fill.</value></data>
+  <data name="BarStyle_Flow" xml:space="preserve"><value>Flowing gradient</value></data>
+  <data name="BarStyle_Flow_Hint" xml:space="preserve"><value>Its two colors blend and flow.</value></data>
+  <data name="BarStyle_Bubbles" xml:space="preserve"><value>Bubbles</value></data>
+  <data name="BarStyle_Bubbles_Hint" xml:space="preserve"><value>Bubbles drifting inside.</value></data>
+  <data name="BarStyle_Traffic" xml:space="preserve"><value>Traffic light</value></data>
+  <data name="BarStyle_Traffic_Hint" xml:space="preserve"><value>Red at the start, amber halfway and green at the end.</value></data>
+  <data name="BarStyle_Segments" xml:space="preserve"><value>Segments</value></data>
+  <data name="BarStyle_Segments_Hint" xml:space="preserve"><value>Twenty sections that fill one by one.</value></data>
+  <data name="Info_Bars_Title" xml:space="preserve"><value>Progress bars</value></data>
+  <data name="Info_Bars_Text" xml:space="preserve"><value>MegaCopier has three bars: the total one (how much of the whole copy is left), the one for the file being copied and the small ones in the copy list. Each can have its own style.\nChoose which one to change at the top, tap a style and adjust the details. The preview shows how it looks while copying, paused, with an error and when finished.\n• A striking bar (Neon, Fire, Rainbow) to see progress at a glance from across the room.\n• A subtle one (Thin line, Fluent) if you work while copying and want no distractions.\n• Traffic light to know without reading numbers whether there is a lot or a little left.</value></data>
+  <data name="Info_BarColors_Title" xml:space="preserve"><value>Colors</value></data>
+  <data name="Bars_ColorsDescription" xml:space="preserve"><value>The theme’s, your own, traffic light or rainbow.</value></data>
+  <data name="Info_BarColors_Text" xml:space="preserve"><value>Where the bar’s colors come from.\n• From the theme: they change by themselves when you pick another theme.\n• My colors: a gradient with the two colors you choose (tap a swatch or the Start / End button).\n• Traffic light: red at the start, amber halfway and green at the end; you know how much is left without reading the number.\n• Rainbow: every color.</value></data>
+  <data name="Info_BarThickness_Title" xml:space="preserve"><value>Thickness</value></data>
+  <data name="Bars_ThicknessDescription" xml:space="preserve"><value>How tall the bar is.</value></data>
+  <data name="Info_BarThickness_Text" xml:space="preserve"><value>The height of the bar in pixels. &quot;From the theme&quot; uses the chosen theme’s.\n• Thicker: easier to see from afar and looks better in styles like Wave, Fire or Pixels.\n• Thinner: more subtle, ideal with Thin line or on small screens.\nIf you put the percentage inside, the bar grows just enough to read it.</value></data>
+  <data name="Info_BarRadius_Title" xml:space="preserve"><value>Rounding</value></data>
+  <data name="Bars_RadiusDescription" xml:space="preserve"><value>Square or rounded corners.</value></data>
+  <data name="Info_BarRadius_Text" xml:space="preserve"><value>How round the ends of the bar are. 0 leaves square corners, like classic bars; the maximum turns it into a pill. &quot;From the theme&quot; uses the theme’s rounding.\n• Square: look great with Blocks, Pixels and Terminal.\n• Round: softer and more modern, perfect with Fluent, Neon or Glass.</value></data>
+  <data name="Info_BarSpeed_Title" xml:space="preserve"><value>Effect speed</value></data>
+  <data name="Bars_SpeedDescription" xml:space="preserve"><value>How fast shines, waves and stripes move.</value></data>
+  <data name="Info_BarSpeed_Text" xml:space="preserve"><value>Changes the pace of the bar’s animations, not the copy speed. 1× is normal; 0.25× is very slow and 3× very fast.\n• Slower: more relaxed, ideal if the bar is always in view.\n• Faster: feels busier and catches the eye.</value></data>
+  <data name="Info_BarGlow_Title" xml:space="preserve"><value>Shine and glow</value></data>
+  <data name="Bars_GlowDescription" xml:space="preserve"><value>How intense reflections and light are.</value></data>
+  <data name="Info_BarGlow_Text" xml:space="preserve"><value>Raises or lowers how intense the shines are: the Aero reflection, the Neon glow, the Comet head, the bubbles or the Metal glint.\n• At 0%: the bar is flat and sober.\n• At 100%: it shines at full; ideal with dark themes.</value></data>
+  <data name="Info_BarText_Title" xml:space="preserve"><value>Percentage</value></data>
+  <data name="Bars_TextDescription" xml:space="preserve"><value>On the right, inside the bar or hidden.</value></data>
+  <data name="Info_BarText_Text" xml:space="preserve"><value>Where the percentage number is shown.\n• On the right: as always, outside the bar.\n• Inside the bar: the number sits on top of the fill and the bar grows so it can be read; leaves more room for other details.\n• Hidden: just the bar, for a cleaner look (the percentage is still in the window title).</value></data>
+  <data name="Info_BarMotion_Title" xml:space="preserve"><value>How it moves</value></data>
+  <data name="Bars_MotionDescription" xml:space="preserve"><value>Smooth, elastic or in steps.</value></data>
+  <data name="Info_BarMotion_Text" xml:space="preserve"><value>How the fill moves each time the copy advances.\n• Smooth: glides with no jerks (recommended).\n• Elastic: overshoots a touch and comes back, like a spring; more playful.\n• In steps: moves 5% at a time, like the bars of old; looks great with Blocks or Pixels.</value></data>
+  <data name="Info_BarEffects_Title" xml:space="preserve"><value>State effects</value></data>
+  <data name="Bars_EffectsDescription" xml:space="preserve"><value>Stripes when paused, a shake on error and a flash when done.</value></data>
+  <data name="Info_BarEffects_Text" xml:space="preserve"><value>The bar tells you what is happening without reading anything.\n• Paused: still amber stripes appear.\n• On an error: it turns red and gives a small shake.\n• When finished: a green celebration flash (on the total bar and in the list).\nTurn it off if you prefer a bar that only changes color.</value></data>
+  <data name="Info_BarBorder_Title" xml:space="preserve"><value>Border</value></data>
+  <data name="Bars_BorderDescription" xml:space="preserve"><value>A thin line around the bar.</value></data>
+  <data name="Info_BarBorder_Text" xml:space="preserve"><value>Draws a thin line around the bar so it stands out from the background.\n• Useful with light or textured themes, where the empty track is barely visible.\n• Looks great with Glass and Outline.</value></data>
+  <data name="Info_BarReduce_Title" xml:space="preserve"><value>Reduce animations</value></data>
+  <data name="Bars_ReduceDescription" xml:space="preserve"><value>Still bars, with no repeating effects (for all of them).</value></data>
+  <data name="Info_BarReduce_Text" xml:space="preserve"><value>Removes repeating motion (shines, waves, stripes, blinking). The bar still advances normally.\n• Useful if animations distract you or make you dizzy.\n• Saves a little battery on laptops.\nIt also turns on by itself if you turn off &quot;Animation effects&quot; in Windows (Settings &gt; Accessibility &gt; Visual effects).</value></data>
+  <data name="Theme_material-oscuro" xml:space="preserve"><value>Material dark</value></data>
+  <data name="Theme_cobre-oscuro" xml:space="preserve"><value>Dark copper</value></data>
+  <data name="Theme_silicio-oscuro" xml:space="preserve"><value>Dark silicon</value></data>
+  <data name="Theme_brisa-oscura" xml:space="preserve"><value>Dark breeze</value></data>
+  <data name="Theme_pizarra" xml:space="preserve"><value>Slate</value></data>
+  <data name="Theme_arcade" xml:space="preserve"><value>Arcade</value></data>
+  <data name="Theme_artico" xml:space="preserve"><value>Arctic</value></data>
+  <data name="Theme_vampiro" xml:space="preserve"><value>Vampire</value></data>
+  <data name="Theme_capuchino" xml:space="preserve"><value>Cappuccino</value></data>
+  <data name="Theme_noche-tokio" xml:space="preserve"><value>Tokyo night</value></data>
+  <data name="Theme_retro-calido" xml:space="preserve"><value>Warm retro</value></data>
+  <data name="Theme_solar-oscuro" xml:space="preserve"><value>Dark solar</value></data>
+  <data name="Theme_atomo" xml:space="preserve"><value>Atom</value></data>
+  <data name="Theme_menta-oscura" xml:space="preserve"><value>Dark mint</value></data>
+  <data name="Theme_material-claro" xml:space="preserve"><value>Material light</value></data>
+  <data name="Theme_cobre-claro" xml:space="preserve"><value>Light copper</value></data>
+  <data name="Theme_silicio-claro" xml:space="preserve"><value>Light silicon</value></data>
+  <data name="Theme_brisa-clara" xml:space="preserve"><value>Light breeze</value></data>
+  <data name="Theme_tiza" xml:space="preserve"><value>Chalk</value></data>
+  <data name="Theme_solar-claro" xml:space="preserve"><value>Light solar</value></data>
+  <data name="Theme_capuchino-claro" xml:space="preserve"><value>Light cappuccino</value></data>
+  <data name="Info_Paste_Text" xml:space="preserve"><value>When you copy (Ctrl+C) or cut (Ctrl+X) files and paste them (Ctrl+V) in File Explorer or on the desktop, MegaCopier does the copy instead of Windows: with a queue, pause, verification and the option to resume if it is interrupted.\n• Big copies to an external drive: you can pause them and continue later.\n• Several copies in a row: they queue up instead of fighting over the disk.\nIf you paste into the same folder (to duplicate a file), File Explorer still does it.</value></data>
+  <data name="Info_Drag_Text" xml:space="preserve"><value>When you drag files with the left button from one window to another, MegaCopier copies (or moves) them with the same rules as Windows: on the same drive it moves, Ctrl forces a copy and Shift forces a move.\n• Sort photos by dragging them between folders on different drives.\n• Move big projects without freezing File Explorer.\nDropping onto a file, a ZIP or the left pane is still handled by File Explorer.</value></data>
+  <data name="Info_WindowMode_Text" xml:space="preserve"><value>How the window looks while copying.\n• Compact: just the bars and buttons; takes little room.\n• Full: with the file list, destination, options, chart and log.\n• Automatic: compact with a single copy and full when there are several.\nThe &quot;More&quot; and &quot;Less&quot; buttons switch between the two at any time.</value></data>
+  <data name="Info_Verify_Text" xml:space="preserve"><value>When each file finishes, MegaCopier reads it back straight from the destination disk and compares its fingerprint (hash) with the original’s. If anything doesn’t match, it re-copies only the damaged part.\n• Backups, photos and important documents.\n• Old or cheap USB sticks and drives, which can fail without warning.\n• Copies over the network or Wi-Fi.\nThe copy takes a bit longer (everything has to be read again), in exchange for knowing it is identical.</value></data>
+  <data name="Info_Conflict_Text" xml:space="preserve"><value>What to do when the destination already has a file with the same name.\n• Ask: shows you both, with their size, date and a thumbnail, and you choose.\n• Replace, Skip, Replace if newer or if the size differs, Keep both (&quot;name (2)&quot;) or Rename the existing one.\nIdentical files (same size and date) are never copied again: repeating a copy only copies what is new or changed. If a whole folder already exists, MegaCopier asks before starting.</value></data>
+  <data name="Info_Hash_Text" xml:space="preserve"><value>The hash is like a file’s fingerprint: if a single byte changes, the fingerprint changes. It is used when verifying and in saved checksums.\n• xxHash3: the fastest; ideal for verifying copies.\n• SHA-256: the one websites and programs use most to check downloads.\n• MD5, SHA-1, BLAKE3…: in case another program asks for a specific one.\nFor everyday use, keep xxHash3.</value></data>
+  <data name="Info_Performance_Text" xml:space="preserve"><value>How fast the copy can go.\n• Speed limit: so the copy doesn’t eat up the whole network or disk while you work or watch a film. Each copy also has its own limit in its Options tab, which changes right away without stopping it.\n• Buffer size: the blocks read and written at a time. Larger is better for huge files.\n• Operations at once: how many blocks are requested from the disk at the same time. Fast SSDs gain with more.\nIf you’re not sure, keep the defaults: MegaCopier already tunes each disk by itself.</value></data>
+  <data name="Info_Merge_Text" xml:space="preserve"><value>If you start a copy while another is running, it can join that one instead of waiting its turn: its files go to the end of the list.\n• Never: each copy goes on its own.\n• If they go to the same folder, or if they use the same disks.\n• Always.\nWith &quot;Ask first&quot; you decide each time. Handy when you send folders one by one to the same USB stick.</value></data>
+  <data name="Info_MoveAttributes_Text" xml:space="preserve"><value>When moving to another disk, files are copied and then deleted from the source. Here you choose what they take along besides the content: attributes (read-only, hidden…), permissions, owner and auditing.\n• Moving work folders between servers while keeping who can open them.\nOn the same disk, moving is just a change of place and everything is kept.</value></data>
+  <data name="Info_DeleteIncomplete_Text" xml:space="preserve"><value>While copying, each file is written with the .mcpart extension and only gets its name when it finishes correctly. If you stop a copy, those pieces let you continue later right where it left off.\n• On: pressing Stop deletes the .mcpart files and leaves the destination clean (but it can no longer be resumed).\n• Off: they are kept so you can resume.\nNothing is ever deleted when closing MegaCopier or after a power cut.</value></data>
+  <data name="Info_Eject_Text" xml:space="preserve"><value>When finished, MegaCopier safely ejects the destination USB stick, card or USB drive, like &quot;Safely remove hardware&quot;.\n• Filling several USB sticks in a row: when you pull one out, it is ready.\nIt only does so if no other copy is using it. &quot;Force&quot; ejects it even if some program has it open.</value></data>
+  <data name="Info_OnError_Text" xml:space="preserve"><value>What to do when a file can’t be copied even after retrying.\n• Ask: the copy stops, tells you why and you choose to retry, skip it, skip the following ones or stop.\n• Skip and continue: ideal for big overnight copies; at the end you see the list of failures.\n• Stop the copy: when nothing may be missing.\n• Retry at the end: leaves it for last, in case it was in use and gets freed.</value></data>
+  <data name="Info_ErrorReport_Text" xml:space="preserve"><value>If a copy ends with errors, it saves a text file with each file that failed, the reason and the time.\n• To calmly review a copy you left running overnight.\n• To pass it on to whoever looks after the computers.</value></data>
+  <data name="Info_MaxJobs_Text" xml:space="preserve"><value>How many copies can run at the same time. Those using the same disk always wait their turn, because copying two things at once on a hard drive slows everything down.\n• 0 (no limit): every disk works at full speed in parallel.\n• 1: everything in a row, one after another.</value></data>
+  <data name="Info_Fast_Text" xml:space="preserve"><value>Drives that handle several copies at once without slowing down, such as NVMe SSDs or RAID. The ones you list here don’t wait their turn.\n• If you copy from a fast SSD to several destinations at the same time.</value></data>
+  <data name="Info_Slow_Text" xml:space="preserve"><value>If you touch the keyboard or mouse, copies drop to the speed you choose so the computer doesn’t feel sluggish. When you stop using it, they go full speed again.\n• Big copies while you work, play or are on video calls.</value></data>
+  <data name="Info_ScheduleLimit_Text" xml:space="preserve"><value>Between the hours you choose, copies don’t go over that speed; outside those hours they go full speed.\n• At the office, so the network isn’t saturated during working hours.\n• At home, so video calls don’t drop in the afternoon.</value></data>
+  <data name="Info_Priority_Text" xml:space="preserve"><value>How much preference Windows gives MegaCopier over other programs.\n• Low: other programs stay smooth; the copy may take a bit longer.\n• Normal: as usual.\n• High: the copy comes first; useful when all you care about is finishing as soon as possible.</value></data>
+  <data name="Info_Tune_Text" xml:space="preserve"><value>The first time you copy to a disk, MegaCopier tries several block sizes and numbers of simultaneous operations and keeps the fastest for that disk. It remembers it for later copies.\n• SSDs, hard drives, USB sticks and network drives perform very differently: this way each one runs at its best speed.\nIf you change performance by hand, your choice is respected.</value></data>
+  <data name="Info_Peer_Text" xml:space="preserve"><value>Send and receive files between computers running MegaCopier on the same network, without sharing folders or setting anything up. The sender types this computer’s code; everything is encrypted and each file is checked on arrival.\n• Moving photos or videos from the laptop to the desktop PC.\n• Sending a project to a colleague at the office.</value></data>
+  <data name="Info_Remote_Text" xml:space="preserve"><value>Opens a page in your phone’s browser (on the same Wi-Fi network) to see how copies are going and pause, resume or cancel them.\n• Leave a long copy running and keep an eye on it from the couch.\nNothing needs installing on the phone; the address and code appear here.</value></data>
+  <data name="Info_LiveSync_Text" xml:space="preserve"><value>MegaCopier watches a folder and, every time you change something, copies it to another (another disk, a USB stick, a network folder) as soon as you finish saving it.\n• Always having an up-to-date copy of your documents on another disk.\n• Carrying a project’s changes over to a shared folder.\nIn mirror mode, what you delete is also deleted from the copy.</value></data>
+  <data name="Info_Tasks_Text" xml:space="preserve"><value>A saved copy that Windows runs by itself every day, week or month at the time you choose, even if MegaCopier is closed. Only new or changed files are copied.\n• Back up Documents every night.\n• Move photos to the NAS every Sunday.\nCreate it from a copy’s Options tab with &quot;Save as task&quot;.</value></data>
+  <data name="Info_Guard_Text" xml:space="preserve"><value>Disks can silently damage files over the years. MegaCopier stores each file’s fingerprint inside it and, when the computer is idle, checks them again. If one changed without anyone touching it, it warns you in time to restore it from a backup.\n• Family photos and videos.\n• Backup disks that are rarely opened.\nWhat you edit updates by itself. Requires NTFS disks.</value></data>
+  <data name="Info_Webhook_Text" xml:space="preserve"><value>When each copy finishes, MegaCopier sends the summary to a web address, so the notification reaches your phone or a chat.\n• Discord, Slack or Teams: notices in a channel.\n• ntfy.sh: a phone notification with almost nothing to install.\n• Home Assistant: automations (turn on a light when done…).</value></data>
+  <data name="Info_Connections_Text" xml:space="preserve"><value>Save the servers you copy to here: FTP, SFTP, WebDAV (Nextcloud, NAS…) or S3 (Backblaze, Wasabi, R2…). They then appear when choosing the source or destination.\n• Upload backups to the cloud.\n• Download files from a company server.\nPasswords are stored in Windows Credential Manager, never as plain text.</value></data>
 </root>

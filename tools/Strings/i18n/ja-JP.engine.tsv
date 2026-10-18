@@ -264,3 +264,7 @@ E_F_ImageText	「{0}」という文字を含む画像
 E_CloudSignedIn	サインインしました。このタブを閉じて MegaCopier に戻ってください。
 E_CloudSignInFailed	サインインできませんでした。MegaCopier に戻って理由を確認してください。
 E_CloudSignInError	サインインできませんでした: {0}
+E_FolderCancelled	コピーをキャンセルしました: フォルダーはコピー先にすでにありました。
+E_FolderSkipExisting	フォルダーはすでにありました: 既存の {0} 個のファイルを飛ばし、残りをコピーします。
+E_FolderOverwrite	フォルダーはすでにありました: 既存の {0} 個のファイルを上書きします。
+E_FolderRenamed	フォルダー「{0}」はすでにありました: 「{1}」としてコピーします。

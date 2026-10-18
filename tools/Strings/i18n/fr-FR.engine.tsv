@@ -264,3 +264,7 @@ E_F_ImageText	images contenant le texte « {0} »
 E_CloudSignedIn	Connecté. Vous pouvez fermer cet onglet et revenir à MegaCopier.
 E_CloudSignInFailed	La connexion a échoué. Revenez à MegaCopier pour voir pourquoi.
 E_CloudSignInError	Impossible de se connecter : {0}
+E_FolderCancelled	Copie annulée : le dossier existait déjà dans la destination.
+E_FolderSkipExisting	Le dossier existait déjà : les {0} fichiers déjà présents sont passés et le reste est copié.
+E_FolderOverwrite	Le dossier existait déjà : les {0} fichiers déjà présents sont remplacés.
+E_FolderRenamed	Le dossier « {0} » existait déjà : il est copié sous le nom « {1} ».

@@ -5,6 +5,73 @@ y las versiones, [SemVer](https://semver.org/lang/es/).
 
 ## [Sin publicar]
 
+### Añadido
+
+#### Barras de progreso personalizables
+
+- **22 estilos de barra**: Fluent, Aero (con el reflejo que pasa una y otra vez), Ola (el borde ondula como un líquido),
+  Rayas en movimiento, Neón (con un halo que respira), Bloques, LED, Arcoíris, Latido, Cometa (con estela y chispas),
+  Cristal, Fuego, Terminal (`[#####·····]` con cursor), Línea fina con marcador, Doble capa, Píxeles, Metal, Contorno,
+  Degradado fluido, Burbujas, Semáforo y Segmentos.
+- **Cada barra con su propio aspecto**: la del total, la del archivo y las mini-barras de la lista de copias.
+- **Personalización completa** en *Ajustes > Interfaz > Barras de progreso*, con una vista previa en movimiento que
+  enseña cómo queda copiando, en pausa, con error y al terminar:
+  - colores del tema, propios (con muestras listas para usar y selector de color), semáforo o arcoíris;
+  - grosor, redondeo, velocidad de los efectos y brillo;
+  - porcentaje a la derecha, dentro de la barra u oculto;
+  - avance suave, elástico o a saltos;
+  - efectos según el estado: rayas ámbar en pausa, sacudida con error y destello verde al terminar;
+  - borde fino y «Reducir animaciones» (también se activa solo si Windows tiene desactivados los efectos de animación).
+- Los temas propios guardan también el aspecto de las barras y lo llevan consigo al exportarlos.
+
+#### Lista de archivos de cada copia
+
+- **Botones a la vista** junto a la lista: al principio, subir, bajar, al final, añadir archivos o carpetas, quitar,
+  guardar la lista y cargar una lista. Con atajos: Alt+Inicio, Alt+↑, Alt+↓, Alt+Fin y Supr.
+- **Selección múltiple** con Mayús y Ctrl: los botones mueven o quitan todos los elegidos a la vez, en su orden.
+- **Columnas Origen, Tamaño y Destino** con la ruta completa de cada lado; las sumas (hash), en el menú «⋯».
+- **Guardar la lista guarda lo que falta por copiar**, con su destino y sus opciones. Al cargarla, la copia empieza sola y
+  sigue justo donde se quedó. Si el destino ya no está (una memoria USB que se quitó), MegaCopier lo avisa y deja elegir
+  otro lugar para copiar el resto.
+- **Soltar archivos en cualquier parte de una copia** (el panel o las pestañas) los añade al final de esa copia y al mismo
+  destino; sobre la lista, una línea marca la posición exacta.
+
+#### Carpetas que ya existen en el destino
+
+- Al copiar una carpeta que ya está en el destino con algunos de sus archivos, MegaCopier pregunta antes de empezar:
+  **Pasar los que ya están** (comprueba cada archivo y copia solo los que faltan), **Sobrescribir**, **Renombrar** (copia
+  en «Fotos (2)»), **Preguntar uno por uno** o **Cancelar la copia**. Es lo predeterminado y se puede cambiar en
+  *Ajustes > Copia > Reglas*.
+
+#### 21 temas nuevos (73 en total)
+
+- **Oscuros**: Material oscuro, Cobre oscuro, Silicio oscuro, Brisa oscura, Pizarra, Arcade, Ártico, Vampiro, Capuchino,
+  Noche de Tokio, Retro cálido, Solar oscuro, Átomo y Menta oscura.
+- **Claros**: Material claro, Cobre claro, Silicio claro, Brisa clara, Tiza, Solar claro y Capuchino claro.
+
+#### Ayuda en cada opción
+
+- **Botón ⓘ en 26 opciones**: explica para qué sirve cada una y en qué casos conviene usarla, con ejemplos.
+
+### Cambiado
+
+- **El límite de velocidad se cambia en vivo**: cada copia tiene en su pestaña Opciones un interruptor y un deslizador
+  (de 256 KB/s a 1 GB/s) que se aplican al momento, sin pararla. Cambiar el límite en *Ajustes* afecta también a las copias
+  en marcha que lo usaban.
+- Casi todas las opciones de una copia en marcha se aplican al momento (qué hacer si el archivo existe, fechas, atributos,
+  permisos, errores y reintentos); solo el modo, los filtros, el bloque, los hilos y la suma esperan a reanudarla.
+- **«Volver» pasa a la izquierda**, junto al título, como en la Configuración de Windows 11, en Ajustes, Historial, Línea
+  de tiempo y Comparar. También vuelve con Esc y con Alt+←.
+- Descripciones de opciones reescritas en un lenguaje más claro (verificar, qué hacer si el archivo existe, tipo de
+  comprobación, rendimiento y prioridad).
+- Los temas que llevaban nombres de otros programas se llaman ahora Azul clásico, Gris clásico, Cobalto, Esmeralda y
+  Mandarina.
+
+### Arreglado
+
+- Las ayudas con varias líneas (como los detalles de un archivo en la lista) mostraban «\n» en lugar de saltos de línea.
+- La barra del archivo ya no se desliza hacia atrás al empezar el siguiente archivo: vuelve al principio de golpe.
+
 ## [1.1.0] - 2026-10-17
 
 Reconstruimos los ajustes con el diseño de la Configuración de Windows 11, añadimos 41 temas nuevos, conjuntos de iconos

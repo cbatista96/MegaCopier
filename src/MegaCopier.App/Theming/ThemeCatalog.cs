@@ -53,7 +53,61 @@ internal static class ThemeCatalog
             text: "#FFFFF0FB", secondary: "#CCD6B8FF", accentText: "#FF2A0020", texture: "rejilla", textureOpacity: 0.85,
             surface: "#2EFFFFFF", strong: "#40FFFFFF", border: "#66FF3DC8", radius: 12, barHeight: 10);
 
+        // --- Oscuros modernos (1.2): tonos suaves, esquinas muy redondeadas y acentos vivos ----------------------------
+        yield return Dark("material-oscuro", "Material oscuro", "#FF1C1B1F", "#FF141218", "#FFD0BCFF", "#FFD0BCFF", "#FFEFB8C8", "#FFCCC2DC", "#FFD0BCFF",
+            text: "#FFE6E1E5", secondary: "#B3CAC4D0", surface: "#FF2B2930", strong: "#FF36343B", border: "#FF49454F", track: "#FF49454F",
+            accentText: "#FF381E72", radius: 16, barHeight: 10);
+        yield return Dark("cobre-oscuro", "Cobre oscuro", "#FF2C2C2C", "#FF232323", "#FFE95420", "#FFE95420", "#FFF7A35C", "#FF924D8B", "#FFE95420",
+            text: "#FFF7F7F7", secondary: "#B3D0D0D0", surface: "#FF363636", strong: "#FF404040", border: "#FF4A4A4A", radius: 8);
+        yield return Dark("silicio-oscuro", "Silicio oscuro", "#FF1E1E1E", "#FF2A2A2C", "#FF0A84FF", "#FF0A84FF", "#FF64D2FF", "#FF30D158", "#FF66D4CF",
+            text: "#FFF5F5F7", secondary: "#B3AEAEB2", surface: "#FF2C2C2E", strong: "#FF3A3A3C", border: "#FF48484A", track: "#FF3A3A3C", radius: 10);
+        yield return Dark("brisa-oscura", "Brisa oscura", "#FF232629", "#FF2A2E32", "#FF3DAEE9", "#FF1D99F3", "#FF3DAEE9", "#FF27AE60", "#FF3DAEE9",
+            text: "#FFFCFCFC", secondary: "#B3BDC3C7", surface: "#FF31363B", strong: "#FF3B4045", border: "#FF4D5257", accentText: "#FF0A1F2B", radius: 4);
+        yield return Dark("pizarra", "Pizarra", "#FF242424", "#FF1E1E1E", "#FF3584E4", "#FF3584E4", "#FF62A0EA", "#FF26A269", "#FF33D17A",
+            text: "#FFFFFFFF", secondary: "#B3DEDDDA", surface: "#FF303030", strong: "#FF3A3A3A", border: "#FF454545", radius: 12, barHeight: 8);
+        yield return Dark("arcade", "Arcade", "#FF171A21", "#FF1B2838", "#FF66C0F4", "#FF75B022", "#FFA4D007", "#FF1A9FFF", "#FF66C0F4",
+            text: "#FFDCDEDF", secondary: "#B38F98A0", surface: "#FF1F2733", strong: "#FF2A475E", border: "#FF2A3F5A", track: "#FF0E141B",
+            accentText: "#FF0B1B26", radius: 3, barHeight: 10);
+        yield return Dark("artico", "Ártico", "#FF2E3440", "#FF3B4252", "#FF88C0D0", "#FF81A1C1", "#FF88C0D0", "#FFA3BE8C", "#FFEBCB8B",
+            text: "#FFECEFF4", secondary: "#B3D8DEE9", surface: "#FF3B4252", strong: "#FF434C5E", border: "#FF4C566A", track: "#FF434C5E",
+            accentText: "#FF1F242D", radius: 8);
+        yield return Dark("vampiro", "Vampiro", "#FF282A36", "#FF21222C", "#FFBD93F9", "#FFFF79C6", "#FFBD93F9", "#FF50FA7B", "#FF8BE9FD",
+            text: "#FFF8F8F2", secondary: "#B3C9C9D6", surface: "#FF343746", strong: "#FF44475A", border: "#FF4D5066", track: "#FF44475A",
+            accentText: "#FF1E1030", radius: 8, barHeight: 10);
+        yield return Dark("capuchino", "Capuchino", "#FF1E1E2E", "#FF181825", "#FFCBA6F7", "#FFF5C2E7", "#FFCBA6F7", "#FF89B4FA", "#FF94E2D5",
+            text: "#FFCDD6F4", secondary: "#B3BAC2DE", surface: "#FF313244", strong: "#FF45475A", border: "#FF45475A", track: "#FF313244",
+            accentText: "#FF1E1E2E", radius: 12, barHeight: 10);
+        yield return Dark("noche-tokio", "Noche de Tokio", "#FF1A1B26", "#FF16161E", "#FF7AA2F7", "#FFBB9AF7", "#FF7AA2F7", "#FF7DCFFF", "#FF9ECE6A",
+            text: "#FFC0CAF5", secondary: "#B3A9B1D6", surface: "#FF24283B", strong: "#FF2F3549", border: "#FF3B4261", track: "#FF292E42",
+            accentText: "#FF15161E", radius: 10, barHeight: 10);
+        yield return Dark("retro-calido", "Retro cálido", "#FF282828", "#FF1D2021", "#FFFE8019", "#FFFABD2F", "#FFFE8019", "#FFB8BB26", "#FF8EC07C",
+            text: "#FFEBDBB2", secondary: "#B3D5C4A1", surface: "#FF3C3836", strong: "#FF504945", border: "#FF504945", track: "#FF3C3836",
+            accentText: "#FF282828", radius: 4, barHeight: 10);
+        yield return Dark("solar-oscuro", "Solar oscuro", "#FF002B36", "#FF073642", "#FF268BD2", "#FF2AA198", "#FF268BD2", "#FFB58900", "#FFCB4B16",
+            text: "#FFEEE8D5", secondary: "#B393A1A1", surface: "#FF073642", strong: "#FF0B4452", border: "#FF0E4B5A", track: "#FF0B4452", radius: 6);
+        yield return Dark("atomo", "Átomo", "#FF282C34", "#FF21252B", "#FF61AFEF", "#FF61AFEF", "#FFC678DD", "#FF98C379", "#FFE5C07B",
+            text: "#FFABB2BF", secondary: "#B37F848E", surface: "#FF2C313A", strong: "#FF353B45", border: "#FF3E4451", track: "#FF353B45",
+            accentText: "#FF14171C", radius: 6);
+        yield return Dark("menta-oscura", "Menta oscura", "#FF2F2F2F", "#FF262626", "#FF35A854", "#FF35A854", "#FF8FD694", "#FF92B372", "#FF35A854",
+            text: "#FFF0F0F0", secondary: "#B3BFBFBF", surface: "#FF383838", strong: "#FF424242", border: "#FF4A4A4A", accentText: "#FF06200E", radius: 8);
+
         // --- Claros --------------------------------------------------------------------------------------------------
+        yield return Light("material-claro", "Material claro", "#FFFEF7FF", "#FFF3EDF7", "#FF6750A4", "#FF6750A4", "#FF7D5260", "#FF625B71", "#FF6750A4",
+            text: "#FF1D1B20", secondary: "#FF49454F", surface: "#FFFFFFFF", strong: "#FFECE6F0", border: "#FFCAC4D0", track: "#FFE7E0EC", radius: 16, barHeight: 10);
+        yield return Light("cobre-claro", "Cobre claro", "#FFFAFAFA", "#FFF0F0F0", "#FFE95420", "#FFE95420", "#FFF7A35C", "#FF77216F", "#FFE95420",
+            text: "#FF3D3D3D", secondary: "#FF6E6E6E", surface: "#FFFFFFFF", strong: "#FFF2F2F2", border: "#FFDADADA", radius: 8);
+        yield return Light("silicio-claro", "Silicio claro", "#FFF5F5F7", "#FFE8E8ED", "#FF007AFF", "#FF007AFF", "#FF5AC8FA", "#FF34C759", "#FF30D158",
+            text: "#FF1D1D1F", secondary: "#FF6E6E73", surface: "#FFFFFFFF", strong: "#FFF2F2F7", border: "#FFD2D2D7", track: "#FFE5E5EA", radius: 10);
+        yield return Light("brisa-clara", "Brisa clara", "#FFEFF0F1", "#FFFCFCFC", "#FF3DAEE9", "#FF1D99F3", "#FF3DAEE9", "#FF27AE60", "#FF3DAEE9",
+            text: "#FF232629", secondary: "#FF5D6165", surface: "#FFFCFCFC", strong: "#FFE8EBEE", border: "#FFBDC3C7", radius: 4);
+        yield return Light("tiza", "Tiza", "#FFFAFAFA", "#FFEBEBEB", "#FF3584E4", "#FF3584E4", "#FF62A0EA", "#FF26A269", "#FF33D17A",
+            text: "#FF2E3436", secondary: "#FF5E5C64", surface: "#FFFFFFFF", strong: "#FFF0F0F0", border: "#FFDEDDDA", radius: 12);
+        yield return Light("solar-claro", "Solar claro", "#FFFDF6E3", "#FFEEE8D5", "#FF268BD2", "#FF2AA198", "#FF268BD2", "#FFB58900", "#FFCB4B16",
+            text: "#FF586E75", secondary: "#FF657B83", surface: "#FFFFFBEF", strong: "#FFF4EEDB", border: "#FFDDD6C1", track: "#FFE6DFCB", radius: 6);
+        yield return Light("capuchino-claro", "Capuchino claro", "#FFEFF1F5", "#FFE6E9EF", "#FF8839EF", "#FFEA76CB", "#FF8839EF", "#FF1E66F5", "#FF179299",
+            text: "#FF4C4F69", secondary: "#FF6C6F85", surface: "#FFFFFFFF", strong: "#FFE6E9EF", border: "#FFCCD0DA", track: "#FFDCE0E8", radius: 12, barHeight: 10);
+
+        // --- Claros (1.1) ----------------------------------------------------------------------------------------------
         yield return Light("aire", "Aire", "#FFE7F1FE", "#FFD6E6FA", "#FFC9A800", "#FFF2D94E", "#FFDECC02", "#FF8CC8F0", "#FF3D8BEB",
             text: "#FF212121", radius: 12, barHeight: 10);
         yield return Light("metro-claro", "Metro claro", "#FFF1F6FB", "", "#FF1BA1E2", "#FF1BA1E2", "#FF6ED1FE", "#FFFFBE3F", "#FFFF8000",

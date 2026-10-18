@@ -88,6 +88,7 @@
             <ComboBox x:Name="FolderConflictBox" x:Uid="Rules_FolderConflict" HorizontalAlignment="Stretch" SelectionChanged="Selection_Changed">
                 <ComboBoxItem x:Uid="Rules_FolderMerge" />
                 <ComboBoxItem x:Uid="Rules_FolderSkip" />
+                <ComboBoxItem x:Uid="Rules_FolderAsk" />
             </ComboBox>
             <TextBox x:Name="VersionsBox" x:Uid="Rules_Versions" LostFocus="Changed" />
             <TextBox x:Name="AlternatesBox" x:Uid="Rules_Alternates" AcceptsReturn="True" TextWrapping="Wrap" MinHeight="56" LostFocus="Changed" />
