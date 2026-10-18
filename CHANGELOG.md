@@ -5,6 +5,8 @@ y las versiones, [SemVer](https://semver.org/lang/es/).
 
 ## [Sin publicar]
 
+## [1.2.0] - 2026-10-18
+
 Renovamos las barras de progreso con 22 estilos animados y personalización completa, reconstruimos la lista de archivos de
 cada copia (botones a la vista, selección múltiple, origen y destino, guardar y seguir donde quedó), añadimos la pregunta
 de «la carpeta ya existe» con la opción de pasar lo que ya está, el límite de velocidad en vivo, 21 temas nuevos y una
@@ -282,6 +284,7 @@ Primera versión pública.
 - Aviso SMART, avisos por correo y webhook, control desde el móvil y servidor MCP para asistentes de IA.
 - Consola `mcopy`, modo portátil, 14 idiomas, 11 temas y accesibilidad con lectores de pantalla.
 
-[Sin publicar]: https://github.com/cbatista96/MegaCopier/compare/v1.1.0...HEAD
+[Sin publicar]: https://github.com/cbatista96/MegaCopier/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/cbatista96/MegaCopier/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/cbatista96/MegaCopier/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/cbatista96/MegaCopier/releases/tag/v1.0.0
