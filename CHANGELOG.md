@@ -5,39 +5,148 @@ y las versiones, [SemVer](https://semver.org/lang/es/).
 
 ## [Sin publicar]
 
+Ajustes rehechos como la Configuración de Windows 11, 41 temas nuevos inspirados en SuperCopier, conjuntos de iconos que
+se combinan con cualquier tema, sonidos propios y todas las opciones de SuperCopier que faltaban.
+
+<img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/ajustes-madera.png" width="820" alt="Ajustes con el tema Madera y los iconos Mosaico">
+
 ### Añadido
-- 41 temas nuevos (52 en total), muchos inspirados en los clásicos de SuperCopier y rehechos al estilo de Windows 11:
-  Combustión, Caja negra, Código verde, Aurora, Galaxia, Neón, Madera, Cuaderno, Cristal, Aero, Luna, Plata y más.
-- Los temas pueden tener fondo en degradado y textura (brasas, madera, papel, fibra de carbono, aurora, galaxia, metal,
-  ondas, rejilla de neón y lluvia digital).
-- Los temas colorean también todos los controles: barras de desplazamiento, botones, desplegables, cuadros de texto,
-  interruptores, casillas, listas, menús, diálogos y avisos.
-- Siete conjuntos de iconos, independientes del tema: Fluent, Color, Mosaico, Suave, Degradado, Neón y Windows 10.
-- Ajustes rehechos como la Configuración de Windows 11: secciones a la izquierda (General, Interfaz, Sonidos, Copia,
-  Comportamiento, Errores, Cola y rendimiento, Red y dispositivos, Automatización y Avanzado), buscador de ajustes,
-  iconos en cada opción y animaciones al cambiar de sección y al pulsar.
-- Opciones al estilo de SuperCopier:
-  - **Si un archivo sigue fallando: preguntar qué hacer** (reintentar, omitir, omitir todos o detener).
-  - Añadir las copias nuevas a una que ya está en marcha (nunca, misma carpeta, mismos discos o siempre), preguntando o no.
-  - Al detener una copia, borrar lo que quedó a medias (salvo si paró por un error).
-  - Al terminar, expulsar la unidad de destino si es extraíble (y forzarlo).
-  - Informe de errores automático en la carpeta de destino o en una carpeta fija, con el nombre que quieras.
-  - Atributos y permisos que se conservan al mover, aparte de los de copiar.
-  - Mostrar u ocultar el icono de la bandeja, empezar las copias con la ventana minimizada, recordar la posición y el
-    tamaño de la ventana, y ventana translúcida.
-  - Carpeta de datos a la vista y botón para restablecer los ajustes.
-- Sonidos propios de MegaCopier (campanillas originales) para copia terminada, todas terminadas, error y atención; ya no
-  se usan los avisos de Windows salvo que los elijas.
+
+#### Ajustes como la Configuración de Windows 11
+
+- **Secciones a la izquierda**, cada una con su icono: General, Interfaz, Sonidos, Copia, Comportamiento, Errores, Cola y
+  rendimiento, Red y dispositivos, Automatización y Avanzado. Antes era una sola página muy larga.
+- **Buscador de ajustes**: escribe «sonido», «USB» o «errores» y aparecen solo las opciones que lo mencionan, sean de la
+  sección que sean.
+- **Cada opción tiene su icono** y, al pulsarla, el icono da un pequeño salto. Al cambiar de sección, el contenido entra
+  deslizándose.
+- En una ventana estrecha, la lista de secciones se queda solo con los iconos.
+
+<img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/ajustes.png" width="820" alt="Ajustes en el tema Fluent oscuro">
+
+#### 41 temas nuevos (52 en total)
+
+- Inspirados en las paletas de los temas clásicos de SuperCopier (Afterburner, Air, Metro, Android, Black Box, Matrix,
+  Ubuntu, Vista, Windows XP Luna y Silver, Windows Media Player…), rehechos al estilo de Windows 11 con nombres propios.
+- **Oscuros**: Combustión, Caja negra, Metro oscuro, Robot verde, Cielo de otoño, Ámbar, Granate, Código verde, Vapor, Metro
+  gris, Televisión, Reproductor, Humo, Berenjena, SuperCopier 3 azul, verde y naranja, Aurora, Galaxia, Neón y Burbuja azul.
+- **Claros**: Aire, Metro claro, Pez azul, Línea plana, Plus, Cristal, Cielo, Menta, Cuaderno, Madera, Brillo, Nieve, Burbuja
+  lima, Tóxico, Naranja tierra, Aero, Moderno 8, Mensajero, Luna y Plata.
+- **Fondos con degradado y texturas**: brasas (Combustión), fibra de carbono (Caja negra), lluvia digital (Código verde),
+  aurora boreal (Aurora), galaxia (Galaxia), rejilla de neón (Neón), ondas (Burbuja azul), madera (Madera), papel de
+  cuaderno (Cuaderno) y metal cepillado (Cristal). Están hechas con código (`tools/TextureGen`), sin imágenes de terceros.
+- **El tema colorea toda la ventana**, como en SuperCopier: botones, desplegables, cuadros de texto, interruptores, casillas,
+  listas, el menú lateral, los menús, los diálogos, los avisos y hasta las **barras de desplazamiento**.
+
+<table>
+<tr>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/combustion.png" alt="Combustión"><br>Combustión</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/codigo-verde.png" alt="Código verde"><br>Código verde</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/aurora.png" alt="Aurora"><br>Aurora</td>
+</tr>
+<tr>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/galaxia.png" alt="Galaxia"><br>Galaxia</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/neon.png" alt="Neón"><br>Neón</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/caja-negra.png" alt="Caja negra"><br>Caja negra</td>
+</tr>
+<tr>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/madera.png" alt="Madera"><br>Madera</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/cuaderno.png" alt="Cuaderno"><br>Cuaderno</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/cristal.png" alt="Cristal"><br>Cristal</td>
+</tr>
+<tr>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/burbuja-azul.png" alt="Burbuja azul"><br>Burbuja azul</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/berenjena.png" alt="Berenjena"><br>Berenjena</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/humo.png" alt="Humo"><br>Humo</td>
+</tr>
+<tr>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/sc3-azul.png" alt="SuperCopier 3 azul"><br>SuperCopier 3 azul</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/aero.png" alt="Aero"><br>Aero</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/luna.png" alt="Luna"><br>Luna</td>
+</tr>
+</table>
+
+#### Conjuntos de iconos, aparte del tema
+
+- **Siete estilos**, todos con los iconos modernos de Windows 11, que se combinan con cualquier tema (*Ajustes > Interfaz >
+  Iconos*):
+  - **Fluent**: como Windows.
+  - **Color**: cada icono con su color (reproducir verde, pausa ámbar, detener rojo, carpetas amarillas…).
+  - **Mosaico**: icono blanco sobre un cuadrado de color, como la Configuración de Windows 11.
+  - **Suave**: icono de color sobre un fondo suave del mismo color.
+  - **Degradado**: con los colores de las barras del tema.
+  - **Neón**: color vivo con un halo de luz.
+  - **Windows 10**: los iconos clásicos.
+- Cambian a la vez todos los iconos: la barra de herramientas, los botones de cada copia, los ajustes, las listas y los
+  diálogos.
+
+<table>
+<tr>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/iconos/color.png" alt="Iconos Color"><br>Color</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/iconos/mosaico.png" alt="Iconos Mosaico"><br>Mosaico</td>
+</tr>
+<tr>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/iconos/degradado.png" alt="Iconos Degradado"><br>Degradado</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/iconos/neon.png" alt="Iconos Neón"><br>Neón</td>
+</tr>
+</table>
+
+#### Opciones de SuperCopier que faltaban
+
+- **Si un archivo sigue fallando, preguntar qué hacer** (*Ajustes > Errores*): la copia se para y explica el motivo («otro
+  programa tiene el archivo abierto»…), con **Reintentar**, **Omitir**, **Omitir también los siguientes errores de esta
+  copia** y **Detener la copia** (se puede reanudar). Sigue existiendo decidirlo de antemano: omitir y seguir, detener o
+  reintentar al final.
+- **Reintentos y espera entre intentos** en la misma sección.
+- **Informe de errores automático**: al terminar una copia con errores se guarda un archivo de texto con cada archivo que
+  falló y por qué, en la carpeta de destino o en una carpeta fija, con el nombre que quieras (por defecto `errorlog.txt`).
+
+<img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/ajustes-errores.png" width="820" alt="Ajustes de errores">
+
+- **Añadir las copias nuevas a una que ya está en marcha** (*Ajustes > Comportamiento*): nunca, si van a la misma carpeta,
+  si usan los mismos discos o siempre. Con **Preguntar antes de añadirlas** pide confirmación; si dices que no, la copia
+  nueva sigue por su cuenta.
+- **Al detener una copia, borrar lo que quedó a medias** (los `.mcpart`), con la opción de no hacerlo si la copia paró por un
+  error. Solo actúa cuando pulsas Detener; nunca al cerrar MegaCopier ni tras un apagón.
+- **Al terminar, expulsar la unidad de destino** si es una memoria USB, una tarjeta o un disco USB y ninguna otra copia la
+  está usando, con la opción de **forzarlo** aunque algún programa la tenga abierta.
+- **Al mover, conservar también** atributos, permisos, propietario y auditoría, con sus propias casillas, aparte de las de
+  copiar (como en SuperCopier).
+
+<img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/ajustes-comportamiento.png" width="820" alt="Ajustes de comportamiento">
+
+- En *Ajustes > Interfaz*:
+  - **Mostrar el icono en la bandeja** (si lo ocultas, MegaCopier sigue en marcha y se abre ejecutándolo otra vez).
+  - **Iniciar las copias con la ventana minimizada**: aparece en la barra de tareas sin taparte nada.
+  - **Recordar la ventana**: abrirla donde estaba y con el mismo tamaño.
+  - **Ventana translúcida**: fondo acrílico más transparente, con cualquier tema.
+- En *Ajustes > Avanzado*: la **carpeta de datos** a la vista con un botón para abrirla, y **Restablecer los ajustes** de
+  fábrica (las copias, el historial y los temas propios se conservan).
+
+#### Sonidos propios
+
+- MegaCopier tiene ahora **sus propios sonidos**, campanillas originales hechas con código (`tools/SoundGen`), en vez de los
+  avisos de Windows: **copia terminada**, **todas terminadas**, **error** y **hace falta tu decisión**.
+- Vienen **activados por defecto**. En *Ajustes > Sonidos* puedes cambiar cada uno por el de Windows, por uno de
+  `C:\Windows\Media` o por un archivo tuyo, y probarlo con ▶.
 
 ### Cambiado
+
+- Una copia en cola muestra la barra quieta y vacía mientras espera su turno, en vez de la animación de «cargando».
+- Las opciones de la ventana, los temas y los iconos están juntos en *Ajustes > Interfaz*.
 - Documentación nueva y completa: guía de uso paso a paso, preguntas frecuentes, guía de versiones y capturas de todas
   las vistas, de los temas y de los conjuntos de iconos.
 - `tools\publicar-version.ps1` publica una versión nueva con un solo comando.
-- Una copia en cola muestra la barra quieta y vacía mientras espera su turno, en vez de la animación de «cargando».
 
 ### Arreglado
-- La barra de progreso ya no se sale de su sitio (sobre el icono de la lista o fuera del borde) al preparar una copia.
+
+- La barra de progreso ya no se sale de su sitio (sobre el icono de la lista o fuera del borde) cuando una copia está en
+  cola, en pausa o preparándose.
 - La ventana pequeña sin copias ya no corta el icono, los botones ni los enlaces de abajo: crece lo necesario.
+
+<img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/vacia.png" width="480" alt="Ventana sin copias">
+
+- Un texto sin traducir ya no puede cerrar MegaCopier al arrancar.
 
 ## [1.0.0] - 2026-10-17
 
