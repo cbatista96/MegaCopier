@@ -7,14 +7,14 @@ y las versiones, [SemVer](https://semver.org/lang/es/).
 
 ## [1.1.0] - 2026-10-17
 
-Ajustes rehechos como la Configuración de Windows 11, 41 temas nuevos inspirados en SuperCopier, conjuntos de iconos que
-se combinan con cualquier tema, sonidos propios y todas las opciones de SuperCopier que faltaban.
+Reconstruimos los ajustes con el diseño de la Configuración de Windows 11, añadimos 41 temas nuevos, conjuntos de iconos
+que se combinan con cualquier tema, sonidos propios y nuevas opciones de comportamiento y de errores.
 
 <img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/ajustes-madera.png" width="820" alt="Ajustes con el tema Madera y los iconos Mosaico">
 
 ### Añadido
 
-#### Ajustes como la Configuración de Windows 11
+#### Ajustes renovados con el diseño de Windows 11
 
 - **Secciones a la izquierda**, cada una con su icono: General, Interfaz, Sonidos, Copia, Comportamiento, Errores, Cola y
   rendimiento, Red y dispositivos, Automatización y Avanzado. Antes era una sola página muy larga.
@@ -28,16 +28,15 @@ se combinan con cualquier tema, sonidos propios y todas las opciones de SuperCop
 
 #### 41 temas nuevos (52 en total)
 
-- Inspirados en las paletas de los temas clásicos de SuperCopier (Afterburner, Air, Metro, Android, Black Box, Matrix,
-  Ubuntu, Vista, Windows XP Luna y Silver, Windows Media Player…), rehechos al estilo de Windows 11 con nombres propios.
+- Diseñados para Windows 11, con paletas propias, degradados y texturas: desde oscuros intensos hasta claros suaves.
 - **Oscuros**: Combustión, Caja negra, Metro oscuro, Robot verde, Cielo de otoño, Ámbar, Granate, Código verde, Vapor, Metro
-  gris, Televisión, Reproductor, Humo, Berenjena, SuperCopier 3 azul, verde y naranja, Aurora, Galaxia, Neón y Burbuja azul.
+  gris, Televisión, Reproductor, Humo, Berenjena, Cobalto, Esmeralda, Mandarina, Aurora, Galaxia, Neón y Burbuja azul.
 - **Claros**: Aire, Metro claro, Pez azul, Línea plana, Plus, Cristal, Cielo, Menta, Cuaderno, Madera, Brillo, Nieve, Burbuja
   lima, Tóxico, Naranja tierra, Aero, Moderno 8, Mensajero, Luna y Plata.
 - **Fondos con degradado y texturas**: brasas (Combustión), fibra de carbono (Caja negra), lluvia digital (Código verde),
   aurora boreal (Aurora), galaxia (Galaxia), rejilla de neón (Neón), ondas (Burbuja azul), madera (Madera), papel de
   cuaderno (Cuaderno) y metal cepillado (Cristal). Están hechas con código (`tools/TextureGen`), sin imágenes de terceros.
-- **El tema colorea toda la ventana**, como en SuperCopier: botones, desplegables, cuadros de texto, interruptores, casillas,
+- **El tema colorea toda la ventana**: botones, desplegables, cuadros de texto, interruptores, casillas,
   listas, el menú lateral, los menús, los diálogos, los avisos y hasta las **barras de desplazamiento**.
 
 <table>
@@ -62,7 +61,7 @@ se combinan con cualquier tema, sonidos propios y todas las opciones de SuperCop
 <td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/humo.png" alt="Humo"><br>Humo</td>
 </tr>
 <tr>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/sc3-azul.png" alt="SuperCopier 3 azul"><br>SuperCopier 3 azul</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/sc3-azul.png" alt="Cobalto"><br>Cobalto</td>
 <td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/aero.png" alt="Aero"><br>Aero</td>
 <td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/luna.png" alt="Luna"><br>Luna</td>
 </tr>
@@ -93,7 +92,7 @@ se combinan con cualquier tema, sonidos propios y todas las opciones de SuperCop
 </tr>
 </table>
 
-#### Opciones de SuperCopier que faltaban
+#### Nuevas opciones de comportamiento y de errores
 
 - **Si un archivo sigue fallando, preguntar qué hacer** (*Ajustes > Errores*): la copia se para y explica el motivo («otro
   programa tiene el archivo abierto»…), con **Reintentar**, **Omitir**, **Omitir también los siguientes errores de esta
@@ -113,7 +112,7 @@ se combinan con cualquier tema, sonidos propios y todas las opciones de SuperCop
 - **Al terminar, expulsar la unidad de destino** si es una memoria USB, una tarjeta o un disco USB y ninguna otra copia la
   está usando, con la opción de **forzarlo** aunque algún programa la tenga abierta.
 - **Al mover, conservar también** atributos, permisos, propietario y auditoría, con sus propias casillas, aparte de las de
-  copiar (como en SuperCopier).
+  copiar.
 
 <img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/ajustes-comportamiento.png" width="820" alt="Ajustes de comportamiento">
 

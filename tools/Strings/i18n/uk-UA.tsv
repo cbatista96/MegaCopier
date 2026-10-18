@@ -312,8 +312,8 @@ Theme_graphite	Графіт
 Theme_ocean	Океан
 Theme_forest	Ліс
 Theme_sunset	Захід сонця
-Theme_supercopier	Класичний SuperCopier
-Theme_ultracopier	Класичний Ultracopier
+Theme_supercopier	Класичний синій
+Theme_ultracopier	Класичний сірий
 Theme_contrast	Висока контрастність
 Tool_About.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Про програму
 Tool_ClearDone.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Прибрати завершені копіювання
@@ -1050,9 +1050,9 @@ Theme_television	Телевізор
 Theme_reproductor	Програвач
 Theme_humo	Дим
 Theme_berenjena	Баклажан
-Theme_sc3-azul	SuperCopier 3 синій
-Theme_sc3-verde	SuperCopier 3 зелений
-Theme_sc3-naranja	SuperCopier 3 помаранчевий
+Theme_sc3-azul	Кобальт
+Theme_sc3-verde	Смарагд
+Theme_sc3-naranja	Мандарин
 Theme_aurora	Сяйво
 Theme_galaxia	Галактика
 Theme_neon	Неон

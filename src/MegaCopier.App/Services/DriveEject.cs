@@ -4,7 +4,7 @@ using Microsoft.Win32.SafeHandles;
 namespace MegaCopier.App.Services;
 
 /// <summary>
-/// Expulsa una unidad extraíble al terminar una copia (como «Desmontar» de SuperCopier): bloquea el volumen, lo
+/// Expulsa una unidad extraíble al terminar una copia: bloquea el volumen, lo
 /// desmonta y pide expulsar el medio. Con «forzar», lo desmonta aunque algún programa lo tenga abierto.
 /// </summary>
 internal static partial class DriveEject

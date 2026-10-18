@@ -9,7 +9,7 @@ using Microsoft.UI.Xaml.Controls;
 namespace MegaCopier.App.Views;
 
 /// <summary>
-/// Pestaña Opciones de un trabajo (como en TeraCopy). Se guardan en el propio trabajo: si está en marcha se aplican al
+/// Pestaña Opciones de un trabajo. Se guardan en el propio trabajo: si está en marcha se aplican al
 /// reanudarlo; "Verificar" y "Desatendido" del panel cambian en caliente.
 /// </summary>
 public sealed partial class OptionsTab : UserControl

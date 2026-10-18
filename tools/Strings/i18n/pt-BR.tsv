@@ -312,8 +312,8 @@ Theme_graphite	Grafite
 Theme_ocean	Oceano
 Theme_forest	Floresta
 Theme_sunset	Pôr do sol
-Theme_supercopier	SuperCopier clássico
-Theme_ultracopier	Ultracopier clássico
+Theme_supercopier	Azul clássico
+Theme_ultracopier	Cinza clássico
 Theme_contrast	Alto contraste
 Tool_About.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Sobre
 Tool_ClearDone.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Remover as cópias concluídas
@@ -1050,9 +1050,9 @@ Theme_television	Televisão
 Theme_reproductor	Reprodutor
 Theme_humo	Fumaça
 Theme_berenjena	Berinjela
-Theme_sc3-azul	SuperCopier 3 azul
-Theme_sc3-verde	SuperCopier 3 verde
-Theme_sc3-naranja	SuperCopier 3 laranja
+Theme_sc3-azul	Cobalto
+Theme_sc3-verde	Esmeralda
+Theme_sc3-naranja	Tangerina
 Theme_aurora	Aurora
 Theme_galaxia	Galáxia
 Theme_neon	Neon

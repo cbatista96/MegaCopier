@@ -312,8 +312,8 @@ Theme_graphite	Grafiet
 Theme_ocean	Oceaan
 Theme_forest	Bos
 Theme_sunset	Zonsondergang
-Theme_supercopier	SuperCopier klassiek
-Theme_ultracopier	Ultracopier klassiek
+Theme_supercopier	Klassiek blauw
+Theme_ultracopier	Klassiek grijs
 Theme_contrast	Hoog contrast
 Tool_About.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Over
 Tool_ClearDone.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Voltooide kopieën verwijderen
@@ -1050,9 +1050,9 @@ Theme_television	Televisie
 Theme_reproductor	Mediaspeler
 Theme_humo	Rook
 Theme_berenjena	Aubergine
-Theme_sc3-azul	SuperCopier 3 blauw
-Theme_sc3-verde	SuperCopier 3 groen
-Theme_sc3-naranja	SuperCopier 3 oranje
+Theme_sc3-azul	Kobalt
+Theme_sc3-verde	Smaragd
+Theme_sc3-naranja	Mandarijn
 Theme_aurora	Noorderlicht
 Theme_galaxia	Sterrenstelsel
 Theme_neon	Neon

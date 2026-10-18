@@ -312,8 +312,8 @@ Theme_graphite	흑연
 Theme_ocean	바다
 Theme_forest	숲
 Theme_sunset	노을
-Theme_supercopier	클래식 SuperCopier
-Theme_ultracopier	클래식 Ultracopier
+Theme_supercopier	클래식 블루
+Theme_ultracopier	클래식 그레이
 Theme_contrast	고대비
 Tool_About.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	정보
 Tool_ClearDone.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	완료된 복사 제거
@@ -1050,9 +1050,9 @@ Theme_television	텔레비전
 Theme_reproductor	플레이어
 Theme_humo	연기
 Theme_berenjena	가지색
-Theme_sc3-azul	SuperCopier 3 파랑
-Theme_sc3-verde	SuperCopier 3 초록
-Theme_sc3-naranja	SuperCopier 3 주황
+Theme_sc3-azul	코발트
+Theme_sc3-verde	에메랄드
+Theme_sc3-naranja	탠저린
 Theme_aurora	오로라
 Theme_galaxia	은하
 Theme_neon	네온

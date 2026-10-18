@@ -3,7 +3,7 @@ using System.IO.Enumeration;
 namespace MegaCopier.Engine;
 
 /// <summary>
-/// Qué archivos entran en la copia (como los filtros de Ultracopier y FastCopy): máscaras de inclusión y exclusión
+/// Qué archivos entran en la copia: máscaras de inclusión y exclusión
 /// ("*.jpg", "node_modules", "temp\*"), tamaño, fecha de modificación y atributos ocultos o de sistema.
 /// Las máscaras se comparan con el nombre y con la ruta relativa al origen. Una carpeta excluida se salta entera.
 /// </summary>

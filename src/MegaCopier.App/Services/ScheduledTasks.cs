@@ -13,7 +13,7 @@ public enum TaskFrequency
 }
 
 /// <summary>
-/// Tareas guardadas (como FastCopy y TeraCopy Pro): una copia con todas sus opciones guardada como lista (.mclist) en
+/// Tareas guardadas: una copia con todas sus opciones guardada como lista (.mclist) en
 /// la carpeta "tasks", que el Programador de tareas de Windows lanza con "MegaCopier.exe run &lt;lista&gt;". Cada tarea
 /// es del usuario actual: no hace falta ser administrador.
 /// </summary>

@@ -126,7 +126,7 @@ public sealed partial class FilesTab : UserControl
 
     private void SelectAll_Click(object sender, RoutedEventArgs e) => List.SelectAll();
 
-    /// <summary>Selecciona todos los archivos con la extensión de los elegidos (como TeraCopy Pro).</summary>
+    /// <summary>Selecciona todos los archivos con la extensión de los elegidos.</summary>
     private void SelectSameExtension_Click(object sender, RoutedEventArgs e) =>
         SelectWhere(Selected().Select(r => Path.GetExtension(r.Name)).ToHashSet(StringComparer.OrdinalIgnoreCase), r => Path.GetExtension(r.Name));
 

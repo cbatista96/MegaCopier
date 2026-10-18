@@ -318,8 +318,8 @@
   <data name="Theme_ocean" xml:space="preserve"><value>海洋</value></data>
   <data name="Theme_forest" xml:space="preserve"><value>森林</value></data>
   <data name="Theme_sunset" xml:space="preserve"><value>日落</value></data>
-  <data name="Theme_supercopier" xml:space="preserve"><value>经典 SuperCopier</value></data>
-  <data name="Theme_ultracopier" xml:space="preserve"><value>经典 Ultracopier</value></data>
+  <data name="Theme_supercopier" xml:space="preserve"><value>经典蓝</value></data>
+  <data name="Theme_ultracopier" xml:space="preserve"><value>经典灰</value></data>
   <data name="Theme_contrast" xml:space="preserve"><value>高对比度</value></data>
   <data name="Tool_About.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>关于</value></data>
   <data name="Tool_ClearDone.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>移除已完成的复制</value></data>
@@ -1056,9 +1056,9 @@
   <data name="Theme_reproductor" xml:space="preserve"><value>播放器</value></data>
   <data name="Theme_humo" xml:space="preserve"><value>烟雾</value></data>
   <data name="Theme_berenjena" xml:space="preserve"><value>茄紫</value></data>
-  <data name="Theme_sc3-azul" xml:space="preserve"><value>SuperCopier 3 蓝</value></data>
-  <data name="Theme_sc3-verde" xml:space="preserve"><value>SuperCopier 3 绿</value></data>
-  <data name="Theme_sc3-naranja" xml:space="preserve"><value>SuperCopier 3 橙</value></data>
+  <data name="Theme_sc3-azul" xml:space="preserve"><value>钴蓝</value></data>
+  <data name="Theme_sc3-verde" xml:space="preserve"><value>翡翠</value></data>
+  <data name="Theme_sc3-naranja" xml:space="preserve"><value>橘橙</value></data>
   <data name="Theme_aurora" xml:space="preserve"><value>极光</value></data>
   <data name="Theme_galaxia" xml:space="preserve"><value>星系</value></data>
   <data name="Theme_neon" xml:space="preserve"><value>霓虹</value></data>

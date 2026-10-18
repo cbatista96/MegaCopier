@@ -30,7 +30,7 @@ public enum WindowMode
     Expanded,
 }
 
-/// <summary>Cuándo una copia nueva se suma a otra que ya está en marcha (como SuperCopier).</summary>
+/// <summary>Cuándo una copia nueva se suma a otra que ya está en marcha.</summary>
 public enum MergeMode
 {
     Never,
@@ -408,7 +408,7 @@ public sealed class AppSettings
     /// </summary>
     public bool Enabled { get; set; } = true;
 
-    // --- Comportamiento (como SuperCopier) ---
+    // --- Comportamiento ---
 
     /// <summary>Al mover entre discos: copiar también los atributos.</summary>
     public bool MovePreserveAttributes { get; set; } = true;
@@ -534,7 +534,7 @@ public sealed class AppSettings
             SkipDuplicates = SkipDuplicates,
         };
 
-        // Al mover, sus propias preferencias de atributos y seguridad (como SuperCopier: copiar y mover por separado).
+        // Al mover, sus propias preferencias de atributos y seguridad.
         if (options.Move)
         {
             options.PreserveAttributes = MovePreserveAttributes;

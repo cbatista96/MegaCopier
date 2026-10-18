@@ -346,7 +346,7 @@ public partial class App : Application
                 options.Move = false;
             }
 
-            // Sumar a una copia en marcha (como SuperCopier), sin preguntar o preguntando antes.
+            // Sumar a una copia en marcha, sin preguntar o preguntando antes.
             var mergeInto = operation == JobOperation.Copy && request.StartAtUtc is null ? FindMergeTarget(request.Sources, destination, options) : null;
             if (mergeInto is not null && !Settings.MergeConfirm)
             {
@@ -387,7 +387,7 @@ public partial class App : Application
     }
 
     /// <summary>
-    /// Opciones de fin de copia (como SuperCopier): informe de errores, borrar lo que quedó a medias al detener y
+    /// Opciones de fin de copia: informe de errores, borrar lo que quedó a medias al detener y
     /// expulsar la unidad de destino.
     /// </summary>
     private void ApplyEndOfJobOptions(CopyJob job)
@@ -1011,7 +1011,7 @@ public partial class App : Application
         }
     }
 
-    /// <summary>Apagar, suspender... tras una cuenta atrás de 30 s que se puede cancelar (como TeraCopy).</summary>
+    /// <summary>Apagar, suspender... tras una cuenta atrás de 30 s que se puede cancelar.</summary>
     private async Task RunFinishActionAsync(FinishAction action)
     {
         if (!await Window.ConfirmFinishAsync(action))

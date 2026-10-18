@@ -312,8 +312,8 @@ Theme_graphite	グラファイト
 Theme_ocean	オーシャン
 Theme_forest	フォレスト
 Theme_sunset	サンセット
-Theme_supercopier	クラシック SuperCopier
-Theme_ultracopier	クラシック Ultracopier
+Theme_supercopier	クラシックブルー
+Theme_ultracopier	クラシックグレー
 Theme_contrast	ハイコントラスト
 Tool_About.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	バージョン情報
 Tool_ClearDone.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	完了したコピーを削除
@@ -1050,9 +1050,9 @@ Theme_television	テレビ
 Theme_reproductor	プレーヤー
 Theme_humo	スモーク
 Theme_berenjena	ナス紺
-Theme_sc3-azul	SuperCopier 3 ブルー
-Theme_sc3-verde	SuperCopier 3 グリーン
-Theme_sc3-naranja	SuperCopier 3 オレンジ
+Theme_sc3-azul	コバルト
+Theme_sc3-verde	エメラルド
+Theme_sc3-naranja	タンジェリン
 Theme_aurora	オーロラ
 Theme_galaxia	銀河
 Theme_neon	ネオン

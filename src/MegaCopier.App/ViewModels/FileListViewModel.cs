@@ -140,13 +140,13 @@ public sealed partial class FileRowViewModel(TransferItem item, string root) : I
 
     public bool HashesVisible => ShowHashes;
 
-    /// <summary>"AE9D:90F6": principio y final del hash, como TeraCopy.</summary>
+    /// <summary>"AE9D:90F6": principio y final del hash.</summary>
     private static string Short(string? hash) => hash is { Length: >= 8 } h ? $"{h[..4]}:{h[^4..]}".ToUpperInvariant() : (hash ?? "").ToUpperInvariant();
 }
 
 /// <summary>
-/// Lista de archivos de un trabajo para la interfaz: filtros, búsqueda, "ocultar terminados" (como Ultracopier,
-/// los archivos desaparecen de la lista al copiarse) y ordenar pendientes. Los cambios del motor llegan desde hilos de
+/// Lista de archivos de un trabajo para la interfaz: filtros, búsqueda, "ocultar terminados" (los
+/// archivos desaparecen de la lista al copiarse) y ordenar pendientes. Los cambios del motor llegan desde hilos de
 /// copia; se agrupan y se aplican al ritmo de la pantalla.
 /// </summary>
 public sealed partial class FileListViewModel : INotifyPropertyChanged, IDisposable

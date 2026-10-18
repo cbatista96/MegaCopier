@@ -123,10 +123,10 @@ public enum ErrorPolicy
     /// <summary>Tras agotar los reintentos, detiene todo el trabajo.</summary>
     Stop,
 
-    /// <summary>Tras agotar los reintentos, se vuelve a intentar una vez al final de la cola (como Ultracopier).</summary>
+    /// <summary>Tras agotar los reintentos, se vuelve a intentar una vez al final de la cola.</summary>
     MoveToEnd,
 
-    /// <summary>Tras agotar los reintentos, pregunta qué hacer: reintentar, omitir, omitir todos o detener (como SuperCopier).</summary>
+    /// <summary>Tras agotar los reintentos, pregunta qué hacer: reintentar, omitir, omitir todos o detener.</summary>
     Ask,
 }
 
