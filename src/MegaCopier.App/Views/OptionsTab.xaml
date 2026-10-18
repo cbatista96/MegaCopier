@@ -3,6 +3,7 @@
     x:Class="MegaCopier.App.Views.OptionsTab"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:c="using:MegaCopier.App.Controls"
     xmlns:local="using:MegaCopier.App.Views">
 
     <ScrollViewer>
@@ -21,8 +22,8 @@
                 <StackPanel x:Name="WhatColumn" Spacing="2">
                     <TextBlock x:Uid="Options_Transfer" Style="{StaticResource McStrong}" Margin="0,0,0,6" />
                     <StackPanel Orientation="Horizontal" Spacing="6">
-                        <FontIcon VerticalAlignment="Center" Glyph="&#xE8B7;" FontSize="14" Foreground="{StaticResource McWarningBrush}" />
-                        <FontIcon VerticalAlignment="Center" Glyph="&#xE8A5;" FontSize="14" Foreground="{StaticResource McTextSecondaryBrush}" />
+                        <c:McIcon VerticalAlignment="Center" Glyph="&#xE8B7;" FontSize="14" Foreground="{StaticResource McWarningBrush}" />
+                        <c:McIcon VerticalAlignment="Center" Glyph="&#xE8A5;" FontSize="14" Foreground="{StaticResource McTextSecondaryBrush}" />
                         <TextBlock x:Uid="Options_FilesFolders" Style="{StaticResource McStrong}" />
                     </StackPanel>
                     <CheckBox x:Uid="Options_Data" IsChecked="True" IsEnabled="False" />
@@ -30,7 +31,7 @@
                     <CheckBox x:Name="AttributesBox" x:Uid="Options_Attributes" Click="Changed" />
                     <CheckBox x:Name="StreamsBox" x:Uid="Options_Streams" Click="Changed" />
                     <StackPanel Orientation="Horizontal" Spacing="6" Margin="0,10,0,0">
-                        <FontIcon VerticalAlignment="Center" Glyph="&#xE72E;" FontSize="14" Foreground="{StaticResource McWarningBrush}" />
+                        <c:McIcon VerticalAlignment="Center" Glyph="&#xE72E;" FontSize="14" Foreground="{StaticResource McWarningBrush}" />
                         <TextBlock x:Uid="Options_Security" Style="{StaticResource McStrong}" />
                     </StackPanel>
                     <CheckBox x:Name="AclBox" x:Uid="Options_Acl" Click="Changed" />
@@ -98,7 +99,7 @@
             <Border Style="{StaticResource McCard}">
                 <StackPanel Spacing="8">
                     <StackPanel Orientation="Horizontal" Spacing="8">
-                        <FontIcon VerticalAlignment="Center" Glyph="&#xE823;" FontSize="14" Foreground="{StaticResource McAccentBrush}" />
+                        <c:McIcon VerticalAlignment="Center" Glyph="&#xE823;" FontSize="14" Foreground="{StaticResource McAccentBrush}" />
                         <TextBlock x:Uid="Schedule_Title" Style="{StaticResource McStrong}" />
                     </StackPanel>
                     <StackPanel x:Name="ScheduleRow" Orientation="Horizontal" Spacing="8">

@@ -17,7 +17,7 @@
                 <StackPanel Spacing="8">
                     <TextBlock x:Uid="Target_Source" Style="{StaticResource McSecondary}" />
                     <StackPanel Orientation="Horizontal" Spacing="12">
-                        <FontIcon VerticalAlignment="Center" x:Name="SourceGlyph" FontSize="32" Foreground="{StaticResource McAccentBrush}" />
+                        <c:McIcon VerticalAlignment="Center" x:Name="SourceGlyph" FontSize="32" Foreground="{StaticResource McAccentBrush}" />
                         <StackPanel>
                             <TextBlock x:Name="SourceName" Style="{StaticResource McTitle}" />
                             <TextBlock x:Name="SourceKind" Style="{StaticResource McSecondary}" />
@@ -28,7 +28,7 @@
                     <TextBlock x:Name="SourcePath" Style="{StaticResource McBody}" TextWrapping="Wrap" IsTextSelectionEnabled="True" />
                     <Button Style="{StaticResource McButton}" Click="OpenSource_Click" HorizontalAlignment="Left">
                         <StackPanel Orientation="Horizontal" Spacing="8">
-                            <FontIcon VerticalAlignment="Center" Glyph="&#xE838;" FontSize="12" />
+                            <c:McIcon VerticalAlignment="Center" Glyph="&#xE838;" FontSize="12" />
                             <TextBlock x:Uid="Panel_OpenFolder" />
                         </StackPanel>
                     </Button>
@@ -39,7 +39,7 @@
                 <StackPanel Spacing="8">
                     <TextBlock x:Uid="Target_Destination" Style="{StaticResource McSecondary}" />
                     <StackPanel Orientation="Horizontal" Spacing="12">
-                        <FontIcon VerticalAlignment="Center" x:Name="TargetGlyph" FontSize="32" Foreground="{StaticResource McAccentBrush}" />
+                        <c:McIcon VerticalAlignment="Center" x:Name="TargetGlyph" FontSize="32" Foreground="{StaticResource McAccentBrush}" />
                         <StackPanel>
                             <TextBlock x:Name="TargetName" Style="{StaticResource McTitle}" />
                             <TextBlock x:Name="TargetKind" Style="{StaticResource McSecondary}" />
@@ -50,7 +50,7 @@
                     <TextBlock x:Name="TargetPath" Style="{StaticResource McBody}" TextWrapping="Wrap" IsTextSelectionEnabled="True" />
                     <Button Style="{StaticResource McButton}" Click="OpenTarget_Click" HorizontalAlignment="Left">
                         <StackPanel Orientation="Horizontal" Spacing="8">
-                            <FontIcon VerticalAlignment="Center" Glyph="&#xE838;" FontSize="12" />
+                            <c:McIcon VerticalAlignment="Center" Glyph="&#xE838;" FontSize="12" />
                             <TextBlock x:Uid="Panel_OpenFolder" />
                         </StackPanel>
                     </Button>

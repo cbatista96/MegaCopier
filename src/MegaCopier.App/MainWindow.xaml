@@ -39,11 +39,11 @@
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal" Spacing="2">
                 <Button x:Uid="Tool_Sidebar" Style="{StaticResource McToolButton}" Click="Sidebar_Click">
-                    <FontIcon VerticalAlignment="Center" Glyph="&#xE700;" FontSize="15" />
+                    <c:McIcon VerticalAlignment="Center" Glyph="&#xE700;" FontSize="15" />
                 </Button>
                 <DropDownButton x:Uid="Tool_NewCopy" Background="Transparent" BorderThickness="0">
                     <StackPanel Orientation="Horizontal" Spacing="8">
-                        <FontIcon VerticalAlignment="Center" Glyph="&#xE8C8;" FontSize="15" Foreground="{StaticResource McAccentBrush}" />
+                        <c:McIcon VerticalAlignment="Center" Glyph="&#xE8C8;" FontSize="15" Foreground="{StaticResource McAccentBrush}" />
                         <TextBlock x:Uid="Tool_NewCopyText" Style="{StaticResource McBody}" />
                     </StackPanel>
                     <DropDownButton.Flyout>
@@ -78,31 +78,31 @@
                 </DropDownButton>
                 <AppBarSeparator Padding="2,0" />
                 <Button x:Uid="Tool_PauseAll" Style="{StaticResource McToolButton}" Click="PauseAll_Click">
-                    <FontIcon VerticalAlignment="Center" Glyph="&#xE769;" FontSize="15" />
+                    <c:McIcon VerticalAlignment="Center" Glyph="&#xE769;" FontSize="15" />
                 </Button>
                 <Button x:Uid="Tool_ResumeAll" Style="{StaticResource McToolButton}" Click="ResumeAll_Click">
-                    <FontIcon VerticalAlignment="Center" Glyph="&#xE768;" FontSize="15" />
+                    <c:McIcon VerticalAlignment="Center" Glyph="&#xE768;" FontSize="15" />
                 </Button>
                 <Button x:Uid="Tool_ClearDone" Style="{StaticResource McToolButton}" Click="ClearDone_Click">
-                    <FontIcon VerticalAlignment="Center" Glyph="&#xE74D;" FontSize="15" />
+                    <c:McIcon VerticalAlignment="Center" Glyph="&#xE74D;" FontSize="15" />
                 </Button>
                 <AppBarSeparator Padding="2,0" />
                 <Button x:Uid="Tool_Timeline" Style="{StaticResource McToolButton}" Click="Timeline_Click">
-                    <FontIcon VerticalAlignment="Center" Glyph="&#xE121;" FontSize="15" />
+                    <c:McIcon VerticalAlignment="Center" Glyph="&#xE121;" FontSize="15" />
                 </Button>
                 <Button x:Uid="Tool_History" Style="{StaticResource McToolButton}" Click="History_Click">
-                    <FontIcon VerticalAlignment="Center" Glyph="&#xE81C;" FontSize="15" />
+                    <c:McIcon VerticalAlignment="Center" Glyph="&#xE81C;" FontSize="15" />
                 </Button>
                 <Button x:Uid="Tool_Settings" Style="{StaticResource McToolButton}" Click="Settings_Click">
-                    <FontIcon VerticalAlignment="Center" Glyph="&#xE713;" FontSize="15" />
+                    <c:McIcon VerticalAlignment="Center" Glyph="&#xE713;" FontSize="15" />
                 </Button>
                 <Button x:Uid="Tool_About" Style="{StaticResource McToolButton}" Click="About_Click">
-                    <FontIcon VerticalAlignment="Center" Glyph="&#xE946;" FontSize="15" />
+                    <c:McIcon VerticalAlignment="Center" Glyph="&#xE946;" FontSize="15" />
                 </Button>
             </StackPanel>
             <DropDownButton x:Name="FinishButton" x:Uid="FinishButton" Grid.Column="2" Background="Transparent" BorderThickness="0">
                 <StackPanel Orientation="Horizontal" Spacing="8">
-                    <FontIcon VerticalAlignment="Center" x:Name="FinishIcon" Glyph="&#xE823;" FontSize="14" Foreground="{StaticResource McAccentBrush}" />
+                    <c:McIcon VerticalAlignment="Center" x:Name="FinishIcon" Glyph="&#xE823;" FontSize="14" Foreground="{StaticResource McAccentBrush}" />
                     <TextBlock x:Name="FinishText" Style="{StaticResource McBody}" />
                 </StackPanel>
                 <DropDownButton.Flyout>
@@ -163,7 +163,7 @@
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
                                 <Border Grid.RowSpan="3" Width="36" Height="36" CornerRadius="9" VerticalAlignment="Center" Background="{StaticResource McSurfaceStrongBrush}">
-                                    <FontIcon Glyph="{x:Bind Glyph, Mode=OneWay}" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{x:Bind StateBrush, Mode=OneWay}" />
+                                    <c:McIcon Glyph="{x:Bind Glyph, Mode=OneWay}" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{x:Bind StateBrush, Mode=OneWay}" />
                                 </Border>
                                 <TextBlock Grid.Column="1" Text="{x:Bind Title, Mode=OneWay}" Style="{StaticResource McStrong}" TextTrimming="CharacterEllipsis" ToolTipService.ToolTip="{x:Bind Title, Mode=OneWay}" />
                                 <TextBlock Grid.Column="2" Text="{x:Bind TotalPercentText, Mode=OneWay}" Style="{StaticResource McSecondary}" MinWidth="50" TextAlignment="Right" />
@@ -205,9 +205,9 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <Button x:Uid="Pager_Previous" Style="{StaticResource McToolButton}" Click="PagerPrevious_Click"><FontIcon VerticalAlignment="Center" Glyph="&#xE76B;" FontSize="12" /></Button>
+                    <Button x:Uid="Pager_Previous" Style="{StaticResource McToolButton}" Click="PagerPrevious_Click"><c:McIcon VerticalAlignment="Center" Glyph="&#xE76B;" FontSize="12" /></Button>
                     <TextBlock x:Name="PagerText" Grid.Column="1" Style="{StaticResource McSecondary}" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                    <Button x:Uid="Pager_Next" Grid.Column="2" Style="{StaticResource McToolButton}" Click="PagerNext_Click"><FontIcon VerticalAlignment="Center" Glyph="&#xE76C;" FontSize="12" /></Button>
+                    <Button x:Uid="Pager_Next" Grid.Column="2" Style="{StaticResource McToolButton}" Click="PagerNext_Click"><c:McIcon VerticalAlignment="Center" Glyph="&#xE76C;" FontSize="12" /></Button>
                 </Grid>
 
                 <SelectorBar x:Name="Tabs" Grid.Row="2" Margin="6,6,6,0" SelectionChanged="Tabs_SelectionChanged" Visibility="Collapsed">
@@ -235,18 +235,18 @@
                         <EntranceThemeTransition IsStaggeringEnabled="True" />
                     </TransitionCollection>
                 </StackPanel.ChildrenTransitions>
-                <FontIcon VerticalAlignment="Center" Glyph="&#xE8C8;" FontSize="44" Foreground="{StaticResource McAccentBrush}" />
+                <c:McIcon VerticalAlignment="Center" Glyph="&#xE8C8;" FontSize="44" Foreground="{StaticResource McAccentBrush}" />
                 <TextBlock x:Uid="EmptyTitle" Style="{StaticResource McTitle}" HorizontalAlignment="Center" />
                 <TextBlock x:Uid="EmptyDescription" Style="{StaticResource McSecondary}" TextAlignment="Center" TextWrapping="Wrap" MaxWidth="420" />
                 <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Center">
                     <Button Style="{StaticResource McAccentButton}" Click="CopyFiles_Click">
-                        <StackPanel Orientation="Horizontal" Spacing="8"><FontIcon VerticalAlignment="Center" Glyph="&#xE8A5;" FontSize="14" /><TextBlock x:Uid="CopyFilesText" /></StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="8"><c:McIcon VerticalAlignment="Center" Glyph="&#xE8A5;" FontSize="14" /><TextBlock x:Uid="CopyFilesText" /></StackPanel>
                     </Button>
                     <Button Style="{StaticResource McButton}" Click="CopyFolder_Click">
-                        <StackPanel Orientation="Horizontal" Spacing="8"><FontIcon VerticalAlignment="Center" Glyph="&#xE8B7;" FontSize="14" /><TextBlock x:Uid="CopyFolderText" /></StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="8"><c:McIcon VerticalAlignment="Center" Glyph="&#xE8B7;" FontSize="14" /><TextBlock x:Uid="CopyFolderText" /></StackPanel>
                     </Button>
                     <Button Style="{StaticResource McButton}" Click="LoadList_Click">
-                        <StackPanel Orientation="Horizontal" Spacing="8"><FontIcon VerticalAlignment="Center" Glyph="&#xE8E5;" FontSize="14" /><TextBlock x:Uid="Tool_LoadListText" /></StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="8"><c:McIcon VerticalAlignment="Center" Glyph="&#xE8E5;" FontSize="14" /><TextBlock x:Uid="Tool_LoadListText" /></StackPanel>
                     </Button>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Center">
@@ -281,7 +281,7 @@
                         <StackPanel Spacing="2">
                             <Image x:Name="ConflictSourceThumb" Height="80" Stretch="Uniform" HorizontalAlignment="Center" Margin="0,0,0,6" Visibility="Collapsed" />
                             <StackPanel Orientation="Horizontal" Spacing="6">
-                                <FontIcon VerticalAlignment="Center" Glyph="&#xE8A5;" FontSize="13" Foreground="{StaticResource McAccentBrush}" />
+                                <c:McIcon VerticalAlignment="Center" Glyph="&#xE8A5;" FontSize="13" Foreground="{StaticResource McAccentBrush}" />
                                 <TextBlock x:Name="ConflictSourceTitle" Style="{StaticResource BodyStrongTextBlockStyle}" />
                             </StackPanel>
                             <TextBlock x:Name="ConflictSourceSize" Style="{StaticResource CaptionTextBlockStyle}" />
@@ -292,7 +292,7 @@
                         <StackPanel Spacing="2">
                             <Image x:Name="ConflictDestinationThumb" Height="80" Stretch="Uniform" HorizontalAlignment="Center" Margin="0,0,0,6" Visibility="Collapsed" />
                             <StackPanel Orientation="Horizontal" Spacing="6">
-                                <FontIcon VerticalAlignment="Center" Glyph="&#xE7C3;" FontSize="13" Foreground="{StaticResource McWarningBrush}" />
+                                <c:McIcon VerticalAlignment="Center" Glyph="&#xE7C3;" FontSize="13" Foreground="{StaticResource McWarningBrush}" />
                                 <TextBlock x:Uid="ConflictExistingTitle" Style="{StaticResource BodyStrongTextBlockStyle}" />
                             </StackPanel>
                             <TextBlock x:Name="ConflictDestinationSize" Style="{StaticResource CaptionTextBlockStyle}" />
@@ -302,7 +302,7 @@
                 </Grid>
                 <CheckBox x:Name="ConflictApplyAll" x:Uid="ConflictApplyAll" />
                 <HyperlinkButton x:Name="ConflictRenameExisting" Click="ConflictRename_Click" Padding="0">
-                    <StackPanel Orientation="Horizontal" Spacing="6"><FontIcon VerticalAlignment="Center" Glyph="&#xE8AC;" FontSize="12" /><TextBlock x:Uid="Conflict_RenameExisting" /></StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="6"><c:McIcon VerticalAlignment="Center" Glyph="&#xE8AC;" FontSize="12" /><TextBlock x:Uid="Conflict_RenameExisting" /></StackPanel>
                 </HyperlinkButton>
             </StackPanel>
         </ContentDialog>
@@ -324,7 +324,7 @@
                 <ListView x:Name="DestinationsList" SelectionMode="Multiple" MaxHeight="240" BorderThickness="1" BorderBrush="{StaticResource McBorderBrush}" CornerRadius="6" />
                 <TextBlock x:Name="DestinationsNone" x:Uid="Destinations_NoneChosen" TextWrapping="Wrap" Visibility="Collapsed" />
                 <Button Click="AddDestination_Click">
-                    <StackPanel Orientation="Horizontal" Spacing="8"><FontIcon VerticalAlignment="Center" Glyph="&#xE710;" FontSize="12" /><TextBlock x:Uid="Destinations_Add" /></StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="8"><c:McIcon VerticalAlignment="Center" Glyph="&#xE710;" FontSize="12" /><TextBlock x:Uid="Destinations_Add" /></StackPanel>
                 </Button>
                 <ComboBox x:Name="DestinationsMode" x:Uid="Options_Mode" HorizontalAlignment="Stretch" SelectionChanged="DestinationsMode_Changed">
                     <ComboBoxItem x:Uid="Mode_Copy" />
@@ -396,11 +396,11 @@
                 <Grid ColumnSpacing="8">
                     <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
                     <ComboBox x:Name="MtpDeviceBox" HorizontalAlignment="Stretch" SelectionChanged="MtpDevice_SelectionChanged" />
-                    <Button x:Uid="Mtp_Refresh" Grid.Column="1" Style="{StaticResource McButton}" MinWidth="0" Width="40" Height="32" Padding="0" Click="MtpRefresh_Click"><FontIcon Glyph="&#xE72C;" FontSize="14" /></Button>
+                    <Button x:Uid="Mtp_Refresh" Grid.Column="1" Style="{StaticResource McButton}" MinWidth="0" Width="40" Height="32" Padding="0" Click="MtpRefresh_Click"><c:McIcon Glyph="&#xE72C;" FontSize="14" /></Button>
                 </Grid>
                 <Grid ColumnSpacing="8">
                     <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
-                    <Button x:Name="MtpUpButton" x:Uid="Mtp_Up" Style="{StaticResource McButton}" MinWidth="0" Width="40" Height="32" Padding="0" Click="MtpUp_Click"><FontIcon Glyph="&#xE74A;" FontSize="14" /></Button>
+                    <Button x:Name="MtpUpButton" x:Uid="Mtp_Up" Style="{StaticResource McButton}" MinWidth="0" Width="40" Height="32" Padding="0" Click="MtpUp_Click"><c:McIcon Glyph="&#xE74A;" FontSize="14" /></Button>
                     <TextBlock x:Name="MtpPathText" Grid.Column="1" VerticalAlignment="Center" Style="{StaticResource McSecondary}" TextTrimming="CharacterEllipsis" />
                 </Grid>
                 <ListView x:Name="MtpList" Height="280" SelectionMode="Multiple"

@@ -37,7 +37,7 @@ public sealed partial class TargetTab : UserControl
         Show(Job.DestinationDrive, Job.DestinationFolder, TargetGlyph, TargetName, TargetKind, TargetUsage, TargetSpace, TargetPath);
     }
 
-    private static void Show(DriveDescription drive, string folder, FontIcon glyph, TextBlock name, TextBlock kind, FlowBar usage, TextBlock space, TextBlock path)
+    private static void Show(DriveDescription drive, string folder, McIcon glyph, TextBlock name, TextBlock kind, FlowBar usage, TextBlock space, TextBlock path)
     {
         glyph.Glyph = drive.Glyph;
         name.Text = drive.Text;

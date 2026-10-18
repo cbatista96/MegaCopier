@@ -110,6 +110,7 @@ public partial class App : Application
         Dispatcher = DispatcherQueue.GetForCurrentThread();
         var theme = ThemeManager.Find(Settings.ThemeId);
         ThemeManager.Apply(theme);
+        IconPacks.Apply(Settings.IconPack);
         ApplyControlAccent(theme);
 
         var interrupted = Queue.LoadInterrupted();
