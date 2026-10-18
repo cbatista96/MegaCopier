@@ -155,12 +155,6 @@
   <data name="About_DataFolder.Content" xml:space="preserve"><value>Abrir a pasta de dados (configurações, temas, histórico, relatórios)</value></data>
   <data name="About_Description.Text" xml:space="preserve"><value>Copiador de arquivos para Windows 11 que continua até um único arquivo enorme depois de uma queda de energia, verificando o que já foi copiado.</value></data>
   <data name="About_Features.Text" xml:space="preserve"><value>E/S assíncrona sem cache · leituras e gravações em paralelo · verificação por hash (CRC32, xxHash, MD5, SHA) · fila por disco · pausa e retomada · mover · conflitos · limite de velocidade · listas de cópia · relatórios · temas.</value></data>
-  <data name="CopyFiles.Text" xml:space="preserve"><value>Copiar arquivos…</value></data>
-  <data name="CopyFolder.Text" xml:space="preserve"><value>Copiar uma pasta…</value></data>
-  <data name="CopyFilesText.Text" xml:space="preserve"><value>Copiar arquivos</value></data>
-  <data name="CopyFolderText.Text" xml:space="preserve"><value>Copiar pasta</value></data>
-  <data name="Files_AddFiles.Text" xml:space="preserve"><value>Adicionar arquivos…</value></data>
-  <data name="Files_AddFolder.Text" xml:space="preserve"><value>Adicionar pasta…</value></data>
   <data name="Files_AutoScroll.Content" xml:space="preserve"><value>Seguir o atual</value></data>
   <data name="Files_CopyHashes.Text" xml:space="preserve"><value>Copiar os hashes</value></data>
   <data name="Files_CopyPath.Text" xml:space="preserve"><value>Copiar o caminho</value></data>
@@ -327,7 +321,6 @@
   <data name="Tool_HistoryText.Text" xml:space="preserve"><value>Histórico</value></data>
   <data name="Tool_LoadList.Text" xml:space="preserve"><value>Carregar uma lista de cópia…</value></data>
   <data name="Tool_LoadListText.Text" xml:space="preserve"><value>Carregar lista</value></data>
-  <data name="Tool_MoveFiles.Text" xml:space="preserve"><value>Mover arquivos…</value></data>
   <data name="Tool_NewCopy.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Nova cópia</value></data>
   <data name="Tool_NewCopyText.Text" xml:space="preserve"><value>Nova</value></data>
   <data name="Tool_PauseAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Pausar todas</value></data>
@@ -423,8 +416,6 @@
   <data name="Tool_CopyTo.Text" xml:space="preserve"><value>Copiar para</value></data>
   <data name="Tool_CopyToEmpty" xml:space="preserve"><value>Sem favoritos nem recentes</value></data>
   <data name="Tool_CopyToManage" xml:space="preserve"><value>Gerenciar favoritos…</value></data>
-  <data name="Tool_TestFiles.Text" xml:space="preserve"><value>Verificar arquivos de somas…</value></data>
-  <data name="Tool_TestFolder.Text" xml:space="preserve"><value>Verificar as somas de uma pasta…</value></data>
   <data name="Tool_Delete.Text" xml:space="preserve"><value>Apagar…</value></data>
   <data name="Tool_Wipe.Text" xml:space="preserve"><value>Apagar com segurança…</value></data>
   <data name="DestinationsDialog.Title" xml:space="preserve"><value>Para onde?</value></data>
@@ -554,8 +545,6 @@
   <data name="Options_MirrorInfo.Message" xml:space="preserve"><value>O que os filtros excluem não é tocado. Indique uma pasta de versões para guardar o que for removido ou substituído.</value></data>
   <data name="Options_DryRun.Content" xml:space="preserve"><value>Simular: dizer o que seria feito sem mudar nada</value></data>
   <data name="Destinations_DryRun.Content" xml:space="preserve"><value>Simular primeiro (não muda nada)</value></data>
-  <data name="Tool_HashFolder.Text" xml:space="preserve"><value>Criar arquivo de somas de uma pasta…</value></data>
-  <data name="Tool_HashFiles.Text" xml:space="preserve"><value>Criar arquivo de somas de arquivos…</value></data>
   <data name="Rules_SkipJunk.Content" xml:space="preserve"><value>Ignorar arquivos inúteis (Thumbs.db, desktop.ini, .DS_Store, ~$…)</value></data>
   <data name="Rules_OnErrorEnd.Content" xml:space="preserve"><value>Tentar de novo no fim da fila</value></data>
   <data name="Rules_Safety.Text" xml:space="preserve"><value>Sincronização e segurança</value></data>
@@ -699,8 +688,6 @@
   <data name="Peer_Received" xml:space="preserve"><value>{0} arquivos de {1}, em {2}.</value></data>
   <data name="Peer_RejectedTitle" xml:space="preserve"><value>Envio recusado</value></data>
   <data name="Peer_Rejected" xml:space="preserve"><value>{0} tentou enviar arquivos para você com um código errado.</value></data>
-  <data name="Tool_SendFiles.Text" xml:space="preserve"><value>Enviar arquivos para outro computador…</value></data>
-  <data name="Tool_SendFolder.Text" xml:space="preserve"><value>Enviar uma pasta para outro computador…</value></data>
   <data name="SendDialog.Title" xml:space="preserve"><value>Enviar para outro computador</value></data>
   <data name="SendDialog.PrimaryButtonText" xml:space="preserve"><value>Enviar</value></data>
   <data name="SendDialog.CloseButtonText" xml:space="preserve"><value>Cancelar</value></data>
@@ -1342,7 +1329,7 @@
   <data name="Theme_capuchino-claro" xml:space="preserve"><value>Cappuccino claro</value></data>
   <data name="Info_Paste_Text" xml:space="preserve"><value>Quando você copia (Ctrl+C) ou recorta (Ctrl+X) arquivos e cola (Ctrl+V) no Explorador ou na Área de Trabalho, quem copia é o MegaCopier em vez do Windows: com fila, pausa, verificação e a opção de continuar se for interrompida.\n• Cópias grandes para um disco externo: você pode pausar e continuar depois.\n• Várias cópias seguidas: entram na fila em vez de disputar o disco.\nSe colar na mesma pasta (para duplicar um arquivo), o Explorador continua fazendo isso.</value></data>
   <data name="Info_Drag_Text" xml:space="preserve"><value>Ao arrastar arquivos com o botão esquerdo de uma janela para outra, o MegaCopier copia (ou move) com as mesmas regras do Windows: na mesma unidade move, Ctrl força copiar e Shift força mover.\n• Organizar fotos arrastando-as entre pastas de discos diferentes.\n• Mover projetos grandes sem travar o Explorador.\nSoltar sobre um arquivo, um ZIP ou o painel da esquerda continua sendo com o Explorador.</value></data>
-  <data name="Info_WindowMode_Text" xml:space="preserve"><value>Como a janela aparece enquanto copia.\n• Compacta: só as barras e os botões; ocupa pouco.\n• Completa: com a lista de arquivos, o destino, as opções, o gráfico e o registro.\n• Automática: compacta com uma só cópia e completa quando há várias.\nOs botões &quot;Mais&quot; e &quot;Menos&quot; alternam entre as duas a qualquer momento.</value></data>
+  <data name="Info_WindowMode_Text" xml:space="preserve"><value>A janela de cópia tem três visualizações.\n• Pequena: só as barras e os botões. É a de sempre ao copiar; dá para alargar, mas não aumentar a altura.\n• Com a lista (“Mais”): arquivos, destino, opções, gráfico e registro. Pode ser ampliada ou maximizada.\n• Várias cópias: a mesma, com a lista de cópias à esquerda; aparece sozinha quando há mais de uma.\n“Automática” começa pequena e passa à completa quando há várias cópias ao mesmo tempo. “Mais” e “Menos” trocam de visualização a qualquer momento.</value></data>
   <data name="Info_Verify_Text" xml:space="preserve"><value>Ao terminar cada arquivo, o MegaCopier o lê de novo direto do disco de destino e compara sua impressão digital (hash) com a do original. Se algo não bate, copia de novo só a parte danificada.\n• Backups, fotos e documentos importantes.\n• Pendrives ou discos velhos ou baratos, que podem falhar sem avisar.\n• Cópias pela rede ou por Wi-Fi.\nA cópia demora um pouco mais (é preciso ler tudo de novo), em troca da garantia de que é idêntica.</value></data>
   <data name="Info_Conflict_Text" xml:space="preserve"><value>O que fazer quando o destino já tem um arquivo com o mesmo nome.\n• Perguntar: mostra os dois, com tamanho, data e miniatura, e você escolhe.\n• Substituir, Pular, Substituir se for mais novo ou de outro tamanho, Manter os dois (&quot;nome (2)&quot;) ou Renomear o que já estava.\nArquivos idênticos (mesmo tamanho e data) nunca são copiados de novo: repetir uma cópia só copia o que é novo ou mudou. Se uma pasta inteira já existe, o MegaCopier pergunta antes de começar.</value></data>
   <data name="Info_Hash_Text" xml:space="preserve"><value>O hash é como a impressão digital de um arquivo: se um único byte muda, a impressão muda. É usado ao verificar e nas somas salvas.\n• xxHash3: o mais rápido; ideal para verificar cópias.\n• SHA-256: o mais usado por sites e programas para conferir downloads.\n• MD5, SHA-1, BLAKE3…: caso outro programa peça um específico.\nNo dia a dia, deixe xxHash3.</value></data>
@@ -1366,4 +1353,78 @@
   <data name="Info_Guard_Text" xml:space="preserve"><value>Os discos podem estragar arquivos com os anos sem avisar. O MegaCopier guarda a impressão digital de cada arquivo dentro dele e, quando o computador está livre, confere de novo. Se um mudou sem ninguém mexer, avisa a tempo de recuperá-lo de um backup.\n• Fotos e vídeos de família.\n• Discos de backup que quase nunca são abertos.\nO que você editar se atualiza sozinho. Requer discos NTFS.</value></data>
   <data name="Info_Webhook_Text" xml:space="preserve"><value>Ao terminar cada cópia, o MegaCopier manda o resumo para um endereço web, e o aviso chega no celular ou num chat.\n• Discord, Slack ou Teams: avisos num canal.\n• ntfy.sh: notificação no celular quase sem instalar nada.\n• Home Assistant: automações (acender uma luz ao terminar…).</value></data>
   <data name="Info_Connections_Text" xml:space="preserve"><value>Guarde aqui os servidores para onde você copia: FTP, SFTP, WebDAV (Nextcloud, NAS…) ou S3 (Backblaze, Wasabi, R2…). Depois aparecem ao escolher origem ou destino.\n• Enviar backups para a nuvem.\n• Baixar arquivos de um servidor da empresa.\nAs senhas ficam no Gerenciador de Credenciais do Windows, nunca em texto.</value></data>
+  <data name="IconPack_android" xml:space="preserve"><value>Android</value></data>
+  <data name="IconPack_android-tonal" xml:space="preserve"><value>Android tonal</value></data>
+  <data name="IconPack_macos" xml:space="preserve"><value>macOS</value></data>
+  <data name="IconPack_macos-color" xml:space="preserve"><value>macOS cor</value></data>
+  <data name="IconPack_ubuntu" xml:space="preserve"><value>Ubuntu</value></data>
+  <data name="IconPack_kde" xml:space="preserve"><value>KDE Plasma</value></data>
+  <data name="IconPack_gnome" xml:space="preserve"><value>GNOME</value></data>
+  <data name="IconPack_elementary" xml:space="preserve"><value>elementary OS</value></data>
+  <data name="IconPack_mint" xml:space="preserve"><value>Linux Mint</value></data>
+  <data name="IconPack_fedora" xml:space="preserve"><value>Fedora</value></data>
+  <data name="IconPack_popos" xml:space="preserve"><value>Pop!_OS</value></data>
+  <data name="IconPack_arch" xml:space="preserve"><value>Arch Linux</value></data>
+  <data name="IconPack_winxp" xml:space="preserve"><value>Windows XP</value></data>
+  <data name="IconPack_win7" xml:space="preserve"><value>Windows 7 Aero</value></data>
+  <data name="IconPack_metro" xml:space="preserve"><value>Windows 8 Metro</value></data>
+  <data name="IconPack_steam" xml:space="preserve"><value>Steam</value></data>
+  <data name="Gallery_More" xml:space="preserve"><value>Mostrar mais ({0})</value></data>
+  <data name="Gallery_Less" xml:space="preserve"><value>Mostrar menos</value></data>
+  <data name="Sound_GroupOwn" xml:space="preserve"><value>Sons do MegaCopier</value></data>
+  <data name="Sound_GroupWindows" xml:space="preserve"><value>Sons do Windows</value></data>
+  <data name="SoundName_bip" xml:space="preserve"><value>Bipe · 0,3 s</value></data>
+  <data name="SoundName_pop" xml:space="preserve"><value>Pop · 0,3 s</value></data>
+  <data name="SoundName_doble-bip" xml:space="preserve"><value>Bipe duplo · 0,6 s</value></data>
+  <data name="SoundName_gota" xml:space="preserve"><value>Gota · 0,6 s</value></data>
+  <data name="SoundName_burbuja" xml:space="preserve"><value>Bolhas · 0,8 s</value></data>
+  <data name="SoundName_toque" xml:space="preserve"><value>Toque · 0,9 s</value></data>
+  <data name="SoundName_pregunta" xml:space="preserve"><value>Pergunta · 1,4 s</value></data>
+  <data name="SoundName_aviso" xml:space="preserve"><value>Aviso · 1,5 s</value></data>
+  <data name="SoundName_alerta" xml:space="preserve"><value>Alerta grave · 1,6 s</value></data>
+  <data name="SoundName_marimba" xml:space="preserve"><value>Marimba · 1,8 s</value></data>
+  <data name="SoundName_brillo" xml:space="preserve"><value>Brilhos · 2 s</value></data>
+  <data name="SoundName_cristal" xml:space="preserve"><value>Cristal · 2,2 s</value></data>
+  <data name="SoundName_eco" xml:space="preserve"><value>Eco · 2,4 s</value></data>
+  <data name="SoundName_arpa" xml:space="preserve"><value>Harpa · 2,6 s</value></data>
+  <data name="SoundName_logro" xml:space="preserve"><value>Conquista · 2,6 s</value></data>
+  <data name="SoundName_cascada" xml:space="preserve"><value>Cascata · 3,6 s</value></data>
+  <data name="SoundName_aurora" xml:space="preserve"><value>Aurora · 3,8 s</value></data>
+  <data name="SoundName_orbital" xml:space="preserve"><value>Orbital · 3,8 s</value></data>
+  <data name="SoundName_amanecer" xml:space="preserve"><value>Amanhecer · 4 s</value></data>
+  <data name="Panel_OpenCopied.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Abrir a pasta que está sendo copiada</value></data>
+  <data name="Panel_RevealFile.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Mostrar este arquivo na pasta</value></data>
+  <data name="Panel_RevealSource.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Mostrar a origem no Explorador</value></data>
+  <data name="Panel_RevealDestination.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Mostrar a cópia no destino</value></data>
+  <data name="FolderAsk_Short" xml:space="preserve"><value>{0} de {1} arquivos ({2}) já estão em {3}.</value></data>
+  <data name="FolderAsk_SkipShort" xml:space="preserve"><value>Pular</value></data>
+  <data name="FolderAsk_AskEachShort" xml:space="preserve"><value>Um a um</value></data>
+  <data name="FolderAsk_CancelShort" xml:space="preserve"><value>Cancelar</value></data>
+  <data name="Settings_AutoAdminTitle.Text" xml:space="preserve"><value>Pedir permissão de administrador quando o Windows não deixar copiar um arquivo</value></data>
+  <data name="Settings_AutoAdminDescription.Text" xml:space="preserve"><value>Ao terminar, se sobrarem arquivos com “acesso negado” (jogos protegidos, pastas de outros usuários), o Windows pede permissão uma vez e eles são copiados, como no Explorador.</value></data>
+  <data name="Info_AutoAdmin_Text" xml:space="preserve"><value>Alguns arquivos só podem ser lidos com permissão de administrador. É o que acontece quando o Explorador diz “Você precisa de permissão para executar esta ação”.\n• Jogos do Xbox ou da Microsoft Store: os .exe são protegidos pelo Windows.\n• Pastas de outros usuários ou do Windows.\nO MegaCopier copia todo o resto e, no final, pede permissão uma única vez para esses arquivos. Se você recusar, eles ficam marcados com o erro e dá para tentar de novo com “Copiar como administrador”.</value></data>
+  <data name="Tool_Copy.Text" xml:space="preserve"><value>Copiar…</value></data>
+  <data name="Tool_Move.Text" xml:space="preserve"><value>Mover…</value></data>
+  <data name="Tool_CopyText.Text" xml:space="preserve"><value>Copiar…</value></data>
+  <data name="Tool_MoveText.Text" xml:space="preserve"><value>Mover…</value></data>
+  <data name="Tool_Send.Text" xml:space="preserve"><value>Enviar para outro PC…</value></data>
+  <data name="Tool_Devices.Text" xml:space="preserve"><value>Celulares, câmeras e servidores</value></data>
+  <data name="Tool_Checksums.Text" xml:space="preserve"><value>Verificar e reparar</value></data>
+  <data name="Tool_Test.Text" xml:space="preserve"><value>Verificar com arquivos de soma…</value></data>
+  <data name="Tool_Hash.Text" xml:space="preserve"><value>Criar arquivo de soma…</value></data>
+  <data name="Tool_Backups.Text" xml:space="preserve"><value>Backups</value></data>
+  <data name="Picker_Open" xml:space="preserve"><value>Abrir</value></data>
+  <data name="Picker_AllFiles" xml:space="preserve"><value>Todos os arquivos</value></data>
+  <data name="Picker_SelectHere" xml:space="preserve"><value>Selecionar esta pasta</value></data>
+  <data name="Picker_SelectOne" xml:space="preserve"><value>Selecionar o marcado</value></data>
+  <data name="Picker_SelectMany" xml:space="preserve"><value>Selecionar {0} itens</value></data>
+  <data name="Picker_CopyTitle" xml:space="preserve"><value>Escolha o que copiar: arquivos ou pastas</value></data>
+  <data name="Picker_MoveTitle" xml:space="preserve"><value>Escolha o que mover: arquivos ou pastas</value></data>
+  <data name="Picker_TestTitle" xml:space="preserve"><value>Escolha arquivos de soma ou pastas para verificar</value></data>
+  <data name="Picker_ChecksumFiles" xml:space="preserve"><value>Arquivos de soma</value></data>
+  <data name="Picker_HashTitle" xml:space="preserve"><value>Escolha arquivos ou pastas para criar as somas</value></data>
+  <data name="Picker_SendTitle" xml:space="preserve"><value>Escolha o que enviar: arquivos ou pastas</value></data>
+  <data name="Picker_DeleteTitle" xml:space="preserve"><value>Escolha o que apagar: arquivos ou pastas</value></data>
+  <data name="Picker_WipeTitle" xml:space="preserve"><value>Escolha o que apagar com segurança: arquivos ou pastas</value></data>
+  <data name="Picker_AddTitle" xml:space="preserve"><value>Escolha o que adicionar à lista: arquivos ou pastas</value></data>
 </root>

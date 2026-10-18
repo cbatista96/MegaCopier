@@ -21,6 +21,9 @@ public partial class App : Application
     private IpcServer? _server;
     private PasteInterceptor? _paste;
     private DragInterceptor? _drag;
+
+    /// <summary>Copias a las que ya se les pidió permiso de administrador (no se insiste si vuelve a fallar).</summary>
+    private readonly HashSet<string> _adminRetried = [];
     private TaskbarProgress? _taskbar;
     private DispatcherQueueTimer? _statusTimer;
 
@@ -973,7 +976,17 @@ public partial class App : Application
 
     private void OnJobFinished(CopyJob job)
     {
+        bool stoppedByUser = job.State == CopyJobState.Interrupted && StoppedByUser.Contains(job.Id) && !_exiting;
         ApplyEndOfJobOptions(job);
+
+        // «Detener» la única copia: se detiene y la ventana se cierra sola, como al terminar bien. Lo copiado se
+        // conserva y al volver a abrir MegaCopier se ofrece continuarla.
+        if (stoppedByUser && !Queue.HasActiveJobs)
+        {
+            Queue.Dismiss(job);
+            Window.OnAllFinished();
+            return;
+        }
         bool finished = job.State is CopyJobState.Completed or CopyJobState.CompletedWithErrors or CopyJobState.Failed;
         if (finished)
         {
@@ -992,6 +1005,15 @@ public partial class App : Application
                 : last && Settings.Sounds.AllDone.Length > 0 ? SoundEvent.AllDone
                 : SoundEvent.Done;
             Sounds.Play(Settings.Sounds, sound);
+        }
+
+        // Archivos que Windows no deja leer sin permiso de administrador: se piden los permisos (una vez por copia) y
+        // se copian, como hace el Explorador. La ventana no se cierra: la copia vuelve a ponerse en marcha.
+        if (job.State == CopyJobState.CompletedWithErrors && Settings.AutoAdminCopy && _adminRetried.Add(job.Id)
+            && Window.Jobs.FirstOrDefault(j => j.Job == job) is { CanCopyAdmin: true })
+        {
+            _ = CopyWithAdminAsync(job);
+            return;
         }
 
         if (!Queue.HasActiveJobs && finished)

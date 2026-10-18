@@ -34,15 +34,42 @@ public sealed partial class FilesTab : UserControl
     public FileListViewModel? Files => _files;
 
     /// <summary>
-    /// Estrecha: las casillas bajan a una segunda fila y la columna Destino se oculta (queda en la ayuda de cada fila);
-    /// las sumas solo caben si la lista es ancha y se pidieron en el menú.
+    /// La barra de botones de la izquierda siempre enseña todos sus botones: si la lista es baja, los botones y sus
+    /// iconos se hacen algo más pequeños; al agrandarla vuelven a su tamaño normal.
+    /// </summary>
+    private void ListArea_SizeChanged(object sender, SizeChangedEventArgs e)
+    {
+        const double Normal = 34, Smallest = 22, Fixed = 46; // marco, separadores y espacios entre botones
+        var buttons = Rail.Children.OfType<Button>().ToList();
+        double height = Math.Clamp(Math.Floor((e.NewSize.Height - Fixed) / buttons.Count) - 2, Smallest, Normal);
+        double scale = height / Normal;
+        foreach (var button in buttons)
+        {
+            button.Height = height;
+            button.Width = Math.Round(38 * Math.Max(0.8, scale));
+            if (button.Content is Controls.McIcon icon)
+            {
+                icon.FontSize = Math.Round((icon.Tag as double? ?? (double)(icon.Tag = icon.FontSize)) * Math.Max(0.75, scale));
+            }
+        }
+
+        foreach (var line in Rail.Children.OfType<Microsoft.UI.Xaml.Shapes.Rectangle>())
+        {
+            line.Margin = new Thickness(6, scale < 0.9 ? 2 : 4, 6, scale < 0.9 ? 2 : 4);
+        }
+    }
+
+    /// <summary>
+    /// Las casillas van siempre junto a la búsqueda, que es la que encoge; solo en un ancho mínimo bajan a una segunda
+    /// fila. La columna Destino se oculta si no cabe (queda en la ayuda de cada fila); las sumas solo caben si la lista
+    /// es ancha y se pidieron en el menú.
     /// </summary>
     private void Adapt(double width)
     {
-        bool twoRows = width < 760;
+        bool twoRows = width < 560;
         Grid.SetRow(ListToggles, twoRows ? 1 : 0);
         Grid.SetColumn(ListToggles, twoRows ? 0 : 1);
-        Grid.SetColumnSpan(ListToggles, twoRows ? 4 : 1);
+        Grid.SetColumnSpan(ListToggles, twoRows ? 5 : 1);
 
         bool destination = width >= 620;
         bool hashes = width >= 900 && ShowHashesItem.IsChecked;
@@ -185,19 +212,8 @@ public sealed partial class FilesTab : UserControl
         }
     }
 
-    private async void AddFiles_Click(object sender, RoutedEventArgs e)
-    {
-        var files = await Pickers.PickFilesAsync();
-        AddSources(files);
-    }
-
-    private async void AddFolder_Click(object sender, RoutedEventArgs e)
-    {
-        if (await Pickers.PickFolderAsync() is { } folder)
-        {
-            AddSources([folder]);
-        }
-    }
+    /// <summary>«+»: añadir archivos o carpetas al final de la lista, con el mismo destino.</summary>
+    private void Add_Click(object sender, RoutedEventArgs e) => AddSources(Pickers.PickAny(L.Get("Picker_AddTitle")));
 
     private void AddSources(IReadOnlyList<string> sources)
     {

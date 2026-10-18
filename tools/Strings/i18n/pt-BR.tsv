@@ -149,12 +149,6 @@ AboutDialog.CloseButtonText	Fechar
 About_DataFolder.Content	Abrir a pasta de dados (configurações, temas, histórico, relatórios)
 About_Description.Text	Copiador de arquivos para Windows 11 que continua até um único arquivo enorme depois de uma queda de energia, verificando o que já foi copiado.
 About_Features.Text	E/S assíncrona sem cache · leituras e gravações em paralelo · verificação por hash (CRC32, xxHash, MD5, SHA) · fila por disco · pausa e retomada · mover · conflitos · limite de velocidade · listas de cópia · relatórios · temas.
-CopyFiles.Text	Copiar arquivos…
-CopyFolder.Text	Copiar uma pasta…
-CopyFilesText.Text	Copiar arquivos
-CopyFolderText.Text	Copiar pasta
-Files_AddFiles.Text	Adicionar arquivos…
-Files_AddFolder.Text	Adicionar pasta…
 Files_AutoScroll.Content	Seguir o atual
 Files_CopyHashes.Text	Copiar os hashes
 Files_CopyPath.Text	Copiar o caminho
@@ -321,7 +315,6 @@ Tool_History.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Histórico
 Tool_HistoryText.Text	Histórico
 Tool_LoadList.Text	Carregar uma lista de cópia…
 Tool_LoadListText.Text	Carregar lista
-Tool_MoveFiles.Text	Mover arquivos…
 Tool_NewCopy.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Nova cópia
 Tool_NewCopyText.Text	Nova
 Tool_PauseAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Pausar todas
@@ -417,8 +410,6 @@ Settings_FavoritesEmpty	Ainda não há favoritos.
 Tool_CopyTo.Text	Copiar para
 Tool_CopyToEmpty	Sem favoritos nem recentes
 Tool_CopyToManage	Gerenciar favoritos…
-Tool_TestFiles.Text	Verificar arquivos de somas…
-Tool_TestFolder.Text	Verificar as somas de uma pasta…
 Tool_Delete.Text	Apagar…
 Tool_Wipe.Text	Apagar com segurança…
 DestinationsDialog.Title	Para onde?
@@ -548,8 +539,6 @@ Options_MirrorInfo.Title	Sincronizar remove do destino o que não está mais na 
 Options_MirrorInfo.Message	O que os filtros excluem não é tocado. Indique uma pasta de versões para guardar o que for removido ou substituído.
 Options_DryRun.Content	Simular: dizer o que seria feito sem mudar nada
 Destinations_DryRun.Content	Simular primeiro (não muda nada)
-Tool_HashFolder.Text	Criar arquivo de somas de uma pasta…
-Tool_HashFiles.Text	Criar arquivo de somas de arquivos…
 Rules_SkipJunk.Content	Ignorar arquivos inúteis (Thumbs.db, desktop.ini, .DS_Store, ~$…)
 Rules_OnErrorEnd.Content	Tentar de novo no fim da fila
 Rules_Safety.Text	Sincronização e segurança
@@ -693,8 +682,6 @@ Peer_ReceivedTitle	Arquivos recebidos
 Peer_Received	{0} arquivos de {1}, em {2}.
 Peer_RejectedTitle	Envio recusado
 Peer_Rejected	{0} tentou enviar arquivos para você com um código errado.
-Tool_SendFiles.Text	Enviar arquivos para outro computador…
-Tool_SendFolder.Text	Enviar uma pasta para outro computador…
 SendDialog.Title	Enviar para outro computador
 SendDialog.PrimaryButtonText	Enviar
 SendDialog.CloseButtonText	Cancelar
@@ -1336,7 +1323,7 @@ Theme_solar-claro	Solar claro
 Theme_capuchino-claro	Cappuccino claro
 Info_Paste_Text	Quando você copia (Ctrl+C) ou recorta (Ctrl+X) arquivos e cola (Ctrl+V) no Explorador ou na Área de Trabalho, quem copia é o MegaCopier em vez do Windows: com fila, pausa, verificação e a opção de continuar se for interrompida.\n• Cópias grandes para um disco externo: você pode pausar e continuar depois.\n• Várias cópias seguidas: entram na fila em vez de disputar o disco.\nSe colar na mesma pasta (para duplicar um arquivo), o Explorador continua fazendo isso.
 Info_Drag_Text	Ao arrastar arquivos com o botão esquerdo de uma janela para outra, o MegaCopier copia (ou move) com as mesmas regras do Windows: na mesma unidade move, Ctrl força copiar e Shift força mover.\n• Organizar fotos arrastando-as entre pastas de discos diferentes.\n• Mover projetos grandes sem travar o Explorador.\nSoltar sobre um arquivo, um ZIP ou o painel da esquerda continua sendo com o Explorador.
-Info_WindowMode_Text	Como a janela aparece enquanto copia.\n• Compacta: só as barras e os botões; ocupa pouco.\n• Completa: com a lista de arquivos, o destino, as opções, o gráfico e o registro.\n• Automática: compacta com uma só cópia e completa quando há várias.\nOs botões "Mais" e "Menos" alternam entre as duas a qualquer momento.
+Info_WindowMode_Text	A janela de cópia tem três visualizações.\n• Pequena: só as barras e os botões. É a de sempre ao copiar; dá para alargar, mas não aumentar a altura.\n• Com a lista (“Mais”): arquivos, destino, opções, gráfico e registro. Pode ser ampliada ou maximizada.\n• Várias cópias: a mesma, com a lista de cópias à esquerda; aparece sozinha quando há mais de uma.\n“Automática” começa pequena e passa à completa quando há várias cópias ao mesmo tempo. “Mais” e “Menos” trocam de visualização a qualquer momento.
 Info_Verify_Text	Ao terminar cada arquivo, o MegaCopier o lê de novo direto do disco de destino e compara sua impressão digital (hash) com a do original. Se algo não bate, copia de novo só a parte danificada.\n• Backups, fotos e documentos importantes.\n• Pendrives ou discos velhos ou baratos, que podem falhar sem avisar.\n• Cópias pela rede ou por Wi-Fi.\nA cópia demora um pouco mais (é preciso ler tudo de novo), em troca da garantia de que é idêntica.
 Info_Conflict_Text	O que fazer quando o destino já tem um arquivo com o mesmo nome.\n• Perguntar: mostra os dois, com tamanho, data e miniatura, e você escolhe.\n• Substituir, Pular, Substituir se for mais novo ou de outro tamanho, Manter os dois ("nome (2)") ou Renomear o que já estava.\nArquivos idênticos (mesmo tamanho e data) nunca são copiados de novo: repetir uma cópia só copia o que é novo ou mudou. Se uma pasta inteira já existe, o MegaCopier pergunta antes de começar.
 Info_Hash_Text	O hash é como a impressão digital de um arquivo: se um único byte muda, a impressão muda. É usado ao verificar e nas somas salvas.\n• xxHash3: o mais rápido; ideal para verificar cópias.\n• SHA-256: o mais usado por sites e programas para conferir downloads.\n• MD5, SHA-1, BLAKE3…: caso outro programa peça um específico.\nNo dia a dia, deixe xxHash3.
@@ -1360,3 +1347,77 @@ Info_Tasks_Text	Uma cópia salva que o Windows inicia sozinho todo dia, semana o
 Info_Guard_Text	Os discos podem estragar arquivos com os anos sem avisar. O MegaCopier guarda a impressão digital de cada arquivo dentro dele e, quando o computador está livre, confere de novo. Se um mudou sem ninguém mexer, avisa a tempo de recuperá-lo de um backup.\n• Fotos e vídeos de família.\n• Discos de backup que quase nunca são abertos.\nO que você editar se atualiza sozinho. Requer discos NTFS.
 Info_Webhook_Text	Ao terminar cada cópia, o MegaCopier manda o resumo para um endereço web, e o aviso chega no celular ou num chat.\n• Discord, Slack ou Teams: avisos num canal.\n• ntfy.sh: notificação no celular quase sem instalar nada.\n• Home Assistant: automações (acender uma luz ao terminar…).
 Info_Connections_Text	Guarde aqui os servidores para onde você copia: FTP, SFTP, WebDAV (Nextcloud, NAS…) ou S3 (Backblaze, Wasabi, R2…). Depois aparecem ao escolher origem ou destino.\n• Enviar backups para a nuvem.\n• Baixar arquivos de um servidor da empresa.\nAs senhas ficam no Gerenciador de Credenciais do Windows, nunca em texto.
+IconPack_android	Android
+IconPack_android-tonal	Android tonal
+IconPack_macos	macOS
+IconPack_macos-color	macOS cor
+IconPack_ubuntu	Ubuntu
+IconPack_kde	KDE Plasma
+IconPack_gnome	GNOME
+IconPack_elementary	elementary OS
+IconPack_mint	Linux Mint
+IconPack_fedora	Fedora
+IconPack_popos	Pop!_OS
+IconPack_arch	Arch Linux
+IconPack_winxp	Windows XP
+IconPack_win7	Windows 7 Aero
+IconPack_metro	Windows 8 Metro
+IconPack_steam	Steam
+Gallery_More	Mostrar mais ({0})
+Gallery_Less	Mostrar menos
+Sound_GroupOwn	Sons do MegaCopier
+Sound_GroupWindows	Sons do Windows
+SoundName_bip	Bipe · 0,3 s
+SoundName_pop	Pop · 0,3 s
+SoundName_doble-bip	Bipe duplo · 0,6 s
+SoundName_gota	Gota · 0,6 s
+SoundName_burbuja	Bolhas · 0,8 s
+SoundName_toque	Toque · 0,9 s
+SoundName_pregunta	Pergunta · 1,4 s
+SoundName_aviso	Aviso · 1,5 s
+SoundName_alerta	Alerta grave · 1,6 s
+SoundName_marimba	Marimba · 1,8 s
+SoundName_brillo	Brilhos · 2 s
+SoundName_cristal	Cristal · 2,2 s
+SoundName_eco	Eco · 2,4 s
+SoundName_arpa	Harpa · 2,6 s
+SoundName_logro	Conquista · 2,6 s
+SoundName_cascada	Cascata · 3,6 s
+SoundName_aurora	Aurora · 3,8 s
+SoundName_orbital	Orbital · 3,8 s
+SoundName_amanecer	Amanhecer · 4 s
+Panel_OpenCopied.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Abrir a pasta que está sendo copiada
+Panel_RevealFile.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Mostrar este arquivo na pasta
+Panel_RevealSource.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Mostrar a origem no Explorador
+Panel_RevealDestination.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Mostrar a cópia no destino
+FolderAsk_Short	{0} de {1} arquivos ({2}) já estão em {3}.
+FolderAsk_SkipShort	Pular
+FolderAsk_AskEachShort	Um a um
+FolderAsk_CancelShort	Cancelar
+Settings_AutoAdminTitle.Text	Pedir permissão de administrador quando o Windows não deixar copiar um arquivo
+Settings_AutoAdminDescription.Text	Ao terminar, se sobrarem arquivos com “acesso negado” (jogos protegidos, pastas de outros usuários), o Windows pede permissão uma vez e eles são copiados, como no Explorador.
+Info_AutoAdmin_Text	Alguns arquivos só podem ser lidos com permissão de administrador. É o que acontece quando o Explorador diz “Você precisa de permissão para executar esta ação”.\n• Jogos do Xbox ou da Microsoft Store: os .exe são protegidos pelo Windows.\n• Pastas de outros usuários ou do Windows.\nO MegaCopier copia todo o resto e, no final, pede permissão uma única vez para esses arquivos. Se você recusar, eles ficam marcados com o erro e dá para tentar de novo com “Copiar como administrador”.
+Tool_Copy.Text	Copiar…
+Tool_Move.Text	Mover…
+Tool_CopyText.Text	Copiar…
+Tool_MoveText.Text	Mover…
+Tool_Send.Text	Enviar para outro PC…
+Tool_Devices.Text	Celulares, câmeras e servidores
+Tool_Checksums.Text	Verificar e reparar
+Tool_Test.Text	Verificar com arquivos de soma…
+Tool_Hash.Text	Criar arquivo de soma…
+Tool_Backups.Text	Backups
+Picker_Open	Abrir
+Picker_AllFiles	Todos os arquivos
+Picker_SelectHere	Selecionar esta pasta
+Picker_SelectOne	Selecionar o marcado
+Picker_SelectMany	Selecionar {0} itens
+Picker_CopyTitle	Escolha o que copiar: arquivos ou pastas
+Picker_MoveTitle	Escolha o que mover: arquivos ou pastas
+Picker_TestTitle	Escolha arquivos de soma ou pastas para verificar
+Picker_ChecksumFiles	Arquivos de soma
+Picker_HashTitle	Escolha arquivos ou pastas para criar as somas
+Picker_SendTitle	Escolha o que enviar: arquivos ou pastas
+Picker_DeleteTitle	Escolha o que apagar: arquivos ou pastas
+Picker_WipeTitle	Escolha o que apagar com segurança: arquivos ou pastas
+Picker_AddTitle	Escolha o que adicionar à lista: arquivos ou pastas

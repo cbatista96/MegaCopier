@@ -149,12 +149,6 @@ AboutDialog.CloseButtonText	Schließen
 About_DataFolder.Content	Datenordner öffnen (Einstellungen, Designs, Verlauf, Berichte)
 About_Description.Text	Dateikopierer für Windows 11, der selbst eine einzelne riesige Datei nach einem Stromausfall fortsetzt und dabei das bereits Kopierte prüft.
 About_Features.Text	Asynchrone E/A ohne Cache · parallele Lese- und Schreibvorgänge · Hash-Prüfung (CRC32, xxHash, MD5, SHA) · Warteschlange pro Datenträger · Anhalten und Fortsetzen · Verschieben · Konflikte · Geschwindigkeitslimit · Kopierlisten · Berichte · Designs.
-CopyFiles.Text	Dateien kopieren…
-CopyFolder.Text	Ordner kopieren…
-CopyFilesText.Text	Dateien kopieren
-CopyFolderText.Text	Ordner kopieren
-Files_AddFiles.Text	Dateien hinzufügen…
-Files_AddFolder.Text	Ordner hinzufügen…
 Files_AutoScroll.Content	Aktueller Datei folgen
 Files_CopyHashes.Text	Hashes kopieren
 Files_CopyPath.Text	Pfad kopieren
@@ -321,7 +315,6 @@ Tool_History.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Verlauf
 Tool_HistoryText.Text	Verlauf
 Tool_LoadList.Text	Kopierliste laden…
 Tool_LoadListText.Text	Liste laden
-Tool_MoveFiles.Text	Dateien verschieben…
 Tool_NewCopy.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Neue Kopie
 Tool_NewCopyText.Text	Neu
 Tool_PauseAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Alle anhalten
@@ -417,8 +410,6 @@ Settings_FavoritesEmpty	Noch keine Favoriten.
 Tool_CopyTo.Text	Kopieren nach
 Tool_CopyToEmpty	Keine Favoriten oder zuletzt verwendeten Ordner
 Tool_CopyToManage	Favoriten verwalten…
-Tool_TestFiles.Text	Prüfsummendateien testen…
-Tool_TestFolder.Text	Prüfsummen eines Ordners testen…
 Tool_Delete.Text	Löschen…
 Tool_Wipe.Text	Sicher löschen…
 DestinationsDialog.Title	Wohin?
@@ -548,8 +539,6 @@ Options_MirrorInfo.Title	Synchronisieren entfernt aus dem Ziel, was nicht mehr i
 Options_MirrorInfo.Message	Was die Filter ausschließen, bleibt unberührt. Geben Sie einen Versionsordner an, um Entferntes oder Ersetztes aufzubewahren.
 Options_DryRun.Content	Simulieren: zeigen, was passieren würde, ohne etwas zu ändern
 Destinations_DryRun.Content	Erst simulieren (ändert nichts)
-Tool_HashFolder.Text	Prüfsummendatei für einen Ordner erstellen…
-Tool_HashFiles.Text	Prüfsummendatei für Dateien erstellen…
 Rules_SkipJunk.Content	Unnötige Dateien überspringen (Thumbs.db, desktop.ini, .DS_Store, ~$…)
 Rules_OnErrorEnd.Content	Am Ende der Warteschlange erneut versuchen
 Rules_Safety.Text	Synchronisieren und Sicherheit
@@ -693,8 +682,6 @@ Peer_ReceivedTitle	Dateien empfangen
 Peer_Received	{0} Dateien von {1}, in {2}.
 Peer_RejectedTitle	Sendung abgelehnt
 Peer_Rejected	{0} hat versucht, Ihnen Dateien mit falschem Code zu senden.
-Tool_SendFiles.Text	Dateien an einen anderen PC senden…
-Tool_SendFolder.Text	Ordner an einen anderen PC senden…
 SendDialog.Title	An einen anderen PC senden
 SendDialog.PrimaryButtonText	Senden
 SendDialog.CloseButtonText	Abbrechen
@@ -1336,7 +1323,7 @@ Theme_solar-claro	Solar hell
 Theme_capuchino-claro	Cappuccino hell
 Info_Paste_Text	Wenn Sie Dateien kopieren (Strg+C) oder ausschneiden (Strg+X) und im Explorer oder auf dem Desktop einfügen (Strg+V), kopiert MegaCopier statt Windows: mit Warteschlange, Pause, Prüfung und Fortsetzen nach einer Unterbrechung.\n• Große Kopien auf ein externes Laufwerk: anhalten und später weitermachen.\n• Mehrere Kopien nacheinander: Sie warten in der Schlange, statt um den Datenträger zu kämpfen.\nFügen Sie im selben Ordner ein (um eine Datei zu duplizieren), übernimmt das weiter der Explorer.
 Info_Drag_Text	Beim Ziehen mit der linken Maustaste von einem Fenster in ein anderes kopiert (oder verschiebt) MegaCopier nach denselben Regeln wie Windows: auf demselben Laufwerk wird verschoben, Strg erzwingt Kopieren und Umschalt Verschieben.\n• Fotos sortieren, indem Sie sie zwischen Ordnern verschiedener Laufwerke ziehen.\n• Große Projekte verschieben, ohne den Explorer zu blockieren.\nAblegen auf einer Datei, einem ZIP oder im linken Bereich übernimmt weiter der Explorer.
-Info_WindowMode_Text	Wie das Fenster beim Kopieren aussieht.\n• Kompakt: nur Balken und Schaltflächen; braucht wenig Platz.\n• Vollständig: mit Dateiliste, Ziel, Optionen, Diagramm und Protokoll.\n• Automatisch: kompakt bei einer Kopie, vollständig bei mehreren.\nMit „Mehr“ und „Weniger“ wechseln Sie jederzeit.
+Info_WindowMode_Text	Das Kopierfenster hat drei Ansichten.\n• Klein: nur Balken und Schaltflächen. Die übliche beim Kopieren; sie lässt sich verbreitern, aber nicht erhöhen.\n• Mit Liste („Mehr“): Dateien, Ziel, Optionen, Grafik und Protokoll. Sie lässt sich vergrößern oder maximieren.\n• Mehrere Kopien: dieselbe, mit der Liste der Kopien links; sie erscheint von selbst, wenn es mehr als eine gibt.\n„Automatisch“ beginnt klein und wechselt zur vollen Ansicht, wenn mehrere Kopien laufen. „Mehr“ und „Weniger“ wechseln jederzeit.
 Info_Verify_Text	Nach jeder Datei liest MegaCopier sie direkt vom Zieldatenträger zurück und vergleicht ihren Fingerabdruck (Hash) mit dem des Originals. Stimmt etwas nicht, wird nur der beschädigte Teil neu kopiert.\n• Sicherungen, Fotos und wichtige Dokumente.\n• Alte oder günstige USB-Sticks und Laufwerke, die ohne Vorwarnung ausfallen können.\n• Kopien über das Netzwerk oder WLAN.\nDie Kopie dauert etwas länger (alles wird erneut gelesen), dafür ist sicher, dass sie identisch ist.
 Info_Conflict_Text	Was passiert, wenn im Ziel schon eine Datei mit gleichem Namen liegt.\n• Fragen: zeigt beide mit Größe, Datum und Miniatur, und Sie wählen.\n• Ersetzen, Überspringen, Ersetzen wenn neuer oder bei anderer Größe, Beide behalten („Name (2)“) oder Die vorhandene umbenennen.\nIdentische Dateien (gleiche Größe und Datum) werden nie erneut kopiert: Eine wiederholte Kopie überträgt nur Neues oder Geändertes. Existiert ein ganzer Ordner schon, fragt MegaCopier vor dem Start.
 Info_Hash_Text	Der Hash ist wie ein Fingerabdruck der Datei: Ändert sich ein einziges Byte, ändert sich der Abdruck. Er dient zur Prüfung und für gespeicherte Prüfsummen.\n• xxHash3: der schnellste; ideal zum Prüfen von Kopien.\n• SHA-256: der von Websites und Programmen am häufigsten genutzte, um Downloads zu prüfen.\n• MD5, SHA-1, BLAKE3…: falls ein anderes Programm einen bestimmten verlangt.\nIm Alltag: xxHash3 lassen.
@@ -1360,3 +1347,77 @@ Info_Tasks_Text	Eine gespeicherte Kopie, die Windows täglich, wöchentlich oder
 Info_Guard_Text	Datenträger können über die Jahre unbemerkt Dateien beschädigen. MegaCopier speichert den Fingerabdruck jeder Datei in ihr selbst und prüft sie erneut, wenn der PC frei ist. Hat sich eine verändert, ohne dass jemand sie bearbeitet hat, warnt es Sie rechtzeitig, um sie aus einer Sicherung zu holen.\n• Familienfotos und -videos.\n• Sicherungsplatten, die selten geöffnet werden.\nWas Sie bearbeiten, wird automatisch aktualisiert. Erfordert NTFS.
 Info_Webhook_Text	Nach jeder Kopie sendet MegaCopier die Zusammenfassung an eine Webadresse, sodass die Meldung aufs Handy oder in einen Chat kommt.\n• Discord, Slack oder Teams: Hinweise in einem Kanal.\n• ntfy.sh: Handy-Benachrichtigung fast ohne Installation.\n• Home Assistant: Automationen (Licht einschalten, wenn fertig…).
 Info_Connections_Text	Speichern Sie hier die Server, auf die Sie kopieren: FTP, SFTP, WebDAV (Nextcloud, NAS…) oder S3 (Backblaze, Wasabi, R2…). Sie erscheinen dann bei der Wahl von Quelle oder Ziel.\n• Sicherungen in die Cloud hochladen.\n• Dateien von einem Firmenserver laden.\nKennwörter liegen in der Windows-Anmeldeinformationsverwaltung, nie im Klartext.
+IconPack_android	Android
+IconPack_android-tonal	Android Tonal
+IconPack_macos	macOS
+IconPack_macos-color	macOS Farbe
+IconPack_ubuntu	Ubuntu
+IconPack_kde	KDE Plasma
+IconPack_gnome	GNOME
+IconPack_elementary	elementary OS
+IconPack_mint	Linux Mint
+IconPack_fedora	Fedora
+IconPack_popos	Pop!_OS
+IconPack_arch	Arch Linux
+IconPack_winxp	Windows XP
+IconPack_win7	Windows 7 Aero
+IconPack_metro	Windows 8 Metro
+IconPack_steam	Steam
+Gallery_More	Mehr anzeigen ({0})
+Gallery_Less	Weniger anzeigen
+Sound_GroupOwn	MegaCopier-Klänge
+Sound_GroupWindows	Windows-Klänge
+SoundName_bip	Piep · 0,3 s
+SoundName_pop	Plopp · 0,3 s
+SoundName_doble-bip	Doppelpiep · 0,6 s
+SoundName_gota	Tropfen · 0,6 s
+SoundName_burbuja	Blasen · 0,8 s
+SoundName_toque	Tippen · 0,9 s
+SoundName_pregunta	Frage · 1,4 s
+SoundName_aviso	Hinweis · 1,5 s
+SoundName_alerta	Tiefer Alarm · 1,6 s
+SoundName_marimba	Marimba · 1,8 s
+SoundName_brillo	Funkeln · 2 s
+SoundName_cristal	Kristall · 2,2 s
+SoundName_eco	Echo · 2,4 s
+SoundName_arpa	Harfe · 2,6 s
+SoundName_logro	Erfolg · 2,6 s
+SoundName_cascada	Kaskade · 3,6 s
+SoundName_aurora	Polarlicht · 3,8 s
+SoundName_orbital	Orbital · 3,8 s
+SoundName_amanecer	Sonnenaufgang · 4 s
+Panel_OpenCopied.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Ordner öffnen, der gerade kopiert wird
+Panel_RevealFile.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Diese Datei in ihrem Ordner zeigen
+Panel_RevealSource.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Quelle im Explorer zeigen
+Panel_RevealDestination.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Kopie im Ziel zeigen
+FolderAsk_Short	{0} von {1} Dateien ({2}) liegen schon in {3}.
+FolderAsk_SkipShort	Überspringen
+FolderAsk_AskEachShort	Einzeln
+FolderAsk_CancelShort	Abbrechen
+Settings_AutoAdminTitle.Text	Administratorrechte anfordern, wenn Windows eine Datei nicht kopieren lässt
+Settings_AutoAdminDescription.Text	Bleiben am Ende Dateien mit „Zugriff verweigert“ (geschützte Spiele, Ordner anderer Benutzer), fragt Windows einmal nach der Erlaubnis und sie werden kopiert, wie im Explorer.
+Info_AutoAdmin_Text	Manche Dateien lassen sich nur mit Administratorrechten lesen. Das passiert, wenn der Explorer „Sie benötigen Berechtigungen zur Durchführung des Vorgangs“ meldet.\n• Xbox- oder Microsoft-Store-Spiele: Ihre .exe-Dateien schützt Windows.\n• Ordner anderer Benutzer oder von Windows.\nMegaCopier kopiert alles andere und fragt am Ende nur einmal nach der Erlaubnis für diese Dateien. Lehnen Sie ab, bleiben sie mit ihrem Fehler markiert und Sie können es mit „Als Administrator kopieren“ erneut versuchen.
+Tool_Copy.Text	Kopieren…
+Tool_Move.Text	Verschieben…
+Tool_CopyText.Text	Kopieren…
+Tool_MoveText.Text	Verschieben…
+Tool_Send.Text	An anderen PC senden…
+Tool_Devices.Text	Handys, Kameras und Server
+Tool_Checksums.Text	Prüfen und reparieren
+Tool_Test.Text	Mit Prüfsummendateien prüfen…
+Tool_Hash.Text	Prüfsummendatei erstellen…
+Tool_Backups.Text	Sicherungen
+Picker_Open	Öffnen
+Picker_AllFiles	Alle Dateien
+Picker_SelectHere	Diesen Ordner wählen
+Picker_SelectOne	Markiertes wählen
+Picker_SelectMany	{0} Elemente wählen
+Picker_CopyTitle	Wählen Sie, was kopiert wird: Dateien oder Ordner
+Picker_MoveTitle	Wählen Sie, was verschoben wird: Dateien oder Ordner
+Picker_TestTitle	Prüfsummendateien oder Ordner zum Prüfen wählen
+Picker_ChecksumFiles	Prüfsummendateien
+Picker_HashTitle	Dateien oder Ordner für Prüfsummen wählen
+Picker_SendTitle	Wählen Sie, was gesendet wird: Dateien oder Ordner
+Picker_DeleteTitle	Wählen Sie, was gelöscht wird: Dateien oder Ordner
+Picker_WipeTitle	Wählen Sie, was sicher gelöscht wird: Dateien oder Ordner
+Picker_AddTitle	Wählen Sie, was zur Liste hinzukommt: Dateien oder Ordner

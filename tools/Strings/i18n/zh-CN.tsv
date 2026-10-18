@@ -149,12 +149,6 @@ AboutDialog.CloseButtonText	关闭
 About_DataFolder.Content	打开数据文件夹（设置、主题、历史记录、报告）
 About_Description.Text	Windows 11 文件复制工具，断电后即使是单个巨大文件也能继续复制，并校验已复制的部分。
 About_Features.Text	无缓存异步 I/O · 并行读写 · 哈希校验 (CRC32、xxHash、MD5、SHA) · 按磁盘排队 · 暂停与继续 · 移动 · 冲突处理 · 速度限制 · 复制列表 · 报告 · 主题。
-CopyFiles.Text	复制文件…
-CopyFolder.Text	复制文件夹…
-CopyFilesText.Text	复制文件
-CopyFolderText.Text	复制文件夹
-Files_AddFiles.Text	添加文件…
-Files_AddFolder.Text	添加文件夹…
 Files_AutoScroll.Content	跟随当前文件
 Files_CopyHashes.Text	复制哈希值
 Files_CopyPath.Text	复制路径
@@ -321,7 +315,6 @@ Tool_History.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	历史记�
 Tool_HistoryText.Text	历史记录
 Tool_LoadList.Text	加载复制列表…
 Tool_LoadListText.Text	加载列表
-Tool_MoveFiles.Text	移动文件…
 Tool_NewCopy.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	新建复制
 Tool_NewCopyText.Text	新建
 Tool_PauseAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	全部暂停
@@ -417,8 +410,6 @@ Settings_FavoritesEmpty	还没有收藏。
 Tool_CopyTo.Text	复制到
 Tool_CopyToEmpty	没有收藏或最近的文件夹
 Tool_CopyToManage	管理收藏…
-Tool_TestFiles.Text	检查校验和文件…
-Tool_TestFolder.Text	检查文件夹的校验和…
 Tool_Delete.Text	删除…
 Tool_Wipe.Text	安全删除…
 DestinationsDialog.Title	复制到哪里？
@@ -548,8 +539,6 @@ Options_MirrorInfo.Title	同步会从目标移除源中已没有的内容
 Options_MirrorInfo.Message	被筛选排除的内容不会被改动。设置版本文件夹可保存被移除或替换的文件。
 Options_DryRun.Content	模拟：只显示会发生什么，不做任何更改
 Destinations_DryRun.Content	先模拟（不做任何更改）
-Tool_HashFolder.Text	为文件夹创建校验和文件…
-Tool_HashFiles.Text	为文件创建校验和文件…
 Rules_SkipJunk.Content	跳过垃圾文件 (Thumbs.db, desktop.ini, .DS_Store, ~$…)
 Rules_OnErrorEnd.Content	在队列末尾重试
 Rules_Safety.Text	同步与安全
@@ -693,8 +682,6 @@ Peer_ReceivedTitle	已收到文件
 Peer_Received	来自 {1} 的 {0} 个文件，保存在 {2}。
 Peer_RejectedTitle	发送被拒绝
 Peer_Rejected	{0} 试图用错误的代码向你发送文件。
-Tool_SendFiles.Text	发送文件到其他电脑…
-Tool_SendFolder.Text	发送文件夹到其他电脑…
 SendDialog.Title	发送到其他电脑
 SendDialog.PrimaryButtonText	发送
 SendDialog.CloseButtonText	取消
@@ -1336,7 +1323,7 @@ Theme_solar-claro	浅色日光
 Theme_capuchino-claro	浅色卡布奇诺
 Info_Paste_Text	在资源管理器或桌面复制（Ctrl+C）或剪切（Ctrl+X）文件后粘贴（Ctrl+V）时，由 MegaCopier 代替 Windows 完成复制：有队列、暂停、校验，中断后还能继续。\n• 向外置硬盘复制大量文件：可以暂停，稍后继续。\n• 连续多次复制：会排队，而不是争抢同一块磁盘。\n如果粘贴到同一文件夹（复制出副本），仍由资源管理器完成。
 Info_Drag_Text	用左键把文件从一个窗口拖到另一个窗口时，由 MegaCopier 按与 Windows 相同的规则复制（或移动）：同一驱动器内为移动，按 Ctrl 强制复制，按 Shift 强制移动。\n• 在不同磁盘的文件夹之间拖动整理照片。\n• 移动大型项目而不让资源管理器卡住。\n拖放到文件、ZIP 或左侧窗格上时，仍由资源管理器处理。
-Info_WindowMode_Text	复制时窗口的样子。\n• 紧凑：只有进度条和按钮，占用空间小。\n• 完整：包含文件列表、目标、选项、图表和日志。\n• 自动：只有一个复制时为紧凑，有多个时为完整。\n“更多”和“更少”按钮可随时切换。
+Info_WindowMode_Text	复制窗口有三种视图。\n• 小窗口：只有进度条和按钮。复制时的默认视图；可以加宽，但不能加高。\n• 带列表（“更多”）：文件、目标、选项、图表和日志。可以放大或最大化。\n• 多个复制：同上，左侧有复制列表；有多个复制时自动出现。\n“自动”从小窗口开始，同时有多个复制时切换到完整视图。“更多”和“更少”随时切换。
 Info_Verify_Text	每个文件完成后，MegaCopier 会直接从目标磁盘重新读取，并将其指纹（哈希）与原文件比较。如有不一致，只重新复制损坏的部分。\n• 备份、照片和重要文档。\n• 可能毫无征兆就出故障的旧 U 盘、廉价 U 盘和硬盘。\n• 通过网络或 Wi-Fi 复制。\n复制会稍慢一些（需要全部重新读取），换来的是确保副本完全一致。
 Info_Conflict_Text	目标位置已有同名文件时怎么办。\n• 询问：并排显示两个文件的大小、日期和缩略图，由你选择。\n• 替换、跳过、较新时替换或大小不同时替换、保留两者（“名称 (2)”）或重命名已有文件。\n完全相同的文件（大小和日期一致）永远不会重复复制：再次复制只会复制新增或改动的内容。如果整个文件夹已存在，MegaCopier 会在开始前询问。
 Info_Hash_Text	哈希就像文件的指纹：哪怕只改了一个字节，指纹也会变。用于校验和保存的校验和。\n• xxHash3：最快，适合校验复制结果。\n• SHA-256：网站和程序最常用来核对下载文件。\n• MD5、SHA-1、BLAKE3…：当其他程序要求特定算法时使用。\n日常使用保持 xxHash3 即可。
@@ -1360,3 +1347,77 @@ Info_Tasks_Text	一个保存好的复制，由 Windows 在你选定的时间每�
 Info_Guard_Text	磁盘可能在多年里悄悄损坏文件。MegaCopier 把每个文件的指纹保存在文件内部，电脑空闲时重新校验。如果某个文件在没人动过的情况下变了，会及时提醒你从备份中恢复。\n• 家庭照片和视频。\n• 很少打开的备份盘。\n你自己编辑的文件会自动更新指纹。需要 NTFS 磁盘。
 Info_Webhook_Text	每个复制完成后，MegaCopier 会把摘要发送到一个网址，提醒就能到达你的手机或聊天群。\n• Discord、Slack 或 Teams：在频道里收到提醒。\n• ntfy.sh：几乎无需安装就能在手机上收到通知。\n• Home Assistant：自动化（完成后开灯…）。
 Info_Connections_Text	在这里保存你要复制到的服务器：FTP、SFTP、WebDAV（Nextcloud、NAS…）或 S3（Backblaze、Wasabi、R2…）。之后选择源或目标时就会出现。\n• 把备份上传到云端。\n• 从公司服务器下载文件。\n密码保存在 Windows 凭据管理器中，绝不以明文保存。
+IconPack_android	Android
+IconPack_android-tonal	Android 色调
+IconPack_macos	macOS
+IconPack_macos-color	macOS 彩色
+IconPack_ubuntu	Ubuntu
+IconPack_kde	KDE Plasma
+IconPack_gnome	GNOME
+IconPack_elementary	elementary OS
+IconPack_mint	Linux Mint
+IconPack_fedora	Fedora
+IconPack_popos	Pop!_OS
+IconPack_arch	Arch Linux
+IconPack_winxp	Windows XP
+IconPack_win7	Windows 7 Aero
+IconPack_metro	Windows 8 Metro
+IconPack_steam	Steam
+Gallery_More	显示更多（{0}）
+Gallery_Less	收起
+Sound_GroupOwn	MegaCopier 声音
+Sound_GroupWindows	Windows 声音
+SoundName_bip	哔 · 0.3 秒
+SoundName_pop	啵 · 0.3 秒
+SoundName_doble-bip	双哔 · 0.6 秒
+SoundName_gota	水滴 · 0.6 秒
+SoundName_burbuja	气泡 · 0.8 秒
+SoundName_toque	轻敲 · 0.9 秒
+SoundName_pregunta	提问 · 1.4 秒
+SoundName_aviso	提示 · 1.5 秒
+SoundName_alerta	低沉警示 · 1.6 秒
+SoundName_marimba	马林巴 · 1.8 秒
+SoundName_brillo	闪光 · 2 秒
+SoundName_cristal	水晶 · 2.2 秒
+SoundName_eco	回声 · 2.4 秒
+SoundName_arpa	竖琴 · 2.6 秒
+SoundName_logro	成就 · 2.6 秒
+SoundName_cascada	瀑布 · 3.6 秒
+SoundName_aurora	极光 · 3.8 秒
+SoundName_orbital	轨道 · 3.8 秒
+SoundName_amanecer	日出 · 4 秒
+Panel_OpenCopied.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	打开正在复制的文件夹
+Panel_RevealFile.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	在文件夹中显示此文件
+Panel_RevealSource.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	在资源管理器中显示来源
+Panel_RevealDestination.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	在目标位置显示副本
+FolderAsk_Short	{3} 中已有 {1} 个文件中的 {0} 个（{2}）。
+FolderAsk_SkipShort	跳过
+FolderAsk_AskEachShort	逐个
+FolderAsk_CancelShort	取消
+Settings_AutoAdminTitle.Text	Windows 不允许复制文件时请求管理员权限
+Settings_AutoAdminDescription.Text	复制结束时如有“拒绝访问”的文件（受保护的游戏、其他用户的文件夹），Windows 会请求一次权限，然后像资源管理器一样复制它们。
+Info_AutoAdmin_Text	有些文件只有管理员权限才能读取，就像资源管理器提示“你需要权限来执行此操作”时那样。\n• Xbox 或 Microsoft Store 游戏：其 .exe 受 Windows 保护。\n• 其他用户或 Windows 的文件夹。\nMegaCopier 会先复制其余内容，最后只为这些文件请求一次权限。如果拒绝，它们会保留错误标记，可以用“以管理员身份复制”重试。
+Tool_Copy.Text	复制…
+Tool_Move.Text	移动…
+Tool_CopyText.Text	复制…
+Tool_MoveText.Text	移动…
+Tool_Send.Text	发送到另一台电脑…
+Tool_Devices.Text	手机、相机和服务器
+Tool_Checksums.Text	校验与修复
+Tool_Test.Text	用校验文件检查…
+Tool_Hash.Text	创建校验文件…
+Tool_Backups.Text	备份
+Picker_Open	打开
+Picker_AllFiles	所有文件
+Picker_SelectHere	选择此文件夹
+Picker_SelectOne	选择所选项
+Picker_SelectMany	选择 {0} 项
+Picker_CopyTitle	选择要复制的内容：文件或文件夹
+Picker_MoveTitle	选择要移动的内容：文件或文件夹
+Picker_TestTitle	选择要检查的校验文件或文件夹
+Picker_ChecksumFiles	校验文件
+Picker_HashTitle	选择要创建校验的文件或文件夹
+Picker_SendTitle	选择要发送的内容：文件或文件夹
+Picker_DeleteTitle	选择要删除的内容：文件或文件夹
+Picker_WipeTitle	选择要安全删除的内容：文件或文件夹
+Picker_AddTitle	选择要添加到列表的内容：文件或文件夹

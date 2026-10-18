@@ -155,12 +155,6 @@
   <data name="About_DataFolder.Content" xml:space="preserve"><value>Открыть папку данных (параметры, темы, журнал, отчёты)</value></data>
   <data name="About_Description.Text" xml:space="preserve"><value>Программа копирования для Windows 11, которая продолжает даже один огромный файл после отключения питания, проверяя уже скопированное.</value></data>
   <data name="About_Features.Text" xml:space="preserve"><value>Асинхронный ввод-вывод без кэша · параллельное чтение и запись · проверка хешем (CRC32, xxHash, MD5, SHA) · очередь по дискам · пауза и продолжение · перемещение · конфликты · ограничение скорости · списки копирования · отчёты · темы.</value></data>
-  <data name="CopyFiles.Text" xml:space="preserve"><value>Копировать файлы…</value></data>
-  <data name="CopyFolder.Text" xml:space="preserve"><value>Копировать папку…</value></data>
-  <data name="CopyFilesText.Text" xml:space="preserve"><value>Копировать файлы</value></data>
-  <data name="CopyFolderText.Text" xml:space="preserve"><value>Копировать папку</value></data>
-  <data name="Files_AddFiles.Text" xml:space="preserve"><value>Добавить файлы…</value></data>
-  <data name="Files_AddFolder.Text" xml:space="preserve"><value>Добавить папку…</value></data>
   <data name="Files_AutoScroll.Content" xml:space="preserve"><value>Следить за текущим</value></data>
   <data name="Files_CopyHashes.Text" xml:space="preserve"><value>Копировать хеши</value></data>
   <data name="Files_CopyPath.Text" xml:space="preserve"><value>Копировать путь</value></data>
@@ -327,7 +321,6 @@
   <data name="Tool_HistoryText.Text" xml:space="preserve"><value>Журнал</value></data>
   <data name="Tool_LoadList.Text" xml:space="preserve"><value>Загрузить список копирования…</value></data>
   <data name="Tool_LoadListText.Text" xml:space="preserve"><value>Загрузить список</value></data>
-  <data name="Tool_MoveFiles.Text" xml:space="preserve"><value>Переместить файлы…</value></data>
   <data name="Tool_NewCopy.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Новое копирование</value></data>
   <data name="Tool_NewCopyText.Text" xml:space="preserve"><value>Новое</value></data>
   <data name="Tool_PauseAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Приостановить все</value></data>
@@ -423,8 +416,6 @@
   <data name="Tool_CopyTo.Text" xml:space="preserve"><value>Копировать в</value></data>
   <data name="Tool_CopyToEmpty" xml:space="preserve"><value>Нет избранных и недавних</value></data>
   <data name="Tool_CopyToManage" xml:space="preserve"><value>Управление избранным…</value></data>
-  <data name="Tool_TestFiles.Text" xml:space="preserve"><value>Проверить файлы контрольных сумм…</value></data>
-  <data name="Tool_TestFolder.Text" xml:space="preserve"><value>Проверить контрольные суммы папки…</value></data>
   <data name="Tool_Delete.Text" xml:space="preserve"><value>Удалить…</value></data>
   <data name="Tool_Wipe.Text" xml:space="preserve"><value>Удалить без возможности восстановления…</value></data>
   <data name="DestinationsDialog.Title" xml:space="preserve"><value>Куда?</value></data>
@@ -554,8 +545,6 @@
   <data name="Options_MirrorInfo.Message" xml:space="preserve"><value>То, что исключено фильтрами, не трогается. Укажите папку версий, чтобы сохранять удалённое или заменённое.</value></data>
   <data name="Options_DryRun.Content" xml:space="preserve"><value>Смоделировать: показать, что будет сделано, ничего не меняя</value></data>
   <data name="Destinations_DryRun.Content" xml:space="preserve"><value>Сначала смоделировать (ничего не меняет)</value></data>
-  <data name="Tool_HashFolder.Text" xml:space="preserve"><value>Создать файл контрольных сумм для папки…</value></data>
-  <data name="Tool_HashFiles.Text" xml:space="preserve"><value>Создать файл контрольных сумм для файлов…</value></data>
   <data name="Rules_SkipJunk.Content" xml:space="preserve"><value>Пропускать мусорные файлы (Thumbs.db, desktop.ini, .DS_Store, ~$…)</value></data>
   <data name="Rules_OnErrorEnd.Content" xml:space="preserve"><value>Повторить в конце очереди</value></data>
   <data name="Rules_Safety.Text" xml:space="preserve"><value>Синхронизация и безопасность</value></data>
@@ -699,8 +688,6 @@
   <data name="Peer_Received" xml:space="preserve"><value>Файлов от {1}: {0}, в {2}.</value></data>
   <data name="Peer_RejectedTitle" xml:space="preserve"><value>Отправка отклонена</value></data>
   <data name="Peer_Rejected" xml:space="preserve"><value>{0} пытался отправить вам файлы с неверным кодом.</value></data>
-  <data name="Tool_SendFiles.Text" xml:space="preserve"><value>Отправить файлы на другой компьютер…</value></data>
-  <data name="Tool_SendFolder.Text" xml:space="preserve"><value>Отправить папку на другой компьютер…</value></data>
   <data name="SendDialog.Title" xml:space="preserve"><value>Отправить на другой компьютер</value></data>
   <data name="SendDialog.PrimaryButtonText" xml:space="preserve"><value>Отправить</value></data>
   <data name="SendDialog.CloseButtonText" xml:space="preserve"><value>Отмена</value></data>
@@ -1342,7 +1329,7 @@
   <data name="Theme_capuchino-claro" xml:space="preserve"><value>Светлый капучино</value></data>
   <data name="Info_Paste_Text" xml:space="preserve"><value>Когда вы копируете (Ctrl+C) или вырезаете (Ctrl+X) файлы и вставляете их (Ctrl+V) в Проводнике или на рабочем столе, копирует MegaCopier, а не Windows: с очередью, паузой, проверкой и продолжением после обрыва.\n• Большие копии на внешний диск: можно поставить на паузу и продолжить позже.\n• Несколько копий подряд: встают в очередь, а не спорят за диск.\nЕсли вставить в ту же папку (чтобы сделать дубликат), это по-прежнему делает Проводник.</value></data>
   <data name="Info_Drag_Text" xml:space="preserve"><value>При перетаскивании файлов левой кнопкой из одного окна в другое копирует (или перемещает) MegaCopier по тем же правилам, что и Windows: на том же диске — перемещение, Ctrl — копирование, Shift — перемещение.\n• Разбирать фото, перетаскивая их между папками на разных дисках.\n• Перемещать большие проекты, не блокируя Проводник.\nБросить на файл, ZIP или левую панель — это по-прежнему делает Проводник.</value></data>
-  <data name="Info_WindowMode_Text" xml:space="preserve"><value>Как выглядит окно во время копирования.\n• Компактное: только индикаторы и кнопки; занимает мало места.\n• Полное: со списком файлов, местом назначения, параметрами, графиком и журналом.\n• Автоматически: компактное при одном копировании и полное, когда их несколько.\nКнопки «Больше» и «Меньше» переключают вид в любой момент.</value></data>
+  <data name="Info_WindowMode_Text" xml:space="preserve"><value>У окна копирования три вида.\n• Маленький: только полосы и кнопки. Обычный при копировании; его можно расширить, но не сделать выше.\n• Со списком («Больше»): файлы, назначение, параметры, график и журнал. Можно увеличить или развернуть.\n• Несколько копий: тот же, со списком копий слева; появляется сам, когда копий больше одной.\n«Автоматически» начинает с маленького и переходит к полному, когда идут несколько копий. «Больше» и «Меньше» переключают вид в любой момент.</value></data>
   <data name="Info_Verify_Text" xml:space="preserve"><value>После каждого файла MegaCopier заново читает его прямо с диска назначения и сравнивает его отпечаток (хеш) с оригиналом. Если что-то не совпадает, повторно копируется только повреждённая часть.\n• Резервные копии, фото и важные документы.\n• Старые или дешёвые флешки и диски, которые могут отказать без предупреждения.\n• Копирование по сети или Wi-Fi.\nКопирование идёт чуть дольше (всё читается ещё раз), зато вы уверены, что копия идентична.</value></data>
   <data name="Info_Conflict_Text" xml:space="preserve"><value>Что делать, если в месте назначения уже есть файл с тем же именем.\n• Спросить: показывает оба файла с размером, датой и миниатюрой, а вы выбираете.\n• Заменить, Пропустить, Заменить, если новее или другого размера, Оставить оба («имя (2)») или Переименовать существующий.\nОдинаковые файлы (тот же размер и дата) никогда не копируются повторно: повторное копирование переносит только новое или изменённое. Если уже есть целая папка, MegaCopier спросит перед началом.</value></data>
   <data name="Info_Hash_Text" xml:space="preserve"><value>Хеш — это как отпечаток пальца файла: если меняется хотя бы один байт, меняется и отпечаток. Он используется при проверке и в сохранённых контрольных суммах.\n• xxHash3: самый быстрый; идеален для проверки копий.\n• SHA-256: его чаще всего используют сайты и программы для проверки загрузок.\n• MD5, SHA-1, BLAKE3…: если другая программа просит конкретный.\nДля повседневной работы оставьте xxHash3.</value></data>
@@ -1366,4 +1353,78 @@
   <data name="Info_Guard_Text" xml:space="preserve"><value>Диски могут незаметно портить файлы с годами. MegaCopier хранит отпечаток каждого файла внутри него и, когда компьютер свободен, проверяет их заново. Если файл изменился, хотя его никто не трогал, вы узнаете вовремя, чтобы восстановить его из резервной копии.\n• Семейные фото и видео.\n• Диски с резервными копиями, которые редко открывают.\nТо, что вы редактируете, обновляется само. Нужны диски NTFS.</value></data>
   <data name="Info_Webhook_Text" xml:space="preserve"><value>По окончании каждого копирования MegaCopier отправляет сводку на веб-адрес, и уведомление приходит на телефон или в чат.\n• Discord, Slack или Teams: сообщения в канал.\n• ntfy.sh: уведомление на телефон почти без установки.\n• Home Assistant: автоматизации (включить свет по окончании…).</value></data>
   <data name="Info_Connections_Text" xml:space="preserve"><value>Сохраните здесь серверы, на которые копируете: FTP, SFTP, WebDAV (Nextcloud, NAS…) или S3 (Backblaze, Wasabi, R2…). Потом они появятся при выборе источника или назначения.\n• Загружать резервные копии в облако.\n• Скачивать файлы с сервера компании.\nПароли хранятся в диспетчере учётных данных Windows, никогда открытым текстом.</value></data>
+  <data name="IconPack_android" xml:space="preserve"><value>Android</value></data>
+  <data name="IconPack_android-tonal" xml:space="preserve"><value>Android тональный</value></data>
+  <data name="IconPack_macos" xml:space="preserve"><value>macOS</value></data>
+  <data name="IconPack_macos-color" xml:space="preserve"><value>macOS цветной</value></data>
+  <data name="IconPack_ubuntu" xml:space="preserve"><value>Ubuntu</value></data>
+  <data name="IconPack_kde" xml:space="preserve"><value>KDE Plasma</value></data>
+  <data name="IconPack_gnome" xml:space="preserve"><value>GNOME</value></data>
+  <data name="IconPack_elementary" xml:space="preserve"><value>elementary OS</value></data>
+  <data name="IconPack_mint" xml:space="preserve"><value>Linux Mint</value></data>
+  <data name="IconPack_fedora" xml:space="preserve"><value>Fedora</value></data>
+  <data name="IconPack_popos" xml:space="preserve"><value>Pop!_OS</value></data>
+  <data name="IconPack_arch" xml:space="preserve"><value>Arch Linux</value></data>
+  <data name="IconPack_winxp" xml:space="preserve"><value>Windows XP</value></data>
+  <data name="IconPack_win7" xml:space="preserve"><value>Windows 7 Aero</value></data>
+  <data name="IconPack_metro" xml:space="preserve"><value>Windows 8 Metro</value></data>
+  <data name="IconPack_steam" xml:space="preserve"><value>Steam</value></data>
+  <data name="Gallery_More" xml:space="preserve"><value>Показать ещё ({0})</value></data>
+  <data name="Gallery_Less" xml:space="preserve"><value>Показать меньше</value></data>
+  <data name="Sound_GroupOwn" xml:space="preserve"><value>Звуки MegaCopier</value></data>
+  <data name="Sound_GroupWindows" xml:space="preserve"><value>Звуки Windows</value></data>
+  <data name="SoundName_bip" xml:space="preserve"><value>Бип · 0,3 с</value></data>
+  <data name="SoundName_pop" xml:space="preserve"><value>Поп · 0,3 с</value></data>
+  <data name="SoundName_doble-bip" xml:space="preserve"><value>Двойной бип · 0,6 с</value></data>
+  <data name="SoundName_gota" xml:space="preserve"><value>Капля · 0,6 с</value></data>
+  <data name="SoundName_burbuja" xml:space="preserve"><value>Пузырьки · 0,8 с</value></data>
+  <data name="SoundName_toque" xml:space="preserve"><value>Касание · 0,9 с</value></data>
+  <data name="SoundName_pregunta" xml:space="preserve"><value>Вопрос · 1,4 с</value></data>
+  <data name="SoundName_aviso" xml:space="preserve"><value>Уведомление · 1,5 с</value></data>
+  <data name="SoundName_alerta" xml:space="preserve"><value>Низкий сигнал · 1,6 с</value></data>
+  <data name="SoundName_marimba" xml:space="preserve"><value>Маримба · 1,8 с</value></data>
+  <data name="SoundName_brillo" xml:space="preserve"><value>Искры · 2 с</value></data>
+  <data name="SoundName_cristal" xml:space="preserve"><value>Хрусталь · 2,2 с</value></data>
+  <data name="SoundName_eco" xml:space="preserve"><value>Эхо · 2,4 с</value></data>
+  <data name="SoundName_arpa" xml:space="preserve"><value>Арфа · 2,6 с</value></data>
+  <data name="SoundName_logro" xml:space="preserve"><value>Достижение · 2,6 с</value></data>
+  <data name="SoundName_cascada" xml:space="preserve"><value>Каскад · 3,6 с</value></data>
+  <data name="SoundName_aurora" xml:space="preserve"><value>Сияние · 3,8 с</value></data>
+  <data name="SoundName_orbital" xml:space="preserve"><value>Орбита · 3,8 с</value></data>
+  <data name="SoundName_amanecer" xml:space="preserve"><value>Рассвет · 4 с</value></data>
+  <data name="Panel_OpenCopied.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Открыть копируемую папку</value></data>
+  <data name="Panel_RevealFile.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Показать файл в папке</value></data>
+  <data name="Panel_RevealSource.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Показать источник в проводнике</value></data>
+  <data name="Panel_RevealDestination.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Показать копию в месте назначения</value></data>
+  <data name="FolderAsk_Short" xml:space="preserve"><value>{0} из {1} файлов ({2}) уже есть в {3}.</value></data>
+  <data name="FolderAsk_SkipShort" xml:space="preserve"><value>Пропустить</value></data>
+  <data name="FolderAsk_AskEachShort" xml:space="preserve"><value>По одному</value></data>
+  <data name="FolderAsk_CancelShort" xml:space="preserve"><value>Отмена</value></data>
+  <data name="Settings_AutoAdminTitle.Text" xml:space="preserve"><value>Запрашивать права администратора, если Windows не даёт скопировать файл</value></data>
+  <data name="Settings_AutoAdminDescription.Text" xml:space="preserve"><value>Если в конце остались файлы с «отказано в доступе» (защищённые игры, папки других пользователей), Windows один раз спросит разрешение, и они скопируются, как в проводнике.</value></data>
+  <data name="Info_AutoAdmin_Text" xml:space="preserve"><value>Некоторые файлы можно прочитать только с правами администратора. Так бывает, когда проводник пишет «Нужно разрешение на выполнение этой операции».\n• Игры Xbox или Microsoft Store: их .exe защищены Windows.\n• Папки других пользователей или Windows.\nMegaCopier копирует всё остальное и в конце один раз просит разрешение для этих файлов. Если отказаться, они останутся с ошибкой, и можно повторить через «Копировать как администратор».</value></data>
+  <data name="Tool_Copy.Text" xml:space="preserve"><value>Копировать…</value></data>
+  <data name="Tool_Move.Text" xml:space="preserve"><value>Переместить…</value></data>
+  <data name="Tool_CopyText.Text" xml:space="preserve"><value>Копировать…</value></data>
+  <data name="Tool_MoveText.Text" xml:space="preserve"><value>Переместить…</value></data>
+  <data name="Tool_Send.Text" xml:space="preserve"><value>Отправить на другой ПК…</value></data>
+  <data name="Tool_Devices.Text" xml:space="preserve"><value>Телефоны, камеры и серверы</value></data>
+  <data name="Tool_Checksums.Text" xml:space="preserve"><value>Проверка и восстановление</value></data>
+  <data name="Tool_Test.Text" xml:space="preserve"><value>Проверить по файлам сумм…</value></data>
+  <data name="Tool_Hash.Text" xml:space="preserve"><value>Создать файл сумм…</value></data>
+  <data name="Tool_Backups.Text" xml:space="preserve"><value>Резервные копии</value></data>
+  <data name="Picker_Open" xml:space="preserve"><value>Открыть</value></data>
+  <data name="Picker_AllFiles" xml:space="preserve"><value>Все файлы</value></data>
+  <data name="Picker_SelectHere" xml:space="preserve"><value>Выбрать эту папку</value></data>
+  <data name="Picker_SelectOne" xml:space="preserve"><value>Выбрать отмеченное</value></data>
+  <data name="Picker_SelectMany" xml:space="preserve"><value>Выбрать элементы: {0}</value></data>
+  <data name="Picker_CopyTitle" xml:space="preserve"><value>Выберите, что копировать: файлы или папки</value></data>
+  <data name="Picker_MoveTitle" xml:space="preserve"><value>Выберите, что переместить: файлы или папки</value></data>
+  <data name="Picker_TestTitle" xml:space="preserve"><value>Выберите файлы сумм или папки для проверки</value></data>
+  <data name="Picker_ChecksumFiles" xml:space="preserve"><value>Файлы сумм</value></data>
+  <data name="Picker_HashTitle" xml:space="preserve"><value>Выберите файлы или папки для создания сумм</value></data>
+  <data name="Picker_SendTitle" xml:space="preserve"><value>Выберите, что отправить: файлы или папки</value></data>
+  <data name="Picker_DeleteTitle" xml:space="preserve"><value>Выберите, что удалить: файлы или папки</value></data>
+  <data name="Picker_WipeTitle" xml:space="preserve"><value>Выберите, что надёжно удалить: файлы или папки</value></data>
+  <data name="Picker_AddTitle" xml:space="preserve"><value>Выберите, что добавить в список: файлы или папки</value></data>
 </root>

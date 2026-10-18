@@ -155,12 +155,6 @@
   <data name="About_DataFolder.Content" xml:space="preserve"><value>Open the data folder (settings, themes, history, reports)</value></data>
   <data name="About_Description.Text" xml:space="preserve"><value>File copier for Windows 11 that resumes even a single huge file after a power cut, verifying what was already copied.</value></data>
   <data name="About_Features.Text" xml:space="preserve"><value>Unbuffered async I/O · parallel reads and writes · hash verification (CRC32, xxHash, MD5, SHA) · per-disk queue · pause and resume · move · conflicts · speed limit · copy lists · reports · themes.</value></data>
-  <data name="CopyFiles.Text" xml:space="preserve"><value>Copy files…</value></data>
-  <data name="CopyFolder.Text" xml:space="preserve"><value>Copy a folder…</value></data>
-  <data name="CopyFilesText.Text" xml:space="preserve"><value>Copy files</value></data>
-  <data name="CopyFolderText.Text" xml:space="preserve"><value>Copy folder</value></data>
-  <data name="Files_AddFiles.Text" xml:space="preserve"><value>Add files…</value></data>
-  <data name="Files_AddFolder.Text" xml:space="preserve"><value>Add folder…</value></data>
   <data name="Files_AutoScroll.Content" xml:space="preserve"><value>Follow current</value></data>
   <data name="Files_CopyHashes.Text" xml:space="preserve"><value>Copy hashes</value></data>
   <data name="Files_CopyPath.Text" xml:space="preserve"><value>Copy path</value></data>
@@ -327,7 +321,6 @@
   <data name="Tool_HistoryText.Text" xml:space="preserve"><value>History</value></data>
   <data name="Tool_LoadList.Text" xml:space="preserve"><value>Load a transfer list…</value></data>
   <data name="Tool_LoadListText.Text" xml:space="preserve"><value>Load list</value></data>
-  <data name="Tool_MoveFiles.Text" xml:space="preserve"><value>Move files…</value></data>
   <data name="Tool_NewCopy.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>New transfer</value></data>
   <data name="Tool_NewCopyText.Text" xml:space="preserve"><value>New</value></data>
   <data name="Tool_PauseAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Pause all</value></data>
@@ -423,8 +416,6 @@
   <data name="Tool_CopyTo.Text" xml:space="preserve"><value>Copy to</value></data>
   <data name="Tool_CopyToEmpty" xml:space="preserve"><value>No favorites or recent folders</value></data>
   <data name="Tool_CopyToManage" xml:space="preserve"><value>Manage favorites…</value></data>
-  <data name="Tool_TestFiles.Text" xml:space="preserve"><value>Test checksum files…</value></data>
-  <data name="Tool_TestFolder.Text" xml:space="preserve"><value>Test checksums in a folder…</value></data>
   <data name="Tool_Delete.Text" xml:space="preserve"><value>Delete…</value></data>
   <data name="Tool_Wipe.Text" xml:space="preserve"><value>Securely delete…</value></data>
   <data name="DestinationsDialog.Title" xml:space="preserve"><value>Where to?</value></data>
@@ -554,8 +545,6 @@
   <data name="Options_MirrorInfo.Message" xml:space="preserve"><value>Anything excluded by the filters is left alone. Set a versions folder to keep what is removed or replaced.</value></data>
   <data name="Options_DryRun.Content" xml:space="preserve"><value>Simulate: show what would happen without changing anything</value></data>
   <data name="Destinations_DryRun.Content" xml:space="preserve"><value>Simulate first (changes nothing)</value></data>
-  <data name="Tool_HashFolder.Text" xml:space="preserve"><value>Create a checksum file for a folder…</value></data>
-  <data name="Tool_HashFiles.Text" xml:space="preserve"><value>Create a checksum file for files…</value></data>
   <data name="Rules_SkipJunk.Content" xml:space="preserve"><value>Skip junk files (Thumbs.db, desktop.ini, .DS_Store, ~$…)</value></data>
   <data name="Rules_OnErrorEnd.Content" xml:space="preserve"><value>Retry it at the end of the queue</value></data>
   <data name="Rules_Safety.Text" xml:space="preserve"><value>Sync and safety</value></data>
@@ -699,8 +688,6 @@
   <data name="Peer_Received" xml:space="preserve"><value>{0} files from {1}, in {2}.</value></data>
   <data name="Peer_RejectedTitle" xml:space="preserve"><value>Transfer rejected</value></data>
   <data name="Peer_Rejected" xml:space="preserve"><value>{0} tried to send you files with a wrong code.</value></data>
-  <data name="Tool_SendFiles.Text" xml:space="preserve"><value>Send files to another PC…</value></data>
-  <data name="Tool_SendFolder.Text" xml:space="preserve"><value>Send a folder to another PC…</value></data>
   <data name="SendDialog.Title" xml:space="preserve"><value>Send to another PC</value></data>
   <data name="SendDialog.PrimaryButtonText" xml:space="preserve"><value>Send</value></data>
   <data name="SendDialog.CloseButtonText" xml:space="preserve"><value>Cancel</value></data>
@@ -1342,7 +1329,7 @@
   <data name="Theme_capuchino-claro" xml:space="preserve"><value>Light cappuccino</value></data>
   <data name="Info_Paste_Text" xml:space="preserve"><value>When you copy (Ctrl+C) or cut (Ctrl+X) files and paste them (Ctrl+V) in File Explorer or on the desktop, MegaCopier does the copy instead of Windows: with a queue, pause, verification and the option to resume if it is interrupted.\n• Big copies to an external drive: you can pause them and continue later.\n• Several copies in a row: they queue up instead of fighting over the disk.\nIf you paste into the same folder (to duplicate a file), File Explorer still does it.</value></data>
   <data name="Info_Drag_Text" xml:space="preserve"><value>When you drag files with the left button from one window to another, MegaCopier copies (or moves) them with the same rules as Windows: on the same drive it moves, Ctrl forces a copy and Shift forces a move.\n• Sort photos by dragging them between folders on different drives.\n• Move big projects without freezing File Explorer.\nDropping onto a file, a ZIP or the left pane is still handled by File Explorer.</value></data>
-  <data name="Info_WindowMode_Text" xml:space="preserve"><value>How the window looks while copying.\n• Compact: just the bars and buttons; takes little room.\n• Full: with the file list, destination, options, chart and log.\n• Automatic: compact with a single copy and full when there are several.\nThe &quot;More&quot; and &quot;Less&quot; buttons switch between the two at any time.</value></data>
+  <data name="Info_WindowMode_Text" xml:space="preserve"><value>The copy window has three views.\n• Small: just the bars and buttons. It’s the usual one while copying; you can make it wider, but not taller.\n• With the list (“More”): files, destination, options, graph and log. It can be enlarged or maximized.\n• Several copies: the same, with the list of copies on the left; it appears by itself when there’s more than one.\n“Automatic” starts small and switches to the full view when several copies run at once. “More” and “Less” switch views at any time.</value></data>
   <data name="Info_Verify_Text" xml:space="preserve"><value>When each file finishes, MegaCopier reads it back straight from the destination disk and compares its fingerprint (hash) with the original’s. If anything doesn’t match, it re-copies only the damaged part.\n• Backups, photos and important documents.\n• Old or cheap USB sticks and drives, which can fail without warning.\n• Copies over the network or Wi-Fi.\nThe copy takes a bit longer (everything has to be read again), in exchange for knowing it is identical.</value></data>
   <data name="Info_Conflict_Text" xml:space="preserve"><value>What to do when the destination already has a file with the same name.\n• Ask: shows you both, with their size, date and a thumbnail, and you choose.\n• Replace, Skip, Replace if newer or if the size differs, Keep both (&quot;name (2)&quot;) or Rename the existing one.\nIdentical files (same size and date) are never copied again: repeating a copy only copies what is new or changed. If a whole folder already exists, MegaCopier asks before starting.</value></data>
   <data name="Info_Hash_Text" xml:space="preserve"><value>The hash is like a file’s fingerprint: if a single byte changes, the fingerprint changes. It is used when verifying and in saved checksums.\n• xxHash3: the fastest; ideal for verifying copies.\n• SHA-256: the one websites and programs use most to check downloads.\n• MD5, SHA-1, BLAKE3…: in case another program asks for a specific one.\nFor everyday use, keep xxHash3.</value></data>
@@ -1366,4 +1353,78 @@
   <data name="Info_Guard_Text" xml:space="preserve"><value>Disks can silently damage files over the years. MegaCopier stores each file’s fingerprint inside it and, when the computer is idle, checks them again. If one changed without anyone touching it, it warns you in time to restore it from a backup.\n• Family photos and videos.\n• Backup disks that are rarely opened.\nWhat you edit updates by itself. Requires NTFS disks.</value></data>
   <data name="Info_Webhook_Text" xml:space="preserve"><value>When each copy finishes, MegaCopier sends the summary to a web address, so the notification reaches your phone or a chat.\n• Discord, Slack or Teams: notices in a channel.\n• ntfy.sh: a phone notification with almost nothing to install.\n• Home Assistant: automations (turn on a light when done…).</value></data>
   <data name="Info_Connections_Text" xml:space="preserve"><value>Save the servers you copy to here: FTP, SFTP, WebDAV (Nextcloud, NAS…) or S3 (Backblaze, Wasabi, R2…). They then appear when choosing the source or destination.\n• Upload backups to the cloud.\n• Download files from a company server.\nPasswords are stored in Windows Credential Manager, never as plain text.</value></data>
+  <data name="IconPack_android" xml:space="preserve"><value>Android</value></data>
+  <data name="IconPack_android-tonal" xml:space="preserve"><value>Android tonal</value></data>
+  <data name="IconPack_macos" xml:space="preserve"><value>macOS</value></data>
+  <data name="IconPack_macos-color" xml:space="preserve"><value>macOS color</value></data>
+  <data name="IconPack_ubuntu" xml:space="preserve"><value>Ubuntu</value></data>
+  <data name="IconPack_kde" xml:space="preserve"><value>KDE Plasma</value></data>
+  <data name="IconPack_gnome" xml:space="preserve"><value>GNOME</value></data>
+  <data name="IconPack_elementary" xml:space="preserve"><value>elementary OS</value></data>
+  <data name="IconPack_mint" xml:space="preserve"><value>Linux Mint</value></data>
+  <data name="IconPack_fedora" xml:space="preserve"><value>Fedora</value></data>
+  <data name="IconPack_popos" xml:space="preserve"><value>Pop!_OS</value></data>
+  <data name="IconPack_arch" xml:space="preserve"><value>Arch Linux</value></data>
+  <data name="IconPack_winxp" xml:space="preserve"><value>Windows XP</value></data>
+  <data name="IconPack_win7" xml:space="preserve"><value>Windows 7 Aero</value></data>
+  <data name="IconPack_metro" xml:space="preserve"><value>Windows 8 Metro</value></data>
+  <data name="IconPack_steam" xml:space="preserve"><value>Steam</value></data>
+  <data name="Gallery_More" xml:space="preserve"><value>Show more ({0})</value></data>
+  <data name="Gallery_Less" xml:space="preserve"><value>Show less</value></data>
+  <data name="Sound_GroupOwn" xml:space="preserve"><value>MegaCopier sounds</value></data>
+  <data name="Sound_GroupWindows" xml:space="preserve"><value>Windows sounds</value></data>
+  <data name="SoundName_bip" xml:space="preserve"><value>Beep · 0.3 s</value></data>
+  <data name="SoundName_pop" xml:space="preserve"><value>Pop · 0.3 s</value></data>
+  <data name="SoundName_doble-bip" xml:space="preserve"><value>Double beep · 0.6 s</value></data>
+  <data name="SoundName_gota" xml:space="preserve"><value>Drop · 0.6 s</value></data>
+  <data name="SoundName_burbuja" xml:space="preserve"><value>Bubbles · 0.8 s</value></data>
+  <data name="SoundName_toque" xml:space="preserve"><value>Tap · 0.9 s</value></data>
+  <data name="SoundName_pregunta" xml:space="preserve"><value>Question · 1.4 s</value></data>
+  <data name="SoundName_aviso" xml:space="preserve"><value>Notice · 1.5 s</value></data>
+  <data name="SoundName_alerta" xml:space="preserve"><value>Low alert · 1.6 s</value></data>
+  <data name="SoundName_marimba" xml:space="preserve"><value>Marimba · 1.8 s</value></data>
+  <data name="SoundName_brillo" xml:space="preserve"><value>Sparkles · 2 s</value></data>
+  <data name="SoundName_cristal" xml:space="preserve"><value>Crystal · 2.2 s</value></data>
+  <data name="SoundName_eco" xml:space="preserve"><value>Echo · 2.4 s</value></data>
+  <data name="SoundName_arpa" xml:space="preserve"><value>Harp · 2.6 s</value></data>
+  <data name="SoundName_logro" xml:space="preserve"><value>Achievement · 2.6 s</value></data>
+  <data name="SoundName_cascada" xml:space="preserve"><value>Cascade · 3.6 s</value></data>
+  <data name="SoundName_aurora" xml:space="preserve"><value>Aurora · 3.8 s</value></data>
+  <data name="SoundName_orbital" xml:space="preserve"><value>Orbital · 3.8 s</value></data>
+  <data name="SoundName_amanecer" xml:space="preserve"><value>Sunrise · 4 s</value></data>
+  <data name="Panel_OpenCopied.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Open the folder being copied</value></data>
+  <data name="Panel_RevealFile.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Show this file in its folder</value></data>
+  <data name="Panel_RevealSource.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Show the source in File Explorer</value></data>
+  <data name="Panel_RevealDestination.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Show the copy at the destination</value></data>
+  <data name="FolderAsk_Short" xml:space="preserve"><value>{0} of {1} files ({2}) are already in {3}.</value></data>
+  <data name="FolderAsk_SkipShort" xml:space="preserve"><value>Skip</value></data>
+  <data name="FolderAsk_AskEachShort" xml:space="preserve"><value>One by one</value></data>
+  <data name="FolderAsk_CancelShort" xml:space="preserve"><value>Cancel</value></data>
+  <data name="Settings_AutoAdminTitle.Text" xml:space="preserve"><value>Ask for administrator permission when Windows won’t let a file be copied</value></data>
+  <data name="Settings_AutoAdminDescription.Text" xml:space="preserve"><value>When the copy ends, if files were left with “access denied” (protected games, other users’ folders), Windows asks for permission once and they are copied automatically, like in File Explorer.</value></data>
+  <data name="Info_AutoAdmin_Text" xml:space="preserve"><value>Some files can only be read with administrator rights. It’s what happens when File Explorer says “You need permission to perform this action”.\n• Xbox or Microsoft Store games: their .exe files are protected by Windows.\n• Folders of other users on this PC or of Windows.\nMegaCopier copies everything else and, at the end, asks for permission only once for those files. If you say no, they stay marked with their error and you can retry with “Copy as administrator”.</value></data>
+  <data name="Tool_Copy.Text" xml:space="preserve"><value>Copy…</value></data>
+  <data name="Tool_Move.Text" xml:space="preserve"><value>Move…</value></data>
+  <data name="Tool_CopyText.Text" xml:space="preserve"><value>Copy…</value></data>
+  <data name="Tool_MoveText.Text" xml:space="preserve"><value>Move…</value></data>
+  <data name="Tool_Send.Text" xml:space="preserve"><value>Send to another PC…</value></data>
+  <data name="Tool_Devices.Text" xml:space="preserve"><value>Phones, cameras and servers</value></data>
+  <data name="Tool_Checksums.Text" xml:space="preserve"><value>Check and repair</value></data>
+  <data name="Tool_Test.Text" xml:space="preserve"><value>Check with checksum files…</value></data>
+  <data name="Tool_Hash.Text" xml:space="preserve"><value>Create checksum file…</value></data>
+  <data name="Tool_Backups.Text" xml:space="preserve"><value>Backups</value></data>
+  <data name="Picker_Open" xml:space="preserve"><value>Open</value></data>
+  <data name="Picker_AllFiles" xml:space="preserve"><value>All files</value></data>
+  <data name="Picker_SelectHere" xml:space="preserve"><value>Select this folder</value></data>
+  <data name="Picker_SelectOne" xml:space="preserve"><value>Select the highlighted item</value></data>
+  <data name="Picker_SelectMany" xml:space="preserve"><value>Select {0} items</value></data>
+  <data name="Picker_CopyTitle" xml:space="preserve"><value>Choose what to copy: files or folders</value></data>
+  <data name="Picker_MoveTitle" xml:space="preserve"><value>Choose what to move: files or folders</value></data>
+  <data name="Picker_TestTitle" xml:space="preserve"><value>Choose checksum files or folders to check</value></data>
+  <data name="Picker_ChecksumFiles" xml:space="preserve"><value>Checksum files</value></data>
+  <data name="Picker_HashTitle" xml:space="preserve"><value>Choose files or folders to create their checksums</value></data>
+  <data name="Picker_SendTitle" xml:space="preserve"><value>Choose what to send: files or folders</value></data>
+  <data name="Picker_DeleteTitle" xml:space="preserve"><value>Choose what to delete: files or folders</value></data>
+  <data name="Picker_WipeTitle" xml:space="preserve"><value>Choose what to securely delete: files or folders</value></data>
+  <data name="Picker_AddTitle" xml:space="preserve"><value>Choose what to add to the list: files or folders</value></data>
 </root>

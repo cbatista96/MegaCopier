@@ -25,14 +25,23 @@ namespace MegaCopier.App;
 /// </summary>
 public sealed partial class MainWindow : Window
 {
+    // Tres vistas: la pequeña (la de siempre al copiar), la de la lista de archivos («Más») y la de varias copias a la
+    // vez (la misma, con la lista de copias a la izquierda).
     private const double CompactWidth = 600;
     private const double CompactHeight = 252;
     private const double PagerHeight = 40;
 
+    /// <summary>La pequeña solo se ensancha: más alta no enseñaría nada más. Más estrecha cortaría los botones.</summary>
+    private const double CompactMinWidth = 560;
+
     /// <summary>Sin copias, la ventana compacta crece para que quepan el icono, los botones y los enlaces.</summary>
     private const double EmptyHeight = 360;
-    private const double ExpandedWidth = 1060;
-    private const double ExpandedHeight = 720;
+    private const double ExpandedWidth = 820;
+    private const double ExpandedHeight = 780;
+
+    /// <summary>Por debajo de esto la lista de archivos y sus botones ya no caben enteros.</summary>
+    private const double ExpandedMinWidth = 760;
+    private const double ExpandedMinHeight = 660;
     private const double SidebarWidth = 290;
 
     private bool _wasEmpty = true;
@@ -48,13 +57,18 @@ public sealed partial class MainWindow : Window
     private readonly LogTab _logTab = new();
     private JobViewModel? _selected;
     private bool _expanded;
-    private const double NarrowWidth = 900;
+    /// <summary>Con menos ancho, la lista de copias flota sobre el contenido en vez de quitarle sitio.</summary>
+    private const double NarrowWidth = ExpandedMinWidth + SidebarWidth - 10;
     private bool _narrow;
     private bool _sidebarWide = true;
     private bool _sidebarOverlayOpen;
+    private bool _hadSidebar;
 
     /// <summary>El usuario eligió compacta o completa en esta sesión: el modo automático ya no cambia por su cuenta.</summary>
     private bool _userChoseMode;
+
+    /// <summary>Ancho que el usuario le dio a la ventana pequeña (al volver de «Más» recupera ese ancho).</summary>
+    private double _compactWidth = CompactWidth;
 
     private (double Width, double Height) _resizeFrom;
     private (double Width, double Height) _resizeTo;
@@ -65,23 +79,29 @@ public sealed partial class MainWindow : Window
         _app = app;
         _dispatcher = DispatcherQueue.GetForCurrentThread();
         InitializeComponent();
+        _resizeTimer = _dispatcher.CreateTimer();
+        _resizeTimer.Interval = TimeSpan.FromMilliseconds(12);
+        _resizeTimer.Tick += (_, _) => ResizeStep();
 
         Handle = WindowNative.GetWindowHandle(this);
         ExtendsContentIntoTitleBar = true;
         SetTitleBar(AppTitleBar);
         AppWindow.SetIcon(Path.Combine(AppContext.BaseDirectory, "Assets", "MegaCopier.ico"));
         AppWindow.TitleBar.PreferredHeightOption = TitleBarHeightOption.Standard;
-        if (AppWindow.Presenter is OverlappedPresenter presenter)
-        {
-            presenter.PreferredMinimumWidth = Scaled(460);
-            presenter.PreferredMinimumHeight = Scaled(250);
-        }
-
         _expanded = app.Settings.WindowMode == WindowMode.Expanded;
         var (width, height) = TargetSize(_expanded);
         AppWindow.Resize(new Windows.Graphics.SizeInt32(Scaled(width), Scaled(height)));
         CenterOnScreen();
         RestorePosition();
+
+        // El ancho que el usuario le da a la ventana pequeña se recuerda (al volver de «Más» lo recupera).
+        AppWindow.Changed += (_, args) =>
+        {
+            if (args.DidSizeChange && !_expanded && !_resizeTimer.IsRunning && Jobs.Count > 0)
+            {
+                _compactWidth = Math.Max(CompactMinWidth, AppWindow.Size.Width / (Scaled(1000) / 1000.0));
+            }
+        };
 
         // Cerrar la ventana no cierra la app: sigue en la bandeja con las copias en marcha.
         AppWindow.Closing += (_, args) =>
@@ -116,6 +136,7 @@ public sealed partial class MainWindow : Window
         };
         JobList.ItemsSource = Jobs;
         Root.Loaded += (_, _) => NameIconButtons(Root);
+        Motion.Attach(Root);
         Jobs.CollectionChanged += (_, _) => UpdateLayoutState();
         Tabs.SelectedItem = FilesItem;
 
@@ -124,9 +145,6 @@ public sealed partial class MainWindow : Window
         _refreshTimer.Tick += (_, _) => RefreshTick();
         _refreshTimer.Start();
 
-        _resizeTimer = _dispatcher.CreateTimer();
-        _resizeTimer.Interval = TimeSpan.FromMilliseconds(12);
-        _resizeTimer.Tick += (_, _) => ResizeStep();
 
         Select(Jobs.FirstOrDefault());
         ApplyLayout(animate: false);
@@ -340,6 +358,54 @@ public sealed partial class MainWindow : Window
         ApplyTexture(TextureImage, theme);
     }
 
+    /// <summary>
+    /// Cambia de tema con un fundido: se fotografía la ventana tal como está, se aplica el tema debajo y la foto se
+    /// desvanece. Sin esto, WinUI vuelve a pintar cada control por separado y el cambio se ve a saltos.
+    /// </summary>
+    internal async Task CrossfadeAsync(Action apply)
+    {
+        bool animate = AppWindow.IsVisible && Root.ActualWidth > 0 && !Theming.BarAppearance.ReduceMotion;
+        if (animate)
+        {
+            try
+            {
+                var shot = new Microsoft.UI.Xaml.Media.Imaging.RenderTargetBitmap();
+                await shot.RenderAsync(Root);
+                ThemeFade.Source = shot;
+                ThemeFade.Opacity = 1;
+                ThemeFade.Visibility = Visibility.Visible;
+            }
+            catch (Exception ex) when (ex is ArgumentException or InvalidOperationException or COMException)
+            {
+                animate = false; // sin foto, el tema se aplica sin fundido
+            }
+        }
+
+        apply();
+        if (!animate)
+        {
+            return;
+        }
+
+        var fade = new Microsoft.UI.Xaml.Media.Animation.DoubleAnimation
+        {
+            From = 1,
+            To = 0,
+            Duration = TimeSpan.FromMilliseconds(420),
+            EasingFunction = new Microsoft.UI.Xaml.Media.Animation.CubicEase { EasingMode = Microsoft.UI.Xaml.Media.Animation.EasingMode.EaseInOut },
+        };
+        var story = new Microsoft.UI.Xaml.Media.Animation.Storyboard();
+        Microsoft.UI.Xaml.Media.Animation.Storyboard.SetTarget(fade, ThemeFade);
+        Microsoft.UI.Xaml.Media.Animation.Storyboard.SetTargetProperty(fade, "Opacity");
+        story.Children.Add(fade);
+        story.Completed += (_, _) =>
+        {
+            ThemeFade.Visibility = Visibility.Collapsed;
+            ThemeFade.Source = null;
+        };
+        story.Begin();
+    }
+
     /// <summary>La textura del tema (Assets/Textures/&lt;nombre&gt;.jpg) detrás de todo, o ninguna.</summary>
     internal static void ApplyTexture(Image image, ThemeDefinition theme)
     {
@@ -375,7 +441,9 @@ public sealed partial class MainWindow : Window
     internal void OnAllFinished()
     {
         var mode = _app.Settings.FinishWindow;
-        bool problems = Jobs.Any(j => j.HasProblem || j.IsInterrupted);
+        // Solo cuentan las copias que siguen en la cola (una recién quitada aún puede estar en la lista un instante).
+        var queued = _app.Queue.Jobs;
+        bool problems = Jobs.Any(j => (j.HasProblem || j.IsInterrupted) && queued.Contains(j.Job));
         if (mode == FinishWindow.KeepOpen || (mode == FinishWindow.Auto && problems) || PageOpen)
         {
             return;
@@ -492,19 +560,54 @@ public sealed partial class MainWindow : Window
     {
         PagerText.Text = _selected is null ? "" : L.F("Pager_Text", Jobs.IndexOf(_selected) + 1, Jobs.Count);
         var pager = !_expanded && Jobs.Count > 1 ? Visibility.Visible : Visibility.Collapsed;
-        if (AppWindow.Presenter is OverlappedPresenter overlapped)
-        {
-            // La ventana no puede encogerse tanto que tape el paginador o los botones.
-            overlapped.PreferredMinimumHeight = Scaled(_expanded ? 480 : Jobs.Count == 0 ? 240 : CompactHeight + (pager == Visibility.Visible ? PagerHeight : 0));
-        }
-
         if (Pager.Visibility != pager)
         {
             Pager.Visibility = pager;
             if (!_expanded && AppWindow.IsVisible)
             {
                 AnimateResize();
+                return; // los límites se ponen al terminar la animación
             }
+        }
+
+        ApplyConstraints();
+    }
+
+    /// <summary>
+    /// Límites de tamaño de cada vista. La pequeña: alto fijo (solo se ensancha) y sin maximizar. La completa: un
+    /// mínimo con el que todo cabe, y se puede maximizar. Durante una animación no se aplican (la frenarían).
+    /// </summary>
+    private void ApplyConstraints()
+    {
+        if (AppWindow.Presenter is not OverlappedPresenter presenter || _resizeTimer.IsRunning)
+        {
+            return;
+        }
+
+        if (_expanded)
+        {
+            presenter.PreferredMaximumHeight = null;
+            presenter.PreferredMinimumWidth = Scaled(ExpandedMinWidth);
+            presenter.PreferredMinimumHeight = Scaled(ExpandedMinHeight);
+            presenter.IsMaximizable = true;
+            return;
+        }
+
+        int height = Scaled(TargetSize(false).Height);
+        presenter.IsMaximizable = false;
+        presenter.PreferredMinimumWidth = Scaled(CompactMinWidth);
+        presenter.PreferredMinimumHeight = height;
+        presenter.PreferredMaximumHeight = height;
+    }
+
+    /// <summary>Quita los límites mientras la ventana cambia de tamaño animada.</summary>
+    private void RelaxConstraints()
+    {
+        if (AppWindow.Presenter is OverlappedPresenter presenter)
+        {
+            presenter.PreferredMaximumHeight = null;
+            presenter.PreferredMinimumWidth = Scaled(CompactMinWidth);
+            presenter.PreferredMinimumHeight = Scaled(CompactHeight - 20);
         }
     }
 
@@ -525,10 +628,9 @@ public sealed partial class MainWindow : Window
 
     private void ApplyLayout(bool animate)
     {
-        if (AppWindow.Presenter is OverlappedPresenter overlapped)
+        if (!_expanded && AppWindow.Presenter is OverlappedPresenter { State: OverlappedPresenterState.Maximized } maximized)
         {
-            // La vista completa necesita algo más de ancho que la compacta para no apretar sus pestañas.
-            overlapped.PreferredMinimumWidth = Scaled(_expanded ? 640 : 460);
+            maximized.Restore(); // la pequeña no se maximiza: primero vuelve a su tamaño normal
         }
 
         Panel.SetExpanded(_expanded);
@@ -544,7 +646,9 @@ public sealed partial class MainWindow : Window
         if (!animate)
         {
             _resizeTimer.Stop();
+            RelaxConstraints();
             AppWindow.Resize(new Windows.Graphics.SizeInt32(Scaled(width), Scaled(height)));
+            ApplyConstraints();
             return;
         }
 
@@ -560,6 +664,13 @@ public sealed partial class MainWindow : Window
 
     private void AnimateResizeTo(double width, double height)
     {
+        if (AppWindow.Presenter is OverlappedPresenter { State: OverlappedPresenterState.Maximized })
+        {
+            ApplyConstraints(); // maximizada no se anima: los límites cambian y ya está
+            return;
+        }
+
+        RelaxConstraints();
         _resizeFrom = (AppWindow.Size.Width, AppWindow.Size.Height);
         _resizeTo = (Scaled(width), Scaled(height));
         _resizeStart = Stopwatch.GetTimestamp();
@@ -579,15 +690,29 @@ public sealed partial class MainWindow : Window
         if (t >= 1)
         {
             _resizeTimer.Stop();
+            ApplyConstraints();
         }
     }
 
-    private (double Width, double Height) TargetSize(bool expanded) =>
-        expanded ? (_app.Settings.RememberSize && _app.Settings.WindowWidth >= 640
-            ? (_app.Settings.WindowWidth, Math.Max(480, _app.Settings.WindowHeight))
-            : (ExpandedWidth, ExpandedHeight))
-        : Jobs.Count == 0 ? (CompactWidth, EmptyHeight)
-        : (CompactWidth, CompactHeight + (Jobs.Count > 1 ? PagerHeight : 0));
+    /// <summary>
+    /// Tamaño de cada vista. La pequeña conserva el ancho que le dio el usuario (solo se ensancha); la completa, el
+    /// tamaño recordado, y con varias copias a la vez deja sitio a la lista de copias de la izquierda.
+    /// </summary>
+    private (double Width, double Height) TargetSize(bool expanded)
+    {
+        if (expanded)
+        {
+            var s = _app.Settings;
+            double width = s.RememberSize && s.WindowWidth > 0 ? Math.Max(ExpandedMinWidth, s.WindowWidth) : ExpandedWidth;
+            double height = s.RememberSize && s.WindowHeight > 0 ? Math.Max(ExpandedMinHeight, s.WindowHeight) : ExpandedHeight;
+            return (SidebarWanted ? Math.Max(width, ExpandedWidth + SidebarWidth) : width, height);
+        }
+
+        return Jobs.Count == 0 ? (Math.Max(CompactWidth, _compactWidth), EmptyHeight) : (_compactWidth, CompactHeight + (Jobs.Count > 1 ? PagerHeight : 0));
+    }
+
+    /// <summary>La vista de varias copias: la lista de copias a la izquierda solo tiene sentido con más de una.</summary>
+    private bool SidebarWanted => Jobs.Count > 1;
 
     private void Sidebar_Click(object sender, RoutedEventArgs e)
     {
@@ -618,8 +743,9 @@ public sealed partial class MainWindow : Window
     private void ApplySidebar()
     {
         bool page = PageOpen;
-        bool show = _expanded && !page && (_narrow ? _sidebarOverlayOpen : _sidebarWide);
+        bool show = _expanded && !page && SidebarWanted && (_narrow ? _sidebarOverlayOpen : _sidebarWide);
         Sidebar.Visibility = show ? Visibility.Visible : Visibility.Collapsed;
+        SidebarButton.Visibility = SidebarWanted ? Visibility.Visible : Visibility.Collapsed;
         if (_narrow)
         {
             SidebarColumn.Width = new GridLength(0);
@@ -677,6 +803,17 @@ public sealed partial class MainWindow : Window
         }
 
         Detail.Visibility = !page && !empty ? Visibility.Visible : Visibility.Collapsed;
+        bool sidebar = SidebarWanted;
+        if (sidebar != _hadSidebar)
+        {
+            // De una copia a varias (o al revés), la vista completa gana (o devuelve) el sitio de la lista de copias.
+            _hadSidebar = sidebar;
+            if (_expanded && AppWindow.IsVisible && sidebar && AppWindow.Size.Width < Scaled(ExpandedWidth + SidebarWidth))
+            {
+                AnimateResize();
+            }
+        }
+
         ApplySidebar();
         JobsHeader.Text = L.F("Jobs_Header", Jobs.Count, Jobs.Count(j => j.IsActive));
         UpdatePager();
@@ -767,29 +904,22 @@ public sealed partial class MainWindow : Window
     // ---------------------------------------------------------------------------------------------------------
     // Barra de herramientas
 
+    /// <summary>«Copiar…»: un solo selector para archivos y carpetas (una carpeta marcada se copia entera).</summary>
     private async void CopyFiles_Click(object sender, RoutedEventArgs e)
     {
-        var files = await Pickers.PickFilesAsync();
-        if (files.Count > 0)
+        var paths = Pickers.PickAny(L.Get("Picker_CopyTitle"));
+        if (paths.Count > 0)
         {
-            await PickDestinationAndCopy(files, move: false);
+            await PickDestinationAndCopy(paths, move: false);
         }
     }
 
     private async void MoveFiles_Click(object sender, RoutedEventArgs e)
     {
-        var files = await Pickers.PickFilesAsync();
-        if (files.Count > 0)
+        var paths = Pickers.PickAny(L.Get("Picker_MoveTitle"));
+        if (paths.Count > 0)
         {
-            await PickDestinationAndCopy(files, move: true);
-        }
-    }
-
-    private async void CopyFolder_Click(object sender, RoutedEventArgs e)
-    {
-        if (await Pickers.PickFolderAsync() is { } folder)
-        {
-            await PickDestinationAndCopy([folder], move: false);
+            await PickDestinationAndCopy(paths, move: true);
         }
     }
 
@@ -1497,20 +1627,15 @@ public sealed partial class MainWindow : Window
 
     // Comprobar sumas
 
-    private async void TestFiles_Click(object sender, RoutedEventArgs e)
+    /// <summary>«Comprobar…»: archivos de sumas o carpetas (se buscan dentro los archivos de sumas).</summary>
+    private void TestFiles_Click(object sender, RoutedEventArgs e)
     {
-        var lists = await Pickers.PickFilesAsync(".sha256", ".sha1", ".sha512", ".md5", ".sfv", ".xxh3", ".xxh64", ".xxh128", ".sha3-256", ".sha3-512", ".b3", ".blake3");
-        if (lists.Count > 0)
+        var paths = Pickers.PickAny(
+            L.Get("Picker_TestTitle"),
+            (L.Get("Picker_ChecksumFiles"), "*.sha256;*.sha1;*.sha512;*.md5;*.sfv;*.xxh3;*.xxh64;*.xxh128;*.sha3-256;*.sha3-512;*.b3;*.blake3"));
+        if (paths.Count > 0)
         {
-            Submit(new IpcRequest { Command = "copy", Operation = Engine.JobOperation.Test, Sources = [.. lists] });
-        }
-    }
-
-    private async void TestFolder_Click(object sender, RoutedEventArgs e)
-    {
-        if (await Pickers.PickFolderAsync() is { } folder)
-        {
-            Submit(new IpcRequest { Command = "copy", Operation = Engine.JobOperation.Test, Sources = [folder] });
+            Submit(new IpcRequest { Command = "copy", Operation = Engine.JobOperation.Test, Sources = [.. paths] });
         }
     }
 
@@ -1650,20 +1775,13 @@ public sealed partial class MainWindow : Window
 
     // Enviar a otro equipo con MegaCopier
 
+    /// <summary>«Enviar a otro equipo…»: archivos y carpetas con el mismo selector.</summary>
     private async void SendFiles_Click(object sender, RoutedEventArgs e)
     {
-        var files = await Pickers.PickFilesAsync();
-        if (files.Count > 0)
+        var paths = Pickers.PickAny(L.Get("Picker_SendTitle"));
+        if (paths.Count > 0)
         {
-            await SendToPeerAsync(files);
-        }
-    }
-
-    private async void SendFolder_Click(object sender, RoutedEventArgs e)
-    {
-        if (await Pickers.PickFolderAsync() is { } folder)
-        {
-            await SendToPeerAsync([folder]);
+            await SendToPeerAsync(paths);
         }
     }
 
@@ -1753,20 +1871,13 @@ public sealed partial class MainWindow : Window
         }
     }
 
-    private async void HashFolder_Click(object sender, RoutedEventArgs e)
+    /// <summary>«Crear archivo de sumas…»: de archivos sueltos o de carpetas enteras.</summary>
+    private void HashFiles_Click(object sender, RoutedEventArgs e)
     {
-        if (await Pickers.PickFolderAsync() is { } folder)
+        var paths = Pickers.PickAny(L.Get("Picker_HashTitle"));
+        if (paths.Count > 0)
         {
-            Submit(new IpcRequest { Command = "copy", Operation = Engine.JobOperation.Hash, Sources = [folder] });
-        }
-    }
-
-    private async void HashFiles_Click(object sender, RoutedEventArgs e)
-    {
-        var files = await Pickers.PickFilesAsync();
-        if (files.Count > 0)
-        {
-            Submit(new IpcRequest { Command = "copy", Operation = Engine.JobOperation.Hash, Sources = [.. files] });
+            Submit(new IpcRequest { Command = "copy", Operation = Engine.JobOperation.Hash, Sources = [.. paths] });
         }
     }
 
@@ -1778,7 +1889,7 @@ public sealed partial class MainWindow : Window
 
     private async Task DeleteAsync(bool secure)
     {
-        var paths = await Pickers.PickFilesAsync();
+        var paths = Pickers.PickAny(L.Get(secure ? "Picker_WipeTitle" : "Picker_DeleteTitle"));
         if (paths.Count > 0)
         {
             await ConfirmAndDeleteAsync(paths, secure);

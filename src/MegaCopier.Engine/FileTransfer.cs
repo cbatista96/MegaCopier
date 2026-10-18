@@ -960,9 +960,26 @@ internal sealed partial class FileTransfer
         }
     }
 
-    /// <summary>Abre un archivo; en modo copia de seguridad, saltándose sus permisos.</summary>
-    private SafeFileHandle OpenFile(string path, FileMode mode, FileAccess access, FileShare share, FileOptions options = FileOptions.None) =>
-        _options.BackupMode ? Native.BackupPrivileges.Open(path, mode, access, share, options) : File.OpenHandle(path, mode, access, share, options);
+    /// <summary>
+    /// Abre un archivo; en modo copia de seguridad, saltándose sus permisos. Si MegaCopier ya tiene permisos de
+    /// administrador, un "acceso denegado" se reintenta también así, sin que el usuario tenga que pedirlo.
+    /// </summary>
+    private SafeFileHandle OpenFile(string path, FileMode mode, FileAccess access, FileShare share, FileOptions options = FileOptions.None)
+    {
+        if (_options.BackupMode)
+        {
+            return Native.BackupPrivileges.Open(path, mode, access, share, options);
+        }
+
+        try
+        {
+            return File.OpenHandle(path, mode, access, share, options);
+        }
+        catch (UnauthorizedAccessException) when (Native.BackupPrivileges.Available)
+        {
+            return Native.BackupPrivileges.Open(path, mode, access, share, options);
+        }
+    }
 
     private SafeFileHandle OpenRead(string path, out bool unbuffered)
     {

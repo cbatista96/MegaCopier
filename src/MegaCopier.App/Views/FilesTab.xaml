@@ -14,10 +14,13 @@
         </Grid.RowDefinitions>
 
         <!-- Buscar, filtrar y el resto de acciones de la lista -->
+        <!-- La búsqueda siempre pegada a la izquierda (crece hasta 420 px y encoge si falta sitio); las casillas, a su
+             lado y en la misma fila; el filtro y el menú, a la derecha. -->
         <Grid x:Name="ListBar" ColumnSpacing="8" RowSpacing="6">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" MinWidth="120" MaxWidth="420" />
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="0.01*" /> <!-- hueco: solo crece cuando la búsqueda llega a su máximo -->
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
@@ -25,19 +28,19 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <TextBox x:Name="SearchBox" x:Uid="Files_Search" TextChanged="Search_TextChanged" MaxWidth="420" HorizontalAlignment="Stretch" MinWidth="120" />
-            <StackPanel x:Name="ListToggles" Grid.Column="1" Orientation="Horizontal" Spacing="12">
+            <TextBox x:Name="SearchBox" x:Uid="Files_Search" TextChanged="Search_TextChanged" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+            <StackPanel x:Name="ListToggles" Grid.Column="1" Orientation="Horizontal" Spacing="12" Margin="4,0,0,0" VerticalAlignment="Center">
                 <CheckBox x:Name="HideFinishedBox" x:Uid="Files_HideFinished" Checked="HideFinished_Changed" Unchecked="HideFinished_Changed" MinWidth="0" />
                 <CheckBox x:Name="AutoScrollBox" x:Uid="Files_AutoScroll" IsChecked="True" MinWidth="0" />
             </StackPanel>
-            <ComboBox x:Name="FilterBox" Grid.Column="2" MinWidth="140" SelectionChanged="Filter_SelectionChanged">
+            <ComboBox x:Name="FilterBox" Grid.Column="3" MinWidth="140" VerticalAlignment="Center" SelectionChanged="Filter_SelectionChanged">
                 <ComboBoxItem x:Uid="Files_FilterAll" />
                 <ComboBoxItem x:Uid="Files_FilterPending" />
                 <ComboBoxItem x:Uid="Files_FilterDone" />
                 <ComboBoxItem x:Uid="Files_FilterErrors" />
                 <ComboBoxItem x:Uid="Files_FilterSkipped" />
             </ComboBox>
-            <Button x:Uid="Files_More" Grid.Column="3" Style="{StaticResource McToolButton}">
+            <Button x:Uid="Files_More" Grid.Column="4" Style="{StaticResource McToolButton}" VerticalAlignment="Center">
                 <c:McIcon VerticalAlignment="Center" Glyph="&#xE712;" FontSize="14" />
                 <Button.Flyout>
                     <MenuFlyout Placement="BottomEdgeAlignedRight">
@@ -59,7 +62,18 @@
         </Grid>
 
         <!-- Cabecera de columnas: origen, tamaño y destino (y las sumas, si se piden) -->
-        <Grid x:Name="Header" Grid.Row="1" Padding="68,0,16,0" ColumnSpacing="12">
+        <!-- La barra de botones arranca a la altura de la cabecera ("Origen") y queda fija a la izquierda -->
+        <Grid x:Name="ListArea" Grid.Row="1" Grid.RowSpan="2" ColumnSpacing="12" RowSpacing="8" SizeChanged="ListArea_SizeChanged">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+        <Grid x:Name="Header" Grid.Column="1" Padding="12,0,16,0" ColumnSpacing="12" VerticalAlignment="Bottom">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="28" />
                 <ColumnDefinition Width="3*" />
@@ -78,14 +92,9 @@
             <TextBlock x:Name="TargetHashHeader" Grid.Column="5" Width="96" x:Uid="Files_TargetHash" Style="{StaticResource McSecondary}" TextWrapping="WrapWholeWords" MaxLines="2" TextTrimming="CharacterEllipsis" />
         </Grid>
 
-        <Grid Grid.Row="2" ColumnSpacing="8">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
 
             <!-- Botones de la lista: ordenar, añadir, quitar, guardar y cargar -->
-            <Border VerticalAlignment="Top" Padding="4" CornerRadius="8" Background="{StaticResource McSurfaceBrush}" BorderBrush="{StaticResource McBorderBrush}" BorderThickness="1">
+            <Border x:Name="RailBox" Grid.RowSpan="2" VerticalAlignment="Top" Padding="4" CornerRadius="8" Background="{StaticResource McSurfaceBrush}" BorderBrush="{StaticResource McBorderBrush}" BorderThickness="1">
                 <StackPanel x:Name="Rail" Spacing="2">
                     <Button x:Name="TopButton" x:Uid="Files_RailTop" Style="{StaticResource McToolButton}" Click="MoveTop_Click">
                         <Button.KeyboardAccelerators><KeyboardAccelerator Modifiers="Menu" Key="Home" /></Button.KeyboardAccelerators>
@@ -104,14 +113,8 @@
                         <c:McIcon Glyph="&#xE896;" FontSize="15" />
                     </Button>
                     <Rectangle Height="1" Margin="6,4" Fill="{StaticResource McBorderBrush}" />
-                    <Button x:Name="AddButton" x:Uid="Files_RailAdd" Style="{StaticResource McToolButton}">
+                    <Button x:Name="AddButton" x:Uid="Files_RailAdd" Style="{StaticResource McToolButton}" Click="Add_Click">
                         <c:McIcon Glyph="&#xE710;" FontSize="14" Accent="True" />
-                        <Button.Flyout>
-                            <MenuFlyout Placement="RightEdgeAlignedTop">
-                                <MenuFlyoutItem x:Uid="Files_AddFiles" Click="AddFiles_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8A5;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
-                                <MenuFlyoutItem x:Uid="Files_AddFolder" Click="AddFolder_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8B7;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
-                            </MenuFlyout>
-                        </Button.Flyout>
                     </Button>
                     <Button x:Name="RemoveButton" x:Uid="Files_RailRemove" Style="{StaticResource McToolButton}" Click="Remove_Click">
                         <Button.KeyboardAccelerators><KeyboardAccelerator Key="Delete" /></Button.KeyboardAccelerators>
@@ -127,7 +130,7 @@
                 </StackPanel>
             </Border>
 
-            <ListView x:Name="List" Grid.Column="1" SelectionMode="Extended" IsItemClickEnabled="False" SelectionChanged="List_SelectionChanged"
+            <ListView x:Name="List" Grid.Row="1" Grid.Column="1" SelectionMode="Extended" IsItemClickEnabled="False" SelectionChanged="List_SelectionChanged"
                       CanDragItems="True" AllowDrop="True" DragItemsStarting="List_DragItemsStarting" DragItemsCompleted="List_DragItemsCompleted"
                       DragOver="List_DragOver" DragLeave="List_DragLeave" Drop="List_Drop">
                 <ListView.ItemContainerTransitions>
@@ -162,7 +165,9 @@
                             </Grid.ColumnDefinitions>
                             <Grid ToolTipService.ToolTip="{x:Bind StateText, Mode=OneWay}">
                                 <c:McIcon HorizontalAlignment="Center" VerticalAlignment="Center" Glyph="&#xEA3A;" FontSize="11" Foreground="{StaticResource McTextSecondaryBrush}" Visibility="{x:Bind IsPending, Mode=OneWay}" />
-                                <ProgressRing HorizontalAlignment="Center" VerticalAlignment="Center" Width="16" Height="16" IsActive="{x:Bind IsCurrent, Mode=OneWay}" Visibility="{x:Bind IsCurrent, Mode=OneWay}" Foreground="{StaticResource McAccentBrush}" />
+                                <!-- El archivo en curso: el círculo se va llenando con lo copiado y se cierra al terminar -->
+                                <ProgressRing HorizontalAlignment="Center" VerticalAlignment="Center" Width="18" Height="18" IsIndeterminate="False" Maximum="100" Value="{x:Bind Percent, Mode=OneWay}"
+                                              IsActive="{x:Bind IsCurrent, Mode=OneWay}" Visibility="{x:Bind IsCurrent, Mode=OneWay}" Foreground="{StaticResource McAccentBrush}" Background="{StaticResource McTrackBrush}" />
                                 <c:McIcon HorizontalAlignment="Center" VerticalAlignment="Center" Glyph="&#xE73E;" FontSize="14" Foreground="{StaticResource McSuccessBrush}" Visibility="{x:Bind IsCopiedOnly, Mode=OneWay}" />
                                 <c:McIcon HorizontalAlignment="Center" VerticalAlignment="Center" Glyph="&#xE930;" FontSize="15" Foreground="{StaticResource McSuccessBrush}" Visibility="{x:Bind IsVerified, Mode=OneWay}" />
                                 <c:McIcon HorizontalAlignment="Center" VerticalAlignment="Center" Glyph="&#xE893;" FontSize="14" Foreground="{StaticResource McTextSecondaryBrush}" Visibility="{x:Bind IsSkipped, Mode=OneWay}" />
@@ -187,20 +192,20 @@
             </ListView>
 
             <!-- Capa del arrastre: línea de inserción y aviso de lo que va a pasar -->
-            <Canvas x:Name="DropLayer" Grid.Column="1" IsHitTestVisible="False">
+            <Canvas x:Name="DropLayer" Grid.Row="1" Grid.Column="1" IsHitTestVisible="False">
                 <Grid x:Name="DropLine" Height="10" Visibility="Collapsed">
                     <Border Height="3" CornerRadius="1.5" VerticalAlignment="Center" Margin="6,0,0,0" Background="{StaticResource McAccentBrush}" />
                     <Ellipse Width="10" Height="10" HorizontalAlignment="Left" Stroke="{StaticResource McAccentBrush}" StrokeThickness="2.5" Fill="{StaticResource McBackgroundBrush}" />
                 </Grid>
             </Canvas>
-            <Border x:Name="DropHint" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,12" Padding="14,8" CornerRadius="8"
+            <Border x:Name="DropHint" Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,12" Padding="14,8" CornerRadius="8"
                     Background="{StaticResource McAccentBrush}" IsHitTestVisible="False" Visibility="Collapsed">
                 <StackPanel Orientation="Horizontal" Spacing="8">
                     <c:McIcon x:Name="DropHintIcon" VerticalAlignment="Center" Glyph="&#xE8DE;" FontSize="14" Foreground="{StaticResource McAccentTextBrush}" />
                     <TextBlock x:Name="DropHintText" VerticalAlignment="Center" Foreground="{StaticResource McAccentTextBrush}" FontWeight="SemiBold" />
                 </StackPanel>
             </Border>
-            <TextBlock x:Name="EmptyText" x:Uid="Files_Empty" Grid.Column="1" Style="{StaticResource McSecondary}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" />
+            <TextBlock x:Name="EmptyText" x:Uid="Files_Empty" Grid.Row="1" Grid.Column="1" Style="{StaticResource McSecondary}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" />
         </Grid>
     </Grid>
 </UserControl>

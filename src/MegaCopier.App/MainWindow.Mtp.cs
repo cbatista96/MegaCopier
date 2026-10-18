@@ -24,10 +24,10 @@ public sealed partial class MainWindow
 
     private async void MtpExport_Click(object sender, RoutedEventArgs e)
     {
-        var files = await Pickers.PickFilesAsync();
-        if (files.Count > 0)
+        var paths = Pickers.PickAny(L.Get("Picker_CopyTitle"));
+        if (paths.Count > 0)
         {
-            await MtpExportAsync(files);
+            await MtpExportAsync(paths);
         }
     }
 

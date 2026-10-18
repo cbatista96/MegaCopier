@@ -149,12 +149,6 @@ AboutDialog.CloseButtonText	Kapat
 About_DataFolder.Content	Veri klasörünü aç (ayarlar, temalar, geçmiş, raporlar)
 About_Description.Text	Elektrik kesintisinden sonra tek bir dev dosyayı bile, kopyalanmış kısmı doğrulayarak sürdüren Windows 11 dosya kopyalayıcısı.
 About_Features.Text	Önbelleksiz eşzamansız G/Ç · paralel okuma ve yazma · karma ile doğrulama (CRC32, xxHash, MD5, SHA) · disk başına sıra · duraklatma ve sürdürme · taşıma · çakışmalar · hız sınırı · kopyalama listeleri · raporlar · temalar.
-CopyFiles.Text	Dosyaları kopyala…
-CopyFolder.Text	Bir klasörü kopyala…
-CopyFilesText.Text	Dosyaları kopyala
-CopyFolderText.Text	Klasörü kopyala
-Files_AddFiles.Text	Dosya ekle…
-Files_AddFolder.Text	Klasör ekle…
 Files_AutoScroll.Content	Geçerli dosyayı izle
 Files_CopyHashes.Text	Karmaları kopyala
 Files_CopyPath.Text	Yolu kopyala
@@ -321,7 +315,6 @@ Tool_History.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Geçmiş
 Tool_HistoryText.Text	Geçmiş
 Tool_LoadList.Text	Kopyalama listesi yükle…
 Tool_LoadListText.Text	Liste yükle
-Tool_MoveFiles.Text	Dosyaları taşı…
 Tool_NewCopy.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Yeni kopyalama
 Tool_NewCopyText.Text	Yeni
 Tool_PauseAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Tümünü duraklat
@@ -417,8 +410,6 @@ Settings_FavoritesEmpty	Henüz sık kullanılan yok.
 Tool_CopyTo.Text	Şuraya kopyala
 Tool_CopyToEmpty	Sık kullanılan veya son kullanılan yok
 Tool_CopyToManage	Sık kullanılanları yönet…
-Tool_TestFiles.Text	Sağlama dosyalarını sına…
-Tool_TestFolder.Text	Bir klasörün sağlamalarını sına…
 Tool_Delete.Text	Sil…
 Tool_Wipe.Text	Güvenli sil…
 DestinationsDialog.Title	Nereye?
@@ -548,8 +539,6 @@ Options_MirrorInfo.Title	Eşitleme, kaynakta artık olmayanı hedeften kaldırı
 Options_MirrorInfo.Message	Filtrelerin dışladığına dokunulmaz. Kaldırılanı veya değiştirileni saklamak için bir sürümler klasörü belirtin.
 Options_DryRun.Content	Benzet: hiçbir şeyi değiştirmeden ne olacağını göster
 Destinations_DryRun.Content	Önce benzet (hiçbir şey değişmez)
-Tool_HashFolder.Text	Bir klasör için sağlama dosyası oluştur…
-Tool_HashFiles.Text	Dosyalar için sağlama dosyası oluştur…
 Rules_SkipJunk.Content	Gereksiz dosyaları atla (Thumbs.db, desktop.ini, .DS_Store, ~$…)
 Rules_OnErrorEnd.Content	Sıranın sonunda yeniden dene
 Rules_Safety.Text	Eşitleme ve güvenlik
@@ -693,8 +682,6 @@ Peer_ReceivedTitle	Dosyalar alındı
 Peer_Received	{1} kaynağından {0} dosya, {2} içine.
 Peer_RejectedTitle	Gönderim reddedildi
 Peer_Rejected	{0} size yanlış kodla dosya göndermeye çalıştı.
-Tool_SendFiles.Text	Dosyaları başka bir bilgisayara gönder…
-Tool_SendFolder.Text	Bir klasörü başka bir bilgisayara gönder…
 SendDialog.Title	Başka bir bilgisayara gönder
 SendDialog.PrimaryButtonText	Gönder
 SendDialog.CloseButtonText	İptal
@@ -1336,7 +1323,7 @@ Theme_solar-claro	Açık güneş
 Theme_capuchino-claro	Açık kapuçino
 Info_Paste_Text	Dosyaları kopyalayıp (Ctrl+C) veya kesip (Ctrl+X) Dosya Gezgini’nde ya da masaüstünde yapıştırdığınızda (Ctrl+V) kopyalamayı Windows yerine MegaCopier yapar: sıra, duraklatma, doğrulama ve kesilirse devam etme ile.\n• Harici diske büyük kopyalar: duraklatıp sonra devam edebilirsiniz.\n• Art arda birkaç kopya: disk için çekişmek yerine sıraya girer.\nAynı klasöre yapıştırırsanız (dosyayı çoğaltmak için) bunu yine Dosya Gezgini yapar.
 Info_Drag_Text	Dosyaları sol tuşla bir pencereden diğerine sürüklediğinizde, MegaCopier Windows ile aynı kurallarla kopyalar (veya taşır): aynı sürücüde taşır, Ctrl kopyalamaya, Shift taşımaya zorlar.\n• Fotoğrafları farklı disklerdeki klasörler arasında sürükleyerek düzenlemek.\n• Dosya Gezgini’ni kilitlemeden büyük projeleri taşımak.\nBir dosyanın, ZIP’in veya sol bölmenin üzerine bırakmayı yine Dosya Gezgini yapar.
-Info_WindowMode_Text	Kopyalarken pencerenin nasıl görüneceği.\n• Kompakt: yalnızca çubuklar ve düğmeler; az yer kaplar.\n• Tam: dosya listesi, hedef, seçenekler, grafik ve günlükle.\n• Otomatik: tek kopyada kompakt, birden fazlasında tam.\n"Daha fazla" ve "Daha az" düğmeleri ikisi arasında istediğiniz zaman geçiş yapar.
+Info_WindowMode_Text	Kopyalama penceresinin üç görünümü vardır.\n• Küçük: yalnızca çubuklar ve düğmeler. Kopyalarken her zamanki görünüm; genişletilebilir ama yükseltilemez.\n• Listeli (“Daha fazla”): dosyalar, hedef, seçenekler, grafik ve günlük. Büyütülebilir veya ekranı kaplayabilir.\n• Birden çok kopya: aynısı, solda kopyaların listesiyle; birden fazla kopya olunca kendiliğinden açılır.\n“Otomatik” küçük başlar ve aynı anda birkaç kopya olunca tam görünüme geçer. “Daha fazla” ve “Daha az” görünümü istediğiniz an değiştirir.
 Info_Verify_Text	Her dosya bittiğinde MegaCopier onu doğrudan hedef diskten yeniden okur ve parmak izini (hash) asıl dosyanınkiyle karşılaştırır. Bir şey uyuşmazsa yalnızca hasarlı kısmı yeniden kopyalar.\n• Yedekler, fotoğraflar ve önemli belgeler.\n• Haber vermeden bozulabilen eski veya ucuz USB bellekler ve diskler.\n• Ağ veya Wi-Fi üzerinden kopyalar.\nKopyalama biraz daha uzun sürer (her şey yeniden okunur), karşılığında birebir aynı olduğundan emin olursunuz.
 Info_Conflict_Text	Hedefte aynı adlı bir dosya zaten varsa ne yapılacağı.\n• Sor: ikisini boyutu, tarihi ve küçük resmiyle gösterir, siz seçersiniz.\n• Değiştir, Atla, Daha yeniyse veya boyutu farklıysa değiştir, İkisini de tut ("ad (2)") ya da Var olanı yeniden adlandır.\nAynı dosyalar (aynı boyut ve tarih) asla yeniden kopyalanmaz: bir kopyayı tekrarlamak yalnızca yeni veya değişeni kopyalar. Bütün bir klasör zaten varsa MegaCopier başlamadan önce sorar.
 Info_Hash_Text	Hash bir dosyanın parmak izi gibidir: tek bir bayt değişse parmak izi de değişir. Doğrulamada ve kaydedilen sağlama toplamlarında kullanılır.\n• xxHash3: en hızlısı; kopyaları doğrulamak için ideal.\n• SHA-256: indirmeleri kontrol etmek için web siteleri ve programların en çok kullandığı.\n• MD5, SHA-1, BLAKE3…: başka bir program belirli birini isterse.\nGünlük kullanım için xxHash3’te bırakın.
@@ -1360,3 +1347,77 @@ Info_Tasks_Text	Windows’un MegaCopier kapalı olsa bile seçtiğiniz saatte he
 Info_Guard_Text	Diskler yıllar içinde dosyaları sessizce bozabilir. MegaCopier her dosyanın parmak izini dosyanın içine kaydeder ve bilgisayar boşta olduğunda yeniden kontrol eder. Biri kimse dokunmadan değiştiyse, yedekten kurtarmanız için zamanında uyarır.\n• Aile fotoğrafları ve videoları.\n• Nadiren açılan yedek diskler.\nDüzenledikleriniz kendiliğinden güncellenir. NTFS disk gerektirir.
 Info_Webhook_Text	Her kopya bittiğinde MegaCopier özeti bir web adresine gönderir; böylece bildirim telefonunuza veya bir sohbete gelir.\n• Discord, Slack veya Teams: bir kanala bildirim.\n• ntfy.sh: neredeyse hiçbir şey kurmadan telefonda bildirim.\n• Home Assistant: otomasyonlar (bitince bir ışığı yakmak…).
 Info_Connections_Text	Kopyaladığınız sunucuları buraya kaydedin: FTP, SFTP, WebDAV (Nextcloud, NAS…) veya S3 (Backblaze, Wasabi, R2…). Sonra kaynak veya hedef seçerken görünürler.\n• Yedekleri buluta yüklemek.\n• Şirket sunucusundan dosya indirmek.\nParolalar asla düz metin olarak değil, Windows Kimlik Bilgisi Yöneticisi’nde saklanır.
+IconPack_android	Android
+IconPack_android-tonal	Android tonal
+IconPack_macos	macOS
+IconPack_macos-color	macOS renkli
+IconPack_ubuntu	Ubuntu
+IconPack_kde	KDE Plasma
+IconPack_gnome	GNOME
+IconPack_elementary	elementary OS
+IconPack_mint	Linux Mint
+IconPack_fedora	Fedora
+IconPack_popos	Pop!_OS
+IconPack_arch	Arch Linux
+IconPack_winxp	Windows XP
+IconPack_win7	Windows 7 Aero
+IconPack_metro	Windows 8 Metro
+IconPack_steam	Steam
+Gallery_More	Daha fazla göster ({0})
+Gallery_Less	Daha az göster
+Sound_GroupOwn	MegaCopier sesleri
+Sound_GroupWindows	Windows sesleri
+SoundName_bip	Bip · 0,3 sn
+SoundName_pop	Pop · 0,3 sn
+SoundName_doble-bip	Çift bip · 0,6 sn
+SoundName_gota	Damla · 0,6 sn
+SoundName_burbuja	Kabarcık · 0,8 sn
+SoundName_toque	Dokunuş · 0,9 sn
+SoundName_pregunta	Soru · 1,4 sn
+SoundName_aviso	Bildirim · 1,5 sn
+SoundName_alerta	Kalın uyarı · 1,6 sn
+SoundName_marimba	Marimba · 1,8 sn
+SoundName_brillo	Parıltı · 2 sn
+SoundName_cristal	Kristal · 2,2 sn
+SoundName_eco	Yankı · 2,4 sn
+SoundName_arpa	Arp · 2,6 sn
+SoundName_logro	Başarı · 2,6 sn
+SoundName_cascada	Şelale · 3,6 sn
+SoundName_aurora	Kutup ışığı · 3,8 sn
+SoundName_orbital	Yörünge · 3,8 sn
+SoundName_amanecer	Gün doğumu · 4 sn
+Panel_OpenCopied.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Kopyalanan klasörü aç
+Panel_RevealFile.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Bu dosyayı klasöründe göster
+Panel_RevealSource.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Kaynağı Gezgin’de göster
+Panel_RevealDestination.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Kopyayı hedefte göster
+FolderAsk_Short	{1} dosyanın {0} tanesi ({2}) zaten {3} içinde.
+FolderAsk_SkipShort	Atla
+FolderAsk_AskEachShort	Tek tek
+FolderAsk_CancelShort	İptal
+Settings_AutoAdminTitle.Text	Windows bir dosyanın kopyalanmasına izin vermediğinde yönetici izni iste
+Settings_AutoAdminDescription.Text	Sonunda “erişim engellendi” kalan dosyalar varsa (korumalı oyunlar, başka kullanıcıların klasörleri), Windows bir kez izin ister ve Gezgin’deki gibi kopyalanırlar.
+Info_AutoAdmin_Text	Bazı dosyalar yalnızca yönetici izniyle okunabilir. Gezgin “Bu eylemi gerçekleştirmek için izin gerekiyor” dediğinde olan budur.\n• Xbox veya Microsoft Store oyunları: .exe dosyalarını Windows korur.\n• Başka kullanıcıların veya Windows’un klasörleri.\nMegaCopier geri kalan her şeyi kopyalar ve sonunda bu dosyalar için yalnızca bir kez izin ister. Hayır derseniz hatalarıyla işaretli kalırlar ve “Yönetici olarak kopyala” ile yeniden deneyebilirsiniz.
+Tool_Copy.Text	Kopyala…
+Tool_Move.Text	Taşı…
+Tool_CopyText.Text	Kopyala…
+Tool_MoveText.Text	Taşı…
+Tool_Send.Text	Başka bir bilgisayara gönder…
+Tool_Devices.Text	Telefonlar, kameralar ve sunucular
+Tool_Checksums.Text	Denetle ve onar
+Tool_Test.Text	Sağlama dosyalarıyla denetle…
+Tool_Hash.Text	Sağlama dosyası oluştur…
+Tool_Backups.Text	Yedekler
+Picker_Open	Aç
+Picker_AllFiles	Tüm dosyalar
+Picker_SelectHere	Bu klasörü seç
+Picker_SelectOne	İşaretleneni seç
+Picker_SelectMany	{0} öğe seç
+Picker_CopyTitle	Neyin kopyalanacağını seçin: dosyalar veya klasörler
+Picker_MoveTitle	Neyin taşınacağını seçin: dosyalar veya klasörler
+Picker_TestTitle	Denetlenecek sağlama dosyalarını veya klasörleri seçin
+Picker_ChecksumFiles	Sağlama dosyaları
+Picker_HashTitle	Sağlaması oluşturulacak dosyaları veya klasörleri seçin
+Picker_SendTitle	Neyin gönderileceğini seçin: dosyalar veya klasörler
+Picker_DeleteTitle	Neyin silineceğini seçin: dosyalar veya klasörler
+Picker_WipeTitle	Neyin güvenli silineceğini seçin: dosyalar veya klasörler
+Picker_AddTitle	Listeye eklenecekleri seçin: dosyalar veya klasörler

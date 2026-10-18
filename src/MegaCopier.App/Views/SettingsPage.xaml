@@ -203,7 +203,7 @@
                         </Grid>
                     </StackPanel>
                 </Border>                <TextBlock x:Name="ThemesLabel" x:Uid="Settings_Themes" Style="{StaticResource McSection}" />
-                <GridView x:Name="ThemeGallery" AutomationProperties.LabeledBy="{x:Bind ThemesLabel}" SelectionMode="Single" SelectionChanged="ThemeGallery_SelectionChanged" Margin="-4,0,0,0">
+                <GridView x:Name="ThemeGallery" AutomationProperties.LabeledBy="{x:Bind ThemesLabel}" SelectionMode="Single" SelectionChanged="ThemeGallery_SelectionChanged" Margin="-8,-4,0,0" Padding="4,4,0,0">
                     <GridView.ItemContainerTransitions>
                         <TransitionCollection>
                             <EntranceThemeTransition IsStaggeringEnabled="True" />
@@ -271,7 +271,7 @@
                 </Expander>
                 <TextBlock x:Name="IconsLabel" x:Uid="Settings_Icons" Style="{StaticResource McSection}" />
                 <TextBlock x:Uid="Settings_IconsDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" Margin="2,-2,0,6" />
-                <GridView x:Name="IconGallery" AutomationProperties.LabeledBy="{x:Bind IconsLabel}" SelectionMode="Single" SelectionChanged="IconGallery_SelectionChanged" Margin="-4,0,0,0" />
+                <GridView x:Name="IconGallery" AutomationProperties.LabeledBy="{x:Bind IconsLabel}" SelectionMode="Single" SelectionChanged="IconGallery_SelectionChanged" Margin="-8,-4,0,0" Padding="4,4,0,0" />
                 <StackPanel x:Name="BarsHost" Spacing="8" Margin="0,8,0,0" />
                 </StackPanel>                <StackPanel x:Name="Sec_Sounds" Visibility="Collapsed">
                 <Border Style="{StaticResource McSettingCard}">
@@ -424,6 +424,14 @@
                             </ComboBox>
                         </Grid>
                     </StackPanel>
+                </Border>
+                <Border Style="{StaticResource McSettingCard}">
+                    <Grid Style="{StaticResource Row}">
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                        <c:McIcon VerticalAlignment="Center" Glyph="&#xE7EF;" FontSize="18" Accent="True" />
+                        <StackPanel Grid.Column="1"><Grid ColumnSpacing="4"><Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions><TextBlock x:Name="AutoAdminTitleLabel" x:Uid="Settings_AutoAdminTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" VerticalAlignment="Center" /><c:InfoTip Grid.Column="1" Topic="AutoAdmin" Margin="0,-4,0,-4" /></Grid><TextBlock x:Uid="Settings_AutoAdminDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                        <ToggleSwitch x:Name="AutoAdminToggle" AutomationProperties.LabeledBy="{x:Bind AutoAdminTitleLabel}" Grid.Column="2" OnContent="" OffContent="" MinWidth="0" Toggled="Changed" />
+                    </Grid>
                 </Border>                <Border Style="{StaticResource McSettingCard}">
                     <StackPanel Spacing="8">
                         <Grid Style="{StaticResource Row}" Tag="SettingRow">

@@ -149,12 +149,6 @@ AboutDialog.CloseButtonText	Cerrar	Close
 About_DataFolder.Content	Abrir la carpeta de datos (ajustes, temas, historial, informes)	Open the data folder (settings, themes, history, reports)
 About_Description.Text	Copiador de archivos para Windows 11 que continúa incluso un único archivo enorme tras un corte de luz, verificando lo ya copiado.	File copier for Windows 11 that resumes even a single huge file after a power cut, verifying what was already copied.
 About_Features.Text	E/S asíncrona sin caché · varias lecturas y escrituras en paralelo · verificación con hash (CRC32, xxHash, MD5, SHA) · cola por disco · pausa y reanudación · mover · conflictos · límite de velocidad · listas de copia · informes · temas.	Unbuffered async I/O · parallel reads and writes · hash verification (CRC32, xxHash, MD5, SHA) · per-disk queue · pause and resume · move · conflicts · speed limit · copy lists · reports · themes.
-CopyFiles.Text	Copiar archivos…	Copy files…
-CopyFolder.Text	Copiar una carpeta…	Copy a folder…
-CopyFilesText.Text	Copiar archivos	Copy files
-CopyFolderText.Text	Copiar carpeta	Copy folder
-Files_AddFiles.Text	Añadir archivos…	Add files…
-Files_AddFolder.Text	Añadir carpeta…	Add folder…
 Files_AutoScroll.Content	Seguir al actual	Follow current
 Files_CopyHashes.Text	Copiar los hashes	Copy hashes
 Files_CopyPath.Text	Copiar la ruta	Copy path
@@ -321,7 +315,6 @@ Tool_History.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Historial	
 Tool_HistoryText.Text	Historial	History
 Tool_LoadList.Text	Cargar una lista de copia…	Load a transfer list…
 Tool_LoadListText.Text	Cargar lista	Load list
-Tool_MoveFiles.Text	Mover archivos…	Move files…
 Tool_NewCopy.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Nueva copia	New transfer
 Tool_NewCopyText.Text	Nueva	New
 Tool_PauseAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Pausar todas	Pause all
@@ -417,8 +410,6 @@ Settings_FavoritesEmpty	Todavía no hay favoritos.	No favorites yet.
 Tool_CopyTo.Text	Copiar a	Copy to
 Tool_CopyToEmpty	Sin favoritos ni recientes	No favorites or recent folders
 Tool_CopyToManage	Gestionar favoritos…	Manage favorites…
-Tool_TestFiles.Text	Comprobar archivos de sumas…	Test checksum files…
-Tool_TestFolder.Text	Comprobar sumas de una carpeta…	Test checksums in a folder…
 Tool_Delete.Text	Borrar…	Delete…
 Tool_Wipe.Text	Borrar de forma segura…	Securely delete…
 DestinationsDialog.Title	¿Adónde?	Where to?
@@ -548,8 +539,6 @@ Options_MirrorInfo.Title	Sincronizar quita del destino lo que ya no está en el 
 Options_MirrorInfo.Message	Lo que excluyen los filtros no se toca. Indica una carpeta de versiones para guardar lo quitado o reemplazado.	Anything excluded by the filters is left alone. Set a versions folder to keep what is removed or replaced.
 Options_DryRun.Content	Simular: decir qué se haría sin cambiar nada	Simulate: show what would happen without changing anything
 Destinations_DryRun.Content	Simular primero (no cambia nada)	Simulate first (changes nothing)
-Tool_HashFolder.Text	Crear archivo de sumas de una carpeta…	Create a checksum file for a folder…
-Tool_HashFiles.Text	Crear archivo de sumas de archivos…	Create a checksum file for files…
 Rules_SkipJunk.Content	Omitir archivos basura (Thumbs.db, desktop.ini, .DS_Store, ~$…)	Skip junk files (Thumbs.db, desktop.ini, .DS_Store, ~$…)
 Rules_OnErrorEnd.Content	Reintentarlo al final de la cola	Retry it at the end of the queue
 Rules_Safety.Text	Sincronización y seguridad	Sync and safety
@@ -693,8 +682,6 @@ Peer_ReceivedTitle	Archivos recibidos	Files received
 Peer_Received	{0} archivos de {1}, en {2}.	{0} files from {1}, in {2}.
 Peer_RejectedTitle	Envío rechazado	Transfer rejected
 Peer_Rejected	{0} intentó enviarte archivos con un código equivocado.	{0} tried to send you files with a wrong code.
-Tool_SendFiles.Text	Enviar archivos a otro equipo…	Send files to another PC…
-Tool_SendFolder.Text	Enviar una carpeta a otro equipo…	Send a folder to another PC…
 SendDialog.Title	Enviar a otro equipo	Send to another PC
 SendDialog.PrimaryButtonText	Enviar	Send
 SendDialog.CloseButtonText	Cancelar	Cancel
@@ -1336,7 +1323,7 @@ Theme_solar-claro	Solar claro	Light solar
 Theme_capuchino-claro	Capuchino claro	Light cappuccino
 Info_Paste_Text	Cuando copias (Ctrl+C) o cortas (Ctrl+X) archivos y los pegas (Ctrl+V) en el Explorador o en el Escritorio, la copia la hace MegaCopier en vez de Windows: con cola, pausa, verificación y la posibilidad de seguir si se corta.\n• Copias grandes a un disco externo: puedes pausarlas y seguir luego.\n• Varias copias seguidas: van en cola en vez de pelearse por el disco.\nSi pegas en la misma carpeta (para duplicar un archivo), lo sigue haciendo el Explorador.	When you copy (Ctrl+C) or cut (Ctrl+X) files and paste them (Ctrl+V) in File Explorer or on the desktop, MegaCopier does the copy instead of Windows: with a queue, pause, verification and the option to resume if it is interrupted.\n• Big copies to an external drive: you can pause them and continue later.\n• Several copies in a row: they queue up instead of fighting over the disk.\nIf you paste into the same folder (to duplicate a file), File Explorer still does it.
 Info_Drag_Text	Al arrastrar archivos con el botón izquierdo de una ventana a otra, la copia (o el movimiento) la hace MegaCopier con las mismas reglas de Windows: en la misma unidad mueve, Ctrl obliga a copiar y Mayús obliga a mover.\n• Ordenar fotos arrastrándolas entre carpetas de discos distintos.\n• Mover proyectos grandes sin bloquear el Explorador.\nSoltar sobre un archivo, un ZIP o el panel de la izquierda lo sigue haciendo el Explorador.	When you drag files with the left button from one window to another, MegaCopier copies (or moves) them with the same rules as Windows: on the same drive it moves, Ctrl forces a copy and Shift forces a move.\n• Sort photos by dragging them between folders on different drives.\n• Move big projects without freezing File Explorer.\nDropping onto a file, a ZIP or the left pane is still handled by File Explorer.
-Info_WindowMode_Text	Cómo se ve la ventana mientras copias.\n• Compacta: solo las barras y los botones; ocupa poco.\n• Completa: con la lista de archivos, el destino, las opciones, la gráfica y el registro.\n• Automática: compacta con una sola copia y completa cuando hay varias.\nLos botones «Más» y «Menos» cambian entre las dos en cualquier momento.	How the window looks while copying.\n• Compact: just the bars and buttons; takes little room.\n• Full: with the file list, destination, options, chart and log.\n• Automatic: compact with a single copy and full when there are several.\nThe "More" and "Less" buttons switch between the two at any time.
+Info_WindowMode_Text	La ventana de copia tiene tres vistas.\n• Pequeña: solo las barras y los botones. Es la de siempre al copiar; se puede ensanchar, pero no hacer más alta.\n• Con la lista («Más»): los archivos, el destino, las opciones, la gráfica y el registro. Se puede agrandar o maximizar.\n• Varias copias: la misma, con la lista de copias a la izquierda; aparece sola cuando hay más de una.\n«Automática» empieza en la pequeña y pasa a la completa cuando hay varias copias a la vez. «Más» y «Menos» cambian de vista en cualquier momento.	The copy window has three views.\n• Small: just the bars and buttons. It’s the usual one while copying; you can make it wider, but not taller.\n• With the list (“More”): files, destination, options, graph and log. It can be enlarged or maximized.\n• Several copies: the same, with the list of copies on the left; it appears by itself when there’s more than one.\n“Automatic” starts small and switches to the full view when several copies run at once. “More” and “Less” switch views at any time.
 Info_Verify_Text	Al terminar cada archivo, MegaCopier lo vuelve a leer directamente del disco de destino y compara su huella (hash) con la del original. Si algo no coincide, vuelve a copiar solo la parte dañada.\n• Copias de seguridad, fotos y documentos importantes.\n• Memorias USB o discos viejos o baratos, que pueden fallar sin avisar.\n• Copias por la red o por Wi-Fi.\nLa copia tarda algo más (hay que leerlo todo otra vez), a cambio de la seguridad de que es idéntica.	When each file finishes, MegaCopier reads it back straight from the destination disk and compares its fingerprint (hash) with the original’s. If anything doesn’t match, it re-copies only the damaged part.\n• Backups, photos and important documents.\n• Old or cheap USB sticks and drives, which can fail without warning.\n• Copies over the network or Wi-Fi.\nThe copy takes a bit longer (everything has to be read again), in exchange for knowing it is identical.
 Info_Conflict_Text	Qué hacer cuando en el destino ya hay un archivo con el mismo nombre.\n• Preguntar: te muestra los dos, con su tamaño, su fecha y una miniatura, y tú eliges.\n• Reemplazar, Omitir, Reemplazar si es más nuevo o si tiene otro tamaño, Conservar los dos («nombre (2)») o Renombrar el que ya estaba.\nLos archivos idénticos (mismo tamaño y fecha) nunca se vuelven a copiar: repetir una copia solo copia lo nuevo o lo cambiado. Si es una carpeta entera la que ya existe, MegaCopier pregunta antes de empezar.	What to do when the destination already has a file with the same name.\n• Ask: shows you both, with their size, date and a thumbnail, and you choose.\n• Replace, Skip, Replace if newer or if the size differs, Keep both ("name (2)") or Rename the existing one.\nIdentical files (same size and date) are never copied again: repeating a copy only copies what is new or changed. If a whole folder already exists, MegaCopier asks before starting.
 Info_Hash_Text	El hash es como la huella digital de un archivo: si cambia un solo byte, cambia la huella. Se usa al verificar y en las sumas que se guardan.\n• xxHash3: el más rápido; ideal para verificar copias.\n• SHA-256: el que más usan las webs y los programas para comprobar descargas.\n• MD5, SHA-1, BLAKE3…: por si otro programa te pide uno en concreto.\nPara el día a día, deja xxHash3.	The hash is like a file’s fingerprint: if a single byte changes, the fingerprint changes. It is used when verifying and in saved checksums.\n• xxHash3: the fastest; ideal for verifying copies.\n• SHA-256: the one websites and programs use most to check downloads.\n• MD5, SHA-1, BLAKE3…: in case another program asks for a specific one.\nFor everyday use, keep xxHash3.
@@ -1360,3 +1347,77 @@ Info_Tasks_Text	Una copia guardada que Windows lanza sola cada día, semana o me
 Info_Guard_Text	Los discos pueden estropear archivos con los años sin avisar. MegaCopier guarda la huella de cada archivo dentro de él y, cuando el equipo está libre, los vuelve a comprobar. Si uno cambió sin que nadie lo tocara, te avisa a tiempo de recuperarlo de una copia.\n• Fotos y vídeos de familia.\n• Discos de copias de seguridad que casi no se abren.\nLo que tú edites se actualiza solo. Necesita discos NTFS.	Disks can silently damage files over the years. MegaCopier stores each file’s fingerprint inside it and, when the computer is idle, checks them again. If one changed without anyone touching it, it warns you in time to restore it from a backup.\n• Family photos and videos.\n• Backup disks that are rarely opened.\nWhat you edit updates by itself. Requires NTFS disks.
 Info_Webhook_Text	Al terminar cada copia, MegaCopier manda el resumen a una dirección web. Así te llega el aviso al móvil o a un chat.\n• Discord, Slack o Teams: avisos en un canal.\n• ntfy.sh: notificación en el móvil casi sin instalar nada.\n• Home Assistant: automatizaciones (encender una luz al terminar…).	When each copy finishes, MegaCopier sends the summary to a web address, so the notification reaches your phone or a chat.\n• Discord, Slack or Teams: notices in a channel.\n• ntfy.sh: a phone notification with almost nothing to install.\n• Home Assistant: automations (turn on a light when done…).
 Info_Connections_Text	Guarda aquí los servidores a los que copias: FTP, SFTP, WebDAV (Nextcloud, NAS…) o S3 (Backblaze, Wasabi, R2…). Luego aparecen al elegir el origen o el destino.\n• Subir copias de seguridad a la nube.\n• Bajar archivos de un servidor de la empresa.\nLas contraseñas se guardan en el Administrador de credenciales de Windows, nunca en texto.	Save the servers you copy to here: FTP, SFTP, WebDAV (Nextcloud, NAS…) or S3 (Backblaze, Wasabi, R2…). They then appear when choosing the source or destination.\n• Upload backups to the cloud.\n• Download files from a company server.\nPasswords are stored in Windows Credential Manager, never as plain text.
+IconPack_android	Android	Android
+IconPack_android-tonal	Android tonal	Android tonal
+IconPack_macos	macOS	macOS
+IconPack_macos-color	macOS color	macOS color
+IconPack_ubuntu	Ubuntu	Ubuntu
+IconPack_kde	KDE Plasma	KDE Plasma
+IconPack_gnome	GNOME	GNOME
+IconPack_elementary	elementary OS	elementary OS
+IconPack_mint	Linux Mint	Linux Mint
+IconPack_fedora	Fedora	Fedora
+IconPack_popos	Pop!_OS	Pop!_OS
+IconPack_arch	Arch Linux	Arch Linux
+IconPack_winxp	Windows XP	Windows XP
+IconPack_win7	Windows 7 Aero	Windows 7 Aero
+IconPack_metro	Windows 8 Metro	Windows 8 Metro
+IconPack_steam	Steam	Steam
+Gallery_More	Mostrar más ({0})	Show more ({0})
+Gallery_Less	Mostrar menos	Show less
+Sound_GroupOwn	Sonidos de MegaCopier	MegaCopier sounds
+Sound_GroupWindows	Sonidos de Windows	Windows sounds
+SoundName_bip	Bip · 0,3 s	Beep · 0.3 s
+SoundName_pop	Pop · 0,3 s	Pop · 0.3 s
+SoundName_doble-bip	Doble bip · 0,6 s	Double beep · 0.6 s
+SoundName_gota	Gota · 0,6 s	Drop · 0.6 s
+SoundName_burbuja	Burbujas · 0,8 s	Bubbles · 0.8 s
+SoundName_toque	Toque · 0,9 s	Tap · 0.9 s
+SoundName_pregunta	Pregunta · 1,4 s	Question · 1.4 s
+SoundName_aviso	Aviso · 1,5 s	Notice · 1.5 s
+SoundName_alerta	Alerta grave · 1,6 s	Low alert · 1.6 s
+SoundName_marimba	Marimba · 1,8 s	Marimba · 1.8 s
+SoundName_brillo	Destellos · 2 s	Sparkles · 2 s
+SoundName_cristal	Cristal · 2,2 s	Crystal · 2.2 s
+SoundName_eco	Eco · 2,4 s	Echo · 2.4 s
+SoundName_arpa	Arpa · 2,6 s	Harp · 2.6 s
+SoundName_logro	Logro · 2,6 s	Achievement · 2.6 s
+SoundName_cascada	Cascada · 3,6 s	Cascade · 3.6 s
+SoundName_aurora	Aurora · 3,8 s	Aurora · 3.8 s
+SoundName_orbital	Orbital · 3,8 s	Orbital · 3.8 s
+SoundName_amanecer	Amanecer · 4 s	Sunrise · 4 s
+Panel_OpenCopied.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Abrir la carpeta que se está copiando	Open the folder being copied
+Panel_RevealFile.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Mostrar este archivo en su carpeta	Show this file in its folder
+Panel_RevealSource.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Mostrar el origen en el Explorador	Show the source in File Explorer
+Panel_RevealDestination.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Mostrar la copia en el destino	Show the copy at the destination
+FolderAsk_Short	Ya hay {0} de {1} archivos ({2}) en {3}.	{0} of {1} files ({2}) are already in {3}.
+FolderAsk_SkipShort	Pasar	Skip
+FolderAsk_AskEachShort	Uno a uno	One by one
+FolderAsk_CancelShort	Cancelar	Cancel
+Settings_AutoAdminTitle.Text	Pedir permiso de administrador cuando Windows no deje copiar un archivo	Ask for administrator permission when Windows won’t let a file be copied
+Settings_AutoAdminDescription.Text	Al terminar, si quedaron archivos con «acceso denegado» (juegos protegidos, carpetas de otros usuarios), Windows pide permiso una vez y se copian solos, como en el Explorador.	When the copy ends, if files were left with “access denied” (protected games, other users’ folders), Windows asks for permission once and they are copied automatically, like in File Explorer.
+Info_AutoAdmin_Text	Algunos archivos solo se pueden leer con permisos de administrador. Es lo que pasa cuando el Explorador dice «Necesitas permiso para realizar esta acción».\n• Juegos de Xbox o de la Microsoft Store: sus .exe están protegidos por Windows.\n• Carpetas de otros usuarios del equipo o de Windows.\nMegaCopier copia todo lo demás y, al final, pide permiso una sola vez para esos archivos. Si dices que no, quedan marcados con su error y puedes reintentarlo con «Copiar como administrador».	Some files can only be read with administrator rights. It’s what happens when File Explorer says “You need permission to perform this action”.\n• Xbox or Microsoft Store games: their .exe files are protected by Windows.\n• Folders of other users on this PC or of Windows.\nMegaCopier copies everything else and, at the end, asks for permission only once for those files. If you say no, they stay marked with their error and you can retry with “Copy as administrator”.
+Tool_Copy.Text	Copiar…	Copy…
+Tool_Move.Text	Mover…	Move…
+Tool_CopyText.Text	Copiar…	Copy…
+Tool_MoveText.Text	Mover…	Move…
+Tool_Send.Text	Enviar a otro equipo…	Send to another PC…
+Tool_Devices.Text	Móviles, cámaras y servidores	Phones, cameras and servers
+Tool_Checksums.Text	Comprobar y reparar	Check and repair
+Tool_Test.Text	Comprobar con archivos de sumas…	Check with checksum files…
+Tool_Hash.Text	Crear archivo de sumas…	Create checksum file…
+Tool_Backups.Text	Copias de seguridad	Backups
+Picker_Open	Abrir	Open
+Picker_AllFiles	Todos los archivos	All files
+Picker_SelectHere	Seleccionar esta carpeta	Select this folder
+Picker_SelectOne	Seleccionar lo marcado	Select the highlighted item
+Picker_SelectMany	Seleccionar {0} elementos	Select {0} items
+Picker_CopyTitle	Elige qué copiar: archivos o carpetas	Choose what to copy: files or folders
+Picker_MoveTitle	Elige qué mover: archivos o carpetas	Choose what to move: files or folders
+Picker_TestTitle	Elige archivos de sumas o carpetas para comprobar	Choose checksum files or folders to check
+Picker_ChecksumFiles	Archivos de sumas	Checksum files
+Picker_HashTitle	Elige archivos o carpetas para crear sus sumas	Choose files or folders to create their checksums
+Picker_SendTitle	Elige qué enviar: archivos o carpetas	Choose what to send: files or folders
+Picker_DeleteTitle	Elige qué borrar: archivos o carpetas	Choose what to delete: files or folders
+Picker_WipeTitle	Elige qué borrar de forma segura: archivos o carpetas	Choose what to securely delete: files or folders
+Picker_AddTitle	Elige qué añadir a la lista: archivos o carpetas	Choose what to add to the list: files or folders

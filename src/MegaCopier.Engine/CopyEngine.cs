@@ -98,12 +98,11 @@ public sealed partial class CopyEngine
     /// <summary>Salta el archivo que se está copiando ahora (lo copiado de él se descarta).</summary>
     public void SkipCurrent()
     {
+        // En pausa, el archivo se descarta y la copia sigue en pausa, ya en el siguiente: arranca al pulsar Continuar.
         lock (_lock)
         {
             _currentFile?.Cancel();
         }
-
-        Controller.Resume();
     }
 
     /// <summary>La regla de conflictos cambió en caliente: olvidar el «hacer lo mismo con todos» que se eligió antes.</summary>
@@ -319,8 +318,9 @@ public sealed partial class CopyEngine
                     break;
                 }
 
-                Controller.WaitIfPaused(cancellationToken);
+                // Primero se muestra cuál toca: en pausa (o tras saltar uno en pausa) se ve el siguiente que espera.
                 progress.BeginFile(item.Destination, item.Length);
+                Controller.WaitIfPaused(cancellationToken);
                 if (_options.DryRun)
                 {
                     SimulateFile(item, result);
