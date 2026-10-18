@@ -5,6 +5,13 @@ y las versiones, [SemVer](https://semver.org/lang/es/).
 
 ## [Sin publicar]
 
+Renovamos las barras de progreso con 22 estilos animados y personalización completa, reconstruimos la lista de archivos de
+cada copia (botones a la vista, selección múltiple, origen y destino, guardar y seguir donde quedó), añadimos la pregunta
+de «la carpeta ya existe» con la opción de pasar lo que ya está, el límite de velocidad en vivo, 21 temas nuevos y una
+ayuda ⓘ con ejemplos en las opciones más complejas.
+
+<img src="https://github.com/cbatista96/MegaCopier/raw/v1.2.0/docs/capturas/barras.png" width="820" alt="Galería de estilos de barras de progreso">
+
 ### Añadido
 
 #### Barras de progreso personalizables
@@ -24,6 +31,8 @@ y las versiones, [SemVer](https://semver.org/lang/es/).
   - borde fino y «Reducir animaciones» (también se activa solo si Windows tiene desactivados los efectos de animación).
 - Los temas propios guardan también el aspecto de las barras y lo llevan consigo al exportarlos.
 
+<img src="https://github.com/cbatista96/MegaCopier/raw/v1.2.0/docs/capturas/barras-copia.png" width="520" alt="Barras Aero y Rayas en movimiento copiando">
+
 #### Lista de archivos de cada copia
 
 - **Botones a la vista** junto a la lista: al principio, subir, bajar, al final, añadir archivos o carpetas, quitar,
@@ -36,6 +45,10 @@ y las versiones, [SemVer](https://semver.org/lang/es/).
 - **Soltar archivos en cualquier parte de una copia** (el panel o las pestañas) los añade al final de esa copia y al mismo
   destino; sobre la lista, una línea marca la posición exacta.
 
+<img src="https://github.com/cbatista96/MegaCopier/raw/v1.2.0/docs/capturas/lista.png" width="820" alt="Lista de archivos con sus botones y varios archivos elegidos">
+
+<img src="https://github.com/cbatista96/MegaCopier/raw/v1.2.0/docs/capturas/destino-falta.png" width="620" alt="Aviso al cargar una lista cuyo destino ya no está">
+
 #### Carpetas que ya existen en el destino
 
 - Al copiar una carpeta que ya está en el destino con algunos de sus archivos, MegaCopier pregunta antes de empezar:
@@ -43,15 +56,32 @@ y las versiones, [SemVer](https://semver.org/lang/es/).
   en «Fotos (2)»), **Preguntar uno por uno** o **Cancelar la copia**. Es lo predeterminado y se puede cambiar en
   *Ajustes > Copia > Reglas*.
 
+<img src="https://github.com/cbatista96/MegaCopier/raw/v1.2.0/docs/capturas/carpeta-existe.png" width="620" alt="La carpeta ya existe en el destino">
+
 #### 21 temas nuevos (73 en total)
 
 - **Oscuros**: Material oscuro, Cobre oscuro, Silicio oscuro, Brisa oscura, Pizarra, Arcade, Ártico, Vampiro, Capuchino,
   Noche de Tokio, Retro cálido, Solar oscuro, Átomo y Menta oscura.
 - **Claros**: Material claro, Cobre claro, Silicio claro, Brisa clara, Tiza, Solar claro y Capuchino claro.
 
+<table>
+<tr>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.2.0/docs/capturas/temas/material-oscuro.png" alt="Material oscuro"><br>Material oscuro</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.2.0/docs/capturas/temas/silicio-claro.png" alt="Silicio claro"><br>Silicio claro</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.2.0/docs/capturas/temas/capuchino.png" alt="Capuchino"><br>Capuchino</td>
+</tr>
+<tr>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.2.0/docs/capturas/temas/arcade.png" alt="Arcade"><br>Arcade</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.2.0/docs/capturas/temas/vampiro.png" alt="Vampiro"><br>Vampiro</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.2.0/docs/capturas/temas/tiza.png" alt="Tiza"><br>Tiza</td>
+</tr>
+</table>
+
 #### Ayuda en cada opción
 
 - **Botón ⓘ en 26 opciones**: explica para qué sirve cada una y en qué casos conviene usarla, con ejemplos.
+
+<img src="https://github.com/cbatista96/MegaCopier/raw/v1.2.0/docs/capturas/ajustes-ayuda.png" width="820" alt="Ayuda de la opción Verificar después de copiar">
 
 ### Cambiado
 
