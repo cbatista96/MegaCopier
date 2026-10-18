@@ -55,8 +55,8 @@
                     <c:McIcon x:Name="SectionIcon" FontSize="26" Accent="True" VerticalAlignment="Center" />
                     <TextBlock x:Name="SectionTitle" Style="{StaticResource McTitle}" FontSize="26" VerticalAlignment="Center" TextWrapping="Wrap" />
                 </StackPanel>
-                <ScrollViewer x:Name="SectionScroll" Grid.Row="1" Padding="24,0,24,20">
-            <StackPanel x:Name="SectionsHost" MaxWidth="900" HorizontalAlignment="Stretch">
+                <ScrollViewer x:Name="SectionScroll" Grid.Row="1" Padding="24,0,24,20" HorizontalScrollMode="Disabled" HorizontalScrollBarVisibility="Disabled">
+            <StackPanel x:Name="SectionsHost" MaxWidth="980" HorizontalAlignment="Left">
                 <InfoBar x:Name="RestartInfo" x:Uid="RestartInfo" Severity="Informational" IsClosable="False" IsOpen="False" Margin="0,8,0,0">
                     <InfoBar.ActionButton>
                         <Button x:Uid="RestartButton" Click="Restart_Click" />
@@ -409,7 +409,7 @@
                     <StackPanel Spacing="8">
                         <Grid Style="{StaticResource Row}" Tag="SettingRow">
                             <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
-                            <c:McIcon VerticalAlignment="Center" Glyph="&#xE7E7;" FontSize="18" Accent="True" />
+                            <c:McIcon VerticalAlignment="Center" Glyph="&#xE88E;" FontSize="18" Accent="True" />
                             <StackPanel Grid.Column="1"><TextBlock x:Name="EjectTitleLabel" x:Uid="Settings_EjectTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="Settings_EjectDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
                             <ToggleSwitch x:Name="EjectToggle" AutomationProperties.LabeledBy="{x:Bind EjectTitleLabel}" Grid.Column="2" OnContent="" OffContent="" MinWidth="0" Toggled="Changed" />
                         </Grid>

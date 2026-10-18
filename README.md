@@ -133,38 +133,98 @@ Todo explicado paso a paso en la **[guía de uso](docs/Guia.md)**.
 </tr>
 <tr>
 <td><img src="docs/capturas/terminadas.png" alt="Copias terminadas"><br><b>Al terminar</b>: resumen, «Abrir carpeta» y lo omitido.</td>
-<td><img src="docs/capturas/ajustes.png" alt="Ajustes"><br><b>Ajustes</b>, explicados uno a uno.</td>
+<td><img src="docs/capturas/ajustes.png" alt="Ajustes"><br><b>Ajustes</b> como la Configuración de Windows 11: secciones, buscador e iconos.</td>
+</tr>
+<tr>
+<td><img src="docs/capturas/ajustes-comportamiento.png" alt="Ajustes de comportamiento"><br><b>Comportamiento</b>: sumar copias, borrar lo que quedó a medias, expulsar el USB.</td>
+<td><img src="docs/capturas/ajustes-errores.png" alt="Ajustes de errores"><br><b>Errores</b>: preguntar qué hacer, reintentos e informe de errores.</td>
+</tr>
+<tr>
+<td colspan="2"><img src="docs/capturas/ajustes-madera.png" alt="Ajustes con el tema Madera y los iconos Mosaico"><br>Tema <b>Madera</b> con los iconos <b>Mosaico</b>: cualquier tema con cualquier conjunto de iconos.</td>
+
 </tr>
 </table>
 
 ### Temas
 
-Once temas que cambian toda la interfaz al momento, más un editor para crear los tuyos.
+**52 temas** que cambian toda la interfaz al momento, hasta los botones, los menús y las barras de desplazamiento. Muchos
+se inspiran en los temas clásicos de SuperCopier, rehechos al estilo de Windows 11, y algunos tienen textura de fondo.
+Además, un editor para crear los tuyos.
 
 <table>
 <tr>
-<td width="50%"><img src="docs/capturas/temas/fluent-dark.png" alt="Fluent oscuro"><br>Fluent oscuro</td>
-<td width="50%"><img src="docs/capturas/temas/fluent-light.png" alt="Fluent claro"><br>Fluent claro</td>
+<td width="33%"><img src="docs/capturas/temas/combustion.png" alt="Combustión"><br>Combustión</td>
+<td width="33%"><img src="docs/capturas/temas/codigo-verde.png" alt="Código verde"><br>Código verde</td>
+<td width="33%"><img src="docs/capturas/temas/aurora.png" alt="Aurora"><br>Aurora</td>
 </tr>
 <tr>
+<td><img src="docs/capturas/temas/galaxia.png" alt="Galaxia"><br>Galaxia</td>
+<td><img src="docs/capturas/temas/neon.png" alt="Neón"><br>Neón</td>
+<td><img src="docs/capturas/temas/caja-negra.png" alt="Caja negra"><br>Caja negra</td>
+</tr>
+<tr>
+<td><img src="docs/capturas/temas/madera.png" alt="Madera"><br>Madera</td>
+<td><img src="docs/capturas/temas/cuaderno.png" alt="Cuaderno"><br>Cuaderno</td>
+<td><img src="docs/capturas/temas/cristal.png" alt="Cristal"><br>Cristal</td>
+</tr>
+<tr>
+<td><img src="docs/capturas/temas/burbuja-azul.png" alt="Burbuja azul"><br>Burbuja azul</td>
+<td><img src="docs/capturas/temas/berenjena.png" alt="Berenjena"><br>Berenjena</td>
+<td><img src="docs/capturas/temas/humo.png" alt="Humo"><br>Humo</td>
+</tr>
+<tr>
+<td><img src="docs/capturas/temas/sc3-azul.png" alt="SuperCopier 3 azul"><br>SuperCopier 3 azul</td>
+<td><img src="docs/capturas/temas/metro-oscuro.png" alt="Metro oscuro"><br>Metro oscuro</td>
+<td><img src="docs/capturas/temas/aero.png" alt="Aero"><br>Aero</td>
+</tr>
+<tr>
+<td><img src="docs/capturas/temas/luna.png" alt="Luna"><br>Luna</td>
+<td><img src="docs/capturas/temas/aire.png" alt="Aire"><br>Aire</td>
+<td><img src="docs/capturas/temas/menta.png" alt="Menta"><br>Menta</td>
+</tr>
+<tr>
+<td><img src="docs/capturas/temas/fluent-dark.png" alt="Fluent oscuro"><br>Fluent oscuro</td>
+<td><img src="docs/capturas/temas/fluent-light.png" alt="Fluent claro"><br>Fluent claro</td>
 <td><img src="docs/capturas/temas/midnight.png" alt="Medianoche"><br>Medianoche</td>
-<td><img src="docs/capturas/temas/graphite.png" alt="Grafito"><br>Grafito</td>
 </tr>
 <tr>
 <td><img src="docs/capturas/temas/ocean.png" alt="Océano"><br>Océano</td>
 <td><img src="docs/capturas/temas/forest.png" alt="Bosque"><br>Bosque</td>
-</tr>
-<tr>
 <td><img src="docs/capturas/temas/sunset.png" alt="Atardecer"><br>Atardecer</td>
-<td><img src="docs/capturas/temas/supercopier.png" alt="SuperCopier clásico"><br>SuperCopier clásico</td>
 </tr>
 <tr>
+<td><img src="docs/capturas/temas/supercopier.png" alt="SuperCopier clásico"><br>SuperCopier clásico</td>
 <td><img src="docs/capturas/temas/ultracopier.png" alt="Ultracopier clásico"><br>Ultracopier clásico</td>
 <td><img src="docs/capturas/temas/contrast.png" alt="Alto contraste"><br>Alto contraste</td>
 </tr>
 </table>
 
-El undécimo, **Fluent (como Windows)**, sigue solo el modo claro u oscuro y el color de acento de Windows.
+Y otros 24: Grafito, Robot verde, Cielo de otoño, Ámbar, Granate, Vapor, Metro gris, Televisión, Reproductor,
+SuperCopier 3 verde y naranja, Metro claro, Pez azul, Línea plana, Plus, Cielo, Brillo, Nieve, Burbuja lima, Tóxico,
+Naranja tierra, Moderno 8, Mensajero y Plata. **Fluent (como Windows)** sigue el modo claro u oscuro y el color de acento
+de Windows.
+
+### Conjuntos de iconos
+
+Siete estilos de iconos, todos con los iconos modernos de Windows 11, que se combinan con cualquier tema:
+
+<table>
+<tr>
+<td width="50%"><img src="docs/capturas/iconos/fluent.png" alt="Fluent"><br><b>Fluent</b>: como Windows.</td>
+<td width="50%"><img src="docs/capturas/iconos/color.png" alt="Color"><br><b>Color</b>: cada icono con su color.</td>
+</tr>
+<tr>
+<td><img src="docs/capturas/iconos/mosaico.png" alt="Mosaico"><br><b>Mosaico</b>: sobre un cuadrado de color, como la Configuración de Windows 11.</td>
+<td><img src="docs/capturas/iconos/suave.png" alt="Suave"><br><b>Suave</b>: con un fondo suave de su color.</td>
+</tr>
+<tr>
+<td><img src="docs/capturas/iconos/degradado.png" alt="Degradado"><br><b>Degradado</b>: con los colores de las barras del tema.</td>
+<td><img src="docs/capturas/iconos/neon.png" alt="Neón"><br><b>Neón</b>: con un halo de luz.</td>
+</tr>
+<tr>
+<td colspan="2"><img src="docs/capturas/iconos/windows10.png" alt="Windows 10"><br><b>Windows 10</b>: los iconos clásicos.</td>
+</tr>
+</table>
 
 ---
 
