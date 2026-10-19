@@ -110,7 +110,8 @@ public sealed partial class FlowBar
             default: Base(); Shimmer(width, h, 140, 1.6, 0.18 + (0.3 * GlowAmount)); break; // Fluent y Semáforo
         }
 
-        _pauseStripes.Fill = StripeBrush(h, ThemeManager.WarningBrush.Color, Color.FromArgb(0, 0, 0, 0));
+        var warning = ThemeManager.WarningBrush.Color;
+        _pauseStripesBrush = StripeBrush(h, Color.FromArgb((byte)(warning.A * 0.55), warning.R, warning.G, warning.B), Color.FromArgb(0, 0, 0, 0), width + h); // transparencia en el color, no en el elemento
         _text.FontSize = Math.Clamp(h * 0.62, 10, 13);
         _text.Foreground = ThemeManager.TextBrush;
         UpdateValueDependent();
@@ -289,12 +290,36 @@ public sealed partial class FlowBar
         return brush;
     }
 
-    /// <summary>Rayas diagonales que se repiten (absolutas: no se estiran con la barra).</summary>
-    private static LinearGradientBrush StripeBrush(double size, Color on, Color off)
+    /// <summary>Rayas diagonales (absolutas: no se estiran con la barra) para cubrir <paramref name="length"/> píxeles.</summary>
+    private static LinearGradientBrush StripeBrush(double size, Color on, Color off, double length) =>
+        Repeated(Gradient(new Point(0, 0), new Point(size, size), (on, 0), (on, 0.5), (off, 0.5), (off, 1)), length);
+
+    /// <summary>
+    /// Repite a mano un degradado (de su punto inicial al final es un periodo, en píxeles) hasta cubrir
+    /// <paramref name="length"/> píxeles en esa dirección. No se usa GradientSpreadMethod.Repeat: WinUI no lo dibuja por
+    /// sí mismo y, con él en pantalla, otros textos, iconos y botones de la ventana se quedaban dibujados apagados.
+    /// </summary>
+    private static LinearGradientBrush Repeated(LinearGradientBrush period, double length)
     {
-        var brush = Gradient(new Point(0, 0), new Point(size, size), (on, 0), (on, 0.5), (off, 0.5), (off, 1));
-        brush.MappingMode = BrushMappingMode.Absolute;
-        brush.SpreadMethod = GradientSpreadMethod.Repeat;
+        var start = period.StartPoint;
+        double dx = period.EndPoint.X - start.X, dy = period.EndPoint.Y - start.Y;
+        double step = Math.Max(1, Math.Sqrt((dx * dx) + (dy * dy)));
+        int count = Math.Clamp((int)Math.Ceiling(Math.Max(1, length) / step) + 1, 1, 1200);
+        var brush = new LinearGradientBrush
+        {
+            MappingMode = BrushMappingMode.Absolute,
+            StartPoint = start,
+            EndPoint = new Point(start.X + (dx * count), start.Y + (dy * count)),
+        };
+        var stops = period.GradientStops.OrderBy(s => s.Offset).ToList();
+        for (int k = 0; k < count; k++)
+        {
+            foreach (var stop in stops)
+            {
+                brush.GradientStops.Add(new GradientStop { Color = stop.Color, Offset = (k + stop.Offset) / count });
+            }
+        }
+
         return brush;
     }
 
@@ -366,7 +391,7 @@ public sealed partial class FlowBar
     private void Stripes(double width, double h, Color on, Color off, double seconds)
     {
         double size = Math.Max(6, h);
-        var stripes = Add(new Rectangle { Fill = StripeBrush(size, on, off) }, width + (size * 2) + 2, h, 0);
+        var stripes = Add(new Rectangle { Fill = StripeBrush(size, on, off, width + (size * 3) + h) }, width + (size * 2) + 2, h, 0);
         var offset = new TranslateTransform { X = -size * 2 };
         stripes.RenderTransform = offset;
         Loop(offset, "X", new DoubleAnimation { From = -size * 2, To = 0, Duration = Seconds(seconds) });
@@ -577,9 +602,7 @@ public sealed partial class FlowBar
         // Dos capas de llamas que corren a distinta velocidad y un parpadeo.
         void Flames(double length, double seconds, Color color, double alpha)
         {
-            var brush = Gradient(new Point(0, 0), new Point(length, 0), (Alpha(color, 0), 0), (Alpha(color, alpha), 0.3), (Alpha(color, 0), 0.6), (Alpha(color, alpha * 0.6), 0.8), (Alpha(color, 0), 1));
-            brush.MappingMode = BrushMappingMode.Absolute;
-            brush.SpreadMethod = GradientSpreadMethod.Repeat;
+            var brush = Repeated(Gradient(new Point(0, 0), new Point(length, 0), (Alpha(color, 0), 0), (Alpha(color, alpha), 0.3), (Alpha(color, 0), 0.6), (Alpha(color, alpha * 0.6), 0.8), (Alpha(color, 0), 1)), width + (length * 2) + 2);
             var rect = Add(new Rectangle { Fill = brush }, width + length + 2, h);
             var offset = new TranslateTransform { X = -length };
             rect.RenderTransform = offset;
@@ -652,10 +675,7 @@ public sealed partial class FlowBar
         _track.Child = dim;
         LinearGradientBrush Row(Color color)
         {
-            var brush = Gradient(new Point(0, 0), new Point(size, 0), (color, 0), (color, (size - 1) / size), (Alpha(color, 0), (size - 1) / size), (Alpha(color, 0), 1));
-            brush.MappingMode = BrushMappingMode.Absolute;
-            brush.SpreadMethod = GradientSpreadMethod.Repeat;
-            return brush;
+            return Repeated(Gradient(new Point(0, 0), new Point(size, 0), (color, 0), (color, (size - 1) / size), (Alpha(color, 0), (size - 1) / size), (Alpha(color, 0), 1)), width + size);
         }
 
         for (int row = 0; row < rows; row++)
@@ -681,9 +701,7 @@ public sealed partial class FlowBar
         {
             Fill = Gradient(new Point(0.5, 0), new Point(0.5, 1), (Darker(c, 0.3), 0), (Lighter(c, 0.5), 0.3), (c, 0.55), (Darker(c, 0.35), 1)),
         });
-        var brushed = Gradient(new Point(0, 0), new Point(0, 2), (Alpha(White, 0.08), 0), (Alpha(White, 0.08), 0.5), (Alpha(White, 0), 0.5), (Alpha(White, 0), 1));
-        brushed.MappingMode = BrushMappingMode.Absolute;
-        brushed.SpreadMethod = GradientSpreadMethod.Repeat;
+        var brushed = Repeated(Gradient(new Point(0, 0), new Point(0, 2), (Alpha(White, 0.08), 0), (Alpha(White, 0.08), 0.5), (Alpha(White, 0), 0.5), (Alpha(White, 0), 1)), h + 2);
         _decor.Children.Add(new Rectangle { Fill = brushed });
         Glare(width, h, 30, 1.4, 3.4, 0.5 + (0.45 * GlowAmount));
     }

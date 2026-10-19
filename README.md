@@ -264,6 +264,8 @@ terminar).
 - Las copias interrumpidas aparecen al arrancar y se continúan con un clic (o solas, si lo activas).
 - **Pausar, saltar el archivo actual, detener y seguir más tarde**; reintentos automáticos y lista de fallidos.
 - **Espera** a que vuelva el disco, la red o el espacio libre, en vez de fallar.
+- **Comprueba que cabe** antes de copiar (y al añadir a una copia en marcha): si no, cancelar o forzar la copia, que
+  llena el disco y espera a que haya sitio.
 - Carpetas **«todo o nada»**: o se copian enteras o no queda nada a medias.
 - **Modo rescate** para discos dañados: salva lo legible y deja en ceros lo ilegible.
 - **Archivos en uso** (Outlook, bases de datos) copiados desde una instantánea de Windows (VSS).

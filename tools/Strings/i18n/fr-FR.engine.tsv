@@ -268,3 +268,4 @@ E_FolderCancelled	Copie annulée : le dossier existait déjà dans la destinatio
 E_FolderSkipExisting	Le dossier existait déjà : les {0} fichiers déjà présents sont passés et le reste est copié.
 E_FolderOverwrite	Le dossier existait déjà : les {0} fichiers déjà présents sont remplacés.
 E_FolderRenamed	Le dossier « {0} » existait déjà : il est copié sous le nom « {1} ».
+E_SpaceForced	Copie quand même : quand le disque sera plein, la copie attendra de l’espace.

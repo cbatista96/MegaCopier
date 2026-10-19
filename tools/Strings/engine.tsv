@@ -268,3 +268,4 @@ E_FolderCancelled	Copia cancelada: la carpeta ya existía en el destino.	Copy ca
 E_FolderSkipExisting	La carpeta ya existía: se pasan los {0} archivos que ya están y se copia el resto.	The folder already existed: the {0} files already there are passed over and the rest is copied.
 E_FolderOverwrite	La carpeta ya existía: se sobrescriben los {0} archivos que ya están.	The folder already existed: the {0} files already there are overwritten.
 E_FolderRenamed	La carpeta «{0}» ya existía: se copia como «{1}».	The folder "{0}" already existed: it is copied as "{1}".
+E_SpaceForced	Se copia igualmente: al llenarse el disco, la copia esperará a que haya espacio.	Copying anyway: when the disk is full, the transfer will wait for space.

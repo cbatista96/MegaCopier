@@ -1,11 +1,9 @@
-using System.Numerics;
 using MegaCopier.App.Controls;
-using Microsoft.UI.Composition;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Hosting;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media.Animation;
 
 namespace MegaCopier.App.Services;
 
@@ -13,9 +11,19 @@ namespace MegaCopier.App.Services;
 /// Animaciones al pulsar: el botón se hunde un instante y su icono se mueve según lo que significa (el engranaje gira,
 /// reproducir avanza, pausa se aprieta, la papelera se sacude, el historial gira hacia atrás...). Se engancha una vez a
 /// la raíz de una ventana y vale para todos sus botones, también los que se crean después.
+///
+/// Todas son animaciones de XAML (Storyboard sobre RenderTransform y Opacity), que el sistema ejecuta igual de fluidas
+/// fuera del hilo de la interfaz. No se usan animaciones de composición sobre los elementos de XAML: con ellas, al
+/// cambiar el tamaño de la ventana, WinUI dejaba otros textos y botones dibujados apagados hasta pasar el ratón.
 /// </summary>
 internal static class Motion
 {
+    private static EasingFunctionBase Out => new CubicEase { EasingMode = EasingMode.EaseOut };
+
+    private static EasingFunctionBase In => new CubicEase { EasingMode = EasingMode.EaseIn };
+
+    private static EasingFunctionBase Spring => new BackEase { EasingMode = EasingMode.EaseOut, Amplitude = 0.5 };
+
     /// <summary>Anima todos los botones con icono que haya (o vaya a haber) dentro de <paramref name="root"/>.</summary>
     public static void Attach(UIElement root) =>
         root.AddHandler(UIElement.PointerPressedEvent, new PointerEventHandler((_, e) => OnPressed(e.OriginalSource as DependencyObject)), handledEventsToo: true);
@@ -29,10 +37,18 @@ internal static class Motion
 
         for (var node = source; node is not null; node = VisualTreeHelper.GetParent(node))
         {
+            // Pestañas: su icono se anima según lo que significa.
+            if (node is Microsoft.UI.Xaml.Controls.SelectorBarItem { IsEnabled: true, Icon: Microsoft.UI.Xaml.Controls.FontIcon tabIcon })
+            {
+                Icon(tabIcon, tabIcon.Glyph);
+                return;
+            }
+
             if (node is ButtonBase { IsEnabled: true } button)
             {
                 Press(button);
-                if (Responsive.Descendants<McIcon>(button).FirstOrDefault() is { } icon)
+                // «Morph»: el botón anima su propio icono (pausa ⇄ reproducir).
+                if (button.Tag is not "Morph" && Responsive.Descendants<McIcon>(button).FirstOrDefault() is { } icon)
                 {
                     Icon(icon);
                 }
@@ -45,175 +61,325 @@ internal static class Motion
     /// <summary>El botón se hunde y vuelve con un rebote suave.</summary>
     public static void Press(UIElement element)
     {
-        var visual = Prepare(element, out var compositor);
-        var scale = compositor.CreateVector3KeyFrameAnimation();
-        scale.InsertKeyFrame(0.3f, new Vector3(0.93f, 0.93f, 1), compositor.CreateCubicBezierEasingFunction(new(0.3f, 0), new(0.6f, 1)));
-        scale.InsertKeyFrame(1f, Vector3.One, compositor.CreateCubicBezierEasingFunction(new(0.2f, 1.6f), new(0.4f, 1)));
-        scale.Duration = TimeSpan.FromMilliseconds(320);
-        visual.StartAnimation("Scale", scale);
+        var t = Prepare(element);
+        Run(320, (t, "ScaleX", [(0.3, 0.94, Out), (1, 1, Spring)]), (t, "ScaleY", [(0.3, 0.94, Out), (1, 1, Spring)]));
     }
 
     /// <summary>Animación propia de cada icono, por su significado.</summary>
-    public static void Icon(McIcon icon)
+    public static void Icon(McIcon icon) => Icon(icon, icon.Glyph);
+
+    /// <summary>Animación de un icono cualquiera (también los de las pestañas), según su glifo.</summary>
+    public static void Icon(UIElement icon, string glyph)
     {
-        if (Theming.BarAppearance.ReduceMotion || icon.Glyph.Length == 0)
+        if (Theming.BarAppearance.ReduceMotion || glyph.Length == 0)
         {
             return;
         }
 
-        var visual = Prepare(icon, out var compositor);
-        switch (icon.Glyph[0])
+        var t = Prepare(icon);
+        switch (glyph[0])
         {
+            case '\uE8FD': // lista (Archivos): baja un poco, como al desplazarla
+                Nudge(t, 0, 4);
+                break;
+            case '\uEDA2': // unidad (Destino): se va hacia la derecha y vuelve
+                Nudge(t, 5, 0);
+                break;
+            case '\uE9E9': // controles deslizantes (Opciones): se aprietan
+                Squeeze(t, 1.15f, 0.6f);
+                break;
+            case '\uE9D2': // gráfica (Estado): crece desde abajo
+                icon.RenderTransformOrigin = new Windows.Foundation.Point(0.5, 1);
+                Squeeze(t, 1, 0.4f);
+                break;
+            case '\uE7C3': // página (Registro): pasa la hoja
+                FlipX(t);
+                break;
             case '': // ajustes: el engranaje da media vuelta
-                Rotate(visual, compositor, 180, 520);
+                Rotate(t, 180, 520);
                 break;
             case '': // actualizar
             case '': // sincronizar
-                Rotate(visual, compositor, 360, 620);
+                Rotate(t, 360, 620);
                 break;
             case '': // historial: gira hacia atrás
             case '': // restablecer
-                Rotate(visual, compositor, -360, 560);
+                Rotate(t, -360, 560);
                 break;
             case '': // línea de tiempo / reloj
             case '':
-                Rotate(visual, compositor, 360, 620);
+                Rotate(t, 360, 620);
                 break;
             case '': // reproducir / continuar: avanza y vuelve
             case '': // saltar
             case '': // flecha a la derecha
             case '': // enviar
-                Nudge(icon, visual, compositor, new Vector3(6, 0, 0));
+                Nudge(t, 6, 0);
                 break;
             case '': // pausa: las dos barras se aprietan
-                Squeeze(visual, compositor, new Vector3(0.55f, 1.1f, 1));
+                Squeeze(t, 0.55f, 1.1f);
                 break;
             case '': // detener: el cuadrado se encoge
             case '': // cerrar
-                Squeeze(visual, compositor, new Vector3(0.6f, 0.6f, 1));
+                Squeeze(t, 0.6f, 0.6f);
                 break;
             case '': // borrar: la papelera se sacude
             case '': // aviso
-                Shake(visual, compositor);
+                Shake(t);
                 break;
             case '': // desplegar / plegar: la flecha da la vuelta
             case '':
-                Flip(visual, compositor);
+                Flip(t);
                 break;
             case '': // menú
-                Squeeze(visual, compositor, new Vector3(1.3f, 0.75f, 1));
+                Squeeze(t, 1.3f, 0.75f);
                 break;
             case '': // información: salta
             case '': // ayuda
-                Nudge(icon, visual, compositor, new Vector3(0, -5, 0));
+                Nudge(t, 0, -5);
                 break;
             case '': // subir
-                Nudge(icon, visual, compositor, new Vector3(0, -5, 0));
+                Nudge(t, 0, -5);
                 break;
             case '': // bajar
-                Nudge(icon, visual, compositor, new Vector3(0, 5, 0));
+                Nudge(t, 0, 5);
                 break;
             default:
-                Bounce(visual, compositor);
+                Bounce(t);
                 break;
         }
     }
 
-    /// <summary>Aparece suave, subiendo un poco (paneles que se muestran de pronto).</summary>
-    public static void FadeIn(UIElement element)
+    /// <summary>
+    /// Aparece deslizándose un poco hasta su sitio (paneles que se muestran de pronto). Sin fundido: las animaciones de
+    /// opacidad hacen que WinUI deje otros controles dibujados apagados.
+    /// </summary>
+    public static void FadeIn(UIElement element, double distance = 10)
     {
-        var visual = ElementCompositionPreview.GetElementVisual(element);
+        var t = Prepare(element);
+        Stop(element);
+        element.Opacity = 1;
         if (Theming.BarAppearance.ReduceMotion)
         {
-            visual.Opacity = 1;
+            t.TranslateY = 0;
             return;
         }
 
-        var compositor = visual.Compositor;
-        ElementCompositionPreview.SetIsTranslationEnabled(element, true);
-        var fade = compositor.CreateScalarKeyFrameAnimation();
-        fade.InsertKeyFrame(0f, 0);
-        fade.InsertKeyFrame(1f, 1);
-        fade.Duration = TimeSpan.FromMilliseconds(260);
-        var slide = compositor.CreateVector3KeyFrameAnimation();
-        slide.InsertKeyFrame(0f, new Vector3(0, 10, 0));
-        slide.InsertKeyFrame(1f, Vector3.Zero, compositor.CreateCubicBezierEasingFunction(new(0.1f, 0.9f), new(0.2f, 1)));
-        slide.Duration = TimeSpan.FromMilliseconds(320);
-        visual.StartAnimation("Opacity", fade);
-        visual.StartAnimation("Translation", slide);
+        Run(320, (t, "TranslateY", [(0, distance, null), (1, 0, Out)]));
     }
 
-    private static Visual Prepare(UIElement element, out Compositor compositor)
+    /// <summary>Se retira subiendo un poco (lo contrario de <see cref="FadeIn"/>); al acabar queda oculto hasta ResetFade.</summary>
+    public static void FadeOut(UIElement element)
     {
-        var visual = ElementCompositionPreview.GetElementVisual(element);
-        compositor = visual.Compositor;
-        visual.CenterPoint = new Vector3(element.ActualSize.X / 2, element.ActualSize.Y / 2, 0);
-        return visual;
+        var t = Prepare(element);
+        if (Theming.BarAppearance.ReduceMotion)
+        {
+            element.Opacity = 0;
+            return;
+        }
+
+        Run(200, () => element.Opacity = 0, (t, "TranslateY", [(1, -12, In)]));
     }
 
-    private static void Rotate(Visual visual, Compositor compositor, float degrees, int milliseconds)
+    /// <summary>Deja el elemento como estaba antes de <see cref="FadeOut"/> (visible y en su sitio).</summary>
+    public static void ResetFade(UIElement element)
     {
-        var rotation = compositor.CreateScalarKeyFrameAnimation();
-        rotation.InsertKeyFrame(0f, 0);
-        rotation.InsertKeyFrame(1f, degrees, compositor.CreateCubicBezierEasingFunction(new(0.3f, 0), new(0.2f, 1)));
-        rotation.Duration = TimeSpan.FromMilliseconds(milliseconds);
-        visual.StartAnimation("RotationAngleInDegrees", rotation);
+        Stop(element);
+        element.Opacity = 1;
+        if (element.RenderTransform is CompositeTransform t)
+        {
+            t.TranslateY = 0;
+        }
     }
 
-    /// <summary>Se desplaza un poco y vuelve (con Translation: el Offset del elemento lo controla el diseño de XAML).</summary>
-    private static void Nudge(UIElement element, Visual visual, Compositor compositor, Vector3 by)
+    /// <summary>
+    /// La marca de lo elegido (la línea bajo la pestaña) se desliza desde donde estaba la de la opción anterior hasta
+    /// la nueva, en lugar de saltar.
+    /// </summary>
+    public static void SlideIndicator(FrameworkElement from, FrameworkElement to, bool vertical)
     {
-        ElementCompositionPreview.SetIsTranslationEnabled(element, true);
-        var move = compositor.CreateVector3KeyFrameAnimation();
-        move.InsertKeyFrame(0.35f, by, compositor.CreateCubicBezierEasingFunction(new(0.3f, 0), new(0.6f, 1)));
-        move.InsertKeyFrame(1f, Vector3.Zero, compositor.CreateCubicBezierEasingFunction(new(0.2f, 1.4f), new(0.4f, 1)));
-        move.Duration = TimeSpan.FromMilliseconds(420);
-        visual.StartAnimation("Translation", move);
+        if (Theming.BarAppearance.ReduceMotion || from == to || from.ActualWidth == 0 || to.ActualWidth == 0 || to.XamlRoot is null)
+        {
+            return;
+        }
+
+        var shift = from.TransformToVisual(to).TransformPoint(default);
+        var t = to.RenderTransform as CompositeTransform ?? Prepare(to);
+        Run(320, vertical ? (t, "TranslateY", [(0, shift.Y, null), (1, 0, Out)]) : (t, "TranslateX", [(0, shift.X, null), (1, 0, Out)]));
     }
 
-    private static void Squeeze(Visual visual, Compositor compositor, Vector3 to)
+    /// <summary>
+    /// Cambio entre dos elementos superpuestos (pausa ⇄ reproducir): el icono que se va gira y encoge hasta
+    /// desaparecer, y el nuevo sale girando desde el otro lado y crece con un rebote; el texto nuevo entra deslizándose.
+    /// Sin fundidos de opacidad (ver <see cref="FadeIn"/>).
+    /// </summary>
+    public static void Morph(UIElement outgoing, UIElement incoming, bool animate, bool icon)
     {
-        var scale = compositor.CreateVector3KeyFrameAnimation();
-        scale.InsertKeyFrame(0.35f, to);
-        scale.InsertKeyFrame(1f, Vector3.One, compositor.CreateCubicBezierEasingFunction(new(0.2f, 1.5f), new(0.4f, 1)));
-        scale.Duration = TimeSpan.FromMilliseconds(380);
-        visual.StartAnimation("Scale", scale);
+        outgoing.IsHitTestVisible = false;
+        incoming.IsHitTestVisible = true;
+        var a = Prepare(outgoing);
+        var b = Prepare(incoming);
+        if (!animate || Theming.BarAppearance.ReduceMotion)
+        {
+            Stop(outgoing);
+            Stop(incoming);
+            outgoing.Opacity = 0;
+            incoming.Opacity = 1;
+            a.ScaleX = a.ScaleY = b.ScaleX = b.ScaleY = 1;
+            a.Rotation = b.Rotation = a.TranslateY = b.TranslateY = 0;
+            return;
+        }
+
+        Stop(outgoing);
+        Stop(incoming);
+        if (icon)
+        {
+            incoming.Opacity = 0;
+            b.ScaleX = b.ScaleY = 0.2;
+            Run(160, () =>
+            {
+                outgoing.Opacity = 0;
+                a.ScaleX = a.ScaleY = 1;
+                a.Rotation = 0;
+                incoming.Opacity = 1;
+                Run(300, (b, "ScaleX", [(0, 0.2, null), (1, 1, Spring)]), (b, "ScaleY", [(0, 0.2, null), (1, 1, Spring)]), (b, "Rotation", [(0, -90, null), (1, 0, Spring)]));
+            }, (a, "ScaleX", [(1, 0.2, In)]), (a, "ScaleY", [(1, 0.2, In)]), (a, "Rotation", [(0, 0, null), (1, 90, In)]));
+        }
+        else
+        {
+            outgoing.Opacity = 0;
+            incoming.Opacity = 1;
+            Run(260, (b, "TranslateY", [(0, 7, null), (1, 0, Out)]));
+        }
     }
 
-    private static void Shake(Visual visual, Compositor compositor)
+    /// <summary>La transformación del elemento para animarlo (se crea la primera vez, centrada).</summary>
+    private static CompositeTransform Prepare(UIElement element)
     {
-        var rotation = compositor.CreateScalarKeyFrameAnimation();
-        rotation.InsertKeyFrame(0.15f, -14);
-        rotation.InsertKeyFrame(0.35f, 12);
-        rotation.InsertKeyFrame(0.55f, -8);
-        rotation.InsertKeyFrame(0.75f, 5);
-        rotation.InsertKeyFrame(1f, 0);
-        rotation.Duration = TimeSpan.FromMilliseconds(460);
-        visual.StartAnimation("RotationAngleInDegrees", rotation);
+        if (element.RenderTransform is not CompositeTransform transform)
+        {
+            transform = new CompositeTransform();
+            element.RenderTransform = transform;
+        }
+
+        Owners.AddOrUpdate(transform, element);
+
+        element.RenderTransformOrigin = new Windows.Foundation.Point(0.5, 0.5);
+        return transform;
     }
 
-    private static void Flip(Visual visual, Compositor compositor)
+    /// <summary>De qué elemento es cada transformación (para parar sus animaciones con <see cref="Stop"/>).</summary>
+    private static readonly System.Runtime.CompilerServices.ConditionalWeakTable<CompositeTransform, UIElement> Owners = [];
+
+    /// <summary>Las animaciones en marcha de cada elemento, para pararlas si empieza otra o hay que dejarlo quieto.</summary>
+    private static readonly System.Runtime.CompilerServices.ConditionalWeakTable<UIElement, List<Storyboard>> Running = [];
+
+    private static void Stop(UIElement element)
     {
-        var scale = compositor.CreateVector3KeyFrameAnimation();
-        scale.InsertKeyFrame(0.5f, new Vector3(1, -1, 1));
-        scale.InsertKeyFrame(1f, Vector3.One);
-        scale.Duration = TimeSpan.FromMilliseconds(360);
-        visual.StartAnimation("Scale", scale);
+        if (Running.TryGetValue(element, out var stories))
+        {
+            foreach (var story in stories)
+            {
+                story.Stop();
+            }
+
+            stories.Clear();
+        }
     }
 
-    private static void Bounce(Visual visual, Compositor compositor)
+    /// <summary>
+    /// Lanza a la vez varias pistas (objeto, propiedad, fotogramas): cada fotograma es (momento de 0 a 1, valor,
+    /// suavizado hasta ese valor). Sin fotograma en 0, la pista arranca del valor que tenga.
+    /// </summary>
+    private static void Run(int milliseconds, params (DependencyObject Target, string Property, (double At, double Value, EasingFunctionBase? Ease)[] Frames)[] tracks) =>
+        Run(milliseconds, null, tracks);
+
+    /// <summary>Igual, y al terminar ejecuta <paramref name="done"/>.</summary>
+    private static void Run(int milliseconds, Action? done, params (DependencyObject Target, string Property, (double At, double Value, EasingFunctionBase? Ease)[] Frames)[] tracks)
     {
-        var scale = compositor.CreateVector3KeyFrameAnimation();
-        scale.InsertKeyFrame(0.25f, new Vector3(0.78f, 0.78f, 1));
-        scale.InsertKeyFrame(0.6f, new Vector3(1.18f, 1.18f, 1));
-        scale.InsertKeyFrame(1f, Vector3.One);
-        scale.Duration = TimeSpan.FromMilliseconds(420);
-        var rotation = compositor.CreateScalarKeyFrameAnimation();
-        rotation.InsertKeyFrame(0.3f, -12);
-        rotation.InsertKeyFrame(0.7f, 8);
-        rotation.InsertKeyFrame(1f, 0);
-        rotation.Duration = TimeSpan.FromMilliseconds(420);
-        visual.StartAnimation("Scale", scale);
-        visual.StartAnimation("RotationAngleInDegrees", rotation);
+        var story = new Storyboard();
+        UIElement? owner = null;
+        foreach (var (target, property, frames) in tracks)
+        {
+            var animation = new DoubleAnimationUsingKeyFrames();
+            foreach (var (at, value, ease) in frames)
+            {
+                animation.KeyFrames.Add(new EasingDoubleKeyFrame
+                {
+                    KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(milliseconds * at)),
+                    Value = value,
+                    EasingFunction = ease,
+                });
+            }
+
+            Storyboard.SetTarget(animation, target);
+            Storyboard.SetTargetProperty(animation, property);
+            story.Children.Add(animation);
+            owner ??= target as UIElement ?? (target is CompositeTransform transform && Owners.TryGetValue(transform, out var element) ? element : null);
+        }
+
+        if (owner is not null)
+        {
+            Running.GetOrCreateValue(owner).Add(story);
+        }
+
+        // Al terminar, el valor final pasa a ser el valor propio del elemento y la animación se quita: así nada queda
+        // «retenido» por una animación (un Opacity = 0 posterior, por ejemplo, vuelve a funcionar).
+        story.Completed += (_, _) =>
+        {
+            if (owner is not null && Running.TryGetValue(owner, out var stories))
+            {
+                stories.Remove(story);
+            }
+
+            story.Stop();
+            foreach (var (target, property, frames) in tracks)
+            {
+                if (frames.Length > 0 && Property(property) is { } dp)
+                {
+                    target.SetValue(dp, frames[^1].Value);
+                }
+            }
+
+            done?.Invoke();
+        };
+
+        story.Begin();
     }
+
+    private static DependencyProperty? Property(string name) => name switch
+    {
+        "Opacity" => UIElement.OpacityProperty,
+        "ScaleX" => CompositeTransform.ScaleXProperty,
+        "ScaleY" => CompositeTransform.ScaleYProperty,
+        "Rotation" => CompositeTransform.RotationProperty,
+        "TranslateX" => CompositeTransform.TranslateXProperty,
+        "TranslateY" => CompositeTransform.TranslateYProperty,
+        _ => null,
+    };
+
+    private static void Rotate(CompositeTransform t, double degrees, int milliseconds) =>
+        Run(milliseconds, (t, "Rotation", [(0, 0, null), (1, degrees, Out)]));
+
+    /// <summary>Se desplaza un poco y vuelve con un rebote.</summary>
+    private static void Nudge(CompositeTransform t, double x, double y) =>
+        Run(420, (t, "TranslateX", [(0.35, x, Out), (1, 0, Spring)]), (t, "TranslateY", [(0.35, y, Out), (1, 0, Spring)]));
+
+    private static void Squeeze(CompositeTransform t, double x, double y) =>
+        Run(380, (t, "ScaleX", [(0.35, x, Out), (1, 1, Spring)]), (t, "ScaleY", [(0.35, y, Out), (1, 1, Spring)]));
+
+    private static void Shake(CompositeTransform t) =>
+        Run(460, (t, "Rotation", [(0.15, -14, Out), (0.35, 12, null), (0.55, -8, null), (0.75, 5, null), (1, 0, Out)]));
+
+    private static void FlipX(CompositeTransform t) =>
+        Run(380, (t, "ScaleX", [(0.5, -1, Out), (1, 1, Out)]));
+
+    private static void Flip(CompositeTransform t) =>
+        Run(360, (t, "ScaleY", [(0.5, -1, Out), (1, 1, Out)]));
+
+    private static void Bounce(CompositeTransform t) =>
+        Run(420,
+            (t, "ScaleX", [(0.25, 0.78, Out), (0.6, 1.18, Out), (1, 1, Out)]),
+            (t, "ScaleY", [(0.25, 0.78, Out), (0.6, 1.18, Out), (1, 1, Out)]),
+            (t, "Rotation", [(0.3, -12, Out), (0.7, 8, null), (1, 0, Out)]));
 }

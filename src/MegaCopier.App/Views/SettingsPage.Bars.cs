@@ -322,10 +322,11 @@ public sealed partial class SettingsPage
         grid.Children.Add(control);
         if (below is not null)
         {
-            Grid.SetRow(below, 1);
-            Grid.SetColumn(below, 1);
-            Grid.SetColumnSpan(below, 3);
-            grid.Children.Add(below);
+            // Lo de debajo (las muestras de color) va con el texto, separado de él: así el desplegable y la «i»
+            // quedan centrados respecto a toda la tarjeta y no pegados arriba.
+            below.Margin = new Thickness(0, 12, 0, 2);
+            texts.Children.Add(below);
+            info.VerticalAlignment = VerticalAlignment.Center;
         }
 
         grid.Tag = "SettingRow";

@@ -1106,7 +1106,7 @@ Settings_MergeConfirm.Content	Chiedi prima di aggiungerle
 Settings_MoveAttributesTitle.Text	Durante lo spostamento, conserva anche
 Settings_MoveAttributesDescription.Text	Verso un altro disco. Sullo stesso disco spostare è una rinomina e si conserva tutto.
 Settings_DeleteIncompleteTitle.Text	Quando fermi una copia, elimina ciò che è rimasto a metà
-Settings_DeleteIncompleteDescription.Text	Non si potrà più continuare da dove si era fermata. Nella destinazione non restano file incompleti (.mcpart).
+Settings_DeleteIncompleteDescription.Text	Così non restano file incompleti (.mcpart) nella destinazione. Se si conservano, ricopiando la stessa cosa si riprende da dove si era fermata.
 Settings_KeepOnError.Content	Non eliminarlo se la copia si è fermata per un errore
 Settings_EjectTitle.Text	Al termine, espelli l'unità di destinazione
 Settings_EjectDescription.Text	Solo chiavette USB, schede di memoria e dischi USB, quando nessun'altra copia la usa.
@@ -1330,7 +1330,7 @@ Info_Hash_Text	L’hash è come l’impronta digitale di un file: se cambia un s
 Info_Performance_Text	Quanto può correre la copia.\n• Limite di velocità: perché la copia non occupi tutta la rete o il disco mentre lavori o guardi un film. Ogni copia ha anche il suo limite nella scheda Opzioni, che si cambia subito senza fermarla.\n• Dimensione del buffer: i blocchi letti e scritti alla volta. Più grande va meglio con file enormi.\n• Operazioni contemporanee: quanti blocchi si chiedono al disco nello stesso momento. Gli SSD veloci ci guadagnano.\nSe non sai cosa mettere, lascia i valori predefiniti: MegaCopier regola già ogni disco da solo.
 Info_Merge_Text	Se avvii una copia mentre un’altra è in corso, può unirsi a quella invece di aspettare il turno: i suoi file vanno in fondo all’elenco.\n• Mai: ogni copia va per conto suo.\n• Se vanno nella stessa cartella, o se usano gli stessi dischi.\n• Sempre.\nCon «Chiedi prima» decidi ogni volta. Utile quando mandi cartelle una alla volta sulla stessa chiavetta USB.
 Info_MoveAttributes_Text	Spostando su un altro disco, i file vengono copiati e poi eliminati dall’origine. Qui scegli cosa si portano oltre al contenuto: attributi (sola lettura, nascosto…), autorizzazioni, proprietario e controllo.\n• Spostare cartelle di lavoro tra server mantenendo chi può aprirle.\nSullo stesso disco, spostare è solo cambiare posto e si conserva tutto.
-Info_DeleteIncomplete_Text	Durante la copia, ogni file viene scritto con l’estensione .mcpart e riceve il suo nome solo quando finisce bene. Se fermi una copia, quei pezzi permettono di riprendere più tardi proprio da dove si era fermata.\n• Attivo: premendo Ferma si eliminano i .mcpart e la destinazione resta pulita (ma non si può più riprendere).\n• Disattivo: vengono conservati per riprendere.\nNon si elimina mai nulla chiudendo MegaCopier o dopo un blackout.
+Info_DeleteIncomplete_Text	«Interrompi» annulla la copia e la toglie dall’elenco. Durante la copia ogni file viene scritto con l’estensione .mcpart e riceve il suo nome solo quando termina correttamente.\n• Attivato: premendo Interrompi i .mcpart vengono eliminati e la destinazione resta pulita.\n• Disattivato: vengono conservati e, se ricopi la stessa cosa, si riprende proprio da dove si era fermata.\nNon si elimina mai nulla chiudendo MegaCopier o dopo un blackout: quelle copie vengono proposte per continuare alla riapertura.
 Info_Eject_Text	Alla fine, MegaCopier espelle in sicurezza la chiavetta USB, la scheda o il disco USB di destinazione, come «Rimozione sicura dell’hardware».\n• Riempire più chiavette USB di fila: quando la togli, è già pronta.\nLo fa solo se nessun’altra copia la sta usando. «Forza» la espelle anche se un programma la tiene aperta.
 Info_OnError_Text	Cosa fare quando un file non si riesce a copiare nemmeno dopo i tentativi.\n• Chiedi: la copia si ferma, ti dice il motivo e scegli se riprovare, saltarlo, saltare i successivi o fermare.\n• Salta e continua: ideale per copie grandi di notte; alla fine vedi l’elenco degli errori.\n• Ferma la copia: quando non deve mancare nulla.\n• Riprova alla fine: lo lascia per ultimo, nel caso fosse in uso e si liberi.
 Info_ErrorReport_Text	Se una copia termina con errori, salva un file di testo con ogni file non riuscito, il motivo e l’ora.\n• Per rivedere con calma una copia lasciata di notte.\n• Per passarlo a chi si occupa dei computer.
@@ -1421,3 +1421,18 @@ Picker_SendTitle	Scegli cosa inviare: file o cartelle
 Picker_DeleteTitle	Scegli cosa eliminare: file o cartelle
 Picker_WipeTitle	Scegli cosa eliminare in modo sicuro: file o cartelle
 Picker_AddTitle	Scegli cosa aggiungere all’elenco: file o cartelle
+Space_Title	Spazio insufficiente su {0}
+Space_Text	Servono {0} e ci sono {1} liberi (mancano {2}).
+Space_TextAdding	Con ciò che vuoi aggiungere servono {0} e ci sono {1} liberi (mancano {2}).
+Space_Force	Copia comunque
+Space_ForceTip	Copia fino a riempire il disco e poi attende: libera spazio e la copia riprende da sola.
+Space_Cancel	Annulla
+Space_CancelTip	Non viene copiato nulla.
+Space_CancelAddingTip	Non viene aggiunto nulla; la copia continua come prima.
+Job_StartNow	Avvia ora
+Drop_One	«{0}»
+Drop_Many	{0} elementi
+Drop_AddWhatHere	Aggiungi {0} a questa copia
+Drop_AddWhatTo	Aggiungi {0} a {1}
+Drop_InsertWhatAt	Aggiungi {0} alla posizione {1}
+Files_ResizeColumn.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Trascina per cambiare la larghezza della colonna (doppio clic: larghezza predefinita)

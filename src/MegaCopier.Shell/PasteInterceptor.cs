@@ -31,7 +31,7 @@ public sealed unsafe partial class PasteInterceptor : IDisposable
     private readonly Func<PasteRequest, bool> _handler;
     private readonly BlockingCollection<nint> _work = new();
     private readonly Thread _worker;
-    private nint _hook;
+    private readonly HookThread _hooks;
     private bool _swallowKeyUp;
 
     /// <param name="handler">
@@ -43,37 +43,22 @@ public sealed unsafe partial class PasteInterceptor : IDisposable
         _worker = new Thread(WorkLoop) { IsBackground = true, Name = "MegaCopier.Paste" };
         _worker.SetApartmentState(ApartmentState.STA);
         _worker.Start();
+        _hooks = new HookThread(WhKeyboardLl, &HookProc, "MegaCopier.KeyboardHook");
     }
 
     /// <summary>Se dispara (en el hilo de trabajo) cuando un pegado se devuelve al Explorador, con el motivo.</summary>
     public event Action<string>? PassedThrough;
 
-    public bool IsEnabled => _hook != 0;
+    public bool IsEnabled => _hooks.IsInstalled;
 
-    /// <summary>Instala el gancho. Debe llamarse desde un hilo con bucle de mensajes (el de la interfaz).</summary>
+    /// <summary>Instala el gancho, en un hilo propio (ver <see cref="HookThread"/>).</summary>
     public void Enable()
     {
-        if (_hook != 0)
-        {
-            return;
-        }
-
         _active = this;
-        _hook = SetWindowsHookExW(WhKeyboardLl, &HookProc, GetModuleHandleW(null), 0);
-        if (_hook == 0)
-        {
-            throw new InvalidOperationException($"No se pudo instalar el gancho de teclado (error {Marshal.GetLastPInvokeError()}).");
-        }
+        _hooks.Start();
     }
 
-    public void Disable()
-    {
-        if (_hook != 0)
-        {
-            UnhookWindowsHookEx(_hook);
-            _hook = 0;
-        }
-    }
+    public void Disable() => _hooks.Stop();
 
     public void Dispose()
     {
@@ -239,16 +224,6 @@ public sealed unsafe partial class PasteInterceptor : IDisposable
         public nuint dwExtraInfo;
     }
 
-    [LibraryImport("user32.dll", SetLastError = true)]
-    private static partial nint SetWindowsHookExW(int hookType, delegate* unmanaged[Stdcall]<int, nint, nint, nint> proc, nint module, uint threadId);
-
-    [LibraryImport("user32.dll")]
-    [return: MarshalAs(UnmanagedType.Bool)]
-    private static partial bool UnhookWindowsHookEx(nint hook);
-
     [LibraryImport("user32.dll")]
     private static partial nint CallNextHookEx(nint hook, int code, nint wParam, nint lParam);
-
-    [LibraryImport("kernel32.dll", StringMarshalling = StringMarshalling.Utf16)]
-    private static partial nint GetModuleHandleW(string? name);
 }

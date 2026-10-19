@@ -89,6 +89,7 @@ public sealed partial class SettingsPage : UserControl
         _app.EnabledChanged += () => DispatcherQueue.TryEnqueue(Load);
         Rules.RulesChanged += Store;
         Rules.ErrorOptionsVisible = false;
+        _sectionIndicator = new Controls.SlidingIndicator(SectionList, SectionIndicatorLayer);
         BuildSections();
         BuildBarsSection();
         PolishCards();

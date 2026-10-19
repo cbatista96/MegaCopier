@@ -5,6 +5,75 @@ y las versiones, [SemVer](https://semver.org/lang/es/).
 
 ## [Sin publicar]
 
+Una versión para que copiar sea más seguro y más estable: MegaCopier comprueba que lo que copias cabe antes de empezar
+(y te deja forzarlo), «Detener» por fin cancela, las copias ya no se repiten al volver a abrir, dos copias en el mismo
+disco pueden ir a la vez y el arrastre desde el Explorador es más fiable. Además se acaban los cierres repentinos y los
+textos apagados al cambiar el tamaño de la ventana, y la lista de archivos gana columnas ajustables.
+
+<img src="https://github.com/cbatista96/MegaCopier/raw/v1.4.0/docs/capturas/lista.png" width="620" alt="Lista de archivos con líneas divisorias entre Origen, Tamaño y Destino, y la copia en pausa">
+
+### Añadido
+
+- **Aviso de falta de espacio con dos salidas**: antes de copiar, si lo que se va a copiar no cabe en el destino,
+  MegaCopier dice cuánto hace falta y cuánto hay libre, y ofrece *Cancelar* (no se copia nada) o *Forzar la copia*: copia
+  hasta llenar el disco y entonces espera; al liberar espacio, sigue sola. Lo mismo al añadir archivos o carpetas a una
+  copia en marcha (con lo que aún le queda por copiar). En la ventana pequeña la pregunta cabe dentro de ella.
+
+  <img src="https://github.com/cbatista96/MegaCopier/raw/v1.4.0/docs/capturas/espacio.png" width="520" alt="No hay espacio suficiente: hacen falta 950 MB y hay 100 MB libres, con Forzar la copia y Cancelar">
+
+- **Líneas divisorias en la lista de archivos**: entre Origen, Tamaño y Destino; se arrastran para darle a cada columna
+  el ancho que quieras (se recuerda) y con doble clic vuelven al de siempre.
+- **«Empezar ya»** en una copia que espera su turno porque otra usa el mismo disco: empieza en ese momento y las dos
+  copian a la vez. *Continuar todas* también arranca las que esperaban.
+
+  <img src="https://github.com/cbatista96/MegaCopier/raw/v1.4.0/docs/capturas/varias-copias.png" width="620" alt="Dos copias: la segunda espera turno y el botón Empezar ya la arranca">
+
+- Al arrastrar algo sobre una copia, el aviso dice qué se añade: «Añadir «Vídeos» a esta copia» o «Añadir 3 elementos
+  a esta copia».
+- Los botones que solo llevan icono (la lista de copias, Ajustes, el «…» de la lista…) tienen nombre para los lectores
+  de pantalla: el de su ayuda emergente.
+
+### Cambiado
+
+- **«Detener» cancela la copia** y la quita de la lista: ya no queda como copia para continuar al volver a abrir. Lo que
+  quedó a medias se borra si así lo tienes en *Ajustes > Comportamiento*; si no, al volver a copiar lo mismo se sigue
+  desde donde quedó.
+- **Nunca la misma copia repetida**: si MegaCopier se cerró con varias copias guardadas de lo mismo, al abrirlo queda
+  una sola; y si vuelves a copiar algo que estaba detenido, se continúa esa copia en lugar de crear otra.
+- **Pausa y Continuar son un solo botón**, siempre del mismo tamaño, y su icono se transforma del uno al otro.
+- **La ventana pequeña vuelve siempre a su ancho** al pulsar «Menos», y «Menos» tiene su animación de vuelta: la barra
+  de herramientas y las pestañas suben mientras la ventana encoge.
+- **La lista de archivos**: la barra de botones empieza a la altura del primer archivo y los archivos van más cerca de
+  ella; al subir o bajar archivos siguen elegidos (y la lista ya no parpadea).
+- **Pestañas y menús animados**: la línea de la pestaña elegida se desliza de una a otra, igual que la marca de la
+  sección en Ajustes y de la copia en la lista de copias; los iconos de las pestañas se mueven según su significado.
+- **La lista de copias flotante** (con la ventana estrecha) tiene fondo opaco y un borde, en lugar de acrílico con sombra.
+- **Menús «…»** sin el hueco de la izquierda (lo activado lleva una marca a la derecha); «Mostrar las sumas» tiene icono.
+- **Ajustes**:
+  - las galerías enseñan filas completas (15 temas con cinco por fila) antes de «Mostrar más»;
+  - en la tarjeta Colores, las muestras van separadas del texto y el desplegable y la ⓘ, centrados;
+  - «Sincronización y seguridad» va en su propia tarjeta, separada de los filtros;
+  - la ⓘ de «Al mover, conservar también» queda centrada en su tarjeta;
+  - «Conexiones a la vez» queda alineado y los números de todos los campos, centrados.
+- **Arrastrar con el botón izquierdo entre ventanas del Explorador, más fiable**: lo arrastrado se lee mientras arrastras
+  (al soltar solo falta mirar el destino), se reconoce al momento si sueltas sobre una carpeta, y MegaCopier comprueba
+  mejor que el Explorador canceló su copia antes de hacer la suya, para que nunca copien los dos. Los motivos por los que
+  un arrastre se deja al Explorador quedan en `drag.log`, en la carpeta de datos.
+
+### Arreglado
+
+- MegaCopier podía cerrarse de golpe al cambiar el tamaño de la ventana o usar «Más» y «Menos» con una copia en pausa
+  (un fallo de WinUI al animar las filas de la lista de archivos). Si alguna vez vuelve a cerrarse así, deja en
+  `crashstack.log`, en la carpeta de datos, lo necesario para saber por qué.
+- Al cambiar el tamaño de la ventana, usar «Más» y «Menos» o con una copia en pausa, algunos textos, iconos y botones
+  se quedaban dibujados apagados hasta pasar el ratón por encima.
+- Al agrandar la ventana ya no asoma una franja negra a la derecha: sale del color del tema.
+- Ctrl+V y el arrastre en el Explorador podían dejar de pasar por MegaCopier mientras la ventana estaba ocupada.
+- Al reabrir MegaCopier tras cerrarlo desde la bandeja con una copia en marcha, aparecían varias copias de la misma
+  carpeta, y al continuarlas sonaba el aviso de cada una.
+- Con dos copias en el mismo disco, no se podía continuar la segunda mientras la primera estaba en pausa.
+- La lista de archivos de una copia que esperaba su turno se quedaba vacía al empezar.
+
 ## [1.3.0] - 2026-10-18
 
 Renovamos la ventana de copia con tres vistas (la pequeña, la de la lista y la de varias copias), reconstruimos el menú

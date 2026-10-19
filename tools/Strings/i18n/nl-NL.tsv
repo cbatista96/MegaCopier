@@ -1106,7 +1106,7 @@ Settings_MergeConfirm.Content	Vragen voor toevoegen
 Settings_MoveAttributesTitle.Text	Bij verplaatsen ook behouden
 Settings_MoveAttributesDescription.Text	Bij verplaatsen naar een andere schijf. Op dezelfde schijf is verplaatsen hernoemen en blijft alles behouden.
 Settings_DeleteIncompleteTitle.Text	Bij het stoppen van een kopie het halve werk verwijderen
-Settings_DeleteIncompleteDescription.Text	Hervatten waar hij stopte kan dan niet meer. Er blijven geen onvolledige bestanden (.mcpart) achter.
+Settings_DeleteIncompleteDescription.Text	Er blijven geen onvolledige bestanden (.mcpart) in het doel achter. Als ze bewaard blijven, gaat opnieuw hetzelfde kopiëren verder waar het stopte.
 Settings_KeepOnError.Content	Niet verwijderen als de kopie door een fout stopte
 Settings_EjectTitle.Text	Na afloop het doelstation uitwerpen
 Settings_EjectDescription.Text	Alleen USB-sticks, geheugenkaarten en USB-schijven, als geen andere kopie ze gebruikt.
@@ -1330,7 +1330,7 @@ Info_Hash_Text	De hash is als een vingerafdruk van een bestand: verandert er é�
 Info_Performance_Text	Hoe snel de kopie mag gaan.\n• Snelheidslimiet: zodat de kopie niet het hele netwerk of de schijf opslokt terwijl je werkt of een film kijkt. Elke kopie heeft ook een eigen limiet op het tabblad Opties, die meteen verandert zonder te stoppen.\n• Buffergrootte: de blokken die in één keer gelezen en geschreven worden. Groter werkt beter bij enorme bestanden.\n• Bewerkingen tegelijk: hoeveel blokken tegelijk bij de schijf worden opgevraagd. Snelle SSD’s winnen erbij.\nTwijfel je, laat dan de standaard staan: MegaCopier stemt elke schijf zelf af.
 Info_Merge_Text	Start je een kopie terwijl er al een loopt, dan kan die aansluiten in plaats van te wachten: de bestanden komen onderaan de lijst.\n• Nooit: elke kopie apart.\n• Als ze naar dezelfde map gaan, of dezelfde schijven gebruiken.\n• Altijd.\nMet "Eerst vragen" beslis je elke keer. Handig als je mappen één voor één naar dezelfde USB-stick stuurt.
 Info_MoveAttributes_Text	Bij verplaatsen naar een andere schijf worden bestanden gekopieerd en daarna bij de bron verwijderd. Hier kies je wat ze naast de inhoud meenemen: kenmerken (alleen-lezen, verborgen…), machtigingen, eigenaar en controle.\n• Werkmappen tussen servers verplaatsen en behouden wie ze mag openen.\nOp dezelfde schijf is verplaatsen alleen van plek wisselen en blijft alles behouden.
-Info_DeleteIncomplete_Text	Tijdens het kopiëren wordt elk bestand geschreven met de extensie .mcpart en krijgt het pas zijn naam als het goed klaar is. Stop je een kopie, dan kun je dankzij die stukken later precies verdergaan waar je was.\n• Aan: Stoppen verwijdert de .mcpart-bestanden en de bestemming blijft schoon (maar hervatten kan niet meer).\n• Uit: ze blijven bewaard om te hervatten.\nBij het sluiten van MegaCopier of na een stroomstoring wordt nooit iets verwijderd.
+Info_DeleteIncomplete_Text	“Stoppen” annuleert de kopie en haalt haar uit de lijst. Tijdens het kopiëren wordt elk bestand geschreven met de extensie .mcpart en krijgt het pas zijn naam als het goed klaar is.\n• Aan: bij Stoppen worden de .mcpart-bestanden verwijderd en blijft het doel schoon.\n• Uit: ze blijven bewaard, en als je hetzelfde opnieuw kopieert gaat het precies verder waar het stopte.\nBij het sluiten van MegaCopier of na een stroomstoring wordt nooit iets verwijderd: die kopieën worden aangeboden om verder te gaan als je het weer opent.
 Info_Eject_Text	Na afloop werpt MegaCopier de USB-stick, kaart of USB-schijf van de bestemming veilig uit, zoals "Hardware veilig verwijderen".\n• Meerdere USB-sticks achter elkaar vullen: als je hem eruit haalt, is hij al klaar.\nAlleen als geen andere kopie hem gebruikt. "Forceren" werpt hem uit, ook als een programma hem open heeft.
 Info_OnError_Text	Wat te doen als een bestand zelfs na nieuwe pogingen niet gekopieerd kan worden.\n• Vragen: de kopie stopt, vertelt waarom en jij kiest opnieuw proberen, overslaan, de volgende overslaan of stoppen.\n• Overslaan en doorgaan: ideaal voor grote kopieën ’s nachts; aan het eind zie je de lijst met fouten.\n• De kopie stoppen: als er niets mag ontbreken.\n• Aan het eind opnieuw: bewaart het voor het laatst, voor het geval het in gebruik was en vrijkomt.
 Info_ErrorReport_Text	Eindigt een kopie met fouten, dan wordt een tekstbestand opgeslagen met elk mislukt bestand, de reden en het tijdstip.\n• Om een kopie die ’s nachts liep rustig na te lopen.\n• Om door te geven aan wie de computers beheert.
@@ -1421,3 +1421,18 @@ Picker_SendTitle	Kies wat je verstuurt: bestanden of mappen
 Picker_DeleteTitle	Kies wat je verwijdert: bestanden of mappen
 Picker_WipeTitle	Kies wat je veilig verwijdert: bestanden of mappen
 Picker_AddTitle	Kies wat je aan de lijst toevoegt: bestanden of mappen
+Space_Title	Niet genoeg ruimte op {0}
+Space_Text	Er is {0} nodig en {1} vrij ({2} tekort).
+Space_TextAdding	Met wat je wilt toevoegen is er {0} nodig en {1} vrij ({2} tekort).
+Space_Force	Toch kopiëren
+Space_ForceTip	Kopieert tot de schijf vol is en wacht dan: maak ruimte vrij en het kopiëren gaat vanzelf verder.
+Space_Cancel	Annuleren
+Space_CancelTip	Er wordt niets gekopieerd.
+Space_CancelAddingTip	Er wordt niets toegevoegd; het kopiëren gaat door zoals het was.
+Job_StartNow	Nu starten
+Drop_One	‘{0}’
+Drop_Many	{0} items
+Drop_AddWhatHere	{0} aan deze kopie toevoegen
+Drop_AddWhatTo	{0} aan {1} toevoegen
+Drop_InsertWhatAt	{0} toevoegen op positie {1}
+Files_ResizeColumn.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Sleep om de kolombreedte te wijzigen (dubbelklik: standaardbreedte)

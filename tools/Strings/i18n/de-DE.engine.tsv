@@ -268,3 +268,4 @@ E_FolderCancelled	Kopie abgebrochen: Der Ordner war im Ziel bereits vorhanden.
 E_FolderSkipExisting	Der Ordner war schon vorhanden: Die {0} vorhandenen Dateien werden übersprungen, der Rest wird kopiert.
 E_FolderOverwrite	Der Ordner war schon vorhanden: Die {0} vorhandenen Dateien werden überschrieben.
 E_FolderRenamed	Der Ordner „{0}“ war schon vorhanden: Er wird als „{1}“ kopiert.
+E_SpaceForced	Es wird trotzdem kopiert: Ist der Datenträger voll, wartet die Kopie auf freien Platz.

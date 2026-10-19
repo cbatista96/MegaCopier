@@ -268,3 +268,4 @@ E_FolderCancelled	Kopiowanie anulowane: folder już istniał w miejscu docelowym
 E_FolderSkipExisting	Folder już istniał: {0} istniejących plików jest pomijanych, reszta jest kopiowana.
 E_FolderOverwrite	Folder już istniał: {0} istniejących plików zostanie nadpisanych.
 E_FolderRenamed	Folder „{0}” już istniał: zostanie skopiowany jako „{1}”.
+E_SpaceForced	Kopiowanie mimo to: gdy dysk się zapełni, kopiowanie poczeka na wolne miejsce.

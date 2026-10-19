@@ -1112,7 +1112,7 @@
   <data name="Settings_MoveAttributesTitle.Text" xml:space="preserve"><value>Taşırken şunları da koru</value></data>
   <data name="Settings_MoveAttributesDescription.Text" xml:space="preserve"><value>Başka bir diske taşırken. Aynı diskte taşıma yeniden adlandırmadır ve her şey korunur.</value></data>
   <data name="Settings_DeleteIncompleteTitle.Text" xml:space="preserve"><value>Kopyalama durdurulunca yarım kalanları sil</value></data>
-  <data name="Settings_DeleteIncompleteDescription.Text" xml:space="preserve"><value>Kaldığı yerden devam edilemez. Hedefte eksik dosya (.mcpart) kalmaz.</value></data>
+  <data name="Settings_DeleteIncompleteDescription.Text" xml:space="preserve"><value>Hedefte yarım dosya (.mcpart) kalmaz. Saklanırsa, aynı şeyi yeniden kopyalamak kaldığı yerden devam eder.</value></data>
   <data name="Settings_KeepOnError.Content" xml:space="preserve"><value>Kopyalama bir hata yüzünden durduysa silme</value></data>
   <data name="Settings_EjectTitle.Text" xml:space="preserve"><value>Bitince hedef sürücüyü çıkar</value></data>
   <data name="Settings_EjectDescription.Text" xml:space="preserve"><value>Yalnızca USB bellekler, hafıza kartları ve USB diskler; başka bir kopya kullanmıyorsa.</value></data>
@@ -1336,7 +1336,7 @@
   <data name="Info_Performance_Text" xml:space="preserve"><value>Kopyalamanın ne kadar hızlı gidebileceği.\n• Hız sınırı: siz çalışırken veya film izlerken kopya tüm ağı veya diski yemesin diye. Her kopyanın Seçenekler sekmesinde ayrıca kendi sınırı vardır; durdurmadan hemen değişir.\n• Arabellek boyutu: tek seferde okunan ve yazılan bloklar. Büyük dosyalarda daha büyüğü daha iyidir.\n• Aynı anda işlem: diskten aynı anda kaç blok istendiği. Hızlı SSD’ler daha fazlasıyla kazanır.\nEmin değilseniz varsayılanları bırakın: MegaCopier her diski zaten kendisi ayarlar.</value></data>
   <data name="Info_Merge_Text" xml:space="preserve"><value>Başka bir kopya sürerken yeni bir kopya başlatırsanız sırasını beklemek yerine ona katılabilir: dosyaları listenin sonuna eklenir.\n• Asla: her kopya ayrı gider.\n• Aynı klasöre gidiyorsa veya aynı diskleri kullanıyorsa.\n• Her zaman.\n&quot;Önce sor&quot; ile her seferinde siz karar verirsiniz. Klasörleri tek tek aynı USB belleğe gönderirken kullanışlı.</value></data>
   <data name="Info_MoveAttributes_Text" xml:space="preserve"><value>Başka bir diske taşırken dosyalar kopyalanır, sonra kaynaktan silinir. Burada içerik dışında neyi götüreceklerini seçersiniz: öznitelikler (salt okunur, gizli…), izinler, sahip ve denetim.\n• Kimin açabileceğini koruyarak çalışma klasörlerini sunucular arasında taşımak.\nAynı diskte taşımak yalnızca yer değiştirmektir ve her şey korunur.</value></data>
-  <data name="Info_DeleteIncomplete_Text" xml:space="preserve"><value>Kopyalanırken her dosya .mcpart uzantısıyla yazılır ve ancak düzgün bittiğinde adını alır. Bir kopyayı durdurursanız bu parçalar sayesinde sonra tam kaldığı yerden devam edilebilir.\n• Açık: Durdur’a basınca .mcpart dosyaları silinir ve hedef temiz kalır (ama artık devam edilemez).\n• Kapalı: devam etmek için saklanır.\nMegaCopier kapatılırken veya elektrik kesintisinden sonra hiçbir şey silinmez.</value></data>
+  <data name="Info_DeleteIncomplete_Text" xml:space="preserve"><value>“Durdur” kopyalamayı iptal eder ve listeden kaldırır. Kopyalanırken her dosya .mcpart uzantısıyla yazılır ve ancak sorunsuz bitince adını alır.\n• Açık: Durdur’a basınca .mcpart dosyaları silinir ve hedef temiz kalır.\n• Kapalı: saklanır; aynı şeyi yeniden kopyalarsanız tam kaldığı yerden devam eder.\nMegaCopier kapatılırken ya da elektrik kesintisinden sonra hiçbir şey silinmez: bu kopyalamalar yeniden açtığınızda devam etmek için önerilir.</value></data>
   <data name="Info_Eject_Text" xml:space="preserve"><value>Bitince MegaCopier hedef USB belleği, kartı veya USB diski &quot;Donanımı güvenle kaldır&quot; gibi güvenli şekilde çıkarır.\n• Art arda birkaç USB bellek doldurmak: çıkardığınızda hazırdır.\nYalnızca başka bir kopya kullanmıyorsa yapar. &quot;Zorla&quot;, bir program açık tutsa bile çıkarır.</value></data>
   <data name="Info_OnError_Text" xml:space="preserve"><value>Bir dosya yeniden denemelerden sonra bile kopyalanamazsa ne yapılacağı.\n• Sor: kopya durur, nedenini söyler ve yeniden denemeyi, atlamayı, sonrakileri atlamayı veya durdurmayı seçersiniz.\n• Atla ve devam et: gece büyük kopyalar için ideal; sonunda hata listesini görürsünüz.\n• Kopyayı durdur: hiçbir şey eksik olmamalıysa.\n• Sonda yeniden dene: kullanımdaysa ve serbest kalırsa diye sona bırakır.</value></data>
   <data name="Info_ErrorReport_Text" xml:space="preserve"><value>Bir kopya hatalarla biterse, başarısız her dosyayı, nedenini ve saatini içeren bir metin dosyası kaydeder.\n• Gece bıraktığınız bir kopyayı sakince incelemek için.\n• Bilgisayarlarla ilgilenen kişiye iletmek için.</value></data>
@@ -1427,4 +1427,19 @@
   <data name="Picker_DeleteTitle" xml:space="preserve"><value>Neyin silineceğini seçin: dosyalar veya klasörler</value></data>
   <data name="Picker_WipeTitle" xml:space="preserve"><value>Neyin güvenli silineceğini seçin: dosyalar veya klasörler</value></data>
   <data name="Picker_AddTitle" xml:space="preserve"><value>Listeye eklenecekleri seçin: dosyalar veya klasörler</value></data>
+  <data name="Space_Title" xml:space="preserve"><value>{0} üzerinde yeterli alan yok</value></data>
+  <data name="Space_Text" xml:space="preserve"><value>{0} gerekiyor, {1} boş ({2} eksik).</value></data>
+  <data name="Space_TextAdding" xml:space="preserve"><value>Eklemek istediklerinizle {0} gerekiyor, {1} boş ({2} eksik).</value></data>
+  <data name="Space_Force" xml:space="preserve"><value>Yine de kopyala</value></data>
+  <data name="Space_ForceTip" xml:space="preserve"><value>Disk dolana kadar kopyalar ve bekler: yer açın, kopyalama kendiliğinden devam eder.</value></data>
+  <data name="Space_Cancel" xml:space="preserve"><value>İptal</value></data>
+  <data name="Space_CancelTip" xml:space="preserve"><value>Hiçbir şey kopyalanmaz.</value></data>
+  <data name="Space_CancelAddingTip" xml:space="preserve"><value>Hiçbir şey eklenmez; kopyalama olduğu gibi devam eder.</value></data>
+  <data name="Job_StartNow" xml:space="preserve"><value>Şimdi başlat</value></data>
+  <data name="Drop_One" xml:space="preserve"><value>“{0}”</value></data>
+  <data name="Drop_Many" xml:space="preserve"><value>{0} öğe</value></data>
+  <data name="Drop_AddWhatHere" xml:space="preserve"><value>{0} bu kopyalamaya ekle</value></data>
+  <data name="Drop_AddWhatTo" xml:space="preserve"><value>{0} öğesini {1} işine ekle</value></data>
+  <data name="Drop_InsertWhatAt" xml:space="preserve"><value>{0} öğesini {1}. sıraya ekle</value></data>
+  <data name="Files_ResizeColumn.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Sütun genişliğini değiştirmek için sürükleyin (çift tıklama: varsayılan genişlik)</value></data>
 </root>

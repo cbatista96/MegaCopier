@@ -114,9 +114,7 @@
                 </StackPanel>
             </Grid>
 
-            <Border Style="{StaticResource McCard}" Margin="0,8,0,0">
-                <local:RulesEditor x:Name="Rules" />
-            </Border>
+            <local:RulesEditor x:Name="Rules" Margin="0,8,0,0" />
 
             <!-- Programar -->
             <Border Style="{StaticResource McCard}">

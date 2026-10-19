@@ -268,3 +268,4 @@ E_FolderCancelled	Kopie geannuleerd: de map bestond al op de bestemming.
 E_FolderSkipExisting	De map bestond al: de {0} bestanden die er al zijn worden overgeslagen en de rest wordt gekopieerd.
 E_FolderOverwrite	De map bestond al: de {0} bestanden die er al zijn worden overschreven.
 E_FolderRenamed	De map "{0}" bestond al: hij wordt gekopieerd als "{1}".
+E_SpaceForced	Er wordt toch gekopieerd: als de schijf vol is, wacht het kopiëren op ruimte.

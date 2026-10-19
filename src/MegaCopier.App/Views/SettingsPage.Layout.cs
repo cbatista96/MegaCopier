@@ -29,7 +29,15 @@ public sealed partial class SettingsPage
             else if (card.Child is StackPanel { Children: [Grid first, ..] } stack && IsSettingRow(first))
             {
                 PolishRow(first);
+                // Más filas en la misma tarjeta (p. ej. «Conexiones a la vez» debajo de los servidores): igual de
+                // centradas que la primera.
+                foreach (var other in stack.Children.Skip(1).OfType<Grid>().Where(IsSettingRow).ToList())
+                {
+                    PolishRow(other);
+                }
+
                 FoldUnderText(stack, first);
+                CenterLoneInfo(card, stack, first);
             }
         }
     }
@@ -102,6 +110,32 @@ public sealed partial class SettingsPage
             element.Margin = new Thickness(0, Math.Max(element.Margin.Top, 6), element.Margin.Right, element.Margin.Bottom);
             texts.Children.Add(element);
         }
+    }
+
+    /// <summary>
+    /// Tarjeta sin control a la derecha (solo la «i») y con algo debajo que ocupa todo el ancho (casillas en fila):
+    /// la «i» pasa a una columna propia a la derecha de toda la tarjeta, centrada en su alto, como en las demás.
+    /// </summary>
+    private static void CenterLoneInfo(Border card, StackPanel stack, Grid row)
+    {
+        bool onlyInfo = !row.Children.OfType<FrameworkElement>().Any(c => Grid.GetColumn(c) >= 2 && c is not InfoTip);
+        if (!onlyInfo || stack.Children.Count < 2 || row.Children.OfType<InfoTip>().FirstOrDefault() is not { } info)
+        {
+            return;
+        }
+
+        row.Children.Remove(info);
+        card.Child = null;
+        var holder = new Grid { ColumnSpacing = 14 };
+        holder.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+        holder.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+        holder.Children.Add(stack);
+        info.VerticalAlignment = VerticalAlignment.Center;
+        info.Margin = new Thickness(0);
+        Grid.SetColumn(info, 1);
+        Grid.SetRow(info, 0);
+        holder.Children.Add(info);
+        card.Child = holder;
     }
 
     /// <summary>Descendientes por el árbol lógico (también los de secciones ocultas, que aún no tienen árbol visual).</summary>

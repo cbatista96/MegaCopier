@@ -38,7 +38,11 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <AutoSuggestBox x:Name="SearchBox" x:Uid="Settings_Search" QueryIcon="Find" TextChanged="Search_TextChanged" />
-                <ListView x:Name="SectionList" Grid.Row="1" SelectionMode="Single" SelectionChanged="Section_SelectionChanged" />
+                <ListView x:Name="SectionList" Grid.Row="1" SelectionMode="Single" SelectionChanged="Section_SelectionChanged">
+                    <ListView.Resources><x:Boolean x:Key="ListViewItemSelectionIndicatorVisualEnabled">False</x:Boolean></ListView.Resources>
+                </ListView>
+                <!-- La barrita de la sección elegida: se desliza de una a otra -->
+                <Canvas x:Name="SectionIndicatorLayer" Grid.Row="1" IsHitTestVisible="False" />
             </Grid>
 
             <Grid Grid.Column="1">
@@ -360,9 +364,7 @@
                     </Grid>
                 </Border>
 
-                <Border Style="{StaticResource McSettingCard}">
-                    <views:RulesEditor x:Name="Rules" />
-                </Border>
+                <views:RulesEditor x:Name="Rules" Margin="0,0,0,4" />
                 </StackPanel>                <StackPanel x:Name="Sec_Behavior" Visibility="Collapsed">
                 <Border Style="{StaticResource McSettingCard}">
                     <StackPanel Spacing="8">

@@ -162,10 +162,8 @@ public sealed partial class RulesEditor : UserControl
             Grid.SetRow(RulesColumn, one ? 1 : 0);
             Grid.SetColumn(RulesColumn, one ? 0 : 1);
             Grid.SetColumnSpan(RulesColumn, one ? 2 : 1);
-            Grid.SetRow(SafetyHeader, one ? 2 : 1);
-            Grid.SetRow(SafetyLeft, one ? 3 : 2);
             Grid.SetColumnSpan(SafetyLeft, one ? 2 : 1);
-            Grid.SetRow(SafetyRight, one ? 4 : 2);
+            Grid.SetRow(SafetyRight, one ? 2 : 1);
             Grid.SetColumn(SafetyRight, one ? 0 : 1);
             Grid.SetColumnSpan(SafetyRight, one ? 2 : 1);
         };

@@ -121,6 +121,21 @@ internal static class Responsive
     private static readonly System.Runtime.CompilerServices.ConditionalWeakTable<Grid, List<(FrameworkElement Control, int Column)>> Controls = [];
     private static readonly System.Runtime.CompilerServices.ConditionalWeakTable<Grid, StackPanel> Holders = [];
 
+    /// <summary>
+    /// Los botones que solo llevan icono tienen su texto en la ayuda emergente: si no tienen nombre accesible, se les
+    /// pone ese texto, para que los lectores de pantalla (y la automatización) sepan qué hace cada uno.
+    /// </summary>
+    public static void NameFromToolTips(DependencyObject root)
+    {
+        foreach (var button in Descendants<ButtonBase>(root))
+        {
+            if (string.IsNullOrEmpty(Microsoft.UI.Xaml.Automation.AutomationProperties.GetName(button)) && ToolTipService.GetToolTip(button) is string tip && tip.Length > 0)
+            {
+                Microsoft.UI.Xaml.Automation.AutomationProperties.SetName(button, tip);
+            }
+        }
+    }
+
     /// <summary>Todos los descendientes de un tipo.</summary>
     public static IEnumerable<T> Descendants<T>(DependencyObject root)
         where T : DependencyObject

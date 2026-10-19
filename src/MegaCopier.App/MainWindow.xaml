@@ -143,12 +143,10 @@
                 <ListView x:Name="JobList" Grid.Row="1" SelectionMode="Single" SelectionChanged="JobList_SelectionChanged" Padding="0"
                           CanDragItems="True" AllowDrop="True" DragItemsStarting="JobList_DragItemsStarting" DragItemsCompleted="JobList_DragItemsCompleted"
                           DragOver="JobList_DragOver" DragLeave="JobList_DragLeave" Drop="JobList_Drop">
+                    <ListView.Resources><x:Boolean x:Key="ListViewItemSelectionIndicatorVisualEnabled">False</x:Boolean></ListView.Resources>
+                    <!-- Sin transiciones de filas: ver la lista de archivos (FilesTab.xaml) -->
                     <ListView.ItemContainerTransitions>
-                        <TransitionCollection>
-                            <AddDeleteThemeTransition />
-                            <RepositionThemeTransition />
-                            <EntranceThemeTransition IsStaggeringEnabled="True" />
-                        </TransitionCollection>
+                        <TransitionCollection />
                     </ListView.ItemContainerTransitions>
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem" BasedOn="{StaticResource DefaultListViewItemStyle}">
@@ -184,6 +182,7 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+                <Canvas x:Name="JobIndicatorLayer" Grid.Row="1" IsHitTestVisible="False" />
                 <Canvas x:Name="JobDropLayer" Grid.Row="1" IsHitTestVisible="False">
                     <Grid x:Name="JobDropLine" Height="10" Visibility="Collapsed">
                         <Border Height="3" CornerRadius="1.5" VerticalAlignment="Center" Margin="6,0,0,0" Background="{StaticResource McAccentBrush}" />

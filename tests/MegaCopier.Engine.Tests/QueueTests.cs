@@ -229,4 +229,169 @@ public sealed class QueueTests : IDisposable
         Assert.Null(response);
         Assert.True(watch.ElapsedMilliseconds < 5000); // margen para equipos lentos; sin servidor tarda unos 100 ms
     }
+
+    [Fact]
+    public void Al_cargar_la_misma_copia_repetida_solo_queda_una()
+    {
+        string source = NewSource("carpeta.bin", 1024, 5);
+        string destination = _temp.Combine("dst");
+        for (int i = 0; i < 5; i++)
+        {
+            var record = CopyJobRecord.New([source], destination, Options());
+            record.CreatedUtc = DateTime.UtcNow.AddMinutes(i);
+            _store.Save(record);
+        }
+
+        _store.Save(CopyJobRecord.New([source], _temp.Combine("otro"), Options())); // otra copia distinta
+
+        var loaded = NewQueue().LoadInterrupted();
+
+        Assert.Equal(2, loaded.Count);
+        Assert.Equal(2, _store.List().Count);
+    }
+
+    [Fact]
+    public async Task Detener_por_el_usuario_cancela_y_la_quita_de_la_lista()
+    {
+        var queue = NewQueue();
+        string source = NewSource("grande.bin", 6 * 1024 * 1024, 6);
+        bool stopped = false;
+        OnEveryChange(queue, j =>
+        {
+            if (!stopped && j.Progress is { CurrentFileBytes: >= 2 * Chunk } && j.State == CopyJobState.Running)
+            {
+                stopped = true;
+                queue.Cancel(j);
+            }
+        });
+        bool removed = false;
+        queue.JobRemoved += _ => removed = true;
+        var job = queue.Submit([source], _temp.Combine("dst"), Options());
+
+        await WaitFinished(queue, job);
+
+        Assert.True(removed);
+        Assert.Empty(queue.Jobs);
+        Assert.Empty(_store.List());
+    }
+
+    [Fact]
+    public async Task Detener_una_copia_en_espera_la_quita_sin_empezarla()
+    {
+        var queue = NewQueue();
+        queue.MaxActiveJobs = 1;
+        var first = queue.Submit([NewSource("uno.bin", 6 * 1024 * 1024, 7)], _temp.Combine("d1"), Options());
+        var second = queue.Submit([NewSource("dos.bin", 1024, 8)], _temp.Combine("d2"), Options());
+        Assert.Equal(CopyJobState.Queued, second.State);
+
+        queue.Cancel(second);
+
+        Assert.DoesNotContain(second, queue.Jobs);
+        await WaitFinished(queue, first);
+        Assert.False(File.Exists(_temp.Combine("d2", "dos.bin")));
+        Assert.Empty(_store.List());
+    }
+
+    [Fact]
+    public async Task Continuar_una_copia_en_espera_la_empieza_sin_esperar_turno()
+    {
+        var queue = NewQueue();
+        queue.MaxActiveJobs = 1;
+        bool paused = false;
+        OnEveryChange(queue, j =>
+        {
+            if (!paused && j.Progress is { CurrentFileBytes: >= Chunk } && j.State == CopyJobState.Running)
+            {
+                paused = true;
+                queue.Pause(j);
+            }
+        });
+        var first = queue.Submit([NewSource("uno.bin", 6 * 1024 * 1024, 9)], _temp.Combine("d1"), Options());
+        var second = queue.Submit([NewSource("dos.bin", 1024, 10)], _temp.Combine("d2"), Options());
+        Assert.Equal(CopyJobState.Queued, second.State);
+
+        queue.Resume(second); // la primera sigue (en marcha o en pausa) y la segunda empieza igualmente
+
+        await WaitFinished(queue, second);
+        Assert.Equal(CopyJobState.Completed, second.State);
+        Assert.True(first.IsActive);
+        queue.Resume(first);
+        await WaitFinished(queue, first);
+        Assert.Equal(CopyJobState.Completed, first.State);
+    }
+
+    [Fact]
+    public void Sin_espacio_se_pregunta_y_cancelar_no_copia_nada()
+    {
+        string source = NewSource("a.bin", 1024 * 1024, 11);
+        var engine = new CopyEngine(Options()) { FreeBytes = _ => 1000 };
+        SpaceShortage? asked = null;
+        engine.SpaceResolver = (shortage, _) =>
+        {
+            asked = shortage;
+            return false;
+        };
+
+        Assert.Throws<SpaceCancelledException>(() => engine.Run(new CopyJobRequest([source], _temp.Combine("dst"))));
+        Assert.Equal(1024 * 1024, asked!.Needed);
+        Assert.Equal(1000, asked.Free);
+        Assert.False(File.Exists(_temp.Combine("dst", "a.bin")));
+    }
+
+    [Fact]
+    public void Sin_espacio_forzar_copia_igualmente()
+    {
+        string source = NewSource("a.bin", 1024 * 1024, 12);
+        var engine = new CopyEngine(Options()) { FreeBytes = _ => 1000, SpaceResolver = (_, _) => true };
+
+        var result = engine.Run(new CopyJobRequest([source], _temp.Combine("dst")));
+
+        Assert.True(result.Success);
+        Assert.True(engine.SpaceForced);
+        TestFiles.AssertSameContent(source, _temp.Combine("dst", "a.bin"));
+    }
+
+    [Fact]
+    public async Task Al_anadir_a_una_copia_en_marcha_se_comprueba_si_cabe()
+    {
+        var queue = NewQueue();
+        bool paused = false;
+        OnEveryChange(queue, j =>
+        {
+            if (!paused && j.Progress is { CurrentFileBytes: >= Chunk } && j.State == CopyJobState.Running)
+            {
+                paused = true;
+                queue.Pause(j);
+            }
+        });
+        var job = queue.Submit([NewSource("uno.bin", 6 * 1024 * 1024, 13)], _temp.Combine("dst"), Options());
+        while (job.State != CopyJobState.Paused)
+        {
+            await Task.Delay(10);
+        }
+
+        string extra = NewSource("extra.bin", 1024 * 1024, 14);
+        Assert.Null(job.CheckSpaceFor([extra])); // en el disco de pruebas hay sitio de sobra
+
+        job.ForceSpace();
+        Assert.True(job.Record.SpaceForced);
+        Assert.Equal(1, job.AddSources([extra]));
+        queue.Resume(job);
+        await WaitFinished(queue, job);
+        TestFiles.AssertSameContent(extra, _temp.Combine("dst", "extra.bin"));
+    }
+
+    [Fact]
+    public void Volver_a_copiar_lo_mismo_encuentra_la_copia_detenida()
+    {
+        string source = NewSource("carpeta.bin", 1024, 15);
+        string destination = _temp.Combine("dst");
+        _store.Save(CopyJobRecord.New([source], destination, Options()));
+        var queue = NewQueue();
+        var loaded = queue.LoadInterrupted();
+
+        Assert.Same(loaded[0], queue.FindInterrupted([source.ToUpperInvariant() + "\\"], destination, JobOperation.Copy, move: false));
+        Assert.Null(queue.FindInterrupted([source], _temp.Combine("otro"), JobOperation.Copy, move: false));
+        Assert.Null(queue.FindInterrupted([source], destination, JobOperation.Copy, move: true));
+    }
 }

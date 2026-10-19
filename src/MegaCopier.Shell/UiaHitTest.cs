@@ -14,14 +14,37 @@ public static unsafe partial class UiaHitTest
 
     private const int ListItem = 50007, List = 50008, DataItem = 50029;
 
+    /// <summary>
+    /// El objeto de accesibilidad, creado una vez por hilo (crearlo es lo más lento de la primera consulta).
+    /// </summary>
+    [ThreadStatic]
+    private static nint _automation;
+
+    /// <summary>Prepara la accesibilidad de antemano (al empezar un arrastre), para que al soltar sea inmediata.</summary>
+    public static void WarmUp() => Automation();
+
+    private static void* Automation()
+    {
+        if (_automation == 0)
+        {
+            void* created = null;
+            Guid clsid = ClsidCuiAutomation, iid = IidUiAutomation;
+            if (CoCreateInstance(&clsid, null, 1 /* CLSCTX_INPROC_SERVER */, &iid, &created) >= 0 && created != null)
+            {
+                _automation = (nint)created;
+            }
+        }
+
+        return (void*)_automation;
+    }
+
     public static DropSpot At(int x, int y, out string? itemName)
     {
         itemName = null;
-        void* automation = null;
+        void* automation = Automation();
         void* walker = null;
         void* element = null;
-        Guid clsid = ClsidCuiAutomation, iid = IidUiAutomation;
-        if (CoCreateInstance(&clsid, null, 1 /* CLSCTX_INPROC_SERVER */, &iid, &automation) < 0 || automation == null)
+        if (automation == null)
         {
             return DropSpot.Unknown;
         }
@@ -64,8 +87,7 @@ public static unsafe partial class UiaHitTest
         finally
         {
             ExplorerLocator.Release(element);
-            ExplorerLocator.Release(walker);
-            ExplorerLocator.Release(automation);
+            ExplorerLocator.Release(walker); // el objeto de accesibilidad se queda para la próxima vez
         }
     }
 

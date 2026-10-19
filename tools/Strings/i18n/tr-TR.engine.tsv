@@ -268,3 +268,4 @@ E_FolderCancelled	Kopyalama iptal edildi: klasör hedefte zaten vardı.
 E_FolderSkipExisting	Klasör zaten vardı: mevcut {0} dosya atlanır, kalanı kopyalanır.
 E_FolderOverwrite	Klasör zaten vardı: mevcut {0} dosyanın üzerine yazılır.
 E_FolderRenamed	"{0}" klasörü zaten vardı: "{1}" olarak kopyalanır.
+E_SpaceForced	Yine de kopyalanıyor: disk dolduğunda kopyalama yer açılmasını bekleyecek.

@@ -89,11 +89,19 @@ El menú del icono de la bandeja (clic derecho) tiene además: **Abrir MegaCopie
 Al empezar una copia se abre la **ventana compacta**: la barra de arriba es el progreso total y la de abajo el del archivo
 que se está copiando, con la velocidad y el tiempo que queda. Debajo, las unidades de origen y destino.
 
-Los botones, siempre con su nombre: **⌄ Más** (amplía la ventana), **Pausa**, **Saltar** (deja el archivo actual y
-sigue con el siguiente; también en pausa: lo descarta y la copia sigue en pausa, lista para empezar el siguiente) y
-**Detener** (para la copia; si era la única, la ventana se cierra sola, y al volver a abrir MegaCopier se ofrece
-continuarla desde donde quedó). El botón **…** tiene más opciones de esa copia. Con varias copias aparece un paginador
-**‹ ›** para pasar de una a otra. Esta ventana se puede ensanchar, pero no hacer más alta: no habría nada más que ver.
+Los botones, siempre con su nombre:
+
+- **⌄ Más**: amplía la ventana.
+- **Pausa**: el mismo botón pasa a **Continuar**. En una copia que espera turno porque otra usa el mismo disco, es
+  **Empezar ya**: la arranca a la vez que la otra.
+- **Saltar**: deja el archivo actual y sigue con el siguiente; también en pausa: lo descarta y la copia sigue en pausa,
+  lista para empezar el siguiente.
+- **Detener**: cancela la copia y la quita de la lista; si era la única, la ventana se cierra sola. Lo que quedó a
+  medias se borra o se guarda según *Ajustes > Comportamiento*: si se guarda, al volver a copiar lo mismo se sigue desde
+  donde quedó.
+
+El botón **…** tiene más opciones de esa copia. Con varias copias aparece un paginador **‹ ›** para pasar de una a
+otra. Esta ventana se puede ensanchar, pero no hacer más alta: no habría nada más que ver.
 
 Se puede pulsar en casi todo:
 
@@ -138,10 +146,14 @@ una copia y completa cuando hay varias a la vez). Son tres vistas: la **pequeña
 tamaño mínimo para que todo quepa y que se puede maximizar) y la de **varias copias**, que es la misma con la lista de
 copias a la izquierda (solo aparece cuando hay más de una).
 
+![Dos copias a la vez: la segunda espera turno y «Empezar ya» la arranca](capturas/varias-copias.png)
+
 En la lista, la búsqueda va siempre a la izquierda y encoge si falta sitio; las casillas *Ocultar los terminados* y
-*Seguir al actual* van a su lado. Los botones de la izquierda empiezan a la altura de la cabecera y se ven siempre todos:
-si la lista es baja, se hacen algo más pequeños. El archivo que se está copiando lleva un **círculo que se va llenando**
-con su progreso y se cierra al terminarlo.
+*Seguir al actual* van a su lado. Los botones de la izquierda empiezan a la altura del primer archivo y se ven siempre
+todos: si la lista es baja, se hacen algo más pequeños. Al subir o bajar archivos con ellos, siguen elegidos. Entre
+*Origen*, *Tamaño* y *Destino* hay **líneas divisorias**: se arrastran para dar a cada columna el ancho que quieras (se
+recuerda) y con doble clic vuelven al de siempre. El archivo que se está copiando lleva un **círculo que se va
+llenando** con su progreso y se cierra al terminarlo.
 
 ### La lista de archivos
 
@@ -199,6 +211,13 @@ papelera) se abandona la copia y se borra lo que quedó a medias.
 
 Mientras copia, el equipo no se suspende. Si el disco o la red desaparecen un momento, MegaCopier **espera** a que
 vuelvan (y también a que haya espacio libre) en vez de fallar.
+
+Antes de empezar, MegaCopier comprueba que lo que vas a copiar **cabe** en el destino (y lo mismo al añadir archivos a
+una copia en marcha). Si no cabe, dice cuánto hace falta y cuánto hay libre: **Cancelar** no copia nada; **Forzar la
+copia** copia hasta llenar el disco y espera a que liberes espacio para seguir sola. Si cierras MegaCopier con una copia
+en marcha y luego vuelves a copiar lo mismo, se continúa esa copia en lugar de empezar otra.
+
+![No hay espacio suficiente, preguntado dentro de la ventana pequeña](capturas/espacio.png)
 
 ---
 

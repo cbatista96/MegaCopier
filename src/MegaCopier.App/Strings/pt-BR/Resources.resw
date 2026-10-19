@@ -1112,7 +1112,7 @@
   <data name="Settings_MoveAttributesTitle.Text" xml:space="preserve"><value>Ao mover, manter também</value></data>
   <data name="Settings_MoveAttributesDescription.Text" xml:space="preserve"><value>Ao mover para outro disco. No mesmo disco, mover é renomear e tudo é mantido.</value></data>
   <data name="Settings_DeleteIncompleteTitle.Text" xml:space="preserve"><value>Ao parar uma cópia, apagar o que ficou pela metade</value></data>
-  <data name="Settings_DeleteIncompleteDescription.Text" xml:space="preserve"><value>Não será mais possível continuar de onde parou. Não ficam arquivos incompletos (.mcpart) no destino.</value></data>
+  <data name="Settings_DeleteIncompleteDescription.Text" xml:space="preserve"><value>Assim não ficam arquivos incompletos (.mcpart) no destino. Se forem mantidos, copiar o mesmo de novo continua de onde parou.</value></data>
   <data name="Settings_KeepOnError.Content" xml:space="preserve"><value>Não apagar se a cópia parou por causa de um erro</value></data>
   <data name="Settings_EjectTitle.Text" xml:space="preserve"><value>Ao terminar, ejetar a unidade de destino</value></data>
   <data name="Settings_EjectDescription.Text" xml:space="preserve"><value>Apenas pendrives, cartões de memória e discos USB, quando nenhuma outra cópia a estiver usando.</value></data>
@@ -1336,7 +1336,7 @@
   <data name="Info_Performance_Text" xml:space="preserve"><value>O quanto a cópia pode correr.\n• Limite de velocidade: para a cópia não ocupar toda a rede ou o disco enquanto você trabalha ou assiste a um filme. Cada cópia também tem seu próprio limite na guia Opções, que muda na hora sem pará-la.\n• Tamanho do buffer: os blocos lidos e escritos de uma vez. Maior funciona melhor com arquivos enormes.\n• Operações simultâneas: quantos blocos são pedidos ao disco ao mesmo tempo. SSDs rápidos ganham com mais.\nSe não souber o que pôr, deixe o padrão: o MegaCopier já ajusta cada disco sozinho.</value></data>
   <data name="Info_Merge_Text" xml:space="preserve"><value>Se você iniciar uma cópia enquanto outra está em andamento, ela pode se juntar a essa em vez de esperar a vez: seus arquivos vão para o fim da lista.\n• Nunca: cada cópia segue sozinha.\n• Se vão para a mesma pasta, ou se usam os mesmos discos.\n• Sempre.\nCom &quot;Perguntar antes&quot; você decide a cada vez. Útil quando manda pastas aos poucos para o mesmo pendrive.</value></data>
   <data name="Info_MoveAttributes_Text" xml:space="preserve"><value>Ao mover para outro disco, os arquivos são copiados e depois apagados da origem. Aqui você escolhe o que levam além do conteúdo: atributos (somente leitura, oculto…), permissões, proprietário e auditoria.\n• Mover pastas de trabalho entre servidores mantendo quem pode abri-las.\nNo mesmo disco, mover é só mudar de lugar e tudo é mantido.</value></data>
-  <data name="Info_DeleteIncomplete_Text" xml:space="preserve"><value>Durante a cópia, cada arquivo é gravado com a extensão .mcpart e só recebe o nome quando termina bem. Se você parar uma cópia, esses pedaços permitem continuar depois exatamente de onde parou.\n• Ativado: ao clicar em Parar, os .mcpart são apagados e o destino fica limpo (mas não dá mais para continuar).\n• Desativado: são guardados para retomar.\nNada é apagado ao fechar o MegaCopier nem depois de uma queda de energia.</value></data>
+  <data name="Info_DeleteIncomplete_Text" xml:space="preserve"><value>“Parar” cancela a cópia e a remove da lista. Durante a cópia, cada arquivo é gravado com a extensão .mcpart e só recebe o nome ao terminar corretamente.\n• Ativado: ao clicar em Parar, os .mcpart são apagados e o destino fica limpo.\n• Desativado: eles são mantidos e, se você copiar o mesmo de novo, continua exatamente de onde parou.\nNada é apagado ao fechar o MegaCopier nem após uma queda de energia: essas cópias são oferecidas para continuar ao abri-lo de novo.</value></data>
   <data name="Info_Eject_Text" xml:space="preserve"><value>Ao terminar, o MegaCopier ejeta com segurança o pendrive, o cartão ou o disco USB de destino, como &quot;Remover hardware com segurança&quot;.\n• Encher vários pendrives seguidos: quando você tira, já está pronto.\nSó faz isso se nenhuma outra cópia o estiver usando. &quot;Forçar&quot; ejeta mesmo se algum programa o tiver aberto.</value></data>
   <data name="Info_OnError_Text" xml:space="preserve"><value>O que fazer quando um arquivo não pode ser copiado nem depois de tentar de novo.\n• Perguntar: a cópia para, diz o motivo e você escolhe tentar de novo, pular, pular os próximos ou parar.\n• Pular e continuar: ideal para cópias grandes durante a noite; no fim você vê a lista de falhas.\n• Parar a cópia: quando não pode faltar nada.\n• Tentar de novo no fim: deixa para o final, caso estivesse em uso e seja liberado.</value></data>
   <data name="Info_ErrorReport_Text" xml:space="preserve"><value>Se uma cópia terminar com erros, salva um arquivo de texto com cada arquivo que falhou, o motivo e a hora.\n• Para revisar com calma uma cópia deixada à noite.\n• Para passar a quem cuida dos computadores.</value></data>
@@ -1427,4 +1427,19 @@
   <data name="Picker_DeleteTitle" xml:space="preserve"><value>Escolha o que apagar: arquivos ou pastas</value></data>
   <data name="Picker_WipeTitle" xml:space="preserve"><value>Escolha o que apagar com segurança: arquivos ou pastas</value></data>
   <data name="Picker_AddTitle" xml:space="preserve"><value>Escolha o que adicionar à lista: arquivos ou pastas</value></data>
+  <data name="Space_Title" xml:space="preserve"><value>Não há espaço suficiente em {0}</value></data>
+  <data name="Space_Text" xml:space="preserve"><value>São necessários {0} e há {1} livres (faltam {2}).</value></data>
+  <data name="Space_TextAdding" xml:space="preserve"><value>Com o que você quer adicionar, são necessários {0} e há {1} livres (faltam {2}).</value></data>
+  <data name="Space_Force" xml:space="preserve"><value>Copiar mesmo assim</value></data>
+  <data name="Space_ForceTip" xml:space="preserve"><value>Copia até encher o disco e espera: libere espaço e a cópia continua sozinha.</value></data>
+  <data name="Space_Cancel" xml:space="preserve"><value>Cancelar</value></data>
+  <data name="Space_CancelTip" xml:space="preserve"><value>Nada é copiado.</value></data>
+  <data name="Space_CancelAddingTip" xml:space="preserve"><value>Nada é adicionado; a cópia continua como estava.</value></data>
+  <data name="Job_StartNow" xml:space="preserve"><value>Começar agora</value></data>
+  <data name="Drop_One" xml:space="preserve"><value>“{0}”</value></data>
+  <data name="Drop_Many" xml:space="preserve"><value>{0} itens</value></data>
+  <data name="Drop_AddWhatHere" xml:space="preserve"><value>Adicionar {0} a esta cópia</value></data>
+  <data name="Drop_AddWhatTo" xml:space="preserve"><value>Adicionar {0} a {1}</value></data>
+  <data name="Drop_InsertWhatAt" xml:space="preserve"><value>Adicionar {0} na posição {1}</value></data>
+  <data name="Files_ResizeColumn.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Arraste para mudar a largura da coluna (clique duplo: largura padrão)</value></data>
 </root>
