@@ -12,7 +12,7 @@ public static unsafe partial class UiaHitTest
     private static readonly Guid ClsidCuiAutomation = new("FF48DBA4-60EF-4201-AA87-54103EEF594E");
     private static readonly Guid IidUiAutomation = new("30CBE57D-D9D0-452A-AB13-7AC5AC4825EE");
 
-    private const int ListItem = 50007, List = 50008, DataItem = 50029;
+    private const int ListItem = 50007, List = 50008, Tree = 50023, TreeItem = 50024, DataItem = 50029;
 
     /// <summary>
     /// El objeto de accesibilidad, creado una vez por hilo (crearlo es lo más lento de la primera consulta).
@@ -88,6 +88,68 @@ public static unsafe partial class UiaHitTest
         {
             ExplorerLocator.Release(element);
             ExplorerLocator.Release(walker); // el objeto de accesibilidad se queda para la próxima vez
+        }
+    }
+
+    /// <summary>
+    /// Si en ese punto hay un elemento de un árbol (el panel de navegación del Explorador), su nombre visible y los de
+    /// sus padres, desde el primer nivel. Null si no lo hay.
+    /// </summary>
+    public static List<string>? TreePathAt(int x, int y)
+    {
+        void* automation = Automation();
+        void* walker = null;
+        void* element = null;
+        if (automation == null)
+        {
+            return null;
+        }
+
+        try
+        {
+            if (((delegate* unmanaged[Stdcall]<void*, Point, void**, int>)(*(void***)automation)[7])(automation, new Point(x, y), &element) < 0 || element == null
+                || ((delegate* unmanaged[Stdcall]<void*, void**, int>)(*(void***)automation)[14])(automation, &walker) < 0 || walker == null)
+            {
+                return null;
+            }
+
+            // Del elemento bajo el puntero (quizá el texto o el icono) hacia arriba: los elementos del árbol, hasta el árbol.
+            var names = new List<string>();
+            for (int depth = 0; depth < 64 && element != null; depth++)
+            {
+                int type = 0;
+                ((delegate* unmanaged[Stdcall]<void*, int*, int>)(*(void***)element)[21])(element, &type);
+                if (type == TreeItem)
+                {
+                    string? name = Name(element);
+                    if (string.IsNullOrEmpty(name))
+                    {
+                        return null;
+                    }
+
+                    names.Insert(0, name);
+                }
+                else if (type == Tree)
+                {
+                    return names.Count > 0 ? names : null;
+                }
+                else if (names.Count > 0 || depth > 3)
+                {
+                    return null; // algo raro entre los elementos del árbol, o no era un árbol
+                }
+
+                void* parent = null;
+                ((delegate* unmanaged[Stdcall]<void*, void*, void**, int>)(*(void***)walker)[3])(walker, element, &parent);
+                ExplorerLocator.Release(element);
+                element = parent;
+            }
+
+            return null;
+        }
+        finally
+        {
+            ExplorerLocator.Release(element);
+            ExplorerLocator.Release(walker);
         }
     }
 

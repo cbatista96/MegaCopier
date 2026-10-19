@@ -28,14 +28,16 @@ public sealed partial class MainWindow : Window
     // Tres vistas: la pequeña (la de siempre al copiar), la de la lista de archivos («Más») y la de varias copias a la
     // vez (la misma, con la lista de copias a la izquierda).
     private const double CompactWidth = 600;
-    private const double CompactHeight = 252;
+    /// <summary>Alto de la pequeña: la barra de herramientas (siempre a la vista) y el panel de la copia.</summary>
+    private const double CompactHeight = 252 + ToolbarHeight;
+    private const double ToolbarHeight = 44;
     private const double PagerHeight = 40;
 
     /// <summary>La pequeña solo se ensancha: más alta no enseñaría nada más. Más estrecha cortaría los botones.</summary>
     private const double CompactMinWidth = 560;
 
     /// <summary>Sin copias, la ventana compacta crece para que quepan el icono, los botones y los enlaces.</summary>
-    private const double EmptyHeight = 360;
+    private const double EmptyHeight = 360 + ToolbarHeight;
     private const double ExpandedWidth = 820;
     private const double ExpandedHeight = 780;
 
@@ -94,6 +96,7 @@ public sealed partial class MainWindow : Window
         Handle = WindowNative.GetWindowHandle(this);
         ExtendsContentIntoTitleBar = true;
         SetTitleBar(AppTitleBar);
+        PrepareUiScale();
         AppWindow.SetIcon(Path.Combine(AppContext.BaseDirectory, "Assets", "MegaCopier.ico"));
         AppWindow.TitleBar.PreferredHeightOption = TitleBarHeightOption.Standard;
         _expanded = app.Settings.WindowMode == WindowMode.Expanded;
@@ -114,12 +117,31 @@ public sealed partial class MainWindow : Window
             }
         };
 
-        // Cerrar la ventana no cierra la app: sigue en la bandeja con las copias en marcha.
+        // La X, según el ajuste: por defecto cancela las copias como «Detener» y cierra la ventana (MegaCopier sigue
+        // en la bandeja, listo para la próxima copia).
         AppWindow.Closing += (_, args) =>
         {
             args.Cancel = true;
-            SavePlacement();
-            AppWindow.Hide();
+            CloseButtonPressed();
+        };
+
+        // Al pasar a otra pantalla (más pequeña o más grande), la escala se ajusta a ella.
+        AppWindow.Changed += (_, args) =>
+        {
+            if (args.DidPositionChange && !_resizeTimer.IsRunning && UpdateUiScale())
+            {
+                ApplyLayout(animate: false);
+            }
+        };
+
+        // Minimizar puede ocultarla en la bandeja en lugar de dejarla en la barra de tareas.
+        AppWindow.Changed += (_, args) =>
+        {
+            if (args.DidPresenterChange && !_minimizingOnPurpose && AppWindow.Presenter is OverlappedPresenter { State: OverlappedPresenterState.Minimized }
+                && _app.Settings.MinimizeButton == MinimizeButtonAction.Tray && _app.Settings.ShowTrayIcon)
+            {
+                Hide();
+            }
         };
 
         _app.Queue.JobAdded += job => OnUi(() => AddJob(job, select: true), "AddJob");
@@ -223,6 +245,11 @@ public sealed partial class MainWindow : Window
         }
 
         AppWindow.Show(activateWindow: true);
+        if (AppWindow.Presenter is OverlappedPresenter { State: OverlappedPresenterState.Minimized } minimized)
+        {
+            minimized.Restore(); // se ocultó en la bandeja estando minimizada
+        }
+
         Activate();
         if (SetForegroundWindow(Handle))
         {
@@ -253,14 +280,52 @@ public sealed partial class MainWindow : Window
         AppWindow.Show(activateWindow: false);
         if (AppWindow.Presenter is OverlappedPresenter presenter)
         {
+            _minimizingOnPurpose = true; // esto no es el botón de minimizar: se queda en la barra de tareas
             presenter.Minimize();
+            _minimizingOnPurpose = false;
         }
     }
+
+    private bool _minimizingOnPurpose;
 
     internal void Hide()
     {
         SavePlacement();
         AppWindow.Hide();
+    }
+
+    /// <summary>
+    /// La X de la ventana, según «Al pulsar la X»: cancelar las copias (como «Detener» en cada una), detenerlas para
+    /// continuarlas después, solo ocultar la ventana (las copias siguen) o salir de MegaCopier. Las copias ya
+    /// terminadas pasan al historial al cerrar la ventana.
+    /// </summary>
+    internal void CloseButtonPressed()
+    {
+        var action = _app.Settings.CloseButton;
+        if (action == CloseButtonAction.Exit)
+        {
+            SavePlacement();
+            _app.ExitApp();
+            return;
+        }
+
+        foreach (var job in Jobs.ToList())
+        {
+            if (job.Job.IsActive && action == CloseButtonAction.CancelCopies)
+            {
+                job.Stop();
+            }
+            else if (job.Job.IsActive && action == CloseButtonAction.StopCopies)
+            {
+                _app.Queue.Stop(job.Job);
+            }
+            else if (job.IsDone && action != CloseButtonAction.HideToTray)
+            {
+                job.Clear();
+            }
+        }
+
+        Hide();
     }
 
     /// <summary>«Recordar la posición / el tamaño de la ventana».</summary>
@@ -352,6 +417,7 @@ public sealed partial class MainWindow : Window
         TimelineView.Visibility = Visibility.Collapsed;
         CompareView.Visibility = Visibility.Collapsed;
         UpdateLayoutState();
+        RestoreAfterPage();
     }
 
     /// <summary>Hay una página (Historial, Ajustes, Línea de tiempo) encima de las copias.</summary>
@@ -490,15 +556,18 @@ public sealed partial class MainWindow : Window
         // Solo cuentan las copias que siguen en la cola (una recién quitada aún puede estar en la lista un instante).
         var queued = _app.Queue.Jobs;
         bool problems = Jobs.Any(j => (j.HasProblem || j.IsInterrupted) && queued.Contains(j.Job));
-        if (mode == FinishWindow.KeepOpen || (mode == FinishWindow.Auto && problems) || PageOpen)
-        {
-            return;
-        }
+        bool stays = mode == FinishWindow.KeepOpen || (mode == FinishWindow.Auto && problems) || PageOpen;
 
-        // Al terminar bien, la ventana se va y las copias acabadas pasan al historial.
-        foreach (var job in Jobs.Where(j => j.IsDone).ToList())
+        // Terminadas todas, las que acabaron bien salen de la lista (ya están en el historial). Si la ventana se
+        // queda abierta, la que se está viendo sigue en el panel hasta que se cierre o empiece otra copia.
+        foreach (var job in Jobs.Where(j => j.IsDone && !(stays && j == _selected)).ToList())
         {
             job.Clear();
+        }
+
+        if (stays)
+        {
+            return;
         }
 
         Hide();
@@ -546,6 +615,17 @@ public sealed partial class MainWindow : Window
         }
     }
 
+    /// <summary>Abre la ventana en esa copia (desde su icono de progreso de la bandeja).</summary>
+    internal void ShowJob(CopyJob job)
+    {
+        ShowJobs();
+        Select(Jobs.FirstOrDefault(j => j.Job == job) ?? _selected);
+        ShowAndActivate();
+    }
+
+    /// <summary>«Detener» sobre una copia concreta (desde su icono de la bandeja): se cancela, como en el panel.</summary>
+    internal void StopJob(CopyJob job) => Jobs.FirstOrDefault(j => j.Job == job)?.Stop();
+
     private void Select(JobViewModel? job)
     {
         if (_selected is not null)
@@ -572,6 +652,90 @@ public sealed partial class MainWindow : Window
 
         RefreshTabs();
         UpdatePager();
+    }
+
+    // ---------------------------------------------------------------------------------------------------------
+    // Menú de cada copia de la lista (clic derecho o tecla de menú) y Supr para quitar las terminadas.
+
+    private void JobList_ContextRequested(UIElement sender, Microsoft.UI.Xaml.Input.ContextRequestedEventArgs args)
+    {
+        if ((args.OriginalSource as FrameworkElement)?.DataContext is not JobViewModel job)
+        {
+            return;
+        }
+
+        args.Handled = true;
+        Select(job);
+        var menu = new MenuFlyout();
+        void Item(string text, string glyph, Action action, string? shortcut = null)
+        {
+            var item = new MenuFlyoutItem { Text = text, Icon = new FontIcon { Glyph = glyph } };
+            if (shortcut is not null)
+            {
+                item.KeyboardAcceleratorTextOverride = shortcut;
+            }
+
+            item.Click += (_, _) => action();
+            menu.Items.Add(item);
+        }
+
+        if (job.CanPause)
+        {
+            Item(L.Get("Tray_JobPause"), "", () => _app.Queue.Pause(job.Job));
+        }
+
+        if (job.CanResume)
+        {
+            Item(job.ResumeLabel, "", job.TogglePause);
+        }
+
+        if (job.CanStop)
+        {
+            Item(L.Get("Tray_JobStop"), "", job.Stop);
+        }
+
+        if (job.CanArchive)
+        {
+            Item(L.Get("Jobs_Archive"), "", () => ArchiveJob(job), L.Get("Jobs_ArchiveKey"));
+            Item(L.Get("Jobs_Delete"), "", () => DeleteJob(job));
+        }
+
+        if (menu.Items.Count > 0)
+        {
+            menu.Items.Add(new MenuFlyoutSeparator());
+        }
+
+        Item(L.Get("Panel_OpenFolderItem/Text"), "", job.OpenDestination);
+        if (args.TryGetPosition(sender, out var point))
+        {
+            menu.ShowAt(sender, point);
+        }
+        else
+        {
+            menu.ShowAt(args.OriginalSource as FrameworkElement ?? (FrameworkElement)sender);
+        }
+    }
+
+    private void JobList_KeyDown(object sender, Microsoft.UI.Xaml.Input.KeyRoutedEventArgs e)
+    {
+        if (e.Key == Windows.System.VirtualKey.Delete && _selected is { CanArchive: true } job)
+        {
+            e.Handled = true;
+            ArchiveJob(job);
+        }
+    }
+
+    /// <summary>«Archivar en el historial»: sale de la lista; en el historial ya está desde que terminó.</summary>
+    private void ArchiveJob(JobViewModel job) => _app.Queue.Clear(job.Job);
+
+    /// <summary>«Eliminar»: sale de la lista y también del historial.</summary>
+    private void DeleteJob(JobViewModel job)
+    {
+        _app.Queue.Clear(job.Job);
+        if (_app.HistoryIds.Remove(job.Job.Id, out string? entry))
+        {
+            History.Remove(entry);
+        }
     }
 
     private void JobList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -683,7 +847,7 @@ public sealed partial class MainWindow : Window
         Panel.SetExpanded(_expanded);
         _afterResize?.Invoke();
         _afterResize = null;
-        UIElement[] extras = [Toolbar, Tabs, TabHost];
+        UIElement[] extras = [Tabs, TabHost]; // la barra de herramientas se ve siempre, también en la pequeña
         if (animate && !_expanded)
         {
             // «Menos»: la barra de herramientas y las pestañas se desvanecen subiendo mientras la ventana encoge, y
@@ -796,6 +960,13 @@ public sealed partial class MainWindow : Window
     /// <summary>La vista de varias copias: la lista de copias a la izquierda solo tiene sentido con más de una.</summary>
     private bool SidebarWanted => Jobs.Count > 1;
 
+    /// <summary>
+    /// La barra de herramientas también va en la ventana pequeña: si no cabe entera, «Al terminar» se queda en su
+    /// icono (lo elegido sigue en su descripción emergente).
+    /// </summary>
+    private void Toolbar_SizeChanged(object sender, SizeChangedEventArgs e) =>
+        FinishText.Visibility = e.NewSize.Width < 640 ? Visibility.Collapsed : Visibility.Visible;
+
     private void Sidebar_Click(object sender, RoutedEventArgs e)
     {
         if (_narrow)
@@ -807,7 +978,7 @@ public sealed partial class MainWindow : Window
             _sidebarWide = !_sidebarWide;
         }
 
-        ApplySidebar();
+        ApplySidebar(animate: true);
     }
 
     /// <summary>Con la ventana estrecha la lista de copias flota sobre el contenido en lugar de apretarlo.</summary>
@@ -822,18 +993,61 @@ public sealed partial class MainWindow : Window
         }
     }
 
-    private void ApplySidebar()
+    private string? _sidebarTip;
+
+    /// <summary>
+    /// Con la lista de copias cerrada, el botón de las tres rayas lleva un número rojo con las copias activas, como
+    /// el aviso de una notificación; su descripción lo dice con palabras.
+    /// </summary>
+    private void UpdateSidebarBadge()
+    {
+        int active = Jobs.Count(j => j.IsActive);
+        bool show = SidebarButton.Visibility == Visibility.Visible && Sidebar.Visibility != Visibility.Visible && active > 0;
+        SidebarBadge.Visibility = show ? Visibility.Visible : Visibility.Collapsed;
+        SidebarBadgeText.Text = active > 9 ? "9+" : active.ToString(System.Globalization.CultureInfo.CurrentCulture);
+        _sidebarTip ??= ToolTipService.GetToolTip(SidebarButton) as string ?? ""; // la de siempre (x:Uid)
+        string tip = show ? $"{_sidebarTip} · {L.F("Jobs_BadgeTip", active)}" : _sidebarTip;
+        if (ToolTipService.GetToolTip(SidebarButton) as string != tip)
+        {
+            ToolTipService.SetToolTip(SidebarButton, tip);
+            Microsoft.UI.Xaml.Automation.AutomationProperties.SetName(SidebarButton, tip);
+        }
+    }
+
+    /// <param name="animate">
+    /// Al abrirla o cerrarla con su botón: se despliega deslizándose (su columna crece poco a poco, o flota entrando
+    /// desde la izquierda con la ventana estrecha) y se recoge igual, en lugar de aparecer y desaparecer de golpe.
+    /// </param>
+    private void ApplySidebar(bool animate = false)
     {
         bool page = PageOpen;
         bool show = _expanded && !page && SidebarWanted && (_narrow ? _sidebarOverlayOpen : _sidebarWide);
-        Sidebar.Visibility = show ? Visibility.Visible : Visibility.Collapsed;
-        SidebarButton.Visibility = SidebarWanted ? Visibility.Visible : Visibility.Collapsed;
+        bool wasShown = Sidebar.Visibility == Visibility.Visible;
+        animate &= show != wasShown && AppWindow.IsVisible && !Theming.BarAppearance.ReduceMotion;
+        StopSidebarAnimation();
+        SidebarButton.Visibility = SidebarWanted && _expanded ? Visibility.Visible : Visibility.Collapsed; // en la pequeña, el paginador
         if (!show)
         {
+            if (animate)
+            {
+                // Se recoge y, al acabar, se oculta.
+                AnimateSidebar(opening: false, () =>
+                {
+                    Sidebar.Visibility = Visibility.Collapsed;
+                    SidebarColumn.Width = new GridLength(0);
+                    UpdateSidebarBadge();
+                });
+                return;
+            }
+
+            Sidebar.Visibility = Visibility.Collapsed;
             SidebarColumn.Width = new GridLength(0);
+            UpdateSidebarBadge();
             return; // oculta: no se toca su aspecto (cambiarlo en cada cambio de tamaño solo da trabajo a WinUI)
         }
 
+        Sidebar.Visibility = Visibility.Visible;
+        UpdateSidebarBadge();
         if (_narrow)
         {
             SidebarColumn.Width = new GridLength(0);
@@ -850,7 +1064,7 @@ public sealed partial class MainWindow : Window
         }
         else
         {
-            SidebarColumn.Width = new GridLength(show ? SidebarWidth : 0);
+            SidebarColumn.Width = new GridLength(SidebarWidth);
             Grid.SetColumnSpan(Sidebar, 1);
             Sidebar.Width = double.NaN;
             Sidebar.HorizontalAlignment = HorizontalAlignment.Stretch;
@@ -859,6 +1073,88 @@ public sealed partial class MainWindow : Window
             Sidebar.CornerRadius = new CornerRadius(0);
             Canvas.SetZIndex(Sidebar, 0);
         }
+
+        if (animate)
+        {
+            AnimateSidebar(opening: true, null);
+        }
+    }
+
+    private DispatcherQueueTimer? _sidebarTimer;
+    private Action? _sidebarDone;
+
+    /// <summary>
+    /// Despliega o recoge la lista de copias. Junto al contenido, su columna crece (o mengua) a cada fotograma, con
+    /// aceleración suave, mientras la lista conserva su ancho (se va descubriendo, sin apretar los textos); flotando,
+    /// entra o sale deslizándose desde la izquierda.
+    /// </summary>
+    private void AnimateSidebar(bool opening, Action? done)
+    {
+        if (_narrow)
+        {
+            _sidebarDone = done;
+            Motion.SlideX(Sidebar, opening ? -SidebarWidth : 0, opening ? 0 : -SidebarWidth, opening ? 280 : 200, () =>
+            {
+                var finish = _sidebarDone;
+                _sidebarDone = null;
+                finish?.Invoke();
+            });
+            return;
+        }
+
+        Sidebar.Width = SidebarWidth;
+        Sidebar.HorizontalAlignment = HorizontalAlignment.Right; // se descubre desde el borde izquierdo
+        Motion.SlideX(Sidebar, opening ? -24 : 0, opening ? 0 : -24, opening ? 280 : 200, null);
+        _sidebarFrom = opening ? 0 : SidebarWidth;
+        _sidebarTo = opening ? SidebarWidth : 0;
+        _sidebarDuration = opening ? 280 : 200;
+        _sidebarStart = Stopwatch.GetTimestamp();
+        SidebarColumn.Width = new GridLength(_sidebarFrom);
+        _sidebarDone = () =>
+        {
+            Sidebar.Width = double.NaN;
+            Sidebar.HorizontalAlignment = HorizontalAlignment.Stretch;
+            done?.Invoke();
+        };
+        if (_sidebarTimer is null)
+        {
+            _sidebarTimer = _dispatcher.CreateTimer();
+            _sidebarTimer.Interval = TimeSpan.FromMilliseconds(15);
+            _sidebarTimer.Tick += (_, _) => SidebarStep();
+        }
+
+        _sidebarTimer.Start();
+    }
+
+    private double _sidebarFrom, _sidebarTo, _sidebarDuration;
+    private long _sidebarStart;
+
+    private void SidebarStep()
+    {
+        double t = Math.Min(1, Stopwatch.GetElapsedTime(_sidebarStart).TotalMilliseconds / _sidebarDuration);
+        double eased = 1 - Math.Pow(1 - t, 3);
+        SidebarColumn.Width = new GridLength(_sidebarFrom + ((_sidebarTo - _sidebarFrom) * eased));
+        if (t >= 1)
+        {
+            _sidebarTimer?.Stop();
+            var finish = _sidebarDone;
+            _sidebarDone = null;
+            finish?.Invoke();
+        }
+    }
+
+    /// <summary>Si la lista estaba a medio desplegarse o recogerse, la deja ya en su sitio.</summary>
+    private void StopSidebarAnimation()
+    {
+        if (_sidebarTimer is { IsRunning: true } timer)
+        {
+            timer.Stop();
+        }
+
+        var finish = _sidebarDone;
+        _sidebarDone = null;
+        finish?.Invoke();
+        Motion.ResetSlide(Sidebar);
     }
 
     /// <summary>Tocar fuera de la lista flotante la cierra.</summary>
@@ -867,7 +1163,7 @@ public sealed partial class MainWindow : Window
         if (_narrow && _sidebarOverlayOpen)
         {
             _sidebarOverlayOpen = false;
-            ApplySidebar();
+            ApplySidebar(animate: true);
         }
     }
 
@@ -965,6 +1261,8 @@ public sealed partial class MainWindow : Window
         {
             return;
         }
+
+        UpdateSidebarBadge();
 
         if (TextAudit.Enabled)
         {
@@ -1154,6 +1452,7 @@ public sealed partial class MainWindow : Window
     /// <summary>Abre "Comparar y sincronizar" con estas dos carpetas (también desde las pruebas).</summary>
     internal void ShowCompare(string left, string right)
     {
+        RememberBeforePage();
         HistoryView.Visibility = Visibility.Collapsed;
         SettingsView.Visibility = Visibility.Collapsed;
         TimelineView.Visibility = Visibility.Collapsed;
@@ -1165,6 +1464,7 @@ public sealed partial class MainWindow : Window
 
     private void Timeline_Click(object sender, RoutedEventArgs e)
     {
+        RememberBeforePage();
         HistoryView.Visibility = Visibility.Collapsed;
         SettingsView.Visibility = Visibility.Collapsed;
         CompareView.Visibility = Visibility.Collapsed;
@@ -1176,6 +1476,7 @@ public sealed partial class MainWindow : Window
 
     private void History_Click(object sender, RoutedEventArgs e)
     {
+        RememberBeforePage();
         SettingsView.Visibility = Visibility.Collapsed;
         TimelineView.Visibility = Visibility.Collapsed;
         CompareView.Visibility = Visibility.Collapsed;
@@ -1187,27 +1488,84 @@ public sealed partial class MainWindow : Window
 
     private void Settings_Click(object sender, RoutedEventArgs e)
     {
+        RememberBeforePage();
         HistoryView.Visibility = Visibility.Collapsed;
         TimelineView.Visibility = Visibility.Collapsed;
         CompareView.Visibility = Visibility.Collapsed;
         SettingsView.Load();
         SettingsView.Visibility = Visibility.Visible;
-        EnsureRoomForPage();
+        EnsureRoomForPage(SettingsWidth);
         UpdateLayoutState();
     }
 
-    /// <summary>Historial y Ajustes necesitan la ventana grande.</summary>
-    private void EnsureRoomForPage()
+    /// <summary>
+    /// Historial, Ajustes y las demás páginas necesitan la ventana grande; Ajustes, además, el ancho de sus tarjetas
+    /// (hasta donde llegan, sin estirarse más) para que se lea todo de un vistazo. Lo justo para que quepa en la pantalla.
+    /// </summary>
+    private void EnsureRoomForPage(double? width = null)
     {
-        if (!_expanded)
+        bool fromCompact = !_expanded;
+        if (fromCompact)
         {
             SetExpanded(true, userChoice: false);
         }
+
+        if (width is not { } wanted || AppWindow.Presenter is OverlappedPresenter { State: OverlappedPresenterState.Maximized })
+        {
+            return;
+        }
+
+        double scale = Scaled(1000) / 1000.0;
+        var area = DisplayArea.GetFromWindowId(AppWindow.Id, DisplayAreaFallback.Nearest).WorkArea;
+        double current = (_resizeTimer.IsRunning ? _resizeTo.Width : AppWindow.Size.Width) / scale;
+        double target = Math.Min(wanted, (area.Width / scale) - 24);
+        if (target > current + 1)
+        {
+            double height = fromCompact ? TargetSize(true).Height : (_resizeTimer.IsRunning ? _resizeTo.Height : AppWindow.Size.Height) / scale;
+            AnimateResizeTo(target, Math.Min(height, (area.Height / scale) - 24));
+        }
     }
+
+    /// <summary>Cómo estaba la ventana antes de abrir una página: al volver, recupera ese tamaño (y la vista pequeña).</summary>
+    private (bool Expanded, double Width, double Height)? _beforePage;
+
+    /// <summary>Se apunta al abrir la primera página (si ya había una abierta, se conserva lo de antes).</summary>
+    private void RememberBeforePage()
+    {
+        if (!PageOpen && AppWindow.Presenter is not OverlappedPresenter { State: OverlappedPresenterState.Maximized })
+        {
+            _beforePage = (_expanded, _resizeTimer.IsRunning ? _resizeTo.Width : AppWindow.Size.Width, _resizeTimer.IsRunning ? _resizeTo.Height : AppWindow.Size.Height);
+        }
+    }
+
+    /// <summary>Al cerrar la página, la ventana vuelve a como estaba (pequeña, o grande con su tamaño de antes).</summary>
+    private void RestoreAfterPage()
+    {
+        if (_beforePage is not { } before || PageOpen)
+        {
+            return;
+        }
+
+        _beforePage = null;
+        if (!before.Expanded)
+        {
+            SetExpanded(false, userChoice: false);
+        }
+        else if (AppWindow.IsVisible && AppWindow.Presenter is not OverlappedPresenter { State: OverlappedPresenterState.Maximized }
+            && (Math.Abs(AppWindow.Size.Width - before.Width) > 2 || Math.Abs(AppWindow.Size.Height - before.Height) > 2))
+        {
+            double scale = Scaled(1000) / 1000.0;
+            AnimateResizeTo(before.Width / scale, before.Height / scale);
+        }
+    }
+
+    /// <summary>Ancho de Ajustes: la lista de secciones y las tarjetas enteras (con sus márgenes y la barra de desplazamiento).</summary>
+    private const double SettingsWidth = 260 + 24 + 980 + 24 + 14;
 
     private async void About_Click(object sender, RoutedEventArgs e)
     {
-        AboutVersion.Text = L.F("About", typeof(App).Assembly.GetName().Version?.ToString(3) ?? "");
+        AboutVersion.Text = L.F("About", typeof(App).Assembly.GetName().Version?.ToString(3) ?? "")
+            + (Engine.DataFolder.IsPortable ? " · " + L.F("About_Portable", Engine.DataFolder.Path) : "");
         AboutDialog.XamlRoot = Root.XamlRoot;
         AboutDialog.RequestedTheme = Root.RequestedTheme;
         await AboutDialog.ShowAsync();
@@ -2099,9 +2457,9 @@ public sealed partial class MainWindow : Window
         (FinishIcon.Glyph, FinishText.Text) = _app.FinishAction switch
         {
             FinishAction.Sleep => ("", L.Get("Finish_LabelSleep")),
-            FinishAction.Hibernate => ("", L.Get("Finish_LabelHibernate")),
+            FinishAction.Hibernate => ("", L.Get("Finish_LabelHibernate")),
             FinishAction.Shutdown => ("", L.Get("Finish_LabelShutdown")),
-            FinishAction.SignOut => ("", L.Get("Finish_LabelSignOut")),
+            FinishAction.SignOut => ("", L.Get("Finish_LabelSignOut")),
             FinishAction.ExitApp => ("", L.Get("Finish_LabelExit")),
             _ => ("", L.Get("Finish_Label")),
         };
@@ -2221,7 +2579,91 @@ public sealed partial class MainWindow : Window
 
     // ---------------------------------------------------------------------------------------------------------
 
-    private int Scaled(double value) => (int)(value * GetDpiForWindow(Handle) / 96.0);
+    /// <summary>Escala de los tamaños de la ventana: el DPI de la pantalla y, en pantallas pequeñas, <see cref="UiScale"/>.</summary>
+    private int Scaled(double value) => (int)(value * GetDpiForWindow(Handle) / 96.0 * UiScale);
+
+    // ---------------------------------------------------------------------------------------------------------
+    // Pantallas pequeñas
+
+    /// <summary>
+    /// Alto que necesita la ventana completa para verse entera (con la barra de título y un margen). En pantallas con
+    /// menos sitio (1366 × 768, portátiles pequeños) todo se dibuja algo más pequeño, en proporción: el mismo diseño,
+    /// con letras y botones un poco menores. En pantallas grandes la escala es 1 y nada cambia.
+    /// </summary>
+    private const double ComfortHeight = 840;
+
+    /// <summary>Lo más que se encoge (por debajo, los textos ya costarían de leer).</summary>
+    private const double MinUiScale = 0.8;
+
+    /// <summary>Escala de toda la ventana (1 = tamaño normal).</summary>
+    internal double UiScale { get; private set; } = 1;
+
+    private Canvas? _scaleHost;
+
+    /// <summary>
+    /// Pone la ventana dentro de un lienzo para poder escalarla entera: el contenido se coloca con el tamaño que tendría
+    /// sin escalar y una transformación lo reduce hasta llenar la ventana (el lienzo no lo recorta).
+    /// </summary>
+    private void PrepareUiScale()
+    {
+        var root = Root;
+        Content = null;
+        root.HorizontalAlignment = HorizontalAlignment.Left;
+        root.VerticalAlignment = VerticalAlignment.Top;
+        _scaleHost = new Canvas { Background = root.Background };
+        _scaleHost.Children.Add(root);
+        _scaleHost.SizeChanged += (_, _) => FitScaledRoot();
+        Content = _scaleHost;
+        UpdateUiScale();
+    }
+
+    /// <summary>Recalcula la escala para la pantalla donde está la ventana. Devuelve si cambió.</summary>
+    private bool UpdateUiScale()
+    {
+        double scale = 1;
+        if (_app.Settings.AdaptSmallScreens)
+        {
+            double dpi = GetDpiForWindow(Handle) / 96.0;
+            var area = DisplayArea.GetFromWindowId(AppWindow.Id, DisplayAreaFallback.Nearest).WorkArea;
+            scale = Math.Clamp(Math.Round(area.Height / dpi / ComfortHeight, 2), MinUiScale, 1);
+        }
+
+        if (App.TestMode && double.TryParse(Environment.GetEnvironmentVariable("MEGACOPIER_TEST_UISCALE"), System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out double forced))
+        {
+            scale = Math.Clamp(forced, MinUiScale, 1);
+        }
+
+        if (Math.Abs(scale - UiScale) < 0.005)
+        {
+            return false;
+        }
+
+        UiScale = scale;
+        Root.RenderTransform = scale >= 1 ? null : new ScaleTransform { ScaleX = scale, ScaleY = scale };
+        FitScaledRoot();
+        return true;
+    }
+
+    /// <summary>«Ajustar a pantallas pequeñas» cambió: se recalcula la escala y la ventana se recoloca.</summary>
+    internal void RefreshUiScale()
+    {
+        if (UpdateUiScale() && AppWindow.IsVisible)
+        {
+            ApplyLayout(animate: false);
+        }
+    }
+
+    private void FitScaledRoot()
+    {
+        if (_scaleHost is not { } host)
+        {
+            return;
+        }
+
+        Root.Width = host.ActualWidth / UiScale;
+        Root.Height = host.ActualHeight / UiScale;
+    }
+
 
     private void CenterOnScreen()
     {

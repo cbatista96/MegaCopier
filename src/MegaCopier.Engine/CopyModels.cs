@@ -15,6 +15,12 @@ public sealed record CopyJobRequest(IReadOnlyList<string> Sources, string Destin
 
     /// <summary>Carpetas de origen que se copian con otro nombre (ruta de origen → nombre nuevo en el destino).</summary>
     public IReadOnlyDictionary<string, string> RenamedFolders { get; init; } = new Dictionary<string, string>();
+
+    /// <summary>
+    /// Orígenes que se sumaron a esta copia hacia otra carpeta (ruta de origen → carpeta de destino): una copia nueva al
+    /// mismo disco añadida a la que ya estaba en marcha. Se copian después de los orígenes propios.
+    /// </summary>
+    public IReadOnlyDictionary<string, string> ExtraTargets { get; init; } = new Dictionary<string, string>();
 }
 
 public enum CopyPhase

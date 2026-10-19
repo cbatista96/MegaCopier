@@ -30,17 +30,30 @@ public enum WindowMode
     Expanded,
 }
 
-/// <summary>Cuándo una copia nueva se suma a otra que ya está en marcha.</summary>
-public enum MergeMode
+/// <summary>Qué pasa con una copia nueva que va al mismo disco que otra que ya está en marcha.</summary>
+public enum SameDriveCopy
 {
-    Never,
+    /// <summary>MegaCopier sale al frente y pregunta si sumarla a la copia en marcha o dejarla aparte.</summary>
+    Ask,
 
-    /// <summary>Si va a la misma carpeta de destino.</summary>
-    SameDestination,
+    /// <summary>Sus archivos se añaden al final de la lista de la copia en marcha.</summary>
+    Merge,
 
-    /// <summary>Si usa los mismos discos (origen y destino).</summary>
-    SameDisks,
-    Always,
+    /// <summary>Copia aparte que espera a que termine la otra (dos copias al mismo disco a la vez van más lentas).</summary>
+    Queue,
+
+    /// <summary>Copia aparte que empieza ya, a la vez que la otra.</summary>
+    Parallel,
+}
+
+/// <summary>Qué pasa con una copia nueva que va a un disco distinto del de las copias en marcha.</summary>
+public enum OtherDriveCopy
+{
+    /// <summary>Empieza ya: cada disco recibe a su velocidad y ninguna copia frena a la otra.</summary>
+    Parallel,
+
+    /// <summary>Espera su turno con las reglas de la cola (discos compartidos y máximo de copias a la vez).</summary>
+    Queue,
 }
 
 /// <summary>Cuándo preguntar antes de copiar o mover un arrastre del Explorador.</summary>
@@ -51,6 +64,32 @@ public enum DragConfirm
     /// <summary>Solo al mover: un arrastre sin querer no se lleva los archivos de su sitio.</summary>
     Moves,
     Always,
+}
+
+/// <summary>Qué hace la X de la ventana.</summary>
+public enum CloseButtonAction
+{
+    /// <summary>Cancela todas las copias (como «Detener» en cada una) y cierra la ventana; MegaCopier sigue en la bandeja.</summary>
+    CancelCopies,
+
+    /// <summary>Detiene las copias conservando lo copiado (se ofrecen continuar) y cierra la ventana.</summary>
+    StopCopies,
+
+    /// <summary>Solo oculta la ventana: las copias siguen en segundo plano, con el icono de la bandeja.</summary>
+    HideToTray,
+
+    /// <summary>Sale de MegaCopier del todo (las copias se detienen y se ofrecen continuar al volver).</summary>
+    Exit,
+}
+
+/// <summary>Qué hace el botón de minimizar de la ventana.</summary>
+public enum MinimizeButtonAction
+{
+    /// <summary>Como cualquier ventana: a la barra de tareas.</summary>
+    Taskbar,
+
+    /// <summary>Se oculta en la bandeja de iconos (junto al reloj).</summary>
+    Tray,
 }
 
 /// <summary>Qué hace la ventana cuando terminan las copias.</summary>
@@ -458,11 +497,11 @@ public sealed class AppSettings
     /// <summary>Al mover entre discos: permisos, propietario y auditoría que se conservan.</summary>
     public Engine.Native.SecurityParts MoveCopySecurity { get; set; }
 
-    /// <summary>Cuándo una copia nueva se suma a otra que ya está en marcha en vez de esperar su turno.</summary>
-    public MergeMode MergeNewCopies { get; set; } = MergeMode.Never;
+    /// <summary>Copia nueva al mismo disco de destino que otra en marcha.</summary>
+    public SameDriveCopy SameDriveCopies { get; set; } = SameDriveCopy.Ask;
 
-    /// <summary>Preguntar antes de sumar una copia nueva a otra.</summary>
-    public bool MergeConfirm { get; set; } = true;
+    /// <summary>Copia nueva a otro disco mientras hay copias en marcha.</summary>
+    public OtherDriveCopy OtherDriveCopies { get; set; } = OtherDriveCopy.Parallel;
 
     /// <summary>Al detener una copia (o si falla), borrar lo que quedó a medias: ya no se podrá continuar.</summary>
     public bool DeleteIncomplete { get; set; }
@@ -492,6 +531,18 @@ public sealed class AppSettings
 
     /// <summary>Mostrar el icono de MegaCopier en la bandeja del sistema.</summary>
     public bool ShowTrayIcon { get; set; } = true;
+
+    /// <summary>Un icono más en la bandeja por cada copia en marcha, con su porcentaje y una barra que sube.</summary>
+    public bool TrayProgressIcons { get; set; } = true;
+
+    /// <summary>La X de la ventana.</summary>
+    public CloseButtonAction CloseButton { get; set; } = CloseButtonAction.CancelCopies;
+
+    /// <summary>El botón de minimizar de la ventana.</summary>
+    public MinimizeButtonAction MinimizeButton { get; set; } = MinimizeButtonAction.Taskbar;
+
+    /// <summary>En pantallas pequeñas (1366 × 768) la ventana se dibuja algo más pequeña, en proporción, para caber entera.</summary>
+    public bool AdaptSmallScreens { get; set; } = true;
 
     /// <summary>Las copias nuevas empiezan con la ventana minimizada.</summary>
     public bool StartMinimized { get; set; }

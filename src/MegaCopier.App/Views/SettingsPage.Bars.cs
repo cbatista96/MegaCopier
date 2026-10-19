@@ -182,12 +182,15 @@ public sealed partial class SettingsPage
         var swatches = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 6 };
         foreach (var (key, start, end) in BarSwatches)
         {
-            var swatch = new Button
+            // El color va dentro del botón (no como su fondo): así el estado «ratón encima» del botón no lo tapa de
+            // gris oscuro. Al pasar el ratón o al pulsar, un aro claro alrededor marca el color sin perderlo.
+            var dot = new Border
             {
                 Width = 30,
                 Height = 30,
-                Padding = new Thickness(0),
                 CornerRadius = new CornerRadius(15),
+                BorderThickness = new Thickness(2),
+                BorderBrush = new SolidColorBrush(Microsoft.UI.Colors.Transparent),
                 Background = new LinearGradientBrush
                 {
                     StartPoint = new Windows.Foundation.Point(0, 0),
@@ -195,6 +198,25 @@ public sealed partial class SettingsPage
                     GradientStops = { new GradientStop { Color = ThemeManager.Parse(start), Offset = 0 }, new GradientStop { Color = ThemeManager.Parse(end), Offset = 1 } },
                 },
             };
+            var swatch = new Button
+            {
+                Padding = new Thickness(2),
+                MinWidth = 0,
+                MinHeight = 0,
+                CornerRadius = new CornerRadius(17),
+                BorderThickness = new Thickness(0),
+                Background = new SolidColorBrush(Microsoft.UI.Colors.Transparent),
+                Content = dot,
+            };
+            foreach (string state in new[] { "ButtonBackgroundPointerOver", "ButtonBackgroundPressed", "ButtonBorderBrushPointerOver", "ButtonBorderBrushPressed" })
+            {
+                swatch.Resources[state] = new SolidColorBrush(Microsoft.UI.Colors.Transparent);
+            }
+
+            var ring = new SolidColorBrush(ThemeManager.Current.Dark ? Microsoft.UI.Colors.White : Windows.UI.Color.FromArgb(255, 32, 32, 32));
+            swatch.PointerEntered += (_, _) => dot.BorderBrush = ring;
+            swatch.PointerExited += (_, _) => dot.BorderBrush = new SolidColorBrush(Microsoft.UI.Colors.Transparent);
+            swatch.PointerCanceled += (_, _) => dot.BorderBrush = new SolidColorBrush(Microsoft.UI.Colors.Transparent);
             ToolTipService.SetToolTip(swatch, L.Get("Bars_Swatch" + key));
             AutomationProperties.SetName(swatch, L.Get("Bars_Swatch" + key));
             swatch.Click += (_, _) =>

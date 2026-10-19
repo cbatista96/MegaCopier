@@ -76,7 +76,7 @@ Accent_Green	绿色
 Accent_Orange	橙色
 Accent_Pink	粉色
 Accent_Red	红色
-About	MegaCopier {0} · 断电也不怕的复制
+About	MegaCopier {0} · 终极复制工具
 Picker_CopyHere	复制到这里
 Finish_Label	完成后
 Finish_LabelSleep	完成后：睡眠
@@ -147,7 +147,7 @@ Notify_EnabledBody	文件资源管理器中的复制和移动将由 MegaCopier �
 AboutDialog.Title	关于 MegaCopier
 AboutDialog.CloseButtonText	关闭
 About_DataFolder.Content	打开数据文件夹（设置、主题、历史记录、报告）
-About_Description.Text	Windows 11 文件复制工具，断电后即使是单个巨大文件也能继续复制，并校验已复制的部分。
+About_Description.Text	Windows 11 的终极复制工具：比 Windows 自带的更快、更安全，拥有你需要的所有选项，并可随心定制（主题、图标、进度条和声音）。即使断电也能从中断处继续，并检查所有内容是否完好到达。
 About_Features.Text	无缓存异步 I/O · 并行读写 · 哈希校验 (CRC32、xxHash、MD5、SHA) · 按磁盘排队 · 暂停与继续 · 移动 · 冲突处理 · 速度限制 · 复制列表 · 报告 · 主题。
 Files_AutoScroll.Content	跟随当前文件
 Files_CopyHashes.Text	复制哈希值
@@ -782,7 +782,7 @@ Destinations_NoneChosen.Text	请至少勾选一个目标（或添加文件夹）
 Finish_ShutdownMessage	MegaCopier 已完成复制。电脑将在 1 分钟后关机。
 Hash_Name	哈希：{0}
 DragTitle.Text	用 MegaCopier 处理左键拖动
-DragDescription.Text	在文件资源管理器或桌面窗口之间拖动文件时，由 MegaCopier 复制或移动（规则相同：同一驱动器上移动，Ctrl 复制，Shift 移动）。拖放到文件、ZIP 或导航窗格上仍由文件资源管理器处理。
+DragDescription.Text	在文件资源管理器窗口、桌面或左侧窗格的文件夹和驱动器之间拖动文件时，由 MegaCopier 复制或移动（规则相同：同一驱动器上移动，Ctrl 复制，Shift 移动）。拖放到文件或 ZIP 上仍由文件资源管理器处理。
 DragConfirmTitle.Text	先询问
 DragConfirm_Never.Content	从不
 DragConfirm_Moves.Content	仅移动时
@@ -1096,13 +1096,6 @@ IconPack_suave	柔和
 IconPack_degradado	渐变
 IconPack_neon	霓虹
 IconPack_windows10	Windows 10
-Settings_MergeTitle.Text	将新复制添加到正在进行的复制中
-Settings_MergeDescription.Text	文件不必排队，而是加入正在进行的复制列表。
-Merge_Never.Content	从不
-Merge_SameDestination.Content	如果目标是同一文件夹
-Merge_SameDisks.Content	如果使用相同的磁盘
-Merge_Always.Content	总是
-Settings_MergeConfirm.Content	添加前询问
 Settings_MoveAttributesTitle.Text	移动时还保留
 Settings_MoveAttributesDescription.Text	移动到其他磁盘时。在同一磁盘上移动只是重命名，所有内容都会保留。
 Settings_DeleteIncompleteTitle.Text	停止复制时删除未完成的部分
@@ -1137,10 +1130,6 @@ ErrorAsk_Retry	重试
 ErrorAsk_Skip	跳过
 ErrorAsk_SkipAll	同时跳过此复制中的后续错误
 ErrorAsk_Stop	停止复制（可继续）
-Merge_Title	添加到正在进行的复制
-Merge_Message	将 {0} 个项目添加到复制到“{1}”的任务吗？否则轮到它们时会单独复制。
-Merge_Add	添加
-Merge_Separate	单独
 Eject_DoneTitle	驱动器已弹出，可以拔下
 Eject_FailedTitle	无法弹出驱动器：有程序正在使用
 Sound_Windows	Windows 的声音
@@ -1322,13 +1311,12 @@ Theme_tiza	粉笔
 Theme_solar-claro	浅色日光
 Theme_capuchino-claro	浅色卡布奇诺
 Info_Paste_Text	在资源管理器或桌面复制（Ctrl+C）或剪切（Ctrl+X）文件后粘贴（Ctrl+V）时，由 MegaCopier 代替 Windows 完成复制：有队列、暂停、校验，中断后还能继续。\n• 向外置硬盘复制大量文件：可以暂停，稍后继续。\n• 连续多次复制：会排队，而不是争抢同一块磁盘。\n如果粘贴到同一文件夹（复制出副本），仍由资源管理器完成。
-Info_Drag_Text	用左键把文件从一个窗口拖到另一个窗口时，由 MegaCopier 按与 Windows 相同的规则复制（或移动）：同一驱动器内为移动，按 Ctrl 强制复制，按 Shift 强制移动。\n• 在不同磁盘的文件夹之间拖动整理照片。\n• 移动大型项目而不让资源管理器卡住。\n拖放到文件、ZIP 或左侧窗格上时，仍由资源管理器处理。
+Info_Drag_Text	用左键把文件从一个窗口拖到另一个窗口时，由 MegaCopier 按与 Windows 相同的规则复制（或移动）：同一驱动器内为移动，按 Ctrl 强制复制，按 Shift 强制移动。\n• 在不同磁盘的文件夹之间拖动整理照片。\n• 移动大型项目而不让资源管理器卡住。\n也可以拖放到左侧窗格的文件夹和驱动器上。拖放到文件或 ZIP 上时，仍由资源管理器处理。
 Info_WindowMode_Text	复制窗口有三种视图。\n• 小窗口：只有进度条和按钮。复制时的默认视图；可以加宽，但不能加高。\n• 带列表（“更多”）：文件、目标、选项、图表和日志。可以放大或最大化。\n• 多个复制：同上，左侧有复制列表；有多个复制时自动出现。\n“自动”从小窗口开始，同时有多个复制时切换到完整视图。“更多”和“更少”随时切换。
 Info_Verify_Text	每个文件完成后，MegaCopier 会直接从目标磁盘重新读取，并将其指纹（哈希）与原文件比较。如有不一致，只重新复制损坏的部分。\n• 备份、照片和重要文档。\n• 可能毫无征兆就出故障的旧 U 盘、廉价 U 盘和硬盘。\n• 通过网络或 Wi-Fi 复制。\n复制会稍慢一些（需要全部重新读取），换来的是确保副本完全一致。
 Info_Conflict_Text	目标位置已有同名文件时怎么办。\n• 询问：并排显示两个文件的大小、日期和缩略图，由你选择。\n• 替换、跳过、较新时替换或大小不同时替换、保留两者（“名称 (2)”）或重命名已有文件。\n完全相同的文件（大小和日期一致）永远不会重复复制：再次复制只会复制新增或改动的内容。如果整个文件夹已存在，MegaCopier 会在开始前询问。
 Info_Hash_Text	哈希就像文件的指纹：哪怕只改了一个字节，指纹也会变。用于校验和保存的校验和。\n• xxHash3：最快，适合校验复制结果。\n• SHA-256：网站和程序最常用来核对下载文件。\n• MD5、SHA-1、BLAKE3…：当其他程序要求特定算法时使用。\n日常使用保持 xxHash3 即可。
 Info_Performance_Text	复制能跑多快。\n• 速度限制：让复制在你工作或看电影时不会占满网络或磁盘。每个复制在其“选项”页还有自己的限速，可随时修改且无需停止。\n• 缓冲区大小：一次读写的数据块。处理超大文件时大一些更好。\n• 同时操作数：同时向磁盘请求多少个数据块。高速 SSD 设得多一些更快。\n不确定就保持默认：MegaCopier 已经会自动为每块磁盘调优。
-Info_Merge_Text	如果在一个复制进行中又开始新的复制，新复制可以并入正在进行的那个，而不是排队等待：它的文件排在列表末尾。\n• 从不：每个复制各自进行。\n• 目标是同一文件夹时，或使用相同磁盘时。\n• 总是。\n选中“先询问”则每次由你决定。适合一点点往同一个 U 盘里放文件夹时使用。
 Info_MoveAttributes_Text	移动到另一块磁盘时，文件会先复制，再从源位置删除。这里选择除内容外还带上什么：属性（只读、隐藏…）、权限、所有者和审核。\n• 在服务器之间移动工作文件夹，并保留谁能打开它们。\n在同一磁盘上移动只是换个位置，所有信息都会保留。
 Info_DeleteIncomplete_Text	“停止”会取消复制并将其从列表中移除。复制时，每个文件都以 .mcpart 扩展名写入，只有在顺利完成后才会得到正式名称。\n• 开启：按“停止”会删除 .mcpart 文件，目标保持干净。\n• 关闭：保留这些文件，再次复制相同内容时会从中断处继续。\n关闭 MegaCopier 或断电后不会删除任何内容：再次打开时会提示继续这些复制。
 Info_Eject_Text	完成后，MegaCopier 会像“安全删除硬件”一样安全弹出目标 U 盘、存储卡或 USB 硬盘。\n• 连续往多个 U 盘里拷文件：拔下时就已经准备好了。\n仅在没有其他复制使用它时才会弹出。“强制”即使有程序打开它也会弹出。
@@ -1347,8 +1335,8 @@ Info_Tasks_Text	一个保存好的复制，由 Windows 在你选定的时间每�
 Info_Guard_Text	磁盘可能在多年里悄悄损坏文件。MegaCopier 把每个文件的指纹保存在文件内部，电脑空闲时重新校验。如果某个文件在没人动过的情况下变了，会及时提醒你从备份中恢复。\n• 家庭照片和视频。\n• 很少打开的备份盘。\n你自己编辑的文件会自动更新指纹。需要 NTFS 磁盘。
 Info_Webhook_Text	每个复制完成后，MegaCopier 会把摘要发送到一个网址，提醒就能到达你的手机或聊天群。\n• Discord、Slack 或 Teams：在频道里收到提醒。\n• ntfy.sh：几乎无需安装就能在手机上收到通知。\n• Home Assistant：自动化（完成后开灯…）。
 Info_Connections_Text	在这里保存你要复制到的服务器：FTP、SFTP、WebDAV（Nextcloud、NAS…）或 S3（Backblaze、Wasabi、R2…）。之后选择源或目标时就会出现。\n• 把备份上传到云端。\n• 从公司服务器下载文件。\n密码保存在 Windows 凭据管理器中，绝不以明文保存。
-IconPack_android	Android
-IconPack_android-tonal	Android 色调
+IconPack_android	Android (AOSP)
+IconPack_android-tonal	Material You
 IconPack_macos	macOS
 IconPack_macos-color	macOS 彩色
 IconPack_ubuntu	Ubuntu
@@ -1436,3 +1424,69 @@ Drop_AddWhatHere	将 {0} 添加到此复制
 Drop_AddWhatTo	将 {0} 添加到 {1}
 Drop_InsertWhatAt	将 {0} 添加到第 {1} 位
 Files_ResizeColumn.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	拖动可更改列宽（双击：恢复默认宽度）
+SameDrive_Title	已有一个复制任务正在写入 {0}
+SameDrive_Short	将 {0} 添加到该复制任务的末尾？同时向同一磁盘复制两项会更慢。
+SameDrive_Message	{0} 将复制到“{1}”，与正在进行的复制位于同一磁盘。同时向同一磁盘复制两项会让两者都变慢。
+SameDrive_Items	{0} 项
+SameDrive_Add	添加到此复制
+SameDrive_AddText	将在正在进行的复制列表末尾复制到其自己的目标文件夹，只显示一个进度条。会先检查可用空间。
+SameDrive_Separate	单独复制
+SameDrive_SeparateText	将创建另一个复制，在当前复制完成后开始。如果不想等待，请在其中点击“立即开始”。
+SameDrive_Cancel	取消
+SameDrive_CancelText	不复制任何新内容。
+Settings_SameDriveTitle.Text	新复制与正在进行的复制写入同一磁盘时
+Settings_SameDriveDescription.Text	例如，第一个文件夹还在复制时，又向同一 U 盘发送另一个文件夹。
+SameDrive_OptAsk.Content	询问
+SameDrive_OptMerge.Content	添加到正在进行的复制
+SameDrive_OptQueue.Content	单独复制，稍后
+SameDrive_OptParallel.Content	单独复制，同时进行
+Settings_OtherDriveTitle.Text	新复制写入其他磁盘时
+Settings_OtherDriveDescription.Text	每个磁盘按各自的速度写入：同时开始不会拖慢另一个复制。
+OtherDrive_OptParallel.Content	同时开始
+OtherDrive_OptQueue.Content	排队等待
+Info_SameDrive_Title	已有复制在进行时的新复制
+Info_SameDrive_Text	在已有复制进行时再复制内容，MegaCopier 会查看它要写入哪个磁盘。\n• 同一磁盘：默认会询问。“添加”会把文件放到正在进行的复制列表末尾（各自进入自己的文件夹），只显示一个进度条。“单独复制，稍后”会让它排队等待。“同时进行”会一起复制，但两者都会变慢。\n• 其他磁盘：立即开始，因为每个磁盘按各自的速度写入。如果希望它排队等待，可在此更改。\n示例：你向 U 盘复制一部电影，然后又向同一 U 盘复制另一个文件夹：MegaCopier 会切到前台让你选择。如果此时你还向 D: 盘复制内容，它会直接开始，无需等待。
+Settings_CloseButtonTitle.Text	点击窗口的 X 时
+Settings_CloseButtonDescription.Text	默认会取消复制，就像在每个复制上点击“停止”。MegaCopier 会留在通知区域，等待下一次复制。
+CloseButton_Cancel.Content	取消复制
+CloseButton_Stop.Content	停止，稍后继续
+CloseButton_Hide.Content	隐藏窗口（继续复制）
+CloseButton_Exit.Content	退出 MegaCopier
+Settings_MinimizeButtonTitle.Text	最小化窗口时
+Settings_MinimizeButtonDescription.Text	像其他窗口一样到任务栏，或隐藏到通知区域（时钟旁）。
+MinimizeButton_Taskbar.Content	到任务栏
+MinimizeButton_Tray.Content	到通知区域
+Settings_TrayProgressTitle.Text	在通知区域显示每个复制的进度
+Settings_TrayProgressDescription.Text	每个进行中的复制一个图标，显示百分比和上升的进度条。完成后自动消失。单击可打开该复制。
+Info_WindowButtons_Title	窗口按钮
+Info_WindowButtons_Text	选择关闭或最小化窗口时复制如何处理。\n• 取消复制：如同在每个复制上点击“停止”。它们会从列表中消失，也不会提示继续。\n• 停止，稍后继续：已复制的内容会保留；再次复制相同内容或打开 MegaCopier 时，会从中断处继续。\n• 隐藏窗口：复制在后台继续；可通过通知区域图标打开窗口。\n• 退出 MegaCopier：完全关闭，在你再次打开之前由 Windows 照常复制。\n最小化到通知区域可让任务栏保持整洁：单击时钟旁的 MegaCopier 图标即可恢复窗口。
+Tray_JobPause	暂停
+Tray_JobStop	停止
+Jobs_Archive	归档到历史记录
+Jobs_ArchiveKey	Del
+Jobs_Delete	删除（同时从历史记录中删除）
+Jobs_BadgeTip	{0} 个进行中
+Info_WhatCopy_Title	每个文件复制哪些内容
+Info_WhatCopy_Text	除了内容，还可以复制 Windows 在每个文件周围保存的信息。\n• 日期：创建日期和修改日期与原文件相同，照片因此仍按日期排列。\n• 属性：只读、隐藏、存档…… 不复制时，所有文件都以普通文件到达。\n• 备用数据流（ADS）：某些程序附加在文件上的隐藏数据，例如“从互联网下载”的标记。几乎用不到。\n• 安全（NTFS）：权限（谁能打开）、所有者和审核。只在同一台电脑或同一域的 NTFS 磁盘之间有用；所有者和审核需要管理员权限。\n示例：要精确复制办公室的共享文件夹，全部勾选；把照片拷到 U 盘，只勾选“日期”就够了。
+Info_Transfer_Title	复制方式
+Info_Transfer_Text	• 模式：“复制”是常规模式。“同步（镜像）”让目标与源完全一致，并删除多余内容。“仅更新”只复制目标中已存在且有变化的文件。“仅结构”只创建空文件夹。“按日期整理照片”把照片按年、月放入文件夹。\n• 模拟：只说明会做什么，不做任何更改。做镜像前先试一下。\n• 文件已存在时：询问、替换、跳过、保留较新的、两者都保留……\n• 哈希：检查副本是否完全相同的方法。xxHash 最快；SHA-256 是留存证据的标准。\n• 缓冲区大小和“并行”：更大的缓冲区和更多并行读取可加快 SSD 和网络；机械硬盘或慢速 U 盘最好用 1 或 2。\n• 复制后验证：重新读取已复制的内容并与原文件比较。更慢，但能确保无误。\n• 使用系统缓存：大量小文件时更快；不使用时，超大文件不会占满内存。\n示例：要把 500 GB 视频万无一失地迁移到新硬盘，选择“复制”，勾选验证，并保持 4 个并行。
+Info_OnFinish_Title	复制完成时
+Info_OnFinish_Text	MegaCopier 完成时会做的事。\n• 保存校验和文件：在目标位置保存一个文件，记录每个已复制文件的指纹（哈希）。以后“检查校验和”会用它告诉你磁盘上是否有文件损坏。\n• 保存 HTML 报告：一份可在浏览器中打开的摘要，包括复制了什么、用时、速度和错误。便于保存或发送。\n• 完成后执行的命令：在最后运行的命令（参见其单独的帮助）。\n示例：把家庭照片拷到移动硬盘时，保存校验和文件：一年后你就能知道是否有照片损坏。
+Info_Scripts_Title	完成后执行的命令
+Info_Scripts_Text	复制完成时运行的 Windows 命令（cmd.exe 命令），每行一条。\n• 以“ok:”开头表示仅在一切顺利时运行，以“error:”开头表示出错时运行。前面没有前缀则总是运行。\n• 可以使用这些变量：%MEGACOPIER_DESTINATION%（目标文件夹）、%MEGACOPIER_SOURCES%（源）、%MEGACOPIER_STATE%（结束状态）、%MEGACOPIER_FILES%（已复制文件数）、%MEGACOPIER_BYTES%（字节数）、%MEGACOPIER_FAILED%（失败数）和 %MEGACOPIER_CHECKSUM%（校验和文件）。\n示例：\n• ok: explorer "%MEGACOPIER_DESTINATION%" 完成后打开文件夹。\n• ok: shutdown /s /t 60 一分钟后关机。\n• error: msg * 复制有 %MEGACOPIER_FAILED% 个失败 用消息提醒你。
+Info_Filters_Title	筛选：只复制一部分
+Info_Filters_Text	只复制你需要的内容。被排除的内容不会复制，也不会在目标位置被改动。\n• 用自己的话说：例如输入“上个月超过 2 MB 的照片，不要 .tmp”，MegaCopier 会替你填好筛选条件。\n• 仅包含：用分号分隔的通配符。“*.jpg; *.png”只复制图片；“照片\*”只复制名为“照片”的文件夹中的内容。\n• 排除：同理，反过来。例如“node_modules; *.tmp; Thumbs.db”。\n• 最小和最大大小（MB）：最小设为 100，只复制大视频。\n• 修改日期从 / 到：只复制在这段时间修改过的内容，例如从周一起。\n• 跳过隐藏文件、系统文件和垃圾文件（Thumbs.db、desktop.ini……）。\n• 仅含某段文字的图片：Windows OCR 会读取照片，只复制包含该文字的照片，例如“发票”。
+Info_Rules_Title	特殊情况的规则
+Info_Rules_Text	当某个项目不是普通文件或复制失败时怎么办。\n• 符号链接和联接：按链接复制（与源相同）、复制其指向的真实内容，或跳过。\n• 保留两者时的名称：选择保留两个文件时新副本的名称。{name} 是名称，{n} 是编号，{ext} 是扩展名，{date} 是日期：“{name} ({n}){ext}”得到“照片 (2).jpg”。\n• 重试和间隔：文件失败时（网络中断、被其他程序占用……）重试几次，以及每次重试之间等待多少秒。\n• 文件仍然失败时：跳过并继续、停止复制、留到最后，或询问你。\n示例：通过 Wi-Fi 从 NAS 复制时，设置 5 次重试、间隔 10 秒：短暂断线不会毁掉复制。
+Info_Safety_Title	同步与安全
+Info_Safety_Text	用于同步文件夹和保护数据的选项。全部可选；将鼠标悬停在每一项上可查看详情。\n• 文件夹已存在时：合并内容、跳过或询问。\n• 保存被替换或删除的内容：覆盖或删除文件前，先把它连同日期移到该文件夹（例如 .versions），以便找回之前的版本。“保留多少个版本”会清理旧版本。\n• 有相同数据的其他位置：如果数据也在别处（第二台 NAS），大文件会同时从两处读取。\n• 日期容差：避免在 FAT32 或 exFAT 的 U 盘上重复复制相同文件。\n• 检查：重新读取原文件、把哈希保存在文件内部，以及在磁盘损坏副本时用于修复的恢复数据。\n• 保护：勒索软件防护、取证模式、移动时安全删除，以及“全有或全无”文件夹。\n• 难处理的磁盘：磁盘断开或空间不足时等待、受损磁盘的救援模式，以及大文件的差异复制。\n示例：使用“同步”做每周备份时，指定一个版本文件夹并勾选“重新读取原文件”。
+About_DevelopedBy.Text	开发者：
+IconPack_oneui	One UI
+IconPack_nothing	Nothing OS
+IconPack_win95	Windows 95
+IconPack_vista	Windows Vista
+IconPack_cyber	赛博朋克
+IconPack_hud	全息
+Settings_AdaptTitle.Text	适应小屏幕
+Settings_AdaptDescription.Text	在 1366 × 768 等较矮的屏幕上，窗口外观不变，只是稍微缩小，以便完整显示。大屏幕上没有任何变化。
+Job_StateAsking	等待你的回答

@@ -76,7 +76,7 @@ Accent_Green	Groen
 Accent_Orange	Oranje
 Accent_Pink	Roze
 Accent_Red	Rood
-About	MegaCopier {0} · kopieën die stroomstoringen overleven
+About	MegaCopier {0} · de ultieme kopieerder
 Picker_CopyHere	Hierheen kopiëren
 Finish_Label	Na afloop
 Finish_LabelSleep	Na afloop: slaapstand
@@ -147,7 +147,7 @@ Notify_EnabledBody	Kopiëren en verplaatsen in Verkenner doet voortaan MegaCopie
 AboutDialog.Title	Over MegaCopier
 AboutDialog.CloseButtonText	Sluiten
 About_DataFolder.Content	De gegevensmap openen (instellingen, thema's, geschiedenis, rapporten)
-About_Description.Text	Bestandskopieerder voor Windows 11 die zelfs één enorm bestand hervat na een stroomstoring, en controleert wat al gekopieerd is.
+About_Description.Text	De ultieme kopieerder voor Windows 11: sneller en veiliger dan die van Windows, met alle opties die je nodig hebt en zo aanpasbaar als je wilt (thema's, pictogrammen, balken en geluiden). Hij gaat verder waar hij was, zelfs na een stroomstoring, en controleert of alles goed is aangekomen.
 About_Features.Text	Asynchrone I/O zonder cache · parallelle lees- en schrijfacties · controle met hash (CRC32, xxHash, MD5, SHA) · wachtrij per schijf · pauzeren en hervatten · verplaatsen · conflicten · snelheidslimiet · kopieerlijsten · rapporten · thema's.
 Files_AutoScroll.Content	Huidige volgen
 Files_CopyHashes.Text	Hashes kopiëren
@@ -782,7 +782,7 @@ Destinations_NoneChosen.Text	Vink minstens één doel aan (of voeg een map toe).
 Finish_ShutdownMessage	MegaCopier heeft de kopieën voltooid. De computer wordt over 1 minuut afgesloten.
 Hash_Name	Hash: {0}
 DragTitle.Text	Slepen met de linkermuisknop via MegaCopier
-DragDescription.Text	Als je bestanden van het ene Verkenner- of bureaubladvenster naar een ander sleept, kopieert of verplaatst MegaCopier ze (zelfde regels: op hetzelfde station verplaatsen, Ctrl kopieert, Shift verplaatst). Neerzetten op een bestand, een ZIP of het navigatiedeelvenster blijft Verkenner doen.
+DragDescription.Text	Als je bestanden sleept tussen Verkenner-vensters, het bureaublad of de mappen en stations in het linkerdeelvenster, kopieert of verplaatst MegaCopier ze (zelfde regels: op hetzelfde station verplaatsen, Ctrl kopieert, Shift verplaatst). Neerzetten op een bestand of een ZIP blijft Verkenner doen.
 DragConfirmTitle.Text	Eerst vragen
 DragConfirm_Never.Content	Nooit
 DragConfirm_Moves.Content	Alleen bij verplaatsen
@@ -1096,13 +1096,6 @@ IconPack_suave	Zacht
 IconPack_degradado	Verloop
 IconPack_neon	Neon
 IconPack_windows10	Windows 10
-Settings_MergeTitle.Text	Nieuwe kopieën toevoegen aan een lopende
-Settings_MergeDescription.Text	In plaats van te wachten komen de bestanden in de lijst van de lopende kopie.
-Merge_Never.Content	Nooit
-Merge_SameDestination.Content	Als ze naar dezelfde map gaan
-Merge_SameDisks.Content	Als ze dezelfde schijven gebruiken
-Merge_Always.Content	Altijd
-Settings_MergeConfirm.Content	Vragen voor toevoegen
 Settings_MoveAttributesTitle.Text	Bij verplaatsen ook behouden
 Settings_MoveAttributesDescription.Text	Bij verplaatsen naar een andere schijf. Op dezelfde schijf is verplaatsen hernoemen en blijft alles behouden.
 Settings_DeleteIncompleteTitle.Text	Bij het stoppen van een kopie het halve werk verwijderen
@@ -1137,10 +1130,6 @@ ErrorAsk_Retry	Opnieuw
 ErrorAsk_Skip	Overslaan
 ErrorAsk_SkipAll	Ook de volgende fouten in deze kopie overslaan
 ErrorAsk_Stop	Kopie stoppen (kan worden hervat)
-Merge_Title	Toevoegen aan lopende kopie
-Merge_Message	{0} items toevoegen aan de kopie naar ‘{1}’? Anders worden ze later apart gekopieerd.
-Merge_Add	Toevoegen
-Merge_Separate	Apart
 Eject_DoneTitle	Station uitgeworpen: je kunt het nu verwijderen
 Eject_FailedTitle	Kan station niet uitwerpen: het wordt gebruikt
 Sound_Windows	Die van Windows
@@ -1322,13 +1311,12 @@ Theme_tiza	Krijt
 Theme_solar-claro	Zonnig licht
 Theme_capuchino-claro	Lichte cappuccino
 Info_Paste_Text	Als je bestanden kopieert (Ctrl+C) of knipt (Ctrl+X) en plakt (Ctrl+V) in Verkenner of op het bureaublad, kopieert MegaCopier in plaats van Windows: met wachtrij, pauze, verificatie en hervatten na een onderbreking.\n• Grote kopieën naar een externe schijf: pauzeer en ga later verder.\n• Meerdere kopieën achter elkaar: ze wachten op hun beurt in plaats van om de schijf te vechten.\nPlak je in dezelfde map (om een bestand te dupliceren), dan doet Verkenner dat nog steeds.
-Info_Drag_Text	Als je bestanden met de linkerknop van het ene venster naar het andere sleept, kopieert (of verplaatst) MegaCopier met dezelfde regels als Windows: op hetzelfde station verplaatsen, Ctrl dwingt kopiëren af en Shift verplaatsen.\n• Foto’s sorteren door ze tussen mappen op verschillende schijven te slepen.\n• Grote projecten verplaatsen zonder dat Verkenner vastloopt.\nNeerzetten op een bestand, een ZIP of het linkerdeelvenster doet Verkenner nog steeds.
+Info_Drag_Text	Als je bestanden met de linkerknop van het ene venster naar het andere sleept, kopieert (of verplaatst) MegaCopier met dezelfde regels als Windows: op hetzelfde station verplaatsen, Ctrl dwingt kopiëren af en Shift verplaatsen.\n• Foto’s sorteren door ze tussen mappen op verschillende schijven te slepen.\n• Grote projecten verplaatsen zonder dat Verkenner vastloopt.\nNeerzetten op mappen en stations in het linkerdeelvenster werkt ook. Neerzetten op een bestand of een ZIP doet Verkenner nog steeds.
 Info_WindowMode_Text	Het kopieervenster heeft drie weergaven.\n• Klein: alleen de balken en knoppen. De gewone tijdens het kopiëren; je kunt hem breder maken, maar niet hoger.\n• Met de lijst (‘Meer’): bestanden, bestemming, opties, grafiek en logboek. Kan groter of gemaximaliseerd.\n• Meerdere kopieën: dezelfde, met de lijst van kopieën links; verschijnt vanzelf als er meer dan één is.\n‘Automatisch’ begint klein en gaat naar de volledige weergave als er meerdere kopieën lopen. ‘Meer’ en ‘Minder’ wisselen op elk moment.
 Info_Verify_Text	Na elk bestand leest MegaCopier het opnieuw rechtstreeks van de doelschijf en vergelijkt de vingerafdruk (hash) met die van het origineel. Klopt er iets niet, dan wordt alleen het beschadigde deel opnieuw gekopieerd.\n• Back-ups, foto’s en belangrijke documenten.\n• Oude of goedkope USB-sticks en schijven, die zonder waarschuwing kunnen falen.\n• Kopieën via het netwerk of wifi.\nHet kopiëren duurt iets langer (alles wordt opnieuw gelezen), maar je weet zeker dat het identiek is.
 Info_Conflict_Text	Wat te doen als de bestemming al een bestand met dezelfde naam heeft.\n• Vragen: toont beide met grootte, datum en miniatuur, en jij kiest.\n• Vervangen, Overslaan, Vervangen als nieuwer of bij andere grootte, Beide behouden ("naam (2)") of De bestaande hernoemen.\nIdentieke bestanden (zelfde grootte en datum) worden nooit opnieuw gekopieerd: een herhaalde kopie kopieert alleen nieuwe of gewijzigde bestanden. Bestaat een hele map al, dan vraagt MegaCopier het vóór de start.
 Info_Hash_Text	De hash is als een vingerafdruk van een bestand: verandert er één byte, dan verandert de vingerafdruk. Hij wordt gebruikt bij verificatie en in opgeslagen controlesommen.\n• xxHash3: de snelste; ideaal om kopieën te verifiëren.\n• SHA-256: die gebruiken websites en programma’s het meest om downloads te controleren.\n• MD5, SHA-1, BLAKE3…: voor als een ander programma om een bepaalde vraagt.\nVoor dagelijks gebruik: houd xxHash3.
 Info_Performance_Text	Hoe snel de kopie mag gaan.\n• Snelheidslimiet: zodat de kopie niet het hele netwerk of de schijf opslokt terwijl je werkt of een film kijkt. Elke kopie heeft ook een eigen limiet op het tabblad Opties, die meteen verandert zonder te stoppen.\n• Buffergrootte: de blokken die in één keer gelezen en geschreven worden. Groter werkt beter bij enorme bestanden.\n• Bewerkingen tegelijk: hoeveel blokken tegelijk bij de schijf worden opgevraagd. Snelle SSD’s winnen erbij.\nTwijfel je, laat dan de standaard staan: MegaCopier stemt elke schijf zelf af.
-Info_Merge_Text	Start je een kopie terwijl er al een loopt, dan kan die aansluiten in plaats van te wachten: de bestanden komen onderaan de lijst.\n• Nooit: elke kopie apart.\n• Als ze naar dezelfde map gaan, of dezelfde schijven gebruiken.\n• Altijd.\nMet "Eerst vragen" beslis je elke keer. Handig als je mappen één voor één naar dezelfde USB-stick stuurt.
 Info_MoveAttributes_Text	Bij verplaatsen naar een andere schijf worden bestanden gekopieerd en daarna bij de bron verwijderd. Hier kies je wat ze naast de inhoud meenemen: kenmerken (alleen-lezen, verborgen…), machtigingen, eigenaar en controle.\n• Werkmappen tussen servers verplaatsen en behouden wie ze mag openen.\nOp dezelfde schijf is verplaatsen alleen van plek wisselen en blijft alles behouden.
 Info_DeleteIncomplete_Text	“Stoppen” annuleert de kopie en haalt haar uit de lijst. Tijdens het kopiëren wordt elk bestand geschreven met de extensie .mcpart en krijgt het pas zijn naam als het goed klaar is.\n• Aan: bij Stoppen worden de .mcpart-bestanden verwijderd en blijft het doel schoon.\n• Uit: ze blijven bewaard, en als je hetzelfde opnieuw kopieert gaat het precies verder waar het stopte.\nBij het sluiten van MegaCopier of na een stroomstoring wordt nooit iets verwijderd: die kopieën worden aangeboden om verder te gaan als je het weer opent.
 Info_Eject_Text	Na afloop werpt MegaCopier de USB-stick, kaart of USB-schijf van de bestemming veilig uit, zoals "Hardware veilig verwijderen".\n• Meerdere USB-sticks achter elkaar vullen: als je hem eruit haalt, is hij al klaar.\nAlleen als geen andere kopie hem gebruikt. "Forceren" werpt hem uit, ook als een programma hem open heeft.
@@ -1347,8 +1335,8 @@ Info_Tasks_Text	Een opgeslagen kopie die Windows zelf elke dag, week of maand op
 Info_Guard_Text	Schijven kunnen bestanden in de loop der jaren ongemerkt beschadigen. MegaCopier bewaart de vingerafdruk van elk bestand in het bestand zelf en controleert ze opnieuw als de computer vrij is. Is er een veranderd zonder dat iemand eraan kwam, dan waarschuwt het je op tijd om hem uit een back-up te halen.\n• Familiefoto’s en -video’s.\n• Back-upschijven die zelden worden geopend.\nWat jij bewerkt, wordt vanzelf bijgewerkt. Vereist NTFS-schijven.
 Info_Webhook_Text	Na elke kopie stuurt MegaCopier de samenvatting naar een webadres, zodat de melding op je telefoon of in een chat komt.\n• Discord, Slack of Teams: meldingen in een kanaal.\n• ntfy.sh: een melding op je telefoon met bijna niets te installeren.\n• Home Assistant: automatiseringen (een lamp aan als het klaar is…).
 Info_Connections_Text	Bewaar hier de servers waarnaar je kopieert: FTP, SFTP, WebDAV (Nextcloud, NAS…) of S3 (Backblaze, Wasabi, R2…). Ze verschijnen daarna bij het kiezen van bron of bestemming.\n• Back-ups naar de cloud uploaden.\n• Bestanden van een bedrijfsserver downloaden.\nWachtwoorden staan in Windows Referentiebeheer, nooit als platte tekst.
-IconPack_android	Android
-IconPack_android-tonal	Android tonaal
+IconPack_android	Android (AOSP)
+IconPack_android-tonal	Material You
 IconPack_macos	macOS
 IconPack_macos-color	macOS kleur
 IconPack_ubuntu	Ubuntu
@@ -1436,3 +1424,69 @@ Drop_AddWhatHere	{0} aan deze kopie toevoegen
 Drop_AddWhatTo	{0} aan {1} toevoegen
 Drop_InsertWhatAt	{0} toevoegen op positie {1}
 Files_ResizeColumn.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Sleep om de kolombreedte te wijzigen (dubbelklik: standaardbreedte)
+SameDrive_Title	Er loopt al een kopie naar {0}
+SameDrive_Short	{0} achteraan deze kopie toevoegen? Twee kopieën tegelijk naar dezelfde schijf gaan trager.
+SameDrive_Message	{0} gaat naar ‘{1}’, op dezelfde schijf als een kopie die al loopt. Twee dingen tegelijk naar dezelfde schijf kopiëren vertraagt beide.
+SameDrive_Items	{0} items
+SameDrive_Add	Aan deze kopie toevoegen
+SameDrive_AddText	Het wordt achteraan de lijst van de lopende kopie gekopieerd, naar zijn eigen doelmap, met één voortgangsbalk. Eerst wordt de vrije ruimte gecontroleerd.
+SameDrive_Separate	Aparte kopie
+SameDrive_SeparateText	Er wordt een andere kopie gemaakt die begint als de huidige klaar is. Wil je niet wachten, klik er dan op ‘Nu starten’.
+SameDrive_Cancel	Annuleren
+SameDrive_CancelText	Er wordt niets nieuws gekopieerd.
+Settings_SameDriveTitle.Text	Nieuwe kopie naar dezelfde schijf als een lopende
+Settings_SameDriveDescription.Text	Je stuurt bijvoorbeeld nog een map naar dezelfde USB-stick terwijl de eerste nog wordt gekopieerd.
+SameDrive_OptAsk.Content	Vragen
+SameDrive_OptMerge.Content	Toevoegen aan de lopende kopie
+SameDrive_OptQueue.Content	Aparte kopie, daarna
+SameDrive_OptParallel.Content	Aparte kopie, tegelijk
+Settings_OtherDriveTitle.Text	Nieuwe kopie naar een andere schijf
+Settings_OtherDriveDescription.Text	Elke schijf schrijft op zijn eigen snelheid: tegelijk beginnen vertraagt de andere kopie niet.
+OtherDrive_OptParallel.Content	Tegelijk starten
+OtherDrive_OptQueue.Content	Op zijn beurt wachten
+Info_SameDrive_Title	Nieuwe kopieën terwijl er al een loopt
+Info_SameDrive_Text	Als je iets kopieert terwijl er al een kopie loopt, kijkt MegaCopier naar welke schijf het gaat.\n• Naar dezelfde schijf: standaard vraagt hij het. ‘Toevoegen’ zet de bestanden achteraan de lijst van de lopende kopie (elk in zijn eigen map), met één balk. ‘Aparte kopie, daarna’ laat hem op zijn beurt wachten. ‘Tegelijk’ kopieert beide samen, maar beide worden trager.\n• Naar een andere schijf: hij begint meteen, want elke schijf schrijft op zijn eigen snelheid. Wil je dat hij op zijn beurt wacht, verander het dan hier.\nVoorbeeld: je kopieert een film naar een USB-stick en daarna nog een map naar dezelfde stick: MegaCopier komt naar voren en jij beslist. Kopieer je intussen iets naar schijf D:, dan begint dat zonder te wachten.
+Settings_CloseButtonTitle.Text	Als je op de X van het venster klikt
+Settings_CloseButtonDescription.Text	Standaard annuleert hij de kopieën, zoals ‘Stoppen’ bij elke kopie. MegaCopier blijft in het systeemvak voor de volgende kopie.
+CloseButton_Cancel.Content	De kopieën annuleren
+CloseButton_Stop.Content	Stoppen om later verder te gaan
+CloseButton_Hide.Content	Venster verbergen (ze blijven kopiëren)
+CloseButton_Exit.Content	MegaCopier afsluiten
+Settings_MinimizeButtonTitle.Text	Als je het venster minimaliseert
+Settings_MinimizeButtonDescription.Text	Naar de taakbalk, zoals elk venster, of verborgen in het systeemvak (naast de klok).
+MinimizeButton_Taskbar.Content	Naar de taakbalk
+MinimizeButton_Tray.Content	Naar het systeemvak
+Settings_TrayProgressTitle.Text	Voortgang van elke kopie in het systeemvak
+Settings_TrayProgressDescription.Text	Eén pictogram per lopende kopie, met het percentage en een balk die stijgt. Als hij klaar is, verdwijnt het vanzelf. Klik erop om de kopie te openen.
+Info_WindowButtons_Title	De vensterknoppen
+Info_WindowButtons_Text	Kies wat er met de kopieën gebeurt als je het venster sluit of minimaliseert.\n• De kopieën annuleren: zoals op ‘Stoppen’ klikken bij elke kopie. Ze verdwijnen uit de lijst en worden niet aangeboden om verder te gaan.\n• Stoppen om later verder te gaan: wat al gekopieerd is, blijft bewaard; als je hetzelfde opnieuw kopieert of MegaCopier opent, gaat het verder waar het was.\n• Venster verbergen: de kopieën gaan op de achtergrond door; open het venster via het pictogram in het systeemvak.\n• MegaCopier afsluiten: hij sluit volledig en Windows kopieert zoals altijd tot je hem weer opent.\nMinimaliseren naar het systeemvak houdt de taakbalk vrij: het venster komt terug met een klik op het MegaCopier-pictogram naast de klok.
+Tray_JobPause	Pauzeren
+Tray_JobStop	Stoppen
+Jobs_Archive	Archiveren in geschiedenis
+Jobs_ArchiveKey	Del
+Jobs_Delete	Verwijderen (ook uit geschiedenis)
+Jobs_BadgeTip	{0} actief
+Info_WhatCopy_Title	Wat er van elk bestand wordt gekopieerd
+Info_WhatCopy_Text	Naast de inhoud kun je kopiëren wat Windows rond elk bestand bewaart.\n• Datums: de aanmaak- en wijzigingsdatum blijven zoals in het origineel, zodat foto's op datum gesorteerd blijven.\n• Kenmerken: alleen-lezen, verborgen, archief… Zonder komt alles aan als gewoon bestand.\n• Alternatieve gegevensstromen (ADS): verborgen gegevens die sommige programma's aan een bestand hangen, zoals het kenmerk ‘gedownload van internet’. Zelden nodig.\n• Beveiliging (NTFS): machtigingen (wie het mag openen), eigenaar en controle. Alleen zinvol tussen NTFS-schijven op dezelfde computer of hetzelfde domein; eigenaar en controle vereisen beheerdersrechten.\nVoorbeeld: voor een exacte kopie van een gedeelde kantoormap vink je alles aan; om foto's naar een USB-stick te zetten zijn de datums genoeg.
+Info_Transfer_Title	Hoe er wordt gekopieerd
+Info_Transfer_Text	• Modus: Kopiëren is de gewone modus. Synchroniseren (spiegelen) maakt het doel gelijk aan de bron en verwijdert wat te veel is. Alleen bijwerken kopieert alleen bestanden die al in het doel staan en zijn gewijzigd. Alleen mapstructuur maakt de lege mappen. Foto's op datum ordenen verdeelt ze over mappen per jaar en maand.\n• Simuleren: vertelt wat er zou gebeuren zonder iets te wijzigen. Probeer het vóór een spiegeling.\n• Als het bestand al bestaat: vragen, vervangen, overslaan, de nieuwste houden, beide houden…\n• Hash: hoe gecontroleerd wordt of de kopie identiek is. xxHash is het snelst; SHA-256 is de standaard voor bewijs.\n• Buffergrootte en Parallel: groter en meer gelijktijdige leesacties versnellen ssd's en netwerken; op harde schijven of trage USB-sticks liever 1 of 2.\n• Controleren na kopiëren: leest het gekopieerde opnieuw en vergelijkt het met het origineel. Duurt langer, maar je weet dat het klopt.\n• Systeemcache gebruiken: sneller bij duizenden kleine bestanden; zonder cache vullen enorme bestanden het geheugen niet.\nVoorbeeld: om 500 GB video's volkomen veilig naar een nieuwe schijf te zetten, kies je Kopiëren, vink je Controleren aan en laat je 4 parallel.
+Info_OnFinish_Title	Als de kopie klaar is
+Info_OnFinish_Text	Wat MegaCopier aan het eind regelt.\n• Controlesombestand opslaan: een bestand in het doel met de vingerafdruk (hash) van elk gekopieerd bestand. Later vertelt ‘Controlesommen controleren’ je daarmee of er iets op de schijf beschadigd is.\n• HTML-rapport opslaan: een samenvatting in de browser met wat er gekopieerd is, de tijd, de snelheid en de fouten. Handig om te bewaren of te versturen.\n• Opdrachten na afloop: opdrachten die aan het eind worden uitgevoerd (zie hun eigen hulp).\nVoorbeeld: als je de familiefoto's naar een externe schijf zet, sla dan het controlesombestand op: over een jaar weet je of er een beschadigd is.
+Info_Scripts_Title	Opdrachten na afloop
+Info_Scripts_Text	Windows-opdrachten (die van cmd.exe) die na afloop van de kopie worden uitgevoerd, één per regel.\n• Begin de regel met ‘ok:’ zodat hij alleen draait als alles goed ging, of met ‘error:’ als er iets misging. Zonder iets ervoor draait hij altijd.\n• Je kunt deze variabelen gebruiken: %MEGACOPIER_DESTINATION% (doelmap), %MEGACOPIER_SOURCES% (bronnen), %MEGACOPIER_STATE% (hoe het afliep), %MEGACOPIER_FILES% (gekopieerde bestanden), %MEGACOPIER_BYTES% (bytes), %MEGACOPIER_FAILED% (fouten) en %MEGACOPIER_CHECKSUM% (controlesombestand).\nVoorbeelden:\n• ok: explorer "%MEGACOPIER_DESTINATION%" opent de map aan het eind.\n• ok: shutdown /s /t 60 zet de computer een minuut later uit.\n• error: msg * De kopie had %MEGACOPIER_FAILED% fouten waarschuwt je met een bericht.
+Info_Filters_Title	Filters: alleen een deel kopiëren
+Info_Filters_Text	Kopieer alleen wat je nodig hebt. Wat buiten valt, wordt niet gekopieerd en in het doel niet aangeraakt.\n• Zeg het in je eigen woorden: typ bijvoorbeeld ‘foto's groter dan 2 MB van vorige maand zonder de .tmp’ en MegaCopier vult de filters voor je in.\n• Alleen opnemen: maskers gescheiden door puntkomma's. ‘*.jpg; *.png’ kopieert alleen afbeeldingen; ‘Foto's\*’ alleen wat in mappen met die naam staat.\n• Uitsluiten: hetzelfde, maar omgekeerd. Bijvoorbeeld ‘node_modules; *.tmp; Thumbs.db’.\n• Minimale en maximale grootte (MB): met een minimum van 100 kopieer je alleen de grote video's.\n• Gewijzigd vanaf / tot: alleen wat in die periode veranderde, bijvoorbeeld sinds maandag.\n• Verborgen, systeem- en rommelbestanden overslaan (Thumbs.db, desktop.ini…).\n• Alleen afbeeldingen met een tekst: de tekstherkenning van Windows leest de foto's en kopieert alleen die met die tekst, zoals ‘factuur’.
+Info_Rules_Title	Regels voor bijzondere gevallen
+Info_Rules_Text	Wat te doen als iets geen gewoon bestand is of mislukt.\n• Symbolische koppelingen en verbindingen: als koppeling kopiëren (zoals in de bron), kopiëren wat erachter zit (de echte inhoud) of overslaan.\n• Naam bij beide bewaren: hoe de nieuwe kopie heet als je beide bestanden bewaart. {name} is de naam, {n} een nummer, {ext} de extensie en {date} de datum: ‘{name} ({n}){ext}’ geeft ‘foto (2).jpg’.\n• Nieuwe pogingen en wachttijd: als een bestand mislukt (netwerk valt weg, een ander programma heeft het open…), hoe vaak het opnieuw wordt geprobeerd en hoeveel seconden ertussen worden gewacht.\n• Als een bestand blijft mislukken: overslaan en doorgaan, de kopie stoppen, voor het eind bewaren of het jou vragen.\nVoorbeeld: bij kopiëren van een NAS via wifi stel je 5 pogingen met 10 seconden wachttijd in: korte onderbrekingen bederven de kopie niet.
+Info_Safety_Title	Synchronisatie en veiligheid
+Info_Safety_Text	Opties om mappen te synchroniseren en je gegevens te beschermen. Ze zijn allemaal optioneel; beweeg over elke optie voor meer uitleg.\n• Als een map al bestaat: inhoud samenvoegen, overslaan of vragen.\n• Vervangen of verwijderde bewaren: voordat een bestand wordt overschreven of verwijderd, gaat het met de datum naar die map (bijvoorbeeld .versies), zodat je de vorige versie terugkrijgt. ‘Hoeveel versies bewaren’ ruimt oude op.\n• Andere plekken met dezelfde gegevens: staan de gegevens ook ergens anders (een tweede NAS), dan worden grote bestanden van beide tegelijk gelezen.\n• Datummarge: voorkomt dat gelijke bestanden opnieuw worden gekopieerd op FAT32- of exFAT-USB-sticks.\n• Controles: origineel opnieuw lezen, hash in het bestand opslaan en herstelgegevens om de kopie te repareren als de schijf haar beschadigt.\n• Bescherming: ransomwareschild, forensische modus, veilig wissen bij verplaatsen en ‘alles of niets’-mappen.\n• Lastige schijven: wachten als de schijf wegvalt of ruimte opraakt, reddingsmodus voor beschadigde schijven en differentiële kopie van grote bestanden.\nVoorbeeld: voor een wekelijkse back-up met Synchroniseren geef je een versiemap op en vink je ‘Origineel opnieuw lezen’ aan.
+About_DevelopedBy.Text	Ontwikkeld door
+IconPack_oneui	One UI
+IconPack_nothing	Nothing OS
+IconPack_win95	Windows 95
+IconPack_vista	Windows Vista
+IconPack_cyber	Cyberpunk
+IconPack_hud	Holografisch
+Settings_AdaptTitle.Text	Aanpassen aan kleine schermen
+Settings_AdaptDescription.Text	Op lage schermen, zoals 1366 × 768, ziet het venster er hetzelfde uit maar iets kleiner, zodat het er helemaal op past. Op grote schermen verandert er niets.
+Job_StateAsking	Wacht op je antwoord

@@ -150,6 +150,9 @@ public sealed class CopyJobRecord
     /// <summary>Carpetas de origen que el usuario eligió copiar con otro nombre (ruta de origen → nombre nuevo).</summary>
     public Dictionary<string, string> RenamedFolders { get; set; } = new(StringComparer.OrdinalIgnoreCase);
 
+    /// <summary>Orígenes sumados a esta copia hacia otra carpeta del disco (ruta de origen → carpeta de destino).</summary>
+    public Dictionary<string, string> ExtraTargets { get; set; } = new(StringComparer.OrdinalIgnoreCase);
+
     /// <summary>El usuario eligió copiar aunque no cupiera: al reanudar no se vuelve a preguntar.</summary>
     public bool SpaceForced { get; set; }
 

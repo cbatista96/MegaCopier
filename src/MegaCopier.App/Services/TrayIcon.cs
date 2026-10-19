@@ -177,6 +177,11 @@ internal sealed unsafe partial class TrayIcon : IDisposable
             return;
         }
 
+        foreach (uint extra in _extras.Keys.ToList())
+        {
+            RemoveExtra(extra);
+        }
+
         _disposed = true;
         var data = NewData(0);
         Shell_NotifyIconW(NimDelete, &data);
@@ -207,19 +212,80 @@ internal sealed unsafe partial class TrayIcon : IDisposable
         Shell_NotifyIconW(NimSetVersion, &data);
     }
 
-    private NotifyIconDataW NewData(uint flags)
+    private NotifyIconDataW NewData(uint flags) => NewData(flags, MainId, _icon, _tooltip);
+
+    private NotifyIconDataW NewData(uint flags, uint id, nint icon, string tooltip)
     {
         var data = new NotifyIconDataW
         {
             cbSize = (uint)sizeof(NotifyIconDataW),
             hWnd = _hwnd,
-            uID = 1,
+            uID = id,
             uFlags = flags,
             uCallbackMessage = WmTray,
-            hIcon = _icon,
+            hIcon = icon,
         };
-        Copy(_tooltip, data.szTip, 128);
+        Copy(tooltip, data.szTip, 128);
         return data;
+    }
+
+    // -----------------------------------------------------------------------------------------------------------
+    // Iconos extra (uno por copia en marcha, con su progreso), junto al principal.
+
+    private const uint MainId = 1;
+    private readonly Dictionary<uint, (nint Icon, string Tooltip)> _extras = [];
+
+    /// <summary>Clic sobre un icono extra (con su número).</summary>
+    public event Action<uint>? ExtraActivated;
+
+    /// <summary>Menú del clic derecho sobre un icono extra.</summary>
+    public Func<uint, IReadOnlyList<TrayMenuItem>>? ExtraMenu { get; set; }
+
+    /// <summary>Pone o cambia un icono extra. El icono pasa a ser de la bandeja: lo destruye al cambiarlo o quitarlo.</summary>
+    public void SetExtra(uint id, nint icon, string tooltip)
+    {
+        if (_disposed || id == MainId)
+        {
+            DestroyIcon(icon);
+            return;
+        }
+
+        bool exists = _extras.TryGetValue(id, out var old);
+        _extras[id] = (icon, tooltip);
+        var data = NewData(NifMessage | NifIcon | NifTip | NifShowTip, id, icon, tooltip);
+        if (exists)
+        {
+            Shell_NotifyIconW(NimModify, &data);
+            DestroyIcon(old.Icon);
+        }
+        else
+        {
+            Shell_NotifyIconW(NimAdd, &data);
+            data.uVersion = NotifyIconVersion4;
+            Shell_NotifyIconW(NimSetVersion, &data);
+        }
+    }
+
+    public void RemoveExtra(uint id)
+    {
+        if (!_extras.Remove(id, out var old))
+        {
+            return;
+        }
+
+        var data = NewData(0, id, 0, "");
+        Shell_NotifyIconW(NimDelete, &data);
+        DestroyIcon(old.Icon);
+    }
+
+    public IReadOnlyCollection<uint> ExtraIds => _extras.Keys;
+
+    private void ShowExtraMenu(uint id)
+    {
+        if (ExtraMenu?.Invoke(id) is { Count: > 0 } items)
+        {
+            ShowMenu(items);
+        }
     }
 
     private static void Copy(string text, char* destination, int capacity)
@@ -229,9 +295,10 @@ internal sealed unsafe partial class TrayIcon : IDisposable
         destination[length] = '\0';
     }
 
-    private void ShowMenu()
+    private void ShowMenu() => ShowMenu(_buildMenu());
+
+    private void ShowMenu(IReadOnlyList<TrayMenuItem> items)
     {
-        var items = _buildMenu();
         nint menu = CreatePopupMenu();
         try
         {
@@ -275,6 +342,22 @@ internal sealed unsafe partial class TrayIcon : IDisposable
                 if (message == WmTray)
                 {
                     uint trayEvent = (uint)(lParam & 0xFFFF);
+                    uint id = (uint)((lParam >> 16) & 0xFFFF);
+                    if (id != MainId)
+                    {
+                        // Icono de una copia: un clic la muestra (sin esperar al doble clic); el derecho, su menú.
+                        if (trayEvent is NinSelect or NinKeySelect)
+                        {
+                            tray.ExtraActivated?.Invoke(id);
+                        }
+                        else if (trayEvent is WmContextMenu or WmRButtonUp)
+                        {
+                            tray.ShowExtraMenu(id);
+                        }
+
+                        return 0;
+                    }
+
                     if (trayEvent == WmLButtonDblClk)
                     {
                         // Doble clic: anula el clic simple pendiente y el que llega justo después.
@@ -313,6 +396,14 @@ internal sealed unsafe partial class TrayIcon : IDisposable
                     if (tray._visible)
                     {
                         tray.Add(); // el Explorador se reinició: hay que volver a poner el icono
+                    }
+
+                    foreach (var (extraId, (icon, tooltip)) in tray._extras)
+                    {
+                        var data = tray.NewData(NifMessage | NifIcon | NifTip | NifShowTip, extraId, icon, tooltip);
+                        Shell_NotifyIconW(NimAdd, &data);
+                        data.uVersion = NotifyIconVersion4;
+                        Shell_NotifyIconW(NimSetVersion, &data);
                     }
                     return 0;
                 }

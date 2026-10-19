@@ -131,10 +131,13 @@ public sealed partial class CopyEngine
     /// <summary>La regla de conflictos cambió en caliente: olvidar el «hacer lo mismo con todos» que se eligió antes.</summary>
     public void ForgetConflictAnswer() => Volatile.Write(ref _conflictForAll, null);
 
-    /// <summary>Añade más orígenes al trabajo en curso (por ejemplo, arrastrados a la ventana).</summary>
-    public int AddSources(IReadOnlyList<string> sources, int? beforeId = null)
+    /// <summary>
+    /// Añade más orígenes al trabajo en curso (arrastrados a la ventana, o una copia nueva al mismo disco que se suma a
+    /// esta): a su carpeta de destino o, si se indica, a otra.
+    /// </summary>
+    public int AddSources(IReadOnlyList<string> sources, int? beforeId = null, string? destination = null)
     {
-        var plan = CopyPlanner.Build(sources, _destinationRoot, _options.Filter, _options.Links);
+        var plan = CopyPlanner.Build(sources, destination ?? _destinationRoot, _options.Filter, _options.Links);
         foreach (var directory in plan.Directories)
         {
             Directory.CreateDirectory(directory.Destination);
@@ -203,10 +206,11 @@ public sealed partial class CopyEngine
         _conflictForAll = null;
 
         // Al reanudar un movimiento, un origen que ya no existe pero cuyo destino sí, es que ya se movió entero.
+        var extra = request.ExtraTargets.Where(e => !_options.Move || File.Exists(e.Key) || Directory.Exists(e.Key) || !TargetExists(e.Key, e.Value)).ToList();
         if (_options.Move)
         {
             var pending = request.Sources.Where(s => File.Exists(s) || Directory.Exists(s) || !TargetExists(s, request.Destination)).ToList();
-            if (pending.Count == 0)
+            if (pending.Count == 0 && extra.Count == 0)
             {
                 return new CopyJobResult { Elapsed = stopwatch.Elapsed };
             }
@@ -214,7 +218,14 @@ public sealed partial class CopyEngine
             request = request with { Sources = pending };
         }
 
-        var plan = CopyPlanner.Build(request.Sources, request.Destination, _options.Filter, _options.Links);
+        var plan = request.Sources.Count > 0 ? CopyPlanner.Build(request.Sources, request.Destination, _options.Filter, _options.Links) : new CopyPlan([], [], [], []);
+
+        // Lo sumado a esta copia hacia otras carpetas del disco va detrás de lo suyo.
+        foreach (var group in extra.GroupBy(e => e.Value, StringComparer.OrdinalIgnoreCase))
+        {
+            var more = CopyPlanner.Build([.. group.Select(e => e.Key)], group.Key, _options.Filter, _options.Links);
+            plan = new CopyPlan([.. plan.Files, .. more.Files], [.. plan.Directories, .. more.Directories], [.. plan.Links, .. more.Links], [.. plan.Warnings, .. more.Warnings]);
+        }
         foreach (string warning in plan.Warnings)
         {
             Log(LogLevel.Warning, warning);
@@ -413,6 +424,10 @@ public sealed partial class CopyEngine
         try
         {
             plan = CopyPlanner.Build(request.Sources, request.Destination);
+            foreach (var group in request.ExtraTargets.GroupBy(e => e.Value, StringComparer.OrdinalIgnoreCase))
+            {
+                plan = plan with { Files = [.. plan.Files, .. CopyPlanner.Build([.. group.Select(e => e.Key)], group.Key).Files] };
+            }
         }
         catch (CopyPlanException)
         {
@@ -1204,7 +1219,7 @@ public sealed partial class CopyEngine
     /// ¿Caben también estos orígenes (que se quieren añadir a la copia en marcha)? Cuenta lo que falta por copiar de
     /// la lista más lo nuevo. Devuelve null si cabe (o si ya se eligió copiar aunque no quepa).
     /// </summary>
-    public SpaceShortage? CheckSpaceFor(IReadOnlyList<string> sources)
+    public SpaceShortage? CheckSpaceFor(IReadOnlyList<string> sources, string? destination = null)
     {
         if (SpaceForced || !_options.CheckFreeSpace || _options.DryRun || _destinationRoot.Length == 0
             || FreeBytes(_destinationRoot) is not { } free)
@@ -1213,8 +1228,8 @@ public sealed partial class CopyEngine
         }
 
         long pending = Files.Snapshot().Where(i => i.State == FileState.Pending).Sum(i => i.Length);
-        var plan = CopyPlanner.Build(sources, _destinationRoot, _options.Filter, _options.Links);
-        long needed = pending + BytesNeeded(plan, _destinationRoot, []);
+        var plan = CopyPlanner.Build(sources, destination ?? _destinationRoot, _options.Filter, _options.Links);
+        long needed = pending + BytesNeeded(plan, destination ?? _destinationRoot, []);
         return needed > free ? new SpaceShortage(_destinationRoot, needed, free) : null;
     }
 

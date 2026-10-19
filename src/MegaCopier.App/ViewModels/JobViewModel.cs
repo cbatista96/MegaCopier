@@ -112,6 +112,9 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
     /// <summary>Programada para más tarde.</summary>
     public bool IsScheduled => Job.Record.StartAtUtc is { } at && at > DateTime.UtcNow;
 
+    /// <summary>Retenida mientras MegaCopier pregunta si sumarla a otra copia al mismo disco (ver App.Submit).</summary>
+    public bool IsAsking => Job.Record.StartAtUtc is { } at && at > DateTime.UtcNow.AddYears(10);
+
     // ---------------------------------------------------------------------------------------------------------
     // Estado
 
@@ -170,7 +173,7 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
             return State switch
             {
                 CopyJobState.Completed or CopyJobState.CompletedWithErrors => L.F("Job_Title" + Past, what),
-                CopyJobState.Queued when IsScheduled => L.F("Job_TitleScheduled", what),
+                CopyJobState.Queued when IsScheduled && !IsAsking => L.F("Job_TitleScheduled", what),
                 CopyJobState.Queued => L.F("Job_TitleQueued", what),
                 CopyJobState.Running or CopyJobState.Paused => L.F("Job_Title" + Progressive, what),
                 _ => L.F("Job_Title" + Kind, what),
@@ -196,8 +199,39 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
         }
     }
 
+    // ---------------------------------------------------------------------------------------------------------
+    // Tarjeta de la lista de copias: arriba qué hace («Copiando (29,7 %)», o cuándo terminó) y debajo, de dónde a
+    // dónde, con el número de archivos y el tamaño.
+
+    public string CardHeadline => State switch
+    {
+        CopyJobState.Completed when Job.FinishedAt is { } at => at.ToString("g", System.Globalization.CultureInfo.CurrentCulture),
+        CopyJobState.Queued when !IsScheduled => L.Get("Job_StateQueued"),
+        _ => ShortTitle,
+    };
+
+    public string CardSource
+    {
+        get
+        {
+            var sources = Job.Record.Sources;
+            string first = Format.ShortPath(Format.Display(sources.FirstOrDefault() ?? ""), 1);
+            return sources.Count > 1 ? $"{first} +{sources.Count - 1}" : first;
+        }
+    }
+
+    public string CardDestination => Format.Display(Path.TrimEndingDirectorySeparator(Job.Record.Destination));
+
+    public string CardFiles => Progress is { TotalFiles: > 0 } p ? p.TotalFiles.ToString("N0", System.Globalization.CultureInfo.CurrentCulture) : "";
+
+    public string CardSize => Progress is { TotalBytes: > 0 } p ? Format.Bytes(p.TotalBytes) : "";
+
+    /// <summary>Se puede quitar de la lista (terminada, con errores o fallida): «Archivar en el historial».</summary>
+    public bool CanArchive => State is CopyJobState.Completed or CopyJobState.CompletedWithErrors or CopyJobState.Failed;
+
     public string StateText => State switch
     {
+        CopyJobState.Queued when IsAsking => L.Get("Job_StateAsking"),
         CopyJobState.Queued when IsScheduled => L.F("Job_StateScheduled", Job.Record.StartAtUtc!.Value.ToLocalTime().ToString("g")),
         CopyJobState.Paused when IsScheduled => L.F("Job_StateScheduled", Job.Record.StartAtUtc!.Value.ToLocalTime().ToString("g")),
         CopyJobState.Queued => L.Get("Job_StateQueued") + QueuedEstimate(),

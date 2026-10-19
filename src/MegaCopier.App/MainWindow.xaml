@@ -30,8 +30,8 @@
             <TextBlock x:Name="TitleStatus" Grid.Column="2" Style="{StaticResource McSecondary}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
         </Grid>
 
-        <!-- Barra de herramientas (vista completa) -->
-        <Grid x:Name="Toolbar" Grid.Row="1" Padding="10,0,12,6" ColumnSpacing="4" Visibility="Collapsed">
+        <!-- Barra de herramientas (en las dos vistas) -->
+        <Grid x:Name="Toolbar" Grid.Row="1" Padding="10,0,12,6" ColumnSpacing="4" SizeChanged="Toolbar_SizeChanged">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
@@ -39,7 +39,15 @@
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal" Spacing="2">
                 <Button x:Name="SidebarButton" x:Uid="Tool_Sidebar" Style="{StaticResource McToolButton}" Click="Sidebar_Click">
-                    <c:McIcon VerticalAlignment="Center" Glyph="&#xE700;" FontSize="15" />
+                    <Grid>
+                        <c:McIcon VerticalAlignment="Center" Glyph="&#xE700;" FontSize="15" />
+                        <!-- Con la lista cerrada, cuántas copias siguen activas (como el aviso de una notificación) -->
+                        <Border x:Name="SidebarBadge" Visibility="Collapsed" IsHitTestVisible="False" HorizontalAlignment="Right" VerticalAlignment="Top"
+                                Margin="0,-10,-12,0" MinWidth="17" Height="17" Padding="4,0" CornerRadius="8.5" BorderThickness="1.5"
+                                Background="#E5383B" BorderBrush="{StaticResource McBackgroundBrush}">
+                            <TextBlock x:Name="SidebarBadgeText" FontSize="10" FontWeight="SemiBold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-1,0,0" />
+                        </Border>
+                    </Grid>
                 </Button>
                 <DropDownButton x:Uid="Tool_NewCopy" Background="Transparent" BorderThickness="0">
                     <StackPanel Orientation="Horizontal" Spacing="8">
@@ -115,12 +123,12 @@
                 </StackPanel>
                 <DropDownButton.Flyout>
                     <MenuFlyout Placement="BottomEdgeAlignedRight">
-                        <RadioMenuFlyoutItem x:Name="FinishNothing" x:Uid="FinishNothing" GroupName="Finish" IsChecked="True" Click="Finish_Click" />
-                        <RadioMenuFlyoutItem x:Name="FinishSleep" x:Uid="FinishSleep" GroupName="Finish" Click="Finish_Click" />
-                        <RadioMenuFlyoutItem x:Name="FinishHibernate" x:Uid="FinishHibernate" GroupName="Finish" Click="Finish_Click" />
-                        <RadioMenuFlyoutItem x:Name="FinishShutdown" x:Uid="FinishShutdown" GroupName="Finish" Click="Finish_Click" />
-                        <RadioMenuFlyoutItem x:Name="FinishSignOut" x:Uid="FinishSignOut" GroupName="Finish" Click="Finish_Click" />
-                        <RadioMenuFlyoutItem x:Name="FinishExit" x:Uid="FinishExit" GroupName="Finish" Click="Finish_Click" />
+                        <RadioMenuFlyoutItem x:Name="FinishNothing" x:Uid="FinishNothing" GroupName="Finish" IsChecked="True" Click="Finish_Click"><RadioMenuFlyoutItem.Icon><FontIcon Glyph="&#xE733;" /></RadioMenuFlyoutItem.Icon></RadioMenuFlyoutItem>
+                        <RadioMenuFlyoutItem x:Name="FinishSleep" x:Uid="FinishSleep" GroupName="Finish" Click="Finish_Click"><RadioMenuFlyoutItem.Icon><FontIcon Glyph="&#xE708;" /></RadioMenuFlyoutItem.Icon></RadioMenuFlyoutItem>
+                        <RadioMenuFlyoutItem x:Name="FinishHibernate" x:Uid="FinishHibernate" GroupName="Finish" Click="Finish_Click"><RadioMenuFlyoutItem.Icon><FontIcon Glyph="&#xF1DB;" /></RadioMenuFlyoutItem.Icon></RadioMenuFlyoutItem>
+                        <RadioMenuFlyoutItem x:Name="FinishShutdown" x:Uid="FinishShutdown" GroupName="Finish" Click="Finish_Click"><RadioMenuFlyoutItem.Icon><FontIcon Glyph="&#xE7E8;" /></RadioMenuFlyoutItem.Icon></RadioMenuFlyoutItem>
+                        <RadioMenuFlyoutItem x:Name="FinishSignOut" x:Uid="FinishSignOut" GroupName="Finish" Click="Finish_Click"><RadioMenuFlyoutItem.Icon><FontIcon Glyph="&#xF3B1;" /></RadioMenuFlyoutItem.Icon></RadioMenuFlyoutItem>
+                        <RadioMenuFlyoutItem x:Name="FinishExit" x:Uid="FinishExit" GroupName="Finish" Click="Finish_Click"><RadioMenuFlyoutItem.Icon><FontIcon Glyph="&#xE711;" /></RadioMenuFlyoutItem.Icon></RadioMenuFlyoutItem>
                     </MenuFlyout>
                 </DropDownButton.Flyout>
             </DropDownButton>
@@ -141,6 +149,7 @@
                 </Grid.RowDefinitions>
                 <TextBlock x:Name="JobsHeader" Style="{StaticResource McSecondary}" Margin="6,2,0,0" />
                 <ListView x:Name="JobList" Grid.Row="1" SelectionMode="Single" SelectionChanged="JobList_SelectionChanged" Padding="0"
+                          ContextRequested="JobList_ContextRequested" KeyDown="JobList_KeyDown"
                           CanDragItems="True" AllowDrop="True" DragItemsStarting="JobList_DragItemsStarting" DragItemsCompleted="JobList_DragItemsCompleted"
                           DragOver="JobList_DragOver" DragLeave="JobList_DragLeave" Drop="JobList_Drop">
                     <ListView.Resources><x:Boolean x:Key="ListViewItemSelectionIndicatorVisualEnabled">False</x:Boolean></ListView.Resources>
@@ -150,14 +159,16 @@
                     </ListView.ItemContainerTransitions>
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem" BasedOn="{StaticResource DefaultListViewItemStyle}">
-                            <Setter Property="Padding" Value="8,6" />
-                            <Setter Property="Margin" Value="0,2" />
+                            <Setter Property="Padding" Value="10,6" />
+                            <Setter Property="Margin" Value="0,1" />
+                            <Setter Property="MinHeight" Value="0" />
                             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                         </Style>
                     </ListView.ItemContainerStyle>
                     <ListView.ItemTemplate>
+                        <!-- Compacta: arriba qué hace (o cuándo terminó); debajo, de dónde a dónde, con archivos y tamaño -->
                         <DataTemplate x:DataType="vm:JobViewModel">
-                            <Grid RowSpacing="4" ColumnSpacing="10" AutomationProperties.Name="{x:Bind Title, Mode=OneWay}">
+                            <Grid RowSpacing="3" ColumnSpacing="8" AutomationProperties.Name="{x:Bind Title, Mode=OneWay}">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />
@@ -167,17 +178,18 @@
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
-                                <Border Grid.RowSpan="3" Width="36" Height="36" CornerRadius="9" VerticalAlignment="Center" Background="{StaticResource McSurfaceStrongBrush}">
-                                    <c:McIcon Glyph="{x:Bind Glyph, Mode=OneWay}" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{x:Bind StateBrush, Mode=OneWay}" />
-                                </Border>
-                                <TextBlock Grid.Column="1" Text="{x:Bind Title, Mode=OneWay}" Style="{StaticResource McStrong}" TextTrimming="CharacterEllipsis" ToolTipService.ToolTip="{x:Bind Title, Mode=OneWay}" />
-                                <TextBlock Grid.Column="2" Text="{x:Bind TotalPercentText, Mode=OneWay}" Style="{StaticResource McSecondary}" MinWidth="50" TextAlignment="Right" />
-                                <c:FlowBar Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" FixedHeight="4" Role="Mini" Fill="{StaticResource McTotalBrush}"
+                                <c:McIcon Glyph="{x:Bind Glyph, Mode=OneWay}" FontSize="14" VerticalAlignment="Center" Foreground="{x:Bind StateBrush, Mode=OneWay}" />
+                                <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Text="{x:Bind CardHeadline, Mode=OneWay}" Style="{StaticResource McStrong}" TextTrimming="CharacterEllipsis" ToolTipService.ToolTip="{x:Bind Title, Mode=OneWay}" />
+                                <c:FlowBar Grid.Row="1" Grid.ColumnSpan="3" FixedHeight="3" Role="Mini" Fill="{StaticResource McTotalBrush}" Visibility="{x:Bind IsActive, Mode=OneWay}"
                                            Value="{x:Bind TotalFraction, Mode=OneWay}" IsActive="{x:Bind IsRunning, Mode=OneWay}"
                                            IsPaused="{x:Bind IsPaused, Mode=OneWay}" IsError="{x:Bind IsFailed, Mode=OneWay}" IsWarning="{x:Bind HasWarnings, Mode=OneWay}"
                                            IsIndeterminate="{x:Bind BarIndeterminate, Mode=OneWay}" />
-                                <TextBlock Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="{x:Bind CardSubtitle, Mode=OneWay}" Style="{StaticResource McSecondary}" TextWrapping="Wrap" MaxLines="2" TextTrimming="CharacterEllipsis" ToolTipService.ToolTip="{x:Bind CardSubtitle, Mode=OneWay}" />
+                                <TextBlock Grid.Row="2" Grid.ColumnSpan="2" Text="{x:Bind CardSource, Mode=OneWay}" Style="{StaticResource McSecondary}" TextTrimming="CharacterEllipsis" ToolTipService.ToolTip="{x:Bind SourceFolder, Mode=OneWay}" />
+                                <TextBlock Grid.Row="2" Grid.Column="2" Text="{x:Bind CardFiles, Mode=OneWay}" Style="{StaticResource McSecondary}" HorizontalAlignment="Right" />
+                                <TextBlock Grid.Row="3" Grid.ColumnSpan="2" Text="{x:Bind CardDestination, Mode=OneWay}" Style="{StaticResource McSecondary}" TextTrimming="CharacterEllipsis" ToolTipService.ToolTip="{x:Bind CardDestination, Mode=OneWay}" />
+                                <TextBlock Grid.Row="3" Grid.Column="2" Text="{x:Bind CardSize, Mode=OneWay}" Style="{StaticResource McSecondary}" HorizontalAlignment="Right" />
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -471,11 +483,15 @@
                     <Image Source="ms-appx:///Assets/MegaCopier.ico" Width="40" Height="40" />
                     <StackPanel VerticalAlignment="Center">
                         <TextBlock Text="MegaCopier" Style="{StaticResource SubtitleTextBlockStyle}" />
-                        <TextBlock x:Name="AboutVersion" Style="{StaticResource CaptionTextBlockStyle}" />
+                        <TextBlock x:Name="AboutVersion" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="Wrap" MaxWidth="360" />
                     </StackPanel>
                 </StackPanel>
                 <TextBlock x:Uid="About_Description" TextWrapping="Wrap" />
                 <TextBlock x:Uid="About_Features" TextWrapping="Wrap" Style="{StaticResource CaptionTextBlockStyle}" />
+                <!-- Quién lo hace: WML lleva a su web -->
+                <TextBlock TextWrapping="Wrap">
+                    <Run x:Uid="About_DevelopedBy" /><Run Text=" " /><Hyperlink NavigateUri="http://worldmarketinglabs.com/" ToolTipService.ToolTip="worldmarketinglabs.com">WML</Hyperlink>
+                </TextBlock>
                 <HyperlinkButton x:Uid="About_DataFolder" Click="DataFolder_Click" Padding="0" />
             </StackPanel>
         </ContentDialog>

@@ -14,6 +14,12 @@ public enum DropSpot
 
     /// <summary>Un elemento de la lista (carpeta, archivo, ZIP, programa...).</summary>
     Item,
+
+    /// <summary>
+    /// Una carpeta del panel de navegación (o de otro sitio que ya da su ruta): se suelta dentro de ella. Su ruta llega
+    /// en la carpeta de destino.
+    /// </summary>
+    Folder,
 }
 
 /// <summary>Un elemento de la carpeta de destino tal como lo ve la vista del Explorador.</summary>
@@ -27,8 +33,8 @@ public sealed record ViewItem(string DisplayName, string? Path, bool IsFolder);
 public static class DragDecision
 {
     /// <param name="sources">Rutas seleccionadas en la ventana de origen (null si alguna no es del disco).</param>
-    /// <param name="sourceFolder">Carpeta que muestra la ventana de origen (null si es virtual: búsqueda, ZIP...).</param>
-    /// <param name="viewFolder">Carpeta que muestra la ventana de destino (null si es virtual).</param>
+    /// <param name="sourceFolder">Carpeta que muestra la ventana de origen (null si es virtual: búsqueda, Inicio...).</param>
+    /// <param name="viewFolder">Carpeta que muestra la ventana de destino (null si es virtual), o la carpeta del panel de navegación sobre la que se suelta.</param>
     /// <param name="spot">Qué hay bajo el puntero.</param>
     /// <param name="itemName">Nombre visible del elemento bajo el puntero (si <paramref name="spot"/> es Item).</param>
     /// <param name="viewItems">Elementos de la carpeta de destino, para traducir ese nombre a una ruta.</param>
@@ -60,24 +66,20 @@ public static class DragDecision
             return "el origen no son archivos del disco";
         }
 
-        if (sourceFolder is null)
-        {
-            return "la carpeta de origen es virtual (búsqueda, ZIP, Papelera...)";
-        }
-
-        if (viewFolder is null)
-        {
-            return "la carpeta de destino es virtual";
-        }
-
         string destination;
         switch (spot)
         {
             case DropSpot.Background:
+                if (viewFolder is null)
+                {
+                    return "la carpeta de destino es virtual";
+                }
+
                 destination = viewFolder;
                 break;
             case DropSpot.Item:
                 // Hay que saber exactamente sobre qué se suelta: un archivo, un ZIP o un programa reciben el arrastre ellos.
+                // Vale también en vistas virtuales (Este equipo, Inicio): sus unidades y carpetas tienen ruta.
                 var matches = viewItems.Where(i => string.Equals(i.DisplayName, itemName, StringComparison.CurrentCultureIgnoreCase)).ToList();
                 if (matches.Count != 1)
                 {
@@ -91,13 +93,25 @@ public static class DragDecision
 
                 destination = matches[0].Path!;
                 break;
+            case DropSpot.Folder:
+                if (viewFolder is null)
+                {
+                    return "la carpeta del panel de navegación no es del disco";
+                }
+
+                destination = viewFolder;
+                break;
             default:
                 return "no se sabe qué hay bajo el puntero";
         }
 
+        // Soltar en la carpeta de la que vienen no hace nada (en una búsqueda o en Inicio el origen no es una carpeta:
+        // se mira la de cada elemento).
         destination = Path.TrimEndingDirectorySeparator(destination);
-        string normalizedSource = Path.TrimEndingDirectorySeparator(sourceFolder);
-        if (string.Equals(destination, normalizedSource, StringComparison.OrdinalIgnoreCase))
+        bool sameFolder = sourceFolder is not null
+            ? string.Equals(destination, Path.TrimEndingDirectorySeparator(sourceFolder), StringComparison.OrdinalIgnoreCase)
+            : sources.All(s => string.Equals(destination, Path.TrimEndingDirectorySeparator(Path.GetDirectoryName(Path.TrimEndingDirectorySeparator(s)) ?? ""), StringComparison.OrdinalIgnoreCase));
+        if (sameFolder)
         {
             return "se suelta en la misma carpeta";
         }

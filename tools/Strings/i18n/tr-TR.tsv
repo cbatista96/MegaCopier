@@ -76,7 +76,7 @@ Accent_Green	Yeşil
 Accent_Orange	Turuncu
 Accent_Pink	Pembe
 Accent_Red	Kırmızı
-About	MegaCopier {0} · elektrik kesintilerinden sağ çıkan kopyalamalar
+About	MegaCopier {0} · en iyi kopyalayıcı
 Picker_CopyHere	Buraya kopyala
 Finish_Label	Bitince
 Finish_LabelSleep	Bitince: uyku
@@ -147,7 +147,7 @@ Notify_EnabledBody	Dosya Gezgini'ndeki kopyalama ve taşımaları MegaCopier yap
 AboutDialog.Title	MegaCopier hakkında
 AboutDialog.CloseButtonText	Kapat
 About_DataFolder.Content	Veri klasörünü aç (ayarlar, temalar, geçmiş, raporlar)
-About_Description.Text	Elektrik kesintisinden sonra tek bir dev dosyayı bile, kopyalanmış kısmı doğrulayarak sürdüren Windows 11 dosya kopyalayıcısı.
+About_Description.Text	Windows 11 için en iyi kopyalayıcı: Windows'unkinden daha hızlı ve daha güvenli, ihtiyacınız olan tüm seçeneklerle ve istediğiniz kadar kişiselleştirilebilir (temalar, simgeler, çubuklar ve sesler). Elektrik kesintisinden sonra bile kaldığı yerden devam eder ve her şeyin sağlam ulaştığını denetler.
 About_Features.Text	Önbelleksiz eşzamansız G/Ç · paralel okuma ve yazma · karma ile doğrulama (CRC32, xxHash, MD5, SHA) · disk başına sıra · duraklatma ve sürdürme · taşıma · çakışmalar · hız sınırı · kopyalama listeleri · raporlar · temalar.
 Files_AutoScroll.Content	Geçerli dosyayı izle
 Files_CopyHashes.Text	Karmaları kopyala
@@ -782,7 +782,7 @@ Destinations_NoneChosen.Text	En az bir hedef işaretleyin (veya bir klasör ekle
 Finish_ShutdownMessage	MegaCopier kopyalamaları bitirdi. Bilgisayar 1 dakika içinde kapanacak.
 Hash_Name	Karma: {0}
 DragTitle.Text	Sol tuşla sürüklemeyi MegaCopier ile yap
-DragDescription.Text	Dosyaları bir Dosya Gezgini veya masaüstü penceresinden diğerine sürüklediğinizde MegaCopier kopyalar ya da taşır (aynı kurallar: aynı sürücüde taşır, Ctrl kopyalar, Shift taşır). Bir dosyanın, ZIP'in veya gezinti bölmesinin üzerine bırakmayı yine Dosya Gezgini yapar.
+DragDescription.Text	Dosyaları Dosya Gezgini pencereleri, masaüstü veya sol bölmedeki klasörler ve sürücüler arasında sürüklediğinizde MegaCopier kopyalar ya da taşır (aynı kurallar: aynı sürücüde taşır, Ctrl kopyalar, Shift taşır). Bir dosyanın veya ZIP'in üzerine bırakmayı yine Dosya Gezgini yapar.
 DragConfirmTitle.Text	Önce sor
 DragConfirm_Never.Content	Hiçbir zaman
 DragConfirm_Moves.Content	Yalnızca taşırken
@@ -1096,13 +1096,6 @@ IconPack_suave	Yumuşak
 IconPack_degradado	Gradyan
 IconPack_neon	Neon
 IconPack_windows10	Windows 10
-Settings_MergeTitle.Text	Yeni kopyaları süren bir kopyaya ekle
-Settings_MergeDescription.Text	Sırasını beklemek yerine dosyalar süren kopyanın listesine eklenir.
-Merge_Never.Content	Asla
-Merge_SameDestination.Content	Aynı klasöre gidiyorsa
-Merge_SameDisks.Content	Aynı diskleri kullanıyorsa
-Merge_Always.Content	Her zaman
-Settings_MergeConfirm.Content	Eklemeden önce sor
 Settings_MoveAttributesTitle.Text	Taşırken şunları da koru
 Settings_MoveAttributesDescription.Text	Başka bir diske taşırken. Aynı diskte taşıma yeniden adlandırmadır ve her şey korunur.
 Settings_DeleteIncompleteTitle.Text	Kopyalama durdurulunca yarım kalanları sil
@@ -1137,10 +1130,6 @@ ErrorAsk_Retry	Yeniden dene
 ErrorAsk_Skip	Atla
 ErrorAsk_SkipAll	Bu kopyadaki sonraki hataları da atla
 ErrorAsk_Stop	Kopyalamayı durdur (devam ettirilebilir)
-Merge_Title	Süren kopyaya ekle
-Merge_Message	{0} öğe “{1}” konumuna giden kopyaya eklensin mi? Aksi hâlde sıraları gelince ayrı kopyalanırlar.
-Merge_Add	Ekle
-Merge_Separate	Ayrı
 Eject_DoneTitle	Sürücü çıkarıldı: artık çıkarabilirsin
 Eject_FailedTitle	Sürücü çıkarılamadı: bir şey kullanıyor
 Sound_Windows	Windows sesi
@@ -1322,13 +1311,12 @@ Theme_tiza	Tebeşir
 Theme_solar-claro	Açık güneş
 Theme_capuchino-claro	Açık kapuçino
 Info_Paste_Text	Dosyaları kopyalayıp (Ctrl+C) veya kesip (Ctrl+X) Dosya Gezgini’nde ya da masaüstünde yapıştırdığınızda (Ctrl+V) kopyalamayı Windows yerine MegaCopier yapar: sıra, duraklatma, doğrulama ve kesilirse devam etme ile.\n• Harici diske büyük kopyalar: duraklatıp sonra devam edebilirsiniz.\n• Art arda birkaç kopya: disk için çekişmek yerine sıraya girer.\nAynı klasöre yapıştırırsanız (dosyayı çoğaltmak için) bunu yine Dosya Gezgini yapar.
-Info_Drag_Text	Dosyaları sol tuşla bir pencereden diğerine sürüklediğinizde, MegaCopier Windows ile aynı kurallarla kopyalar (veya taşır): aynı sürücüde taşır, Ctrl kopyalamaya, Shift taşımaya zorlar.\n• Fotoğrafları farklı disklerdeki klasörler arasında sürükleyerek düzenlemek.\n• Dosya Gezgini’ni kilitlemeden büyük projeleri taşımak.\nBir dosyanın, ZIP’in veya sol bölmenin üzerine bırakmayı yine Dosya Gezgini yapar.
+Info_Drag_Text	Dosyaları sol tuşla bir pencereden diğerine sürüklediğinizde, MegaCopier Windows ile aynı kurallarla kopyalar (veya taşır): aynı sürücüde taşır, Ctrl kopyalamaya, Shift taşımaya zorlar.\n• Fotoğrafları farklı disklerdeki klasörler arasında sürükleyerek düzenlemek.\n• Dosya Gezgini’ni kilitlemeden büyük projeleri taşımak.\nSol bölmedeki klasörlerin ve sürücülerin üzerine bırakmak da olur. Bir dosyanın veya ZIP’in üzerine bırakmayı yine Dosya Gezgini yapar.
 Info_WindowMode_Text	Kopyalama penceresinin üç görünümü vardır.\n• Küçük: yalnızca çubuklar ve düğmeler. Kopyalarken her zamanki görünüm; genişletilebilir ama yükseltilemez.\n• Listeli (“Daha fazla”): dosyalar, hedef, seçenekler, grafik ve günlük. Büyütülebilir veya ekranı kaplayabilir.\n• Birden çok kopya: aynısı, solda kopyaların listesiyle; birden fazla kopya olunca kendiliğinden açılır.\n“Otomatik” küçük başlar ve aynı anda birkaç kopya olunca tam görünüme geçer. “Daha fazla” ve “Daha az” görünümü istediğiniz an değiştirir.
 Info_Verify_Text	Her dosya bittiğinde MegaCopier onu doğrudan hedef diskten yeniden okur ve parmak izini (hash) asıl dosyanınkiyle karşılaştırır. Bir şey uyuşmazsa yalnızca hasarlı kısmı yeniden kopyalar.\n• Yedekler, fotoğraflar ve önemli belgeler.\n• Haber vermeden bozulabilen eski veya ucuz USB bellekler ve diskler.\n• Ağ veya Wi-Fi üzerinden kopyalar.\nKopyalama biraz daha uzun sürer (her şey yeniden okunur), karşılığında birebir aynı olduğundan emin olursunuz.
 Info_Conflict_Text	Hedefte aynı adlı bir dosya zaten varsa ne yapılacağı.\n• Sor: ikisini boyutu, tarihi ve küçük resmiyle gösterir, siz seçersiniz.\n• Değiştir, Atla, Daha yeniyse veya boyutu farklıysa değiştir, İkisini de tut ("ad (2)") ya da Var olanı yeniden adlandır.\nAynı dosyalar (aynı boyut ve tarih) asla yeniden kopyalanmaz: bir kopyayı tekrarlamak yalnızca yeni veya değişeni kopyalar. Bütün bir klasör zaten varsa MegaCopier başlamadan önce sorar.
 Info_Hash_Text	Hash bir dosyanın parmak izi gibidir: tek bir bayt değişse parmak izi de değişir. Doğrulamada ve kaydedilen sağlama toplamlarında kullanılır.\n• xxHash3: en hızlısı; kopyaları doğrulamak için ideal.\n• SHA-256: indirmeleri kontrol etmek için web siteleri ve programların en çok kullandığı.\n• MD5, SHA-1, BLAKE3…: başka bir program belirli birini isterse.\nGünlük kullanım için xxHash3’te bırakın.
 Info_Performance_Text	Kopyalamanın ne kadar hızlı gidebileceği.\n• Hız sınırı: siz çalışırken veya film izlerken kopya tüm ağı veya diski yemesin diye. Her kopyanın Seçenekler sekmesinde ayrıca kendi sınırı vardır; durdurmadan hemen değişir.\n• Arabellek boyutu: tek seferde okunan ve yazılan bloklar. Büyük dosyalarda daha büyüğü daha iyidir.\n• Aynı anda işlem: diskten aynı anda kaç blok istendiği. Hızlı SSD’ler daha fazlasıyla kazanır.\nEmin değilseniz varsayılanları bırakın: MegaCopier her diski zaten kendisi ayarlar.
-Info_Merge_Text	Başka bir kopya sürerken yeni bir kopya başlatırsanız sırasını beklemek yerine ona katılabilir: dosyaları listenin sonuna eklenir.\n• Asla: her kopya ayrı gider.\n• Aynı klasöre gidiyorsa veya aynı diskleri kullanıyorsa.\n• Her zaman.\n"Önce sor" ile her seferinde siz karar verirsiniz. Klasörleri tek tek aynı USB belleğe gönderirken kullanışlı.
 Info_MoveAttributes_Text	Başka bir diske taşırken dosyalar kopyalanır, sonra kaynaktan silinir. Burada içerik dışında neyi götüreceklerini seçersiniz: öznitelikler (salt okunur, gizli…), izinler, sahip ve denetim.\n• Kimin açabileceğini koruyarak çalışma klasörlerini sunucular arasında taşımak.\nAynı diskte taşımak yalnızca yer değiştirmektir ve her şey korunur.
 Info_DeleteIncomplete_Text	“Durdur” kopyalamayı iptal eder ve listeden kaldırır. Kopyalanırken her dosya .mcpart uzantısıyla yazılır ve ancak sorunsuz bitince adını alır.\n• Açık: Durdur’a basınca .mcpart dosyaları silinir ve hedef temiz kalır.\n• Kapalı: saklanır; aynı şeyi yeniden kopyalarsanız tam kaldığı yerden devam eder.\nMegaCopier kapatılırken ya da elektrik kesintisinden sonra hiçbir şey silinmez: bu kopyalamalar yeniden açtığınızda devam etmek için önerilir.
 Info_Eject_Text	Bitince MegaCopier hedef USB belleği, kartı veya USB diski "Donanımı güvenle kaldır" gibi güvenli şekilde çıkarır.\n• Art arda birkaç USB bellek doldurmak: çıkardığınızda hazırdır.\nYalnızca başka bir kopya kullanmıyorsa yapar. "Zorla", bir program açık tutsa bile çıkarır.
@@ -1347,8 +1335,8 @@ Info_Tasks_Text	Windows’un MegaCopier kapalı olsa bile seçtiğiniz saatte he
 Info_Guard_Text	Diskler yıllar içinde dosyaları sessizce bozabilir. MegaCopier her dosyanın parmak izini dosyanın içine kaydeder ve bilgisayar boşta olduğunda yeniden kontrol eder. Biri kimse dokunmadan değiştiyse, yedekten kurtarmanız için zamanında uyarır.\n• Aile fotoğrafları ve videoları.\n• Nadiren açılan yedek diskler.\nDüzenledikleriniz kendiliğinden güncellenir. NTFS disk gerektirir.
 Info_Webhook_Text	Her kopya bittiğinde MegaCopier özeti bir web adresine gönderir; böylece bildirim telefonunuza veya bir sohbete gelir.\n• Discord, Slack veya Teams: bir kanala bildirim.\n• ntfy.sh: neredeyse hiçbir şey kurmadan telefonda bildirim.\n• Home Assistant: otomasyonlar (bitince bir ışığı yakmak…).
 Info_Connections_Text	Kopyaladığınız sunucuları buraya kaydedin: FTP, SFTP, WebDAV (Nextcloud, NAS…) veya S3 (Backblaze, Wasabi, R2…). Sonra kaynak veya hedef seçerken görünürler.\n• Yedekleri buluta yüklemek.\n• Şirket sunucusundan dosya indirmek.\nParolalar asla düz metin olarak değil, Windows Kimlik Bilgisi Yöneticisi’nde saklanır.
-IconPack_android	Android
-IconPack_android-tonal	Android tonal
+IconPack_android	Android (AOSP)
+IconPack_android-tonal	Material You
 IconPack_macos	macOS
 IconPack_macos-color	macOS renkli
 IconPack_ubuntu	Ubuntu
@@ -1436,3 +1424,69 @@ Drop_AddWhatHere	{0} bu kopyalamaya ekle
 Drop_AddWhatTo	{0} öğesini {1} işine ekle
 Drop_InsertWhatAt	{0} öğesini {1}. sıraya ekle
 Files_ResizeColumn.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Sütun genişliğini değiştirmek için sürükleyin (çift tıklama: varsayılan genişlik)
+SameDrive_Title	{0} sürücüsüne zaten bir kopyalama var
+SameDrive_Short	{0} bu kopyalamanın sonuna eklensin mi? Aynı sürücüye aynı anda iki kopyalama daha yavaş olur.
+SameDrive_Message	{0}, zaten süren bir kopyalamayla aynı sürücüdeki “{1}” konumuna gidiyor. Aynı sürücüye aynı anda iki şey kopyalamak ikisini de yavaşlatır.
+SameDrive_Items	{0} öğe
+SameDrive_Add	Bu kopyalamaya ekle
+SameDrive_AddText	Süren kopyalamanın listesinin sonunda, kendi hedef klasörüne, tek bir ilerleme çubuğuyla kopyalanır. Önce boş alan denetlenir.
+SameDrive_Separate	Ayrı kopyalama
+SameDrive_SeparateText	Mevcut kopyalama bitince başlayan ayrı bir kopyalama oluşturulur. Beklemek istemezseniz onda “Şimdi başlat”a basın.
+SameDrive_Cancel	İptal
+SameDrive_CancelText	Yeni hiçbir şey kopyalanmaz.
+Settings_SameDriveTitle.Text	Süren bir kopyalamayla aynı sürücüye yeni kopyalama
+Settings_SameDriveDescription.Text	Örneğin, ilki kopyalanırken aynı USB belleğe başka bir klasör gönderirsiniz.
+SameDrive_OptAsk.Content	Sor
+SameDrive_OptMerge.Content	Süren kopyalamaya ekle
+SameDrive_OptQueue.Content	Ayrı kopyalama, sonra
+SameDrive_OptParallel.Content	Ayrı kopyalama, aynı anda
+Settings_OtherDriveTitle.Text	Başka bir sürücüye yeni kopyalama
+Settings_OtherDriveDescription.Text	Her sürücü kendi hızında yazar: aynı anda başlamak diğer kopyalamayı yavaşlatmaz.
+OtherDrive_OptParallel.Content	Aynı anda başlat
+OtherDrive_OptQueue.Content	Sırasını beklesin
+Info_SameDrive_Title	Başka bir kopyalama sürerken yeni kopyalamalar
+Info_SameDrive_Text	Başka bir kopyalama sürerken bir şey kopyalarsanız MegaCopier hangi sürücüye gittiğine bakar.\n• Aynı sürücüye: varsayılan olarak sorar. “Ekle”, dosyaları süren kopyalamanın listesinin sonuna (her biri kendi klasörüne) tek bir çubukla ekler. “Ayrı kopyalama, sonra” sırasını beklemesini sağlar. “Aynı anda” ikisini birlikte kopyalar ama ikisi de yavaşlar.\n• Başka bir sürücüye: hemen başlar, çünkü her sürücü kendi hızında yazar. Sırasını beklemesini isterseniz burada değiştirin.\nÖrnek: bir USB belleğe film, ardından aynı belleğe başka bir klasör kopyalarsınız: MegaCopier öne gelir ve siz karar verirsiniz. Bu sırada D: sürücüsüne bir şey kopyalarsanız beklemeden başlar.
+Settings_CloseButtonTitle.Text	Pencerenin X düğmesine basınca
+Settings_CloseButtonDescription.Text	Varsayılan olarak her birinde “Durdur” gibi kopyalamaları iptal eder. MegaCopier bir sonraki kopyalama için bildirim alanında kalır.
+CloseButton_Cancel.Content	Kopyalamaları iptal et
+CloseButton_Stop.Content	Daha sonra sürdürmek için durdur
+CloseButton_Hide.Content	Pencereyi gizle (kopyalama sürer)
+CloseButton_Exit.Content	MegaCopier'dan çık
+Settings_MinimizeButtonTitle.Text	Pencere simge durumuna küçültülünce
+Settings_MinimizeButtonDescription.Text	Her pencere gibi görev çubuğuna ya da bildirim alanına (saatin yanına) gizlenir.
+MinimizeButton_Taskbar.Content	Görev çubuğuna
+MinimizeButton_Tray.Content	Bildirim alanına
+Settings_TrayProgressTitle.Text	Her kopyalamanın ilerlemesi bildirim alanında
+Settings_TrayProgressDescription.Text	Süren her kopyalama için yüzdesi ve yükselen bir çubuğu olan bir simge. Bitince kendiliğinden kaybolur. Tıklayınca kopyalama açılır.
+Info_WindowButtons_Title	Pencere düğmeleri
+Info_WindowButtons_Text	Pencereyi kapatınca veya simge durumuna küçültünce kopyalamalara ne olacağını seçin.\n• Kopyalamaları iptal et: her birinde “Durdur”a basmak gibi. Listeden kaybolurlar ve sürdürme önerilmez.\n• Daha sonra sürdürmek için durdur: kopyalanan kısım korunur; aynı şeyi yeniden kopyaladığınızda veya MegaCopier'ı açtığınızda kaldığı yerden devam eder.\n• Pencereyi gizle: kopyalamalar arka planda sürer; pencereyi bildirim alanındaki simgeden açarsınız.\n• MegaCopier'dan çık: tamamen kapanır ve siz yeniden açana kadar Windows her zamanki gibi kopyalar.\nBildirim alanına küçültmek görev çubuğunu boş bırakır: pencere, saatin yanındaki MegaCopier simgesine tıklayınca geri gelir.
+Tray_JobPause	Duraklat
+Tray_JobStop	Durdur
+Jobs_Archive	Geçmişe arşivle
+Jobs_ArchiveKey	Del
+Jobs_Delete	Sil (geçmişten de)
+Jobs_BadgeTip	{0} etkin
+Info_WhatCopy_Title	Her dosyadan neler kopyalanır
+Info_WhatCopy_Text	İçeriğin yanı sıra Windows'un her dosyanın çevresinde sakladıklarını da kopyalayabilirsiniz.\n• Tarihler: oluşturma ve son değiştirme tarihi orijinaldeki gibi kalır; böylece fotoğraflar tarihe göre sıralı kalır.\n• Öznitelikler: salt okunur, gizli, arşiv… Bunlar olmadan her şey normal dosya olarak gelir.\n• Alternatif veri akışları (ADS): bazı programların dosyaya eklediği gizli veriler, örneğin “internetten indirildi” işareti. Neredeyse hiç gerekmez.\n• Güvenlik (NTFS): izinler (kimin açabileceği), sahip ve denetim. Yalnızca aynı bilgisayardaki veya etki alanındaki NTFS sürücüler arasında işe yarar; sahip ve denetim yönetici hakları ister.\nÖrnek: ofisteki paylaşılan bir klasörün birebir kopyası için hepsini işaretleyin; fotoğrafları USB belleğe aktarmak için Tarihler yeterlidir.
+Info_Transfer_Title	Kopyalama nasıl yapılır
+Info_Transfer_Text	• Mod: Kopyala olağan moddur. Eşitle (ayna) hedefi kaynakla aynı yapar ve fazlalığı kaldırır. Yalnızca güncelle, hedefte zaten olan ve değişmiş dosyaları kopyalar. Yalnızca klasör yapısı boş klasörleri oluşturur. Fotoğrafları tarihe göre düzenle, onları yıl ve ay klasörlerine dağıtır.\n• Benzet: hiçbir şeyi değiştirmeden ne yapılacağını söyler. Aynalamadan önce deneyin.\n• Dosya zaten varsa: sor, değiştir, atla, yenisini tut, ikisini de tut…\n• Karma (hash): kopyanın aynı olduğunu denetleme yolu. xxHash en hızlısıdır; SHA-256 kanıt saklamak için standarttır.\n• Arabellek boyutu ve Paralel: daha büyük ve daha çok eşzamanlı okuma SSD'leri ve ağı hızlandırır; mekanik disklerde veya yavaş USB belleklerde 1 ya da 2 daha iyidir.\n• Kopyaladıktan sonra doğrula: kopyalananı yeniden okuyup orijinalle karşılaştırır. Daha uzun sürer ama doğru olduğunu bilirsiniz.\n• Sistem önbelleğini kullan: binlerce küçük dosyada daha hızlıdır; olmadan dev dosyalar belleği doldurmaz.\nÖrnek: 500 GB videoyu yeni bir diske tam güvenle aktarmak için Kopyala'yı seçin, Doğrula'yı işaretleyin ve paraleli 4'te bırakın.
+Info_OnFinish_Title	Kopyalama bitince
+Info_OnFinish_Text	MegaCopier'ın bitince yaptıkları.\n• Sağlama dosyasını kaydet: hedefte, kopyalanan her dosyanın parmak izini (karma) içeren bir dosya. Sonradan “Sağlamaları denetle” bununla diskte bir şeyin bozulup bozulmadığını söyler.\n• HTML raporu kaydet: tarayıcıda açılan bir özet: kopyalananlar, süre, hız ve hatalar. Saklamak veya göndermek için kullanışlı.\n• Bitince komutlar: sonunda çalışan komutlar (kendi yardımına bakın).\nÖrnek: aile fotoğraflarını harici bir diske aktarırken sağlama dosyasını kaydedin: bir yıl sonra herhangi birinin bozulup bozulmadığını bilirsiniz.
+Info_Scripts_Title	Bitince komutlar
+Info_Scripts_Text	Kopyalama bitince çalışan Windows komutları (cmd.exe komutları), her satıra bir tane.\n• Satırı “ok:” ile başlatırsanız yalnızca her şey yolunda gittiyse, “error:” ile başlatırsanız bir şey başarısız olduysa çalışır. Önünde bir şey yoksa her zaman çalışır.\n• Şu değişkenleri kullanabilirsiniz: %MEGACOPIER_DESTINATION% (hedef klasör), %MEGACOPIER_SOURCES% (kaynaklar), %MEGACOPIER_STATE% (nasıl bittiği), %MEGACOPIER_FILES% (kopyalanan dosyalar), %MEGACOPIER_BYTES% (bayt), %MEGACOPIER_FAILED% (hatalar) ve %MEGACOPIER_CHECKSUM% (sağlama dosyası).\nÖrnekler:\n• ok: explorer "%MEGACOPIER_DESTINATION%" bitince klasörü açar.\n• ok: shutdown /s /t 60 bilgisayarı bir dakika sonra kapatır.\n• error: msg * Kopyalamada %MEGACOPIER_FAILED% hata oldu sizi bir iletiyle uyarır.
+Info_Filters_Title	Filtreler: yalnızca bir kısmı kopyala
+Info_Filters_Text	Yalnızca ilgilendiğiniz şeyi kopyalayın. Dışarıda kalanlar kopyalanmaz ve hedefte dokunulmaz.\n• Kendi sözlerinizle söyleyin: örneğin “geçen aydan 2 MB'tan büyük fotoğraflar, .tmp olmadan” yazın, MegaCopier filtreleri sizin için doldurur.\n• Yalnızca dahil et: noktalı virgülle ayrılmış maskeler. “*.jpg; *.png” yalnızca resimleri; “Fotoğraflar\*” yalnızca Fotoğraflar adlı klasörlerdekileri kopyalar.\n• Hariç tut: aynısının tersi. Örneğin “node_modules; *.tmp; Thumbs.db”.\n• En küçük ve en büyük boyut (MB): en az 100 verirseniz yalnızca büyük videolar kopyalanır.\n• Şu tarihten / şu tarihe kadar değiştirilenler: yalnızca bu tarihlerde değişenler, örneğin pazartesiden beri.\n• Gizli, sistem ve gereksiz dosyaları atla (Thumbs.db, desktop.ini…).\n• Yalnızca metin içeren resimler: Windows OCR fotoğrafları okur ve yalnızca metni içerenleri kopyalar, örneğin “fatura”.
+Info_Rules_Title	Özel durumlar için kurallar
+Info_Rules_Text	Bir şey normal dosya değilse veya başarısız olursa ne yapılacağı.\n• Sembolik bağlantılar ve birleşim noktaları: bağlantı olarak kopyala (kaynaktaki gibi), arkasındakini (gerçek içeriği) kopyala veya atla.\n• İkisini de tutarken ad: iki dosyayı da tutmayı seçtiğinizde yeni kopyanın adı. {name} ad, {n} bir sayı, {ext} uzantı ve {date} tarihtir: “{name} ({n}){ext}”, “foto (2).jpg” verir.\n• Yeniden denemeler ve bekleme: bir dosya başarısız olursa (ağ kesilir, başka bir program açık tutar…) kaç kez yeniden deneneceği ve denemeler arasında kaç saniye bekleneceği.\n• Bir dosya hâlâ başarısız olursa: atlayıp devam et, kopyalamayı durdur, sona bırak veya size sor.\nÖrnek: Wi-Fi üzerinden bir NAS'tan kopyalarken 10 saniye beklemeli 5 yeniden deneme ayarlayın: kısa kesintiler kopyalamayı bozmaz.
+Info_Safety_Title	Eşitleme ve güvenlik
+Info_Safety_Text	Klasörleri eşitleme ve verileri koruma seçenekleri. Hepsi isteğe bağlıdır; ayrıntı için her birinin üzerine gelin.\n• Bir klasör zaten varsa: içeriği birleştir, atla veya sor.\n• Değiştirilen veya kaldırılanı sakla: bir dosyanın üzerine yazılmadan veya silinmeden önce tarihle birlikte o klasöre taşınır (örneğin .surumler), böylece önceki sürümü geri alabilirsiniz. “Kaç sürüm saklansın” eskileri temizler.\n• Aynı verinin olduğu başka yerler: veriler başka bir yerde de varsa (ikinci bir NAS), büyük dosyalar ikisinden aynı anda okunur.\n• Tarih toleransı: FAT32 veya exFAT USB belleklerde aynı dosyaların yeniden kopyalanmasını önler.\n• Denetimler: orijinali yeniden oku, karmayı dosyanın içine kaydet ve disk kopyayı bozarsa onarmak için kurtarma verisi.\n• Koruma: fidye yazılımı kalkanı, adli mod, taşırken güvenli silme ve “ya hep ya hiç” klasörleri.\n• Zor diskler: disk bağlantısı kesilirse veya yer kalmazsa bekle, hasarlı diskler için kurtarma modu ve büyük dosyaların fark kopyası.\nÖrnek: Eşitle ile haftalık yedekleme için bir sürüm klasörü belirtin ve “Orijinali yeniden oku”yu işaretleyin.
+About_DevelopedBy.Text	Geliştiren:
+IconPack_oneui	One UI
+IconPack_nothing	Nothing OS
+IconPack_win95	Windows 95
+IconPack_vista	Windows Vista
+IconPack_cyber	Siberpunk
+IconPack_hud	Holografik
+Settings_AdaptTitle.Text	Küçük ekranlara uydur
+Settings_AdaptDescription.Text	1366 × 768 gibi alçak ekranlarda pencere aynı görünür ama tamamen sığması için biraz daha küçüktür. Büyük ekranlarda hiçbir şey değişmez.
+Job_StateAsking	Yanıtınızı bekliyor

@@ -84,8 +84,6 @@ public sealed partial class SettingsPage : UserControl
             HashBox.Items.Add(new ComboBoxItem { Content = OptionsTab.HashName(hash) });
         }
 
-        AboutText.Text = L.F("About", typeof(App).Assembly.GetName().Version?.ToString(3) ?? "")
-            + (Engine.DataFolder.IsPortable ? " · " + L.F("About_Portable", Engine.DataFolder.Path) : "");
         _app.EnabledChanged += () => DispatcherQueue.TryEnqueue(Load);
         Rules.RulesChanged += Store;
         Rules.ErrorOptionsVisible = false;
@@ -123,6 +121,8 @@ public sealed partial class SettingsPage : UserControl
 
         WindowModeBox.SelectedIndex = (int)s.WindowMode;
         FinishWindowBox.SelectedIndex = (int)s.FinishWindow;
+        CloseButtonBox.SelectedIndex = (int)s.CloseButton;
+        MinimizeButtonBox.SelectedIndex = (int)s.MinimizeButton;
         OnTopToggle.IsOn = s.AlwaysOnTop;
         NotifyToggle.IsOn = s.NotifyOnFinish;
         AutoAdminToggle.IsOn = s.AutoAdminCopy;
@@ -185,13 +185,14 @@ public sealed partial class SettingsPage : UserControl
         GuardIntervalBox.SelectedItem = GuardIntervalBox.Items.OfType<ComboBoxItem>().FirstOrDefault(i => (string)i.Tag == s.GuardIntervalDays.ToString()) ?? GuardIntervalBox.Items[1];
 
         TrayToggle.IsOn = s.ShowTrayIcon;
+        TrayProgressToggle.IsOn = s.TrayProgressIcons;
         StartMinimizedToggle.IsOn = s.StartMinimized;
         RememberPositionBox.IsChecked = s.RememberPosition;
         RememberSizeBox.IsChecked = s.RememberSize;
         TranslucentToggle.IsOn = s.Translucent;
-        MergeBox.SelectedIndex = (int)s.MergeNewCopies;
-        MergeConfirmBox.IsChecked = s.MergeConfirm;
-        MergeConfirmBox.IsEnabled = s.MergeNewCopies != MergeMode.Never;
+        AdaptToggle.IsOn = s.AdaptSmallScreens;
+        SameDriveBox.SelectedIndex = (int)s.SameDriveCopies;
+        OtherDriveBox.SelectedIndex = (int)s.OtherDriveCopies;
         MoveAttributesBox.IsChecked = s.MovePreserveAttributes;
         MoveAclBox.IsChecked = s.MoveCopySecurity.HasFlag(SecurityParts.Acl);
         MoveOwnerBox.IsChecked = s.MoveCopySecurity.HasFlag(SecurityParts.Owner);
@@ -259,6 +260,8 @@ public sealed partial class SettingsPage : UserControl
 
         s.WindowMode = (WindowMode)Math.Max(0, WindowModeBox.SelectedIndex);
         s.FinishWindow = (FinishWindow)Math.Max(0, FinishWindowBox.SelectedIndex);
+        s.CloseButton = (CloseButtonAction)Math.Max(0, CloseButtonBox.SelectedIndex);
+        s.MinimizeButton = (MinimizeButtonAction)Math.Max(0, MinimizeButtonBox.SelectedIndex);
         s.AlwaysOnTop = OnTopToggle.IsOn;
         s.NotifyOnFinish = NotifyToggle.IsOn;
         s.AutoAdminCopy = AutoAdminToggle.IsOn;
@@ -359,13 +362,14 @@ public sealed partial class SettingsPage : UserControl
         }
 
         s.ShowTrayIcon = TrayToggle.IsOn;
+        s.TrayProgressIcons = TrayProgressToggle.IsOn;
         s.StartMinimized = StartMinimizedToggle.IsOn;
         s.RememberPosition = RememberPositionBox.IsChecked == true;
         s.RememberSize = RememberSizeBox.IsChecked == true;
         s.Translucent = TranslucentToggle.IsOn;
-        s.MergeNewCopies = (MergeMode)Math.Max(0, MergeBox.SelectedIndex);
-        s.MergeConfirm = MergeConfirmBox.IsChecked == true;
-        MergeConfirmBox.IsEnabled = s.MergeNewCopies != MergeMode.Never;
+        s.AdaptSmallScreens = AdaptToggle.IsOn;
+        s.SameDriveCopies = (SameDriveCopy)Math.Max(0, SameDriveBox.SelectedIndex);
+        s.OtherDriveCopies = (OtherDriveCopy)Math.Max(0, OtherDriveBox.SelectedIndex);
         s.MovePreserveAttributes = MoveAttributesBox.IsChecked == true;
         s.MoveCopySecurity = (MoveAclBox.IsChecked == true ? SecurityParts.Acl : 0)
             | (MoveOwnerBox.IsChecked == true ? SecurityParts.Owner : 0)

@@ -399,4 +399,79 @@ public sealed class QueueTests : IDisposable
         Assert.Null(queue.FindInterrupted([source], _temp.Combine("otro"), JobOperation.Copy, move: false));
         Assert.Null(queue.FindInterrupted([source], destination, JobOperation.Copy, move: true));
     }
+
+    [Fact]
+    public async Task Una_copia_nueva_que_empieza_ya_no_espera_a_la_otra()
+    {
+        var queue = NewQueue();
+        queue.MaxActiveJobs = 1;
+        bool paused = false;
+        OnEveryChange(queue, j =>
+        {
+            if (!paused && j.Progress is { CurrentFileBytes: >= Chunk } && j.State == CopyJobState.Running)
+            {
+                paused = true;
+                queue.Pause(j);
+            }
+        });
+        var first = queue.Submit([NewSource("uno.bin", 6 * 1024 * 1024, 16)], _temp.Combine("d1"), Options());
+        var second = queue.Submit([NewSource("dos.bin", 1024, 17)], _temp.Combine("d2"), Options(), startNow: true);
+
+        await WaitFinished(queue, second);
+        Assert.Equal(CopyJobState.Completed, second.State);
+        while (first.State == CopyJobState.Running)
+        {
+            await Task.Delay(10);
+        }
+
+        queue.Resume(first);
+        await WaitFinished(queue, first);
+        Assert.Equal(CopyJobState.Completed, first.State);
+    }
+
+    [Fact]
+    public async Task Anadir_a_una_copia_hacia_otra_carpeta_del_disco_y_reanudar()
+    {
+        var queue = NewQueue();
+        bool paused = false;
+        OnEveryChange(queue, j =>
+        {
+            if (!paused && j.Progress is { CurrentFileBytes: >= Chunk } && j.State == CopyJobState.Running)
+            {
+                paused = true;
+                queue.Pause(j);
+            }
+        });
+        var job = queue.Submit([NewSource("uno.bin", 6 * 1024 * 1024, 18)], _temp.Combine("dst"), Options());
+        while (job.State != CopyJobState.Paused)
+        {
+            await Task.Delay(10);
+        }
+
+        // En marcha: lo nuevo va a su propia carpeta y queda apuntado para reanudar.
+        string extra = NewSource("extra.bin", 1024 * 1024, 19);
+        Assert.Null(job.CheckSpaceFor([extra], _temp.Combine("otra")));
+        Assert.Same(job, queue.AddToJob(job, [extra], destination: _temp.Combine("otra")));
+        Assert.Equal(_temp.Combine("otra"), job.Record.ExtraTargets[extra]);
+        Assert.DoesNotContain(extra, job.Record.Sources);
+
+        // Se detiene (como al cerrar MegaCopier) y al reanudar copia también lo añadido, en su carpeta.
+        queue.Stop(job);
+        await WaitFinished(queue, job);
+        Assert.Equal(CopyJobState.Interrupted, job.State);
+        queue.Resume(job);
+        await WaitFinished(queue, job);
+        Assert.Equal(CopyJobState.Completed, job.State);
+        TestFiles.AssertSameContent(extra, _temp.Combine("otra", "extra.bin"));
+        Assert.False(File.Exists(_temp.Combine("dst", "extra.bin")));
+
+        // En espera: se suma a sus orígenes con su carpeta.
+        var queued = queue.Submit([NewSource("tres.bin", 1024, 20)], _temp.Combine("d3"), Options(), startAtUtc: DateTime.UtcNow.AddHours(1));
+        string more = NewSource("mas.bin", 1024, 21);
+        queue.AddToJob(queued, [more], destination: _temp.Combine("d4"));
+        Assert.Equal(_temp.Combine("d4"), queued.Record.ExtraTargets[more]);
+        queue.Unschedule(queued);
+        await WaitFinished(queue, queued);
+        TestFiles.AssertSameContent(more, _temp.Combine("d4", "mas.bin"));
+    }
 }
