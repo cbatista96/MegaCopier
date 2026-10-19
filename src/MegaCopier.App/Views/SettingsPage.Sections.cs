@@ -37,6 +37,7 @@ public sealed partial class SettingsPage
     /// <summary>La última sección vista (al volver a Ajustes se abre en la misma).</summary>
     private static int _lastSection;
 
+    private Controls.SlidingIndicator? _sectionIndicator;
     private bool _sectionsReady;
     private bool _searching;
     private GalleryMore? _iconMore;
@@ -226,23 +227,7 @@ public sealed partial class SettingsPage
     }
 
     /// <summary>La sección nueva entra deslizándose y apareciendo.</summary>
-    private static void SlideIn(UIElement element)
-    {
-        // Translation (no Offset): Offset lo pone el diseño de la página y animarlo descoloca el contenido.
-        ElementCompositionPreview.SetIsTranslationEnabled(element, true);
-        var visual = ElementCompositionPreview.GetElementVisual(element);
-        var compositor = visual.Compositor;
-        var fade = compositor.CreateScalarKeyFrameAnimation();
-        fade.InsertKeyFrame(0, 0);
-        fade.InsertKeyFrame(1, 1);
-        fade.Duration = TimeSpan.FromMilliseconds(260);
-        var slide = compositor.CreateVector3KeyFrameAnimation();
-        slide.InsertKeyFrame(0, new Vector3(0, 24, 0));
-        slide.InsertKeyFrame(1, Vector3.Zero, compositor.CreateCubicBezierEasingFunction(new Vector2(0.1f, 0.9f), new Vector2(0.2f, 1f)));
-        slide.Duration = TimeSpan.FromMilliseconds(320);
-        visual.StartAnimation("Opacity", fade);
-        visual.StartAnimation("Translation", slide);
-    }
+    private static void SlideIn(UIElement element) => Motion.FadeIn(element, 24);
 
     // ---------------------------------------------------------------------------------------------------------
     // Conjuntos de iconos

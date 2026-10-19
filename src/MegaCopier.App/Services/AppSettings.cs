@@ -138,6 +138,11 @@ public sealed class AppSettings
     /// <summary>Columnas de sumas (hash) en la lista de archivos.</summary>
     public bool FilesShowHashes { get; set; }
 
+    /// <summary>Anchos elegidos para las columnas Origen y Tamaño de la lista de archivos (0 = los de siempre).</summary>
+    public double FilesSourceWidth { get; set; }
+
+    public double FilesSizeWidth { get; set; }
+
     public bool VerifySkipped { get; set; }
 
     public FileHashAlgorithm HashAlgorithm { get; set; } = FileHashAlgorithm.XxHash3;

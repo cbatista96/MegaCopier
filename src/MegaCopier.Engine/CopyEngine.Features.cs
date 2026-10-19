@@ -596,7 +596,7 @@ public sealed partial class CopyEngine
             return true;
         }
 
-        if (_options.WaitForSpace && kind == FileErrorKind.DiskFull)
+        if ((_options.WaitForSpace || SpaceForced) && kind == FileErrorKind.DiskFull)
         {
             progress.SetPhase(CopyPhase.WaitingForSpace);
             Log(LogLevel.Warning, Texts.Get("E_DiskFull"), target);

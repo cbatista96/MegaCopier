@@ -12,12 +12,18 @@ namespace MegaCopier.App.Views;
 public sealed partial class CopyPanel : UserControl
 {
     public static readonly DependencyProperty JobProperty =
-        DependencyProperty.Register(nameof(Job), typeof(JobViewModel), typeof(CopyPanel), new PropertyMetadata(null, (d, _) => ((CopyPanel)d).Bindings.Update()));
+        DependencyProperty.Register(nameof(Job), typeof(JobViewModel), typeof(CopyPanel), new PropertyMetadata(null, (d, _) =>
+        {
+            var panel = (CopyPanel)d;
+            panel.Bindings.Update();
+            panel.WatchJob();
+        }));
 
     public CopyPanel()
     {
         InitializeComponent();
         SetExpanded(false);
+        ShowPlayPause(animate: false);
         SizeChanged += (_, e) => Adapt(e.NewSize.Width);
         ShowPercents();
         Loaded += (_, _) =>
@@ -83,4 +89,77 @@ public sealed partial class CopyPanel : UserControl
     }
 
     private void Expand_Click(object sender, RoutedEventArgs e) => ExpandRequested?.Invoke();
+    // ---------------------------------------------------------------------------------------------------------
+    // Pausa / Continuar: un solo botón; el icono de pausa se transforma en el de reproducir y al revés.
+
+    private bool? _showingPause;
+    private JobViewModel? _watched;
+
+    private void WatchJob()
+    {
+        if (_watched is not null)
+        {
+            _watched.PropertyChanged -= OnJobPropertyChanged;
+        }
+
+        _watched = Job;
+        if (_watched is not null)
+        {
+            _watched.PropertyChanged += OnJobPropertyChanged;
+        }
+
+        _showingPause = null; // otra copia: se muestra su estado sin animar
+        ShowPlayPause(animate: false);
+    }
+
+    private void OnJobPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName is null or "" or nameof(JobViewModel.CanPause) or nameof(JobViewModel.CanResume))
+        {
+            ShowPlayPause(animate: true);
+        }
+    }
+
+    private void ShowPlayPause(bool animate)
+    {
+        bool pause = Job?.CanPause == true;
+        string label = pause ? PauseLabel.Text : PlayLabel.Text;
+        ToolTipService.SetToolTip(PlayPauseButton, label);
+        Microsoft.UI.Xaml.Automation.AutomationProperties.SetName(PlayPauseButton, label);
+        if (_showingPause == pause)
+        {
+            return;
+        }
+
+        bool first = _showingPause is null;
+        _showingPause = pause;
+        animate &= !first && !Theming.BarAppearance.ReduceMotion && PlayPauseButton.ActualWidth > 0;
+        Motion.Morph(pause ? PlayGlyph : PauseGlyph, pause ? PauseGlyph : PlayGlyph, animate, icon: true);
+        Motion.Morph(pause ? PlayLabel : PauseLabel, pause ? PauseLabel : PlayLabel, animate, icon: false);
+    }
+
+    // ---------------------------------------------------------------------------------------------------------
+    // Menú «…»: las opciones que se activan llevan una marca a la derecha (sin el hueco de las casillas).
+
+    private void OptionsMenu_Opening(object sender, object e)
+    {
+        UnattendedItem.KeyboardAcceleratorTextOverride = Job?.Unattended == true ? "✓" : "";
+        VerifyItem.KeyboardAcceleratorTextOverride = Job?.Verify == true ? "✓" : "";
+    }
+
+    private void Unattended_Click(object sender, RoutedEventArgs e)
+    {
+        if (Job is not null)
+        {
+            Job.Unattended = !Job.Unattended;
+        }
+    }
+
+    private void Verify_Click(object sender, RoutedEventArgs e)
+    {
+        if (Job is not null)
+        {
+            Job.Verify = !Job.Verify;
+        }
+    }
 }

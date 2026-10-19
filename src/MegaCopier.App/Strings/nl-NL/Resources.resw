@@ -1112,7 +1112,7 @@
   <data name="Settings_MoveAttributesTitle.Text" xml:space="preserve"><value>Bij verplaatsen ook behouden</value></data>
   <data name="Settings_MoveAttributesDescription.Text" xml:space="preserve"><value>Bij verplaatsen naar een andere schijf. Op dezelfde schijf is verplaatsen hernoemen en blijft alles behouden.</value></data>
   <data name="Settings_DeleteIncompleteTitle.Text" xml:space="preserve"><value>Bij het stoppen van een kopie het halve werk verwijderen</value></data>
-  <data name="Settings_DeleteIncompleteDescription.Text" xml:space="preserve"><value>Hervatten waar hij stopte kan dan niet meer. Er blijven geen onvolledige bestanden (.mcpart) achter.</value></data>
+  <data name="Settings_DeleteIncompleteDescription.Text" xml:space="preserve"><value>Er blijven geen onvolledige bestanden (.mcpart) in het doel achter. Als ze bewaard blijven, gaat opnieuw hetzelfde kopiëren verder waar het stopte.</value></data>
   <data name="Settings_KeepOnError.Content" xml:space="preserve"><value>Niet verwijderen als de kopie door een fout stopte</value></data>
   <data name="Settings_EjectTitle.Text" xml:space="preserve"><value>Na afloop het doelstation uitwerpen</value></data>
   <data name="Settings_EjectDescription.Text" xml:space="preserve"><value>Alleen USB-sticks, geheugenkaarten en USB-schijven, als geen andere kopie ze gebruikt.</value></data>
@@ -1336,7 +1336,7 @@
   <data name="Info_Performance_Text" xml:space="preserve"><value>Hoe snel de kopie mag gaan.\n• Snelheidslimiet: zodat de kopie niet het hele netwerk of de schijf opslokt terwijl je werkt of een film kijkt. Elke kopie heeft ook een eigen limiet op het tabblad Opties, die meteen verandert zonder te stoppen.\n• Buffergrootte: de blokken die in één keer gelezen en geschreven worden. Groter werkt beter bij enorme bestanden.\n• Bewerkingen tegelijk: hoeveel blokken tegelijk bij de schijf worden opgevraagd. Snelle SSD’s winnen erbij.\nTwijfel je, laat dan de standaard staan: MegaCopier stemt elke schijf zelf af.</value></data>
   <data name="Info_Merge_Text" xml:space="preserve"><value>Start je een kopie terwijl er al een loopt, dan kan die aansluiten in plaats van te wachten: de bestanden komen onderaan de lijst.\n• Nooit: elke kopie apart.\n• Als ze naar dezelfde map gaan, of dezelfde schijven gebruiken.\n• Altijd.\nMet &quot;Eerst vragen&quot; beslis je elke keer. Handig als je mappen één voor één naar dezelfde USB-stick stuurt.</value></data>
   <data name="Info_MoveAttributes_Text" xml:space="preserve"><value>Bij verplaatsen naar een andere schijf worden bestanden gekopieerd en daarna bij de bron verwijderd. Hier kies je wat ze naast de inhoud meenemen: kenmerken (alleen-lezen, verborgen…), machtigingen, eigenaar en controle.\n• Werkmappen tussen servers verplaatsen en behouden wie ze mag openen.\nOp dezelfde schijf is verplaatsen alleen van plek wisselen en blijft alles behouden.</value></data>
-  <data name="Info_DeleteIncomplete_Text" xml:space="preserve"><value>Tijdens het kopiëren wordt elk bestand geschreven met de extensie .mcpart en krijgt het pas zijn naam als het goed klaar is. Stop je een kopie, dan kun je dankzij die stukken later precies verdergaan waar je was.\n• Aan: Stoppen verwijdert de .mcpart-bestanden en de bestemming blijft schoon (maar hervatten kan niet meer).\n• Uit: ze blijven bewaard om te hervatten.\nBij het sluiten van MegaCopier of na een stroomstoring wordt nooit iets verwijderd.</value></data>
+  <data name="Info_DeleteIncomplete_Text" xml:space="preserve"><value>“Stoppen” annuleert de kopie en haalt haar uit de lijst. Tijdens het kopiëren wordt elk bestand geschreven met de extensie .mcpart en krijgt het pas zijn naam als het goed klaar is.\n• Aan: bij Stoppen worden de .mcpart-bestanden verwijderd en blijft het doel schoon.\n• Uit: ze blijven bewaard, en als je hetzelfde opnieuw kopieert gaat het precies verder waar het stopte.\nBij het sluiten van MegaCopier of na een stroomstoring wordt nooit iets verwijderd: die kopieën worden aangeboden om verder te gaan als je het weer opent.</value></data>
   <data name="Info_Eject_Text" xml:space="preserve"><value>Na afloop werpt MegaCopier de USB-stick, kaart of USB-schijf van de bestemming veilig uit, zoals &quot;Hardware veilig verwijderen&quot;.\n• Meerdere USB-sticks achter elkaar vullen: als je hem eruit haalt, is hij al klaar.\nAlleen als geen andere kopie hem gebruikt. &quot;Forceren&quot; werpt hem uit, ook als een programma hem open heeft.</value></data>
   <data name="Info_OnError_Text" xml:space="preserve"><value>Wat te doen als een bestand zelfs na nieuwe pogingen niet gekopieerd kan worden.\n• Vragen: de kopie stopt, vertelt waarom en jij kiest opnieuw proberen, overslaan, de volgende overslaan of stoppen.\n• Overslaan en doorgaan: ideaal voor grote kopieën ’s nachts; aan het eind zie je de lijst met fouten.\n• De kopie stoppen: als er niets mag ontbreken.\n• Aan het eind opnieuw: bewaart het voor het laatst, voor het geval het in gebruik was en vrijkomt.</value></data>
   <data name="Info_ErrorReport_Text" xml:space="preserve"><value>Eindigt een kopie met fouten, dan wordt een tekstbestand opgeslagen met elk mislukt bestand, de reden en het tijdstip.\n• Om een kopie die ’s nachts liep rustig na te lopen.\n• Om door te geven aan wie de computers beheert.</value></data>
@@ -1427,4 +1427,19 @@
   <data name="Picker_DeleteTitle" xml:space="preserve"><value>Kies wat je verwijdert: bestanden of mappen</value></data>
   <data name="Picker_WipeTitle" xml:space="preserve"><value>Kies wat je veilig verwijdert: bestanden of mappen</value></data>
   <data name="Picker_AddTitle" xml:space="preserve"><value>Kies wat je aan de lijst toevoegt: bestanden of mappen</value></data>
+  <data name="Space_Title" xml:space="preserve"><value>Niet genoeg ruimte op {0}</value></data>
+  <data name="Space_Text" xml:space="preserve"><value>Er is {0} nodig en {1} vrij ({2} tekort).</value></data>
+  <data name="Space_TextAdding" xml:space="preserve"><value>Met wat je wilt toevoegen is er {0} nodig en {1} vrij ({2} tekort).</value></data>
+  <data name="Space_Force" xml:space="preserve"><value>Toch kopiëren</value></data>
+  <data name="Space_ForceTip" xml:space="preserve"><value>Kopieert tot de schijf vol is en wacht dan: maak ruimte vrij en het kopiëren gaat vanzelf verder.</value></data>
+  <data name="Space_Cancel" xml:space="preserve"><value>Annuleren</value></data>
+  <data name="Space_CancelTip" xml:space="preserve"><value>Er wordt niets gekopieerd.</value></data>
+  <data name="Space_CancelAddingTip" xml:space="preserve"><value>Er wordt niets toegevoegd; het kopiëren gaat door zoals het was.</value></data>
+  <data name="Job_StartNow" xml:space="preserve"><value>Nu starten</value></data>
+  <data name="Drop_One" xml:space="preserve"><value>‘{0}’</value></data>
+  <data name="Drop_Many" xml:space="preserve"><value>{0} items</value></data>
+  <data name="Drop_AddWhatHere" xml:space="preserve"><value>{0} aan deze kopie toevoegen</value></data>
+  <data name="Drop_AddWhatTo" xml:space="preserve"><value>{0} aan {1} toevoegen</value></data>
+  <data name="Drop_InsertWhatAt" xml:space="preserve"><value>{0} toevoegen op positie {1}</value></data>
+  <data name="Files_ResizeColumn.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Sleep om de kolombreedte te wijzigen (dubbelklik: standaardbreedte)</value></data>
 </root>

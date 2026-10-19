@@ -345,7 +345,8 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
 
     public bool CanPause => State == CopyJobState.Running;
 
-    public bool CanResume => State is CopyJobState.Paused or CopyJobState.Interrupted or CopyJobState.CompletedWithErrors;
+    public bool CanResume => State is CopyJobState.Paused or CopyJobState.Interrupted or CopyJobState.CompletedWithErrors
+        || (State == CopyJobState.Queued && !IsScheduled);
 
     public bool CanSkip => State is CopyJobState.Running or CopyJobState.Paused;
 
@@ -355,7 +356,15 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
 
     public bool CanClear => State is CopyJobState.Completed;
 
-    public string ResumeLabel => L.Get(State == CopyJobState.CompletedWithErrors ? "Job_Retry" : "Job_Resume");
+    public string ResumeLabel => L.Get(State switch
+    {
+        CopyJobState.CompletedWithErrors => "Job_Retry",
+        CopyJobState.Queued => "Job_StartNow",
+        _ => "Job_Resume",
+    });
+
+    /// <summary>El botón Pausa / Continuar (uno solo, que cambia de icono y de texto).</summary>
+    public bool CanPlayPause => CanPause || CanResume;
 
     public bool Unattended
     {
@@ -432,7 +441,7 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
     public void Stop()
     {
         ((App)Microsoft.UI.Xaml.Application.Current).StoppedByUser.Add(Job.Id); // para «borrar lo que quedó a medias»
-        _queue.Stop(Job);
+        _queue.Cancel(Job);
     }
 
     public void Discard() => _queue.Discard(Job);

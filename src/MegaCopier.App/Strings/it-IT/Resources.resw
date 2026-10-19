@@ -1112,7 +1112,7 @@
   <data name="Settings_MoveAttributesTitle.Text" xml:space="preserve"><value>Durante lo spostamento, conserva anche</value></data>
   <data name="Settings_MoveAttributesDescription.Text" xml:space="preserve"><value>Verso un altro disco. Sullo stesso disco spostare è una rinomina e si conserva tutto.</value></data>
   <data name="Settings_DeleteIncompleteTitle.Text" xml:space="preserve"><value>Quando fermi una copia, elimina ciò che è rimasto a metà</value></data>
-  <data name="Settings_DeleteIncompleteDescription.Text" xml:space="preserve"><value>Non si potrà più continuare da dove si era fermata. Nella destinazione non restano file incompleti (.mcpart).</value></data>
+  <data name="Settings_DeleteIncompleteDescription.Text" xml:space="preserve"><value>Così non restano file incompleti (.mcpart) nella destinazione. Se si conservano, ricopiando la stessa cosa si riprende da dove si era fermata.</value></data>
   <data name="Settings_KeepOnError.Content" xml:space="preserve"><value>Non eliminarlo se la copia si è fermata per un errore</value></data>
   <data name="Settings_EjectTitle.Text" xml:space="preserve"><value>Al termine, espelli l&apos;unità di destinazione</value></data>
   <data name="Settings_EjectDescription.Text" xml:space="preserve"><value>Solo chiavette USB, schede di memoria e dischi USB, quando nessun&apos;altra copia la usa.</value></data>
@@ -1336,7 +1336,7 @@
   <data name="Info_Performance_Text" xml:space="preserve"><value>Quanto può correre la copia.\n• Limite di velocità: perché la copia non occupi tutta la rete o il disco mentre lavori o guardi un film. Ogni copia ha anche il suo limite nella scheda Opzioni, che si cambia subito senza fermarla.\n• Dimensione del buffer: i blocchi letti e scritti alla volta. Più grande va meglio con file enormi.\n• Operazioni contemporanee: quanti blocchi si chiedono al disco nello stesso momento. Gli SSD veloci ci guadagnano.\nSe non sai cosa mettere, lascia i valori predefiniti: MegaCopier regola già ogni disco da solo.</value></data>
   <data name="Info_Merge_Text" xml:space="preserve"><value>Se avvii una copia mentre un’altra è in corso, può unirsi a quella invece di aspettare il turno: i suoi file vanno in fondo all’elenco.\n• Mai: ogni copia va per conto suo.\n• Se vanno nella stessa cartella, o se usano gli stessi dischi.\n• Sempre.\nCon «Chiedi prima» decidi ogni volta. Utile quando mandi cartelle una alla volta sulla stessa chiavetta USB.</value></data>
   <data name="Info_MoveAttributes_Text" xml:space="preserve"><value>Spostando su un altro disco, i file vengono copiati e poi eliminati dall’origine. Qui scegli cosa si portano oltre al contenuto: attributi (sola lettura, nascosto…), autorizzazioni, proprietario e controllo.\n• Spostare cartelle di lavoro tra server mantenendo chi può aprirle.\nSullo stesso disco, spostare è solo cambiare posto e si conserva tutto.</value></data>
-  <data name="Info_DeleteIncomplete_Text" xml:space="preserve"><value>Durante la copia, ogni file viene scritto con l’estensione .mcpart e riceve il suo nome solo quando finisce bene. Se fermi una copia, quei pezzi permettono di riprendere più tardi proprio da dove si era fermata.\n• Attivo: premendo Ferma si eliminano i .mcpart e la destinazione resta pulita (ma non si può più riprendere).\n• Disattivo: vengono conservati per riprendere.\nNon si elimina mai nulla chiudendo MegaCopier o dopo un blackout.</value></data>
+  <data name="Info_DeleteIncomplete_Text" xml:space="preserve"><value>«Interrompi» annulla la copia e la toglie dall’elenco. Durante la copia ogni file viene scritto con l’estensione .mcpart e riceve il suo nome solo quando termina correttamente.\n• Attivato: premendo Interrompi i .mcpart vengono eliminati e la destinazione resta pulita.\n• Disattivato: vengono conservati e, se ricopi la stessa cosa, si riprende proprio da dove si era fermata.\nNon si elimina mai nulla chiudendo MegaCopier o dopo un blackout: quelle copie vengono proposte per continuare alla riapertura.</value></data>
   <data name="Info_Eject_Text" xml:space="preserve"><value>Alla fine, MegaCopier espelle in sicurezza la chiavetta USB, la scheda o il disco USB di destinazione, come «Rimozione sicura dell’hardware».\n• Riempire più chiavette USB di fila: quando la togli, è già pronta.\nLo fa solo se nessun’altra copia la sta usando. «Forza» la espelle anche se un programma la tiene aperta.</value></data>
   <data name="Info_OnError_Text" xml:space="preserve"><value>Cosa fare quando un file non si riesce a copiare nemmeno dopo i tentativi.\n• Chiedi: la copia si ferma, ti dice il motivo e scegli se riprovare, saltarlo, saltare i successivi o fermare.\n• Salta e continua: ideale per copie grandi di notte; alla fine vedi l’elenco degli errori.\n• Ferma la copia: quando non deve mancare nulla.\n• Riprova alla fine: lo lascia per ultimo, nel caso fosse in uso e si liberi.</value></data>
   <data name="Info_ErrorReport_Text" xml:space="preserve"><value>Se una copia termina con errori, salva un file di testo con ogni file non riuscito, il motivo e l’ora.\n• Per rivedere con calma una copia lasciata di notte.\n• Per passarlo a chi si occupa dei computer.</value></data>
@@ -1427,4 +1427,19 @@
   <data name="Picker_DeleteTitle" xml:space="preserve"><value>Scegli cosa eliminare: file o cartelle</value></data>
   <data name="Picker_WipeTitle" xml:space="preserve"><value>Scegli cosa eliminare in modo sicuro: file o cartelle</value></data>
   <data name="Picker_AddTitle" xml:space="preserve"><value>Scegli cosa aggiungere all’elenco: file o cartelle</value></data>
+  <data name="Space_Title" xml:space="preserve"><value>Spazio insufficiente su {0}</value></data>
+  <data name="Space_Text" xml:space="preserve"><value>Servono {0} e ci sono {1} liberi (mancano {2}).</value></data>
+  <data name="Space_TextAdding" xml:space="preserve"><value>Con ciò che vuoi aggiungere servono {0} e ci sono {1} liberi (mancano {2}).</value></data>
+  <data name="Space_Force" xml:space="preserve"><value>Copia comunque</value></data>
+  <data name="Space_ForceTip" xml:space="preserve"><value>Copia fino a riempire il disco e poi attende: libera spazio e la copia riprende da sola.</value></data>
+  <data name="Space_Cancel" xml:space="preserve"><value>Annulla</value></data>
+  <data name="Space_CancelTip" xml:space="preserve"><value>Non viene copiato nulla.</value></data>
+  <data name="Space_CancelAddingTip" xml:space="preserve"><value>Non viene aggiunto nulla; la copia continua come prima.</value></data>
+  <data name="Job_StartNow" xml:space="preserve"><value>Avvia ora</value></data>
+  <data name="Drop_One" xml:space="preserve"><value>«{0}»</value></data>
+  <data name="Drop_Many" xml:space="preserve"><value>{0} elementi</value></data>
+  <data name="Drop_AddWhatHere" xml:space="preserve"><value>Aggiungi {0} a questa copia</value></data>
+  <data name="Drop_AddWhatTo" xml:space="preserve"><value>Aggiungi {0} a {1}</value></data>
+  <data name="Drop_InsertWhatAt" xml:space="preserve"><value>Aggiungi {0} alla posizione {1}</value></data>
+  <data name="Files_ResizeColumn.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Trascina per cambiare la larghezza della colonna (doppio clic: larghezza predefinita)</value></data>
 </root>

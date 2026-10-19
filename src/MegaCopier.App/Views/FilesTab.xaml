@@ -49,7 +49,7 @@
                         <MenuFlyoutItem x:Uid="Files_SelectSameFolder" Click="SelectSameFolder_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8B7;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
                         <MenuFlyoutItem x:Uid="Files_InvertSelection" Click="InvertSelection_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8AB;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
                         <MenuFlyoutSeparator />
-                        <ToggleMenuFlyoutItem x:Name="ShowHashesItem" x:Uid="Files_ShowHashes" Click="ShowHashes_Click" />
+                        <MenuFlyoutItem x:Name="ShowHashesItem" x:Uid="Files_ShowHashes" Click="ShowHashes_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8EF;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
                         <MenuFlyoutSeparator />
                         <MenuFlyoutItem x:Uid="Files_ExportHtml" Click="ExportHtml_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE774;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
                         <MenuFlyoutItem x:Uid="Files_ExportCsv" Click="ExportCsv_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE9F9;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
@@ -63,7 +63,7 @@
 
         <!-- Cabecera de columnas: origen, tamaño y destino (y las sumas, si se piden) -->
         <!-- La barra de botones arranca a la altura de la cabecera ("Origen") y queda fija a la izquierda -->
-        <Grid x:Name="ListArea" Grid.Row="1" Grid.RowSpan="2" ColumnSpacing="12" RowSpacing="8" SizeChanged="ListArea_SizeChanged">
+        <Grid x:Name="ListArea" Grid.Row="1" Grid.RowSpan="2" ColumnSpacing="6" RowSpacing="6" SizeChanged="ListArea_SizeChanged">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
@@ -73,11 +73,11 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-        <Grid x:Name="Header" Grid.Column="1" Padding="12,0,16,0" ColumnSpacing="12" VerticalAlignment="Bottom">
+        <Grid x:Name="Header" Grid.Column="1" Padding="12,0,16,0" ColumnSpacing="12" VerticalAlignment="Bottom" SizeChanged="Header_SizeChanged">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="28" />
-                <ColumnDefinition Width="3*" />
-                <ColumnDefinition Width="80" />
+                <ColumnDefinition x:Name="HeaderSourceColumn" Width="3*" />
+                <ColumnDefinition x:Name="HeaderSizeColumn" Width="80" />
                 <ColumnDefinition x:Name="HeaderDestinationColumn" Width="2*" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
@@ -90,11 +90,16 @@
             <TextBlock x:Name="DestinationHeader" Grid.Column="3" x:Uid="Files_Destination" Style="{StaticResource McSecondary}" FontWeight="SemiBold" />
             <TextBlock x:Name="SourceHashHeader" Grid.Column="4" Width="96" x:Uid="Files_SourceHash" Style="{StaticResource McSecondary}" TextWrapping="WrapWholeWords" MaxLines="2" TextTrimming="CharacterEllipsis" />
             <TextBlock x:Name="TargetHashHeader" Grid.Column="5" Width="96" x:Uid="Files_TargetHash" Style="{StaticResource McSecondary}" TextWrapping="WrapWholeWords" MaxLines="2" TextTrimming="CharacterEllipsis" />
+            <!-- Líneas divisorias: se arrastran para dar a Origen y Tamaño el ancho que se quiera (doble clic, el de siempre) -->
+            <Canvas x:Name="SplitterLayer" Grid.ColumnSpan="6">
+                <c:ColumnSplitter x:Name="SourceSplitter" x:Uid="Files_ResizeColumn" Height="22" />
+                <c:ColumnSplitter x:Name="SizeSplitter" x:Uid="Files_ResizeColumn" Height="22" />
+            </Canvas>
         </Grid>
 
 
             <!-- Botones de la lista: ordenar, añadir, quitar, guardar y cargar -->
-            <Border x:Name="RailBox" Grid.RowSpan="2" VerticalAlignment="Top" Padding="4" CornerRadius="8" Background="{StaticResource McSurfaceBrush}" BorderBrush="{StaticResource McBorderBrush}" BorderThickness="1">
+            <Border x:Name="RailBox" Grid.Row="1" VerticalAlignment="Top" Padding="4" CornerRadius="8" Background="{StaticResource McSurfaceBrush}" BorderBrush="{StaticResource McBorderBrush}" BorderThickness="1">
                 <StackPanel x:Name="Rail" Spacing="2">
                     <Button x:Name="TopButton" x:Uid="Files_RailTop" Style="{StaticResource McToolButton}" Click="MoveTop_Click">
                         <Button.KeyboardAccelerators><KeyboardAccelerator Modifiers="Menu" Key="Home" /></Button.KeyboardAccelerators>
@@ -133,11 +138,10 @@
             <ListView x:Name="List" Grid.Row="1" Grid.Column="1" SelectionMode="Extended" IsItemClickEnabled="False" SelectionChanged="List_SelectionChanged"
                       CanDragItems="True" AllowDrop="True" DragItemsStarting="List_DragItemsStarting" DragItemsCompleted="List_DragItemsCompleted"
                       DragOver="List_DragOver" DragLeave="List_DragLeave" Drop="List_Drop">
+                <!-- Sin transiciones de filas (ni las de serie): con miles de filas que aparecen, se mueven y se ocultan mientras la
+                     ventana cambia de tamaño, WinUI llegaba a cerrarse de golpe al dibujarlas -->
                 <ListView.ItemContainerTransitions>
-                    <TransitionCollection>
-                        <AddDeleteThemeTransition />
-                        <RepositionThemeTransition />
-                    </TransitionCollection>
+                    <TransitionCollection />
                 </ListView.ItemContainerTransitions>
                 <ListView.ContextFlyout>
                     <MenuFlyout>
@@ -157,17 +161,16 @@
                         <Grid Padding="0,5" ColumnSpacing="12">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="28" />
-                                <ColumnDefinition Width="3*" />
-                                <ColumnDefinition Width="80" />
-                                <ColumnDefinition Width="{x:Bind DestinationWidth, Mode=OneWay}" />
+                                <ColumnDefinition Width="{x:Bind Columns.Source, Mode=OneWay}" />
+                                <ColumnDefinition Width="{x:Bind Columns.Size, Mode=OneWay}" />
+                                <ColumnDefinition Width="{x:Bind Columns.Destination, Mode=OneWay}" />
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
                             <Grid ToolTipService.ToolTip="{x:Bind StateText, Mode=OneWay}">
                                 <c:McIcon HorizontalAlignment="Center" VerticalAlignment="Center" Glyph="&#xEA3A;" FontSize="11" Foreground="{StaticResource McTextSecondaryBrush}" Visibility="{x:Bind IsPending, Mode=OneWay}" />
                                 <!-- El archivo en curso: el círculo se va llenando con lo copiado y se cierra al terminar -->
-                                <ProgressRing HorizontalAlignment="Center" VerticalAlignment="Center" Width="18" Height="18" IsIndeterminate="False" Maximum="100" Value="{x:Bind Percent, Mode=OneWay}"
-                                              IsActive="{x:Bind IsCurrent, Mode=OneWay}" Visibility="{x:Bind IsCurrent, Mode=OneWay}" Foreground="{StaticResource McAccentBrush}" Background="{StaticResource McTrackBrush}" />
+                                <c:ProgressArc HorizontalAlignment="Center" VerticalAlignment="Center" Width="18" Height="18" Value="{x:Bind Percent, Mode=OneWay}" Visibility="{x:Bind IsCurrent, Mode=OneWay}" />
                                 <c:McIcon HorizontalAlignment="Center" VerticalAlignment="Center" Glyph="&#xE73E;" FontSize="14" Foreground="{StaticResource McSuccessBrush}" Visibility="{x:Bind IsCopiedOnly, Mode=OneWay}" />
                                 <c:McIcon HorizontalAlignment="Center" VerticalAlignment="Center" Glyph="&#xE930;" FontSize="15" Foreground="{StaticResource McSuccessBrush}" Visibility="{x:Bind IsVerified, Mode=OneWay}" />
                                 <c:McIcon HorizontalAlignment="Center" VerticalAlignment="Center" Glyph="&#xE893;" FontSize="14" Foreground="{StaticResource McTextSecondaryBrush}" Visibility="{x:Bind IsSkipped, Mode=OneWay}" />

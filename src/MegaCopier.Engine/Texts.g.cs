@@ -294,6 +294,7 @@ public static partial class Texts
             ["E_FolderSkipExisting"] = "La carpeta ya existía: se pasan los {0} archivos que ya están y se copia el resto.",
             ["E_FolderOverwrite"] = "La carpeta ya existía: se sobrescriben los {0} archivos que ya están.",
             ["E_FolderRenamed"] = "La carpeta «{0}» ya existía: se copia como «{1}».",
+            ["E_SpaceForced"] = "Se copia igualmente: al llenarse el disco, la copia esperará a que haya espacio.",
         },
         ["en-US"] = new()
         {
@@ -566,6 +567,7 @@ public static partial class Texts
             ["E_FolderSkipExisting"] = "The folder already existed: the {0} files already there are passed over and the rest is copied.",
             ["E_FolderOverwrite"] = "The folder already existed: the {0} files already there are overwritten.",
             ["E_FolderRenamed"] = "The folder \"{0}\" already existed: it is copied as \"{1}\".",
+            ["E_SpaceForced"] = "Copying anyway: when the disk is full, the transfer will wait for space.",
         },
         ["fr-FR"] = new()
         {
@@ -838,6 +840,7 @@ public static partial class Texts
             ["E_FolderSkipExisting"] = "Le dossier existait déjà : les {0} fichiers déjà présents sont passés et le reste est copié.",
             ["E_FolderOverwrite"] = "Le dossier existait déjà : les {0} fichiers déjà présents sont remplacés.",
             ["E_FolderRenamed"] = "Le dossier « {0} » existait déjà : il est copié sous le nom « {1} ».",
+            ["E_SpaceForced"] = "Copie quand même : quand le disque sera plein, la copie attendra de l’espace.",
         },
         ["de-DE"] = new()
         {
@@ -1110,6 +1113,7 @@ public static partial class Texts
             ["E_FolderSkipExisting"] = "Der Ordner war schon vorhanden: Die {0} vorhandenen Dateien werden übersprungen, der Rest wird kopiert.",
             ["E_FolderOverwrite"] = "Der Ordner war schon vorhanden: Die {0} vorhandenen Dateien werden überschrieben.",
             ["E_FolderRenamed"] = "Der Ordner „{0}“ war schon vorhanden: Er wird als „{1}“ kopiert.",
+            ["E_SpaceForced"] = "Es wird trotzdem kopiert: Ist der Datenträger voll, wartet die Kopie auf freien Platz.",
         },
         ["it-IT"] = new()
         {
@@ -1382,6 +1386,7 @@ public static partial class Texts
             ["E_FolderSkipExisting"] = "La cartella esisteva già: i {0} file già presenti vengono saltati e il resto viene copiato.",
             ["E_FolderOverwrite"] = "La cartella esisteva già: i {0} file già presenti vengono sovrascritti.",
             ["E_FolderRenamed"] = "La cartella «{0}» esisteva già: viene copiata come «{1}».",
+            ["E_SpaceForced"] = "Si copia comunque: quando il disco sarà pieno, la copia attenderà lo spazio.",
         },
         ["pt-BR"] = new()
         {
@@ -1654,6 +1659,7 @@ public static partial class Texts
             ["E_FolderSkipExisting"] = "A pasta já existia: os {0} arquivos que já estão lá são pulados e o resto é copiado.",
             ["E_FolderOverwrite"] = "A pasta já existia: os {0} arquivos que já estão lá são substituídos.",
             ["E_FolderRenamed"] = "A pasta \"{0}\" já existia: é copiada como \"{1}\".",
+            ["E_SpaceForced"] = "Copiando mesmo assim: quando o disco encher, a cópia vai esperar por espaço.",
         },
         ["ru-RU"] = new()
         {
@@ -1926,6 +1932,7 @@ public static partial class Texts
             ["E_FolderSkipExisting"] = "Папка уже была: {0} существующих файлов пропускаются, остальные копируются.",
             ["E_FolderOverwrite"] = "Папка уже была: {0} существующих файлов перезаписываются.",
             ["E_FolderRenamed"] = "Папка «{0}» уже была: она копируется как «{1}».",
+            ["E_SpaceForced"] = "Копирование продолжается: когда диск заполнится, оно будет ждать свободного места.",
         },
         ["uk-UA"] = new()
         {
@@ -2198,6 +2205,7 @@ public static partial class Texts
             ["E_FolderSkipExisting"] = "Тека вже була: {0} наявних файлів пропускаються, решта копіюється.",
             ["E_FolderOverwrite"] = "Тека вже була: {0} наявних файлів перезаписуються.",
             ["E_FolderRenamed"] = "Тека «{0}» вже була: вона копіюється як «{1}».",
+            ["E_SpaceForced"] = "Копіювання триває: коли диск заповниться, воно чекатиме на вільне місце.",
         },
         ["pl-PL"] = new()
         {
@@ -2470,6 +2478,7 @@ public static partial class Texts
             ["E_FolderSkipExisting"] = "Folder już istniał: {0} istniejących plików jest pomijanych, reszta jest kopiowana.",
             ["E_FolderOverwrite"] = "Folder już istniał: {0} istniejących plików zostanie nadpisanych.",
             ["E_FolderRenamed"] = "Folder „{0}” już istniał: zostanie skopiowany jako „{1}”.",
+            ["E_SpaceForced"] = "Kopiowanie mimo to: gdy dysk się zapełni, kopiowanie poczeka na wolne miejsce.",
         },
         ["nl-NL"] = new()
         {
@@ -2742,6 +2751,7 @@ public static partial class Texts
             ["E_FolderSkipExisting"] = "De map bestond al: de {0} bestanden die er al zijn worden overgeslagen en de rest wordt gekopieerd.",
             ["E_FolderOverwrite"] = "De map bestond al: de {0} bestanden die er al zijn worden overschreven.",
             ["E_FolderRenamed"] = "De map \"{0}\" bestond al: hij wordt gekopieerd als \"{1}\".",
+            ["E_SpaceForced"] = "Er wordt toch gekopieerd: als de schijf vol is, wacht het kopiëren op ruimte.",
         },
         ["tr-TR"] = new()
         {
@@ -3014,6 +3024,7 @@ public static partial class Texts
             ["E_FolderSkipExisting"] = "Klasör zaten vardı: mevcut {0} dosya atlanır, kalanı kopyalanır.",
             ["E_FolderOverwrite"] = "Klasör zaten vardı: mevcut {0} dosyanın üzerine yazılır.",
             ["E_FolderRenamed"] = "\"{0}\" klasörü zaten vardı: \"{1}\" olarak kopyalanır.",
+            ["E_SpaceForced"] = "Yine de kopyalanıyor: disk dolduğunda kopyalama yer açılmasını bekleyecek.",
         },
         ["zh-CN"] = new()
         {
@@ -3286,6 +3297,7 @@ public static partial class Texts
             ["E_FolderSkipExisting"] = "文件夹已存在：跳过已有的 {0} 个文件，复制其余文件。",
             ["E_FolderOverwrite"] = "文件夹已存在：覆盖已有的 {0} 个文件。",
             ["E_FolderRenamed"] = "文件夹“{0}”已存在：将复制为“{1}”。",
+            ["E_SpaceForced"] = "仍然复制：磁盘写满后，复制会等待可用空间。",
         },
         ["ja-JP"] = new()
         {
@@ -3558,6 +3570,7 @@ public static partial class Texts
             ["E_FolderSkipExisting"] = "フォルダーはすでにありました: 既存の {0} 個のファイルを飛ばし、残りをコピーします。",
             ["E_FolderOverwrite"] = "フォルダーはすでにありました: 既存の {0} 個のファイルを上書きします。",
             ["E_FolderRenamed"] = "フォルダー「{0}」はすでにありました: 「{1}」としてコピーします。",
+            ["E_SpaceForced"] = "それでもコピーします。ディスクがいっぱいになると、空きができるまで待機します。",
         },
         ["ko-KR"] = new()
         {
@@ -3830,6 +3843,7 @@ public static partial class Texts
             ["E_FolderSkipExisting"] = "폴더가 이미 있었습니다: 이미 있는 파일 {0}개는 건너뛰고 나머지를 복사합니다.",
             ["E_FolderOverwrite"] = "폴더가 이미 있었습니다: 이미 있는 파일 {0}개를 덮어씁니다.",
             ["E_FolderRenamed"] = "\"{0}\" 폴더가 이미 있었습니다: \"{1}\"(으)로 복사합니다.",
+            ["E_SpaceForced"] = "그래도 복사합니다. 디스크가 가득 차면 공간이 생길 때까지 기다립니다.",
         },
     };
 }

@@ -1106,7 +1106,7 @@ Settings_MergeConfirm.Content	Pytaj przed dodaniem
 Settings_MoveAttributesTitle.Text	Przy przenoszeniu zachowuj też
 Settings_MoveAttributesDescription.Text	Przy przenoszeniu na inny dysk. Na tym samym dysku to zmiana nazwy i wszystko zostaje.
 Settings_DeleteIncompleteTitle.Text	Po zatrzymaniu kopii usuń to, co zostało w połowie
-Settings_DeleteIncompleteDescription.Text	Nie będzie można kontynuować od miejsca zatrzymania. W miejscu docelowym nie zostaną niepełne pliki (.mcpart).
+Settings_DeleteIncompleteDescription.Text	W miejscu docelowym nie zostają niekompletne pliki (.mcpart). Jeśli zostaną zachowane, ponowne kopiowanie tego samego ruszy od miejsca przerwania.
 Settings_KeepOnError.Content	Nie usuwaj, jeśli kopia zatrzymała się przez błąd
 Settings_EjectTitle.Text	Po zakończeniu wysuń dysk docelowy
 Settings_EjectDescription.Text	Tylko pendrive'y, karty pamięci i dyski USB, gdy żadna inna kopia ich nie używa.
@@ -1330,7 +1330,7 @@ Info_Hash_Text	Hash to jak odcisk palca pliku: jeśli zmieni się choć jeden ba
 Info_Performance_Text	Jak szybko może iść kopiowanie.\n• Limit prędkości: żeby kopiowanie nie zajmowało całej sieci ani dysku, gdy pracujesz lub oglądasz film. Każda kopia ma też własny limit na karcie Opcje, który zmienia się od razu, bez zatrzymywania.\n• Rozmiar bufora: bloki czytane i zapisywane naraz. Większy sprawdza się przy ogromnych plikach.\n• Operacje jednocześnie: ile bloków jest żądanych od dysku w tym samym czasie. Szybkie dyski SSD zyskują na większej liczbie.\nJeśli nie wiesz, co ustawić, zostaw domyślne: MegaCopier sam dostraja każdy dysk.
 Info_Merge_Text	Jeśli zaczniesz kopiowanie, gdy trwa inne, może do niego dołączyć zamiast czekać: jego pliki trafią na koniec listy.\n• Nigdy: każda kopia osobno.\n• Jeśli idą do tego samego folderu lub używają tych samych dysków.\n• Zawsze.\nZ „Pytaj najpierw” decydujesz za każdym razem. Przydatne, gdy wysyłasz foldery po kolei na ten sam pendrive.
 Info_MoveAttributes_Text	Przy przenoszeniu na inny dysk pliki są kopiowane, a potem usuwane ze źródła. Tu wybierasz, co zabierają poza zawartością: atrybuty (tylko do odczytu, ukryty…), uprawnienia, właściciela i inspekcję.\n• Przenoszenie folderów roboczych między serwerami z zachowaniem tego, kto może je otwierać.\nNa tym samym dysku przenoszenie to tylko zmiana miejsca i wszystko zostaje.
-Info_DeleteIncomplete_Text	Podczas kopiowania każdy plik jest zapisywany z rozszerzeniem .mcpart i dostaje swoją nazwę dopiero po poprawnym zakończeniu. Jeśli zatrzymasz kopiowanie, te fragmenty pozwalają później kontynuować dokładnie od miejsca przerwania.\n• Włączone: Zatrzymaj usuwa pliki .mcpart i miejsce docelowe zostaje czyste (ale nie da się już wznowić).\n• Wyłączone: są zachowywane do wznowienia.\nNic nie jest usuwane przy zamykaniu MegaCopier ani po zaniku prądu.
+Info_DeleteIncomplete_Text	„Zatrzymaj” anuluje kopiowanie i usuwa je z listy. Podczas kopiowania każdy plik jest zapisywany z rozszerzeniem .mcpart i dostaje swoją nazwę dopiero po poprawnym zakończeniu.\n• Włączone: po naciśnięciu Zatrzymaj pliki .mcpart są usuwane, a miejsce docelowe zostaje czyste.\n• Wyłączone: są zachowywane, a jeśli skopiujesz to samo ponownie, kopiowanie ruszy dokładnie od miejsca przerwania.\nPrzy zamykaniu MegaCopier ani po zaniku zasilania nic nie jest usuwane: takie kopiowania można dokończyć po ponownym uruchomieniu.
 Info_Eject_Text	Po zakończeniu MegaCopier bezpiecznie wysuwa docelowy pendrive, kartę lub dysk USB, jak „Bezpieczne usuwanie sprzętu”.\n• Wypełnianie kilku pendrive’ów po kolei: gdy go wyjmujesz, jest już gotowy.\nTylko jeśli żadna inna kopia go nie używa. „Wymuś” wysuwa go, nawet gdy jakiś program ma go otwartego.
 Info_OnError_Text	Co zrobić, gdy pliku nie da się skopiować nawet po ponownych próbach.\n• Pytaj: kopiowanie się zatrzymuje, podaje przyczynę, a ty wybierasz: ponów, pomiń, pomijaj kolejne lub zatrzymaj.\n• Pomiń i kontynuuj: idealne do dużych kopii w nocy; na końcu widzisz listę błędów.\n• Zatrzymaj kopiowanie: gdy nic nie może brakować.\n• Ponów na końcu: zostawia plik na koniec, na wypadek gdyby był w użyciu i się zwolnił.
 Info_ErrorReport_Text	Jeśli kopiowanie skończy się błędami, zapisywany jest plik tekstowy z każdym nieudanym plikiem, przyczyną i godziną.\n• By spokojnie przejrzeć kopię zostawioną na noc.\n• By przekazać go osobie, która dba o komputery.
@@ -1421,3 +1421,18 @@ Picker_SendTitle	Wybierz, co wysłać: pliki lub foldery
 Picker_DeleteTitle	Wybierz, co usunąć: pliki lub foldery
 Picker_WipeTitle	Wybierz, co bezpiecznie usunąć: pliki lub foldery
 Picker_AddTitle	Wybierz, co dodać do listy: pliki lub foldery
+Space_Title	Za mało miejsca na {0}
+Space_Text	Potrzeba {0}, wolne jest {1} (brakuje {2}).
+Space_TextAdding	Z tym, co chcesz dodać, potrzeba {0}, wolne jest {1} (brakuje {2}).
+Space_Force	Kopiuj mimo to
+Space_ForceTip	Kopiuje do zapełnienia dysku i czeka: zwolnij miejsce, a kopiowanie samo ruszy dalej.
+Space_Cancel	Anuluj
+Space_CancelTip	Nic nie zostanie skopiowane.
+Space_CancelAddingTip	Nic nie zostanie dodane; kopiowanie trwa jak dotąd.
+Job_StartNow	Rozpocznij teraz
+Drop_One	„{0}”
+Drop_Many	{0} elem.
+Drop_AddWhatHere	Dodaj {0} do tego kopiowania
+Drop_AddWhatTo	Dodaj {0} do {1}
+Drop_InsertWhatAt	Dodaj {0} na pozycji {1}
+Files_ResizeColumn.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Przeciągnij, aby zmienić szerokość kolumny (dwuklik: domyślna szerokość)

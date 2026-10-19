@@ -1112,7 +1112,7 @@
   <data name="Settings_MoveAttributesTitle.Text" xml:space="preserve"><value>移動時にも保持する</value></data>
   <data name="Settings_MoveAttributesDescription.Text" xml:space="preserve"><value>別のドライブに移動するとき。同じドライブでは名前の変更なので、すべて保持されます。</value></data>
   <data name="Settings_DeleteIncompleteTitle.Text" xml:space="preserve"><value>コピーを停止したら途中のファイルを削除する</value></data>
-  <data name="Settings_DeleteIncompleteDescription.Text" xml:space="preserve"><value>中断した所から再開できなくなります。コピー先に不完全なファイル (.mcpart) は残りません。</value></data>
+  <data name="Settings_DeleteIncompleteDescription.Text" xml:space="preserve"><value>コピー先に未完成のファイル (.mcpart) が残りません。残しておくと、同じものをもう一度コピーしたときに中断したところから続きます。</value></data>
   <data name="Settings_KeepOnError.Content" xml:space="preserve"><value>エラーで停止した場合は削除しない</value></data>
   <data name="Settings_EjectTitle.Text" xml:space="preserve"><value>完了したらコピー先のドライブを取り出す</value></data>
   <data name="Settings_EjectDescription.Text" xml:space="preserve"><value>USB メモリ、メモリー カード、USB ドライブのみ。ほかのコピーが使っていない場合。</value></data>
@@ -1336,7 +1336,7 @@
   <data name="Info_Performance_Text" xml:space="preserve"><value>コピーがどこまで速く走れるか。\n• 速度制限: 作業中や映画を見ているときに、コピーがネットワークやディスクを使い切らないようにします。各コピーの [オプション] タブにも個別の制限があり、止めずにすぐ変えられます。\n• バッファー サイズ: 一度に読み書きするブロック。巨大なファイルでは大きいほうが有利です。\n• 同時操作数: ディスクに同時に要求するブロックの数。高速な SSD は多いほど速くなります。\nわからなければ既定のままで大丈夫です。MegaCopier がディスクごとに自動で調整します。</value></data>
   <data name="Info_Merge_Text" xml:space="preserve"><value>コピー中に別のコピーを始めると、順番を待たずに実行中のコピーに加わることができます。ファイルはリストの末尾に入ります。\n• しない: それぞれ別に実行。\n• 同じフォルダーへ、または同じディスクを使う場合。\n• 常に。\n「先に確認する」をオンにすると毎回選べます。同じ USB メモリーにフォルダーを少しずつ送るときに便利です。</value></data>
   <data name="Info_MoveAttributes_Text" xml:space="preserve"><value>別のディスクへ移動するときは、ファイルをコピーしてから元を削除します。ここでは内容以外に何を持っていくかを選びます: 属性 (読み取り専用、隠し…)、アクセス許可、所有者、監査。\n• 誰が開けるかを保ったまま、作業フォルダーをサーバー間で移動。\n同じディスク内の移動は場所が変わるだけなので、すべて保たれます。</value></data>
-  <data name="Info_DeleteIncomplete_Text" xml:space="preserve"><value>コピー中、各ファイルは拡張子 .mcpart で書き込まれ、正しく完了したときに初めて本来の名前になります。コピーを停止しても、この断片から後で止まったところの続きをコピーできます。\n• オン: [停止] を押すと .mcpart が削除され、コピー先がきれいに保たれます (ただし再開はできません)。\n• オフ: 再開用に残します。\nMegaCopier を閉じたときや停電後に何かが削除されることはありません。</value></data>
+  <data name="Info_DeleteIncomplete_Text" xml:space="preserve"><value>「停止」はコピーを取り消し、一覧から外します。コピー中の各ファイルは拡張子 .mcpart で書き込まれ、正常に終わったときに本来の名前になります。\n• オン: 停止を押すと .mcpart が削除され、コピー先はきれいなままです。\n• オフ: 残しておき、同じものをもう一度コピーすると中断したところから続きます。\nMegaCopier を閉じたときや停電のあとは何も削除しません。そうしたコピーは次に開いたときに続行を提案します。</value></data>
   <data name="Info_Eject_Text" xml:space="preserve"><value>完了すると、MegaCopier はコピー先の USB メモリー、カード、USB ディスクを「ハードウェアの安全な取り外し」と同じように安全に取り外せる状態にします。\n• 何本もの USB メモリーに続けてコピー: 抜くときにはもう準備完了。\nほかのコピーが使っていないときだけ行います。「強制」はプログラムが開いていても取り外します。</value></data>
   <data name="Info_OnError_Text" xml:space="preserve"><value>再試行してもコピーできないファイルがあるときの動作。\n• 確認する: コピーが止まって理由を表示し、再試行、スキップ、以降もスキップ、停止から選べます。\n• スキップして続行: 夜間の大きなコピーに最適。最後に失敗の一覧を確認できます。\n• コピーを停止: 何ひとつ欠けてはいけないときに。\n• 最後に再試行: 使用中だったものが空くかもしれないので、最後に回します。</value></data>
   <data name="Info_ErrorReport_Text" xml:space="preserve"><value>コピーがエラーで終わったとき、失敗した各ファイル、理由、時刻を書いたテキスト ファイルを保存します。\n• 夜間に流しておいたコピーを落ち着いて確認するために。\n• パソコンの管理担当者に渡すために。</value></data>
@@ -1427,4 +1427,19 @@
   <data name="Picker_DeleteTitle" xml:space="preserve"><value>削除するものを選択: ファイルまたはフォルダー</value></data>
   <data name="Picker_WipeTitle" xml:space="preserve"><value>安全に削除するものを選択: ファイルまたはフォルダー</value></data>
   <data name="Picker_AddTitle" xml:space="preserve"><value>一覧に追加するものを選択: ファイルまたはフォルダー</value></data>
+  <data name="Space_Title" xml:space="preserve"><value>{0} の空き容量が足りません</value></data>
+  <data name="Space_Text" xml:space="preserve"><value>必要な容量は {0}、空きは {1} です ({2} 不足)。</value></data>
+  <data name="Space_TextAdding" xml:space="preserve"><value>追加するものを含めると {0} 必要で、空きは {1} です ({2} 不足)。</value></data>
+  <data name="Space_Force" xml:space="preserve"><value>それでもコピー</value></data>
+  <data name="Space_ForceTip" xml:space="preserve"><value>ディスクがいっぱいになるまでコピーして待機します。空きを作ると自動で再開します。</value></data>
+  <data name="Space_Cancel" xml:space="preserve"><value>キャンセル</value></data>
+  <data name="Space_CancelTip" xml:space="preserve"><value>何もコピーしません。</value></data>
+  <data name="Space_CancelAddingTip" xml:space="preserve"><value>何も追加しません。コピーはそのまま続きます。</value></data>
+  <data name="Job_StartNow" xml:space="preserve"><value>今すぐ開始</value></data>
+  <data name="Drop_One" xml:space="preserve"><value>「{0}」</value></data>
+  <data name="Drop_Many" xml:space="preserve"><value>{0} 個の項目</value></data>
+  <data name="Drop_AddWhatHere" xml:space="preserve"><value>{0} をこのコピーに追加</value></data>
+  <data name="Drop_AddWhatTo" xml:space="preserve"><value>{0} を {1} に追加</value></data>
+  <data name="Drop_InsertWhatAt" xml:space="preserve"><value>{0} を {1} 番目に追加</value></data>
+  <data name="Files_ResizeColumn.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>ドラッグして列の幅を変更 (ダブルクリック: 既定の幅)</value></data>
 </root>

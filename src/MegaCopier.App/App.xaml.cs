@@ -107,6 +107,8 @@ public partial class App : Application
 
     private void Launch()
     {
+        CrashProbe.Install(Path.GetDirectoryName(AppSettings.FilePath)!);
+
         // Primero los pinceles del tema, luego los estilos que los usan (Resources no existe aún en el constructor).
         ThemeManager.Register(Resources);
         Resources.MergedDictionaries.Add(new ResourceDictionary { Source = new Uri("ms-appx:///Themes/Styles.xaml") });
@@ -128,6 +130,7 @@ public partial class App : Application
         Queue.ConflictResolver = (job, conflict, cancellation) => Window.AskConflict(job, conflict, cancellation);
         Queue.ErrorResolver = (job, error, cancellation) => Window.AskError(job, error, cancellation);
         Queue.FolderResolver = (job, folder, cancellation) => Window.AskFolder(job, folder, cancellation);
+        Queue.SpaceResolver = (job, shortage, cancellation) => Window.AskSpace(job, shortage, cancellation);
 
         _tray = new TrayIcon(
             Path.Combine(AppContext.BaseDirectory, "Assets", "MegaCopier.ico"),
@@ -166,7 +169,7 @@ public partial class App : Application
         _paste = new PasteInterceptor(OnExplorerPaste);
         _paste.PassedThrough += reason => Debug.WriteLine($"Ctrl+V devuelto al Explorador: {reason}");
         _drag = new DragInterceptor(OnExplorerDrag);
-        _drag.PassedThrough += reason => Debug.WriteLine($"Arrastre devuelto al Explorador: {reason}");
+        _drag.PassedThrough += reason => LogDrag($"devuelto al Explorador: {reason}");
         SetEnabled(Settings.Enabled, notify: false);
 
         if (Settings.AutoResumeInterrupted)
@@ -357,11 +360,20 @@ public partial class App : Application
                 options.Move = false;
             }
 
+            // La misma copia ya estaba detenida (por cerrar MegaCopier, un apagón...): se continúa esa en lugar de
+            // tener dos iguales en la lista.
+            if (request.StartAtUtc is null && Queue.FindInterrupted(request.Sources, destination, operation, options.Move) is { } same)
+            {
+                Queue.Resume(same);
+                firstJob ??= same;
+                continue;
+            }
+
             // Sumar a una copia en marcha, sin preguntar o preguntando antes.
             var mergeInto = operation == JobOperation.Copy && request.StartAtUtc is null ? FindMergeTarget(request.Sources, destination, options) : null;
             if (mergeInto is not null && !Settings.MergeConfirm)
             {
-                Queue.AddToJob(mergeInto, request.Sources);
+                _ = AddToJobAsync(mergeInto, request.Sources);
                 firstJob ??= mergeInto;
                 continue;
             }
@@ -502,13 +514,53 @@ public partial class App : Application
             });
     }
 
+    /// <summary>
+    /// Suma orígenes a una copia. Si está en marcha y lo nuevo no cabe en el destino (con lo que aún le queda por
+    /// copiar), se pregunta antes: cancelar no añade nada; forzar los añade y, al llenarse el disco, la copia espera.
+    /// </summary>
+    internal async Task<CopyJob?> AddToJobAsync(CopyJob job, IReadOnlyList<string> sources, int? beforeId = null)
+    {
+        if (job.State is CopyJobState.Running or CopyJobState.Paused)
+        {
+            SpaceShortage? shortage = null;
+            try
+            {
+                shortage = await Task.Run(() => job.CheckSpaceFor(sources));
+            }
+            catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or CopyPlanException)
+            {
+                // Lo que no se pueda leer lo dirá la propia copia al añadirlo.
+            }
+
+            if (shortage is not null)
+            {
+                if (!await Window.AskSpaceAsync(job, shortage, adding: true))
+                {
+                    return null;
+                }
+
+                job.ForceSpace();
+            }
+        }
+
+        try
+        {
+            return Queue.AddToJob(job, sources, beforeId);
+        }
+        catch (Exception ex) when (ex is InvalidOperationException or IOException or UnauthorizedAccessException or CopyPlanException)
+        {
+            Notify(L.Get("Files_AddFailed"), ex.Message);
+            return null;
+        }
+    }
+
     /// <summary>Pregunta si sumar la copia nueva a la que ya está en marcha; si no, la nueva sigue por su cuenta.</summary>
     private async Task AskMergeAsync(CopyJob added, CopyJob target, List<string> sources)
     {
         bool merge = await Window.ConfirmMergeAsync(target, sources.Count);
         if (merge && Queue.Withdraw(added))
         {
-            Queue.AddToJob(target, sources);
+            await AddToJobAsync(target, sources);
             return;
         }
 
@@ -815,6 +867,22 @@ public partial class App : Application
                 return new IpcResponse { Ok = true, Status = Window.DebugDrag(request.Destination ?? "files", y, rows, paths, drop) };
             }
 
+            case "debug-states" when TestMode:
+                return new IpcResponse { Ok = true, Status = Window.DebugStates() };
+
+            case "debug-menu" when TestMode && request.Destination is { } menuButton:
+                // Solo pruebas: abre el menú de un botón (por su nombre accesible), sin ratón.
+                return new IpcResponse { Ok = Window.DebugOpenMenu(menuButton) };
+
+            case "debug-redraw" when TestMode:
+                Window.Redraw();
+                return new IpcResponse { Ok = true };
+
+            case "debug-render" when TestMode && request.Destination is { } renderPath:
+                // Solo pruebas: lo que XAML dibuja (sin pasar por la composición en pantalla), en un PNG.
+                _ = Window.DebugRenderAsync(renderPath);
+                return new IpcResponse { Ok = true };
+
             case "debug-explorer" when TestMode:
                 return new IpcResponse { Ok = true, Status = string.Join(" | ", ExplorerFolders.Open()) };
 
@@ -962,6 +1030,27 @@ public partial class App : Application
         }
     }
 
+    /// <summary>
+    /// Registro de los arrastres que se devolvieron al Explorador y por qué (drag.log en la carpeta de datos, como
+    /// mucho 256 KB): sirve para saber por qué un arrastre no lo copió MegaCopier.
+    /// </summary>
+    private static void LogDrag(string line)
+    {
+        try
+        {
+            string path = Path.Combine(Engine.DataFolder.Path, "drag.log");
+            if (File.Exists(path) && new FileInfo(path).Length > 256 * 1024)
+            {
+                File.Delete(path);
+            }
+
+            File.AppendAllText(path, $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} {line}{Environment.NewLine}");
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+        {
+        }
+    }
+
     /// <summary>Solo en modo de prueba: deja constancia de lo que haría (apagar, avisar...) sin hacerlo.</summary>
     internal static void TestLog(string file, string line)
     {
@@ -979,14 +1068,18 @@ public partial class App : Application
         bool stoppedByUser = job.State == CopyJobState.Interrupted && StoppedByUser.Contains(job.Id) && !_exiting;
         ApplyEndOfJobOptions(job);
 
-        // «Detener» la única copia: se detiene y la ventana se cierra sola, como al terminar bien. Lo copiado se
-        // conserva y al volver a abrir MegaCopier se ofrece continuarla.
-        if (stoppedByUser && !Queue.HasActiveJobs)
+        // «Detener»: la copia se cancela y ya no está en la lista. Si no queda ninguna en marcha, la ventana se cierra
+        // sola, como al terminar bien.
+        if (stoppedByUser || job.Cancelled)
         {
-            Queue.Dismiss(job);
-            Window.OnAllFinished();
+            if (!Queue.HasActiveJobs)
+            {
+                Window.OnAllFinished();
+            }
+
             return;
         }
+
         bool finished = job.State is CopyJobState.Completed or CopyJobState.CompletedWithErrors or CopyJobState.Failed;
         if (finished)
         {

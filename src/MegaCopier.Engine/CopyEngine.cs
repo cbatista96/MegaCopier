@@ -72,6 +72,29 @@ public sealed partial class CopyEngine
     public Func<FolderConflictInfo, CancellationToken, FolderDecision>? FolderResolver { get; set; }
 
     /// <summary>
+    /// Lo que se va a copiar no cabe en el destino: devuelve true para copiar igualmente (hasta llenar el disco y
+    /// esperar a que haya sitio) o false para no copiar nada. Sin él, la copia falla con «no hay espacio».
+    /// </summary>
+    public Func<SpaceShortage, CancellationToken, bool>? SpaceResolver { get; set; }
+
+    /// <summary>
+    /// El usuario eligió copiar aunque no quepa: al llenarse el disco la copia espera a que haya sitio (aunque
+    /// «esperar si falta espacio» esté desactivado) en lugar de dar el archivo por fallido.
+    /// </summary>
+    public bool SpaceForced { get; set; }
+
+    /// <summary>Solo pruebas: cuánto espacio libre hay en una ruta (por defecto, lo que dice Windows).</summary>
+    internal Func<string, long?> FreeBytes { get; set; } = TestFreeBytes() is { } fake ? _ => fake : Win32.GetFreeBytes;
+
+    /// <summary>
+    /// Solo en el modo de prueba de la aplicación (MEGACOPIER_TEST=1): MEGACOPIER_TEST_FREE_MB simula el espacio libre
+    /// del destino, para probar el aviso de «no hay espacio» sin llenar un disco.
+    /// </summary>
+    private static long? TestFreeBytes() =>
+        Environment.GetEnvironmentVariable("MEGACOPIER_TEST") == "1"
+        && long.TryParse(Environment.GetEnvironmentVariable("MEGACOPIER_TEST_FREE_MB"), out long mb) ? mb << 20 : null;
+
+    /// <summary>
     /// El usuario decidió qué hacer con las carpetas que ya existían: la regla de conflictos que queda y, si eligió
     /// renombrar, los nombres nuevos (para guardarlos en el trabajo y respetarlos al reanudar).
     /// </summary>
@@ -242,7 +265,7 @@ public sealed partial class CopyEngine
 
         if (_options.CheckFreeSpace && !_options.DryRun && _options.Mode != CopyMode.FoldersOnly)
         {
-            EnsureFreeSpace(plan, request.Destination, renamed);
+            EnsureFreeSpace(plan, request.Destination, renamed, cancellationToken);
         }
 
         Log(LogLevel.Info, $"{(_options.Move ? "Mover" : "Copiar")} {plan.Files.Count} archivos ({FormatBytes(plan.TotalBytes)}) a {request.Destination}");
@@ -1141,14 +1164,65 @@ public sealed partial class CopyEngine
         existing.Length == (_options.Encrypt && _options.Operation == JobOperation.Copy ? EncryptedFile.EncryptedLength(file.Length) : file.Length)
         && (existing.LastWriteTimeUtc - file.LastWriteUtc).Duration() <= _options.TimeTolerance;
 
-    private void EnsureFreeSpace(CopyPlan plan, string destination, HashSet<string> renamed)
+    private void EnsureFreeSpace(CopyPlan plan, string destination, HashSet<string> renamed, CancellationToken cancellationToken)
     {
-        long? free = Win32.GetFreeBytes(Path.GetFullPath(destination));
-        if (free is null)
+        long? free = FreeBytes(Path.GetFullPath(destination));
+        if (free is null || SpaceForced)
         {
             return;
         }
 
+        long needed = BytesNeeded(plan, destination, renamed);
+        if (needed > free)
+        {
+            ResolveShortage(new SpaceShortage(destination, needed, free.Value), cancellationToken, beforeStart: true);
+        }
+    }
+
+    /// <summary>
+    /// No cabe: se pregunta (si se puede preguntar). «Forzar» copia hasta llenar el disco y luego espera a que haya
+    /// sitio; «Cancelar» antes de empezar no copia nada. Sin quien responda, la copia falla como siempre.
+    /// </summary>
+    private void ResolveShortage(SpaceShortage shortage, CancellationToken cancellationToken, bool beforeStart)
+    {
+        string message = Texts.F("E_NoSpace", shortage.Needed / (double)(1L << 30), shortage.Free / (double)(1L << 30));
+        if (SpaceResolver is null || _options.Unattended)
+        {
+            throw new CopyPlanException(message);
+        }
+
+        if (!SpaceResolver(shortage, cancellationToken))
+        {
+            throw beforeStart ? new SpaceCancelledException() : new CopyPlanException(message);
+        }
+
+        SpaceForced = true;
+        Log(LogLevel.Warning, message + " " + Texts.Get("E_SpaceForced"), shortage.Destination);
+    }
+
+    /// <summary>
+    /// ¿Caben también estos orígenes (que se quieren añadir a la copia en marcha)? Cuenta lo que falta por copiar de
+    /// la lista más lo nuevo. Devuelve null si cabe (o si ya se eligió copiar aunque no quepa).
+    /// </summary>
+    public SpaceShortage? CheckSpaceFor(IReadOnlyList<string> sources)
+    {
+        if (SpaceForced || !_options.CheckFreeSpace || _options.DryRun || _destinationRoot.Length == 0
+            || FreeBytes(_destinationRoot) is not { } free)
+        {
+            return null;
+        }
+
+        long pending = Files.Snapshot().Where(i => i.State == FileState.Pending).Sum(i => i.Length);
+        var plan = CopyPlanner.Build(sources, _destinationRoot, _options.Filter, _options.Links);
+        long needed = pending + BytesNeeded(plan, _destinationRoot, []);
+        return needed > free ? new SpaceShortage(_destinationRoot, needed, free) : null;
+    }
+
+    /// <summary>Los orígenes nuevos se copiarán aunque no quepan (al llenarse el disco, la copia espera).</summary>
+    public void ForceSpace() => SpaceForced = true;
+
+    private long BytesNeeded(CopyPlan plan, string destination, HashSet<string> renamed)
+    {
         long needed = 0;
         var folders = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
         foreach (var file in plan.Files)
@@ -1182,11 +1256,7 @@ public sealed partial class CopyEngine
             needed += partial.Exists ? Math.Max(0, file.Length - partial.Length) : file.Length;
         }
 
-        if (needed > free)
-        {
-            throw new CopyPlanException(
-                Texts.F("E_NoSpace", needed / (double)(1L << 30), free.Value / (double)(1L << 30)));
-        }
+        return needed;
     }
 
     private void CopyDirectoryMetadata(PlannedDirectory directory)

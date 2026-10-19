@@ -20,9 +20,90 @@ public sealed partial class FilesTab : UserControl
         InitializeComponent();
         SizeChanged += (_, e) => Adapt(e.NewSize.Width);
         FilterBox.SelectedIndex = 0;
-        HideFinishedBox.IsChecked = ((App)Application.Current).Settings.HideFinishedFiles;
-        ShowHashesItem.IsChecked = ((App)Application.Current).Settings.FilesShowHashes;
+        var settings = ((App)Application.Current).Settings;
+        HideFinishedBox.IsChecked = settings.HideFinishedFiles;
+        ShowHashesCheck(settings.FilesShowHashes);
         UpdateRail();
+
+        // Columnas: los anchos guardados, y las líneas divisorias de la cabecera para cambiarlos.
+        FileColumns.Current.Set(settings.FilesSourceWidth, settings.FilesSizeWidth);
+        FileColumns.Current.PropertyChanged += (_, _) => ApplyHeaderColumns();
+        ApplyHeaderColumns();
+        double startSource = 0, startSize = 0;
+        SourceSplitter.Started += () => startSource = HeaderSourceColumn.ActualWidth;
+        SourceSplitter.Dragged += delta => ResizeColumns(startSource + delta, FileColumns.Current.SizePixels);
+        SizeSplitter.Started += () =>
+        {
+            startSource = HeaderSourceColumn.ActualWidth;
+            startSize = HeaderSizeColumn.ActualWidth;
+        };
+        SizeSplitter.Dragged += delta => ResizeColumns(startSource, startSize + delta);
+        SourceSplitter.Finished += SaveColumns;
+        SizeSplitter.Finished += SaveColumns;
+        SourceSplitter.Reset += () =>
+        {
+            FileColumns.Current.Set(0, FileColumns.Current.SizePixels);
+            SaveColumns();
+        };
+        SizeSplitter.Reset += () =>
+        {
+            FileColumns.Current.Set(FileColumns.Current.SourcePixels, 0);
+            SaveColumns();
+        };
+    }
+
+    private bool ShowHashes { get; set; }
+
+    /// <summary>«Mostrar las sumas»: con su icono, y una marca a la derecha cuando están a la vista.</summary>
+    private void ShowHashesCheck(bool on)
+    {
+        ShowHashes = on;
+        ShowHashesItem.KeyboardAcceleratorTextOverride = on ? "✓" : "";
+    }
+
+    /// <summary>
+    /// Cambia los anchos al arrastrar una línea divisoria, sin dejar que una columna quede tan estrecha que no se lea
+    /// (ni que Destino desaparezca).
+    /// </summary>
+    private void ResizeColumns(double source, double size)
+    {
+        double available = HeaderSourceColumn.ActualWidth + HeaderSizeColumn.ActualWidth + HeaderDestinationColumn.ActualWidth;
+        double destinationMin = FileColumns.Current.ShowDestination ? FileColumns.MinDestination : 0;
+        size = Math.Clamp(size, FileColumns.MinSize, Math.Max(FileColumns.MinSize, available - FileColumns.MinSource - destinationMin));
+        source = Math.Clamp(source, FileColumns.MinSource, Math.Max(FileColumns.MinSource, available - size - destinationMin));
+        FileColumns.Current.Set(source, size);
+    }
+
+    private void SaveColumns()
+    {
+        var settings = ((App)Application.Current).Settings;
+        settings.FilesSourceWidth = FileColumns.Current.SourcePixels;
+        settings.FilesSizeWidth = FileColumns.Current.SizePixels == FileColumns.DefaultSize ? 0 : FileColumns.Current.SizePixels;
+        settings.Save();
+    }
+
+    private void ApplyHeaderColumns()
+    {
+        HeaderSourceColumn.Width = FileColumns.Current.Source;
+        HeaderSizeColumn.Width = FileColumns.Current.Size;
+        HeaderDestinationColumn.Width = FileColumns.Current.Destination;
+        SizeSplitter.Visibility = FileColumns.Current.ShowDestination ? Visibility.Visible : Visibility.Collapsed;
+        DispatcherQueue.TryEnqueue(PlaceSplitters); // tras medir las columnas nuevas
+    }
+
+    /// <summary>Las líneas divisorias van en el centro del hueco entre columnas.</summary>
+    private void Header_SizeChanged(object sender, SizeChangedEventArgs e) => PlaceSplitters();
+
+    private void PlaceSplitters()
+    {
+        double gap = Header.ColumnSpacing;
+        double sourceEnd = Header.ColumnDefinitions[0].ActualWidth + gap + HeaderSourceColumn.ActualWidth;
+        double sizeEnd = sourceEnd + gap + HeaderSizeColumn.ActualWidth;
+        Canvas.SetLeft(SourceSplitter, sourceEnd + gap / 2 - SourceSplitter.Width / 2);
+        Canvas.SetLeft(SizeSplitter, sizeEnd + gap / 2 - SizeSplitter.Width / 2);
+        double top = (Header.ActualHeight - SourceSplitter.Height) / 2;
+        Canvas.SetTop(SourceSplitter, top);
+        Canvas.SetTop(SizeSplitter, top);
     }
 
     public JobViewModel? Job
@@ -41,7 +122,9 @@ public sealed partial class FilesTab : UserControl
     {
         const double Normal = 34, Smallest = 22, Fixed = 46; // marco, separadores y espacios entre botones
         var buttons = Rail.Children.OfType<Button>().ToList();
-        double height = Math.Clamp(Math.Floor((e.NewSize.Height - Fixed) / buttons.Count) - 2, Smallest, Normal);
+        // La barra empieza a la altura del primer archivo: cuenta solo el alto de la lista, sin la cabecera.
+        double listHeight = e.NewSize.Height - Header.ActualHeight - ListArea.RowSpacing;
+        double height = Math.Clamp(Math.Floor((listHeight - Fixed) / buttons.Count) - 2, Smallest, Normal);
         double scale = height / Normal;
         foreach (var button in buttons)
         {
@@ -72,7 +155,8 @@ public sealed partial class FilesTab : UserControl
         Grid.SetColumnSpan(ListToggles, twoRows ? 5 : 1);
 
         bool destination = width >= 620;
-        bool hashes = width >= 900 && ShowHashesItem.IsChecked;
+        bool hashes = width >= 900 && ShowHashes;
+        FileColumns.Current.ShowDestination = destination;
         if (hashes != FileRowViewModel.ShowHashes || destination != FileRowViewModel.ShowDestination)
         {
             FileRowViewModel.ShowHashes = hashes;
@@ -86,13 +170,14 @@ public sealed partial class FilesTab : UserControl
         SourceHashHeader.Visibility = hashes ? Visibility.Visible : Visibility.Collapsed;
         TargetHashHeader.Visibility = hashes ? Visibility.Visible : Visibility.Collapsed;
         DestinationHeader.Visibility = destination ? Visibility.Visible : Visibility.Collapsed;
-        HeaderDestinationColumn.Width = destination ? new GridLength(2, GridUnitType.Star) : new GridLength(0);
+        ApplyHeaderColumns();
     }
 
     private void ShowHashes_Click(object sender, RoutedEventArgs e)
     {
         var settings = ((App)Application.Current).Settings;
-        settings.FilesShowHashes = ShowHashesItem.IsChecked;
+        ShowHashesCheck(!ShowHashes);
+        settings.FilesShowHashes = ShowHashes;
         settings.Save();
         Adapt(ActualWidth);
     }
@@ -157,25 +242,39 @@ public sealed partial class FilesTab : UserControl
 
     private List<FileRowViewModel> Selected() => List.SelectedItems.OfType<FileRowViewModel>().ToList();
 
-    private void MoveTop_Click(object sender, RoutedEventArgs e)
+    /// <summary>Selección en el orden de la lista (para mover varios sin que se adelanten unos a otros).</summary>
+    private List<FileRowViewModel> SelectedInOrder() =>
+        [.. Selected().OrderBy(r => _files?.Items.IndexOf(r) ?? 0)];
+
+    private void MoveTop_Click(object sender, RoutedEventArgs e) =>
+        Move(rows => rows.AsEnumerable().Reverse().ToList().ForEach(r => _files?.MoveToTop(r)));
+
+    private void MoveUp_Click(object sender, RoutedEventArgs e) => Move(rows => rows.ForEach(r => _files?.MoveUp(r)));
+
+    private void MoveDown_Click(object sender, RoutedEventArgs e) =>
+        Move(rows => rows.AsEnumerable().Reverse().ToList().ForEach(r => _files?.MoveDown(r)));
+
+    private void MoveBottom_Click(object sender, RoutedEventArgs e) => Move(rows => rows.ForEach(r => _files?.MoveToBottom(r)));
+
+    /// <summary>Mueve los elegidos y los deja elegidos (y a la vista), para poder seguir moviéndolos.</summary>
+    private void Move(Action<List<FileRowViewModel>> move)
     {
-        foreach (var row in Selected().AsEnumerable().Reverse())
+        var rows = SelectedInOrder().Where(r => r.IsPending).ToList();
+        if (rows.Count == 0 || _files is null)
         {
-            _files?.MoveToTop(row);
+            return;
         }
-    }
 
-    private void MoveUp_Click(object sender, RoutedEventArgs e) => Selected().ForEach(r => _files?.MoveUp(r));
-
-    private void MoveDown_Click(object sender, RoutedEventArgs e)
-    {
-        foreach (var row in Selected().AsEnumerable().Reverse())
+        move(rows);
+        List.SelectedItems.Clear();
+        foreach (var row in rows.Where(_files.Items.Contains))
         {
-            _files?.MoveDown(row);
+            List.SelectedItems.Add(row);
         }
-    }
 
-    private void MoveBottom_Click(object sender, RoutedEventArgs e) => Selected().ForEach(r => _files?.MoveToBottom(r));
+        List.ScrollIntoView(rows[0]);
+        UpdateRail();
+    }
 
     private void Remove_Click(object sender, RoutedEventArgs e) => Selected().ForEach(r => _files?.Remove(r));
 
@@ -224,7 +323,7 @@ public sealed partial class FilesTab : UserControl
 
         try
         {
-            Job.Job.AddSources(sources);
+            _ = ((App)Application.Current).AddToJobAsync(Job.Job, sources);
         }
         catch (Exception ex) when (ex is InvalidOperationException or IOException or Engine.CopyPlanException)
         {
@@ -371,6 +470,7 @@ public sealed partial class FilesTab : UserControl
         e.AcceptedOperation = moving
             ? Windows.ApplicationModel.DataTransfer.DataPackageOperation.Move
             : Windows.ApplicationModel.DataTransfer.DataPackageOperation.Copy;
+        _dragWhat = moving ? "" : DragItems.What(e.DataView);
         e.DragUIOverride.Caption = ShowDropFeedback(e.GetPosition(List), moving);
         e.DragUIOverride.IsGlyphVisible = false;
     }
@@ -387,11 +487,20 @@ public sealed partial class FilesTab : UserControl
         }
         else
         {
-            ShowHint("", _files is null ? L.Get("Drop_AddToJob") : L.F("Drop_InsertAt", position));
+            ShowHint("", (_files is null, _dragWhat.Length > 0) switch
+            {
+                (true, true) => L.F("Drop_AddWhatHere", _dragWhat),
+                (true, false) => L.Get("Drop_AddToJob"),
+                (false, true) => L.F("Drop_InsertWhatAt", _dragWhat, position),
+                _ => L.F("Drop_InsertAt", position),
+            });
         }
 
         return DropHintText.Text;
     }
+
+    /// <summary>Lo que se arrastra desde fuera («Vídeos», «3 elementos»), para el aviso.</summary>
+    private string _dragWhat = "";
 
     private int? BeforeIdAt(Windows.Foundation.Point pointer)
     {
@@ -428,7 +537,7 @@ public sealed partial class FilesTab : UserControl
         }
         else if (paths.Count > 0)
         {
-            ((App)Application.Current).Queue.AddToJob(Job.Job, paths, beforeId);
+            _ = ((App)Application.Current).AddToJobAsync(Job.Job, paths, beforeId);
         }
     }
 
@@ -463,7 +572,7 @@ public sealed partial class FilesTab : UserControl
             var paths = items.Select(i => i.Path).Where(p => !string.IsNullOrEmpty(p)).ToList();
             if (paths.Count > 0)
             {
-                ((App)Application.Current).Queue.AddToJob(Job.Job, paths, beforeId);
+                await ((App)Application.Current).AddToJobAsync(Job.Job, paths, beforeId);
                 Refresh();
             }
         }

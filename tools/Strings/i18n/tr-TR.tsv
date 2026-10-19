@@ -1106,7 +1106,7 @@ Settings_MergeConfirm.Content	Eklemeden önce sor
 Settings_MoveAttributesTitle.Text	Taşırken şunları da koru
 Settings_MoveAttributesDescription.Text	Başka bir diske taşırken. Aynı diskte taşıma yeniden adlandırmadır ve her şey korunur.
 Settings_DeleteIncompleteTitle.Text	Kopyalama durdurulunca yarım kalanları sil
-Settings_DeleteIncompleteDescription.Text	Kaldığı yerden devam edilemez. Hedefte eksik dosya (.mcpart) kalmaz.
+Settings_DeleteIncompleteDescription.Text	Hedefte yarım dosya (.mcpart) kalmaz. Saklanırsa, aynı şeyi yeniden kopyalamak kaldığı yerden devam eder.
 Settings_KeepOnError.Content	Kopyalama bir hata yüzünden durduysa silme
 Settings_EjectTitle.Text	Bitince hedef sürücüyü çıkar
 Settings_EjectDescription.Text	Yalnızca USB bellekler, hafıza kartları ve USB diskler; başka bir kopya kullanmıyorsa.
@@ -1330,7 +1330,7 @@ Info_Hash_Text	Hash bir dosyanın parmak izi gibidir: tek bir bayt değişse par
 Info_Performance_Text	Kopyalamanın ne kadar hızlı gidebileceği.\n• Hız sınırı: siz çalışırken veya film izlerken kopya tüm ağı veya diski yemesin diye. Her kopyanın Seçenekler sekmesinde ayrıca kendi sınırı vardır; durdurmadan hemen değişir.\n• Arabellek boyutu: tek seferde okunan ve yazılan bloklar. Büyük dosyalarda daha büyüğü daha iyidir.\n• Aynı anda işlem: diskten aynı anda kaç blok istendiği. Hızlı SSD’ler daha fazlasıyla kazanır.\nEmin değilseniz varsayılanları bırakın: MegaCopier her diski zaten kendisi ayarlar.
 Info_Merge_Text	Başka bir kopya sürerken yeni bir kopya başlatırsanız sırasını beklemek yerine ona katılabilir: dosyaları listenin sonuna eklenir.\n• Asla: her kopya ayrı gider.\n• Aynı klasöre gidiyorsa veya aynı diskleri kullanıyorsa.\n• Her zaman.\n"Önce sor" ile her seferinde siz karar verirsiniz. Klasörleri tek tek aynı USB belleğe gönderirken kullanışlı.
 Info_MoveAttributes_Text	Başka bir diske taşırken dosyalar kopyalanır, sonra kaynaktan silinir. Burada içerik dışında neyi götüreceklerini seçersiniz: öznitelikler (salt okunur, gizli…), izinler, sahip ve denetim.\n• Kimin açabileceğini koruyarak çalışma klasörlerini sunucular arasında taşımak.\nAynı diskte taşımak yalnızca yer değiştirmektir ve her şey korunur.
-Info_DeleteIncomplete_Text	Kopyalanırken her dosya .mcpart uzantısıyla yazılır ve ancak düzgün bittiğinde adını alır. Bir kopyayı durdurursanız bu parçalar sayesinde sonra tam kaldığı yerden devam edilebilir.\n• Açık: Durdur’a basınca .mcpart dosyaları silinir ve hedef temiz kalır (ama artık devam edilemez).\n• Kapalı: devam etmek için saklanır.\nMegaCopier kapatılırken veya elektrik kesintisinden sonra hiçbir şey silinmez.
+Info_DeleteIncomplete_Text	“Durdur” kopyalamayı iptal eder ve listeden kaldırır. Kopyalanırken her dosya .mcpart uzantısıyla yazılır ve ancak sorunsuz bitince adını alır.\n• Açık: Durdur’a basınca .mcpart dosyaları silinir ve hedef temiz kalır.\n• Kapalı: saklanır; aynı şeyi yeniden kopyalarsanız tam kaldığı yerden devam eder.\nMegaCopier kapatılırken ya da elektrik kesintisinden sonra hiçbir şey silinmez: bu kopyalamalar yeniden açtığınızda devam etmek için önerilir.
 Info_Eject_Text	Bitince MegaCopier hedef USB belleği, kartı veya USB diski "Donanımı güvenle kaldır" gibi güvenli şekilde çıkarır.\n• Art arda birkaç USB bellek doldurmak: çıkardığınızda hazırdır.\nYalnızca başka bir kopya kullanmıyorsa yapar. "Zorla", bir program açık tutsa bile çıkarır.
 Info_OnError_Text	Bir dosya yeniden denemelerden sonra bile kopyalanamazsa ne yapılacağı.\n• Sor: kopya durur, nedenini söyler ve yeniden denemeyi, atlamayı, sonrakileri atlamayı veya durdurmayı seçersiniz.\n• Atla ve devam et: gece büyük kopyalar için ideal; sonunda hata listesini görürsünüz.\n• Kopyayı durdur: hiçbir şey eksik olmamalıysa.\n• Sonda yeniden dene: kullanımdaysa ve serbest kalırsa diye sona bırakır.
 Info_ErrorReport_Text	Bir kopya hatalarla biterse, başarısız her dosyayı, nedenini ve saatini içeren bir metin dosyası kaydeder.\n• Gece bıraktığınız bir kopyayı sakince incelemek için.\n• Bilgisayarlarla ilgilenen kişiye iletmek için.
@@ -1421,3 +1421,18 @@ Picker_SendTitle	Neyin gönderileceğini seçin: dosyalar veya klasörler
 Picker_DeleteTitle	Neyin silineceğini seçin: dosyalar veya klasörler
 Picker_WipeTitle	Neyin güvenli silineceğini seçin: dosyalar veya klasörler
 Picker_AddTitle	Listeye eklenecekleri seçin: dosyalar veya klasörler
+Space_Title	{0} üzerinde yeterli alan yok
+Space_Text	{0} gerekiyor, {1} boş ({2} eksik).
+Space_TextAdding	Eklemek istediklerinizle {0} gerekiyor, {1} boş ({2} eksik).
+Space_Force	Yine de kopyala
+Space_ForceTip	Disk dolana kadar kopyalar ve bekler: yer açın, kopyalama kendiliğinden devam eder.
+Space_Cancel	İptal
+Space_CancelTip	Hiçbir şey kopyalanmaz.
+Space_CancelAddingTip	Hiçbir şey eklenmez; kopyalama olduğu gibi devam eder.
+Job_StartNow	Şimdi başlat
+Drop_One	“{0}”
+Drop_Many	{0} öğe
+Drop_AddWhatHere	{0} bu kopyalamaya ekle
+Drop_AddWhatTo	{0} öğesini {1} işine ekle
+Drop_InsertWhatAt	{0} öğesini {1}. sıraya ekle
+Files_ResizeColumn.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Sütun genişliğini değiştirmek için sürükleyin (çift tıklama: varsayılan genişlik)

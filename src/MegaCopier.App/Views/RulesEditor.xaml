@@ -5,8 +5,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:c="using:MegaCopier.App.Controls">
 
+    <!-- Dos tarjetas: filtros y reglas arriba; sincronización y seguridad en la suya, para que no parezcan lo mismo -->
+    <StackPanel Spacing="10">
+    <Border Style="{StaticResource McCard}">
     <Grid x:Name="RulesGrid" ColumnSpacing="24" RowSpacing="16">
-        <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
+        <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
@@ -79,12 +82,22 @@
             </StackPanel>
         </StackPanel>
 
-        <!-- Sincronización y seguridad -->
-        <StackPanel x:Name="SafetyHeader" Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" Spacing="8" Margin="0,4,0,-8">
+    </Grid>
+    </Border>
+
+    <!-- Sincronización y seguridad -->
+    <Border Style="{StaticResource McCard}">
+    <Grid x:Name="SafetyGrid" ColumnSpacing="24" RowSpacing="8">
+        <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <StackPanel x:Name="SafetyHeader" Grid.ColumnSpan="2" Orientation="Horizontal" Spacing="8">
             <c:McIcon VerticalAlignment="Center" Glyph="&#xE8F7;" FontSize="14" Accent="True" />
             <TextBlock x:Uid="Rules_Safety" Style="{StaticResource McStrong}" />
         </StackPanel>
-        <StackPanel x:Name="SafetyLeft" Grid.Row="2" Spacing="8">
+        <StackPanel x:Name="SafetyLeft" Grid.Row="1" Spacing="8">
             <ComboBox x:Name="FolderConflictBox" x:Uid="Rules_FolderConflict" HorizontalAlignment="Stretch" SelectionChanged="Selection_Changed">
                 <ComboBoxItem x:Uid="Rules_FolderMerge" />
                 <ComboBoxItem x:Uid="Rules_FolderSkip" />
@@ -100,7 +113,7 @@
             </ComboBox>
             <NumberBox x:Name="ToleranceBox" x:Uid="Rules_Tolerance" Minimum="0" Maximum="3600" SpinButtonPlacementMode="Compact" ValueChanged="Number_Changed" />
         </StackPanel>
-        <StackPanel x:Name="SafetyRight" Grid.Row="2" Grid.Column="1" Spacing="2">
+        <StackPanel x:Name="SafetyRight" Grid.Row="1" Grid.Column="1" Spacing="2">
             <CheckBox x:Name="VerifySourceBox" x:Uid="Rules_VerifySource" Click="Changed" />
             <CheckBox x:Name="HashStreamBox" x:Uid="Rules_HashStream" Click="Changed" />
             <CheckBox x:Name="HardLinksBox" x:Uid="Rules_HardLinks" Click="Changed" />
@@ -128,4 +141,6 @@
             <CheckBox x:Name="DuplicatesBox" x:Uid="Rules_Duplicates" Click="Changed" />
         </StackPanel>
     </Grid>
+    </Border>
+    </StackPanel>
 </UserControl>

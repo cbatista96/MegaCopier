@@ -54,7 +54,8 @@ public sealed partial class FileRowViewModel(TransferItem item, string root) : I
 
     public bool DestinationVisible => ShowDestination;
 
-    public Microsoft.UI.Xaml.GridLength DestinationWidth => ShowDestination ? new(2, Microsoft.UI.Xaml.GridUnitType.Star) : new(0);
+    /// <summary>Anchos de las columnas (los mismos en todas las filas y en la cabecera).</summary>
+    public FileColumns Columns => FileColumns.Current;
 
     public string DestinationPath => Format.Display(Item.Destination);
 
@@ -184,6 +185,9 @@ public sealed partial class FileListViewModel : INotifyPropertyChanged, IDisposa
     private readonly ConcurrentQueue<TransferListChange> _changes = new();
     private readonly Dictionary<int, FileRowViewModel> _rows = [];
     private readonly HashSet<FileRowViewModel> _visible = [];
+
+    /// <summary>Filas que la propia lista ya colocó al moverlas con los botones (su aviso de «movida» se ignora).</summary>
+    private readonly HashSet<int> _placedHere = [];
     private readonly string _root;
     private FileFilter _filter;
     private bool _hideFinished;
@@ -257,13 +261,13 @@ public sealed partial class FileListViewModel : INotifyPropertyChanged, IDisposa
 
     public string CountText => L.F("Files_Count", Items.Count, _rows.Count);
 
-    public void MoveToTop(FileRowViewModel row) => Reorder(() => _list.MoveToTop(row.Id));
+    public void MoveToTop(FileRowViewModel row) => Reorder(row, () => _list.MoveToTop(row.Id));
 
-    public void MoveUp(FileRowViewModel row) => Reorder(() => _list.MoveUp(row.Id));
+    public void MoveUp(FileRowViewModel row) => Reorder(row, () => _list.MoveUp(row.Id));
 
-    public void MoveDown(FileRowViewModel row) => Reorder(() => _list.MoveDown(row.Id));
+    public void MoveDown(FileRowViewModel row) => Reorder(row, () => _list.MoveDown(row.Id));
 
-    public void MoveToBottom(FileRowViewModel row) => Reorder(() => _list.MoveToBottom(row.Id));
+    public void MoveToBottom(FileRowViewModel row) => Reorder(row, () => _list.MoveToBottom(row.Id));
 
     public void Remove(FileRowViewModel row) => _job.RemoveFile(row.Id);
 
@@ -277,11 +281,32 @@ public sealed partial class FileListViewModel : INotifyPropertyChanged, IDisposa
         _list.Changed -= OnChanged;
     }
 
-    private void Reorder(Func<bool> move)
+    /// <summary>
+    /// Tras cambiar el orden, las filas se colocan en su sitio moviendo solo las que cambiaron (sin vaciar la lista):
+    /// no parpadea, no pierde el desplazamiento y lo elegido sigue elegido.
+    /// </summary>
+    private void Reorder(FileRowViewModel row, Func<bool> move)
     {
-        if (move())
+        if (!move())
+        {
+            return;
+        }
+
+        _placedHere.Add(row.Id); // ya está en su sitio: el aviso de la lista no hace falta (lo quitaría y lo pondría)
+
+        var wanted = _list.Snapshot().Select(i => _rows.GetValueOrDefault(i.Id)).Where(r => r is not null && _visible.Contains(r)).ToList();
+        if (wanted.Count != Items.Count)
         {
             Rebuild();
+            return;
+        }
+
+        for (int i = 0; i < wanted.Count; i++)
+        {
+            if (!ReferenceEquals(Items[i], wanted[i]))
+            {
+                Items.Move(Items.IndexOf(wanted[i]!), i);
+            }
         }
     }
 
@@ -327,6 +352,9 @@ public sealed partial class FileListViewModel : INotifyPropertyChanged, IDisposa
                         Items.Remove(removed);
                     }
 
+                    break;
+
+                case TransferListChangeKind.Moved when _placedHere.Remove(change.Item.Id):
                     break;
 
                 case TransferListChangeKind.Moved when _rows.TryGetValue(change.Item.Id, out var moved):

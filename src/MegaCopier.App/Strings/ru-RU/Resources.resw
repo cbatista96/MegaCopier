@@ -1112,7 +1112,7 @@
   <data name="Settings_MoveAttributesTitle.Text" xml:space="preserve"><value>При перемещении также сохранять</value></data>
   <data name="Settings_MoveAttributesDescription.Text" xml:space="preserve"><value>При перемещении на другой диск. На том же диске перемещение — это переименование, всё сохраняется.</value></data>
   <data name="Settings_DeleteIncompleteTitle.Text" xml:space="preserve"><value>При остановке копирования удалять незавершённое</value></data>
-  <data name="Settings_DeleteIncompleteDescription.Text" xml:space="preserve"><value>Продолжить с места остановки будет нельзя. В папке назначения не останется незавершённых файлов (.mcpart).</value></data>
+  <data name="Settings_DeleteIncompleteDescription.Text" xml:space="preserve"><value>В папке назначения не остаётся незавершённых файлов (.mcpart). Если их сохранить, повторное копирование того же продолжится с места остановки.</value></data>
   <data name="Settings_KeepOnError.Content" xml:space="preserve"><value>Не удалять, если копирование остановилось из-за ошибки</value></data>
   <data name="Settings_EjectTitle.Text" xml:space="preserve"><value>По завершении извлекать диск назначения</value></data>
   <data name="Settings_EjectDescription.Text" xml:space="preserve"><value>Только USB-флешки, карты памяти и USB-диски, если их не использует другое копирование.</value></data>
@@ -1336,7 +1336,7 @@
   <data name="Info_Performance_Text" xml:space="preserve"><value>Насколько быстро может идти копирование.\n• Ограничение скорости: чтобы копирование не занимало всю сеть или диск, пока вы работаете или смотрите фильм. У каждого копирования есть и своё ограничение на вкладке «Параметры», которое меняется сразу, без остановки.\n• Размер буфера: блоки, которые читаются и пишутся за раз. Больший размер лучше для огромных файлов.\n• Одновременные операции: сколько блоков запрашивается у диска одновременно. Быстрым SSD больше — лучше.\nЕсли не знаете, что выбрать, оставьте по умолчанию: MegaCopier сам настраивает каждый диск.</value></data>
   <data name="Info_Merge_Text" xml:space="preserve"><value>Если начать копирование, пока идёт другое, оно может присоединиться к нему вместо ожидания: его файлы встанут в конец списка.\n• Никогда: каждое копирование отдельно.\n• Если в ту же папку или на те же диски.\n• Всегда.\nС «Спрашивать сначала» вы решаете каждый раз. Удобно, когда отправляете папки по одной на одну и ту же флешку.</value></data>
   <data name="Info_MoveAttributes_Text" xml:space="preserve"><value>При перемещении на другой диск файлы копируются, а затем удаляются из источника. Здесь вы выбираете, что они берут с собой помимо содержимого: атрибуты (только чтение, скрытый…), разрешения, владельца и аудит.\n• Перенос рабочих папок между серверами с сохранением того, кто может их открывать.\nНа том же диске перемещение — просто смена места, всё сохраняется.</value></data>
-  <data name="Info_DeleteIncomplete_Text" xml:space="preserve"><value>Во время копирования каждый файл записывается с расширением .mcpart и получает своё имя, только когда успешно завершён. Если остановить копирование, эти части позволяют потом продолжить с того же места.\n• Включено: кнопка «Стоп» удаляет файлы .mcpart, и место назначения остаётся чистым (но продолжить уже нельзя).\n• Выключено: они сохраняются для возобновления.\nПри закрытии MegaCopier или после отключения питания ничего не удаляется.</value></data>
+  <data name="Info_DeleteIncomplete_Text" xml:space="preserve"><value>«Остановить» отменяет копирование и убирает его из списка. Во время копирования каждый файл пишется с расширением .mcpart и получает своё имя, только когда успешно завершён.\n• Включено: при нажатии «Остановить» файлы .mcpart удаляются, и папка назначения остаётся чистой.\n• Выключено: они сохраняются, и если снова скопировать то же самое, копирование продолжится с места остановки.\nПри закрытии MegaCopier или после отключения питания ничего не удаляется: такие копирования предлагается продолжить при следующем запуске.</value></data>
   <data name="Info_Eject_Text" xml:space="preserve"><value>По окончании MegaCopier безопасно извлекает флешку, карту или USB-диск назначения, как «Безопасное извлечение устройства».\n• Записываете несколько флешек подряд: вынимаете — она уже готова.\nТолько если её не использует другое копирование. «Принудительно» извлекает, даже если она открыта в какой-то программе.</value></data>
   <data name="Info_OnError_Text" xml:space="preserve"><value>Что делать, если файл не удаётся скопировать даже после повторов.\n• Спросить: копирование останавливается, объясняет причину, и вы выбираете: повторить, пропустить, пропускать следующие или остановить.\n• Пропустить и продолжить: идеально для больших ночных копий; в конце видно список сбоев.\n• Остановить копирование: когда ничего не должно пропасть.\n• Повторить в конце: оставляет файл напоследок, вдруг он был занят и освободится.</value></data>
   <data name="Info_ErrorReport_Text" xml:space="preserve"><value>Если копирование завершилось с ошибками, сохраняется текстовый файл с каждым неудачным файлом, причиной и временем.\n• Чтобы спокойно разобрать копирование, оставленное на ночь.\n• Чтобы передать его тому, кто обслуживает компьютеры.</value></data>
@@ -1427,4 +1427,19 @@
   <data name="Picker_DeleteTitle" xml:space="preserve"><value>Выберите, что удалить: файлы или папки</value></data>
   <data name="Picker_WipeTitle" xml:space="preserve"><value>Выберите, что надёжно удалить: файлы или папки</value></data>
   <data name="Picker_AddTitle" xml:space="preserve"><value>Выберите, что добавить в список: файлы или папки</value></data>
+  <data name="Space_Title" xml:space="preserve"><value>Недостаточно места на {0}</value></data>
+  <data name="Space_Text" xml:space="preserve"><value>Нужно {0}, свободно {1} (не хватает {2}).</value></data>
+  <data name="Space_TextAdding" xml:space="preserve"><value>С тем, что вы хотите добавить, нужно {0}, свободно {1} (не хватает {2}).</value></data>
+  <data name="Space_Force" xml:space="preserve"><value>Всё равно копировать</value></data>
+  <data name="Space_ForceTip" xml:space="preserve"><value>Копирует, пока диск не заполнится, и ждёт: освободите место — и копирование продолжится само.</value></data>
+  <data name="Space_Cancel" xml:space="preserve"><value>Отмена</value></data>
+  <data name="Space_CancelTip" xml:space="preserve"><value>Ничего не копируется.</value></data>
+  <data name="Space_CancelAddingTip" xml:space="preserve"><value>Ничего не добавляется; копирование продолжается как было.</value></data>
+  <data name="Job_StartNow" xml:space="preserve"><value>Начать сейчас</value></data>
+  <data name="Drop_One" xml:space="preserve"><value>«{0}»</value></data>
+  <data name="Drop_Many" xml:space="preserve"><value>элементы: {0}</value></data>
+  <data name="Drop_AddWhatHere" xml:space="preserve"><value>Добавить {0} в это копирование</value></data>
+  <data name="Drop_AddWhatTo" xml:space="preserve"><value>Добавить {0} в {1}</value></data>
+  <data name="Drop_InsertWhatAt" xml:space="preserve"><value>Добавить {0} на позицию {1}</value></data>
+  <data name="Files_ResizeColumn.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Перетащите, чтобы изменить ширину столбца (двойной щелчок — обычная ширина)</value></data>
 </root>

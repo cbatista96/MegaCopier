@@ -1112,7 +1112,7 @@
   <data name="Settings_MoveAttributesTitle.Text" xml:space="preserve"><value>移动时还保留</value></data>
   <data name="Settings_MoveAttributesDescription.Text" xml:space="preserve"><value>移动到其他磁盘时。在同一磁盘上移动只是重命名，所有内容都会保留。</value></data>
   <data name="Settings_DeleteIncompleteTitle.Text" xml:space="preserve"><value>停止复制时删除未完成的部分</value></data>
-  <data name="Settings_DeleteIncompleteDescription.Text" xml:space="preserve"><value>将无法从中断处继续，目标位置也不会留下不完整的文件 (.mcpart)。</value></data>
+  <data name="Settings_DeleteIncompleteDescription.Text" xml:space="preserve"><value>目标中不会留下不完整的文件（.mcpart）。若保留它们，再次复制相同内容时会从中断处继续。</value></data>
   <data name="Settings_KeepOnError.Content" xml:space="preserve"><value>如果复制因错误而停止则不删除</value></data>
   <data name="Settings_EjectTitle.Text" xml:space="preserve"><value>完成后弹出目标驱动器</value></data>
   <data name="Settings_EjectDescription.Text" xml:space="preserve"><value>仅限 U 盘、存储卡和 USB 硬盘，且没有其他复制正在使用时。</value></data>
@@ -1336,7 +1336,7 @@
   <data name="Info_Performance_Text" xml:space="preserve"><value>复制能跑多快。\n• 速度限制：让复制在你工作或看电影时不会占满网络或磁盘。每个复制在其“选项”页还有自己的限速，可随时修改且无需停止。\n• 缓冲区大小：一次读写的数据块。处理超大文件时大一些更好。\n• 同时操作数：同时向磁盘请求多少个数据块。高速 SSD 设得多一些更快。\n不确定就保持默认：MegaCopier 已经会自动为每块磁盘调优。</value></data>
   <data name="Info_Merge_Text" xml:space="preserve"><value>如果在一个复制进行中又开始新的复制，新复制可以并入正在进行的那个，而不是排队等待：它的文件排在列表末尾。\n• 从不：每个复制各自进行。\n• 目标是同一文件夹时，或使用相同磁盘时。\n• 总是。\n选中“先询问”则每次由你决定。适合一点点往同一个 U 盘里放文件夹时使用。</value></data>
   <data name="Info_MoveAttributes_Text" xml:space="preserve"><value>移动到另一块磁盘时，文件会先复制，再从源位置删除。这里选择除内容外还带上什么：属性（只读、隐藏…）、权限、所有者和审核。\n• 在服务器之间移动工作文件夹，并保留谁能打开它们。\n在同一磁盘上移动只是换个位置，所有信息都会保留。</value></data>
-  <data name="Info_DeleteIncomplete_Text" xml:space="preserve"><value>复制时每个文件都先以 .mcpart 扩展名写入，只有顺利完成后才改为正式名称。如果停止复制，这些片段可以让你以后从中断处继续。\n• 开启：点“停止”会删除 .mcpart 文件，目标位置保持干净（但无法再继续）。\n• 关闭：保留它们以便继续。\n关闭 MegaCopier 或断电后都不会删除任何内容。</value></data>
+  <data name="Info_DeleteIncomplete_Text" xml:space="preserve"><value>“停止”会取消复制并将其从列表中移除。复制时，每个文件都以 .mcpart 扩展名写入，只有在顺利完成后才会得到正式名称。\n• 开启：按“停止”会删除 .mcpart 文件，目标保持干净。\n• 关闭：保留这些文件，再次复制相同内容时会从中断处继续。\n关闭 MegaCopier 或断电后不会删除任何内容：再次打开时会提示继续这些复制。</value></data>
   <data name="Info_Eject_Text" xml:space="preserve"><value>完成后，MegaCopier 会像“安全删除硬件”一样安全弹出目标 U 盘、存储卡或 USB 硬盘。\n• 连续往多个 U 盘里拷文件：拔下时就已经准备好了。\n仅在没有其他复制使用它时才会弹出。“强制”即使有程序打开它也会弹出。</value></data>
   <data name="Info_OnError_Text" xml:space="preserve"><value>文件重试后仍无法复制时怎么办。\n• 询问：复制暂停并告诉你原因，由你选择重试、跳过、跳过后续错误或停止。\n• 跳过并继续：适合夜间的大型复制，结束时可以看到失败列表。\n• 停止复制：不能缺任何文件时使用。\n• 最后重试：放到最后再试，以防它当时被占用、后来释放了。</value></data>
   <data name="Info_ErrorReport_Text" xml:space="preserve"><value>复制结束时如有错误，会保存一个文本文件，列出每个失败的文件、原因和时间。\n• 方便从容地检查你夜里留着运行的复制。\n• 方便转交给负责电脑维护的人。</value></data>
@@ -1427,4 +1427,19 @@
   <data name="Picker_DeleteTitle" xml:space="preserve"><value>选择要删除的内容：文件或文件夹</value></data>
   <data name="Picker_WipeTitle" xml:space="preserve"><value>选择要安全删除的内容：文件或文件夹</value></data>
   <data name="Picker_AddTitle" xml:space="preserve"><value>选择要添加到列表的内容：文件或文件夹</value></data>
+  <data name="Space_Title" xml:space="preserve"><value>{0} 空间不足</value></data>
+  <data name="Space_Text" xml:space="preserve"><value>需要 {0}，可用 {1}（还差 {2}）。</value></data>
+  <data name="Space_TextAdding" xml:space="preserve"><value>加上要添加的内容，需要 {0}，可用 {1}（还差 {2}）。</value></data>
+  <data name="Space_Force" xml:space="preserve"><value>仍然复制</value></data>
+  <data name="Space_ForceTip" xml:space="preserve"><value>复制到磁盘写满后等待：腾出空间后会自动继续。</value></data>
+  <data name="Space_Cancel" xml:space="preserve"><value>取消</value></data>
+  <data name="Space_CancelTip" xml:space="preserve"><value>不复制任何内容。</value></data>
+  <data name="Space_CancelAddingTip" xml:space="preserve"><value>不添加任何内容，复制照常进行。</value></data>
+  <data name="Job_StartNow" xml:space="preserve"><value>立即开始</value></data>
+  <data name="Drop_One" xml:space="preserve"><value>“{0}”</value></data>
+  <data name="Drop_Many" xml:space="preserve"><value>{0} 个项目</value></data>
+  <data name="Drop_AddWhatHere" xml:space="preserve"><value>将 {0} 添加到此复制</value></data>
+  <data name="Drop_AddWhatTo" xml:space="preserve"><value>将 {0} 添加到 {1}</value></data>
+  <data name="Drop_InsertWhatAt" xml:space="preserve"><value>将 {0} 添加到第 {1} 位</value></data>
+  <data name="Files_ResizeColumn.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>拖动可更改列宽（双击：恢复默认宽度）</value></data>
 </root>

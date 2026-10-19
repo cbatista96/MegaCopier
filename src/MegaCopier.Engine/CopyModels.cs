@@ -86,6 +86,12 @@ public enum FolderDecision
 /// <summary>La copia no se hizo porque el usuario la canceló al ver que la carpeta ya existía.</summary>
 public sealed class FolderConflictCancelledException : OperationCanceledException;
 
+/// <summary>La copia no se hizo porque no cabía en el destino y el usuario prefirió no forzarla.</summary>
+public sealed class SpaceCancelledException : OperationCanceledException;
+
+/// <summary>Lo que se va a copiar no cabe en el destino: cuánto hace falta y cuánto hay libre.</summary>
+public sealed record SpaceShortage(string Destination, long Needed, long Free);
+
 public readonly record struct CopyProgress(
     CopyPhase Phase,
     string CurrentFile,

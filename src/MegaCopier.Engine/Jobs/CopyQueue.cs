@@ -81,6 +81,25 @@ public sealed class CopyJob
         return true;
     }
 
+    /// <summary>¿Caben también estos orígenes en el destino? null si caben (o si no está en marcha).</summary>
+    public SpaceShortage? CheckSpaceFor(IReadOnlyList<string> sources) => _engine?.CheckSpaceFor(sources);
+
+    /// <summary>Añadir aunque no quepa: al llenarse el disco la copia espera a que haya sitio.</summary>
+    public void ForceSpace()
+    {
+        _engine?.ForceSpace();
+        Record.SpaceForced = true;
+        SaveIfPending();
+    }
+
+    /// <summary>
+    /// El usuario pidió empezarla ya, sin esperar su turno (aunque otra copia use el mismo disco). Solo en memoria.
+    /// </summary>
+    public bool StartNow { get; internal set; }
+
+    /// <summary>El usuario la canceló con «Detener»: al pararse desaparece de la lista y no se ofrece continuarla.</summary>
+    public bool Cancelled { get; internal set; }
+
     /// <summary>Añade orígenes a un trabajo en curso.</summary>
     public int AddSources(IReadOnlyList<string> sources, int? beforeId = null)
     {
@@ -217,7 +236,7 @@ public sealed class CopyJob
     /// <summary>Solo se guarda lo que sigue pendiente: un trabajo terminado ya no está en el almacén.</summary>
     private void SaveIfPending()
     {
-        if (State is not (CopyJobState.Completed or CopyJobState.Failed))
+        if (State is not (CopyJobState.Completed or CopyJobState.Failed) && !Cancelled)
         {
             _save(Record);
         }
@@ -430,6 +449,9 @@ public sealed class CopyQueue
     /// <summary>Pregunta qué hacer cuando una carpeta de origen ya existe en el destino (con la regla «Preguntar»).</summary>
     public Func<CopyJob, FolderConflictInfo, CancellationToken, FolderDecision>? FolderResolver { get; set; }
 
+    /// <summary>Lo que se va a copiar no cabe: true = copiar igualmente (y esperar sitio al llenarse). Sin él, falla.</summary>
+    public Func<CopyJob, SpaceShortage, CancellationToken, bool>? SpaceResolver { get; set; }
+
     /// <summary>Máximo de trabajos en marcha a la vez (0 = sin límite; siempre de uno en uno por disco).</summary>
     public int MaxActiveJobs { get; set; }
 
@@ -482,11 +504,27 @@ public sealed class CopyQueue
         }
     }
 
-    /// <summary>Carga los trabajos que quedaron pendientes (cierre, apagón...) como interrumpidos.</summary>
+    /// <summary>
+    /// Carga los trabajos que quedaron pendientes (cierre, apagón...) como interrumpidos. Si hay varios de la misma
+    /// copia (mismos orígenes, destino y operación), solo se conserva el más reciente: los demás se olvidan, así
+    /// nunca aparece la misma copia repetida.
+    /// </summary>
     public IReadOnlyList<CopyJob> LoadInterrupted()
     {
         var loaded = new List<CopyJob>();
-        foreach (var record in _store.List())
+        var records = new List<CopyJobRecord>();
+        foreach (var group in _store.List().GroupBy(SameCopyKey))
+        {
+            var newest = group.OrderByDescending(r => r.Started).ThenByDescending(r => r.CreatedUtc).First();
+            foreach (var duplicate in group.Where(r => r != newest))
+            {
+                _store.Delete(duplicate.Id);
+            }
+
+            records.Add(newest);
+        }
+
+        foreach (var record in records.OrderBy(r => r.CreatedUtc))
         {
             lock (_lock)
             {
@@ -508,6 +546,29 @@ public sealed class CopyQueue
         }
 
         return loaded;
+    }
+
+    /// <summary>Clave de «la misma copia»: operación, mover o no, destino y orígenes (sin importar el orden).</summary>
+    private static string SameCopyKey(CopyJobRecord record) =>
+        SameCopyKey(record.Operation, record.Move, record.StartAtUtc is null ? "" : record.Id, record.Destination, record.Sources); // las programadas son siempre distintas
+
+    private static string SameCopyKey(JobOperation operation, bool move, string extra, string destination, IEnumerable<string> sources) =>
+        string.Join('|', [
+            operation.ToString(),
+            move ? "move" : "copy",
+            extra,
+            Path.TrimEndingDirectorySeparator(destination).ToUpperInvariant(),
+            .. sources.Select(s => Path.TrimEndingDirectorySeparator(s).ToUpperInvariant()).Order(StringComparer.Ordinal),
+        ]);
+
+    /// <summary>
+    /// Una copia detenida que es exactamente esta (mismos orígenes, destino y operación): en lugar de crear otra igual,
+    /// se continúa esa.
+    /// </summary>
+    public CopyJob? FindInterrupted(IEnumerable<string> sources, string destination, JobOperation operation, bool move)
+    {
+        string key = SameCopyKey(operation, move, "", destination, sources);
+        return Jobs.FirstOrDefault(j => j.State == CopyJobState.Interrupted && j.Record.StartAtUtc is null && SameCopyKey(j.Record) == key);
     }
 
     public CopyJob Submit(IEnumerable<string> sources, string destination, CopyOptions options, DateTime? startAtUtc = null, IEnumerable<string>? excluded = null, Action<CopyJobRecord>? configure = null)
@@ -542,6 +603,14 @@ public sealed class CopyQueue
 
     public void Resume(CopyJob job)
     {
+        // En espera de turno: el usuario quiere que empiece ya, aunque otra copia use el mismo disco.
+        if (job.State == CopyJobState.Queued && job.Record.StartAtUtc is null)
+        {
+            job.StartNow = true;
+            Schedule();
+            return;
+        }
+
         if (job.State is CopyJobState.Paused)
         {
             job.Unpause();
@@ -606,6 +675,35 @@ public sealed class CopyQueue
     public event Action? JobsReordered;
 
     public void Pause(CopyJob job) => job.Pause();
+
+    /// <summary>
+    /// «Detener» del usuario: la copia se cancela y desaparece de la lista (no se ofrece continuarla al volver a
+    /// abrir). Lo que quedó a medias en el destino se queda, salvo que la aplicación lo borre después.
+    /// </summary>
+    public void Cancel(CopyJob job)
+    {
+        job.Cancelled = true;
+        if (job.State is CopyJobState.Running or CopyJobState.Paused)
+        {
+            job.RequestCancel(); // al pararse, la continuación de Start lo olvida
+            return;
+        }
+
+        if (job.IsActive || job.State == CopyJobState.Interrupted)
+        {
+            Forget(job);
+            job.SetState(CopyJobState.Interrupted);
+            JobFinished?.Invoke(job);
+        }
+    }
+
+    /// <summary>Borra el trabajo guardado y lo quita de la lista.</summary>
+    private void Forget(CopyJob job)
+    {
+        _store.Delete(job.Id);
+        Remove(job);
+        Schedule();
+    }
 
     /// <summary>Detiene el trabajo conservando lo copiado: se puede reanudar más tarde.</summary>
     public void Stop(CopyJob job)
@@ -680,6 +778,14 @@ public sealed class CopyQueue
         {
             job.Unpause();
         }
+
+        // Las que esperaban turno también: «continuar todas» es que todas copien a la vez.
+        foreach (var job in Jobs.Where(j => j.State == CopyJobState.Queued && j.Record.StartAtUtc is null))
+        {
+            job.StartNow = true;
+        }
+
+        Schedule();
     }
 
     /// <summary>Detiene todo (para salir de la aplicación) y espera a que los trabajos suelten los archivos.</summary>
@@ -745,12 +851,12 @@ public sealed class CopyQueue
                     continue; // programado para más tarde
                 }
 
-                if (MaxActiveJobs > 0 && active >= MaxActiveJobs)
+                if (!job.StartNow && MaxActiveJobs > 0 && active >= MaxActiveJobs)
                 {
-                    break;
+                    continue;
                 }
 
-                if (job.Devices.Overlaps(busy))
+                if (!job.StartNow && job.Devices.Overlaps(busy))
                 {
                     continue;
                 }
@@ -784,6 +890,23 @@ public sealed class CopyQueue
             engine.FolderResolver = (info, token) => FolderResolver(job, info, token);
         }
 
+        // Si ya se eligió forzarla, al reanudar no se vuelve a preguntar.
+        engine.SpaceForced = job.Record.SpaceForced;
+        if (SpaceResolver is not null)
+        {
+            engine.SpaceResolver = (shortage, token) =>
+            {
+                bool force = SpaceResolver(job, shortage, token);
+                if (force)
+                {
+                    job.Record.SpaceForced = true;
+                    _store.Save(job.Record);
+                }
+
+                return force;
+            };
+        }
+
         // Lo decidido con las carpetas que ya existían se guarda en el trabajo: al reanudar no se vuelve a preguntar.
         engine.FolderDecided += (conflict, renamed) =>
         {
@@ -807,11 +930,20 @@ public sealed class CopyQueue
                 {
                     job.Detach();
                     job.FinishedAt = DateTime.Now;
-                    if (task.Exception?.InnerException is FolderConflictCancelledException)
+                    if (task.Exception?.InnerException is FolderConflictCancelledException or SpaceCancelledException
+                        || (job.Cancelled && (task.IsCanceled || task.Exception?.InnerException is OperationCanceledException)))
                     {
-                        // Cancelada al ver que la carpeta ya existía: no se copió nada, así que desaparece.
+                        // Cancelada al ver que la carpeta ya existía o que no cabía (no se copió nada), o detenida por
+                        // el usuario: desaparece de la lista y no se ofrece continuarla.
+                        bool userStop = job.Cancelled;
                         _store.Delete(job.Id);
+                        job.SetState(CopyJobState.Interrupted);
                         Remove(job);
+                        if (userStop)
+                        {
+                            JobFinished?.Invoke(job);
+                        }
+
                         Schedule();
                         return;
                     }

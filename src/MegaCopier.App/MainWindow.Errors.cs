@@ -291,6 +291,91 @@ public sealed partial class MainWindow
         }
     }
 
+    /// <summary>
+    /// Lo que se va a copiar no cabe en el destino (antes de empezar). Se llama desde el hilo de copia y lo bloquea
+    /// hasta que el usuario responde: true = forzar la copia.
+    /// </summary>
+    internal bool AskSpace(CopyJob job, SpaceShortage shortage, CancellationToken cancellation)
+    {
+        var answer = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
+        _dispatcher.TryEnqueue(async () =>
+        {
+            try
+            {
+                answer.TrySetResult(await AskSpaceAsync(job, shortage, adding: false, cancellation));
+            }
+            catch (Exception ex)
+            {
+                answer.TrySetException(ex);
+            }
+        });
+
+        try
+        {
+            return answer.Task.WaitAsync(cancellation).GetAwaiter().GetResult();
+        }
+        catch (OperationCanceledException)
+        {
+            return false;
+        }
+    }
+
+    /// <summary>
+    /// «No hay espacio suficiente»: cuánto hace falta y cuánto hay libre, con dos salidas. Cancelar (no se copia, o no
+    /// se añade, nada) y Forzar la copia (copia hasta llenar el disco y entonces espera: al liberar espacio, sigue).
+    /// En la ventana pequeña la pregunta cabe dentro de ella; en la completa es un diálogo.
+    /// </summary>
+    internal async Task<bool> AskSpaceAsync(CopyJob job, SpaceShortage shortage, bool adding, CancellationToken cancellation = default)
+    {
+        await _dialogGate.WaitAsync(cancellation);
+        try
+        {
+            ShowJobs();
+            Select(Jobs.FirstOrDefault(j => j.Job == job) ?? _selected);
+            ShowAndActivate();
+            Sounds.Play(_app.Settings.Sounds, SoundEvent.Attention);
+            string drive = DriveInfoText.Describe(shortage.Destination).Text;
+            string title = L.F("Space_Title", drive);
+            string text = L.F(adding ? "Space_TextAdding" : "Space_Text", Format.Bytes(shortage.Needed), Format.Bytes(shortage.Free), Format.Bytes(shortage.Needed - shortage.Free));
+            if (!_expanded)
+            {
+                return await AskInlineAsync(
+                    "",
+                    title,
+                    text,
+                    [(true, "",L.Get("Space_Force"), L.Get("Space_ForceTip"))],
+                    (false, L.Get("Space_Cancel"), L.Get(adding ? "Space_CancelAddingTip" : "Space_CancelTip")),
+                    cancellation);
+            }
+
+            var dialog = new ContentDialog
+            {
+                Title = title,
+                Content = new StackPanel
+                {
+                    Spacing = 10,
+                    MaxWidth = 460,
+                    Children =
+                    {
+                        new TextBlock { Text = text, TextWrapping = TextWrapping.Wrap },
+                        new TextBlock { Text = L.Get("Space_ForceTip"), TextWrapping = TextWrapping.Wrap, Opacity = 0.75, FontSize = 12 },
+                    },
+                },
+                PrimaryButtonText = L.Get("Space_Force"),
+                CloseButtonText = L.Get("Space_Cancel"),
+                DefaultButton = ContentDialogButton.Close,
+                XamlRoot = Root.XamlRoot,
+                RequestedTheme = Root.RequestedTheme,
+            };
+            using var registration = cancellation.Register(() => _dispatcher.TryEnqueue(dialog.Hide));
+            return await dialog.ShowAsync() == ContentDialogResult.Primary;
+        }
+        finally
+        {
+            _dialogGate.Release();
+        }
+    }
+
     /// <summary>¿Sumar los archivos nuevos a la copia que ya está en marcha?</summary>
     internal async Task<bool> ConfirmMergeAsync(CopyJob target, int count)
     {

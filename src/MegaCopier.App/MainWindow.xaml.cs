@@ -44,6 +44,7 @@ public sealed partial class MainWindow : Window
     private const double ExpandedMinHeight = 660;
     private const double SidebarWidth = 290;
 
+    private readonly Controls.SlidingIndicator _jobIndicator;
     private bool _wasEmpty = true;
     private readonly App _app;
     private readonly DispatcherQueue _dispatcher;
@@ -70,6 +71,12 @@ public sealed partial class MainWindow : Window
     /// <summary>Ancho que el usuario le dio a la ventana pequeña (al volver de «Más» recupera ese ancho).</summary>
     private double _compactWidth = CompactWidth;
 
+    /// <summary>Hasta cuándo los cambios de tamaño son de la animación (no del usuario).</summary>
+    private long _programmaticUntil;
+
+    /// <summary>Lo que queda por hacer al terminar la animación (ocultar lo que se desvanecía al volver a «Menos»).</summary>
+    private Action? _afterResize;
+
     private (double Width, double Height) _resizeFrom;
     private (double Width, double Height) _resizeTo;
     private long _resizeStart;
@@ -79,6 +86,7 @@ public sealed partial class MainWindow : Window
         _app = app;
         _dispatcher = DispatcherQueue.GetForCurrentThread();
         InitializeComponent();
+        _jobIndicator = new Controls.SlidingIndicator(JobList, JobIndicatorLayer);
         _resizeTimer = _dispatcher.CreateTimer();
         _resizeTimer.Interval = TimeSpan.FromMilliseconds(12);
         _resizeTimer.Tick += (_, _) => ResizeStep();
@@ -97,7 +105,10 @@ public sealed partial class MainWindow : Window
         // El ancho que el usuario le da a la ventana pequeña se recuerda (al volver de «Más» lo recupera).
         AppWindow.Changed += (_, args) =>
         {
-            if (args.DidSizeChange && !_expanded && !_resizeTimer.IsRunning && Jobs.Count > 0)
+            // Solo cuenta lo que hace el usuario: los cambios de la animación (y los avisos que llegan justo después)
+            // no, o al volver de «Más» la pequeña se quedaría con un ancho intermedio.
+            if (args.DidSizeChange && !_expanded && !_resizeTimer.IsRunning && Jobs.Count > 0
+                && Stopwatch.GetTimestamp() > _programmaticUntil && AppWindow.Size.Width != _resizeTo.Width)
             {
                 _compactWidth = Math.Max(CompactMinWidth, AppWindow.Size.Width / (Scaled(1000) / 1000.0));
             }
@@ -137,6 +148,12 @@ public sealed partial class MainWindow : Window
         JobList.ItemsSource = Jobs;
         Root.Loaded += (_, _) => NameIconButtons(Root);
         Motion.Attach(Root);
+        // Botones de solo icono: su ayuda emergente es también su nombre accesible (en cuanto se cargan).
+        foreach (var part in new FrameworkElement[] { Root, SettingsView, HistoryView, TimelineView, CompareView, _filesTab, _targetTab, _optionsTab, _statusTab, _logTab })
+        {
+            part.Loaded += (s, _) => Responsive.NameFromToolTips((DependencyObject)s);
+        }
+
         Jobs.CollectionChanged += (_, _) => UpdateLayoutState();
         Tabs.SelectedItem = FilesItem;
 
@@ -352,10 +369,37 @@ public sealed partial class MainWindow : Window
         }
 
         Root.RequestedTheme = requested;
+        PaintNativeBackground(theme);
         AppWindow.TitleBar.PreferredTheme = theme.Dark ? TitleBarTheme.Dark : TitleBarTheme.Light;
         SystemBackdrop = Appearance.CreateBackdrop(theme.Backdrop);
         TrayIcon.SetMenuTheme(theme.Dark);
         ApplyTexture(TextureImage, theme);
+    }
+
+    private static readonly Dictionary<uint, nint> BackgroundBrushes = [];
+
+    /// <summary>
+    /// La ventana de Windows que contiene la interfaz se pinta del color de fondo del tema: al agrandarla con el ratón,
+    /// la franja nueva que aún no ha dibujado XAML sale de ese color en lugar de negra.
+    /// </summary>
+    private void PaintNativeBackground(ThemeDefinition theme)
+    {
+        var color = ThemeManager.BackgroundBrush.GradientStops.Count > 0 ? ThemeManager.BackgroundBrush.GradientStops[0].Color : default;
+        if (color.A < 200)
+        {
+            color = theme.Dark ? Windows.UI.Color.FromArgb(255, 32, 32, 32) : Windows.UI.Color.FromArgb(255, 243, 243, 243);
+        }
+
+        // Un pincel por color, que no se borra nunca: el fondo es de la clase de ventana (lo comparten otras ventanas de WinUI)
+        // y borrar uno que aún usen podría dejarlas sin fondo válido.
+        uint rgb = (uint)(color.R | (color.G << 8) | (color.B << 16));
+        if (!BackgroundBrushes.TryGetValue(rgb, out nint brush))
+        {
+            brush = CreateSolidBrush(rgb);
+            BackgroundBrushes[rgb] = brush;
+        }
+
+        SetClassLongPtr(Handle, -10 /* GCLP_HBRBACKGROUND */, brush);
     }
 
     /// <summary>
@@ -402,6 +446,8 @@ public sealed partial class MainWindow : Window
         {
             ThemeFade.Visibility = Visibility.Collapsed;
             ThemeFade.Source = null;
+            story.Stop();
+            Redraw(); // tras un fundido, WinUI puede dejar controles dibujados apagados: se dibuja todo de nuevo
         };
         story.Begin();
     }
@@ -628,15 +674,46 @@ public sealed partial class MainWindow : Window
 
     private void ApplyLayout(bool animate)
     {
+        _programmaticUntil = Stopwatch.GetTimestamp() + Stopwatch.Frequency / 3;
         if (!_expanded && AppWindow.Presenter is OverlappedPresenter { State: OverlappedPresenterState.Maximized } maximized)
         {
             maximized.Restore(); // la pequeña no se maximiza: primero vuelve a su tamaño normal
         }
 
         Panel.SetExpanded(_expanded);
-        Toolbar.Visibility = _expanded ? Visibility.Visible : Visibility.Collapsed;
-        Tabs.Visibility = _expanded ? Visibility.Visible : Visibility.Collapsed;
-        TabHost.Visibility = _expanded ? Visibility.Visible : Visibility.Collapsed;
+        _afterResize?.Invoke();
+        _afterResize = null;
+        UIElement[] extras = [Toolbar, Tabs, TabHost];
+        if (animate && !_expanded)
+        {
+            // «Menos»: la barra de herramientas y las pestañas se desvanecen subiendo mientras la ventana encoge, y
+            // se ocultan al terminar (el mismo efecto que al abrirlas, al revés).
+            foreach (var element in extras)
+            {
+                Motion.FadeOut(element);
+            }
+
+            _afterResize = () =>
+            {
+                foreach (var element in extras)
+                {
+                    element.Visibility = Visibility.Collapsed;
+                    Motion.ResetFade(element);
+                }
+            };
+        }
+        else
+        {
+            foreach (var element in extras)
+            {
+                element.Visibility = _expanded ? Visibility.Visible : Visibility.Collapsed;
+                if (animate && _expanded)
+                {
+                    Motion.FadeIn(element); // «Más»: aparecen bajando mientras la ventana crece
+                }
+            }
+        }
+
         ApplySidebar();
         UpdatePager();
         UpdateLayoutState();
@@ -647,6 +724,8 @@ public sealed partial class MainWindow : Window
         {
             _resizeTimer.Stop();
             RelaxConstraints();
+            _resizeTo = (Scaled(width), Scaled(height));
+            _programmaticUntil = Stopwatch.GetTimestamp() + Stopwatch.Frequency / 3;
             AppWindow.Resize(new Windows.Graphics.SizeInt32(Scaled(width), Scaled(height)));
             ApplyConstraints();
             return;
@@ -687,10 +766,13 @@ public sealed partial class MainWindow : Window
         int x = Math.Clamp(AppWindow.Position.X, area.X, Math.Max(area.X, area.X + area.Width - w));
         int y = Math.Clamp(AppWindow.Position.Y, area.Y, Math.Max(area.Y, area.Y + area.Height - h));
         AppWindow.MoveAndResize(new Windows.Graphics.RectInt32(x, y, w, h));
+        _programmaticUntil = Stopwatch.GetTimestamp() + Stopwatch.Frequency / 3;
         if (t >= 1)
         {
             _resizeTimer.Stop();
             ApplyConstraints();
+            _afterResize?.Invoke();
+            _afterResize = null;
         }
     }
 
@@ -746,22 +828,25 @@ public sealed partial class MainWindow : Window
         bool show = _expanded && !page && SidebarWanted && (_narrow ? _sidebarOverlayOpen : _sidebarWide);
         Sidebar.Visibility = show ? Visibility.Visible : Visibility.Collapsed;
         SidebarButton.Visibility = SidebarWanted ? Visibility.Visible : Visibility.Collapsed;
+        if (!show)
+        {
+            SidebarColumn.Width = new GridLength(0);
+            return; // oculta: no se toca su aspecto (cambiarlo en cada cambio de tamaño solo da trabajo a WinUI)
+        }
+
         if (_narrow)
         {
             SidebarColumn.Width = new GridLength(0);
             Grid.SetColumnSpan(Sidebar, 2);
             Sidebar.Width = SidebarWidth;
             Sidebar.HorizontalAlignment = HorizontalAlignment.Left;
-            Sidebar.Background = new AcrylicBrush
-            {
-                TintColor = ThemeManager.Current.Dark ? Windows.UI.Color.FromArgb(255, 32, 32, 36) : Windows.UI.Color.FromArgb(255, 243, 243, 243),
-                TintOpacity = 0.85,
-                FallbackColor = ThemeManager.Current.Dark ? Windows.UI.Color.FromArgb(255, 32, 32, 36) : Windows.UI.Color.FromArgb(255, 243, 243, 243),
-            };
+            // Fondo opaco y un borde, sin acrílico ni sombra 3D (ThemeShadow + Translation): esos efectos crean un visual de
+            // composición propio que, al ocultarse la lista con la ventana cambiando de tamaño, cerraba WinUI de golpe.
+            Sidebar.Background = new SolidColorBrush(ThemeManager.Current.Dark ? Windows.UI.Color.FromArgb(255, 32, 32, 36) : Windows.UI.Color.FromArgb(255, 243, 243, 243));
+            Sidebar.BorderBrush = ThemeManager.BorderBrush;
+            Sidebar.BorderThickness = new Thickness(0, 1, 1, 1);
             Sidebar.CornerRadius = new CornerRadius(0, 8, 8, 0);
             Canvas.SetZIndex(Sidebar, 10);
-            Sidebar.Shadow ??= new ThemeShadow();
-            Sidebar.Translation = new System.Numerics.Vector3(0, 0, 32);
         }
         else
         {
@@ -770,9 +855,9 @@ public sealed partial class MainWindow : Window
             Sidebar.Width = double.NaN;
             Sidebar.HorizontalAlignment = HorizontalAlignment.Stretch;
             Sidebar.Background = null;
+            Sidebar.BorderThickness = new Thickness(0);
             Sidebar.CornerRadius = new CornerRadius(0);
             Canvas.SetZIndex(Sidebar, 0);
-            Sidebar.Translation = default;
         }
     }
 
@@ -822,8 +907,18 @@ public sealed partial class MainWindow : Window
     // ---------------------------------------------------------------------------------------------------------
     // Pestañas
 
+    private SelectorBarItem? _shownTab;
+
     private void Tabs_SelectionChanged(SelectorBar sender, SelectorBarSelectionChangedEventArgs args)
     {
+        // La línea de la pestaña elegida se desliza desde la anterior.
+        if (_shownTab is { } previous && sender.SelectedItem is { } next && previous != next
+            && Pill(previous) is { } from && Pill(next) is { } to)
+        {
+            Motion.SlideIndicator(from, to, vertical: false);
+        }
+
+        _shownTab = sender.SelectedItem;
         TabHost.Content = sender.SelectedItem switch
         {
             var i when i == TargetItem => _targetTab,
@@ -834,6 +929,10 @@ public sealed partial class MainWindow : Window
         };
         RefreshTabs();
     }
+
+    /// <summary>La línea de debajo de una pestaña (parte de su plantilla).</summary>
+    private static FrameworkElement? Pill(SelectorBarItem item) =>
+        Responsive.Descendants<Microsoft.UI.Xaml.Shapes.Rectangle>(item).FirstOrDefault(r => r.Name == "PART_SelectionVisual");
 
     private void RefreshTabs()
     {
@@ -898,6 +997,10 @@ public sealed partial class MainWindow : Window
         if (TabHost.Content is StatusTab or TargetTab)
         {
             RefreshTabs();
+        }
+        else if (TabHost.Content is FilesTab files)
+        {
+            files.Refresh(); // una copia que esperaba turno y acaba de empezar: ya tiene su lista
         }
     }
 
@@ -1158,6 +1261,64 @@ public sealed partial class MainWindow : Window
     /// Solo pruebas (MEGACOPIER_TEST=1): ejecuta la misma lógica que un arrastre real sobre la lista de archivos
     /// ("files") o de copias ("jobs"), sin ratón: <paramref name="drop"/> = false muestra la línea y el aviso.
     /// </summary>
+    /// <summary>
+    /// Vuelve a dibujar toda la ventana. WinUI, tras cambiar el tamaño de la ventana o con animaciones, a veces deja
+    /// textos, iconos y botones dibujados apagados (como desactivados) hasta pasar el ratón por encima: cambiar el
+    /// tema claro/oscuro y volverlo a poner en el mismo instante obliga a dibujarlo todo de nuevo, sin parpadeo.
+    /// </summary>
+    internal void Redraw()
+    {
+        var theme = Root.RequestedTheme;
+        Root.RequestedTheme = theme == ElementTheme.Dark ? ElementTheme.Light : ElementTheme.Dark;
+        Root.RequestedTheme = theme;
+    }
+
+    /// <summary>Solo pruebas: abre el menú de un botón por su nombre accesible.</summary>
+    internal bool DebugOpenMenu(string name)
+    {
+        var button = Responsive.Descendants<Button>(Root).FirstOrDefault(b => (Microsoft.UI.Xaml.Automation.AutomationProperties.GetName(b) == name || ToolTipService.GetToolTip(b) as string == name) && b.Flyout is not null);
+        button?.Flyout.ShowAt(button);
+        return button is not null;
+    }
+
+    /// <summary>Solo pruebas: foto de lo que XAML dibuja (RenderTargetBitmap), para compararla con la pantalla.</summary>
+    internal async Task DebugRenderAsync(string path)
+    {
+        var shot = new Microsoft.UI.Xaml.Media.Imaging.RenderTargetBitmap();
+        await shot.RenderAsync(Root);
+        var pixels = await shot.GetPixelsAsync();
+        using var stream = new Windows.Storage.Streams.InMemoryRandomAccessStream();
+        var encoder = await Windows.Graphics.Imaging.BitmapEncoder.CreateAsync(Windows.Graphics.Imaging.BitmapEncoder.PngEncoderId, stream);
+        encoder.SetPixelData(Windows.Graphics.Imaging.BitmapPixelFormat.Bgra8, Windows.Graphics.Imaging.BitmapAlphaMode.Premultiplied,
+            (uint)shot.PixelWidth, (uint)shot.PixelHeight, 96, 96, System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.ToArray(pixels));
+        await encoder.FlushAsync();
+        stream.Seek(0);
+        var bytes = new byte[stream.Size];
+        await stream.AsStreamForRead().ReadExactlyAsync(bytes);
+        await File.WriteAllBytesAsync(path, bytes);
+    }
+
+    /// <summary>Solo pruebas: estado visual de los botones del panel (para ver por qué se dibujan apagados).</summary>
+    internal string DebugStates()
+    {
+        var lines = new List<string>();
+        foreach (var button in Responsive.Descendants<Microsoft.UI.Xaml.Controls.Primitives.ButtonBase>(Panel))
+        {
+            string name = Microsoft.UI.Xaml.Automation.AutomationProperties.GetName(button);
+            var root = VisualTreeHelper.GetChildrenCount(button) > 0 ? VisualTreeHelper.GetChild(button, 0) as FrameworkElement : null;
+            string states = root is null ? "" : string.Join(",", VisualStateManager.GetVisualStateGroups(root).Select(g => $"{g.Name}={g.CurrentState?.Name}"));
+            string fg = button.Foreground is SolidColorBrush s ? s.Color.ToString() : button.Foreground?.GetType().Name ?? "";
+            lines.Add($"{name}|en={button.IsEnabled}|over={button.IsPointerOver}|pressed={button.IsPressed}|op={button.Opacity}|fg={fg}|{states}");
+        }
+
+        foreach (var element in Responsive.Descendants<UIElement>(Panel).Where(e => e.Opacity < 1))
+        {
+            lines.Add($"opacidad {element.Opacity}: {element.GetType().Name} {(element as FrameworkElement)?.Name}");
+        }
+
+        return string.Join("\n", lines);
+    }
+
     internal string DebugDrag(string target, double y, int[] rows, List<string> paths, bool drop)
     {
         if (target == "files")
@@ -1203,7 +1364,7 @@ public sealed partial class MainWindow : Window
         }
 
         HideJobDropFeedback();
-        _app.Queue.AddToJob(Jobs[spot.OverIndex].Job, paths);
+        _ = _app.AddToJobAsync(Jobs[spot.OverIndex].Job, paths);
         return "ok";
     }
 
@@ -1252,7 +1413,8 @@ public sealed partial class MainWindow : Window
             JobDropLine.Visibility = Visibility.Collapsed;
             DropTarget.ShowBox(JobDropBox, spot.OverBounds);
             e.AcceptedOperation = DataPackageOperation.Copy;
-            e.DragUIOverride.Caption = L.F("Drop_AddToNamedJob", job.Title);
+            string what = DragItems.What(e.DataView);
+            e.DragUIOverride.Caption = what.Length > 0 ? L.F("Drop_AddWhatTo", what, job.Title) : L.F("Drop_AddToNamedJob", job.Title);
             e.DragUIOverride.IsGlyphVisible = false;
         }
         else
@@ -1330,7 +1492,8 @@ public sealed partial class MainWindow : Window
 
         e.Handled = true;
         e.AcceptedOperation = DataPackageOperation.Copy;
-        e.DragUIOverride.Caption = L.F("Drop_AddToEnd", _selected.Title);
+        string what = DragItems.What(e.DataView);
+        e.DragUIOverride.Caption = what.Length > 0 ? L.F("Drop_AddWhatHere", what) : L.Get("Drop_AddToJob");
         e.DragUIOverride.IsGlyphVisible = false;
         PanelCard.BorderBrush = ThemeManager.AccentBrush;
         PanelCard.BorderThickness = new Thickness(2);
@@ -1365,7 +1528,7 @@ public sealed partial class MainWindow : Window
             var paths = items.Select(i => i.Path).Where(p => !string.IsNullOrEmpty(p)).ToList();
             if (paths.Count > 0)
             {
-                var target = _app.Queue.AddToJob(job.Job, paths);
+                var target = await _app.AddToJobAsync(job.Job, paths);
                 if (Jobs.FirstOrDefault(j => j.Job == target) is { } shown)
                 {
                     Select(shown);
@@ -2067,6 +2230,12 @@ public sealed partial class MainWindow : Window
             area.X + ((area.Width - AppWindow.Size.Width) / 2),
             area.Y + ((area.Height - AppWindow.Size.Height) / 2)));
     }
+
+    [DllImport("gdi32.dll")]
+    private static extern nint CreateSolidBrush(uint color);
+
+    [DllImport("user32.dll", EntryPoint = "SetClassLongPtrW")]
+    private static extern nint SetClassLongPtr(nint hwnd, int index, nint value);
 
     [DllImport("user32.dll")]
     private static extern uint GetDpiForWindow(nint hwnd);

@@ -268,3 +268,4 @@ E_FolderCancelled	Copia annullata: la cartella esisteva già nella destinazione.
 E_FolderSkipExisting	La cartella esisteva già: i {0} file già presenti vengono saltati e il resto viene copiato.
 E_FolderOverwrite	La cartella esisteva già: i {0} file già presenti vengono sovrascritti.
 E_FolderRenamed	La cartella «{0}» esisteva già: viene copiata come «{1}».
+E_SpaceForced	Si copia comunque: quando il disco sarà pieno, la copia attenderà lo spazio.

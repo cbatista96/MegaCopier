@@ -1106,7 +1106,7 @@ Settings_MergeConfirm.Content	Vor dem Hinzufügen fragen
 Settings_MoveAttributesTitle.Text	Beim Verschieben auch behalten
 Settings_MoveAttributesDescription.Text	Beim Verschieben auf ein anderes Laufwerk. Auf demselben Laufwerk ist es ein Umbenennen und alles bleibt erhalten.
 Settings_DeleteIncompleteTitle.Text	Beim Stoppen einer Kopie Unfertiges löschen
-Settings_DeleteIncompleteDescription.Text	Sie kann dann nicht mehr fortgesetzt werden. Es bleiben keine unvollständigen Dateien (.mcpart) im Ziel.
+Settings_DeleteIncompleteDescription.Text	So bleiben keine unvollständigen Dateien (.mcpart) im Ziel. Werden sie behalten, geht das erneute Kopieren desselben dort weiter, wo es aufgehört hat.
 Settings_KeepOnError.Content	Nicht löschen, wenn die Kopie wegen eines Fehlers stoppte
 Settings_EjectTitle.Text	Danach das Ziellaufwerk auswerfen
 Settings_EjectDescription.Text	Nur USB-Sticks, Speicherkarten und USB-Laufwerke, wenn keine andere Kopie es nutzt.
@@ -1330,7 +1330,7 @@ Info_Hash_Text	Der Hash ist wie ein Fingerabdruck der Datei: Ändert sich ein ei
 Info_Performance_Text	Wie schnell die Kopie laufen darf.\n• Geschwindigkeitslimit: damit die Kopie nicht das ganze Netz oder den Datenträger belegt, während Sie arbeiten oder einen Film sehen. Jede Kopie hat außerdem ein eigenes Limit in ihrem Tab Optionen, das sich sofort ändern lässt, ohne sie anzuhalten.\n• Puffergröße: die Blöcke, die auf einmal gelesen und geschrieben werden. Größer ist besser für riesige Dateien.\n• Gleichzeitige Vorgänge: wie viele Blöcke gleichzeitig angefordert werden. Schnelle SSDs profitieren von mehr.\nIm Zweifel die Vorgaben lassen: MegaCopier stimmt jeden Datenträger selbst ab.
 Info_Merge_Text	Starten Sie eine Kopie, während eine andere läuft, kann sie sich anschließen, statt zu warten: Ihre Dateien kommen ans Ende der Liste.\n• Nie: jede Kopie für sich.\n• Wenn sie in denselben Ordner gehen oder dieselben Datenträger nutzen.\n• Immer.\nMit „Vorher fragen“ entscheiden Sie jedes Mal. Praktisch, wenn Sie nach und nach Ordner auf denselben USB-Stick schicken.
 Info_MoveAttributes_Text	Beim Verschieben auf einen anderen Datenträger werden Dateien kopiert und danach an der Quelle gelöscht. Hier wählen Sie, was außer dem Inhalt mitkommt: Attribute (schreibgeschützt, versteckt…), Berechtigungen, Besitzer und Überwachung.\n• Arbeitsordner zwischen Servern verschieben und dabei behalten, wer sie öffnen darf.\nAuf demselben Datenträger ist Verschieben nur ein Ortswechsel und alles bleibt erhalten.
-Info_DeleteIncomplete_Text	Beim Kopieren wird jede Datei mit der Endung .mcpart geschrieben und erhält ihren Namen erst, wenn sie korrekt fertig ist. Halten Sie eine Kopie an, kann sie mit diesen Teilen später genau dort weitermachen.\n• Ein: Beim Anhalten werden die .mcpart-Dateien gelöscht und das Ziel bleibt sauber (Fortsetzen ist dann nicht mehr möglich).\n• Aus: Sie bleiben zum Fortsetzen erhalten.\nBeim Schließen von MegaCopier oder nach einem Stromausfall wird nie etwas gelöscht.
+Info_DeleteIncomplete_Text	„Stoppen“ bricht die Kopie ab und entfernt sie aus der Liste. Beim Kopieren wird jede Datei mit der Endung .mcpart geschrieben und erhält ihren Namen erst, wenn sie fehlerfrei fertig ist.\n• Ein: Stoppen löscht die .mcpart-Dateien und hinterlässt das Ziel sauber.\n• Aus: Sie bleiben erhalten, und kopierst du dasselbe erneut, geht es genau dort weiter, wo es aufgehört hat.\nBeim Schließen von MegaCopier oder nach einem Stromausfall wird nie etwas gelöscht: Diese Kopien werden beim nächsten Öffnen zum Fortsetzen angeboten.
 Info_Eject_Text	Am Ende wirft MegaCopier den USB-Stick, die Karte oder das USB-Laufwerk des Ziels sicher aus, wie „Hardware sicher entfernen“.\n• Mehrere USB-Sticks nacheinander befüllen: Beim Abziehen ist er schon fertig.\nNur wenn keine andere Kopie das Laufwerk nutzt. „Erzwingen“ wirft es auch aus, wenn ein Programm es geöffnet hat.
 Info_OnError_Text	Was passiert, wenn eine Datei auch nach Wiederholungen nicht kopiert werden kann.\n• Fragen: Die Kopie hält an, nennt den Grund und Sie wählen Wiederholen, Überspringen, Folgende überspringen oder Anhalten.\n• Überspringen und weiter: ideal für große Kopien über Nacht; am Ende sehen Sie die Fehlerliste.\n• Kopie anhalten: wenn nichts fehlen darf.\n• Am Ende wiederholen: hebt sie für zuletzt auf, falls sie in Gebrauch war und frei wird.
 Info_ErrorReport_Text	Endet eine Kopie mit Fehlern, wird eine Textdatei mit jeder fehlgeschlagenen Datei, dem Grund und der Uhrzeit gespeichert.\n• Um eine Kopie, die über Nacht lief, in Ruhe zu prüfen.\n• Um sie an die Person weiterzugeben, die sich um die Rechner kümmert.
@@ -1421,3 +1421,18 @@ Picker_SendTitle	Wählen Sie, was gesendet wird: Dateien oder Ordner
 Picker_DeleteTitle	Wählen Sie, was gelöscht wird: Dateien oder Ordner
 Picker_WipeTitle	Wählen Sie, was sicher gelöscht wird: Dateien oder Ordner
 Picker_AddTitle	Wählen Sie, was zur Liste hinzukommt: Dateien oder Ordner
+Space_Title	Nicht genug Platz auf {0}
+Space_Text	Benötigt werden {0}, frei sind {1} (es fehlen {2}).
+Space_TextAdding	Mit dem, was du hinzufügen willst, werden {0} benötigt, frei sind {1} (es fehlen {2}).
+Space_Force	Trotzdem kopieren
+Space_ForceTip	Kopiert, bis der Datenträger voll ist, und wartet dann: Gib Platz frei, und die Kopie läuft von selbst weiter.
+Space_Cancel	Abbrechen
+Space_CancelTip	Es wird nichts kopiert.
+Space_CancelAddingTip	Es wird nichts hinzugefügt; die Kopie läuft weiter wie bisher.
+Job_StartNow	Jetzt starten
+Drop_One	„{0}“
+Drop_Many	{0} Elemente
+Drop_AddWhatHere	{0} zu dieser Kopie hinzufügen
+Drop_AddWhatTo	{0} zu {1} hinzufügen
+Drop_InsertWhatAt	{0} an Position {1} hinzufügen
+Files_ResizeColumn.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Ziehen, um die Spaltenbreite zu ändern (Doppelklick: Standardbreite)

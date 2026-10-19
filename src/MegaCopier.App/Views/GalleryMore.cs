@@ -12,7 +12,13 @@ namespace MegaCopier.App.Views;
 /// </summary>
 internal sealed class GalleryMore
 {
-    public const int Limit = 12;
+    /// <summary>Como mucho se ven 15 de entrada (tres filas de cinco); con otro número de columnas, filas completas.</summary>
+    public const int MaxLimit = 15;
+
+    private int _limit = MaxLimit;
+    private int _retries;
+
+    private int Limit => _limit;
 
     private readonly GridView _gallery;
     private readonly Func<object?> _selected;
@@ -40,6 +46,7 @@ internal sealed class GalleryMore
             Visibility = Visibility.Collapsed,
         };
         _button.Click += (_, _) => Toggle();
+        gallery.SizeChanged += (_, _) => UpdateLimit();
         if (!Place())
         {
             gallery.Loaded += (_, _) => Place();
@@ -102,5 +109,35 @@ internal sealed class GalleryMore
         _label.Text = _expanded ? L.Get("Gallery_Less") : L.F("Gallery_More", _all.Count - Limit);
         _arrow.Glyph = _expanded ? "" : "";
         Microsoft.UI.Xaml.Automation.AutomationProperties.SetName(_button, _label.Text);
+        _gallery.DispatcherQueue.TryEnqueue(UpdateLimit); // al medir los elementos ya se sabe cuántos caben por fila
+    }
+
+    /// <summary>
+    /// Cuántos caben por fila según el ancho: así lo que se ve de entrada son filas completas (sin una última fila a
+    /// medias) y «Mostrar más» queda justo debajo.
+    /// </summary>
+    private void UpdateLimit()
+    {
+        if (_gallery.ContainerFromIndex(0) is not FrameworkElement first || first.ActualWidth <= 0)
+        {
+            if (_gallery.IsLoaded && _retries++ < 20)
+            {
+                _gallery.DispatcherQueue.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.Low, UpdateLimit); // aún sin medir
+            }
+
+            return;
+        }
+
+        _retries = 0;
+
+        double item = first.ActualWidth + first.Margin.Left + first.Margin.Right;
+        double width = _gallery.ActualWidth - _gallery.Padding.Left - _gallery.Padding.Right;
+        int columns = Math.Max(1, (int)(width / item));
+        int limit = Math.Max(columns, MaxLimit / columns * columns);
+        if (limit != _limit)
+        {
+            _limit = limit;
+            Apply();
+        }
     }
 }

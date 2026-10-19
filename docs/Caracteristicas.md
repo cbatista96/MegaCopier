@@ -11,6 +11,8 @@ Todo lo que hace MegaCopier, por temas. Para usarlo, la [guía](Guia.md); para c
 - Las copias interrumpidas aparecen al arrancar y se continúan con un clic, o solas.
 - **Pausar, saltar el archivo actual, detener y seguir más tarde**; reintentos automáticos y lista de fallidos.
 - **Espera** a que vuelva el disco o la red, o a que haya espacio, en vez de fallar.
+- **Comprueba que cabe** antes de copiar (y al añadir a una copia en marcha): si no, cancelar o forzar la copia, que
+  llena el disco y espera a que haya sitio.
 - Carpetas **«todo o nada»**: o se copia entera o no queda nada a medias.
 - **Modo rescate** para discos dañados: salva lo legible y deja en ceros lo ilegible.
 - **Archivos en uso** (Outlook, bases de datos) copiados desde una instantánea de Windows (VSS).

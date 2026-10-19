@@ -1106,7 +1106,7 @@ Settings_MergeConfirm.Content	Demander avant de les ajouter
 Settings_MoveAttributesTitle.Text	Lors d'un déplacement, conserver aussi
 Settings_MoveAttributesDescription.Text	Vers un autre disque. Sur le même disque, déplacer est un renommage et tout est conservé.
 Settings_DeleteIncompleteTitle.Text	À l'arrêt d'une copie, supprimer ce qui est resté inachevé
-Settings_DeleteIncompleteDescription.Text	Elle ne pourra plus reprendre là où elle s'est arrêtée. Aucun fichier incomplet (.mcpart) ne reste dans la destination.
+Settings_DeleteIncompleteDescription.Text	Aucun fichier incomplet (.mcpart) ne reste dans la destination. S’ils sont gardés, recopier la même chose reprend là où elle s’était arrêtée.
 Settings_KeepOnError.Content	Ne pas supprimer si la copie s'est arrêtée à cause d'une erreur
 Settings_EjectTitle.Text	À la fin, éjecter le lecteur de destination
 Settings_EjectDescription.Text	Uniquement clés USB, cartes mémoire et disques USB, si aucune autre copie ne l'utilise.
@@ -1330,7 +1330,7 @@ Info_Hash_Text	Le hash est comme l’empreinte digitale d’un fichier : si un s
 Info_Performance_Text	La vitesse que peut atteindre la copie.\n• Limite de vitesse : pour que la copie n’accapare pas tout le réseau ou le disque pendant que vous travaillez ou regardez un film. Chaque copie a aussi sa propre limite dans son onglet Options, modifiable à tout moment sans l’arrêter.\n• Taille du tampon : les blocs lus et écrits en une fois. Plus grand convient mieux aux très gros fichiers.\n• Opérations simultanées : combien de blocs sont demandés au disque en même temps. Les SSD rapides y gagnent.\nEn cas de doute, gardez les valeurs par défaut : MegaCopier règle déjà chaque disque tout seul.
 Info_Merge_Text	Si vous lancez une copie pendant qu’une autre est en cours, elle peut s’y ajouter au lieu d’attendre son tour : ses fichiers vont en fin de liste.\n• Jamais : chaque copie est indépendante.\n• Si elles vont dans le même dossier, ou utilisent les mêmes disques.\n• Toujours.\nAvec « Demander avant », vous décidez à chaque fois. Pratique quand vous envoyez des dossiers un par un vers la même clé USB.
 Info_MoveAttributes_Text	En déplaçant vers un autre disque, les fichiers sont copiés puis supprimés de la source. Ici vous choisissez ce qu’ils emportent en plus du contenu : attributs (lecture seule, caché…), autorisations, propriétaire et audit.\n• Déplacer des dossiers de travail entre serveurs en gardant qui peut les ouvrir.\nSur le même disque, déplacer change juste l’emplacement et tout est conservé.
-Info_DeleteIncomplete_Text	Pendant la copie, chaque fichier est écrit avec l’extension .mcpart et ne reçoit son nom qu’une fois terminé correctement. Si vous arrêtez une copie, ces morceaux permettent de reprendre plus tard là où elle s’était arrêtée.\n• Activé : Arrêter supprime les .mcpart et la destination reste propre (mais on ne peut plus reprendre).\n• Désactivé : ils sont gardés pour reprendre.\nRien n’est jamais supprimé à la fermeture de MegaCopier ni après une coupure de courant.
+Info_DeleteIncomplete_Text	« Arrêter » annule la copie et la retire de la liste. Pendant la copie, chaque fichier est écrit avec l’extension .mcpart et ne reçoit son nom qu’une fois terminé correctement.\n• Activé : appuyer sur Arrêter supprime les .mcpart et laisse la destination propre.\n• Désactivé : ils sont gardés, et si vous recopiez la même chose, elle reprend là où elle s’était arrêtée.\nRien n’est jamais supprimé à la fermeture de MegaCopier ni après une coupure de courant : ces copies sont proposées à la reprise à la prochaine ouverture.
 Info_Eject_Text	À la fin, MegaCopier éjecte en toute sécurité la clé USB, la carte ou le disque USB de destination, comme « Retirer le périphérique en toute sécurité ».\n• Remplir plusieurs clés USB d’affilée : quand vous la retirez, elle est prête.\nSeulement si aucune autre copie ne l’utilise. « Forcer » l’éjecte même si un programme l’a ouverte.
 Info_OnError_Text	Que faire quand un fichier ne peut pas être copié même après de nouvelles tentatives.\n• Demander : la copie s’arrête, vous dit pourquoi et vous choisissez de réessayer, l’ignorer, ignorer les suivants ou arrêter.\n• Ignorer et continuer : idéal pour les grosses copies de nuit ; à la fin vous voyez la liste des échecs.\n• Arrêter la copie : quand rien ne doit manquer.\n• Réessayer à la fin : le garde pour la fin, au cas où il était utilisé et se libère.
 Info_ErrorReport_Text	Si une copie se termine avec des erreurs, un fichier texte est enregistré avec chaque fichier en échec, la raison et l’heure.\n• Pour examiner tranquillement une copie lancée la nuit.\n• Pour le transmettre à la personne qui gère les ordinateurs.
@@ -1421,3 +1421,18 @@ Picker_SendTitle	Choisissez quoi envoyer : fichiers ou dossiers
 Picker_DeleteTitle	Choisissez quoi supprimer : fichiers ou dossiers
 Picker_WipeTitle	Choisissez quoi effacer définitivement : fichiers ou dossiers
 Picker_AddTitle	Choisissez quoi ajouter à la liste : fichiers ou dossiers
+Space_Title	Pas assez d’espace sur {0}
+Space_Text	Il faut {0} et il y a {1} de libre (il manque {2}).
+Space_TextAdding	Avec ce que vous voulez ajouter, il faut {0} et il y a {1} de libre (il manque {2}).
+Space_Force	Copier quand même
+Space_ForceTip	Copie jusqu’à remplir le disque puis attend : libérez de l’espace et la copie reprend seule.
+Space_Cancel	Annuler
+Space_CancelTip	Rien n’est copié.
+Space_CancelAddingTip	Rien n’est ajouté ; la copie continue comme avant.
+Job_StartNow	Démarrer maintenant
+Drop_One	« {0} »
+Drop_Many	{0} éléments
+Drop_AddWhatHere	Ajouter {0} à cette copie
+Drop_AddWhatTo	Ajouter {0} à {1}
+Drop_InsertWhatAt	Ajouter {0} à la position {1}
+Files_ResizeColumn.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Faites glisser pour changer la largeur de la colonne (double-clic : largeur par défaut)

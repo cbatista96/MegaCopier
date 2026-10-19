@@ -50,15 +50,21 @@ public sealed partial class FlowBar : UserControl
     private readonly Border _ghost = new() { HorizontalAlignment = HorizontalAlignment.Left, Width = 0, Visibility = Visibility.Collapsed };
     private readonly Grid _fill = new() { HorizontalAlignment = HorizontalAlignment.Left, Width = 0 };
     private readonly Grid _decor = new() { IsHitTestVisible = false };
-    private readonly Rectangle _pauseStripes = new() { IsHitTestVisible = false, Opacity = 0 };
+    private readonly Rectangle _pauseStripes = new() { IsHitTestVisible = false };
+    private Brush? _pauseStripesBrush;
+
+    /// <summary>
+    /// En pausa la parte llena se apaga con un velo del color del carril encima, y lleva rayas. El velo y las rayas están
+    /// siempre ahí y solo cambia su pintura: ni opacidad (WinUI dejaba otros controles dibujados apagados) ni mostrar y
+    /// ocultar (WinUI se cerraba a veces de golpe al dibujar la barra en pausa mientras la ventana cambiaba).
+    /// </summary>
+    private readonly Rectangle _pauseShade = new() { IsHitTestVisible = false };
     private readonly Rectangle _flash = new() { IsHitTestVisible = false, Opacity = 0 };
     private readonly Canvas _overlay = new() { IsHitTestVisible = false };
     private readonly TextBlock _text = new() { HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Center, IsHitTestVisible = false, FontWeight = Microsoft.UI.Text.FontWeights.SemiBold };
     private readonly TranslateTransform _indeterminateOffset = new();
     private readonly TranslateTransform _shake = new();
     private readonly List<Storyboard> _loops = [];
-    private readonly CompositionRoundedRectangleGeometry _rootClip;
-    private readonly CompositionRoundedRectangleGeometry _fillClip;
     private readonly SpriteVisual _glow;
     private readonly DropShadow _glowShadow;
     private Storyboard? _widthAnimation;
@@ -78,11 +84,10 @@ public sealed partial class FlowBar : UserControl
     {
         IsTabStop = false;
 
-        var compositor = ElementCompositionPreview.GetElementVisual(_root).Compositor;
-        _rootClip = compositor.CreateRoundedRectangleGeometry();
-        ElementCompositionPreview.GetElementVisual(_root).Clip = compositor.CreateGeometricClip(_rootClip);
-        _fillClip = compositor.CreateRoundedRectangleGeometry();
-        ElementCompositionPreview.GetElementVisual(_fill).Clip = compositor.CreateGeometricClip(_fillClip);
+        // Las esquinas redondeadas de la barra y de la parte llena las recorta el propio Grid (CornerRadius). No se
+        // recortan con composición: tomar el visual de estos elementos, cuyo contenido cambia sin parar (rayas, velo de
+        // pausa, decoraciones que se rehacen), hacía que WinUI se cerrara de golpe a veces al dibujar.
+        var compositor = Microsoft.UI.Xaml.Media.CompositionTarget.GetCompositorForCurrentThread();
 
         // Halo (neón, aero): una sombra de color bajo la parte llena, fuera del recorte de la barra.
         _glow = compositor.CreateSpriteVisual();
@@ -94,7 +99,6 @@ public sealed partial class FlowBar : UserControl
 
         _root.SizeChanged += (_, e) =>
         {
-            _rootClip.Size = new Vector2((float)e.NewSize.Width, (float)e.NewSize.Height);
             if (Math.Abs(e.NewSize.Width - _builtWidth) > 0.5 && !_rebuildPending)
             {
                 // Al cambiar el tamaño de la ventana llegan muchos cambios seguidos: se redibuja una vez.
@@ -114,13 +118,13 @@ public sealed partial class FlowBar : UserControl
         };
         _fill.SizeChanged += (_, e) =>
         {
-            _fillClip.Size = new Vector2((float)e.NewSize.Width, (float)e.NewSize.Height);
             _glow.Size = new Vector2((float)e.NewSize.Width, (float)e.NewSize.Height);
             FillWidthChanged(e.NewSize.Width);
         };
 
         _fill.RenderTransform = _indeterminateOffset;
         _fill.Children.Add(_decor);
+        _fill.Children.Add(_pauseShade);
         _fill.Children.Add(_pauseStripes);
         _fill.Children.Add(_flash);
         _root.Children.Add(_track);
@@ -243,8 +247,8 @@ public sealed partial class FlowBar : UserControl
         _height = height;
         Height = height;
         _radius = Math.Min(_settings.Radius >= 0 ? _settings.Radius : theme.CornerRadius, height / 2);
-        _rootClip.CornerRadius = new Vector2((float)_radius, (float)_radius);
-        _fillClip.CornerRadius = new Vector2((float)_radius, (float)_radius);
+        _root.CornerRadius = new CornerRadius(_radius);
+        _fill.CornerRadius = new CornerRadius(_radius);
         _track.CornerRadius = new CornerRadius(_radius);
         _ghost.CornerRadius = new CornerRadius(_radius);
         _builtWidth = -1;
@@ -270,8 +274,9 @@ public sealed partial class FlowBar : UserControl
 
     private void UpdateState()
     {
-        _fill.Opacity = IsPaused ? (_settings.StateEffects ? 0.75 : 0.5) : 1;
-        _pauseStripes.Opacity = IsPaused && _settings.StateEffects && !IsIndeterminate ? 0.55 : 0;
+        var track = ThemeManager.TrackBrush.Color;
+        _pauseShade.Fill = IsPaused ? new SolidColorBrush(Color.FromArgb((byte)(_settings.StateEffects ? 64 : 128), track.R, track.G, track.B)) : null;
+        _pauseStripes.Fill = IsPaused && _settings.StateEffects && !IsIndeterminate ? _pauseStripesBrush : null;
         if (Running && !_loopsRunning)
         {
             StartLoops();
