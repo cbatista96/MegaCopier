@@ -315,6 +315,11 @@ public sealed class QueueTests : IDisposable
         await WaitFinished(queue, second);
         Assert.Equal(CopyJobState.Completed, second.State);
         Assert.True(first.IsActive);
+        while (first.State == CopyJobState.Running) // en equipos lentos, la pausa puede llegar después
+        {
+            await Task.Delay(10);
+        }
+
         queue.Resume(first);
         await WaitFinished(queue, first);
         Assert.Equal(CopyJobState.Completed, first.State);
