@@ -5,6 +5,8 @@ y las versiones, [SemVer](https://semver.org/lang/es/).
 
 ## [Sin publicar]
 
+## [1.4.0] - 2026-10-19
+
 Una versión para que copiar sea más seguro y más estable: MegaCopier comprueba que lo que copias cabe antes de empezar
 (y te deja forzarlo), «Detener» por fin cancela, las copias ya no se repiten al volver a abrir, dos copias en el mismo
 disco pueden ir a la vez y el arrastre desde el Explorador es más fiable. Además se acaban los cierres repentinos y los
@@ -463,7 +465,8 @@ Primera versión pública.
 - Aviso SMART, avisos por correo y webhook, control desde el móvil y servidor MCP para asistentes de IA.
 - Consola `mcopy`, modo portátil, 14 idiomas, 11 temas y accesibilidad con lectores de pantalla.
 
-[Sin publicar]: https://github.com/cbatista96/MegaCopier/compare/v1.3.0...HEAD
+[Sin publicar]: https://github.com/cbatista96/MegaCopier/compare/v1.4.0...HEAD
+[1.4.0]: https://github.com/cbatista96/MegaCopier/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/cbatista96/MegaCopier/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/cbatista96/MegaCopier/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/cbatista96/MegaCopier/compare/v1.0.0...v1.1.0
