@@ -5,6 +5,8 @@ y las versiones, [SemVer](https://semver.org/lang/es/).
 
 ## [Sin publicar]
 
+## [1.5.0] - 2026-10-19
+
 Una versión para copiar varias cosas a la vez sin pensarlo: si lo nuevo va al mismo disco que una copia en marcha,
 MegaCopier pregunta si sumarlo a ella, y si va a otro disco empieza a la vez. Cada copia tiene su propio icono de
 progreso en la bandeja, la X cancela de verdad, el arrastre también vale sobre el panel izquierdo del Explorador, las
@@ -543,7 +545,8 @@ Primera versión pública.
 - Aviso SMART, avisos por correo y webhook, control desde el móvil y servidor MCP para asistentes de IA.
 - Consola `mcopy`, modo portátil, 14 idiomas, 11 temas y accesibilidad con lectores de pantalla.
 
-[Sin publicar]: https://github.com/cbatista96/MegaCopier/compare/v1.4.0...HEAD
+[Sin publicar]: https://github.com/cbatista96/MegaCopier/compare/v1.5.0...HEAD
+[1.5.0]: https://github.com/cbatista96/MegaCopier/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/cbatista96/MegaCopier/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/cbatista96/MegaCopier/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/cbatista96/MegaCopier/compare/v1.1.0...v1.2.0
