@@ -64,8 +64,10 @@ Una vez instalado, **no tienes que cambiar nada de lo que haces**:
 - **Clic derecho > Pegar con MegaCopier** en una carpeta o en el fondo de una ventana. En Windows 11 aparece en el menú
   corto, sin pasar por «Mostrar más opciones».
 - **Arrastrar con el botón derecho** y soltar: «Copiar aquí con MegaCopier» o «Mover aquí con MegaCopier».
-- **Arrastrar con el botón izquierdo** entre ventanas del Explorador, con las mismas reglas de Windows (activado de
-  serie; en *Ajustes > General* puedes desactivarlo o hacer que pregunte antes, siempre o solo al mover).
+- **Arrastrar con el botón izquierdo** entre ventanas del Explorador, el Escritorio y las carpetas y unidades del panel
+  de la izquierda (*Este equipo*, *Disco local (C:)*, *Descargas*…), con las mismas reglas de Windows (activado de
+  serie; en *Ajustes > General* puedes desactivarlo o hacer que pregunte antes, siempre o solo al mover). Soltar sobre
+  un archivo o un ZIP sigue haciéndolo el Explorador.
 
 MegaCopier solo actúa cuando el foco está en la lista de archivos: nunca al escribir en la barra de direcciones, en la
 búsqueda o al renombrar. Pegar en la misma carpeta y en carpetas especiales (*Este equipo*, dentro de un ZIP…) sigue
@@ -80,6 +82,12 @@ y copia el Explorador de Windows como siempre. Otro doble clic lo vuelve a activ
 El menú del icono de la bandeja (clic derecho) tiene además: **Abrir MegaCopier**, **Pausar todo**, **Reanudar todo**,
 **Bandeja de arrastre**, **Iniciar con Windows** y **Salir**.
 
+Mientras copia, junto a él aparece **un icono por cada copia** con su porcentaje y una barra que sube (ámbar en pausa,
+rojo con errores); al terminar se llena, muestra una marca y se quita solo. Un clic abre esa copia y el clic derecho la
+pausa, la reanuda o la detiene. Si Windows los esconde en la flecha **˄** junto al reloj, arrástralos a la barra (o
+actívalos en *Configuración de Windows > Personalización > Barra de tareas > Otros iconos de la bandeja del sistema*).
+Se apagan en *Ajustes > Interfaz > Progreso de cada copia en la bandeja*.
+
 ---
 
 ## 3. La ventana de copia
@@ -92,13 +100,20 @@ que se está copiando, con la velocidad y el tiempo que queda. Debajo, las unida
 Los botones, siempre con su nombre:
 
 - **⌄ Más**: amplía la ventana.
-- **Pausa**: el mismo botón pasa a **Continuar**. En una copia que espera turno porque otra usa el mismo disco, es
-  **Empezar ya**: la arranca a la vez que la otra.
+- **Pausar**: el mismo botón pasa a **Reanudar**. En una copia que espera turno porque otra usa el mismo disco, es
+  **Comenzar**: la arranca a la vez que la otra.
 - **Saltar**: deja el archivo actual y sigue con el siguiente; también en pausa: lo descarta y la copia sigue en pausa,
   lista para empezar el siguiente.
 - **Detener**: cancela la copia y la quita de la lista; si era la única, la ventana se cierra sola. Lo que quedó a
   medias se borra o se guarda según *Ajustes > Comportamiento*: si se guarda, al volver a copiar lo mismo se sigue desde
   donde quedó.
+
+Arriba está la **barra de herramientas** (*Nueva*, pausar y reanudar todas, historial, ajustes…), también en esta vista.
+Al abrir **Ajustes** la ventana se agranda hasta el ancho de sus tarjetas y, al volver, recupera el tamaño que tenía.
+
+La **X** de la ventana cancela las copias, como *Detener* en cada una (MegaCopier sigue en la bandeja). En *Ajustes >
+Interfaz* puedes hacer que las detenga para continuarlas después, que solo oculte la ventana o que salga de MegaCopier,
+y que **minimizar** la esconda en la bandeja en lugar de la barra de tareas.
 
 El botón **…** tiene más opciones de esa copia. Con varias copias aparece un paginador **‹ ›** para pasar de una a
 otra. Esta ventana se puede ensanchar, pero no hacer más alta: no habría nada más que ver.
@@ -127,8 +142,11 @@ Cuando todo termina bien, la ventana se cierra sola (*Ajustes > Interfaz > Al te
   pausar todas, reanudar todas, quitar las terminadas, **línea de tiempo**, **historial**, **ajustes**, **acerca de** y
   **Al terminar** (qué hace el equipo cuando acaban todas las copias: nada, suspender, hibernar, apagar, cerrar sesión o
   cerrar MegaCopier).
-- **A la izquierda**, todas las copias con su estado (copiando, en espera, en pausa, completada, con errores…). Se
-  reordenan arrastrándolas.
+- **A la izquierda**, todas las copias: arriba lo que hace («Copiando (29,7 %)», o cuándo terminó) y debajo el origen y
+  el destino, con los archivos y el tamaño. Se reordenan arrastrándolas. Las terminadas siguen a la vista mientras
+  quede alguna activa; al acabar todas pasan al historial. Con el clic derecho (o **Supr**) se archivan en el historial
+  o se eliminan. El botón de las tres rayas abre y cierra la lista; cerrada, lleva en rojo cuántas copias siguen
+  activas.
 - **A la derecha**, la copia elegida con cinco pestañas:
 
 | Pestaña | Qué tiene |
@@ -146,7 +164,22 @@ una copia y completa cuando hay varias a la vez). Son tres vistas: la **pequeña
 tamaño mínimo para que todo quepa y que se puede maximizar) y la de **varias copias**, que es la misma con la lista de
 copias a la izquierda (solo aparece cuando hay más de una).
 
-![Dos copias a la vez: la segunda espera turno y «Empezar ya» la arranca](capturas/varias-copias.png)
+### Una copia nueva mientras otra está en marcha
+
+Si la copia nueva va **al mismo disco** que una que ya está copiando, MegaCopier sale al frente y pregunta:
+
+- **Añadir a esta copia**: sus archivos se copian al final de la lista de la que está en marcha (cada cosa a su
+  carpeta), con una sola barra. Antes comprueba que haya espacio.
+- **Copia aparte**: otra copia que espera a que termine la primera (dos copias a la vez al mismo disco van más lentas);
+  **Comenzar** la arranca ya.
+- **Cancelar**: no copia nada de lo nuevo.
+
+![Ya hay una copia hacia N: añadir a esta copia, copia aparte o cancelar](capturas/misma-unidad.png)
+
+Si va **a otro disco**, empieza a la vez, sin esperar: cada disco copia a su velocidad. Las dos cosas se cambian en
+*Ajustes > Comportamiento*.
+
+![Dos copias a la vez: la segunda espera turno y «Comenzar» la arranca](capturas/varias-copias.png)
 
 En la lista, la búsqueda va siempre a la izquierda y encoge si falta sitio; las casillas *Ocultar los terminados* y
 *Seguir al actual* van a su lado. Los botones de la izquierda empiezan a la altura del primer archivo y se ven siempre
@@ -502,10 +535,10 @@ En una ventana estrecha la lista de secciones se queda solo con los iconos.
 | Sección | Qué se ajusta |
 |---|---|
 | **General** | Usar MegaCopier en lugar del copiador de Windows · Copiar y mover al pegar (Ctrl+V) · Arrastrar con el botón izquierdo (y si preguntar antes) · Opciones en el menú contextual · Iniciar con Windows. |
-| **Interfaz** | Ventana compacta, completa o automática · Qué hacer al terminar · Siempre visible · Avisar al terminar · **Idioma** · Unidades de tamaño · Mostrar el icono en la bandeja · Iniciar las copias con la ventana minimizada · Recordar la posición y el tamaño de la ventana · Ventana translúcida · **Temas** y su editor · **Conjuntos de iconos** (ver [Temas e iconos](#18-temas-e-iconos)). |
+| **Interfaz** | Ventana compacta, completa o automática · Qué hacer al terminar · **Qué hacen la X y minimizar** · Siempre visible · Avisar al terminar · **Idioma** · Unidades de tamaño · Mostrar el icono en la bandeja · **Progreso de cada copia en la bandeja** · Iniciar las copias con la ventana minimizada · Recordar la posición y el tamaño de la ventana · Ventana translúcida · Ajustar a pantallas pequeñas · **Temas** y su editor · **Conjuntos de iconos** (ver [Temas e iconos](#18-temas-e-iconos)). |
 | **Sonidos** | Sonido para cada momento (copia terminada, todas terminadas, error, pregunta), volumen y no sonar con juegos, presentaciones o «No molestar». Por defecto suenan los **sonidos propios de MegaCopier** (campanillas originales, no los avisos de Windows); en cada momento puedes elegir, de arriba abajo, **un archivo tuyo**, ninguno, el propio de ese momento, uno de la **colección de MegaCopier** (19 sonidos originales: avisos de menos de un segundo, notificaciones de 1,5 a 3 s y melodías de hasta 4 s) o uno de Windows, y probarlo con ▶. |
 | **Copia** | Verificar después de copiar · Si el archivo ya existe · Algoritmo de suma · Qué se copia (fechas, atributos, ADS, permisos, propietario, auditoría) · Archivo de sumas e informe · Comprobar el espacio libre antes · Caché del sistema · Comprimir por la red (SMB) · Reanudar solas al arrancar · Rendimiento · Filtros y reglas. |
-| **Comportamiento** | **Añadir las copias nuevas a una que ya está en marcha** (nunca, si van a la misma carpeta, si usan los mismos discos o siempre; preguntando antes o no) · **Al mover, conservar también** atributos, permisos, propietario y auditoría · **Al detener una copia, borrar lo que quedó a medias** (y no hacerlo si paró por un error) · **Al terminar, expulsar la unidad de destino** si es extraíble (y forzarlo). |
+| **Comportamiento** | **Copia nueva al mismo disco que otra en marcha** (preguntar, añadirla, copia aparte después o a la vez) · **Copia nueva a otro disco** (empezar a la vez o esperar su turno) · **Al mover, conservar también** atributos, permisos, propietario y auditoría · **Al detener una copia, borrar lo que quedó a medias** (y no hacerlo si paró por un error) · **Al terminar, expulsar la unidad de destino** si es extraíble (y forzarlo). |
 | **Errores** | **Si un archivo sigue fallando**: omitirlo y seguir, detener la copia, reintentarlo al final o **preguntar qué hacer** · Reintentos y espera entre ellos · **Informe de errores** automático (en la carpeta de destino o en una fija, con el nombre que quieras) · Guardar el registro de cada copia. |
 | **Cola y rendimiento** | Copias a la vez · Dispositivos rápidos · Ir más despacio mientras usas el equipo · Límite de velocidad por horario · Pausar con batería · Pausar en juegos · Prioridad del proceso · Excluir MegaCopier de Windows Defender · Ajuste automático para cada disco. |
 | **Red y dispositivos** | Carpetas favoritas · Recibir de otro PC con MegaCopier · Recibir con LocalSend · Controlar desde el móvil · Servidores y nubes. |
@@ -546,8 +579,9 @@ barras, el redondeo y el fondo (Mica, Mica Alt, Acrílico o sólido). Guarda tus
 
 ### Conjuntos de iconos
 
-*Ajustes > Interfaz > Iconos*. Los iconos se eligen **aparte del tema**: cualquier tema con cualquier conjunto. Todos usan
-los iconos modernos de Windows 11:
+*Ajustes > Interfaz > Iconos*. Los iconos se eligen **aparte del tema**: cualquier tema con cualquier conjunto. Todos tienen
+un icono para cada función del copiador (los modernos de Windows 11) y cada uno imita la forma, los colores y el acabado
+de su sistema:
 
 | Conjunto | Cómo se ven |
 |---|---|
@@ -558,13 +592,25 @@ los iconos modernos de Windows 11:
 | **Degradado** | Relleno con el degradado de las barras del tema. |
 | **Neón** | Color vivo con un halo de luz alrededor (luce en los temas oscuros). |
 | **Windows 10** | Los iconos clásicos de Windows 10. |
-| **Android** y **Android tonal** | Círculos de color o tonos suaves, con la paleta de Material. |
+| **Android (AOSP)** | Círculos planos con la paleta de Material. |
+| **Material You** | Fondos tonales redondeados con el color del tema, como el «color dinámico» de Android. |
+| **One UI** | Los cuadrados muy redondeados y planos de Samsung, con colores vivos. |
+| **Nothing OS** | Círculos negros con iconos blancos y su rojo para detener. |
 | **macOS** y **macOS color** | Cuadrados muy redondeados con degradado y reflejo, o iconos con los colores del sistema de Apple. |
-| **Ubuntu, KDE Plasma, GNOME, elementary OS, Linux Mint, Fedora, Pop!_OS y Arch Linux** | La forma y la paleta de cada escritorio Linux: naranjas y berenjena, azules Breeze, Adwaita, círculos con brillo, contornos… |
-| **Windows XP, Windows 7 Aero y Windows 8 Metro** | Brillo de cristal, Aero y los mosaicos planos de Metro. |
-| **Steam** | Fondos suaves con los azules y verdes de Steam. |
+| **Ubuntu** | Mosaicos con sus naranjas y berenjena. |
+| **KDE Plasma** | Iconos de color sin fondo, con la paleta Breeze. |
+| **GNOME** | Círculos azules como los de sus ajustes rápidos. |
+| **elementary OS** | Círculos de color con brillo. |
+| **Linux Mint** | Mosaicos planos en tonos de verde. |
+| **Fedora** | Aros finos en su azul. |
+| **Pop!_OS** | Mosaicos con sus tonos cálidos. |
+| **Arch Linux** | Mosaicos cuadrados y planos en su azul. |
+| **Windows 95** | Botones grises con relieve en 3D. |
+| **Windows XP, Vista, 7 Aero y 8 Metro** | Brillo de cristal; cristal oscuro; Aero; los mosaicos planos de Metro. |
+| **Steam** | Iconos de color sobre su azul oscuro. |
+| **Ciberpunk** y **Holográfico** | Neón de colores fosforitos; contornos cian como una pantalla de ciencia ficción. |
 
-Las galerías de temas, iconos y estilos de barra enseñan los 12 primeros; **«Mostrar más ⌄»** despliega todos y, al final,
+Las galerías de temas, iconos y estilos de barra enseñan las primeras filas completas (hasta 15); **«Mostrar más ⌄»** despliega todos y, al final,
 **«Mostrar menos ⌃»** los vuelve a recoger. Al cambiar de tema, la ventana pasa al nuevo con un fundido suave y la página
 se queda donde estaba.
 

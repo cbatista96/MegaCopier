@@ -18,6 +18,7 @@ namespace MegaCopier.App;
 public partial class App : Application
 {
     private TrayIcon? _tray;
+    private TrayProgressIcons? _trayProgress;
     private IpcServer? _server;
     private PasteInterceptor? _paste;
     private DragInterceptor? _drag;
@@ -44,6 +45,9 @@ public partial class App : Application
 
     /// <summary>Copias que el usuario detuvo con el botón (no las que se interrumpen al salir o por un apagón).</summary>
     internal readonly HashSet<string> StoppedByUser = [];
+
+    /// <summary>La entrada del historial de cada copia terminada (para «Eliminar» desde la lista de copias).</summary>
+    internal readonly Dictionary<string, string> HistoryIds = [];
 
     public App()
     {
@@ -139,6 +143,24 @@ public partial class App : Application
             BuildTrayMenu);
         _tray.Activated += () => ShowWindow();
         _tray.DoubleClicked += () => SetEnabled(!Settings.Enabled, notify: true);
+        _trayProgress = new TrayProgressIcons(_tray);
+        _tray.ExtraActivated += id =>
+        {
+            if (_trayProgress.JobFor(id) is { } job)
+            {
+                Window.ShowJob(job);
+            }
+        };
+        _tray.ExtraMenu = id => _trayProgress.JobFor(id) is { } job
+            ?
+            [
+                new(L.Get("Tray_Open"), () => Window.ShowJob(job)),
+                TrayMenuItem.Separator,
+                new(L.Get("Tray_JobPause"), () => Queue.Pause(job), Enabled: job.State == CopyJobState.Running),
+                new(L.Get("Job_Resume"), () => Queue.Resume(job), Enabled: job.State == CopyJobState.Paused),
+                new(L.Get("Tray_JobStop"), () => Window.StopJob(job), Enabled: job.IsActive),
+            ]
+            : [];
         Queue.JobFinished += job => Dispatcher.TryEnqueue(() => OnJobFinished(job));
         if (TestMode)
         {
@@ -369,20 +391,27 @@ public partial class App : Application
                 continue;
             }
 
-            // Sumar a una copia en marcha, sin preguntar o preguntando antes.
-            var mergeInto = operation == JobOperation.Copy && request.StartAtUtc is null ? FindMergeTarget(request.Sources, destination, options) : null;
-            if (mergeInto is not null && !Settings.MergeConfirm)
+            // ¿Hay otra copia en marcha hacia el mismo disco? Según «Copia nueva al mismo disco», MegaCopier sale al
+            // frente y pregunta, la suma a ella, la deja aparte esperando su turno o la empieza a la vez. Hacia otro
+            // disco empieza ya (cada disco recibe a su velocidad), salvo que se pida que espere su turno.
+            bool now = request.StartAtUtc is null;
+            var sameDrive = now ? FindSameDriveJob(destination) : null;
+            var policy = sameDrive is null ? SameDriveCopy.Queue : Settings.SameDriveCopies;
+            bool canMerge = sameDrive is not null && operation == JobOperation.Copy && CanMerge(sameDrive, options);
+            if (policy == SameDriveCopy.Merge && canMerge)
             {
-                _ = AddToJobAsync(mergeInto, request.Sources);
-                firstJob ??= mergeInto;
+                _ = AddToJobAsync(sameDrive!, request.Sources);
+                firstJob ??= sameDrive;
                 continue;
             }
 
-            // Si hay que preguntar, la copia nueva espera en pausa (programada) hasta la respuesta.
-            var job = Queue.Submit(request.Sources, destination, options, mergeInto is null ? request.StartAtUtc : DateTime.UtcNow.AddYears(50), request.Excluded);
-            if (mergeInto is not null)
+            // Si hay que preguntar, la copia nueva espera (programada) hasta la respuesta.
+            bool ask = policy == SameDriveCopy.Ask && canMerge;
+            bool startNow = now && (sameDrive is null ? Settings.OtherDriveCopies == OtherDriveCopy.Parallel : policy == SameDriveCopy.Parallel);
+            var job = Queue.Submit(request.Sources, destination, options, ask ? DateTime.UtcNow.AddYears(50) : request.StartAtUtc, request.Excluded, startNow: startNow && !ask);
+            if (ask)
             {
-                _ = AskMergeAsync(job, mergeInto, [.. request.Sources]);
+                _ = AskSameDriveAsync(job, sameDrive!, [.. request.Sources]);
             }
 
             Disks?.Check(request.Sources.Append(destination));
@@ -484,48 +513,35 @@ public partial class App : Application
         }
     }
 
-    /// <summary>La copia en marcha a la que se suma una nueva según «Añadir las copias nuevas a una en marcha».</summary>
-    private CopyJob? FindMergeTarget(IReadOnlyList<string> sources, string destination, CopyOptions options)
+    /// <summary>
+    /// La copia en marcha (o esperando turno) que va al mismo disco de destino que una nueva, o null. Las programadas
+    /// para más tarde no cuentan.
+    /// </summary>
+    private CopyJob? FindSameDriveJob(string destination)
     {
-        var mode = Settings.MergeNewCopies;
-        if (mode == MergeMode.Never || sources.Count == 0)
-        {
-            return null;
-        }
-
-        static string Root(string path) => Path.GetPathRoot(Path.GetFullPath(path))?.ToUpperInvariant() ?? "";
-        string destinationRoot = Root(destination);
-        string sourceRoot = Root(sources[0]);
-        return Queue.Jobs.FirstOrDefault(job =>
-            job.IsActive
-            && job.Record.Operation == JobOperation.Copy
-            && job.Record.Mode == options.Mode
-            && job.Record.Move == options.Move
-            && job.Record.StartAtUtc is null
-            && mode switch
-            {
-                MergeMode.SameDestination => string.Equals(
-                    Path.TrimEndingDirectorySeparator(Path.GetFullPath(job.Record.Destination)),
-                    Path.TrimEndingDirectorySeparator(Path.GetFullPath(destination)),
-                    StringComparison.OrdinalIgnoreCase),
-                MergeMode.SameDisks => Root(job.Record.Destination) == destinationRoot
-                    && job.Record.Sources.Count > 0 && Root(job.Record.Sources[0]) == sourceRoot,
-                _ => true,
-            });
+        static string Root(string path) => Path.GetPathRoot(Path.GetFullPath(path))?.TrimEnd('\\').ToUpperInvariant() ?? "";
+        string root = Root(destination);
+        return root.Length == 0 ? null : Queue.Jobs.FirstOrDefault(job => job.IsActive && !job.Cancelled && job.Record.StartAtUtc is null && Root(job.Record.Destination) == root);
     }
 
+    /// <summary>Solo se puede sumar a una copia que hace lo mismo: copiar (o mover) con el mismo modo.</summary>
+    private static bool CanMerge(CopyJob job, CopyOptions options) =>
+        job.Record.Operation == JobOperation.Copy && job.Record.Mode == options.Mode && job.Record.Move == options.Move
+        && !options.Zip && !options.Encrypt && !job.Record.Zip && !job.Record.Encrypt;
+
     /// <summary>
-    /// Suma orígenes a una copia. Si está en marcha y lo nuevo no cabe en el destino (con lo que aún le queda por
-    /// copiar), se pregunta antes: cancelar no añade nada; forzar los añade y, al llenarse el disco, la copia espera.
+    /// Suma orígenes a una copia (a su carpeta de destino o, si se indica, a otra del mismo disco). Si está en marcha
+    /// y lo nuevo no cabe en el destino (con lo que aún le queda por copiar), se pregunta antes: cancelar no añade
+    /// nada; forzar los añade y, al llenarse el disco, la copia espera.
     /// </summary>
-    internal async Task<CopyJob?> AddToJobAsync(CopyJob job, IReadOnlyList<string> sources, int? beforeId = null)
+    internal async Task<CopyJob?> AddToJobAsync(CopyJob job, IReadOnlyList<string> sources, int? beforeId = null, string? destination = null)
     {
         if (job.State is CopyJobState.Running or CopyJobState.Paused)
         {
             SpaceShortage? shortage = null;
             try
             {
-                shortage = await Task.Run(() => job.CheckSpaceFor(sources));
+                shortage = await Task.Run(() => job.CheckSpaceFor(sources, destination));
             }
             catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or CopyPlanException)
             {
@@ -545,7 +561,7 @@ public partial class App : Application
 
         try
         {
-            return Queue.AddToJob(job, sources, beforeId);
+            return Queue.AddToJob(job, sources, beforeId, destination);
         }
         catch (Exception ex) when (ex is InvalidOperationException or IOException or UnauthorizedAccessException or CopyPlanException)
         {
@@ -554,17 +570,26 @@ public partial class App : Application
         }
     }
 
-    /// <summary>Pregunta si sumar la copia nueva a la que ya está en marcha; si no, la nueva sigue por su cuenta.</summary>
-    private async Task AskMergeAsync(CopyJob added, CopyJob target, List<string> sources)
+    /// <summary>
+    /// Una copia nueva va al mismo disco que otra en marcha: MegaCopier sale al frente y pregunta. Añadirla suma sus
+    /// archivos al final de la lista de esa copia (comprobando antes el espacio); como copia aparte, espera a que
+    /// termine la otra (con «Comenzar» empieza ya); cancelar no copia nada.
+    /// </summary>
+    private async Task AskSameDriveAsync(CopyJob added, CopyJob target, List<string> sources)
     {
-        bool merge = await Window.ConfirmMergeAsync(target, sources.Count);
-        if (merge && Queue.Withdraw(added))
+        var answer = await Window.AskSameDriveAsync(target, added.Record.Destination, sources);
+        if (answer == SameDriveAnswer.Add && target.IsActive && Queue.Withdraw(added))
         {
-            await AddToJobAsync(target, sources);
+            await AddToJobAsync(target, sources, destination: added.Record.Destination); // si no cabe, pregunta
             return;
         }
 
-        Queue.ScheduleAt(added, null);
+        if (answer == SameDriveAnswer.Cancel && Queue.Withdraw(added))
+        {
+            return;
+        }
+
+        Queue.Unschedule(added); // aparte: espera su turno como las demás
     }
 
     /// <summary>Preferencias que no son de cada copia: cola, prioridad del proceso y ventana siempre visible.</summary>
@@ -593,6 +618,7 @@ public partial class App : Application
         }
 
         _window?.ApplyAlwaysOnTop(Settings.AlwaysOnTop);
+        _window?.RefreshUiScale();
     }
 
     /// <summary>Aplica el tema elegido en las preferencias.</summary>
@@ -991,6 +1017,7 @@ public partial class App : Application
         SystemActions.KeepAwake(running.Any(j => j.State == CopyJobState.Running));
         SlowDownWhileUserIsActive(running);
         Guard?.Tick(Queue.HasActiveJobs);
+        _trayProgress?.Update(Queue.Jobs, Settings.TrayProgressIcons && Settings.ShowTrayIcon && Settings.Enabled, TrayText);
         if (running.Count == 0)
         {
             _tray?.SetTooltip(Settings.Enabled ? "MegaCopier" : L.Get("Tray_TooltipDisabled"));
@@ -1009,6 +1036,15 @@ public partial class App : Application
         string percent = total > 0 ? $"{100.0 * done / total:0}%" : "…";
         string copies = running.Count == 1 ? L.Get("Tray_OneJob") : L.F("Tray_ManyJobs", running.Count);
         _tray?.SetTooltip($"MegaCopier · {copies} · {percent} · {Format.Speed(speed)}");
+    }
+
+    /// <summary>Texto del icono de progreso de una copia en la bandeja: qué hace, con qué y cómo va.</summary>
+    private string TrayText(CopyJob job)
+    {
+        var model = Window.Jobs.FirstOrDefault(j => j.Job == job);
+        string what = job.Record.Sources.Count == 1 ? Path.GetFileName(job.Record.Sources[0].TrimEnd('\\')) : L.F("Job_ManyItems", job.Record.Sources.Count);
+        string speed = job.State == CopyJobState.Running && job.Progress is { BytesPerSecond: > 0 } progress ? $" · {Format.Speed(progress.BytesPerSecond)}" : "";
+        return $"{model?.StateText ?? "MegaCopier"}\n{what}{speed}";
     }
 
     /// <summary>
@@ -1088,7 +1124,7 @@ public partial class App : Application
 
         if (finished)
         {
-            History.Add(job);
+            HistoryIds[job.Id] = History.Add(job);
             AfterJob(job);
             // Con errores suena siempre su aviso; si era la última copia y fue bien, el de "todo terminado"
             // (si no hay uno elegido, el de copia terminada).
@@ -1218,7 +1254,7 @@ public partial class App : Application
         }
     }
 
-    private async void ExitApp()
+    internal async void ExitApp()
     {
         if (_exiting)
         {

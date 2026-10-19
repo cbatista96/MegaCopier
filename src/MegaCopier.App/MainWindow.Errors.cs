@@ -8,7 +8,10 @@ using Microsoft.UI.Xaml.Controls;
 
 namespace MegaCopier.App;
 
-/// <summary>Preguntas durante la copia: qué hacer con un archivo que sigue fallando y si sumar una copia a otra.</summary>
+/// <summary>
+/// Preguntas durante la copia: qué hacer con un archivo que sigue fallando, con una carpeta que ya existe, si falta
+/// espacio y si sumar una copia nueva a la que ya va al mismo disco.
+/// </summary>
 public sealed partial class MainWindow
 {
     /// <summary>
@@ -205,52 +208,12 @@ public sealed partial class MainWindow
                     };
                     var decision = FolderDecision.Cancel;
                     var options = new StackPanel { Spacing = 8 };
-                    void Option(FolderDecision value, int glyph, string title, string text, bool recommended = false)
-                    {
-                        var heading = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 8 };
-                        heading.Children.Add(new TextBlock { Text = title, FontWeight = Microsoft.UI.Text.FontWeights.SemiBold });
-                        if (recommended)
-                        {
-                            heading.Children.Add(new Border
-                            {
-                                Padding = new Thickness(6, 1, 6, 2),
-                                CornerRadius = new CornerRadius(4),
-                                VerticalAlignment = VerticalAlignment.Center,
-                                Background = (Microsoft.UI.Xaml.Media.Brush)Application.Current.Resources["McAccentBrush"],
-                                Child = new TextBlock
-                                {
-                                    Text = L.Get("FolderAsk_Recommended"),
-                                    FontSize = 11,
-                                    Foreground = (Microsoft.UI.Xaml.Media.Brush)Application.Current.Resources["McAccentTextBrush"],
-                                },
-                            });
-                        }
-
-                        var body = new Grid { ColumnSpacing = 14 };
-                        body.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
-                        body.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
-                        body.Children.Add(new Controls.McIcon { Glyph = ((char)glyph).ToString(), FontSize = 20, Accent = true, VerticalAlignment = VerticalAlignment.Center });
-                        var texts = new StackPanel { Spacing = 2 };
-                        texts.Children.Add(heading);
-                        texts.Children.Add(new TextBlock { Text = text, TextWrapping = TextWrapping.Wrap, Opacity = 0.75, FontSize = 12 });
-                        Grid.SetColumn(texts, 1);
-                        body.Children.Add(texts);
-                        var button = new Button
-                        {
-                            Content = body,
-                            HorizontalAlignment = HorizontalAlignment.Stretch,
-                            HorizontalContentAlignment = HorizontalAlignment.Stretch,
-                            Padding = new Thickness(14, 10, 14, 10),
-                            CornerRadius = new CornerRadius(8),
-                        };
-                        AutomationProperties.SetName(button, title);
-                        button.Click += (_, _) =>
+                    void Option(FolderDecision value, int glyph, string title, string text, bool recommended = false) =>
+                        options.Children.Add(BigOption(glyph, title, text, recommended, () =>
                         {
                             decision = value;
                             dialog.Hide();
-                        };
-                        options.Children.Add(button);
-                    }
+                        }));
 
                     Option(FolderDecision.SkipExisting, 0xE893, L.Get("FolderAsk_Skip"), L.Get("FolderAsk_SkipText"), recommended: true);
                     Option(FolderDecision.Overwrite, 0xE72C, L.Get("FolderAsk_Overwrite"), L.Get("FolderAsk_OverwriteText"));
@@ -376,32 +339,135 @@ public sealed partial class MainWindow
         }
     }
 
-    /// <summary>¿Sumar los archivos nuevos a la copia que ya está en marcha?</summary>
-    internal async Task<bool> ConfirmMergeAsync(CopyJob target, int count)
+    /// <summary>
+    /// Una copia nueva va al mismo disco que otra en marcha. MegaCopier sale al frente y pregunta, con cada opción
+    /// explicada: añadirla a la copia en marcha (lo recomendado: dos copias a la vez al mismo disco van más lentas),
+    /// hacerla aparte esperando su turno, o no copiar nada. En la ventana pequeña la pregunta cabe dentro de ella; en
+    /// la completa es un diálogo.
+    /// </summary>
+    internal async Task<SameDriveAnswer> AskSameDriveAsync(CopyJob target, string destination, IReadOnlyList<string> sources)
     {
         await _dialogGate.WaitAsync();
         try
         {
+            ShowJobs();
+            Select(Jobs.FirstOrDefault(j => j.Job == target) ?? _selected);
             ShowAndActivate();
+            Sounds.Play(_app.Settings.Sounds, SoundEvent.Attention);
+            string what = sources.Count == 1
+                ? $"«{Path.GetFileName(Path.TrimEndingDirectorySeparator(sources[0]))}»"
+                : L.F("SameDrive_Items", sources.Count);
+            string title = L.F("SameDrive_Title", DriveInfoText.Describe(destination).Text);
+            string addText = L.Get("SameDrive_AddText");
+            string separateText = L.Get("SameDrive_SeparateText");
+            if (!_expanded)
+            {
+                return await AskInlineAsync(
+                    "",
+                    title,
+                    L.F("SameDrive_Short", what),
+                    [
+                        (SameDriveAnswer.Add, "", L.Get("SameDrive_Add"), addText),
+                        (SameDriveAnswer.Separate, "", L.Get("SameDrive_Separate"), separateText),
+                    ],
+                    (SameDriveAnswer.Cancel, L.Get("SameDrive_Cancel"), L.Get("SameDrive_CancelText")),
+                    default);
+            }
+
             var dialog = new ContentDialog
             {
-                Title = L.Get("Merge_Title"),
-                Content = new TextBlock
-                {
-                    Text = L.F("Merge_Message", count, Format.ShortPath(target.Record.Destination, 3)),
-                    TextWrapping = TextWrapping.Wrap,
-                },
-                PrimaryButtonText = L.Get("Merge_Add"),
-                SecondaryButtonText = L.Get("Merge_Separate"),
-                DefaultButton = ContentDialogButton.Primary,
+                Title = title,
+                CloseButtonText = L.Get("SameDrive_Cancel"),
                 XamlRoot = Root.XamlRoot,
                 RequestedTheme = Root.RequestedTheme,
             };
-            return await dialog.ShowAsync() == ContentDialogResult.Primary;
+            var answer = SameDriveAnswer.Cancel;
+            void Choose(SameDriveAnswer value)
+            {
+                answer = value;
+                dialog.Hide();
+            }
+
+            dialog.Content = new StackPanel
+            {
+                Spacing = 14,
+                MaxWidth = 480,
+                Children =
+                {
+                    new TextBlock { Text = L.F("SameDrive_Message", what, Format.ShortPath(destination, 3)), TextWrapping = TextWrapping.Wrap },
+                    new StackPanel
+                    {
+                        Spacing = 8,
+                        Children =
+                        {
+                            BigOption(0xE710, L.Get("SameDrive_Add"), addText, recommended: true, () => Choose(SameDriveAnswer.Add)),
+                            BigOption(0xE823, L.Get("SameDrive_Separate"), separateText, recommended: false, () => Choose(SameDriveAnswer.Separate)),
+                        },
+                    },
+                },
+            };
+            await dialog.ShowAsync();
+            return answer;
         }
         finally
         {
             _dialogGate.Release();
         }
     }
+
+    /// <summary>
+    /// Opción grande de un diálogo: botón a todo lo ancho con su icono, un título (con «Recomendado» si lo es) y una
+    /// frase que explica qué va a pasar.
+    /// </summary>
+    private static Button BigOption(int glyph, string title, string text, bool recommended, Action click)
+    {
+        var heading = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 8 };
+        heading.Children.Add(new TextBlock { Text = title, FontWeight = Microsoft.UI.Text.FontWeights.SemiBold });
+        if (recommended)
+        {
+            heading.Children.Add(new Border
+            {
+                Padding = new Thickness(6, 1, 6, 2),
+                CornerRadius = new CornerRadius(4),
+                VerticalAlignment = VerticalAlignment.Center,
+                Background = (Microsoft.UI.Xaml.Media.Brush)Application.Current.Resources["McAccentBrush"],
+                Child = new TextBlock
+                {
+                    Text = L.Get("FolderAsk_Recommended"),
+                    FontSize = 11,
+                    Foreground = (Microsoft.UI.Xaml.Media.Brush)Application.Current.Resources["McAccentTextBrush"],
+                },
+            });
+        }
+
+        var body = new Grid { ColumnSpacing = 14 };
+        body.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+        body.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+        body.Children.Add(new Controls.McIcon { Glyph = ((char)glyph).ToString(), FontSize = 20, Accent = true, VerticalAlignment = VerticalAlignment.Center });
+        var texts = new StackPanel { Spacing = 2 };
+        texts.Children.Add(heading);
+        texts.Children.Add(new TextBlock { Text = text, TextWrapping = TextWrapping.Wrap, Opacity = 0.75, FontSize = 12 });
+        Grid.SetColumn(texts, 1);
+        body.Children.Add(texts);
+        var button = new Button
+        {
+            Content = body,
+            HorizontalAlignment = HorizontalAlignment.Stretch,
+            HorizontalContentAlignment = HorizontalAlignment.Stretch,
+            Padding = new Thickness(14, 10, 14, 10),
+            CornerRadius = new CornerRadius(8),
+        };
+        AutomationProperties.SetName(button, title);
+        AutomationProperties.SetHelpText(button, text);
+        button.Click += (_, _) => click();
+        return button;
+    }
+}
+
+/// <summary>Respuesta a «Ya hay una copia hacia este disco».</summary>
+internal enum SameDriveAnswer
+{
+    Add,
+    Separate,
+    Cancel,
 }

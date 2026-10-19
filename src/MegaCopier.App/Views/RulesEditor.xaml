@@ -19,7 +19,8 @@
         <StackPanel x:Name="FiltersColumn" Spacing="8">
             <StackPanel Orientation="Horizontal" Spacing="8">
                 <c:McIcon VerticalAlignment="Center" Glyph="&#xE71C;" FontSize="14" Accent="True" />
-                <TextBlock x:Uid="Rules_Filters" Style="{StaticResource McStrong}" />
+                <TextBlock x:Uid="Rules_Filters" Style="{StaticResource McStrong}" VerticalAlignment="Center" />
+                <c:InfoTip Topic="Filters" Margin="-6,-6,0,-6" />
             </StackPanel>
             <Grid ColumnSpacing="8">
                 <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
@@ -55,7 +56,8 @@
         <StackPanel x:Name="RulesColumn" Grid.Column="1" Spacing="8">
             <StackPanel Orientation="Horizontal" Spacing="8">
                 <c:McIcon VerticalAlignment="Center" Glyph="&#xE71B;" FontSize="14" Accent="True" />
-                <TextBlock x:Uid="Rules_Rules" Style="{StaticResource McStrong}" />
+                <TextBlock x:Uid="Rules_Rules" Style="{StaticResource McStrong}" VerticalAlignment="Center" />
+                <c:InfoTip Topic="Rules" Margin="-6,-6,0,-6" />
             </StackPanel>
             <ComboBox x:Name="LinksBox" x:Uid="Rules_Links" HorizontalAlignment="Stretch" SelectionChanged="Selection_Changed">
                 <ComboBoxItem x:Uid="Rules_LinksCopy" />
@@ -95,7 +97,8 @@
         </Grid.ColumnDefinitions>
         <StackPanel x:Name="SafetyHeader" Grid.ColumnSpan="2" Orientation="Horizontal" Spacing="8">
             <c:McIcon VerticalAlignment="Center" Glyph="&#xE8F7;" FontSize="14" Accent="True" />
-            <TextBlock x:Uid="Rules_Safety" Style="{StaticResource McStrong}" />
+            <TextBlock x:Uid="Rules_Safety" Style="{StaticResource McStrong}" VerticalAlignment="Center" />
+            <c:InfoTip Topic="Safety" Margin="-6,-6,0,-6" />
         </StackPanel>
         <StackPanel x:Name="SafetyLeft" Grid.Row="1" Spacing="8">
             <ComboBox x:Name="FolderConflictBox" x:Uid="Rules_FolderConflict" HorizontalAlignment="Stretch" SelectionChanged="Selection_Changed">

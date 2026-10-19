@@ -82,7 +82,7 @@
   <data name="Accent_Orange" xml:space="preserve"><value>Помаранчевий</value></data>
   <data name="Accent_Pink" xml:space="preserve"><value>Рожевий</value></data>
   <data name="Accent_Red" xml:space="preserve"><value>Червоний</value></data>
-  <data name="About" xml:space="preserve"><value>MegaCopier {0} · копіювання, яке переживає вимкнення світла</value></data>
+  <data name="About" xml:space="preserve"><value>MegaCopier {0} · найкращий копіювальник</value></data>
   <data name="Picker_CopyHere" xml:space="preserve"><value>Копіювати сюди</value></data>
   <data name="Finish_Label" xml:space="preserve"><value>Після завершення</value></data>
   <data name="Finish_LabelSleep" xml:space="preserve"><value>Після завершення: сон</value></data>
@@ -153,7 +153,7 @@
   <data name="AboutDialog.Title" xml:space="preserve"><value>Про MegaCopier</value></data>
   <data name="AboutDialog.CloseButtonText" xml:space="preserve"><value>Закрити</value></data>
   <data name="About_DataFolder.Content" xml:space="preserve"><value>Відкрити папку даних (параметри, теми, журнал, звіти)</value></data>
-  <data name="About_Description.Text" xml:space="preserve"><value>Програма копіювання для Windows 11, яка продовжує навіть один величезний файл після вимкнення живлення, перевіряючи вже скопійоване.</value></data>
+  <data name="About_Description.Text" xml:space="preserve"><value>Найкращий копіювальник для Windows 11: швидший і надійніший за вбудований у Windows, з усіма потрібними параметрами й налаштовується як завгодно (теми, значки, смуги та звуки). Продовжує з того самого місця навіть після вимкнення живлення й перевіряє, що все дійшло без помилок.</value></data>
   <data name="About_Features.Text" xml:space="preserve"><value>Асинхронне введення-виведення без кешу · паралельне читання й запис · перевірка гешем (CRC32, xxHash, MD5, SHA) · черга за дисками · пауза й продовження · переміщення · конфлікти · обмеження швидкості · списки копіювання · звіти · теми.</value></data>
   <data name="Files_AutoScroll.Content" xml:space="preserve"><value>Стежити за поточним</value></data>
   <data name="Files_CopyHashes.Text" xml:space="preserve"><value>Копіювати геші</value></data>
@@ -788,7 +788,7 @@
   <data name="Finish_ShutdownMessage" xml:space="preserve"><value>MegaCopier завершив копіювання. Комп&apos;ютер вимкнеться за 1 хвилину.</value></data>
   <data name="Hash_Name" xml:space="preserve"><value>Геш: {0}</value></data>
   <data name="DragTitle.Text" xml:space="preserve"><value>Перетягування лівою кнопкою через MegaCopier</value></data>
-  <data name="DragDescription.Text" xml:space="preserve"><value>Коли ви перетягуєте файли з одного вікна Провідника чи робочого столу в інше, їх копіює або переміщує MegaCopier (ті самі правила: на тому самому диску — переміщення, Ctrl — копіювання, Shift — переміщення). Перетягування на файл, ZIP чи в область переходів і далі виконує Провідник.</value></data>
+  <data name="DragDescription.Text" xml:space="preserve"><value>Коли ви перетягуєте файли між вікнами Провідника, робочим столом або папками й дисками на лівій панелі, їх копіює або переміщує MegaCopier (ті самі правила: на тому самому диску — переміщення, Ctrl — копіювання, Shift — переміщення). Перетягування на файл або ZIP і далі виконує Провідник.</value></data>
   <data name="DragConfirmTitle.Text" xml:space="preserve"><value>Запитувати</value></data>
   <data name="DragConfirm_Never.Content" xml:space="preserve"><value>Ніколи</value></data>
   <data name="DragConfirm_Moves.Content" xml:space="preserve"><value>Лише під час переміщення</value></data>
@@ -1102,13 +1102,6 @@
   <data name="IconPack_degradado" xml:space="preserve"><value>Градієнт</value></data>
   <data name="IconPack_neon" xml:space="preserve"><value>Неон</value></data>
   <data name="IconPack_windows10" xml:space="preserve"><value>Windows 10</value></data>
-  <data name="Settings_MergeTitle.Text" xml:space="preserve"><value>Додавати нові копіювання до вже запущеного</value></data>
-  <data name="Settings_MergeDescription.Text" xml:space="preserve"><value>Замість очікування черги файли додаються до списку поточного копіювання.</value></data>
-  <data name="Merge_Never.Content" xml:space="preserve"><value>Ніколи</value></data>
-  <data name="Merge_SameDestination.Content" xml:space="preserve"><value>Якщо в ту саму папку</value></data>
-  <data name="Merge_SameDisks.Content" xml:space="preserve"><value>Якщо ті самі диски</value></data>
-  <data name="Merge_Always.Content" xml:space="preserve"><value>Завжди</value></data>
-  <data name="Settings_MergeConfirm.Content" xml:space="preserve"><value>Питати перед додаванням</value></data>
   <data name="Settings_MoveAttributesTitle.Text" xml:space="preserve"><value>Під час переміщення також зберігати</value></data>
   <data name="Settings_MoveAttributesDescription.Text" xml:space="preserve"><value>Під час переміщення на інший диск. На тому ж диску переміщення — це перейменування, усе зберігається.</value></data>
   <data name="Settings_DeleteIncompleteTitle.Text" xml:space="preserve"><value>Під час зупинки копіювання видаляти незавершене</value></data>
@@ -1143,10 +1136,6 @@
   <data name="ErrorAsk_Skip" xml:space="preserve"><value>Пропустити</value></data>
   <data name="ErrorAsk_SkipAll" xml:space="preserve"><value>Пропускати й наступні помилки цього копіювання</value></data>
   <data name="ErrorAsk_Stop" xml:space="preserve"><value>Зупинити копіювання (можна продовжити)</value></data>
-  <data name="Merge_Title" xml:space="preserve"><value>Додати до поточного копіювання</value></data>
-  <data name="Merge_Message" xml:space="preserve"><value>Додати елементи ({0}) до копіювання в «{1}»? Інакше їх буде скопійовано окремо в свою чергу.</value></data>
-  <data name="Merge_Add" xml:space="preserve"><value>Додати</value></data>
-  <data name="Merge_Separate" xml:space="preserve"><value>Окремо</value></data>
   <data name="Eject_DoneTitle" xml:space="preserve"><value>Диск витягнуто: його можна від&apos;єднати</value></data>
   <data name="Eject_FailedTitle" xml:space="preserve"><value>Не вдалося витягти диск: він використовується</value></data>
   <data name="Sound_Windows" xml:space="preserve"><value>Звук Windows</value></data>
@@ -1328,13 +1317,12 @@
   <data name="Theme_solar-claro" xml:space="preserve"><value>Сонячна світла</value></data>
   <data name="Theme_capuchino-claro" xml:space="preserve"><value>Світлий капучино</value></data>
   <data name="Info_Paste_Text" xml:space="preserve"><value>Коли ви копіюєте (Ctrl+C) або вирізаєте (Ctrl+X) файли й вставляєте їх (Ctrl+V) у Провіднику чи на робочому столі, копіює MegaCopier, а не Windows: з чергою, паузою, перевіркою та продовженням після обриву.\n• Великі копії на зовнішній диск: можна призупинити й продовжити пізніше.\n• Кілька копій поспіль: стають у чергу, а не змагаються за диск.\nЯкщо вставити в ту саму теку (щоб зробити дублікат), це й далі робить Провідник.</value></data>
-  <data name="Info_Drag_Text" xml:space="preserve"><value>Під час перетягування файлів лівою кнопкою з одного вікна в інше копіює (або переміщує) MegaCopier за тими самими правилами, що й Windows: на тому самому диску — переміщення, Ctrl — копіювання, Shift — переміщення.\n• Розбирати фото, перетягуючи їх між теками на різних дисках.\n• Переміщати великі проєкти, не блокуючи Провідник.\nКинути на файл, ZIP чи ліву панель — це й далі робить Провідник.</value></data>
+  <data name="Info_Drag_Text" xml:space="preserve"><value>Під час перетягування файлів лівою кнопкою з одного вікна в інше копіює (або переміщує) MegaCopier за тими самими правилами, що й Windows: на тому самому диску — переміщення, Ctrl — копіювання, Shift — переміщення.\n• Розбирати фото, перетягуючи їх між теками на різних дисках.\n• Переміщати великі проєкти, не блокуючи Провідник.\nМожна кидати й на теки та диски лівої панелі. Кинути на файл чи ZIP — це й далі робить Провідник.</value></data>
   <data name="Info_WindowMode_Text" xml:space="preserve"><value>Вікно копіювання має три види.\n• Малий: лише смуги й кнопки. Звичайний під час копіювання; його можна розширити, але не зробити вищим.\n• Зі списком («Більше»): файли, призначення, параметри, графік і журнал. Можна збільшити або розгорнути.\n• Кілька копій: той самий, зі списком копій ліворуч; з’являється сам, коли копій більше однієї.\n«Автоматично» починає з малого й переходить до повного, коли йде кілька копій. «Більше» і «Менше» перемикають вид будь-коли.</value></data>
   <data name="Info_Verify_Text" xml:space="preserve"><value>Після кожного файлу MegaCopier знову читає його просто з диска призначення й порівнює його відбиток (хеш) з оригіналом. Якщо щось не збігається, повторно копіюється лише пошкоджена частина.\n• Резервні копії, фото та важливі документи.\n• Старі чи дешеві флешки й диски, які можуть відмовити без попередження.\n• Копіювання мережею чи Wi-Fi.\nКопіювання триває трохи довше (усе читається ще раз), зате ви певні, що копія ідентична.</value></data>
   <data name="Info_Conflict_Text" xml:space="preserve"><value>Що робити, коли в місці призначення вже є файл із таким самим ім’ям.\n• Запитати: показує обидва з розміром, датою та мініатюрою, а ви вибираєте.\n• Замінити, Пропустити, Замінити, якщо новіший чи іншого розміру, Залишити обидва («ім’я (2)») або Перейменувати наявний.\nОднакові файли (той самий розмір і дата) ніколи не копіюються повторно: повторне копіювання переносить лише нове чи змінене. Якщо вже є ціла тека, MegaCopier запитає перед початком.</value></data>
   <data name="Info_Hash_Text" xml:space="preserve"><value>Хеш — це як відбиток пальця файлу: якщо змінюється хоча б один байт, змінюється й відбиток. Він використовується під час перевірки та в збережених контрольних сумах.\n• xxHash3: найшвидший; ідеальний для перевірки копій.\n• SHA-256: найчастіше його використовують сайти й програми для перевірки завантажень.\n• MD5, SHA-1, BLAKE3…: якщо інша програма просить конкретний.\nДля щоденної роботи залиште xxHash3.</value></data>
   <data name="Info_Performance_Text" xml:space="preserve"><value>Наскільки швидко може йти копіювання.\n• Обмеження швидкості: щоб копіювання не займало всю мережу чи диск, поки ви працюєте чи дивитеся фільм. Кожне копіювання має й власне обмеження на вкладці «Параметри», яке змінюється одразу, без зупинки.\n• Розмір буфера: блоки, що читаються й пишуться за раз. Більший розмір кращий для величезних файлів.\n• Одночасні операції: скільки блоків запитується в диска одночасно. Швидким SSD більше — краще.\nЯкщо не знаєте, що вибрати, залиште типові: MegaCopier сам налаштовує кожен диск.</value></data>
-  <data name="Info_Merge_Text" xml:space="preserve"><value>Якщо почати копіювання, поки триває інше, воно може приєднатися до нього замість очікування: його файли стануть у кінець списку.\n• Ніколи: кожне копіювання окремо.\n• Якщо в ту саму теку або на ті самі диски.\n• Завжди.\nЗ «Питати спершу» ви вирішуєте щоразу. Зручно, коли надсилаєте теки по одній на ту саму флешку.</value></data>
   <data name="Info_MoveAttributes_Text" xml:space="preserve"><value>Під час переміщення на інший диск файли копіюються, а потім видаляються з джерела. Тут ви вибираєте, що вони беруть із собою, крім вмісту: атрибути (лише читання, прихований…), дозволи, власника й аудит.\n• Перенесення робочих тек між серверами зі збереженням того, хто може їх відкривати.\nНа тому самому диску переміщення — це лише зміна місця, усе зберігається.</value></data>
   <data name="Info_DeleteIncomplete_Text" xml:space="preserve"><value>«Зупинити» скасовує копіювання й прибирає його зі списку. Під час копіювання кожен файл записується з розширенням .mcpart і отримує своє ім’я лише після успішного завершення.\n• Увімкнено: після «Зупинити» файли .mcpart видаляються, і папка призначення лишається чистою.\n• Вимкнено: вони зберігаються, і якщо знову скопіювати те саме, копіювання продовжиться з місця зупинки.\nПід час закриття MegaCopier чи після вимкнення живлення нічого не видаляється: такі копіювання пропонується продовжити під час наступного запуску.</value></data>
   <data name="Info_Eject_Text" xml:space="preserve"><value>Наприкінці MegaCopier безпечно виймає флешку, картку чи USB-диск призначення, як «Безпечне видалення пристрою».\n• Записуєте кілька флешок поспіль: виймаєте — вона вже готова.\nЛише якщо її не використовує інше копіювання. «Примусово» виймає, навіть якщо вона відкрита в якійсь програмі.</value></data>
@@ -1353,8 +1341,8 @@
   <data name="Info_Guard_Text" xml:space="preserve"><value>Диски можуть непомітно псувати файли з роками. MegaCopier зберігає відбиток кожного файлу всередині нього й, коли комп’ютер вільний, перевіряє їх знову. Якщо файл змінився, хоча його ніхто не чіпав, ви дізнаєтеся вчасно, щоб відновити його з резервної копії.\n• Сімейні фото й відео.\n• Диски з резервними копіями, які рідко відкривають.\nТе, що ви редагуєте, оновлюється саме. Потрібні диски NTFS.</value></data>
   <data name="Info_Webhook_Text" xml:space="preserve"><value>Після кожного копіювання MegaCopier надсилає підсумок на вебадресу, і сповіщення приходить на телефон чи в чат.\n• Discord, Slack або Teams: повідомлення в канал.\n• ntfy.sh: сповіщення на телефон майже без встановлення.\n• Home Assistant: автоматизації (увімкнути світло наприкінці…).</value></data>
   <data name="Info_Connections_Text" xml:space="preserve"><value>Збережіть тут сервери, на які копіюєте: FTP, SFTP, WebDAV (Nextcloud, NAS…) чи S3 (Backblaze, Wasabi, R2…). Потім вони з’являться під час вибору джерела чи призначення.\n• Вивантажувати резервні копії в хмару.\n• Завантажувати файли із сервера компанії.\nПаролі зберігаються в диспетчері облікових даних Windows, ніколи відкритим текстом.</value></data>
-  <data name="IconPack_android" xml:space="preserve"><value>Android</value></data>
-  <data name="IconPack_android-tonal" xml:space="preserve"><value>Android тональний</value></data>
+  <data name="IconPack_android" xml:space="preserve"><value>Android (AOSP)</value></data>
+  <data name="IconPack_android-tonal" xml:space="preserve"><value>Material You</value></data>
   <data name="IconPack_macos" xml:space="preserve"><value>macOS</value></data>
   <data name="IconPack_macos-color" xml:space="preserve"><value>macOS кольоровий</value></data>
   <data name="IconPack_ubuntu" xml:space="preserve"><value>Ubuntu</value></data>
@@ -1442,4 +1430,70 @@
   <data name="Drop_AddWhatTo" xml:space="preserve"><value>Додати {0} до {1}</value></data>
   <data name="Drop_InsertWhatAt" xml:space="preserve"><value>Додати {0} на позицію {1}</value></data>
   <data name="Files_ResizeColumn.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Перетягніть, щоб змінити ширину стовпця (подвійне клацання — звичайна ширина)</value></data>
+  <data name="SameDrive_Title" xml:space="preserve"><value>Уже триває копіювання на {0}</value></data>
+  <data name="SameDrive_Short" xml:space="preserve"><value>Додати {0} у кінець цього копіювання? Два копіювання на один диск одночасно йдуть повільніше.</value></data>
+  <data name="SameDrive_Message" xml:space="preserve"><value>{0} копіюється в «{1}», на той самий диск, що й копіювання, яке вже триває. Два копіювання на один диск одночасно сповільнюють одне одного.</value></data>
+  <data name="SameDrive_Items" xml:space="preserve"><value>елементи ({0})</value></data>
+  <data name="SameDrive_Add" xml:space="preserve"><value>Додати до цього копіювання</value></data>
+  <data name="SameDrive_AddText" xml:space="preserve"><value>Копіюється в кінці списку поточного копіювання, у свою папку призначення, з однією смугою прогресу. Спершу перевіряється вільне місце.</value></data>
+  <data name="SameDrive_Separate" xml:space="preserve"><value>Окреме копіювання</value></data>
+  <data name="SameDrive_SeparateText" xml:space="preserve"><value>Створюється окреме копіювання, яке почнеться після поточного. Щоб не чекати, натисніть у ньому «Почати зараз».</value></data>
+  <data name="SameDrive_Cancel" xml:space="preserve"><value>Скасувати</value></data>
+  <data name="SameDrive_CancelText" xml:space="preserve"><value>Нічого нового не копіюється.</value></data>
+  <data name="Settings_SameDriveTitle.Text" xml:space="preserve"><value>Нове копіювання на той самий диск, що й поточне</value></data>
+  <data name="Settings_SameDriveDescription.Text" xml:space="preserve"><value>Наприклад, ви надсилаєте ще одну папку на ту саму флешку, поки копіюється перша.</value></data>
+  <data name="SameDrive_OptAsk.Content" xml:space="preserve"><value>Питати</value></data>
+  <data name="SameDrive_OptMerge.Content" xml:space="preserve"><value>Додати до поточного копіювання</value></data>
+  <data name="SameDrive_OptQueue.Content" xml:space="preserve"><value>Окремо, після поточного</value></data>
+  <data name="SameDrive_OptParallel.Content" xml:space="preserve"><value>Окремо, одночасно</value></data>
+  <data name="Settings_OtherDriveTitle.Text" xml:space="preserve"><value>Нове копіювання на інший диск</value></data>
+  <data name="Settings_OtherDriveDescription.Text" xml:space="preserve"><value>Кожен диск пише зі своєю швидкістю: одночасний запуск не сповільнює інше копіювання.</value></data>
+  <data name="OtherDrive_OptParallel.Content" xml:space="preserve"><value>Починати одразу</value></data>
+  <data name="OtherDrive_OptQueue.Content" xml:space="preserve"><value>Чекати своєї черги</value></data>
+  <data name="Info_SameDrive_Title" xml:space="preserve"><value>Нові копіювання, поки триває інше</value></data>
+  <data name="Info_SameDrive_Text" xml:space="preserve"><value>Коли ви копіюєте щось, поки триває інше копіювання, MegaCopier дивиться, на який диск воно йде.\n• На той самий диск: типово він питає. «Додати» ставить файли в кінець списку поточного копіювання (кожен у свою папку), з однією смугою. «Окремо, після поточного» залишає його чекати своєї черги. «Одночасно» копіює обидва разом, але обидва йдуть повільніше.\n• На інший диск: починається одразу, бо кожен диск пише зі своєю швидкістю. Якщо хочете, щоб воно чекало черги, змініть це тут.\nПриклад: ви копіюєте фільм на флешку, а потім ще одну папку на ту саму флешку — MegaCopier виходить на передній план, і ви вирішуєте. Якщо тим часом ви копіюєте щось на диск D:, це почнеться без очікування.</value></data>
+  <data name="Settings_CloseButtonTitle.Text" xml:space="preserve"><value>Під час натискання хрестика вікна</value></data>
+  <data name="Settings_CloseButtonDescription.Text" xml:space="preserve"><value>Типово скасовує копіювання, як «Зупинити» в кожному. MegaCopier лишається в області сповіщень для наступного копіювання.</value></data>
+  <data name="CloseButton_Cancel.Content" xml:space="preserve"><value>Скасувати копіювання</value></data>
+  <data name="CloseButton_Stop.Content" xml:space="preserve"><value>Зупинити, щоб продовжити пізніше</value></data>
+  <data name="CloseButton_Hide.Content" xml:space="preserve"><value>Сховати вікно (копіювання триває)</value></data>
+  <data name="CloseButton_Exit.Content" xml:space="preserve"><value>Вийти з MegaCopier</value></data>
+  <data name="Settings_MinimizeButtonTitle.Text" xml:space="preserve"><value>Під час згортання вікна</value></data>
+  <data name="Settings_MinimizeButtonDescription.Text" xml:space="preserve"><value>На панель завдань, як будь-яке вікно, або в область сповіщень (біля годинника).</value></data>
+  <data name="MinimizeButton_Taskbar.Content" xml:space="preserve"><value>На панель завдань</value></data>
+  <data name="MinimizeButton_Tray.Content" xml:space="preserve"><value>В область сповіщень</value></data>
+  <data name="Settings_TrayProgressTitle.Text" xml:space="preserve"><value>Прогрес кожного копіювання в області сповіщень</value></data>
+  <data name="Settings_TrayProgressDescription.Text" xml:space="preserve"><value>По значку на кожне поточне копіювання, з відсотком і смугою, що росте. Після завершення зникає сам. Клацання відкриває копіювання.</value></data>
+  <data name="Info_WindowButtons_Title" xml:space="preserve"><value>Кнопки вікна</value></data>
+  <data name="Info_WindowButtons_Text" xml:space="preserve"><value>Виберіть, що станеться з копіюваннями під час закриття або згортання вікна.\n• Скасувати копіювання: як натиснути «Зупинити» в кожному. Вони зникають зі списку, і продовжити їх не пропонується.\n• Зупинити, щоб продовжити пізніше: скопійоване зберігається; якщо знову скопіювати те саме або відкрити MegaCopier, копіювання продовжиться з того самого місця.\n• Сховати вікно: копіювання тривають у фоні; вікно відкривається значком в області сповіщень.\n• Вийти з MegaCopier: програма закривається повністю, і Windows копіює як звичайно, доки ви її знову не відкриєте.\nЗгортання в область сповіщень звільняє панель завдань: вікно повертається клацанням по значку MegaCopier біля годинника.</value></data>
+  <data name="Tray_JobPause" xml:space="preserve"><value>Призупинити</value></data>
+  <data name="Tray_JobStop" xml:space="preserve"><value>Зупинити</value></data>
+  <data name="Jobs_Archive" xml:space="preserve"><value>Перенести в журнал</value></data>
+  <data name="Jobs_ArchiveKey" xml:space="preserve"><value>Del</value></data>
+  <data name="Jobs_Delete" xml:space="preserve"><value>Видалити (і з журналу)</value></data>
+  <data name="Jobs_BadgeTip" xml:space="preserve"><value>активних: {0}</value></data>
+  <data name="Info_WhatCopy_Title" xml:space="preserve"><value>Що копіюється з кожного файлу</value></data>
+  <data name="Info_WhatCopy_Text" xml:space="preserve"><value>Окрім вмісту, можна копіювати те, що Windows зберігає навколо кожного файлу.\n• Дати: дата створення й дата зміни залишаються як в оригіналі, тож фото лишаються впорядкованими за датою.\n• Атрибути: лише читання, прихований, архівний… Без них усе прийде як звичайні файли.\n• Альтернативні потоки даних (ADS): приховані дані, які деякі програми додають до файлу, наприклад позначка «завантажено з інтернету». Майже ніколи не потрібні.\n• Безпека (NTFS): дозволи (хто може відкрити файл), власник і аудит. Мають сенс лише між дисками NTFS одного комп&apos;ютера чи домену; власник і аудит потребують прав адміністратора.\nПриклад: для точної копії спільної папки в офісі позначте все; щоб перенести фото на флешку, досить дат.</value></data>
+  <data name="Info_Transfer_Title" xml:space="preserve"><value>Як виконується копіювання</value></data>
+  <data name="Info_Transfer_Text" xml:space="preserve"><value>• Режим: «Копіювати» — звичайний. «Синхронізувати (дзеркало)» робить призначення таким самим, як джерело, і видаляє зайве. «Лише оновити» копіює тільки файли, що вже є в призначенні й змінилися. «Лише структура» створює порожні папки. «Упорядкувати фото за датою» розкладає їх у папки за роком і місяцем.\n• Імітація: показує, що буде зроблено, нічого не змінюючи. Спробуйте перед дзеркалом.\n• Якщо файл уже є: спитати, замінити, пропустити, лишити новіший, зберегти обидва…\n• Хеш: спосіб перевірити, що копія ідентична. xxHash найшвидший; SHA-256 — стандарт для доказів.\n• Розмір буфера й «Паралельно»: більший буфер і більше одночасних читань пришвидшують SSD і мережу; на жорстких дисках і повільних флешках краще 1 або 2.\n• Перевіряти після копіювання: перечитує скопійоване й порівнює з оригіналом. Довше, зате ви певні результату.\n• Використовувати системний кеш: швидше для тисяч дрібних файлів; без нього величезні файли не заповнюють пам&apos;ять.\nПриклад: щоб надійно перенести 500 ГБ відео на новий диск, виберіть «Копіювати», позначте перевірку й залиште 4 паралельно.</value></data>
+  <data name="Info_OnFinish_Title" xml:space="preserve"><value>Після завершення копіювання</value></data>
+  <data name="Info_OnFinish_Text" xml:space="preserve"><value>Що MegaCopier робить після завершення.\n• Зберегти файл контрольних сум: файл у папці призначення з відбитком (хешем) кожного скопійованого файлу. Пізніше «Перевірити суми» за ним скаже, чи щось не зіпсувалося на диску.\n• Зберегти звіт HTML: підсумок, що відкривається в браузері: що скопійовано, час, швидкість і помилки. Зручно зберегти чи надіслати.\n• Команди після завершення: команди, які виконуються в кінці (див. їхню окрему довідку).\nПриклад: переносячи сімейні фото на зовнішній диск, збережіть файл сум — через рік ви знатимете, чи не пошкодилося якесь.</value></data>
+  <data name="Info_Scripts_Title" xml:space="preserve"><value>Команди після завершення</value></data>
+  <data name="Info_Scripts_Text" xml:space="preserve"><value>Команди Windows (команди cmd.exe), що виконуються після завершення копіювання, по одній у рядку.\n• Почніть рядок з «ok:», щоб він виконувався лише в разі успіху, або з «error:» — якщо щось не вдалося. Без префікса виконується завжди.\n• Можна використовувати змінні: %MEGACOPIER_DESTINATION% (папка призначення), %MEGACOPIER_SOURCES% (джерела), %MEGACOPIER_STATE% (чим завершилося), %MEGACOPIER_FILES% (скопійовано файлів), %MEGACOPIER_BYTES% (байти), %MEGACOPIER_FAILED% (помилки) і %MEGACOPIER_CHECKSUM% (файл сум).\nПриклади:\n• ok: explorer &quot;%MEGACOPIER_DESTINATION%&quot; відкриває папку після завершення.\n• ok: shutdown /s /t 60 вимикає комп&apos;ютер за хвилину.\n• error: msg * Під час копіювання було %MEGACOPIER_FAILED% помилок — повідомлення з попередженням.</value></data>
+  <data name="Info_Filters_Title" xml:space="preserve"><value>Фільтри: копіювати лише частину</value></data>
+  <data name="Info_Filters_Text" xml:space="preserve"><value>Копіюйте лише те, що потрібно. Виключене не копіюється й не зачіпається в папці призначення.\n• Скажіть своїми словами: напишіть, наприклад, «фото понад 2 МБ за минулий місяць без .tmp», і MegaCopier заповнить фільтри за вас.\n• Включати лише: маски через крапку з комою. «*.jpg; *.png» копіює лише зображення; «Фото\*» — лише вміст папок з назвою Фото.\n• Виключати: те саме навпаки. Наприклад, «node_modules; *.tmp; Thumbs.db».\n• Мінімальний і максимальний розмір (МБ): з мінімумом 100 копіюються лише великі відео.\n• Змінені з / по: лише те, що змінювалося в ці дати, наприклад з понеділка.\n• Пропускати приховані, системні й непотрібні файли (Thumbs.db, desktop.ini…).\n• Лише зображення з текстом: розпізнавання тексту Windows читає фото й копіює лише ті, що його містять, наприклад «рахунок».</value></data>
+  <data name="Info_Rules_Title" xml:space="preserve"><value>Правила для особливих випадків</value></data>
+  <data name="Info_Rules_Text" xml:space="preserve"><value>Що робити, якщо це не звичайний файл або стався збій.\n• Символьні посилання та з&apos;єднання: копіювати як посилання (як у джерелі), копіювати те, на що вони вказують (справжній вміст), або пропускати.\n• Ім&apos;я під час збереження обох: як називається нова копія, якщо ви зберігаєте обидва файли. {name} — ім&apos;я, {n} — номер, {ext} — розширення, {date} — дата: «{name} ({n}){ext}» дає «фото (2).jpg».\n• Повтори й пауза: якщо файл не копіюється (обрив мережі, файл відкрито в іншій програмі…), скільки разів повторювати й скільки секунд чекати між спробами.\n• Якщо файл і далі не копіюється: пропустити й продовжити, зупинити копіювання, відкласти на кінець або спитати вас.\nПриклад: копіюючи з NAS через Wi-Fi, задайте 5 повторів з паузою 10 секунд — короткі обриви не зіпсують копіювання.</value></data>
+  <data name="Info_Safety_Title" xml:space="preserve"><value>Синхронізація та безпека</value></data>
+  <data name="Info_Safety_Text" xml:space="preserve"><value>Параметри для синхронізації папок і захисту даних. Усі необов&apos;язкові; наведіть вказівник на кожен, щоб дізнатися більше.\n• Якщо папка вже є: об&apos;єднати вміст, пропустити або спитати.\n• Зберігати замінене чи видалене: перед перезаписом або видаленням файл переміщується в цю папку з датою (наприклад .versions), щоб можна було повернути попередню версію. «Скільки версій зберігати» прибирає старі.\n• Інші місця з тими самими даними: якщо дані є й деінде (другий NAS), великі файли читаються з обох одночасно.\n• Допуск дати: не дає знову копіювати однакові файли на флешки FAT32 чи exFAT.\n• Перевірки: перечитати оригінал, зберегти хеш усередині файлу й дані відновлення, щоб полагодити копію, якщо диск її зіпсує.\n• Захист: щит від шифрувальників, криміналістичний режим, надійне видалення під час переміщення й папки «все або нічого».\n• Складні диски: чекати, якщо диск від&apos;єднався чи бракує місця, режим порятунку для пошкоджених дисків і різницеве копіювання великих файлів.\nПриклад: для щотижневої резервної копії із синхронізацією вкажіть папку версій і позначте «Перечитати оригінал».</value></data>
+  <data name="About_DevelopedBy.Text" xml:space="preserve"><value>Розробник:</value></data>
+  <data name="IconPack_oneui" xml:space="preserve"><value>One UI</value></data>
+  <data name="IconPack_nothing" xml:space="preserve"><value>Nothing OS</value></data>
+  <data name="IconPack_win95" xml:space="preserve"><value>Windows 95</value></data>
+  <data name="IconPack_vista" xml:space="preserve"><value>Windows Vista</value></data>
+  <data name="IconPack_cyber" xml:space="preserve"><value>Кіберпанк</value></data>
+  <data name="IconPack_hud" xml:space="preserve"><value>Голограма</value></data>
+  <data name="Settings_AdaptTitle.Text" xml:space="preserve"><value>Підлаштовуватися під малі екрани</value></data>
+  <data name="Settings_AdaptDescription.Text" xml:space="preserve"><value>На невисоких екранах, наприклад 1366 × 768, вікно виглядає так само, але трохи менше, щоб уміститися повністю. На великих екранах нічого не змінюється.</value></data>
+  <data name="Job_StateAsking" xml:space="preserve"><value>Чекає на вашу відповідь</value></data>
 </root>

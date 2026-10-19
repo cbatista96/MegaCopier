@@ -5,6 +5,84 @@ y las versiones, [SemVer](https://semver.org/lang/es/).
 
 ## [Sin publicar]
 
+Una versión para copiar varias cosas a la vez sin pensarlo: si lo nuevo va al mismo disco que una copia en marcha,
+MegaCopier pregunta si sumarlo a ella, y si va a otro disco empieza a la vez. Cada copia tiene su propio icono de
+progreso en la bandeja, la X cancela de verdad, el arrastre también vale sobre el panel izquierdo del Explorador, las
+opciones difíciles se explican con ejemplos, los paquetes de iconos se parecen por fin a su sistema (con siete nuevos) y
+la ventana cabe entera en pantallas de 1366 × 768.
+
+<img src="https://github.com/cbatista96/MegaCopier/raw/v1.5.0/docs/capturas/misma-unidad.png" width="520" alt="Ya hay una copia hacia N: ¿Añadir «Fotos» al final de esa copia? Con Añadir a esta copia, Copia aparte y Cancelar">
+
+### Añadido
+
+- **Copias nuevas al mismo disco**: si copias algo a un disco que ya está recibiendo otra copia, MegaCopier sale al
+  frente y pregunta, con cada opción explicada: *Añadir a esta copia* (se copia al final de su lista, cada cosa a su
+  carpeta, comprobando antes el espacio), *Copia aparte* (espera a que termine la otra; *Comenzar* la arranca ya) o
+  *Cancelar*. Si va a **otro disco**, empieza a la vez sin esperar, porque cada disco copia a su velocidad. Las dos
+  cosas se cambian en Ajustes › Comportamiento.
+
+  <img src="https://github.com/cbatista96/MegaCopier/raw/v1.5.0/docs/capturas/varias-copias.png" width="620" alt="Dos copias: la primera copiando y la segunda, aparte, en cola con el botón Comenzar; a la izquierda la lista compacta de copias">
+
+- **Iconos de progreso en la bandeja**: uno por cada copia en marcha, con su porcentaje y una barra que sube con los
+  colores del tema (ámbar en pausa, rojo con errores). Al terminar se llena, muestra una marca y se quita solo. Un clic
+  abre esa copia; el clic derecho la pausa, la reanuda o la detiene. Se activa o desactiva en Ajustes › Interfaz.
+
+  <img src="https://github.com/cbatista96/MegaCopier/raw/v1.5.0/docs/capturas/bandeja-progreso.png" width="400" alt="Iconos de progreso ampliados: 0, 7, 45, 73 en pausa, 99, terminada y 50 con errores">
+
+- **Qué hacen la X y el botón de minimizar**, en Ajustes › Interfaz: la X cancela las copias (como *Detener*), las
+  detiene para continuarlas después, solo oculta la ventana o sale de MegaCopier; minimizar la deja en la barra de
+  tareas o la esconde en la bandeja.
+- **Número de copias activas** en rojo sobre el botón de la lista de copias cuando la lista está cerrada.
+- **Clic derecho en la lista de copias**: pausar, reanudar, detener, *Archivar en el historial* (también con Supr),
+  *Eliminar* (también del historial) y abrir la carpeta de destino.
+- **Ayudas ⓘ con ejemplos** en las opciones más difíciles de cada copia: qué se copia, cómo se copia, al terminar,
+  comandos al terminar (con sus variables), filtros, reglas y sincronización y seguridad.
+
+  <img src="https://github.com/cbatista96/MegaCopier/raw/v1.5.0/docs/capturas/ayuda-opciones.png" width="520" alt="Ayuda de Comandos al terminar con sus variables y ejemplos">
+
+- **Iconos en el menú *Al terminar*** (suspender, hibernar, apagar, cerrar sesión, cerrar MegaCopier).
+- **Pantallas pequeñas**: en pantallas bajas, como 1366 × 768, la ventana se ve igual pero algo más pequeña, para caber
+  entera. En pantallas grandes no cambia nada. Se puede desactivar en Ajustes › Interfaz.
+- **Paquetes de iconos nuevos**: Material You (con el color del tema), One UI, Nothing OS, Windows 95 (con relieve),
+  Windows Vista (cristal oscuro), Ciberpunk y Holográfico.
+- *Acerca de*: «Desarrollado por WML», con enlace a su web.
+
+### Cambiado
+
+- **Arrastrar desde el Explorador** también funciona al soltar sobre las carpetas y unidades del panel de la izquierda
+  (*Este equipo*, *Disco local (C:)*, *Descargas*…), sobre las unidades de *Este equipo* y desde resultados de búsqueda
+  o *Inicio*. Arrastrar una carpeta desde el panel de la izquierda también lo hace MegaCopier.
+- **La X de la ventana cancela las copias** (como *Detener* en cada una), en lugar de dejarlas copiando a escondidas.
+  Se puede cambiar en Ajustes.
+- El botón **Pausa** ahora dice **Pausar** y **Continuar** pasa a **Reanudar**; *Empezar ya* pasa a **Comenzar**. El
+  icono cambia deslizándose, sin deformarse.
+- **La barra de herramientas** (*Nueva*, pausar y reanudar todas, historial, ajustes…) se ve también en la ventana
+  pequeña.
+- **Ajustes agranda la ventana** hasta el ancho de sus tarjetas y, al volver, la ventana recupera el tamaño que tenía
+  (también la vista pequeña).
+- **Lista de copias más compacta**: arriba solo lo que hace («Copiando (29,7 %)», o cuándo terminó) y debajo el origen y
+  el destino, con el número de archivos y el tamaño. Se abre y se cierra deslizándose. Las copias terminadas se ven
+  mientras quede alguna activa; al acabar todas, pasan al historial.
+- **Paquetes de iconos rehechos** para que cada uno se parezca a su sistema: GNOME con círculos azules, Linux Mint en
+  verdes, Fedora con aros azules, Arch con mosaicos planos, Steam sobre su azul oscuro, Android con círculos planos y
+  Windows 8 plano. Ningún paquete deja ya un hueco: si su fuente no tiene un icono, se usa el de Windows 11.
+
+  <img src="https://github.com/cbatista96/MegaCopier/raw/v1.5.0/docs/capturas/iconos-sistemas.png" width="620" alt="Galería de paquetes de iconos: Material You, One UI, Nothing OS, macOS, GNOME, Linux Mint, Fedora, Arch, Windows 95, Vista, Steam, Ciberpunk y más">
+
+- El lema de *Acerca de*: «el copiador definitivo».
+
+### Arreglado
+
+- El icono del botón Pausar/Reanudar se veía borroso y deformado tras pulsarlo.
+- Al pasar el ratón por los colores de las barras (Ajustes › Interfaz) se volvían negros; ahora se rodean de un aro.
+- El botón *Volver* de las páginas se anunciaba como «Page_Back» a los lectores de pantalla.
+
+### Quitado
+
+- El texto de versión al pie de Ajustes › Avanzado (sigue en *Acerca de*).
+- «Añadir las copias nuevas a una que ya está en marcha»: lo sustituyen las opciones de copias nuevas al mismo disco y a
+  otro disco.
+
 ## [1.4.0] - 2026-10-19
 
 Una versión para que copiar sea más seguro y más estable: MegaCopier comprueba que lo que copias cabe antes de empezar

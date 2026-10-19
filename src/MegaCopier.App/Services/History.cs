@@ -78,7 +78,8 @@ internal static class History
         }
     }
 
-    public static void Add(CopyJob job)
+    /// <summary>Apunta un trabajo terminado. Devuelve el identificador de su entrada.</summary>
+    public static string Add(CopyJob job)
     {
         var entry = new HistoryEntry
         {
@@ -124,6 +125,25 @@ internal static class History
             }
 
             Save(entries);
+        }
+
+        Changed?.Invoke();
+        return entry.Id;
+    }
+
+    /// <summary>Borra una entrada (y su lista de archivos copiados).</summary>
+    public static void Remove(string id)
+    {
+        lock (Gate)
+        {
+            var entries = Load();
+            if (entries.RemoveAll(e => e.Id == id) == 0)
+            {
+                return;
+            }
+
+            Save(entries);
+            TryDelete(ListPath(id));
         }
 
         Changed?.Invoke();

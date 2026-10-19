@@ -76,7 +76,7 @@ Accent_Green	Verde
 Accent_Orange	Arancione
 Accent_Pink	Rosa
 Accent_Red	Rosso
-About	MegaCopier {0} · copie che sopravvivono ai blackout
+About	MegaCopier {0} · il copiatore definitivo
 Picker_CopyHere	Copia qui
 Finish_Label	Al termine
 Finish_LabelSleep	Al termine: sospendi
@@ -147,7 +147,7 @@ Notify_EnabledBody	Copie e spostamenti di Esplora file saranno gestiti da MegaCo
 AboutDialog.Title	Informazioni su MegaCopier
 AboutDialog.CloseButtonText	Chiudi
 About_DataFolder.Content	Apri la cartella dei dati (impostazioni, temi, cronologia, rapporti)
-About_Description.Text	Copiatore di file per Windows 11 che riprende anche un singolo file enorme dopo un blackout, verificando quanto già copiato.
+About_Description.Text	Il copiatore definitivo per Windows 11: più veloce e più sicuro di quello di Windows, con tutte le opzioni che ti servono e personalizzabile quanto vuoi (temi, icone, barre e suoni). Riprende da dove era anche dopo un'interruzione di corrente e verifica che tutto sia arrivato integro.
 About_Features.Text	I/O asincrono senza cache · letture e scritture in parallelo · verifica con hash (CRC32, xxHash, MD5, SHA) · coda per disco · pausa e ripresa · spostamento · conflitti · limite di velocità · elenchi di copia · rapporti · temi.
 Files_AutoScroll.Content	Segui il corrente
 Files_CopyHashes.Text	Copia gli hash
@@ -782,7 +782,7 @@ Destinations_NoneChosen.Text	Seleziona almeno una destinazione (o aggiungi una c
 Finish_ShutdownMessage	MegaCopier ha finito le copie. Il PC si spegnerà tra 1 minuto.
 Hash_Name	Hash: {0}
 DragTitle.Text	Trascinamento con il tasto sinistro con MegaCopier
-DragDescription.Text	Quando trascini file da una finestra di Esplora file o dal desktop a un'altra, li copia o sposta MegaCopier (stesse regole: sulla stessa unità sposta, Ctrl copia, Maiusc sposta). Il rilascio su un file, uno ZIP o il riquadro di spostamento resta a Esplora file.
+DragDescription.Text	Quando trascini file tra finestre di Esplora file, il desktop o le cartelle e unità del riquadro a sinistra, li copia o sposta MegaCopier (stesse regole: sulla stessa unità sposta, Ctrl copia, Maiusc sposta). Il rilascio su un file o uno ZIP resta a Esplora file.
 DragConfirmTitle.Text	Chiedi prima
 DragConfirm_Never.Content	Mai
 DragConfirm_Moves.Content	Solo quando sposta
@@ -1096,13 +1096,6 @@ IconPack_suave	Morbido
 IconPack_degradado	Sfumato
 IconPack_neon	Neon
 IconPack_windows10	Windows 10
-Settings_MergeTitle.Text	Aggiungi le nuove copie a una già in corso
-Settings_MergeDescription.Text	Invece di aspettare il proprio turno, i file si aggiungono all'elenco della copia in corso.
-Merge_Never.Content	Mai
-Merge_SameDestination.Content	Se vanno nella stessa cartella
-Merge_SameDisks.Content	Se usano gli stessi dischi
-Merge_Always.Content	Sempre
-Settings_MergeConfirm.Content	Chiedi prima di aggiungerle
 Settings_MoveAttributesTitle.Text	Durante lo spostamento, conserva anche
 Settings_MoveAttributesDescription.Text	Verso un altro disco. Sullo stesso disco spostare è una rinomina e si conserva tutto.
 Settings_DeleteIncompleteTitle.Text	Quando fermi una copia, elimina ciò che è rimasto a metà
@@ -1137,10 +1130,6 @@ ErrorAsk_Retry	Riprova
 ErrorAsk_Skip	Salta
 ErrorAsk_SkipAll	Salta anche gli errori successivi di questa copia
 ErrorAsk_Stop	Ferma la copia (si potrà riprendere)
-Merge_Title	Aggiungi alla copia in corso
-Merge_Message	Aggiungere {0} elementi alla copia verso «{1}»? Altrimenti verranno copiati separatamente quando sarà il loro turno.
-Merge_Add	Aggiungi
-Merge_Separate	Separatamente
 Eject_DoneTitle	Unità espulsa: ora puoi rimuoverla
 Eject_FailedTitle	Impossibile espellere l'unità: è in uso
 Sound_Windows	Quello di Windows
@@ -1322,13 +1311,12 @@ Theme_tiza	Gesso
 Theme_solar-claro	Solare chiaro
 Theme_capuchino-claro	Cappuccino chiaro
 Info_Paste_Text	Quando copi (Ctrl+C) o tagli (Ctrl+X) file e li incolli (Ctrl+V) in Esplora file o sul desktop, la copia la fa MegaCopier invece di Windows: con coda, pausa, verifica e ripresa se si interrompe.\n• Copie grandi su un disco esterno: puoi metterle in pausa e riprendere dopo.\n• Più copie di fila: aspettano il loro turno invece di contendersi il disco.\nSe incolli nella stessa cartella (per duplicare un file), lo fa ancora Esplora file.
-Info_Drag_Text	Trascinando file con il tasto sinistro da una finestra all’altra, MegaCopier copia (o sposta) con le stesse regole di Windows: sulla stessa unità sposta, Ctrl forza la copia e Maiusc lo spostamento.\n• Ordinare foto trascinandole tra cartelle di dischi diversi.\n• Spostare progetti grandi senza bloccare Esplora file.\nRilasciare su un file, uno ZIP o il riquadro a sinistra lo gestisce ancora Esplora file.
+Info_Drag_Text	Trascinando file con il tasto sinistro da una finestra all’altra, MegaCopier copia (o sposta) con le stesse regole di Windows: sulla stessa unità sposta, Ctrl forza la copia e Maiusc lo spostamento.\n• Ordinare foto trascinandole tra cartelle di dischi diversi.\n• Spostare progetti grandi senza bloccare Esplora file.\nFunziona anche rilasciare su cartelle e unità del riquadro a sinistra. Rilasciare su un file o uno ZIP lo gestisce ancora Esplora file.
 Info_WindowMode_Text	La finestra di copia ha tre viste.\n• Piccola: solo le barre e i pulsanti. È quella di sempre durante la copia; si può allargare ma non alzare.\n• Con l’elenco («Altro»): file, destinazione, opzioni, grafico e registro. Si può ingrandire o massimizzare.\n• Più copie: la stessa, con l’elenco delle copie a sinistra; compare da sola quando ce n’è più di una.\n«Automatica» parte piccola e passa a quella completa quando ci sono più copie insieme. «Altro» e «Meno» cambiano vista in qualsiasi momento.
 Info_Verify_Text	Alla fine di ogni file, MegaCopier lo rilegge direttamente dal disco di destinazione e confronta la sua impronta (hash) con quella dell’originale. Se qualcosa non coincide, ricopia solo la parte danneggiata.\n• Backup, foto e documenti importanti.\n• Chiavette USB o dischi vecchi o economici, che possono guastarsi senza preavviso.\n• Copie in rete o via Wi-Fi.\nLa copia richiede un po’ più di tempo (si rilegge tutto), in cambio della certezza che sia identica.
 Info_Conflict_Text	Cosa fare quando nella destinazione c’è già un file con lo stesso nome.\n• Chiedi: mostra entrambi, con dimensione, data e miniatura, e scegli tu.\n• Sostituisci, Salta, Sostituisci se più recente o se la dimensione è diversa, Mantieni entrambi («nome (2)») o Rinomina quello esistente.\nI file identici (stessa dimensione e data) non vengono mai ricopiati: ripetere una copia copia solo il nuovo o il modificato. Se esiste già un’intera cartella, MegaCopier chiede prima di iniziare.
 Info_Hash_Text	L’hash è come l’impronta digitale di un file: se cambia un solo byte, cambia l’impronta. Si usa per la verifica e nelle somme salvate.\n• xxHash3: il più veloce; ideale per verificare le copie.\n• SHA-256: il più usato da siti e programmi per controllare i download.\n• MD5, SHA-1, BLAKE3…: se un altro programma ne chiede uno preciso.\nNell’uso quotidiano, lascia xxHash3.
 Info_Performance_Text	Quanto può correre la copia.\n• Limite di velocità: perché la copia non occupi tutta la rete o il disco mentre lavori o guardi un film. Ogni copia ha anche il suo limite nella scheda Opzioni, che si cambia subito senza fermarla.\n• Dimensione del buffer: i blocchi letti e scritti alla volta. Più grande va meglio con file enormi.\n• Operazioni contemporanee: quanti blocchi si chiedono al disco nello stesso momento. Gli SSD veloci ci guadagnano.\nSe non sai cosa mettere, lascia i valori predefiniti: MegaCopier regola già ogni disco da solo.
-Info_Merge_Text	Se avvii una copia mentre un’altra è in corso, può unirsi a quella invece di aspettare il turno: i suoi file vanno in fondo all’elenco.\n• Mai: ogni copia va per conto suo.\n• Se vanno nella stessa cartella, o se usano gli stessi dischi.\n• Sempre.\nCon «Chiedi prima» decidi ogni volta. Utile quando mandi cartelle una alla volta sulla stessa chiavetta USB.
 Info_MoveAttributes_Text	Spostando su un altro disco, i file vengono copiati e poi eliminati dall’origine. Qui scegli cosa si portano oltre al contenuto: attributi (sola lettura, nascosto…), autorizzazioni, proprietario e controllo.\n• Spostare cartelle di lavoro tra server mantenendo chi può aprirle.\nSullo stesso disco, spostare è solo cambiare posto e si conserva tutto.
 Info_DeleteIncomplete_Text	«Interrompi» annulla la copia e la toglie dall’elenco. Durante la copia ogni file viene scritto con l’estensione .mcpart e riceve il suo nome solo quando termina correttamente.\n• Attivato: premendo Interrompi i .mcpart vengono eliminati e la destinazione resta pulita.\n• Disattivato: vengono conservati e, se ricopi la stessa cosa, si riprende proprio da dove si era fermata.\nNon si elimina mai nulla chiudendo MegaCopier o dopo un blackout: quelle copie vengono proposte per continuare alla riapertura.
 Info_Eject_Text	Alla fine, MegaCopier espelle in sicurezza la chiavetta USB, la scheda o il disco USB di destinazione, come «Rimozione sicura dell’hardware».\n• Riempire più chiavette USB di fila: quando la togli, è già pronta.\nLo fa solo se nessun’altra copia la sta usando. «Forza» la espelle anche se un programma la tiene aperta.
@@ -1347,8 +1335,8 @@ Info_Tasks_Text	Una copia salvata che Windows avvia da solo ogni giorno, settima
 Info_Guard_Text	I dischi possono rovinare i file negli anni senza avvisare. MegaCopier salva l’impronta di ogni file al suo interno e, quando il computer è libero, li ricontrolla. Se uno è cambiato senza che nessuno lo toccasse, ti avvisa in tempo per recuperarlo da un backup.\n• Foto e video di famiglia.\n• Dischi di backup che si aprono raramente.\nCiò che modifichi si aggiorna da solo. Richiede dischi NTFS.
 Info_Webhook_Text	Alla fine di ogni copia, MegaCopier invia il riepilogo a un indirizzo web, così l’avviso arriva sul telefono o in una chat.\n• Discord, Slack o Teams: avvisi in un canale.\n• ntfy.sh: notifica sul telefono quasi senza installare nulla.\n• Home Assistant: automazioni (accendere una luce alla fine…).
 Info_Connections_Text	Salva qui i server su cui copi: FTP, SFTP, WebDAV (Nextcloud, NAS…) o S3 (Backblaze, Wasabi, R2…). Poi compaiono quando scegli origine o destinazione.\n• Caricare backup nel cloud.\n• Scaricare file da un server aziendale.\nLe password vanno in Gestione credenziali di Windows, mai in chiaro.
-IconPack_android	Android
-IconPack_android-tonal	Android tonale
+IconPack_android	Android (AOSP)
+IconPack_android-tonal	Material You
 IconPack_macos	macOS
 IconPack_macos-color	macOS colore
 IconPack_ubuntu	Ubuntu
@@ -1436,3 +1424,69 @@ Drop_AddWhatHere	Aggiungi {0} a questa copia
 Drop_AddWhatTo	Aggiungi {0} a {1}
 Drop_InsertWhatAt	Aggiungi {0} alla posizione {1}
 Files_ResizeColumn.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Trascina per cambiare la larghezza della colonna (doppio clic: larghezza predefinita)
+SameDrive_Title	C'è già una copia verso {0}
+SameDrive_Short	Aggiungere {0} alla fine di quella copia? Due copie insieme sullo stesso disco sono più lente.
+SameDrive_Message	{0} va in «{1}», sullo stesso disco di una copia già in corso. Copiare due cose insieme sullo stesso disco rallenta entrambe.
+SameDrive_Items	{0} elementi
+SameDrive_Add	Aggiungi a questa copia
+SameDrive_AddText	Viene copiato in fondo all'elenco della copia in corso, nella sua cartella di destinazione, con una sola barra di avanzamento. Prima si controlla lo spazio libero.
+SameDrive_Separate	Copia separata
+SameDrive_SeparateText	Viene creata un'altra copia che inizia quando finisce quella attuale. Se non vuoi aspettare, premi «Avvia ora» su di essa.
+SameDrive_Cancel	Annulla
+SameDrive_CancelText	Non viene copiato nulla di nuovo.
+Settings_SameDriveTitle.Text	Nuova copia sullo stesso disco di una in corso
+Settings_SameDriveDescription.Text	Per esempio, invii un'altra cartella alla stessa chiavetta USB mentre si copia la prima.
+SameDrive_OptAsk.Content	Chiedi
+SameDrive_OptMerge.Content	Aggiungerla alla copia in corso
+SameDrive_OptQueue.Content	Copia separata, dopo
+SameDrive_OptParallel.Content	Copia separata, insieme
+Settings_OtherDriveTitle.Text	Nuova copia su un altro disco
+Settings_OtherDriveDescription.Text	Ogni disco scrive alla sua velocità: iniziare insieme non rallenta l'altra copia.
+OtherDrive_OptParallel.Content	Inizia insieme
+OtherDrive_OptQueue.Content	Attendere il suo turno
+Info_SameDrive_Title	Nuove copie mentre un'altra è in corso
+Info_SameDrive_Text	Quando copi qualcosa mentre un'altra copia è in corso, MegaCopier guarda su quale disco va.\n• Sullo stesso disco: di norma chiede. «Aggiungerla» mette i suoi file in fondo all'elenco della copia in corso (ognuno nella sua cartella), con una sola barra. «Copia separata, dopo» la lascia in attesa del suo turno. «Insieme» le copia contemporaneamente, ma entrambe rallentano.\n• Su un altro disco: inizia subito, perché ogni disco scrive alla sua velocità. Se preferisci che aspetti il suo turno, cambialo qui.\nEsempio: copi un film su una chiavetta USB e poi un'altra cartella sulla stessa chiavetta: MegaCopier passa in primo piano e decidi tu. Se nel frattempo copi qualcosa sul disco D:, inizia senza aspettare.
+Settings_CloseButtonTitle.Text	Quando premi la X della finestra
+Settings_CloseButtonDescription.Text	Di norma annulla le copie, come «Interrompi» su ciascuna. MegaCopier resta nell'area di notifica per la prossima copia.
+CloseButton_Cancel.Content	Annulla le copie
+CloseButton_Stop.Content	Fermarle per continuare dopo
+CloseButton_Hide.Content	Nascondi la finestra (continuano a copiare)
+CloseButton_Exit.Content	Esci da MegaCopier
+Settings_MinimizeButtonTitle.Text	Quando riduci a icona la finestra
+Settings_MinimizeButtonDescription.Text	Sulla barra delle applicazioni, come ogni finestra, o nascosta nell'area di notifica (accanto all'orologio).
+MinimizeButton_Taskbar.Content	Sulla barra delle applicazioni
+MinimizeButton_Tray.Content	Nell'area di notifica
+Settings_TrayProgressTitle.Text	Avanzamento di ogni copia nell'area di notifica
+Settings_TrayProgressDescription.Text	Un'icona per ogni copia in corso, con la percentuale e una barra che sale. Alla fine sparisce da sola. Un clic apre la copia.
+Info_WindowButtons_Title	I pulsanti della finestra
+Info_WindowButtons_Text	Scegli cosa succede alle copie quando chiudi o riduci a icona la finestra.\n• Annulla le copie: come premere «Interrompi» su ciascuna. Spariscono dall'elenco e non viene proposto di continuarle.\n• Fermarle per continuare dopo: ciò che è stato copiato resta; quando ricopi la stessa cosa, o apri MegaCopier, riprende da dove era.\n• Nascondi la finestra: le copie continuano in background; riaprila dall'icona nell'area di notifica.\n• Esci da MegaCopier: si chiude del tutto e Windows copia come sempre finché non lo riapri.\nRidurre nell'area di notifica lascia libera la barra delle applicazioni: la finestra torna con un clic sull'icona di MegaCopier accanto all'orologio.
+Tray_JobPause	Pausa
+Tray_JobStop	Interrompi
+Jobs_Archive	Archivia nella cronologia
+Jobs_ArchiveKey	Canc
+Jobs_Delete	Elimina (anche dalla cronologia)
+Jobs_BadgeTip	{0} attive
+Info_WhatCopy_Title	Cosa si copia di ogni file
+Info_WhatCopy_Text	Oltre al contenuto, puoi copiare ciò che Windows conserva attorno a ogni file.\n• Date: quella di creazione e quella di ultima modifica restano come nell'originale, così le foto restano ordinate per data.\n• Attributi: sola lettura, nascosto, archivio… Senza di essi, tutto arriva come un file normale.\n• Flussi di dati alternativi (ADS): dati nascosti che alcuni programmi aggiungono al file, come il segno «scaricato da Internet». Servono raramente.\n• Sicurezza (NTFS): autorizzazioni (chi può aprirlo), proprietario e controllo. Servono solo tra dischi NTFS dello stesso computer o dominio; proprietario e controllo richiedono i diritti di amministratore.\nEsempio: per una copia esatta di una cartella condivisa dell'ufficio, seleziona tutto; per passare foto su una chiavetta USB bastano le date.
+Info_Transfer_Title	Come si esegue la copia
+Info_Transfer_Text	• Modalità: Copia è quella normale. Sincronizza (specchio) rende la destinazione identica all'origine ed elimina ciò che avanza. Aggiorna soltanto copia solo i file già presenti nella destinazione che sono cambiati. Solo struttura crea le cartelle vuote. Organizza foto per data le divide in cartelle per anno e mese.\n• Simula: dice cosa verrebbe fatto senza cambiare nulla. Provalo prima di uno specchio.\n• Se il file esiste già: chiedere, sostituire, saltare, tenere il più recente, tenerli entrambi…\n• Hash: il modo per verificare che la copia sia identica. xxHash è il più veloce; SHA-256 è lo standard per conservare prove.\n• Dimensione del buffer e In parallelo: più grande e più letture insieme velocizzano SSD e rete; su dischi meccanici o chiavette USB lente, meglio 1 o 2.\n• Verifica dopo la copia: rilegge ciò che è stato copiato e lo confronta con l'originale. Richiede più tempo, ma sai che è corretto.\n• Usa la cache di sistema: più veloce con migliaia di file piccoli; senza, i file enormi non riempiono la memoria.\nEsempio: per spostare 500 GB di video su un disco nuovo in tutta sicurezza, scegli Copia, seleziona Verifica e lascia 4 in parallelo.
+Info_OnFinish_Title	Al termine della copia
+Info_OnFinish_Text	Ciò che MegaCopier lascia fatto alla fine.\n• Salva file dei checksum: un file nella destinazione con l'impronta (hash) di ogni file copiato. Più avanti, «Verifica checksum» lo usa per dirti se qualcosa si è rovinato sul disco.\n• Salva report HTML: un riepilogo che si apre nel browser, con ciò che è stato copiato, il tempo, la velocità e gli errori. Utile da conservare o inviare.\n• Comandi al termine: comandi eseguiti alla fine (vedi il loro aiuto).\nEsempio: quando sposti le foto di famiglia su un disco esterno, salva il file dei checksum: tra un anno saprai se qualcuna si è danneggiata.
+Info_Scripts_Title	Comandi al termine
+Info_Scripts_Text	Comandi di Windows (quelli di cmd.exe) eseguiti al termine della copia, uno per riga.\n• Inizia la riga con «ok:» perché venga eseguita solo se è andato tutto bene, o con «error:» se qualcosa è fallito. Senza nulla davanti, viene eseguita sempre.\n• Puoi usare queste variabili: %MEGACOPIER_DESTINATION% (cartella di destinazione), %MEGACOPIER_SOURCES% (origini), %MEGACOPIER_STATE% (come è finita), %MEGACOPIER_FILES% (file copiati), %MEGACOPIER_BYTES% (byte), %MEGACOPIER_FAILED% (errori) e %MEGACOPIER_CHECKSUM% (file dei checksum).\nEsempi:\n• ok: explorer "%MEGACOPIER_DESTINATION%" apre la cartella alla fine.\n• ok: shutdown /s /t 60 spegne il computer un minuto dopo.\n• error: msg * La copia ha avuto %MEGACOPIER_FAILED% errori ti avvisa con un messaggio.
+Info_Filters_Title	Filtri: copiare solo una parte
+Info_Filters_Text	Copia solo ciò che ti interessa. Ciò che resta fuori non viene copiato né toccato nella destinazione.\n• Dillo con parole tue: scrivi, per esempio, «foto di più di 2 MB dell'ultimo mese senza i .tmp» e MegaCopier compila i filtri per te.\n• Includi solo: maschere separate da punto e virgola. «*.jpg; *.png» copia solo immagini; «Foto\*» solo ciò che c'è nelle cartelle chiamate Foto.\n• Escludi: lo stesso, al contrario. Per esempio «node_modules; *.tmp; Thumbs.db».\n• Dimensione minima e massima (MB): con un minimo di 100 copi solo i video grandi.\n• Modificati dal / al: solo ciò che è cambiato in quelle date, per esempio da lunedì.\n• Salta i file nascosti, di sistema e spazzatura (Thumbs.db, desktop.ini…).\n• Solo immagini con un testo: l'OCR di Windows legge le foto e copia solo quelle che lo contengono, come «fattura».
+Info_Rules_Title	Regole per i casi speciali
+Info_Rules_Text	Cosa fare quando qualcosa non è un file normale o fallisce.\n• Collegamenti simbolici e giunzioni: copiarli come collegamento (come nell'origine), copiare ciò che c'è dietro (il contenuto reale) o saltarli.\n• Nome quando li tieni entrambi: come si chiama la nuova copia quando scegli di tenere entrambi i file. {name} è il nome, {n} un numero, {ext} l'estensione e {date} la data: «{name} ({n}){ext}» dà «foto (2).jpg».\n• Tentativi e attesa: se un file fallisce (la rete cade, un altro programma lo tiene aperto…), quante volte si riprova e quanti secondi si aspetta tra un tentativo e l'altro.\n• Se un file continua a fallire: saltarlo e proseguire, fermare la copia, lasciarlo per la fine o chiedertelo.\nEsempio: copiando da un NAS via Wi-Fi, imposta 5 tentativi con 10 secondi di attesa: le brevi interruzioni non rovinano la copia.
+Info_Safety_Title	Sincronizzazione e sicurezza
+Info_Safety_Text	Opzioni per sincronizzare cartelle e proteggere i dati. Sono tutte facoltative; passa il mouse su ognuna per saperne di più.\n• Se una cartella esiste già: unirne il contenuto, saltarla o chiedere.\n• Conserva ciò che viene sostituito o rimosso: prima di sovrascrivere o eliminare un file, lo sposta in quella cartella con la data (per esempio .versioni), per poter recuperare la versione precedente. «Quante versioni conservare» elimina le vecchie.\n• Altri posti con gli stessi dati: se i dati sono anche altrove (un secondo NAS), i file grandi vengono letti da entrambi insieme.\n• Tolleranza sulla data: evita di ricopiare file identici su chiavette USB FAT32 o exFAT.\n• Controlli: rileggere l'originale, salvare l'hash dentro il file e dati di ripristino per riparare la copia se il disco la rovina.\n• Protezione: scudo anti-ransomware, modalità forense, cancellazione sicura quando si sposta e cartelle «tutto o niente».\n• Dischi difficili: attendere se il disco si scollega o manca spazio, modalità soccorso per dischi danneggiati e copia differenziale dei file grandi.\nEsempio: per un backup settimanale con Sincronizza, indica una cartella delle versioni e seleziona «Rileggi l'originale».
+About_DevelopedBy.Text	Sviluppato da
+IconPack_oneui	One UI
+IconPack_nothing	Nothing OS
+IconPack_win95	Windows 95
+IconPack_vista	Windows Vista
+IconPack_cyber	Cyberpunk
+IconPack_hud	Olografico
+Settings_AdaptTitle.Text	Adatta agli schermi piccoli
+Settings_AdaptDescription.Text	Sugli schermi bassi, come 1366 × 768, la finestra appare uguale ma un po' più piccola, per starci tutta. Sugli schermi grandi non cambia nulla.
+Job_StateAsking	In attesa della tua risposta

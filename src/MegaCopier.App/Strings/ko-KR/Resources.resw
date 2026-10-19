@@ -82,7 +82,7 @@
   <data name="Accent_Orange" xml:space="preserve"><value>주황</value></data>
   <data name="Accent_Pink" xml:space="preserve"><value>분홍</value></data>
   <data name="Accent_Red" xml:space="preserve"><value>빨강</value></data>
-  <data name="About" xml:space="preserve"><value>MegaCopier {0} · 정전에도 끄떡없는 복사</value></data>
+  <data name="About" xml:space="preserve"><value>MegaCopier {0} · 최고의 복사 도구</value></data>
   <data name="Picker_CopyHere" xml:space="preserve"><value>여기에 복사</value></data>
   <data name="Finish_Label" xml:space="preserve"><value>완료 후</value></data>
   <data name="Finish_LabelSleep" xml:space="preserve"><value>완료 후: 절전</value></data>
@@ -153,7 +153,7 @@
   <data name="AboutDialog.Title" xml:space="preserve"><value>MegaCopier 정보</value></data>
   <data name="AboutDialog.CloseButtonText" xml:space="preserve"><value>닫기</value></data>
   <data name="About_DataFolder.Content" xml:space="preserve"><value>데이터 폴더 열기(설정, 테마, 기록, 보고서)</value></data>
-  <data name="About_Description.Text" xml:space="preserve"><value>Windows 11용 파일 복사 프로그램으로, 정전 후에도 아주 큰 파일 하나까지 이어서 복사하고 복사된 부분을 확인합니다.</value></data>
+  <data name="About_Description.Text" xml:space="preserve"><value>Windows 11을 위한 최고의 복사 도구: Windows 기본 복사보다 빠르고 안전하며, 필요한 모든 옵션을 갖추고 테마, 아이콘, 막대, 소리까지 원하는 대로 꾸밀 수 있습니다. 정전 후에도 멈춘 곳에서 이어서 복사하고 모두 제대로 도착했는지 확인합니다.</value></data>
   <data name="About_Features.Text" xml:space="preserve"><value>캐시 없는 비동기 I/O · 병렬 읽기/쓰기 · 해시 확인(CRC32, xxHash, MD5, SHA) · 디스크별 대기열 · 일시 중지 및 재개 · 이동 · 충돌 처리 · 속도 제한 · 복사 목록 · 보고서 · 테마.</value></data>
   <data name="Files_AutoScroll.Content" xml:space="preserve"><value>현재 파일 따라가기</value></data>
   <data name="Files_CopyHashes.Text" xml:space="preserve"><value>해시 복사</value></data>
@@ -788,7 +788,7 @@
   <data name="Finish_ShutdownMessage" xml:space="preserve"><value>MegaCopier가 복사를 마쳤습니다. 1분 후 PC가 종료됩니다.</value></data>
   <data name="Hash_Name" xml:space="preserve"><value>해시: {0}</value></data>
   <data name="DragTitle.Text" xml:space="preserve"><value>왼쪽 단추 끌기를 MegaCopier로</value></data>
-  <data name="DragDescription.Text" xml:space="preserve"><value>파일 탐색기나 바탕 화면 창 사이에서 파일을 끌면 MegaCopier가 복사하거나 이동합니다(규칙 동일: 같은 드라이브는 이동, Ctrl은 복사, Shift는 이동). 파일, ZIP, 탐색 창에 놓는 것은 계속 파일 탐색기가 처리합니다.</value></data>
+  <data name="DragDescription.Text" xml:space="preserve"><value>파일 탐색기 창, 바탕 화면, 왼쪽 창의 폴더와 드라이브 사이에서 파일을 끌면 MegaCopier가 복사하거나 이동합니다(규칙 동일: 같은 드라이브는 이동, Ctrl은 복사, Shift는 이동). 파일이나 ZIP에 놓는 것은 계속 파일 탐색기가 처리합니다.</value></data>
   <data name="DragConfirmTitle.Text" xml:space="preserve"><value>먼저 묻기</value></data>
   <data name="DragConfirm_Never.Content" xml:space="preserve"><value>안 함</value></data>
   <data name="DragConfirm_Moves.Content" xml:space="preserve"><value>이동할 때만</value></data>
@@ -1102,13 +1102,6 @@
   <data name="IconPack_degradado" xml:space="preserve"><value>그라데이션</value></data>
   <data name="IconPack_neon" xml:space="preserve"><value>네온</value></data>
   <data name="IconPack_windows10" xml:space="preserve"><value>Windows 10</value></data>
-  <data name="Settings_MergeTitle.Text" xml:space="preserve"><value>새 복사를 진행 중인 복사에 추가</value></data>
-  <data name="Settings_MergeDescription.Text" xml:space="preserve"><value>차례를 기다리지 않고 진행 중인 복사 목록에 파일이 추가됩니다.</value></data>
-  <data name="Merge_Never.Content" xml:space="preserve"><value>안 함</value></data>
-  <data name="Merge_SameDestination.Content" xml:space="preserve"><value>같은 폴더로 가는 경우</value></data>
-  <data name="Merge_SameDisks.Content" xml:space="preserve"><value>같은 드라이브를 사용하는 경우</value></data>
-  <data name="Merge_Always.Content" xml:space="preserve"><value>항상</value></data>
-  <data name="Settings_MergeConfirm.Content" xml:space="preserve"><value>추가하기 전에 묻기</value></data>
   <data name="Settings_MoveAttributesTitle.Text" xml:space="preserve"><value>이동할 때 함께 유지</value></data>
   <data name="Settings_MoveAttributesDescription.Text" xml:space="preserve"><value>다른 드라이브로 이동할 때. 같은 드라이브에서는 이름만 바뀌므로 모두 유지됩니다.</value></data>
   <data name="Settings_DeleteIncompleteTitle.Text" xml:space="preserve"><value>복사를 중지하면 완료되지 않은 파일 삭제</value></data>
@@ -1143,10 +1136,6 @@
   <data name="ErrorAsk_Skip" xml:space="preserve"><value>건너뛰기</value></data>
   <data name="ErrorAsk_SkipAll" xml:space="preserve"><value>이 복사의 다음 오류도 건너뛰기</value></data>
   <data name="ErrorAsk_Stop" xml:space="preserve"><value>복사 중지 (다시 시작 가능)</value></data>
-  <data name="Merge_Title" xml:space="preserve"><value>진행 중인 복사에 추가</value></data>
-  <data name="Merge_Message" xml:space="preserve"><value>{0}개 항목을 ‘{1}’(으)로 가는 복사에 추가할까요? 아니면 차례가 되었을 때 따로 복사됩니다.</value></data>
-  <data name="Merge_Add" xml:space="preserve"><value>추가</value></data>
-  <data name="Merge_Separate" xml:space="preserve"><value>따로</value></data>
   <data name="Eject_DoneTitle" xml:space="preserve"><value>드라이브를 꺼냈습니다. 이제 분리할 수 있습니다</value></data>
   <data name="Eject_FailedTitle" xml:space="preserve"><value>드라이브를 꺼낼 수 없습니다. 사용 중입니다</value></data>
   <data name="Sound_Windows" xml:space="preserve"><value>Windows 소리</value></data>
@@ -1328,13 +1317,12 @@
   <data name="Theme_solar-claro" xml:space="preserve"><value>솔라 라이트</value></data>
   <data name="Theme_capuchino-claro" xml:space="preserve"><value>라이트 카푸치노</value></data>
   <data name="Info_Paste_Text" xml:space="preserve"><value>파일 탐색기나 바탕 화면에서 파일을 복사(Ctrl+C)하거나 잘라내(Ctrl+X) 붙여 넣으면(Ctrl+V) Windows 대신 MegaCopier가 복사합니다. 대기열, 일시 중지, 검증, 중단 후 이어 하기가 가능합니다.\n• 외장 디스크로 큰 복사: 일시 중지했다가 나중에 이어 할 수 있습니다.\n• 연달아 여러 번 복사: 디스크를 두고 다투지 않고 차례를 기다립니다.\n같은 폴더에 붙여 넣으면(파일 복제) 계속 파일 탐색기가 처리합니다.</value></data>
-  <data name="Info_Drag_Text" xml:space="preserve"><value>왼쪽 단추로 파일을 한 창에서 다른 창으로 끌면 Windows와 같은 규칙으로 MegaCopier가 복사(또는 이동)합니다. 같은 드라이브면 이동, Ctrl은 복사, Shift는 이동입니다.\n• 서로 다른 디스크의 폴더 사이로 사진을 끌어 정리하기.\n• 파일 탐색기를 멈추지 않고 큰 프로젝트 옮기기.\n파일, ZIP, 왼쪽 창에 놓으면 계속 파일 탐색기가 처리합니다.</value></data>
+  <data name="Info_Drag_Text" xml:space="preserve"><value>왼쪽 단추로 파일을 한 창에서 다른 창으로 끌면 Windows와 같은 규칙으로 MegaCopier가 복사(또는 이동)합니다. 같은 드라이브면 이동, Ctrl은 복사, Shift는 이동입니다.\n• 서로 다른 디스크의 폴더 사이로 사진을 끌어 정리하기.\n• 파일 탐색기를 멈추지 않고 큰 프로젝트 옮기기.\n왼쪽 창의 폴더와 드라이브에 놓아도 됩니다. 파일이나 ZIP에 놓으면 계속 파일 탐색기가 처리합니다.</value></data>
   <data name="Info_WindowMode_Text" xml:space="preserve"><value>복사 창에는 세 가지 보기가 있습니다.\n• 작은 창: 막대와 버튼만. 복사할 때 기본 보기이며 넓힐 수는 있지만 높일 수는 없습니다.\n• 목록 포함(&quot;더 보기&quot;): 파일, 대상, 옵션, 그래프, 로그. 크게 하거나 최대화할 수 있습니다.\n• 여러 복사: 같은 보기에 왼쪽에 복사 목록이 있으며, 복사가 둘 이상이면 저절로 나타납니다.\n&quot;자동&quot;은 작은 창으로 시작해 여러 복사가 동시에 있으면 전체 보기로 바뀝니다. &quot;더 보기&quot;와 &quot;간단히&quot;로 언제든 바꿀 수 있습니다.</value></data>
   <data name="Info_Verify_Text" xml:space="preserve"><value>파일마다 복사가 끝나면 MegaCopier가 대상 디스크에서 바로 다시 읽어 지문(해시)을 원본과 비교합니다. 다른 부분이 있으면 손상된 부분만 다시 복사합니다.\n• 백업, 사진, 중요한 문서.\n• 예고 없이 고장 날 수 있는 오래되거나 저렴한 USB 메모리와 디스크.\n• 네트워크나 Wi-Fi로 복사할 때.\n모두 다시 읽어야 해서 조금 더 걸리지만, 똑같이 복사됐다는 확신을 얻습니다.</value></data>
   <data name="Info_Conflict_Text" xml:space="preserve"><value>대상에 같은 이름의 파일이 이미 있을 때 할 일입니다.\n• 묻기: 두 파일의 크기, 날짜, 미리 보기를 보여 주고 직접 고릅니다.\n• 바꾸기, 건너뛰기, 더 새로우면 또는 크기가 다르면 바꾸기, 둘 다 유지(&quot;이름 (2)&quot;), 기존 파일 이름 바꾸기.\n똑같은 파일(크기와 날짜가 같음)은 다시 복사하지 않습니다. 복사를 다시 하면 새롭거나 바뀐 것만 복사합니다. 폴더 전체가 이미 있으면 시작하기 전에 묻습니다.</value></data>
   <data name="Info_Hash_Text" xml:space="preserve"><value>해시는 파일의 지문과 같습니다. 1바이트만 바뀌어도 지문이 바뀝니다. 검증과 저장되는 체크섬에 쓰입니다.\n• xxHash3: 가장 빠르며 복사 검증에 좋습니다.\n• SHA-256: 웹사이트와 프로그램이 다운로드를 확인할 때 가장 많이 씁니다.\n• MD5, SHA-1, BLAKE3…: 다른 프로그램이 특정 방식을 요구할 때.\n평소에는 xxHash3로 두세요.</value></data>
   <data name="Info_Performance_Text" xml:space="preserve"><value>복사가 얼마나 빨리 달릴 수 있는지 정합니다.\n• 속도 제한: 일하거나 영화를 볼 때 복사가 네트워크나 디스크를 다 차지하지 않게 합니다. 복사마다 옵션 탭에 자체 제한도 있어 멈추지 않고 바로 바꿀 수 있습니다.\n• 버퍼 크기: 한 번에 읽고 쓰는 블록. 아주 큰 파일은 클수록 좋습니다.\n• 동시 작업 수: 디스크에 동시에 요청하는 블록 수. 빠른 SSD는 많을수록 좋습니다.\n잘 모르겠으면 기본값으로 두세요. MegaCopier가 디스크마다 알아서 맞춥니다.</value></data>
-  <data name="Info_Merge_Text" xml:space="preserve"><value>복사 중에 다른 복사를 시작하면 차례를 기다리지 않고 진행 중인 복사에 합류할 수 있습니다. 파일은 목록 끝에 붙습니다.\n• 안 함: 각 복사가 따로 진행.\n• 같은 폴더로 가거나 같은 디스크를 쓸 때.\n• 항상.\n&quot;먼저 묻기&quot;를 켜면 매번 정할 수 있습니다. 같은 USB에 폴더를 조금씩 보낼 때 편리합니다.</value></data>
   <data name="Info_MoveAttributes_Text" xml:space="preserve"><value>다른 디스크로 옮기면 파일을 복사한 뒤 원본에서 삭제합니다. 여기서 내용 외에 무엇을 함께 가져갈지 고릅니다: 특성(읽기 전용, 숨김…), 권한, 소유자, 감사.\n• 누가 열 수 있는지를 유지한 채 서버 사이에서 작업 폴더 옮기기.\n같은 디스크에서 옮기면 자리만 바뀌므로 모두 유지됩니다.</value></data>
   <data name="Info_DeleteIncomplete_Text" xml:space="preserve"><value>“중지”는 복사를 취소하고 목록에서 뺍니다. 복사하는 동안 각 파일은 .mcpart 확장자로 쓰이고, 제대로 끝나야 원래 이름이 붙습니다.\n• 켜기: 중지를 누르면 .mcpart 파일을 지워 대상이 깨끗하게 남습니다.\n• 끄기: 그대로 두며, 같은 것을 다시 복사하면 멈춘 곳부터 이어집니다.\nMegaCopier를 닫거나 정전이 나도 아무것도 지우지 않습니다. 그런 복사는 다시 열 때 이어서 하도록 제안합니다.</value></data>
   <data name="Info_Eject_Text" xml:space="preserve"><value>끝나면 MegaCopier가 대상 USB 메모리, 카드, USB 디스크를 &quot;하드웨어 안전하게 제거&quot;처럼 안전하게 꺼냅니다.\n• 여러 USB 메모리를 연달아 채울 때: 뽑을 때 이미 준비돼 있습니다.\n다른 복사가 쓰지 않을 때만 합니다. &quot;강제&quot;는 어떤 프로그램이 열어 둬도 꺼냅니다.</value></data>
@@ -1353,8 +1341,8 @@
   <data name="Info_Guard_Text" xml:space="preserve"><value>디스크는 몇 년에 걸쳐 조용히 파일을 망가뜨릴 수 있습니다. MegaCopier는 파일마다 지문을 파일 안에 저장하고, 컴퓨터가 한가할 때 다시 확인합니다. 아무도 건드리지 않았는데 바뀐 파일이 있으면 백업에서 되살릴 수 있도록 제때 알려 줍니다.\n• 가족 사진과 동영상.\n• 거의 열지 않는 백업 디스크.\n직접 편집한 파일은 저절로 갱신됩니다. NTFS 디스크가 필요합니다.</value></data>
   <data name="Info_Webhook_Text" xml:space="preserve"><value>복사가 끝날 때마다 MegaCopier가 요약을 웹 주소로 보내 휴대폰이나 채팅으로 알림이 옵니다.\n• Discord, Slack, Teams: 채널에 알림.\n• ntfy.sh: 거의 설치 없이 휴대폰 알림.\n• Home Assistant: 자동화(끝나면 조명 켜기…).</value></data>
   <data name="Info_Connections_Text" xml:space="preserve"><value>복사할 서버를 여기에 저장하세요: FTP, SFTP, WebDAV(Nextcloud, NAS…) 또는 S3(Backblaze, Wasabi, R2…). 그러면 원본이나 대상을 고를 때 나타납니다.\n• 백업을 클라우드에 올리기.\n• 회사 서버에서 파일 내려받기.\n암호는 일반 텍스트가 아니라 Windows 자격 증명 관리자에 저장됩니다.</value></data>
-  <data name="IconPack_android" xml:space="preserve"><value>Android</value></data>
-  <data name="IconPack_android-tonal" xml:space="preserve"><value>Android 톤</value></data>
+  <data name="IconPack_android" xml:space="preserve"><value>Android (AOSP)</value></data>
+  <data name="IconPack_android-tonal" xml:space="preserve"><value>Material You</value></data>
   <data name="IconPack_macos" xml:space="preserve"><value>macOS</value></data>
   <data name="IconPack_macos-color" xml:space="preserve"><value>macOS 컬러</value></data>
   <data name="IconPack_ubuntu" xml:space="preserve"><value>Ubuntu</value></data>
@@ -1442,4 +1430,70 @@
   <data name="Drop_AddWhatTo" xml:space="preserve"><value>{0}을(를) {1}에 추가</value></data>
   <data name="Drop_InsertWhatAt" xml:space="preserve"><value>{0}을(를) {1}번째에 추가</value></data>
   <data name="Files_ResizeColumn.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>끌어서 열 너비를 바꿉니다(두 번 클릭: 기본 너비)</value></data>
+  <data name="SameDrive_Title" xml:space="preserve"><value>{0}(으)로 가는 복사가 이미 진행 중입니다</value></data>
+  <data name="SameDrive_Short" xml:space="preserve"><value>{0}을(를) 그 복사의 끝에 추가할까요? 같은 드라이브로 동시에 두 개를 복사하면 더 느립니다.</value></data>
+  <data name="SameDrive_Message" xml:space="preserve"><value>{0}은(는) 이미 진행 중인 복사와 같은 드라이브의 “{1}”(으)로 복사됩니다. 같은 드라이브로 동시에 두 개를 복사하면 둘 다 느려집니다.</value></data>
+  <data name="SameDrive_Items" xml:space="preserve"><value>항목 {0}개</value></data>
+  <data name="SameDrive_Add" xml:space="preserve"><value>이 복사에 추가</value></data>
+  <data name="SameDrive_AddText" xml:space="preserve"><value>진행 중인 복사 목록의 끝에서 자신의 대상 폴더로 복사되며, 진행률 표시줄은 하나입니다. 먼저 여유 공간을 확인합니다.</value></data>
+  <data name="SameDrive_Separate" xml:space="preserve"><value>별도 복사</value></data>
+  <data name="SameDrive_SeparateText" xml:space="preserve"><value>현재 복사가 끝나면 시작하는 별도 복사를 만듭니다. 기다리지 않으려면 그 복사에서 [지금 시작]을 누르세요.</value></data>
+  <data name="SameDrive_Cancel" xml:space="preserve"><value>취소</value></data>
+  <data name="SameDrive_CancelText" xml:space="preserve"><value>새 항목을 복사하지 않습니다.</value></data>
+  <data name="Settings_SameDriveTitle.Text" xml:space="preserve"><value>진행 중인 복사와 같은 드라이브로 가는 새 복사</value></data>
+  <data name="Settings_SameDriveDescription.Text" xml:space="preserve"><value>예를 들어 첫 폴더를 복사하는 동안 같은 USB에 다른 폴더를 보내는 경우입니다.</value></data>
+  <data name="SameDrive_OptAsk.Content" xml:space="preserve"><value>물어보기</value></data>
+  <data name="SameDrive_OptMerge.Content" xml:space="preserve"><value>진행 중인 복사에 추가</value></data>
+  <data name="SameDrive_OptQueue.Content" xml:space="preserve"><value>별도 복사, 나중에</value></data>
+  <data name="SameDrive_OptParallel.Content" xml:space="preserve"><value>별도 복사, 동시에</value></data>
+  <data name="Settings_OtherDriveTitle.Text" xml:space="preserve"><value>다른 드라이브로 가는 새 복사</value></data>
+  <data name="Settings_OtherDriveDescription.Text" xml:space="preserve"><value>각 드라이브는 자체 속도로 기록하므로 동시에 시작해도 다른 복사가 느려지지 않습니다.</value></data>
+  <data name="OtherDrive_OptParallel.Content" xml:space="preserve"><value>동시에 시작</value></data>
+  <data name="OtherDrive_OptQueue.Content" xml:space="preserve"><value>차례 기다리기</value></data>
+  <data name="Info_SameDrive_Title" xml:space="preserve"><value>다른 복사가 진행 중일 때의 새 복사</value></data>
+  <data name="Info_SameDrive_Text" xml:space="preserve"><value>다른 복사가 진행 중일 때 무언가를 복사하면 MegaCopier가 어느 드라이브로 가는지 확인합니다.\n• 같은 드라이브: 기본적으로 물어봅니다. [추가]는 파일을 진행 중인 복사 목록의 끝에 넣으며(각각 자신의 폴더로), 표시줄은 하나입니다. [별도 복사, 나중에]는 차례를 기다리게 합니다. [동시에]는 함께 복사하지만 둘 다 느려집니다.\n• 다른 드라이브: 각 드라이브가 자체 속도로 기록하므로 바로 시작합니다. 차례를 기다리게 하려면 여기서 바꾸세요.\n예: USB에 영화를 복사한 뒤 같은 USB에 다른 폴더를 복사하면 MegaCopier가 앞으로 나와 선택할 수 있습니다. 그동안 D: 드라이브에 무언가를 복사하면 기다리지 않고 시작합니다.</value></data>
+  <data name="Settings_CloseButtonTitle.Text" xml:space="preserve"><value>창의 X를 누르면</value></data>
+  <data name="Settings_CloseButtonDescription.Text" xml:space="preserve"><value>기본적으로 각 복사에서 [중지]를 누른 것처럼 복사를 취소합니다. MegaCopier는 다음 복사를 위해 알림 영역에 남아 있습니다.</value></data>
+  <data name="CloseButton_Cancel.Content" xml:space="preserve"><value>복사 취소</value></data>
+  <data name="CloseButton_Stop.Content" xml:space="preserve"><value>중지하고 나중에 계속</value></data>
+  <data name="CloseButton_Hide.Content" xml:space="preserve"><value>창 숨기기(복사는 계속됨)</value></data>
+  <data name="CloseButton_Exit.Content" xml:space="preserve"><value>MegaCopier 종료</value></data>
+  <data name="Settings_MinimizeButtonTitle.Text" xml:space="preserve"><value>창을 최소화하면</value></data>
+  <data name="Settings_MinimizeButtonDescription.Text" xml:space="preserve"><value>다른 창처럼 작업 표시줄로, 또는 알림 영역(시계 옆)에 숨깁니다.</value></data>
+  <data name="MinimizeButton_Taskbar.Content" xml:space="preserve"><value>작업 표시줄로</value></data>
+  <data name="MinimizeButton_Tray.Content" xml:space="preserve"><value>알림 영역으로</value></data>
+  <data name="Settings_TrayProgressTitle.Text" xml:space="preserve"><value>알림 영역에 각 복사의 진행률 표시</value></data>
+  <data name="Settings_TrayProgressDescription.Text" xml:space="preserve"><value>진행 중인 복사마다 비율과 올라가는 막대가 있는 아이콘을 하나씩 표시합니다. 끝나면 저절로 사라집니다. 클릭하면 해당 복사를 엽니다.</value></data>
+  <data name="Info_WindowButtons_Title" xml:space="preserve"><value>창 단추</value></data>
+  <data name="Info_WindowButtons_Text" xml:space="preserve"><value>창을 닫거나 최소화할 때 복사를 어떻게 할지 선택합니다.\n• 복사 취소: 각 복사에서 [중지]를 누르는 것과 같습니다. 목록에서 사라지고 계속하기를 제안하지 않습니다.\n• 중지하고 나중에 계속: 복사된 부분은 유지됩니다. 같은 항목을 다시 복사하거나 MegaCopier를 열면 이어서 진행합니다.\n• 창 숨기기: 복사는 백그라운드에서 계속됩니다. 알림 영역 아이콘으로 창을 엽니다.\n• MegaCopier 종료: 완전히 닫히며, 다시 열 때까지 Windows가 평소처럼 복사합니다.\n알림 영역으로 최소화하면 작업 표시줄이 깔끔해집니다. 시계 옆의 MegaCopier 아이콘을 클릭하면 창이 돌아옵니다.</value></data>
+  <data name="Tray_JobPause" xml:space="preserve"><value>일시 중지</value></data>
+  <data name="Tray_JobStop" xml:space="preserve"><value>중지</value></data>
+  <data name="Jobs_Archive" xml:space="preserve"><value>기록에 보관</value></data>
+  <data name="Jobs_ArchiveKey" xml:space="preserve"><value>Del</value></data>
+  <data name="Jobs_Delete" xml:space="preserve"><value>삭제(기록에서도)</value></data>
+  <data name="Jobs_BadgeTip" xml:space="preserve"><value>활성 {0}개</value></data>
+  <data name="Info_WhatCopy_Title" xml:space="preserve"><value>각 파일에서 복사되는 항목</value></data>
+  <data name="Info_WhatCopy_Text" xml:space="preserve"><value>내용 외에도 Windows가 각 파일 주변에 저장하는 정보를 복사할 수 있습니다.\n• 날짜: 만든 날짜와 수정한 날짜가 원본 그대로 유지되므로 사진이 날짜순으로 정렬됩니다.\n• 특성: 읽기 전용, 숨김, 보관 등. 복사하지 않으면 모두 일반 파일로 도착합니다.\n• 대체 데이터 스트림(ADS): 일부 프로그램이 파일에 붙이는 숨겨진 데이터(예: &apos;인터넷에서 다운로드함&apos; 표시). 거의 필요 없습니다.\n• 보안(NTFS): 권한(누가 열 수 있는지), 소유자, 감사. 같은 PC나 도메인의 NTFS 드라이브끼리만 의미가 있으며, 소유자와 감사는 관리자 권한이 필요합니다.\n예: 사무실 공유 폴더를 정확히 복사하려면 모두 선택하고, USB로 사진을 옮길 때는 날짜만으로 충분합니다.</value></data>
+  <data name="Info_Transfer_Title" xml:space="preserve"><value>복사 방식</value></data>
+  <data name="Info_Transfer_Text" xml:space="preserve"><value>• 모드: 일반적으로 [복사]를 씁니다. [동기화(미러)]는 대상을 원본과 똑같이 만들고 남는 항목을 지웁니다. [업데이트만]은 대상에 이미 있고 바뀐 파일만 복사합니다. [폴더 구조만]은 빈 폴더를 만듭니다. [날짜별로 사진 정리]는 연도와 월 폴더로 나눕니다.\n• 시뮬레이션: 아무것도 바꾸지 않고 무엇을 할지 알려 줍니다. 미러 전에 먼저 해 보세요.\n• 파일이 이미 있으면: 묻기, 바꾸기, 건너뛰기, 최신 파일 유지, 둘 다 유지 등.\n• 해시: 복사본이 같은지 확인하는 방법입니다. xxHash가 가장 빠르고, 증거를 남기려면 SHA-256이 표준입니다.\n• 버퍼 크기와 병렬: 크게 하고 동시 읽기를 늘리면 SSD와 네트워크가 빨라집니다. HDD나 느린 USB에서는 1이나 2가 좋습니다.\n• 복사 후 확인: 복사한 내용을 다시 읽어 원본과 비교합니다. 더 오래 걸리지만 확실합니다.\n• 시스템 캐시 사용: 작은 파일이 많을 때 빠릅니다. 사용하지 않으면 큰 파일이 메모리를 채우지 않습니다.\n예: 500GB 동영상을 새 드라이브로 확실하게 옮기려면 [복사]를 고르고 확인을 켠 뒤 병렬은 4로 두세요.</value></data>
+  <data name="Info_OnFinish_Title" xml:space="preserve"><value>복사가 끝나면</value></data>
+  <data name="Info_OnFinish_Text" xml:space="preserve"><value>복사가 끝날 때 MegaCopier가 하는 일입니다.\n• 체크섬 파일 저장: 복사한 각 파일의 지문(해시)을 담은 파일을 대상에 저장합니다. 나중에 [체크섬 확인]이 이 파일로 디스크에서 손상된 것이 있는지 알려 줍니다.\n• HTML 보고서 저장: 복사한 내용, 시간, 속도, 오류를 정리해 브라우저에서 여는 요약입니다. 보관하거나 보내기에 좋습니다.\n• 완료 후 명령: 마지막에 실행되는 명령입니다(자체 도움말 참조).\n예: 가족 사진을 외장 디스크로 옮길 때 체크섬 파일을 저장해 두면 1년 뒤 사진이 손상됐는지 알 수 있습니다.</value></data>
+  <data name="Info_Scripts_Title" xml:space="preserve"><value>완료 후 명령</value></data>
+  <data name="Info_Scripts_Text" xml:space="preserve"><value>복사가 끝나면 실행할 Windows 명령(cmd.exe 명령)을 한 줄에 하나씩 적습니다.\n• 줄을 &apos;ok:&apos;로 시작하면 모두 성공했을 때만, &apos;error:&apos;로 시작하면 실패가 있을 때만 실행합니다. 아무것도 없으면 항상 실행합니다.\n• 다음 변수를 쓸 수 있습니다: %MEGACOPIER_DESTINATION%(대상 폴더), %MEGACOPIER_SOURCES%(원본), %MEGACOPIER_STATE%(끝난 상태), %MEGACOPIER_FILES%(복사한 파일 수), %MEGACOPIER_BYTES%(바이트), %MEGACOPIER_FAILED%(실패 수), %MEGACOPIER_CHECKSUM%(체크섬 파일).\n예:\n• ok: explorer &quot;%MEGACOPIER_DESTINATION%&quot; 끝나면 폴더를 엽니다.\n• ok: shutdown /s /t 60 1분 뒤 PC를 끕니다.\n• error: msg * 복사 실패 %MEGACOPIER_FAILED%건 메시지로 알려 줍니다.</value></data>
+  <data name="Info_Filters_Title" xml:space="preserve"><value>필터: 일부만 복사</value></data>
+  <data name="Info_Filters_Text" xml:space="preserve"><value>필요한 것만 복사합니다. 제외된 항목은 복사되지 않으며 대상에서도 건드리지 않습니다.\n• 내 말로 입력: 예를 들어 &apos;지난달 2MB가 넘는 사진, .tmp 제외&apos;라고 쓰면 MegaCopier가 필터를 채워 줍니다.\n• 포함만: 세미콜론으로 구분한 마스크입니다. &apos;*.jpg; *.png&apos;는 이미지만, &apos;사진\*&apos;은 &apos;사진&apos; 폴더 안의 항목만 복사합니다.\n• 제외: 같은 방식으로 반대로 지정합니다. 예: &apos;node_modules; *.tmp; Thumbs.db&apos;.\n• 최소 및 최대 크기(MB): 최소를 100으로 하면 큰 동영상만 복사합니다.\n• 수정 날짜(시작/끝): 그 기간에 바뀐 것만 복사합니다. 예: 월요일 이후.\n• 숨김, 시스템, 불필요한 파일(Thumbs.db, desktop.ini 등) 건너뛰기.\n• 특정 텍스트가 있는 이미지만: Windows OCR이 사진을 읽고 &apos;청구서&apos;처럼 그 텍스트가 있는 사진만 복사합니다.</value></data>
+  <data name="Info_Rules_Title" xml:space="preserve"><value>특수한 경우의 규칙</value></data>
+  <data name="Info_Rules_Text" xml:space="preserve"><value>일반 파일이 아니거나 실패할 때 어떻게 할지 정합니다.\n• 심볼릭 링크와 연결: 링크로 복사(원본과 같게), 링크가 가리키는 실제 내용 복사, 또는 건너뛰기.\n• 둘 다 유지할 때 이름: 두 파일을 모두 유지할 때 새 복사본의 이름입니다. {name}은 이름, {n}은 번호, {ext}는 확장자, {date}는 날짜입니다. &apos;{name} ({n}){ext}&apos;는 &apos;사진 (2).jpg&apos;가 됩니다.\n• 다시 시도와 대기: 파일이 실패하면(네트워크 끊김, 다른 프로그램이 사용 중 등) 몇 번 다시 시도하고 그 사이 몇 초 기다릴지 정합니다.\n• 계속 실패하면: 건너뛰고 계속, 복사 중지, 마지막으로 미루기, 또는 묻기.\n예: Wi-Fi로 NAS에서 복사할 때 다시 시도 5회, 대기 10초로 두면 짧은 끊김에도 복사가 망가지지 않습니다.</value></data>
+  <data name="Info_Safety_Title" xml:space="preserve"><value>동기화 및 보안</value></data>
+  <data name="Info_Safety_Text" xml:space="preserve"><value>폴더를 동기화하고 데이터를 보호하는 옵션입니다. 모두 선택 사항이며, 각 항목에 마우스를 올리면 자세히 볼 수 있습니다.\n• 폴더가 이미 있으면: 내용 병합, 건너뛰기, 또는 묻기.\n• 바뀌거나 지워진 항목 보관: 파일을 덮어쓰거나 지우기 전에 날짜와 함께 그 폴더(예: .versions)로 옮겨 이전 버전을 되찾을 수 있습니다. [보관할 버전 수]가 오래된 버전을 정리합니다.\n• 같은 데이터가 있는 다른 위치: 데이터가 다른 곳(두 번째 NAS)에도 있으면 큰 파일을 양쪽에서 동시에 읽습니다.\n• 날짜 허용 오차: FAT32나 exFAT USB에서 같은 파일을 다시 복사하지 않게 합니다.\n• 확인: 원본 다시 읽기, 파일 안에 해시 저장, 디스크가 복사본을 손상시키면 복구할 수 있는 복구 데이터.\n• 보호: 랜섬웨어 방패, 포렌식 모드, 이동 시 안전한 삭제, &apos;전부 아니면 전무&apos; 폴더.\n• 까다로운 디스크: 디스크 연결이 끊기거나 공간이 부족하면 대기, 손상된 디스크용 구조 모드, 큰 파일의 차등 복사.\n예: [동기화]로 매주 백업할 때는 버전 폴더를 지정하고 [원본 다시 읽기]를 켜세요.</value></data>
+  <data name="About_DevelopedBy.Text" xml:space="preserve"><value>개발:</value></data>
+  <data name="IconPack_oneui" xml:space="preserve"><value>One UI</value></data>
+  <data name="IconPack_nothing" xml:space="preserve"><value>Nothing OS</value></data>
+  <data name="IconPack_win95" xml:space="preserve"><value>Windows 95</value></data>
+  <data name="IconPack_vista" xml:space="preserve"><value>Windows Vista</value></data>
+  <data name="IconPack_cyber" xml:space="preserve"><value>사이버펑크</value></data>
+  <data name="IconPack_hud" xml:space="preserve"><value>홀로그램</value></data>
+  <data name="Settings_AdaptTitle.Text" xml:space="preserve"><value>작은 화면에 맞추기</value></data>
+  <data name="Settings_AdaptDescription.Text" xml:space="preserve"><value>1366 × 768처럼 높이가 낮은 화면에서는 창 전체가 들어가도록 모양은 그대로 두고 조금 작게 표시합니다. 큰 화면에서는 바뀌지 않습니다.</value></data>
+  <data name="Job_StateAsking" xml:space="preserve"><value>응답을 기다리는 중</value></data>
 </root>

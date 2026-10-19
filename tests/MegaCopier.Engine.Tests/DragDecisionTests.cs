@@ -69,11 +69,34 @@ public sealed partial class DragDecisionTests
     public void VirtualPlacesAndSameFolderAreLeftToExplorer()
     {
         Assert.NotNull(DragDecision.Decide(null, @"C:\x", @"D:\y", DropSpot.Background, null, [], false, false, false, out _));
-        Assert.NotNull(Decide(sourceFolder: null));
         Assert.NotNull(DragDecision.Decide(Photos, @"C:\Users\Ana\Fotos", null, DropSpot.Background, null, [], false, false, false, out _));
         Assert.NotNull(Decide(target: @"C:\Users\Ana\Fotos\"));
     }
 
+    [Fact]
+    public void FromSearchResultsOrHomeTheFolderOfEachItemCounts()
+    {
+        // En una búsqueda o en Inicio el origen no es una carpeta: vale, salvo si se suelta donde ya están.
+        Assert.Null(Decide(sourceFolder: null));
+        Assert.NotNull(Decide(sourceFolder: null, target: @"C:\Users\Ana\Fotos"));
+    }
+
+    [Fact]
+    public void DrivesInThisPcAndNavigationPaneFoldersAreTargets()
+    {
+        // «Este equipo» es una vista virtual, pero sus unidades tienen ruta.
+        ViewItem[] drives = [new("Disco local (C:)", @"C:\", true), new("Nuevo vol (F:)", @"F:\", true), new("Red", null, true)];
+        Assert.Null(DragDecision.Decide(Photos, @"C:\Users\Ana\Fotos", null, DropSpot.Item, "Nuevo vol (F:)", drives, false, false, false, out var request));
+        Assert.Equal(@"F:\", request!.Destination);
+        Assert.False(request.Move);
+        Assert.NotNull(DragDecision.Decide(Photos, @"C:\Users\Ana\Fotos", null, DropSpot.Item, "Red", drives, false, false, false, out _));
+        Assert.NotNull(DragDecision.Decide(Photos, @"C:\Users\Ana\Fotos", null, DropSpot.Background, null, drives, false, false, false, out _));
+
+        // Panel de navegación: la carpeta (o unidad) bajo el puntero llega ya resuelta.
+        Assert.Null(DragDecision.Decide(Photos, @"C:\Users\Ana\Fotos", @"C:\", DropSpot.Folder, null, [], false, false, false, out request));
+        Assert.True(request!.Move);
+        Assert.NotNull(DragDecision.Decide(Photos, @"C:\Users\Ana\Fotos", null, DropSpot.Folder, null, [], false, false, false, out _));
+    }
     [Fact]
     public void AFolderIntoItselfAndProgramsAreLeftToExplorer()
     {
@@ -110,6 +133,35 @@ public sealed partial class DragDecisionTests
         Assert.All(snapshot.Items.Where(i => i.Path is not null && !i.IsFolder), i => Assert.True(File.Exists(i.Path) || Directory.Exists(i.Path)));
     }
 
+
+    // Contra el shell real, solo lectura: la unidad del sistema se encuentra por su nombre visible («Disco local (C:)»).
+    [Fact]
+    public void ResolvesNavigationPaneNamesToFolders()
+    {
+        string system = Path.GetPathRoot(Environment.SystemDirectory)!;
+        string? resolved = null, missing = "x";
+        RunSta(() =>
+        {
+            string name = VisibleName(system);
+            resolved = ShellNamespace.Resolve([name]);
+            missing = ShellNamespace.Resolve(["Ninguna carpeta se llama así 7f3c"]);
+        });
+        Assert.Equal(system, resolved, ignoreCase: true);
+        Assert.Null(missing);
+    }
+
+    private static unsafe string VisibleName(string path)
+    {
+        var info = new byte[1024];
+        fixed (byte* buffer = info)
+        {
+            SHGetFileInfoW(path, 0, buffer, 696, 0x200);
+            return new string((char*)(buffer + 16));
+        }
+    }
+
+    [LibraryImport("shell32.dll", StringMarshalling = StringMarshalling.Utf16)]
+    private static unsafe partial nint SHGetFileInfoW(string path, uint attributes, byte* info, uint size, uint flags);
     [Fact]
     public void HitTestingAnyPointDoesNotThrow()
     {

@@ -192,6 +192,31 @@ internal static class Motion
         }
     }
 
+    /// <summary>Desliza en horizontal de <paramref name="from"/> a <paramref name="to"/> y, al acabar, avisa.</summary>
+    public static void SlideX(UIElement element, double from, double to, int milliseconds, Action? done)
+    {
+        var t = Prepare(element);
+        Stop(element);
+        if (Theming.BarAppearance.ReduceMotion)
+        {
+            t.TranslateX = to;
+            done?.Invoke();
+            return;
+        }
+
+        Run(milliseconds, done, (t, "TranslateX", [(0, from, null), (1, to, to > from ? Out : In)]));
+    }
+
+    /// <summary>Lo deja en su sitio (sin desplazamiento ni animación en marcha).</summary>
+    public static void ResetSlide(UIElement element)
+    {
+        Stop(element);
+        if (element.RenderTransform is CompositeTransform t)
+        {
+            t.TranslateX = 0;
+        }
+    }
+
     /// <summary>
     /// La marca de lo elegido (la línea bajo la pestaña) se desliza desde donde estaba la de la opción anterior hasta
     /// la nueva, en lugar de saltar.
@@ -209,9 +234,10 @@ internal static class Motion
     }
 
     /// <summary>
-    /// Cambio entre dos elementos superpuestos (pausa ⇄ reproducir): el icono que se va gira y encoge hasta
-    /// desaparecer, y el nuevo sale girando desde el otro lado y crece con un rebote; el texto nuevo entra deslizándose.
-    /// Sin fundidos de opacidad (ver <see cref="FadeIn"/>).
+    /// Cambio entre dos elementos superpuestos (pausa ⇄ reproducir), como un marcador que pasa de número: el que se va
+    /// sube y sale de su hueco y el nuevo entra desde abajo (el icono, además, gira un cuarto de vuelta). Solo se
+    /// desplazan y giran, sin cambiar de escala: WinUI dibuja el texto al tamaño con el que empieza la animación, y un
+    /// icono que crecía desde pequeño se quedaba borroso y deformado. Sin fundidos de opacidad (ver <see cref="FadeIn"/>).
     /// </summary>
     public static void Morph(UIElement outgoing, UIElement incoming, bool animate, bool icon)
     {
@@ -219,38 +245,48 @@ internal static class Motion
         incoming.IsHitTestVisible = true;
         var a = Prepare(outgoing);
         var b = Prepare(incoming);
-        if (!animate || Theming.BarAppearance.ReduceMotion)
+        Stop(outgoing);
+        Stop(incoming);
+        a.ScaleX = a.ScaleY = b.ScaleX = b.ScaleY = 1;
+        a.Rotation = b.Rotation = a.TranslateX = b.TranslateX = a.TranslateY = b.TranslateY = 0;
+        if (!animate || Theming.BarAppearance.ReduceMotion || VisualTreeHelper.GetParent(incoming) is not FrameworkElement host || host.ActualHeight <= 0)
         {
-            Stop(outgoing);
-            Stop(incoming);
             outgoing.Opacity = 0;
             incoming.Opacity = 1;
-            a.ScaleX = a.ScaleY = b.ScaleX = b.ScaleY = 1;
-            a.Rotation = b.Rotation = a.TranslateY = b.TranslateY = 0;
             return;
         }
 
-        Stop(outgoing);
-        Stop(incoming);
-        if (icon)
-        {
-            incoming.Opacity = 0;
-            b.ScaleX = b.ScaleY = 0.2;
-            Run(160, () =>
-            {
-                outgoing.Opacity = 0;
-                a.ScaleX = a.ScaleY = 1;
-                a.Rotation = 0;
-                incoming.Opacity = 1;
-                Run(300, (b, "ScaleX", [(0, 0.2, null), (1, 1, Spring)]), (b, "ScaleY", [(0, 0.2, null), (1, 1, Spring)]), (b, "Rotation", [(0, -90, null), (1, 0, Spring)]));
-            }, (a, "ScaleX", [(1, 0.2, In)]), (a, "ScaleY", [(1, 0.2, In)]), (a, "Rotation", [(0, 0, null), (1, 90, In)]));
-        }
-        else
+        ClipToBounds(host);
+        double distance = host.ActualHeight + 2;
+        outgoing.Opacity = 1;
+        incoming.Opacity = 1;
+        double turn = icon ? 90 : 0;
+        Run(280, () =>
         {
             outgoing.Opacity = 0;
-            incoming.Opacity = 1;
-            Run(260, (b, "TranslateY", [(0, 7, null), (1, 0, Out)]));
+            a.TranslateY = 0;
+            a.Rotation = 0;
+        },
+            (a, "TranslateY", [(0, 0, null), (1, -distance, In)]),
+            (a, "Rotation", [(0, 0, null), (1, turn, In)]),
+            (b, "TranslateY", [(0, distance, null), (1, 0, Spring)]),
+            (b, "Rotation", [(0, -turn, null), (1, 0, Out)]));
+    }
+
+    /// <summary>
+    /// Recorta lo que se salga del elemento (con un poco de margen a los lados para los iconos que giran), y lo mantiene
+    /// al cambiar de tamaño.
+    /// </summary>
+    private static void ClipToBounds(FrameworkElement host)
+    {
+        void Apply() => host.Clip = new RectangleGeometry { Rect = new Windows.Foundation.Rect(-6, -1, host.ActualWidth + 12, host.ActualHeight + 2) };
+
+        if (host.Clip is null)
+        {
+            host.SizeChanged += (_, _) => Apply();
         }
+
+        Apply();
     }
 
     /// <summary>La transformación del elemento para animarlo (se crea la primera vez, centrada).</summary>

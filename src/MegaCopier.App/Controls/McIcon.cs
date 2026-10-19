@@ -99,7 +99,7 @@ public sealed partial class McIcon : UserControl
     {
         var pack = PackOverride.Length > 0 ? IconPacks.Find(PackOverride) : IconPacks.Current;
         _glyph.Text = Glyph;
-        _glyph.FontFamily = new FontFamily(pack.FontFamily);
+        _glyph.FontFamily = new FontFamily(IconPacks.FontFor(Glyph, pack));
 
         // Un Foreground puesto a propósito (estado: error, aviso, éxito) manda sobre el color del conjunto.
         bool ownColor = ReadLocalValue(ForegroundProperty) != DependencyProperty.UnsetValue;
@@ -154,7 +154,18 @@ public sealed partial class McIcon : UserControl
                 });
                 _tile.Visibility = Visibility.Visible;
                 _glyph.FontSize = Math.Round(size * (pack.Shape == IconShape.Circle ? 0.76 : 0.82));
-                if (pack.Style == IconStyle.Tile)
+                if (pack.Style == IconStyle.Tile && pack.TileColor is { } tileColor)
+                {
+                    // Fondo fijo (Steam, Nothing, Windows 95): el icono lleva el color de su significado.
+                    _tile.Background = new SolidColorBrush(tileColor);
+                    _glyph.Foreground = new SolidColorBrush(fixedColor ?? IconPacks.ColorFor(Glyph, pack));
+                }
+                else if (pack.Style == IconStyle.Tile && pack.Flat)
+                {
+                    _tile.Background = new SolidColorBrush(color);
+                    _glyph.Foreground = new SolidColorBrush(Colors.White);
+                }
+                else if (pack.Style == IconStyle.Tile)
                 {
                     // macOS y Windows 7: degradado vertical, de claro arriba a oscuro abajo; el resto, en diagonal.
                     bool vertical = pack.Shape == IconShape.Squircle;
@@ -177,8 +188,25 @@ public sealed partial class McIcon : UserControl
                     _glyph.Foreground = new SolidColorBrush(color);
                 }
 
-                if (pack.Gloss)
+                if (pack.Bevel)
                 {
+                    // Relieve de Windows 95: borde oscuro abajo a la derecha y claro arriba a la izquierda.
+                    double edge = Math.Max(1, Math.Round(size / 12));
+                    _tile.BorderBrush = new SolidColorBrush(Color.FromArgb(255, 64, 64, 64));
+                    _tile.BorderThickness = new Thickness(0, 0, edge, edge);
+                    _gloss.Width = box;
+                    _gloss.Height = box;
+                    _gloss.Margin = new Thickness(0);
+                    _gloss.CornerRadius = new CornerRadius(0);
+                    _gloss.Background = null;
+                    _gloss.BorderBrush = new SolidColorBrush(Colors.White);
+                    _gloss.BorderThickness = new Thickness(edge, edge, 0, 0);
+                    _gloss.Visibility = Visibility.Visible;
+                }
+                else if (pack.Gloss)
+                {
+                    _gloss.ClearValue(Border.BorderBrushProperty);
+                    _gloss.BorderThickness = new Thickness(0);
                     // Reflejo de cristal: blanco que se desvanece en la mitad de arriba, con las mismas esquinas.
                     var shine = new LinearGradientBrush { StartPoint = new(0, 0), EndPoint = new(0, 1) };
                     shine.GradientStops.Add(new GradientStop { Color = Color.FromArgb(150, 255, 255, 255), Offset = 0 });

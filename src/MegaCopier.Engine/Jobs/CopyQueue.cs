@@ -82,7 +82,7 @@ public sealed class CopyJob
     }
 
     /// <summary>¿Caben también estos orígenes en el destino? null si caben (o si no está en marcha).</summary>
-    public SpaceShortage? CheckSpaceFor(IReadOnlyList<string> sources) => _engine?.CheckSpaceFor(sources);
+    public SpaceShortage? CheckSpaceFor(IReadOnlyList<string> sources, string? destination = null) => _engine?.CheckSpaceFor(sources, IsElsewhere(destination) ? destination : null);
 
     /// <summary>Añadir aunque no quepa: al llenarse el disco la copia espera a que haya sitio.</summary>
     public void ForceSpace()
@@ -100,18 +100,42 @@ public sealed class CopyJob
     /// <summary>El usuario la canceló con «Detener»: al pararse desaparece de la lista y no se ofrece continuarla.</summary>
     public bool Cancelled { get; internal set; }
 
-    /// <summary>Añade orígenes a un trabajo en curso.</summary>
-    public int AddSources(IReadOnlyList<string> sources, int? beforeId = null)
+    /// <summary>Añade orígenes a un trabajo en curso (a su destino o, si es otro, a esa carpeta).</summary>
+    public int AddSources(IReadOnlyList<string> sources, int? beforeId = null, string? destination = null)
     {
         var engine = _engine ?? throw new InvalidOperationException(Texts.Get("E_JobNotRunning"));
-        int added = engine.AddSources(sources, beforeId);
-        Record.Sources.AddRange(sources);
+        bool elsewhere = IsElsewhere(destination);
+        int added = engine.AddSources(sources, beforeId, elsewhere ? destination : null);
+        RememberSources(sources, elsewhere ? destination : null);
         SaveIfPending();
         if (beforeId is not null)
         {
             SaveOrder();
         }
         return added;
+    }
+
+    /// <summary>¿Es una carpeta distinta de la de destino de la copia?</summary>
+    internal bool IsElsewhere(string? destination) =>
+        destination is not null && !string.Equals(
+            Path.TrimEndingDirectorySeparator(Path.GetFullPath(destination)),
+            Path.TrimEndingDirectorySeparator(Path.GetFullPath(Record.Destination)),
+            StringComparison.OrdinalIgnoreCase);
+
+    /// <summary>Apunta los orígenes añadidos en el trabajo guardado: en sus orígenes o, si van a otra carpeta, aparte.</summary>
+    internal void RememberSources(IReadOnlyList<string> sources, string? elsewhere)
+    {
+        foreach (string source in sources)
+        {
+            if (elsewhere is not null)
+            {
+                Record.ExtraTargets[source] = elsewhere;
+            }
+            else if (!Record.Sources.Contains(source, StringComparer.OrdinalIgnoreCase))
+            {
+                Record.Sources.Add(source);
+            }
+        }
     }
 
     /// <summary>Arrastrar en la lista: coloca un pendiente antes de otro (null = al final) y guarda el orden.</summary>
@@ -412,6 +436,18 @@ public sealed class CopyQueue
         job.NotifyChanged();
     }
 
+    /// <summary>
+    /// Quita la hora de inicio de una copia en espera sin adelantarla (a diferencia de <see cref="ScheduleAt"/> con
+    /// null): espera su turno como las demás.
+    /// </summary>
+    public void Unschedule(CopyJob job)
+    {
+        job.Record.StartAtUtc = null;
+        job.SaveRecord();
+        job.NotifyChanged();
+        Schedule();
+    }
+
     private void EnsureScheduleTimer() =>
         _scheduleTimer ??= new Timer(_ => CheckSchedules(), null, TimeSpan.FromSeconds(5), TimeSpan.FromSeconds(5));
 
@@ -571,7 +607,8 @@ public sealed class CopyQueue
         return Jobs.FirstOrDefault(j => j.State == CopyJobState.Interrupted && j.Record.StartAtUtc is null && SameCopyKey(j.Record) == key);
     }
 
-    public CopyJob Submit(IEnumerable<string> sources, string destination, CopyOptions options, DateTime? startAtUtc = null, IEnumerable<string>? excluded = null, Action<CopyJobRecord>? configure = null)
+    /// <param name="startNow">Empieza ya aunque otra copia use los mismos discos o se haya llegado al máximo (como «Comenzar»).</param>
+    public CopyJob Submit(IEnumerable<string> sources, string destination, CopyOptions options, DateTime? startAtUtc = null, IEnumerable<string>? excluded = null, Action<CopyJobRecord>? configure = null, bool startNow = false)
     {
         var record = CopyJobRecord.New(sources, destination, options);
         record.StartAtUtc = startAtUtc;
@@ -585,6 +622,7 @@ public sealed class CopyQueue
         _store.Save(record);
         var job = Add(new CopyJob(record, CopyJobState.Queued, _store.Save));
         job.Password = options.EncryptionPassword;
+        job.StartNow = startNow;
         Schedule();
         return job;
     }
@@ -626,20 +664,21 @@ public sealed class CopyQueue
     }
 
     /// <summary>
-    /// Archivos soltados sobre una copia: en marcha se añaden a su lista (en la posición indicada); en cola o detenida
-    /// se suman a sus orígenes; si ya terminó, se copian al mismo destino con las mismas opciones en una copia nueva.
+    /// Archivos soltados sobre una copia (o una copia nueva al mismo disco que se suma a ella): en marcha se añaden a
+    /// su lista (en la posición indicada); en cola o detenida se suman a sus orígenes; si ya terminó, se copian con las
+    /// mismas opciones en una copia nueva. Van a su carpeta de destino o, si se indica, a otra.
     /// </summary>
-    public CopyJob AddToJob(CopyJob job, IReadOnlyList<string> sources, int? beforeId = null)
+    public CopyJob AddToJob(CopyJob job, IReadOnlyList<string> sources, int? beforeId = null, string? destination = null)
     {
         if (job.State is CopyJobState.Running or CopyJobState.Paused && job.Files is not null)
         {
-            job.AddSources(sources, beforeId);
+            job.AddSources(sources, beforeId, destination);
             return job;
         }
 
         if (job.State is CopyJobState.Queued or CopyJobState.Interrupted or CopyJobState.Failed or CopyJobState.CompletedWithErrors)
         {
-            job.Record.Sources.AddRange(sources.Where(s => !job.Record.Sources.Contains(s, StringComparer.OrdinalIgnoreCase)));
+            job.RememberSources(sources, job.IsElsewhere(destination) ? destination : null);
             _store.Save(job.Record);
             if (job.State != CopyJobState.Queued)
             {
@@ -650,7 +689,7 @@ public sealed class CopyQueue
             return job;
         }
 
-        return Submit(sources, job.Record.Destination, _optionsFor(job.Record));
+        return Submit(sources, destination ?? job.Record.Destination, _optionsFor(job.Record));
     }
 
     /// <summary>Cambia el orden de la cola: <paramref name="job"/> pasa delante de <paramref name="before"/> (null = al final).</summary>
@@ -726,7 +765,7 @@ public sealed class CopyQueue
         }
 
         _store.Delete(job.Id);
-        CopyEngine.DeletePartialFiles(new CopyJobRequest(job.Record.Sources, job.Record.Destination));
+        CopyEngine.DeletePartialFiles(new CopyJobRequest(job.Record.Sources, job.Record.Destination) { ExtraTargets = job.Record.ExtraTargets });
         Remove(job);
     }
 
@@ -755,12 +794,18 @@ public sealed class CopyQueue
         }
     }
 
-    /// <summary>Quita de la lista un trabajo terminado.</summary>
+    /// <summary>
+    /// Quita de la lista un trabajo terminado. Uno con errores o fallido también (y ya no se ofrece reintentarlo).
+    /// </summary>
     public void Clear(CopyJob job)
     {
         if (job.State is CopyJobState.Completed)
         {
             Remove(job);
+        }
+        else if (job.State is CopyJobState.CompletedWithErrors or CopyJobState.Failed)
+        {
+            Forget(job);
         }
     }
 
@@ -923,7 +968,7 @@ public sealed class CopyQueue
             _store.Save(job.Record);
         }
 
-        var request = new CopyJobRequest(job.Record.Sources, job.Record.Destination) { Excluded = job.Record.Excluded, Order = job.Record.FileOrder, Resumed = resumed, RenamedFolders = job.Record.RenamedFolders };
+        var request = new CopyJobRequest(job.Record.Sources, job.Record.Destination) { Excluded = job.Record.Excluded, Order = job.Record.FileOrder, Resumed = resumed, RenamedFolders = job.Record.RenamedFolders, ExtraTargets = job.Record.ExtraTargets };
         _ = engine.RunAsync(request, cancellation.Token)
             .ContinueWith(
                 task =>

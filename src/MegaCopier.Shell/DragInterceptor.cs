@@ -11,7 +11,8 @@ namespace MegaCopier.Shell;
 ///
 /// Un gancho de ratón de bajo nivel recuerda en qué lista de archivos se pulsó el botón. Al soltarlo comprueba, con
 /// llamadas instantáneas, que hay un arrastre OLE en curso desde ese hilo del Explorador (durante DoDragDrop el ratón
-/// lo captura una ventana CLIPBRDWNDCLASS; una selección con recuadro no) y que se suelta sobre otra lista de archivos.
+/// lo captura una ventana CLIPBRDWNDCLASS; una selección con recuadro no) y que se suelta sobre otra lista de archivos
+/// o sobre el panel de navegación (también puede empezar en él).
 /// Entonces retiene ese "soltar" y en un hilo aparte decide (qué hay seleccionado, qué hay bajo el puntero, qué teclas
 /// hay pulsadas) con <see cref="DragDecision"/>:
 ///  - si es para MegaCopier, cancela el arrastre del Explorador con Esc, devuelve el botón a su estado y copia;
@@ -39,6 +40,8 @@ public sealed unsafe partial class DragInterceptor : IDisposable
     private readonly Thread _worker;
     private readonly HookThread _hooks;
     private nint _downView;
+    private bool _downTree;
+    private int _downX, _downY;
     private uint _downThread;
     private bool _prefetchQueued;
 
@@ -85,6 +88,15 @@ public sealed unsafe partial class DragInterceptor : IDisposable
     private static nint FileView(nint window) =>
         window != 0 && ExplorerLocator.IsExplorerOrDesktop(window) && Native.FindAncestorOfClass(window, "SHELLDLL_DefView") != 0 ? window : 0;
 
+    /// <summary>El panel de navegación (el árbol de la izquierda) de una ventana del Explorador, o 0.</summary>
+    private static nint NavigationTree(nint window) =>
+        window != 0 && Native.ClassName(window) == "SysTreeView32" && ExplorerLocator.IsExplorerOrDesktop(window)
+            && Native.FindAncestorOfClass(window, "NamespaceTreeControl") != 0 ? window : 0;
+
+    /// <summary>Dónde empieza o termina un arrastre que MegaCopier puede quedarse: una lista de archivos o el panel.</summary>
+    private static (nint Window, bool Tree) DragSpot(nint window) =>
+        FileView(window) is not 0 and var view ? (view, false) : (NavigationTree(window), true);
+
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
     private static nint HookProc(int code, nint wParam, nint lParam)
     {
@@ -113,7 +125,9 @@ public sealed unsafe partial class DragInterceptor : IDisposable
     {
         if (message == WmLButtonDown)
         {
-            _downView = FileView(Native.WindowFromPoint(new Native.Point(x, y)));
+            (_downView, _downTree) = DragSpot(Native.WindowFromPoint(new Native.Point(x, y)));
+            _downX = x;
+            _downY = y;
             _downThread = _downView == 0 ? 0 : Native.GetWindowThreadProcessId(_downView, out _);
             _prefetchQueued = false;
             return false;
@@ -124,7 +138,7 @@ public sealed unsafe partial class DragInterceptor : IDisposable
         {
             if (_downView != 0 && !_prefetchQueued && Native.ClassName(Native.CaptureWindow(_downThread)) == "CLIPBRDWNDCLASS")
             {
-                _prefetchQueued = _work.TryAdd(new Prefetch(_downView));
+                _prefetchQueued = _work.TryAdd(new Prefetch(_downView, _downTree, _downX, _downY));
             }
 
             return false;
@@ -136,6 +150,7 @@ public sealed unsafe partial class DragInterceptor : IDisposable
         }
 
         nint source = _downView;
+        bool sourceTree = _downTree;
         uint thread = _downThread;
         _downView = 0;
 
@@ -145,13 +160,13 @@ public sealed unsafe partial class DragInterceptor : IDisposable
             return false;
         }
 
-        nint target = FileView(Native.WindowFromPoint(new Native.Point(x, y)));
+        var (target, tree) = DragSpot(Native.WindowFromPoint(new Native.Point(x, y)));
         if (target == 0)
         {
-            return false; // panel de navegación, barra de direcciones, otro programa...: lo suelta el Explorador
+            return false; // barra de direcciones, otro programa...: lo suelta el Explorador
         }
 
-        return _work.TryAdd(new Pending(source, target, x, y, Pressed(VkControl), Pressed(VkShift), thread, Stopwatch.GetTimestamp()));
+        return _work.TryAdd(new Pending(source, sourceTree, target, tree, x, y, Pressed(VkControl), Pressed(VkShift), thread, Stopwatch.GetTimestamp()));
     }
 
     private void WorkLoop()
@@ -162,12 +177,15 @@ public sealed unsafe partial class DragInterceptor : IDisposable
             {
                 try
                 {
-                    _prefetched = (prefetch.Source, ExplorerLocator.Snapshot(prefetch.Source, selection: true, items: false));
                     UiaHitTest.WarmUp(); // la primera consulta de accesibilidad es la más lenta: se hace ya
+                    _prefetched = (prefetch.Source, prefetch.Tree
+                        ? TreeSource(prefetch.X, prefetch.Y)
+                        : ExplorerLocator.Snapshot(prefetch.Source, selection: true, items: false));
+                    ShellNamespace.WarmUp(); // por si se suelta en el panel de navegación
                 }
-                catch (Exception ex) when (ex is COMException or InvalidOperationException)
+                catch (Exception ex) when (ex is COMException or InvalidOperationException or IOException or UnauthorizedAccessException)
                 {
-                    _prefetched = default;
+                    _prefetched = (prefetch.Source, null);
                 }
 
                 continue;
@@ -222,23 +240,45 @@ public sealed unsafe partial class DragInterceptor : IDisposable
     {
         var source = _prefetched.View == pending.Source && _prefetched.Snapshot is { } ready
             ? ready
-            : ExplorerLocator.Snapshot(pending.Source, selection: true, items: false);
+            : pending.SourceTree ? null : ExplorerLocator.Snapshot(pending.Source, selection: true, items: false);
         _prefetched = default;
+        if (source is null)
+        {
+            request = null;
+            return "no se pudo leer qué se arrastra";
+        }
+
+        // Sobre el panel de navegación: la carpeta (o unidad) del elemento bajo el puntero.
+        if (pending.TargetTree)
+        {
+            var names = UiaHitTest.TreePathAt(pending.X, pending.Y);
+            if (names is null)
+            {
+                request = null;
+                return "no hay una carpeta del panel bajo el puntero";
+            }
+
+            return DragDecision.Decide(
+                source.Selection, source.Folder, ShellNamespace.Resolve(names), DropSpot.Folder, null, [],
+                pending.Ctrl, pending.Shift, alt: false, out request);
+        }
+
         DropSpot spot = UiaHitTest.At(pending.X, pending.Y, out string? itemName);
         var target = ExplorerLocator.Snapshot(pending.Target, selection: false, items: false);
-        if (source is null || target is null)
+        if (target is null)
         {
             request = null;
             return "no se encontró la ventana del Explorador";
         }
 
         // Sobre un elemento: si es una carpeta con ese nombre, no hace falta leer toda la carpeta de destino (en
-        // carpetas grandes eso es lo que más tarda). Si no, sí: puede ser un archivo con la extensión oculta.
+        // carpetas grandes eso es lo que más tarda). Si no, sí: puede ser un archivo con la extensión oculta, o una
+        // unidad de «Este equipo» (vista virtual, sin carpeta).
         IReadOnlyList<ViewItem> items = [];
-        if (spot == DropSpot.Item && itemName is not null && target.Folder is not null)
+        if (spot == DropSpot.Item && itemName is not null)
         {
-            string folder = Path.Combine(target.Folder, itemName);
-            items = itemName.IndexOfAny(Path.GetInvalidFileNameChars()) < 0 && Directory.Exists(folder)
+            string? folder = target.Folder is null ? null : Path.Combine(target.Folder, itemName);
+            items = folder is not null && itemName.IndexOfAny(Path.GetInvalidFileNameChars()) < 0 && Directory.Exists(folder)
                 ? [new ViewItem(itemName, folder, IsFolder: true)]
                 : ExplorerLocator.Snapshot(pending.Target, selection: false, items: true)?.Items ?? [];
         }
@@ -246,6 +286,21 @@ public sealed unsafe partial class DragInterceptor : IDisposable
         return DragDecision.Decide(
             source.Selection, source.Folder, target.Folder, spot, itemName, items,
             pending.Ctrl, pending.Shift, alt: false, out request);
+    }
+
+    /// <summary>
+    /// Lo que se arrastra desde el panel de navegación: la carpeta del elemento donde se pulsó (se lee al empezar a
+    /// arrastrar, antes de que el panel se desplace o despliegue nada). Null si no es una carpeta del disco.
+    /// </summary>
+    private static ViewSnapshot? TreeSource(int x, int y)
+    {
+        if (UiaHitTest.TreePathAt(x, y) is not { } names || ShellNamespace.Resolve(names) is not { } path)
+        {
+            return null;
+        }
+
+        string? parent = Path.GetDirectoryName(Path.TrimEndingDirectorySeparator(path));
+        return parent is null ? null : new ViewSnapshot(parent, [path], []); // una unidad entera: lo hace el Explorador
     }
 
     /// <summary>Esc para el arrastre del Explorador; true cuando ya ha soltado el ratón (el arrastre terminó).</summary>
@@ -291,9 +346,9 @@ public sealed unsafe partial class DragInterceptor : IDisposable
         SendInput(1, &input, sizeof(Input));
     }
 
-    private sealed record Prefetch(nint Source);
+    private sealed record Prefetch(nint Source, bool Tree, int X, int Y);
 
-    private sealed record Pending(nint Source, nint Target, int X, int Y, bool Ctrl, bool Shift, uint Thread, long Timestamp);
+    private sealed record Pending(nint Source, bool SourceTree, nint Target, bool TargetTree, int X, int Y, bool Ctrl, bool Shift, uint Thread, long Timestamp);
 
     [StructLayout(LayoutKind.Sequential)]
     private struct MsllHookStruct

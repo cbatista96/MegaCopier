@@ -44,7 +44,7 @@ copias de seguridad y copia a servidores, nubes y móviles.
 | 🌍 **Llega a todas partes** | Móviles y cámaras por USB, LocalSend, otro PC, FTP, SFTP, WebDAV, S3, OneDrive, Google Drive y Dropbox. |
 | 🪟 **Integrado en Windows** | Ctrl+V, menú contextual (también el corto de Windows 11) y arrastrar con cualquier botón. Un doble clic en la bandeja lo activa o lo desactiva. |
 | 🔒 **Sin telemetría** | No envía nada a ningún sitio salvo lo que tú configures (avisos por correo o webhook). |
-| 🎨 **A tu gusto** | 73 temas (con texturas y degradados), 22 estilos de barra de progreso, 23 conjuntos de iconos combinables (también al estilo de Android, macOS, Linux y Windows clásico), 19 sonidos propios, editor de colores, 14 idiomas, consola `mcopy` y versión portátil. |
+| 🎨 **A tu gusto** | 73 temas (con texturas y degradados), 22 estilos de barra de progreso, 29 conjuntos de iconos combinables (también al estilo de Android, Material You, One UI, Nothing, macOS, Linux y Windows de 95 a 8), 19 sonidos propios, editor de colores, 14 idiomas, consola `mcopy` y versión portátil. |
 
 ---
 
@@ -319,14 +319,15 @@ terminar).
 ### Comportamiento y errores
 - **Si un archivo sigue fallando, preguntar qué hacer**: reintentar, omitir, omitir todos los siguientes o detener (o
   decidirlo de antemano: omitir, detener o reintentar al final).
-- **Añadir las copias nuevas a una que ya está en marcha**: nunca, si van a la misma carpeta, si usan los mismos discos o
-  siempre, preguntando antes o no.
+- **Copias nuevas mientras otra está en marcha**: al mismo disco, MegaCopier pregunta si añadirla a la copia en marcha
+  (cada cosa a su carpeta) o hacerla aparte; a otro disco, empieza a la vez. Ambas cosas se pueden cambiar.
 - **Informe de errores** automático al terminar con problemas, en la carpeta de destino o en una fija.
 - **Expulsar la unidad de destino** (USB, tarjeta) al terminar, también a la fuerza.
 - **Al detener una copia, borrar lo que quedó a medias** (salvo si paró por un error).
 - Atributos y permisos que se conservan **al mover**, aparte de los de copiar.
-- Icono de la bandeja opcional, empezar las copias minimizadas, recordar la posición y el tamaño de la ventana y
-  ventana translúcida.
+- Icono de la bandeja opcional, **un icono de progreso por copia en la bandeja**, qué hacen la X (cancelar, detener,
+  ocultar o salir) y minimizar (barra de tareas o bandeja), empezar las copias minimizadas, recordar la posición y el
+  tamaño de la ventana, ventana translúcida y ajuste a pantallas pequeñas (1366 × 768).
 
 ### Sincronizar
 - **Espejo** de una carpeta en otra.
@@ -363,7 +364,7 @@ terminar).
 - **Consola `mcopy`** con todas las funciones y **versión portátil**.
 - **14 idiomas**: español, inglés, francés, alemán, italiano, portugués de Brasil, ruso, ucraniano, polaco, neerlandés,
   turco, chino, japonés y coreano.
-- **73 temas** que colorean toda la interfaz (hasta las barras de desplazamiento), con degradados y texturas, **22 estilos de barra de progreso**, **23 conjuntos de iconos** que se combinan con cualquier tema, editor de colores, **19 sonidos propios** y modo claro u oscuro; accesible con lectores de pantalla.
+- **73 temas** que colorean toda la interfaz (hasta las barras de desplazamiento), con degradados y texturas, **22 estilos de barra de progreso**, **29 conjuntos de iconos** que se combinan con cualquier tema, editor de colores, **19 sonidos propios** y modo claro u oscuro; accesible con lectores de pantalla.
 - **Ajustes como la Configuración de Windows 11**: secciones a la izquierda, buscador, iconos, animaciones y un botón ⓘ que
   explica las opciones complejas con ejemplos de uso.
 

@@ -44,7 +44,7 @@
 
                 <!-- Qué se copia -->
                 <StackPanel x:Name="WhatColumn" Spacing="2">
-                    <TextBlock x:Uid="Options_Transfer" Style="{StaticResource McStrong}" Margin="0,0,0,6" />
+                    <StackPanel Orientation="Horizontal" Spacing="2" Margin="0,0,0,6"><TextBlock x:Uid="Options_Transfer" Style="{StaticResource McStrong}" VerticalAlignment="Center" /><c:InfoTip Topic="WhatCopy" Margin="0,-6,0,-6" /></StackPanel>
                     <StackPanel Orientation="Horizontal" Spacing="6">
                         <c:McIcon VerticalAlignment="Center" Glyph="&#xE8B7;" FontSize="14" Foreground="{StaticResource McWarningBrush}" />
                         <TextBlock x:Uid="Options_FilesFolders" Style="{StaticResource McStrong}" />
@@ -64,7 +64,7 @@
 
                 <!-- Cómo se copia -->
                 <StackPanel x:Name="HowColumn" Grid.Column="1" Spacing="8">
-                    <TextBlock x:Uid="Options_TransferOptions" Style="{StaticResource McStrong}" />
+                    <StackPanel Orientation="Horizontal" Spacing="2"><TextBlock x:Uid="Options_TransferOptions" Style="{StaticResource McStrong}" VerticalAlignment="Center" /><c:InfoTip Topic="Transfer" Margin="0,-6,0,-6" /></StackPanel>
                     <ComboBox x:Name="ModeBox" x:Uid="Options_Mode" HorizontalAlignment="Stretch" SelectionChanged="Changed">
                         <ComboBoxItem x:Uid="Mode_Copy" />
                         <ComboBoxItem x:Uid="Mode_Mirror" />
@@ -105,10 +105,10 @@
 
                 <!-- Al terminar -->
                 <StackPanel x:Name="FinishColumn" Grid.Column="2" Spacing="8">
-                    <TextBlock x:Uid="Options_OnFinish" Style="{StaticResource McStrong}" />
+                    <StackPanel Orientation="Horizontal" Spacing="2"><TextBlock x:Uid="Options_OnFinish" Style="{StaticResource McStrong}" VerticalAlignment="Center" /><c:InfoTip Topic="OnFinish" Margin="0,-6,0,-6" /></StackPanel>
                     <CheckBox x:Name="ChecksumBox" x:Uid="Options_SaveChecksum" Click="Changed" />
                     <CheckBox x:Name="ReportBox" x:Uid="Options_ExportReport" Click="Changed" />
-                    <TextBlock x:Uid="Options_Scripts" Style="{StaticResource McSecondary}" />
+                    <StackPanel Orientation="Horizontal" Spacing="2"><TextBlock x:Uid="Options_Scripts" Style="{StaticResource McSecondary}" VerticalAlignment="Center" /><c:InfoTip Topic="Scripts" Margin="0,-6,0,-6" /></StackPanel>
                     <TextBox x:Name="ScriptsBox" AcceptsReturn="True" TextWrapping="NoWrap" MinHeight="96" FontFamily="Consolas" LostFocus="Changed" />
                     <TextBlock x:Uid="Options_ScriptsHelp" Style="{StaticResource McSecondary}" TextWrapping="Wrap" />
                 </StackPanel>

@@ -20,7 +20,7 @@ public sealed partial class BackButton : Button
         Height = 36;
         VerticalAlignment = VerticalAlignment.Center;
         Content = new McIcon { Glyph = "", FontSize = 16 };
-        string name = L.Get("Page_Back");
+        string name = L.Get("Page_Back/Text");
         ToolTipService.SetToolTip(this, name + " (Esc)");
         AutomationProperties.SetName(this, name);
         KeyboardAccelerators.Add(new KeyboardAccelerator { Key = VirtualKey.Escape });
