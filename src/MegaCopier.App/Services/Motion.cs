@@ -233,62 +233,6 @@ internal static class Motion
         Run(320, vertical ? (t, "TranslateY", [(0, shift.Y, null), (1, 0, Out)]) : (t, "TranslateX", [(0, shift.X, null), (1, 0, Out)]));
     }
 
-    /// <summary>
-    /// Cambio entre dos elementos superpuestos (pausa ⇄ reproducir), como un marcador que pasa de número: el que se va
-    /// sube y sale de su hueco y el nuevo entra desde abajo (el icono, además, gira un cuarto de vuelta). Solo se
-    /// desplazan y giran, sin cambiar de escala: WinUI dibuja el texto al tamaño con el que empieza la animación, y un
-    /// icono que crecía desde pequeño se quedaba borroso y deformado. Sin fundidos de opacidad (ver <see cref="FadeIn"/>).
-    /// </summary>
-    public static void Morph(UIElement outgoing, UIElement incoming, bool animate, bool icon)
-    {
-        outgoing.IsHitTestVisible = false;
-        incoming.IsHitTestVisible = true;
-        var a = Prepare(outgoing);
-        var b = Prepare(incoming);
-        Stop(outgoing);
-        Stop(incoming);
-        a.ScaleX = a.ScaleY = b.ScaleX = b.ScaleY = 1;
-        a.Rotation = b.Rotation = a.TranslateX = b.TranslateX = a.TranslateY = b.TranslateY = 0;
-        if (!animate || Theming.BarAppearance.ReduceMotion || VisualTreeHelper.GetParent(incoming) is not FrameworkElement host || host.ActualHeight <= 0)
-        {
-            outgoing.Opacity = 0;
-            incoming.Opacity = 1;
-            return;
-        }
-
-        ClipToBounds(host);
-        double distance = host.ActualHeight + 2;
-        outgoing.Opacity = 1;
-        incoming.Opacity = 1;
-        double turn = icon ? 90 : 0;
-        Run(280, () =>
-        {
-            outgoing.Opacity = 0;
-            a.TranslateY = 0;
-            a.Rotation = 0;
-        },
-            (a, "TranslateY", [(0, 0, null), (1, -distance, In)]),
-            (a, "Rotation", [(0, 0, null), (1, turn, In)]),
-            (b, "TranslateY", [(0, distance, null), (1, 0, Spring)]),
-            (b, "Rotation", [(0, -turn, null), (1, 0, Out)]));
-    }
-
-    /// <summary>
-    /// Recorta lo que se salga del elemento (con un poco de margen a los lados para los iconos que giran), y lo mantiene
-    /// al cambiar de tamaño.
-    /// </summary>
-    private static void ClipToBounds(FrameworkElement host)
-    {
-        void Apply() => host.Clip = new RectangleGeometry { Rect = new Windows.Foundation.Rect(-6, -1, host.ActualWidth + 12, host.ActualHeight + 2) };
-
-        if (host.Clip is null)
-        {
-            host.SizeChanged += (_, _) => Apply();
-        }
-
-        Apply();
-    }
-
     /// <summary>La transformación del elemento para animarlo (se crea la primera vez, centrada).</summary>
     private static CompositeTransform Prepare(UIElement element)
     {

@@ -27,6 +27,9 @@ internal sealed partial class TrayProgressIcons(TrayIcon tray)
     /// <summary>La copia de un icono extra (null si ya no está).</summary>
     public CopyJob? JobFor(uint id) => _ids.FirstOrDefault(p => p.Value == id).Key;
 
+    /// <summary>El número del icono de progreso de una copia (null si no tiene).</summary>
+    public uint? IdFor(CopyJob job) => _ids.TryGetValue(job, out uint id) ? id : null;
+
     /// <param name="jobs">Todas las copias de la cola.</param>
     /// <param name="enabled">Si está activado y el icono de la bandeja se muestra.</param>
     /// <param name="describe">Texto del icono (al pasar el ratón) de cada copia.</param>
@@ -74,14 +77,14 @@ internal sealed partial class TrayProgressIcons(TrayIcon tray)
             string tooltip = describe(job);
 
             // Solo se vuelve a dibujar si cambia lo que se ve (el número, el color, el tamaño o el tema).
-            string key = $"{(done ? 100 : (int)Math.Floor(fraction * 100))}|{(int)(fraction * size)}|{state}|{size}|{light}|{theme.TotalStart}|{theme.TotalEnd}|{tooltip}";
+            string key = $"{(done ? 100 : (int)Math.Floor(fraction * 100))}|{(int)(fraction * size)}|{state}|{size}|{light}|{theme.TotalStart}|{theme.TotalEnd}|{IconPacks.Current.Id}|{theme.Accent}|{tooltip}";
             if (_drawn.TryGetValue(id, out string? drawn) && drawn == key)
             {
                 continue;
             }
 
             nint icon = TrayProgressPainter.Create(
-                size, fraction, done, state, ThemeManager.Parse(theme.TotalStart), ThemeManager.Parse(theme.TotalEnd), light);
+                size, fraction, done, state, ThemeManager.Parse(theme.TotalStart), ThemeManager.Parse(theme.TotalEnd), light, IconPacks.Current);
             if (icon != 0)
             {
                 tray.SetExtra(id, icon, tooltip);

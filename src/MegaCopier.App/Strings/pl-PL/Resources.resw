@@ -155,18 +155,18 @@
   <data name="About_DataFolder.Content" xml:space="preserve"><value>Otwórz folder danych (ustawienia, motywy, historia, raporty)</value></data>
   <data name="About_Description.Text" xml:space="preserve"><value>Ostateczny kopiarz dla Windows 11: szybszy i bezpieczniejszy niż ten z Windows, ze wszystkimi potrzebnymi opcjami i tak konfigurowalny, jak chcesz (motywy, ikony, paski i dźwięki). Wznawia tam, gdzie skończył, nawet po zaniku zasilania, i sprawdza, czy wszystko dotarło w całości.</value></data>
   <data name="About_Features.Text" xml:space="preserve"><value>Asynchroniczne we/wy bez pamięci podręcznej · równoległe odczyty i zapisy · weryfikacja skrótem (CRC32, xxHash, MD5, SHA) · kolejka na dysk · wstrzymywanie i wznawianie · przenoszenie · konflikty · limit prędkości · listy kopiowania · raporty · motywy.</value></data>
-  <data name="Files_AutoScroll.Content" xml:space="preserve"><value>Śledź bieżący</value></data>
+  <data name="Files_AutoScroll.Text" xml:space="preserve"><value>Śledź bieżący</value></data>
   <data name="Files_CopyHashes.Text" xml:space="preserve"><value>Kopiuj skróty</value></data>
   <data name="Files_CopyPath.Text" xml:space="preserve"><value>Kopiuj ścieżkę</value></data>
   <data name="Files_Empty.Text" xml:space="preserve"><value>Brak plików do wyświetlenia</value></data>
   <data name="Files_ExportCsv.Text" xml:space="preserve"><value>Eksportuj do CSV…</value></data>
   <data name="Files_ExportHtml.Text" xml:space="preserve"><value>Eksportuj raport HTML…</value></data>
-  <data name="Files_FilterAll.Content" xml:space="preserve"><value>Wszystkie</value></data>
-  <data name="Files_FilterDone.Content" xml:space="preserve"><value>Skopiowane</value></data>
-  <data name="Files_FilterErrors.Content" xml:space="preserve"><value>Z błędami</value></data>
-  <data name="Files_FilterPending.Content" xml:space="preserve"><value>Oczekujące</value></data>
-  <data name="Files_FilterSkipped.Content" xml:space="preserve"><value>Pominięte</value></data>
-  <data name="Files_HideFinished.Content" xml:space="preserve"><value>Ukryj zakończone</value></data>
+  <data name="Files_FilterAll.Text" xml:space="preserve"><value>Wszystkie</value></data>
+  <data name="Files_FilterDone.Text" xml:space="preserve"><value>Skopiowane</value></data>
+  <data name="Files_FilterErrors.Text" xml:space="preserve"><value>Z błędami</value></data>
+  <data name="Files_FilterPending.Text" xml:space="preserve"><value>Oczekujące</value></data>
+  <data name="Files_FilterSkipped.Text" xml:space="preserve"><value>Pominięte</value></data>
+  <data name="Files_HideFinished.Text" xml:space="preserve"><value>Ukryj zakończone</value></data>
   <data name="Files_Menu.Text" xml:space="preserve"><value>Lista</value></data>
   <data name="Files_MoveBottom.Text" xml:space="preserve"><value>Przenieś na koniec</value></data>
   <data name="Files_MoveDown.Text" xml:space="preserve"><value>W dół</value></data>
@@ -1091,8 +1091,6 @@
   <data name="Settings_RememberDescription.Text" xml:space="preserve"><value>Otwieraj w tym samym miejscu i rozmiarze.</value></data>
   <data name="Settings_RememberPosition.Content" xml:space="preserve"><value>Położenie</value></data>
   <data name="Settings_RememberSize.Content" xml:space="preserve"><value>Rozmiar</value></data>
-  <data name="Settings_TranslucentTitle.Text" xml:space="preserve"><value>Półprzezroczyste okno</value></data>
-  <data name="Settings_TranslucentDescription.Text" xml:space="preserve"><value>Akrylowe, bardziej przezroczyste tło: pulpit prześwituje przez okno w każdym motywie.</value></data>
   <data name="Settings_Icons.Text" xml:space="preserve"><value>Ikony</value></data>
   <data name="Settings_IconsDescription.Text" xml:space="preserve"><value>Wybierz wygląd ikon. Pasują do każdego motywu.</value></data>
   <data name="IconPack_fluent" xml:space="preserve"><value>Fluent (jak Windows)</value></data>
@@ -1145,7 +1143,7 @@
   <data name="FolderAsk_Skip" xml:space="preserve"><value>Pomiń te, które już są</value></data>
   <data name="FolderAsk_SkipText" xml:space="preserve"><value>Każdy plik jest sprawdzany: istniejące nie są kopiowane ani zmieniane, kopiowane są tylko brakujące. Idealne do dokończenia przerwanego kopiowania.</value></data>
   <data name="FolderAsk_Overwrite" xml:space="preserve"><value>Nadpisz</value></data>
-  <data name="FolderAsk_OverwriteText" xml:space="preserve"><value>Istniejące pliki są zastępowane plikami ze źródła. Identyczne zostają bez zmian, żeby było szybciej.</value></data>
+  <data name="FolderAsk_OverwriteText" xml:space="preserve"><value>Pliki, które już tam są, zostaną zastąpione plikami ze źródła, także te, które wyglądają tak samo: wszystko zostanie skopiowane ponownie.</value></data>
   <data name="FolderAsk_Rename" xml:space="preserve"><value>Zmień nazwę</value></data>
   <data name="FolderAsk_RenameText" xml:space="preserve"><value>Wszystko jest kopiowane do nowego folderu „{0}”, a istniejący pozostaje nietknięty.</value></data>
   <data name="FolderAsk_AskEach" xml:space="preserve"><value>Pytaj o każdy</value></data>
@@ -1496,4 +1494,18 @@
   <data name="Settings_AdaptTitle.Text" xml:space="preserve"><value>Dopasuj do małych ekranów</value></data>
   <data name="Settings_AdaptDescription.Text" xml:space="preserve"><value>Na niskich ekranach, np. 1366 × 768, okno wygląda tak samo, ale jest nieco mniejsze, żeby zmieściło się w całości. Na dużych ekranach nic się nie zmienia.</value></data>
   <data name="Job_StateAsking" xml:space="preserve"><value>Czeka na twoją odpowiedź</value></data>
+  <data name="Conflict_Identical.Text" xml:space="preserve"><value>Są takie same: ten sam rozmiar i ta sama data.</value></data>
+  <data name="Settings_BackdropTitle.Text" xml:space="preserve"><value>Tło okna</value></data>
+  <data name="Settings_BackdropDescription.Text" xml:space="preserve"><value>Materiał Windows 11 widoczny za oknem, z dowolnym motywem.</value></data>
+  <data name="Backdrop_OptTheme.Content" xml:space="preserve"><value>Z motywu</value></data>
+  <data name="Backdrop_OptTranslucent.Content" xml:space="preserve"><value>Półprzezroczyste (widać pulpit)</value></data>
+  <data name="Backdrop_OptAcrylic.Content" xml:space="preserve"><value>Akryl pulpitu (podstawowy)</value></data>
+  <data name="Backdrop_OptAcrylicThin.Content" xml:space="preserve"><value>Akryl pulpitu (cienki)</value></data>
+  <data name="BackdropAcrylicThin.Content" xml:space="preserve"><value>Cienki akryl</value></data>
+  <data name="Info_Backdrop_Text" xml:space="preserve"><value>To, co widać za zawartością okna.\n• Z motywu: każdy motyw ma własne (jednolite, Mica lub akryl).\n• Półprzezroczyste: bardzo przezroczysty akryl; przez okno widać pulpit.\n• Mica: delikatnie przejmuje odcień tapety. Takie tło mają aplikacje Windows 11.\n• Mica Alt: jak Mica, ale z większą ilością koloru tapety.\n• Akryl pulpitu (podstawowy): jak matowe szkło; to, co jest za oknem, wygląda na rozmyte.\n• Akryl pulpitu (cienki): jaśniejszy i bardziej przezroczysty niż podstawowy.\nMica i akryl wymagają Windows 11 z włączonymi efektami przezroczystości; w przeciwnym razie widać jednolity kolor.</value></data>
+  <data name="SameDrive_NewWindow" xml:space="preserve"><value>W nowym oknie</value></data>
+  <data name="SameDrive_NewWindowText" xml:space="preserve"><value>Otworzy się kolejne okno MegaCopier z tą kopią, która od razu ruszy razem z drugą (obie będą nieco wolniejsze).</value></data>
+  <data name="Settings_IndependentWindowsTitle.Text" xml:space="preserve"><value>Każda kopia we własnym oknie</value></data>
+  <data name="Settings_IndependentWindowsDescription.Text" xml:space="preserve"><value>Jedno okno na kopię, która rusza od razu, bez czekania na inne. Bez listy kopii, chyba że dodasz kilka do tego samego okna.</value></data>
+  <data name="Info_IndependentWindows_Text" xml:space="preserve"><value>Zwykle MegaCopier ma jedno okno, a kilka kopii pokazuje na swojej liście kopii. Z tą opcją każda kopia otwiera własne okno i rusza od razu, bez czekania na inne.\n• To wciąż ta sama aplikacja: motyw, ikony i ustawienia są wszędzie takie same (zmienisz je w jednym oknie, zmienią się we wszystkich).\n• Każde okno ma własną ikonę postępu w zasobniku i własny przycisk na pasku zadań.\n• Jeśli nowa kopia trafia na ten sam dysk co trwająca, decyduje „Nowa kopia na ten sam dysk”: zapytać (dodać do kopii tego okna albo otworzyć w nowym oknie), zawsze dodawać lub zawsze otwierać nowe okno bez pytania.\n• Jeśli dodasz kopie do jednego okna, pokaże ono własną listę kopii.\n• Gdy jego kopie się skończą, każde okno zamyka się jak zwykle.\nPrzykład: kopiujesz zdjęcia na pendrive, a w tym czasie filmy na inny dysk — zobaczysz dwa okna, każde z własnym postępem.</value></data>
 </root>

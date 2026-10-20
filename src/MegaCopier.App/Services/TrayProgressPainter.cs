@@ -1,4 +1,5 @@
 using System.Runtime.InteropServices;
+using MegaCopier.App.Theming;
 using Windows.UI;
 
 namespace MegaCopier.App.Services;
@@ -11,40 +12,83 @@ internal enum TrayProgressState
     Error,
 }
 
-/// <summary>
-/// Dibuja el icono de progreso de una copia para la bandeja: un recuadro redondeado que se va llenando de abajo arriba
-/// con el degradado de las barras del tema (ámbar en pausa, rojo con errores) y el porcentaje encima, con un contorno
-/// para que se lea sobre la barra y sobre la barra de tareas, clara u oscura. Se dibuja píxel a píxel (con suavizado);
-/// solo el número usa GDI, como máscara.
+//// <summary>
+/// Dibuja el icono de progreso de una copia para la bandeja: un recuadro que se va llenando de abajo arriba y, encima,
+/// el porcentaje (o el símbolo de pausa, si está en pausa), con un contorno para que se lea sobre la barra y sobre la
+/// barra de tareas, clara u oscura. Sigue el conjunto de iconos elegido: su forma (redondeada, círculo, cuadrada...),
+/// sus colores (en pausa, el de la pausa del conjunto; con errores, el de error) y su acabado (fondo de color, brillo
+/// de cristal, relieve, contorno o neón). Con el conjunto de Windows, el degradado de las barras del tema. Se dibuja
+/// píxel a píxel (con suavizado); solo el número usa GDI, como máscara.
 /// </summary>
 internal static unsafe partial class TrayProgressPainter
 {
     /// <summary>Un HICON nuevo (quien lo recibe lo destruye con DestroyIcon).</summary>
     /// <param name="done">Terminada: barra llena y una marca en lugar del número.</param>
-    public static nint Create(int size, double fraction, bool done, TrayProgressState state, Color barStart, Color barEnd, bool lightTaskbar) =>
-        ToIcon(Render(size, fraction, done, state, barStart, barEnd, lightTaskbar), size);
+    public static nint Create(int size, double fraction, bool done, TrayProgressState state, Color barStart, Color barEnd, bool lightTaskbar, IconPack? pack = null) =>
+        ToIcon(Render(size, fraction, done, state, barStart, barEnd, lightTaskbar, pack), size);
 
     /// <summary>Los píxeles del icono (ARGB sin premultiplicar, de arriba abajo).</summary>
-    internal static uint[] Render(int size, double fraction, bool done, TrayProgressState state, Color barStart, Color barEnd, bool lightTaskbar)
+    internal static uint[] Render(int size, double fraction, bool done, TrayProgressState state, Color barStart, Color barEnd, bool lightTaskbar, IconPack? pack = null)
     {
         fraction = done ? 1 : Math.Clamp(fraction, 0, 1);
         var pixels = new Rgba[size * size];
-        float stroke = size >= 24 ? 1.5f : 1f;
-        float radius = size * 0.24f;
+        var style = pack?.Style ?? IconStyle.Mono;
+        bool themed = style is not (IconStyle.Mono or IconStyle.Gradient);
+        bool tile = style == IconStyle.Tile;
+        float stroke = tile ? 0 : size >= 24 ? 1.5f : 1f;
+        float radius = (pack?.Shape ?? IconShape.Rounded) switch
+        {
+            IconShape.Circle => size / 2f,
+            IconShape.Squircle => size * 0.34f,
+            IconShape.Square => size * 0.06f,
+            _ => size * 0.24f,
+        };
         float inset = 0.5f; // el borde cae entero dentro del icono
 
-        // Colores según la barra de tareas: marco y fondo claros sobre una oscura, oscuros sobre una clara.
+        // Colores de la barra: los del conjunto (copiar, pausa, error) o, con el de Windows, el degradado del tema.
+        if (themed)
+        {
+            string glyph = state switch
+            {
+                TrayProgressState.Paused => "",
+                TrayProgressState.Error => "",
+                _ => "",
+            };
+            var color = IconPacks.ColorFor(glyph, pack!);
+            (barStart, barEnd) = pack!.Flat ? (color, color) : (Shade(color, 0.22f), Shade(color, -0.18f));
+        }
+        else
+        {
+            (barStart, barEnd) = state switch
+            {
+                TrayProgressState.Paused => (Color.FromArgb(255, 0xF5, 0xB8, 0x3D), Color.FromArgb(255, 0xE0, 0x8E, 0x0B)),
+                TrayProgressState.Error => (Color.FromArgb(255, 0xF2, 0x6B, 0x70), Color.FromArgb(255, 0xD9, 0x34, 0x3C)),
+                _ => (barStart, barEnd),
+            };
+        }
+
+        // Marco y fondo: claros sobre una barra de tareas oscura y oscuros sobre una clara; en los conjuntos con fondo
+        // de color, el fondo es el color de la barra oscurecido (o el fijo del conjunto).
         var frame = lightTaskbar ? new Rgba(0x20, 0x20, 0x20, 0.78f) : new Rgba(0xFF, 0xFF, 0xFF, 0.82f);
         var back = lightTaskbar ? new Rgba(0x00, 0x00, 0x00, 0.07f) : new Rgba(0xFF, 0xFF, 0xFF, 0.12f);
-        (barStart, barEnd) = state switch
+        switch (style)
         {
-            TrayProgressState.Paused => (Color.FromArgb(255, 0xF5, 0xB8, 0x3D), Color.FromArgb(255, 0xE0, 0x8E, 0x0B)),
-            TrayProgressState.Error => (Color.FromArgb(255, 0xF2, 0x6B, 0x70), Color.FromArgb(255, 0xD9, 0x34, 0x3C)),
-            _ => (barStart, barEnd),
-        };
+            case IconStyle.Tile:
+                var tileColor = pack!.TileColor ?? Shade(barEnd, -0.55f);
+                back = new Rgba(tileColor.R, tileColor.G, tileColor.B, 1);
+                break;
+            case IconStyle.Soft:
+                back = new Rgba(barStart.R, barStart.G, barStart.B, 0.3f);
+                frame = frame.With(0);
+                break;
+            case IconStyle.Outline or IconStyle.Neon or IconStyle.Color:
+                frame = new Rgba(barStart.R, barStart.G, barStart.B, 1);
+                break;
+        }
 
         float innerTop = inset + stroke, innerBottom = size - inset - stroke;
         float level = innerBottom - ((innerBottom - innerTop) * (float)fraction); // donde empieza la barra (de abajo arriba)
+        float bevel = pack?.Bevel == true ? Math.Max(1, size / 14f) : 0;
         for (int y = 0; y < size; y++)
         {
             for (int x = 0; x < size; x++)
@@ -58,10 +102,10 @@ internal static unsafe partial class TrayProgressPainter
                     continue;
                 }
 
-                var pixel = back.With(back.A * inner);
+                var pixel = back.With(back.A * (tile ? outer : inner));
 
                 // La barra: de abajo hasta el nivel, con el borde superior suavizado.
-                float bar = inner * Math.Clamp(py - level + 0.5f, 0, 1);
+                float bar = (tile ? outer : inner) * Math.Clamp(py - level + 0.5f, 0, 1);
                 if (bar > 0)
                 {
                     float t = Math.Clamp((py - innerTop) / Math.Max(1, innerBottom - innerTop), 0, 1);
@@ -69,17 +113,43 @@ internal static unsafe partial class TrayProgressPainter
                     pixel = Over(pixel, new Rgba(color.R, color.G, color.B, 0.95f * bar));
                 }
 
+                if (pack?.Gloss == true && py < size * 0.5f)
+                {
+                    // Reflejo de cristal en la mitad de arriba (Windows 7, macOS...).
+                    pixel = Over(pixel, new Rgba(0xFF, 0xFF, 0xFF, (0.5f - (0.4f * py / (size * 0.5f))) * inner));
+                }
+
+                if (bevel > 0)
+                {
+                    // Relieve de Windows 95.
+                    if (px > size - bevel || py > size - bevel)
+                    {
+                        pixel = Over(pixel, new Rgba(0x40, 0x40, 0x40, outer));
+                    }
+                    else if (px < bevel || py < bevel)
+                    {
+                        pixel = Over(pixel, new Rgba(0xFF, 0xFF, 0xFF, outer));
+                    }
+                }
+
                 pixel = Over(pixel, frame.With(frame.A * (outer - inner)));
                 pixels[(y * size) + x] = pixel;
             }
         }
 
-        // El porcentaje (hasta 99: al llegar a 100 la copia termina y el icono se va), con contorno.
-        string text = done ? "✓" :((int)Math.Min(99, Math.Floor(fraction * 100))).ToString(System.Globalization.CultureInfo.InvariantCulture);
-        float[] mask = TextMask(text, size);
+        // El porcentaje (hasta 99: al llegar a 100 la copia termina y el icono se va) o, en pausa, el símbolo de pausa.
+        float[] mask = state == TrayProgressState.Paused && !done
+            ? PauseMask(size)
+            : TextMask(done ? "✓" : ((int)Math.Min(99, Math.Floor(fraction * 100))).ToString(System.Globalization.CultureInfo.InvariantCulture), size);
         float[] halo = Dilate(mask, size);
-        var ink = lightTaskbar ? new Rgba(0x14, 0x14, 0x14, 1) : new Rgba(0xFF, 0xFF, 0xFF, 1);
-        var outline = lightTaskbar ? new Rgba(0xFF, 0xFF, 0xFF, 0.9f) : new Rgba(0x00, 0x00, 0x00, 0.72f);
+        bool whiteInk = tile || !lightTaskbar;
+        var ink = whiteInk ? new Rgba(0xFF, 0xFF, 0xFF, 1) : new Rgba(0x14, 0x14, 0x14, 1);
+        var outline = whiteInk ? new Rgba(0x00, 0x00, 0x00, 0.72f) : new Rgba(0xFF, 0xFF, 0xFF, 0.9f);
+        if (style == IconStyle.Neon)
+        {
+            outline = new Rgba(barEnd.R, barEnd.G, barEnd.B, 0.9f); // el número brilla con el color del conjunto
+        }
+
         for (int i = 0; i < pixels.Length; i++)
         {
             pixels[i] = Over(Over(pixels[i], outline.With(outline.A * halo[i])), ink.With(mask[i]));
@@ -96,8 +166,33 @@ internal static unsafe partial class TrayProgressPainter
         return argb;
     }
 
+    /// <summary>El símbolo de pausa (dos barras redondeadas) como máscara, centrado.</summary>
+    private static float[] PauseMask(int size)
+    {
+        var mask = new float[size * size];
+        float height = size * 0.5f, width = Math.Max(2, size * 0.16f), gap = Math.Max(2, size * 0.14f);
+        float top = (size - height) / 2, left = (size - ((width * 2) + gap)) / 2;
+        for (int y = 0; y < size; y++)
+        {
+            for (int x = 0; x < size; x++)
+            {
+                float px = x + 0.5f, py = y + 0.5f;
+                float first = RoundedRect(px, py, left, top, left + width, top + height, width * 0.3f);
+                float second = RoundedRect(px, py, left + width + gap, top, left + (width * 2) + gap, top + height, width * 0.3f);
+                mask[(y * size) + x] = Coverage(Math.Min(first, second));
+            }
+        }
+
+        return mask;
+    }
+
+    /// <summary>Más claro (positivo) o más oscuro (negativo).</summary>
+    private static Color Shade(Color c, float amount) => amount >= 0
+        ? Color.FromArgb(255, (byte)(c.R + ((255 - c.R) * amount)), (byte)(c.G + ((255 - c.G) * amount)), (byte)(c.B + ((255 - c.B) * amount)))
+        : Color.FromArgb(255, (byte)(c.R * (1 + amount)), (byte)(c.G * (1 + amount)), (byte)(c.B * (1 + amount)));
+
     /// <summary>Distancia con signo a un rectángulo redondeado (negativa dentro).</summary>
-    private static float RoundedRect(float x, float y, float left, float top, float right, float bottom, float radius)
+    internal static float RoundedRect(float x, float y, float left, float top, float right, float bottom, float radius)
     {
         float cx = (left + right) / 2, cy = (top + bottom) / 2;
         float hx = ((right - left) / 2) - radius, hy = ((bottom - top) / 2) - radius;
@@ -107,13 +202,13 @@ internal static unsafe partial class TrayProgressPainter
     }
 
     /// <summary>Cuánto de un píxel cubre la forma, según su distancia al borde (suavizado de un píxel).</summary>
-    private static float Coverage(float distance) => Math.Clamp(0.5f - distance, 0, 1);
+    internal static float Coverage(float distance) => Math.Clamp(0.5f - distance, 0, 1);
 
-    private static Color Mix(Color a, Color b, float t) => Color.FromArgb(
+    internal static Color Mix(Color a, Color b, float t) => Color.FromArgb(
         255, (byte)(a.R + ((b.R - a.R) * t)), (byte)(a.G + ((b.G - a.G) * t)), (byte)(a.B + ((b.B - a.B) * t)));
 
     /// <summary>Pinta <paramref name="top"/> encima de <paramref name="bottom"/> (alfa normal).</summary>
-    private static Rgba Over(Rgba bottom, Rgba top)
+    internal static Rgba Over(Rgba bottom, Rgba top)
     {
         float a = top.A + (bottom.A * (1 - top.A));
         if (a <= 0.0001f)
@@ -129,15 +224,19 @@ internal static unsafe partial class TrayProgressPainter
     /// El texto como máscara (0 a 1), centrado en el icono por lo que de verdad ocupa (las cifras no tienen la altura
     /// de la línea entera): se dibuja con GDI en grande y se recoloca.
     /// </summary>
-    private static float[] TextMask(string text, int size)
+    private static float[] TextMask(string text, int size) =>
+        TextMask(text, size, "Segoe UI", 700, size * (text.Length > 1 ? 0.54 : 0.6));
+
+    /// <param name="em">Tamaño de la letra en píxeles (el de un FontSize de XAML).</param>
+    internal static float[] TextMask(string text, int size, string face, int weight, double em)
     {
         int canvas = size * 2;
         var result = new float[size * size];
         nint dc = CreateCompatibleDC(0);
         var header = new BitmapInfoHeader { Size = (uint)sizeof(BitmapInfoHeader), Width = canvas, Height = -canvas, Planes = 1, BitCount = 32 };
         nint bitmap = CreateDIBSection(dc, &header, 0, out nint bits, 0, 0);
-        int height = (int)Math.Round(size * (text.Length > 1 ? 0.54 : 0.6));
-        nint font = CreateFontW(-height, 0, 0, 0, 700, 0, 0, 0, 1, 0, 0, 4 /* ANTIALIASED_QUALITY */, 0, "Segoe UI");
+        int height = Math.Max(1, (int)Math.Round(em));
+        nint font = CreateFontW(-height, 0, 0, 0, weight, 0, 0, 0, 1, 0, 0, 4 /* ANTIALIASED_QUALITY */, 0, face);
         try
         {
             if (dc == 0 || bitmap == 0 || bits == 0)
@@ -200,7 +299,7 @@ internal static unsafe partial class TrayProgressPainter
     }
 
     /// <summary>El contorno del texto: la máscara engordada un píxel.</summary>
-    private static float[] Dilate(float[] mask, int size)
+    internal static float[] Dilate(float[] mask, int size)
     {
         var result = new float[mask.Length];
         for (int y = 0; y < size; y++)
@@ -227,7 +326,7 @@ internal static unsafe partial class TrayProgressPainter
         return result;
     }
 
-    private static nint ToIcon(uint[] pixels, int size)
+    internal static nint ToIcon(uint[] pixels, int size)
     {
         var header = new BitmapInfoHeader { Size = (uint)sizeof(BitmapInfoHeader), Width = size, Height = -size, Planes = 1, BitCount = 32 };
         nint color = CreateDIBSection(0, &header, 0, out nint bits, 0, 0);
@@ -251,7 +350,7 @@ internal static unsafe partial class TrayProgressPainter
     }
 
     /// <summary>Un color con opacidad de 0 a 1.</summary>
-    private readonly record struct Rgba(byte R, byte G, byte B, float A)
+    internal readonly record struct Rgba(byte R, byte G, byte B, float A)
     {
         public Rgba With(float alpha) => this with { A = Math.Clamp(alpha, 0, 1) };
     }

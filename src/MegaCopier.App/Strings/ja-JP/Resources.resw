@@ -155,18 +155,18 @@
   <data name="About_DataFolder.Content" xml:space="preserve"><value>データフォルダーを開く（設定、テーマ、履歴、レポート）</value></data>
   <data name="About_Description.Text" xml:space="preserve"><value>Windows 11 のための究極のコピー ツール。Windows 標準より速く安全で、必要なオプションがすべてそろい、テーマ、アイコン、バー、サウンドまで自由にカスタマイズできます。停電後も中断した所から再開し、すべてが正しく届いたかを確認します。</value></data>
   <data name="About_Features.Text" xml:space="preserve"><value>キャッシュなし非同期 I/O · 並列読み書き · ハッシュ検証 (CRC32、xxHash、MD5、SHA) · ディスクごとのキュー · 一時停止と再開 · 移動 · 競合処理 · 速度制限 · コピーリスト · レポート · テーマ。</value></data>
-  <data name="Files_AutoScroll.Content" xml:space="preserve"><value>現在のファイルを追う</value></data>
+  <data name="Files_AutoScroll.Text" xml:space="preserve"><value>現在のファイルを追う</value></data>
   <data name="Files_CopyHashes.Text" xml:space="preserve"><value>ハッシュをコピー</value></data>
   <data name="Files_CopyPath.Text" xml:space="preserve"><value>パスをコピー</value></data>
   <data name="Files_Empty.Text" xml:space="preserve"><value>表示するファイルはありません</value></data>
   <data name="Files_ExportCsv.Text" xml:space="preserve"><value>CSV にエクスポート…</value></data>
   <data name="Files_ExportHtml.Text" xml:space="preserve"><value>HTML レポートをエクスポート…</value></data>
-  <data name="Files_FilterAll.Content" xml:space="preserve"><value>すべて</value></data>
-  <data name="Files_FilterDone.Content" xml:space="preserve"><value>コピー済み</value></data>
-  <data name="Files_FilterErrors.Content" xml:space="preserve"><value>エラー</value></data>
-  <data name="Files_FilterPending.Content" xml:space="preserve"><value>保留中</value></data>
-  <data name="Files_FilterSkipped.Content" xml:space="preserve"><value>スキップ</value></data>
-  <data name="Files_HideFinished.Content" xml:space="preserve"><value>完了したものを隠す</value></data>
+  <data name="Files_FilterAll.Text" xml:space="preserve"><value>すべて</value></data>
+  <data name="Files_FilterDone.Text" xml:space="preserve"><value>コピー済み</value></data>
+  <data name="Files_FilterErrors.Text" xml:space="preserve"><value>エラー</value></data>
+  <data name="Files_FilterPending.Text" xml:space="preserve"><value>保留中</value></data>
+  <data name="Files_FilterSkipped.Text" xml:space="preserve"><value>スキップ</value></data>
+  <data name="Files_HideFinished.Text" xml:space="preserve"><value>完了したものを隠す</value></data>
   <data name="Files_Menu.Text" xml:space="preserve"><value>一覧</value></data>
   <data name="Files_MoveBottom.Text" xml:space="preserve"><value>最後へ移動</value></data>
   <data name="Files_MoveDown.Text" xml:space="preserve"><value>下へ移動</value></data>
@@ -1091,8 +1091,6 @@
   <data name="Settings_RememberDescription.Text" xml:space="preserve"><value>前回の位置とサイズで開きます。</value></data>
   <data name="Settings_RememberPosition.Content" xml:space="preserve"><value>位置</value></data>
   <data name="Settings_RememberSize.Content" xml:space="preserve"><value>サイズ</value></data>
-  <data name="Settings_TranslucentTitle.Text" xml:space="preserve"><value>半透明ウィンドウ</value></data>
-  <data name="Settings_TranslucentDescription.Text" xml:space="preserve"><value>アクリルの透明な背景: どのテーマでもウィンドウ越しにデスクトップが見えます。</value></data>
   <data name="Settings_Icons.Text" xml:space="preserve"><value>アイコン</value></data>
   <data name="Settings_IconsDescription.Text" xml:space="preserve"><value>アイコンの見た目を選びます。どのテーマとも組み合わせられます。</value></data>
   <data name="IconPack_fluent" xml:space="preserve"><value>Fluent (Windows と同じ)</value></data>
@@ -1145,7 +1143,7 @@
   <data name="FolderAsk_Skip" xml:space="preserve"><value>既にあるものは飛ばす</value></data>
   <data name="FolderAsk_SkipText" xml:space="preserve"><value>すべてのファイルを確認します。既にあるものはコピーも変更もせず、足りないものだけをコピーします。中断したコピーの続きに最適です。</value></data>
   <data name="FolderAsk_Overwrite" xml:space="preserve"><value>上書きする</value></data>
-  <data name="FolderAsk_OverwriteText" xml:space="preserve"><value>既にあるファイルはコピー元のもので置き換えます。同一のファイルは時間短縮のためそのままにします。</value></data>
+  <data name="FolderAsk_OverwriteText" xml:space="preserve"><value>すでにあるファイルは、同じに見えるものも含めてコピー元のファイルで置き換えます。すべてもう一度コピーします。</value></data>
   <data name="FolderAsk_Rename" xml:space="preserve"><value>名前を変える</value></data>
   <data name="FolderAsk_RenameText" xml:space="preserve"><value>すべてを新しいフォルダー「{0}」にコピーし、既存のフォルダーには触れません。</value></data>
   <data name="FolderAsk_AskEach" xml:space="preserve"><value>1 つずつ確認する</value></data>
@@ -1496,4 +1494,18 @@
   <data name="Settings_AdaptTitle.Text" xml:space="preserve"><value>小さな画面に合わせる</value></data>
   <data name="Settings_AdaptDescription.Text" xml:space="preserve"><value>1366 × 768 のような高さの小さい画面では、ウィンドウ全体が収まるよう、見た目はそのままで少し小さく表示します。大きな画面では何も変わりません。</value></data>
   <data name="Job_StateAsking" xml:space="preserve"><value>回答を待っています</value></data>
+  <data name="Conflict_Identical.Text" xml:space="preserve"><value>同じファイルです（サイズと日付が一致）。</value></data>
+  <data name="Settings_BackdropTitle.Text" xml:space="preserve"><value>ウィンドウの背景</value></data>
+  <data name="Settings_BackdropDescription.Text" xml:space="preserve"><value>ウィンドウの後ろに見える Windows 11 の素材（どのテーマでも使えます）。</value></data>
+  <data name="Backdrop_OptTheme.Content" xml:space="preserve"><value>テーマに合わせる</value></data>
+  <data name="Backdrop_OptTranslucent.Content" xml:space="preserve"><value>半透明（デスクトップが見える）</value></data>
+  <data name="Backdrop_OptAcrylic.Content" xml:space="preserve"><value>デスクトップ アクリル（ベース）</value></data>
+  <data name="Backdrop_OptAcrylicThin.Content" xml:space="preserve"><value>デスクトップ アクリル（薄い）</value></data>
+  <data name="BackdropAcrylicThin.Content" xml:space="preserve"><value>薄いアクリル</value></data>
+  <data name="Info_Backdrop_Text" xml:space="preserve"><value>ウィンドウの内容の後ろに見えるものです。\n• テーマに合わせる: テーマごとに決まった背景（単色、マイカ、アクリル）を使います。\n• 半透明: とても透明なアクリルで、ウィンドウ越しにデスクトップが見えます。\n• マイカ: 壁紙の色合いをやさしく取り込みます。Windows 11 のアプリと同じ背景です。\n• マイカ Alt: マイカと同様ですが、壁紙の色がより強く出ます。\n• デスクトップ アクリル（ベース）: すりガラスのように、ウィンドウの後ろがぼやけて見えます。\n• デスクトップ アクリル（薄い）: ベースより明るく透明です。\nマイカとアクリルには、透明効果をオンにした Windows 11 が必要です。オフの場合は単色になります。</value></data>
+  <data name="SameDrive_NewWindow" xml:space="preserve"><value>新しいウィンドウで</value></data>
+  <data name="SameDrive_NewWindowText" xml:space="preserve"><value>このコピー用に MegaCopier のウィンドウがもう 1 つ開き、もう一方と同時にすぐ始まります（どちらも少し遅くなります）。</value></data>
+  <data name="Settings_IndependentWindowsTitle.Text" xml:space="preserve"><value>コピーごとに別のウィンドウ</value></data>
+  <data name="Settings_IndependentWindowsDescription.Text" xml:space="preserve"><value>コピーごとに 1 つのウィンドウで、ほかを待たずにすぐ始まります。同じウィンドウに複数追加しない限り、コピーの一覧は表示されません。</value></data>
+  <data name="Info_IndependentWindows_Text" xml:space="preserve"><value>通常、MegaCopier のウィンドウは 1 つで、複数のコピーはコピーの一覧に表示されます。このオプションをオンにすると、コピーごとに専用のウィンドウが開き、ほかを待たずにすぐ始まります。\n• どれも同じアプリです。テーマ、アイコン、設定はすべてのウィンドウで共通です（1 つで変えると全部変わります）。\n• 各ウィンドウには、通知領域の進行状況アイコンとタスク バーのボタンがそれぞれあります。\n• 新しいコピーが実行中のコピーと同じドライブに向かう場合は「同じドライブへの新しいコピー」で決まります: 確認する（そのウィンドウのコピーに追加するか、新しいウィンドウで開く）、常に追加する、または確認せずに常に新しいウィンドウを開く。\n• 1 つのウィンドウにコピーを追加すると、そのウィンドウに独自のコピー一覧が表示されます。\n• コピーが終わると、各ウィンドウはいつもどおり閉じます。\n例: 写真を USB メモリにコピーしている間に動画を別のディスクにコピーすると、それぞれの進行状況を表示する 2 つのウィンドウが表示されます。</value></data>
 </root>

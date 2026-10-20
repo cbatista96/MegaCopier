@@ -228,8 +228,10 @@
                         <Grid Style="{StaticResource Row}" Tag="SettingRow">
                             <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
                             <c:McIcon VerticalAlignment="Center" Glyph="&#xE81E;" FontSize="18" Accent="True" />
-                            <StackPanel Grid.Column="1"><TextBlock x:Name="TranslucentTitleLabel" x:Uid="Settings_TranslucentTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="Settings_TranslucentDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
-                            <ToggleSwitch x:Name="TranslucentToggle" AutomationProperties.LabeledBy="{x:Bind TranslucentTitleLabel}" Grid.Column="2" OnContent="" OffContent="" MinWidth="0" Toggled="Translucent_Toggled" />
+                            <StackPanel Grid.Column="1"><Grid ColumnSpacing="4"><Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions><TextBlock x:Name="BackdropTitleLabel" x:Uid="Settings_BackdropTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" VerticalAlignment="Center" /><c:InfoTip Grid.Column="1" Topic="Backdrop" Margin="0,-4,0,-4" /></Grid><TextBlock x:Uid="Settings_BackdropDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                            <ComboBox x:Name="BackdropBox" AutomationProperties.LabeledBy="{x:Bind BackdropTitleLabel}" Grid.Column="2" MinWidth="220" SelectionChanged="Backdrop_Changed">
+                                <ComboBoxItem x:Uid="Backdrop_OptTheme" /><ComboBoxItem x:Uid="Backdrop_OptTranslucent" /><ComboBoxItem x:Uid="BackdropMica" /><ComboBoxItem x:Uid="BackdropMicaAlt" /><ComboBoxItem x:Uid="Backdrop_OptAcrylic" /><ComboBoxItem x:Uid="Backdrop_OptAcrylicThin" />
+                            </ComboBox>
                         </Grid>
                     </StackPanel>
                 </Border>
@@ -287,7 +289,7 @@
                                 <ComboBoxItem x:Uid="ThemeDark" /><ComboBoxItem x:Uid="ThemeLight" />
                             </ComboBox>
                             <ComboBox x:Name="ThemeBackdropBox" AutomationProperties.LabeledBy="{x:Bind ThemeCustomizeLabel}" Grid.Column="2" MinWidth="170" SelectionChanged="ThemeEditor_Changed">
-                                <ComboBoxItem x:Uid="BackdropMica" /><ComboBoxItem x:Uid="BackdropMicaAlt" /><ComboBoxItem x:Uid="BackdropAcrylic" /><ComboBoxItem x:Uid="BackdropSolid" />
+                                <ComboBoxItem x:Uid="BackdropMica" /><ComboBoxItem x:Uid="BackdropMicaAlt" /><ComboBoxItem x:Uid="BackdropAcrylic" /><ComboBoxItem x:Uid="BackdropSolid" /><ComboBoxItem x:Uid="BackdropAcrylicThin" />
                             </ComboBox>
                         </Grid>
                         <VariableSizedWrapGrid x:Name="ColorSlots" Orientation="Horizontal" ItemWidth="210" ItemHeight="44" />
@@ -418,6 +420,12 @@
                             <ComboBox x:Name="OtherDriveBox" AutomationProperties.LabeledBy="{x:Bind OtherDriveTitleLabel}" Grid.Column="2" MinWidth="220" SelectionChanged="Selection_Changed">
                                 <ComboBoxItem x:Uid="OtherDrive_OptParallel" /><ComboBoxItem x:Uid="OtherDrive_OptQueue" />
                             </ComboBox>
+                        </Grid>
+                        <Grid Style="{StaticResource Row}" Tag="SettingRow">
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                            <c:McIcon VerticalAlignment="Center" Glyph="&#xE8A7;" FontSize="18" Accent="True" />
+                            <StackPanel Grid.Column="1"><Grid ColumnSpacing="4"><Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions><TextBlock x:Name="IndependentWindowsTitleLabel" x:Uid="Settings_IndependentWindowsTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" VerticalAlignment="Center" /><c:InfoTip Grid.Column="1" Topic="IndependentWindows" Margin="0,-4,0,-4" /></Grid><TextBlock x:Uid="Settings_IndependentWindowsDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                            <ToggleSwitch x:Name="IndependentWindowsToggle" AutomationProperties.LabeledBy="{x:Bind IndependentWindowsTitleLabel}" Grid.Column="2" OnContent="" OffContent="" MinWidth="0" Toggled="Changed" />
                         </Grid>
                     </StackPanel>
                 </Border>

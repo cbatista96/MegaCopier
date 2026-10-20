@@ -149,18 +149,18 @@ AboutDialog.CloseButtonText	Cerrar	Close
 About_DataFolder.Content	Abrir la carpeta de datos (ajustes, temas, historial, informes)	Open the data folder (settings, themes, history, reports)
 About_Description.Text	El copiador definitivo para Windows 11: más rápido y más seguro que el de Windows, con todas las opciones que necesitas y tan personalizable como quieras (temas, iconos, barras y sonidos). Sigue donde iba incluso tras un corte de luz y comprueba que todo llegó bien.	The ultimate copier for Windows 11: faster and safer than the Windows one, with every option you need and as customizable as you like (themes, icons, bars and sounds). It picks up where it left off even after a power cut and checks that everything arrived intact.
 About_Features.Text	E/S asíncrona sin caché · varias lecturas y escrituras en paralelo · verificación con hash (CRC32, xxHash, MD5, SHA) · cola por disco · pausa y reanudación · mover · conflictos · límite de velocidad · listas de copia · informes · temas.	Unbuffered async I/O · parallel reads and writes · hash verification (CRC32, xxHash, MD5, SHA) · per-disk queue · pause and resume · move · conflicts · speed limit · copy lists · reports · themes.
-Files_AutoScroll.Content	Seguir al actual	Follow current
+Files_AutoScroll.Text	Seguir al actual	Follow current
 Files_CopyHashes.Text	Copiar los hashes	Copy hashes
 Files_CopyPath.Text	Copiar la ruta	Copy path
 Files_Empty.Text	No hay archivos que mostrar	No files to show
 Files_ExportCsv.Text	Exportar a CSV…	Export to CSV…
 Files_ExportHtml.Text	Exportar informe HTML…	Export HTML report…
-Files_FilterAll.Content	Todos	All
-Files_FilterDone.Content	Copiados	Copied
-Files_FilterErrors.Content	Con errores	With errors
-Files_FilterPending.Content	Pendientes	Pending
-Files_FilterSkipped.Content	Omitidos	Skipped
-Files_HideFinished.Content	Ocultar los terminados	Hide finished
+Files_FilterAll.Text	Todos	All
+Files_FilterDone.Text	Copiados	Copied
+Files_FilterErrors.Text	Con errores	With errors
+Files_FilterPending.Text	Pendientes	Pending
+Files_FilterSkipped.Text	Omitidos	Skipped
+Files_HideFinished.Text	Ocultar los terminados	Hide finished
 Files_Menu.Text	Lista	List
 Files_MoveBottom.Text	Mover al final	Move to bottom
 Files_MoveDown.Text	Bajar	Move down
@@ -1085,8 +1085,6 @@ Settings_RememberTitle.Text	Recordar la ventana	Remember the window
 Settings_RememberDescription.Text	Abrirla donde estaba y con el mismo tamaño.	Open it where it was, with the same size.
 Settings_RememberPosition.Content	Posición	Position
 Settings_RememberSize.Content	Tamaño	Size
-Settings_TranslucentTitle.Text	Ventana translúcida	Translucent window
-Settings_TranslucentDescription.Text	Fondo acrílico y más transparente: se ve el escritorio a través de la ventana, con cualquier tema.	Acrylic, more transparent background: the desktop shows through the window, with any theme.
 Settings_Icons.Text	Iconos	Icons
 Settings_IconsDescription.Text	Elige cómo se ven los iconos. Se combinan con cualquier tema.	Choose how the icons look. They work with any theme.
 IconPack_fluent	Fluent (como Windows)	Fluent (like Windows)
@@ -1139,7 +1137,7 @@ FolderAsk_Message	En {0} ya están {1} de los {2} archivos que vas a copiar ({3}
 FolderAsk_Skip	Pasar los que ya están	Pass over the ones already there
 FolderAsk_SkipText	Se comprueba cada archivo: los que ya están no se copian ni se tocan y solo se copian los que faltan. Ideal para terminar una copia que se cortó.	Every file is checked: the ones already there are not copied or touched, and only the missing ones are copied. Ideal for finishing a copy that was cut off.
 FolderAsk_Overwrite	Sobrescribir	Overwrite
-FolderAsk_OverwriteText	Los archivos que ya están se reemplazan por los del origen. Los que son idénticos se dejan como están para ir más rápido.	The files already there are replaced with the ones from the source. Identical ones are left as they are to save time.
+FolderAsk_OverwriteText	Los archivos que ya están se reemplazan por los del origen, también los que parecen iguales: todo se vuelve a copiar.	The files already there are replaced with the ones from the source, even those that look the same: everything is copied again.
 FolderAsk_Rename	Renombrar	Rename
 FolderAsk_RenameText	Se copia todo en una carpeta nueva, «{0}», y la que ya estaba no se toca.	Everything is copied into a new folder, "{0}", and the existing one is left untouched.
 FolderAsk_AskEach	Preguntar uno por uno	Ask one by one
@@ -1490,3 +1488,17 @@ IconPack_hud	Holográfico	Holographic
 Settings_AdaptTitle.Text	Ajustar a pantallas pequeñas	Fit small screens
 Settings_AdaptDescription.Text	En pantallas bajas, como 1366 × 768, la ventana se ve igual pero un poco más pequeña, para que quepa entera. En pantallas grandes no cambia nada.	On short screens, such as 1366 × 768, the window looks the same but a little smaller, so it fits entirely. On large screens nothing changes.
 Job_StateAsking	Esperando tu respuesta	Waiting for your answer
+Conflict_Identical.Text	Son iguales: mismo tamaño y fecha.	They are the same: same size and date.
+Settings_BackdropTitle.Text	Fondo de la ventana	Window background
+Settings_BackdropDescription.Text	El material de Windows 11 que se ve detrás de la ventana, con cualquier tema.	The Windows 11 material shown behind the window, with any theme.
+Backdrop_OptTheme.Content	El del tema	The theme's own
+Backdrop_OptTranslucent.Content	Translúcida (se ve el escritorio)	Translucent (desktop shows through)
+Backdrop_OptAcrylic.Content	Acrílico de escritorio (base)	Desktop Acrylic (Base)
+Backdrop_OptAcrylicThin.Content	Acrílico de escritorio (delgado)	Desktop Acrylic (Thin)
+BackdropAcrylicThin.Content	Acrílico delgado	Thin acrylic
+Info_Backdrop_Text	Es lo que se ve detrás del contenido de la ventana.\n• El del tema: cada tema trae el suyo (liso, Mica o acrílico).\n• Translúcida: acrílico muy transparente; se ve el escritorio detrás de la ventana.\n• Mica: toma suavemente el tono de tu fondo de escritorio. Es el de las aplicaciones de Windows 11.\n• Mica Alt: como Mica, pero con más color del fondo de escritorio.\n• Acrílico de escritorio (base): como un cristal esmerilado; lo que hay detrás de la ventana se ve borroso.\n• Acrílico de escritorio (delgado): más claro y transparente que el base.\nMica y acrílico necesitan Windows 11 con los efectos de transparencia activados; si no, se ve un color liso.	It's what shows behind the window's content.\n• The theme's own: each theme brings its own (solid, Mica or acrylic).\n• Translucent: very transparent acrylic; the desktop shows through the window.\n• Mica: gently takes on the tint of your desktop wallpaper. It's the one Windows 11 apps use.\n• Mica Alt: like Mica, but with more color from the wallpaper.\n• Desktop Acrylic (Base): like frosted glass; whatever is behind the window looks blurred.\n• Desktop Acrylic (Thin): lighter and more transparent than Base.\nMica and acrylic need Windows 11 with transparency effects turned on; otherwise you'll see a solid color.
+SameDrive_NewWindow	En una ventana nueva	In a new window
+SameDrive_NewWindowText	Se abre otra ventana de MegaCopier con esta copia y empieza ya, a la vez que la otra (las dos irán algo más lentas).	Another MegaCopier window opens with this copy and it starts right away, alongside the other one (both will be somewhat slower).
+Settings_IndependentWindowsTitle.Text	Cada copia en su propia ventana	Each copy in its own window
+Settings_IndependentWindowsDescription.Text	Una ventana por copia, que empieza ya sin esperar a las demás. Sin la lista de copias, salvo que sumes varias a una misma ventana.	One window per copy, starting right away without waiting for the others. No copy list, unless you add several to the same window.
+Info_IndependentWindows_Text	Normalmente MegaCopier tiene una sola ventana y, si haces varias copias, las muestra en su lista de copias. Con esta opción, cada copia abre su propia ventana y empieza enseguida, sin esperar a las demás.\n• Todas son la misma aplicación: el tema, los iconos y los ajustes son los mismos en todas (si los cambias en una, cambian en todas).\n• Cada ventana tiene su icono de progreso en la bandeja y su botón en la barra de tareas.\n• Si la copia nueva va al mismo disco que una que está en marcha, decide «Copia nueva al mismo disco»: preguntar (añadirla a la copia de esa ventana o abrirla en una ventana nueva), añadirla siempre o abrir siempre una ventana nueva sin preguntar.\n• Si añades copias a una ventana, esa ventana muestra su propia lista de copias.\n• Al terminar sus copias, cada ventana se cierra como de costumbre.\nEjemplo: copias fotos a un USB y, mientras, vídeos a otro disco: verás dos ventanas, cada una con su progreso.	Normally MegaCopier has a single window and, if you start several copies, it shows them in its copy list. With this option, each copy opens its own window and starts right away, without waiting for the others.\n• They're all the same app: theme, icons and settings are shared (change them in one and they change in all).\n• Each window has its own progress icon in the tray and its own button on the taskbar.\n• If the new copy goes to the same drive as one that is running, "New copy to the same drive" decides: ask (add it to that window's copy or open it in a new window), always add it, or always open a new window without asking.\n• If you add copies to a window, that window shows its own copy list.\n• When its copies finish, each window closes as usual.\nExample: you copy photos to a USB drive and, meanwhile, videos to another disk: you'll see two windows, each with its own progress.

@@ -242,6 +242,122 @@ public sealed partial class McIcon : UserControl
 
                 break;
         }
+
+        UpdateShape();
+    }
+
+    // ---------------------------------------------------------------------------------------------------------
+    // Pausa ⇄ reproducir: la figura se transforma (las dos barras se juntan en el triángulo y al revés)
+
+    /// <summary>Las dos piezas de cada figura, en proporción a la caja del icono (arriba izquierda, arriba derecha, abajo derecha, abajo izquierda).</summary>
+    private static readonly double[][] PausePieces =
+    [
+        [0.20, 0.14, 0.40, 0.14, 0.40, 0.86, 0.20, 0.86],
+        [0.60, 0.14, 0.80, 0.14, 0.80, 0.86, 0.60, 0.86],
+    ];
+
+    private static readonly double[][] PlayPieces =
+    [
+        [0.25, 0.10, 0.59, 0.30, 0.59, 0.70, 0.25, 0.90],
+        [0.585, 0.29, 0.92, 0.50, 0.92, 0.50, 0.585, 0.71],
+    ];
+
+    private Microsoft.UI.Xaml.Shapes.Path? _shape;
+    private double _shapeAt, _shapeFrom, _shapeTo;
+    private long _shapeStart;
+
+    /// <summary>
+    /// Dibuja el icono de pausa o el de reproducir con una figura (en vez de la letra de la fuente) para poder
+    /// transformar una en otra: las barras de la pausa se deslizan y se inclinan hasta formar el triángulo. Conserva el
+    /// color y el fondo del conjunto de iconos.
+    /// </summary>
+    public void MorphTo(bool play, bool animate)
+    {
+        Glyph = play ? "" : ""; // para el color y el fondo de cada conjunto
+        if (_shape is null)
+        {
+            _shape = new Microsoft.UI.Xaml.Shapes.Path
+            {
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                StrokeLineJoin = PenLineJoin.Round,
+                IsHitTestVisible = false,
+            };
+            _root.Children.Add(_shape);
+            animate = false;
+            UpdateShape();
+        }
+
+        _shapeFrom = _shapeAt;
+        _shapeTo = play ? 1 : 0;
+        CompositionTarget.Rendering -= AnimateShape;
+        if (!animate || Theming.BarAppearance.ReduceMotion)
+        {
+            _shapeAt = _shapeTo;
+            DrawShape();
+            return;
+        }
+
+        _shapeStart = System.Diagnostics.Stopwatch.GetTimestamp();
+        CompositionTarget.Rendering += AnimateShape;
+    }
+
+    private void AnimateShape(object? sender, object e)
+    {
+        double progress = Math.Min(1, System.Diagnostics.Stopwatch.GetElapsedTime(_shapeStart).TotalMilliseconds / 260);
+        double eased = progress < 0.5 ? 4 * progress * progress * progress : 1 - (Math.Pow(-2 * progress + 2, 3) / 2);
+        _shapeAt = _shapeFrom + ((_shapeTo - _shapeFrom) * eased);
+        DrawShape();
+        if (progress >= 1)
+        {
+            CompositionTarget.Rendering -= AnimateShape;
+        }
+    }
+
+    /// <summary>La figura toma el color y el tamaño de la letra del icono, que se queda oculta debajo.</summary>
+    private void UpdateShape()
+    {
+        if (_shape is null)
+        {
+            return;
+        }
+
+        _glyph.Opacity = 0;
+        _shape.Fill = _glyph.Foreground;
+        _shape.Stroke = _glyph.Foreground;
+        _shape.StrokeThickness = Math.Max(0.6, _glyph.FontSize / 18); // redondea las esquinas y tapa la junta
+        DrawShape();
+    }
+
+    private void DrawShape()
+    {
+        if (_shape is null)
+        {
+            return;
+        }
+
+        double box = _glyph.FontSize;
+        _shape.Width = box;
+        _shape.Height = box;
+        var geometry = new PathGeometry();
+        for (int piece = 0; piece < 2; piece++)
+        {
+            var from = PausePieces[piece];
+            var to = PlayPieces[piece];
+            Windows.Foundation.Point At(int i) => new(
+                (from[i * 2] + ((to[i * 2] - from[i * 2]) * _shapeAt)) * box,
+                (from[(i * 2) + 1] + ((to[(i * 2) + 1] - from[(i * 2) + 1]) * _shapeAt)) * box);
+
+            var figure = new PathFigure { StartPoint = At(0), IsClosed = true, IsFilled = true };
+            for (int i = 1; i < 4; i++)
+            {
+                figure.Segments.Add(new LineSegment { Point = At(i) });
+            }
+
+            geometry.Figures.Add(figure);
+        }
+
+        _shape.Data = geometry;
     }
 
     /// <summary>Halo de luz del color del icono, con la forma exacta del icono (sombra de composición).</summary>

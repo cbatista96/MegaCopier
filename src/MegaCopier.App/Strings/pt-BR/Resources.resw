@@ -155,18 +155,18 @@
   <data name="About_DataFolder.Content" xml:space="preserve"><value>Abrir a pasta de dados (configurações, temas, histórico, relatórios)</value></data>
   <data name="About_Description.Text" xml:space="preserve"><value>O copiador definitivo para o Windows 11: mais rápido e mais seguro que o do Windows, com todas as opções de que você precisa e tão personalizável quanto quiser (temas, ícones, barras e sons). Continua de onde parou mesmo após uma queda de energia e confere se tudo chegou bem.</value></data>
   <data name="About_Features.Text" xml:space="preserve"><value>E/S assíncrona sem cache · leituras e gravações em paralelo · verificação por hash (CRC32, xxHash, MD5, SHA) · fila por disco · pausa e retomada · mover · conflitos · limite de velocidade · listas de cópia · relatórios · temas.</value></data>
-  <data name="Files_AutoScroll.Content" xml:space="preserve"><value>Seguir o atual</value></data>
+  <data name="Files_AutoScroll.Text" xml:space="preserve"><value>Seguir o atual</value></data>
   <data name="Files_CopyHashes.Text" xml:space="preserve"><value>Copiar os hashes</value></data>
   <data name="Files_CopyPath.Text" xml:space="preserve"><value>Copiar o caminho</value></data>
   <data name="Files_Empty.Text" xml:space="preserve"><value>Nenhum arquivo para mostrar</value></data>
   <data name="Files_ExportCsv.Text" xml:space="preserve"><value>Exportar para CSV…</value></data>
   <data name="Files_ExportHtml.Text" xml:space="preserve"><value>Exportar relatório HTML…</value></data>
-  <data name="Files_FilterAll.Content" xml:space="preserve"><value>Todos</value></data>
-  <data name="Files_FilterDone.Content" xml:space="preserve"><value>Copiados</value></data>
-  <data name="Files_FilterErrors.Content" xml:space="preserve"><value>Com erros</value></data>
-  <data name="Files_FilterPending.Content" xml:space="preserve"><value>Pendentes</value></data>
-  <data name="Files_FilterSkipped.Content" xml:space="preserve"><value>Ignorados</value></data>
-  <data name="Files_HideFinished.Content" xml:space="preserve"><value>Ocultar os concluídos</value></data>
+  <data name="Files_FilterAll.Text" xml:space="preserve"><value>Todos</value></data>
+  <data name="Files_FilterDone.Text" xml:space="preserve"><value>Copiados</value></data>
+  <data name="Files_FilterErrors.Text" xml:space="preserve"><value>Com erros</value></data>
+  <data name="Files_FilterPending.Text" xml:space="preserve"><value>Pendentes</value></data>
+  <data name="Files_FilterSkipped.Text" xml:space="preserve"><value>Ignorados</value></data>
+  <data name="Files_HideFinished.Text" xml:space="preserve"><value>Ocultar os concluídos</value></data>
   <data name="Files_Menu.Text" xml:space="preserve"><value>Lista</value></data>
   <data name="Files_MoveBottom.Text" xml:space="preserve"><value>Mover para o fim</value></data>
   <data name="Files_MoveDown.Text" xml:space="preserve"><value>Descer</value></data>
@@ -1091,8 +1091,6 @@
   <data name="Settings_RememberDescription.Text" xml:space="preserve"><value>Abri-la onde estava e com o mesmo tamanho.</value></data>
   <data name="Settings_RememberPosition.Content" xml:space="preserve"><value>Posição</value></data>
   <data name="Settings_RememberSize.Content" xml:space="preserve"><value>Tamanho</value></data>
-  <data name="Settings_TranslucentTitle.Text" xml:space="preserve"><value>Janela translúcida</value></data>
-  <data name="Settings_TranslucentDescription.Text" xml:space="preserve"><value>Fundo acrílico e mais transparente: a área de trabalho aparece através da janela, com qualquer tema.</value></data>
   <data name="Settings_Icons.Text" xml:space="preserve"><value>Ícones</value></data>
   <data name="Settings_IconsDescription.Text" xml:space="preserve"><value>Escolha a aparência dos ícones. Combinam com qualquer tema.</value></data>
   <data name="IconPack_fluent" xml:space="preserve"><value>Fluent (como o Windows)</value></data>
@@ -1145,7 +1143,7 @@
   <data name="FolderAsk_Skip" xml:space="preserve"><value>Pular os que já estão lá</value></data>
   <data name="FolderAsk_SkipText" xml:space="preserve"><value>Cada arquivo é verificado: os que já estão lá não são copiados nem alterados e só os que faltam são copiados. Ideal para terminar uma cópia interrompida.</value></data>
   <data name="FolderAsk_Overwrite" xml:space="preserve"><value>Substituir</value></data>
-  <data name="FolderAsk_OverwriteText" xml:space="preserve"><value>Os arquivos que já estão lá são substituídos pelos da origem. Os idênticos ficam como estão para ganhar tempo.</value></data>
+  <data name="FolderAsk_OverwriteText" xml:space="preserve"><value>Os arquivos que já estão lá são substituídos pelos da origem, inclusive os que parecem iguais: tudo é copiado de novo.</value></data>
   <data name="FolderAsk_Rename" xml:space="preserve"><value>Renomear</value></data>
   <data name="FolderAsk_RenameText" xml:space="preserve"><value>Tudo é copiado para uma pasta nova, &quot;{0}&quot;, e a que já existia não é alterada.</value></data>
   <data name="FolderAsk_AskEach" xml:space="preserve"><value>Perguntar um por um</value></data>
@@ -1496,4 +1494,18 @@
   <data name="Settings_AdaptTitle.Text" xml:space="preserve"><value>Ajustar a telas pequenas</value></data>
   <data name="Settings_AdaptDescription.Text" xml:space="preserve"><value>Em telas baixas, como 1366 × 768, a janela fica igual, só um pouco menor, para caber inteira. Em telas grandes nada muda.</value></data>
   <data name="Job_StateAsking" xml:space="preserve"><value>Aguardando sua resposta</value></data>
+  <data name="Conflict_Identical.Text" xml:space="preserve"><value>São iguais: mesmo tamanho e mesma data.</value></data>
+  <data name="Settings_BackdropTitle.Text" xml:space="preserve"><value>Fundo da janela</value></data>
+  <data name="Settings_BackdropDescription.Text" xml:space="preserve"><value>O material do Windows 11 que aparece atrás da janela, com qualquer tema.</value></data>
+  <data name="Backdrop_OptTheme.Content" xml:space="preserve"><value>O do tema</value></data>
+  <data name="Backdrop_OptTranslucent.Content" xml:space="preserve"><value>Translúcida (a área de trabalho aparece)</value></data>
+  <data name="Backdrop_OptAcrylic.Content" xml:space="preserve"><value>Acrílico da área de trabalho (base)</value></data>
+  <data name="Backdrop_OptAcrylicThin.Content" xml:space="preserve"><value>Acrílico da área de trabalho (fino)</value></data>
+  <data name="BackdropAcrylicThin.Content" xml:space="preserve"><value>Acrílico fino</value></data>
+  <data name="Info_Backdrop_Text" xml:space="preserve"><value>É o que aparece atrás do conteúdo da janela.\n• O do tema: cada tema traz o seu (sólido, Mica ou acrílico).\n• Translúcida: acrílico bem transparente; a área de trabalho aparece atrás da janela.\n• Mica: pega suavemente o tom do seu papel de parede. É o dos aplicativos do Windows 11.\n• Mica Alt: como o Mica, mas com mais cor do papel de parede.\n• Acrílico da área de trabalho (base): como vidro fosco; o que está atrás da janela fica desfocado.\n• Acrílico da área de trabalho (fino): mais claro e transparente que o base.\nMica e acrílico precisam do Windows 11 com os efeitos de transparência ativados; senão, aparece uma cor sólida.</value></data>
+  <data name="SameDrive_NewWindow" xml:space="preserve"><value>Em uma nova janela</value></data>
+  <data name="SameDrive_NewWindowText" xml:space="preserve"><value>Outra janela do MegaCopier se abre com esta cópia, que começa já, junto com a outra (as duas ficarão um pouco mais lentas).</value></data>
+  <data name="Settings_IndependentWindowsTitle.Text" xml:space="preserve"><value>Cada cópia na própria janela</value></data>
+  <data name="Settings_IndependentWindowsDescription.Text" xml:space="preserve"><value>Uma janela por cópia, que começa já sem esperar as outras. Sem lista de cópias, a não ser que você junte várias na mesma janela.</value></data>
+  <data name="Info_IndependentWindows_Text" xml:space="preserve"><value>Normalmente o MegaCopier tem uma só janela e, se você faz várias cópias, mostra todas na lista de cópias. Com esta opção, cada cópia abre a própria janela e começa já, sem esperar as outras.\n• É sempre o mesmo aplicativo: tema, ícones e configurações são os mesmos em todas (se mudar em uma, muda em todas).\n• Cada janela tem seu ícone de progresso na bandeja e seu botão na barra de tarefas.\n• Se a nova cópia vai para o mesmo disco que outra em andamento, quem decide é «Nova cópia para o mesmo disco»: perguntar (juntar à cópia daquela janela ou abrir em uma nova janela), juntar sempre ou abrir sempre uma nova janela sem perguntar.\n• Se você junta cópias em uma janela, essa janela mostra a própria lista de cópias.\n• Quando as cópias dela terminam, cada janela fecha como sempre.\nExemplo: você copia fotos para um pendrive e, enquanto isso, vídeos para outro disco: verá duas janelas, cada uma com seu progresso.</value></data>
 </root>

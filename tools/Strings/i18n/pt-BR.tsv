@@ -149,18 +149,18 @@ AboutDialog.CloseButtonText	Fechar
 About_DataFolder.Content	Abrir a pasta de dados (configurações, temas, histórico, relatórios)
 About_Description.Text	O copiador definitivo para o Windows 11: mais rápido e mais seguro que o do Windows, com todas as opções de que você precisa e tão personalizável quanto quiser (temas, ícones, barras e sons). Continua de onde parou mesmo após uma queda de energia e confere se tudo chegou bem.
 About_Features.Text	E/S assíncrona sem cache · leituras e gravações em paralelo · verificação por hash (CRC32, xxHash, MD5, SHA) · fila por disco · pausa e retomada · mover · conflitos · limite de velocidade · listas de cópia · relatórios · temas.
-Files_AutoScroll.Content	Seguir o atual
+Files_AutoScroll.Text	Seguir o atual
 Files_CopyHashes.Text	Copiar os hashes
 Files_CopyPath.Text	Copiar o caminho
 Files_Empty.Text	Nenhum arquivo para mostrar
 Files_ExportCsv.Text	Exportar para CSV…
 Files_ExportHtml.Text	Exportar relatório HTML…
-Files_FilterAll.Content	Todos
-Files_FilterDone.Content	Copiados
-Files_FilterErrors.Content	Com erros
-Files_FilterPending.Content	Pendentes
-Files_FilterSkipped.Content	Ignorados
-Files_HideFinished.Content	Ocultar os concluídos
+Files_FilterAll.Text	Todos
+Files_FilterDone.Text	Copiados
+Files_FilterErrors.Text	Com erros
+Files_FilterPending.Text	Pendentes
+Files_FilterSkipped.Text	Ignorados
+Files_HideFinished.Text	Ocultar os concluídos
 Files_Menu.Text	Lista
 Files_MoveBottom.Text	Mover para o fim
 Files_MoveDown.Text	Descer
@@ -1085,8 +1085,6 @@ Settings_RememberTitle.Text	Lembrar a janela
 Settings_RememberDescription.Text	Abri-la onde estava e com o mesmo tamanho.
 Settings_RememberPosition.Content	Posição
 Settings_RememberSize.Content	Tamanho
-Settings_TranslucentTitle.Text	Janela translúcida
-Settings_TranslucentDescription.Text	Fundo acrílico e mais transparente: a área de trabalho aparece através da janela, com qualquer tema.
 Settings_Icons.Text	Ícones
 Settings_IconsDescription.Text	Escolha a aparência dos ícones. Combinam com qualquer tema.
 IconPack_fluent	Fluent (como o Windows)
@@ -1139,7 +1137,7 @@ FolderAsk_Message	{1} dos {2} arquivos que você vai copiar já estão em {0} ({
 FolderAsk_Skip	Pular os que já estão lá
 FolderAsk_SkipText	Cada arquivo é verificado: os que já estão lá não são copiados nem alterados e só os que faltam são copiados. Ideal para terminar uma cópia interrompida.
 FolderAsk_Overwrite	Substituir
-FolderAsk_OverwriteText	Os arquivos que já estão lá são substituídos pelos da origem. Os idênticos ficam como estão para ganhar tempo.
+FolderAsk_OverwriteText	Os arquivos que já estão lá são substituídos pelos da origem, inclusive os que parecem iguais: tudo é copiado de novo.
 FolderAsk_Rename	Renomear
 FolderAsk_RenameText	Tudo é copiado para uma pasta nova, "{0}", e a que já existia não é alterada.
 FolderAsk_AskEach	Perguntar um por um
@@ -1490,3 +1488,17 @@ IconPack_hud	Holográfico
 Settings_AdaptTitle.Text	Ajustar a telas pequenas
 Settings_AdaptDescription.Text	Em telas baixas, como 1366 × 768, a janela fica igual, só um pouco menor, para caber inteira. Em telas grandes nada muda.
 Job_StateAsking	Aguardando sua resposta
+Conflict_Identical.Text	São iguais: mesmo tamanho e mesma data.
+Settings_BackdropTitle.Text	Fundo da janela
+Settings_BackdropDescription.Text	O material do Windows 11 que aparece atrás da janela, com qualquer tema.
+Backdrop_OptTheme.Content	O do tema
+Backdrop_OptTranslucent.Content	Translúcida (a área de trabalho aparece)
+Backdrop_OptAcrylic.Content	Acrílico da área de trabalho (base)
+Backdrop_OptAcrylicThin.Content	Acrílico da área de trabalho (fino)
+BackdropAcrylicThin.Content	Acrílico fino
+Info_Backdrop_Text	É o que aparece atrás do conteúdo da janela.\n• O do tema: cada tema traz o seu (sólido, Mica ou acrílico).\n• Translúcida: acrílico bem transparente; a área de trabalho aparece atrás da janela.\n• Mica: pega suavemente o tom do seu papel de parede. É o dos aplicativos do Windows 11.\n• Mica Alt: como o Mica, mas com mais cor do papel de parede.\n• Acrílico da área de trabalho (base): como vidro fosco; o que está atrás da janela fica desfocado.\n• Acrílico da área de trabalho (fino): mais claro e transparente que o base.\nMica e acrílico precisam do Windows 11 com os efeitos de transparência ativados; senão, aparece uma cor sólida.
+SameDrive_NewWindow	Em uma nova janela
+SameDrive_NewWindowText	Outra janela do MegaCopier se abre com esta cópia, que começa já, junto com a outra (as duas ficarão um pouco mais lentas).
+Settings_IndependentWindowsTitle.Text	Cada cópia na própria janela
+Settings_IndependentWindowsDescription.Text	Uma janela por cópia, que começa já sem esperar as outras. Sem lista de cópias, a não ser que você junte várias na mesma janela.
+Info_IndependentWindows_Text	Normalmente o MegaCopier tem uma só janela e, se você faz várias cópias, mostra todas na lista de cópias. Com esta opção, cada cópia abre a própria janela e começa já, sem esperar as outras.\n• É sempre o mesmo aplicativo: tema, ícones e configurações são os mesmos em todas (se mudar em uma, muda em todas).\n• Cada janela tem seu ícone de progresso na bandeja e seu botão na barra de tarefas.\n• Se a nova cópia vai para o mesmo disco que outra em andamento, quem decide é «Nova cópia para o mesmo disco»: perguntar (juntar à cópia daquela janela ou abrir em uma nova janela), juntar sempre ou abrir sempre uma nova janela sem perguntar.\n• Se você junta cópias em uma janela, essa janela mostra a própria lista de cópias.\n• Quando as cópias dela terminam, cada janela fecha como sempre.\nExemplo: você copia fotos para um pendrive e, enquanto isso, vídeos para outro disco: verá duas janelas, cada uma com seu progresso.

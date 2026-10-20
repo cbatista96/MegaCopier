@@ -149,18 +149,18 @@ AboutDialog.CloseButtonText	Sluiten
 About_DataFolder.Content	De gegevensmap openen (instellingen, thema's, geschiedenis, rapporten)
 About_Description.Text	De ultieme kopieerder voor Windows 11: sneller en veiliger dan die van Windows, met alle opties die je nodig hebt en zo aanpasbaar als je wilt (thema's, pictogrammen, balken en geluiden). Hij gaat verder waar hij was, zelfs na een stroomstoring, en controleert of alles goed is aangekomen.
 About_Features.Text	Asynchrone I/O zonder cache · parallelle lees- en schrijfacties · controle met hash (CRC32, xxHash, MD5, SHA) · wachtrij per schijf · pauzeren en hervatten · verplaatsen · conflicten · snelheidslimiet · kopieerlijsten · rapporten · thema's.
-Files_AutoScroll.Content	Huidige volgen
+Files_AutoScroll.Text	Huidige volgen
 Files_CopyHashes.Text	Hashes kopiëren
 Files_CopyPath.Text	Pad kopiëren
 Files_Empty.Text	Geen bestanden om te tonen
 Files_ExportCsv.Text	Exporteren naar CSV…
 Files_ExportHtml.Text	HTML-rapport exporteren…
-Files_FilterAll.Content	Alle
-Files_FilterDone.Content	Gekopieerd
-Files_FilterErrors.Content	Met fouten
-Files_FilterPending.Content	In behandeling
-Files_FilterSkipped.Content	Overgeslagen
-Files_HideFinished.Content	Voltooide verbergen
+Files_FilterAll.Text	Alle
+Files_FilterDone.Text	Gekopieerd
+Files_FilterErrors.Text	Met fouten
+Files_FilterPending.Text	In behandeling
+Files_FilterSkipped.Text	Overgeslagen
+Files_HideFinished.Text	Voltooide verbergen
 Files_Menu.Text	Lijst
 Files_MoveBottom.Text	Naar het einde
 Files_MoveDown.Text	Omlaag
@@ -1085,8 +1085,6 @@ Settings_RememberTitle.Text	Venster onthouden
 Settings_RememberDescription.Text	Openen waar het was, met dezelfde grootte.
 Settings_RememberPosition.Content	Positie
 Settings_RememberSize.Content	Grootte
-Settings_TranslucentTitle.Text	Doorschijnend venster
-Settings_TranslucentDescription.Text	Acryl, meer transparante achtergrond: het bureaublad schijnt door het venster, met elk thema.
 Settings_Icons.Text	Pictogrammen
 Settings_IconsDescription.Text	Kies hoe de pictogrammen eruitzien. Ze passen bij elk thema.
 IconPack_fluent	Fluent (zoals Windows)
@@ -1139,7 +1137,7 @@ FolderAsk_Message	{1} van de {2} bestanden die je kopieert staan al in {0} ({3})
 FolderAsk_Skip	De bestaande overslaan
 FolderAsk_SkipText	Elk bestand wordt gecontroleerd: de bestaande worden niet gekopieerd of aangeraakt, alleen de ontbrekende worden gekopieerd. Ideaal om een onderbroken kopie af te maken.
 FolderAsk_Overwrite	Overschrijven
-FolderAsk_OverwriteText	De bestaande bestanden worden vervangen door die van de bron. Identieke blijven zoals ze zijn, dat scheelt tijd.
+FolderAsk_OverwriteText	De bestanden die er al staan, worden vervangen door die van de bron, ook die er hetzelfde uitzien: alles wordt opnieuw gekopieerd.
 FolderAsk_Rename	Naam wijzigen
 FolderAsk_RenameText	Alles wordt gekopieerd naar een nieuwe map, "{0}", en de bestaande blijft ongemoeid.
 FolderAsk_AskEach	Per bestand vragen
@@ -1490,3 +1488,17 @@ IconPack_hud	Holografisch
 Settings_AdaptTitle.Text	Aanpassen aan kleine schermen
 Settings_AdaptDescription.Text	Op lage schermen, zoals 1366 × 768, ziet het venster er hetzelfde uit maar iets kleiner, zodat het er helemaal op past. Op grote schermen verandert er niets.
 Job_StateAsking	Wacht op je antwoord
+Conflict_Identical.Text	Ze zijn gelijk: dezelfde grootte en datum.
+Settings_BackdropTitle.Text	Vensterachtergrond
+Settings_BackdropDescription.Text	Het Windows 11-materiaal achter het venster, met elk thema.
+Backdrop_OptTheme.Content	Van het thema
+Backdrop_OptTranslucent.Content	Doorschijnend (bureaublad zichtbaar)
+Backdrop_OptAcrylic.Content	Bureaublad-acryl (basis)
+Backdrop_OptAcrylicThin.Content	Bureaublad-acryl (dun)
+BackdropAcrylicThin.Content	Dun acryl
+Info_Backdrop_Text	Dit is wat je achter de inhoud van het venster ziet.\n• Van het thema: elk thema heeft zijn eigen (effen, Mica of acryl).\n• Doorschijnend: zeer transparant acryl; het bureaublad schijnt door het venster.\n• Mica: neemt zacht de tint van je bureaubladachtergrond over. Dit gebruiken de apps van Windows 11.\n• Mica Alt: zoals Mica, maar met meer kleur uit de achtergrond.\n• Bureaublad-acryl (basis): als matglas; wat achter het venster staat, lijkt wazig.\n• Bureaublad-acryl (dun): lichter en transparanter dan basis.\nMica en acryl hebben Windows 11 nodig met transparantie-effecten aan; anders zie je een effen kleur.
+SameDrive_NewWindow	In een nieuw venster
+SameDrive_NewWindowText	Er opent een ander MegaCopier-venster met deze kopie, die meteen tegelijk met de andere start (beide gaan iets trager).
+Settings_IndependentWindowsTitle.Text	Elke kopie in een eigen venster
+Settings_IndependentWindowsDescription.Text	Eén venster per kopie, dat meteen start zonder op de andere te wachten. Zonder kopielijst, tenzij je er meerdere aan hetzelfde venster toevoegt.
+Info_IndependentWindows_Text	Normaal heeft MegaCopier één venster en toont het meerdere kopieën in de kopielijst. Met deze optie opent elke kopie een eigen venster en start meteen, zonder op de andere te wachten.\n• Het is steeds dezelfde app: thema, pictogrammen en instellingen zijn overal gelijk (wijzig je ze in één venster, dan wijzigen ze in alle).\n• Elk venster heeft een eigen voortgangspictogram in het systeemvak en een eigen knop op de taakbalk.\n• Gaat de nieuwe kopie naar hetzelfde station als een lopende, dan beslist ‘Nieuwe kopie naar hetzelfde station’: vragen (toevoegen aan de kopie van dat venster of openen in een nieuw venster), altijd toevoegen of altijd zonder vragen een nieuw venster openen.\n• Voeg je kopieën toe aan een venster, dan toont dat venster zijn eigen kopielijst.\n• Als de kopieën klaar zijn, sluit elk venster zoals gewoonlijk.\nVoorbeeld: je kopieert foto's naar een usb-stick en intussen video's naar een andere schijf: je ziet twee vensters, elk met zijn eigen voortgang.

@@ -179,6 +179,11 @@ Si la copia nueva va **al mismo disco** que una que ya está copiando, MegaCopie
 Si va **a otro disco**, empieza a la vez, sin esperar: cada disco copia a su velocidad. Las dos cosas se cambian en
 *Ajustes > Comportamiento*.
 
+Si prefieres **una ventana por copia**, activa *Cada copia en su propia ventana* (también en *Comportamiento*): cada
+copia abre su ventana y empieza ya. Es la misma aplicación (mismo tema, mismos iconos y ajustes en todas) y cada ventana
+tiene su icono de progreso en la bandeja. Si la nueva va al mismo disco que otra, la pregunta ofrece añadirla a la copia
+de esa ventana o abrirla **en una ventana nueva**.
+
 ![Dos copias a la vez: la segunda espera turno y «Comenzar» la arranca](capturas/varias-copias.png)
 
 En la lista, la búsqueda va siempre a la izquierda y encoge si falta sitio; las casillas *Ocultar los terminados* y
@@ -279,9 +284,11 @@ empezar**:
 
 - **Pasar los que ya están** (recomendado): comprueba cada archivo; los que ya están no se copian ni se tocan y se copian
   solo los que faltan. Ideal para terminar una copia que se cortó.
-- **Sobrescribir**: los que ya están se reemplazan (los idénticos se dejan como están).
+- **Sobrescribir**: los que ya están se reemplazan, también los que parecen iguales: todo se vuelve a copiar.
 - **Renombrar**: se copia todo en una carpeta nueva, «Fotos (2)», y la que ya estaba no se toca.
 - **Preguntar uno por uno**: el diálogo de arriba, archivo por archivo.
+
+![El archivo ya existe: las dos fotos en miniatura y la nota de que son iguales](capturas/archivo-existe.png)
 - **Cancelar la copia**: no se copia nada.
 
 Se cambia en *Ajustes > Copia > Reglas > Si una carpeta ya existe en el destino* (combinar su contenido, omitirla entera o
@@ -535,10 +542,10 @@ En una ventana estrecha la lista de secciones se queda solo con los iconos.
 | Sección | Qué se ajusta |
 |---|---|
 | **General** | Usar MegaCopier en lugar del copiador de Windows · Copiar y mover al pegar (Ctrl+V) · Arrastrar con el botón izquierdo (y si preguntar antes) · Opciones en el menú contextual · Iniciar con Windows. |
-| **Interfaz** | Ventana compacta, completa o automática · Qué hacer al terminar · **Qué hacen la X y minimizar** · Siempre visible · Avisar al terminar · **Idioma** · Unidades de tamaño · Mostrar el icono en la bandeja · **Progreso de cada copia en la bandeja** · Iniciar las copias con la ventana minimizada · Recordar la posición y el tamaño de la ventana · Ventana translúcida · Ajustar a pantallas pequeñas · **Temas** y su editor · **Conjuntos de iconos** (ver [Temas e iconos](#18-temas-e-iconos)). |
+| **Interfaz** | Ventana compacta, completa o automática · Qué hacer al terminar · **Qué hacen la X y minimizar** · Siempre visible · Avisar al terminar · **Idioma** · Unidades de tamaño · Mostrar el icono en la bandeja · **Progreso de cada copia en la bandeja** · Iniciar las copias con la ventana minimizada · Recordar la posición y el tamaño de la ventana · **Fondo de la ventana** (el del tema, translúcida, Mica, Mica Alt, acrílico base o delgado) · Ajustar a pantallas pequeñas · **Temas** y su editor · **Conjuntos de iconos** (ver [Temas e iconos](#18-temas-e-iconos)). |
 | **Sonidos** | Sonido para cada momento (copia terminada, todas terminadas, error, pregunta), volumen y no sonar con juegos, presentaciones o «No molestar». Por defecto suenan los **sonidos propios de MegaCopier** (campanillas originales, no los avisos de Windows); en cada momento puedes elegir, de arriba abajo, **un archivo tuyo**, ninguno, el propio de ese momento, uno de la **colección de MegaCopier** (19 sonidos originales: avisos de menos de un segundo, notificaciones de 1,5 a 3 s y melodías de hasta 4 s) o uno de Windows, y probarlo con ▶. |
 | **Copia** | Verificar después de copiar · Si el archivo ya existe · Algoritmo de suma · Qué se copia (fechas, atributos, ADS, permisos, propietario, auditoría) · Archivo de sumas e informe · Comprobar el espacio libre antes · Caché del sistema · Comprimir por la red (SMB) · Reanudar solas al arrancar · Rendimiento · Filtros y reglas. |
-| **Comportamiento** | **Copia nueva al mismo disco que otra en marcha** (preguntar, añadirla, copia aparte después o a la vez) · **Copia nueva a otro disco** (empezar a la vez o esperar su turno) · **Al mover, conservar también** atributos, permisos, propietario y auditoría · **Al detener una copia, borrar lo que quedó a medias** (y no hacerlo si paró por un error) · **Al terminar, expulsar la unidad de destino** si es extraíble (y forzarlo). |
+| **Comportamiento** | **Copia nueva al mismo disco que otra en marcha** (preguntar, añadirla, copia aparte después o a la vez) · **Copia nueva a otro disco** (empezar a la vez o esperar su turno) · **Cada copia en su propia ventana** (una ventana por copia, que empieza ya) · **Al mover, conservar también** atributos, permisos, propietario y auditoría · **Al detener una copia, borrar lo que quedó a medias** (y no hacerlo si paró por un error) · **Al terminar, expulsar la unidad de destino** si es extraíble (y forzarlo). |
 | **Errores** | **Si un archivo sigue fallando**: omitirlo y seguir, detener la copia, reintentarlo al final o **preguntar qué hacer** · Reintentos y espera entre ellos · **Informe de errores** automático (en la carpeta de destino o en una fija, con el nombre que quieras) · Guardar el registro de cada copia. |
 | **Cola y rendimiento** | Copias a la vez · Dispositivos rápidos · Ir más despacio mientras usas el equipo · Límite de velocidad por horario · Pausar con batería · Pausar en juegos · Prioridad del proceso · Excluir MegaCopier de Windows Defender · Ajuste automático para cada disco. |
 | **Red y dispositivos** | Carpetas favoritas · Recibir de otro PC con MegaCopier · Recibir con LocalSend · Controlar desde el móvil · Servidores y nubes. |

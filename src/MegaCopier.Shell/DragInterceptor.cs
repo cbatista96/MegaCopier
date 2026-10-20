@@ -5,23 +5,28 @@ using System.Runtime.InteropServices;
 
 namespace MegaCopier.Shell;
 
-/// <summary>
+//// <summary>
 /// Sustituye el arrastre con el botón izquierdo entre ventanas del Explorador por MegaCopier, sin inyectar nada en
 /// el Explorador.
 ///
-/// Un gancho de ratón de bajo nivel recuerda en qué lista de archivos se pulsó el botón. Al soltarlo comprueba, con
-/// llamadas instantáneas, que hay un arrastre OLE en curso desde ese hilo del Explorador (durante DoDragDrop el ratón
-/// lo captura una ventana CLIPBRDWNDCLASS; una selección con recuadro no) y que se suelta sobre otra lista de archivos
-/// o sobre el panel de navegación (también puede empezar en él).
-/// Entonces retiene ese "soltar" y en un hilo aparte decide (qué hay seleccionado, qué hay bajo el puntero, qué teclas
-/// hay pulsadas) con <see cref="DragDecision"/>:
+/// Un gancho de ratón de bajo nivel recuerda en qué lista de archivos (o en qué panel de navegación) se pulsó el
+/// botón. Al soltarlo comprueba, con llamadas instantáneas, que hay un arrastre OLE en curso desde ese hilo del
+/// Explorador (durante DoDragDrop el ratón lo captura una ventana CLIPBRDWNDCLASS; una selección con recuadro no) y que
+/// se suelta sobre otra lista de archivos o sobre el panel de navegación. Entonces retiene ese "soltar" y, en un hilo
+/// propio de ese arrastre, decide (qué hay seleccionado, qué hay bajo el puntero, qué teclas hay pulsadas) con
+/// <see cref="DragDecision"/>:
 ///  - si es para MegaCopier, cancela el arrastre del Explorador con Esc, devuelve el botón a su estado y copia;
 ///  - si no, suelta el botón como si nada: el Explorador hace lo de siempre.
 /// Si el Explorador no cancela a tiempo, también se le devuelve: nunca copian los dos.
 ///
+/// Mientras dura el arrastre, el hilo del Explorador que lo lleva solo atiende a otros programas (la accesibilidad,
+/// las consultas COM) cuando le llega algo del ratón o del teclado. Con el botón retenido y el ratón quieto no le llega
+/// nada, y cualquier pregunta sobre esa ventana se quedaría esperando hasta el siguiente clic. Por eso, mientras se
+/// decide, se le envían movimientos de ratón de cero píxeles (el puntero no se mueve) y hay un plazo: si se agota,
+/// suelta el Explorador. Así el botón nunca se queda "pegado".
+///
 /// Para decidir deprisa, lo que no cambia durante el arrastre (qué se arrastra) se lee en cuanto empieza, mientras el
-/// usuario aún mueve el ratón; al soltar solo falta mirar el destino. Así casi nunca se agota el tiempo de decidir
-/// (que haría que copiara el Explorador en lugar de MegaCopier).
+/// usuario aún mueve el ratón; al soltar solo falta mirar el destino.
 /// </summary>
 public sealed unsafe partial class DragInterceptor : IDisposable
 {
@@ -30,14 +35,18 @@ public sealed unsafe partial class DragInterceptor : IDisposable
     private const uint LlmhfInjected = 0x1;
     private const int VkControl = 0x11, VkShift = 0x10, VkMenu = 0x12, VkEscape = 0x1B;
 
+    /// <summary>Lo más que se retiene el botón mientras se decide; después suelta el Explorador.</summary>
+    private static readonly TimeSpan Deadline = TimeSpan.FromMilliseconds(1800);
+
+    /// <summary>Cada cuánto se "despierta" al Explorador mientras se decide.</summary>
+    private const int NudgeMilliseconds = 25;
+
     /// <summary>Marca de las pulsaciones que envía MegaCopier ("MCPY"), para que el gancho las deje pasar.</summary>
     private const nuint Marker = 0x4D435059;
 
     private static DragInterceptor? _active;
 
     private readonly Func<DragRequest, bool> _handler;
-    private readonly BlockingCollection<object> _work = new();
-    private readonly Thread _worker;
     private readonly HookThread _hooks;
     private nint _downView;
     private bool _downTree;
@@ -45,21 +54,21 @@ public sealed unsafe partial class DragInterceptor : IDisposable
     private uint _downThread;
     private bool _prefetchQueued;
 
-    /// <summary>Lo arrastrado, leído al empezar el arrastre (solo lo usa el hilo de trabajo).</summary>
-    private (nint View, ViewSnapshot? Snapshot) _prefetched;
+    /// <summary>Lo arrastrado, que se empieza a leer (en un hilo propio) en cuanto empieza el arrastre.</summary>
+    private volatile Prefetch? _prefetch;
 
-    /// <param name="handler">Recibe la copia en el hilo de trabajo; devuelve true si MegaCopier la acepta.</param>
+    /// <param name="handler">Recibe la copia en un hilo aparte; devuelve true si MegaCopier la acepta.</param>
     public DragInterceptor(Func<DragRequest, bool> handler)
     {
         _handler = handler;
-        _worker = new Thread(WorkLoop) { IsBackground = true, Name = "MegaCopier.Drag" };
-        _worker.SetApartmentState(ApartmentState.STA);
-        _worker.Start();
         _hooks = new HookThread(WhMouseLl, &HookProc, "MegaCopier.MouseHook");
     }
 
-    /// <summary>Se dispara (en el hilo de trabajo) cuando un arrastre se devuelve al Explorador, con el motivo.</summary>
+    /// <summary>Se dispara (en otro hilo) cuando un arrastre se devuelve al Explorador, con el motivo.</summary>
     public event Action<string>? PassedThrough;
+
+    /// <summary>Se dispara (en otro hilo) con cada arrastre que se queda MegaCopier o que se decide tarde.</summary>
+    public event Action<string>? Traced;
 
     public bool IsEnabled => _hooks.IsInstalled;
 
@@ -68,6 +77,7 @@ public sealed unsafe partial class DragInterceptor : IDisposable
     {
         _active = this;
         _hooks.Start();
+        ShellNamespace.WarmUpInBackground(); // por si se suelta en el panel de navegación
     }
 
     public void Disable()
@@ -76,11 +86,7 @@ public sealed unsafe partial class DragInterceptor : IDisposable
         _downView = 0;
     }
 
-    public void Dispose()
-    {
-        Disable();
-        _work.CompleteAdding();
-    }
+    public void Dispose() => Disable();
 
     private static bool Pressed(int key) => (Native.GetAsyncKeyState(key) & 0x8000) != 0;
 
@@ -130,15 +136,17 @@ public sealed unsafe partial class DragInterceptor : IDisposable
             _downY = y;
             _downThread = _downView == 0 ? 0 : Native.GetWindowThreadProcessId(_downView, out _);
             _prefetchQueued = false;
+            _prefetch = null;
             return false;
         }
 
-        // Empieza un arrastre desde una lista de archivos: lo arrastrado se lee ya, sin esperar a que se suelte.
+        // Empieza un arrastre: lo arrastrado se lee ya, mientras el ratón se mueve, sin esperar a que se suelte.
         if (message == WmMouseMove)
         {
             if (_downView != 0 && !_prefetchQueued && Native.ClassName(Native.CaptureWindow(_downThread)) == "CLIPBRDWNDCLASS")
             {
-                _prefetchQueued = _work.TryAdd(new Prefetch(_downView, _downTree, _downX, _downY));
+                _prefetchQueued = true;
+                _prefetch = Prefetch.Start(_downView, _downTree, _downX, _downY);
             }
 
             return false;
@@ -166,108 +174,209 @@ public sealed unsafe partial class DragInterceptor : IDisposable
             return false; // barra de direcciones, otro programa...: lo suelta el Explorador
         }
 
-        return _work.TryAdd(new Pending(source, sourceTree, target, tree, x, y, Pressed(VkControl), Pressed(VkShift), thread, Stopwatch.GetTimestamp()));
+        var pending = new Pending(source, sourceTree, target, tree, x, y, Pressed(VkControl), Pressed(VkShift), thread);
+        new Drop(this, pending, _prefetch).Start();
+        _prefetch = null;
+        return true;
     }
 
-    private void WorkLoop()
+    /// <summary>
+    /// Lo que se arrastra, leído en un hilo propio en cuanto empieza el arrastre (mientras el usuario mueve el ratón,
+    /// el Explorador responde enseguida).
+    /// </summary>
+    private sealed class Prefetch
     {
-        foreach (var item in _work.GetConsumingEnumerable())
+        private readonly TaskCompletionSource<ViewSnapshot?> _done = new(TaskCreationOptions.RunContinuationsAsynchronously);
+
+        private Prefetch(nint source)
         {
-            if (item is Prefetch prefetch)
+            Source = source;
+        }
+
+        public nint Source { get; }
+
+        public Task<ViewSnapshot?> Snapshot => _done.Task;
+
+        public static Prefetch Start(nint source, bool tree, int x, int y)
+        {
+            var prefetch = new Prefetch(source);
+            var thread = new Thread(() =>
             {
                 try
                 {
-                    UiaHitTest.WarmUp(); // la primera consulta de accesibilidad es la más lenta: se hace ya
-                    _prefetched = (prefetch.Source, prefetch.Tree
-                        ? TreeSource(prefetch.X, prefetch.Y)
-                        : ExplorerLocator.Snapshot(prefetch.Source, selection: true, items: false));
-                    ShellNamespace.WarmUp(); // por si se suelta en el panel de navegación
+                    UiaHitTest.WarmUp(); // la primera consulta de accesibilidad es la más lenta
+                    prefetch._done.TrySetResult(tree ? TreeSource(x, y) : ExplorerLocator.Snapshot(source, selection: true, items: false));
                 }
                 catch (Exception ex) when (ex is COMException or InvalidOperationException or IOException or UnauthorizedAccessException)
                 {
-                    _prefetched = (prefetch.Source, null);
+                    prefetch._done.TrySetResult(null);
                 }
-
-                continue;
-            }
-
-            var pending = (Pending)item;
-            string? reason;
-            DragRequest? request = null;
-            try
-            {
-                reason = Decide(pending, out request);
-            }
-            catch (Exception ex)
-            {
-                reason = ex.Message;
-            }
-
-            // Si decidir tardó demasiado, el usuario puede haber seguido moviendo el ratón: mejor que suelte el Explorador.
-            if (reason is null && Stopwatch.GetElapsedTime(pending.Timestamp) > TimeSpan.FromSeconds(4))
-            {
-                reason = "se tardó demasiado en decidir";
-            }
-
-            if (reason is null && !CancelDrag(pending.Thread))
-            {
-                reason = "el Explorador no canceló su arrastre a tiempo";
-            }
-
-            if (reason is not null)
-            {
-                SendButtonUp(); // el Explorador suelta como siempre
-                PassedThrough?.Invoke(reason);
-                continue;
-            }
-
-            SendButtonUp(); // el arrastre ya está cancelado: solo devuelve el botón a su estado real
-            try
-            {
-                if (!_handler(request!))
-                {
-                    PassedThrough?.Invoke("MegaCopier no aceptó la copia");
-                }
-            }
-            catch (Exception ex)
-            {
-                PassedThrough?.Invoke(ex.Message);
-            }
+            })
+            { IsBackground = true, Name = "MegaCopier.DragSource" };
+            thread.SetApartmentState(ApartmentState.STA);
+            thread.Start();
+            return prefetch;
         }
     }
 
-    private string? Decide(Pending pending, out DragRequest? request)
+    /// <summary>
+    /// Un "soltar" retenido: se decide en un hilo propio mientras un temporizador mantiene despierto al Explorador y
+    /// vigila el plazo. Quien llega antes (la decisión o el plazo) se queda el arrastre; el otro ya no hace nada.
+    /// </summary>
+    private sealed class Drop(DragInterceptor owner, Pending pending, Prefetch? prefetch)
     {
-        var source = _prefetched.View == pending.Source && _prefetched.Snapshot is { } ready
-            ? ready
-            : pending.SourceTree ? null : ExplorerLocator.Snapshot(pending.Source, selection: true, items: false);
-        _prefetched = default;
+        private const int Deciding = 0, Returned = 1, Taken = 2;
+
+        private readonly long _started = Stopwatch.GetTimestamp();
+        private int _state;
+        private Timer? _timer;
+
+        /// <summary>Por dónde va la decisión (para el registro, si se agota el plazo).</summary>
+        public volatile string Stage = "empezando";
+
+        public Pending Pending { get; } = pending;
+
+        public Prefetch? Prefetch { get; } = prefetch;
+
+        public TimeSpan Elapsed => Stopwatch.GetElapsedTime(_started);
+
+        public TimeSpan Remaining => Deadline - Elapsed;
+
+        public void Start()
+        {
+            _timer = new Timer(_ => Tick(), null, NudgeMilliseconds, NudgeMilliseconds);
+            var thread = new Thread(() => owner.Run(this)) { IsBackground = true, Name = "MegaCopier.Drop" };
+            thread.SetApartmentState(ApartmentState.STA);
+            thread.Start();
+        }
+
+        private void Tick()
+        {
+            if (Volatile.Read(ref _state) != Deciding)
+            {
+                _timer?.Dispose();
+                return;
+            }
+
+            if (Elapsed < Deadline)
+            {
+                Nudge(Pending.Thread);
+                return;
+            }
+
+            if (Interlocked.CompareExchange(ref _state, Returned, Deciding) == Deciding)
+            {
+                _timer?.Dispose();
+                SendButtonUp(); // se agotó el plazo: suelta el Explorador
+                owner.PassedThrough?.Invoke($"se agotó el tiempo de decidir ({Stage}, {Elapsed.TotalMilliseconds:0} ms)");
+            }
+        }
+
+        /// <summary>True si la decisión llega a tiempo (entonces el plazo ya no la toca).</summary>
+        public bool Claim()
+        {
+            bool claimed = Interlocked.CompareExchange(ref _state, Taken, Deciding) == Deciding;
+            _timer?.Dispose();
+            return claimed;
+        }
+    }
+
+    private void Run(Drop drop)
+    {
+        string? reason;
+        DragRequest? request = null;
+        try
+        {
+            reason = Decide(drop, out request);
+        }
+        catch (Exception ex)
+        {
+            reason = ex.Message;
+        }
+
+        string took = $"{drop.Elapsed.TotalMilliseconds:0} ms";
+        if (!drop.Claim())
+        {
+            Traced?.Invoke($"decidido tarde ({took}): {reason ?? "era para MegaCopier"}; ya lo había soltado el Explorador");
+            return;
+        }
+
+        if (reason is null && !CancelDrag(drop.Pending.Thread))
+        {
+            reason = "el Explorador no canceló su arrastre a tiempo";
+        }
+
+        SendButtonUp(); // el Explorador suelta como siempre o, si ya se canceló, solo vuelve el botón a su estado real
+        if (reason is not null)
+        {
+            PassedThrough?.Invoke($"{reason} ({took})");
+            return;
+        }
+
+        Traced?.Invoke($"{(request!.Move ? "mover" : "copiar")} {request.Sources.Count} elemento(s) a {request.Destination} ({took})");
+        try
+        {
+            if (!_handler(request!))
+            {
+                PassedThrough?.Invoke("MegaCopier no aceptó la copia");
+            }
+        }
+        catch (Exception ex)
+        {
+            PassedThrough?.Invoke(ex.Message);
+        }
+    }
+
+    private static string? Decide(Drop drop, out DragRequest? request)
+    {
+        request = null;
+        var pending = drop.Pending;
+
+        // Lo arrastrado: casi siempre ya está leído. Si no, se espera lo que quede de plazo (o se lee ahora).
+        drop.Stage = "leyendo lo que se arrastra";
+        ViewSnapshot? source;
+        if (drop.Prefetch is { } prefetch && prefetch.Source == pending.Source)
+        {
+            source = prefetch.Snapshot.Wait(drop.Remaining > TimeSpan.Zero ? drop.Remaining : TimeSpan.Zero) ? prefetch.Snapshot.Result : null;
+        }
+        else
+        {
+            source = pending.SourceTree ? null : ExplorerLocator.Snapshot(pending.Source, selection: true, items: false);
+        }
+
         if (source is null)
         {
-            request = null;
             return "no se pudo leer qué se arrastra";
         }
 
         // Sobre el panel de navegación: la carpeta (o unidad) del elemento bajo el puntero.
         if (pending.TargetTree)
         {
+            drop.Stage = "mirando el panel de navegación";
             var names = UiaHitTest.TreePathAt(pending.X, pending.Y);
             if (names is null)
             {
-                request = null;
                 return "no hay una carpeta del panel bajo el puntero";
             }
 
+            drop.Stage = $"buscando «{string.Join(" › ", names)}»";
+            string? folder = ShellNamespace.Resolve(names);
+            if (folder is null)
+            {
+                return $"«{string.Join(" › ", names)}» no es una carpeta del disco";
+            }
+
             return DragDecision.Decide(
-                source.Selection, source.Folder, ShellNamespace.Resolve(names), DropSpot.Folder, null, [],
+                source.Selection, source.Folder, folder, DropSpot.Folder, null, [],
                 pending.Ctrl, pending.Shift, alt: false, out request);
         }
 
+        drop.Stage = "mirando qué hay bajo el puntero";
         DropSpot spot = UiaHitTest.At(pending.X, pending.Y, out string? itemName);
+        drop.Stage = "leyendo la carpeta de destino";
         var target = ExplorerLocator.Snapshot(pending.Target, selection: false, items: false);
         if (target is null)
         {
-            request = null;
             return "no se encontró la ventana del Explorador";
         }
 
@@ -278,16 +387,17 @@ public sealed unsafe partial class DragInterceptor : IDisposable
         if (spot == DropSpot.Item && itemName is not null)
         {
             string? folder = target.Folder is null ? null : Path.Combine(target.Folder, itemName);
+            drop.Stage = "leyendo los elementos del destino";
             items = folder is not null && itemName.IndexOfAny(Path.GetInvalidFileNameChars()) < 0 && Directory.Exists(folder)
                 ? [new ViewItem(itemName, folder, IsFolder: true)]
                 : ExplorerLocator.Snapshot(pending.Target, selection: false, items: true)?.Items ?? [];
         }
 
+        drop.Stage = "decidiendo";
         return DragDecision.Decide(
             source.Selection, source.Folder, target.Folder, spot, itemName, items,
             pending.Ctrl, pending.Shift, alt: false, out request);
     }
-
     /// <summary>
     /// Lo que se arrastra desde el panel de navegación: la carpeta del elemento donde se pulsó (se lee al empezar a
     /// arrastrar, antes de que el panel se desplace o despliegue nada). Null si no es una carpeta del disco.
@@ -346,9 +456,23 @@ public sealed unsafe partial class DragInterceptor : IDisposable
         SendInput(1, &input, sizeof(Input));
     }
 
-    private sealed record Prefetch(nint Source, bool Tree, int X, int Y);
+    /// <summary>
+    /// Un movimiento de ratón de cero píxeles: el puntero no se mueve, pero el hilo del Explorador que lleva el
+    /// arrastre despierta y atiende las consultas que esperan (sin él, hasta el siguiente clic del usuario). Por si
+    /// acaso, también un mensaje vacío a su ventana de arrastre.
+    /// </summary>
+    private static void Nudge(uint thread)
+    {
+        var input = new Input { type = 0 /* INPUT_MOUSE */ };
+        input.u.mi = new MouseInput { dwFlags = 0x0001 /* MOUSEEVENTF_MOVE, relativo: 0, 0 */, dwExtraInfo = Marker };
+        SendInput(1, &input, sizeof(Input));
+        if (Native.CaptureWindow(thread) is not 0 and var capture)
+        {
+            Native.PostMessageW(capture, 0 /* WM_NULL */, 0, 0);
+        }
+    }
 
-    private sealed record Pending(nint Source, bool SourceTree, nint Target, bool TargetTree, int X, int Y, bool Ctrl, bool Shift, uint Thread, long Timestamp);
+    private sealed record Pending(nint Source, bool SourceTree, nint Target, bool TargetTree, int X, int Y, bool Ctrl, bool Shift, uint Thread);
 
     [StructLayout(LayoutKind.Sequential)]
     private struct MsllHookStruct

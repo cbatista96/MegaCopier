@@ -345,7 +345,8 @@ public sealed partial class MainWindow
     /// hacerla aparte esperando su turno, o no copiar nada. En la ventana pequeña la pregunta cabe dentro de ella; en
     /// la completa es un diálogo.
     /// </summary>
-    internal async Task<SameDriveAnswer> AskSameDriveAsync(CopyJob target, string destination, IReadOnlyList<string> sources)
+    /// <param name="ownWindow">«Cada copia en su propia ventana»: la opción de aparte es abrirla en una ventana nueva, ya.</param>
+    internal async Task<SameDriveAnswer> AskSameDriveAsync(CopyJob target, string destination, IReadOnlyList<string> sources, bool ownWindow = false)
     {
         await _dialogGate.WaitAsync();
         try
@@ -359,7 +360,9 @@ public sealed partial class MainWindow
                 : L.F("SameDrive_Items", sources.Count);
             string title = L.F("SameDrive_Title", DriveInfoText.Describe(destination).Text);
             string addText = L.Get("SameDrive_AddText");
-            string separateText = L.Get("SameDrive_SeparateText");
+            string separateTitle = L.Get(ownWindow ? "SameDrive_NewWindow" : "SameDrive_Separate");
+            string separateText = L.Get(ownWindow ? "SameDrive_NewWindowText" : "SameDrive_SeparateText");
+            int separateGlyph = ownWindow ? 0xE8A7 : 0xE823;
             if (!_expanded)
             {
                 return await AskInlineAsync(
@@ -368,7 +371,7 @@ public sealed partial class MainWindow
                     L.F("SameDrive_Short", what),
                     [
                         (SameDriveAnswer.Add, "", L.Get("SameDrive_Add"), addText),
-                        (SameDriveAnswer.Separate, "", L.Get("SameDrive_Separate"), separateText),
+                        (SameDriveAnswer.Separate, "", separateTitle, separateText),
                     ],
                     (SameDriveAnswer.Cancel, L.Get("SameDrive_Cancel"), L.Get("SameDrive_CancelText")),
                     default);
@@ -401,7 +404,7 @@ public sealed partial class MainWindow
                         Children =
                         {
                             BigOption(0xE710, L.Get("SameDrive_Add"), addText, recommended: true, () => Choose(SameDriveAnswer.Add)),
-                            BigOption(0xE823, L.Get("SameDrive_Separate"), separateText, recommended: false, () => Choose(SameDriveAnswer.Separate)),
+                            BigOption(separateGlyph, separateTitle, separateText, recommended: false, () => Choose(SameDriveAnswer.Separate)),
                         },
                     },
                 },

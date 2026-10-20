@@ -30,7 +30,10 @@ public static unsafe partial class ShellNamespace
     /// <summary>Un elemento del shell: nombre visible, carpeta del disco (si la tiene) y nombre para volver a abrirlo.</summary>
     private sealed record Node(string Name, string? Path, string Parsing);
 
-    private static (List<Node> Nodes, long Taken) _topLevel = ([], 0);
+    private sealed record Cache(List<Node> Nodes, long Taken);
+
+    private static volatile Cache _topLevel = new([], 0);
+    private static int _warming;
 
     /// <summary>
     /// Lee de antemano el primer nivel del panel (lo más lento: Inicio enumera también los recientes), para que al
@@ -38,6 +41,32 @@ public static unsafe partial class ShellNamespace
     /// </summary>
     public static void WarmUp() => TopLevel();
 
+    /// <summary>Como <see cref="WarmUp"/>, en un hilo propio: no hace esperar a nadie (y, si se cuelga, a nadie cuelga).</summary>
+    public static void WarmUpInBackground()
+    {
+        if (Interlocked.Exchange(ref _warming, 1) == 1)
+        {
+            return;
+        }
+
+        var thread = new Thread(() =>
+        {
+            try
+            {
+                Read();
+            }
+            catch (Exception ex) when (ex is COMException or IOException or UnauthorizedAccessException)
+            {
+            }
+            finally
+            {
+                Volatile.Write(ref _warming, 0);
+            }
+        })
+        { IsBackground = true, Name = "MegaCopier.ShellNamespace" };
+        thread.SetApartmentState(ApartmentState.STA);
+        thread.Start();
+    }
     /// <param name="names">Nombres visibles desde el primer nivel del panel hasta el elemento.</param>
     /// <returns>La carpeta del disco, o null si no lo es o hay dudas (dos elementos distintos con el mismo nombre).</returns>
     public static string? Resolve(IReadOnlyList<string> names)
@@ -62,11 +91,24 @@ public static unsafe partial class ShellNamespace
 
     private static List<Node> TopLevel()
     {
-        if (_topLevel.Nodes.Count > 0 && Stopwatch.GetElapsedTime(_topLevel.Taken) < TimeSpan.FromMinutes(1))
+        // Si ya se leyó, vale lo leído (aunque tenga más de un minuto: se renueva aparte, sin hacer esperar a nadie).
+        var cache = _topLevel;
+        if (cache.Nodes.Count > 0)
         {
-            return _topLevel.Nodes;
+            if (Stopwatch.GetElapsedTime(cache.Taken) > TimeSpan.FromMinutes(1) && Volatile.Read(ref _warming) == 0)
+            {
+                _topLevel = cache with { Taken = Stopwatch.GetTimestamp() }; // una sola renovación a la vez
+                WarmUpInBackground();
+            }
+
+            return cache.Nodes;
         }
 
+        return Read();
+    }
+
+    private static List<Node> Read()
+    {
         // El Escritorio (la raíz del shell) y lo que cuelga de él: Este equipo, Red, la carpeta del usuario, OneDrive...
         var nodes = new List<Node>();
         if (Root() is { } root)
@@ -80,10 +122,9 @@ public static unsafe partial class ShellNamespace
             nodes.AddRange(Children(parsing));
         }
 
-        _topLevel = (nodes, Stopwatch.GetTimestamp());
+        _topLevel = new Cache(nodes, Stopwatch.GetTimestamp());
         return nodes;
     }
-
     /// <summary>El elemento con ese nombre; si hay varios, solo vale si todos son la misma carpeta.</summary>
     private static Node? Pick(IEnumerable<Node> nodes, string name)
     {

@@ -149,18 +149,18 @@ AboutDialog.CloseButtonText	Закрити
 About_DataFolder.Content	Відкрити папку даних (параметри, теми, журнал, звіти)
 About_Description.Text	Найкращий копіювальник для Windows 11: швидший і надійніший за вбудований у Windows, з усіма потрібними параметрами й налаштовується як завгодно (теми, значки, смуги та звуки). Продовжує з того самого місця навіть після вимкнення живлення й перевіряє, що все дійшло без помилок.
 About_Features.Text	Асинхронне введення-виведення без кешу · паралельне читання й запис · перевірка гешем (CRC32, xxHash, MD5, SHA) · черга за дисками · пауза й продовження · переміщення · конфлікти · обмеження швидкості · списки копіювання · звіти · теми.
-Files_AutoScroll.Content	Стежити за поточним
+Files_AutoScroll.Text	Стежити за поточним
 Files_CopyHashes.Text	Копіювати геші
 Files_CopyPath.Text	Копіювати шлях
 Files_Empty.Text	Немає файлів для показу
 Files_ExportCsv.Text	Експорт у CSV…
 Files_ExportHtml.Text	Експорт HTML-звіту…
-Files_FilterAll.Content	Усі
-Files_FilterDone.Content	Скопійовані
-Files_FilterErrors.Content	З помилками
-Files_FilterPending.Content	Очікують
-Files_FilterSkipped.Content	Пропущені
-Files_HideFinished.Content	Приховувати завершені
+Files_FilterAll.Text	Усі
+Files_FilterDone.Text	Скопійовані
+Files_FilterErrors.Text	З помилками
+Files_FilterPending.Text	Очікують
+Files_FilterSkipped.Text	Пропущені
+Files_HideFinished.Text	Приховувати завершені
 Files_Menu.Text	Список
 Files_MoveBottom.Text	У кінець
 Files_MoveDown.Text	Нижче
@@ -1085,8 +1085,6 @@ Settings_RememberTitle.Text	Запам'ятовувати вікно
 Settings_RememberDescription.Text	Відкривати на тому ж місці й того ж розміру.
 Settings_RememberPosition.Content	Положення
 Settings_RememberSize.Content	Розмір
-Settings_TranslucentTitle.Text	Напівпрозоре вікно
-Settings_TranslucentDescription.Text	Акриловий, прозоріший фон: робочий стіл просвічує крізь вікно з будь-якою темою.
 Settings_Icons.Text	Значки
 Settings_IconsDescription.Text	Виберіть вигляд значків. Вони поєднуються з будь-якою темою.
 IconPack_fluent	Fluent (як у Windows)
@@ -1139,7 +1137,7 @@ FolderAsk_Message	{1} з {2} файлів, які ви копіюєте, уже 
 FolderAsk_Skip	Пропустити наявні
 FolderAsk_SkipText	Кожен файл перевіряється: наявні не копіюються й не змінюються, копіюються лише відсутні. Ідеально, щоб завершити перерване копіювання.
 FolderAsk_Overwrite	Перезаписати
-FolderAsk_OverwriteText	Наявні файли замінюються файлами з джерела. Однакові лишаються як є, щоб було швидше.
+FolderAsk_OverwriteText	Наявні файли замінюються файлами з джерела, навіть ті, що здаються однаковими: усе копіюється знову.
 FolderAsk_Rename	Перейменувати
 FolderAsk_RenameText	Усе копіюється в нову теку «{0}», а наявна не змінюється.
 FolderAsk_AskEach	Питати по одному
@@ -1490,3 +1488,17 @@ IconPack_hud	Голограма
 Settings_AdaptTitle.Text	Підлаштовуватися під малі екрани
 Settings_AdaptDescription.Text	На невисоких екранах, наприклад 1366 × 768, вікно виглядає так само, але трохи менше, щоб уміститися повністю. На великих екранах нічого не змінюється.
 Job_StateAsking	Чекає на вашу відповідь
+Conflict_Identical.Text	Вони однакові: той самий розмір і та сама дата.
+Settings_BackdropTitle.Text	Тло вікна
+Settings_BackdropDescription.Text	Матеріал Windows 11 за вікном, з будь-якою темою.
+Backdrop_OptTheme.Content	Як у темі
+Backdrop_OptTranslucent.Content	Напівпрозорий (видно робочий стіл)
+Backdrop_OptAcrylic.Content	Акрил робочого столу (базовий)
+Backdrop_OptAcrylicThin.Content	Акрил робочого столу (тонкий)
+BackdropAcrylicThin.Content	Тонкий акрил
+Info_Backdrop_Text	Це те, що видно за вмістом вікна.\n• Як у темі: кожна тема має свій фон (суцільний, Mica або акрил).\n• Напівпрозорий: дуже прозорий акрил; крізь вікно видно робочий стіл.\n• Mica: м'яко переймає відтінок ваших шпалер. Такий фон у застосунків Windows 11.\n• Mica Alt: як Mica, але з більшою кількістю кольору шпалер.\n• Акрил робочого столу (базовий): як матове скло; усе за вікном виглядає розмитим.\n• Акрил робочого столу (тонкий): світліший і прозоріший за базовий.\nДля Mica й акрилу потрібна Windows 11 з увімкненими ефектами прозорості; інакше буде суцільний колір.
+SameDrive_NewWindow	У новому вікні
+SameDrive_NewWindowText	Відкриється ще одне вікно MegaCopier із цим копіюванням, і воно одразу почнеться разом з іншим (обидва йтимуть трохи повільніше).
+Settings_IndependentWindowsTitle.Text	Кожне копіювання у власному вікні
+Settings_IndependentWindowsDescription.Text	Одне вікно на кожне копіювання; воно починається одразу, не чекаючи інших. Без списку копіювань, якщо тільки ви не додасте кілька в одне вікно.
+Info_IndependentWindows_Text	Зазвичай MegaCopier має одне вікно, а кілька копіювань показує у своєму списку. З цим параметром кожне копіювання відкриває власне вікно й починається одразу, не чекаючи інших.\n• Це той самий застосунок: тема, значки й налаштування скрізь однакові (якщо змінити їх в одному вікні, вони зміняться в усіх).\n• Кожне вікно має свій значок перебігу в області сповіщень і свою кнопку на панелі завдань.\n• Якщо нове копіювання йде на той самий диск, що й поточне, вирішує параметр «Нове копіювання на той самий диск»: запитати (додати до копіювання цього вікна або відкрити в новому вікні), завжди додавати або завжди відкривати нове вікно без запитань.\n• Якщо додати копіювання до одного вікна, воно показує власний список копіювань.\n• Коли його копіювання закінчуються, кожне вікно закривається як зазвичай.\nПриклад: ви копіюєте фото на флешку, а тим часом відео на інший диск — побачите два вікна, кожне зі своїм перебігом.

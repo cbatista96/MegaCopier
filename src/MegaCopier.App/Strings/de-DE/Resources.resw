@@ -155,18 +155,18 @@
   <data name="About_DataFolder.Content" xml:space="preserve"><value>Datenordner öffnen (Einstellungen, Designs, Verlauf, Berichte)</value></data>
   <data name="About_Description.Text" xml:space="preserve"><value>Der ultimative Kopierer für Windows 11: schneller und sicherer als der von Windows, mit allen Optionen, die du brauchst, und so anpassbar, wie du willst (Designs, Symbole, Balken und Klänge). Er macht selbst nach einem Stromausfall dort weiter, wo er war, und prüft, dass alles heil angekommen ist.</value></data>
   <data name="About_Features.Text" xml:space="preserve"><value>Asynchrone E/A ohne Cache · parallele Lese- und Schreibvorgänge · Hash-Prüfung (CRC32, xxHash, MD5, SHA) · Warteschlange pro Datenträger · Anhalten und Fortsetzen · Verschieben · Konflikte · Geschwindigkeitslimit · Kopierlisten · Berichte · Designs.</value></data>
-  <data name="Files_AutoScroll.Content" xml:space="preserve"><value>Aktueller Datei folgen</value></data>
+  <data name="Files_AutoScroll.Text" xml:space="preserve"><value>Aktueller Datei folgen</value></data>
   <data name="Files_CopyHashes.Text" xml:space="preserve"><value>Hashes kopieren</value></data>
   <data name="Files_CopyPath.Text" xml:space="preserve"><value>Pfad kopieren</value></data>
   <data name="Files_Empty.Text" xml:space="preserve"><value>Keine Dateien anzuzeigen</value></data>
   <data name="Files_ExportCsv.Text" xml:space="preserve"><value>Als CSV exportieren…</value></data>
   <data name="Files_ExportHtml.Text" xml:space="preserve"><value>HTML-Bericht exportieren…</value></data>
-  <data name="Files_FilterAll.Content" xml:space="preserve"><value>Alle</value></data>
-  <data name="Files_FilterDone.Content" xml:space="preserve"><value>Kopiert</value></data>
-  <data name="Files_FilterErrors.Content" xml:space="preserve"><value>Mit Fehlern</value></data>
-  <data name="Files_FilterPending.Content" xml:space="preserve"><value>Ausstehend</value></data>
-  <data name="Files_FilterSkipped.Content" xml:space="preserve"><value>Übersprungen</value></data>
-  <data name="Files_HideFinished.Content" xml:space="preserve"><value>Fertige ausblenden</value></data>
+  <data name="Files_FilterAll.Text" xml:space="preserve"><value>Alle</value></data>
+  <data name="Files_FilterDone.Text" xml:space="preserve"><value>Kopiert</value></data>
+  <data name="Files_FilterErrors.Text" xml:space="preserve"><value>Mit Fehlern</value></data>
+  <data name="Files_FilterPending.Text" xml:space="preserve"><value>Ausstehend</value></data>
+  <data name="Files_FilterSkipped.Text" xml:space="preserve"><value>Übersprungen</value></data>
+  <data name="Files_HideFinished.Text" xml:space="preserve"><value>Fertige ausblenden</value></data>
   <data name="Files_Menu.Text" xml:space="preserve"><value>Liste</value></data>
   <data name="Files_MoveBottom.Text" xml:space="preserve"><value>Ans Ende</value></data>
   <data name="Files_MoveDown.Text" xml:space="preserve"><value>Nach unten</value></data>
@@ -1091,8 +1091,6 @@
   <data name="Settings_RememberDescription.Text" xml:space="preserve"><value>Dort und in derselben Größe öffnen, wo es war.</value></data>
   <data name="Settings_RememberPosition.Content" xml:space="preserve"><value>Position</value></data>
   <data name="Settings_RememberSize.Content" xml:space="preserve"><value>Größe</value></data>
-  <data name="Settings_TranslucentTitle.Text" xml:space="preserve"><value>Durchscheinendes Fenster</value></data>
-  <data name="Settings_TranslucentDescription.Text" xml:space="preserve"><value>Acryl-Hintergrund, durchsichtiger: Der Desktop scheint durch das Fenster, bei jedem Design.</value></data>
   <data name="Settings_Icons.Text" xml:space="preserve"><value>Symbole</value></data>
   <data name="Settings_IconsDescription.Text" xml:space="preserve"><value>Wählen Sie das Aussehen der Symbole. Sie passen zu jedem Design.</value></data>
   <data name="IconPack_fluent" xml:space="preserve"><value>Fluent (wie Windows)</value></data>
@@ -1145,7 +1143,7 @@
   <data name="FolderAsk_Skip" xml:space="preserve"><value>Vorhandene überspringen</value></data>
   <data name="FolderAsk_SkipText" xml:space="preserve"><value>Jede Datei wird geprüft: Vorhandene werden weder kopiert noch verändert, nur fehlende werden kopiert. Ideal, um eine abgebrochene Kopie fertigzustellen.</value></data>
   <data name="FolderAsk_Overwrite" xml:space="preserve"><value>Überschreiben</value></data>
-  <data name="FolderAsk_OverwriteText" xml:space="preserve"><value>Vorhandene Dateien werden durch die aus der Quelle ersetzt. Identische bleiben unverändert, das spart Zeit.</value></data>
+  <data name="FolderAsk_OverwriteText" xml:space="preserve"><value>Die vorhandenen Dateien werden durch die aus der Quelle ersetzt, auch die scheinbar gleichen: Alles wird erneut kopiert.</value></data>
   <data name="FolderAsk_Rename" xml:space="preserve"><value>Umbenennen</value></data>
   <data name="FolderAsk_RenameText" xml:space="preserve"><value>Alles wird in einen neuen Ordner „{0}“ kopiert, der vorhandene bleibt unberührt.</value></data>
   <data name="FolderAsk_AskEach" xml:space="preserve"><value>Einzeln fragen</value></data>
@@ -1496,4 +1494,18 @@
   <data name="Settings_AdaptTitle.Text" xml:space="preserve"><value>An kleine Bildschirme anpassen</value></data>
   <data name="Settings_AdaptDescription.Text" xml:space="preserve"><value>Auf niedrigen Bildschirmen wie 1366 × 768 sieht das Fenster gleich aus, nur etwas kleiner, damit es ganz hineinpasst. Auf großen Bildschirmen ändert sich nichts.</value></data>
   <data name="Job_StateAsking" xml:space="preserve"><value>Wartet auf deine Antwort</value></data>
+  <data name="Conflict_Identical.Text" xml:space="preserve"><value>Sie sind gleich: gleiche Größe und gleiches Datum.</value></data>
+  <data name="Settings_BackdropTitle.Text" xml:space="preserve"><value>Fensterhintergrund</value></data>
+  <data name="Settings_BackdropDescription.Text" xml:space="preserve"><value>Das Windows-11-Material hinter dem Fenster, mit jedem Design.</value></data>
+  <data name="Backdrop_OptTheme.Content" xml:space="preserve"><value>Wie im Design</value></data>
+  <data name="Backdrop_OptTranslucent.Content" xml:space="preserve"><value>Durchscheinend (Desktop sichtbar)</value></data>
+  <data name="Backdrop_OptAcrylic.Content" xml:space="preserve"><value>Desktop-Acryl (Basis)</value></data>
+  <data name="Backdrop_OptAcrylicThin.Content" xml:space="preserve"><value>Desktop-Acryl (dünn)</value></data>
+  <data name="BackdropAcrylicThin.Content" xml:space="preserve"><value>Dünnes Acryl</value></data>
+  <data name="Info_Backdrop_Text" xml:space="preserve"><value>Das ist, was hinter dem Fensterinhalt zu sehen ist.\n• Wie im Design: Jedes Design bringt seinen eigenen mit (einfarbig, Mica oder Acryl).\n• Durchscheinend: sehr transparentes Acryl; der Desktop scheint durch das Fenster.\n• Mica: übernimmt sanft den Farbton deines Hintergrundbilds. So sehen die Apps von Windows 11 aus.\n• Mica Alt: wie Mica, aber mit mehr Farbe aus dem Hintergrundbild.\n• Desktop-Acryl (Basis): wie Milchglas; was hinter dem Fenster liegt, wirkt verschwommen.\n• Desktop-Acryl (dünn): heller und transparenter als die Basis.\nMica und Acryl brauchen Windows 11 mit eingeschalteten Transparenzeffekten; sonst siehst du eine einfache Farbe.</value></data>
+  <data name="SameDrive_NewWindow" xml:space="preserve"><value>In einem neuen Fenster</value></data>
+  <data name="SameDrive_NewWindowText" xml:space="preserve"><value>Ein weiteres MegaCopier-Fenster öffnet sich mit dieser Kopie, die sofort parallel zur anderen startet (beide werden etwas langsamer).</value></data>
+  <data name="Settings_IndependentWindowsTitle.Text" xml:space="preserve"><value>Jede Kopie in einem eigenen Fenster</value></data>
+  <data name="Settings_IndependentWindowsDescription.Text" xml:space="preserve"><value>Ein Fenster pro Kopie, das sofort startet, ohne auf die anderen zu warten. Ohne Kopienliste, außer du fügst mehrere demselben Fenster hinzu.</value></data>
+  <data name="Info_IndependentWindows_Text" xml:space="preserve"><value>Normalerweise hat MegaCopier ein einziges Fenster und zeigt mehrere Kopien in seiner Kopienliste. Mit dieser Option öffnet jede Kopie ihr eigenes Fenster und startet sofort, ohne auf die anderen zu warten.\n• Es ist immer dieselbe App: Design, Symbole und Einstellungen sind überall gleich (änderst du sie in einem Fenster, ändern sie sich in allen).\n• Jedes Fenster hat sein eigenes Fortschrittssymbol im Infobereich und seine eigene Schaltfläche in der Taskleiste.\n• Geht die neue Kopie auf dasselbe Laufwerk wie eine laufende, entscheidet „Neue Kopie auf dasselbe Laufwerk“: fragen (zur Kopie dieses Fensters hinzufügen oder in einem neuen Fenster öffnen), immer hinzufügen oder immer ohne Nachfrage ein neues Fenster öffnen.\n• Fügst du einem Fenster Kopien hinzu, zeigt es seine eigene Kopienliste.\n• Wenn seine Kopien fertig sind, schließt sich jedes Fenster wie gewohnt.\nBeispiel: Du kopierst Fotos auf einen USB-Stick und gleichzeitig Videos auf eine andere Festplatte: Du siehst zwei Fenster, jedes mit seinem Fortschritt.</value></data>
 </root>
