@@ -47,7 +47,7 @@ CopyHeader.Text	Kopiowanie
 VerifyTitle.Text	Weryfikuj po skopiowaniu
 VerifyDescription.Text	Po każdym pliku odczytuje go ponownie i porównuje z oryginałem; jeśli coś się nie zgadza, poprawia.
 ConflictTitle.Text	Jeśli plik już istnieje
-ConflictDescription.Text	Gdy w miejscu docelowym jest już plik o tej samej nazwie. Identyczne pliki nigdy nie są kopiowane ponownie.
+ConflictDescription.Text	Gdy w miejscu docelowym jest już plik o tej samej nazwie.
 ConflictAsk.Content	Pytaj
 ConflictReplace.Content	Zastępuj
 ConflictSkip.Content	Pomijaj
@@ -1456,8 +1456,6 @@ MinimizeButton_Taskbar.Content	Na pasek zadań
 MinimizeButton_Tray.Content	Do zasobnika
 Settings_TrayProgressTitle.Text	Postęp każdego kopiowania w zasobniku
 Settings_TrayProgressDescription.Text	Jedna ikona na każde trwające kopiowanie, z procentem i rosnącym paskiem. Po zakończeniu znika sama. Kliknięcie otwiera kopiowanie.
-Info_WindowButtons_Title	Przyciski okna
-Info_WindowButtons_Text	Wybierz, co dzieje się z kopiowaniami po zamknięciu lub zminimalizowaniu okna.\n• Anuluj kopiowania: jak kliknięcie „Zatrzymaj” w każdym. Znikają z listy i nie są proponowane do dokończenia.\n• Zatrzymaj, aby dokończyć później: skopiowane dane zostają; po ponownym skopiowaniu tego samego lub otwarciu MegaCopier kopiowanie wraca do miejsca, w którym było.\n• Ukryj okno: kopiowania trwają w tle; okno otworzysz ikoną w zasobniku.\n• Zakończ MegaCopier: zamyka się całkowicie, a Windows kopiuje jak zwykle, dopóki go znowu nie otworzysz.\nMinimalizacja do zasobnika zwalnia pasek zadań: okno wraca po kliknięciu ikony MegaCopier obok zegara.
 Tray_JobPause	Wstrzymaj
 Tray_JobStop	Zatrzymaj
 Jobs_Archive	Archiwizuj w historii
@@ -1493,12 +1491,14 @@ Settings_BackdropTitle.Text	Tło okna
 Settings_BackdropDescription.Text	Materiał Windows 11 widoczny za oknem, z dowolnym motywem.
 Backdrop_OptTheme.Content	Z motywu
 Backdrop_OptTranslucent.Content	Półprzezroczyste (widać pulpit)
-Backdrop_OptAcrylic.Content	Akryl pulpitu (podstawowy)
-Backdrop_OptAcrylicThin.Content	Akryl pulpitu (cienki)
 BackdropAcrylicThin.Content	Cienki akryl
-Info_Backdrop_Text	To, co widać za zawartością okna.\n• Z motywu: każdy motyw ma własne (jednolite, Mica lub akryl).\n• Półprzezroczyste: bardzo przezroczysty akryl; przez okno widać pulpit.\n• Mica: delikatnie przejmuje odcień tapety. Takie tło mają aplikacje Windows 11.\n• Mica Alt: jak Mica, ale z większą ilością koloru tapety.\n• Akryl pulpitu (podstawowy): jak matowe szkło; to, co jest za oknem, wygląda na rozmyte.\n• Akryl pulpitu (cienki): jaśniejszy i bardziej przezroczysty niż podstawowy.\nMica i akryl wymagają Windows 11 z włączonymi efektami przezroczystości; w przeciwnym razie widać jednolity kolor.
+Info_Backdrop_Text	To, co widać za zawartością okna.\n• Z motywu: każdy motyw ma własne (jednolite, Mica lub akryl). Motywy Fluent używają Mica, który w czasie korzystania z innego okna przechodzi w Mica Alt, zamiast stać się jednolitym kolorem.\n• Mica: delikatnie przejmuje odcień tapety. Takie tło mają aplikacje Windows 11.\n• Mica Alt: jak Mica, ale z większą ilością koloru tapety.\n• Akryl: jak matowe szkło; to, co jest za oknem, wygląda na rozmyte.\n• Półprzezroczyste: jaśniejszy i bardziej przezroczysty akryl; przez okno widać pulpit.\nPrzy każdym z tych czterech okno staje się jednolite, gdy korzystasz z innego, jak okna Windows. Menu i listy opcji MegaCopier są zawsze akrylowe.\nMica i akryl wymagają Windows 11 z włączonymi efektami przezroczystości; w przeciwnym razie widać jednolity kolor.
 SameDrive_NewWindow	W nowym oknie
 SameDrive_NewWindowText	Otworzy się kolejne okno MegaCopier z tą kopią, która od razu ruszy razem z drugą (obie będą nieco wolniejsze).
 Settings_IndependentWindowsTitle.Text	Każda kopia we własnym oknie
 Settings_IndependentWindowsDescription.Text	Jedno okno na kopię, która rusza od razu, bez czekania na inne. Bez listy kopii, chyba że dodasz kilka do tego samego okna.
 Info_IndependentWindows_Text	Zwykle MegaCopier ma jedno okno, a kilka kopii pokazuje na swojej liście kopii. Z tą opcją każda kopia otwiera własne okno i rusza od razu, bez czekania na inne.\n• To wciąż ta sama aplikacja: motyw, ikony i ustawienia są wszędzie takie same (zmienisz je w jednym oknie, zmienią się we wszystkich).\n• Każde okno ma własną ikonę postępu w zasobniku i własny przycisk na pasku zadań.\n• Jeśli nowa kopia trafia na ten sam dysk co trwająca, decyduje „Nowa kopia na ten sam dysk”: zapytać (dodać do kopii tego okna albo otworzyć w nowym oknie), zawsze dodawać lub zawsze otwierać nowe okno bez pytania.\n• Jeśli dodasz kopie do jednego okna, pokaże ono własną listę kopii.\n• Gdy jego kopie się skończą, każde okno zamyka się jak zwykle.\nPrzykład: kopiujesz zdjęcia na pendrive, a w tym czasie filmy na inny dysk — zobaczysz dwa okna, każde z własnym postępem.
+Info_CloseButton_Title	Po kliknięciu X okna
+Info_CloseButton_Text	Wybierz, co dzieje się z kopiowaniami po zamknięciu okna przyciskiem X.\n• Anuluj kopiowania: jak kliknięcie „Zatrzymaj” w każdym. Znikają z listy i nie są proponowane do dokończenia.\n• Zatrzymaj, aby dokończyć później: skopiowane dane zostają; po ponownym skopiowaniu tego samego lub otwarciu MegaCopier kopiowanie wraca do miejsca, w którym było.\n• Ukryj okno: kopiowania trwają w tle; okno otworzysz ikoną w zasobniku.\n• Zakończ MegaCopier: zamyka się całkowicie, a Windows kopiuje jak zwykle, dopóki go znowu nie otworzysz.
+Info_MinimizeButton_Title	Po zminimalizowaniu okna
+Info_MinimizeButton_Text	Gdzie trafia okno po zminimalizowaniu. Kopiowanie trwa w obu przypadkach.\n• Na pasek zadań: jak każde inne okno.\nMinimalizacja do zasobnika zwalnia pasek zadań: okno wraca po kliknięciu ikony MegaCopier obok zegara.

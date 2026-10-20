@@ -20,8 +20,8 @@ public sealed partial class CopyEngine
     private ConflictAnswer? _conflictForAll;
 
     /// <summary>
-    /// «Uno a uno» elegido en el aviso de carpeta: se pregunta por cada archivo que ya está, también por los idénticos
-    /// (quien lo elige quiere verlos todos).
+    /// Un archivo individual en una copia nueva, o «Uno a uno» elegido en el aviso de carpeta: se pregunta también
+    /// por los que parecen idénticos. Reanudar sigue omitiendo lo que ya terminó.
     /// </summary>
     private bool _askIdentical;
 
@@ -211,6 +211,8 @@ public sealed partial class CopyEngine
         _destinationRoot = Path.TrimEndingDirectorySeparator(Path.GetFullPath(request.Destination));
         _resumed = request.Resumed;
         _conflictForAll = null;
+        _askIdentical = !request.Resumed && request.Sources.Count == 1 && request.ExtraTargets.Count == 0
+            && File.Exists(request.Sources[0]);
 
         // Al reanudar un movimiento, un origen que ya no existe pero cuyo destino sí, es que ya se movió entero.
         var extra = request.ExtraTargets.Where(e => !_options.Move || File.Exists(e.Key) || Directory.Exists(e.Key) || !TargetExists(e.Key, e.Value)).ToList();

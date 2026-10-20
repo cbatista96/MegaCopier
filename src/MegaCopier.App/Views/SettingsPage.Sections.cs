@@ -293,6 +293,10 @@ public sealed partial class SettingsPage
     // ---------------------------------------------------------------------------------------------------------
     // Opciones nuevas con acción propia
 
+    /// <summary>Las opciones de «Fondo de la ventana», en el orden de la lista.</summary>
+    private static readonly WindowBackdrop[] BackdropChoices =
+        [WindowBackdrop.Theme, WindowBackdrop.Mica, WindowBackdrop.MicaAlt, WindowBackdrop.AcrylicBase, WindowBackdrop.AcrylicThin];
+
     private void Backdrop_Changed(object sender, SelectionChangedEventArgs e)
     {
         Store();

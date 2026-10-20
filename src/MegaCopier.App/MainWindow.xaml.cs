@@ -38,17 +38,25 @@ public sealed partial class MainWindow : Window
 
     /// <summary>Sin copias, la ventana compacta crece para que quepan el icono, los botones y los enlaces.</summary>
     private const double EmptyHeight = 360 + ToolbarHeight;
-    private const double ExpandedWidth = 820;
-    private const double ExpandedHeight = 780;
-
     /// <summary>Por debajo de esto la lista de archivos y sus botones ya no caben enteros.</summary>
     private const double ExpandedMinWidth = 760;
     private const double ExpandedMinHeight = 660;
+
+    /// <summary>«Más» abre la vista de la lista de archivos con lo justo para que quepa todo (el usuario puede agrandarla).</summary>
+    private const double ExpandedWidth = ExpandedMinWidth;
+    private const double ExpandedHeight = ExpandedMinHeight;
+
+    /// <summary>Con varias copias a la vez, la vista con la lista de copias a la izquierda, algo más grande.</summary>
+    private const double MultiWidth = 820 + SidebarWidth;
+    private const double MultiHeight = 780;
     private const double SidebarWidth = 290;
 
     private readonly Controls.SlidingIndicator _jobIndicator;
     private bool _wasEmpty = true;
     private readonly App _app;
+
+    /// <summary>La ventana tiene el foco (para el material).</summary>
+    private bool _windowActive = true;
     private readonly DispatcherQueue _dispatcher;
     private readonly SemaphoreSlim _dialogGate = new(1, 1);
     private readonly DispatcherQueueTimer _refreshTimer;
@@ -66,6 +74,12 @@ public sealed partial class MainWindow : Window
     private bool _sidebarWide = true;
     private bool _sidebarOverlayOpen;
     private bool _hadSidebar;
+
+    /// <summary>Tamaño de la vista completa antes de crecer para la lista de copias (null si no tuvo que crecer).</summary>
+    private (double Width, double Height)? _beforeSidebar;
+
+    /// <summary>Tamaño (en píxeles) al que creció para la lista: si sigue igual al quitarla, el usuario no la tocó.</summary>
+    private (double Width, double Height) _sidebarGrownTo;
 
     /// <summary>El usuario eligió compacta o completa en esta sesión: el modo automático ya no cambia por su cuenta.</summary>
     private bool _userChoseMode;
@@ -135,6 +149,13 @@ public sealed partial class MainWindow : Window
             CloseButtonPressed();
         };
         Closed += (_, _) => IsClosed = true;
+
+        // El material sigue a la ventana: el de serie pasa a Mica Alt sin el foco; los demás, como Windows.
+        Activated += (_, args) =>
+        {
+            _windowActive = args.WindowActivationState != WindowActivationState.Deactivated;
+            (SystemBackdrop as MaterialBackdrop)?.SetActive(_windowActive);
+        };
 
         // Al pasar a otra pantalla (más pequeña o más grande), la escala se ajusta a ella.
         AppWindow.Changed += (_, args) =>
@@ -354,7 +375,7 @@ public sealed partial class MainWindow : Window
     }
 
     /// <summary>Esta ventana pasa a mostrar una copia (por ejemplo, la que se abrió aparte en una ventana nueva).</summary>
-    internal void TakeJob(CopyJob job) => AddJob(job, select: true);
+    internal void TakeJob(CopyJob job, bool select = true) => AddJob(job, select);
 
     /// <summary>La copia se va a otra ventana.</summary>
     internal void ReleaseJob(CopyJob job) => RemoveJob(job);
@@ -512,7 +533,8 @@ public sealed partial class MainWindow : Window
         Root.RequestedTheme = requested;
         PaintNativeBackground(theme);
         AppWindow.TitleBar.PreferredTheme = theme.Dark ? TitleBarTheme.Dark : TitleBarTheme.Light;
-        SystemBackdrop = Appearance.CreateBackdrop(theme.Backdrop);
+        // El de serie (el del tema, Mica) no se apaga al perder el foco: pasa a Mica Alt.
+        SystemBackdrop = Appearance.CreateBackdrop(theme.Backdrop, theme.Dark, altWhenInactive: _app.Settings.EffectiveBackdrop == WindowBackdrop.Theme, active: _windowActive);
         TrayIcon.SetMenuTheme(theme.Dark);
         ApplyTexture(TextureImage, theme);
     }
@@ -668,20 +690,9 @@ public sealed partial class MainWindow : Window
         }
 
         // Modo automático: con dos copias a la vez se pasa a la vista completa.
-        if (_app.Settings.WindowMode == WindowMode.Auto && !_userChoseMode && !_expanded && Jobs.Count(j => j.IsActive) > 1)
+        if (_app.Settings.WindowMode == WindowMode.Auto && !_userChoseMode && !_expanded && Jobs.Count(j => j.IsActive && !_app.IsAwaitingAnswer(j.Job)) > 1)
         {
-            // Crecer de golpe, oculta un instante: animado se vería un momento en negro la parte nueva.
-            bool hide = AppWindow.IsVisible && AppWindow.Presenter is not OverlappedPresenter { State: OverlappedPresenterState.Minimized };
-            if (hide)
-            {
-                Cloak(true);
-            }
-
-            SetExpanded(true, userChoice: false, animate: !hide);
-            if (hide)
-            {
-                UncloakWhenDrawn();
-            }
+            SetExpanded(true, userChoice: false, animate: AppWindow.Presenter is not OverlappedPresenter { State: OverlappedPresenterState.Minimized });
         }
     }
 
@@ -842,7 +853,11 @@ public sealed partial class MainWindow : Window
 
     private void PagerNext_Click(object sender, RoutedEventArgs e) => Page(1);
 
-    private void Page(int delta)
+    /// <summary>
+    /// Pasa a la copia anterior o siguiente. En la ventana pequeña se desliza: la copia que se ve sale por un lado (una
+    /// foto suya) mientras la otra entra por el contrario, hacia adelante o hacia atrás según el botón.
+    /// </summary>
+    private async void Page(int delta)
     {
         if (Jobs.Count == 0)
         {
@@ -850,8 +865,43 @@ public sealed partial class MainWindow : Window
         }
 
         int index = _selected is null ? 0 : Jobs.IndexOf(_selected);
-        Select(Jobs[(index + delta + Jobs.Count) % Jobs.Count]);
+        var next = Jobs[(index + delta + Jobs.Count) % Jobs.Count];
+        double width = Panel.ActualWidth;
+        if (_expanded || width <= 0 || next == _selected || Theming.BarAppearance.ReduceMotion)
+        {
+            Select(next);
+            return;
+        }
+
+        var shot = new Microsoft.UI.Xaml.Media.Imaging.RenderTargetBitmap();
+        try
+        {
+            await shot.RenderAsync(Panel);
+        }
+        catch (Exception ex) when (ex is ArgumentException or System.Runtime.InteropServices.COMException)
+        {
+            Select(next);
+            return;
+        }
+
+        PanelGhost.Source = shot;
+        PanelGhost.Width = width;
+        PanelGhost.Height = Panel.ActualHeight;
+        PanelGhost.Visibility = Visibility.Visible;
+        Select(next);
+        double distance = width + 16;
+        Motion.SlideX(PanelGhost, 0, -delta * distance, 260, decelerate: true, done: () =>
+        {
+            PanelGhost.Visibility = Visibility.Collapsed;
+            PanelGhost.Source = null;
+            Motion.ResetSlide(PanelGhost);
+        });
+        Motion.SlideX(Panel, delta * distance, 0, 260, null, decelerate: true);
     }
+
+    /// <summary>Lo que se desliza no se sale de la tarjeta.</summary>
+    private void PanelHost_SizeChanged(object sender, SizeChangedEventArgs e) =>
+        PanelHost.Clip = new Microsoft.UI.Xaml.Media.RectangleGeometry { Rect = new Windows.Foundation.Rect(0, 0, e.NewSize.Width, e.NewSize.Height) };
 
     private void UpdatePager()
     {
@@ -901,6 +951,22 @@ public sealed partial class MainWindow : Window
     /// <summary>Tamaño que pide un diálogo abierto en la ventana pequeña (null si no hay ninguno).</summary>
     private (double Width, double Height)? _roomForDialog;
 
+    private int _shrinkTicket;
+
+    /// <summary>
+    /// Devuelve la ventana pequeña a su tamaño un momento después de cerrar el diálogo de «ya existe», si no ha llegado
+    /// otro: con «Uno a uno» el siguiente se abría mientras la ventana encogía y quedaba descolocado, fuera de la vista.
+    /// </summary>
+    private async Task ShrinkAfterDialogAsync(int ticket)
+    {
+        await Task.Delay(1500);
+        if (ticket == _shrinkTicket && _roomForDialog is not null)
+        {
+            _roomForDialog = null;
+            AnimateResize();
+        }
+    }
+
     /// <summary>Quita los límites mientras la ventana cambia de tamaño animada.</summary>
     private void RelaxConstraints()
     {
@@ -938,6 +1004,12 @@ public sealed partial class MainWindow : Window
         Panel.SetExpanded(_expanded);
         _afterResize?.Invoke();
         _afterResize = null;
+        if (animate)
+        {
+            // La animación empieza ya: los límites de tamaño de la vista nueva (más abajo) agrandarían la ventana de golpe.
+            AnimateResize();
+        }
+
         UIElement[] extras = [Tabs, TabHost]; // la barra de herramientas se ve siempre, también en la pequeña
         if (animate && !_expanded)
         {
@@ -983,10 +1055,7 @@ public sealed partial class MainWindow : Window
             _programmaticUntil = Stopwatch.GetTimestamp() + Stopwatch.Frequency / 3;
             AppWindow.Resize(new Windows.Graphics.SizeInt32(Scaled(width), Scaled(height)));
             ApplyConstraints();
-            return;
         }
-
-        AnimateResize();
     }
 
     /// <summary>Animación del tamaño (con aceleración suave), manteniendo la ventana dentro de la pantalla.</summary>
@@ -1007,12 +1076,46 @@ public sealed partial class MainWindow : Window
         RelaxConstraints();
         _resizeFrom = (AppWindow.Size.Width, AppWindow.Size.Height);
         _resizeTo = (Scaled(width), Scaled(height));
-        _resizeStart = Stopwatch.GetTimestamp();
+        _resizeStart = 0; // el reloj empieza tras el primer fotograma: preparar la vista nueva puede tardar
+        _awaitingFrame = true;
+        if (!_watchingFrames)
+        {
+            Microsoft.UI.Xaml.Media.CompositionTarget.Rendering += OnResizeFrame;
+            _watchingFrames = true;
+        }
+
         _resizeTimer.Start();
+    }
+
+    /// <summary>
+    /// Al crecer, la parte nueva de la ventana sale en negro hasta que WinUI la dibuja: cada paso de la animación espera a
+    /// que esté dibujado el anterior, así esa franja es de unos pocos píxeles y no un recuadro negro.
+    /// </summary>
+    private bool _awaitingFrame;
+    private bool _watchingFrames;
+
+    private void OnResizeFrame(object? sender, object e)
+    {
+        _awaitingFrame = false;
+        if (!_resizeTimer.IsRunning)
+        {
+            Microsoft.UI.Xaml.Media.CompositionTarget.Rendering -= OnResizeFrame;
+            _watchingFrames = false;
+        }
     }
 
     private void ResizeStep()
     {
+        if (_awaitingFrame)
+        {
+            return;
+        }
+
+        if (_resizeStart == 0)
+        {
+            _resizeStart = Stopwatch.GetTimestamp();
+        }
+
         double t = Math.Min(1, Stopwatch.GetElapsedTime(_resizeStart).TotalMilliseconds / 220);
         double eased = 1 - Math.Pow(1 - t, 3);
         int w = (int)(_resizeFrom.Width + ((_resizeTo.Width - _resizeFrom.Width) * eased));
@@ -1021,6 +1124,7 @@ public sealed partial class MainWindow : Window
         int x = Math.Clamp(AppWindow.Position.X, area.X, Math.Max(area.X, area.X + area.Width - w));
         int y = Math.Clamp(AppWindow.Position.Y, area.Y, Math.Max(area.Y, area.Y + area.Height - h));
         AppWindow.MoveAndResize(new Windows.Graphics.RectInt32(x, y, w, h));
+        _awaitingFrame = true;
         _programmaticUntil = Stopwatch.GetTimestamp() + Stopwatch.Frequency / 3;
         if (t >= 1)
         {
@@ -1042,7 +1146,7 @@ public sealed partial class MainWindow : Window
             var s = _app.Settings;
             double width = s.RememberSize && s.WindowWidth > 0 ? Math.Max(ExpandedMinWidth, s.WindowWidth) : ExpandedWidth;
             double height = s.RememberSize && s.WindowHeight > 0 ? Math.Max(ExpandedMinHeight, s.WindowHeight) : ExpandedHeight;
-            return (SidebarWanted ? Math.Max(width, ExpandedWidth + SidebarWidth) : width, height);
+            return SidebarWanted ? (Math.Max(width, MultiWidth), Math.Max(height, MultiHeight)) : (width, height);
         }
 
         return Jobs.Count == 0 ? (Math.Max(CompactWidth, _compactWidth), EmptyHeight) : (_compactWidth, CompactHeight + (Jobs.Count > 1 ? PagerHeight : 0));
@@ -1265,9 +1369,34 @@ public sealed partial class MainWindow : Window
         {
             // De una copia a varias (o al revés), la vista completa gana (o devuelve) el sitio de la lista de copias.
             _hadSidebar = sidebar;
-            if (_expanded && AppWindow.IsVisible && sidebar && AppWindow.Size.Width < Scaled(ExpandedWidth + SidebarWidth))
+            if (_expanded && AppWindow.IsVisible && sidebar && (AppWindow.Size.Width < Scaled(MultiWidth) || AppWindow.Size.Height < Scaled(MultiHeight)))
             {
+                double scale = Scaled(1000) / 1000.0;
+                _beforeSidebar = (AppWindow.Size.Width / scale, AppWindow.Size.Height / scale);
                 AnimateResize();
+                _sidebarGrownTo = _resizeTo;
+            }
+            else if (!sidebar && _beforeSidebar is { } before)
+            {
+                // Vuelve al tamaño de antes (el de serie o el que le diste), salvo que la cambiaras mientras tanto.
+                _beforeSidebar = null;
+                bool untouched = Math.Abs(AppWindow.Size.Width - _sidebarGrownTo.Width) <= 2
+                    && Math.Abs(AppWindow.Size.Height - _sidebarGrownTo.Height) <= 2;
+                if (_expanded && AppWindow.IsVisible && untouched)
+                {
+                    AnimateResizeTo(before.Width, before.Height);
+                }
+            }
+            else if (!sidebar && _expanded && AppWindow.IsVisible)
+            {
+                // Abrió ya con varias copias (no creció en esta sesión): si sigue con el tamaño justo de la lista de
+                // copias, pasa al de la vista de una copia.
+                var single = TargetSize(true);
+                if (Math.Abs(AppWindow.Size.Width - Scaled(Math.Max(single.Width, MultiWidth))) <= 2
+                    && Math.Abs(AppWindow.Size.Height - Scaled(Math.Max(single.Height, MultiHeight))) <= 2)
+                {
+                    AnimateResize();
+                }
             }
         }
 
@@ -1336,6 +1465,16 @@ public sealed partial class MainWindow : Window
         if (!AppWindow.IsVisible)
         {
             return;
+        }
+
+        // Red de seguridad: una copia de esta ventana que no está en su lista (le llegó mientras otra ventana se cerraba)
+        // aparece en ella; si no, se veía «No hay copias» con la copia en marcha.
+        foreach (var job in _app.Queue.Jobs)
+        {
+            if (job.IsActive && _app.WindowFor(job) == this && !Jobs.Any(j => j.Job == job))
+            {
+                AddJob(job, select: Jobs.Count == 0);
+            }
         }
 
         UpdateSidebarBadge();
@@ -1584,26 +1723,14 @@ public sealed partial class MainWindow : Window
         bool maximized = AppWindow.Presenter is OverlappedPresenter { State: OverlappedPresenterState.Maximized };
         if (fromCompact && AppWindow.IsVisible && !maximized)
         {
-            // De la ventana pequeña a una página ancha (Ajustes): crecer animando dejaría ver, un instante, la parte
-            // nueva de la ventana en negro (WinUI aún no la ha dibujado). Se oculta la ventana a la vista (sin
-            // cerrarla ni perder el foco), se le da el tamaño final de una vez y se muestra cuando ya está dibujada.
-            Cloak(true);
-            SetExpanded(true, userChoice: false, animate: false);
+            // De la ventana pequeña a una página ancha (Ajustes): crece animada, como al encoger.
+            SetExpanded(true, userChoice: false);
             double scale = Scaled(1000) / 1000.0;
             var area = DisplayArea.GetFromWindowId(AppWindow.Id, DisplayAreaFallback.Nearest).WorkArea;
             var expanded = TargetSize(true);
             double w = Math.Min(Math.Max(width ?? 0, expanded.Width), (area.Width / scale) - 24);
             double h = Math.Min(expanded.Height, (area.Height / scale) - 24);
-            _resizeTimer.Stop();
-            RelaxConstraints();
-            int pw = Scaled(w), ph = Scaled(h);
-            _resizeTo = (pw, ph);
-            int x = Math.Clamp(AppWindow.Position.X, area.X, Math.Max(area.X, area.X + area.Width - pw));
-            int y = Math.Clamp(AppWindow.Position.Y, area.Y, Math.Max(area.Y, area.Y + area.Height - ph));
-            _programmaticUntil = Stopwatch.GetTimestamp() + Stopwatch.Frequency / 3;
-            AppWindow.MoveAndResize(new Windows.Graphics.RectInt32(x, y, pw, ph));
-            ApplyConstraints();
-            UncloakWhenDrawn();
+            AnimateResizeTo(w, h);
             return;
         }
 
@@ -1628,29 +1755,6 @@ public sealed partial class MainWindow : Window
         }
     }
 
-    /// <summary>Oculta la ventana a la vista (DWM la sigue dibujando, pero no la enseña) o la vuelve a mostrar.</summary>
-    private void Cloak(bool cloaked)
-    {
-        int value = cloaked ? 1 : 0;
-        DwmSetWindowAttribute(Handle, 13 /* DWMWA_CLOAK */, ref value, sizeof(int));
-    }
-
-    /// <summary>Vuelve a mostrar la ventana en cuanto WinUI ha dibujado dos fotogramas con el tamaño nuevo.</summary>
-    private void UncloakWhenDrawn()
-    {
-        int frames = 0;
-        long started = Stopwatch.GetTimestamp();
-        void OnFrame(object? sender, object e)
-        {
-            if (++frames >= 3 || Stopwatch.GetElapsedTime(started) > TimeSpan.FromMilliseconds(250))
-            {
-                Microsoft.UI.Xaml.Media.CompositionTarget.Rendering -= OnFrame;
-                Cloak(false);
-            }
-        }
-
-        Microsoft.UI.Xaml.Media.CompositionTarget.Rendering += OnFrame;
-    }
     /// <summary>Cómo estaba la ventana antes de abrir una página: al volver, recupera ese tamaño (y la vista pequeña).</summary>
     private (bool Expanded, double Width, double Height)? _beforePage;
 
@@ -1747,7 +1851,32 @@ public sealed partial class MainWindow : Window
     {
         var button = Responsive.Descendants<Button>(Root).FirstOrDefault(b => (Microsoft.UI.Xaml.Automation.AutomationProperties.GetName(b) == name || ToolTipService.GetToolTip(b) as string == name) && b.Flyout is not null);
         button?.Flyout.ShowAt(button);
+        if (button is null && Responsive.Descendants<ComboBox>(Root).FirstOrDefault(c => c.Name == name) is { } combo)
+        {
+            combo.IsDropDownOpen = true; // o una lista desplegable, por su nombre en el XAML
+            return true;
+        }
+
         return button is not null;
+    }
+
+    internal bool DebugClick(string name)
+    {
+        var button = Responsive.Descendants<Microsoft.UI.Xaml.Controls.Primitives.ButtonBase>(Root).FirstOrDefault(b => b.Name == name
+            || Microsoft.UI.Xaml.Automation.AutomationProperties.GetName(b) == name || ToolTipService.GetToolTip(b) as string == name);
+        if (button is null && Responsive.Descendants<ListViewItem>(Root).FirstOrDefault(i => Microsoft.UI.Xaml.Automation.AutomationProperties.GetName(i) == name) is { } item)
+        {
+            item.IsSelected = true; // o un elemento de una lista (las secciones de Ajustes)
+            return true;
+        }
+
+        if (button is null || Microsoft.UI.Xaml.Automation.Peers.FrameworkElementAutomationPeer.CreatePeerForElement(button) is not Microsoft.UI.Xaml.Automation.Provider.IInvokeProvider invoke)
+        {
+            return false;
+        }
+
+        invoke.Invoke();
+        return true;
     }
 
     /// <summary>Solo pruebas: foto de lo que XAML dibuja (RenderTargetBitmap), para compararla con la pantalla.</summary>
@@ -2596,6 +2725,21 @@ public sealed partial class MainWindow : Window
     // ---------------------------------------------------------------------------------------------------------
     // Conflictos
 
+    /// <summary>Copias que ya avisaron con sonido de que hace falta decidir algo.</summary>
+    private readonly System.Runtime.CompilerServices.ConditionalWeakTable<CopyJob, object> _attentionPlayed = [];
+
+    /// <summary>
+    /// El sonido de «hace falta tu decisión», solo la primera vez en cada copia: con «Uno a uno», cada archivo repetido
+    /// volvía a sonar.
+    /// </summary>
+    private void PlayAttentionOnce(CopyJob job)
+    {
+        if (_attentionPlayed.TryAdd(job, job))
+        {
+            Sounds.Play(_app.Settings.Sounds, SoundEvent.Attention);
+        }
+    }
+
     /// <summary>
     /// Pregunta qué hacer con un archivo que ya existe. Se llama desde el hilo de copia y lo bloquea hasta que el
     /// usuario responde; los diálogos de varias copias se muestran de uno en uno.
@@ -2614,12 +2758,17 @@ public sealed partial class MainWindow : Window
                     Select(Jobs.FirstOrDefault(j => j.Job == job) ?? _selected);
                     ShowAndActivate();
                     FillConflictDialog(conflict, job.Record.Move);
-                    Sounds.Play(_app.Settings.Sounds, SoundEvent.Attention);
+                    bool singleFile = job.Record.Sources.Count == 1 && File.Exists(job.Record.Sources[0])
+                        && job.Record.ExtraTargets.Count == 0;
+                    ConflictApplyAll.Visibility = singleFile ? Visibility.Collapsed : Visibility.Visible;
+                    ConflictRenameExisting.Visibility = singleFile ? Visibility.Collapsed : Visibility.Visible;
+                    PlayAttentionOnce(job);
                     _renameExisting = false;
                     ConflictDialog.XamlRoot = Root.XamlRoot;
                     ConflictDialog.RequestedTheme = Root.RequestedTheme;
                     bool grow = !_expanded;
-                    if (grow)
+                    _shrinkTicket++; // si la ventana iba a encoger tras el diálogo anterior, ya no
+                    if (grow && _roomForDialog is null)
                     {
                         _roomForDialog = (CompactWidth + 40, 640); // con sitio para las miniaturas, también para los límites
                         AnimateResizeTo(CompactWidth + 40, 640);
@@ -2629,8 +2778,7 @@ public sealed partial class MainWindow : Window
                     var result = await ConflictDialog.ShowAsync();
                     if (grow)
                     {
-                        _roomForDialog = null;
-                        AnimateResize();
+                        _ = ShrinkAfterDialogAsync(++_shrinkTicket);
                     }
 
                     var decision = _renameExisting ? ConflictDecision.RenameExisting : result switch
@@ -2669,8 +2817,9 @@ public sealed partial class MainWindow : Window
         ConflictSourceDate.Text = Format.Date(conflict.SourceLastWriteUtc) + (sourceNewer ? L.Get("Conflict_Newer") : "");
         ConflictDestinationSize.Text = Format.Bytes(conflict.DestinationLength);
         ConflictDestinationDate.Text = Format.Date(conflict.DestinationLastWriteUtc) + (destinationNewer ? L.Get("Conflict_Newer") : "");
-        ConflictIdentical.Visibility = conflict.SourceLength == conflict.DestinationLength
-            && (conflict.SourceLastWriteUtc - conflict.DestinationLastWriteUtc).Duration() <= TimeSpan.FromSeconds(2) ? Visibility.Visible : Visibility.Collapsed;
+        // Invisible pero en su sitio, para que el diálogo no cambie de alto de un archivo a otro.
+        ConflictIdentical.Opacity = conflict.SourceLength == conflict.DestinationLength
+            && (conflict.SourceLastWriteUtc - conflict.DestinationLastWriteUtc).Duration() <= TimeSpan.FromSeconds(2) ? 1 : 0;
         ConflictApplyAll.IsChecked = false;
         _ = ShowThumbnailAsync(ConflictSourceThumb, conflict.Source);
         _ = ShowThumbnailAsync(ConflictDestinationThumb, conflict.Destination);
@@ -2681,14 +2830,12 @@ public sealed partial class MainWindow : Window
     /// </summary>
     private static async Task ShowThumbnailAsync(Image image, string path)
     {
-        image.Source = null;
-        image.Visibility = Visibility.Collapsed;
+        image.Source = null; // el hueco se queda: el diálogo no cambia de tamaño de un archivo a otro
         image.Tag = path;
         var bitmap = await ShellImage.LoadAsync(path, 192);
         if (bitmap is not null && Equals(image.Tag, path)) // si mientras tanto llegó otro archivo, vale el nuevo
         {
             image.Source = bitmap;
-            image.Visibility = Visibility.Visible;
         }
     }
     // ---------------------------------------------------------------------------------------------------------
@@ -2795,9 +2942,6 @@ public sealed partial class MainWindow : Window
 
     [DllImport("user32.dll")]
     private static extern uint GetDpiForWindow(nint hwnd);
-
-    [DllImport("dwmapi.dll")]
-    private static extern int DwmSetWindowAttribute(nint hwnd, int attribute, ref int value, int size);
 
     [DllImport("user32.dll")]
     private static extern nint GetForegroundWindow();

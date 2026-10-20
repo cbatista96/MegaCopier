@@ -27,15 +27,17 @@ public enum AppBackdrop
 /// <summary>«Fondo de la ventana» en Ajustes: el del tema o uno de los materiales de Windows 11.</summary>
 public enum WindowBackdrop
 {
-    /// <summary>El que trae el tema elegido (lo de siempre).</summary>
+    /// <summary>El que trae el tema elegido. En los temas Fluent, Mica que pasa a Mica Alt al perder el foco.</summary>
     Theme,
 
-    /// <summary>Acrílico y más transparente: se ve el escritorio (la antigua «Ventana translúcida»).</summary>
+    /// <summary>Versiones anteriores (la antigua «Ventana translúcida»): ahora es <see cref="AcrylicThin"/>.</summary>
     Translucent,
 
     Mica,
     MicaAlt,
     AcrylicBase,
+
+    /// <summary>«Translúcida»: acrílico delgado, el más transparente (se ve el escritorio).</summary>
     AcrylicThin,
 }
 
@@ -590,7 +592,7 @@ public sealed class AppSettings
 
     public int WindowHeight { get; set; }
 
-    /// <summary>Ventana translúcida (ajustes de versiones anteriores): ahora es <see cref="WindowBackdrop.Translucent"/>.</summary>
+    /// <summary>Ventana translúcida (ajustes de versiones anteriores): ahora es «Translúcida» (<see cref="WindowBackdrop.AcrylicThin"/>).</summary>
     public bool Translucent { get; set; }
 
     /// <summary>Fondo de la ventana: el del tema o Mica, Mica Alt, acrílico... sea cual sea el tema.</summary>
@@ -598,7 +600,9 @@ public sealed class AppSettings
 
     /// <summary>El fondo elegido, contando con el ajuste antiguo «Ventana translúcida».</summary>
     [JsonIgnore]
-    public WindowBackdrop EffectiveBackdrop => WindowBackdrop == WindowBackdrop.Theme && Translucent ? WindowBackdrop.Translucent : WindowBackdrop;
+    public WindowBackdrop EffectiveBackdrop => WindowBackdrop == WindowBackdrop.Translucent || (WindowBackdrop == WindowBackdrop.Theme && Translucent)
+        ? WindowBackdrop.AcrylicThin
+        : WindowBackdrop;
 
     /// <summary>settings.json no se pudo leer (se guardó una copia en settings.json.bad).</summary>
     [JsonIgnore]

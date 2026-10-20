@@ -5,6 +5,89 @@ y las versiones, [SemVer](https://semver.org/lang/es/).
 
 ## [Sin publicar]
 
+### Añadido
+
+- **La ventana ya no se apaga al usar otra**: con el fondo de serie (el del tema, en los temas Fluent) es Mica y, mientras
+  usas otra ventana, pasa a Mica Alt en lugar de quedarse de un color liso. Al volver, Mica otra vez. Con otro fondo
+  elegido en Ajustes se comporta como las ventanas de Windows.
+- En el menú de la bandeja, «Iniciar con Windows» lleva su icono, con el conjunto de iconos elegido.
+
+### Cambiado
+
+- **Continuar un archivo grande sigue escribiendo al momento**: antes, antes de seguir, se releía del origen todo lo ya
+  copiado para calcular la suma del archivo entero, y con varios GB en una memoria USB parecía que la copia volvía a
+  empezar (no lo hacía). Ahora la suma solo se calcula si algo la usa (verificar, el archivo de sumas, guardar la suma en
+  el archivo o el modo forense), y a la vez que se copia el resto. Sin nada de eso, la lista no muestra la suma de ese
+  archivo, igual que con los archivos clonados.
+- **«El archivo ya existe» suena solo una vez por copia**: con «Uno a uno», cada archivo repetido volvía a sonar.
+- **«El archivo ya existe» tiene siempre el mismo tamaño**, algo más ancho que antes: ya no crece ni encoge con la ruta,
+  con que el archivo tenga miniatura o con que sean iguales.
+- **Fondo de la ventana** (Ajustes › Interfaz): el del tema, Mica, Mica Alt, Acrílico y Translúcida (el acrílico más
+  claro y transparente). Desaparece la opción repetida: la antigua «Translúcida» era el mismo acrílico.
+- **Menús, listas de opciones y diálogos de acrílico**, con cualquier tema y fondo de ventana: los menús (Nueva, Al
+  terminar, «…», clic derecho) siguen de acrílico aunque la ventana no tenga el foco; las listas desplegables (todas: las
+  de Ajustes, las de los diálogos, el filtro de la lista de archivos) dejan ver, difuminado, lo que hay detrás, como los
+  menús; y los diálogos (como «ya existe en el destino» o «El archivo ya existe») difuminan la ventana que tapan, en vez
+  de verse de un gris liso con la zona de los botones de otro tono. Con la transparencia de Windows desactivada o sin
+  acrílico, se ven de un color liso del tema.
+- El menú de la bandeja es de acrílico como los demás menús, sea cual sea el fondo de la ventana, y «Acerca de» y la
+  bandeja de arrastre, también de acrílico.
+- **Abrir Ajustes desde la ventana pequeña** la hace crecer animada, como al encoger, sin el recuadro negro; también al
+  pasar sola a la vista completa con una segunda copia. «Más» crece sin dar un salto al principio.
+- **La vista con la lista de archivos («Más») se abre de serie con el tamaño justo** (760 × 660); puedes agrandarla. La
+  vista con la lista de copias sigue igual.
+- **En la ventana pequeña, al pasar de una copia a otra**, la tarjeta se desliza hacia un lado u otro según el botón.
+- **El disco de destino va a la derecha** de su fila (el de origen, a la izquierda): el nombre de lo que se copia tiene
+  más sitio, y si el destino es largo se acerca al centro.
+- **Las cifras ya no bailan**: archivos, tamaños, velocidad y tiempo restante guardan su sitio y se alinean a la
+  derecha, con todos los números del mismo ancho.
+- El botón Pausar / Reanudar es del color de los demás botones.
+- **«Al pulsar la X» y «Al minimizar» van en tarjetas separadas**, cada una con su ayuda (i).
+- El idioma, las unidades de tamaño y el icono y el progreso en la bandeja pasan a Ajustes › General.
+
+### Arreglado
+
+- **Pegar desde la barra superior del Explorador** usa MegaCopier y la carpeta de la pestaña activa, aunque haya una
+  subcarpeta seleccionada. Comparte el ajuste de interceptar el pegado con Ctrl+V y el menú contextual.
+- **Un archivo individual que ya existe vuelve a preguntar**, también si tiene el mismo tamaño y fecha. Ofrece
+  Reemplazar, Conservar ambos y Omitir, sin opciones para otros archivos. Reanudar conserva la detección de lo ya copiado.
+- **Arrastrar entre ventanas con copias en marcha**: Esc permanece pulsada mientras se confirma que el Explorador
+  canceló su arrastre, y su bucle de entrada sigue recibiendo actividad durante esa espera.
+- **Pegar con clic derecho en el Explorador** usa también MegaCopier: se reconoce la orden de los menús moderno y
+  clásico, se resuelve el destino y se cierra el menú antes de iniciar la copia. Los casos no reconocidos conservan
+  el comportamiento del Explorador.
+- **Arrastres rápidos del Explorador**: podían pasar al copiador de Windows porque al soltar el ratón Windows aún no
+  había anunciado el inicio del arrastre. Ahora se comprueba esa transición brevemente, sin convertir la selección
+  con recuadro en una copia. También se admiten los gestos de ratones remotos y herramientas de accesibilidad.
+- **Soltar en unidades del panel lateral** funciona también cuando el Explorador antepone una raíz como
+  «Escritorio (OneDrive)» a «Este equipo».
+- **Pegados con la interfaz ocupada**: una petición ya encolada no vuelve a Windows por superar cinco segundos de
+  espera, evitando que ambos copiadores puedan ejecutar la misma operación.
+- **La velocidad y el tiempo restante con límite de velocidad**: en `mcopy`, con el límite puesto, la velocidad salía al
+  doble de la real y el tiempo restante a la mitad.
+- **La ventana vuelve a su tamaño al quitarse la lista de copias**: al elegir «Añadir a esta copia» o al quedar una sola
+  copia, se quedaba grande. Ahora vuelve al tamaño de antes (el de serie o el que le diste), salvo que la cambiaras
+  mientras se veía la lista. Con «Copia aparte» sigue mostrando la lista, como antes.
+- **Con «Uno a uno» en la ventana pequeña**, tras pulsar «Reemplazar» (u otra opción) el siguiente «El archivo ya existe»
+  podía salir descolocado, arriba y fuera de la vista: la ventana encogía y volvía a crecer entre un archivo y otro.
+- **MegaCopier se cerraba de golpe** a veces al pulsar «Nueva» o al cerrar el menú de la bandeja, sobre todo tras
+  cambiar de tema (por ejemplo, de «Fluent oscuro» a «Azul clásico» tras haber abierto «Nueva»). Al cambiar el acento,
+  MegaCopier recargaba los recursos de los controles de Windows y los menús ya abiertos antes quedaban rotos; ahora el
+  acento se aplica sin recargarlos. También se ha quitado la sonda de fallos de WinUI añadida en la 1.3
+  (`crashstack.log`).
+- **«Fluent claro» con Windows en modo oscuro** se veía con el fondo oscuro y los textos sin contraste: ahora la ventana
+  es clara de verdad.
+- **Con el alto contraste de Windows**, los colores de los temas propios ya no tapan los del sistema en botones, listas,
+  menús y diálogos.
+- Los iconos de la lista de secciones de Ajustes y de los menús a veces se quedaban con los del conjunto anterior hasta
+  cambiar de tema.
+- **Ctrl+V a veces abría MegaCopier diciendo «No hay copias»** con la copia en marcha (se veía su progreso en la barra
+  de tareas): la copia se quedaba en una ventana que se estaba cerrando.
+- La pregunta de «¿añadirla a la copia en marcha?» ya no agranda la ventana pequeña: sale en ella, del tamaño que tenga.
+- **Arrastrar con copias en marcha** podía acabar en el copiador de Windows: Windows quita sin avisar el gancho del ratón
+  (y el del teclado, el de Ctrl+V) si una vez tarda en responder, por ejemplo en una pausa de memoria con copias grandes.
+  MegaCopier ahora se da cuenta y lo vuelve a poner (queda anotado en `drag.log`), y evita esas pausas largas.
+
 ## [1.6.0] - 2026-10-19
 
 Una versión para que todo se vea y funcione como esperas. Puedes tener cada copia en su propia ventana; los iconos del

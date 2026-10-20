@@ -47,7 +47,7 @@ CopyHeader.Text	Copie
 VerifyTitle.Text	Vérifier après la copie
 VerifyDescription.Text	Après chaque fichier, il le relit et le compare à l’original ; si quelque chose ne correspond pas, il le corrige.
 ConflictTitle.Text	Si le fichier existe déjà
-ConflictDescription.Text	Quand la destination contient déjà un fichier du même nom. Les fichiers identiques ne sont jamais recopiés.
+ConflictDescription.Text	Quand la destination contient déjà un fichier du même nom.
 ConflictAsk.Content	Demander
 ConflictReplace.Content	Remplacer
 ConflictSkip.Content	Ignorer
@@ -1456,8 +1456,6 @@ MinimizeButton_Taskbar.Content	Dans la barre des tâches
 MinimizeButton_Tray.Content	Dans la zone de notification
 Settings_TrayProgressTitle.Text	Progression de chaque copie dans la zone de notification
 Settings_TrayProgressDescription.Text	Une icône par copie en cours, avec son pourcentage et une barre qui monte. À la fin, elle disparaît d'elle-même. Un clic ouvre la copie.
-Info_WindowButtons_Title	Les boutons de la fenêtre
-Info_WindowButtons_Text	Choisissez ce qui arrive aux copies quand vous fermez ou réduisez la fenêtre.\n• Annuler les copies : comme appuyer sur « Arrêter » sur chacune. Elles disparaissent de la liste et ne sont pas proposées à la reprise.\n• Les arrêter pour continuer plus tard : ce qui a été copié est conservé ; en recopiant la même chose, ou en ouvrant MegaCopier, la copie reprend où elle en était.\n• Masquer la fenêtre : les copies continuent en arrière-plan ; ouvrez-la depuis l'icône de la zone de notification.\n• Quitter MegaCopier : il se ferme complètement et Windows copie comme d'habitude jusqu'à ce que vous le rouvriez.\nRéduire dans la zone de notification libère la barre des tâches : la fenêtre revient d'un clic sur l'icône de MegaCopier près de l'horloge.
 Tray_JobPause	Suspendre
 Tray_JobStop	Arrêter
 Jobs_Archive	Archiver dans l'historique
@@ -1493,12 +1491,14 @@ Settings_BackdropTitle.Text	Arrière-plan de la fenêtre
 Settings_BackdropDescription.Text	Le matériau de Windows 11 visible derrière la fenêtre, avec n'importe quel thème.
 Backdrop_OptTheme.Content	Celui du thème
 Backdrop_OptTranslucent.Content	Translucide (on voit le bureau)
-Backdrop_OptAcrylic.Content	Acrylique du bureau (base)
-Backdrop_OptAcrylicThin.Content	Acrylique du bureau (fin)
 BackdropAcrylicThin.Content	Acrylique fin
-Info_Backdrop_Text	C'est ce que l'on voit derrière le contenu de la fenêtre.\n• Celui du thème : chaque thème a le sien (uni, Mica ou acrylique).\n• Translucide : acrylique très transparent ; on voit le bureau derrière la fenêtre.\n• Mica : prend doucement la teinte de votre fond d'écran. C'est celui des applications de Windows 11.\n• Mica Alt : comme Mica, avec davantage de couleur du fond d'écran.\n• Acrylique du bureau (base) : comme un verre dépoli ; ce qui est derrière la fenêtre apparaît flou.\n• Acrylique du bureau (fin) : plus clair et plus transparent que la base.\nMica et l'acrylique nécessitent Windows 11 avec les effets de transparence activés ; sinon, une couleur unie s'affiche.
+Info_Backdrop_Text	C'est ce que l'on voit derrière le contenu de la fenêtre.\n• Celui du thème : chaque thème a le sien (uni, Mica ou acrylique). Les thèmes Fluent utilisent Mica, qui passe à Mica Alt pendant que vous utilisez une autre fenêtre au lieu de devenir une couleur unie.\n• Mica : prend doucement la teinte de votre fond d'écran. C'est celui des applications de Windows 11.\n• Mica Alt : comme Mica, avec davantage de couleur du fond d'écran.\n• Acrylique : comme un verre dépoli ; ce qui est derrière la fenêtre apparaît flou.\n• Translucide : acrylique plus clair et plus transparent ; on voit le bureau derrière la fenêtre.\nAvec l'un de ces quatre, la fenêtre prend une couleur unie pendant que vous en utilisez une autre, comme celles de Windows. Les menus et les listes d'options de MegaCopier sont toujours en acrylique.\nMica et l'acrylique nécessitent Windows 11 avec les effets de transparence activés ; sinon, une couleur unie s'affiche.
 SameDrive_NewWindow	Dans une nouvelle fenêtre
 SameDrive_NewWindowText	Une autre fenêtre de MegaCopier s'ouvre avec cette copie, qui démarre tout de suite en même temps que l'autre (les deux iront un peu moins vite).
 Settings_IndependentWindowsTitle.Text	Chaque copie dans sa propre fenêtre
 Settings_IndependentWindowsDescription.Text	Une fenêtre par copie, qui démarre tout de suite sans attendre les autres. Sans liste de copies, sauf si vous en ajoutez plusieurs à la même fenêtre.
 Info_IndependentWindows_Text	Normalement, MegaCopier n'a qu'une fenêtre et, si vous lancez plusieurs copies, il les affiche dans sa liste de copies. Avec cette option, chaque copie ouvre sa propre fenêtre et démarre tout de suite, sans attendre les autres.\n• C'est toujours la même application : le thème, les icônes et les réglages sont les mêmes partout (si vous les changez dans une fenêtre, ils changent dans toutes).\n• Chaque fenêtre a son icône de progression dans la zone de notification et son bouton dans la barre des tâches.\n• Si la nouvelle copie va sur le même disque qu'une copie en cours, « Nouvelle copie sur le même disque » décide : demander (l'ajouter à la copie de cette fenêtre ou l'ouvrir dans une nouvelle fenêtre), toujours l'ajouter, ou toujours ouvrir une nouvelle fenêtre sans demander.\n• Si vous ajoutez des copies à une fenêtre, elle affiche sa propre liste de copies.\n• Quand ses copies sont terminées, chaque fenêtre se ferme comme d'habitude.\nExemple : vous copiez des photos sur une clé USB et, pendant ce temps, des vidéos sur un autre disque : vous verrez deux fenêtres, chacune avec sa progression.
+Info_CloseButton_Title	Quand vous cliquez sur le X de la fenêtre
+Info_CloseButton_Text	Choisissez ce qui arrive aux copies quand vous fermez la fenêtre avec le X.\n• Annuler les copies : comme appuyer sur « Arrêter » sur chacune. Elles disparaissent de la liste et ne sont pas proposées à la reprise.\n• Les arrêter pour continuer plus tard : ce qui a été copié est conservé ; en recopiant la même chose, ou en ouvrant MegaCopier, la copie reprend où elle en était.\n• Masquer la fenêtre : les copies continuent en arrière-plan ; ouvrez-la depuis l'icône de la zone de notification.\n• Quitter MegaCopier : il se ferme complètement et Windows copie comme d'habitude jusqu'à ce que vous le rouvriez.
+Info_MinimizeButton_Title	Quand vous réduisez la fenêtre
+Info_MinimizeButton_Text	Où va la fenêtre quand vous la réduisez. Les copies continuent dans les deux cas.\n• Dans la barre des tâches : comme n'importe quelle autre fenêtre.\nRéduire dans la zone de notification libère la barre des tâches : la fenêtre revient d'un clic sur l'icône de MegaCopier près de l'horloge.

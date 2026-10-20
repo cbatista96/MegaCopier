@@ -329,7 +329,7 @@ terminar).
 - Atributos y permisos que se conservan **al mover**, aparte de los de copiar.
 - Icono de la bandeja opcional, **un icono de progreso por copia en la bandeja**, qué hacen la X (cancelar, detener,
   ocultar o salir) y minimizar (barra de tareas o bandeja), empezar las copias minimizadas, recordar la posición y el
-  tamaño de la ventana, fondo de la ventana (el del tema, translúcida, Mica, Mica Alt o acrílico) y ajuste a pantallas
+  tamaño de la ventana, fondo de la ventana (el del tema, Mica, Mica Alt, acrílico o translúcida) y ajuste a pantallas
   pequeñas (1366 × 768).
 
 ### Sincronizar

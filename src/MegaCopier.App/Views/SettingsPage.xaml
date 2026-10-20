@@ -114,6 +114,40 @@
                         <ToggleSwitch x:Name="StartupToggle" AutomationProperties.LabeledBy="{x:Bind StartupTitleLabel}" Grid.Column="2" OnContent="" OffContent="" MinWidth="0" Toggled="Startup_Toggled" />
                     </Grid>
                 </Border>
+                <Border Style="{StaticResource McSettingCard}">
+                    <StackPanel Spacing="8">
+                        <Grid Style="{StaticResource Row}" Tag="SettingRow">
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                            <c:McIcon VerticalAlignment="Center" Glyph="&#xE8A7;" FontSize="18" Accent="True" />
+                            <StackPanel Grid.Column="1"><TextBlock x:Name="TrayTitleLabel" x:Uid="Settings_TrayTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="Settings_TrayDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                            <ToggleSwitch x:Name="TrayToggle" AutomationProperties.LabeledBy="{x:Bind TrayTitleLabel}" Grid.Column="2" OnContent="" OffContent="" MinWidth="0" Toggled="Changed" />
+                        </Grid>
+                        <Grid Style="{StaticResource Row}" Tag="SettingRow">
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                            <c:McIcon VerticalAlignment="Center" Glyph="&#xE9D9;" FontSize="18" Accent="True" />
+                            <StackPanel Grid.Column="1"><TextBlock x:Name="TrayProgressTitleLabel" x:Uid="Settings_TrayProgressTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="Settings_TrayProgressDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                            <ToggleSwitch x:Name="TrayProgressToggle" AutomationProperties.LabeledBy="{x:Bind TrayProgressTitleLabel}" Grid.Column="2" OnContent="" OffContent="" MinWidth="0" Toggled="Changed" />
+                        </Grid>
+                    </StackPanel>
+                </Border>
+                <Border Style="{StaticResource McSettingCard}">
+                    <Grid Style="{StaticResource Row}">
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                        <c:McIcon VerticalAlignment="Center" Glyph="&#xF2B7;" FontSize="18" Accent="True" />
+                        <StackPanel Grid.Column="1"><TextBlock x:Name="LanguageTitleLabel" x:Uid="LanguageTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="LanguageDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                        <ComboBox x:Name="LanguageBox" AutomationProperties.LabeledBy="{x:Bind LanguageTitleLabel}" Grid.Column="2" MinWidth="220" SelectionChanged="Language_Changed" />
+                    </Grid>
+                </Border>
+                <Border Style="{StaticResource McSettingCard}">
+                    <Grid Style="{StaticResource Row}">
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                        <c:McIcon VerticalAlignment="Center" Glyph="&#xE9D9;" FontSize="18" Accent="True" />
+                        <StackPanel Grid.Column="1"><TextBlock x:Name="UnitsTitleLabel" x:Uid="Settings_UnitsTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="Settings_UnitsDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                        <ComboBox x:Name="UnitsBox" AutomationProperties.LabeledBy="{x:Bind UnitsTitleLabel}" Grid.Column="2" MinWidth="220" SelectionChanged="Selection_Changed">
+                            <ComboBoxItem x:Uid="Units_Classic" /><ComboBoxItem x:Uid="Units_Iec" /><ComboBoxItem x:Uid="Units_Decimal" />
+                        </ComboBox>
+                    </Grid>
+                </Border>
                 </StackPanel>                <StackPanel x:Name="Sec_Interface" Visibility="Collapsed">
                 <TextBlock x:Uid="Settings_Window" Style="{StaticResource McSection}" />
                 <Border Style="{StaticResource McSettingCard}">
@@ -137,24 +171,24 @@
                     </Grid>
                 </Border>
                 <Border Style="{StaticResource McSettingCard}">
-                    <StackPanel Spacing="8">
-                        <Grid Style="{StaticResource Row}" Tag="SettingRow">
-                            <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
-                            <c:McIcon VerticalAlignment="Center" Glyph="&#xE711;" FontSize="18" Accent="True" />
-                            <StackPanel Grid.Column="1"><Grid ColumnSpacing="4"><Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions><TextBlock x:Name="CloseButtonTitleLabel" x:Uid="Settings_CloseButtonTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" VerticalAlignment="Center" /><c:InfoTip Grid.Column="1" Topic="WindowButtons" Margin="0,-4,0,-4" /></Grid><TextBlock x:Uid="Settings_CloseButtonDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
-                            <ComboBox x:Name="CloseButtonBox" AutomationProperties.LabeledBy="{x:Bind CloseButtonTitleLabel}" Grid.Column="2" MinWidth="220" SelectionChanged="Selection_Changed">
-                                <ComboBoxItem x:Uid="CloseButton_Cancel" /><ComboBoxItem x:Uid="CloseButton_Stop" /><ComboBoxItem x:Uid="CloseButton_Hide" /><ComboBoxItem x:Uid="CloseButton_Exit" />
-                            </ComboBox>
-                        </Grid>
-                        <Grid Style="{StaticResource Row}" Tag="SettingRow">
-                            <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
-                            <c:McIcon VerticalAlignment="Center" Glyph="&#xE921;" FontSize="18" Accent="True" />
-                            <StackPanel Grid.Column="1"><TextBlock x:Name="MinimizeButtonTitleLabel" x:Uid="Settings_MinimizeButtonTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="Settings_MinimizeButtonDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
-                            <ComboBox x:Name="MinimizeButtonBox" AutomationProperties.LabeledBy="{x:Bind MinimizeButtonTitleLabel}" Grid.Column="2" MinWidth="220" SelectionChanged="Selection_Changed">
-                                <ComboBoxItem x:Uid="MinimizeButton_Taskbar" /><ComboBoxItem x:Uid="MinimizeButton_Tray" />
-                            </ComboBox>
-                        </Grid>
-                    </StackPanel>
+                    <Grid Style="{StaticResource Row}">
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                        <c:McIcon VerticalAlignment="Center" Glyph="&#xE711;" FontSize="18" Accent="True" />
+                        <StackPanel Grid.Column="1"><Grid ColumnSpacing="4"><Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions><TextBlock x:Name="CloseButtonTitleLabel" x:Uid="Settings_CloseButtonTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" VerticalAlignment="Center" /><c:InfoTip Grid.Column="1" Topic="CloseButton" Margin="0,-4,0,-4" /></Grid><TextBlock x:Uid="Settings_CloseButtonDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                        <ComboBox x:Name="CloseButtonBox" AutomationProperties.LabeledBy="{x:Bind CloseButtonTitleLabel}" Grid.Column="2" MinWidth="220" SelectionChanged="Selection_Changed">
+                            <ComboBoxItem x:Uid="CloseButton_Cancel" /><ComboBoxItem x:Uid="CloseButton_Stop" /><ComboBoxItem x:Uid="CloseButton_Hide" /><ComboBoxItem x:Uid="CloseButton_Exit" />
+                        </ComboBox>
+                    </Grid>
+                </Border>
+                <Border Style="{StaticResource McSettingCard}">
+                    <Grid Style="{StaticResource Row}">
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                        <c:McIcon VerticalAlignment="Center" Glyph="&#xE921;" FontSize="18" Accent="True" />
+                        <StackPanel Grid.Column="1"><Grid ColumnSpacing="4"><Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions><TextBlock x:Name="MinimizeButtonTitleLabel" x:Uid="Settings_MinimizeButtonTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" VerticalAlignment="Center" /><c:InfoTip Grid.Column="1" Topic="MinimizeButton" Margin="0,-4,0,-4" /></Grid><TextBlock x:Uid="Settings_MinimizeButtonDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                        <ComboBox x:Name="MinimizeButtonBox" AutomationProperties.LabeledBy="{x:Bind MinimizeButtonTitleLabel}" Grid.Column="2" MinWidth="220" SelectionChanged="Selection_Changed">
+                            <ComboBoxItem x:Uid="MinimizeButton_Taskbar" /><ComboBoxItem x:Uid="MinimizeButton_Tray" />
+                        </ComboBox>
+                    </Grid>
                 </Border>
                 <Border Style="{StaticResource McSettingCard}">
                     <Grid Style="{StaticResource Row}">
@@ -173,39 +207,6 @@
                     </Grid>
                 </Border>
                 <Border Style="{StaticResource McSettingCard}">
-                    <Grid Style="{StaticResource Row}">
-                        <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
-                        <c:McIcon VerticalAlignment="Center" Glyph="&#xF2B7;" FontSize="18" Accent="True" />
-                        <StackPanel Grid.Column="1"><TextBlock x:Name="LanguageTitleLabel" x:Uid="LanguageTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="LanguageDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
-                        <ComboBox x:Name="LanguageBox" AutomationProperties.LabeledBy="{x:Bind LanguageTitleLabel}" Grid.Column="2" MinWidth="220" SelectionChanged="Language_Changed" />
-                    </Grid>
-                </Border>
-                <Border Style="{StaticResource McSettingCard}">
-                    <Grid Style="{StaticResource Row}">
-                        <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
-                        <c:McIcon VerticalAlignment="Center" Glyph="&#xE9D9;" FontSize="18" Accent="True" />
-                        <StackPanel Grid.Column="1"><TextBlock x:Name="UnitsTitleLabel" x:Uid="Settings_UnitsTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="Settings_UnitsDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
-                        <ComboBox x:Name="UnitsBox" AutomationProperties.LabeledBy="{x:Bind UnitsTitleLabel}" Grid.Column="2" MinWidth="220" SelectionChanged="Selection_Changed">
-                            <ComboBoxItem x:Uid="Units_Classic" /><ComboBoxItem x:Uid="Units_Iec" /><ComboBoxItem x:Uid="Units_Decimal" />
-                        </ComboBox>
-                    </Grid>
-                </Border>
-                <Border Style="{StaticResource McSettingCard}">
-                    <StackPanel Spacing="8">
-                        <Grid Style="{StaticResource Row}" Tag="SettingRow">
-                            <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
-                            <c:McIcon VerticalAlignment="Center" Glyph="&#xE8A7;" FontSize="18" Accent="True" />
-                            <StackPanel Grid.Column="1"><TextBlock x:Name="TrayTitleLabel" x:Uid="Settings_TrayTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="Settings_TrayDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
-                            <ToggleSwitch x:Name="TrayToggle" AutomationProperties.LabeledBy="{x:Bind TrayTitleLabel}" Grid.Column="2" OnContent="" OffContent="" MinWidth="0" Toggled="Changed" />
-                        </Grid>
-                        <Grid Style="{StaticResource Row}" Tag="SettingRow">
-                            <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
-                            <c:McIcon VerticalAlignment="Center" Glyph="&#xE9D9;" FontSize="18" Accent="True" />
-                            <StackPanel Grid.Column="1"><TextBlock x:Name="TrayProgressTitleLabel" x:Uid="Settings_TrayProgressTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="Settings_TrayProgressDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
-                            <ToggleSwitch x:Name="TrayProgressToggle" AutomationProperties.LabeledBy="{x:Bind TrayProgressTitleLabel}" Grid.Column="2" OnContent="" OffContent="" MinWidth="0" Toggled="Changed" />
-                        </Grid>
-                    </StackPanel>
-                </Border>                <Border Style="{StaticResource McSettingCard}">
                     <StackPanel Spacing="8">
                         <Grid Style="{StaticResource Row}" Tag="SettingRow">
                             <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
@@ -214,7 +215,8 @@
                             <ToggleSwitch x:Name="StartMinimizedToggle" AutomationProperties.LabeledBy="{x:Bind StartMinimizedTitleLabel}" Grid.Column="2" OnContent="" OffContent="" MinWidth="0" Toggled="Changed" />
                         </Grid>
                     </StackPanel>
-                </Border>                <Border Style="{StaticResource McSettingCard}">
+                </Border>
+                <Border Style="{StaticResource McSettingCard}">
                     <StackPanel Spacing="8">
                         <Grid Style="{StaticResource Row}" Tag="SettingRow">
                             <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
@@ -230,7 +232,7 @@
                             <c:McIcon VerticalAlignment="Center" Glyph="&#xE81E;" FontSize="18" Accent="True" />
                             <StackPanel Grid.Column="1"><Grid ColumnSpacing="4"><Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions><TextBlock x:Name="BackdropTitleLabel" x:Uid="Settings_BackdropTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" VerticalAlignment="Center" /><c:InfoTip Grid.Column="1" Topic="Backdrop" Margin="0,-4,0,-4" /></Grid><TextBlock x:Uid="Settings_BackdropDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
                             <ComboBox x:Name="BackdropBox" AutomationProperties.LabeledBy="{x:Bind BackdropTitleLabel}" Grid.Column="2" MinWidth="220" SelectionChanged="Backdrop_Changed">
-                                <ComboBoxItem x:Uid="Backdrop_OptTheme" /><ComboBoxItem x:Uid="Backdrop_OptTranslucent" /><ComboBoxItem x:Uid="BackdropMica" /><ComboBoxItem x:Uid="BackdropMicaAlt" /><ComboBoxItem x:Uid="Backdrop_OptAcrylic" /><ComboBoxItem x:Uid="Backdrop_OptAcrylicThin" />
+                                <ComboBoxItem x:Uid="Backdrop_OptTheme" /><ComboBoxItem x:Uid="BackdropMica" /><ComboBoxItem x:Uid="BackdropMicaAlt" /><ComboBoxItem x:Uid="BackdropAcrylic" /><ComboBoxItem x:Uid="Backdrop_OptTranslucent" />
                             </ComboBox>
                         </Grid>
                     </StackPanel>

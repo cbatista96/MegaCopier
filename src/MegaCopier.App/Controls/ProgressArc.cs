@@ -34,7 +34,13 @@ public sealed partial class ProgressArc : UserControl
             IconPacks.Changed += ApplyColors;
             ApplyColors();
         };
-        Unloaded += (_, _) => IconPacks.Changed -= ApplyColors;
+        Unloaded += (_, _) =>
+        {
+            if (!IsLoaded) // WinUI puede avisar Unloaded después del Loaded de su nuevo sitio
+            {
+                IconPacks.Changed -= ApplyColors;
+            }
+        };
     }
 
     /// <summary>

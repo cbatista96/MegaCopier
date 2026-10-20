@@ -112,7 +112,9 @@ public partial class App : Application
 
     private void Launch()
     {
-        CrashProbe.Install(Path.GetDirectoryName(AppSettings.FilePath)!);
+        // Sin pausas largas del recolector de memoria: los ganchos del ratón y del teclado tienen que responder siempre al
+        // momento (si una vez tardan, Windows los quita) y la interfaz no se queda parada con copias grandes en marcha.
+        System.Runtime.GCSettings.LatencyMode = System.Runtime.GCLatencyMode.SustainedLowLatency;
 
         // Primero los pinceles del tema, luego los estilos que los usan (Resources no existe aún en el constructor).
         ThemeManager.Register(Resources);
@@ -131,7 +133,14 @@ public partial class App : Application
         var interrupted = Queue.LoadInterrupted();
 
         // Cada copia nueva, en la ventana que le toca (antes de que las ventanas se enteren de que existe).
-        Queue.JobAdded += job => _owners.TryAdd(job, _nextOwner);
+        Queue.JobAdded += job =>
+        {
+            _owners.TryAdd(job, _nextOwner);
+            if (_submittingAsk)
+            {
+                _awaitingAnswer.TryAdd(job, 0);
+            }
+        };
         _window = new MainWindow(this);
         _window.ApplyTheme(theme);
         ApplySettings();
@@ -204,7 +213,8 @@ public partial class App : Application
         _server.Start();
 
         _paste = new PasteInterceptor(OnExplorerPaste);
-        _paste.PassedThrough += reason => Debug.WriteLine($"Ctrl+V devuelto al Explorador: {reason}");
+        _paste.PassedThrough += reason => LogDrag($"Ctrl+V devuelto al Explorador: {reason}");
+        _paste.Traced += line => LogDrag(line);
         _drag = new DragInterceptor(OnExplorerDrag);
         _drag.PassedThrough += reason => LogDrag($"devuelto al Explorador: {reason}");
         _drag.Traced += line => LogDrag(line);
@@ -427,6 +437,7 @@ public partial class App : Application
             bool startNow = now && (ownWindow || (sameDrive is null ? Settings.OtherDriveCopies == OtherDriveCopy.Parallel : policy == SameDriveCopy.Parallel));
             _nextOwner = ask ? WindowFor(sameDrive!) : ownWindow ? WindowForNewCopy() : null; // mientras pregunta, en la ventana de la otra copia
             CopyJob job;
+            _submittingAsk = ask;
             try
             {
                 job = Queue.Submit(request.Sources, destination, options, ask ? DateTime.UtcNow.AddYears(50) : request.StartAtUtc, request.Excluded, startNow: startNow && !ask);
@@ -434,6 +445,7 @@ public partial class App : Application
             finally
             {
                 _nextOwner = null;
+                _submittingAsk = false;
             }
 
             if (ask)
@@ -553,6 +565,15 @@ public partial class App : Application
     /// <summary>La ventana para la copia que se está creando (mientras dura <see cref="CopyQueue.Submit"/>).</summary>
     private MainWindow? _nextOwner;
 
+    /// <summary>
+    /// Copias nuevas al mismo disco que esperan la respuesta a «¿añadirla a la copia en marcha?». Aún no cuentan como otra
+    /// copia: la ventana no pasa por ellas a la vista completa (la pregunta sale en la ventana tal como esté).
+    /// </summary>
+    private readonly System.Collections.Concurrent.ConcurrentDictionary<CopyJob, byte> _awaitingAnswer = new();
+    private bool _submittingAsk;
+
+    internal bool IsAwaitingAnswer(CopyJob job) => _awaitingAnswer.ContainsKey(job);
+
     /// <summary>La principal y las ventanas de copia abiertas.</summary>
     internal IReadOnlyList<MainWindow> AllWindows => _window is null ? [.. _copyWindows] : [_window, .. _copyWindows];
 
@@ -571,7 +592,8 @@ public partial class App : Application
             return Window;
         }
 
-        if (_copyWindows.FirstOrDefault(w => !w.IsClosed && !w.HasActiveJobs) is { } free)
+        // Solo una que se ve: una oculta sin copias está a punto de cerrarse y la copia nueva se quedaría sin ventana.
+        if (_copyWindows.FirstOrDefault(w => !w.IsClosed && w.AppWindow.IsVisible && !w.HasActiveJobs) is { } free)
         {
             return free;
         }
@@ -600,7 +622,10 @@ public partial class App : Application
         to.ShowJob(job);
     }
 
-    /// <summary>Una ventana de copia se cerró: sus copias (ya terminadas) vuelven a la principal.</summary>
+    /// <summary>
+    /// Una ventana de copia se cerró: sus copias vuelven a la principal (y se ven en ella, también una que le llegó
+    /// justo mientras se cerraba).
+    /// </summary>
     internal void ForgetWindow(MainWindow window)
     {
         _copyWindows.Remove(window);
@@ -609,6 +634,10 @@ public partial class App : Application
             if (owner == window)
             {
                 _owners[job] = null;
+                if (Queue.Jobs.Contains(job))
+                {
+                    Window.TakeJob(job, select: false);
+                }
             }
         }
     }
@@ -677,7 +706,16 @@ public partial class App : Application
     /// </summary>
     private async Task AskSameDriveAsync(CopyJob added, CopyJob target, List<string> sources)
     {
-        var answer = await WindowFor(target).AskSameDriveAsync(target, added.Record.Destination, sources, Settings.IndependentWindows);
+        SameDriveAnswer answer;
+        try
+        {
+            answer = await WindowFor(target).AskSameDriveAsync(target, added.Record.Destination, sources, Settings.IndependentWindows);
+        }
+        finally
+        {
+            _awaitingAnswer.TryRemove(added, out _);
+        }
+
         if (answer == SameDriveAnswer.Add && target.IsActive && Queue.Withdraw(added))
         {
             await AddToJobAsync(target, sources, destination: added.Record.Destination); // si no cabe, pregunta
@@ -735,8 +773,8 @@ public partial class App : Application
 
     /// <summary>Aplica un tema (también la vista previa del editor, sin guardarlo).</summary>
     /// <summary>
-    /// El tema con el fondo de ventana elegido en Ajustes: Mica, Mica Alt o acrílico (normal, delgado o «translúcida»,
-    /// la más transparente). El color de fondo del tema se aclara para que el material se vea, sea cual sea el tema.
+    /// El tema con el fondo de ventana elegido en Ajustes: Mica, Mica Alt, acrílico o «Translúcida» (acrílico delgado, el más
+    /// transparente). El color de fondo del tema se aclara para que el material se vea, sea cual sea el tema.
     /// </summary>
     private static ThemeDefinition WithBackdrop(ThemeDefinition theme, WindowBackdrop choice)
     {
@@ -756,8 +794,7 @@ public partial class App : Application
             WindowBackdrop.Mica => (AppBackdrop.Mica, 0.3),
             WindowBackdrop.MicaAlt => (AppBackdrop.MicaAlt, 0.3),
             WindowBackdrop.AcrylicBase => (AppBackdrop.Acrylic, 0.55),
-            WindowBackdrop.AcrylicThin => (AppBackdrop.AcrylicThin, 0.45),
-            _ => (AppBackdrop.Acrylic, 0.45), // translúcida
+            _ => (AppBackdrop.AcrylicThin, 0.45), // translúcida
         };
         var clone = theme.Clone();
         clone.Backdrop = backdrop;
@@ -782,8 +819,10 @@ public partial class App : Application
     private string _controlAccent = "";
 
     /// <summary>
-    /// Acento de los controles estándar (casillas, interruptores, botón principal, pestañas). WinUI lo lee al cargar sus
-    /// recursos: se vuelven a cargar con el color nuevo y la ventana fuerza que los controles los vuelvan a leer.
+    /// Acento de los controles estándar (casillas, interruptores, botón principal, pestañas). Devuelve si cambió: la
+    /// ventana alterna entonces su tema para que los controles vuelvan a leer sus recursos. No se sustituye
+    /// XamlControlsResources: un menú ya abierto antes conserva los recursos del diccionario viejo y WinUI se cierra
+    /// (0xc000027b, «El parámetro no es correcto») al volver a abrirlo.
     /// </summary>
     private bool ApplyControlAccent(ThemeDefinition theme)
     {
@@ -799,22 +838,7 @@ public partial class App : Application
         bool first = _controlAccent.Length == 0;
         _controlAccent = signature;
         Appearance.ApplyAccent(accent);
-        if (first)
-        {
-            return false;
-        }
-
-        var merged = Resources.MergedDictionaries;
-        for (int i = 0; i < merged.Count; i++)
-        {
-            if (merged[i] is Microsoft.UI.Xaml.Controls.XamlControlsResources)
-            {
-                merged[i] = new Microsoft.UI.Xaml.Controls.XamlControlsResources();
-                break;
-            }
-        }
-
-        return true;
+        return !first;
     }
 
     /// <summary>Aviso del sistema desde el icono de la bandeja.</summary>
@@ -930,7 +954,9 @@ public partial class App : Application
             }
         });
 
-        return queued && completion.Task.Wait(TimeSpan.FromSeconds(5)) && completion.Task.Result;
+        // El hilo de los ganchos sigue libre. Una petición ya encolada no puede volver al Explorador por un
+        // plazo arbitrario: la interfaz podría aceptarla después y los dos copiadores ejecutarían lo mismo.
+        return queued && completion.Task.GetAwaiter().GetResult();
     }
 
     private Task<IpcResponse> HandleRequestAsync(IpcRequest request)
@@ -965,6 +991,7 @@ public partial class App : Application
                 if (Settings.ShowWindowOnNewCopy)
                 {
                     var shown = WindowFor(job); // la ventana de esa copia (con varias ventanas, la suya)
+                    shown.TakeJob(job, select: !IsAwaitingAnswer(job)); // ya en su lista antes de enseñarla (el aviso llega después)
                     shown.ShowJobs();
                     if (Settings.StartMinimized)
                     {
@@ -1028,6 +1055,10 @@ public partial class App : Application
             case "debug-menu" when TestMode && request.Destination is { } menuButton:
                 // Solo pruebas: abre el menú de un botón (por su nombre accesible), sin ratón.
                 return new IpcResponse { Ok = Window.DebugOpenMenu(menuButton) };
+
+            case "debug-click" when TestMode && request.Destination is { } clickName:
+                // Solo pruebas: pulsa un botón (por su nombre accesible o su nombre en el XAML), sin ratón.
+                return new IpcResponse { Ok = Window.DebugClick(clickName) };
 
             case "debug-redraw" when TestMode:
                 Window.Redraw();
@@ -1160,7 +1191,7 @@ public partial class App : Application
             new(L.Get("Tray_PauseAll"), Queue.PauseAll, Enabled: anyRunning, Glyph: "\uE769"),
             new(L.Get("Tray_ResumeAll"), Queue.ResumeAll, Enabled: anyPaused, Glyph: "\uE768"),
             TrayMenuItem.Separator,
-            new(L.Get("Tray_Startup"), () => StartupRegistration.Set(!StartupRegistration.IsEnabled), Checked: StartupRegistration.IsEnabled, Checkable: true),
+            new(L.Get("Tray_Startup"), () => StartupRegistration.Set(!StartupRegistration.IsEnabled), Checked: StartupRegistration.IsEnabled, Checkable: true, Glyph: ""),
             TrayMenuItem.Separator,
             new(L.Get("Tray_Exit"), ExitApp, Glyph: "\uE711"),
         ];

@@ -47,7 +47,7 @@ CopyHeader.Text	Cópia
 VerifyTitle.Text	Verificar depois de copiar
 VerifyDescription.Text	Ao terminar cada arquivo, lê de novo e compara com o original; se algo não bate, corrige.
 ConflictTitle.Text	Se o arquivo já existir
-ConflictDescription.Text	Quando o destino já tem um arquivo com o mesmo nome. Os idênticos nunca são copiados de novo.
+ConflictDescription.Text	Quando o destino já tem um arquivo com o mesmo nome.
 ConflictAsk.Content	Perguntar
 ConflictReplace.Content	Substituir
 ConflictSkip.Content	Ignorar
@@ -1456,8 +1456,6 @@ MinimizeButton_Taskbar.Content	Para a barra de tarefas
 MinimizeButton_Tray.Content	Para a bandeja
 Settings_TrayProgressTitle.Text	Progresso de cada cópia na bandeja
 Settings_TrayProgressDescription.Text	Um ícone para cada cópia em andamento, com a porcentagem e uma barra que sobe. Ao terminar, some sozinho. Um clique abre a cópia.
-Info_WindowButtons_Title	Os botões da janela
-Info_WindowButtons_Text	Escolha o que acontece com as cópias ao fechar ou minimizar a janela.\n• Cancelar as cópias: como tocar em “Parar” em cada uma. Elas somem da lista e não são oferecidas para continuar.\n• Pará-las para continuar depois: o que foi copiado é mantido; ao copiar a mesma coisa de novo, ou abrir o MegaCopier, continua de onde parou.\n• Ocultar a janela: as cópias seguem em segundo plano; abra-a pelo ícone da bandeja.\n• Sair do MegaCopier: ele fecha por completo e o Windows copia como sempre até você abri-lo de novo.\nMinimizar para a bandeja deixa a barra de tarefas livre: a janela volta com um clique no ícone do MegaCopier ao lado do relógio.
 Tray_JobPause	Pausar
 Tray_JobStop	Parar
 Jobs_Archive	Arquivar no histórico
@@ -1493,12 +1491,14 @@ Settings_BackdropTitle.Text	Fundo da janela
 Settings_BackdropDescription.Text	O material do Windows 11 que aparece atrás da janela, com qualquer tema.
 Backdrop_OptTheme.Content	O do tema
 Backdrop_OptTranslucent.Content	Translúcida (a área de trabalho aparece)
-Backdrop_OptAcrylic.Content	Acrílico da área de trabalho (base)
-Backdrop_OptAcrylicThin.Content	Acrílico da área de trabalho (fino)
 BackdropAcrylicThin.Content	Acrílico fino
-Info_Backdrop_Text	É o que aparece atrás do conteúdo da janela.\n• O do tema: cada tema traz o seu (sólido, Mica ou acrílico).\n• Translúcida: acrílico bem transparente; a área de trabalho aparece atrás da janela.\n• Mica: pega suavemente o tom do seu papel de parede. É o dos aplicativos do Windows 11.\n• Mica Alt: como o Mica, mas com mais cor do papel de parede.\n• Acrílico da área de trabalho (base): como vidro fosco; o que está atrás da janela fica desfocado.\n• Acrílico da área de trabalho (fino): mais claro e transparente que o base.\nMica e acrílico precisam do Windows 11 com os efeitos de transparência ativados; senão, aparece uma cor sólida.
+Info_Backdrop_Text	É o que aparece atrás do conteúdo da janela.\n• O do tema: cada tema traz o seu (sólido, Mica ou acrílico). Os temas Fluent usam Mica, que passa para Mica Alt enquanto você usa outra janela, em vez de ficar com uma cor sólida.\n• Mica: pega suavemente o tom do seu papel de parede. É o dos aplicativos do Windows 11.\n• Mica Alt: como o Mica, mas com mais cor do papel de parede.\n• Acrílico: como vidro fosco; o que está atrás da janela fica desfocado.\n• Translúcida: acrílico mais claro e transparente; a área de trabalho aparece atrás da janela.\nCom um destes quatro, a janela fica com uma cor sólida enquanto você usa outra, como as do Windows. Os menus e as listas de opções do MegaCopier são sempre de acrílico.\nMica e acrílico precisam do Windows 11 com os efeitos de transparência ativados; senão, aparece uma cor sólida.
 SameDrive_NewWindow	Em uma nova janela
 SameDrive_NewWindowText	Outra janela do MegaCopier se abre com esta cópia, que começa já, junto com a outra (as duas ficarão um pouco mais lentas).
 Settings_IndependentWindowsTitle.Text	Cada cópia na própria janela
 Settings_IndependentWindowsDescription.Text	Uma janela por cópia, que começa já sem esperar as outras. Sem lista de cópias, a não ser que você junte várias na mesma janela.
 Info_IndependentWindows_Text	Normalmente o MegaCopier tem uma só janela e, se você faz várias cópias, mostra todas na lista de cópias. Com esta opção, cada cópia abre a própria janela e começa já, sem esperar as outras.\n• É sempre o mesmo aplicativo: tema, ícones e configurações são os mesmos em todas (se mudar em uma, muda em todas).\n• Cada janela tem seu ícone de progresso na bandeja e seu botão na barra de tarefas.\n• Se a nova cópia vai para o mesmo disco que outra em andamento, quem decide é «Nova cópia para o mesmo disco»: perguntar (juntar à cópia daquela janela ou abrir em uma nova janela), juntar sempre ou abrir sempre uma nova janela sem perguntar.\n• Se você junta cópias em uma janela, essa janela mostra a própria lista de cópias.\n• Quando as cópias dela terminam, cada janela fecha como sempre.\nExemplo: você copia fotos para um pendrive e, enquanto isso, vídeos para outro disco: verá duas janelas, cada uma com seu progresso.
+Info_CloseButton_Title	Ao clicar no X da janela
+Info_CloseButton_Text	Escolha o que acontece com as cópias ao fechar a janela no X.\n• Cancelar as cópias: como tocar em “Parar” em cada uma. Elas somem da lista e não são oferecidas para continuar.\n• Pará-las para continuar depois: o que foi copiado é mantido; ao copiar a mesma coisa de novo, ou abrir o MegaCopier, continua de onde parou.\n• Ocultar a janela: as cópias seguem em segundo plano; abra-a pelo ícone da bandeja.\n• Sair do MegaCopier: ele fecha por completo e o Windows copia como sempre até você abri-lo de novo.
+Info_MinimizeButton_Title	Ao minimizar a janela
+Info_MinimizeButton_Text	Para onde vai a janela ao minimizá-la. As cópias continuam nos dois casos.\n• Na barra de tarefas: como qualquer outra janela.\nMinimizar para a bandeja deixa a barra de tarefas livre: a janela volta com um clique no ícone do MegaCopier ao lado do relógio.

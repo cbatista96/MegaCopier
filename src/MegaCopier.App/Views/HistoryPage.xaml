@@ -73,7 +73,7 @@
         </ListView>
         <TextBlock x:Name="EmptyText" x:Uid="History_Empty" Grid.Row="2" Style="{StaticResource McSecondary}" HorizontalAlignment="Center" VerticalAlignment="Center" />
 
-        <ContentDialog x:Name="UndoDialog" x:Uid="History_UndoDialog" Grid.RowSpan="3" Style="{StaticResource DefaultContentDialogStyle}" DefaultButton="Close">
+        <ContentDialog x:Name="UndoDialog" x:Uid="History_UndoDialog" Grid.RowSpan="3" Style="{StaticResource McContentDialogStyle}" DefaultButton="Close">
             <TextBlock x:Name="UndoMessage" TextWrapping="Wrap" MaxWidth="440" />
         </ContentDialog>
     </Grid>

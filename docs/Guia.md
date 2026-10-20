@@ -59,8 +59,14 @@ instalar.
 Una vez instalado, **no tienes que cambiar nada de lo que haces**:
 
 - **Ctrl+C → Ctrl+V** en el Explorador o en el Escritorio: copia MegaCopier.
+- **Pegar en la barra superior del Explorador**: usa MegaCopier y pega en la carpeta abierta de la pestaña activa;
+  seleccionar una subcarpeta no cambia ese destino.
 - **Ctrl+X → Ctrl+V**: mueve MegaCopier. En el mismo disco es un renombrado instantáneo (2 GB en 16 ms); entre discos se
   copia y el original solo se borra cuando su copia está completa y comprobada.
+- **Clic derecho > Pegar** (la orden de Windows) también usa MegaCopier al abrir el menú sobre el fondo o una carpeta
+  de la vista del Explorador. Usa el ajuste de interceptar el pegado, igual que Ctrl+V. Si no puede reconocer la orden,
+  el destino o confirmar el cierre del menú, conserva el pegado del Explorador. El menú clásico reconoce el atajo o
+  la etiqueta localizada aprendida del menú moderno, al pasar por «Mostrar más opciones».
 - **Clic derecho > Pegar con MegaCopier** en una carpeta o en el fondo de una ventana. En Windows 11 aparece en el menú
   corto, sin pasar por «Mostrar más opciones».
 - **Arrastrar con el botón derecho** y soltar: «Copiar aquí con MegaCopier» o «Mover aquí con MegaCopier».
@@ -69,9 +75,13 @@ Una vez instalado, **no tienes que cambiar nada de lo que haces**:
   serie; en *Ajustes > General* puedes desactivarlo o hacer que pregunte antes, siempre o solo al mover). Soltar sobre
   un archivo o un ZIP sigue haciéndolo el Explorador.
 
-MegaCopier solo actúa cuando el foco está en la lista de archivos: nunca al escribir en la barra de direcciones, en la
-búsqueda o al renombrar. Pegar en la misma carpeta y en carpetas especiales (*Este equipo*, dentro de un ZIP…) sigue
+La interceptación de Ctrl+V solo actúa cuando el foco está en la lista de archivos: nunca al escribir en la barra de
+direcciones, en la búsqueda o al renombrar. Pegar en la misma carpeta y en carpetas especiales (*Este equipo*, dentro de un ZIP…) sigue
 haciéndolo el Explorador.
+
+Al copiar un archivo individual de nuevo al mismo destino, con la regla **Preguntar**, se muestra el aviso aunque
+parezca idéntico: **Reemplazar**, **Conservar ambos** u **Omitir**. No aparece «Uno a uno» ni «Hacer lo mismo con los demás»
+para ese archivo único. Al reanudar un trabajo se siguen omitiendo los archivos que ya terminaron.
 
 ### Activar y desactivar
 
@@ -86,7 +96,7 @@ Mientras copia, junto a él aparece **un icono por cada copia** con su porcentaj
 rojo con errores); al terminar se llena, muestra una marca y se quita solo. Un clic abre esa copia y el clic derecho la
 pausa, la reanuda o la detiene. Si Windows los esconde en la flecha **˄** junto al reloj, arrástralos a la barra (o
 actívalos en *Configuración de Windows > Personalización > Barra de tareas > Otros iconos de la bandeja del sistema*).
-Se apagan en *Ajustes > Interfaz > Progreso de cada copia en la bandeja*.
+Se apagan en *Ajustes > General > Progreso de cada copia en la bandeja*.
 
 ---
 
@@ -240,7 +250,8 @@ Es lo que hace a MegaCopier diferente. Si la copia se corta (apagón, cuelgue, W
    ![Copia interrumpida](capturas/interrumpida.png)
 
 2. Pulsa **Continuar** (▶). MegaCopier comprueba que lo ya copiado está bien y sigue **dentro del mismo archivo**, no
-   desde el principio:
+   desde el principio. Vuelve a escribir enseguida: si verificas o guardas sumas, la suma del archivo entero se calcula
+   a la vez que se copia el resto:
 
    ![Copia reanudada al 30 % del archivo](capturas/reanudada.png)
 
@@ -541,8 +552,8 @@ En una ventana estrecha la lista de secciones se queda solo con los iconos.
 
 | Sección | Qué se ajusta |
 |---|---|
-| **General** | Usar MegaCopier en lugar del copiador de Windows · Copiar y mover al pegar (Ctrl+V) · Arrastrar con el botón izquierdo (y si preguntar antes) · Opciones en el menú contextual · Iniciar con Windows. |
-| **Interfaz** | Ventana compacta, completa o automática · Qué hacer al terminar · **Qué hacen la X y minimizar** · Siempre visible · Avisar al terminar · **Idioma** · Unidades de tamaño · Mostrar el icono en la bandeja · **Progreso de cada copia en la bandeja** · Iniciar las copias con la ventana minimizada · Recordar la posición y el tamaño de la ventana · **Fondo de la ventana** (el del tema, translúcida, Mica, Mica Alt, acrílico base o delgado) · Ajustar a pantallas pequeñas · **Temas** y su editor · **Conjuntos de iconos** (ver [Temas e iconos](#18-temas-e-iconos)). |
+| **General** | Usar MegaCopier en lugar del copiador de Windows · Copiar y mover al pegar (Ctrl+V) · Arrastrar con el botón izquierdo (y si preguntar antes) · Opciones en el menú contextual · Iniciar con Windows · **Idioma** · Unidades de tamaño · Mostrar el icono en la bandeja · **Progreso de cada copia en la bandeja**. |
+| **Interfaz** | Ventana compacta, completa o automática · Qué hacer al terminar · **Qué hacen la X y Minimizar (cada una por separado)** · Siempre visible · Avisar al terminar · Iniciar las copias con la ventana minimizada · Recordar la posición y el tamaño de la ventana · **Fondo de la ventana** (el del tema, que con los temas Fluent es Mica y pasa a Mica Alt al usar otra ventana; Mica, Mica Alt, Acrílico o Translúcida) · Ajustar a pantallas pequeñas · **Temas** y su editor · **Conjuntos de iconos** (ver [Temas e iconos](#18-temas-e-iconos)). |
 | **Sonidos** | Sonido para cada momento (copia terminada, todas terminadas, error, pregunta), volumen y no sonar con juegos, presentaciones o «No molestar». Por defecto suenan los **sonidos propios de MegaCopier** (campanillas originales, no los avisos de Windows); en cada momento puedes elegir, de arriba abajo, **un archivo tuyo**, ninguno, el propio de ese momento, uno de la **colección de MegaCopier** (19 sonidos originales: avisos de menos de un segundo, notificaciones de 1,5 a 3 s y melodías de hasta 4 s) o uno de Windows, y probarlo con ▶. |
 | **Copia** | Verificar después de copiar · Si el archivo ya existe · Algoritmo de suma · Qué se copia (fechas, atributos, ADS, permisos, propietario, auditoría) · Archivo de sumas e informe · Comprobar el espacio libre antes · Caché del sistema · Comprimir por la red (SMB) · Reanudar solas al arrancar · Rendimiento · Filtros y reglas. |
 | **Comportamiento** | **Copia nueva al mismo disco que otra en marcha** (preguntar, añadirla, copia aparte después o a la vez) · **Copia nueva a otro disco** (empezar a la vez o esperar su turno) · **Cada copia en su propia ventana** (una ventana por copia, que empieza ya) · **Al mover, conservar también** atributos, permisos, propietario y auditoría · **Al detener una copia, borrar lo que quedó a medias** (y no hacerlo si paró por un error) · **Al terminar, expulsar la unidad de destino** si es extraíble (y forzarlo). |

@@ -189,7 +189,7 @@ public sealed partial class SettingsPage : UserControl
         StartMinimizedToggle.IsOn = s.StartMinimized;
         RememberPositionBox.IsChecked = s.RememberPosition;
         RememberSizeBox.IsChecked = s.RememberSize;
-        BackdropBox.SelectedIndex = (int)s.EffectiveBackdrop;
+        BackdropBox.SelectedIndex = Array.IndexOf(BackdropChoices, s.EffectiveBackdrop);
         AdaptToggle.IsOn = s.AdaptSmallScreens;
         SameDriveBox.SelectedIndex = (int)s.SameDriveCopies;
         OtherDriveBox.SelectedIndex = (int)s.OtherDriveCopies;
@@ -367,7 +367,7 @@ public sealed partial class SettingsPage : UserControl
         s.StartMinimized = StartMinimizedToggle.IsOn;
         s.RememberPosition = RememberPositionBox.IsChecked == true;
         s.RememberSize = RememberSizeBox.IsChecked == true;
-        s.WindowBackdrop = (WindowBackdrop)Math.Max(0, BackdropBox.SelectedIndex);
+        s.WindowBackdrop = BackdropChoices[Math.Max(0, BackdropBox.SelectedIndex)];
         s.Translucent = false; // el ajuste antiguo ya está en WindowBackdrop
         s.AdaptSmallScreens = AdaptToggle.IsOn;
         s.SameDriveCopies = (SameDriveCopy)Math.Max(0, SameDriveBox.SelectedIndex);

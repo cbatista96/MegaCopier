@@ -178,7 +178,7 @@ public sealed partial class MainWindow
                     ShowJobs();
                     Select(Jobs.FirstOrDefault(j => j.Job == job) ?? _selected);
                     ShowAndActivate();
-                    Sounds.Play(_app.Settings.Sounds, SoundEvent.Attention);
+                    PlayAttentionOnce(job);
                     string name = Path.GetFileName(info.Destination);
                     string parent = Format.ShortPath(Path.GetDirectoryName(info.Destination) ?? "", 3);
                     if (!_expanded)

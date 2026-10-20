@@ -32,7 +32,6 @@ public sealed unsafe partial class DragInterceptor : IDisposable
 {
     private const int WhMouseLl = 14;
     private const uint WmMouseMove = 0x0200, WmLButtonDown = 0x0201, WmLButtonUp = 0x0202;
-    private const uint LlmhfInjected = 0x1;
     private const int VkControl = 0x11, VkShift = 0x10, VkMenu = 0x12, VkEscape = 0x1B;
 
     /// <summary>Lo más que se retiene el botón mientras se decide; después suelta el Explorador.</summary>
@@ -62,6 +61,7 @@ public sealed unsafe partial class DragInterceptor : IDisposable
     {
         _handler = handler;
         _hooks = new HookThread(WhMouseLl, &HookProc, "MegaCopier.MouseHook");
+        _hooks.Reinstalled += result => Traced?.Invoke($"Windows había quitado el gancho del ratón: {result}");
     }
 
     /// <summary>Se dispara (en otro hilo) cuando un arrastre se devuelve al Explorador, con el motivo.</summary>
@@ -107,12 +107,15 @@ public sealed unsafe partial class DragInterceptor : IDisposable
     private static nint HookProc(int code, nint wParam, nint lParam)
     {
         var self = _active;
+        self?._hooks.Touch();
         if (code >= 0 && self is not null && self.IsEnabled)
         {
             try
             {
                 var data = (MsllHookStruct*)lParam;
-                if ((data->flags & LlmhfInjected) == 0 && self.OnButton((uint)wParam, data->x, data->y))
+                // También funcionan ratones remotos y herramientas de accesibilidad. Solo se ignoran nuestros
+                // propios mensajes (soltar, Esc y movimientos de mantenimiento), para no interceptarnos otra vez.
+                if (data->dwExtraInfo != Marker && self.OnButton((uint)wParam, data->x, data->y))
                 {
                     return 1; // el Explorador no ve este "soltar" (todavía)
                 }
@@ -163,7 +166,12 @@ public sealed unsafe partial class DragInterceptor : IDisposable
         _downView = 0;
 
         // ¿Arrastre OLE en curso desde ese hilo del Explorador? (una selección con recuadro captura otra ventana)
-        if (Native.ClassName(Native.CaptureWindow(thread)) != "CLIPBRDWNDCLASS" || Pressed(VkMenu))
+        string captureClass = Native.ClassName(Native.CaptureWindow(thread));
+        bool awaitDrag = captureClass != "CLIPBRDWNDCLASS";
+        if (Pressed(VkMenu) || (awaitDrag &&
+            (captureClass is not ("" or "DirectUIHWND" or "SysListView32" or "SysTreeView32") ||
+             (Math.Abs(x - _downX) < GetSystemMetrics(68 /* SM_CXDRAG */) &&
+              Math.Abs(y - _downY) < GetSystemMetrics(69 /* SM_CYDRAG */)))))
         {
             return false;
         }
@@ -174,7 +182,7 @@ public sealed unsafe partial class DragInterceptor : IDisposable
             return false; // barra de direcciones, otro programa...: lo suelta el Explorador
         }
 
-        var pending = new Pending(source, sourceTree, target, tree, x, y, Pressed(VkControl), Pressed(VkShift), thread);
+        var pending = new Pending(source, sourceTree, target, tree, x, y, Pressed(VkControl), Pressed(VkShift), thread, awaitDrag);
         new Drop(this, pending, _prefetch).Start();
         _prefetch = null;
         return true;
@@ -204,12 +212,15 @@ public sealed unsafe partial class DragInterceptor : IDisposable
             {
                 try
                 {
-                    UiaHitTest.WarmUp(); // la primera consulta de accesibilidad es la más lenta
                     prefetch._done.TrySetResult(tree ? TreeSource(x, y) : ExplorerLocator.Snapshot(source, selection: true, items: false));
                 }
                 catch (Exception ex) when (ex is COMException or InvalidOperationException or IOException or UnauthorizedAccessException)
                 {
                     prefetch._done.TrySetResult(null);
+                }
+                finally
+                {
+                    UiaHitTest.ReleaseThread();
                 }
             })
             { IsBackground = true, Name = "MegaCopier.DragSource" };
@@ -293,6 +304,10 @@ public sealed unsafe partial class DragInterceptor : IDisposable
         {
             reason = ex.Message;
         }
+        finally
+        {
+            UiaHitTest.ReleaseThread();
+        }
 
         string took = $"{drop.Elapsed.TotalMilliseconds:0} ms";
         if (!drop.Claim())
@@ -306,6 +321,7 @@ public sealed unsafe partial class DragInterceptor : IDisposable
             reason = "el Explorador no canceló su arrastre a tiempo";
         }
 
+        took = $"{drop.Elapsed.TotalMilliseconds:0} ms"; // incluye la confirmación de cancelación, no solo la decisión
         SendButtonUp(); // el Explorador suelta como siempre o, si ya se canceló, solo vuelve el botón a su estado real
         if (reason is not null)
         {
@@ -331,6 +347,24 @@ public sealed unsafe partial class DragInterceptor : IDisposable
     {
         request = null;
         var pending = drop.Pending;
+
+        // El gancho ve «soltar» antes que el Explorador. Con gestos rápidos, este aún está procesando los
+        // movimientos que inician DoDragDrop y conserva la captura en la lista. Se le deja atenderlos, sin
+        // entregarle todavía «soltar». Un recuadro de selección nunca pasa a captura OLE: se devuelve intacto.
+        if (pending.AwaitDrag)
+        {
+            drop.Stage = "esperando el inicio del arrastre";
+            long started = Stopwatch.GetTimestamp();
+            while (Native.ClassName(Native.CaptureWindow(pending.Thread)) != "CLIPBRDWNDCLASS")
+            {
+                if (Stopwatch.GetElapsedTime(started) >= TimeSpan.FromMilliseconds(250))
+                {
+                    return "el gesto no inició un arrastre OLE";
+                }
+
+                Thread.Sleep(10);
+            }
+        }
 
         // Lo arrastrado: casi siempre ya está leído. Si no, se espera lo que quede de plazo (o se lee ahora).
         drop.Stage = "leyendo lo que se arrastra";
@@ -418,35 +452,42 @@ public sealed unsafe partial class DragInterceptor : IDisposable
     {
         // Solo cuenta como cancelado si el Explorador ha soltado el ratón y sigue sin él un momento: un cambio de
         // captura pasajero no basta (si se le devolviera el botón con el arrastre vivo, copiarían los dos).
-        SendKey(VkEscape);
-        int released = 0;
-        for (int i = 0; i < 60; i++)
+        // DoDragDrop consulta Esc al atender el siguiente cambio de entrada. No se debe soltar en el mismo
+        // lote: entre ventanas (o con otro trabajo activo) el bucle OLE puede atenderlo después del KEYUP.
+        // Se mantiene pulsada hasta confirmar la cancelación y se despierta también el hilo de origen.
+        if (Pressed(VkEscape) || !SendKey(VkEscape, up: false))
         {
-            released = Native.ClassName(Native.CaptureWindow(thread)) != "CLIPBRDWNDCLASS" ? released + 1 : 0;
-            if (released >= 3)
-            {
-                return true;
-            }
-
-            if (i == 25)
-            {
-                SendKey(VkEscape); // por si el primero llegó a otra ventana
-            }
-
-            Thread.Sleep(15);
+            return false;
         }
 
-        return false;
+        try
+        {
+            int released = 0;
+            for (int i = 0; i < 60; i++)
+            {
+                released = Native.ClassName(Native.CaptureWindow(thread)) != "CLIPBRDWNDCLASS" ? released + 1 : 0;
+                if (released >= 3)
+                {
+                    return true;
+                }
+
+                Nudge(thread);
+                Thread.Sleep(15);
+            }
+
+            return false;
+        }
+        finally
+        {
+            SendKey(VkEscape, up: true);
+        }
     }
 
-    private static void SendKey(int key)
+    private static bool SendKey(int key, bool up)
     {
-        var inputs = stackalloc Input[2];
-        inputs[0] = new Input { type = 1 /* INPUT_KEYBOARD */ };
-        inputs[0].u.ki = new KeybdInput { wVk = (ushort)key, dwExtraInfo = Marker };
-        inputs[1] = inputs[0];
-        inputs[1].u.ki.dwFlags = 0x2; // KEYEVENTF_KEYUP
-        SendInput(2, inputs, sizeof(Input));
+        var input = new Input { type = 1 /* INPUT_KEYBOARD */ };
+        input.u.ki = new KeybdInput { wVk = (ushort)key, dwFlags = up ? 0x2u : 0u, dwExtraInfo = Marker };
+        return SendInput(1, &input, sizeof(Input)) == 1;
     }
 
     private static void SendButtonUp()
@@ -472,7 +513,7 @@ public sealed unsafe partial class DragInterceptor : IDisposable
         }
     }
 
-    private sealed record Pending(nint Source, bool SourceTree, nint Target, bool TargetTree, int X, int Y, bool Ctrl, bool Shift, uint Thread);
+    private sealed record Pending(nint Source, bool SourceTree, nint Target, bool TargetTree, int X, int Y, bool Ctrl, bool Shift, uint Thread, bool AwaitDrag);
 
     [StructLayout(LayoutKind.Sequential)]
     private struct MsllHookStruct
@@ -528,4 +569,7 @@ public sealed unsafe partial class DragInterceptor : IDisposable
 
     [LibraryImport("user32.dll")]
     private static partial uint SendInput(uint count, Input* inputs, int size);
+
+    [LibraryImport("user32.dll")]
+    private static partial int GetSystemMetrics(int index);
 }

@@ -42,7 +42,19 @@ public sealed partial class McIcon : UserControl
     };
 
     private ContainerVisual? _glow;
-    private bool _subscribed;
+
+    /// <summary>
+    /// Todos los iconos que existen, para redibujarlos al cambiar de conjunto o de tema. No se usa Loaded/Unloaded para
+    /// apuntarse y borrarse: cuando una lista reutiliza un elemento, WinUI puede avisar Loaded antes que Unloaded y el
+    /// icono se quedaba sin enterarse de los cambios (con los iconos del conjunto anterior).
+    /// </summary>
+    private static readonly List<WeakReference<McIcon>> Live = [];
+
+    static McIcon()
+    {
+        IconPacks.Changed += RenderAll;
+        ThemeManager.Changed += _ => RenderAll();
+    }
 
     public McIcon()
     {
@@ -52,23 +64,8 @@ public sealed partial class McIcon : UserControl
         _root.Children.Add(_gloss);
         _root.Children.Add(_glyph);
         Content = _root;
-        Loaded += (_, _) =>
-        {
-            if (!_subscribed)
-            {
-                IconPacks.Changed += Render;
-                ThemeManager.Changed += OnThemeChanged;
-                _subscribed = true;
-            }
-
-            Render();
-        };
-        Unloaded += (_, _) =>
-        {
-            IconPacks.Changed -= Render;
-            ThemeManager.Changed -= OnThemeChanged;
-            _subscribed = false;
-        };
+        Live.Add(new WeakReference<McIcon>(this));
+        Loaded += (_, _) => Render();
         IsEnabledChanged += (_, _) => Opacity = IsEnabled ? 1 : 0.4;
         RegisterPropertyChangedCallback(FontSizeProperty, (_, _) => Render());
         RegisterPropertyChangedCallback(ForegroundProperty, (_, _) => Render());
@@ -93,7 +90,23 @@ public sealed partial class McIcon : UserControl
         set => SetValue(AccentProperty, value);
     }
 
-    private void OnThemeChanged(ThemeDefinition theme) => Render();
+    private static void RenderAll()
+    {
+        for (int i = Live.Count - 1; i >= 0; i--)
+        {
+            if (Live[i].TryGetTarget(out var icon))
+            {
+                if (icon.IsLoaded)
+                {
+                    icon.Render(); // los que no están a la vista se redibujan al volver (Loaded)
+                }
+            }
+            else
+            {
+                Live.RemoveAt(i);
+            }
+        }
+    }
 
     private void Render()
     {

@@ -59,17 +59,20 @@ internal static class ControlColors
     /// </summary>
     public static string Apply(ThemeDefinition theme, ResourceDictionary resources)
     {
-        if (!theme.StyleControls)
+        // Con Windows en alto contraste se quitan también los colores de los temas propios: mandan los del sistema.
+        bool highContrast = Services.Materials.HighContrast;
+        if (!theme.StyleControls || highContrast)
         {
             foreach (string key in Keys)
             {
                 resources.Remove(key);
             }
 
+            SetSurfaces(resources, theme.Dark, null, default, highContrast);
             return "";
         }
 
-        // Base opaca: el fondo del tema sobre el gris de Windows (para menús y diálogos, que no pueden ser transparentes).
+        // Base opaca: el fondo del tema sobre el gris de Windows.
         Color windowBase = theme.Dark ? Color.FromArgb(255, 32, 32, 32) : Color.FromArgb(255, 243, 243, 243);
         Color background = Over(ThemeManager.Parse(theme.Background), windowBase);
         if (theme.BackgroundEnd.Length > 0)
@@ -87,6 +90,7 @@ internal static class ControlColors
         Color hover = Mix(strong, text, 0.08);
         Color pressed = Mix(strong, text, 0.14);
         Color popup = Mix(strong, background, 0.35);
+        Color popupTint = WithAlpha(popup, Services.Materials.DesktopAcrylic ? MenuTint : (byte)255); // deja ver el acrílico
         Color selected = Mix(surface, accent, 0.28);
         Color input = theme.Dark ? Mix(background, Color.FromArgb(255, 0, 0, 0), 0.25) : Mix(surface, Color.FromArgb(255, 255, 255, 255), 0.6);
 
@@ -119,7 +123,6 @@ internal static class ControlColors
             ["ComboBoxBorderBrush"] = border,
             ["ComboBoxBorderBrushPointerOver"] = Mix(border, accent, 0.35),
             ["ComboBoxForeground"] = text,
-            ["ComboBoxDropDownBackground"] = popup,
             ["ComboBoxDropDownBorderBrush"] = border,
 
             ["TextControlBackground"] = input,
@@ -173,17 +176,14 @@ internal static class ControlColors
             ["NavigationViewItemForegroundSelectedPointerOver"] = text,
             ["NavigationViewSelectionIndicatorForeground"] = accent,
 
-            ["MenuFlyoutPresenterBackground"] = popup,
+            ["MenuFlyoutPresenterBackground"] = popupTint,
             ["MenuFlyoutPresenterBorderBrush"] = border,
             ["MenuFlyoutItemForeground"] = text,
             ["MenuFlyoutItemBackgroundPointerOver"] = Mix(popup, text, 0.08),
             ["MenuFlyoutSubItemForeground"] = text,
-            ["FlyoutPresenterBackground"] = popup,
             ["FlyoutBorderThemeBrush"] = border,
-            ["ContentDialogBackground"] = popup,
             ["ContentDialogForeground"] = text,
             ["ContentDialogBorderBrush"] = border,
-            ["ContentDialogTopOverlay"] = Mix(popup, background, 0.5),
             ["ToolTipBackground"] = popup,
             ["ToolTipForeground"] = text,
             ["ToolTipBorderBrush"] = border,
@@ -204,7 +204,88 @@ internal static class ControlColors
             signature.Append(ThemeManager.ToHex(color));
         }
 
+        SetSurfaces(resources, theme.Dark, popup, text, false);
         return signature.ToString();
+    }
+
+    /// <summary>Opacidad del tinte de los temas propios sobre el acrílico de escritorio de menús, listas y flyouts.</summary>
+    private const byte MenuTint = 170;
+
+    /// <summary>Tinte de las listas desplegables cuando el tema y Windows no están en el mismo modo (claro u oscuro).</summary>
+    private const byte MismatchTint = 225;
+
+    // Pinceles compartidos que se recolorean: las listas y diálogos ya abiertos cambian con el tema sin volver a crearse.
+    private static readonly SolidColorBrush ListBrush = new();
+    private static readonly SolidColorBrush FlyoutBrush = new();
+    private static readonly SolidColorBrush DialogTopBrush = new();
+
+    /// <summary>
+    /// Diálogos: acrílico de la app sin tinte (como el «Custom acrylic in-app brush» de WinUI Gallery), que difumina bien
+    /// la parte de la ventana que tapan (el de WinUI tiene tanto tinte que se veía opaco). Media luminosidad del color
+    /// del tema: donde detrás no hay nada dibujado (la Mica, que el acrílico de la app no ve) quedaría negro. Sin
+    /// transparencia en Windows, su color de reserva es opaco.
+    /// </summary>
+    private static readonly AcrylicBrush DialogBrush = new() { TintOpacity = 0, TintLuminosityOpacity = 0.5 };
+
+    /// <summary>
+    /// El fondo de listas desplegables, flyouts y diálogos (Services/Materials.cs). Listas: el tinte que va encima del
+    /// acrílico de escritorio; en Fluent (<paramref name="popup"/> null), como Windows, solo el del propio
+    /// acrílico; en los temas propios, su color de menú. Flyouts (las ayudas): sin acrílico, como siempre: el fondo de
+    /// WinUI en Fluent y el color de menú opaco en los temas propios. Diálogos: <see cref="DialogBrush"/> con el color base del tema
+    /// y una zona de título apenas más clara (antes era opaca y tapaba el acrílico). Sin acrílico de escritorio, tintes
+    /// opacos; en alto contraste se dejan los colores del sistema.
+    /// </summary>
+    private static void SetSurfaces(ResourceDictionary resources, bool dark, Color? popup, Color text, bool highContrast)
+    {
+        if (highContrast)
+        {
+            resources.Remove("ComboBoxDropDownBackground");
+            resources.Remove("ContentDialogBackground");
+            resources.Remove("ContentDialogTopOverlay");
+            resources.Remove("FlyoutPresenterBackground");
+            Services.PopupBackdrop.Refresh();
+            return;
+        }
+
+        bool glass = Services.Materials.DesktopAcrylic;
+        Color fluentBase = dark ? Color.FromArgb(255, 32, 32, 32) : Color.FromArgb(255, 243, 243, 243);
+        Color fluentPopup = dark ? Color.FromArgb(255, 44, 44, 44) : Color.FromArgb(255, 249, 249, 249);
+        // Las listas llevan el acrílico de WinUI, que va con el modo de Windows: si el tema es del otro modo, casi opacas.
+        bool listMismatch = dark != Services.Materials.SystemDark;
+        Color dialog;
+        if (popup is { } tint)
+        {
+            FlyoutBrush.Color = tint;
+            ListBrush.Color = WithAlpha(tint, !glass ? (byte)255 : listMismatch ? MismatchTint : MenuTint);
+            DialogTopBrush.Color = WithAlpha(text, 10);
+            dialog = tint;
+        }
+        else
+        {
+            ListBrush.Color = WithAlpha(fluentPopup, !glass ? (byte)255 : listMismatch ? MismatchTint : (byte)0);
+            DialogTopBrush.Color = dark ? Color.FromArgb(13, 255, 255, 255) : Color.FromArgb(90, 255, 255, 255);
+            dialog = fluentBase;
+            if (!glass)
+            {
+                resources["MenuFlyoutPresenterBackground"] = new SolidColorBrush(fluentPopup);
+            }
+        }
+
+        DialogBrush.TintColor = dialog;
+        DialogBrush.FallbackColor = dialog;
+        resources["ComboBoxDropDownBackground"] = ListBrush;
+        if (popup is null)
+        {
+            resources.Remove("FlyoutPresenterBackground"); // Fluent: el de WinUI
+        }
+        else
+        {
+            resources["FlyoutPresenterBackground"] = FlyoutBrush; // temas propios: su color de menú, opaco
+        }
+
+        resources["ContentDialogBackground"] = DialogBrush;
+        resources["ContentDialogTopOverlay"] = DialogTopBrush;
+        Services.PopupBackdrop.Refresh();
     }
 
     /// <summary>Un color con transparencia pintado sobre otro opaco.</summary>

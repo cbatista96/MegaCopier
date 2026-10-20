@@ -47,7 +47,7 @@ CopyHeader.Text	Kopyalama
 VerifyTitle.Text	Kopyaladıktan sonra doğrula
 VerifyDescription.Text	Her dosyadan sonra yeniden okur ve aslıyla karşılaştırır; uyuşmayan bir şey varsa düzeltir.
 ConflictTitle.Text	Dosya zaten varsa
-ConflictDescription.Text	Hedefte aynı adlı bir dosya zaten varsa. Aynı dosyalar asla yeniden kopyalanmaz.
+ConflictDescription.Text	Hedefte aynı adlı bir dosya zaten varsa.
 ConflictAsk.Content	Sor
 ConflictReplace.Content	Değiştir
 ConflictSkip.Content	Atla
@@ -1456,8 +1456,6 @@ MinimizeButton_Taskbar.Content	Görev çubuğuna
 MinimizeButton_Tray.Content	Bildirim alanına
 Settings_TrayProgressTitle.Text	Her kopyalamanın ilerlemesi bildirim alanında
 Settings_TrayProgressDescription.Text	Süren her kopyalama için yüzdesi ve yükselen bir çubuğu olan bir simge. Bitince kendiliğinden kaybolur. Tıklayınca kopyalama açılır.
-Info_WindowButtons_Title	Pencere düğmeleri
-Info_WindowButtons_Text	Pencereyi kapatınca veya simge durumuna küçültünce kopyalamalara ne olacağını seçin.\n• Kopyalamaları iptal et: her birinde “Durdur”a basmak gibi. Listeden kaybolurlar ve sürdürme önerilmez.\n• Daha sonra sürdürmek için durdur: kopyalanan kısım korunur; aynı şeyi yeniden kopyaladığınızda veya MegaCopier'ı açtığınızda kaldığı yerden devam eder.\n• Pencereyi gizle: kopyalamalar arka planda sürer; pencereyi bildirim alanındaki simgeden açarsınız.\n• MegaCopier'dan çık: tamamen kapanır ve siz yeniden açana kadar Windows her zamanki gibi kopyalar.\nBildirim alanına küçültmek görev çubuğunu boş bırakır: pencere, saatin yanındaki MegaCopier simgesine tıklayınca geri gelir.
 Tray_JobPause	Duraklat
 Tray_JobStop	Durdur
 Jobs_Archive	Geçmişe arşivle
@@ -1493,12 +1491,14 @@ Settings_BackdropTitle.Text	Pencere arka planı
 Settings_BackdropDescription.Text	Pencerenin arkasında görünen Windows 11 malzemesi, her temayla.
 Backdrop_OptTheme.Content	Temanınki
 Backdrop_OptTranslucent.Content	Yarı saydam (masaüstü görünür)
-Backdrop_OptAcrylic.Content	Masaüstü akrilik (temel)
-Backdrop_OptAcrylicThin.Content	Masaüstü akrilik (ince)
 BackdropAcrylicThin.Content	İnce akrilik
-Info_Backdrop_Text	Pencerenin içeriğinin arkasında görünen şeydir.\n• Temanınki: her temanın kendine ait bir arka planı vardır (düz, Mica veya akrilik).\n• Yarı saydam: çok saydam akrilik; masaüstü pencerenin arkasından görünür.\n• Mica: masaüstü arka planınızın tonunu hafifçe alır. Windows 11 uygulamalarının kullandığıdır.\n• Mica Alt: Mica gibi, ama arka plandan daha fazla renk alır.\n• Masaüstü akrilik (temel): buzlu cam gibi; pencerenin arkasındakiler bulanık görünür.\n• Masaüstü akrilik (ince): temelden daha açık ve saydam.\nMica ve akrilik için saydamlık efektleri açık Windows 11 gerekir; aksi halde düz bir renk görünür.
+Info_Backdrop_Text	Pencerenin içeriğinin arkasında görünen şeydir.\n• Temanınki: her temanın kendine ait bir arka planı vardır (düz, Mica veya akrilik). Fluent temaları Mica kullanır; başka bir pencere kullanırken düz renge dönmek yerine Mica Alt'a geçer.\n• Mica: masaüstü arka planınızın tonunu hafifçe alır. Windows 11 uygulamalarının kullandığıdır.\n• Mica Alt: Mica gibi, ama arka plandan daha fazla renk alır.\n• Akrilik: buzlu cam gibi; pencerenin arkasındakiler bulanık görünür.\n• Yarı saydam: daha açık ve saydam akrilik; masaüstü pencerenin arkasından görünür.\nBu dördünden biriyle, başka bir pencere kullanırken pencere Windows'unkiler gibi düz renge döner. MegaCopier'ın menüleri ve seçenek listeleri her zaman akriliktir.\nMica ve akrilik için saydamlık efektleri açık Windows 11 gerekir; aksi halde düz bir renk görünür.
 SameDrive_NewWindow	Yeni bir pencerede
 SameDrive_NewWindowText	Bu kopyayla başka bir MegaCopier penceresi açılır ve diğeriyle aynı anda hemen başlar (ikisi de biraz yavaşlar).
 Settings_IndependentWindowsTitle.Text	Her kopya kendi penceresinde
 Settings_IndependentWindowsDescription.Text	Her kopya için bir pencere; diğerlerini beklemeden hemen başlar. Aynı pencereye birkaç kopya eklemedikçe kopya listesi yoktur.
 Info_IndependentWindows_Text	Normalde MegaCopier'ın tek bir penceresi vardır ve birden çok kopyayı kopya listesinde gösterir. Bu seçenekle her kopya kendi penceresini açar ve diğerlerini beklemeden hemen başlar.\n• Hepsi aynı uygulamadır: tema, simgeler ve ayarlar hepsinde aynıdır (birinde değiştirirseniz hepsinde değişir).\n• Her pencerenin bildirim alanında kendi ilerleme simgesi ve görev çubuğunda kendi düğmesi vardır.\n• Yeni kopya çalışan bir kopyayla aynı diske gidiyorsa «Aynı diske yeni kopya» karar verir: sor (o penceredeki kopyaya ekle ya da yeni bir pencerede aç), her zaman ekle veya sormadan her zaman yeni pencere aç.\n• Bir pencereye kopya eklerseniz o pencere kendi kopya listesini gösterir.\n• Kopyaları bitince her pencere her zamanki gibi kapanır.\nÖrnek: bir USB belleğe fotoğraf, bu arada başka bir diske video kopyalıyorsunuz: her biri kendi ilerlemesiyle iki pencere görürsünüz.
+Info_CloseButton_Title	Pencerenin X düğmesine basınca
+Info_CloseButton_Text	Pencereyi X ile kapatınca kopyalamalara ne olacağını seçin.\n• Kopyalamaları iptal et: her birinde “Durdur”a basmak gibi. Listeden kaybolurlar ve sürdürme önerilmez.\n• Daha sonra sürdürmek için durdur: kopyalanan kısım korunur; aynı şeyi yeniden kopyaladığınızda veya MegaCopier'ı açtığınızda kaldığı yerden devam eder.\n• Pencereyi gizle: kopyalamalar arka planda sürer; pencereyi bildirim alanındaki simgeden açarsınız.\n• MegaCopier'dan çık: tamamen kapanır ve siz yeniden açana kadar Windows her zamanki gibi kopyalar.
+Info_MinimizeButton_Title	Pencere simge durumuna küçültülünce
+Info_MinimizeButton_Text	Simge durumuna küçültünce pencerenin nereye gideceği. Kopyalamalar her iki durumda da sürer.\n• Görev çubuğuna: diğer pencereler gibi.\nBildirim alanına küçültmek görev çubuğunu boş bırakır: pencere, saatin yanındaki MegaCopier simgesine tıklayınca geri gelir.

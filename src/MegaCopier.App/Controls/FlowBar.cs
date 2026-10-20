@@ -149,6 +149,11 @@ public sealed partial class FlowBar : UserControl
         };
         Unloaded += (_, _) =>
         {
+            if (IsLoaded)
+            {
+                return; // WinUI puede avisar Unloaded después del Loaded de su nuevo sitio: sigue a la vista
+            }
+
             ThemeManager.Changed -= OnThemeChanged;
             BarAppearance.Changed -= ApplyLayout;
             StopLoops();

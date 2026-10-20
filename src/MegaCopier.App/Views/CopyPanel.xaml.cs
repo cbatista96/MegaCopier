@@ -25,6 +25,11 @@ public sealed partial class CopyPanel : UserControl
         SetExpanded(false);
         ShowPlayPause(animate: false);
         SizeChanged += (_, e) => Adapt(e.NewSize.Width);
+        foreach (var block in (TextBlock[])[FilesCountBlock, TotalBytesBlock, FileBytesBlock, SpeedBlock])
+        {
+            block.SizeChanged += (_, e) => KeepWidth(block, e.NewSize.Width);
+        }
+
         ShowPercents();
         Loaded += (_, _) =>
         {
@@ -90,6 +95,31 @@ public sealed partial class CopyPanel : UserControl
         }
     }
 
+    /// <summary>
+    /// Las cifras (archivos, tamaños, velocidad y tiempo) no bailan: cada una guarda el ancho más grande que ha
+    /// necesitado en esta copia y se alinea a la derecha, con todas las cifras del mismo ancho. Antes cada una medía lo
+    /// que su texto en cada momento y movía a las de al lado (para volver a eso basta con no llamar a KeepWidth).
+    /// </summary>
+    private static void KeepWidth(TextBlock block, double width)
+    {
+        if (width > block.MinWidth)
+        {
+            block.MinWidth = Math.Ceiling(width);
+        }
+    }
+
+    private void ResetWidths()
+    {
+        foreach (var block in (TextBlock[])[FilesCountBlock, TotalBytesBlock, FileBytesBlock, SpeedBlock])
+        {
+            block.MinWidth = 0;
+        }
+    }
+
+    /// <summary>El destino, a la derecha, ocupa lo que necesita hasta la mitad de la fila; el origen, el resto.</summary>
+    private void DrivesRow_SizeChanged(object sender, SizeChangedEventArgs e) =>
+        DestinationButton.MaxWidth = Math.Max(140, ((e.NewSize.Width - DrivesRow.ColumnSpacing) / 2) - DrivesArrow.ActualWidth - DrivesRow.ColumnSpacing);
+
     private void Expand_Click(object sender, RoutedEventArgs e) => ExpandRequested?.Invoke();
     // ---------------------------------------------------------------------------------------------------------
     // Pausa / Continuar: un solo botón; el icono de pausa se transforma en el de reproducir y al revés.
@@ -111,6 +141,7 @@ public sealed partial class CopyPanel : UserControl
         }
 
         _showingPause = null; // otra copia: se muestra su estado sin animar
+        ResetWidths();
         ShowPlayPause(animate: false);
     }
 

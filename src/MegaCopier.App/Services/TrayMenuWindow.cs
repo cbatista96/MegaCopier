@@ -17,14 +17,18 @@ internal sealed partial class TrayMenuWindow : Window
     private readonly Grid _root = new();
     private MenuFlyout? _menu;
 
+    /// <summary>La AppWindow, guardada: pedírsela a WinUI al cerrar cada menú creaba otro envoltorio cada vez.</summary>
+    private readonly AppWindow _appWindow;
+
     public TrayMenuWindow()
     {
         Title = "MegaCopier";
         Content = _root;
         ExtendsContentIntoTitleBar = true;
         var presenter = OverlappedPresenter.CreateForContextMenu();
-        AppWindow.SetPresenter(presenter);
-        AppWindow.IsShownInSwitchers = false;
+        _appWindow = AppWindow;
+        _appWindow.SetPresenter(presenter);
+        _appWindow.IsShownInSwitchers = false;
 
         // Windows no deja una ventana más pequeña que su mínimo (136 × 39): se hace del todo transparente para que solo
         // se vea el menú, que va en su propia ventana emergente.
@@ -47,6 +51,11 @@ internal sealed partial class TrayMenuWindow : Window
         _menu?.Hide();
         _root.RequestedTheme = ThemeManager.Current.Dark ? ElementTheme.Dark : ElementTheme.Light;
         var menu = new MenuFlyout { ShouldConstrainToRootBounds = false };
+
+        // El mismo acrílico que los demás menús de MegaCopier (Materials), sea cual sea el material de la ventana.
+        var presenter = new Style(typeof(MenuFlyoutPresenter));
+        presenter.Setters.Add(new Setter(MenuFlyoutPresenter.SystemBackdropProperty, new PopupBackdrop()));
+        menu.MenuFlyoutPresenterStyle = presenter;
         foreach (var item in items)
         {
             menu.Items.Add(Build(item));
@@ -57,13 +66,13 @@ internal sealed partial class TrayMenuWindow : Window
             if (ReferenceEquals(_menu, menu))
             {
                 _menu = null;
-                AppWindow.Hide();
+                _appWindow.Hide();
             }
         };
         _menu = menu;
 
-        AppWindow.MoveAndResize(new Windows.Graphics.RectInt32(x, y, 1, 1));
-        AppWindow.Show(activateWindow: !App.TestMode); // en las pruebas, sin quitar el foco a nadie
+        _appWindow.MoveAndResize(new Windows.Graphics.RectInt32(x, y, 1, 1));
+        _appWindow.Show(activateWindow: !App.TestMode); // en las pruebas, sin quitar el foco a nadie
         if (!App.TestMode)
         {
             Activate();

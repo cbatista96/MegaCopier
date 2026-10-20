@@ -278,7 +278,9 @@ internal sealed class ProgressTracker
             return 0;
         }
 
-        return _windowBytes / ((double)span / Stopwatch.Frequency);
+        // Los bytes de la muestra más antigua se copiaron antes de su marca de tiempo, fuera del intervalo medido: con el
+        // avance a saltos (bloques grandes y límite de velocidad), contarlos daba el doble de la velocidad real.
+        return (_windowBytes - _samples.Peek().Bytes) / ((double)span / Stopwatch.Frequency);
     }
 
     private void Emit(bool force)

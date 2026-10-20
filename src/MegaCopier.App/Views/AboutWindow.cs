@@ -2,7 +2,6 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using MegaCopier.App.Services;
 using MegaCopier.App.Theming;
-using Microsoft.UI.Composition.SystemBackdrops;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -13,7 +12,7 @@ using Microsoft.UI.Xaml.Media.Imaging;
 namespace MegaCopier.App.Views;
 
 /// <summary>
-/// «Acerca de MegaCopier»: una ventana pequeña y propia, con fondo Mica, en lugar de un diálogo dentro de la ventana de
+/// «Acerca de MegaCopier»: una ventana pequeña y propia, con fondo acrílico, en lugar de un diálogo dentro de la ventana de
 /// copia (en la ventana pequeña quedaba apretado). Mide lo que su contenido y se abre centrada sobre la ventana
 /// principal; Esc o «Cerrar» la cierran.
 /// </summary>
@@ -31,7 +30,6 @@ internal sealed partial class AboutWindow : Window
         Title = L.Get("AboutDialog/Title");
         ExtendsContentIntoTitleBar = true;
         AppWindow.SetIcon(Path.Combine(AppContext.BaseDirectory, "Assets", "MegaCopier.ico"));
-        SystemBackdrop = new MicaBackdrop { Kind = MicaKind.Base };
         var presenter = OverlappedPresenter.Create();
         presenter.IsResizable = false;
         presenter.IsMaximizable = false;
@@ -40,6 +38,7 @@ internal sealed partial class AboutWindow : Window
         AppWindow.IsShownInSwitchers = false;
 
         var theme = ThemeManager.Current;
+        SystemBackdrop = Appearance.CreateBackdrop(AppBackdrop.Acrylic, theme.Dark);
         _root.RequestedTheme = theme.Dark ? ElementTheme.Dark : ElementTheme.Light;
         AppWindow.TitleBar.PreferredTheme = theme.Dark ? TitleBarTheme.Dark : TitleBarTheme.Light;
         _root.RowDefinitions.Add(new RowDefinition { Height = new GridLength(32) });

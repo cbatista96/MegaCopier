@@ -22,7 +22,10 @@ internal static class ThemedIcons
     /// <summary>El glifo original de cada elemento (el FontIcon que tenía en el XAML).</summary>
     private static readonly ConditionalWeakTable<DependencyObject, string> Glyphs = [];
 
-    private static readonly ConditionalWeakTable<MenuFlyout, object> Hooked = [];
+    /// <summary>Los menús enganchados y la escala de pantalla con la que se abrieron la última vez.</summary>
+    private static readonly ConditionalWeakTable<MenuFlyout, StrongBox<double>> Hooked = [];
+
+    private static readonly List<WeakReference<MenuFlyout>> Menus = [];
 
     private static readonly Dictionary<(string Glyph, string Pack, bool Dark, int Size, uint Text), WriteableBitmap> Cache = [];
 
@@ -68,8 +71,14 @@ internal static class ThemedIcons
             return;
         }
 
-        Hooked.Add(menu, true);
-        menu.Opening += (_, _) => Apply(menu.Items, menu.XamlRoot?.RasterizationScale ?? 1);
+        var scale = new StrongBox<double>(1);
+        Hooked.Add(menu, scale);
+        Menus.Add(new WeakReference<MenuFlyout>(menu));
+        menu.Opening += (_, _) =>
+        {
+            scale.Value = menu.XamlRoot?.RasterizationScale ?? scale.Value;
+            Apply(menu.Items, scale.Value);
+        };
     }
 
     public static void Apply(IEnumerable<MenuFlyoutItemBase> items, double scale)
@@ -106,6 +115,21 @@ internal static class ThemedIcons
     private static void Refresh()
     {
         Cache.Clear();
+
+        // Los menús también, ya: si no, la primera vez que se abrían tras cambiar de conjunto podían salir con los iconos
+        // del anterior.
+        foreach (var weak in Menus.ToList())
+        {
+            if (weak.TryGetTarget(out var menu) && Hooked.TryGetValue(menu, out var scale))
+            {
+                Apply(menu.Items, scale.Value);
+            }
+            else
+            {
+                Menus.Remove(weak);
+            }
+        }
+
         foreach (var weak in Bars.ToList())
         {
             if (weak.TryGetTarget(out var bar))

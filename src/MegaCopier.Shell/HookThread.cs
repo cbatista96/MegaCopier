@@ -21,7 +21,42 @@ internal sealed unsafe partial class HookThread
         _name = name;
     }
 
-    private const uint WmQuit = 0x0012;
+    private const uint WmQuit = 0x0012, WmTimer = 0x0113;
+    private const int WhKeyboardLl = 13;
+    private const uint WatchMilliseconds = 2000;
+
+    private long _lastCall;
+    private Point _lastCursor;
+
+    /// <summary>Se dispara (en el hilo del gancho) cuando Windows lo había quitado y se ha vuelto a poner.</summary>
+    public event Action<string>? Reinstalled;
+
+    /// <summary>El gancho avisa de que le ha llegado algo (lo llama el procedimiento del gancho, cada vez).</summary>
+    public void Touch() => Volatile.Write(ref _lastCall, Environment.TickCount64);
+
+    /// <summary>
+    /// ¿Lo ha quitado Windows? El de ratón: el puntero se ha movido y al gancho no le ha llegado nada. El de teclado: ha
+    /// habido algo del teclado (actividad sin mover el puntero) y al gancho no le ha llegado.
+    /// </summary>
+    private bool Lost()
+    {
+        long quiet = Environment.TickCount64 - Volatile.Read(ref _lastCall);
+        GetCursorPos(out var cursor);
+        bool moved = cursor.X != _lastCursor.X || cursor.Y != _lastCursor.Y;
+        _lastCursor = cursor;
+        if (quiet < WatchMilliseconds)
+        {
+            return false;
+        }
+
+        if (_hookType != WhKeyboardLl)
+        {
+            return moved;
+        }
+
+        var input = new LastInputInfo { Size = (uint)sizeof(LastInputInfo) };
+        return !moved && GetLastInputInfo(&input) && (uint)Environment.TickCount - input.Time < WatchMilliseconds;
+    }
 
     private Thread? _thread;
     private uint _threadId;
@@ -46,20 +81,44 @@ internal sealed unsafe partial class HookThread
             nint hook = SetWindowsHookExW(_hookType, (delegate* unmanaged[Stdcall]<int, nint, nint, nint>)_proc, GetModuleHandleW(null), 0);
             error = Marshal.GetLastPInvokeError();
             _installed = hook != 0;
+            Touch();
+            GetCursorPos(out _lastCursor);
             ready.Set();
             if (hook == 0)
             {
                 return;
             }
 
+            // Vigilancia: si Windows quita el gancho (lo hace sin avisar cuando una vez tarda en responder, por ejemplo
+            // en una pausa del recolector de memoria con copias en marcha), se vuelve a poner.
+            nuint timer = SetTimer(0, 0, WatchMilliseconds, 0);
             while (GetMessageW(out var message, 0, 0, 0) > 0)
             {
+                if (message.message == WmTimer && message.hwnd == 0 && Lost())
+                {
+                    UnhookWindowsHookEx(hook);
+                    hook = SetWindowsHookExW(_hookType, (delegate* unmanaged[Stdcall]<int, nint, nint, nint>)_proc, GetModuleHandleW(null), 0);
+                    _installed = hook != 0;
+                    Touch();
+                    Reinstalled?.Invoke(_installed ? "puesto de nuevo" : $"no se pudo poner de nuevo (error {Marshal.GetLastPInvokeError()})");
+                    if (hook == 0)
+                    {
+                        break;
+                    }
+
+                    continue;
+                }
+
                 TranslateMessage(&message);
                 DispatchMessageW(&message);
             }
 
+            KillTimer(0, timer);
             _installed = false;
-            UnhookWindowsHookEx(hook);
+            if (hook != 0)
+            {
+                UnhookWindowsHookEx(hook);
+            }
         })
         {
             IsBackground = true,
@@ -86,6 +145,20 @@ internal sealed unsafe partial class HookThread
         PostThreadMessageW(_threadId, WmQuit, 0, 0);
         _thread.Join(TimeSpan.FromSeconds(2));
         _thread = null;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    private struct Point
+    {
+        public int X;
+        public int Y;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    private struct LastInputInfo
+    {
+        public uint Size;
+        public uint Time;
     }
 
     [StructLayout(LayoutKind.Sequential)]
@@ -125,6 +198,21 @@ internal sealed unsafe partial class HookThread
     [LibraryImport("user32.dll")]
     [return: MarshalAs(UnmanagedType.Bool)]
     private static partial bool PostThreadMessageW(uint thread, uint message, nint wParam, nint lParam);
+
+    [LibraryImport("user32.dll")]
+    private static partial nuint SetTimer(nint window, nuint id, uint milliseconds, nint callback);
+
+    [LibraryImport("user32.dll")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static partial bool KillTimer(nint window, nuint id);
+
+    [LibraryImport("user32.dll")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static partial bool GetCursorPos(out Point point);
+
+    [LibraryImport("user32.dll")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static partial bool GetLastInputInfo(LastInputInfo* info);
 
     [LibraryImport("kernel32.dll")]
     private static partial uint GetCurrentThreadId();

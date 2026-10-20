@@ -76,10 +76,27 @@ public static unsafe partial class ShellNamespace
             return null;
         }
 
-        Node? current = null;
-        for (int i = 0; i < names.Count; i++)
+        // UI Automation puede anteponer una raíz de presentación («Escritorio (OneDrive)») que no es el
+        // Escritorio del espacio de nombres. Solo se puede omitir esa primera raíz de presentación; todos los
+        // descendientes deben coincidir. No se busca un nombre conocido más abajo en una ruta desconocida.
+        var roots = TopLevel();
+        Node? current = Pick(roots, names[0]);
+        int start = 0;
+        if (current is null && names.Count > 1 &&
+            !roots.Any(n => string.Equals(n.Name, names[0], StringComparison.CurrentCultureIgnoreCase)))
         {
-            current = i == 0 ? Pick(TopLevel(), names[0]) : Child(current!, names[i]);
+            start = 1;
+            current = Pick(roots, names[start]);
+        }
+
+        if (current is null)
+        {
+            return null;
+        }
+
+        for (int i = start + 1; i < names.Count; i++)
+        {
+            current = Child(current, names[i]);
             if (current is null)
             {
                 return null;
