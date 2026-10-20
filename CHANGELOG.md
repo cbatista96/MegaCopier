@@ -5,6 +5,8 @@ y las versiones, [SemVer](https://semver.org/lang/es/).
 
 ## [Sin publicar]
 
+## [1.6.0] - 2026-10-19
+
 Una versión para que todo se vea y funcione como esperas. Puedes tener cada copia en su propia ventana; los iconos del
 conjunto que elijas llegan por fin a todas partes (menús, pestañas, bandeja); el menú de la bandeja es de WinUI; y la
 ventana puede llevar fondo Mica, Mica Alt o acrílico. Además, «Uno a uno» y «Sobrescribir» hacen por fin lo que dicen,
@@ -618,7 +620,8 @@ Primera versión pública.
 - Aviso SMART, avisos por correo y webhook, control desde el móvil y servidor MCP para asistentes de IA.
 - Consola `mcopy`, modo portátil, 14 idiomas, 11 temas y accesibilidad con lectores de pantalla.
 
-[Sin publicar]: https://github.com/cbatista96/MegaCopier/compare/v1.5.0...HEAD
+[Sin publicar]: https://github.com/cbatista96/MegaCopier/compare/v1.6.0...HEAD
+[1.6.0]: https://github.com/cbatista96/MegaCopier/compare/v1.5.0...v1.6.0
 [1.5.0]: https://github.com/cbatista96/MegaCopier/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/cbatista96/MegaCopier/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/cbatista96/MegaCopier/compare/v1.2.0...v1.3.0
