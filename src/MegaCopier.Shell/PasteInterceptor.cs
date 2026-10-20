@@ -32,6 +32,7 @@ public sealed unsafe partial class PasteInterceptor : IDisposable
     private readonly BlockingCollection<nint> _work = new();
     private readonly Thread _worker;
     private readonly HookThread _hooks;
+    private readonly ExplorerPasteMenu _menu;
     private bool _swallowKeyUp;
 
     /// <param name="handler">
@@ -44,10 +45,14 @@ public sealed unsafe partial class PasteInterceptor : IDisposable
         _worker.SetApartmentState(ApartmentState.STA);
         _worker.Start();
         _hooks = new HookThread(WhKeyboardLl, &HookProc, "MegaCopier.KeyboardHook");
+        _hooks.Reinstalled += result => PassedThrough?.Invoke($"Windows había quitado el gancho del teclado: {result}");
+        _menu = new ExplorerPasteMenu(HandleMenuPaste, line => Traced?.Invoke(line));
     }
 
     /// <summary>Se dispara (en el hilo de trabajo) cuando un pegado se devuelve al Explorador, con el motivo.</summary>
     public event Action<string>? PassedThrough;
+
+    public event Action<string>? Traced;
 
     public bool IsEnabled => _hooks.IsInstalled;
 
@@ -56,13 +61,19 @@ public sealed unsafe partial class PasteInterceptor : IDisposable
     {
         _active = this;
         _hooks.Start();
+        _menu.Enable();
     }
 
-    public void Disable() => _hooks.Stop();
+    public void Disable()
+    {
+        _menu.Disable();
+        _hooks.Stop();
+    }
 
     public void Dispose()
     {
         Disable();
+        _menu.Dispose();
         _work.CompleteAdding();
     }
 
@@ -107,6 +118,7 @@ public sealed unsafe partial class PasteInterceptor : IDisposable
     private static nint HookProc(int code, nint wParam, nint lParam)
     {
         var self = _active;
+        self?._hooks.Touch();
         if (code >= 0 && self is not null)
         {
             try
@@ -145,7 +157,16 @@ public sealed unsafe partial class PasteInterceptor : IDisposable
     {
         foreach (nint focus in _work.GetConsumingEnumerable())
         {
-            string? reason = Decide(focus, out var request);
+            string? reason;
+            PasteRequest? request = null;
+            try
+            {
+                reason = Decide(focus, out request);
+            }
+            catch (Exception ex)
+            {
+                reason = ex.Message; // una consulta COM fallida no debe matar el hilo de todos los pegados siguientes
+            }
             if (reason is null && request is not null)
             {
                 try
@@ -171,6 +192,23 @@ public sealed unsafe partial class PasteInterceptor : IDisposable
 
             PasteInExplorer(focus);
             PassedThrough?.Invoke(reason ?? "desconocido");
+        }
+    }
+
+    private void HandleMenuPaste(PasteRequest request)
+    {
+        if (_handler(request))
+        {
+            if (request.Operation == ClipboardOperation.Move)
+            {
+                ClipboardFiles.ClearIfSame(request.Sources);
+            }
+
+            Traced?.Invoke($"Pegar del menú: {request.Sources.Count} elemento(s) a {request.Destination}");
+        }
+        else
+        {
+            Traced?.Invoke("Pegar del menú: MegaCopier no aceptó la petición después de cerrar el menú");
         }
     }
 

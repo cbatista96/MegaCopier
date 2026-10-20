@@ -51,14 +51,12 @@ internal static class Appearance
         resources["SystemAccentColorDark3"] = Blend(color, Colors.Black, 0.6);
     }
 
-    public static SystemBackdrop? CreateBackdrop(AppBackdrop backdrop) => backdrop switch
-    {
-        AppBackdrop.Mica => new MicaBackdrop { Kind = MicaKind.Base },
-        AppBackdrop.MicaAlt => new MicaBackdrop { Kind = MicaKind.BaseAlt },
-        AppBackdrop.Acrylic => new AcrylicBackdrop(DesktopAcrylicKind.Base),
-        AppBackdrop.AcrylicThin => new AcrylicBackdrop(DesktopAcrylicKind.Thin),
-        _ => null,
-    };
+    /// <summary>
+    /// El material de una ventana. <paramref name="altWhenInactive"/>: el de serie de MegaCopier, Mica que al perder el
+    /// foco pasa a Mica Alt en lugar de apagarse.
+    /// </summary>
+    public static SystemBackdrop? CreateBackdrop(AppBackdrop backdrop, bool dark, bool altWhenInactive = false, bool active = true) =>
+        backdrop == AppBackdrop.Solid ? null : new MaterialBackdrop(backdrop, dark, altWhenInactive && backdrop == AppBackdrop.Mica, active);
 
     /// <summary>"#AARRGGBB" o "#RRGGBB" → "#RRGGBB" (el acento de los controles no lleva transparencia).</summary>
     public static string ToRgbHex(string color)
@@ -93,25 +91,123 @@ internal static class Appearance
 }
 
 /// <summary>
-/// Acrílico de escritorio de la clase pedida (normal o delgado): el DesktopAcrylicBackdrop de WinUI solo da el normal.
+/// Material de Windows 11 detrás de una ventana o de un menú: Mica, Mica Alt, acrílico normal o delgado. Lleva el modo
+/// claro u oscuro del tema de MegaCopier y no el de Windows (los de WinUI siguen al sistema: «Fluent claro» con Windows
+/// en oscuro quedaba con una Mica oscura). Al perder el foco, Windows apaga el material y deja un color liso; con
+/// <c>altWhenInactive</c> no se apaga: pasa de Mica a Mica Alt y vuelve a Mica al recuperarlo.
 /// </summary>
-internal sealed partial class AcrylicBackdrop(DesktopAcrylicKind kind) : SystemBackdrop
+internal sealed partial class MaterialBackdrop(AppBackdrop kind, bool dark, bool altWhenInactive = false, bool active = true) : SystemBackdrop
 {
-    private DesktopAcrylicController? _controller;
+    private readonly SystemBackdropConfiguration _configuration = new()
+    {
+        Theme = dark ? SystemBackdropTheme.Dark : SystemBackdropTheme.Light,
+        IsInputActive = altWhenInactive || active,
+    };
+
+    private readonly Dictionary<Microsoft.UI.Composition.ICompositionSupportsSystemBackdrop, ISystemBackdropControllerWithTargets> _controllers = [];
+    private bool _active = active;
+
+    public AppBackdrop Kind => kind;
+
+    /// <summary>La ventana ganó (true) o perdió el foco.</summary>
+    public void SetActive(bool value)
+    {
+        if (_active == value)
+        {
+            return;
+        }
+
+        _active = value;
+        if (altWhenInactive)
+        {
+            foreach (var controller in _controllers.Values)
+            {
+                if (controller is MicaController mica)
+                {
+                    mica.Kind = value ? MicaKind.Base : MicaKind.BaseAlt;
+                }
+            }
+        }
+        else
+        {
+            _configuration.IsInputActive = value;
+        }
+    }
 
     protected override void OnTargetConnected(Microsoft.UI.Composition.ICompositionSupportsSystemBackdrop connectedTarget, XamlRoot xamlRoot)
     {
         base.OnTargetConnected(connectedTarget, xamlRoot);
-        _controller = new DesktopAcrylicController { Kind = kind };
-        _controller.AddSystemBackdropTarget(connectedTarget);
-        _controller.SetSystemBackdropConfiguration(GetDefaultSystemBackdropConfiguration(connectedTarget, xamlRoot));
+        ISystemBackdropControllerWithTargets controller = kind switch
+        {
+            AppBackdrop.Acrylic => new DesktopAcrylicController { Kind = DesktopAcrylicKind.Base },
+            AppBackdrop.AcrylicThin => new DesktopAcrylicController { Kind = DesktopAcrylicKind.Thin },
+            AppBackdrop.MicaAlt => new MicaController { Kind = MicaKind.BaseAlt },
+            _ => new MicaController { Kind = altWhenInactive && !_active ? MicaKind.BaseAlt : MicaKind.Base },
+        };
+        controller.AddSystemBackdropTarget(connectedTarget);
+        controller.SetSystemBackdropConfiguration(_configuration);
+        _controllers[connectedTarget] = controller;
     }
 
     protected override void OnTargetDisconnected(Microsoft.UI.Composition.ICompositionSupportsSystemBackdrop disconnectedTarget)
     {
         base.OnTargetDisconnected(disconnectedTarget);
-        _controller?.RemoveSystemBackdropTarget(disconnectedTarget);
-        _controller?.Dispose();
-        _controller = null;
+        if (_controllers.Remove(disconnectedTarget, out var controller))
+        {
+            controller.RemoveSystemBackdropTarget(disconnectedTarget);
+            controller.Dispose();
+        }
+    }
+}
+
+/// <summary>
+/// Acrílico de escritorio de los menús, flyouts y del menú de la bandeja de MegaCopier (se pone en Themes/Styles.xaml;
+/// ver <see cref="Materials"/>). Sigue el modo claro u oscuro del tema y no se apaga cuando la ventana no tiene el foco
+/// (el de WinUI, sí: el menú se veía opaco). Con transparencia desactivada, ahorro de batería o alto contraste, Windows
+/// lo cambia por un color liso.
+/// </summary>
+public sealed partial class PopupBackdrop : SystemBackdrop
+{
+    /// <summary>Configuración de todas las superficies abiertas, para seguir el cambio de tema sin cerrarlas.</summary>
+    private static readonly List<SystemBackdropConfiguration> Open = [];
+
+    private readonly Dictionary<Microsoft.UI.Composition.ICompositionSupportsSystemBackdrop, (DesktopAcrylicController Controller, SystemBackdropConfiguration Configuration)> _targets = [];
+
+    /// <summary>Cambió el tema o el alto contraste: lo aplica a las superficies abiertas.</summary>
+    public static void Refresh()
+    {
+        foreach (var configuration in Open)
+        {
+            Configure(configuration);
+        }
+    }
+
+    private static void Configure(SystemBackdropConfiguration configuration)
+    {
+        configuration.Theme = Theming.ThemeManager.Current.Dark ? SystemBackdropTheme.Dark : SystemBackdropTheme.Light;
+        configuration.IsHighContrast = Materials.HighContrast;
+    }
+
+    protected override void OnTargetConnected(Microsoft.UI.Composition.ICompositionSupportsSystemBackdrop connectedTarget, XamlRoot xamlRoot)
+    {
+        base.OnTargetConnected(connectedTarget, xamlRoot);
+        var configuration = new SystemBackdropConfiguration { IsInputActive = true };
+        Configure(configuration);
+        Open.Add(configuration);
+        var controller = new DesktopAcrylicController { Kind = DesktopAcrylicKind.Base };
+        controller.AddSystemBackdropTarget(connectedTarget);
+        controller.SetSystemBackdropConfiguration(configuration);
+        _targets[connectedTarget] = (controller, configuration);
+    }
+
+    protected override void OnTargetDisconnected(Microsoft.UI.Composition.ICompositionSupportsSystemBackdrop disconnectedTarget)
+    {
+        base.OnTargetDisconnected(disconnectedTarget);
+        if (_targets.Remove(disconnectedTarget, out var target))
+        {
+            Open.Remove(target.Configuration);
+            target.Controller.RemoveSystemBackdropTarget(disconnectedTarget);
+            target.Controller.Dispose();
+        }
     }
 }

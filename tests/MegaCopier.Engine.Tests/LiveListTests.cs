@@ -79,6 +79,7 @@ public sealed class LiveListTests : IDisposable
         string destination = _temp.Combine("dst");
         var options = Options();
         options.HashAlgorithm = FileHashAlgorithm.Sha256;
+        options.SaveChecksumFile = true; // algo usa el hash: si nada lo usa, al reanudar no se calcula
 
         Assert.Throws<SimulatedPowerLoss>(() =>
             new CopyEngine(options) { FaultInjector = new CrashAt(FaultPoint.AfterJournalAppend, 5) }

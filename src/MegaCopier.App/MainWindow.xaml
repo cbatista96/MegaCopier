@@ -215,7 +215,12 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Border x:Name="PanelCard" Margin="10,0,10,0" CornerRadius="10" Background="{StaticResource McSurfaceBrush}" BorderBrush="{StaticResource McBorderBrush}" BorderThickness="1">
-                    <views:CopyPanel x:Name="Panel" />
+                    <!-- Al pasar de una copia a otra en la ventana pequeña, la foto de la anterior sale por un lado y la nueva
+                         entra por el otro -->
+                    <Grid x:Name="PanelHost" SizeChanged="PanelHost_SizeChanged">
+                        <views:CopyPanel x:Name="Panel" />
+                        <Image x:Name="PanelGhost" Stretch="Fill" HorizontalAlignment="Left" VerticalAlignment="Top" IsHitTestVisible="False" Visibility="Collapsed" />
+                    </Grid>
                 </Border>
 
                 <!-- Preguntas en la ventana pequeña: ocupan el sitio del panel, sin diálogos que no caben -->
@@ -309,10 +314,11 @@
             x:Name="ConflictDialog"
             x:Uid="ConflictDialog"
             Grid.RowSpan="3"
-            Style="{StaticResource DefaultContentDialogStyle}"
+            Style="{StaticResource McContentDialogStyle}"
             DefaultButton="Primary">
-            <StackPanel Spacing="12" MaxWidth="460">
-                <TextBlock x:Name="ConflictMessage" TextWrapping="Wrap" />
+            <!-- Ancho y alto fijos: no crece ni encoge con la ruta o con que el archivo tenga miniatura. -->
+            <StackPanel Spacing="12" Width="500">
+                <TextBlock x:Name="ConflictMessage" TextWrapping="Wrap" MaxLines="3" TextTrimming="CharacterEllipsis" MinHeight="60" />
                 <Grid ColumnSpacing="12">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -320,7 +326,7 @@
                     </Grid.ColumnDefinitions>
                     <Border Style="{StaticResource McCard}">
                         <StackPanel Spacing="2">
-                            <Image x:Name="ConflictSourceThumb" Height="96" Stretch="Uniform" HorizontalAlignment="Center" Margin="0,0,0,6" Visibility="Collapsed" />
+                            <Image x:Name="ConflictSourceThumb" Height="96" Stretch="Uniform" HorizontalAlignment="Center" Margin="0,0,0,6" />
                             <StackPanel Orientation="Horizontal" Spacing="6">
                                 <c:McIcon VerticalAlignment="Center" Glyph="&#xE8A5;" FontSize="13" Accent="True" />
                                 <TextBlock x:Name="ConflictSourceTitle" Style="{StaticResource BodyStrongTextBlockStyle}" />
@@ -331,7 +337,7 @@
                     </Border>
                     <Border Grid.Column="1" Style="{StaticResource McCard}">
                         <StackPanel Spacing="2">
-                            <Image x:Name="ConflictDestinationThumb" Height="96" Stretch="Uniform" HorizontalAlignment="Center" Margin="0,0,0,6" Visibility="Collapsed" />
+                            <Image x:Name="ConflictDestinationThumb" Height="96" Stretch="Uniform" HorizontalAlignment="Center" Margin="0,0,0,6" />
                             <StackPanel Orientation="Horizontal" Spacing="6">
                                 <c:McIcon VerticalAlignment="Center" Glyph="&#xE7C3;" FontSize="13" Foreground="{StaticResource McWarningBrush}" />
                                 <TextBlock x:Uid="ConflictExistingTitle" Style="{StaticResource BodyStrongTextBlockStyle}" />
@@ -341,7 +347,7 @@
                         </StackPanel>
                     </Border>
                 </Grid>
-                <StackPanel x:Name="ConflictIdentical" Orientation="Horizontal" Spacing="6" Visibility="Collapsed">
+                <StackPanel x:Name="ConflictIdentical" Orientation="Horizontal" Spacing="6" Opacity="0">
                     <c:McIcon VerticalAlignment="Center" Glyph="&#xE73E;" FontSize="12" Accent="True" />
                     <TextBlock x:Uid="Conflict_Identical" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="Wrap" VerticalAlignment="Center" />
                 </StackPanel>
@@ -358,7 +364,7 @@
             x:Uid="DestinationsDialog"
             PrimaryButtonClick="Destinations_PrimaryClick"
             Grid.RowSpan="3"
-            Style="{StaticResource DefaultContentDialogStyle}"
+            Style="{StaticResource McContentDialogStyle}"
             DefaultButton="Primary">
             <ContentDialog.Resources>
                 <!-- Con cifrado y "más tarde" desplegados no cabe en los 756 px de siempre: usa el alto de la ventana. -->
@@ -405,7 +411,7 @@
             x:Name="DeleteDialog"
             x:Uid="DeleteDialog"
             Grid.RowSpan="3"
-            Style="{StaticResource DefaultContentDialogStyle}"
+            Style="{StaticResource McContentDialogStyle}"
             DefaultButton="Close">
             <StackPanel Spacing="10" MaxWidth="460">
                 <TextBlock x:Name="DeleteMessage" TextWrapping="Wrap" />
@@ -418,7 +424,7 @@
             x:Name="SendDialog"
             x:Uid="SendDialog"
             Grid.RowSpan="3"
-            Style="{StaticResource DefaultContentDialogStyle}"
+            Style="{StaticResource McContentDialogStyle}"
             DefaultButton="Primary">
             <StackPanel Spacing="10" MinWidth="400" MaxWidth="480">
                 <TextBlock x:Name="SendSummary" TextWrapping="Wrap" />
@@ -434,7 +440,7 @@
             x:Name="MtpDialog"
             x:Uid="MtpDialog"
             Grid.RowSpan="3"
-            Style="{StaticResource DefaultContentDialogStyle}"
+            Style="{StaticResource McContentDialogStyle}"
             DefaultButton="Primary">
             <StackPanel Spacing="10" MinWidth="420" MaxWidth="560">
                 <TextBlock x:Name="MtpSummary" TextWrapping="Wrap" />
@@ -456,7 +462,7 @@
         </ContentDialog>
 
         <!-- Contraseña (descifrar, o volver a darla tras reiniciar) -->
-        <ContentDialog x:Name="PasswordDialog" x:Uid="PasswordDialog" Grid.RowSpan="3" Style="{StaticResource DefaultContentDialogStyle}" DefaultButton="Primary">
+        <ContentDialog x:Name="PasswordDialog" x:Uid="PasswordDialog" Grid.RowSpan="3" Style="{StaticResource McContentDialogStyle}" DefaultButton="Primary">
             <StackPanel Spacing="8" MaxWidth="420">
                 <TextBlock x:Name="PasswordMessage" TextWrapping="Wrap" />
                 <PasswordBox x:Name="PasswordBox" x:Uid="Destinations_Password" />
@@ -468,7 +474,7 @@
             x:Name="FinishDialog"
             x:Uid="FinishDialog"
             Grid.RowSpan="3"
-            Style="{StaticResource DefaultContentDialogStyle}"
+            Style="{StaticResource McContentDialogStyle}"
             DefaultButton="Close">
             <StackPanel Spacing="12" MaxWidth="420">
                 <TextBlock x:Name="FinishMessage" TextWrapping="Wrap" />

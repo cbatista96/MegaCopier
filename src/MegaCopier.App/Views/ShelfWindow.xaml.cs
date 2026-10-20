@@ -94,7 +94,7 @@ public sealed partial class ShelfWindow : Window
         var theme = ThemeManager.Current;
         Root.RequestedTheme = theme.Dark ? ElementTheme.Dark : ElementTheme.Light;
         AppWindow.TitleBar.PreferredTheme = theme.Dark ? TitleBarTheme.Dark : TitleBarTheme.Light;
-        SystemBackdrop = Appearance.CreateBackdrop(theme.Backdrop);
+        SystemBackdrop = Appearance.CreateBackdrop(AppBackdrop.Acrylic, theme.Dark); // las ventanas auxiliares, de acrílico
     }
 
     /// <summary>Añade (sin repetir y solo lo que existe).</summary>

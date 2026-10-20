@@ -363,17 +363,21 @@ internal sealed partial class FileTransfer
             result.BytesResumed = start;
             _progress.SetFileResumed(start);
 
-            // Hash completo del archivo: al reanudar, la parte ya copiada se hashea leyendo el origen.
+            // Hash completo del archivo. Al reanudar no se espera a releer la parte ya copiada: si el hash hace falta, se
+            // calcula a la vez que se copia el resto; si no (nada lo comprueba ni lo guarda), no se calcula.
             var fileHasher = FileHasher.Create(_options.HashAlgorithm);
-            if (fileHasher is not null && start > 0)
+            await using var catchUp = fileHasher is not null && start > 0 && SourceHashNeeded
+                ? new CatchUpHasher(this, io, fileHasher, start, length, cancellationToken)
+                : null;
+            if (start > 0)
             {
-                await ReadSequentialAsync(io.Source, io.SourceUnbuffered, 0, start, (data, _) => fileHasher.Append(data), cancellationToken).ConfigureAwait(false);
+                fileHasher = null;
             }
 
-            var writer = new ChunkWriter(this, io, destinationPath, chunkSize, length, chunks, journal, fileHasher);
+            var writer = new ChunkWriter(this, io, destinationPath, chunkSize, length, chunks, journal, fileHasher, catchUp);
             await CopyRangeAsync(io, start, length, writer, cancellationToken).ConfigureAwait(false);
             result.BytesTransferred = length - start;
-            result.SourceHash = fileHasher?.Finish();
+            result.SourceHash = catchUp is not null ? await catchUp.FinishAsync(cancellationToken).ConfigureAwait(false) : fileHasher?.Finish();
 
             if (destinationUnbuffered || RandomAccess.GetLength(destination) != length)
             {
@@ -469,6 +473,12 @@ internal sealed partial class FileTransfer
         return await FinishShortcutAsync(source, sourceUnbuffered, info, sourcePath, partialPath, destinationPath, result, cancellationToken).ConfigureAwait(false);
     }
 
+    /// <summary>
+    /// Si algo usa el hash del origen: verificar (también el modo forense, que la activa), el archivo de sumas o la suma
+    /// guardada en el archivo (Guardián de integridad). Si no, solo se mostraría en la lista y no compensa releer el origen.
+    /// </summary>
+    private bool SourceHashNeeded => _options.Verify || _options.VerifySource || _options.SaveChecksumFile || _options.SaveHashStream;
+
     /// <summary>Tras clonar o copiar con el sistema: sumas (archivo de sumas, verificación) y metadatos, como siempre.</summary>
     private async Task<FileTransferResult> FinishShortcutAsync(
         SafeFileHandle source, bool sourceUnbuffered, SourceInfo info, string sourcePath, string partialPath, string destinationPath,
@@ -477,8 +487,7 @@ internal sealed partial class FileTransfer
         // Clonar o copiar en el servidor no mueve los datos por aquí: leerlo todo solo para mostrar su hash quitaría la
         // ventaja (50 GB clonados al instante tardarían lo que tarda leerlos). Se lee si de verdad hace falta.
         long length = info.Identity.Length;
-        bool hashNeeded = _options.Verify || _options.VerifySource || _options.SaveChecksumFile || _options.SaveHashStream;
-        if (hashNeeded && FileHasher.Create(_options.HashAlgorithm) is { } sourceHasher)
+        if (SourceHashNeeded && FileHasher.Create(_options.HashAlgorithm) is { } sourceHasher)
         {
             await ReadSequentialAsync(source, sourceUnbuffered, 0, length, (data, _) => sourceHasher.Append(data), cancellationToken).ConfigureAwait(false);
             result.SourceHash = sourceHasher.Finish();
@@ -1020,7 +1029,8 @@ internal sealed partial class FileTransfer
         long length,
         List<ChunkRecord> chunks,
         TransferJournal? journal,
-        FileHasher? fileHasher)
+        FileHasher? fileHasher,
+        CatchUpHasher? catchUp = null)
     {
         private readonly XxHash128 _hasher = new();
         private readonly Queue<(Task Write, AlignedBuffer Buffer)> _inFlight = new();
@@ -1039,6 +1049,7 @@ internal sealed partial class FileTransfer
 
                 _hasher.Append(buffer.Span[..count]);
                 fileHasher?.Append(buffer.Span[..count]);
+                catchUp?.Offer(buffer.Span[..count], offset);
                 // En un archivo disperso, un bloque de ceros se queda como hueco (se lee como ceros sin ocupar disco).
                 var write = io.Sparse && !buffer.Span[..count].ContainsAnyExcept((byte)0)
                     ? Task.CompletedTask

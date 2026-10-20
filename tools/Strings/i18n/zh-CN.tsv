@@ -47,7 +47,7 @@ CopyHeader.Text	复制
 VerifyTitle.Text	复制后校验
 VerifyDescription.Text	每个文件完成后重新读取并与原文件比较，如有不一致就修正。
 ConflictTitle.Text	文件已存在时
-ConflictDescription.Text	目标位置已有同名文件时。完全相同的文件永不重复复制。
+ConflictDescription.Text	目标位置已有同名文件时。
 ConflictAsk.Content	询问
 ConflictReplace.Content	替换
 ConflictSkip.Content	跳过
@@ -1456,8 +1456,6 @@ MinimizeButton_Taskbar.Content	到任务栏
 MinimizeButton_Tray.Content	到通知区域
 Settings_TrayProgressTitle.Text	在通知区域显示每个复制的进度
 Settings_TrayProgressDescription.Text	每个进行中的复制一个图标，显示百分比和上升的进度条。完成后自动消失。单击可打开该复制。
-Info_WindowButtons_Title	窗口按钮
-Info_WindowButtons_Text	选择关闭或最小化窗口时复制如何处理。\n• 取消复制：如同在每个复制上点击“停止”。它们会从列表中消失，也不会提示继续。\n• 停止，稍后继续：已复制的内容会保留；再次复制相同内容或打开 MegaCopier 时，会从中断处继续。\n• 隐藏窗口：复制在后台继续；可通过通知区域图标打开窗口。\n• 退出 MegaCopier：完全关闭，在你再次打开之前由 Windows 照常复制。\n最小化到通知区域可让任务栏保持整洁：单击时钟旁的 MegaCopier 图标即可恢复窗口。
 Tray_JobPause	暂停
 Tray_JobStop	停止
 Jobs_Archive	归档到历史记录
@@ -1493,12 +1491,14 @@ Settings_BackdropTitle.Text	窗口背景
 Settings_BackdropDescription.Text	窗口后面显示的 Windows 11 材质，适用于任何主题。
 Backdrop_OptTheme.Content	跟随主题
 Backdrop_OptTranslucent.Content	半透明（可见桌面）
-Backdrop_OptAcrylic.Content	桌面亚克力（基础）
-Backdrop_OptAcrylicThin.Content	桌面亚克力（薄）
 BackdropAcrylicThin.Content	薄亚克力
-Info_Backdrop_Text	这是窗口内容后面显示的效果。\n• 跟随主题：每个主题自带背景（纯色、云母或亚克力）。\n• 半透明：非常透明的亚克力，可以透过窗口看到桌面。\n• 云母 (Mica)：柔和地带上桌面壁纸的色调，Windows 11 应用使用的就是它。\n• 云母 Alt：与云母相似，但带有更多壁纸颜色。\n• 桌面亚克力（基础）：像磨砂玻璃，窗口后面的内容显得模糊。\n• 桌面亚克力（薄）：比基础更浅、更透明。\n云母和亚克力需要 Windows 11 并开启透明效果，否则显示为纯色。
+Info_Backdrop_Text	这是窗口内容后面显示的效果。\n• 跟随主题：每个主题自带背景（纯色、云母或亚克力）。Fluent 主题使用云母，在你使用其他窗口时切换为云母 Alt，而不是变成纯色。\n• 云母 (Mica)：柔和地带上桌面壁纸的色调，Windows 11 应用使用的就是它。\n• 云母 Alt：与云母相似，但带有更多壁纸颜色。\n• 亚克力：像磨砂玻璃，窗口后面的内容显得模糊。\n• 半透明：更浅、更透明的亚克力，可以透过窗口看到桌面。\n选择这四种之一时，你使用其他窗口期间本窗口会变为纯色，与 Windows 自带窗口一样。MegaCopier 的菜单和选项列表始终是亚克力效果。\n云母和亚克力需要 Windows 11 并开启透明效果，否则显示为纯色。
 SameDrive_NewWindow	在新窗口中
 SameDrive_NewWindowText	将打开另一个 MegaCopier 窗口显示此复制，并立即与另一个同时开始（两者都会稍慢一些）。
 Settings_IndependentWindowsTitle.Text	每个复制使用单独的窗口
 Settings_IndependentWindowsDescription.Text	每个复制一个窗口，立即开始，不等待其他复制。除非把多个复制加到同一窗口，否则不显示复制列表。
 Info_IndependentWindows_Text	通常 MegaCopier 只有一个窗口，多个复制会显示在复制列表中。开启此选项后，每个复制都会打开自己的窗口并立即开始，不等待其他复制。\n• 它们是同一个应用：主题、图标和设置在所有窗口中都相同（在一个窗口中更改，所有窗口都会改变）。\n• 每个窗口在通知区域有自己的进度图标，在任务栏上有自己的按钮。\n• 如果新的复制与正在进行的复制去往同一磁盘，由“复制到同一磁盘”决定：询问（加入该窗口的复制，或在新窗口中打开）、总是加入，或总是不经询问打开新窗口。\n• 如果向一个窗口加入复制，该窗口会显示自己的复制列表。\n• 复制完成后，每个窗口照常关闭。\n示例：你在把照片复制到 U 盘的同时，把视频复制到另一个磁盘：会看到两个窗口，各自显示进度。
+Info_CloseButton_Title	点击窗口的 X 时
+Info_CloseButton_Text	选择用 X 关闭窗口时复制如何处理。\n• 取消复制：如同在每个复制上点击“停止”。它们会从列表中消失，也不会提示继续。\n• 停止，稍后继续：已复制的内容会保留；再次复制相同内容或打开 MegaCopier 时，会从中断处继续。\n• 隐藏窗口：复制在后台继续；可通过通知区域图标打开窗口。\n• 退出 MegaCopier：完全关闭，在你再次打开之前由 Windows 照常复制。
+Info_MinimizeButton_Title	最小化窗口时
+Info_MinimizeButton_Text	最小化窗口时窗口去向。两种情况下复制都会继续。\n• 到任务栏：和其他窗口一样。\n最小化到通知区域可让任务栏保持整洁：单击时钟旁的 MegaCopier 图标即可恢复窗口。

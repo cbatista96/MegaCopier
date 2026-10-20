@@ -53,7 +53,7 @@
   <data name="VerifyTitle.Text" xml:space="preserve"><value>コピー後に検証</value></data>
   <data name="VerifyDescription.Text" xml:space="preserve"><value>各ファイルの後で読み直して元と比べ、違いがあれば直します。</value></data>
   <data name="ConflictTitle.Text" xml:space="preserve"><value>ファイルが既に存在する場合</value></data>
-  <data name="ConflictDescription.Text" xml:space="preserve"><value>コピー先に同じ名前のファイルがあるとき。同じファイルは二度とコピーしません。</value></data>
+  <data name="ConflictDescription.Text" xml:space="preserve"><value>コピー先に同じ名前のファイルがあるとき。</value></data>
   <data name="ConflictAsk.Content" xml:space="preserve"><value>確認する</value></data>
   <data name="ConflictReplace.Content" xml:space="preserve"><value>置き換える</value></data>
   <data name="ConflictSkip.Content" xml:space="preserve"><value>スキップ</value></data>
@@ -1462,8 +1462,6 @@
   <data name="MinimizeButton_Tray.Content" xml:space="preserve"><value>通知領域へ</value></data>
   <data name="Settings_TrayProgressTitle.Text" xml:space="preserve"><value>各コピーの進行状況を通知領域に表示</value></data>
   <data name="Settings_TrayProgressDescription.Text" xml:space="preserve"><value>実行中のコピーごとに、割合と上昇するバーを示すアイコンを 1 つ表示します。終わると自動的に消えます。クリックするとそのコピーを開きます。</value></data>
-  <data name="Info_WindowButtons_Title" xml:space="preserve"><value>ウィンドウのボタン</value></data>
-  <data name="Info_WindowButtons_Text" xml:space="preserve"><value>ウィンドウを閉じたり最小化したりしたときにコピーをどうするかを選びます。\n• コピーを取り消す: 各コピーで［停止］を押すのと同じです。一覧から消え、続行は提案されません。\n• 停止して後で続ける: コピー済みの分は残ります。同じものをもう一度コピーするか MegaCopier を開くと、途中から続きます。\n• ウィンドウを隠す: コピーはバックグラウンドで続きます。通知領域のアイコンから開きます。\n• MegaCopier を終了: 完全に終了し、もう一度開くまで Windows が通常どおりコピーします。\n通知領域へ最小化するとタスク バーがすっきりします。時計の横の MegaCopier アイコンをクリックするとウィンドウが戻ります。</value></data>
   <data name="Tray_JobPause" xml:space="preserve"><value>一時停止</value></data>
   <data name="Tray_JobStop" xml:space="preserve"><value>停止</value></data>
   <data name="Jobs_Archive" xml:space="preserve"><value>履歴にアーカイブ</value></data>
@@ -1499,13 +1497,15 @@
   <data name="Settings_BackdropDescription.Text" xml:space="preserve"><value>ウィンドウの後ろに見える Windows 11 の素材（どのテーマでも使えます）。</value></data>
   <data name="Backdrop_OptTheme.Content" xml:space="preserve"><value>テーマに合わせる</value></data>
   <data name="Backdrop_OptTranslucent.Content" xml:space="preserve"><value>半透明（デスクトップが見える）</value></data>
-  <data name="Backdrop_OptAcrylic.Content" xml:space="preserve"><value>デスクトップ アクリル（ベース）</value></data>
-  <data name="Backdrop_OptAcrylicThin.Content" xml:space="preserve"><value>デスクトップ アクリル（薄い）</value></data>
   <data name="BackdropAcrylicThin.Content" xml:space="preserve"><value>薄いアクリル</value></data>
-  <data name="Info_Backdrop_Text" xml:space="preserve"><value>ウィンドウの内容の後ろに見えるものです。\n• テーマに合わせる: テーマごとに決まった背景（単色、マイカ、アクリル）を使います。\n• 半透明: とても透明なアクリルで、ウィンドウ越しにデスクトップが見えます。\n• マイカ: 壁紙の色合いをやさしく取り込みます。Windows 11 のアプリと同じ背景です。\n• マイカ Alt: マイカと同様ですが、壁紙の色がより強く出ます。\n• デスクトップ アクリル（ベース）: すりガラスのように、ウィンドウの後ろがぼやけて見えます。\n• デスクトップ アクリル（薄い）: ベースより明るく透明です。\nマイカとアクリルには、透明効果をオンにした Windows 11 が必要です。オフの場合は単色になります。</value></data>
+  <data name="Info_Backdrop_Text" xml:space="preserve"><value>ウィンドウの内容の後ろに見えるものです。\n• テーマに合わせる: テーマごとに決まった背景（単色、マイカ、アクリル）を使います。Fluent テーマはマイカで、ほかのウィンドウを使っている間は単色にならずにマイカ Alt に切り替わります。\n• マイカ: 壁紙の色合いをやさしく取り込みます。Windows 11 のアプリと同じ背景です。\n• マイカ Alt: マイカと同様ですが、壁紙の色がより強く出ます。\n• アクリル: すりガラスのように、ウィンドウの後ろがぼやけて見えます。\n• 半透明: より明るく透明なアクリルで、ウィンドウ越しにデスクトップが見えます。\nこの 4 つのいずれかを選ぶと、ほかのウィンドウを使っている間は Windows のウィンドウと同じく単色になります。MegaCopier のメニューと選択肢の一覧は常にアクリルです。\nマイカとアクリルには、透明効果をオンにした Windows 11 が必要です。オフの場合は単色になります。</value></data>
   <data name="SameDrive_NewWindow" xml:space="preserve"><value>新しいウィンドウで</value></data>
   <data name="SameDrive_NewWindowText" xml:space="preserve"><value>このコピー用に MegaCopier のウィンドウがもう 1 つ開き、もう一方と同時にすぐ始まります（どちらも少し遅くなります）。</value></data>
   <data name="Settings_IndependentWindowsTitle.Text" xml:space="preserve"><value>コピーごとに別のウィンドウ</value></data>
   <data name="Settings_IndependentWindowsDescription.Text" xml:space="preserve"><value>コピーごとに 1 つのウィンドウで、ほかを待たずにすぐ始まります。同じウィンドウに複数追加しない限り、コピーの一覧は表示されません。</value></data>
   <data name="Info_IndependentWindows_Text" xml:space="preserve"><value>通常、MegaCopier のウィンドウは 1 つで、複数のコピーはコピーの一覧に表示されます。このオプションをオンにすると、コピーごとに専用のウィンドウが開き、ほかを待たずにすぐ始まります。\n• どれも同じアプリです。テーマ、アイコン、設定はすべてのウィンドウで共通です（1 つで変えると全部変わります）。\n• 各ウィンドウには、通知領域の進行状況アイコンとタスク バーのボタンがそれぞれあります。\n• 新しいコピーが実行中のコピーと同じドライブに向かう場合は「同じドライブへの新しいコピー」で決まります: 確認する（そのウィンドウのコピーに追加するか、新しいウィンドウで開く）、常に追加する、または確認せずに常に新しいウィンドウを開く。\n• 1 つのウィンドウにコピーを追加すると、そのウィンドウに独自のコピー一覧が表示されます。\n• コピーが終わると、各ウィンドウはいつもどおり閉じます。\n例: 写真を USB メモリにコピーしている間に動画を別のディスクにコピーすると、それぞれの進行状況を表示する 2 つのウィンドウが表示されます。</value></data>
+  <data name="Info_CloseButton_Title" xml:space="preserve"><value>ウィンドウの × を押したとき</value></data>
+  <data name="Info_CloseButton_Text" xml:space="preserve"><value>ウィンドウを X で閉じたときにコピーをどうするかを選びます。\n• コピーを取り消す: 各コピーで［停止］を押すのと同じです。一覧から消え、続行は提案されません。\n• 停止して後で続ける: コピー済みの分は残ります。同じものをもう一度コピーするか MegaCopier を開くと、途中から続きます。\n• ウィンドウを隠す: コピーはバックグラウンドで続きます。通知領域のアイコンから開きます。\n• MegaCopier を終了: 完全に終了し、もう一度開くまで Windows が通常どおりコピーします。</value></data>
+  <data name="Info_MinimizeButton_Title" xml:space="preserve"><value>ウィンドウを最小化したとき</value></data>
+  <data name="Info_MinimizeButton_Text" xml:space="preserve"><value>ウィンドウを最小化したときの行き先です。どちらの場合もコピーは続きます。\n• タスク バーへ: ほかのウィンドウと同じです。\n通知領域へ最小化するとタスク バーがすっきりします。時計の横の MegaCopier アイコンをクリックするとウィンドウが戻ります。</value></data>
 </root>

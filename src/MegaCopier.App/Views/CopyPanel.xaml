@@ -33,9 +33,9 @@
             <Button x:Name="TitleLink" x:Uid="Panel_OpenCopied" Grid.Column="1" Style="{StaticResource McLinkButton}" VerticalAlignment="Center" Click="{x:Bind Job.OpenCopiedFolder}">
                 <TextBlock Text="{x:Bind Job.Title, Mode=OneWay}" Style="{StaticResource McStrong}" TextTrimming="CharacterEllipsis" />
             </Button>
-            <TextBlock x:Name="FilesCountBlock" Grid.Column="2" Text="{x:Bind Job.FilesCountText, Mode=OneWay}" Style="{StaticResource McSecondary}" VerticalAlignment="Center" />
-            <TextBlock x:Name="TotalBytesBlock" Grid.Column="3" Text="{x:Bind Job.TotalBytesText, Mode=OneWay}" Style="{StaticResource McSecondary}" VerticalAlignment="Center" />
-            <TextBlock x:Name="TotalPercentBlock" Grid.Column="4" Text="{x:Bind Job.TotalPercentText, Mode=OneWay}" Style="{StaticResource McStrong}" VerticalAlignment="Center" MinWidth="56" TextAlignment="Right" />
+            <TextBlock x:Name="FilesCountBlock" Typography.NumeralAlignment="Tabular" TextAlignment="Right" Grid.Column="2" Text="{x:Bind Job.FilesCountText, Mode=OneWay}" Style="{StaticResource McSecondary}" VerticalAlignment="Center" />
+            <TextBlock x:Name="TotalBytesBlock" Typography.NumeralAlignment="Tabular" TextAlignment="Right" Grid.Column="3" Text="{x:Bind Job.TotalBytesText, Mode=OneWay}" Style="{StaticResource McSecondary}" VerticalAlignment="Center" />
+            <TextBlock x:Name="TotalPercentBlock" Typography.NumeralAlignment="Tabular" Grid.Column="4" Text="{x:Bind Job.TotalPercentText, Mode=OneWay}" Style="{StaticResource McStrong}" VerticalAlignment="Center" MinWidth="56" TextAlignment="Right" />
         </Grid>
         <c:FlowBar Grid.Row="1" Fill="{StaticResource McTotalBrush}"
                    Value="{x:Bind Job.TotalFraction, Mode=OneWay}"
@@ -62,23 +62,24 @@
             <Button x:Uid="Panel_RevealFile" Grid.Column="1" Style="{StaticResource McLinkButton}" VerticalAlignment="Center" Click="{x:Bind Job.RevealCurrentFile}">
                 <TextBlock Text="{x:Bind Job.CurrentFileName, Mode=OneWay}" Style="{StaticResource McBody}" TextTrimming="CharacterEllipsis" />
             </Button>
-            <TextBlock x:Name="FileBytesBlock" Grid.Column="2" Text="{x:Bind Job.FileBytesText, Mode=OneWay}" Style="{StaticResource McSecondary}" VerticalAlignment="Center" />
-            <TextBlock x:Name="SpeedBlock" Grid.Column="3" Text="{x:Bind Job.SpeedAndRemaining, Mode=OneWay}" Style="{StaticResource McSecondary}" VerticalAlignment="Center" />
-            <TextBlock x:Name="FilePercentBlock" Grid.Column="4" Text="{x:Bind Job.FilePercentText, Mode=OneWay}" Style="{StaticResource McStrong}" VerticalAlignment="Center" MinWidth="56" TextAlignment="Right" />
+            <TextBlock x:Name="FileBytesBlock" Typography.NumeralAlignment="Tabular" TextAlignment="Right" Grid.Column="2" Text="{x:Bind Job.FileBytesText, Mode=OneWay}" Style="{StaticResource McSecondary}" VerticalAlignment="Center" />
+            <TextBlock x:Name="SpeedBlock" Typography.NumeralAlignment="Tabular" TextAlignment="Right" Grid.Column="3" Text="{x:Bind Job.SpeedAndRemaining, Mode=OneWay}" Style="{StaticResource McSecondary}" VerticalAlignment="Center" />
+            <TextBlock x:Name="FilePercentBlock" Typography.NumeralAlignment="Tabular" Grid.Column="4" Text="{x:Bind Job.FilePercentText, Mode=OneWay}" Style="{StaticResource McStrong}" VerticalAlignment="Center" MinWidth="56" TextAlignment="Right" />
         </Grid>
         <c:FlowBar Grid.Row="3" Role="File" Fill="{StaticResource McFileBrush}"
                    Value="{x:Bind Job.FileFraction, Mode=OneWay}"
                    IsActive="{x:Bind Job.IsRunning, Mode=OneWay}"
                    IsPaused="{x:Bind Job.IsPaused, Mode=OneWay}" />
 
-        <!-- Unidades de origen y destino -->
-        <Grid Grid.Row="4" ColumnSpacing="10" Margin="0,4,0,0">
+        <!-- Unidades de origen y destino: el origen a la izquierda y el destino (con su flecha) a la derecha. El destino
+             mide lo que necesita, hasta la mitad de la fila; el origen se queda con el resto -->
+        <Grid x:Name="DrivesRow" Grid.Row="4" ColumnSpacing="10" Margin="0,4,0,0" SizeChanged="DrivesRow_SizeChanged">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Button x:Uid="Panel_RevealSource" Style="{StaticResource McLinkButton}" Click="{x:Bind Job.RevealSource}">
+            <Button x:Uid="Panel_RevealSource" Style="{StaticResource McLinkButton}" HorizontalAlignment="Left" Click="{x:Bind Job.RevealSource}">
                 <Grid ColumnSpacing="8">
                     <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
                     <c:McIcon VerticalAlignment="Center" Glyph="{x:Bind Job.SourceDriveGlyph, Mode=OneWay}" FontSize="16" Foreground="{StaticResource McTextSecondaryBrush}" />
@@ -86,8 +87,8 @@
                     <TextBlock Grid.Column="2" Text="{x:Bind Job.SourceFolderShort, Mode=OneWay}" Style="{StaticResource McSecondary}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
                 </Grid>
             </Button>
-            <c:McIcon VerticalAlignment="Center" Grid.Column="1" Glyph="&#xE72A;" FontSize="14" Accent="True" />
-            <Button x:Uid="Panel_RevealDestination" Grid.Column="2" Style="{StaticResource McLinkButton}" Click="{x:Bind Job.RevealDestination}">
+            <c:McIcon x:Name="DrivesArrow" VerticalAlignment="Center" Grid.Column="1" Glyph="&#xE72A;" FontSize="14" Accent="True" />
+            <Button x:Name="DestinationButton" x:Uid="Panel_RevealDestination" Grid.Column="2" Style="{StaticResource McLinkButton}" HorizontalAlignment="Right" Click="{x:Bind Job.RevealDestination}">
                 <Grid ColumnSpacing="8">
                     <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
                     <c:McIcon VerticalAlignment="Center" Glyph="{x:Bind Job.DestinationDriveGlyph, Mode=OneWay}" FontSize="16" Foreground="{StaticResource McTextSecondaryBrush}" />
@@ -114,7 +115,7 @@
                 </Button>
                 <!-- Pausa y Continuar son el mismo botón: mide lo que el más largo de los dos textos y el icono de
                      pausa se transforma en el de reproducir (y al revés); el texto cambia sin moverse -->
-                <Button x:Name="PlayPauseButton" Tag="Morph" Style="{StaticResource McAccentButton}" Click="{x:Bind Job.TogglePause}" Visibility="{x:Bind Job.CanPlayPause, Mode=OneWay}">
+                <Button x:Name="PlayPauseButton" Tag="Morph" Style="{StaticResource McButton}" Click="{x:Bind Job.TogglePause}" Visibility="{x:Bind Job.CanPlayPause, Mode=OneWay}">
                     <StackPanel Orientation="Horizontal" Spacing="8">
                         <c:McIcon x:Name="PlayPauseIcon" Glyph="&#xE769;" FontSize="12" VerticalAlignment="Center" />
                         <Grid>

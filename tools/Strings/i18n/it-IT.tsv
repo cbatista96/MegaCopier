@@ -47,7 +47,7 @@ CopyHeader.Text	Copia
 VerifyTitle.Text	Verifica dopo la copia
 VerifyDescription.Text	Dopo ogni file lo rilegge e lo confronta con l’originale; se qualcosa non coincide, lo corregge.
 ConflictTitle.Text	Se il file esiste già
-ConflictDescription.Text	Quando nella destinazione c’è già un file con lo stesso nome. I file identici non vengono mai ricopiati.
+ConflictDescription.Text	Quando nella destinazione c’è già un file con lo stesso nome.
 ConflictAsk.Content	Chiedi
 ConflictReplace.Content	Sostituisci
 ConflictSkip.Content	Salta
@@ -1456,8 +1456,6 @@ MinimizeButton_Taskbar.Content	Sulla barra delle applicazioni
 MinimizeButton_Tray.Content	Nell'area di notifica
 Settings_TrayProgressTitle.Text	Avanzamento di ogni copia nell'area di notifica
 Settings_TrayProgressDescription.Text	Un'icona per ogni copia in corso, con la percentuale e una barra che sale. Alla fine sparisce da sola. Un clic apre la copia.
-Info_WindowButtons_Title	I pulsanti della finestra
-Info_WindowButtons_Text	Scegli cosa succede alle copie quando chiudi o riduci a icona la finestra.\n• Annulla le copie: come premere «Interrompi» su ciascuna. Spariscono dall'elenco e non viene proposto di continuarle.\n• Fermarle per continuare dopo: ciò che è stato copiato resta; quando ricopi la stessa cosa, o apri MegaCopier, riprende da dove era.\n• Nascondi la finestra: le copie continuano in background; riaprila dall'icona nell'area di notifica.\n• Esci da MegaCopier: si chiude del tutto e Windows copia come sempre finché non lo riapri.\nRidurre nell'area di notifica lascia libera la barra delle applicazioni: la finestra torna con un clic sull'icona di MegaCopier accanto all'orologio.
 Tray_JobPause	Pausa
 Tray_JobStop	Interrompi
 Jobs_Archive	Archivia nella cronologia
@@ -1493,12 +1491,14 @@ Settings_BackdropTitle.Text	Sfondo della finestra
 Settings_BackdropDescription.Text	Il materiale di Windows 11 visibile dietro la finestra, con qualsiasi tema.
 Backdrop_OptTheme.Content	Quello del tema
 Backdrop_OptTranslucent.Content	Traslucida (si vede il desktop)
-Backdrop_OptAcrylic.Content	Acrilico desktop (base)
-Backdrop_OptAcrylicThin.Content	Acrilico desktop (sottile)
 BackdropAcrylicThin.Content	Acrilico sottile
-Info_Backdrop_Text	È ciò che si vede dietro il contenuto della finestra.\n• Quello del tema: ogni tema ha il suo (tinta unita, Mica o acrilico).\n• Traslucida: acrilico molto trasparente; si vede il desktop dietro la finestra.\n• Mica: prende delicatamente la tinta dello sfondo del desktop. È quello delle app di Windows 11.\n• Mica Alt: come Mica, ma con più colore dello sfondo.\n• Acrilico desktop (base): come un vetro smerigliato; ciò che sta dietro la finestra appare sfocato.\n• Acrilico desktop (sottile): più chiaro e trasparente della base.\nMica e acrilico richiedono Windows 11 con gli effetti di trasparenza attivi; altrimenti si vede un colore pieno.
+Info_Backdrop_Text	È ciò che si vede dietro il contenuto della finestra.\n• Quello del tema: ogni tema ha il suo (tinta unita, Mica o acrilico). I temi Fluent usano Mica, che passa a Mica Alt mentre usi un'altra finestra invece di diventare a tinta unita.\n• Mica: prende delicatamente la tinta dello sfondo del desktop. È quello delle app di Windows 11.\n• Mica Alt: come Mica, ma con più colore dello sfondo.\n• Acrilico: come un vetro smerigliato; ciò che sta dietro la finestra appare sfocato.\n• Traslucida: acrilico più chiaro e trasparente; si vede il desktop dietro la finestra.\nCon uno di questi quattro, la finestra diventa a tinta unita mentre usi un'altra finestra, come quelle di Windows. I menu e gli elenchi di opzioni di MegaCopier sono sempre in acrilico.\nMica e acrilico richiedono Windows 11 con gli effetti di trasparenza attivi; altrimenti si vede un colore pieno.
 SameDrive_NewWindow	In una nuova finestra
 SameDrive_NewWindowText	Si apre un'altra finestra di MegaCopier con questa copia, che parte subito insieme all'altra (entrambe saranno un po' più lente).
 Settings_IndependentWindowsTitle.Text	Ogni copia nella sua finestra
 Settings_IndependentWindowsDescription.Text	Una finestra per copia, che parte subito senza aspettare le altre. Senza elenco delle copie, a meno che tu non ne aggiunga diverse alla stessa finestra.
 Info_IndependentWindows_Text	Di solito MegaCopier ha una sola finestra e, se avvii più copie, le mostra nel suo elenco delle copie. Con questa opzione ogni copia apre la sua finestra e parte subito, senza aspettare le altre.\n• È sempre la stessa app: tema, icone e impostazioni sono gli stessi in tutte (se li cambi in una, cambiano in tutte).\n• Ogni finestra ha la sua icona di avanzamento nell'area di notifica e il suo pulsante sulla barra delle applicazioni.\n• Se la nuova copia va sullo stesso disco di una in corso, decide «Nuova copia sullo stesso disco»: chiedere (aggiungerla alla copia di quella finestra o aprirla in una nuova finestra), aggiungerla sempre o aprire sempre una nuova finestra senza chiedere.\n• Se aggiungi copie a una finestra, quella finestra mostra il suo elenco delle copie.\n• Quando le sue copie finiscono, ogni finestra si chiude come al solito.\nEsempio: copi delle foto su una chiavetta USB e intanto dei video su un altro disco: vedrai due finestre, ognuna con il suo avanzamento.
+Info_CloseButton_Title	Quando premi la X della finestra
+Info_CloseButton_Text	Scegli cosa succede alle copie quando chiudi la finestra con la X.\n• Annulla le copie: come premere «Interrompi» su ciascuna. Spariscono dall'elenco e non viene proposto di continuarle.\n• Fermarle per continuare dopo: ciò che è stato copiato resta; quando ricopi la stessa cosa, o apri MegaCopier, riprende da dove era.\n• Nascondi la finestra: le copie continuano in background; riaprila dall'icona nell'area di notifica.\n• Esci da MegaCopier: si chiude del tutto e Windows copia come sempre finché non lo riapri.
+Info_MinimizeButton_Title	Quando riduci a icona la finestra
+Info_MinimizeButton_Text	Dove va la finestra quando la riduci a icona. Le copie continuano in entrambi i casi.\n• Sulla barra delle applicazioni: come qualsiasi altra finestra.\nRidurre nell'area di notifica lascia libera la barra delle applicazioni: la finestra torna con un clic sull'icona di MegaCopier accanto all'orologio.

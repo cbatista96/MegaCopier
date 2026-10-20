@@ -192,8 +192,11 @@ internal static class Motion
         }
     }
 
-    /// <summary>Desliza en horizontal de <paramref name="from"/> a <paramref name="to"/> y, al acabar, avisa.</summary>
-    public static void SlideX(UIElement element, double from, double to, int milliseconds, Action? done)
+    /// <summary>
+    /// Desliza en horizontal de <paramref name="from"/> a <paramref name="to"/> y, al acabar, avisa. Frena al llegar si va
+    /// hacia la derecha (o si <paramref name="decelerate"/> lo pide); si no, acelera al salir.
+    /// </summary>
+    public static void SlideX(UIElement element, double from, double to, int milliseconds, Action? done, bool? decelerate = null)
     {
         var t = Prepare(element);
         Stop(element);
@@ -204,7 +207,7 @@ internal static class Motion
             return;
         }
 
-        Run(milliseconds, done, (t, "TranslateX", [(0, from, null), (1, to, to > from ? Out : In)]));
+        Run(milliseconds, done, (t, "TranslateX", [(0, from, null), (1, to, decelerate ?? to > from ? Out : In)]));
     }
 
     /// <summary>Lo deja en su sitio (sin desplazamiento ni animación en marcha).</summary>

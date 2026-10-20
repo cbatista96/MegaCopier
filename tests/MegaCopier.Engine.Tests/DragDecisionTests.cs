@@ -139,15 +139,21 @@ public sealed partial class DragDecisionTests
     public void ResolvesNavigationPaneNamesToFolders()
     {
         string system = Path.GetPathRoot(Environment.SystemDirectory)!;
-        string? resolved = null, missing = "x";
+        string? resolved = null, wrapped = null, missing = "x", missingChild = "x", missingAncestor = "x";
         RunSta(() =>
         {
             string name = VisibleName(system);
             resolved = ShellNamespace.Resolve([name]);
+            wrapped = ShellNamespace.Resolve(["Escritorio (OneDrive)", name]);
             missing = ShellNamespace.Resolve(["Ninguna carpeta se llama así 7f3c"]);
+            missingChild = ShellNamespace.Resolve([name, "Ninguna carpeta se llama así 7f3c", name]);
+            missingAncestor = ShellNamespace.Resolve(["Escritorio (OneDrive)", "Ninguna carpeta se llama así 7f3c", name]);
         });
         Assert.Equal(system, resolved, ignoreCase: true);
+        Assert.Equal(system, wrapped, ignoreCase: true);
         Assert.Null(missing);
+        Assert.Null(missingChild);
+        Assert.Null(missingAncestor);
     }
 
     private static unsafe string VisibleName(string path)

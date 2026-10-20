@@ -318,4 +318,99 @@ public sealed class ResumeTests : IDisposable
         Assert.True(result.Success);
         Assert.Equal(0, new FileInfo(Path.Combine(_destinationDir, "vacio.txt")).Length);
     }
+
+    private string HashOfSource(FileHashAlgorithm algorithm)
+    {
+        var hasher = FileHasher.Create(algorithm)!;
+        hasher.Append(File.ReadAllBytes(_source));
+        return hasher.Finish();
+    }
+
+    private TransferItem ResumeAndGetItem(CopyOptions options)
+    {
+        var engine = new CopyEngine(options);
+        var result = engine.Run(new CopyJobRequest([_source], _destinationDir));
+        Assert.True(result.Success);
+        Assert.True(result.BytesResumed > 0);
+        TestFiles.AssertSameContent(_source, _destination);
+        return Assert.Single(engine.Files.Snapshot());
+    }
+
+    [Theory]
+    [InlineData(true, FileHashAlgorithm.XxHash3, 2)]
+    [InlineData(false, FileHashAlgorithm.XxHash3, 2)]
+    [InlineData(true, FileHashAlgorithm.Sha256, 6)]
+    [InlineData(false, FileHashAlgorithm.Sha256, 11)]
+    [InlineData(true, FileHashAlgorithm.XxHash3, 11)] // falta solo el último bloque, el incompleto
+    public void Al_reanudar_con_verificacion_el_hash_es_el_del_archivo_entero(bool unbuffered, FileHashAlgorithm algorithm, long chunk)
+    {
+        var options = Options(unbuffered, verify: true);
+        options.HashAlgorithm = algorithm;
+        Crash(FaultPoint.AfterJournalAppend, chunk, options);
+
+        var item = ResumeAndGetItem(options);
+
+        Assert.Equal(HashOfSource(algorithm), item.SourceHash);
+        Assert.Equal(item.SourceHash, item.DestinationHash);
+        Assert.Equal(FileState.Verified, item.State);
+    }
+
+    [Fact]
+    public void Al_reanudar_sin_nada_que_use_el_hash_no_se_relee_lo_copiado()
+    {
+        Crash(FaultPoint.AfterJournalAppend, chunk: 8);
+
+        var item = ResumeAndGetItem(Options());
+
+        Assert.Null(item.SourceHash); // ni verificar ni sumas: el hash no se calcula y la copia sigue al instante
+    }
+
+    [Fact]
+    public void Sin_reanudar_el_hash_se_sigue_calculando_al_copiar()
+    {
+        var engine = new CopyEngine(Options());
+        engine.Run(new CopyJobRequest([_source], _destinationDir));
+
+        Assert.Equal(HashOfSource(FileHashAlgorithm.XxHash3), Assert.Single(engine.Files.Snapshot()).SourceHash);
+    }
+
+    [Fact]
+    public void Al_reanudar_el_archivo_de_sumas_y_la_suma_guardada_tienen_el_hash_entero()
+    {
+        var options = Options();
+        options.SaveChecksumFile = true;
+        options.SaveHashStream = true;
+        options.HashAlgorithm = FileHashAlgorithm.Sha256;
+        Crash(FaultPoint.AfterJournalAppend, chunk: 4, options);
+
+        var engine = new CopyEngine(options);
+        Assert.True(engine.Run(new CopyJobRequest([_source], _destinationDir)).Success);
+
+        string expected = HashOfSource(FileHashAlgorithm.Sha256);
+        Assert.Equal(expected, Assert.Single(engine.Files.Snapshot()).SourceHash);
+        Assert.Contains(expected, File.ReadAllText(engine.ChecksumFile!), StringComparison.OrdinalIgnoreCase);
+    }
+
+    [Fact]
+    public void Al_reanudar_en_pausa_el_hash_espera_y_sale_bien()
+    {
+        var options = Options(verify: true);
+        Crash(FaultPoint.AfterJournalAppend, chunk: 3, options);
+
+        // Pausa al confirmar el primer bloque de la reanudación, con la tarea del hash leyendo aún lo ya copiado.
+        var engine = new CopyEngine(options);
+        int paused = 0;
+        engine.ChunkCommitted += (_, _) =>
+        {
+            if (Interlocked.Exchange(ref paused, 1) == 0)
+            {
+                engine.Controller.Pause();
+                Task.Delay(200).ContinueWith(_ => engine.Controller.Resume());
+            }
+        };
+        Assert.True(engine.Run(new CopyJobRequest([_source], _destinationDir)).Success);
+        Assert.Equal(1, paused);
+
+        Assert.Equal(HashOfSource(FileHashAlgorithm.XxHash3), Assert.Single(engine.Files.Snapshot()).SourceHash);
+    }
 }

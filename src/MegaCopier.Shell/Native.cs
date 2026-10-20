@@ -48,6 +48,28 @@ internal static unsafe partial class Native
         return GetGUIThreadInfo(thread, &info) ? info.hwndCapture : 0;
     }
 
+    /// <summary>Propietario real del menú activo del hilo; puede ser una vista hija, no la ventana exterior.</summary>
+    public static nint MenuOwner(uint thread)
+    {
+        var info = new GuiThreadInfo { cbSize = (uint)sizeof(GuiThreadInfo) };
+        return thread != 0 && GetGUIThreadInfo(thread, &info) ? info.hwndMenuOwner : 0;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    public struct WindowRect
+    {
+        public int Left, Top, Right, Bottom;
+        public readonly bool SameAs(WindowRect other) => Left == other.Left && Top == other.Top && Right == other.Right && Bottom == other.Bottom;
+    }
+
+    [LibraryImport("user32.dll")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    public static partial bool GetWindowRect(nint window, out WindowRect rectangle);
+
+    [LibraryImport("user32.dll")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    public static partial bool IsWindowVisible(nint window);
+
     [StructLayout(LayoutKind.Sequential)]
     public readonly struct Point(int x, int y)
     {
@@ -83,6 +105,10 @@ internal static unsafe partial class Native
 
     [LibraryImport("user32.dll")]
     public static partial nint GetForegroundWindow();
+
+    [LibraryImport("user32.dll")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    public static partial bool SetForegroundWindow(nint window);
 
     [LibraryImport("user32.dll")]
     public static partial uint GetWindowThreadProcessId(nint hwnd, out uint processId);

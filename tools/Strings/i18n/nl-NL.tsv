@@ -47,7 +47,7 @@ CopyHeader.Text	Kopiëren
 VerifyTitle.Text	Controleren na het kopiëren
 VerifyDescription.Text	Na elk bestand leest het dit opnieuw en vergelijkt het met het origineel; klopt iets niet, dan wordt het hersteld.
 ConflictTitle.Text	Als het bestand al bestaat
-ConflictDescription.Text	Als de bestemming al een bestand met dezelfde naam heeft. Identieke bestanden worden nooit opnieuw gekopieerd.
+ConflictDescription.Text	Als de bestemming al een bestand met dezelfde naam heeft.
 ConflictAsk.Content	Vragen
 ConflictReplace.Content	Vervangen
 ConflictSkip.Content	Overslaan
@@ -1456,8 +1456,6 @@ MinimizeButton_Taskbar.Content	Naar de taakbalk
 MinimizeButton_Tray.Content	Naar het systeemvak
 Settings_TrayProgressTitle.Text	Voortgang van elke kopie in het systeemvak
 Settings_TrayProgressDescription.Text	Eén pictogram per lopende kopie, met het percentage en een balk die stijgt. Als hij klaar is, verdwijnt het vanzelf. Klik erop om de kopie te openen.
-Info_WindowButtons_Title	De vensterknoppen
-Info_WindowButtons_Text	Kies wat er met de kopieën gebeurt als je het venster sluit of minimaliseert.\n• De kopieën annuleren: zoals op ‘Stoppen’ klikken bij elke kopie. Ze verdwijnen uit de lijst en worden niet aangeboden om verder te gaan.\n• Stoppen om later verder te gaan: wat al gekopieerd is, blijft bewaard; als je hetzelfde opnieuw kopieert of MegaCopier opent, gaat het verder waar het was.\n• Venster verbergen: de kopieën gaan op de achtergrond door; open het venster via het pictogram in het systeemvak.\n• MegaCopier afsluiten: hij sluit volledig en Windows kopieert zoals altijd tot je hem weer opent.\nMinimaliseren naar het systeemvak houdt de taakbalk vrij: het venster komt terug met een klik op het MegaCopier-pictogram naast de klok.
 Tray_JobPause	Pauzeren
 Tray_JobStop	Stoppen
 Jobs_Archive	Archiveren in geschiedenis
@@ -1493,12 +1491,14 @@ Settings_BackdropTitle.Text	Vensterachtergrond
 Settings_BackdropDescription.Text	Het Windows 11-materiaal achter het venster, met elk thema.
 Backdrop_OptTheme.Content	Van het thema
 Backdrop_OptTranslucent.Content	Doorschijnend (bureaublad zichtbaar)
-Backdrop_OptAcrylic.Content	Bureaublad-acryl (basis)
-Backdrop_OptAcrylicThin.Content	Bureaublad-acryl (dun)
 BackdropAcrylicThin.Content	Dun acryl
-Info_Backdrop_Text	Dit is wat je achter de inhoud van het venster ziet.\n• Van het thema: elk thema heeft zijn eigen (effen, Mica of acryl).\n• Doorschijnend: zeer transparant acryl; het bureaublad schijnt door het venster.\n• Mica: neemt zacht de tint van je bureaubladachtergrond over. Dit gebruiken de apps van Windows 11.\n• Mica Alt: zoals Mica, maar met meer kleur uit de achtergrond.\n• Bureaublad-acryl (basis): als matglas; wat achter het venster staat, lijkt wazig.\n• Bureaublad-acryl (dun): lichter en transparanter dan basis.\nMica en acryl hebben Windows 11 nodig met transparantie-effecten aan; anders zie je een effen kleur.
+Info_Backdrop_Text	Dit is wat je achter de inhoud van het venster ziet.\n• Van het thema: elk thema heeft zijn eigen (effen, Mica of acryl). De Fluent-thema's gebruiken Mica, dat naar Mica Alt overgaat terwijl je een ander venster gebruikt, in plaats van effen te worden.\n• Mica: neemt zacht de tint van je bureaubladachtergrond over. Dit gebruiken de apps van Windows 11.\n• Mica Alt: zoals Mica, maar met meer kleur uit de achtergrond.\n• Acryl: als matglas; wat achter het venster staat, lijkt wazig.\n• Doorschijnend: lichter en transparanter acryl; het bureaublad schijnt door het venster.\nMet een van deze vier wordt het venster effen terwijl je een ander gebruikt, zoals de vensters van Windows. De menu's en keuzelijsten van MegaCopier zijn altijd van acryl.\nMica en acryl hebben Windows 11 nodig met transparantie-effecten aan; anders zie je een effen kleur.
 SameDrive_NewWindow	In een nieuw venster
 SameDrive_NewWindowText	Er opent een ander MegaCopier-venster met deze kopie, die meteen tegelijk met de andere start (beide gaan iets trager).
 Settings_IndependentWindowsTitle.Text	Elke kopie in een eigen venster
 Settings_IndependentWindowsDescription.Text	Eén venster per kopie, dat meteen start zonder op de andere te wachten. Zonder kopielijst, tenzij je er meerdere aan hetzelfde venster toevoegt.
 Info_IndependentWindows_Text	Normaal heeft MegaCopier één venster en toont het meerdere kopieën in de kopielijst. Met deze optie opent elke kopie een eigen venster en start meteen, zonder op de andere te wachten.\n• Het is steeds dezelfde app: thema, pictogrammen en instellingen zijn overal gelijk (wijzig je ze in één venster, dan wijzigen ze in alle).\n• Elk venster heeft een eigen voortgangspictogram in het systeemvak en een eigen knop op de taakbalk.\n• Gaat de nieuwe kopie naar hetzelfde station als een lopende, dan beslist ‘Nieuwe kopie naar hetzelfde station’: vragen (toevoegen aan de kopie van dat venster of openen in een nieuw venster), altijd toevoegen of altijd zonder vragen een nieuw venster openen.\n• Voeg je kopieën toe aan een venster, dan toont dat venster zijn eigen kopielijst.\n• Als de kopieën klaar zijn, sluit elk venster zoals gewoonlijk.\nVoorbeeld: je kopieert foto's naar een usb-stick en intussen video's naar een andere schijf: je ziet twee vensters, elk met zijn eigen voortgang.
+Info_CloseButton_Title	Als je op de X van het venster klikt
+Info_CloseButton_Text	Kies wat er met de kopieën gebeurt als je het venster sluit met het kruisje.\n• De kopieën annuleren: zoals op ‘Stoppen’ klikken bij elke kopie. Ze verdwijnen uit de lijst en worden niet aangeboden om verder te gaan.\n• Stoppen om later verder te gaan: wat al gekopieerd is, blijft bewaard; als je hetzelfde opnieuw kopieert of MegaCopier opent, gaat het verder waar het was.\n• Venster verbergen: de kopieën gaan op de achtergrond door; open het venster via het pictogram in het systeemvak.\n• MegaCopier afsluiten: hij sluit volledig en Windows kopieert zoals altijd tot je hem weer opent.
+Info_MinimizeButton_Title	Als je het venster minimaliseert
+Info_MinimizeButton_Text	Waar het venster heen gaat als je het minimaliseert. De kopieën gaan in beide gevallen door.\n• Naar de taakbalk: zoals elk ander venster.\nMinimaliseren naar het systeemvak houdt de taakbalk vrij: het venster komt terug met een klik op het MegaCopier-pictogram naast de klok.
