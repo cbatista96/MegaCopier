@@ -55,7 +55,8 @@ internal static class Appearance
     {
         AppBackdrop.Mica => new MicaBackdrop { Kind = MicaKind.Base },
         AppBackdrop.MicaAlt => new MicaBackdrop { Kind = MicaKind.BaseAlt },
-        AppBackdrop.Acrylic => new DesktopAcrylicBackdrop(),
+        AppBackdrop.Acrylic => new AcrylicBackdrop(DesktopAcrylicKind.Base),
+        AppBackdrop.AcrylicThin => new AcrylicBackdrop(DesktopAcrylicKind.Thin),
         _ => null,
     };
 
@@ -88,5 +89,29 @@ internal static class Appearance
     {
         public static readonly Color White = Color.FromArgb(255, 255, 255, 255);
         public static readonly Color Black = Color.FromArgb(255, 0, 0, 0);
+    }
+}
+
+/// <summary>
+/// Acrílico de escritorio de la clase pedida (normal o delgado): el DesktopAcrylicBackdrop de WinUI solo da el normal.
+/// </summary>
+internal sealed partial class AcrylicBackdrop(DesktopAcrylicKind kind) : SystemBackdrop
+{
+    private DesktopAcrylicController? _controller;
+
+    protected override void OnTargetConnected(Microsoft.UI.Composition.ICompositionSupportsSystemBackdrop connectedTarget, XamlRoot xamlRoot)
+    {
+        base.OnTargetConnected(connectedTarget, xamlRoot);
+        _controller = new DesktopAcrylicController { Kind = kind };
+        _controller.AddSystemBackdropTarget(connectedTarget);
+        _controller.SetSystemBackdropConfiguration(GetDefaultSystemBackdropConfiguration(connectedTarget, xamlRoot));
+    }
+
+    protected override void OnTargetDisconnected(Microsoft.UI.Composition.ICompositionSupportsSystemBackdrop disconnectedTarget)
+    {
+        base.OnTargetDisconnected(disconnectedTarget);
+        _controller?.RemoveSystemBackdropTarget(disconnectedTarget);
+        _controller?.Dispose();
+        _controller = null;
     }
 }

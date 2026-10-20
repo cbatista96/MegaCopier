@@ -155,18 +155,18 @@
   <data name="About_DataFolder.Content" xml:space="preserve"><value>Ouvrir le dossier de données (paramètres, thèmes, historique, rapports)</value></data>
   <data name="About_Description.Text" xml:space="preserve"><value>Le copieur ultime pour Windows 11 : plus rapide et plus sûr que celui de Windows, avec toutes les options dont vous avez besoin et aussi personnalisable que vous le souhaitez (thèmes, icônes, barres et sons). Il reprend où il en était même après une coupure de courant et vérifie que tout est bien arrivé.</value></data>
   <data name="About_Features.Text" xml:space="preserve"><value>E/S asynchrones sans cache · lectures et écritures en parallèle · vérification par hachage (CRC32, xxHash, MD5, SHA) · file par disque · pause et reprise · déplacement · conflits · limite de vitesse · listes de copie · rapports · thèmes.</value></data>
-  <data name="Files_AutoScroll.Content" xml:space="preserve"><value>Suivre le fichier en cours</value></data>
+  <data name="Files_AutoScroll.Text" xml:space="preserve"><value>Suivre le fichier en cours</value></data>
   <data name="Files_CopyHashes.Text" xml:space="preserve"><value>Copier les hachages</value></data>
   <data name="Files_CopyPath.Text" xml:space="preserve"><value>Copier le chemin</value></data>
   <data name="Files_Empty.Text" xml:space="preserve"><value>Aucun fichier à afficher</value></data>
   <data name="Files_ExportCsv.Text" xml:space="preserve"><value>Exporter en CSV…</value></data>
   <data name="Files_ExportHtml.Text" xml:space="preserve"><value>Exporter un rapport HTML…</value></data>
-  <data name="Files_FilterAll.Content" xml:space="preserve"><value>Tous</value></data>
-  <data name="Files_FilterDone.Content" xml:space="preserve"><value>Copiés</value></data>
-  <data name="Files_FilterErrors.Content" xml:space="preserve"><value>En erreur</value></data>
-  <data name="Files_FilterPending.Content" xml:space="preserve"><value>En attente</value></data>
-  <data name="Files_FilterSkipped.Content" xml:space="preserve"><value>Ignorés</value></data>
-  <data name="Files_HideFinished.Content" xml:space="preserve"><value>Masquer les terminés</value></data>
+  <data name="Files_FilterAll.Text" xml:space="preserve"><value>Tous</value></data>
+  <data name="Files_FilterDone.Text" xml:space="preserve"><value>Copiés</value></data>
+  <data name="Files_FilterErrors.Text" xml:space="preserve"><value>En erreur</value></data>
+  <data name="Files_FilterPending.Text" xml:space="preserve"><value>En attente</value></data>
+  <data name="Files_FilterSkipped.Text" xml:space="preserve"><value>Ignorés</value></data>
+  <data name="Files_HideFinished.Text" xml:space="preserve"><value>Masquer les terminés</value></data>
   <data name="Files_Menu.Text" xml:space="preserve"><value>Liste</value></data>
   <data name="Files_MoveBottom.Text" xml:space="preserve"><value>Mettre à la fin</value></data>
   <data name="Files_MoveDown.Text" xml:space="preserve"><value>Descendre</value></data>
@@ -1091,8 +1091,6 @@
   <data name="Settings_RememberDescription.Text" xml:space="preserve"><value>L&apos;ouvrir là où elle était, avec la même taille.</value></data>
   <data name="Settings_RememberPosition.Content" xml:space="preserve"><value>Position</value></data>
   <data name="Settings_RememberSize.Content" xml:space="preserve"><value>Taille</value></data>
-  <data name="Settings_TranslucentTitle.Text" xml:space="preserve"><value>Fenêtre translucide</value></data>
-  <data name="Settings_TranslucentDescription.Text" xml:space="preserve"><value>Arrière-plan acrylique plus transparent : le bureau se voit à travers la fenêtre, quel que soit le thème.</value></data>
   <data name="Settings_Icons.Text" xml:space="preserve"><value>Icônes</value></data>
   <data name="Settings_IconsDescription.Text" xml:space="preserve"><value>Choisissez l&apos;apparence des icônes. Elles se combinent avec n&apos;importe quel thème.</value></data>
   <data name="IconPack_fluent" xml:space="preserve"><value>Fluent (comme Windows)</value></data>
@@ -1145,7 +1143,7 @@
   <data name="FolderAsk_Skip" xml:space="preserve"><value>Passer ceux qui sont déjà là</value></data>
   <data name="FolderAsk_SkipText" xml:space="preserve"><value>Chaque fichier est vérifié : ceux déjà présents ne sont ni copiés ni modifiés, et seuls les manquants sont copiés. Idéal pour terminer une copie interrompue.</value></data>
   <data name="FolderAsk_Overwrite" xml:space="preserve"><value>Remplacer</value></data>
-  <data name="FolderAsk_OverwriteText" xml:space="preserve"><value>Les fichiers déjà présents sont remplacés par ceux de la source. Les fichiers identiques restent tels quels pour aller plus vite.</value></data>
+  <data name="FolderAsk_OverwriteText" xml:space="preserve"><value>Les fichiers déjà présents sont remplacés par ceux de la source, même ceux qui semblent identiques : tout est recopié.</value></data>
   <data name="FolderAsk_Rename" xml:space="preserve"><value>Renommer</value></data>
   <data name="FolderAsk_RenameText" xml:space="preserve"><value>Tout est copié dans un nouveau dossier, « {0} », et l’existant n’est pas modifié.</value></data>
   <data name="FolderAsk_AskEach" xml:space="preserve"><value>Demander un par un</value></data>
@@ -1496,4 +1494,18 @@
   <data name="Settings_AdaptTitle.Text" xml:space="preserve"><value>S&apos;adapter aux petits écrans</value></data>
   <data name="Settings_AdaptDescription.Text" xml:space="preserve"><value>Sur les écrans peu hauts, comme 1366 × 768, la fenêtre reste identique mais un peu plus petite, pour tenir entièrement. Sur les grands écrans, rien ne change.</value></data>
   <data name="Job_StateAsking" xml:space="preserve"><value>En attente de votre réponse</value></data>
+  <data name="Conflict_Identical.Text" xml:space="preserve"><value>Ils sont identiques : même taille et même date.</value></data>
+  <data name="Settings_BackdropTitle.Text" xml:space="preserve"><value>Arrière-plan de la fenêtre</value></data>
+  <data name="Settings_BackdropDescription.Text" xml:space="preserve"><value>Le matériau de Windows 11 visible derrière la fenêtre, avec n&apos;importe quel thème.</value></data>
+  <data name="Backdrop_OptTheme.Content" xml:space="preserve"><value>Celui du thème</value></data>
+  <data name="Backdrop_OptTranslucent.Content" xml:space="preserve"><value>Translucide (on voit le bureau)</value></data>
+  <data name="Backdrop_OptAcrylic.Content" xml:space="preserve"><value>Acrylique du bureau (base)</value></data>
+  <data name="Backdrop_OptAcrylicThin.Content" xml:space="preserve"><value>Acrylique du bureau (fin)</value></data>
+  <data name="BackdropAcrylicThin.Content" xml:space="preserve"><value>Acrylique fin</value></data>
+  <data name="Info_Backdrop_Text" xml:space="preserve"><value>C&apos;est ce que l&apos;on voit derrière le contenu de la fenêtre.\n• Celui du thème : chaque thème a le sien (uni, Mica ou acrylique).\n• Translucide : acrylique très transparent ; on voit le bureau derrière la fenêtre.\n• Mica : prend doucement la teinte de votre fond d&apos;écran. C&apos;est celui des applications de Windows 11.\n• Mica Alt : comme Mica, avec davantage de couleur du fond d&apos;écran.\n• Acrylique du bureau (base) : comme un verre dépoli ; ce qui est derrière la fenêtre apparaît flou.\n• Acrylique du bureau (fin) : plus clair et plus transparent que la base.\nMica et l&apos;acrylique nécessitent Windows 11 avec les effets de transparence activés ; sinon, une couleur unie s&apos;affiche.</value></data>
+  <data name="SameDrive_NewWindow" xml:space="preserve"><value>Dans une nouvelle fenêtre</value></data>
+  <data name="SameDrive_NewWindowText" xml:space="preserve"><value>Une autre fenêtre de MegaCopier s&apos;ouvre avec cette copie, qui démarre tout de suite en même temps que l&apos;autre (les deux iront un peu moins vite).</value></data>
+  <data name="Settings_IndependentWindowsTitle.Text" xml:space="preserve"><value>Chaque copie dans sa propre fenêtre</value></data>
+  <data name="Settings_IndependentWindowsDescription.Text" xml:space="preserve"><value>Une fenêtre par copie, qui démarre tout de suite sans attendre les autres. Sans liste de copies, sauf si vous en ajoutez plusieurs à la même fenêtre.</value></data>
+  <data name="Info_IndependentWindows_Text" xml:space="preserve"><value>Normalement, MegaCopier n&apos;a qu&apos;une fenêtre et, si vous lancez plusieurs copies, il les affiche dans sa liste de copies. Avec cette option, chaque copie ouvre sa propre fenêtre et démarre tout de suite, sans attendre les autres.\n• C&apos;est toujours la même application : le thème, les icônes et les réglages sont les mêmes partout (si vous les changez dans une fenêtre, ils changent dans toutes).\n• Chaque fenêtre a son icône de progression dans la zone de notification et son bouton dans la barre des tâches.\n• Si la nouvelle copie va sur le même disque qu&apos;une copie en cours, « Nouvelle copie sur le même disque » décide : demander (l&apos;ajouter à la copie de cette fenêtre ou l&apos;ouvrir dans une nouvelle fenêtre), toujours l&apos;ajouter, ou toujours ouvrir une nouvelle fenêtre sans demander.\n• Si vous ajoutez des copies à une fenêtre, elle affiche sa propre liste de copies.\n• Quand ses copies sont terminées, chaque fenêtre se ferme comme d&apos;habitude.\nExemple : vous copiez des photos sur une clé USB et, pendant ce temps, des vidéos sur un autre disque : vous verrez deux fenêtres, chacune avec sa progression.</value></data>
 </root>

@@ -19,6 +19,24 @@ public enum AppBackdrop
     MicaAlt,
     Acrylic,
     Solid,
+
+    /// <summary>Acrílico de escritorio delgado: más claro y transparente que el normal.</summary>
+    AcrylicThin,
+}
+
+/// <summary>«Fondo de la ventana» en Ajustes: el del tema o uno de los materiales de Windows 11.</summary>
+public enum WindowBackdrop
+{
+    /// <summary>El que trae el tema elegido (lo de siempre).</summary>
+    Theme,
+
+    /// <summary>Acrílico y más transparente: se ve el escritorio (la antigua «Ventana translúcida»).</summary>
+    Translucent,
+
+    Mica,
+    MicaAlt,
+    AcrylicBase,
+    AcrylicThin,
 }
 
 /// <summary>Cómo se abre la ventana de copia.</summary>
@@ -503,6 +521,13 @@ public sealed class AppSettings
     /// <summary>Copia nueva a otro disco mientras hay copias en marcha.</summary>
     public OtherDriveCopy OtherDriveCopies { get; set; } = OtherDriveCopy.Parallel;
 
+    /// <summary>
+    /// Cada copia en su propia ventana: varias ventanas de copia a la vez (la misma aplicación, el mismo tema), que
+    /// empiezan ya sin esperar a las demás. Si va al mismo disco que otra, «Copia nueva al mismo disco» decide si se
+    /// suma a la de esa ventana, se pregunta o se abre una ventana nueva.
+    /// </summary>
+    public bool IndependentWindows { get; set; }
+
     /// <summary>Al detener una copia (o si falla), borrar lo que quedó a medias: ya no se podrá continuar.</summary>
     public bool DeleteIncomplete { get; set; }
 
@@ -535,6 +560,9 @@ public sealed class AppSettings
     /// <summary>Un icono más en la bandeja por cada copia en marcha, con su porcentaje y una barra que sube.</summary>
     public bool TrayProgressIcons { get; set; } = true;
 
+    /// <summary>Los iconos de progreso ya se prepararon en Windows como «a la vista» (se hace una vez).</summary>
+    public bool TraySlotsPrepared { get; set; }
+
     /// <summary>La X de la ventana.</summary>
     public CloseButtonAction CloseButton { get; set; } = CloseButtonAction.CancelCopies;
 
@@ -562,8 +590,15 @@ public sealed class AppSettings
 
     public int WindowHeight { get; set; }
 
-    /// <summary>Ventana translúcida: se ve el escritorio a través del fondo, sea cual sea el tema.</summary>
+    /// <summary>Ventana translúcida (ajustes de versiones anteriores): ahora es <see cref="WindowBackdrop.Translucent"/>.</summary>
     public bool Translucent { get; set; }
+
+    /// <summary>Fondo de la ventana: el del tema o Mica, Mica Alt, acrílico... sea cual sea el tema.</summary>
+    public WindowBackdrop WindowBackdrop { get; set; }
+
+    /// <summary>El fondo elegido, contando con el ajuste antiguo «Ventana translúcida».</summary>
+    [JsonIgnore]
+    public WindowBackdrop EffectiveBackdrop => WindowBackdrop == WindowBackdrop.Theme && Translucent ? WindowBackdrop.Translucent : WindowBackdrop;
 
     /// <summary>settings.json no se pudo leer (se guardó una copia en settings.json.bad).</summary>
     [JsonIgnore]

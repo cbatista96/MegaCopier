@@ -189,10 +189,11 @@ public sealed partial class SettingsPage : UserControl
         StartMinimizedToggle.IsOn = s.StartMinimized;
         RememberPositionBox.IsChecked = s.RememberPosition;
         RememberSizeBox.IsChecked = s.RememberSize;
-        TranslucentToggle.IsOn = s.Translucent;
+        BackdropBox.SelectedIndex = (int)s.EffectiveBackdrop;
         AdaptToggle.IsOn = s.AdaptSmallScreens;
         SameDriveBox.SelectedIndex = (int)s.SameDriveCopies;
         OtherDriveBox.SelectedIndex = (int)s.OtherDriveCopies;
+        IndependentWindowsToggle.IsOn = s.IndependentWindows;
         MoveAttributesBox.IsChecked = s.MovePreserveAttributes;
         MoveAclBox.IsChecked = s.MoveCopySecurity.HasFlag(SecurityParts.Acl);
         MoveOwnerBox.IsChecked = s.MoveCopySecurity.HasFlag(SecurityParts.Owner);
@@ -366,10 +367,12 @@ public sealed partial class SettingsPage : UserControl
         s.StartMinimized = StartMinimizedToggle.IsOn;
         s.RememberPosition = RememberPositionBox.IsChecked == true;
         s.RememberSize = RememberSizeBox.IsChecked == true;
-        s.Translucent = TranslucentToggle.IsOn;
+        s.WindowBackdrop = (WindowBackdrop)Math.Max(0, BackdropBox.SelectedIndex);
+        s.Translucent = false; // el ajuste antiguo ya está en WindowBackdrop
         s.AdaptSmallScreens = AdaptToggle.IsOn;
         s.SameDriveCopies = (SameDriveCopy)Math.Max(0, SameDriveBox.SelectedIndex);
         s.OtherDriveCopies = (OtherDriveCopy)Math.Max(0, OtherDriveBox.SelectedIndex);
+        s.IndependentWindows = IndependentWindowsToggle.IsOn;
         s.MovePreserveAttributes = MoveAttributesBox.IsChecked == true;
         s.MoveCopySecurity = (MoveAclBox.IsChecked == true ? SecurityParts.Acl : 0)
             | (MoveOwnerBox.IsChecked == true ? SecurityParts.Owner : 0)

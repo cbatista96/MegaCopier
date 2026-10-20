@@ -149,18 +149,18 @@ AboutDialog.CloseButtonText	Zamknij
 About_DataFolder.Content	Otwórz folder danych (ustawienia, motywy, historia, raporty)
 About_Description.Text	Ostateczny kopiarz dla Windows 11: szybszy i bezpieczniejszy niż ten z Windows, ze wszystkimi potrzebnymi opcjami i tak konfigurowalny, jak chcesz (motywy, ikony, paski i dźwięki). Wznawia tam, gdzie skończył, nawet po zaniku zasilania, i sprawdza, czy wszystko dotarło w całości.
 About_Features.Text	Asynchroniczne we/wy bez pamięci podręcznej · równoległe odczyty i zapisy · weryfikacja skrótem (CRC32, xxHash, MD5, SHA) · kolejka na dysk · wstrzymywanie i wznawianie · przenoszenie · konflikty · limit prędkości · listy kopiowania · raporty · motywy.
-Files_AutoScroll.Content	Śledź bieżący
+Files_AutoScroll.Text	Śledź bieżący
 Files_CopyHashes.Text	Kopiuj skróty
 Files_CopyPath.Text	Kopiuj ścieżkę
 Files_Empty.Text	Brak plików do wyświetlenia
 Files_ExportCsv.Text	Eksportuj do CSV…
 Files_ExportHtml.Text	Eksportuj raport HTML…
-Files_FilterAll.Content	Wszystkie
-Files_FilterDone.Content	Skopiowane
-Files_FilterErrors.Content	Z błędami
-Files_FilterPending.Content	Oczekujące
-Files_FilterSkipped.Content	Pominięte
-Files_HideFinished.Content	Ukryj zakończone
+Files_FilterAll.Text	Wszystkie
+Files_FilterDone.Text	Skopiowane
+Files_FilterErrors.Text	Z błędami
+Files_FilterPending.Text	Oczekujące
+Files_FilterSkipped.Text	Pominięte
+Files_HideFinished.Text	Ukryj zakończone
 Files_Menu.Text	Lista
 Files_MoveBottom.Text	Przenieś na koniec
 Files_MoveDown.Text	W dół
@@ -1085,8 +1085,6 @@ Settings_RememberTitle.Text	Zapamiętuj okno
 Settings_RememberDescription.Text	Otwieraj w tym samym miejscu i rozmiarze.
 Settings_RememberPosition.Content	Położenie
 Settings_RememberSize.Content	Rozmiar
-Settings_TranslucentTitle.Text	Półprzezroczyste okno
-Settings_TranslucentDescription.Text	Akrylowe, bardziej przezroczyste tło: pulpit prześwituje przez okno w każdym motywie.
 Settings_Icons.Text	Ikony
 Settings_IconsDescription.Text	Wybierz wygląd ikon. Pasują do każdego motywu.
 IconPack_fluent	Fluent (jak Windows)
@@ -1139,7 +1137,7 @@ FolderAsk_Message	{1} z {2} kopiowanych plików już jest w {0} ({3}). Co chcesz
 FolderAsk_Skip	Pomiń te, które już są
 FolderAsk_SkipText	Każdy plik jest sprawdzany: istniejące nie są kopiowane ani zmieniane, kopiowane są tylko brakujące. Idealne do dokończenia przerwanego kopiowania.
 FolderAsk_Overwrite	Nadpisz
-FolderAsk_OverwriteText	Istniejące pliki są zastępowane plikami ze źródła. Identyczne zostają bez zmian, żeby było szybciej.
+FolderAsk_OverwriteText	Pliki, które już tam są, zostaną zastąpione plikami ze źródła, także te, które wyglądają tak samo: wszystko zostanie skopiowane ponownie.
 FolderAsk_Rename	Zmień nazwę
 FolderAsk_RenameText	Wszystko jest kopiowane do nowego folderu „{0}”, a istniejący pozostaje nietknięty.
 FolderAsk_AskEach	Pytaj o każdy
@@ -1490,3 +1488,17 @@ IconPack_hud	Holograficzny
 Settings_AdaptTitle.Text	Dopasuj do małych ekranów
 Settings_AdaptDescription.Text	Na niskich ekranach, np. 1366 × 768, okno wygląda tak samo, ale jest nieco mniejsze, żeby zmieściło się w całości. Na dużych ekranach nic się nie zmienia.
 Job_StateAsking	Czeka na twoją odpowiedź
+Conflict_Identical.Text	Są takie same: ten sam rozmiar i ta sama data.
+Settings_BackdropTitle.Text	Tło okna
+Settings_BackdropDescription.Text	Materiał Windows 11 widoczny za oknem, z dowolnym motywem.
+Backdrop_OptTheme.Content	Z motywu
+Backdrop_OptTranslucent.Content	Półprzezroczyste (widać pulpit)
+Backdrop_OptAcrylic.Content	Akryl pulpitu (podstawowy)
+Backdrop_OptAcrylicThin.Content	Akryl pulpitu (cienki)
+BackdropAcrylicThin.Content	Cienki akryl
+Info_Backdrop_Text	To, co widać za zawartością okna.\n• Z motywu: każdy motyw ma własne (jednolite, Mica lub akryl).\n• Półprzezroczyste: bardzo przezroczysty akryl; przez okno widać pulpit.\n• Mica: delikatnie przejmuje odcień tapety. Takie tło mają aplikacje Windows 11.\n• Mica Alt: jak Mica, ale z większą ilością koloru tapety.\n• Akryl pulpitu (podstawowy): jak matowe szkło; to, co jest za oknem, wygląda na rozmyte.\n• Akryl pulpitu (cienki): jaśniejszy i bardziej przezroczysty niż podstawowy.\nMica i akryl wymagają Windows 11 z włączonymi efektami przezroczystości; w przeciwnym razie widać jednolity kolor.
+SameDrive_NewWindow	W nowym oknie
+SameDrive_NewWindowText	Otworzy się kolejne okno MegaCopier z tą kopią, która od razu ruszy razem z drugą (obie będą nieco wolniejsze).
+Settings_IndependentWindowsTitle.Text	Każda kopia we własnym oknie
+Settings_IndependentWindowsDescription.Text	Jedno okno na kopię, która rusza od razu, bez czekania na inne. Bez listy kopii, chyba że dodasz kilka do tego samego okna.
+Info_IndependentWindows_Text	Zwykle MegaCopier ma jedno okno, a kilka kopii pokazuje na swojej liście kopii. Z tą opcją każda kopia otwiera własne okno i rusza od razu, bez czekania na inne.\n• To wciąż ta sama aplikacja: motyw, ikony i ustawienia są wszędzie takie same (zmienisz je w jednym oknie, zmienią się we wszystkich).\n• Każde okno ma własną ikonę postępu w zasobniku i własny przycisk na pasku zadań.\n• Jeśli nowa kopia trafia na ten sam dysk co trwająca, decyduje „Nowa kopia na ten sam dysk”: zapytać (dodać do kopii tego okna albo otworzyć w nowym oknie), zawsze dodawać lub zawsze otwierać nowe okno bez pytania.\n• Jeśli dodasz kopie do jednego okna, pokaże ono własną listę kopii.\n• Gdy jego kopie się skończą, każde okno zamyka się jak zwykle.\nPrzykład: kopiujesz zdjęcia na pendrive, a w tym czasie filmy na inny dysk — zobaczysz dwa okna, każde z własnym postępem.

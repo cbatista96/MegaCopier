@@ -5,6 +5,79 @@ y las versiones, [SemVer](https://semver.org/lang/es/).
 
 ## [Sin publicar]
 
+Una versión para que todo se vea y funcione como esperas. Puedes tener cada copia en su propia ventana; los iconos del
+conjunto que elijas llegan por fin a todas partes (menús, pestañas, bandeja); el menú de la bandeja es de WinUI; y la
+ventana puede llevar fondo Mica, Mica Alt o acrílico. Además, «Uno a uno» y «Sobrescribir» hacen por fin lo que dicen,
+el aviso de «ya existe» enseña las fotos en miniatura y el arrastre en el Explorador ya no deja el botón «pegado».
+
+<img src="https://github.com/cbatista96/MegaCopier/raw/v1.6.0/docs/capturas/ventanas-independientes.png" width="520" alt="Dos ventanas de MegaCopier, una por copia, cada una con su progreso">
+
+<img src="https://github.com/cbatista96/MegaCopier/raw/v1.6.0/docs/capturas/archivo-existe.png" width="420" alt="El archivo ya existe: las dos fotos en miniatura, con la nota «Son iguales: mismo tamaño y fecha»">
+
+<img src="https://github.com/cbatista96/MegaCopier/raw/v1.6.0/docs/capturas/menus-iconos.png" width="420" alt="El menú «Nueva» con los iconos del conjunto macOS"> <img src="https://github.com/cbatista96/MegaCopier/raw/v1.6.0/docs/capturas/menu-bandeja.png" width="260" alt="El menú de la bandeja con el aspecto de WinUI 3 y sus iconos">
+
+<img src="https://github.com/cbatista96/MegaCopier/raw/v1.6.0/docs/capturas/iconos-bandeja-temas.png" width="520" alt="Iconos de diez conjuntos y, a la derecha, sus iconos de progreso de la bandeja: en marcha, en pausa, con errores y terminada">
+
+### Añadido
+
+- **Cada copia en su propia ventana** (Ajustes › Comportamiento): una ventana por copia, que empieza ya sin esperar a
+  las demás. Es la misma aplicación: el tema, los iconos y los ajustes son los mismos en todas. Cada ventana tiene su
+  icono de progreso en la bandeja y su botón en la barra de tareas. Si la copia nueva va al mismo disco que otra,
+  «Copia nueva al mismo disco» decide: preguntar (añadirla a la copia de esa ventana o abrirla **en una ventana
+  nueva**), añadirla siempre o abrir siempre una ventana nueva. Está desactivado de serie.
+- **Fondo de la ventana** (Ajustes › Interfaz): el del tema (como hasta ahora), translúcida, **Mica**, **Mica Alt**,
+  **Acrílico de escritorio (base)** o **Acrílico de escritorio (delgado)**, con cualquier tema. Sustituye a «Ventana
+  translúcida» (quien la tenía activada sigue igual). El editor de temas también ofrece el acrílico delgado.
+- **Menú de la bandeja de WinUI**: el clic derecho en el icono de MegaCopier, y en el de cada copia, abre un menú con el
+  aspecto del resto del programa (esquinas redondeadas, tema claro u oscuro) y con iconos.
+- En el aviso de «el archivo ya existe», una nota cuando los dos archivos son iguales (mismo tamaño y fecha).
+
+### Cambiado
+
+- **El icono de Pausar se transforma en el de Reanudar** (las dos barras se juntan en el triángulo, y al revés), con
+  el color y el fondo del conjunto de iconos. El texto cambia sin moverse: ya no se desliza ni se monta uno encima del
+  otro.
+- **Todos los iconos siguen el conjunto elegido**: también los de los menús («Nueva», «Al terminar», «…», el clic
+  derecho en la lista de copias), las pestañas (Archivos, Destino, Opciones, Estado, Registro), el filtro y las
+  casillas de la lista de archivos, el círculo de progreso del archivo en curso y el menú de la bandeja.
+- **Los iconos de progreso de la bandeja siguen el conjunto de iconos**: su forma (redondeada, círculo, cuadrada…),
+  sus colores y su acabado (fondo de color, brillo, relieve, contorno o neón). **En pausa muestran el símbolo de pausa**
+  en lugar del porcentaje.
+- Los iconos de MegaCopier se marcan en Windows como «a la vista» para que salgan junto al reloj y no tras la flecha
+  «˄»: el principal la primera vez (después manda lo que elijas) y los del progreso de cada copia siempre. Windows
+  aplica este ajuste al iniciar sesión, así que se nota desde la próxima vez que entres en Windows.
+- El aviso de «el archivo ya existe» enseña la miniatura de las fotos y los vídeos, y en lo demás (PDF, música,
+  documentos…) el icono del programa que los abre, como el Explorador.
+- **Ventana pequeña**: los archivos copiados y los tamaños se ven siempre (antes se ocultaban al estrecharla), y «Al
+  terminar» conserva su texto mientras quepa. Al terminar una copia, su resumen (archivos, tamaño, tiempo y velocidad)
+  va junto a «Abrir carpeta», así la tarjeta no crece ni tapa el paso entre copias.
+- **«Acerca de MegaCopier» es una ventana propia**, pequeña y con fondo Mica, en lugar de un diálogo apretado dentro de
+  la ventana pequeña.
+- El aviso rojo con las copias activas va en la esquina del botón de la lista: se ve igual con cualquier conjunto de
+  iconos.
+- La lista de copias se abre y se cierra deslizándose sin que el texto parpadee.
+
+### Arreglado
+
+- **«Uno a uno» no preguntaba nada** y **«Sobrescribir» se saltaba los archivos** que ya estaban copiados (mismo
+  tamaño y fecha). Ahora, si lo eliges en el aviso de «ya existe en el destino», «Sobrescribir» vuelve a copiarlos todos
+  y «Uno a uno» pregunta por cada archivo, también por los iguales. «Pasar» sigue dejando los que ya están.
+- En la ventana pequeña, el aviso de cada archivo salía cortado: ahora la ventana crece lo necesario.
+- **Arrastrar en el Explorador**: al soltar, a veces no pasaba nada hasta el siguiente clic y entonces copiaba el
+  copiador de Windows; y soltar sobre una unidad o carpeta del panel izquierdo de la misma ventana nunca lo hacía
+  MegaCopier. Mientras el Explorador arrastra, solo atiende a otros programas si el ratón se mueve; MegaCopier ahora lo
+  mantiene despierto mientras decide (sin mover el puntero), decide cada arrastre por separado y, si decidir tarda casi
+  dos segundos, deja que suelte el Explorador: el botón nunca se queda «pegado». Cada arrastre queda anotado en
+  `drag.log` (en la carpeta de datos) con lo que se hizo y cuánto tardó.
+- Abrir Ajustes desde la ventana pequeña (o pasar sola a la vista completa) ya no deja ver un recuadro negro mientras
+  la ventana crece.
+- Con «Copia nueva al mismo disco» en «Añadirla a la copia en marcha», lo nuevo iba a la carpeta de la otra copia en
+  lugar de a la suya.
+
+### Quitado
+
+- La opción «Ventana translúcida»: ahora es una de las de «Fondo de la ventana».
+
 ## [1.5.0] - 2026-10-19
 
 Una versión para copiar varias cosas a la vez sin pensarlo: si lo nuevo va al mismo disco que una copia en marcha,

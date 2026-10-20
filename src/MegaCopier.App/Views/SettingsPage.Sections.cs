@@ -293,7 +293,7 @@ public sealed partial class SettingsPage
     // ---------------------------------------------------------------------------------------------------------
     // Opciones nuevas con acción propia
 
-    private void Translucent_Toggled(object sender, RoutedEventArgs e)
+    private void Backdrop_Changed(object sender, SelectionChangedEventArgs e)
     {
         Store();
         if (!_loading)

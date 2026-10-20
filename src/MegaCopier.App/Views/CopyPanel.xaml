@@ -16,7 +16,7 @@
         </Grid.RowDefinitions>
 
         <!-- Progreso total -->
-        <Grid ColumnSpacing="12">
+        <Grid x:Name="TotalRow" ColumnSpacing="12">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
@@ -45,7 +45,7 @@
                    IsIndeterminate="{x:Bind Job.BarIndeterminate, Mode=OneWay}" />
 
         <!-- Archivo actual -->
-        <Grid Grid.Row="2" ColumnSpacing="12" Margin="0,6,0,0">
+        <Grid x:Name="FileRow" Grid.Row="2" ColumnSpacing="12" Margin="0,6,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
@@ -113,13 +113,10 @@
                     </StackPanel>
                 </Button>
                 <!-- Pausa y Continuar son el mismo botón: mide lo que el más largo de los dos textos y el icono de
-                     pausa se transforma en el de reproducir (y al revés) -->
+                     pausa se transforma en el de reproducir (y al revés); el texto cambia sin moverse -->
                 <Button x:Name="PlayPauseButton" Tag="Morph" Style="{StaticResource McAccentButton}" Click="{x:Bind Job.TogglePause}" Visibility="{x:Bind Job.CanPlayPause, Mode=OneWay}">
                     <StackPanel Orientation="Horizontal" Spacing="8">
-                        <Grid VerticalAlignment="Center">
-                            <c:McIcon x:Name="PauseGlyph" Glyph="&#xE769;" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                            <c:McIcon x:Name="PlayGlyph" Glyph="&#xE768;" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        </Grid>
+                        <c:McIcon x:Name="PlayPauseIcon" Glyph="&#xE769;" FontSize="12" VerticalAlignment="Center" />
                         <Grid>
                             <TextBlock x:Name="PauseLabel" x:Uid="Panel_Pause" HorizontalAlignment="Center" />
                             <TextBlock x:Name="PlayLabel" Text="{x:Bind Job.ResumeLabel, Mode=OneWay}" HorizontalAlignment="Center" />

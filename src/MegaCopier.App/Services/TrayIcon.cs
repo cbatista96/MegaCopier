@@ -3,8 +3,11 @@ using System.Runtime.InteropServices;
 
 namespace MegaCopier.App.Services;
 
-/// <summary>Una entrada del menú de la bandeja. Sin <see cref="Text"/> es un separador.</summary>
-internal sealed record TrayMenuItem(string? Text, Action? OnClick = null, bool Checked = false, bool Enabled = true)
+/// <summary>
+/// Una entrada del menú de la bandeja. Sin <see cref="Text"/> es un separador. <see cref="Glyph"/> es su icono y
+/// <see cref="Checkable"/>, si es una opción que se marca y desmarca.
+/// </summary>
+internal sealed record TrayMenuItem(string? Text, Action? OnClick = null, bool Checked = false, bool Enabled = true, string? Glyph = null, bool Checkable = false)
 {
     public static TrayMenuItem Separator { get; } = new(Text: null);
 }
@@ -17,6 +20,7 @@ internal sealed unsafe partial class TrayIcon : IDisposable
 {
     private const uint WmApp = 0x8000;
     private const uint WmTray = WmApp + 1;
+    private const uint WmReAdd = WmApp + 2;
     private const uint WmNull = 0x0000;
     private const uint WmLButtonUp = 0x0202;
     private const uint WmLButtonDblClk = 0x0203;
@@ -204,12 +208,76 @@ internal sealed unsafe partial class TrayIcon : IDisposable
         _self.Free();
     }
 
-    private void Add()
+    /// <summary>
+    /// Deja preparados en Windows los iconos de progreso (101 a 110) como «a la vista»: Windows solo guarda ese ajuste
+    /// de un icono que ya ha visto, y solo lo lee al iniciar sesión (o al reiniciar el Explorador). Se añaden y se
+    /// quitan una vez (en la zona oculta, sin que se note) y se marcan; desde el siguiente inicio de sesión, el progreso
+    /// de cada copia sale junto al reloj aunque sea la primera vez que se usa ese icono.
+    /// </summary>
+    public void PrepareExtraSlots(uint first, uint last)
+    {
+        if (_disposed)
+        {
+            return;
+        }
+
+        for (uint id = first; id <= last; id++)
+        {
+            if (_extras.ContainsKey(id))
+            {
+                continue;
+            }
+
+            var data = NewData(NifMessage | NifIcon | NifTip, id, _icon, "MegaCopier");
+            Shell_NotifyIconW(NimAdd, &data);
+            Shell_NotifyIconW(NimDelete, &data);
+            TrayPromotion.Promote(id, always: false);
+        }
+    }
+
+    /// <summary>
+    /// Quita y vuelve a poner un icono: el Explorador solo lee si va a la vista (IsPromoted) al añadirlo, así que tras
+    /// marcarlo hay que volver a añadirlo para que aparezca junto al reloj.
+    /// </summary>
+    private void ReAdd(uint id)
+    {
+        if (_disposed)
+        {
+            return;
+        }
+
+        if (id == MainId)
+        {
+            if (_visible)
+            {
+                var old = NewData(0);
+                Shell_NotifyIconW(NimDelete, &old);
+                Add(promote: false);
+            }
+
+            return;
+        }
+
+        if (_extras.TryGetValue(id, out var extra))
+        {
+            var data = NewData(NifMessage | NifIcon | NifTip | NifShowTip, id, extra.Icon, extra.Tooltip);
+            Shell_NotifyIconW(NimDelete, &data);
+            Shell_NotifyIconW(NimAdd, &data);
+            data.uVersion = NotifyIconVersion4;
+            Shell_NotifyIconW(NimSetVersion, &data);
+        }
+    }
+
+    private void Add(bool promote = true)
     {
         var data = NewData(NifMessage | NifIcon | NifTip | NifShowTip);
         Shell_NotifyIconW(NimAdd, &data);
         data.uVersion = NotifyIconVersion4;
         Shell_NotifyIconW(NimSetVersion, &data);
+        if (promote)
+        {
+            TrayPromotion.Promote(MainId, always: false, () => PostMessageW(_hwnd, WmReAdd, (nint)MainId, 0));
+        } // a la vista la primera vez; luego, lo que elija el usuario
     }
 
     private NotifyIconDataW NewData(uint flags) => NewData(flags, MainId, _icon, _tooltip);
@@ -263,6 +331,7 @@ internal sealed unsafe partial class TrayIcon : IDisposable
             Shell_NotifyIconW(NimAdd, &data);
             data.uVersion = NotifyIconVersion4;
             Shell_NotifyIconW(NimSetVersion, &data);
+            TrayPromotion.Promote(id, always: true, () => PostMessageW(_hwnd, WmReAdd, (nint)id, 0)); // el progreso de cada copia, siempre a la vista
         }
     }
 
@@ -297,8 +366,21 @@ internal sealed unsafe partial class TrayIcon : IDisposable
 
     private void ShowMenu() => ShowMenu(_buildMenu());
 
+    /// <summary>
+    /// Quien dibuja el menú (el de WinUI, con el aspecto de MegaCopier), con el punto de la pantalla donde se abre. Sin
+    /// él, el menú clásico de Windows.
+    /// </summary>
+    public Action<IReadOnlyList<TrayMenuItem>, int, int>? PresentMenu { get; set; }
+
     private void ShowMenu(IReadOnlyList<TrayMenuItem> items)
     {
+        if (PresentMenu is { } present)
+        {
+            GetCursorPos(out var at);
+            present(items, at.X, at.Y);
+            return;
+        }
+
         nint menu = CreatePopupMenu();
         try
         {
@@ -381,6 +463,12 @@ internal sealed unsafe partial class TrayIcon : IDisposable
                         tray.ShowMenu();
                     }
 
+                    return 0;
+                }
+
+                if (message == WmReAdd)
+                {
+                    tray.ReAdd((uint)wParam);
                     return 0;
                 }
 

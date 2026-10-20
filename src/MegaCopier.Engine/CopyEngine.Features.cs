@@ -317,10 +317,12 @@ public sealed partial class CopyEngine
                 break;
             case FolderDecision.Overwrite:
                 _options.Conflict = ConflictPolicy.Overwrite;
+                _options.ForceRecopy = true; // lo pidió el usuario: también los que ya están iguales
                 Log(LogLevel.Info, Texts.F("E_FolderOverwrite", existing.Count));
                 break;
             case FolderDecision.AskEach:
                 _options.Conflict = ConflictPolicy.Ask;
+                _askIdentical = true;
                 break;
             case FolderDecision.Rename:
                 foreach (var (source, target) in folders)

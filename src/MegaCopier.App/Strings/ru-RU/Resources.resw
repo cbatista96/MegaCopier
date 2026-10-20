@@ -155,18 +155,18 @@
   <data name="About_DataFolder.Content" xml:space="preserve"><value>Открыть папку данных (параметры, темы, журнал, отчёты)</value></data>
   <data name="About_Description.Text" xml:space="preserve"><value>Лучший копировщик для Windows 11: быстрее и надёжнее, чем встроенный в Windows, со всеми нужными параметрами и настраивается как угодно (темы, значки, полосы и звуки). Продолжает с того же места даже после отключения питания и проверяет, что всё дошло без ошибок.</value></data>
   <data name="About_Features.Text" xml:space="preserve"><value>Асинхронный ввод-вывод без кэша · параллельное чтение и запись · проверка хешем (CRC32, xxHash, MD5, SHA) · очередь по дискам · пауза и продолжение · перемещение · конфликты · ограничение скорости · списки копирования · отчёты · темы.</value></data>
-  <data name="Files_AutoScroll.Content" xml:space="preserve"><value>Следить за текущим</value></data>
+  <data name="Files_AutoScroll.Text" xml:space="preserve"><value>Следить за текущим</value></data>
   <data name="Files_CopyHashes.Text" xml:space="preserve"><value>Копировать хеши</value></data>
   <data name="Files_CopyPath.Text" xml:space="preserve"><value>Копировать путь</value></data>
   <data name="Files_Empty.Text" xml:space="preserve"><value>Нет файлов для показа</value></data>
   <data name="Files_ExportCsv.Text" xml:space="preserve"><value>Экспорт в CSV…</value></data>
   <data name="Files_ExportHtml.Text" xml:space="preserve"><value>Экспорт HTML-отчёта…</value></data>
-  <data name="Files_FilterAll.Content" xml:space="preserve"><value>Все</value></data>
-  <data name="Files_FilterDone.Content" xml:space="preserve"><value>Скопированные</value></data>
-  <data name="Files_FilterErrors.Content" xml:space="preserve"><value>С ошибками</value></data>
-  <data name="Files_FilterPending.Content" xml:space="preserve"><value>Ожидающие</value></data>
-  <data name="Files_FilterSkipped.Content" xml:space="preserve"><value>Пропущенные</value></data>
-  <data name="Files_HideFinished.Content" xml:space="preserve"><value>Скрывать завершённые</value></data>
+  <data name="Files_FilterAll.Text" xml:space="preserve"><value>Все</value></data>
+  <data name="Files_FilterDone.Text" xml:space="preserve"><value>Скопированные</value></data>
+  <data name="Files_FilterErrors.Text" xml:space="preserve"><value>С ошибками</value></data>
+  <data name="Files_FilterPending.Text" xml:space="preserve"><value>Ожидающие</value></data>
+  <data name="Files_FilterSkipped.Text" xml:space="preserve"><value>Пропущенные</value></data>
+  <data name="Files_HideFinished.Text" xml:space="preserve"><value>Скрывать завершённые</value></data>
   <data name="Files_Menu.Text" xml:space="preserve"><value>Список</value></data>
   <data name="Files_MoveBottom.Text" xml:space="preserve"><value>В конец</value></data>
   <data name="Files_MoveDown.Text" xml:space="preserve"><value>Ниже</value></data>
@@ -1091,8 +1091,6 @@
   <data name="Settings_RememberDescription.Text" xml:space="preserve"><value>Открывать на прежнем месте и того же размера.</value></data>
   <data name="Settings_RememberPosition.Content" xml:space="preserve"><value>Положение</value></data>
   <data name="Settings_RememberSize.Content" xml:space="preserve"><value>Размер</value></data>
-  <data name="Settings_TranslucentTitle.Text" xml:space="preserve"><value>Полупрозрачное окно</value></data>
-  <data name="Settings_TranslucentDescription.Text" xml:space="preserve"><value>Акриловый, более прозрачный фон: рабочий стол просвечивает сквозь окно при любой теме.</value></data>
   <data name="Settings_Icons.Text" xml:space="preserve"><value>Значки</value></data>
   <data name="Settings_IconsDescription.Text" xml:space="preserve"><value>Выберите вид значков. Они сочетаются с любой темой.</value></data>
   <data name="IconPack_fluent" xml:space="preserve"><value>Fluent (как в Windows)</value></data>
@@ -1145,7 +1143,7 @@
   <data name="FolderAsk_Skip" xml:space="preserve"><value>Пропустить уже существующие</value></data>
   <data name="FolderAsk_SkipText" xml:space="preserve"><value>Каждый файл проверяется: существующие не копируются и не изменяются, копируются только недостающие. Идеально, чтобы закончить прерванное копирование.</value></data>
   <data name="FolderAsk_Overwrite" xml:space="preserve"><value>Перезаписать</value></data>
-  <data name="FolderAsk_OverwriteText" xml:space="preserve"><value>Существующие файлы заменяются файлами из источника. Одинаковые остаются как есть, чтобы было быстрее.</value></data>
+  <data name="FolderAsk_OverwriteText" xml:space="preserve"><value>Уже имеющиеся файлы заменяются файлами из источника, даже те, что кажутся одинаковыми: всё копируется заново.</value></data>
   <data name="FolderAsk_Rename" xml:space="preserve"><value>Переименовать</value></data>
   <data name="FolderAsk_RenameText" xml:space="preserve"><value>Всё копируется в новую папку «{0}», а существующая не изменяется.</value></data>
   <data name="FolderAsk_AskEach" xml:space="preserve"><value>Спрашивать по одному</value></data>
@@ -1496,4 +1494,18 @@
   <data name="Settings_AdaptTitle.Text" xml:space="preserve"><value>Подстраиваться под маленькие экраны</value></data>
   <data name="Settings_AdaptDescription.Text" xml:space="preserve"><value>На невысоких экранах, например 1366 × 768, окно выглядит так же, но немного меньше, чтобы поместиться целиком. На больших экранах ничего не меняется.</value></data>
   <data name="Job_StateAsking" xml:space="preserve"><value>Ждёт вашего ответа</value></data>
+  <data name="Conflict_Identical.Text" xml:space="preserve"><value>Они одинаковые: тот же размер и та же дата.</value></data>
+  <data name="Settings_BackdropTitle.Text" xml:space="preserve"><value>Фон окна</value></data>
+  <data name="Settings_BackdropDescription.Text" xml:space="preserve"><value>Материал Windows 11 за окном, с любой темой.</value></data>
+  <data name="Backdrop_OptTheme.Content" xml:space="preserve"><value>Как в теме</value></data>
+  <data name="Backdrop_OptTranslucent.Content" xml:space="preserve"><value>Полупрозрачный (виден рабочий стол)</value></data>
+  <data name="Backdrop_OptAcrylic.Content" xml:space="preserve"><value>Акрил рабочего стола (базовый)</value></data>
+  <data name="Backdrop_OptAcrylicThin.Content" xml:space="preserve"><value>Акрил рабочего стола (тонкий)</value></data>
+  <data name="BackdropAcrylicThin.Content" xml:space="preserve"><value>Тонкий акрил</value></data>
+  <data name="Info_Backdrop_Text" xml:space="preserve"><value>Это то, что видно за содержимым окна.\n• Как в теме: у каждой темы свой фон (сплошной, Mica или акрил).\n• Полупрозрачный: очень прозрачный акрил; сквозь окно виден рабочий стол.\n• Mica: мягко принимает оттенок ваших обоев. Такой фон у приложений Windows 11.\n• Mica Alt: как Mica, но с большим количеством цвета обоев.\n• Акрил рабочего стола (базовый): как матовое стекло; всё за окном выглядит размытым.\n• Акрил рабочего стола (тонкий): светлее и прозрачнее базового.\nДля Mica и акрила нужна Windows 11 с включёнными эффектами прозрачности; иначе будет сплошной цвет.</value></data>
+  <data name="SameDrive_NewWindow" xml:space="preserve"><value>В новом окне</value></data>
+  <data name="SameDrive_NewWindowText" xml:space="preserve"><value>Откроется ещё одно окно MegaCopier с этим копированием, и оно сразу начнётся одновременно с другим (оба пойдут немного медленнее).</value></data>
+  <data name="Settings_IndependentWindowsTitle.Text" xml:space="preserve"><value>Каждое копирование в своём окне</value></data>
+  <data name="Settings_IndependentWindowsDescription.Text" xml:space="preserve"><value>Одно окно на каждое копирование; оно начинается сразу, не дожидаясь других. Без списка копирований, если только вы не добавите несколько в одно окно.</value></data>
+  <data name="Info_IndependentWindows_Text" xml:space="preserve"><value>Обычно у MegaCopier одно окно, а несколько копирований показываются в его списке. С этим параметром каждое копирование открывает своё окно и начинается сразу, не дожидаясь других.\n• Это одно и то же приложение: тема, значки и настройки везде одинаковые (если изменить их в одном окне, они изменятся во всех).\n• У каждого окна свой значок хода копирования в области уведомлений и своя кнопка на панели задач.\n• Если новое копирование идёт на тот же диск, что и выполняющееся, решает параметр «Новое копирование на тот же диск»: спросить (добавить к копированию этого окна или открыть в новом окне), всегда добавлять или всегда открывать новое окно без вопросов.\n• Если добавить копирования в одно окно, оно показывает свой список копирований.\n• Когда его копирования заканчиваются, каждое окно закрывается как обычно.\nПример: вы копируете фото на флешку, а тем временем видео на другой диск — увидите два окна, у каждого свой ход копирования.</value></data>
 </root>

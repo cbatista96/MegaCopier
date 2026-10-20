@@ -321,13 +321,16 @@ terminar).
   decidirlo de antemano: omitir, detener o reintentar al final).
 - **Copias nuevas mientras otra está en marcha**: al mismo disco, MegaCopier pregunta si añadirla a la copia en marcha
   (cada cosa a su carpeta) o hacerla aparte; a otro disco, empieza a la vez. Ambas cosas se pueden cambiar.
+- **Cada copia en su propia ventana** (opcional): una ventana por copia, que empieza ya, con el mismo tema en todas y su
+  icono de progreso en la bandeja.
 - **Informe de errores** automático al terminar con problemas, en la carpeta de destino o en una fija.
 - **Expulsar la unidad de destino** (USB, tarjeta) al terminar, también a la fuerza.
 - **Al detener una copia, borrar lo que quedó a medias** (salvo si paró por un error).
 - Atributos y permisos que se conservan **al mover**, aparte de los de copiar.
 - Icono de la bandeja opcional, **un icono de progreso por copia en la bandeja**, qué hacen la X (cancelar, detener,
   ocultar o salir) y minimizar (barra de tareas o bandeja), empezar las copias minimizadas, recordar la posición y el
-  tamaño de la ventana, ventana translúcida y ajuste a pantallas pequeñas (1366 × 768).
+  tamaño de la ventana, fondo de la ventana (el del tema, translúcida, Mica, Mica Alt o acrílico) y ajuste a pantallas
+  pequeñas (1366 × 768).
 
 ### Sincronizar
 - **Espejo** de una carpeta en otra.

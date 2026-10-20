@@ -30,15 +30,19 @@
             </Grid.RowDefinitions>
             <TextBox x:Name="SearchBox" x:Uid="Files_Search" TextChanged="Search_TextChanged" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
             <StackPanel x:Name="ListToggles" Grid.Column="1" Orientation="Horizontal" Spacing="12" Margin="4,0,0,0" VerticalAlignment="Center">
-                <CheckBox x:Name="HideFinishedBox" x:Uid="Files_HideFinished" Checked="HideFinished_Changed" Unchecked="HideFinished_Changed" MinWidth="0" />
-                <CheckBox x:Name="AutoScrollBox" x:Uid="Files_AutoScroll" IsChecked="True" MinWidth="0" />
+                <CheckBox x:Name="HideFinishedBox" Checked="HideFinished_Changed" Unchecked="HideFinished_Changed" MinWidth="0">
+                    <StackPanel Orientation="Horizontal" Spacing="6"><c:McIcon Glyph="&#xED1A;" FontSize="13" VerticalAlignment="Center" /><TextBlock x:Uid="Files_HideFinished" VerticalAlignment="Center" /></StackPanel>
+                </CheckBox>
+                <CheckBox x:Name="AutoScrollBox" IsChecked="True" MinWidth="0">
+                    <StackPanel Orientation="Horizontal" Spacing="6"><c:McIcon Glyph="&#xE74B;" FontSize="13" VerticalAlignment="Center" /><TextBlock x:Uid="Files_AutoScroll" VerticalAlignment="Center" /></StackPanel>
+                </CheckBox>
             </StackPanel>
-            <ComboBox x:Name="FilterBox" Grid.Column="3" MinWidth="140" VerticalAlignment="Center" SelectionChanged="Filter_SelectionChanged">
-                <ComboBoxItem x:Uid="Files_FilterAll" />
-                <ComboBoxItem x:Uid="Files_FilterPending" />
-                <ComboBoxItem x:Uid="Files_FilterDone" />
-                <ComboBoxItem x:Uid="Files_FilterErrors" />
-                <ComboBoxItem x:Uid="Files_FilterSkipped" />
+            <ComboBox x:Name="FilterBox" Grid.Column="3" MinWidth="150" VerticalAlignment="Center" SelectionChanged="Filter_SelectionChanged">
+                <ComboBoxItem><StackPanel Orientation="Horizontal" Spacing="8"><c:McIcon Glyph="&#xE8FD;" FontSize="13" VerticalAlignment="Center" /><TextBlock x:Uid="Files_FilterAll" VerticalAlignment="Center" /></StackPanel></ComboBoxItem>
+                <ComboBoxItem><StackPanel Orientation="Horizontal" Spacing="8"><c:McIcon Glyph="&#xE823;" FontSize="13" VerticalAlignment="Center" /><TextBlock x:Uid="Files_FilterPending" VerticalAlignment="Center" /></StackPanel></ComboBoxItem>
+                <ComboBoxItem><StackPanel Orientation="Horizontal" Spacing="8"><c:McIcon Glyph="&#xE73E;" FontSize="13" Foreground="{StaticResource McSuccessBrush}" VerticalAlignment="Center" /><TextBlock x:Uid="Files_FilterDone" VerticalAlignment="Center" /></StackPanel></ComboBoxItem>
+                <ComboBoxItem><StackPanel Orientation="Horizontal" Spacing="8"><c:McIcon Glyph="&#xE7BA;" FontSize="13" Foreground="{StaticResource McWarningBrush}" VerticalAlignment="Center" /><TextBlock x:Uid="Files_FilterErrors" VerticalAlignment="Center" /></StackPanel></ComboBoxItem>
+                <ComboBoxItem><StackPanel Orientation="Horizontal" Spacing="8"><c:McIcon Glyph="&#xE893;" FontSize="13" VerticalAlignment="Center" /><TextBlock x:Uid="Files_FilterSkipped" VerticalAlignment="Center" /></StackPanel></ComboBoxItem>
             </ComboBox>
             <Button x:Uid="Files_More" Grid.Column="4" Style="{StaticResource McToolButton}" VerticalAlignment="Center">
                 <c:McIcon VerticalAlignment="Center" Glyph="&#xE712;" FontSize="14" />

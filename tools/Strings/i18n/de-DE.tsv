@@ -149,18 +149,18 @@ AboutDialog.CloseButtonText	Schließen
 About_DataFolder.Content	Datenordner öffnen (Einstellungen, Designs, Verlauf, Berichte)
 About_Description.Text	Der ultimative Kopierer für Windows 11: schneller und sicherer als der von Windows, mit allen Optionen, die du brauchst, und so anpassbar, wie du willst (Designs, Symbole, Balken und Klänge). Er macht selbst nach einem Stromausfall dort weiter, wo er war, und prüft, dass alles heil angekommen ist.
 About_Features.Text	Asynchrone E/A ohne Cache · parallele Lese- und Schreibvorgänge · Hash-Prüfung (CRC32, xxHash, MD5, SHA) · Warteschlange pro Datenträger · Anhalten und Fortsetzen · Verschieben · Konflikte · Geschwindigkeitslimit · Kopierlisten · Berichte · Designs.
-Files_AutoScroll.Content	Aktueller Datei folgen
+Files_AutoScroll.Text	Aktueller Datei folgen
 Files_CopyHashes.Text	Hashes kopieren
 Files_CopyPath.Text	Pfad kopieren
 Files_Empty.Text	Keine Dateien anzuzeigen
 Files_ExportCsv.Text	Als CSV exportieren…
 Files_ExportHtml.Text	HTML-Bericht exportieren…
-Files_FilterAll.Content	Alle
-Files_FilterDone.Content	Kopiert
-Files_FilterErrors.Content	Mit Fehlern
-Files_FilterPending.Content	Ausstehend
-Files_FilterSkipped.Content	Übersprungen
-Files_HideFinished.Content	Fertige ausblenden
+Files_FilterAll.Text	Alle
+Files_FilterDone.Text	Kopiert
+Files_FilterErrors.Text	Mit Fehlern
+Files_FilterPending.Text	Ausstehend
+Files_FilterSkipped.Text	Übersprungen
+Files_HideFinished.Text	Fertige ausblenden
 Files_Menu.Text	Liste
 Files_MoveBottom.Text	Ans Ende
 Files_MoveDown.Text	Nach unten
@@ -1085,8 +1085,6 @@ Settings_RememberTitle.Text	Fenster merken
 Settings_RememberDescription.Text	Dort und in derselben Größe öffnen, wo es war.
 Settings_RememberPosition.Content	Position
 Settings_RememberSize.Content	Größe
-Settings_TranslucentTitle.Text	Durchscheinendes Fenster
-Settings_TranslucentDescription.Text	Acryl-Hintergrund, durchsichtiger: Der Desktop scheint durch das Fenster, bei jedem Design.
 Settings_Icons.Text	Symbole
 Settings_IconsDescription.Text	Wählen Sie das Aussehen der Symbole. Sie passen zu jedem Design.
 IconPack_fluent	Fluent (wie Windows)
@@ -1139,7 +1137,7 @@ FolderAsk_Message	{1} der {2} Dateien, die Sie kopieren, sind bereits in {0} ({3
 FolderAsk_Skip	Vorhandene überspringen
 FolderAsk_SkipText	Jede Datei wird geprüft: Vorhandene werden weder kopiert noch verändert, nur fehlende werden kopiert. Ideal, um eine abgebrochene Kopie fertigzustellen.
 FolderAsk_Overwrite	Überschreiben
-FolderAsk_OverwriteText	Vorhandene Dateien werden durch die aus der Quelle ersetzt. Identische bleiben unverändert, das spart Zeit.
+FolderAsk_OverwriteText	Die vorhandenen Dateien werden durch die aus der Quelle ersetzt, auch die scheinbar gleichen: Alles wird erneut kopiert.
 FolderAsk_Rename	Umbenennen
 FolderAsk_RenameText	Alles wird in einen neuen Ordner „{0}“ kopiert, der vorhandene bleibt unberührt.
 FolderAsk_AskEach	Einzeln fragen
@@ -1490,3 +1488,17 @@ IconPack_hud	Holografisch
 Settings_AdaptTitle.Text	An kleine Bildschirme anpassen
 Settings_AdaptDescription.Text	Auf niedrigen Bildschirmen wie 1366 × 768 sieht das Fenster gleich aus, nur etwas kleiner, damit es ganz hineinpasst. Auf großen Bildschirmen ändert sich nichts.
 Job_StateAsking	Wartet auf deine Antwort
+Conflict_Identical.Text	Sie sind gleich: gleiche Größe und gleiches Datum.
+Settings_BackdropTitle.Text	Fensterhintergrund
+Settings_BackdropDescription.Text	Das Windows-11-Material hinter dem Fenster, mit jedem Design.
+Backdrop_OptTheme.Content	Wie im Design
+Backdrop_OptTranslucent.Content	Durchscheinend (Desktop sichtbar)
+Backdrop_OptAcrylic.Content	Desktop-Acryl (Basis)
+Backdrop_OptAcrylicThin.Content	Desktop-Acryl (dünn)
+BackdropAcrylicThin.Content	Dünnes Acryl
+Info_Backdrop_Text	Das ist, was hinter dem Fensterinhalt zu sehen ist.\n• Wie im Design: Jedes Design bringt seinen eigenen mit (einfarbig, Mica oder Acryl).\n• Durchscheinend: sehr transparentes Acryl; der Desktop scheint durch das Fenster.\n• Mica: übernimmt sanft den Farbton deines Hintergrundbilds. So sehen die Apps von Windows 11 aus.\n• Mica Alt: wie Mica, aber mit mehr Farbe aus dem Hintergrundbild.\n• Desktop-Acryl (Basis): wie Milchglas; was hinter dem Fenster liegt, wirkt verschwommen.\n• Desktop-Acryl (dünn): heller und transparenter als die Basis.\nMica und Acryl brauchen Windows 11 mit eingeschalteten Transparenzeffekten; sonst siehst du eine einfache Farbe.
+SameDrive_NewWindow	In einem neuen Fenster
+SameDrive_NewWindowText	Ein weiteres MegaCopier-Fenster öffnet sich mit dieser Kopie, die sofort parallel zur anderen startet (beide werden etwas langsamer).
+Settings_IndependentWindowsTitle.Text	Jede Kopie in einem eigenen Fenster
+Settings_IndependentWindowsDescription.Text	Ein Fenster pro Kopie, das sofort startet, ohne auf die anderen zu warten. Ohne Kopienliste, außer du fügst mehrere demselben Fenster hinzu.
+Info_IndependentWindows_Text	Normalerweise hat MegaCopier ein einziges Fenster und zeigt mehrere Kopien in seiner Kopienliste. Mit dieser Option öffnet jede Kopie ihr eigenes Fenster und startet sofort, ohne auf die anderen zu warten.\n• Es ist immer dieselbe App: Design, Symbole und Einstellungen sind überall gleich (änderst du sie in einem Fenster, ändern sie sich in allen).\n• Jedes Fenster hat sein eigenes Fortschrittssymbol im Infobereich und seine eigene Schaltfläche in der Taskleiste.\n• Geht die neue Kopie auf dasselbe Laufwerk wie eine laufende, entscheidet „Neue Kopie auf dasselbe Laufwerk“: fragen (zur Kopie dieses Fensters hinzufügen oder in einem neuen Fenster öffnen), immer hinzufügen oder immer ohne Nachfrage ein neues Fenster öffnen.\n• Fügst du einem Fenster Kopien hinzu, zeigt es seine eigene Kopienliste.\n• Wenn seine Kopien fertig sind, schließt sich jedes Fenster wie gewohnt.\nBeispiel: Du kopierst Fotos auf einen USB-Stick und gleichzeitig Videos auf eine andere Festplatte: Du siehst zwei Fenster, jedes mit seinem Fortschritt.

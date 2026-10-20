@@ -149,18 +149,18 @@ AboutDialog.CloseButtonText	Fermer
 About_DataFolder.Content	Ouvrir le dossier de données (paramètres, thèmes, historique, rapports)
 About_Description.Text	Le copieur ultime pour Windows 11 : plus rapide et plus sûr que celui de Windows, avec toutes les options dont vous avez besoin et aussi personnalisable que vous le souhaitez (thèmes, icônes, barres et sons). Il reprend où il en était même après une coupure de courant et vérifie que tout est bien arrivé.
 About_Features.Text	E/S asynchrones sans cache · lectures et écritures en parallèle · vérification par hachage (CRC32, xxHash, MD5, SHA) · file par disque · pause et reprise · déplacement · conflits · limite de vitesse · listes de copie · rapports · thèmes.
-Files_AutoScroll.Content	Suivre le fichier en cours
+Files_AutoScroll.Text	Suivre le fichier en cours
 Files_CopyHashes.Text	Copier les hachages
 Files_CopyPath.Text	Copier le chemin
 Files_Empty.Text	Aucun fichier à afficher
 Files_ExportCsv.Text	Exporter en CSV…
 Files_ExportHtml.Text	Exporter un rapport HTML…
-Files_FilterAll.Content	Tous
-Files_FilterDone.Content	Copiés
-Files_FilterErrors.Content	En erreur
-Files_FilterPending.Content	En attente
-Files_FilterSkipped.Content	Ignorés
-Files_HideFinished.Content	Masquer les terminés
+Files_FilterAll.Text	Tous
+Files_FilterDone.Text	Copiés
+Files_FilterErrors.Text	En erreur
+Files_FilterPending.Text	En attente
+Files_FilterSkipped.Text	Ignorés
+Files_HideFinished.Text	Masquer les terminés
 Files_Menu.Text	Liste
 Files_MoveBottom.Text	Mettre à la fin
 Files_MoveDown.Text	Descendre
@@ -1085,8 +1085,6 @@ Settings_RememberTitle.Text	Mémoriser la fenêtre
 Settings_RememberDescription.Text	L'ouvrir là où elle était, avec la même taille.
 Settings_RememberPosition.Content	Position
 Settings_RememberSize.Content	Taille
-Settings_TranslucentTitle.Text	Fenêtre translucide
-Settings_TranslucentDescription.Text	Arrière-plan acrylique plus transparent : le bureau se voit à travers la fenêtre, quel que soit le thème.
 Settings_Icons.Text	Icônes
 Settings_IconsDescription.Text	Choisissez l'apparence des icônes. Elles se combinent avec n'importe quel thème.
 IconPack_fluent	Fluent (comme Windows)
@@ -1139,7 +1137,7 @@ FolderAsk_Message	{1} des {2} fichiers que vous copiez sont déjà dans {0} ({3}
 FolderAsk_Skip	Passer ceux qui sont déjà là
 FolderAsk_SkipText	Chaque fichier est vérifié : ceux déjà présents ne sont ni copiés ni modifiés, et seuls les manquants sont copiés. Idéal pour terminer une copie interrompue.
 FolderAsk_Overwrite	Remplacer
-FolderAsk_OverwriteText	Les fichiers déjà présents sont remplacés par ceux de la source. Les fichiers identiques restent tels quels pour aller plus vite.
+FolderAsk_OverwriteText	Les fichiers déjà présents sont remplacés par ceux de la source, même ceux qui semblent identiques : tout est recopié.
 FolderAsk_Rename	Renommer
 FolderAsk_RenameText	Tout est copié dans un nouveau dossier, « {0} », et l’existant n’est pas modifié.
 FolderAsk_AskEach	Demander un par un
@@ -1490,3 +1488,17 @@ IconPack_hud	Holographique
 Settings_AdaptTitle.Text	S'adapter aux petits écrans
 Settings_AdaptDescription.Text	Sur les écrans peu hauts, comme 1366 × 768, la fenêtre reste identique mais un peu plus petite, pour tenir entièrement. Sur les grands écrans, rien ne change.
 Job_StateAsking	En attente de votre réponse
+Conflict_Identical.Text	Ils sont identiques : même taille et même date.
+Settings_BackdropTitle.Text	Arrière-plan de la fenêtre
+Settings_BackdropDescription.Text	Le matériau de Windows 11 visible derrière la fenêtre, avec n'importe quel thème.
+Backdrop_OptTheme.Content	Celui du thème
+Backdrop_OptTranslucent.Content	Translucide (on voit le bureau)
+Backdrop_OptAcrylic.Content	Acrylique du bureau (base)
+Backdrop_OptAcrylicThin.Content	Acrylique du bureau (fin)
+BackdropAcrylicThin.Content	Acrylique fin
+Info_Backdrop_Text	C'est ce que l'on voit derrière le contenu de la fenêtre.\n• Celui du thème : chaque thème a le sien (uni, Mica ou acrylique).\n• Translucide : acrylique très transparent ; on voit le bureau derrière la fenêtre.\n• Mica : prend doucement la teinte de votre fond d'écran. C'est celui des applications de Windows 11.\n• Mica Alt : comme Mica, avec davantage de couleur du fond d'écran.\n• Acrylique du bureau (base) : comme un verre dépoli ; ce qui est derrière la fenêtre apparaît flou.\n• Acrylique du bureau (fin) : plus clair et plus transparent que la base.\nMica et l'acrylique nécessitent Windows 11 avec les effets de transparence activés ; sinon, une couleur unie s'affiche.
+SameDrive_NewWindow	Dans une nouvelle fenêtre
+SameDrive_NewWindowText	Une autre fenêtre de MegaCopier s'ouvre avec cette copie, qui démarre tout de suite en même temps que l'autre (les deux iront un peu moins vite).
+Settings_IndependentWindowsTitle.Text	Chaque copie dans sa propre fenêtre
+Settings_IndependentWindowsDescription.Text	Une fenêtre par copie, qui démarre tout de suite sans attendre les autres. Sans liste de copies, sauf si vous en ajoutez plusieurs à la même fenêtre.
+Info_IndependentWindows_Text	Normalement, MegaCopier n'a qu'une fenêtre et, si vous lancez plusieurs copies, il les affiche dans sa liste de copies. Avec cette option, chaque copie ouvre sa propre fenêtre et démarre tout de suite, sans attendre les autres.\n• C'est toujours la même application : le thème, les icônes et les réglages sont les mêmes partout (si vous les changez dans une fenêtre, ils changent dans toutes).\n• Chaque fenêtre a son icône de progression dans la zone de notification et son bouton dans la barre des tâches.\n• Si la nouvelle copie va sur le même disque qu'une copie en cours, « Nouvelle copie sur le même disque » décide : demander (l'ajouter à la copie de cette fenêtre ou l'ouvrir dans une nouvelle fenêtre), toujours l'ajouter, ou toujours ouvrir une nouvelle fenêtre sans demander.\n• Si vous ajoutez des copies à une fenêtre, elle affiche sa propre liste de copies.\n• Quand ses copies sont terminées, chaque fenêtre se ferme comme d'habitude.\nExemple : vous copiez des photos sur une clé USB et, pendant ce temps, des vidéos sur un autre disque : vous verrez deux fenêtres, chacune avec sa progression.

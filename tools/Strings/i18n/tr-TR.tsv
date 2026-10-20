@@ -149,18 +149,18 @@ AboutDialog.CloseButtonText	Kapat
 About_DataFolder.Content	Veri klasörünü aç (ayarlar, temalar, geçmiş, raporlar)
 About_Description.Text	Windows 11 için en iyi kopyalayıcı: Windows'unkinden daha hızlı ve daha güvenli, ihtiyacınız olan tüm seçeneklerle ve istediğiniz kadar kişiselleştirilebilir (temalar, simgeler, çubuklar ve sesler). Elektrik kesintisinden sonra bile kaldığı yerden devam eder ve her şeyin sağlam ulaştığını denetler.
 About_Features.Text	Önbelleksiz eşzamansız G/Ç · paralel okuma ve yazma · karma ile doğrulama (CRC32, xxHash, MD5, SHA) · disk başına sıra · duraklatma ve sürdürme · taşıma · çakışmalar · hız sınırı · kopyalama listeleri · raporlar · temalar.
-Files_AutoScroll.Content	Geçerli dosyayı izle
+Files_AutoScroll.Text	Geçerli dosyayı izle
 Files_CopyHashes.Text	Karmaları kopyala
 Files_CopyPath.Text	Yolu kopyala
 Files_Empty.Text	Gösterilecek dosya yok
 Files_ExportCsv.Text	CSV olarak dışa aktar…
 Files_ExportHtml.Text	HTML raporu dışa aktar…
-Files_FilterAll.Content	Tümü
-Files_FilterDone.Content	Kopyalanan
-Files_FilterErrors.Content	Hatalı
-Files_FilterPending.Content	Bekleyen
-Files_FilterSkipped.Content	Atlanan
-Files_HideFinished.Content	Bitenleri gizle
+Files_FilterAll.Text	Tümü
+Files_FilterDone.Text	Kopyalanan
+Files_FilterErrors.Text	Hatalı
+Files_FilterPending.Text	Bekleyen
+Files_FilterSkipped.Text	Atlanan
+Files_HideFinished.Text	Bitenleri gizle
 Files_Menu.Text	Liste
 Files_MoveBottom.Text	Sona taşı
 Files_MoveDown.Text	Aşağı
@@ -1085,8 +1085,6 @@ Settings_RememberTitle.Text	Pencereyi hatırla
 Settings_RememberDescription.Text	Bulunduğu yerde ve aynı boyutta aç.
 Settings_RememberPosition.Content	Konum
 Settings_RememberSize.Content	Boyut
-Settings_TranslucentTitle.Text	Yarı saydam pencere
-Settings_TranslucentDescription.Text	Akrilik ve daha saydam arka plan: her temada masaüstü pencereden görünür.
 Settings_Icons.Text	Simgeler
 Settings_IconsDescription.Text	Simgelerin görünümünü seç. Her temayla birlikte kullanılabilir.
 IconPack_fluent	Fluent (Windows gibi)
@@ -1139,7 +1137,7 @@ FolderAsk_Message	Kopyaladığınız {2} dosyanın {1} tanesi zaten {0} içinde 
 FolderAsk_Skip	Var olanları atla
 FolderAsk_SkipText	Her dosya kontrol edilir: var olanlar kopyalanmaz ve değiştirilmez, yalnızca eksikler kopyalanır. Yarıda kalan bir kopyayı bitirmek için ideal.
 FolderAsk_Overwrite	Üzerine yaz
-FolderAsk_OverwriteText	Var olan dosyalar kaynaktakilerle değiştirilir. Aynı olanlar zaman kazanmak için olduğu gibi bırakılır.
+FolderAsk_OverwriteText	Orada olan dosyalar, aynı görünenler de dahil, kaynaktakilerle değiştirilir: her şey yeniden kopyalanır.
 FolderAsk_Rename	Yeniden adlandır
 FolderAsk_RenameText	Her şey yeni bir klasöre, "{0}", kopyalanır ve var olana dokunulmaz.
 FolderAsk_AskEach	Tek tek sor
@@ -1490,3 +1488,17 @@ IconPack_hud	Holografik
 Settings_AdaptTitle.Text	Küçük ekranlara uydur
 Settings_AdaptDescription.Text	1366 × 768 gibi alçak ekranlarda pencere aynı görünür ama tamamen sığması için biraz daha küçüktür. Büyük ekranlarda hiçbir şey değişmez.
 Job_StateAsking	Yanıtınızı bekliyor
+Conflict_Identical.Text	Aynılar: aynı boyut ve aynı tarih.
+Settings_BackdropTitle.Text	Pencere arka planı
+Settings_BackdropDescription.Text	Pencerenin arkasında görünen Windows 11 malzemesi, her temayla.
+Backdrop_OptTheme.Content	Temanınki
+Backdrop_OptTranslucent.Content	Yarı saydam (masaüstü görünür)
+Backdrop_OptAcrylic.Content	Masaüstü akrilik (temel)
+Backdrop_OptAcrylicThin.Content	Masaüstü akrilik (ince)
+BackdropAcrylicThin.Content	İnce akrilik
+Info_Backdrop_Text	Pencerenin içeriğinin arkasında görünen şeydir.\n• Temanınki: her temanın kendine ait bir arka planı vardır (düz, Mica veya akrilik).\n• Yarı saydam: çok saydam akrilik; masaüstü pencerenin arkasından görünür.\n• Mica: masaüstü arka planınızın tonunu hafifçe alır. Windows 11 uygulamalarının kullandığıdır.\n• Mica Alt: Mica gibi, ama arka plandan daha fazla renk alır.\n• Masaüstü akrilik (temel): buzlu cam gibi; pencerenin arkasındakiler bulanık görünür.\n• Masaüstü akrilik (ince): temelden daha açık ve saydam.\nMica ve akrilik için saydamlık efektleri açık Windows 11 gerekir; aksi halde düz bir renk görünür.
+SameDrive_NewWindow	Yeni bir pencerede
+SameDrive_NewWindowText	Bu kopyayla başka bir MegaCopier penceresi açılır ve diğeriyle aynı anda hemen başlar (ikisi de biraz yavaşlar).
+Settings_IndependentWindowsTitle.Text	Her kopya kendi penceresinde
+Settings_IndependentWindowsDescription.Text	Her kopya için bir pencere; diğerlerini beklemeden hemen başlar. Aynı pencereye birkaç kopya eklemedikçe kopya listesi yoktur.
+Info_IndependentWindows_Text	Normalde MegaCopier'ın tek bir penceresi vardır ve birden çok kopyayı kopya listesinde gösterir. Bu seçenekle her kopya kendi penceresini açar ve diğerlerini beklemeden hemen başlar.\n• Hepsi aynı uygulamadır: tema, simgeler ve ayarlar hepsinde aynıdır (birinde değiştirirseniz hepsinde değişir).\n• Her pencerenin bildirim alanında kendi ilerleme simgesi ve görev çubuğunda kendi düğmesi vardır.\n• Yeni kopya çalışan bir kopyayla aynı diske gidiyorsa «Aynı diske yeni kopya» karar verir: sor (o penceredeki kopyaya ekle ya da yeni bir pencerede aç), her zaman ekle veya sormadan her zaman yeni pencere aç.\n• Bir pencereye kopya eklerseniz o pencere kendi kopya listesini gösterir.\n• Kopyaları bitince her pencere her zamanki gibi kapanır.\nÖrnek: bir USB belleğe fotoğraf, bu arada başka bir diske video kopyalıyorsunuz: her biri kendi ilerlemesiyle iki pencere görürsünüz.

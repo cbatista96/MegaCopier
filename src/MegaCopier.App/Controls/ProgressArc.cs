@@ -25,10 +25,44 @@ public sealed partial class ProgressArc : UserControl
     public ProgressArc()
     {
         IsTabStop = false;
-        _track.Stroke = ThemeManager.TrackBrush;
-        _arc.Stroke = ThemeManager.AccentBrush;
         Content = new Grid { Children = { _track, _arc } };
         SizeChanged += (_, _) => Draw();
+        ApplyColors();
+        Loaded += (_, _) =>
+        {
+            IconPacks.Changed -= ApplyColors;
+            IconPacks.Changed += ApplyColors;
+            ApplyColors();
+        };
+        Unloaded += (_, _) => IconPacks.Changed -= ApplyColors;
+    }
+
+    /// <summary>
+    /// Del color del conjunto de iconos (el de «copiar»): acento con el de Windows, el degradado de las barras con el
+    /// de degradado y, en los de color, su tono, con el anillo de fondo del mismo color, tenue.
+    /// </summary>
+    private void ApplyColors()
+    {
+        var pack = IconPacks.Current;
+        switch (pack.Style)
+        {
+            case IconStyle.Mono:
+                _track.Stroke = ThemeManager.TrackBrush;
+                _arc.Stroke = ThemeManager.AccentBrush;
+                break;
+            case IconStyle.Gradient:
+                var gradient = new LinearGradientBrush { StartPoint = new(0, 0), EndPoint = new(1, 1) };
+                gradient.GradientStops.Add(new GradientStop { Color = ThemeManager.Parse(ThemeManager.Current.TotalStart), Offset = 0 });
+                gradient.GradientStops.Add(new GradientStop { Color = ThemeManager.Parse(ThemeManager.Current.TotalEnd), Offset = 1 });
+                _track.Stroke = ThemeManager.TrackBrush;
+                _arc.Stroke = gradient;
+                break;
+            default:
+                var color = IconPacks.ColorFor("\uE8C8", pack);
+                _track.Stroke = new SolidColorBrush(Windows.UI.Color.FromArgb(60, color.R, color.G, color.B));
+                _arc.Stroke = new SolidColorBrush(color);
+                break;
+        }
     }
 
     /// <summary>De 0 a 100.</summary>

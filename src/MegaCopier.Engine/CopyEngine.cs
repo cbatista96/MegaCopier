@@ -18,6 +18,13 @@ public sealed partial class CopyEngine
     private readonly Lock _lock = new();
     private readonly Dictionary<string, string?> _volumeCache = new(StringComparer.OrdinalIgnoreCase);
     private ConflictAnswer? _conflictForAll;
+
+    /// <summary>
+    /// «Uno a uno» elegido en el aviso de carpeta: se pregunta por cada archivo que ya está, también por los idénticos
+    /// (quien lo elige quiere verlos todos).
+    /// </summary>
+    private bool _askIdentical;
+
     private bool _skipAllErrors;
 
     /// <summary>Las preguntas de error van de una en una (los archivos pequeños se copian en paralelo).</summary>
@@ -1034,12 +1041,12 @@ public sealed partial class CopyEngine
                 : new Resolution(file.Destination);
         }
 
-        if (!_options.ForceRecopy && IsIdentical(existing, file))
+        var policy = _options.Conflict;
+        if (!_options.ForceRecopy && !(_askIdentical && policy == ConflictPolicy.Ask) && IsIdentical(existing, file))
         {
             return new Resolution(null, PlannedAction.SkipIdentical);
         }
 
-        var policy = _options.Conflict;
         if (policy == ConflictPolicy.Ask)
         {
             // Desatendido: nunca se pregunta y lo dudoso se omite.

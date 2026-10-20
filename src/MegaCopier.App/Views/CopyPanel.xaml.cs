@@ -61,25 +61,27 @@ public sealed partial class CopyPanel : UserControl
 
     /// <summary>
     /// Ancho disponible. Los botones y los chips («En pausa», «Archivo») conservan siempre su texto: la ventana no
-    /// deja estrecharse tanto como para cortarlos. Con poco sitio se ocultan los datos secundarios (bytes, resumen) y,
-    /// con menos aún, el número de archivos y la velocidad (siguen en el título de la ventana y en Estado).
+    /// deja estrecharse tanto como para cortarlos. Los archivos copiados y los tamaños se ven siempre (el nombre de la
+    /// copia y el del archivo se acortan antes); solo en la ventana más estrecha se ocultan la velocidad y el resumen.
     /// </summary>
     private void Adapt(double width)
     {
-        bool narrow = width < 600;
         bool tiny = width < 520;
-        TotalBytesBlock.Visibility = narrow ? Visibility.Collapsed : Visibility.Visible;
-        FileBytesBlock.Visibility = narrow ? Visibility.Collapsed : Visibility.Visible;
-        DetailHost.Visibility = narrow ? Visibility.Collapsed : Visibility.Visible;
-
-        // Si no cabe junto a los botones, el resumen pasa a su propia línea debajo.
-        bool below = width < 900;
-        Grid.SetRow(DetailHost, below ? 1 : 0);
-        Grid.SetColumn(DetailHost, below ? 0 : 1);
-        Grid.SetColumnSpan(DetailHost, below ? 3 : 1);
-        DetailBlock.Margin = below ? new Thickness(0, 6, 0, 0) : new Thickness(8, 0, 8, 0);
-        FilesCountBlock.Visibility = tiny ? Visibility.Collapsed : Visibility.Visible;
+        TotalBytesBlock.Visibility = Visibility.Visible;
+        FileBytesBlock.Visibility = Visibility.Visible;
+        FilesCountBlock.Visibility = Visibility.Visible;
         SpeedBlock.Visibility = tiny ? Visibility.Collapsed : Visibility.Visible;
+        DetailHost.Visibility = width < 540 ? Visibility.Collapsed : Visibility.Visible;
+
+        // Con poco sitio, los datos se juntan un poco más.
+        double spacing = width < 700 ? 8 : 12;
+        TotalRow.ColumnSpacing = spacing;
+        FileRow.ColumnSpacing = spacing;
+
+        // El resumen (al terminar: archivos, tamaño, tiempo y velocidad) va junto a los botones, en una o dos líneas,
+        // nunca debajo: así la tarjeta no crece y no empuja lo de abajo (el paso entre copias de la ventana pequeña).
+        DetailBlock.FontSize = width < 900 ? 12 : 14;
+        DetailBlock.Margin = new Thickness(4, 0, 4, 0);
         int keep = width < 560 ? 1 : 2;
         if (keep != JobViewModel.PathKeep)
         {
@@ -133,11 +135,11 @@ public sealed partial class CopyPanel : UserControl
 
         bool first = _showingPause is null;
         _showingPause = pause;
-        animate &= !first && !Theming.BarAppearance.ReduceMotion && PlayPauseButton.ActualWidth > 0;
-        Motion.Morph(pause ? PlayGlyph : PauseGlyph, pause ? PauseGlyph : PlayGlyph, animate, icon: true);
-        Motion.Morph(pause ? PlayLabel : PauseLabel, pause ? PauseLabel : PlayLabel, animate, icon: false);
+        animate &= !first && PlayPauseButton.ActualWidth > 0;
+        PlayPauseIcon.MorphTo(play: !pause, animate);
+        PauseLabel.Opacity = pause ? 1 : 0;
+        PlayLabel.Opacity = pause ? 0 : 1;
     }
-
     // ---------------------------------------------------------------------------------------------------------
     // Menú «…»: las opciones que se activan llevan una marca a la derecha (sin el hueco de las casillas).
 

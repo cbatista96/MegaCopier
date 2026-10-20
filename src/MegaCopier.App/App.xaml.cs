@@ -22,6 +22,7 @@ public partial class App : Application
     private IpcServer? _server;
     private PasteInterceptor? _paste;
     private DragInterceptor? _drag;
+    private TrayMenuWindow? _trayMenu;
 
     /// <summary>Copias a las que ya se les pidió permiso de administrador (no se insiste si vuelve a fallar).</summary>
     private readonly HashSet<string> _adminRetried = [];
@@ -121,20 +122,24 @@ public partial class App : Application
         DispatcherShutdownMode = DispatcherShutdownMode.OnExplicitShutdown;
         Dispatcher = DispatcherQueue.GetForCurrentThread();
         var theme = ThemeManager.Find(Settings.ThemeId);
-        theme = Settings.Translucent ? Translucent(theme) : theme;
+        theme = WithBackdrop(theme, Settings.EffectiveBackdrop);
         ThemeManager.Apply(theme);
         IconPacks.Apply(Settings.IconPack);
         BarAppearance.Apply(Settings.TotalBar, Settings.FileBar, Settings.MiniBar, Settings.ReduceBarMotion);
         ApplyControlAccent(theme);
 
         var interrupted = Queue.LoadInterrupted();
+
+        // Cada copia nueva, en la ventana que le toca (antes de que las ventanas se enteren de que existe).
+        Queue.JobAdded += job => _owners.TryAdd(job, _nextOwner);
         _window = new MainWindow(this);
         _window.ApplyTheme(theme);
         ApplySettings();
-        Queue.ConflictResolver = (job, conflict, cancellation) => Window.AskConflict(job, conflict, cancellation);
-        Queue.ErrorResolver = (job, error, cancellation) => Window.AskError(job, error, cancellation);
-        Queue.FolderResolver = (job, folder, cancellation) => Window.AskFolder(job, folder, cancellation);
-        Queue.SpaceResolver = (job, shortage, cancellation) => Window.AskSpace(job, shortage, cancellation);
+        // Las preguntas de una copia salen en su ventana.
+        Queue.ConflictResolver = (job, conflict, cancellation) => WindowFor(job).AskConflict(job, conflict, cancellation);
+        Queue.ErrorResolver = (job, error, cancellation) => WindowFor(job).AskError(job, error, cancellation);
+        Queue.FolderResolver = (job, folder, cancellation) => WindowFor(job).AskFolder(job, folder, cancellation);
+        Queue.SpaceResolver = (job, shortage, cancellation) => WindowFor(job).AskSpace(job, shortage, cancellation);
 
         _tray = new TrayIcon(
             Path.Combine(AppContext.BaseDirectory, "Assets", "MegaCopier.ico"),
@@ -144,23 +149,33 @@ public partial class App : Application
         _tray.Activated += () => ShowWindow();
         _tray.DoubleClicked += () => SetEnabled(!Settings.Enabled, notify: true);
         _trayProgress = new TrayProgressIcons(_tray);
+        if (!Settings.TraySlotsPrepared && Settings.TrayProgressIcons && !TestMode)
+        {
+            _tray.PrepareExtraSlots(101, 110); // desde el próximo inicio de sesión, junto al reloj
+            Settings.TraySlotsPrepared = true;
+            Settings.Save();
+        }
+
         _tray.ExtraActivated += id =>
         {
             if (_trayProgress.JobFor(id) is { } job)
             {
-                Window.ShowJob(job);
+                WindowFor(job).ShowJob(job);
             }
         };
         _tray.ExtraMenu = id => _trayProgress.JobFor(id) is { } job
             ?
             [
-                new(L.Get("Tray_Open"), () => Window.ShowJob(job)),
+                new(L.Get("Tray_Open"), () => WindowFor(job).ShowJob(job), Glyph: "\uE8A7"),
                 TrayMenuItem.Separator,
-                new(L.Get("Tray_JobPause"), () => Queue.Pause(job), Enabled: job.State == CopyJobState.Running),
-                new(L.Get("Job_Resume"), () => Queue.Resume(job), Enabled: job.State == CopyJobState.Paused),
-                new(L.Get("Tray_JobStop"), () => Window.StopJob(job), Enabled: job.IsActive),
+                new(L.Get("Tray_JobPause"), () => Queue.Pause(job), Enabled: job.State == CopyJobState.Running, Glyph: "\uE769"),
+                new(L.Get("Job_Resume"), () => Queue.Resume(job), Enabled: job.State == CopyJobState.Paused, Glyph: "\uE768"),
+                new(L.Get("Tray_JobStop"), () => WindowFor(job).StopJob(job), Enabled: job.IsActive, Glyph: "\uE71A"),
             ]
             : [];
+
+        // El menú del clic derecho, con el aspecto de WinUI (no el clásico de Windows).
+        _tray.PresentMenu = (items, x, y) => Dispatcher.TryEnqueue(() => (_trayMenu ??= new TrayMenuWindow()).Show(items, x, y));
         Queue.JobFinished += job => Dispatcher.TryEnqueue(() => OnJobFinished(job));
         if (TestMode)
         {
@@ -192,6 +207,7 @@ public partial class App : Application
         _paste.PassedThrough += reason => Debug.WriteLine($"Ctrl+V devuelto al Explorador: {reason}");
         _drag = new DragInterceptor(OnExplorerDrag);
         _drag.PassedThrough += reason => LogDrag($"devuelto al Explorador: {reason}");
+        _drag.Traced += line => LogDrag(line);
         SetEnabled(Settings.Enabled, notify: false);
 
         if (Settings.AutoResumeInterrupted)
@@ -338,8 +354,7 @@ public partial class App : Application
         job.SaveRecord();
         if (Settings.ShowWindowOnNewCopy)
         {
-            Window.ShowJobs();
-            ShowWindow();
+            WindowFor(job).ShowJob(job);
         }
 
         return job;
@@ -400,15 +415,27 @@ public partial class App : Application
             bool canMerge = sameDrive is not null && operation == JobOperation.Copy && CanMerge(sameDrive, options);
             if (policy == SameDriveCopy.Merge && canMerge)
             {
-                _ = AddToJobAsync(sameDrive!, request.Sources);
+                _ = AddToJobAsync(sameDrive!, request.Sources, destination: destination); // a su carpeta, que puede ser otra del mismo disco
                 firstJob ??= sameDrive;
                 continue;
             }
 
-            // Si hay que preguntar, la copia nueva espera (programada) hasta la respuesta.
+            // Si hay que preguntar, la copia nueva espera (programada) hasta la respuesta. Con «Cada copia en su propia
+            // ventana», la que va aparte se abre en una ventana suya y empieza ya, a la vez que las demás.
             bool ask = policy == SameDriveCopy.Ask && canMerge;
-            bool startNow = now && (sameDrive is null ? Settings.OtherDriveCopies == OtherDriveCopy.Parallel : policy == SameDriveCopy.Parallel);
-            var job = Queue.Submit(request.Sources, destination, options, ask ? DateTime.UtcNow.AddYears(50) : request.StartAtUtc, request.Excluded, startNow: startNow && !ask);
+            bool ownWindow = Settings.IndependentWindows;
+            bool startNow = now && (ownWindow || (sameDrive is null ? Settings.OtherDriveCopies == OtherDriveCopy.Parallel : policy == SameDriveCopy.Parallel));
+            _nextOwner = ask ? WindowFor(sameDrive!) : ownWindow ? WindowForNewCopy() : null; // mientras pregunta, en la ventana de la otra copia
+            CopyJob job;
+            try
+            {
+                job = Queue.Submit(request.Sources, destination, options, ask ? DateTime.UtcNow.AddYears(50) : request.StartAtUtc, request.Excluded, startNow: startNow && !ask);
+            }
+            finally
+            {
+                _nextOwner = null;
+            }
+
             if (ask)
             {
                 _ = AskSameDriveAsync(job, sameDrive!, [.. request.Sources]);
@@ -513,6 +540,79 @@ public partial class App : Application
         }
     }
 
+    // ---------------------------------------------------------------------------------------------------------
+    // «Cada copia en su propia ventana»: varias ventanas de copia de la misma aplicación (un solo proceso, el mismo
+    // tema, la misma cola). Cada copia sabe en qué ventana está; sin esa opción, todas van a la principal.
+
+    /// <summary>Ventanas más de copia (la principal es <see cref="Window"/>).</summary>
+    private readonly List<MainWindow> _copyWindows = [];
+
+    /// <summary>En qué ventana está cada copia (las que no están, en la principal).</summary>
+    private readonly System.Collections.Concurrent.ConcurrentDictionary<CopyJob, MainWindow?> _owners = new();
+
+    /// <summary>La ventana para la copia que se está creando (mientras dura <see cref="CopyQueue.Submit"/>).</summary>
+    private MainWindow? _nextOwner;
+
+    /// <summary>La principal y las ventanas de copia abiertas.</summary>
+    internal IReadOnlyList<MainWindow> AllWindows => _window is null ? [.. _copyWindows] : [_window, .. _copyWindows];
+
+    /// <summary>La ventana que muestra una copia (la principal si no tiene otra o la suya se cerró).</summary>
+    internal MainWindow WindowFor(CopyJob job) =>
+        _owners.TryGetValue(job, out var owner) && owner is { IsClosed: false } ? owner : Window;
+
+    /// <summary>
+    /// Dónde va una copia nueva con «Cada copia en su propia ventana»: la principal si no tiene nada en marcha, otra
+    /// ventana de copia libre o, si no hay, una ventana nueva, escalonada respecto a las demás.
+    /// </summary>
+    private MainWindow WindowForNewCopy()
+    {
+        if (!Window.HasActiveJobs)
+        {
+            return Window;
+        }
+
+        if (_copyWindows.FirstOrDefault(w => !w.IsClosed && !w.HasActiveJobs) is { } free)
+        {
+            return free;
+        }
+
+        var window = new MainWindow(this, copyWindow: true);
+        window.ApplyTheme(ThemeManager.Current);
+        window.ApplyAlwaysOnTop(Settings.AlwaysOnTop);
+        window.PlaceAfter(_copyWindows.LastOrDefault(w => !w.IsClosed && w.AppWindow.IsVisible) ?? Window, 1);
+        _copyWindows.Add(window);
+        return window;
+    }
+
+    /// <summary>Una copia que esperaba respuesta en otra ventana pasa a una ventana propia.</summary>
+    private void MoveToOwnWindow(CopyJob job)
+    {
+        var from = WindowFor(job);
+        var to = WindowForNewCopy();
+        if (to == from)
+        {
+            return;
+        }
+
+        _owners[job] = to;
+        from.ReleaseJob(job);
+        to.TakeJob(job);
+        to.ShowJob(job);
+    }
+
+    /// <summary>Una ventana de copia se cerró: sus copias (ya terminadas) vuelven a la principal.</summary>
+    internal void ForgetWindow(MainWindow window)
+    {
+        _copyWindows.Remove(window);
+        foreach (var (job, owner) in _owners)
+        {
+            if (owner == window)
+            {
+                _owners[job] = null;
+            }
+        }
+    }
+
     /// <summary>
     /// La copia en marcha (o esperando turno) que va al mismo disco de destino que una nueva, o null. Las programadas
     /// para más tarde no cuentan.
@@ -577,7 +677,7 @@ public partial class App : Application
     /// </summary>
     private async Task AskSameDriveAsync(CopyJob added, CopyJob target, List<string> sources)
     {
-        var answer = await Window.AskSameDriveAsync(target, added.Record.Destination, sources);
+        var answer = await WindowFor(target).AskSameDriveAsync(target, added.Record.Destination, sources, Settings.IndependentWindows);
         if (answer == SameDriveAnswer.Add && target.IsActive && Queue.Withdraw(added))
         {
             await AddToJobAsync(target, sources, destination: added.Record.Destination); // si no cabe, pregunta
@@ -590,6 +690,12 @@ public partial class App : Application
         }
 
         Queue.Unschedule(added); // aparte: espera su turno como las demás
+        if (Settings.IndependentWindows)
+        {
+            // En su propia ventana, y empieza ya: no espera a que termine la otra.
+            MoveToOwnWindow(added);
+            Queue.Resume(added);
+        }
     }
 
     /// <summary>Preferencias que no son de cada copia: cola, prioridad del proceso y ventana siempre visible.</summary>
@@ -617,37 +723,59 @@ public partial class App : Application
         {
         }
 
-        _window?.ApplyAlwaysOnTop(Settings.AlwaysOnTop);
-        _window?.RefreshUiScale();
+        foreach (var window in AllWindows)
+        {
+            window.ApplyAlwaysOnTop(Settings.AlwaysOnTop);
+            window.RefreshUiScale();
+        }
     }
 
     /// <summary>Aplica el tema elegido en las preferencias.</summary>
     internal void ApplyTheme() => ApplyTheme(ThemeManager.Find(Settings.ThemeId));
 
     /// <summary>Aplica un tema (también la vista previa del editor, sin guardarlo).</summary>
-    /// <summary>«Ventana translúcida»: el mismo tema, con fondo acrílico y más transparente (se ve el escritorio).</summary>
-    private static ThemeDefinition Translucent(ThemeDefinition theme)
+    /// <summary>
+    /// El tema con el fondo de ventana elegido en Ajustes: Mica, Mica Alt o acrílico (normal, delgado o «translúcida»,
+    /// la más transparente). El color de fondo del tema se aclara para que el material se vea, sea cual sea el tema.
+    /// </summary>
+    private static ThemeDefinition WithBackdrop(ThemeDefinition theme, WindowBackdrop choice)
     {
+        if (choice == WindowBackdrop.Theme)
+        {
+            return theme;
+        }
+
         static string Fade(string color, double keep)
         {
             var c = ThemeManager.Parse(color);
             return ThemeManager.ToHex(Windows.UI.Color.FromArgb((byte)(c.A * keep), c.R, c.G, c.B));
         }
 
+        (AppBackdrop backdrop, double keep) = choice switch
+        {
+            WindowBackdrop.Mica => (AppBackdrop.Mica, 0.3),
+            WindowBackdrop.MicaAlt => (AppBackdrop.MicaAlt, 0.3),
+            WindowBackdrop.AcrylicBase => (AppBackdrop.Acrylic, 0.55),
+            WindowBackdrop.AcrylicThin => (AppBackdrop.AcrylicThin, 0.45),
+            _ => (AppBackdrop.Acrylic, 0.45), // translúcida
+        };
         var clone = theme.Clone();
-        clone.Backdrop = AppBackdrop.Acrylic;
-        clone.Background = Fade(theme.Background, 0.45);
-        clone.BackgroundEnd = theme.BackgroundEnd.Length > 0 ? Fade(theme.BackgroundEnd, 0.45) : "";
+        clone.Backdrop = backdrop;
+        clone.Background = Fade(theme.Background, keep);
+        clone.BackgroundEnd = theme.BackgroundEnd.Length > 0 ? Fade(theme.BackgroundEnd, keep) : "";
         clone.TextureOpacity = theme.TextureOpacity * 0.5;
         return clone;
     }
 
     internal void ApplyTheme(ThemeDefinition theme)
     {
-        theme = Settings.Translucent ? Translucent(theme) : theme;
+        theme = WithBackdrop(theme, Settings.EffectiveBackdrop);
         ThemeManager.Apply(theme);
         bool accentChanged = ApplyControlAccent(theme);
-        _window?.ApplyTheme(theme, accentChanged);
+        foreach (var window in AllWindows)
+        {
+            window.ApplyTheme(theme, accentChanged); // el mismo tema en todas las ventanas
+        }
         _shelf?.ApplyTheme();
     }
 
@@ -836,14 +964,15 @@ public partial class App : Application
                 var job = Submit(request);
                 if (Settings.ShowWindowOnNewCopy)
                 {
-                    Window.ShowJobs();
+                    var shown = WindowFor(job); // la ventana de esa copia (con varias ventanas, la suya)
+                    shown.ShowJobs();
                     if (Settings.StartMinimized)
                     {
-                        Window.ShowMinimized();
+                        shown.ShowMinimized();
                     }
                     else
                     {
-                        ShowWindow();
+                        shown.ShowAndActivate();
                     }
                 }
 
@@ -949,6 +1078,33 @@ public partial class App : Application
                     ? new IpcResponse { Ok = false, Error = syncProblem }
                     : new IpcResponse { Ok = true };
 
+            case "debug-icons" when TestMode && request.Destination is { } sheetPath:
+                // Solo pruebas: los iconos de todos los conjuntos (menús y bandeja) en un PNG. Sources[0]: tamaño.
+                _ = IconSheet.WriteAsync(sheetPath, request.Sources.Count > 0 ? int.Parse(request.Sources[0], System.Globalization.CultureInfo.InvariantCulture) : 32);
+                return new IpcResponse { Ok = true };
+
+            case "debug-traymenu" when TestMode:
+            {
+                // Solo pruebas: el menú de la bandeja (o el de una copia: Destination = "job"), abajo a la derecha.
+                var area = Microsoft.UI.Windowing.DisplayArea.Primary.WorkArea;
+                var items = request.Destination == "job" && Queue.Jobs.FirstOrDefault(j => j.IsActive) is { } menuJob && _tray?.ExtraMenu is { } extra
+                    ? extra(_trayProgress!.IdFor(menuJob) ?? 0)
+                    : BuildTrayMenu();
+                (_trayMenu ??= new TrayMenuWindow()).Show(items, area.X + area.Width - 40, area.Y + area.Height - 8);
+                return new IpcResponse { Ok = true };
+            }
+
+            case "debug-about" when TestMode:
+                Views.AboutWindow.Show(Window);
+                return new IpcResponse { Ok = true };
+
+            case "debug-windows" when TestMode:
+                return new IpcResponse
+                {
+                    Ok = true,
+                    Status = string.Join(" | ", AllWindows.Select(w => $"{(w.IsCopyWindow ? "copia" : "principal")}:{w.Jobs.Count}:{(w.AppWindow.IsVisible ? "visible" : "oculta")}:{w.AppWindow.Position.X},{w.AppWindow.Position.Y}")),
+                };
+
             case "debug-finish" when TestMode:
                 // Solo pruebas: elegir "Al terminar" (Destination = Sleep, Shutdown...) sin abrir el menú.
                 FinishAction = Enum.Parse<FinishAction>(request.Destination ?? "None");
@@ -997,16 +1153,16 @@ public partial class App : Application
         bool anyPaused = Queue.Jobs.Any(j => j.State == CopyJobState.Paused);
         return
         [
-            new(L.Get("Tray_Open"), ShowWindow),
-            new(L.Get("Tray_Shelf"), () => ShowShelf()),
-            new(L.Get(Settings.Enabled ? "Tray_Disable" : "Tray_Enable"), () => SetEnabled(!Settings.Enabled, notify: true)),
+            new(L.Get("Tray_Open"), ShowWindow, Glyph: "\uE8A7"),
+            new(L.Get("Tray_Shelf"), () => ShowShelf(), Glyph: "\uE7B8"),
+            new(L.Get(Settings.Enabled ? "Tray_Disable" : "Tray_Enable"), () => SetEnabled(!Settings.Enabled, notify: true), Glyph: "\uE7E8"),
             TrayMenuItem.Separator,
-            new(L.Get("Tray_PauseAll"), Queue.PauseAll, Enabled: anyRunning),
-            new(L.Get("Tray_ResumeAll"), Queue.ResumeAll, Enabled: anyPaused),
+            new(L.Get("Tray_PauseAll"), Queue.PauseAll, Enabled: anyRunning, Glyph: "\uE769"),
+            new(L.Get("Tray_ResumeAll"), Queue.ResumeAll, Enabled: anyPaused, Glyph: "\uE768"),
             TrayMenuItem.Separator,
-            new(L.Get("Tray_Startup"), () => StartupRegistration.Set(!StartupRegistration.IsEnabled), Checked: StartupRegistration.IsEnabled),
+            new(L.Get("Tray_Startup"), () => StartupRegistration.Set(!StartupRegistration.IsEnabled), Checked: StartupRegistration.IsEnabled, Checkable: true),
             TrayMenuItem.Separator,
-            new(L.Get("Tray_Exit"), ExitApp),
+            new(L.Get("Tray_Exit"), ExitApp, Glyph: "\uE711"),
         ];
     }
 
@@ -1041,7 +1197,7 @@ public partial class App : Application
     /// <summary>Texto del icono de progreso de una copia en la bandeja: qué hace, con qué y cómo va.</summary>
     private string TrayText(CopyJob job)
     {
-        var model = Window.Jobs.FirstOrDefault(j => j.Job == job);
+        var model = WindowFor(job).Jobs.FirstOrDefault(j => j.Job == job);
         string what = job.Record.Sources.Count == 1 ? Path.GetFileName(job.Record.Sources[0].TrimEnd('\\')) : L.F("Job_ManyItems", job.Record.Sources.Count);
         string speed = job.State == CopyJobState.Running && job.Progress is { BytesPerSecond: > 0 } progress ? $" · {Format.Speed(progress.BytesPerSecond)}" : "";
         return $"{model?.StateText ?? "MegaCopier"}\n{what}{speed}";
@@ -1106,11 +1262,12 @@ public partial class App : Application
 
         // «Detener»: la copia se cancela y ya no está en la lista. Si no queda ninguna en marcha, la ventana se cierra
         // sola, como al terminar bien.
+        var owner = WindowFor(job); // su ventana: con varias, cada una se cierra cuando acaban las suyas
         if (stoppedByUser || job.Cancelled)
         {
-            if (!Queue.HasActiveJobs)
+            if (!owner.HasActiveJobs)
             {
-                Window.OnAllFinished();
+                owner.OnAllFinished();
             }
 
             return;
@@ -1139,15 +1296,15 @@ public partial class App : Application
         // Archivos que Windows no deja leer sin permiso de administrador: se piden los permisos (una vez por copia) y
         // se copian, como hace el Explorador. La ventana no se cierra: la copia vuelve a ponerse en marcha.
         if (job.State == CopyJobState.CompletedWithErrors && Settings.AutoAdminCopy && _adminRetried.Add(job.Id)
-            && Window.Jobs.FirstOrDefault(j => j.Job == job) is { CanCopyAdmin: true })
+            && owner.Jobs.FirstOrDefault(j => j.Job == job) is { CanCopyAdmin: true })
         {
             _ = CopyWithAdminAsync(job);
             return;
         }
 
-        if (!Queue.HasActiveJobs && finished)
+        if (!owner.HasActiveJobs && finished)
         {
-            Window.OnAllFinished();
+            owner.OnAllFinished();
         }
 
         // "Al terminar": cuando ya no queda nada en marcha y la última copia acabó (no si el usuario la detuvo).
@@ -1155,11 +1312,15 @@ public partial class App : Application
         {
             var action = FinishAction;
             FinishAction = FinishAction.None;
-            Window.UpdateFinishButton();
+            foreach (var window in AllWindows)
+            {
+                window.UpdateFinishButton();
+            }
+
             _ = RunFinishActionAsync(action);
         }
 
-        if (!Settings.NotifyOnFinish || Window.IsVisibleToUser || job.State == CopyJobState.Interrupted)
+        if (!Settings.NotifyOnFinish || owner.IsVisibleToUser || job.State == CopyJobState.Interrupted)
         {
             return;
         }
@@ -1206,7 +1367,7 @@ public partial class App : Application
     /// <summary>Informe HTML automático y comandos "al terminar" de un trabajo.</summary>
     private void AfterJob(CopyJob job)
     {
-        if (job.Record.ExportReport && Window.Jobs.FirstOrDefault(j => j.Job == job) is { } model)
+        if (job.Record.ExportReport && WindowFor(job).Jobs.FirstOrDefault(j => j.Job == job) is { } model)
         {
             try
             {

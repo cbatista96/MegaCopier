@@ -155,18 +155,18 @@
   <data name="About_DataFolder.Content" xml:space="preserve"><value>Відкрити папку даних (параметри, теми, журнал, звіти)</value></data>
   <data name="About_Description.Text" xml:space="preserve"><value>Найкращий копіювальник для Windows 11: швидший і надійніший за вбудований у Windows, з усіма потрібними параметрами й налаштовується як завгодно (теми, значки, смуги та звуки). Продовжує з того самого місця навіть після вимкнення живлення й перевіряє, що все дійшло без помилок.</value></data>
   <data name="About_Features.Text" xml:space="preserve"><value>Асинхронне введення-виведення без кешу · паралельне читання й запис · перевірка гешем (CRC32, xxHash, MD5, SHA) · черга за дисками · пауза й продовження · переміщення · конфлікти · обмеження швидкості · списки копіювання · звіти · теми.</value></data>
-  <data name="Files_AutoScroll.Content" xml:space="preserve"><value>Стежити за поточним</value></data>
+  <data name="Files_AutoScroll.Text" xml:space="preserve"><value>Стежити за поточним</value></data>
   <data name="Files_CopyHashes.Text" xml:space="preserve"><value>Копіювати геші</value></data>
   <data name="Files_CopyPath.Text" xml:space="preserve"><value>Копіювати шлях</value></data>
   <data name="Files_Empty.Text" xml:space="preserve"><value>Немає файлів для показу</value></data>
   <data name="Files_ExportCsv.Text" xml:space="preserve"><value>Експорт у CSV…</value></data>
   <data name="Files_ExportHtml.Text" xml:space="preserve"><value>Експорт HTML-звіту…</value></data>
-  <data name="Files_FilterAll.Content" xml:space="preserve"><value>Усі</value></data>
-  <data name="Files_FilterDone.Content" xml:space="preserve"><value>Скопійовані</value></data>
-  <data name="Files_FilterErrors.Content" xml:space="preserve"><value>З помилками</value></data>
-  <data name="Files_FilterPending.Content" xml:space="preserve"><value>Очікують</value></data>
-  <data name="Files_FilterSkipped.Content" xml:space="preserve"><value>Пропущені</value></data>
-  <data name="Files_HideFinished.Content" xml:space="preserve"><value>Приховувати завершені</value></data>
+  <data name="Files_FilterAll.Text" xml:space="preserve"><value>Усі</value></data>
+  <data name="Files_FilterDone.Text" xml:space="preserve"><value>Скопійовані</value></data>
+  <data name="Files_FilterErrors.Text" xml:space="preserve"><value>З помилками</value></data>
+  <data name="Files_FilterPending.Text" xml:space="preserve"><value>Очікують</value></data>
+  <data name="Files_FilterSkipped.Text" xml:space="preserve"><value>Пропущені</value></data>
+  <data name="Files_HideFinished.Text" xml:space="preserve"><value>Приховувати завершені</value></data>
   <data name="Files_Menu.Text" xml:space="preserve"><value>Список</value></data>
   <data name="Files_MoveBottom.Text" xml:space="preserve"><value>У кінець</value></data>
   <data name="Files_MoveDown.Text" xml:space="preserve"><value>Нижче</value></data>
@@ -1091,8 +1091,6 @@
   <data name="Settings_RememberDescription.Text" xml:space="preserve"><value>Відкривати на тому ж місці й того ж розміру.</value></data>
   <data name="Settings_RememberPosition.Content" xml:space="preserve"><value>Положення</value></data>
   <data name="Settings_RememberSize.Content" xml:space="preserve"><value>Розмір</value></data>
-  <data name="Settings_TranslucentTitle.Text" xml:space="preserve"><value>Напівпрозоре вікно</value></data>
-  <data name="Settings_TranslucentDescription.Text" xml:space="preserve"><value>Акриловий, прозоріший фон: робочий стіл просвічує крізь вікно з будь-якою темою.</value></data>
   <data name="Settings_Icons.Text" xml:space="preserve"><value>Значки</value></data>
   <data name="Settings_IconsDescription.Text" xml:space="preserve"><value>Виберіть вигляд значків. Вони поєднуються з будь-якою темою.</value></data>
   <data name="IconPack_fluent" xml:space="preserve"><value>Fluent (як у Windows)</value></data>
@@ -1145,7 +1143,7 @@
   <data name="FolderAsk_Skip" xml:space="preserve"><value>Пропустити наявні</value></data>
   <data name="FolderAsk_SkipText" xml:space="preserve"><value>Кожен файл перевіряється: наявні не копіюються й не змінюються, копіюються лише відсутні. Ідеально, щоб завершити перерване копіювання.</value></data>
   <data name="FolderAsk_Overwrite" xml:space="preserve"><value>Перезаписати</value></data>
-  <data name="FolderAsk_OverwriteText" xml:space="preserve"><value>Наявні файли замінюються файлами з джерела. Однакові лишаються як є, щоб було швидше.</value></data>
+  <data name="FolderAsk_OverwriteText" xml:space="preserve"><value>Наявні файли замінюються файлами з джерела, навіть ті, що здаються однаковими: усе копіюється знову.</value></data>
   <data name="FolderAsk_Rename" xml:space="preserve"><value>Перейменувати</value></data>
   <data name="FolderAsk_RenameText" xml:space="preserve"><value>Усе копіюється в нову теку «{0}», а наявна не змінюється.</value></data>
   <data name="FolderAsk_AskEach" xml:space="preserve"><value>Питати по одному</value></data>
@@ -1496,4 +1494,18 @@
   <data name="Settings_AdaptTitle.Text" xml:space="preserve"><value>Підлаштовуватися під малі екрани</value></data>
   <data name="Settings_AdaptDescription.Text" xml:space="preserve"><value>На невисоких екранах, наприклад 1366 × 768, вікно виглядає так само, але трохи менше, щоб уміститися повністю. На великих екранах нічого не змінюється.</value></data>
   <data name="Job_StateAsking" xml:space="preserve"><value>Чекає на вашу відповідь</value></data>
+  <data name="Conflict_Identical.Text" xml:space="preserve"><value>Вони однакові: той самий розмір і та сама дата.</value></data>
+  <data name="Settings_BackdropTitle.Text" xml:space="preserve"><value>Тло вікна</value></data>
+  <data name="Settings_BackdropDescription.Text" xml:space="preserve"><value>Матеріал Windows 11 за вікном, з будь-якою темою.</value></data>
+  <data name="Backdrop_OptTheme.Content" xml:space="preserve"><value>Як у темі</value></data>
+  <data name="Backdrop_OptTranslucent.Content" xml:space="preserve"><value>Напівпрозорий (видно робочий стіл)</value></data>
+  <data name="Backdrop_OptAcrylic.Content" xml:space="preserve"><value>Акрил робочого столу (базовий)</value></data>
+  <data name="Backdrop_OptAcrylicThin.Content" xml:space="preserve"><value>Акрил робочого столу (тонкий)</value></data>
+  <data name="BackdropAcrylicThin.Content" xml:space="preserve"><value>Тонкий акрил</value></data>
+  <data name="Info_Backdrop_Text" xml:space="preserve"><value>Це те, що видно за вмістом вікна.\n• Як у темі: кожна тема має свій фон (суцільний, Mica або акрил).\n• Напівпрозорий: дуже прозорий акрил; крізь вікно видно робочий стіл.\n• Mica: м&apos;яко переймає відтінок ваших шпалер. Такий фон у застосунків Windows 11.\n• Mica Alt: як Mica, але з більшою кількістю кольору шпалер.\n• Акрил робочого столу (базовий): як матове скло; усе за вікном виглядає розмитим.\n• Акрил робочого столу (тонкий): світліший і прозоріший за базовий.\nДля Mica й акрилу потрібна Windows 11 з увімкненими ефектами прозорості; інакше буде суцільний колір.</value></data>
+  <data name="SameDrive_NewWindow" xml:space="preserve"><value>У новому вікні</value></data>
+  <data name="SameDrive_NewWindowText" xml:space="preserve"><value>Відкриється ще одне вікно MegaCopier із цим копіюванням, і воно одразу почнеться разом з іншим (обидва йтимуть трохи повільніше).</value></data>
+  <data name="Settings_IndependentWindowsTitle.Text" xml:space="preserve"><value>Кожне копіювання у власному вікні</value></data>
+  <data name="Settings_IndependentWindowsDescription.Text" xml:space="preserve"><value>Одне вікно на кожне копіювання; воно починається одразу, не чекаючи інших. Без списку копіювань, якщо тільки ви не додасте кілька в одне вікно.</value></data>
+  <data name="Info_IndependentWindows_Text" xml:space="preserve"><value>Зазвичай MegaCopier має одне вікно, а кілька копіювань показує у своєму списку. З цим параметром кожне копіювання відкриває власне вікно й починається одразу, не чекаючи інших.\n• Це той самий застосунок: тема, значки й налаштування скрізь однакові (якщо змінити їх в одному вікні, вони зміняться в усіх).\n• Кожне вікно має свій значок перебігу в області сповіщень і свою кнопку на панелі завдань.\n• Якщо нове копіювання йде на той самий диск, що й поточне, вирішує параметр «Нове копіювання на той самий диск»: запитати (додати до копіювання цього вікна або відкрити в новому вікні), завжди додавати або завжди відкривати нове вікно без запитань.\n• Якщо додати копіювання до одного вікна, воно показує власний список копіювань.\n• Коли його копіювання закінчуються, кожне вікно закривається як зазвичай.\nПриклад: ви копіюєте фото на флешку, а тим часом відео на інший диск — побачите два вікна, кожне зі своїм перебігом.</value></data>
 </root>

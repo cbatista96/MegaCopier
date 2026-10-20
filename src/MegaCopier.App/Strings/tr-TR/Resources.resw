@@ -155,18 +155,18 @@
   <data name="About_DataFolder.Content" xml:space="preserve"><value>Veri klasörünü aç (ayarlar, temalar, geçmiş, raporlar)</value></data>
   <data name="About_Description.Text" xml:space="preserve"><value>Windows 11 için en iyi kopyalayıcı: Windows&apos;unkinden daha hızlı ve daha güvenli, ihtiyacınız olan tüm seçeneklerle ve istediğiniz kadar kişiselleştirilebilir (temalar, simgeler, çubuklar ve sesler). Elektrik kesintisinden sonra bile kaldığı yerden devam eder ve her şeyin sağlam ulaştığını denetler.</value></data>
   <data name="About_Features.Text" xml:space="preserve"><value>Önbelleksiz eşzamansız G/Ç · paralel okuma ve yazma · karma ile doğrulama (CRC32, xxHash, MD5, SHA) · disk başına sıra · duraklatma ve sürdürme · taşıma · çakışmalar · hız sınırı · kopyalama listeleri · raporlar · temalar.</value></data>
-  <data name="Files_AutoScroll.Content" xml:space="preserve"><value>Geçerli dosyayı izle</value></data>
+  <data name="Files_AutoScroll.Text" xml:space="preserve"><value>Geçerli dosyayı izle</value></data>
   <data name="Files_CopyHashes.Text" xml:space="preserve"><value>Karmaları kopyala</value></data>
   <data name="Files_CopyPath.Text" xml:space="preserve"><value>Yolu kopyala</value></data>
   <data name="Files_Empty.Text" xml:space="preserve"><value>Gösterilecek dosya yok</value></data>
   <data name="Files_ExportCsv.Text" xml:space="preserve"><value>CSV olarak dışa aktar…</value></data>
   <data name="Files_ExportHtml.Text" xml:space="preserve"><value>HTML raporu dışa aktar…</value></data>
-  <data name="Files_FilterAll.Content" xml:space="preserve"><value>Tümü</value></data>
-  <data name="Files_FilterDone.Content" xml:space="preserve"><value>Kopyalanan</value></data>
-  <data name="Files_FilterErrors.Content" xml:space="preserve"><value>Hatalı</value></data>
-  <data name="Files_FilterPending.Content" xml:space="preserve"><value>Bekleyen</value></data>
-  <data name="Files_FilterSkipped.Content" xml:space="preserve"><value>Atlanan</value></data>
-  <data name="Files_HideFinished.Content" xml:space="preserve"><value>Bitenleri gizle</value></data>
+  <data name="Files_FilterAll.Text" xml:space="preserve"><value>Tümü</value></data>
+  <data name="Files_FilterDone.Text" xml:space="preserve"><value>Kopyalanan</value></data>
+  <data name="Files_FilterErrors.Text" xml:space="preserve"><value>Hatalı</value></data>
+  <data name="Files_FilterPending.Text" xml:space="preserve"><value>Bekleyen</value></data>
+  <data name="Files_FilterSkipped.Text" xml:space="preserve"><value>Atlanan</value></data>
+  <data name="Files_HideFinished.Text" xml:space="preserve"><value>Bitenleri gizle</value></data>
   <data name="Files_Menu.Text" xml:space="preserve"><value>Liste</value></data>
   <data name="Files_MoveBottom.Text" xml:space="preserve"><value>Sona taşı</value></data>
   <data name="Files_MoveDown.Text" xml:space="preserve"><value>Aşağı</value></data>
@@ -1091,8 +1091,6 @@
   <data name="Settings_RememberDescription.Text" xml:space="preserve"><value>Bulunduğu yerde ve aynı boyutta aç.</value></data>
   <data name="Settings_RememberPosition.Content" xml:space="preserve"><value>Konum</value></data>
   <data name="Settings_RememberSize.Content" xml:space="preserve"><value>Boyut</value></data>
-  <data name="Settings_TranslucentTitle.Text" xml:space="preserve"><value>Yarı saydam pencere</value></data>
-  <data name="Settings_TranslucentDescription.Text" xml:space="preserve"><value>Akrilik ve daha saydam arka plan: her temada masaüstü pencereden görünür.</value></data>
   <data name="Settings_Icons.Text" xml:space="preserve"><value>Simgeler</value></data>
   <data name="Settings_IconsDescription.Text" xml:space="preserve"><value>Simgelerin görünümünü seç. Her temayla birlikte kullanılabilir.</value></data>
   <data name="IconPack_fluent" xml:space="preserve"><value>Fluent (Windows gibi)</value></data>
@@ -1145,7 +1143,7 @@
   <data name="FolderAsk_Skip" xml:space="preserve"><value>Var olanları atla</value></data>
   <data name="FolderAsk_SkipText" xml:space="preserve"><value>Her dosya kontrol edilir: var olanlar kopyalanmaz ve değiştirilmez, yalnızca eksikler kopyalanır. Yarıda kalan bir kopyayı bitirmek için ideal.</value></data>
   <data name="FolderAsk_Overwrite" xml:space="preserve"><value>Üzerine yaz</value></data>
-  <data name="FolderAsk_OverwriteText" xml:space="preserve"><value>Var olan dosyalar kaynaktakilerle değiştirilir. Aynı olanlar zaman kazanmak için olduğu gibi bırakılır.</value></data>
+  <data name="FolderAsk_OverwriteText" xml:space="preserve"><value>Orada olan dosyalar, aynı görünenler de dahil, kaynaktakilerle değiştirilir: her şey yeniden kopyalanır.</value></data>
   <data name="FolderAsk_Rename" xml:space="preserve"><value>Yeniden adlandır</value></data>
   <data name="FolderAsk_RenameText" xml:space="preserve"><value>Her şey yeni bir klasöre, &quot;{0}&quot;, kopyalanır ve var olana dokunulmaz.</value></data>
   <data name="FolderAsk_AskEach" xml:space="preserve"><value>Tek tek sor</value></data>
@@ -1496,4 +1494,18 @@
   <data name="Settings_AdaptTitle.Text" xml:space="preserve"><value>Küçük ekranlara uydur</value></data>
   <data name="Settings_AdaptDescription.Text" xml:space="preserve"><value>1366 × 768 gibi alçak ekranlarda pencere aynı görünür ama tamamen sığması için biraz daha küçüktür. Büyük ekranlarda hiçbir şey değişmez.</value></data>
   <data name="Job_StateAsking" xml:space="preserve"><value>Yanıtınızı bekliyor</value></data>
+  <data name="Conflict_Identical.Text" xml:space="preserve"><value>Aynılar: aynı boyut ve aynı tarih.</value></data>
+  <data name="Settings_BackdropTitle.Text" xml:space="preserve"><value>Pencere arka planı</value></data>
+  <data name="Settings_BackdropDescription.Text" xml:space="preserve"><value>Pencerenin arkasında görünen Windows 11 malzemesi, her temayla.</value></data>
+  <data name="Backdrop_OptTheme.Content" xml:space="preserve"><value>Temanınki</value></data>
+  <data name="Backdrop_OptTranslucent.Content" xml:space="preserve"><value>Yarı saydam (masaüstü görünür)</value></data>
+  <data name="Backdrop_OptAcrylic.Content" xml:space="preserve"><value>Masaüstü akrilik (temel)</value></data>
+  <data name="Backdrop_OptAcrylicThin.Content" xml:space="preserve"><value>Masaüstü akrilik (ince)</value></data>
+  <data name="BackdropAcrylicThin.Content" xml:space="preserve"><value>İnce akrilik</value></data>
+  <data name="Info_Backdrop_Text" xml:space="preserve"><value>Pencerenin içeriğinin arkasında görünen şeydir.\n• Temanınki: her temanın kendine ait bir arka planı vardır (düz, Mica veya akrilik).\n• Yarı saydam: çok saydam akrilik; masaüstü pencerenin arkasından görünür.\n• Mica: masaüstü arka planınızın tonunu hafifçe alır. Windows 11 uygulamalarının kullandığıdır.\n• Mica Alt: Mica gibi, ama arka plandan daha fazla renk alır.\n• Masaüstü akrilik (temel): buzlu cam gibi; pencerenin arkasındakiler bulanık görünür.\n• Masaüstü akrilik (ince): temelden daha açık ve saydam.\nMica ve akrilik için saydamlık efektleri açık Windows 11 gerekir; aksi halde düz bir renk görünür.</value></data>
+  <data name="SameDrive_NewWindow" xml:space="preserve"><value>Yeni bir pencerede</value></data>
+  <data name="SameDrive_NewWindowText" xml:space="preserve"><value>Bu kopyayla başka bir MegaCopier penceresi açılır ve diğeriyle aynı anda hemen başlar (ikisi de biraz yavaşlar).</value></data>
+  <data name="Settings_IndependentWindowsTitle.Text" xml:space="preserve"><value>Her kopya kendi penceresinde</value></data>
+  <data name="Settings_IndependentWindowsDescription.Text" xml:space="preserve"><value>Her kopya için bir pencere; diğerlerini beklemeden hemen başlar. Aynı pencereye birkaç kopya eklemedikçe kopya listesi yoktur.</value></data>
+  <data name="Info_IndependentWindows_Text" xml:space="preserve"><value>Normalde MegaCopier&apos;ın tek bir penceresi vardır ve birden çok kopyayı kopya listesinde gösterir. Bu seçenekle her kopya kendi penceresini açar ve diğerlerini beklemeden hemen başlar.\n• Hepsi aynı uygulamadır: tema, simgeler ve ayarlar hepsinde aynıdır (birinde değiştirirseniz hepsinde değişir).\n• Her pencerenin bildirim alanında kendi ilerleme simgesi ve görev çubuğunda kendi düğmesi vardır.\n• Yeni kopya çalışan bir kopyayla aynı diske gidiyorsa «Aynı diske yeni kopya» karar verir: sor (o penceredeki kopyaya ekle ya da yeni bir pencerede aç), her zaman ekle veya sormadan her zaman yeni pencere aç.\n• Bir pencereye kopya eklerseniz o pencere kendi kopya listesini gösterir.\n• Kopyaları bitince her pencere her zamanki gibi kapanır.\nÖrnek: bir USB belleğe fotoğraf, bu arada başka bir diske video kopyalıyorsunuz: her biri kendi ilerlemesiyle iki pencere görürsünüz.</value></data>
 </root>

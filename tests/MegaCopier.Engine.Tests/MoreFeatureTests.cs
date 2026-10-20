@@ -337,6 +337,53 @@ public sealed class MoreFeatureTests : IDisposable
         Assert.Equal("b", File.ReadAllText(_temp.Combine("dst/src/b.txt")));
     }
 
+    /// <summary>
+    /// «src» ya está en el destino con a.txt «igual» según MegaCopier (mismo tamaño y fecha) pero con otro contenido:
+    /// así se ve si se volvió a copiar o se omitió.
+    /// </summary>
+    private CopyEngine IdenticalFolderAlreadyThere(FolderDecision decision, List<ConflictInfo> asked)
+    {
+        Write("src/a.txt", "nuevo");
+        Write("dst/src/a.txt", "viejo");
+        File.SetLastWriteTimeUtc(_temp.Combine("dst/src/a.txt"), File.GetLastWriteTimeUtc(_temp.Combine("src/a.txt")));
+        var options = Options();
+        options.FolderConflict = FolderConflictPolicy.Ask;
+        options.Conflict = ConflictPolicy.Ask;
+        var engine = new CopyEngine(options) { FolderResolver = (_, _) => decision };
+        engine.ConflictResolver = (info, _) =>
+        {
+            asked.Add(info);
+            return new ConflictAnswer(ConflictDecision.Replace, ApplyToAll: false);
+        };
+        return engine;
+    }
+
+    [Fact]
+    public void ExistingFolderOverwriteAlsoRecopiesFilesThatLookTheSame()
+    {
+        // «Sobrescribir» elegido por el usuario: se vuelve a copiar aunque parezca idéntico.
+        var asked = new List<ConflictInfo>();
+        var engine = IdenticalFolderAlreadyThere(FolderDecision.Overwrite, asked);
+
+        Assert.True(engine.Run(new CopyJobRequest([_temp.Combine("src")], _temp.Combine("dst"))).Success);
+
+        Assert.Equal("nuevo", File.ReadAllText(_temp.Combine("dst/src/a.txt")));
+        Assert.Empty(asked);
+    }
+
+    [Fact]
+    public void ExistingFolderOneByOneAsksAlsoForFilesThatLookTheSame()
+    {
+        // «Uno a uno»: se pregunta por cada archivo que ya está, también por los idénticos.
+        var asked = new List<ConflictInfo>();
+        var engine = IdenticalFolderAlreadyThere(FolderDecision.AskEach, asked);
+
+        Assert.True(engine.Run(new CopyJobRequest([_temp.Combine("src")], _temp.Combine("dst"))).Success);
+
+        Assert.Equal(_temp.Combine("dst", "src", "a.txt"), Assert.Single(asked).Destination);
+        Assert.Equal("nuevo", File.ReadAllText(_temp.Combine("dst/src/a.txt")));
+    }
+
     [Fact]
     public void ExistingFolderRenameCopiesIntoANewFolderAndRemembersIt()
     {

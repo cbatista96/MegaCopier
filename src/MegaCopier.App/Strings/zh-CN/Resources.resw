@@ -155,18 +155,18 @@
   <data name="About_DataFolder.Content" xml:space="preserve"><value>打开数据文件夹（设置、主题、历史记录、报告）</value></data>
   <data name="About_Description.Text" xml:space="preserve"><value>Windows 11 的终极复制工具：比 Windows 自带的更快、更安全，拥有你需要的所有选项，并可随心定制（主题、图标、进度条和声音）。即使断电也能从中断处继续，并检查所有内容是否完好到达。</value></data>
   <data name="About_Features.Text" xml:space="preserve"><value>无缓存异步 I/O · 并行读写 · 哈希校验 (CRC32、xxHash、MD5、SHA) · 按磁盘排队 · 暂停与继续 · 移动 · 冲突处理 · 速度限制 · 复制列表 · 报告 · 主题。</value></data>
-  <data name="Files_AutoScroll.Content" xml:space="preserve"><value>跟随当前文件</value></data>
+  <data name="Files_AutoScroll.Text" xml:space="preserve"><value>跟随当前文件</value></data>
   <data name="Files_CopyHashes.Text" xml:space="preserve"><value>复制哈希值</value></data>
   <data name="Files_CopyPath.Text" xml:space="preserve"><value>复制路径</value></data>
   <data name="Files_Empty.Text" xml:space="preserve"><value>没有可显示的文件</value></data>
   <data name="Files_ExportCsv.Text" xml:space="preserve"><value>导出为 CSV…</value></data>
   <data name="Files_ExportHtml.Text" xml:space="preserve"><value>导出 HTML 报告…</value></data>
-  <data name="Files_FilterAll.Content" xml:space="preserve"><value>全部</value></data>
-  <data name="Files_FilterDone.Content" xml:space="preserve"><value>已复制</value></data>
-  <data name="Files_FilterErrors.Content" xml:space="preserve"><value>有错误</value></data>
-  <data name="Files_FilterPending.Content" xml:space="preserve"><value>待处理</value></data>
-  <data name="Files_FilterSkipped.Content" xml:space="preserve"><value>已跳过</value></data>
-  <data name="Files_HideFinished.Content" xml:space="preserve"><value>隐藏已完成</value></data>
+  <data name="Files_FilterAll.Text" xml:space="preserve"><value>全部</value></data>
+  <data name="Files_FilterDone.Text" xml:space="preserve"><value>已复制</value></data>
+  <data name="Files_FilterErrors.Text" xml:space="preserve"><value>有错误</value></data>
+  <data name="Files_FilterPending.Text" xml:space="preserve"><value>待处理</value></data>
+  <data name="Files_FilterSkipped.Text" xml:space="preserve"><value>已跳过</value></data>
+  <data name="Files_HideFinished.Text" xml:space="preserve"><value>隐藏已完成</value></data>
   <data name="Files_Menu.Text" xml:space="preserve"><value>列表</value></data>
   <data name="Files_MoveBottom.Text" xml:space="preserve"><value>移到末尾</value></data>
   <data name="Files_MoveDown.Text" xml:space="preserve"><value>下移</value></data>
@@ -1091,8 +1091,6 @@
   <data name="Settings_RememberDescription.Text" xml:space="preserve"><value>在原来的位置以相同大小打开。</value></data>
   <data name="Settings_RememberPosition.Content" xml:space="preserve"><value>位置</value></data>
   <data name="Settings_RememberSize.Content" xml:space="preserve"><value>大小</value></data>
-  <data name="Settings_TranslucentTitle.Text" xml:space="preserve"><value>半透明窗口</value></data>
-  <data name="Settings_TranslucentDescription.Text" xml:space="preserve"><value>亚克力、更透明的背景：任何主题下都能透过窗口看到桌面。</value></data>
   <data name="Settings_Icons.Text" xml:space="preserve"><value>图标</value></data>
   <data name="Settings_IconsDescription.Text" xml:space="preserve"><value>选择图标的样式，可与任意主题搭配。</value></data>
   <data name="IconPack_fluent" xml:space="preserve"><value>Fluent（同 Windows）</value></data>
@@ -1145,7 +1143,7 @@
   <data name="FolderAsk_Skip" xml:space="preserve"><value>跳过已有的文件</value></data>
   <data name="FolderAsk_SkipText" xml:space="preserve"><value>逐个检查文件：已有的文件不复制也不改动，只复制缺少的。非常适合完成中断的复制。</value></data>
   <data name="FolderAsk_Overwrite" xml:space="preserve"><value>覆盖</value></data>
-  <data name="FolderAsk_OverwriteText" xml:space="preserve"><value>已有的文件将被源文件替换。完全相同的文件保持不变，以节省时间。</value></data>
+  <data name="FolderAsk_OverwriteText" xml:space="preserve"><value>已有的文件会被源文件替换，看起来相同的也会替换：全部重新复制。</value></data>
   <data name="FolderAsk_Rename" xml:space="preserve"><value>重命名</value></data>
   <data name="FolderAsk_RenameText" xml:space="preserve"><value>全部复制到新文件夹“{0}”，原有文件夹保持不变。</value></data>
   <data name="FolderAsk_AskEach" xml:space="preserve"><value>逐个询问</value></data>
@@ -1496,4 +1494,18 @@
   <data name="Settings_AdaptTitle.Text" xml:space="preserve"><value>适应小屏幕</value></data>
   <data name="Settings_AdaptDescription.Text" xml:space="preserve"><value>在 1366 × 768 等较矮的屏幕上，窗口外观不变，只是稍微缩小，以便完整显示。大屏幕上没有任何变化。</value></data>
   <data name="Job_StateAsking" xml:space="preserve"><value>等待你的回答</value></data>
+  <data name="Conflict_Identical.Text" xml:space="preserve"><value>两者相同：大小和日期一致。</value></data>
+  <data name="Settings_BackdropTitle.Text" xml:space="preserve"><value>窗口背景</value></data>
+  <data name="Settings_BackdropDescription.Text" xml:space="preserve"><value>窗口后面显示的 Windows 11 材质，适用于任何主题。</value></data>
+  <data name="Backdrop_OptTheme.Content" xml:space="preserve"><value>跟随主题</value></data>
+  <data name="Backdrop_OptTranslucent.Content" xml:space="preserve"><value>半透明（可见桌面）</value></data>
+  <data name="Backdrop_OptAcrylic.Content" xml:space="preserve"><value>桌面亚克力（基础）</value></data>
+  <data name="Backdrop_OptAcrylicThin.Content" xml:space="preserve"><value>桌面亚克力（薄）</value></data>
+  <data name="BackdropAcrylicThin.Content" xml:space="preserve"><value>薄亚克力</value></data>
+  <data name="Info_Backdrop_Text" xml:space="preserve"><value>这是窗口内容后面显示的效果。\n• 跟随主题：每个主题自带背景（纯色、云母或亚克力）。\n• 半透明：非常透明的亚克力，可以透过窗口看到桌面。\n• 云母 (Mica)：柔和地带上桌面壁纸的色调，Windows 11 应用使用的就是它。\n• 云母 Alt：与云母相似，但带有更多壁纸颜色。\n• 桌面亚克力（基础）：像磨砂玻璃，窗口后面的内容显得模糊。\n• 桌面亚克力（薄）：比基础更浅、更透明。\n云母和亚克力需要 Windows 11 并开启透明效果，否则显示为纯色。</value></data>
+  <data name="SameDrive_NewWindow" xml:space="preserve"><value>在新窗口中</value></data>
+  <data name="SameDrive_NewWindowText" xml:space="preserve"><value>将打开另一个 MegaCopier 窗口显示此复制，并立即与另一个同时开始（两者都会稍慢一些）。</value></data>
+  <data name="Settings_IndependentWindowsTitle.Text" xml:space="preserve"><value>每个复制使用单独的窗口</value></data>
+  <data name="Settings_IndependentWindowsDescription.Text" xml:space="preserve"><value>每个复制一个窗口，立即开始，不等待其他复制。除非把多个复制加到同一窗口，否则不显示复制列表。</value></data>
+  <data name="Info_IndependentWindows_Text" xml:space="preserve"><value>通常 MegaCopier 只有一个窗口，多个复制会显示在复制列表中。开启此选项后，每个复制都会打开自己的窗口并立即开始，不等待其他复制。\n• 它们是同一个应用：主题、图标和设置在所有窗口中都相同（在一个窗口中更改，所有窗口都会改变）。\n• 每个窗口在通知区域有自己的进度图标，在任务栏上有自己的按钮。\n• 如果新的复制与正在进行的复制去往同一磁盘，由“复制到同一磁盘”决定：询问（加入该窗口的复制，或在新窗口中打开）、总是加入，或总是不经询问打开新窗口。\n• 如果向一个窗口加入复制，该窗口会显示自己的复制列表。\n• 复制完成后，每个窗口照常关闭。\n示例：你在把照片复制到 U 盘的同时，把视频复制到另一个磁盘：会看到两个窗口，各自显示进度。</value></data>
 </root>

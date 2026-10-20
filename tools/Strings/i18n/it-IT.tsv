@@ -149,18 +149,18 @@ AboutDialog.CloseButtonText	Chiudi
 About_DataFolder.Content	Apri la cartella dei dati (impostazioni, temi, cronologia, rapporti)
 About_Description.Text	Il copiatore definitivo per Windows 11: più veloce e più sicuro di quello di Windows, con tutte le opzioni che ti servono e personalizzabile quanto vuoi (temi, icone, barre e suoni). Riprende da dove era anche dopo un'interruzione di corrente e verifica che tutto sia arrivato integro.
 About_Features.Text	I/O asincrono senza cache · letture e scritture in parallelo · verifica con hash (CRC32, xxHash, MD5, SHA) · coda per disco · pausa e ripresa · spostamento · conflitti · limite di velocità · elenchi di copia · rapporti · temi.
-Files_AutoScroll.Content	Segui il corrente
+Files_AutoScroll.Text	Segui il corrente
 Files_CopyHashes.Text	Copia gli hash
 Files_CopyPath.Text	Copia il percorso
 Files_Empty.Text	Nessun file da mostrare
 Files_ExportCsv.Text	Esporta in CSV…
 Files_ExportHtml.Text	Esporta rapporto HTML…
-Files_FilterAll.Content	Tutti
-Files_FilterDone.Content	Copiati
-Files_FilterErrors.Content	Con errori
-Files_FilterPending.Content	In sospeso
-Files_FilterSkipped.Content	Saltati
-Files_HideFinished.Content	Nascondi i terminati
+Files_FilterAll.Text	Tutti
+Files_FilterDone.Text	Copiati
+Files_FilterErrors.Text	Con errori
+Files_FilterPending.Text	In sospeso
+Files_FilterSkipped.Text	Saltati
+Files_HideFinished.Text	Nascondi i terminati
 Files_Menu.Text	Elenco
 Files_MoveBottom.Text	Sposta in fondo
 Files_MoveDown.Text	Sposta giù
@@ -1085,8 +1085,6 @@ Settings_RememberTitle.Text	Ricorda la finestra
 Settings_RememberDescription.Text	Aprirla dov'era e con le stesse dimensioni.
 Settings_RememberPosition.Content	Posizione
 Settings_RememberSize.Content	Dimensioni
-Settings_TranslucentTitle.Text	Finestra traslucida
-Settings_TranslucentDescription.Text	Sfondo acrilico più trasparente: si vede il desktop attraverso la finestra, con qualsiasi tema.
 Settings_Icons.Text	Icone
 Settings_IconsDescription.Text	Scegli l'aspetto delle icone. Si combinano con qualsiasi tema.
 IconPack_fluent	Fluent (come Windows)
@@ -1139,7 +1137,7 @@ FolderAsk_Message	{1} dei {2} file che stai copiando sono già in {0} ({3}). Cos
 FolderAsk_Skip	Salta quelli già presenti
 FolderAsk_SkipText	Ogni file viene controllato: quelli già presenti non vengono copiati né toccati e si copiano solo quelli mancanti. Ideale per finire una copia interrotta.
 FolderAsk_Overwrite	Sovrascrivi
-FolderAsk_OverwriteText	I file già presenti vengono sostituiti con quelli dell’origine. Quelli identici restano come sono per fare prima.
+FolderAsk_OverwriteText	I file già presenti vengono sostituiti da quelli dell'origine, anche quelli che sembrano uguali: si ricopia tutto.
 FolderAsk_Rename	Rinomina
 FolderAsk_RenameText	Tutto viene copiato in una nuova cartella, «{0}», e quella esistente non viene toccata.
 FolderAsk_AskEach	Chiedi uno per uno
@@ -1490,3 +1488,17 @@ IconPack_hud	Olografico
 Settings_AdaptTitle.Text	Adatta agli schermi piccoli
 Settings_AdaptDescription.Text	Sugli schermi bassi, come 1366 × 768, la finestra appare uguale ma un po' più piccola, per starci tutta. Sugli schermi grandi non cambia nulla.
 Job_StateAsking	In attesa della tua risposta
+Conflict_Identical.Text	Sono uguali: stessa dimensione e stessa data.
+Settings_BackdropTitle.Text	Sfondo della finestra
+Settings_BackdropDescription.Text	Il materiale di Windows 11 visibile dietro la finestra, con qualsiasi tema.
+Backdrop_OptTheme.Content	Quello del tema
+Backdrop_OptTranslucent.Content	Traslucida (si vede il desktop)
+Backdrop_OptAcrylic.Content	Acrilico desktop (base)
+Backdrop_OptAcrylicThin.Content	Acrilico desktop (sottile)
+BackdropAcrylicThin.Content	Acrilico sottile
+Info_Backdrop_Text	È ciò che si vede dietro il contenuto della finestra.\n• Quello del tema: ogni tema ha il suo (tinta unita, Mica o acrilico).\n• Traslucida: acrilico molto trasparente; si vede il desktop dietro la finestra.\n• Mica: prende delicatamente la tinta dello sfondo del desktop. È quello delle app di Windows 11.\n• Mica Alt: come Mica, ma con più colore dello sfondo.\n• Acrilico desktop (base): come un vetro smerigliato; ciò che sta dietro la finestra appare sfocato.\n• Acrilico desktop (sottile): più chiaro e trasparente della base.\nMica e acrilico richiedono Windows 11 con gli effetti di trasparenza attivi; altrimenti si vede un colore pieno.
+SameDrive_NewWindow	In una nuova finestra
+SameDrive_NewWindowText	Si apre un'altra finestra di MegaCopier con questa copia, che parte subito insieme all'altra (entrambe saranno un po' più lente).
+Settings_IndependentWindowsTitle.Text	Ogni copia nella sua finestra
+Settings_IndependentWindowsDescription.Text	Una finestra per copia, che parte subito senza aspettare le altre. Senza elenco delle copie, a meno che tu non ne aggiunga diverse alla stessa finestra.
+Info_IndependentWindows_Text	Di solito MegaCopier ha una sola finestra e, se avvii più copie, le mostra nel suo elenco delle copie. Con questa opzione ogni copia apre la sua finestra e parte subito, senza aspettare le altre.\n• È sempre la stessa app: tema, icone e impostazioni sono gli stessi in tutte (se li cambi in una, cambiano in tutte).\n• Ogni finestra ha la sua icona di avanzamento nell'area di notifica e il suo pulsante sulla barra delle applicazioni.\n• Se la nuova copia va sullo stesso disco di una in corso, decide «Nuova copia sullo stesso disco»: chiedere (aggiungerla alla copia di quella finestra o aprirla in una nuova finestra), aggiungerla sempre o aprire sempre una nuova finestra senza chiedere.\n• Se aggiungi copie a una finestra, quella finestra mostra il suo elenco delle copie.\n• Quando le sue copie finiscono, ogni finestra si chiude come al solito.\nEsempio: copi delle foto su una chiavetta USB e intanto dei video su un altro disco: vedrai due finestre, ognuna con il suo avanzamento.
