@@ -5,6 +5,8 @@ y las versiones, [SemVer](https://semver.org/lang/es/).
 
 ## [Sin publicar]
 
+## [1.7.0] - 2026-10-20
+
 ### Añadido
 
 - **La ventana ya no se apaga al usar otra**: con el fondo de serie (el del tema, en los temas Fluent) es Mica y, mientras
@@ -703,7 +705,8 @@ Primera versión pública.
 - Aviso SMART, avisos por correo y webhook, control desde el móvil y servidor MCP para asistentes de IA.
 - Consola `mcopy`, modo portátil, 14 idiomas, 11 temas y accesibilidad con lectores de pantalla.
 
-[Sin publicar]: https://github.com/cbatista96/MegaCopier/compare/v1.6.0...HEAD
+[Sin publicar]: https://github.com/cbatista96/MegaCopier/compare/v1.7.0...HEAD
+[1.7.0]: https://github.com/cbatista96/MegaCopier/compare/v1.6.0...v1.7.0
 [1.6.0]: https://github.com/cbatista96/MegaCopier/compare/v1.5.0...v1.6.0
 [1.5.0]: https://github.com/cbatista96/MegaCopier/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/cbatista96/MegaCopier/compare/v1.3.0...v1.4.0
