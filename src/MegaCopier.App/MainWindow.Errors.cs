@@ -31,6 +31,7 @@ public sealed partial class MainWindow
                     ShowJobs();
                     Select(Jobs.FirstOrDefault(j => j.Job == job) ?? _selected);
                     ShowAndActivate();
+                    await WaitForRootAsync();
                     Sounds.Play(_app.Settings.Sounds, SoundEvent.Attention);
                     var skipAll = new CheckBox { Content = L.Get("ErrorAsk_SkipAll") };
                     var stop = new HyperlinkButton { Content = L.Get("ErrorAsk_Stop"), Padding = new Thickness(0) };
@@ -178,6 +179,7 @@ public sealed partial class MainWindow
                     ShowJobs();
                     Select(Jobs.FirstOrDefault(j => j.Job == job) ?? _selected);
                     ShowAndActivate();
+                    await WaitForRootAsync();
                     PlayAttentionOnce(job);
                     string name = Path.GetFileName(info.Destination);
                     string parent = Format.ShortPath(Path.GetDirectoryName(info.Destination) ?? "", 3);

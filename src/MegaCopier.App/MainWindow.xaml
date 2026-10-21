@@ -316,8 +316,9 @@
             Grid.RowSpan="3"
             Style="{StaticResource McContentDialogStyle}"
             DefaultButton="Primary">
-            <!-- Ancho y alto fijos: no crece ni encoge con la ruta o con que el archivo tenga miniatura. -->
-            <StackPanel Spacing="12" Width="500">
+            <!-- Ancho y alto fijos: no crece ni encoge con la ruta o con que el archivo tenga miniatura. 496 = el máximo que
+                 cabe (ContentDialogMaxWidth 548 menos márgenes y borde). -->
+            <StackPanel Spacing="12" Width="496">
                 <TextBlock x:Name="ConflictMessage" TextWrapping="Wrap" MaxLines="3" TextTrimming="CharacterEllipsis" MinHeight="60" />
                 <Grid ColumnSpacing="12">
                     <Grid.ColumnDefinitions>
