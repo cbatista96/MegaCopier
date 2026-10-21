@@ -279,6 +279,33 @@ public sealed partial class MainWindow : Window
     // ---------------------------------------------------------------------------------------------------------
     // Mostrar y aspecto
 
+    /// <summary>
+    /// Espera a que la ventana tenga su contenido cargado (XamlRoot). Si MegaCopier arranca con una copia que pregunta
+    /// enseguida («ya existe en el destino»), el diálogo podía abrirse antes y fallaba con «El parámetro no es correcto».
+    /// </summary>
+    private async Task WaitForRootAsync()
+    {
+        if (Root.IsLoaded && Root.XamlRoot is not null)
+        {
+            return;
+        }
+
+        var loaded = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
+        void OnLoaded(object sender, RoutedEventArgs e) => loaded.TrySetResult();
+        Root.Loaded += OnLoaded;
+        try
+        {
+            if (!(Root.IsLoaded && Root.XamlRoot is not null))
+            {
+                await loaded.Task;
+            }
+        }
+        finally
+        {
+            Root.Loaded -= OnLoaded;
+        }
+    }
+
     internal void ShowAndActivate()
     {
         // Modo de prueba: mostrar sin quitar el foco a lo que el usuario esté haciendo.
@@ -2757,6 +2784,7 @@ public sealed partial class MainWindow : Window
                     ShowJobs();
                     Select(Jobs.FirstOrDefault(j => j.Job == job) ?? _selected);
                     ShowAndActivate();
+                    await WaitForRootAsync();
                     FillConflictDialog(conflict, job.Record.Move);
                     bool singleFile = job.Record.Sources.Count == 1 && File.Exists(job.Record.Sources[0])
                         && job.Record.ExtraTargets.Count == 0;

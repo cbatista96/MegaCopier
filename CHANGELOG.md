@@ -5,6 +5,13 @@ y las versiones, [SemVer](https://semver.org/lang/es/).
 
 ## [Sin publicar]
 
+### Arreglado
+
+- **Al abrir MegaCopier con una copia a una carpeta que ya existía**, con la vista completa, la copia acababa en error
+  («El parámetro no es correcto») en lugar de preguntar qué hacer: la pregunta llegaba antes de que la ventana
+  estuviera lista. Ahora espera a la ventana y pregunta.
+- **«El archivo ya existe»**: la miniatura de la derecha salía recortada por el borde derecho.
+
 ## [1.7.0] - 2026-10-20
 
 ### Añadido
