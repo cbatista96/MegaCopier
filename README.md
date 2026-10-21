@@ -19,6 +19,10 @@ copias de seguridad y copia a servidores, nubes y móviles.
 
 ### [⬇️ Descargar MegaCopier](https://github.com/cbatista96/MegaCopier/releases/latest)
 
+### Code signing policy
+
+La firma de actualizaciones usa una clave ECDSA propia. La firma Authenticode con SignPath Foundation está pendiente de solicitud y aprobación; no se anuncia todavía como concedida. Consulta la [política de firma](docs/Code-signing-policy.md) y la [política de privacidad](docs/Privacidad.md) ([English](docs/Privacy.md)).
+
 [Características](#todas-las-características) ·
 [Capturas](#capturas) ·
 [Guía de uso](docs/Guia.md) ·
