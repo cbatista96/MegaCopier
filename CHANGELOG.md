@@ -5,6 +5,8 @@ y las versiones, [SemVer](https://semver.org/lang/es/).
 
 ## [Sin publicar]
 
+## [1.7.1] - 2026-10-20
+
 ### Arreglado
 
 - **Al abrir MegaCopier con una copia a una carpeta que ya existía**, con la vista completa, la copia acababa en error
@@ -712,7 +714,8 @@ Primera versión pública.
 - Aviso SMART, avisos por correo y webhook, control desde el móvil y servidor MCP para asistentes de IA.
 - Consola `mcopy`, modo portátil, 14 idiomas, 11 temas y accesibilidad con lectores de pantalla.
 
-[Sin publicar]: https://github.com/cbatista96/MegaCopier/compare/v1.7.0...HEAD
+[Sin publicar]: https://github.com/cbatista96/MegaCopier/compare/v1.7.1...HEAD
+[1.7.1]: https://github.com/cbatista96/MegaCopier/compare/v1.7.0...v1.7.1
 [1.7.0]: https://github.com/cbatista96/MegaCopier/compare/v1.6.0...v1.7.0
 [1.6.0]: https://github.com/cbatista96/MegaCopier/compare/v1.5.0...v1.6.0
 [1.5.0]: https://github.com/cbatista96/MegaCopier/compare/v1.4.0...v1.5.0
