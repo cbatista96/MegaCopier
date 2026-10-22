@@ -9,6 +9,9 @@ namespace MegaCopier.App;
 
 public sealed partial class MainWindow
 {
+    private ContentDialog? _reportDialog;
+    private CheckBox? _reportAlways;
+
     internal void ShowDiagnostics()
     {
         OpenSettings(); SettingsView.OpenDiagnostics();
@@ -18,10 +21,14 @@ public sealed partial class MainWindow
     internal async Task<(bool Send, bool Always)> ShowCrashReportAsync(CrashReport report, bool send)
     {
         await _dialogGate.WaitAsync();
-        bool grow = !_expanded;
+        var before = AppWindow.Size;
+        bool grow = false;
         SizeChangedEventHandler? fitPreview = null;
         try
         {
+            // La preferencia puede haber cambiado mientras esperaba a otro diálogo.
+            if (send && _app.Settings.SendCrashReportsAutomatically) return (true, true);
+            grow = !_expanded;
             // La vista compacta tiene alto fijo: reservar espacio mientras se lee el informe.
             if (grow)
             {
@@ -63,14 +70,44 @@ public sealed partial class MainWindow
                     scroll.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
                 }
             };
+            _reportDialog = dialog;
+            _reportAlways = always;
             bool accepted = await dialog.ShowAsync() == ContentDialogResult.Primary;
             return (accepted, accepted && always.IsChecked == true);
         }
         finally
         {
             if (fitPreview is not null) Root.SizeChanged -= fitPreview;
-            if (grow) _ = ShrinkAfterDialogAsync(++_shrinkTicket);
+            _reportDialog = null;
+            _reportAlways = null;
+            if (grow)
+            {
+                // Este informe no encadena preguntas de copia: restaurar al cerrar, sin la espera de conflictos.
+                _shrinkTicket++;
+                _roomForDialog = null;
+                double scale = Scaled(1000) / 1000.0;
+                AnimateResizeTo(before.Width / scale, before.Height / scale);
+            }
             _dialogGate.Release();
         }
+    }
+
+    internal string DebugCrashLayout() => $"{AppWindow.Size.Width}x{AppWindow.Size.Height};dialog={_reportDialog is not null}";
+
+    /// <summary>Solo pruebas aisladas contra un receptor local: ejecutar las acciones del diálogo real.</summary>
+    internal bool DebugCrashChoice(string choice)
+    {
+        if (!App.TestMode || CrashReporter.ConfiguredEndpoint is not { Scheme: "http", Host: "127.0.0.1" }
+            || string.IsNullOrEmpty(Environment.GetEnvironmentVariable("MEGACOPIER_TEST_DATA_DIRECTORY"))
+            || _reportDialog is not { } dialog || _reportAlways is null
+            || choice is not ("cancel" or "send" or "always")) return false;
+        string name = choice == "cancel" ? "CloseButton" : "PrimaryButton";
+        var button = Responsive.Descendants<Button>(dialog).FirstOrDefault(b => b.Name == name);
+        if (button is null || !button.IsEnabled
+            || Microsoft.UI.Xaml.Automation.Peers.FrameworkElementAutomationPeer.CreatePeerForElement(button)
+                is not Microsoft.UI.Xaml.Automation.Provider.IInvokeProvider invoke) return false;
+        _reportAlways.IsChecked = choice == "always";
+        invoke.Invoke();
+        return true;
     }
 }

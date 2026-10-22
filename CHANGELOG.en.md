@@ -52,6 +52,7 @@ and versions follow [SemVer](https://semver.org/).
 ### Fixed
 
 - The unexpected-exit dialog makes room when opened from compact mode. The report preview adapts its height and scrolls to the end; the “Always send without asking” checkbox and action buttons remain accessible, including on shorter screens.
+- Sending or dismissing the report restores the previous window size without the delay used between transfer dialogs. Automatic reporting skips the prompt even when enabled while a report was pending; “Always send without asking” saves the preference and refreshes its Settings toggle.
 - English release notes are embedded in the main executable so highlights and history remain available offline. Older releases with bilingual GitHub notes select only the app’s language instead of mixing both documents.
 - More/Less keeps the same size in both states, measured using both labels in the selected language. The speed toggle no longer displays state labels in the Windows language when the app uses a different language.
 - Recovered transfers are added to the main window at startup before resuming; pending work no longer remains in the queue but hidden from the interface.

@@ -87,10 +87,15 @@ internal sealed class CrashReporter : IDisposable
         _showing = true;
         try
         {
+            if (send && _app.Settings.SendCrashReportsAutomatically)
+            {
+                await SendAsync(report, true);
+                return;
+            }
             var result = await _app.Window.ShowCrashReportAsync(report, send && _queue is not null);
             if (result.Send)
             {
-                if (result.Always) { _app.Settings.SendCrashReportsAutomatically = true; _app.Settings.Save(); }
+                if (result.Always) await SetAutomaticAsync(true);
                 await SendAsync(report, result.Always);
             }
         }
