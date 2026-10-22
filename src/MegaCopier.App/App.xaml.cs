@@ -237,6 +237,9 @@ public partial class App : Application
         Window.RefreshUpdateBadge();
         CrashReports = new CrashReporter(this, _crashSession!);
 
+        // La principal ya debe estar asignada: durante su constructor WindowFor aún no podía resolver las copias recuperadas.
+        foreach (var restored in Queue.Jobs) Window.TakeJob(restored, select: false);
+
         _paste = new PasteInterceptor(OnExplorerPaste);
         _paste.PassedThrough += reason => LogDrag($"Ctrl+V devuelto al Explorador: {reason}");
         _paste.Traced += line => LogDrag(line);

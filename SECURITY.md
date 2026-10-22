@@ -1,21 +1,24 @@
-# Seguridad
+# Security
 
-## Versiones con soporte
+**English** · [Español](SECURITY.es.md)
 
-Se corrigen los fallos de seguridad en la última versión publicada.
+## Crash reports and vulnerabilities
 
-## Avisar de un fallo de seguridad
+Optional reports send unexpected exits and filtered diagnostic data through Cloudflare to a private GitHub repository. Choose in the installer or Settings > Advanced whether to enable them. When automatic reporting is disabled, the unexpected-exit dialog offers a preview and one-time sending.
 
-**No abras una incidencia pública.** Usa el aviso privado de GitHub:
-[Report a vulnerability](https://github.com/cbatista96/MegaCopier/security/advisories/new) (pestaña *Security* del
-repositorio). Incluye la versión, los pasos para reproducirlo y su posible efecto.
+**Crash reporting is not a security audit.** It does not automatically detect every vulnerability and cannot replace reproduction steps for a security issue.
 
-Se responderá lo antes posible; una vez corregido, se publicará una versión nueva y el aviso, reconociendo tu ayuda si lo deseas.
+## Report a vulnerability privately
 
-## Qué protege MegaCopier
+Do not post credentials, private files or exploitation details in public issues. Use GitHub's private [Report a vulnerability](https://github.com/cbatista96/MegaCopier/security/advisories/new) form. If unavailable, email **contact@worldmarketinglabs.com**. Include the version, reproduction steps and potential impact, with personal data removed. Fixes target the latest maintained version; no specific response deadline is promised.
 
-- Contraseñas y tokens de servidores y nubes: en el Administrador de credenciales de Windows, nunca en archivos.
-- Envío entre equipos: cifrado con TLS y con un código de un solo uso; LocalSend sigue su propio protocolo.
-- Control desde el móvil: solo en la red local, con código, y bloqueo tras 10 códigos erróneos.
-- Clave del modo forense: protegida con DPAPI (solo tu usuario de Windows puede usarla).
-- Sin telemetría: MegaCopier no se conecta a internet salvo a lo que configures tú.
+## Protections and limits
+
+- Server and cloud credentials use Windows Credential Manager.
+- Computer-to-computer transfers use the protection of their selected protocol; LocalSend retains its own protocol.
+- Mobile control is limited to the local network and protected by a code.
+- The forensic signing key is protected with Windows DPAPI for the current user.
+- The development version verifies updates using an ECDSA manifest and SHA-256. Windows Authenticode signing remains pending SignPath Foundation approval.
+- Automatic update checking contacts GitHub every 48 hours when enabled. Optional automatic reports exclude files, names, paths and free-form messages. The application is not described as making no automatic connections.
+
+See the [privacy policy](docs/Privacy.md), [code-signing policy](docs/Code-signing-policy.md) and [receiver documentation](tools/informes-worker/README.md) (Spanish) for providers and limits.

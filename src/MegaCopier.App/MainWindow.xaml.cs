@@ -1946,7 +1946,7 @@ public sealed partial class MainWindow : Window
             var root = VisualTreeHelper.GetChildrenCount(button) > 0 ? VisualTreeHelper.GetChild(button, 0) as FrameworkElement : null;
             string states = root is null ? "" : string.Join(",", VisualStateManager.GetVisualStateGroups(root).Select(g => $"{g.Name}={g.CurrentState?.Name}"));
             string fg = button.Foreground is SolidColorBrush s ? s.Color.ToString() : button.Foreground?.GetType().Name ?? "";
-            lines.Add($"{name}|en={button.IsEnabled}|over={button.IsPointerOver}|pressed={button.IsPressed}|op={button.Opacity}|fg={fg}|{states}");
+            lines.Add($"{name}|en={button.IsEnabled}|over={button.IsPointerOver}|pressed={button.IsPressed}|op={button.Opacity}|fg={fg}|w={button.ActualWidth:R}|h={button.ActualHeight:R}|{states}");
         }
 
         foreach (var element in Responsive.Descendants<UIElement>(Panel).Where(e => e.Opacity < 1))

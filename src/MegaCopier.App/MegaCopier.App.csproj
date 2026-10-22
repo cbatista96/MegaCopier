@@ -65,7 +65,7 @@
 
   <ItemGroup>
     <EmbeddedResource Include="..\..\CHANGELOG.md" LogicalName="MegaCopier.Changelog.es.md" />
-    <EmbeddedResource Include="..\..\CHANGELOG.en.md" LogicalName="MegaCopier.Changelog.en.md" Condition="Exists('..\..\CHANGELOG.en.md')" />
+    <EmbeddedResource Include="..\..\CHANGELOG.en.md" LogicalName="MegaCopier.Changelog.en.md" WithCulture="false" Condition="Exists('..\..\CHANGELOG.en.md')" />
     <EmbeddedResource Include="..\..\docs\capturas\**\*.png" LogicalName="MegaCopier.ChangelogImages.%(RecursiveDir)%(Filename)%(Extension)" />
     <EmbeddedResource Include="..\..\tools\Updates\public-key.pem" LogicalName="MegaCopier.UpdatePublicKey.pem" Condition="Exists('..\..\tools\Updates\public-key.pem')" />
   </ItemGroup>

@@ -15,6 +15,21 @@ public static class ReleaseNotes
     private static readonly TimeSpan Limit = TimeSpan.FromSeconds(1);
     private static MatchCollection Matches(string text, string pattern) => Regex.Matches(text, pattern, RegexOptions.CultureInvariant, Limit);
 
+    /// <summary>Publicaciones antiguas sin assets traducidos: escoger solo el bloque del idioma, sin mezclar ambos.</summary>
+    public static string LocalizedBody(string markdown, bool spanish)
+    {
+        var headings = Matches(markdown, @"(?m)^## (English|Español)[ \t]*\r?$");
+        string language = spanish ? "Español" : "English";
+        for (int i = 0; i < headings.Count; i++)
+        {
+            if (headings[i].Groups[1].Value != language) continue;
+            int start = headings[i].Index + headings[i].Length;
+            int end = i + 1 < headings.Count ? headings[i + 1].Index : markdown.Length;
+            return markdown[start..end].Trim();
+        }
+        return headings.Count == 0 && spanish ? markdown : "";
+    }
+
     /// <summary>Resumen editorial de la publicación; las versiones antiguas usan hasta cinco puntos sin imágenes.</summary>
     public static string Summary(string markdown)
     {

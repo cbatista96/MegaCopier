@@ -14,6 +14,27 @@ public sealed class UpdateEnvironment;
 [Collection("UpdateEnvironment")]
 public sealed class UpdateTests
 {
+    [Theory]
+    [InlineData(true, "Cambio español", "English change")]
+    [InlineData(false, "English change", "Cambio español")]
+    public void El_cuerpo_bilingue_se_lee_solo_en_el_idioma_elegido(bool spanish, string expected, string excluded)
+    {
+        const string body = "[English](#english) · [Español](#español)\n\n## English\n\n### Fixed\n- English change\n\n---\n\n## Español\n\n### Arreglado\n- Cambio español\n";
+        string selected = ReleaseNotes.LocalizedBody(body, spanish);
+        Assert.Contains(expected, selected);
+        Assert.DoesNotContain(excluded, selected);
+        Assert.DoesNotContain("## English", selected);
+        Assert.DoesNotContain("## Español", selected);
+    }
+
+    [Fact]
+    public void Una_publicacion_solo_en_espanol_no_se_presenta_como_ingles()
+    {
+        const string legacy = "### Arreglado\n- Cambio anterior";
+        Assert.Equal(legacy, ReleaseNotes.LocalizedBody(legacy, true));
+        Assert.Empty(ReleaseNotes.LocalizedBody(legacy, false));
+    }
+
     [Fact]
     public void Busca_cada_dos_dias_y_recupera_comprobacion_vencida()
     {

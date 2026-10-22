@@ -5,8 +5,7 @@
 ## Avisar de un fallo o proponer una idea
 
 Abre una [incidencia (issue)](https://github.com/cbatista96/MegaCopier/issues/new/choose) con la plantilla que corresponda.
-En un fallo, indica la versión de MegaCopier y de Windows, los pasos para reproducirlo y, si lo hay, el contenido de
-`%LOCALAPPDATA%\MegaCopier\crash.log`. Revisa antes que no exista ya una incidencia igual.
+En un fallo, indica la versión de MegaCopier y de Windows y los pasos para reproducirlo. Puedes enviar un informe filtrado desde MegaCopier; no publiques el registro local completo sin revisar y eliminar rutas, nombres y credenciales. Revisa antes que no exista ya una incidencia igual.
 
 Los fallos de seguridad **no** se cuentan en una incidencia pública: sigue [SECURITY.md](SECURITY.md).
 
@@ -32,7 +31,7 @@ Las versiones las publica quien mantiene el proyecto con `tools\publicar-version
 - Ningún texto visible se escribe en el código: va a `tools/Strings`, con su traducción al menos al inglés.
 - La app tiene que seguir compilándose con Native AOT sin avisos (`IL2026`, `IL3050`...): nada de reflexión ni de
   serialización JSON sin generador de código.
-- MegaCopier no envía nada a internet por su cuenta: nada de telemetría ni conexiones que el usuario no haya pedido.
+- Respeta los permisos de búsqueda y descarga de actualizaciones y el consentimiento de los informes. No añadas datos personales a los informes filtrados ni cargues registros locales completos automáticamente. La política de privacidad debe describir cualquier conexión nueva.
 
 ## Licencia
 
