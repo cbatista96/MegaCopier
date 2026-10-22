@@ -31,7 +31,7 @@ Console.WriteLine($"{languages.Count} idiomas · {app.Keys.Count} textos de la a
 
 void WriteInstallerDiagnostics()
 {
-    var innoLanguages = new Dictionary<string,string> { ["es-ES"]="es",["en-US"]="en",["fr-FR"]="fr",["de-DE"]="de",["it-IT"]="it",["pt-BR"]="ptbr",["ru-RU"]="ru",["uk-UA"]="uk",["pl-PL"]="pl",["nl-NL"]="nl",["tr-TR"]="tr",["ja-JP"]="ja",["ko-KR"]="ko" };
+    var innoLanguages = new Dictionary<string,string> { ["es-ES"]="es", ["en-US"]="en" };
     var output = new StringBuilder("; Generado desde tools/Strings; no editar a mano.\n");
     foreach (var (code, inno) in innoLanguages)
         foreach (string key in new[] { "Crash_Title", "Crash_Installer", "Crash_Help", "Updates_AutoCheck", "Installer_StartMenu", "Installer_Taskbar" })

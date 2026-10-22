@@ -206,7 +206,17 @@ public sealed class UpdateTests
             Assert.Equal(es.Date, en.Date);
             var original = ReleaseNotes.Parse(es.Notes);
             var translated = ReleaseNotes.Parse(en.Notes);
-            Assert.Equal(original.Where(b => b.Kind == NoteKind.Image).Select(b => b.Url), translated.Where(b => b.Kind == NoteKind.Image).Select(b => b.Url));
+            const string imageFolder = "docs/capturas/";
+            var spanishImages = original.Where(b => b.Kind == NoteKind.Image).Select(b => b.Url!).ToArray();
+            var englishImages = translated.Where(b => b.Kind == NoteKind.Image).Select(b => b.Url!).ToArray();
+            // Cada idioma conserva las mismas ilustraciones, fotografiadas en su propia interfaz.
+            Assert.Equal(spanishImages.Select(url => url.Replace(imageFolder, imageFolder + "en/", StringComparison.Ordinal)), englishImages);
+            foreach (string url in spanishImages.Concat(englishImages))
+            {
+                int start = url.IndexOf(imageFolder, StringComparison.Ordinal);
+                Assert.True(start >= 0, $"Captura fuera de la galería: {url}");
+                Assert.True(File.Exists(Path.Combine(root, url[start..].Replace('/', Path.DirectorySeparatorChar))), $"Falta la captura: {url}");
+            }
             Assert.Equal(original.Count(b => b.Kind == NoteKind.ListItem), translated.Count(b => b.Kind == NoteKind.ListItem));
         }
     }

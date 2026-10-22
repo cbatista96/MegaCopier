@@ -27,7 +27,9 @@ public sealed partial class CopyPanel : UserControl
         SetExpanded(false);
         ShowPlayPause(animate: false);
         SizeChanged += (_, e) => Adapt(e.NewSize.Width);
-        foreach (var block in (TextBlock[])[FilesCountBlock, TotalBytesBlock, FileBytesBlock, SpeedBlock])
+        // El tamaño del archivo usa su ancho real: reservar el de un archivo anterior dejaba
+        // un hueco entre la velocidad y el texto, además de la separación normal de la fila.
+        foreach (var block in (TextBlock[])[FilesCountBlock, TotalBytesBlock, SpeedBlock])
         {
             block.SizeChanged += (_, e) => KeepWidth(block, e.NewSize.Width);
         }
@@ -98,9 +100,8 @@ public sealed partial class CopyPanel : UserControl
     }
 
     /// <summary>
-    /// Las cifras (archivos, tamaños, velocidad y tiempo) no bailan: cada una guarda el ancho más grande que ha
-    /// necesitado en esta copia y se alinea a la derecha, con todas las cifras del mismo ancho. Antes cada una medía lo
-    /// que su texto en cada momento y movía a las de al lado (para volver a eso basta con no llamar a KeepWidth).
+    /// Los contadores, el total y la velocidad conservan el mayor ancho que han necesitado y se alinean a la derecha.
+    /// El tamaño del archivo conserva su ancho natural para mantenerlo junto a la velocidad, sin huecos adicionales.
     /// </summary>
     private static void KeepWidth(TextBlock block, double width)
     {

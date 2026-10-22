@@ -1889,6 +1889,13 @@ public sealed partial class MainWindow : Window
     /// <summary>Solo pruebas: abre el menú de un botón por su nombre accesible.</summary>
     internal bool DebugOpenMenu(string name)
     {
+        if (Responsive.Descendants<DropDownButton>(Root).FirstOrDefault(b => b.Name == name
+            || Microsoft.UI.Xaml.Automation.AutomationProperties.GetName(b) == name) is { Flyout: { } flyout } dropDown)
+        {
+            flyout.ShowAt(dropDown);
+            return true;
+        }
+
         var button = Responsive.Descendants<Button>(Root).FirstOrDefault(b => (Microsoft.UI.Xaml.Automation.AutomationProperties.GetName(b) == name || ToolTipService.GetToolTip(b) as string == name) && b.Flyout is not null);
         button?.Flyout.ShowAt(button);
         if (button is null && Responsive.Descendants<ComboBox>(Root).FirstOrDefault(c => c.Name == name) is { } combo)
@@ -1902,6 +1909,13 @@ public sealed partial class MainWindow : Window
 
     internal bool DebugClick(string name)
     {
+        // Solo pruebas: seleccionar las pestañas sin mover el puntero sobre la captura.
+        if (new[] { FilesItem, TargetItem, OptionsItem, StatusItem, LogItem }.FirstOrDefault(i => i.Name == name) is { } tab)
+        {
+            Tabs.SelectedItem = tab;
+            return true;
+        }
+
         var button = Responsive.Descendants<Microsoft.UI.Xaml.Controls.Primitives.ButtonBase>(Root).FirstOrDefault(b => b.Name == name
             || Microsoft.UI.Xaml.Automation.AutomationProperties.GetName(b) == name || ToolTipService.GetToolTip(b) as string == name);
         if (button is null && Responsive.Descendants<ListViewItem>(Root).FirstOrDefault(i => Microsoft.UI.Xaml.Automation.AutomationProperties.GetName(i) == name) is { } item)

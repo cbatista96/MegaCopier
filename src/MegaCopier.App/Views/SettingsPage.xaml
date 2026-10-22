@@ -21,7 +21,10 @@
             <StackPanel Orientation="Horizontal" Spacing="10">
                 <c:BackButton Click="Close_Click" Margin="-8,0,0,0" />
                 <c:McIcon VerticalAlignment="Center" Glyph="&#xE713;" FontSize="20" Accent="True" />
-                <TextBlock x:Uid="SettingsSection" Style="{StaticResource McTitle}" />
+                <!-- Compensación óptica: el centro de la tinta del texto coincide con los iconos. -->
+                <TextBlock x:Uid="SettingsSection" Style="{StaticResource McTitle}" VerticalAlignment="Center" TextLineBounds="Tight">
+                    <TextBlock.RenderTransform><TranslateTransform Y="-2" /></TextBlock.RenderTransform>
+                </TextBlock>
             </StackPanel>
         </Grid>
 
@@ -45,15 +48,15 @@
                 <Canvas x:Name="SectionIndicatorLayer" Grid.Row="1" IsHitTestVisible="False" />
             </Grid>
 
-            <Grid Grid.Column="1">
+            <Grid Grid.Column="1" MaxWidth="1028" HorizontalAlignment="Stretch">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <Grid x:Name="SectionHeader" ColumnSpacing="12" Margin="24,6,24,10">
+                <Grid x:Name="SectionHeader" HorizontalAlignment="Stretch" ColumnSpacing="12" Margin="24,6,24,10">
                     <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
                     <c:McIcon x:Name="SectionIcon" FontSize="26" Accent="True" VerticalAlignment="Center" />
-                    <TextBlock x:Name="SectionTitle" Grid.Column="1" Style="{StaticResource McTitle}" FontSize="26" VerticalAlignment="Center" TextWrapping="Wrap" />
+                    <TextBlock x:Name="SectionTitle" Grid.Column="1" Style="{StaticResource McTitle}" FontSize="26" TextLineBounds="Tight" VerticalAlignment="Center" TextWrapping="Wrap" />
                     <BreadcrumbBar x:Name="UpdatesBreadcrumb" Grid.Column="1" Visibility="Collapsed" Height="44" VerticalAlignment="Center" ItemClicked="UpdatesBreadcrumb_Clicked">
                         <BreadcrumbBar.Resources>
                             <x:Double x:Key="BreadcrumbBarItemThemeFontSize">26</x:Double>
@@ -68,8 +71,8 @@
                         </BreadcrumbBar.ItemTemplate>
                     </BreadcrumbBar>
                 </Grid>
-                <ScrollViewer x:Name="SectionScroll" Grid.Row="1" Padding="24,0,24,20" HorizontalScrollMode="Disabled" HorizontalScrollBarVisibility="Disabled">
-            <StackPanel x:Name="SectionsHost" MaxWidth="980" HorizontalAlignment="Left">
+                <ScrollViewer x:Name="SectionScroll" HorizontalContentAlignment="Stretch" Grid.Row="1" Padding="24,0,24,20" HorizontalScrollMode="Disabled" HorizontalScrollBarVisibility="Disabled">
+            <StackPanel x:Name="SectionsHost" MaxWidth="980" HorizontalAlignment="Stretch">
                 <InfoBar x:Name="RestartInfo" x:Uid="RestartInfo" Severity="Informational" IsClosable="False" IsOpen="False" Margin="0,8,0,0">
                     <InfoBar.ActionButton>
                         <Button x:Uid="RestartButton" Click="Restart_Click" />
@@ -82,6 +85,14 @@
                         <c:McIcon VerticalAlignment="Center" Glyph="&#xE7E8;" FontSize="18" Accent="True" />
                         <StackPanel Grid.Column="1"><TextBlock x:Name="EnabledTitleLabel" x:Uid="Settings_EnabledTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="Settings_EnabledDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
                         <ToggleSwitch x:Name="EnabledToggle" AutomationProperties.LabeledBy="{x:Bind EnabledTitleLabel}" Grid.Column="2" OnContent="" OffContent="" MinWidth="0" Toggled="Changed" />
+                    </Grid>
+                </Border>
+                <Border Style="{StaticResource McSettingCard}">
+                    <Grid Style="{StaticResource Row}">
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                        <c:McIcon VerticalAlignment="Center" Glyph="&#xF2B7;" FontSize="18" Accent="True" />
+                        <StackPanel Grid.Column="1"><TextBlock x:Name="LanguageTitleLabel" x:Uid="LanguageTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="LanguageDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                        <ComboBox x:Name="LanguageBox" AutomationProperties.LabeledBy="{x:Bind LanguageTitleLabel}" Grid.Column="2" MinWidth="220" SelectionChanged="Language_Changed" />
                     </Grid>
                 </Border>
                 <Border Style="{StaticResource McSettingCard}">
@@ -143,14 +154,6 @@
                             <ToggleSwitch x:Name="TrayProgressToggle" AutomationProperties.LabeledBy="{x:Bind TrayProgressTitleLabel}" Grid.Column="2" OnContent="" OffContent="" MinWidth="0" Toggled="Changed" />
                         </Grid>
                     </StackPanel>
-                </Border>
-                <Border Style="{StaticResource McSettingCard}">
-                    <Grid Style="{StaticResource Row}">
-                        <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
-                        <c:McIcon VerticalAlignment="Center" Glyph="&#xF2B7;" FontSize="18" Accent="True" />
-                        <StackPanel Grid.Column="1"><TextBlock x:Name="LanguageTitleLabel" x:Uid="LanguageTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="LanguageDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
-                        <ComboBox x:Name="LanguageBox" AutomationProperties.LabeledBy="{x:Bind LanguageTitleLabel}" Grid.Column="2" MinWidth="220" SelectionChanged="Language_Changed" />
-                    </Grid>
                 </Border>
                 <Border Style="{StaticResource McSettingCard}">
                     <Grid Style="{StaticResource Row}">
@@ -590,20 +593,21 @@
                     </Grid>
                 </Border>
                 <Border Style="{StaticResource McSettingCard}">
-                    <Grid Style="{StaticResource Row}" RowSpacing="8">
+                    <Grid Style="{StaticResource Row}">
                         <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
                         <c:McIcon VerticalAlignment="Center" Glyph="&#xE823;" FontSize="18" Accent="True" />
-                        <StackPanel Grid.Column="1"><Grid ColumnSpacing="4"><Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions><TextBlock x:Name="ScheduleLimitTitleLabel" x:Uid="Settings_ScheduleLimitTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" VerticalAlignment="Center" /><c:InfoTip Grid.Column="1" Topic="ScheduleLimit" Margin="0,-4,0,-4" /></Grid><TextBlock x:Uid="Settings_ScheduleLimitDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                        <StackPanel Grid.Column="1"><Grid ColumnSpacing="4"><Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions><TextBlock x:Name="ScheduleLimitTitleLabel" x:Uid="Settings_ScheduleLimitTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" VerticalAlignment="Center" /><c:InfoTip Grid.Column="1" Topic="ScheduleLimit" Margin="0,-4,0,-4" /></Grid><TextBlock x:Uid="Settings_ScheduleLimitDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" />
+                        <!-- «De» y «a» en una línea si caben; si no, una debajo de otra (el selector de hora no se puede estrechar) -->
+                        <VariableSizedWrapGrid x:Name="ScheduleLimitTimes" Margin="0,8,0,0" Orientation="Horizontal" ItemWidth="290" ItemHeight="40">
+                            <StackPanel Orientation="Horizontal" Spacing="8"><TextBlock x:Name="ScheduleFromLabel" x:Uid="Settings_ScheduleFrom" VerticalAlignment="Center" Style="{StaticResource McSecondary}" /><TimePicker x:Name="ScheduleFromBox" AutomationProperties.LabeledBy="{x:Bind ScheduleFromLabel}" ClockIdentifier="24HourClock" TimeChanged="Time_Changed" /></StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="8"><TextBlock x:Name="ScheduleToLabel" x:Uid="Settings_ScheduleTo" VerticalAlignment="Center" Style="{StaticResource McSecondary}" /><TimePicker x:Name="ScheduleToBox" AutomationProperties.LabeledBy="{x:Bind ScheduleToLabel}" ClockIdentifier="24HourClock" TimeChanged="Time_Changed" /></StackPanel>
+                        </VariableSizedWrapGrid>
+                        </StackPanel>
                         <ComboBox x:Name="ScheduleLimitBox" AutomationProperties.LabeledBy="{x:Bind ScheduleLimitTitleLabel}" Grid.Column="2" MinWidth="160" SelectionChanged="Selection_Changed">
                             <ComboBoxItem x:Uid="Slow_Off" Tag="0" /><ComboBoxItem Content="5 MB/s" Tag="5" /><ComboBoxItem Content="20 MB/s" Tag="20" />
                             <ComboBoxItem Content="50 MB/s" Tag="50" /><ComboBoxItem Content="100 MB/s" Tag="100" />
                         </ComboBox>
-                        <!-- «De» y «a» en una línea si caben; si no, una debajo de otra (el selector de hora no se puede estrechar) -->
-                        <VariableSizedWrapGrid x:Name="ScheduleLimitTimes" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" ItemWidth="290" ItemHeight="40">
-                            <StackPanel Orientation="Horizontal" Spacing="8"><TextBlock x:Name="ScheduleFromLabel" x:Uid="Settings_ScheduleFrom" VerticalAlignment="Center" Style="{StaticResource McSecondary}" /><TimePicker x:Name="ScheduleFromBox" AutomationProperties.LabeledBy="{x:Bind ScheduleFromLabel}" ClockIdentifier="24HourClock" TimeChanged="Time_Changed" /></StackPanel>
-                            <StackPanel Orientation="Horizontal" Spacing="8"><TextBlock x:Name="ScheduleToLabel" x:Uid="Settings_ScheduleTo" VerticalAlignment="Center" Style="{StaticResource McSecondary}" /><TimePicker x:Name="ScheduleToBox" AutomationProperties.LabeledBy="{x:Bind ScheduleToLabel}" ClockIdentifier="24HourClock" TimeChanged="Time_Changed" /></StackPanel>
-                        </VariableSizedWrapGrid>
+
                     </Grid>
                 </Border>
                 <Border Style="{StaticResource McSettingCard}">
@@ -768,7 +772,7 @@
                 <Border Style="{StaticResource McSettingCard}">
                     <StackPanel Spacing="8">
                         <Grid Style="{StaticResource Row}">
-                            <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
                             <c:McIcon VerticalAlignment="Center" Glyph="&#xE823;" FontSize="18" Accent="True" />
                             <StackPanel Grid.Column="1"><Grid ColumnSpacing="4"><Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions><TextBlock x:Uid="Settings_TasksTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" VerticalAlignment="Center" /><c:InfoTip Grid.Column="1" Topic="Tasks" Margin="0,-4,0,-4" /></Grid><TextBlock x:Uid="Settings_TasksDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
                         </Grid>
@@ -807,11 +811,12 @@
                         <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
                         <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
                         <c:McIcon VerticalAlignment="Center" Glyph="&#xE774;" FontSize="18" Accent="True" />
-                        <StackPanel Grid.Column="1"><Grid ColumnSpacing="4"><Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions><TextBlock x:Name="WebhookTitleLabel" x:Uid="Settings_WebhookTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" VerticalAlignment="Center" /><c:InfoTip Grid.Column="1" Topic="Webhook" Margin="0,-4,0,-4" /></Grid><TextBlock x:Uid="Settings_WebhookDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                        <StackPanel Grid.Column="1"><Grid ColumnSpacing="4"><Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions><TextBlock x:Name="WebhookTitleLabel" x:Uid="Settings_WebhookTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" VerticalAlignment="Center" /></Grid><TextBlock x:Uid="Settings_WebhookDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
                         <Grid Grid.Row="1" Grid.Column="1" ColumnSpacing="8">
-                            <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
                             <TextBox x:Name="WebhookBox" AutomationProperties.LabeledBy="{x:Bind WebhookTitleLabel}" x:Uid="Settings_WebhookBox" LostFocus="Changed" />
-                            <Button Grid.Column="1" Style="{StaticResource McButton}" Click="TestWebhook_Click"><TextBlock x:Uid="Settings_WebhookTest" /></Button>
+                            <c:InfoTip Grid.Column="1" Topic="Webhook" VerticalAlignment="Center" />
+                            <Button Grid.Column="2" Style="{StaticResource McButton}" Click="TestWebhook_Click"><TextBlock x:Uid="Settings_WebhookTest" /></Button>
                         </Grid>
                         <TextBlock x:Name="WebhookResult" Grid.Row="2" Grid.Column="1" Style="{StaticResource McSecondary}" TextWrapping="Wrap" />
                     </Grid>

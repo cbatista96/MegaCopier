@@ -5,6 +5,8 @@
 Todos los cambios importantes de MegaCopier. El formato sigue [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/)
 y las versiones, [SemVer](https://semver.org/lang/es/).
 
+Las ilustraciones muestran la interfaz de desarrollo actual. Las notas en español usan capturas en español y las notas en inglés, capturas en inglés.
+
 ## [Sin publicar]
 
 ### Resumen
@@ -40,6 +42,15 @@ y las versiones, [SemVer](https://semver.org/lang/es/).
 
 ### Cambiado
 
+- **Idioma más accesible:** la tarjeta Idioma es la segunda opción de General. Al iniciar el instalador se puede elegir español o inglés.
+
+- Galería completa renovada por separado en español e inglés: ajustes, temas, conjuntos de iconos, diálogos e instalador. Cada idioma muestra capturas reales de su interfaz, con la ventana centrada y sin cursor, halo ni escritorio en el encuadre.
+
+- La velocidad de copia conserva siempre dos decimales, incluidos los ceros finales, tanto en la fila del archivo como en el título y los resúmenes.
+- La velocidad y el tiempo quedan junto al tamaño del archivo con la separación normal de la fila, sin el hueco reservado por tamaños de archivos anteriores.
+- El progreso copiado utiliza desde el principio la misma unidad que su total: GB para una copia de varios GB, y la unidad del tamaño de cada archivo en su propia barra.
+- Los tamaños copiados y totales del progreso general y del archivo actual mantienen siempre dos decimales, también cuando el último es cero.
+- En la fila del archivo actual se muestran primero la velocidad y el tiempo restante, sin «quedan», y después el tamaño copiado del archivo.
 - La portada de GitHub se presenta en inglés con enlace al español. La galería se vuelve a capturar en inglés con datos de demostración; las páginas de versiones publicadas muestran ambos idiomas sin sustituir los paquetes. La documentación distingue registros locales, informes automáticos opcionales y comunicación privada de vulnerabilidades.
 
 - **Sonidos en cuatro tarjetas:** avisos con campana; volumen con icono, nombre, barra y porcentaje en una línea; personalización por evento; y silencio durante juegos, presentaciones o «No molestar», con interruptor activado por defecto en ajustes nuevos. Respeta las preferencias existentes.
@@ -50,6 +61,10 @@ y las versiones, [SemVer](https://semver.org/lang/es/).
 - **Traducciones revisadas:** los 14 idiomas comparten las mismas claves y parámetros. El ejemplo de ruta de dispositivos rápidos procede de los recursos traducidos; los filtros en idiomas distintos del español y el inglés usan un ejemplo de extensión y tamaño que el analizador admite, sin una frase inglesa sin traducir.
 
 ### Arreglado
+
+- Las cabeceras de Ajustes siguen el mismo borde que sus tarjetas al ampliar la ventana. Los iconos y rótulos del copiador comparten el centro visual en las herramientas, los estados y las unidades de origen y destino.
+
+- Ajustes comparte un ancho uniforme y centrado al ampliar la ventana; la ayuda de tareas, los límites por horario y el interruptor de informes quedan centrados en sus tarjetas. La ayuda de avisos web acompaña al campo de dirección y el título Ajustes queda alineado con la flecha y el engranaje.
 
 - El diálogo de cierre inesperado reserva espacio al abrirse desde la ventana compacta. La vista del informe ajusta su altura y permite desplazarse hasta el final; la casilla «Enviar siempre sin preguntar» y los botones siguen accesibles, también con poco alto de pantalla.
 - Al cerrar el informe, tanto al enviarlo como al descartarlo, la ventana recupera su tamaño anterior sin la espera de los diálogos de copia. El envío automático evita mostrar la pregunta aunque se active mientras había un informe pendiente; «Enviar siempre sin preguntar» guarda la preferencia y actualiza su interruptor en Ajustes.
@@ -64,7 +79,11 @@ y las versiones, [SemVer](https://semver.org/lang/es/).
 - **Ayuda emergente:** el mensaje Atrás deja de aparecer al mover el ratón fuera del botón Volver, incluida la ventana sin foco.
 - **Alineación:** cabecera y ruta del historial conservan su altura con el cuadro de búsqueda, dejan espacio para las letras con descendentes y alinean ópticamente los separadores. El texto y la flecha de cada tarjeta del historial quedan centrados juntos a la derecha.
 - **Indicadores:** la notificación del botón Ajustes ya no se recorta con iconos personalizados y la del menú lateral queda alineada a la derecha. Las flechas giran durante búsqueda y descarga; los conjuntos de iconos conservan su estilo en el check verde, la atención amarilla y la X roja por búsqueda automática desactivada o error de conexión tras una acción.
-- **Instalación y preferencias:** casilla y explicación de informes visibles sin cortes; interruptor primero en Ajustes y accesos a registros dispuestos horizontalmente. Las opciones de red también se muestran en una fila con separación.
+- **Instalación y preferencias:** casilla y explicación de informes visibles sin cortes; interruptor centrado a la derecha en Ajustes y accesos a registros dispuestos horizontalmente. Las opciones de red también se muestran en una fila con separación.
+
+<img src="docs/capturas/automatizacion.png" width="820" alt="Tarjetas centradas, ayuda de tareas y controles de avisos web">
+
+<img src="docs/capturas/compacta.png" width="620" alt="Controles, información del archivo y unidades alineados">
 
 ### Seguridad
 
@@ -172,13 +191,13 @@ conjunto que elijas llegan por fin a todas partes (menús, pestañas, bandeja); 
 ventana puede llevar fondo Mica, Mica Alt o acrílico. Además, «Uno a uno» y «Sobrescribir» hacen por fin lo que dicen,
 el aviso de «ya existe» enseña las fotos en miniatura y el arrastre en el Explorador ya no deja el botón «pegado».
 
-<img src="https://github.com/cbatista96/MegaCopier/raw/v1.6.0/docs/capturas/ventanas-independientes.png" width="520" alt="Dos ventanas de MegaCopier, una por copia, cada una con su progreso">
+<img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/ventanas-independientes.png" width="520" alt="Dos ventanas reales de MegaCopier, una por transferencia">
 
-<img src="https://github.com/cbatista96/MegaCopier/raw/v1.6.0/docs/capturas/archivo-existe.png" width="420" alt="El archivo ya existe: las dos fotos en miniatura, con la nota «Son iguales: mismo tamaño y fecha»">
+<img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/archivo-existe.png" width="420" alt="Conflicto de archivo con miniaturas, tamaños y fechas para comparar">
 
-<img src="https://github.com/cbatista96/MegaCopier/raw/v1.6.0/docs/capturas/menus-iconos.png" width="420" alt="El menú «Nueva» con los iconos del conjunto macOS"> <img src="https://github.com/cbatista96/MegaCopier/raw/v1.6.0/docs/capturas/menu-bandeja.png" width="260" alt="El menú de la bandeja con el aspecto de WinUI 3 y sus iconos">
+<img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/menus-iconos.png" width="420" alt="El menú «Nueva» con los iconos del conjunto macOS"> <img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/menu-bandeja.png" width="260" alt="El menú de la bandeja con el aspecto de WinUI 3 y sus iconos">
 
-<img src="https://github.com/cbatista96/MegaCopier/raw/v1.6.0/docs/capturas/iconos-bandeja-temas.png" width="520" alt="Iconos de diez conjuntos y, a la derecha, sus iconos de progreso de la bandeja: en marcha, en pausa, con errores y terminada">
+<img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/iconos-bandeja-temas.png" width="520" alt="Los 29 conjuntos de iconos y sus cuatro estados de progreso en la bandeja">
 
 ### Añadido
 
@@ -248,7 +267,7 @@ progreso en la bandeja, la X cancela de verdad, el arrastre también vale sobre 
 opciones difíciles se explican con ejemplos, los paquetes de iconos se parecen por fin a su sistema (con siete nuevos) y
 la ventana cabe entera en pantallas de 1366 × 768.
 
-<img src="https://github.com/cbatista96/MegaCopier/raw/v1.5.0/docs/capturas/misma-unidad.png" width="520" alt="Ya hay una copia hacia N: ¿Añadir «Fotos» al final de esa copia? Con Añadir a esta copia, Copia aparte y Cancelar">
+<img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/misma-unidad.png" width="520" alt="Ya hay una copia hacia N: ¿Añadir «Fotos» al final de esa copia? Con Añadir a esta copia, Copia aparte y Cancelar">
 
 ### Añadido
 
@@ -258,13 +277,13 @@ la ventana cabe entera en pantallas de 1366 × 768.
   *Cancelar*. Si va a **otro disco**, empieza a la vez sin esperar, porque cada disco copia a su velocidad. Las dos
   cosas se cambian en Ajustes › Comportamiento.
 
-  <img src="https://github.com/cbatista96/MegaCopier/raw/v1.5.0/docs/capturas/varias-copias.png" width="620" alt="Dos copias: la primera copiando y la segunda, aparte, en cola con el botón Comenzar; a la izquierda la lista compacta de copias">
+  <img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/varias-copias.png" width="620" alt="Una copia en marcha y otra programada en la lista lateral">
 
 - **Iconos de progreso en la bandeja**: uno por cada copia en marcha, con su porcentaje y una barra que sube con los
   colores del tema (ámbar en pausa, rojo con errores). Al terminar se llena, muestra una marca y se quita solo. Un clic
   abre esa copia; el clic derecho la pausa, la reanuda o la detiene. Se activa o desactiva en Ajustes › Interfaz.
 
-  <img src="https://github.com/cbatista96/MegaCopier/raw/v1.5.0/docs/capturas/bandeja-progreso.png" width="400" alt="Iconos de progreso ampliados: 0, 7, 45, 73 en pausa, 99, terminada y 50 con errores">
+  <img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/bandeja-progreso.png" width="400" alt="Iconos ampliados: copiando, en pausa, con errores y terminada">
 
 - **Qué hacen la X y el botón de minimizar**, en Ajustes › Interfaz: la X cancela las copias (como *Detener*), las
   detiene para continuarlas después, solo oculta la ventana o sale de MegaCopier; minimizar la deja en la barra de
@@ -275,7 +294,7 @@ la ventana cabe entera en pantallas de 1366 × 768.
 - **Ayudas ⓘ con ejemplos** en las opciones más difíciles de cada copia: qué se copia, cómo se copia, al terminar,
   comandos al terminar (con sus variables), filtros, reglas y sincronización y seguridad.
 
-  <img src="https://github.com/cbatista96/MegaCopier/raw/v1.5.0/docs/capturas/ayuda-opciones.png" width="520" alt="Ayuda de Comandos al terminar con sus variables y ejemplos">
+  <img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/ayuda-opciones.png" width="520" alt="Ayuda de Comandos al terminar con sus variables y ejemplos">
 
 - **Iconos en el menú *Al terminar*** (suspender, hibernar, apagar, cerrar sesión, cerrar MegaCopier).
 - **Pantallas pequeñas**: en pantallas bajas, como 1366 × 768, la ventana se ve igual pero algo más pequeña, para caber
@@ -304,7 +323,7 @@ la ventana cabe entera en pantallas de 1366 × 768.
   verdes, Fedora con aros azules, Arch con mosaicos planos, Steam sobre su azul oscuro, Android con círculos planos y
   Windows 8 plano. Ningún paquete deja ya un hueco: si su fuente no tiene un icono, se usa el de Windows 11.
 
-  <img src="https://github.com/cbatista96/MegaCopier/raw/v1.5.0/docs/capturas/iconos-sistemas.png" width="620" alt="Galería de paquetes de iconos: Material You, One UI, Nothing OS, macOS, GNOME, Linux Mint, Fedora, Arch, Windows 95, Vista, Steam, Ciberpunk y más">
+  <img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/iconos-sistemas.png" width="620" alt="Galería de paquetes de iconos: Material You, One UI, Nothing OS, macOS, GNOME, Linux Mint, Fedora, Arch, Windows 95, Vista, Steam, Ciberpunk y más">
 
 - El lema de *Acerca de*: «el copiador definitivo».
 
@@ -327,7 +346,7 @@ Una versión para que copiar sea más seguro y más estable: MegaCopier comprueb
 disco pueden ir a la vez y el arrastre desde el Explorador es más fiable. Además se acaban los cierres repentinos y los
 textos apagados al cambiar el tamaño de la ventana, y la lista de archivos gana columnas ajustables.
 
-<img src="https://github.com/cbatista96/MegaCopier/raw/v1.4.0/docs/capturas/lista.png" width="620" alt="Lista de archivos con líneas divisorias entre Origen, Tamaño y Destino, y la copia en pausa">
+<img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/lista.png" width="620" alt="Copia en pausa y lista con columnas Origen, Tamaño y Destino">
 
 ### Añadido
 
@@ -336,14 +355,14 @@ textos apagados al cambiar el tamaño de la ventana, y la lista de archivos gana
   hasta llenar el disco y entonces espera; al liberar espacio, sigue sola. Lo mismo al añadir archivos o carpetas a una
   copia en marcha (con lo que aún le queda por copiar). En la ventana pequeña la pregunta cabe dentro de ella.
 
-  <img src="https://github.com/cbatista96/MegaCopier/raw/v1.4.0/docs/capturas/espacio.png" width="520" alt="No hay espacio suficiente: hacen falta 950 MB y hay 100 MB libres, con Forzar la copia y Cancelar">
+  <img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/espacio.png" width="520" alt="Aviso de espacio insuficiente con las opciones de continuar o cancelar">
 
 - **Líneas divisorias en la lista de archivos**: entre Origen, Tamaño y Destino; se arrastran para darle a cada columna
   el ancho que quieras (se recuerda) y con doble clic vuelven al de siempre.
 - **«Empezar ya»** en una copia que espera su turno porque otra usa el mismo disco: empieza en ese momento y las dos
   copian a la vez. *Continuar todas* también arranca las que esperaban.
 
-  <img src="https://github.com/cbatista96/MegaCopier/raw/v1.4.0/docs/capturas/varias-copias.png" width="620" alt="Dos copias: la segunda espera turno y el botón Empezar ya la arranca">
+  <img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/varias-copias.png" width="620" alt="Una copia en marcha y otra programada en la lista lateral">
 
 - Al arrastrar algo sobre una copia, el aviso dice qué se añade: «Añadir «Vídeos» a esta copia» o «Añadir 3 elementos
   a esta copia».
@@ -398,7 +417,7 @@ Renovamos la ventana de copia con tres vistas (la pequeña, la de la lista y la 
 sonidos originales, y pulimos los detalles: botones con animación, rutas que se pueden pulsar, preguntas que caben en la
 ventana pequeña, ajustes perfectamente alineados y copias con «acceso denegado» que se resuelven solas.
 
-<img src="https://github.com/cbatista96/MegaCopier/raw/v1.3.0/docs/capturas/lista.png" width="620" alt="Vista con la lista de archivos, la búsqueda a la izquierda y el círculo de progreso del archivo en curso">
+<img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/lista.png" width="620" alt="Copia en pausa y lista con columnas Origen, Tamaño y Destino">
 
 ### Añadido
 
@@ -411,7 +430,7 @@ ventana pequeña, ajustes perfectamente alineados y copias con «acceso denegado
 - **Varias copias**: la misma vista, con la lista de copias a la izquierda. Aparece sola cuando hay más de una copia a la
   vez.
 
-<img src="https://github.com/cbatista96/MegaCopier/raw/v1.3.0/docs/capturas/compacta.png" width="520" alt="Ventana pequeña en pausa, con Continuar, Saltar y Detener">
+<img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/compacta.png" width="520" alt="Ventana pequeña en pausa, con Continuar, Saltar y Detener">
 
 #### Todo el panel se puede pulsar
 
@@ -438,7 +457,7 @@ ventana pequeña, ajustes perfectamente alineados y copias con «acceso denegado
 - **Windows XP, Windows 7 Aero y Windows 8 Metro**: brillo de cristal, Aero y mosaicos planos.
 - **Steam**: fondos suaves con sus azules y verdes.
 
-<img src="https://github.com/cbatista96/MegaCopier/raw/v1.3.0/docs/capturas/iconos-sistemas.png" width="820" alt="Galería de conjuntos de iconos con Android, macOS, Ubuntu, KDE, GNOME y elementary OS">
+<img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/iconos-sistemas.png" width="820" alt="Galería de conjuntos de iconos con Android, macOS, Ubuntu, KDE, GNOME y elementary OS">
 
 #### 19 sonidos originales
 
@@ -469,7 +488,7 @@ ventana pequeña, ajustes perfectamente alineados y copias con «acceso denegado
 - **La pregunta «la carpeta ya existe» en la ventana pequeña** aparece dentro de ella: las opciones en una fila, con su
   explicación al pasar el ratón, sin tener que desplazarse.
 
-<img src="https://github.com/cbatista96/MegaCopier/raw/v1.3.0/docs/capturas/carpeta-pequena.png" width="520" alt="La carpeta ya existe, preguntado dentro de la ventana pequeña">
+<img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/carpeta-pequena.png" width="520" alt="La carpeta ya existe, preguntado dentro de la ventana pequeña">
 
 - **La ventana pequeña** muestra siempre el texto de sus botones (Continuar, Saltar, Detener…) y los chips «En pausa» y
   «Archivo» con su icono.
@@ -487,7 +506,7 @@ ventana pequeña, ajustes perfectamente alineados y copias con «acceso denegado
 - **Ajustes, alineados**: cada control (desplegable, interruptor, número, botón) y su ⓘ quedan centrados en su tarjeta, y
   los campos de número tienen el valor centrado. Las horas del límite por horario pasan a dos líneas si no caben.
 
-<img src="https://github.com/cbatista96/MegaCopier/raw/v1.3.0/docs/capturas/ajustes-centrado.png" width="820" alt="Ajustes con los controles y la ayuda centrados en cada tarjeta">
+<img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/ajustes-centrado.png" width="820" alt="Ajustes con los controles y la ayuda centrados en cada tarjeta">
 
 - **Cambiar de tema** se hace con un fundido suave y la página ya no vuelve al principio.
 - **La vista previa de las barras** se queda a media barra mientras «copia», también después de verla «Terminada».
@@ -508,7 +527,7 @@ cada copia (botones a la vista, selección múltiple, origen y destino, guardar 
 de «la carpeta ya existe» con la opción de pasar lo que ya está, el límite de velocidad en vivo, 21 temas nuevos y una
 ayuda ⓘ con ejemplos en las opciones más complejas.
 
-<img src="https://github.com/cbatista96/MegaCopier/raw/v1.2.0/docs/capturas/barras.png" width="820" alt="Galería de estilos de barras de progreso">
+<img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/barras.png" width="820" alt="Galería de estilos de barras de progreso">
 
 ### Añadido
 
@@ -529,7 +548,7 @@ ayuda ⓘ con ejemplos en las opciones más complejas.
   - borde fino y «Reducir animaciones» (también se activa solo si Windows tiene desactivados los efectos de animación).
 - Los temas propios guardan también el aspecto de las barras y lo llevan consigo al exportarlos.
 
-<img src="https://github.com/cbatista96/MegaCopier/raw/v1.2.0/docs/capturas/barras-copia.png" width="520" alt="Barras Aero y Rayas en movimiento copiando">
+<img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/barras-copia.png" width="520" alt="Barras Aero y Rayas en movimiento copiando">
 
 #### Lista de archivos de cada copia
 
@@ -543,9 +562,9 @@ ayuda ⓘ con ejemplos en las opciones más complejas.
 - **Soltar archivos en cualquier parte de una copia** (el panel o las pestañas) los añade al final de esa copia y al mismo
   destino; sobre la lista, una línea marca la posición exacta.
 
-<img src="https://github.com/cbatista96/MegaCopier/raw/v1.2.0/docs/capturas/lista.png" width="820" alt="Lista de archivos con sus botones y varios archivos elegidos">
+<img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/lista.png" width="820" alt="Copia en pausa y lista con columnas Origen, Tamaño y Destino">
 
-<img src="https://github.com/cbatista96/MegaCopier/raw/v1.2.0/docs/capturas/destino-falta.png" width="620" alt="Aviso al cargar una lista cuyo destino ya no está">
+<img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/destino-falta.png" width="620" alt="Aviso al cargar una lista cuyo destino ya no está">
 
 #### Carpetas que ya existen en el destino
 
@@ -554,7 +573,7 @@ ayuda ⓘ con ejemplos en las opciones más complejas.
   en «Fotos (2)»), **Preguntar uno por uno** o **Cancelar la copia**. Es lo predeterminado y se puede cambiar en
   *Ajustes > Copia > Reglas*.
 
-<img src="https://github.com/cbatista96/MegaCopier/raw/v1.2.0/docs/capturas/carpeta-existe.png" width="620" alt="La carpeta ya existe en el destino">
+<img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/carpeta-existe.png" width="620" alt="La carpeta ya existe en el destino">
 
 #### 21 temas nuevos (73 en total)
 
@@ -564,14 +583,14 @@ ayuda ⓘ con ejemplos en las opciones más complejas.
 
 <table>
 <tr>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.2.0/docs/capturas/temas/material-oscuro.png" alt="Material oscuro"><br>Material oscuro</td>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.2.0/docs/capturas/temas/silicio-claro.png" alt="Silicio claro"><br>Silicio claro</td>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.2.0/docs/capturas/temas/capuchino.png" alt="Capuchino"><br>Capuchino</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/temas/material-oscuro.png" alt="Material oscuro"><br>Material oscuro</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/temas/silicio-claro.png" alt="Silicio claro"><br>Silicio claro</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/temas/capuchino.png" alt="Capuchino"><br>Capuchino</td>
 </tr>
 <tr>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.2.0/docs/capturas/temas/arcade.png" alt="Arcade"><br>Arcade</td>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.2.0/docs/capturas/temas/vampiro.png" alt="Vampiro"><br>Vampiro</td>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.2.0/docs/capturas/temas/tiza.png" alt="Tiza"><br>Tiza</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/temas/arcade.png" alt="Arcade"><br>Arcade</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/temas/vampiro.png" alt="Vampiro"><br>Vampiro</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/temas/tiza.png" alt="Tiza"><br>Tiza</td>
 </tr>
 </table>
 
@@ -579,7 +598,7 @@ ayuda ⓘ con ejemplos en las opciones más complejas.
 
 - **Botón ⓘ en 26 opciones**: explica para qué sirve cada una y en qué casos conviene usarla, con ejemplos.
 
-<img src="https://github.com/cbatista96/MegaCopier/raw/v1.2.0/docs/capturas/ajustes-ayuda.png" width="820" alt="Ayuda de la opción Verificar después de copiar">
+<img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/ajustes-ayuda.png" width="820" alt="Ayuda de la opción Verificar después de copiar">
 
 ### Cambiado
 
@@ -605,7 +624,7 @@ ayuda ⓘ con ejemplos en las opciones más complejas.
 Reconstruimos los ajustes con el diseño de la Configuración de Windows 11, añadimos 41 temas nuevos, conjuntos de iconos
 que se combinan con cualquier tema, sonidos propios y nuevas opciones de comportamiento y de errores.
 
-<img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/ajustes-madera.png" width="820" alt="Ajustes con el tema Madera y los iconos Mosaico">
+<img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/ajustes-madera.png" width="820" alt="Ajustes con el tema Madera y los iconos Mosaico">
 
 ### Añadido
 
@@ -619,7 +638,7 @@ que se combinan con cualquier tema, sonidos propios y nuevas opciones de comport
   deslizándose.
 - En una ventana estrecha, la lista de secciones se queda solo con los iconos.
 
-<img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/ajustes.png" width="820" alt="Ajustes en el tema Fluent oscuro">
+<img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/ajustes.png" width="820" alt="Ajustes en el tema Fluent oscuro">
 
 #### 41 temas nuevos (52 en total)
 
@@ -636,29 +655,29 @@ que se combinan con cualquier tema, sonidos propios y nuevas opciones de comport
 
 <table>
 <tr>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/combustion.png" alt="Combustión"><br>Combustión</td>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/codigo-verde.png" alt="Código verde"><br>Código verde</td>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/aurora.png" alt="Aurora"><br>Aurora</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/temas/combustion.png" alt="Combustión"><br>Combustión</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/temas/codigo-verde.png" alt="Código verde"><br>Código verde</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/temas/aurora.png" alt="Aurora"><br>Aurora</td>
 </tr>
 <tr>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/galaxia.png" alt="Galaxia"><br>Galaxia</td>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/neon.png" alt="Neón"><br>Neón</td>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/caja-negra.png" alt="Caja negra"><br>Caja negra</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/temas/galaxia.png" alt="Galaxia"><br>Galaxia</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/temas/neon.png" alt="Neón"><br>Neón</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/temas/caja-negra.png" alt="Caja negra"><br>Caja negra</td>
 </tr>
 <tr>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/madera.png" alt="Madera"><br>Madera</td>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/cuaderno.png" alt="Cuaderno"><br>Cuaderno</td>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/cristal.png" alt="Cristal"><br>Cristal</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/temas/madera.png" alt="Madera"><br>Madera</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/temas/cuaderno.png" alt="Cuaderno"><br>Cuaderno</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/temas/cristal.png" alt="Cristal"><br>Cristal</td>
 </tr>
 <tr>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/burbuja-azul.png" alt="Burbuja azul"><br>Burbuja azul</td>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/berenjena.png" alt="Berenjena"><br>Berenjena</td>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/humo.png" alt="Humo"><br>Humo</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/temas/burbuja-azul.png" alt="Burbuja azul"><br>Burbuja azul</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/temas/berenjena.png" alt="Berenjena"><br>Berenjena</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/temas/humo.png" alt="Humo"><br>Humo</td>
 </tr>
 <tr>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/sc3-azul.png" alt="Cobalto"><br>Cobalto</td>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/aero.png" alt="Aero"><br>Aero</td>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/luna.png" alt="Luna"><br>Luna</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/temas/cobalto.png" alt="Cobalto"><br>Cobalto</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/temas/aero.png" alt="Aero"><br>Aero</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/temas/luna.png" alt="Luna"><br>Luna</td>
 </tr>
 </table>
 
@@ -678,12 +697,12 @@ que se combinan con cualquier tema, sonidos propios y nuevas opciones de comport
 
 <table>
 <tr>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/iconos/color.png" alt="Iconos Color"><br>Color</td>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/iconos/mosaico.png" alt="Iconos Mosaico"><br>Mosaico</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/iconos/color.png" alt="Iconos Color"><br>Color</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/iconos/mosaico.png" alt="Iconos Mosaico"><br>Mosaico</td>
 </tr>
 <tr>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/iconos/degradado.png" alt="Iconos Degradado"><br>Degradado</td>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/iconos/neon.png" alt="Iconos Neón"><br>Neón</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/iconos/degradado.png" alt="Iconos Degradado"><br>Degradado</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/iconos/neon.png" alt="Iconos Neón"><br>Neón</td>
 </tr>
 </table>
 
@@ -697,7 +716,7 @@ que se combinan con cualquier tema, sonidos propios y nuevas opciones de comport
 - **Informe de errores automático**: al terminar una copia con errores se guarda un archivo de texto con cada archivo que
   falló y por qué, en la carpeta de destino o en una carpeta fija, con el nombre que quieras (por defecto `errorlog.txt`).
 
-<img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/ajustes-errores.png" width="820" alt="Ajustes de errores">
+<img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/ajustes-errores.png" width="820" alt="Ajustes de errores">
 
 - **Añadir las copias nuevas a una que ya está en marcha** (*Ajustes > Comportamiento*): nunca, si van a la misma carpeta,
   si usan los mismos discos o siempre. Con **Preguntar antes de añadirlas** pide confirmación; si dices que no, la copia
@@ -709,7 +728,7 @@ que se combinan con cualquier tema, sonidos propios y nuevas opciones de comport
 - **Al mover, conservar también** atributos, permisos, propietario y auditoría, con sus propias casillas, aparte de las de
   copiar.
 
-<img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/ajustes-comportamiento.png" width="820" alt="Ajustes de comportamiento">
+<img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/ajustes-comportamiento.png" width="820" alt="Ajustes de comportamiento">
 
 - En *Ajustes > Interfaz*:
   - **Mostrar el icono en la bandeja** (si lo ocultas, MegaCopier sigue en marcha y se abre ejecutándolo otra vez).
@@ -740,7 +759,7 @@ que se combinan con cualquier tema, sonidos propios y nuevas opciones de comport
   cola, en pausa o preparándose.
 - La ventana pequeña sin copias ya no corta el icono, los botones ni los enlaces de abajo: crece lo necesario.
 
-<img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/vacia.png" width="480" alt="Ventana sin copias">
+<img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/vacia.png" width="480" alt="Ventana sin copias">
 
 - Un texto sin traducir ya no puede cerrar MegaCopier al arrancar.
 

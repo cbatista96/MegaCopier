@@ -5,6 +5,8 @@
 All notable changes to MegaCopier. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and versions follow [SemVer](https://semver.org/).
 
+Illustrations show the current development interface. Spanish notes use Spanish captures; English notes use English captures.
+
 ## [Unreleased]
 
 ### Highlights
@@ -25,31 +27,44 @@ and versions follow [SemVer](https://semver.org/).
 - **Native Windows notifications:** an available version, a verified download ready to install, and a completed update. Notifications open Updates; opening that section clears the pending completed-update badge.
 - **Highlights and complete history:** a summary of the installed or available version, full notes with links and images, and an Updates > Update history > MegaCopier and version breadcrumb. Images align left and cached notes remain available offline. Previous releases now also have complete English notes.
 
-<img src="docs/capturas/actualizaciones.png" width="820" alt="MegaCopier update center; screenshot in Spanish">
+<img src="docs/capturas/en/actualizaciones.png" width="820" alt="MegaCopier update center">
 
-<img src="docs/capturas/historial-ruta.png" width="820" alt="Update history breadcrumb and a version’s complete notes; screenshot in Spanish">
+<img src="docs/capturas/en/historial-ruta.png" width="820" alt="Update history breadcrumb and a version’s complete notes">
 
 - **Optional private reports:** a choice in the installer and Settings > Advanced, exact report preview, local logs, and background sending without a prompt when authorized. When disabled, the dialog offers one-time sending or permission for future reports. Detects unexpected exits and available native crash events for that session; a power outage can also leave an unexpected-exit marker.
 - **Configured Cloudflare and private GitHub receiver:** filtered traces without free-form messages, names or paths, a consented queue, limited retries and grouping of repeated failures. Disabling reporting removes local queued reports, not reports already received. The privacy policy explains providers and retention limits.
 
-<img src="docs/capturas/ajustes-informes.png" width="820" alt="Report controls and local log shortcuts in Settings; screenshot in Spanish">
+<img src="docs/capturas/en/ajustes-informes.png" width="820" alt="Report controls and local log shortcuts in Settings">
 
 - **Reorganized installer:** desktop and Start menu shortcuts, plus preparing a shortcut for the user to pin through Windows, are all off by default. Integration groups Explorer, Windows startup, automatic checks and error reports last. Reporting is selected with its explanation underneath; silent updates preserve the preference. Includes original sidebar artwork and a privacy policy before installation.
 
-<img src="docs/capturas/instalador-informes.png" width="598" alt="Installer shortcut and integration options; screenshot in Spanish">
+<img src="docs/capturas/en/instalador-informes.png" width="598" alt="Installer shortcut and integration options">
 
 ### Changed
 
-- The GitHub project page defaults to English with a Spanish link. The gallery is recaptured in English using demonstration data; published release pages show both languages without replacing packages. Documentation distinguishes local logs, optional automatic crash reports and private vulnerability reporting.
+- **Easier language selection:** Language is the second card in General. The installer starts with a choice of English or Spanish.
+
+- Refreshed the entire screenshot gallery in English and Spanish, including settings, themes, icon packs, dialogs and the installer. Each language uses its own application captures; the frame excludes the desktop and pointer.
+
+- Transfer speed always retains two decimal places, including trailing zeroes, in the current-file row, window title and summaries.
+- Speed and remaining time sit next to the current file’s size with the row’s normal spacing, without extra space reserved by previous file sizes.
+- Copied progress uses the same unit as its total from the start: GB for a multi-GB transfer, and each file’s size unit in its own progress row.
+- Copied and total sizes in the overall and current-file progress always retain two decimal places, including trailing zeroes.
+- The current-file row now shows speed and remaining duration first, without “left”, followed by the file’s copied size.
+- The GitHub project page defaults to English with a Spanish link. The gallery is recaptured separately in English and Spanish using demonstration data, with centered windows and no cursor, halo or desktop; published release pages show both languages without replacing packages. Documentation distinguishes local logs, optional automatic crash reports and private vulnerability reporting.
 
 - **Four sound cards:** alerts with a bell; an inline volume icon, label, slider and percentage; per-event customization; and a quiet-mode toggle for games, presentations or Do Not Disturb, on by default for new settings. Existing preferences are preserved.
 
-<img src="docs/capturas/sonidos-tarjetas.png" width="820" alt="Separate alert, volume, customization and quiet-mode cards; screenshot in Spanish">
+<img src="docs/capturas/en/sonidos-tarjetas.png" width="820" alt="Separate alert, volume, customization and quiet-mode cards">
 
 - **Bilingual documentation:** visible links to the project overview and complete changelog in English and Spanish. Future release pages show both languages, starting with highlights; separate note assets retain the full document for the app. Editorial guidance allows properly developed summaries of the necessary length and groups minor fixes without inventing counts.
 - **Reviewed translations:** all 14 languages share the same keys and formatting parameters. The fast-device path example comes from translated resources; filters in languages other than Spanish and English use a supported extension-and-size example instead of an untranslated English sentence.
 
 ### Fixed
+
+- Settings headings follow the same edge as their cards when the window grows. Copier icons and labels share a visual center across the toolbar, status chips and source and destination drives.
+
+- Settings uses a consistent, centered width as the window grows; scheduled-task help, scheduled speed limits and the error-report switch align with the center of their cards. Webhook help sits beside the address field, and the Settings heading aligns with the back arrow and gear.
 
 - The unexpected-exit dialog makes room when opened from compact mode. The report preview adapts its height and scrolls to the end; the “Always send without asking” checkbox and action buttons remain accessible, including on shorter screens.
 - Sending or dismissing the report restores the previous window size without the delay used between transfer dialogs. Automatic reporting skips the prompt even when enabled while a report was pending; “Always send without asking” saves the preference and refreshes its Settings toggle.
@@ -64,7 +79,11 @@ and versions follow [SemVer](https://semver.org/).
 - **Tooltips:** Back no longer appears when hovering outside the actual Back button, including when the window is unfocused.
 - **Alignment:** headings and history breadcrumbs stay level with the search box, leave room for descenders and optically align separators. Each history card centers its action text and arrow together on the right.
 - **Badges:** the Settings-button notification is no longer clipped with custom icon packs and the sidebar badge aligns right. Arrows rotate during checks and downloads; icon packs retain their style for the green check, yellow attention mark and red X when automatic checks are disabled or a connection action fails.
-- **Installation and preferences:** the reports checkbox and explanation remain visible without clipping; Settings places the toggle first and log shortcuts horizontally. Network choices also share a row with spacing.
+- **Installation and preferences:** the reports checkbox and explanation remain visible without clipping; Settings centers the toggle on the right and arranges log shortcuts horizontally. Network choices also share a row with spacing.
+
+<img src="docs/capturas/en/automatizacion.png" width="820" alt="Centered settings cards, scheduled-task help and webhook controls">
+
+<img src="docs/capturas/en/compacta.png" width="620" alt="Aligned transfer controls, file information and drive labels">
 
 ### Security
 
@@ -126,13 +145,13 @@ and versions follow [SemVer](https://semver.org/).
 
 A release to make everything look and work as expected. Each transfer can have its own window; the selected icon pack reaches menus, tabs, and the tray; the tray menu uses WinUI; and the window supports Mica, Mica Alt, and acrylic. One by one and Overwrite now do what their names say, conflict dialogs show photo thumbnails, and Explorer dragging no longer leaves the mouse button stuck.
 
-<img src="https://github.com/cbatista96/MegaCopier/raw/v1.6.0/docs/capturas/ventanas-independientes.png" width="520" alt="Two MegaCopier windows, one per transfer, each with its own progress">
+<img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/ventanas-independientes.png" width="520" alt="Two actual MegaCopier windows, one for each transfer">
 
-<img src="https://github.com/cbatista96/MegaCopier/raw/v1.6.0/docs/capturas/archivo-existe.png" width="420" alt="File already exists: both photo thumbnails and the same-size-and-date note">
+<img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/archivo-existe.png" width="420" alt="File conflict with thumbnails, sizes and dates to compare">
 
-<img src="https://github.com/cbatista96/MegaCopier/raw/v1.6.0/docs/capturas/menus-iconos.png" width="420" alt="New menu using the macOS icon pack"> <img src="https://github.com/cbatista96/MegaCopier/raw/v1.6.0/docs/capturas/menu-bandeja.png" width="260" alt="Tray menu using MegaCopier's WinUI appearance and icons">
+<img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/menus-iconos.png" width="420" alt="New menu using the macOS icon pack"> <img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/menu-bandeja.png" width="260" alt="Tray menu using MegaCopier's WinUI appearance and icons">
 
-<img src="https://github.com/cbatista96/MegaCopier/raw/v1.6.0/docs/capturas/iconos-bandeja-temas.png" width="520" alt="Ten icon packs and their running, paused, failed, and completed tray progress icons">
+<img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/iconos-bandeja-temas.png" width="520" alt="The 29 icon packs and their four tray progress states">
 
 ### Added
 
@@ -169,24 +188,24 @@ A release to make everything look and work as expected. Each transfer can have i
 
 Copy several things at once without thinking about scheduling: MegaCopier asks whether to add a transfer to an existing transfer on the same drive, and starts transfers to other drives together. Each transfer has a tray progress icon, X really cancels, dragging supports Explorer's navigation pane, difficult settings have examples, icon packs resemble their systems with seven new packs, and the window fits 1366 × 768 screens.
 
-<img src="https://github.com/cbatista96/MegaCopier/raw/v1.5.0/docs/capturas/misma-unidad.png" width="520" alt="A transfer to N: already exists; add Photos, create a separate transfer, or cancel">
+<img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/misma-unidad.png" width="520" alt="A transfer to N: already exists; add Photos, create a separate transfer, or cancel">
 
 ### Added
 
 - **New transfers to the same drive** bring MegaCopier forward and explain Add to this transfer (append to its list, each item in its own folder, after checking space), Separate transfer (wait for the other transfer; Start begins immediately), and Cancel. Transfers to another drive begin concurrently, since each drive runs at its own speed. Both behaviors can be configured in Settings › Behavior.
 
-  <img src="https://github.com/cbatista96/MegaCopier/raw/v1.5.0/docs/capturas/varias-copias.png" width="620" alt="Two transfers: one running, another queued with Start; compact transfer list on the left">
+  <img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/varias-copias.png" width="620" alt="A running transfer and a scheduled transfer in the sidebar">
 
 - **Tray progress icons**, one per running transfer, show its percentage and a rising bar in theme colors, amber while paused and red for errors. Completion fills the icon, adds a checkmark, and removes it automatically. Click to open that transfer; right-click to pause, resume, or stop. Configurable in Settings › Interface.
 
-  <img src="https://github.com/cbatista96/MegaCopier/raw/v1.5.0/docs/capturas/bandeja-progreso.png" width="400" alt="Enlarged progress icons: 0, 7, 45, 73 paused, 99, completed, and 50 with errors">
+  <img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/bandeja-progreso.png" width="400" alt="Enlarged tray icons: running, paused, failed and completed">
 
 - **X and minimize behavior** in Settings › Interface: X can cancel transfers like Stop, stop them to resume later, hide the window, or exit MegaCopier. Minimize can keep the taskbar button or hide the window to the tray.
 - A red **active transfer count** appears over the list button while the transfer list is closed.
 - **Right-click the transfer list** to pause, resume, stop, Archive in history (also Delete), remove including from history, or open the destination folder.
 - **Help with examples** for difficult per-transfer options: what/how to copy, when finished, after-transfer commands and variables, filters, rules, synchronization, and security.
 
-  <img src="https://github.com/cbatista96/MegaCopier/raw/v1.5.0/docs/capturas/ayuda-opciones.png" width="520" alt="Help for after-transfer commands, with variables and examples">
+  <img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/ayuda-opciones.png" width="520" alt="Help for after-transfer commands, with variables and examples">
 
 - **Icons in When finished** for sleep, hibernate, shutdown, sign out, and exit MegaCopier.
 - **Small displays**: on short screens such as 1366 × 768, the same layout is scaled down slightly to fit. Large displays are unchanged. This can be disabled in Settings › Interface.
@@ -203,7 +222,7 @@ Copy several things at once without thinking about scheduling: MegaCopier asks w
 - **More compact transfer list**: the top shows the action and progress or completion time; below are source, destination, file count, and size. It slides open and closed. Completed transfers stay visible while any remain active and move to history when all finish.
 - **Rebuilt icon packs** resemble their systems: GNOME blue circles, Mint greens, Fedora blue outlines, Arch flat tiles, Steam dark blue, Android flat circles, and flat Windows 8. Missing glyphs fall back to Windows 11, so no pack leaves an empty icon.
 
-  <img src="https://github.com/cbatista96/MegaCopier/raw/v1.5.0/docs/capturas/iconos-sistemas.png" width="620" alt="Icon gallery: Material You, One UI, Nothing OS, macOS, GNOME, Mint, Fedora, Arch, Windows 95, Vista, Steam, Cyberpunk, and more">
+  <img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/iconos-sistemas.png" width="620" alt="Icon gallery: Material You, One UI, Nothing OS, macOS, GNOME, Mint, Fedora, Arch, Windows 95, Vista, Steam, Cyberpunk, and more">
 
 - About's tagline is now “the ultimate file copier”.
 
@@ -222,18 +241,18 @@ Copy several things at once without thinking about scheduling: MegaCopier asks w
 
 Safer, more stable copying: MegaCopier checks available space before starting and lets you force a transfer, Stop actually cancels, transfers no longer duplicate after reopening, two transfers on one drive can run together, and Explorer dragging is more reliable. Resizing no longer causes sudden crashes or dim text, and file-list columns can be resized.
 
-<img src="https://github.com/cbatista96/MegaCopier/raw/v1.4.0/docs/capturas/lista.png" width="620" alt="File list with dividers between Source, Size, and Destination while paused">
+<img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/lista.png" width="620" alt="Paused transfer and file list with Source, Size and Destination columns">
 
 ### Added
 
 - **Insufficient-space warning with two choices**: before copying, MegaCopier reports required and available space and offers Cancel without copying anything or Force copy, which copies until the drive is full, waits, and resumes automatically when space becomes available. This also applies when adding items to a running transfer, considering what remains. The question fits inside the compact window.
 
-  <img src="https://github.com/cbatista96/MegaCopier/raw/v1.4.0/docs/capturas/espacio.png" width="520" alt="Insufficient space: 950 MB required, 100 MB free, with Force copy and Cancel">
+  <img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/espacio.png" width="520" alt="Insufficient-space warning with options to continue or cancel">
 
 - **File-list column dividers** between Source, Size, and Destination. Drag to resize; widths are remembered. Double-click restores the default.
 - **Start now** on a transfer waiting for the same drive begins immediately so both transfers run together. Resume all also starts waiting transfers.
 
-  <img src="https://github.com/cbatista96/MegaCopier/raw/v1.4.0/docs/capturas/varias-copias.png" width="620" alt="Two transfers; Start now starts the waiting second transfer">
+  <img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/varias-copias.png" width="620" alt="A running transfer and a scheduled transfer in the sidebar">
 
 - Dragging onto a transfer names the addition, such as Add Videos to this transfer or Add 3 items to this transfer.
 - Icon-only controls, including the transfer list, Settings, and the file-list menu, have accessible names matching their tooltips.
@@ -270,7 +289,7 @@ Safer, more stable copying: MegaCopier checks available space before starting an
 
 The transfer window now has compact, file-list, and multiple-transfer views. New has a unified file/folder picker. This release adds 16 system-inspired icon packs and 19 original sounds, animated buttons, clickable paths, prompts that fit compact view, aligned settings, and automatic recovery of access-denied copies.
 
-<img src="https://github.com/cbatista96/MegaCopier/raw/v1.3.0/docs/capturas/lista.png" width="620" alt="File-list view with search on the left and a current-file progress ring">
+<img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/lista.png" width="620" alt="Paused transfer and file list with Source, Size and Destination columns">
 
 ### Added
 
@@ -280,7 +299,7 @@ The transfer window now has compact, file-list, and multiple-transfer views. New
 - **File list (“More”)**: files, destination, options, chart, and log. It opens at a comfortable size, has a minimum that fits everything, and can be maximized.
 - **Multiple transfers**: the same expanded view with a transfer list on the left, shown automatically when more than one transfer exists.
 
-<img src="https://github.com/cbatista96/MegaCopier/raw/v1.3.0/docs/capturas/compacta.png" width="520" alt="Paused compact window with Resume, Skip, and Stop">
+<img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/compacta.png" width="520" alt="Paused compact window with Resume, Skip, and Stop">
 
 #### The whole panel is clickable
 
@@ -305,7 +324,7 @@ The transfer window now has compact, file-list, and multiple-transfer views. New
 - **Windows XP, Windows 7 Aero, and Windows 8 Metro**: glass gloss, Aero, and flat tiles.
 - **Steam**: soft blue and green backgrounds.
 
-<img src="https://github.com/cbatista96/MegaCopier/raw/v1.3.0/docs/capturas/iconos-sistemas.png" width="820" alt="Icon packs including Android, macOS, Ubuntu, KDE, GNOME, and elementary OS">
+<img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/iconos-sistemas.png" width="820" alt="Icon packs including Android, macOS, Ubuntu, KDE, GNOME, and elementary OS">
 
 #### 19 original sounds
 
@@ -327,7 +346,7 @@ The transfer window now has compact, file-list, and multiple-transfer views. New
 - **Stopping the only transfer** stops it and closes the window. Copied data remains, and reopening offers to continue.
 - **Existing-folder questions fit inside the compact window**, with options in a row and hover explanations instead of scrolling.
 
-<img src="https://github.com/cbatista96/MegaCopier/raw/v1.3.0/docs/capturas/carpeta-pequena.png" width="520" alt="Existing-folder question inside the compact window">
+<img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/carpeta-pequena.png" width="520" alt="Existing-folder question inside the compact window">
 
 - **Compact view** always shows button labels and icons in the Paused and File chips.
 - **New menu** is grouped into submenus, without duplicate file/folder entries:
@@ -342,7 +361,7 @@ The transfer window now has compact, file-list, and multiple-transfer views. New
   - Current files show a progress ring that closes on completion.
 - **Aligned Settings**: dropdowns, switches, numbers, buttons, and help are vertically centered in their cards. Numeric values are centered. Scheduled speed-limit times wrap onto two lines if necessary.
 
-<img src="https://github.com/cbatista96/MegaCopier/raw/v1.3.0/docs/capturas/ajustes-centrado.png" width="820" alt="Settings controls and help centered within their cards">
+<img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/ajustes-centrado.png" width="820" alt="Settings controls and help centered within their cards">
 
 - Theme changes use a soft fade without scrolling back to the top.
 - Bar previews remain half-filled while copying, even after previewing Completed.
@@ -358,7 +377,7 @@ The transfer window now has compact, file-list, and multiple-transfer views. New
 
 Progress bars have 22 animated styles and full customization. The rebuilt per-transfer file list has visible buttons, multi-selection, source/destination paths, saving, and resumption. Existing-folder questions can skip completed items. This release also adds a live speed limit, 21 themes, and example-based help for complex options.
 
-<img src="https://github.com/cbatista96/MegaCopier/raw/v1.2.0/docs/capturas/barras.png" width="820" alt="Progress bar style gallery">
+<img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/barras.png" width="820" alt="Progress bar style gallery">
 
 ### Added
 
@@ -375,7 +394,7 @@ Progress bars have 22 animated styles and full customization. The rebuilt per-tr
   - Thin border and Reduce animations, also enabled when Windows animations are disabled.
 - Custom themes save bar appearance and include it when exported.
 
-<img src="https://github.com/cbatista96/MegaCopier/raw/v1.2.0/docs/capturas/barras-copia.png" width="520" alt="Aero and Moving stripes bars while copying">
+<img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/barras-copia.png" width="520" alt="Aero and Moving stripes bars while copying">
 
 #### Per-transfer file list
 
@@ -385,15 +404,15 @@ Progress bars have 22 animated styles and full customization. The rebuilt per-tr
 - **Saving the list saves remaining work**, with destination and options. Loading starts automatically and resumes where it stopped. If the destination is missing, such as an unplugged USB drive, MegaCopier asks for a new destination for the remaining files.
 - **Dropping onto any part of a transfer**, including its panel or tabs, appends items to that transfer and destination. Dropping onto the list shows an exact insertion line.
 
-<img src="https://github.com/cbatista96/MegaCopier/raw/v1.2.0/docs/capturas/lista.png" width="820" alt="File list with visible controls and multiple selected files">
+<img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/lista.png" width="820" alt="Paused transfer and file list with Source, Size and Destination columns">
 
-<img src="https://github.com/cbatista96/MegaCopier/raw/v1.2.0/docs/capturas/destino-falta.png" width="620" alt="Missing-destination warning when loading a saved list">
+<img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/destino-falta.png" width="620" alt="Missing-destination warning when loading a saved list">
 
 #### Folders already present at the destination
 
 - Before copying an existing folder, MegaCopier offers **Skip existing files** (check each and copy only missing files), **Overwrite**, **Rename** (copy to Photos (2)), **Ask one by one**, or **Cancel transfer**. This is the default and can be changed in Settings › Copy › Rules.
 
-<img src="https://github.com/cbatista96/MegaCopier/raw/v1.2.0/docs/capturas/carpeta-existe.png" width="620" alt="The folder already exists at the destination">
+<img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/carpeta-existe.png" width="620" alt="The folder already exists at the destination">
 
 #### 21 new themes (73 total)
 
@@ -402,14 +421,14 @@ Progress bars have 22 animated styles and full customization. The rebuilt per-tr
 
 <table>
 <tr>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.2.0/docs/capturas/temas/material-oscuro.png" alt="Material dark"><br>Material dark</td>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.2.0/docs/capturas/temas/silicio-claro.png" alt="Silicon light"><br>Silicon light</td>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.2.0/docs/capturas/temas/capuchino.png" alt="Cappuccino"><br>Cappuccino</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/temas/material-oscuro.png" alt="Material dark"><br>Material dark</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/temas/silicio-claro.png" alt="Silicon light"><br>Silicon light</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/temas/capuchino.png" alt="Cappuccino"><br>Cappuccino</td>
 </tr>
 <tr>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.2.0/docs/capturas/temas/arcade.png" alt="Arcade"><br>Arcade</td>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.2.0/docs/capturas/temas/vampiro.png" alt="Vampire"><br>Vampire</td>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.2.0/docs/capturas/temas/tiza.png" alt="Chalk"><br>Chalk</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/temas/arcade.png" alt="Arcade"><br>Arcade</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/temas/vampiro.png" alt="Vampire"><br>Vampire</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/temas/tiza.png" alt="Chalk"><br>Chalk</td>
 </tr>
 </table>
 
@@ -417,7 +436,7 @@ Progress bars have 22 animated styles and full customization. The rebuilt per-tr
 
 - **ⓘ buttons for 26 options** explain what each option does and when to use it, with examples.
 
-<img src="https://github.com/cbatista96/MegaCopier/raw/v1.2.0/docs/capturas/ajustes-ayuda.png" width="820" alt="Help for Verify after copying">
+<img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/ajustes-ayuda.png" width="820" alt="Help for Verify after copying">
 
 ### Changed
 
@@ -436,7 +455,7 @@ Progress bars have 22 animated styles and full customization. The rebuilt per-tr
 
 Settings rebuilt with the Windows 11 Settings layout, 41 new themes, icon sets that work with any theme, original sounds, and new behavior and error options.
 
-<img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/ajustes-madera.png" width="820" alt="Settings with the Wood theme and Mosaic icons">
+<img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/ajustes-madera.png" width="820" alt="Settings with the Wood theme and Mosaic icons">
 
 ### Added
 
@@ -447,7 +466,7 @@ Settings rebuilt with the Windows 11 Settings layout, 41 new themes, icon sets t
 - **Every option has an icon** that makes a small jump when pressed. Section content slides in when changing sections.
 - In narrow windows, the section list shows icons only.
 
-<img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/ajustes.png" width="820" alt="Settings with the Fluent dark theme">
+<img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/ajustes.png" width="820" alt="Settings with the Fluent dark theme">
 
 #### 41 new themes (52 total)
 
@@ -459,29 +478,29 @@ Settings rebuilt with the Windows 11 Settings layout, 41 new themes, icon sets t
 
 <table>
 <tr>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/combustion.png" alt="Combustion"><br>Combustion</td>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/codigo-verde.png" alt="Green code"><br>Green code</td>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/aurora.png" alt="Aurora"><br>Aurora</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/temas/combustion.png" alt="Combustion"><br>Combustion</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/temas/codigo-verde.png" alt="Green code"><br>Green code</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/temas/aurora.png" alt="Aurora"><br>Aurora</td>
 </tr>
 <tr>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/galaxia.png" alt="Galaxy"><br>Galaxy</td>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/neon.png" alt="Neon"><br>Neon</td>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/caja-negra.png" alt="Black box"><br>Black box</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/temas/galaxia.png" alt="Galaxy"><br>Galaxy</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/temas/neon.png" alt="Neon"><br>Neon</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/temas/caja-negra.png" alt="Black box"><br>Black box</td>
 </tr>
 <tr>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/madera.png" alt="Wood"><br>Wood</td>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/cuaderno.png" alt="Notebook"><br>Notebook</td>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/cristal.png" alt="Crystal"><br>Crystal</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/temas/madera.png" alt="Wood"><br>Wood</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/temas/cuaderno.png" alt="Notebook"><br>Notebook</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/temas/cristal.png" alt="Crystal"><br>Crystal</td>
 </tr>
 <tr>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/burbuja-azul.png" alt="Blue bubble"><br>Blue bubble</td>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/berenjena.png" alt="Eggplant"><br>Eggplant</td>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/humo.png" alt="Smoke"><br>Smoke</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/temas/burbuja-azul.png" alt="Blue bubble"><br>Blue bubble</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/temas/berenjena.png" alt="Eggplant"><br>Eggplant</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/temas/humo.png" alt="Smoke"><br>Smoke</td>
 </tr>
 <tr>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/sc3-azul.png" alt="Cobalt"><br>Cobalt</td>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/aero.png" alt="Aero"><br>Aero</td>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/temas/luna.png" alt="Moon"><br>Moon</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/temas/cobalto.png" alt="Cobalt"><br>Cobalt</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/temas/aero.png" alt="Aero"><br>Aero</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/temas/luna.png" alt="Moon"><br>Moon</td>
 </tr>
 </table>
 
@@ -499,12 +518,12 @@ Settings rebuilt with the Windows 11 Settings layout, 41 new themes, icon sets t
 
 <table>
 <tr>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/iconos/color.png" alt="Color icons"><br>Color</td>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/iconos/mosaico.png" alt="Mosaic icons"><br>Mosaic</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/iconos/color.png" alt="Color icons"><br>Color</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/iconos/mosaico.png" alt="Mosaic icons"><br>Mosaic</td>
 </tr>
 <tr>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/iconos/degradado.png" alt="Gradient icons"><br>Gradient</td>
-<td><img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/iconos/neon.png" alt="Neon icons"><br>Neon</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/iconos/degradado.png" alt="Gradient icons"><br>Gradient</td>
+<td><img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/iconos/neon.png" alt="Neon icons"><br>Neon</td>
 </tr>
 </table>
 
@@ -514,14 +533,14 @@ Settings rebuilt with the Windows 11 Settings layout, 41 new themes, icon sets t
 - **Retries and delay between attempts** in the same section.
 - **Automatic error report**: after a transfer with errors, saves a text file listing every failed file and its reason, in the destination or a fixed folder, using your chosen filename (`errorlog.txt` by default).
 
-<img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/ajustes-errores.png" width="820" alt="Error settings">
+<img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/ajustes-errores.png" width="820" alt="Error settings">
 
 - **Add new transfers to a running one** (*Settings > Behavior*): never, when targeting the same folder, when using the same disks, or always. **Ask before adding** requests confirmation; declining leaves the new transfer independent.
 - **Delete incomplete files when stopping a transfer** (`.mcpart`), with an option to preserve them if the transfer stopped because of an error. Only applies when pressing Stop; never on closing MegaCopier or after a power failure.
 - **Eject the destination drive on completion** for USB sticks, memory cards, or USB drives when no other transfer uses it, with an option to **force ejection** even if another program has it open.
 - **Preserve when moving**: attributes, permissions, owner, and auditing, with their own checkboxes independent of copy settings.
 
-<img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/ajustes-comportamiento.png" width="820" alt="Behavior settings">
+<img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/ajustes-comportamiento.png" width="820" alt="Behavior settings">
 
 - In *Settings > Interface*:
   - **Show the tray icon** (when hidden, MegaCopier keeps running and opens when launched again).
@@ -547,7 +566,7 @@ Settings rebuilt with the Windows 11 Settings layout, 41 new themes, icon sets t
 - The progress bar no longer overflows onto the list icon or outside its border when a transfer is queued, paused, or preparing.
 - The small empty window no longer clips its icon, buttons, or bottom links: it grows as needed.
 
-<img src="https://github.com/cbatista96/MegaCopier/raw/v1.1.0/docs/capturas/vacia.png" width="480" alt="Window without transfers">
+<img src="https://github.com/cbatista96/MegaCopier/raw/main/docs/capturas/en/vacia.png" width="480" alt="Window without transfers">
 
 - An untranslated string can no longer close MegaCopier at startup.
 

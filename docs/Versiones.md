@@ -32,7 +32,7 @@ script de publicar.
 [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/). Arriba del todo hay siempre una sección
 **`## [Sin publicar]`** con lo que ya está hecho pero todavía no se ha publicado.
 
-`CHANGELOG.en.md` contiene el mismo historial completo en inglés, con `[Unreleased]`. Cada cambio debe traducirse también allí. La app elige español solo para la interfaz española e inglés para los demás idiomas; ambos archivos se incrustan para consulta sin conexión. Las capturas deben conservar las mismas direcciones en ambas versiones.
+`CHANGELOG.en.md` contiene el mismo historial completo en inglés, con `[Unreleased]`. Cada cambio debe traducirse también allí. La app elige español solo para la interfaz española e inglés para los demás idiomas; ambos archivos se incrustan para consulta sin conexión. Las capturas deben mostrar el mismo ejemplo en ambos idiomas: español en `docs/capturas/` e inglés en `docs/capturas/en/`. Captura únicamente el marco visible de la aplicación, sin escritorio, sombra exterior, puntero ni halo del ratón. Antes de capturar, aparta el puntero de la ventana y espera a que terminen las transiciones. No traduzcas ni retoques los píxeles: cambia el idioma de la aplicación y vuelve a tomar la captura.
 
 **Regla: cada cambio que note quien usa MegaCopier añade una línea en `[Sin publicar]`**, en el mismo commit que el cambio,
 en su apartado:
