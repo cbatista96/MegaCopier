@@ -51,6 +51,7 @@ y las versiones, [SemVer](https://semver.org/lang/es/).
 
 ### Arreglado
 
+- El diálogo de cierre inesperado reserva espacio al abrirse desde la ventana compacta. La vista del informe ajusta su altura y permite desplazarse hasta el final; la casilla «Enviar siempre sin preguntar» y los botones siguen accesibles, también con poco alto de pantalla.
 - El registro en inglés se incluye en el ejecutable principal para poder consultar las novedades e historial sin conexión. Las versiones antiguas con notas bilingües en GitHub seleccionan solo el idioma de la aplicación, sin mezclar ambos textos.
 - «Más/Menos» conserva el mismo tamaño en ambos estados, medido con los dos textos del idioma elegido. El interruptor de velocidad deja de mostrar etiquetas en el idioma de Windows cuando la app usa otro idioma.
 - Las copias recuperadas al arrancar vuelven a aparecer en la ventana principal antes de reanudarlas; ya no quedan guardadas en la cola pero ocultas en la interfaz.
