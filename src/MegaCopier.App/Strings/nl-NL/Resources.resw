@@ -475,8 +475,8 @@
   <data name="Settings_Sounds.Text" xml:space="preserve"><value>Geluiden</value></data>
   <data name="Settings_SoundsTitle.Text" xml:space="preserve"><value>Geluidsmeldingen</value></data>
   <data name="Settings_SoundsDescription.Text" xml:space="preserve"><value>Kies een geluid voor elk moment: een van Windows, een willekeurig bestand op je computer of geen.</value></data>
-  <data name="Settings_Volume.Header" xml:space="preserve"><value>Volume</value></data>
-  <data name="Settings_SoundsQuiet.Content" xml:space="preserve"><value>Stil blijven bij games of presentaties op volledig scherm en bij Niet storen</value></data>
+  <data name="Settings_Volume.Text" xml:space="preserve"><value>Volume</value></data>
+  <data name="Settings_SoundsQuiet.Text" xml:space="preserve"><value>Stil blijven bij games of presentaties op volledig scherm en bij Niet storen</value></data>
   <data name="Sound_Done" xml:space="preserve"><value>Een kopie is goed afgerond</value></data>
   <data name="Sound_Errors" xml:space="preserve"><value>Een kopie eindigde met fouten</value></data>
   <data name="Sound_AllDone" xml:space="preserve"><value>Alle kopieën zijn klaar</value></data>
@@ -707,7 +707,7 @@
   <data name="Job_FilesSentOne" xml:space="preserve"><value>{0} bestand verzonden</value></data>
   <data name="Job_FilesSentMany" xml:space="preserve"><value>{0} bestanden verzonden</value></data>
   <data name="Rules_Describe.Header" xml:space="preserve"><value>Zeg het in je eigen woorden (in het Engels of Spaans)</value></data>
-  <data name="Rules_Describe.PlaceholderText" xml:space="preserve"><value>photos larger than 2 MB from last month except .tmp</value></data>
+  <data name="Rules_Describe.PlaceholderText" xml:space="preserve"><value>*.jpg &gt; 2 MB</value></data>
   <data name="Rules_DescribeApply.Text" xml:space="preserve"><value>Toepassen</value></data>
   <data name="Rules_DescribeUnderstood" xml:space="preserve"><value>Begrepen: {0}.</value></data>
   <data name="Rules_DescribeNothing" xml:space="preserve"><value>Niets om te filteren begrepen.</value></data>
@@ -1508,4 +1508,95 @@
   <data name="Info_CloseButton_Text" xml:space="preserve"><value>Kies wat er met de kopieën gebeurt als je het venster sluit met het kruisje.\n• De kopieën annuleren: zoals op ‘Stoppen’ klikken bij elke kopie. Ze verdwijnen uit de lijst en worden niet aangeboden om verder te gaan.\n• Stoppen om later verder te gaan: wat al gekopieerd is, blijft bewaard; als je hetzelfde opnieuw kopieert of MegaCopier opent, gaat het verder waar het was.\n• Venster verbergen: de kopieën gaan op de achtergrond door; open het venster via het pictogram in het systeemvak.\n• MegaCopier afsluiten: hij sluit volledig en Windows kopieert zoals altijd tot je hem weer opent.</value></data>
   <data name="Info_MinimizeButton_Title" xml:space="preserve"><value>Als je het venster minimaliseert</value></data>
   <data name="Info_MinimizeButton_Text" xml:space="preserve"><value>Waar het venster heen gaat als je het minimaliseert. De kopieën gaan in beide gevallen door.\n• Naar de taakbalk: zoals elk ander venster.\nMinimaliseren naar het systeemvak houdt de taakbalk vrij: het venster komt terug met een klik op het MegaCopier-pictogram naast de klok.</value></data>
+  <data name="Section_Updates" xml:space="preserve"><value>Updates</value></data>
+  <data name="Updates_Tab" xml:space="preserve"><value>Update</value></data>
+  <data name="Updates_History" xml:space="preserve"><value>Updategeschiedenis</value></data>
+  <data name="Updates_ViewChangelog" xml:space="preserve"><value>Wijzigingslogboek bekijken</value></data>
+  <data name="Crash_Title" xml:space="preserve"><value>Foutrapporten</value></data>
+  <data name="Crash_Description" xml:space="preserve"><value>Bevat versies, taal, thema, activiteit en gefilterde traces. Geen namen, paden of bestandsinhoud worden verzonden.</value></data>
+  <data name="Crash_Transport" xml:space="preserve"><value>Alleen met uw toestemming. Cloudflare ontvangt het IP om misbruik te beperken; het staat niet in het rapport. De bestemming is een privé-GitHub-repository.</value></data>
+  <data name="Crash_LocalOnly" xml:space="preserve"><value>Verzenden niet ingesteld. Logboeken blijven op dit apparaat.</value></data>
+  <data name="Crash_Queued" xml:space="preserve"><value>Goedgekeurd rapport opgeslagen. Bij mislukte bezorging wordt bij het starten opnieuw geprobeerd.</value></data>
+  <data name="Crash_Duplicate" xml:space="preserve"><value>Deze fout wacht al of is eerder verzonden.</value></data>
+  <data name="Crash_Sent" xml:space="preserve"><value>Rapport verzonden. Bedankt voor uw hulp.</value></data>
+  <data name="Crash_Revoked" xml:space="preserve"><value>Automatisch verzenden uitgeschakeld en wachtende rapporten verwijderd. Verzonden rapporten kunnen hier niet worden ingetrokken.</value></data>
+  <data name="Crash_Preview" xml:space="preserve"><value>Bekijken wat wordt verzonden</value></data>
+  <data name="Crash_Always" xml:space="preserve"><value>Altijd zonder vragen verzenden</value></data>
+  <data name="Crash_Unexpected" xml:space="preserve"><value>MegaCopier is onverwacht afgesloten</value></data>
+  <data name="Crash_Send" xml:space="preserve"><value>Rapport verzenden</value></data>
+  <data name="Crash_NoSend" xml:space="preserve"><value>Niet verzenden</value></data>
+  <data name="Crash_Close" xml:space="preserve"><value>Sluiten</value></data>
+  <data name="Crash_Automatic" xml:space="preserve"><value>Foutrapporten verzenden om MegaCopier te verbeteren</value></data>
+  <data name="Crash_OpenLogs" xml:space="preserve"><value>Logboekmap openen</value></data>
+  <data name="Crash_GitHub" xml:space="preserve"><value>Probleem melden op GitHub</value></data>
+  <data name="Crash_LastReport" xml:space="preserve"><value>Laatste lokale rapport bekijken</value></data>
+  <data name="Updates_Search" xml:space="preserve"><value>Naar updates zoeken</value></data>
+  <data name="Updates_Unknown" xml:space="preserve"><value>Naar MegaCopier-updates zoeken</value></data>
+  <data name="Updates_SearchDescription" xml:space="preserve"><value>Zoek een nieuwe versie zonder kopieën te onderbreken.</value></data>
+  <data name="Updates_Searching" xml:space="preserve"><value>Updates zoeken…</value></data>
+  <data name="Updates_Current" xml:space="preserve"><value>MegaCopier is up-to-date</value></data>
+  <data name="Updates_CurrentAction" xml:space="preserve"><value>Je bent up-to-date</value></data>
+  <data name="Updates_Available" xml:space="preserve"><value>Nieuwe versie beschikbaar</value></data>
+  <data name="Updates_Download" xml:space="preserve"><value>Update downloaden</value></data>
+  <data name="Updates_DownloadZip" xml:space="preserve"><value>Draagbare ZIP downloaden</value></data>
+  <data name="Updates_Downloading" xml:space="preserve"><value>Update downloaden…</value></data>
+  <data name="Updates_Cancel" xml:space="preserve"><value>Download annuleren</value></data>
+  <data name="Updates_Verifying" xml:space="preserve"><value>Download controleren…</value></data>
+  <data name="Updates_Ready" xml:space="preserve"><value>Update klaar om te installeren</value></data>
+  <data name="Updates_Install" xml:space="preserve"><value>Nu bijwerken</value></data>
+  <data name="Updates_Installing" xml:space="preserve"><value>Update installeren…</value></data>
+  <data name="Updates_OpenZip" xml:space="preserve"><value>Gedownloade ZIP tonen</value></data>
+  <data name="Updates_Versions" xml:space="preserve"><value>Geïnstalleerd: {0} · Beschikbaar: {1}</value></data>
+  <data name="Updates_InstalledVersion" xml:space="preserve"><value>Geïnstalleerde versie: {0}</value></data>
+  <data name="Updates_InstalledMarker" xml:space="preserve"><value>Geïnstalleerde versie</value></data>
+  <data name="Updates_Bytes" xml:space="preserve"><value>{0} van {1}</value></data>
+  <data name="Updates_WhatsNew" xml:space="preserve"><value>Nieuw in deze versie</value></data>
+  <data name="Updates_NotesUnavailable" xml:space="preserve"><value>Versieopmerkingen zijn niet beschikbaar in deze taal.</value></data>
+  <data name="Updates_AutoCheck" xml:space="preserve"><value>Automatisch naar updates zoeken</value></data>
+  <data name="Updates_AutoCheckDescription" xml:space="preserve"><value>Controleert elke twee dagen en haalt uitgestelde controles in zodra er internet is.</value></data>
+  <data name="Updates_AutoDownload" xml:space="preserve"><value>Automatisch downloaden</value></data>
+  <data name="Updates_AutoDownloadDescription" xml:space="preserve"><value>Download de update automatisch en zet deze klaar voor installatie.</value></data>
+  <data name="Updates_AutoInstall" xml:space="preserve"><value>Installeren als MegaCopier niet wordt gebruikt</value></data>
+  <data name="Updates_AutoInstallDescription" xml:space="preserve"><value>Alleen vanuit het systeemvak installeren, zonder openstaande taken of dialoogvensters.</value></data>
+  <data name="Updates_Networks" xml:space="preserve"><value>Downloads toestaan via</value></data>
+  <data name="Updates_Wifi" xml:space="preserve"><value>Wifi en ethernet</value></data>
+  <data name="Updates_Mobile" xml:space="preserve"><value>Mobiele data en netwerken met datalimiet</value></data>
+  <data name="Updates_NetworkDescription" xml:space="preserve"><value>Standaard alleen verbindingen zonder datalimiet.</value></data>
+  <data name="Updates_WaitNetwork" xml:space="preserve"><value>Download wacht op een toegestaan netwerk</value></data>
+  <data name="Updates_RestrictedTitle" xml:space="preserve"><value>Downloads zijn niet toegestaan via deze verbinding</value></data>
+  <data name="Updates_RestrictedBody" xml:space="preserve"><value>Deze download kan mobiele data gebruiken. Eenmalig toestaan zonder instellingen te wijzigen?</value></data>
+  <data name="Updates_AllowOnce" xml:space="preserve"><value>Deze download toestaan</value></data>
+  <data name="Updates_InstallDescription" xml:space="preserve"><value>MegaCopier sluit en opent opnieuw na afloop.</value></data>
+  <data name="Updates_Busy" xml:space="preserve"><value>Voltooi of verwijder openstaande taken en schakel live synchronisatie uit.</value></data>
+  <data name="Updates_Portable" xml:space="preserve"><value>Draagbare modus: download de ZIP en behoud de map Data bij bijwerken.</value></data>
+  <data name="Updates_Uninstalled" xml:space="preserve"><value>Deze kopie is niet geïnstalleerd. Je kunt de draagbare ZIP downloaden.</value></data>
+  <data name="Updates_Dismiss" xml:space="preserve"><value>Melding voor deze versie verbergen</value></data>
+  <data name="Updates_NoticeAvailable" xml:space="preserve"><value>Nieuwe update beschikbaar</value></data>
+  <data name="Updates_NoticeAvailableBody" xml:space="preserve"><value>Versie {0} is beschikbaar. Klik om Updates te openen.</value></data>
+  <data name="Updates_NoticeReady" xml:space="preserve"><value>Update klaar om te installeren</value></data>
+  <data name="Updates_NoticeReadyBody" xml:space="preserve"><value>Versie {0} is gedownload en gecontroleerd. Klik om Updates te openen.</value></data>
+  <data name="Updates_ErrorNetwork" xml:space="preserve"><value>Verbinding mislukt. Je kunt het opnieuw proberen.</value></data>
+  <data name="Updates_ErrorInvalidRelease" xml:space="preserve"><value>Deze release bevat geen compatibele update.</value></data>
+  <data name="Updates_ErrorUntrustedUrl" xml:space="preserve"><value>De download komt niet van een toegestane bron.</value></data>
+  <data name="Updates_ErrorMissingTrust" xml:space="preserve"><value>De publicatiesleutel is niet ingesteld. Installatie blijft geblokkeerd.</value></data>
+  <data name="Updates_ErrorInvalidSignature" xml:space="preserve"><value>De handtekening van de update kon niet worden gecontroleerd.</value></data>
+  <data name="Updates_ErrorInvalidChecksum" xml:space="preserve"><value>De download komt niet overeen met het gecontroleerde bestand en wordt niet geïnstalleerd.</value></data>
+  <data name="Updates_ErrorTooLarge" xml:space="preserve"><value>De download overschrijdt de toegestane grootte.</value></data>
+  <data name="Updates_ErrorBusy" xml:space="preserve"><value>MegaCopier heeft openstaande taken of dialoogvensters.</value></data>
+  <data name="Updates_ErrorInstaller" xml:space="preserve"><value>Installatie kon niet starten. De download blijft bewaard.</value></data>
+  <data name="Updates_ErrorRestrictedNetwork" xml:space="preserve"><value>Maak verbinding met een toegestaan netwerk of controleer downloadrechten.</value></data>
+  <data name="Crash_Help" xml:space="preserve"><value>Help ons MegaCopier te ontwikkelen door foutrapporten te verzenden.</value></data>
+  <data name="Crash_Installer" xml:space="preserve"><value>Foutrapporten verzenden</value></data>
+  <data name="Updates_ViewFullChangelog" xml:space="preserve"><value>Volledig wijzigingslog bekijken</value></data>
+  <data name="Updates_CurrentHighlights" xml:space="preserve"><value>Belangrijkste vernieuwingen van de huidige versie</value></data>
+  <data name="Updates_AvailableHighlights" xml:space="preserve"><value>Belangrijkste wijzigingen van de nieuwe beschikbare versie</value></data>
+  <data name="Updates_NoInternet" xml:space="preserve"><value>Geen internettoegang</value></data>
+  <data name="Updates_NoInternetDescription" xml:space="preserve"><value>Controleer je internetverbinding en probeer het opnieuw.</value></data>
+  <data name="Updates_NoInternetDownload" xml:space="preserve"><value>Geen internettoegang om de update te downloaden. Controleer je verbinding en probeer het opnieuw.</value></data>
+  <data name="Updates_NoticeCompleted" xml:space="preserve"><value>MegaCopier is bijgewerkt</value></data>
+  <data name="Updates_NoticeCompletedBody" xml:space="preserve"><value>Je hebt nu MegaCopier {0}. Open Updates om te zien wat er nieuw is.</value></data>
+  <data name="Installer_StartMenu" xml:space="preserve"><value>Een snelkoppeling in het startmenu maken</value></data>
+  <data name="Installer_Taskbar" xml:space="preserve"><value>Snelkoppeling voorbereiden voor de taakbalk (rechtsklik in Windows)</value></data>
+  <data name="Settings_CustomSounds.Text" xml:space="preserve"><value>Geluiden aanpassen</value></data>
+  <data name="Settings_FastPaths.PlaceholderText" xml:space="preserve"><value>C:, D:\Gegevens</value></data>
 </root>

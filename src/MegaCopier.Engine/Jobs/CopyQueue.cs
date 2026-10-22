@@ -395,6 +395,24 @@ public sealed class CopyJob
 public sealed class CopyQueue
 {
     private readonly Lock _lock = new();
+    private bool _maintenance;
+
+    /// <summary>Congela el arranque de trabajos durante una actualización; los nuevos siguen guardándose en disco.</summary>
+    public bool TryBeginMaintenance()
+    {
+        lock (_lock)
+        {
+            if (_maintenance || _jobs.Any(j => j.IsActive || j.State == CopyJobState.Interrupted)) return false;
+            _maintenance = true;
+            return true;
+        }
+    }
+
+    public void EndMaintenance()
+    {
+        lock (_lock) _maintenance = false;
+        Schedule();
+    }
     private readonly List<CopyJob> _jobs = [];
     private readonly JobStore _store;
     private readonly Func<CopyJobRecord, CopyOptions> _optionsFor;
@@ -878,6 +896,7 @@ public sealed class CopyQueue
         var toStart = new List<CopyJob>();
         lock (_lock)
         {
+            if (_maintenance) return;
             var busy = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             int active = 0;
             foreach (var running in _jobs.Where(j => j.State is CopyJobState.Running or CopyJobState.Paused))

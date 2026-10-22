@@ -111,7 +111,10 @@
                     <c:McIcon VerticalAlignment="Center" Glyph="&#xE81C;" FontSize="15" />
                 </Button>
                 <Button x:Uid="Tool_Settings" Style="{StaticResource McToolButton}" Click="Settings_Click">
-                    <c:McIcon VerticalAlignment="Center" Glyph="&#xE713;" FontSize="15" />
+                    <Grid Width="34" Height="30">
+                        <c:McIcon VerticalAlignment="Center" Glyph="&#xE713;" FontSize="15" />
+                        <InfoBadge x:Name="UpdateBadge" Value="1" Width="16" Height="16" Visibility="Collapsed" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,1,2,0" IsHitTestVisible="False" />
+                    </Grid>
                 </Button>
                 <Button x:Uid="Tool_About" Style="{StaticResource McToolButton}" Click="About_Click">
                     <c:McIcon VerticalAlignment="Center" Glyph="&#xE946;" FontSize="15" />

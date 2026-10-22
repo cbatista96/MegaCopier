@@ -1,4 +1,4 @@
-clave	texto
+﻿clave	texto
 JobsSection.Text	Copies
 SettingsSection.Text	Paramètres
 FinishButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Que faire quand toutes les copies sont terminées
@@ -469,8 +469,8 @@ Drop_JobOrder	Placer en position {0} de la file
 Settings_Sounds.Text	Sons
 Settings_SoundsTitle.Text	Alertes sonores
 Settings_SoundsDescription.Text	Choisissez un son pour chaque moment : un son de Windows, n'importe quel fichier de votre ordinateur, ou aucun.
-Settings_Volume.Header	Volume
-Settings_SoundsQuiet.Content	Rester silencieux pendant les jeux ou présentations en plein écran et en mode Ne pas déranger
+Settings_Volume.Text	Volume
+Settings_SoundsQuiet.Text	Rester silencieux pendant les jeux ou présentations en plein écran et en mode Ne pas déranger
 Sound_Done	Une copie s'est bien terminée
 Sound_Errors	Une copie s'est terminée avec des erreurs
 Sound_AllDone	Toutes les copies sont terminées
@@ -701,7 +701,7 @@ Job_StateSending	Envoi en cours
 Job_FilesSentOne	{0} fichier envoyé
 Job_FilesSentMany	{0} fichiers envoyés
 Rules_Describe.Header	Dites-le avec vos mots (en anglais ou en espagnol)
-Rules_Describe.PlaceholderText	photos larger than 2 MB from last month except .tmp
+Rules_Describe.PlaceholderText	*.jpg > 2 MB
 Rules_DescribeApply.Text	Appliquer
 Rules_DescribeUnderstood	Compris : {0}.
 Rules_DescribeNothing	Rien à filtrer n'a été compris.
@@ -1502,3 +1502,95 @@ Info_CloseButton_Title	Quand vous cliquez sur le X de la fenêtre
 Info_CloseButton_Text	Choisissez ce qui arrive aux copies quand vous fermez la fenêtre avec le X.\n• Annuler les copies : comme appuyer sur « Arrêter » sur chacune. Elles disparaissent de la liste et ne sont pas proposées à la reprise.\n• Les arrêter pour continuer plus tard : ce qui a été copié est conservé ; en recopiant la même chose, ou en ouvrant MegaCopier, la copie reprend où elle en était.\n• Masquer la fenêtre : les copies continuent en arrière-plan ; ouvrez-la depuis l'icône de la zone de notification.\n• Quitter MegaCopier : il se ferme complètement et Windows copie comme d'habitude jusqu'à ce que vous le rouvriez.
 Info_MinimizeButton_Title	Quand vous réduisez la fenêtre
 Info_MinimizeButton_Text	Où va la fenêtre quand vous la réduisez. Les copies continuent dans les deux cas.\n• Dans la barre des tâches : comme n'importe quelle autre fenêtre.\nRéduire dans la zone de notification libère la barre des tâches : la fenêtre revient d'un clic sur l'icône de MegaCopier près de l'horloge.
+Section_Updates	Mises à jour
+Updates_Tab	Mise à jour
+Updates_History	Historique des mises à jour
+Updates_ViewChangelog	Voir le journal des modifications
+Crash_Title	Rapports d’erreur
+Crash_Description	Inclut versions, langue, thème, activité et traces filtrées. Aucun nom, chemin ni contenu de fichier n’est envoyé.
+Crash_Transport	Envoi uniquement avec votre accord. Cloudflare reçoit l’IP pour limiter les abus ; elle est exclue du rapport. Destination : dépôt GitHub privé.
+Crash_LocalOnly	Envoi non configuré. Les journaux restent sur cet appareil.
+Crash_Queued	Rapport autorisé enregistré. En cas d’échec, nouvel essai au démarrage.
+Crash_Duplicate	Cette erreur est déjà en attente ou a été envoyée.
+Crash_Sent	Rapport envoyé. Merci d’aider à améliorer MegaCopier.
+Crash_Revoked	Envoi automatique désactivé et rapports en attente supprimés. Les rapports envoyés ne peuvent pas être retirés ici.
+Crash_Preview	Voir les données envoyées
+Crash_Always	Toujours envoyer sans demander
+Crash_Unexpected	MegaCopier s’est fermé inopinément
+Crash_Send	Envoyer le rapport
+Crash_NoSend	Ne pas envoyer
+Crash_Close	Fermer
+Crash_Automatic	Envoyer des rapports d’erreur pour améliorer MegaCopier
+Crash_OpenLogs	Ouvrir le dossier des journaux
+Crash_GitHub	Signaler un problème sur GitHub
+Crash_LastReport	Voir le dernier rapport local
+Updates_Search	Rechercher des mises à jour
+Updates_Unknown	Rechercher les mises à jour de MegaCopier
+Updates_SearchDescription	Rechercher une nouvelle version sans interrompre les copies.
+Updates_Searching	Recherche de mises à jour…
+Updates_Current	MegaCopier est à jour
+Updates_CurrentAction	Vous êtes à jour
+Updates_Available	Nouvelle version disponible
+Updates_Download	Télécharger la mise à jour
+Updates_DownloadZip	Télécharger le ZIP portable
+Updates_Downloading	Téléchargement de la mise à jour…
+Updates_Cancel	Annuler le téléchargement
+Updates_Verifying	Vérification du téléchargement…
+Updates_Ready	Mise à jour prête à installer
+Updates_Install	Mettre à jour maintenant
+Updates_Installing	Installation de la mise à jour…
+Updates_OpenZip	Afficher le ZIP téléchargé
+Updates_Versions	Installée : {0} · Disponible : {1}
+Updates_InstalledVersion	Version installée : {0}
+Updates_InstalledMarker	Version installée
+Updates_Bytes	{0} sur {1}
+Updates_WhatsNew	Nouveautés de cette version
+Updates_NotesUnavailable	Les notes de version ne sont pas disponibles dans cette langue.
+Updates_AutoCheck	Rechercher automatiquement les mises à jour
+Updates_AutoCheckDescription	Vérifie tous les deux jours et reprend au retour d’Internet si nécessaire.
+Updates_AutoDownload	Télécharger automatiquement
+Updates_AutoDownloadDescription	Télécharger automatiquement la mise à jour et la préparer à l’installation.
+Updates_AutoInstall	Installer lorsque MegaCopier n’est pas utilisé
+Updates_AutoInstallDescription	Installer uniquement dans la zone de notification, sans tâches ni dialogues en attente.
+Updates_Networks	Autoriser les téléchargements via
+Updates_Wifi	Wi-Fi et Ethernet
+Updates_Mobile	Données mobiles et réseaux limités
+Updates_NetworkDescription	Par défaut, seules les connexions non limitées sont autorisées.
+Updates_WaitNetwork	Téléchargement en attente d’un réseau autorisé
+Updates_RestrictedTitle	Cette connexion n’autorise pas les téléchargements
+Updates_RestrictedBody	Ce téléchargement peut utiliser des données mobiles. L’autoriser une fois sans changer les réglages ?
+Updates_AllowOnce	Autoriser ce téléchargement
+Updates_InstallDescription	MegaCopier se fermera et se rouvrira à la fin.
+Updates_Busy	Terminer ou retirer les tâches en attente et désactiver la synchronisation en direct.
+Updates_Portable	Mode portable : télécharger le ZIP et conserver le dossier Data lors de la mise à jour.
+Updates_Uninstalled	Cette copie n’est pas installée. Vous pouvez télécharger le ZIP portable.
+Updates_Dismiss	Masquer l’avis de cette version
+Updates_NoticeAvailable	Nouvelle mise à jour disponible
+Updates_NoticeAvailableBody	La version {0} est disponible. Cliquer pour ouvrir Mises à jour.
+Updates_NoticeReady	Mise à jour prête à installer
+Updates_NoticeReadyBody	La version {0} est téléchargée et vérifiée. Cliquer pour ouvrir Mises à jour.
+Updates_ErrorNetwork	Connexion impossible. Vous pouvez réessayer.
+Updates_ErrorInvalidRelease	Cette publication ne contient aucune mise à jour compatible.
+Updates_ErrorUntrustedUrl	Le téléchargement ne provient pas d’une source autorisée.
+Updates_ErrorMissingTrust	La clé de publication n’est pas configurée. L’installation reste bloquée.
+Updates_ErrorInvalidSignature	La signature de la mise à jour n’a pas pu être vérifiée.
+Updates_ErrorInvalidChecksum	Le téléchargement ne correspond pas au fichier vérifié. Il ne sera pas installé.
+Updates_ErrorTooLarge	Le téléchargement dépasse la taille autorisée.
+Updates_ErrorBusy	MegaCopier a des tâches ou des dialogues en attente.
+Updates_ErrorInstaller	Impossible de lancer l’installation. Le téléchargement est conservé.
+Updates_ErrorRestrictedNetwork	Se connecter à un réseau autorisé ou vérifier les permissions de téléchargement.
+
+Crash_Help	Aidez-nous à développer MegaCopier en envoyant des rapports d’erreurs.
+Crash_Installer	Envoyer des rapports d’erreurs
+Updates_ViewFullChangelog	Voir le journal complet
+Updates_CurrentHighlights	Principales nouveautés de la version actuelle
+Updates_AvailableHighlights	Principaux changements de la nouvelle version disponible
+Updates_NoInternet	Pas d’accès à Internet
+Updates_NoInternetDescription	Vérifiez votre connexion Internet et réessayez.
+Updates_NoInternetDownload	Aucun accès Internet pour télécharger la mise à jour. Vérifiez votre connexion et réessayez.
+Updates_NoticeCompleted	MegaCopier a été mis à jour
+Updates_NoticeCompletedBody	Vous disposez de MegaCopier {0}. Ouvrez Mises à jour pour découvrir les nouveautés.
+Installer_StartMenu	Créer un raccourci dans le menu Démarrer
+Installer_Taskbar	Préparer un raccourci à épingler à la barre des tâches (clic droit dans Windows)
+Settings_CustomSounds.Text	Personnaliser les sons
+Settings_FastPaths.PlaceholderText	C:, D:\Données

@@ -153,6 +153,7 @@ public sealed partial class MainWindow : Window
         // El material sigue a la ventana: el de serie pasa a Mica Alt sin el foco; los demás, como Windows.
         Activated += (_, args) =>
         {
+            _app.Updates?.NoteInteraction();
             _windowActive = args.WindowActivationState != WindowActivationState.Deactivated;
             (SystemBackdrop as MaterialBackdrop)?.SetActive(_windowActive);
         };
@@ -192,10 +193,11 @@ public sealed partial class MainWindow : Window
         }
 
         Panel.ExpandRequested += () => SetExpanded(!_expanded, userChoice: true);
-        HistoryView.CloseRequested += ShowJobs;
-        SettingsView.CloseRequested += ShowJobs;
-        TimelineView.CloseRequested += ShowJobs;
-        CompareView.CloseRequested += ShowJobs;
+        InitializeNavigation();
+        HistoryView.CloseRequested += NavigateBack;
+        SettingsView.CloseRequested += NavigateBack;
+        TimelineView.CloseRequested += NavigateBack;
+        CompareView.CloseRequested += NavigateBack;
         CompareView.SyncRequested += request =>
         {
             ShowJobs();
@@ -541,6 +543,7 @@ public sealed partial class MainWindow : Window
         CompareView.Visibility = Visibility.Collapsed;
         UpdateLayoutState();
         RestoreAfterPage();
+        RememberNavigation();
     }
 
     /// <summary>Hay una página (Historial, Ajustes, Línea de tiempo) encima de las copias.</summary>
@@ -1702,6 +1705,7 @@ public sealed partial class MainWindow : Window
         CompareView.Visibility = Visibility.Visible;
         EnsureRoomForPage();
         UpdateLayoutState();
+        RememberNavigation();
     }
 
     private void Timeline_Click(object sender, RoutedEventArgs e)
@@ -1714,6 +1718,7 @@ public sealed partial class MainWindow : Window
         TimelineView.Visibility = Visibility.Visible;
         EnsureRoomForPage();
         UpdateLayoutState();
+        RememberNavigation();
     }
 
     private void History_Click(object sender, RoutedEventArgs e)
@@ -1726,9 +1731,16 @@ public sealed partial class MainWindow : Window
         HistoryView.Visibility = Visibility.Visible;
         EnsureRoomForPage();
         UpdateLayoutState();
+        RememberNavigation();
     }
 
     private void Settings_Click(object sender, RoutedEventArgs e)
+    {
+        if (SettingsView.Visibility == Visibility.Visible) { ShowJobs(); return; }
+        OpenSettings();
+    }
+
+    private void OpenSettings()
     {
         RememberBeforePage();
         HistoryView.Visibility = Visibility.Collapsed;
@@ -1738,6 +1750,7 @@ public sealed partial class MainWindow : Window
         SettingsView.Visibility = Visibility.Visible;
         EnsureRoomForPage(SettingsWidth);
         UpdateLayoutState();
+        RememberNavigation();
     }
 
     /// <summary>

@@ -28,8 +28,5 @@ jobs:
         shell: powershell
         run: .\build.ps1
 
-      - uses: actions/upload-artifact@v5
-        with:
-          name: MegaCopier-instalador
-          path: artifacts/installer/*.exe
-          retention-days: 14
+      # Comprueba el instalador, pero no lo distribuye desde las compilaciones de desarrollo.
+      # Los paquetes descargables se publican únicamente mediante una etiqueta de versión autorizada.

@@ -475,8 +475,8 @@
   <data name="Settings_Sounds.Text" xml:space="preserve"><value>Sons</value></data>
   <data name="Settings_SoundsTitle.Text" xml:space="preserve"><value>Alertes sonores</value></data>
   <data name="Settings_SoundsDescription.Text" xml:space="preserve"><value>Choisissez un son pour chaque moment : un son de Windows, n&apos;importe quel fichier de votre ordinateur, ou aucun.</value></data>
-  <data name="Settings_Volume.Header" xml:space="preserve"><value>Volume</value></data>
-  <data name="Settings_SoundsQuiet.Content" xml:space="preserve"><value>Rester silencieux pendant les jeux ou présentations en plein écran et en mode Ne pas déranger</value></data>
+  <data name="Settings_Volume.Text" xml:space="preserve"><value>Volume</value></data>
+  <data name="Settings_SoundsQuiet.Text" xml:space="preserve"><value>Rester silencieux pendant les jeux ou présentations en plein écran et en mode Ne pas déranger</value></data>
   <data name="Sound_Done" xml:space="preserve"><value>Une copie s&apos;est bien terminée</value></data>
   <data name="Sound_Errors" xml:space="preserve"><value>Une copie s&apos;est terminée avec des erreurs</value></data>
   <data name="Sound_AllDone" xml:space="preserve"><value>Toutes les copies sont terminées</value></data>
@@ -707,7 +707,7 @@
   <data name="Job_FilesSentOne" xml:space="preserve"><value>{0} fichier envoyé</value></data>
   <data name="Job_FilesSentMany" xml:space="preserve"><value>{0} fichiers envoyés</value></data>
   <data name="Rules_Describe.Header" xml:space="preserve"><value>Dites-le avec vos mots (en anglais ou en espagnol)</value></data>
-  <data name="Rules_Describe.PlaceholderText" xml:space="preserve"><value>photos larger than 2 MB from last month except .tmp</value></data>
+  <data name="Rules_Describe.PlaceholderText" xml:space="preserve"><value>*.jpg &gt; 2 MB</value></data>
   <data name="Rules_DescribeApply.Text" xml:space="preserve"><value>Appliquer</value></data>
   <data name="Rules_DescribeUnderstood" xml:space="preserve"><value>Compris : {0}.</value></data>
   <data name="Rules_DescribeNothing" xml:space="preserve"><value>Rien à filtrer n&apos;a été compris.</value></data>
@@ -1508,4 +1508,95 @@
   <data name="Info_CloseButton_Text" xml:space="preserve"><value>Choisissez ce qui arrive aux copies quand vous fermez la fenêtre avec le X.\n• Annuler les copies : comme appuyer sur « Arrêter » sur chacune. Elles disparaissent de la liste et ne sont pas proposées à la reprise.\n• Les arrêter pour continuer plus tard : ce qui a été copié est conservé ; en recopiant la même chose, ou en ouvrant MegaCopier, la copie reprend où elle en était.\n• Masquer la fenêtre : les copies continuent en arrière-plan ; ouvrez-la depuis l&apos;icône de la zone de notification.\n• Quitter MegaCopier : il se ferme complètement et Windows copie comme d&apos;habitude jusqu&apos;à ce que vous le rouvriez.</value></data>
   <data name="Info_MinimizeButton_Title" xml:space="preserve"><value>Quand vous réduisez la fenêtre</value></data>
   <data name="Info_MinimizeButton_Text" xml:space="preserve"><value>Où va la fenêtre quand vous la réduisez. Les copies continuent dans les deux cas.\n• Dans la barre des tâches : comme n&apos;importe quelle autre fenêtre.\nRéduire dans la zone de notification libère la barre des tâches : la fenêtre revient d&apos;un clic sur l&apos;icône de MegaCopier près de l&apos;horloge.</value></data>
+  <data name="Section_Updates" xml:space="preserve"><value>Mises à jour</value></data>
+  <data name="Updates_Tab" xml:space="preserve"><value>Mise à jour</value></data>
+  <data name="Updates_History" xml:space="preserve"><value>Historique des mises à jour</value></data>
+  <data name="Updates_ViewChangelog" xml:space="preserve"><value>Voir le journal des modifications</value></data>
+  <data name="Crash_Title" xml:space="preserve"><value>Rapports d’erreur</value></data>
+  <data name="Crash_Description" xml:space="preserve"><value>Inclut versions, langue, thème, activité et traces filtrées. Aucun nom, chemin ni contenu de fichier n’est envoyé.</value></data>
+  <data name="Crash_Transport" xml:space="preserve"><value>Envoi uniquement avec votre accord. Cloudflare reçoit l’IP pour limiter les abus ; elle est exclue du rapport. Destination : dépôt GitHub privé.</value></data>
+  <data name="Crash_LocalOnly" xml:space="preserve"><value>Envoi non configuré. Les journaux restent sur cet appareil.</value></data>
+  <data name="Crash_Queued" xml:space="preserve"><value>Rapport autorisé enregistré. En cas d’échec, nouvel essai au démarrage.</value></data>
+  <data name="Crash_Duplicate" xml:space="preserve"><value>Cette erreur est déjà en attente ou a été envoyée.</value></data>
+  <data name="Crash_Sent" xml:space="preserve"><value>Rapport envoyé. Merci d’aider à améliorer MegaCopier.</value></data>
+  <data name="Crash_Revoked" xml:space="preserve"><value>Envoi automatique désactivé et rapports en attente supprimés. Les rapports envoyés ne peuvent pas être retirés ici.</value></data>
+  <data name="Crash_Preview" xml:space="preserve"><value>Voir les données envoyées</value></data>
+  <data name="Crash_Always" xml:space="preserve"><value>Toujours envoyer sans demander</value></data>
+  <data name="Crash_Unexpected" xml:space="preserve"><value>MegaCopier s’est fermé inopinément</value></data>
+  <data name="Crash_Send" xml:space="preserve"><value>Envoyer le rapport</value></data>
+  <data name="Crash_NoSend" xml:space="preserve"><value>Ne pas envoyer</value></data>
+  <data name="Crash_Close" xml:space="preserve"><value>Fermer</value></data>
+  <data name="Crash_Automatic" xml:space="preserve"><value>Envoyer des rapports d’erreur pour améliorer MegaCopier</value></data>
+  <data name="Crash_OpenLogs" xml:space="preserve"><value>Ouvrir le dossier des journaux</value></data>
+  <data name="Crash_GitHub" xml:space="preserve"><value>Signaler un problème sur GitHub</value></data>
+  <data name="Crash_LastReport" xml:space="preserve"><value>Voir le dernier rapport local</value></data>
+  <data name="Updates_Search" xml:space="preserve"><value>Rechercher des mises à jour</value></data>
+  <data name="Updates_Unknown" xml:space="preserve"><value>Rechercher les mises à jour de MegaCopier</value></data>
+  <data name="Updates_SearchDescription" xml:space="preserve"><value>Rechercher une nouvelle version sans interrompre les copies.</value></data>
+  <data name="Updates_Searching" xml:space="preserve"><value>Recherche de mises à jour…</value></data>
+  <data name="Updates_Current" xml:space="preserve"><value>MegaCopier est à jour</value></data>
+  <data name="Updates_CurrentAction" xml:space="preserve"><value>Vous êtes à jour</value></data>
+  <data name="Updates_Available" xml:space="preserve"><value>Nouvelle version disponible</value></data>
+  <data name="Updates_Download" xml:space="preserve"><value>Télécharger la mise à jour</value></data>
+  <data name="Updates_DownloadZip" xml:space="preserve"><value>Télécharger le ZIP portable</value></data>
+  <data name="Updates_Downloading" xml:space="preserve"><value>Téléchargement de la mise à jour…</value></data>
+  <data name="Updates_Cancel" xml:space="preserve"><value>Annuler le téléchargement</value></data>
+  <data name="Updates_Verifying" xml:space="preserve"><value>Vérification du téléchargement…</value></data>
+  <data name="Updates_Ready" xml:space="preserve"><value>Mise à jour prête à installer</value></data>
+  <data name="Updates_Install" xml:space="preserve"><value>Mettre à jour maintenant</value></data>
+  <data name="Updates_Installing" xml:space="preserve"><value>Installation de la mise à jour…</value></data>
+  <data name="Updates_OpenZip" xml:space="preserve"><value>Afficher le ZIP téléchargé</value></data>
+  <data name="Updates_Versions" xml:space="preserve"><value>Installée : {0} · Disponible : {1}</value></data>
+  <data name="Updates_InstalledVersion" xml:space="preserve"><value>Version installée : {0}</value></data>
+  <data name="Updates_InstalledMarker" xml:space="preserve"><value>Version installée</value></data>
+  <data name="Updates_Bytes" xml:space="preserve"><value>{0} sur {1}</value></data>
+  <data name="Updates_WhatsNew" xml:space="preserve"><value>Nouveautés de cette version</value></data>
+  <data name="Updates_NotesUnavailable" xml:space="preserve"><value>Les notes de version ne sont pas disponibles dans cette langue.</value></data>
+  <data name="Updates_AutoCheck" xml:space="preserve"><value>Rechercher automatiquement les mises à jour</value></data>
+  <data name="Updates_AutoCheckDescription" xml:space="preserve"><value>Vérifie tous les deux jours et reprend au retour d’Internet si nécessaire.</value></data>
+  <data name="Updates_AutoDownload" xml:space="preserve"><value>Télécharger automatiquement</value></data>
+  <data name="Updates_AutoDownloadDescription" xml:space="preserve"><value>Télécharger automatiquement la mise à jour et la préparer à l’installation.</value></data>
+  <data name="Updates_AutoInstall" xml:space="preserve"><value>Installer lorsque MegaCopier n’est pas utilisé</value></data>
+  <data name="Updates_AutoInstallDescription" xml:space="preserve"><value>Installer uniquement dans la zone de notification, sans tâches ni dialogues en attente.</value></data>
+  <data name="Updates_Networks" xml:space="preserve"><value>Autoriser les téléchargements via</value></data>
+  <data name="Updates_Wifi" xml:space="preserve"><value>Wi-Fi et Ethernet</value></data>
+  <data name="Updates_Mobile" xml:space="preserve"><value>Données mobiles et réseaux limités</value></data>
+  <data name="Updates_NetworkDescription" xml:space="preserve"><value>Par défaut, seules les connexions non limitées sont autorisées.</value></data>
+  <data name="Updates_WaitNetwork" xml:space="preserve"><value>Téléchargement en attente d’un réseau autorisé</value></data>
+  <data name="Updates_RestrictedTitle" xml:space="preserve"><value>Cette connexion n’autorise pas les téléchargements</value></data>
+  <data name="Updates_RestrictedBody" xml:space="preserve"><value>Ce téléchargement peut utiliser des données mobiles. L’autoriser une fois sans changer les réglages ?</value></data>
+  <data name="Updates_AllowOnce" xml:space="preserve"><value>Autoriser ce téléchargement</value></data>
+  <data name="Updates_InstallDescription" xml:space="preserve"><value>MegaCopier se fermera et se rouvrira à la fin.</value></data>
+  <data name="Updates_Busy" xml:space="preserve"><value>Terminer ou retirer les tâches en attente et désactiver la synchronisation en direct.</value></data>
+  <data name="Updates_Portable" xml:space="preserve"><value>Mode portable : télécharger le ZIP et conserver le dossier Data lors de la mise à jour.</value></data>
+  <data name="Updates_Uninstalled" xml:space="preserve"><value>Cette copie n’est pas installée. Vous pouvez télécharger le ZIP portable.</value></data>
+  <data name="Updates_Dismiss" xml:space="preserve"><value>Masquer l’avis de cette version</value></data>
+  <data name="Updates_NoticeAvailable" xml:space="preserve"><value>Nouvelle mise à jour disponible</value></data>
+  <data name="Updates_NoticeAvailableBody" xml:space="preserve"><value>La version {0} est disponible. Cliquer pour ouvrir Mises à jour.</value></data>
+  <data name="Updates_NoticeReady" xml:space="preserve"><value>Mise à jour prête à installer</value></data>
+  <data name="Updates_NoticeReadyBody" xml:space="preserve"><value>La version {0} est téléchargée et vérifiée. Cliquer pour ouvrir Mises à jour.</value></data>
+  <data name="Updates_ErrorNetwork" xml:space="preserve"><value>Connexion impossible. Vous pouvez réessayer.</value></data>
+  <data name="Updates_ErrorInvalidRelease" xml:space="preserve"><value>Cette publication ne contient aucune mise à jour compatible.</value></data>
+  <data name="Updates_ErrorUntrustedUrl" xml:space="preserve"><value>Le téléchargement ne provient pas d’une source autorisée.</value></data>
+  <data name="Updates_ErrorMissingTrust" xml:space="preserve"><value>La clé de publication n’est pas configurée. L’installation reste bloquée.</value></data>
+  <data name="Updates_ErrorInvalidSignature" xml:space="preserve"><value>La signature de la mise à jour n’a pas pu être vérifiée.</value></data>
+  <data name="Updates_ErrorInvalidChecksum" xml:space="preserve"><value>Le téléchargement ne correspond pas au fichier vérifié. Il ne sera pas installé.</value></data>
+  <data name="Updates_ErrorTooLarge" xml:space="preserve"><value>Le téléchargement dépasse la taille autorisée.</value></data>
+  <data name="Updates_ErrorBusy" xml:space="preserve"><value>MegaCopier a des tâches ou des dialogues en attente.</value></data>
+  <data name="Updates_ErrorInstaller" xml:space="preserve"><value>Impossible de lancer l’installation. Le téléchargement est conservé.</value></data>
+  <data name="Updates_ErrorRestrictedNetwork" xml:space="preserve"><value>Se connecter à un réseau autorisé ou vérifier les permissions de téléchargement.</value></data>
+  <data name="Crash_Help" xml:space="preserve"><value>Aidez-nous à développer MegaCopier en envoyant des rapports d’erreurs.</value></data>
+  <data name="Crash_Installer" xml:space="preserve"><value>Envoyer des rapports d’erreurs</value></data>
+  <data name="Updates_ViewFullChangelog" xml:space="preserve"><value>Voir le journal complet</value></data>
+  <data name="Updates_CurrentHighlights" xml:space="preserve"><value>Principales nouveautés de la version actuelle</value></data>
+  <data name="Updates_AvailableHighlights" xml:space="preserve"><value>Principaux changements de la nouvelle version disponible</value></data>
+  <data name="Updates_NoInternet" xml:space="preserve"><value>Pas d’accès à Internet</value></data>
+  <data name="Updates_NoInternetDescription" xml:space="preserve"><value>Vérifiez votre connexion Internet et réessayez.</value></data>
+  <data name="Updates_NoInternetDownload" xml:space="preserve"><value>Aucun accès Internet pour télécharger la mise à jour. Vérifiez votre connexion et réessayez.</value></data>
+  <data name="Updates_NoticeCompleted" xml:space="preserve"><value>MegaCopier a été mis à jour</value></data>
+  <data name="Updates_NoticeCompletedBody" xml:space="preserve"><value>Vous disposez de MegaCopier {0}. Ouvrez Mises à jour pour découvrir les nouveautés.</value></data>
+  <data name="Installer_StartMenu" xml:space="preserve"><value>Créer un raccourci dans le menu Démarrer</value></data>
+  <data name="Installer_Taskbar" xml:space="preserve"><value>Préparer un raccourci à épingler à la barre des tâches (clic droit dans Windows)</value></data>
+  <data name="Settings_CustomSounds.Text" xml:space="preserve"><value>Personnaliser les sons</value></data>
+  <data name="Settings_FastPaths.PlaceholderText" xml:space="preserve"><value>C:, D:\Données</value></data>
 </root>

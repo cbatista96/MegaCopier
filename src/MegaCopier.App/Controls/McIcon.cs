@@ -42,6 +42,32 @@ public sealed partial class McIcon : UserControl
     };
 
     private ContainerVisual? _glow;
+    private bool _spinning;
+    private Visual? _spinVisual;
+
+    /// <summary>Solo gira el símbolo; el fondo propio del conjunto permanece quieto.</summary>
+    internal void SetSpinning(bool value)
+    {
+        if (_spinning == value) return;
+        _spinning = value;
+        ApplySpin();
+    }
+
+    private void ApplySpin()
+    {
+        if (!_spinning && _spinVisual is null) return;
+        var visual = _spinVisual ??= ElementCompositionPreview.GetElementVisual(_glyph);
+        visual.StopAnimation("RotationAngleInDegrees");
+        visual.RotationAngleInDegrees = 0;
+        visual.CenterPoint = new Vector3((float)_glyph.ActualWidth / 2, (float)_glyph.ActualHeight / 2, 0);
+        if (!_spinning || !IsLoaded || !new Windows.UI.ViewManagement.UISettings().AnimationsEnabled) return;
+        var animation = visual.Compositor.CreateScalarKeyFrameAnimation();
+        animation.InsertKeyFrame(0, 0);
+        animation.InsertKeyFrame(1, 360, visual.Compositor.CreateLinearEasingFunction());
+        animation.Duration = TimeSpan.FromSeconds(1.8);
+        animation.IterationBehavior = AnimationIterationBehavior.Forever;
+        visual.StartAnimation("RotationAngleInDegrees", animation);
+    }
 
     /// <summary>
     /// Todos los iconos que existen, para redibujarlos al cambiar de conjunto o de tema. No se usa Loaded/Unloaded para
@@ -65,11 +91,12 @@ public sealed partial class McIcon : UserControl
         _root.Children.Add(_glyph);
         Content = _root;
         Live.Add(new WeakReference<McIcon>(this));
-        Loaded += (_, _) => Render();
+        Loaded += (_, _) => { Render(); ApplySpin(); };
+        Unloaded += (_, _) => _spinVisual?.StopAnimation("RotationAngleInDegrees");
         IsEnabledChanged += (_, _) => Opacity = IsEnabled ? 1 : 0.4;
         RegisterPropertyChangedCallback(FontSizeProperty, (_, _) => Render());
         RegisterPropertyChangedCallback(ForegroundProperty, (_, _) => Render());
-        _glyph.SizeChanged += (_, _) => UpdateGlowSize();
+        _glyph.SizeChanged += (_, _) => { UpdateGlowSize(); ApplySpin(); };
     }
 
     public string Glyph

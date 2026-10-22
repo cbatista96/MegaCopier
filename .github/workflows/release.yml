@@ -34,6 +34,11 @@ jobs:
         shell: powershell
         run: .\build.ps1
 
+      - name: Exigir la clave pública de actualizaciones
+        shell: pwsh
+        run: |
+          if (-not (Test-Path tools/Updates/public-key.pem)) { throw 'Falta configurar la firma del actualizador: tools/Updates/README.md' }
+
       - name: Preparar los archivos
         shell: pwsh # PowerShell 7: lee el script en UTF-8 (los acentos de las notas)
         run: |
@@ -46,15 +51,28 @@ jobs:
           New-Item -ItemType File "$portable\portable.txt" | Out-Null
           Compress-Archive -Path $portable -DestinationPath "$out\MegaCopier-$env:VERSION-portable.zip"
           Copy-Item artifacts\cli\mcopy.exe "$out\mcopy-$env:VERSION.exe"
+          dotnet run tools/Updates/notes.cs -- $env:VERSION release --require-summary
+          if ($LASTEXITCODE -ne 0) { throw 'Faltan las notas bilingües.' }
+          # El cuerpo bilingüe es para la página; los assets separados son para el idioma elegido por la app.
+          Move-Item "$out\release-body.md" notes.md
           $files = Get-ChildItem $out # antes de crear SHA256SUMS.txt, que no se incluye a sí mismo
           $files | ForEach-Object { "{0}  {1}" -f (Get-FileHash $_.FullName -Algorithm SHA256).Hash.ToLowerInvariant(), $_.Name } |
             Out-File "$out\SHA256SUMS.txt" -Encoding ascii
-          # Notas: la sección de esta versión en CHANGELOG.md.
-          $changelog = Get-Content CHANGELOG.md -Raw -Encoding utf8
-          $match = [regex]::Match($changelog, "(?ms)^## \[$([regex]::Escape($env:VERSION))\][^\n]*\n(.*?)(?=^## \[|^\[)")
-          $notes = if ($match.Success) { $match.Groups[1].Value.Trim() } else { "MegaCopier $env:VERSION" }
-          $notes + "`n`n**Instalar:** descarga ``MegaCopier-Setup-$env:VERSION.exe`` y ejecútalo (Windows 11, 64 bits). El instalador aún no está firmado: en el aviso de SmartScreen pulsa *Más información* > *Ejecutar de todas formas*. Las sumas SHA-256 están en ``SHA256SUMS.txt``." |
-            Out-File notes.md -Encoding utf8
+
+      - name: Firmar el manifiesto del actualizador
+        shell: pwsh
+        env:
+          UPDATE_PRIVATE_KEY: ${{ secrets.MEGACOPIER_UPDATE_PRIVATE_KEY }}
+        run: |
+          if ([string]::IsNullOrWhiteSpace($env:UPDATE_PRIVATE_KEY)) { throw 'Falta el secreto MEGACOPIER_UPDATE_PRIVATE_KEY.' }
+          $privatePath = Join-Path $env:RUNNER_TEMP ([guid]::NewGuid().ToString() + '.pem')
+          try {
+            [IO.File]::WriteAllText($privatePath, $env:UPDATE_PRIVATE_KEY)
+            dotnet run tools/Updates/sign.cs -- sign $env:VERSION release $privatePath tools/Updates/public-key.pem
+            if ($LASTEXITCODE -ne 0) { throw 'No se pudo firmar el manifiesto.' }
+          } finally {
+            Remove-Item -LiteralPath $privatePath -Force -ErrorAction SilentlyContinue
+          }
 
       - name: Publicar
         shell: powershell

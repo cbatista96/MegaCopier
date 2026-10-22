@@ -90,6 +90,8 @@ public sealed partial class SettingsPage : UserControl
         _sectionIndicator = new Controls.SlidingIndicator(SectionList, SectionIndicatorLayer);
         BuildSections();
         BuildBarsSection();
+        BuildUpdatesSection();
+        BuildCrashSection();
         PolishCards();
         SizeChanged += (_, e) =>
         {
@@ -267,7 +269,7 @@ public sealed partial class SettingsPage : UserControl
         s.NotifyOnFinish = NotifyToggle.IsOn;
         s.AutoAdminCopy = AutoAdminToggle.IsOn;
         s.Sounds.Enabled = SoundBox.IsOn;
-        s.Sounds.QuietWhenBusy = QuietBox.IsChecked == true;
+        s.Sounds.QuietWhenBusy = QuietBox.IsOn;
 
         s.VerifyAfterCopy = VerifyToggle.IsOn;
         s.Conflict = OptionsTab.ConflictAt(ConflictBox.SelectedIndex);
@@ -437,7 +439,7 @@ public sealed partial class SettingsPage : UserControl
         SoundBox.IsOn = s.Enabled;
         VolumeSlider.Value = s.Volume;
         VolumeText.Text = $"{s.Volume} %";
-        QuietBox.IsChecked = s.QuietWhenBusy;
+        QuietBox.IsOn = s.QuietWhenBusy;
 
         SoundRows.Children.Clear();
         foreach (var e in Enum.GetValues<SoundEvent>())
@@ -1029,7 +1031,10 @@ public sealed partial class SettingsPage : UserControl
 
     private void Restart_Click(object sender, RoutedEventArgs e) => _app.Restart();
 
-    private void Close_Click(object sender, RoutedEventArgs e) => CloseRequested?.Invoke();
+    private void Close_Click(object sender, RoutedEventArgs e)
+    {
+        CloseRequested?.Invoke();
+    }
 
     private void ShowDefender()
     {

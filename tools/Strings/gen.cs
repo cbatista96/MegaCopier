@@ -26,7 +26,19 @@ foreach (var (code, _) in languages)
 
 WriteEngine(engine);
 WriteShell(shell);
+WriteInstallerDiagnostics();
 Console.WriteLine($"{languages.Count} idiomas · {app.Keys.Count} textos de la app · {engine.Keys.Count} del motor · {shell.Keys.Count} del Explorador");
+
+void WriteInstallerDiagnostics()
+{
+    var innoLanguages = new Dictionary<string,string> { ["es-ES"]="es",["en-US"]="en",["fr-FR"]="fr",["de-DE"]="de",["it-IT"]="it",["pt-BR"]="ptbr",["ru-RU"]="ru",["uk-UA"]="uk",["pl-PL"]="pl",["nl-NL"]="nl",["tr-TR"]="tr",["ja-JP"]="ja",["ko-KR"]="ko" };
+    var output = new StringBuilder("; Generado desde tools/Strings; no editar a mano.\n");
+    foreach (var (code, inno) in innoLanguages)
+        foreach (string key in new[] { "Crash_Title", "Crash_Installer", "Crash_Help", "Updates_AutoCheck", "Installer_StartMenu", "Installer_Taskbar" })
+            output.AppendLine($"{inno}.{key}={app.ByLanguage[code][key].Replace("%", "%%")}");
+    string path = Path.Combine(Path.GetDirectoryName(Path.GetFullPath(root))!, "..", "installer", "DiagnosticsMessages.iss");
+    File.WriteAllText(path, output.ToString(), new UTF8Encoding(true));
+}
 
 // Tabla base (es-ES y en-US) más un archivo por cada otro idioma; todo comprobado contra el inglés.
 Texts Load(string baseFile, string suffix)

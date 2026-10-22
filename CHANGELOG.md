@@ -1,9 +1,67 @@
 # Novedades
 
+**Español** · [English](CHANGELOG.en.md)
+
 Todos los cambios importantes de MegaCopier. El formato sigue [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/)
 y las versiones, [SemVer](https://semver.org/lang/es/).
 
 ## [Sin publicar]
+
+### Resumen
+
+- Puedes buscar, descargar e instalar actualizaciones desde Ajustes sin interrumpir tus copias. El mismo botón acompaña cada paso, con progreso, avisos de Windows y un indicador que se adapta al conjunto de iconos elegido.
+- Decide cuánto automatizar: buscar cada dos días, descargar las versiones detectadas automáticamente o instalarlas cuando MegaCopier esté en la bandeja y no tenga trabajo pendiente. Por defecto solo se activa la búsqueda; las descargas respetan tus permisos para Wi-Fi, cable y redes de uso medido.
+- Consulta las principales novedades de la versión disponible y abre el registro completo con sus imágenes, dentro de la aplicación. El historial incluye versiones anteriores y conserva español para la interfaz española e inglés para las demás.
+- Los informes de errores opcionales ayudan a mejorar MegaCopier sin adjuntar archivos, nombres ni rutas. Puedes elegir durante la instalación y en Ajustes si enviarlos en segundo plano o revisar cada informe antes de enviarlo.
+- El instalador organiza primero los accesos directos opcionales y después la integración. Presenta una imagen lateral de MegaCopier y la política de privacidad antes de instalar; la búsqueda automática y los informes se pueden desmarcar.
+- Ajustes navega con transiciones fluidas y permite volver a las copias con el botón superior. Los botones laterales del ratón también sirven para retroceder y avanzar, y Sonidos separa avisos, volumen, personalización y silencio durante juegos o presentaciones.
+- Se corrigen el cierre al arrancar tras consultar la red, la ayuda «Atrás» que aparecía fuera de su botón y los recortes o desalineaciones de cabeceras e indicadores. Las actualizaciones verifican el manifiesto firmado y la suma del paquete antes de instalarlo.
+
+### Añadido
+
+- **Centro de actualizaciones:** buscar, descargar, cancelar, verificar e instalar con una sola acción de tamaño fijo a la derecha y una barra compartida para búsqueda y descarga. El modo portátil ofrece el ZIP solo si existe una versión nueva.
+- **Automatización independiente:** búsqueda cada 48 horas y recuperación de comprobaciones vencidas al volver Internet. Solo una versión descubierta por una búsqueda automática puede descargarse automáticamente; una búsqueda manual ofrece Descargar. Descargar e instalar vienen desactivados. La instalación automática espera a la bandeja, sin copias activas, pendientes o pausadas, diálogos ni sincronización en directo.
+- **Permisos de red:** Wi-Fi y cable sin uso medido por defecto; datos móviles y redes de uso medido requieren permiso. Los cambios se aplican también a la descarga en curso. La interfaz no muestra el tipo de conexión actual.
+- **Avisos nativos de Windows:** nueva versión disponible, descarga lista y actualización completada. Abren Actualizaciones; el aviso pendiente de actualización completada desaparece al entrar en esa sección.
+- **Novedades e historial:** resumen editorial de la versión instalada o de la nueva versión disponible, acceso al registro completo con enlaces e imágenes y ruta Actualizaciones > Historial de actualizaciones > MegaCopier y versión. Las capturas quedan a la izquierda y las notas guardadas se pueden consultar sin Internet. Los registros históricos completos están también en inglés.
+
+<img src="docs/capturas/actualizaciones.png" width="820" alt="Centro de actualizaciones de MegaCopier">
+
+<img src="docs/capturas/historial-ruta.png" width="820" alt="Ruta del historial y registro completo de una versión">
+
+- **Informes opcionales y privados:** elección en el instalador y en Ajustes > Avanzado, vista previa exacta del informe, registro local y envío automático sin preguntas cuando se autoriza. Si está desactivado, el diálogo permite enviar una vez o habilitar futuros envíos. Detecta cierres inesperados y los fallos nativos disponibles de esa sesión; un apagón también puede dejar una marca de cierre inesperado.
+- **Receptor configurado en Cloudflare y GitHub privado:** trazas filtradas sin mensajes libres, nombres ni rutas, cola autorizada, reintentos limitados y agrupación de fallos repetidos. Desactivar el envío elimina los pendientes locales; no retira informes ya recibidos. La política explica los proveedores y límites de conservación.
+
+<img src="docs/capturas/ajustes-informes.png" width="820" alt="Control de informes y accesos a registros en Ajustes">
+
+- **Instalador reorganizado:** accesos al escritorio, menú Inicio y preparación de un acceso para anclar desde Windows, todos desmarcados por defecto. Integración reúne Explorador, inicio con Windows, búsqueda automática y los informes al final. La casilla de informes aparece seleccionada con explicación debajo; las actualizaciones silenciosas conservan la preferencia. Incluye imagen lateral propia y política de privacidad antes de instalar.
+
+<img src="docs/capturas/instalador-informes.png" width="598" alt="Opciones de accesos directos e integración del instalador">
+
+### Cambiado
+
+- **Sonidos en cuatro tarjetas:** avisos con campana; volumen con icono, nombre, barra y porcentaje en una línea; personalización por evento; y silencio durante juegos, presentaciones o «No molestar», con interruptor activado por defecto en ajustes nuevos. Respeta las preferencias existentes.
+
+<img src="docs/capturas/sonidos-tarjetas.png" width="820" alt="Avisos, volumen, personalización y silencio en tarjetas separadas">
+
+- **Documentación en dos idiomas:** enlaces visibles a la presentación y al historial completo en inglés y español. Las publicaciones futuras muestran ambos idiomas y empiezan por las principales novedades; los assets de notas separados conservan el documento completo para la aplicación. La guía editorial permite resúmenes desarrollados de la longitud necesaria y agrupa arreglos menores sin inventar cifras.
+- **Traducciones revisadas:** los 14 idiomas comparten las mismas claves y parámetros. El ejemplo de ruta de dispositivos rápidos procede de los recursos traducidos; los filtros en idiomas distintos del español y el inglés usan un ejemplo de extensión y tamaño que el analizador admite, sin una frase inglesa sin traducir.
+
+### Arreglado
+
+- **Arranque:** consultar la conexión del actualizador fuera del hilo de la interfaz evita el cierre de WinUI al ejecutar el EXE.
+- **Sin Internet:** se conservan el último resultado conocido y las novedades. El aviso de red aparece al buscar o descargar manualmente y se oculta al salir de la sección. Volver a conectarse permite reintentar; no se consulta una versión en cada cambio de conexión si todavía no vence el plazo de 48 horas.
+- **Acción al volver a Actualizaciones:** vuelve a ofrecer Buscar actualizaciones cuando no hay una versión nueva conocida. «Estás al día» aparece en el botón tras una búsqueda manual sin novedades; una versión disponible conserva Descargar o Instalar y sus principales cambios.
+- **Navegación:** la selección lateral y el contenido se desplazan desde el primer cambio, incluso con pulsaciones rápidas. Volver y avanzar invierten la transición; funcionan también Alt+Izquierda/Derecha y los botones laterales del ratón. Ajustes en la barra superior regresa a las copias o al inicio y restaura el tamaño anterior.
+- **Ayuda emergente:** el mensaje Atrás deja de aparecer al mover el ratón fuera del botón Volver, incluida la ventana sin foco.
+- **Alineación:** cabecera y ruta del historial conservan su altura con el cuadro de búsqueda, dejan espacio para las letras con descendentes y alinean ópticamente los separadores. El texto y la flecha de cada tarjeta del historial quedan centrados juntos a la derecha.
+- **Indicadores:** la notificación del botón Ajustes ya no se recorta con iconos personalizados y la del menú lateral queda alineada a la derecha. Las flechas giran durante búsqueda y descarga; los conjuntos de iconos conservan su estilo en el check verde, la atención amarilla y la X roja por búsqueda automática desactivada o error de conexión tras una acción.
+- **Instalación y preferencias:** casilla y explicación de informes visibles sin cortes; interruptor primero en Ajustes y accesos a registros dispuestos horizontalmente. Las opciones de red también se muestran en una fila con separación.
+
+### Seguridad
+
+- **Actualizaciones verificadas:** manifiesto ECDSA P-256 y SHA-256 del instalador y del ZIP; sin clave o firma válida no se ejecuta el paquete. Clave pública de producción incluida en la app y privada custodiada fuera del repositorio y como secreto de GitHub Actions.
+- **Firma de Windows pendiente:** solicitud enviada a SignPath Foundation el 21 de octubre de 2026, con recepción confirmada. La aprobación y el certificado Authenticode siguen pendientes; esta configuración no convierte los ejecutables actuales en firmados ni garantiza eliminar los avisos de SmartScreen.
 
 ## [1.7.1] - 2026-10-20
 

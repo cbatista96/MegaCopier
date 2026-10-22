@@ -1,4 +1,4 @@
-clave	texto
+﻿clave	texto
 JobsSection.Text	コピー
 SettingsSection.Text	設定
 FinishButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	すべてのコピーが終わったら
@@ -469,8 +469,8 @@ Drop_JobOrder	キューの {0} 番目に置く
 Settings_Sounds.Text	サウンド
 Settings_SoundsTitle.Text	サウンド通知
 Settings_SoundsDescription.Text	場面ごとにサウンドを選びます: Windows のサウンド、PC 上の任意のファイル、またはなし。
-Settings_Volume.Header	音量
-Settings_SoundsQuiet.Content	全画面のゲームやプレゼン中、および「応答不可」のときは鳴らさない
+Settings_Volume.Text	音量
+Settings_SoundsQuiet.Text	全画面のゲームやプレゼン中、および「応答不可」のときは鳴らさない
 Sound_Done	コピーが正常に完了
 Sound_Errors	コピーがエラーありで完了
 Sound_AllDone	すべてのコピーが完了
@@ -701,7 +701,7 @@ Job_StateSending	送信中
 Job_FilesSentOne	{0} 個のファイルを送信しました
 Job_FilesSentMany	{0} 個のファイルを送信しました
 Rules_Describe.Header	自分の言葉で説明（英語またはスペイン語）
-Rules_Describe.PlaceholderText	photos larger than 2 MB from last month except .tmp
+Rules_Describe.PlaceholderText	*.jpg > 2 MB
 Rules_DescribeApply.Text	適用
 Rules_DescribeUnderstood	理解しました: {0}。
 Rules_DescribeNothing	フィルターする内容を理解できませんでした。
@@ -1502,3 +1502,95 @@ Info_CloseButton_Title	ウィンドウの × を押したとき
 Info_CloseButton_Text	ウィンドウを X で閉じたときにコピーをどうするかを選びます。\n• コピーを取り消す: 各コピーで［停止］を押すのと同じです。一覧から消え、続行は提案されません。\n• 停止して後で続ける: コピー済みの分は残ります。同じものをもう一度コピーするか MegaCopier を開くと、途中から続きます。\n• ウィンドウを隠す: コピーはバックグラウンドで続きます。通知領域のアイコンから開きます。\n• MegaCopier を終了: 完全に終了し、もう一度開くまで Windows が通常どおりコピーします。
 Info_MinimizeButton_Title	ウィンドウを最小化したとき
 Info_MinimizeButton_Text	ウィンドウを最小化したときの行き先です。どちらの場合もコピーは続きます。\n• タスク バーへ: ほかのウィンドウと同じです。\n通知領域へ最小化するとタスク バーがすっきりします。時計の横の MegaCopier アイコンをクリックするとウィンドウが戻ります。
+Section_Updates	更新
+Updates_Tab	更新
+Updates_History	更新履歴
+Updates_ViewChangelog	変更履歴を表示
+Crash_Title	エラーレポート
+Crash_Description	バージョン、言語、テーマ、操作、フィルター済みトレースを含みます。名前、パス、ファイルの内容は送信しません。
+Crash_Transport	同意した場合のみ送信します。Cloudflare は不正利用防止のため IP を受信しますが、レポートには含めません。送信先は非公開 GitHub リポジトリです。
+Crash_LocalOnly	送信は未設定です。ログはこの端末に保存されます。
+Crash_Queued	同意済みレポートを保存しました。送信に失敗した場合は起動時に再試行します。
+Crash_Duplicate	このエラーは送信待ちか、すでに送信済みです。
+Crash_Sent	送信しました。ご協力ありがとうございます。
+Crash_Revoked	自動送信を無効にし、未送信レポートを削除しました。送信済みのレポートはここでは取り消せません。
+Crash_Preview	送信内容を確認
+Crash_Always	次回から確認せずに送信
+Crash_Unexpected	MegaCopier が予期せず終了しました
+Crash_Send	レポートを送信
+Crash_NoSend	送信しない
+Crash_Close	閉じる
+Crash_Automatic	MegaCopier 改善のためエラーレポートを送信
+Crash_OpenLogs	ログフォルダーを開く
+Crash_GitHub	GitHub で問題を報告
+Crash_LastReport	最新のローカルレポートを表示
+Updates_Search	更新を確認
+Updates_Unknown	MegaCopierの更新を確認
+Updates_SearchDescription	コピーを中断せずに新しいバージョンを確認します。
+Updates_Searching	更新を確認しています…
+Updates_Current	MegaCopierは最新です
+Updates_CurrentAction	最新の状態です
+Updates_Available	新しいバージョンがあります
+Updates_Download	更新をダウンロード
+Updates_DownloadZip	ポータブルZIPをダウンロード
+Updates_Downloading	更新をダウンロード中…
+Updates_Cancel	ダウンロードをキャンセル
+Updates_Verifying	ダウンロードを検証中…
+Updates_Ready	更新をインストールできます
+Updates_Install	今すぐ更新
+Updates_Installing	更新をインストール中…
+Updates_OpenZip	ダウンロードしたZIPを表示
+Updates_Versions	インストール済み: {0} · 利用可能: {1}
+Updates_InstalledVersion	インストール済みバージョン: {0}
+Updates_InstalledMarker	インストール済みバージョン
+Updates_Bytes	{0} / {1}
+Updates_WhatsNew	このバージョンの新機能
+Updates_NotesUnavailable	この言語のリリースノートはありません。
+Updates_AutoCheck	更新を自動的に確認
+Updates_AutoCheckDescription	2日ごとに確認し、未実施の場合はインターネット接続の復帰時に確認します。
+Updates_AutoDownload	自動ダウンロード
+Updates_AutoDownloadDescription	更新を自動的にダウンロードしてインストールの準備をします。
+Updates_AutoInstall	MegaCopierを使用していないときにインストール
+Updates_AutoInstallDescription	トレイにあり、保留中のジョブやダイアログがない場合のみインストールします。
+Updates_Networks	ダウンロードを許可する接続
+Updates_Wifi	Wi-Fiと有線LAN
+Updates_Mobile	モバイルデータと従量制課金接続
+Updates_NetworkDescription	既定では従量制課金でない接続のみ許可します。
+Updates_WaitNetwork	許可されたネットワークを待っています
+Updates_RestrictedTitle	この接続ではダウンロードできません
+Updates_RestrictedBody	モバイルデータを使う場合があります。設定を変えずに今回のみ許可しますか？
+Updates_AllowOnce	今回のダウンロードを許可
+Updates_InstallDescription	MegaCopierは終了し、完了後に再び開きます。
+Updates_Busy	保留中のジョブを完了または削除し、リアルタイム同期を無効にしてください。
+Updates_Portable	ポータブルモード: ZIPをダウンロードし、更新時にDataフォルダーを保持してください。
+Updates_Uninstalled	このコピーはインストールされていません。ポータブルZIPをダウンロードできます。
+Updates_Dismiss	このバージョンの通知を非表示
+Updates_NoticeAvailable	新しい更新があります
+Updates_NoticeAvailableBody	バージョン{0}が利用可能です。クリックして更新を開きます。
+Updates_NoticeReady	更新をインストールできます
+Updates_NoticeReadyBody	バージョン{0}をダウンロードして検証しました。クリックして更新を開きます。
+Updates_ErrorNetwork	接続できませんでした。再試行できます。
+Updates_ErrorInvalidRelease	このリリースには互換性のある更新がありません。
+Updates_ErrorUntrustedUrl	許可された配布元からのダウンロードではありません。
+Updates_ErrorMissingTrust	公開鍵が未設定のためインストールできません。
+Updates_ErrorInvalidSignature	更新の署名を検証できませんでした。
+Updates_ErrorInvalidChecksum	検証済みファイルと一致しないためインストールしません。
+Updates_ErrorTooLarge	ダウンロードが許可サイズを超えています。
+Updates_ErrorBusy	保留中のジョブまたはダイアログがあります。
+Updates_ErrorInstaller	インストールを開始できませんでした。ダウンロードは保持されます。
+Updates_ErrorRestrictedNetwork	許可されたネットワークに接続するかダウンロード許可を確認してください。
+
+Crash_Help	エラーレポートを送信して MegaCopier の開発にご協力ください。
+Crash_Installer	エラーレポートを送信
+Updates_ViewFullChangelog	変更履歴をすべて表示
+Updates_CurrentHighlights	現在のバージョンの主な新機能
+Updates_AvailableHighlights	利用可能な新バージョンの主な変更点
+Updates_NoInternet	インターネットに接続されていません
+Updates_NoInternetDescription	インターネット接続を確認して、もう一度お試しください。
+Updates_NoInternetDownload	更新をダウンロードするためのインターネット接続がありません。接続を確認して、もう一度お試しください。
+Updates_NoticeCompleted	MegaCopier が更新されました
+Updates_NoticeCompletedBody	MegaCopier {0} をインストールしました。更新画面で新機能をご覧ください。
+Installer_StartMenu	スタートメニューにショートカットを作成
+Installer_Taskbar	タスクバー用ショートカットを準備（Windowsで右クリック）
+Settings_CustomSounds.Text	サウンドをカスタマイズ
+Settings_FastPaths.PlaceholderText	C:, D:\データ

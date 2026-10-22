@@ -475,8 +475,8 @@
   <data name="Settings_Sounds.Text" xml:space="preserve"><value>サウンド</value></data>
   <data name="Settings_SoundsTitle.Text" xml:space="preserve"><value>サウンド通知</value></data>
   <data name="Settings_SoundsDescription.Text" xml:space="preserve"><value>場面ごとにサウンドを選びます: Windows のサウンド、PC 上の任意のファイル、またはなし。</value></data>
-  <data name="Settings_Volume.Header" xml:space="preserve"><value>音量</value></data>
-  <data name="Settings_SoundsQuiet.Content" xml:space="preserve"><value>全画面のゲームやプレゼン中、および「応答不可」のときは鳴らさない</value></data>
+  <data name="Settings_Volume.Text" xml:space="preserve"><value>音量</value></data>
+  <data name="Settings_SoundsQuiet.Text" xml:space="preserve"><value>全画面のゲームやプレゼン中、および「応答不可」のときは鳴らさない</value></data>
   <data name="Sound_Done" xml:space="preserve"><value>コピーが正常に完了</value></data>
   <data name="Sound_Errors" xml:space="preserve"><value>コピーがエラーありで完了</value></data>
   <data name="Sound_AllDone" xml:space="preserve"><value>すべてのコピーが完了</value></data>
@@ -707,7 +707,7 @@
   <data name="Job_FilesSentOne" xml:space="preserve"><value>{0} 個のファイルを送信しました</value></data>
   <data name="Job_FilesSentMany" xml:space="preserve"><value>{0} 個のファイルを送信しました</value></data>
   <data name="Rules_Describe.Header" xml:space="preserve"><value>自分の言葉で説明（英語またはスペイン語）</value></data>
-  <data name="Rules_Describe.PlaceholderText" xml:space="preserve"><value>photos larger than 2 MB from last month except .tmp</value></data>
+  <data name="Rules_Describe.PlaceholderText" xml:space="preserve"><value>*.jpg &gt; 2 MB</value></data>
   <data name="Rules_DescribeApply.Text" xml:space="preserve"><value>適用</value></data>
   <data name="Rules_DescribeUnderstood" xml:space="preserve"><value>理解しました: {0}。</value></data>
   <data name="Rules_DescribeNothing" xml:space="preserve"><value>フィルターする内容を理解できませんでした。</value></data>
@@ -1508,4 +1508,95 @@
   <data name="Info_CloseButton_Text" xml:space="preserve"><value>ウィンドウを X で閉じたときにコピーをどうするかを選びます。\n• コピーを取り消す: 各コピーで［停止］を押すのと同じです。一覧から消え、続行は提案されません。\n• 停止して後で続ける: コピー済みの分は残ります。同じものをもう一度コピーするか MegaCopier を開くと、途中から続きます。\n• ウィンドウを隠す: コピーはバックグラウンドで続きます。通知領域のアイコンから開きます。\n• MegaCopier を終了: 完全に終了し、もう一度開くまで Windows が通常どおりコピーします。</value></data>
   <data name="Info_MinimizeButton_Title" xml:space="preserve"><value>ウィンドウを最小化したとき</value></data>
   <data name="Info_MinimizeButton_Text" xml:space="preserve"><value>ウィンドウを最小化したときの行き先です。どちらの場合もコピーは続きます。\n• タスク バーへ: ほかのウィンドウと同じです。\n通知領域へ最小化するとタスク バーがすっきりします。時計の横の MegaCopier アイコンをクリックするとウィンドウが戻ります。</value></data>
+  <data name="Section_Updates" xml:space="preserve"><value>更新</value></data>
+  <data name="Updates_Tab" xml:space="preserve"><value>更新</value></data>
+  <data name="Updates_History" xml:space="preserve"><value>更新履歴</value></data>
+  <data name="Updates_ViewChangelog" xml:space="preserve"><value>変更履歴を表示</value></data>
+  <data name="Crash_Title" xml:space="preserve"><value>エラーレポート</value></data>
+  <data name="Crash_Description" xml:space="preserve"><value>バージョン、言語、テーマ、操作、フィルター済みトレースを含みます。名前、パス、ファイルの内容は送信しません。</value></data>
+  <data name="Crash_Transport" xml:space="preserve"><value>同意した場合のみ送信します。Cloudflare は不正利用防止のため IP を受信しますが、レポートには含めません。送信先は非公開 GitHub リポジトリです。</value></data>
+  <data name="Crash_LocalOnly" xml:space="preserve"><value>送信は未設定です。ログはこの端末に保存されます。</value></data>
+  <data name="Crash_Queued" xml:space="preserve"><value>同意済みレポートを保存しました。送信に失敗した場合は起動時に再試行します。</value></data>
+  <data name="Crash_Duplicate" xml:space="preserve"><value>このエラーは送信待ちか、すでに送信済みです。</value></data>
+  <data name="Crash_Sent" xml:space="preserve"><value>送信しました。ご協力ありがとうございます。</value></data>
+  <data name="Crash_Revoked" xml:space="preserve"><value>自動送信を無効にし、未送信レポートを削除しました。送信済みのレポートはここでは取り消せません。</value></data>
+  <data name="Crash_Preview" xml:space="preserve"><value>送信内容を確認</value></data>
+  <data name="Crash_Always" xml:space="preserve"><value>次回から確認せずに送信</value></data>
+  <data name="Crash_Unexpected" xml:space="preserve"><value>MegaCopier が予期せず終了しました</value></data>
+  <data name="Crash_Send" xml:space="preserve"><value>レポートを送信</value></data>
+  <data name="Crash_NoSend" xml:space="preserve"><value>送信しない</value></data>
+  <data name="Crash_Close" xml:space="preserve"><value>閉じる</value></data>
+  <data name="Crash_Automatic" xml:space="preserve"><value>MegaCopier 改善のためエラーレポートを送信</value></data>
+  <data name="Crash_OpenLogs" xml:space="preserve"><value>ログフォルダーを開く</value></data>
+  <data name="Crash_GitHub" xml:space="preserve"><value>GitHub で問題を報告</value></data>
+  <data name="Crash_LastReport" xml:space="preserve"><value>最新のローカルレポートを表示</value></data>
+  <data name="Updates_Search" xml:space="preserve"><value>更新を確認</value></data>
+  <data name="Updates_Unknown" xml:space="preserve"><value>MegaCopierの更新を確認</value></data>
+  <data name="Updates_SearchDescription" xml:space="preserve"><value>コピーを中断せずに新しいバージョンを確認します。</value></data>
+  <data name="Updates_Searching" xml:space="preserve"><value>更新を確認しています…</value></data>
+  <data name="Updates_Current" xml:space="preserve"><value>MegaCopierは最新です</value></data>
+  <data name="Updates_CurrentAction" xml:space="preserve"><value>最新の状態です</value></data>
+  <data name="Updates_Available" xml:space="preserve"><value>新しいバージョンがあります</value></data>
+  <data name="Updates_Download" xml:space="preserve"><value>更新をダウンロード</value></data>
+  <data name="Updates_DownloadZip" xml:space="preserve"><value>ポータブルZIPをダウンロード</value></data>
+  <data name="Updates_Downloading" xml:space="preserve"><value>更新をダウンロード中…</value></data>
+  <data name="Updates_Cancel" xml:space="preserve"><value>ダウンロードをキャンセル</value></data>
+  <data name="Updates_Verifying" xml:space="preserve"><value>ダウンロードを検証中…</value></data>
+  <data name="Updates_Ready" xml:space="preserve"><value>更新をインストールできます</value></data>
+  <data name="Updates_Install" xml:space="preserve"><value>今すぐ更新</value></data>
+  <data name="Updates_Installing" xml:space="preserve"><value>更新をインストール中…</value></data>
+  <data name="Updates_OpenZip" xml:space="preserve"><value>ダウンロードしたZIPを表示</value></data>
+  <data name="Updates_Versions" xml:space="preserve"><value>インストール済み: {0} · 利用可能: {1}</value></data>
+  <data name="Updates_InstalledVersion" xml:space="preserve"><value>インストール済みバージョン: {0}</value></data>
+  <data name="Updates_InstalledMarker" xml:space="preserve"><value>インストール済みバージョン</value></data>
+  <data name="Updates_Bytes" xml:space="preserve"><value>{0} / {1}</value></data>
+  <data name="Updates_WhatsNew" xml:space="preserve"><value>このバージョンの新機能</value></data>
+  <data name="Updates_NotesUnavailable" xml:space="preserve"><value>この言語のリリースノートはありません。</value></data>
+  <data name="Updates_AutoCheck" xml:space="preserve"><value>更新を自動的に確認</value></data>
+  <data name="Updates_AutoCheckDescription" xml:space="preserve"><value>2日ごとに確認し、未実施の場合はインターネット接続の復帰時に確認します。</value></data>
+  <data name="Updates_AutoDownload" xml:space="preserve"><value>自動ダウンロード</value></data>
+  <data name="Updates_AutoDownloadDescription" xml:space="preserve"><value>更新を自動的にダウンロードしてインストールの準備をします。</value></data>
+  <data name="Updates_AutoInstall" xml:space="preserve"><value>MegaCopierを使用していないときにインストール</value></data>
+  <data name="Updates_AutoInstallDescription" xml:space="preserve"><value>トレイにあり、保留中のジョブやダイアログがない場合のみインストールします。</value></data>
+  <data name="Updates_Networks" xml:space="preserve"><value>ダウンロードを許可する接続</value></data>
+  <data name="Updates_Wifi" xml:space="preserve"><value>Wi-Fiと有線LAN</value></data>
+  <data name="Updates_Mobile" xml:space="preserve"><value>モバイルデータと従量制課金接続</value></data>
+  <data name="Updates_NetworkDescription" xml:space="preserve"><value>既定では従量制課金でない接続のみ許可します。</value></data>
+  <data name="Updates_WaitNetwork" xml:space="preserve"><value>許可されたネットワークを待っています</value></data>
+  <data name="Updates_RestrictedTitle" xml:space="preserve"><value>この接続ではダウンロードできません</value></data>
+  <data name="Updates_RestrictedBody" xml:space="preserve"><value>モバイルデータを使う場合があります。設定を変えずに今回のみ許可しますか？</value></data>
+  <data name="Updates_AllowOnce" xml:space="preserve"><value>今回のダウンロードを許可</value></data>
+  <data name="Updates_InstallDescription" xml:space="preserve"><value>MegaCopierは終了し、完了後に再び開きます。</value></data>
+  <data name="Updates_Busy" xml:space="preserve"><value>保留中のジョブを完了または削除し、リアルタイム同期を無効にしてください。</value></data>
+  <data name="Updates_Portable" xml:space="preserve"><value>ポータブルモード: ZIPをダウンロードし、更新時にDataフォルダーを保持してください。</value></data>
+  <data name="Updates_Uninstalled" xml:space="preserve"><value>このコピーはインストールされていません。ポータブルZIPをダウンロードできます。</value></data>
+  <data name="Updates_Dismiss" xml:space="preserve"><value>このバージョンの通知を非表示</value></data>
+  <data name="Updates_NoticeAvailable" xml:space="preserve"><value>新しい更新があります</value></data>
+  <data name="Updates_NoticeAvailableBody" xml:space="preserve"><value>バージョン{0}が利用可能です。クリックして更新を開きます。</value></data>
+  <data name="Updates_NoticeReady" xml:space="preserve"><value>更新をインストールできます</value></data>
+  <data name="Updates_NoticeReadyBody" xml:space="preserve"><value>バージョン{0}をダウンロードして検証しました。クリックして更新を開きます。</value></data>
+  <data name="Updates_ErrorNetwork" xml:space="preserve"><value>接続できませんでした。再試行できます。</value></data>
+  <data name="Updates_ErrorInvalidRelease" xml:space="preserve"><value>このリリースには互換性のある更新がありません。</value></data>
+  <data name="Updates_ErrorUntrustedUrl" xml:space="preserve"><value>許可された配布元からのダウンロードではありません。</value></data>
+  <data name="Updates_ErrorMissingTrust" xml:space="preserve"><value>公開鍵が未設定のためインストールできません。</value></data>
+  <data name="Updates_ErrorInvalidSignature" xml:space="preserve"><value>更新の署名を検証できませんでした。</value></data>
+  <data name="Updates_ErrorInvalidChecksum" xml:space="preserve"><value>検証済みファイルと一致しないためインストールしません。</value></data>
+  <data name="Updates_ErrorTooLarge" xml:space="preserve"><value>ダウンロードが許可サイズを超えています。</value></data>
+  <data name="Updates_ErrorBusy" xml:space="preserve"><value>保留中のジョブまたはダイアログがあります。</value></data>
+  <data name="Updates_ErrorInstaller" xml:space="preserve"><value>インストールを開始できませんでした。ダウンロードは保持されます。</value></data>
+  <data name="Updates_ErrorRestrictedNetwork" xml:space="preserve"><value>許可されたネットワークに接続するかダウンロード許可を確認してください。</value></data>
+  <data name="Crash_Help" xml:space="preserve"><value>エラーレポートを送信して MegaCopier の開発にご協力ください。</value></data>
+  <data name="Crash_Installer" xml:space="preserve"><value>エラーレポートを送信</value></data>
+  <data name="Updates_ViewFullChangelog" xml:space="preserve"><value>変更履歴をすべて表示</value></data>
+  <data name="Updates_CurrentHighlights" xml:space="preserve"><value>現在のバージョンの主な新機能</value></data>
+  <data name="Updates_AvailableHighlights" xml:space="preserve"><value>利用可能な新バージョンの主な変更点</value></data>
+  <data name="Updates_NoInternet" xml:space="preserve"><value>インターネットに接続されていません</value></data>
+  <data name="Updates_NoInternetDescription" xml:space="preserve"><value>インターネット接続を確認して、もう一度お試しください。</value></data>
+  <data name="Updates_NoInternetDownload" xml:space="preserve"><value>更新をダウンロードするためのインターネット接続がありません。接続を確認して、もう一度お試しください。</value></data>
+  <data name="Updates_NoticeCompleted" xml:space="preserve"><value>MegaCopier が更新されました</value></data>
+  <data name="Updates_NoticeCompletedBody" xml:space="preserve"><value>MegaCopier {0} をインストールしました。更新画面で新機能をご覧ください。</value></data>
+  <data name="Installer_StartMenu" xml:space="preserve"><value>スタートメニューにショートカットを作成</value></data>
+  <data name="Installer_Taskbar" xml:space="preserve"><value>タスクバー用ショートカットを準備（Windowsで右クリック）</value></data>
+  <data name="Settings_CustomSounds.Text" xml:space="preserve"><value>サウンドをカスタマイズ</value></data>
+  <data name="Settings_FastPaths.PlaceholderText" xml:space="preserve"><value>C:, D:\データ</value></data>
 </root>

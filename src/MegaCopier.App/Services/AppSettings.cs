@@ -577,6 +577,14 @@ public sealed class AppSettings
     /// <summary>Las copias nuevas empiezan con la ventana minimizada.</summary>
     public bool StartMinimized { get; set; }
 
+    /// <summary>Actualizaciones: consulta ligera, descarga diferida y redes autorizadas; instalar es opcional.</summary>
+    public bool CheckUpdatesAutomatically { get; set; } = true;
+    public bool SendCrashReportsAutomatically { get; set; }
+    public bool DownloadUpdatesAutomatically { get; set; }
+    public bool InstallUpdatesWhenIdle { get; set; }
+    public bool UpdateAllowWifiEthernet { get; set; } = true;
+    public bool UpdateAllowMobileMetered { get; set; }
+
     /// <summary>Recordar dónde estaba la ventana y abrirla en el mismo sitio.</summary>
     public bool RememberPosition { get; set; }
 

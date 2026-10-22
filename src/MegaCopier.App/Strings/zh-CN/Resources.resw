@@ -475,8 +475,8 @@
   <data name="Settings_Sounds.Text" xml:space="preserve"><value>声音</value></data>
   <data name="Settings_SoundsTitle.Text" xml:space="preserve"><value>声音提醒</value></data>
   <data name="Settings_SoundsDescription.Text" xml:space="preserve"><value>为每个时刻选择声音：Windows 声音、电脑上的任意文件或无声音。</value></data>
-  <data name="Settings_Volume.Header" xml:space="preserve"><value>音量</value></data>
-  <data name="Settings_SoundsQuiet.Content" xml:space="preserve"><value>全屏游戏或演示以及“请勿打扰”时保持安静</value></data>
+  <data name="Settings_Volume.Text" xml:space="preserve"><value>音量</value></data>
+  <data name="Settings_SoundsQuiet.Text" xml:space="preserve"><value>全屏游戏或演示以及“请勿打扰”时保持安静</value></data>
   <data name="Sound_Done" xml:space="preserve"><value>复制顺利完成</value></data>
   <data name="Sound_Errors" xml:space="preserve"><value>复制完成但有错误</value></data>
   <data name="Sound_AllDone" xml:space="preserve"><value>全部复制完成</value></data>
@@ -707,7 +707,7 @@
   <data name="Job_FilesSentOne" xml:space="preserve"><value>已发送 {0} 个文件</value></data>
   <data name="Job_FilesSentMany" xml:space="preserve"><value>已发送 {0} 个文件</value></data>
   <data name="Rules_Describe.Header" xml:space="preserve"><value>用自己的话描述（英语或西班牙语）</value></data>
-  <data name="Rules_Describe.PlaceholderText" xml:space="preserve"><value>photos larger than 2 MB from last month except .tmp</value></data>
+  <data name="Rules_Describe.PlaceholderText" xml:space="preserve"><value>*.jpg &gt; 2 MB</value></data>
   <data name="Rules_DescribeApply.Text" xml:space="preserve"><value>应用</value></data>
   <data name="Rules_DescribeUnderstood" xml:space="preserve"><value>已理解：{0}。</value></data>
   <data name="Rules_DescribeNothing" xml:space="preserve"><value>没有理解到要筛选的内容。</value></data>
@@ -1508,4 +1508,95 @@
   <data name="Info_CloseButton_Text" xml:space="preserve"><value>选择用 X 关闭窗口时复制如何处理。\n• 取消复制：如同在每个复制上点击“停止”。它们会从列表中消失，也不会提示继续。\n• 停止，稍后继续：已复制的内容会保留；再次复制相同内容或打开 MegaCopier 时，会从中断处继续。\n• 隐藏窗口：复制在后台继续；可通过通知区域图标打开窗口。\n• 退出 MegaCopier：完全关闭，在你再次打开之前由 Windows 照常复制。</value></data>
   <data name="Info_MinimizeButton_Title" xml:space="preserve"><value>最小化窗口时</value></data>
   <data name="Info_MinimizeButton_Text" xml:space="preserve"><value>最小化窗口时窗口去向。两种情况下复制都会继续。\n• 到任务栏：和其他窗口一样。\n最小化到通知区域可让任务栏保持整洁：单击时钟旁的 MegaCopier 图标即可恢复窗口。</value></data>
+  <data name="Section_Updates" xml:space="preserve"><value>更新</value></data>
+  <data name="Updates_Tab" xml:space="preserve"><value>更新</value></data>
+  <data name="Updates_History" xml:space="preserve"><value>更新历史记录</value></data>
+  <data name="Updates_ViewChangelog" xml:space="preserve"><value>查看更改日志</value></data>
+  <data name="Crash_Title" xml:space="preserve"><value>错误报告</value></data>
+  <data name="Crash_Description" xml:space="preserve"><value>包含版本、语言、主题、活动和经过筛选的跟踪信息。不发送名称、路径或文件内容。</value></data>
+  <data name="Crash_Transport" xml:space="preserve"><value>仅在您同意后发送。Cloudflare 会接收 IP 以限制滥用，但报告不包含 IP。目标是私有 GitHub 仓库。</value></data>
+  <data name="Crash_LocalOnly" xml:space="preserve"><value>尚未配置发送。日志保留在此设备上。</value></data>
+  <data name="Crash_Queued" xml:space="preserve"><value>已保存获准发送的报告。发送失败时将在启动时重试。</value></data>
+  <data name="Crash_Duplicate" xml:space="preserve"><value>此故障已在等待发送或已发送。</value></data>
+  <data name="Crash_Sent" xml:space="preserve"><value>报告已发送。感谢您帮助改进 MegaCopier。</value></data>
+  <data name="Crash_Revoked" xml:space="preserve"><value>已关闭自动发送并删除待发报告。此处无法撤回已发送的报告。</value></data>
+  <data name="Crash_Preview" xml:space="preserve"><value>查看发送内容</value></data>
+  <data name="Crash_Always" xml:space="preserve"><value>始终发送，不再询问</value></data>
+  <data name="Crash_Unexpected" xml:space="preserve"><value>MegaCopier 意外关闭</value></data>
+  <data name="Crash_Send" xml:space="preserve"><value>发送报告</value></data>
+  <data name="Crash_NoSend" xml:space="preserve"><value>不发送</value></data>
+  <data name="Crash_Close" xml:space="preserve"><value>关闭</value></data>
+  <data name="Crash_Automatic" xml:space="preserve"><value>发送错误报告以帮助改进 MegaCopier</value></data>
+  <data name="Crash_OpenLogs" xml:space="preserve"><value>打开日志文件夹</value></data>
+  <data name="Crash_GitHub" xml:space="preserve"><value>在 GitHub 上报告问题</value></data>
+  <data name="Crash_LastReport" xml:space="preserve"><value>查看最近的本地报告</value></data>
+  <data name="Updates_Search" xml:space="preserve"><value>检查更新</value></data>
+  <data name="Updates_Unknown" xml:space="preserve"><value>检查 MegaCopier 更新</value></data>
+  <data name="Updates_SearchDescription" xml:space="preserve"><value>检查新版本，不会中断复制。</value></data>
+  <data name="Updates_Searching" xml:space="preserve"><value>正在检查更新…</value></data>
+  <data name="Updates_Current" xml:space="preserve"><value>MegaCopier 已是最新版本</value></data>
+  <data name="Updates_CurrentAction" xml:space="preserve"><value>已是最新版本</value></data>
+  <data name="Updates_Available" xml:space="preserve"><value>有新版本可用</value></data>
+  <data name="Updates_Download" xml:space="preserve"><value>下载更新</value></data>
+  <data name="Updates_DownloadZip" xml:space="preserve"><value>下载便携版 ZIP</value></data>
+  <data name="Updates_Downloading" xml:space="preserve"><value>正在下载更新…</value></data>
+  <data name="Updates_Cancel" xml:space="preserve"><value>取消下载</value></data>
+  <data name="Updates_Verifying" xml:space="preserve"><value>正在验证下载…</value></data>
+  <data name="Updates_Ready" xml:space="preserve"><value>更新已准备好安装</value></data>
+  <data name="Updates_Install" xml:space="preserve"><value>立即更新</value></data>
+  <data name="Updates_Installing" xml:space="preserve"><value>正在安装更新…</value></data>
+  <data name="Updates_OpenZip" xml:space="preserve"><value>显示已下载的 ZIP</value></data>
+  <data name="Updates_Versions" xml:space="preserve"><value>已安装：{0} · 可用：{1}</value></data>
+  <data name="Updates_InstalledVersion" xml:space="preserve"><value>已安装版本：{0}</value></data>
+  <data name="Updates_InstalledMarker" xml:space="preserve"><value>已安装版本</value></data>
+  <data name="Updates_Bytes" xml:space="preserve"><value>{0} / {1}</value></data>
+  <data name="Updates_WhatsNew" xml:space="preserve"><value>此版本的新功能</value></data>
+  <data name="Updates_NotesUnavailable" xml:space="preserve"><value>没有此语言的发行说明。</value></data>
+  <data name="Updates_AutoCheck" xml:space="preserve"><value>自动检查更新</value></data>
+  <data name="Updates_AutoCheckDescription" xml:space="preserve"><value>每两天检查一次，并在恢复网络连接后完成待处理的检查。</value></data>
+  <data name="Updates_AutoDownload" xml:space="preserve"><value>自动下载</value></data>
+  <data name="Updates_AutoDownloadDescription" xml:space="preserve"><value>自动下载更新并使其准备好安装。</value></data>
+  <data name="Updates_AutoInstall" xml:space="preserve"><value>在未使用 MegaCopier 时安装</value></data>
+  <data name="Updates_AutoInstallDescription" xml:space="preserve"><value>仅在托盘中且没有待处理任务或对话框时安装。</value></data>
+  <data name="Updates_Networks" xml:space="preserve"><value>允许通过以下网络下载</value></data>
+  <data name="Updates_Wifi" xml:space="preserve"><value>Wi-Fi 和以太网</value></data>
+  <data name="Updates_Mobile" xml:space="preserve"><value>移动数据和按流量计费网络</value></data>
+  <data name="Updates_NetworkDescription" xml:space="preserve"><value>默认仅允许不按流量计费的连接。</value></data>
+  <data name="Updates_WaitNetwork" xml:space="preserve"><value>正在等待允许的网络</value></data>
+  <data name="Updates_RestrictedTitle" xml:space="preserve"><value>此连接不允许下载</value></data>
+  <data name="Updates_RestrictedBody" xml:space="preserve"><value>此下载可能使用移动数据。是否在不更改设置的情况下允许一次？</value></data>
+  <data name="Updates_AllowOnce" xml:space="preserve"><value>允许此次下载</value></data>
+  <data name="Updates_InstallDescription" xml:space="preserve"><value>MegaCopier 将关闭，并在完成后重新打开。</value></data>
+  <data name="Updates_Busy" xml:space="preserve"><value>请完成或移除待处理任务并停用实时同步。</value></data>
+  <data name="Updates_Portable" xml:space="preserve"><value>便携模式：下载 ZIP，更新时保留 Data 文件夹。</value></data>
+  <data name="Updates_Uninstalled" xml:space="preserve"><value>此副本尚未安装。你可以下载便携版 ZIP。</value></data>
+  <data name="Updates_Dismiss" xml:space="preserve"><value>隐藏此版本的通知</value></data>
+  <data name="Updates_NoticeAvailable" xml:space="preserve"><value>有新更新可用</value></data>
+  <data name="Updates_NoticeAvailableBody" xml:space="preserve"><value>版本 {0} 可用。点击打开更新。</value></data>
+  <data name="Updates_NoticeReady" xml:space="preserve"><value>更新已准备好安装</value></data>
+  <data name="Updates_NoticeReadyBody" xml:space="preserve"><value>版本 {0} 已下载并验证。点击打开更新。</value></data>
+  <data name="Updates_ErrorNetwork" xml:space="preserve"><value>无法连接。你可以重试。</value></data>
+  <data name="Updates_ErrorInvalidRelease" xml:space="preserve"><value>此发行版本不包含兼容的更新。</value></data>
+  <data name="Updates_ErrorUntrustedUrl" xml:space="preserve"><value>下载来源不在允许列表中。</value></data>
+  <data name="Updates_ErrorMissingTrust" xml:space="preserve"><value>尚未配置发布密钥，安装仍被阻止。</value></data>
+  <data name="Updates_ErrorInvalidSignature" xml:space="preserve"><value>无法验证更新签名。</value></data>
+  <data name="Updates_ErrorInvalidChecksum" xml:space="preserve"><value>下载与已验证文件不匹配，将不会安装。</value></data>
+  <data name="Updates_ErrorTooLarge" xml:space="preserve"><value>下载超过允许的大小。</value></data>
+  <data name="Updates_ErrorBusy" xml:space="preserve"><value>MegaCopier 有待处理任务或对话框。</value></data>
+  <data name="Updates_ErrorInstaller" xml:space="preserve"><value>无法启动安装，已保留下载。</value></data>
+  <data name="Updates_ErrorRestrictedNetwork" xml:space="preserve"><value>请连接到允许的网络或检查下载权限。</value></data>
+  <data name="Crash_Help" xml:space="preserve"><value>发送错误报告，帮助我们开发 MegaCopier。</value></data>
+  <data name="Crash_Installer" xml:space="preserve"><value>发送错误报告</value></data>
+  <data name="Updates_ViewFullChangelog" xml:space="preserve"><value>查看完整更新日志</value></data>
+  <data name="Updates_CurrentHighlights" xml:space="preserve"><value>当前版本的主要新功能</value></data>
+  <data name="Updates_AvailableHighlights" xml:space="preserve"><value>可用新版本的主要更改</value></data>
+  <data name="Updates_NoInternet" xml:space="preserve"><value>无法访问互联网</value></data>
+  <data name="Updates_NoInternetDescription" xml:space="preserve"><value>请检查网络连接，然后重试。</value></data>
+  <data name="Updates_NoInternetDownload" xml:space="preserve"><value>无法连接互联网以下载更新。请检查网络连接，然后重试。</value></data>
+  <data name="Updates_NoticeCompleted" xml:space="preserve"><value>MegaCopier 已更新</value></data>
+  <data name="Updates_NoticeCompletedBody" xml:space="preserve"><value>你现在使用的是 MegaCopier {0}。打开更新页面查看新功能。</value></data>
+  <data name="Installer_StartMenu" xml:space="preserve"><value>创建开始菜单快捷方式</value></data>
+  <data name="Installer_Taskbar" xml:space="preserve"><value>准备可固定到任务栏的快捷方式（在 Windows 中右键单击）</value></data>
+  <data name="Settings_CustomSounds.Text" xml:space="preserve"><value>自定义声音</value></data>
+  <data name="Settings_FastPaths.PlaceholderText" xml:space="preserve"><value>C:, D:\数据</value></data>
 </root>

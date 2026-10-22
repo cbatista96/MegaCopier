@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using MegaCopier.Engine.Diagnostics;
 using MegaCopier.App.Services;
 using MegaCopier.App.Theming;
 using MegaCopier.App.ViewModels;
@@ -43,6 +44,7 @@ public partial class App : Application
     private MainWindow? _window;
     private Views.ShelfWindow? _shelf;
     private bool _exiting;
+    private static CrashSession? _crashSession;
 
     /// <summary>Copias que el usuario detuvo con el botón (no las que se interrumpen al salir o por un apagón).</summary>
     internal readonly HashSet<string> StoppedByUser = [];
@@ -52,14 +54,16 @@ public partial class App : Application
 
     public App()
     {
+        _crashSession = new CrashSession(Engine.DataFolder.Path, CrashReporter.Version);
+        UnhandledException += (_, e) => LogCrash(e.Exception, e.Message, fatal: true);
+        AppDomain.CurrentDomain.UnhandledException += (_, e) => LogCrash(e.ExceptionObject as Exception, null, fatal: true);
         InitializeComponent();
-        UnhandledException += (_, e) => LogCrash(e.Exception, e.Message);
-        AppDomain.CurrentDomain.UnhandledException += (_, e) => LogCrash(e.ExceptionObject as Exception, null);
     }
 
     /// <summary>Deja constancia de un fallo inesperado en %LOCALAPPDATA%\MegaCopier\crash.log (las copias se reanudan al volver).</summary>
-    internal static void LogCrash(Exception? exception, string? message)
+    internal static void LogCrash(Exception? exception, string? message, bool fatal = false)
     {
+        if (fatal) _crashSession?.Fatal(exception);
         try
         {
             string path = Path.Combine(Path.GetDirectoryName(AppSettings.FilePath)!, "crash.log");
@@ -78,6 +82,20 @@ public partial class App : Application
     internal static bool TestMode { get; } = Environment.GetEnvironmentVariable("MEGACOPIER_TEST") == "1";
 
     internal AppSettings Settings { get; } = AppSettings.Load();
+
+    internal UpdateCoordinator? Updates { get; private set; }
+    internal CrashReporter? CrashReports { get; private set; }
+
+    /// <summary>Los trabajos aceptados durante el cierre de actualización se guardan, sin empezar una copia nueva.</summary>
+    internal bool CanUpdate => !_exiting && !Queue.Jobs.Any(j => j.IsActive || j.State == CopyJobState.Interrupted)
+        && Settings.LiveSyncs.Count == 0 && AllWindows.All(w => w.IsClosed || !w.UpdateDialogOpen);
+    internal bool UpdateIdle => CanUpdate && AllWindows.All(w => w.IsClosed || !w.AppWindow.IsVisible)
+        && (_shelf is null || !_shelf.AppWindow.IsVisible) && _trayMenu?.IsOpen != true && !UpdateActivity.PointerDown;
+    internal void ShowUpdates()
+    {
+        Window.ShowAndActivate();
+        Window.ShowUpdates();
+    }
 
     internal CopyQueue Queue { get; } = new(new JobStore());
 
@@ -105,7 +123,7 @@ public partial class App : Application
         }
         catch (Exception ex)
         {
-            LogCrash(ex, "OnLaunched");
+            LogCrash(ex, "OnLaunched", fatal: true);
             throw;
         }
     }
@@ -211,6 +229,13 @@ public partial class App : Application
 
         _server = new IpcServer(HandleRequestAsync);
         _server.Start();
+        Updates = new UpdateCoordinator(this);
+        Updates.Changed += () =>
+        {
+            foreach (var window in AllWindows.Where(w => !w.IsClosed)) window.RefreshUpdateBadge();
+        };
+        Window.RefreshUpdateBadge();
+        CrashReports = new CrashReporter(this, _crashSession!);
 
         _paste = new PasteInterceptor(OnExplorerPaste);
         _paste.PassedThrough += reason => LogDrag($"Ctrl+V devuelto al Explorador: {reason}");
@@ -910,6 +935,7 @@ public partial class App : Application
     /// </summary>
     private bool OnExplorerDrag(DragRequest drag)
     {
+        CrashReports?.NoteDrag();
         bool ask = Settings.DragConfirm == DragConfirm.Always || (Settings.DragConfirm == DragConfirm.Moves && drag.Move);
         if (ask)
         {
@@ -1021,6 +1047,23 @@ public partial class App : Application
                 ShowShelf(request.Sources);
                 return new IpcResponse { Ok = true, Status = string.Join(" | ", _shelf!.Paths) };
 
+            case "debug-report-open" when TestMode:
+                Window.ShowAndActivate();
+                Window.ShowDiagnostics();
+                return new IpcResponse { Ok = true };
+            case "debug-report-status" when TestMode:
+                return new IpcResponse { Ok = true, Status = $"configured={CrashReporter.ConfiguredEndpoint is not null}; report={CrashReports?.Last?.Id}; status={CrashReports?.StatusKey}; automatic={Settings.SendCrashReportsAutomatically}" };
+            case "debug-report-crash" when TestMode && CanUpdate:
+                Dispatcher.TryEnqueue(() => throw new InvalidOperationException(@"Prueba sintética: C:\Users\Prueba\privado.pdf"));
+                return new IpcResponse { Ok = true };
+            case "debug-update-status" when TestMode && Updates is { } updateStatus:
+                return new IpcResponse { Ok = true, Status = $"{updateStatus.Phase}; error={updateStatus.Error}; current={updateStatus.Current}; available={updateStatus.Version}; badge={updateStatus.Badge}; installed={updateStatus.IsInstalled}; network={updateStatus.CanUseNetwork}; canInstall={CanUpdate}; idle={UpdateIdle}; bytes={updateStatus.Progress.Received}/{updateStatus.Progress.Total}; notes={(updateStatus.Spanish ? "es" : "en")}" };
+            case "debug-update-check" when TestMode && Updates is { } updateCheck:
+                _ = updateCheck.CheckAsync(); return new IpcResponse { Ok = true };
+            case "debug-update-tick" when TestMode && Updates is { } updateTick:
+                _ = updateTick.TestTickAsync(); return new IpcResponse { Ok = true };
+            case "debug-update-badges" when TestMode && request.Destination is { } badgeReport:
+                _ = Window.VerifyUpdateBadgePacksAsync(badgeReport); return new IpcResponse { Ok = true };
             case "debug-savelist" when TestMode && request.Destination is { } savePath && Queue.Jobs.LastOrDefault(j => j.Files is not null) is { } saveJob:
                 // Solo pruebas: «Guardar la lista» de la última copia, sin el diálogo de guardar.
                 return new IpcResponse { Ok = true, Status = Reports.SaveRemaining(saveJob, savePath).ToString(System.Globalization.CultureInfo.InvariantCulture) };
@@ -1037,6 +1080,10 @@ public partial class App : Application
 
             case "show":
                 ShowWindow();
+                return new IpcResponse { Ok = true };
+
+            case "show-updates":
+                ShowUpdates();
                 return new IpcResponse { Ok = true };
 
             case "debug-drag" when TestMode:
@@ -1154,6 +1201,12 @@ public partial class App : Application
                 Dispatcher.TryEnqueue(ExitApp);
                 return new IpcResponse { Ok = true };
 
+            case "exit-update":
+                if (_exiting) return new IpcResponse { Ok = true };
+                if (!CanUpdate) return new IpcResponse { Ok = false };
+                Dispatcher.TryEnqueue(ExitApp);
+                return new IpcResponse { Ok = true };
+
             default:
                 return new IpcResponse { Ok = false, Error = $"Unknown command: {request.Command}" };
         }
@@ -1200,6 +1253,7 @@ public partial class App : Application
     /// <summary>Progreso global en el icono de la bandeja y en el botón de la barra de tareas.</summary>
     private void UpdateStatus()
     {
+        CrashReports?.Tick();
         var running = Queue.Jobs.Where(j => j.State is CopyJobState.Running or CopyJobState.Paused).ToList();
         SystemActions.KeepAwake(running.Any(j => j.State == CopyJobState.Running));
         SlowDownWhileUserIsActive(running);
@@ -1454,6 +1508,8 @@ public partial class App : Application
         }
 
         _exiting = true;
+        CrashReports?.Dispose();
+        Updates?.Dispose();
 
         // Las copias en curso se detienen conservando lo copiado: al volver se continúan.
         _paste?.Dispose();
@@ -1468,6 +1524,7 @@ public partial class App : Application
             await _server.DisposeAsync();
         }
 
+        _crashSession?.Clean();
         Exit();
     }
 }

@@ -1,3 +1,5 @@
+**Español** · [English](README.en.md) · Novedades: [Español](CHANGELOG.md) / [English](CHANGELOG.en.md)
+
 <div align="center">
 
 <img src="src/MegaCopier.App/Assets/MegaCopier.ico" width="96" alt="Icono de MegaCopier">
@@ -21,7 +23,7 @@ copias de seguridad y copia a servidores, nubes y móviles.
 
 ### Code signing policy
 
-La firma de actualizaciones usa una clave ECDSA propia. La firma Authenticode con SignPath Foundation está pendiente de solicitud y aprobación; no se anuncia todavía como concedida. Consulta la [política de firma](docs/Code-signing-policy.md) y la [política de privacidad](docs/Privacidad.md) ([English](docs/Privacy.md)).
+La firma de actualizaciones usa una clave ECDSA propia. La firma Authenticode con SignPath Foundation se solicitó el 21 de octubre de 2026 y está pendiente de aprobación; no se anuncia todavía como concedida. Consulta la [política de firma](docs/Code-signing-policy.md) y la [política de privacidad](docs/Privacidad.md) ([English](docs/Privacy.md)).
 
 [Características](#todas-las-características) ·
 [Capturas](#capturas) ·
@@ -29,13 +31,15 @@ La firma de actualizaciones usa una clave ECDSA propia. La firma Authenticode co
 [Novedades](CHANGELOG.md) ·
 [Comparativa](docs/Comparativa-copiadores.md) ·
 [Preguntas frecuentes](docs/Preguntas-frecuentes.md) ·
-[English](#english)
+[English](README.en.md)
 
 <img src="docs/capturas/completa-oscuro.png" width="820" alt="MegaCopier copiando dos carpetas: vista completa con la lista de archivos">
 
 </div>
 
 ---
+
+> **Estado del código:** `main` incluye cambios todavía sin publicar como versión descargable. Consulta el [resumen y registro de desarrollo](CHANGELOG.md#sin-publicar) ([English](CHANGELOG.en.md#unreleased)). La descarga sigue correspondiendo a la última versión publicada.
 
 ## Por qué MegaCopier
 
@@ -47,7 +51,7 @@ La firma de actualizaciones usa una clave ECDSA propia. La firma Authenticode co
 | 🛡️ **Protege tus copias** | Escudo contra ransomware, datos de recuperación que reparan la copia si el disco la estropea, versiones con limpieza automática y copias de seguridad sin duplicados. |
 | 🌍 **Llega a todas partes** | Móviles y cámaras por USB, LocalSend, otro PC, FTP, SFTP, WebDAV, S3, OneDrive, Google Drive y Dropbox. |
 | 🪟 **Integrado en Windows** | Ctrl+V, menú contextual (también el corto de Windows 11) y arrastrar con cualquier botón. Un doble clic en la bandeja lo activa o lo desactiva. |
-| 🔒 **Sin telemetría** | No envía nada a ningún sitio salvo lo que tú configures (avisos por correo o webhook). |
+| 🔒 **Privacidad** | Informes de errores opcionales con trazas filtradas. El instalador ofrece el envío seleccionado y permite desmarcarlo; Ajustes permite cambiarlo. Las actualizaciones silenciosas conservan tu elección. La búsqueda de actualizaciones consulta GitHub y se puede desactivar; correo y webhooks solo si los configuras. |
 | 🎨 **A tu gusto** | 73 temas (con texturas y degradados), 22 estilos de barra de progreso, 29 conjuntos de iconos combinables (también al estilo de Android, Material You, One UI, Nothing, macOS, Linux y Windows de 95 a 8), 19 sonidos propios, editor de colores, 14 idiomas, consola `mcopy` y versión portátil. |
 
 ---
@@ -79,6 +83,10 @@ Todo está en la página de la **[última versión](https://github.com/cbatista9
 
 **Versión portátil:** descomprime el ZIP y ejecuta `MegaCopier.exe`. Guarda los ajustes en la carpeta `Data` de al lado y
 no toca el registro ni el Explorador (para eso, usa el instalador).
+
+**Actualizaciones:** en *Ajustes > Actualizaciones* puedes buscar, descargar e instalar, ver las novedades y consultar todo el historial dentro de la app. La descarga automática respeta los permisos de red; la instalación automática es opcional y viene desactivada. Consulta [la guía](docs/Guia.md#actualizaciones). Historial: [español](CHANGELOG.md) · [English](CHANGELOG.en.md).
+
+**Informes de errores y privacidad:** en *Ajustes > Avanzado* puedes abrir el registro local y revisar el último informe filtrado. El instalador ofrece el envío automático seleccionado en instalaciones nuevas; puedes desmarcarlo y las actualizaciones conservan tu elección. El modo portátil comienza desactivado. Si el envío automático está activo, se envía en segundo plano sin preguntar; si está desactivado, puedes revisar el JSON, enviar una vez o autorizar futuros envíos. Al desactivar la opción se borran los pendientes locales. No se adjuntan archivos, rutas, nombres ni mensajes libres. Cloudflare recibe la IP de conexión para limitar abusos; no se añade al informe ni a las incidencias privadas de GitHub. [Detalles y límites](docs/Guia.md#informes-de-errores) · [Configuración del receptor](tools/informes-worker/README.md).
 
 **Desinstalar:** *Configuración > Aplicaciones > MegaCopier > Desinstalar*. Al final pregunta si quieres borrar también tus
 ajustes e historial.
@@ -435,10 +443,10 @@ compartirlo; si distribuyes una versión modificada, tiene que seguir siendo lib
 last verified block, even inside a huge file, without corrupting it. It replaces Explorer's copy and paste and adds
 verification with block repair, two-way and real-time sync, deduplicated backups, ransomware protection, self-healing
 recovery data, phone and cloud transfers (MTP, LocalSend, FTP, SFTP, WebDAV, S3, OneDrive, Google Drive, Dropbox),
-73 themes, 22 progress bar styles, 7 icon sets, 14 languages and a `mcopy` command line. No telemetry.
+73 themes, 22 progress bar styles, 29 icon packs, 14 languages and a `mcopy` command line. Error reports are optional: the installer offers automatic sending selected for new installations, with an explanation and the option to uncheck it. Updates preserve your choice and portable copies start with sending disabled. Reports require a configured private receiver and exclude files, paths, names and free-form messages. Cloudflare processes the connection IP for abuse limiting; it is not included in reports.
 
 - **Download:** [latest release](https://github.com/cbatista96/MegaCopier/releases/latest) — the `Setup` installer
   (per-user, no admin rights) or the portable ZIP. Windows 11, 64-bit.
-- **The app is fully translated into English**; the documentation is in Spanish: [features](docs/Caracteristicas.md),
+- **English:** [project overview and instructions](README.en.md), [complete changelog](CHANGELOG.en.md), [privacy](docs/Privacy.md) and [code-signing policy](docs/Code-signing-policy.md). Detailed guides are currently in Spanish: [features](docs/Caracteristicas.md),
   [guide](docs/Guia.md), [building](docs/Compilar.md).
 - **License:** [GPL v3](LICENSE). Contributions welcome, see [CONTRIBUTING.md](CONTRIBUTING.md).

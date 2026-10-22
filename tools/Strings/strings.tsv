@@ -1,4 +1,4 @@
-clave	es-ES	en-US
+﻿clave	es-ES	en-US
 JobsSection.Text	Copias	Transfers
 SettingsSection.Text	Ajustes	Settings
 FinishButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Qué hacer cuando terminen todas las copias	What to do when all transfers finish
@@ -469,8 +469,8 @@ Drop_JobOrder	Poner en el puesto {0} de la cola	Put in place {0} of the queue
 Settings_Sounds.Text	Sonidos	Sounds
 Settings_SoundsTitle.Text	Avisos con sonido	Sound alerts
 Settings_SoundsDescription.Text	Elige un sonido para cada momento: uno de Windows, el que quieras de tu equipo o ninguno.	Choose a sound for each moment: a Windows one, any file on your PC, or none.
-Settings_Volume.Header	Volumen	Volume
-Settings_SoundsQuiet.Content	No sonar con juegos o presentaciones a pantalla completa ni con «No molestar»	Stay quiet during full-screen games or presentations and in Do Not Disturb
+Settings_Volume.Text	Volumen	Volume
+Settings_SoundsQuiet.Text	No sonar con juegos o presentaciones a pantalla completa ni con «No molestar»	Stay quiet during full-screen games or presentations and in Do Not Disturb
 Sound_Done	Una copia terminó bien	A transfer finished successfully
 Sound_Errors	Una copia terminó con errores	A transfer finished with errors
 Sound_AllDone	Terminaron todas las copias	All transfers finished
@@ -1502,3 +1502,95 @@ Info_CloseButton_Title	Al pulsar la X de la ventana	When you click the window's 
 Info_CloseButton_Text	Elige qué pasa con las copias al cerrar la ventana con la X.\n• Cancelar las copias: como pulsar «Detener» en cada una. Desaparecen de la lista y no se ofrecen continuar.\n• Detenerlas para continuar después: lo copiado se conserva; al volver a copiar lo mismo, o al abrir MegaCopier, sigue donde iba.\n• Ocultar la ventana: las copias siguen en segundo plano; la abres con el icono de la bandeja.\n• Salir de MegaCopier: se cierra del todo y Windows vuelve a copiar como siempre hasta que lo abras de nuevo.	Choose what happens to your copies when you close the window with the X.\n• Cancel the copies: like pressing “Stop” on each one. They disappear from the list and aren't offered to continue.\n• Stop them to continue later: what was copied is kept; when you copy the same thing again, or open MegaCopier, it picks up where it was.\n• Hide the window: the copies keep going in the background; open it from the tray icon.\n• Exit MegaCopier: it closes completely and Windows copies as usual until you open it again.
 Info_MinimizeButton_Title	Al minimizar la ventana	When you minimize the window
 Info_MinimizeButton_Text	Dónde queda la ventana al minimizarla. Las copias siguen en marcha en los dos casos.\n• A la barra de tareas: como cualquier otra ventana.\nMinimizar a la bandeja deja la barra de tareas libre: la ventana vuelve con un clic en el icono de MegaCopier junto al reloj.	Where the window goes when you minimize it. Your copies keep going either way.\n• To the taskbar: like any other window.\nMinimizing to the tray keeps the taskbar free: the window comes back with a click on the MegaCopier icon next to the clock.
+Section_Updates	Actualizaciones	Updates
+Updates_Tab	Actualización	Update
+Updates_History	Historial de actualizaciones	Update history
+Updates_ViewChangelog	Ver historial de cambios	View changelog
+Crash_Title	Informes de errores	Error reports
+Crash_Description	Incluye versiones, idioma, tema, actividad y trazas filtradas. No se envían nombres, rutas ni contenido de archivos.	Includes versions, language, theme, activity and filtered traces. No names, paths or file contents are sent.
+Crash_Transport	Solo se envía con tu permiso. Cloudflare recibe la IP para limitar abusos; no se incluye en el informe. El destino es un repositorio privado de GitHub.	Sent only with your permission. Cloudflare receives the IP to limit abuse; it is not included in the report. The destination is a private GitHub repository.
+Crash_LocalOnly	El envío no está configurado. Los registros permanecen en este equipo.	Sending is not configured. Logs stay on this device.
+Crash_Queued	Informe autorizado guardado. Si no se pudo enviar, se reintentará al abrir MegaCopier.	Authorized report saved. If delivery failed, it will retry when MegaCopier starts.
+Crash_Duplicate	Este fallo ya está pendiente o se envió anteriormente.	This fault is already pending or was sent previously.
+Crash_Sent	Informe enviado. Gracias por ayudar a mejorar MegaCopier.	Report sent. Thank you for helping improve MegaCopier.
+Crash_Revoked	Envío automático desactivado y pendientes eliminados. Un informe ya enviado no puede retirarse desde aquí.	Automatic sending disabled and pending reports deleted. Reports already sent cannot be withdrawn here.
+Crash_Preview	Ver qué se envía	See what is sent
+Crash_Always	Enviar siempre sin preguntar	Always send without asking
+Crash_Unexpected	MegaCopier se cerró inesperadamente	MegaCopier closed unexpectedly
+Crash_Send	Enviar informe	Send report
+Crash_NoSend	No enviar	Do not send
+Crash_Close	Cerrar	Close
+Crash_Automatic	Enviar informes de errores para ayudar a mejorar MegaCopier	Send error reports to help improve MegaCopier
+Crash_OpenLogs	Abrir carpeta de registros	Open log folder
+Crash_GitHub	Informar de un problema en GitHub	Report an issue on GitHub
+Crash_LastReport	Ver último informe local	View latest local report
+Updates_Search	Buscar actualizaciones	Check for updates
+Updates_Unknown	Busca actualizaciones de MegaCopier	Check for MegaCopier updates
+Updates_SearchDescription	Busca una versión nueva sin interrumpir las copias.	Check for a new version without interrupting transfers.
+Updates_Searching	Buscando actualizaciones…	Checking for updates…
+Updates_Current	MegaCopier está al día	MegaCopier is up to date
+Updates_CurrentAction	Estás al día	You're up to date
+Updates_Available	Nueva versión disponible	New version available
+Updates_Download	Descargar actualización	Download update
+Updates_DownloadZip	Descargar ZIP portátil	Download portable ZIP
+Updates_Downloading	Descargando actualización…	Downloading update…
+Updates_Cancel	Cancelar descarga	Cancel download
+Updates_Verifying	Comprobando la descarga…	Verifying download…
+Updates_Ready	Actualización lista para instalar	Update ready to install
+Updates_Install	Actualizar ahora	Update now
+Updates_Installing	Instalando actualización…	Installing update…
+Updates_OpenZip	Mostrar ZIP descargado	Show downloaded ZIP
+Updates_Versions	Instalada: {0} · Disponible: {1}	Installed: {0} · Available: {1}
+Updates_InstalledVersion	Versión instalada: {0}	Installed version: {0}
+Updates_InstalledMarker	Versión instalada	Installed version
+Updates_Bytes	{0} de {1}	{0} of {1}
+Updates_WhatsNew	Novedades de esta versión	What's new in this version
+Updates_NotesUnavailable	Las notas en este idioma no están disponibles.	Release notes in this language are unavailable.
+Updates_AutoCheck	Buscar actualizaciones automáticamente	Check for updates automatically
+Updates_AutoCheckDescription	Busca cada dos días y al recuperar Internet si la comprobación está pendiente.	Checks every two days and catches up when Internet access returns.
+Updates_AutoDownload	Descargar automáticamente	Download automatically
+Updates_AutoDownloadDescription	Descarga la actualización automáticamente y la deja lista para ser instalada.	Download the update automatically and leave it ready to install.
+Updates_AutoInstall	Instalar cuando MegaCopier no esté en uso	Install when MegaCopier is not in use
+Updates_AutoInstallDescription	Instala solo en la bandeja, sin trabajos ni diálogos pendientes.	Install only in the tray, with no pending jobs or dialogs.
+Updates_Networks	Permitir descargas con	Allow downloads over
+Updates_Wifi	Wi-Fi y cable	Wi-Fi and Ethernet
+Updates_Mobile	Datos móviles y redes de uso medido	Mobile data and metered networks
+Updates_NetworkDescription	Por defecto, solo conexiones sin uso medido.	Only unmetered connections are allowed by default.
+Updates_WaitNetwork	Descarga en espera de una red permitida	Download waiting for an allowed network
+Updates_RestrictedTitle	Esta conexión no está permitida para descargas	Downloads are not allowed on this connection
+Updates_RestrictedBody	Esta descarga puede consumir datos móviles. ¿Permitirla una vez sin cambiar los ajustes?	This download may use mobile data. Allow it once without changing your settings?
+Updates_AllowOnce	Permitir esta descarga	Allow this download
+Updates_InstallDescription	MegaCopier se cerrará y volverá a abrirse al terminar.	MegaCopier will close and reopen when finished.
+Updates_Busy	Termina o quita los trabajos pendientes y desactiva la sincronización para actualizar.	Finish or remove pending jobs and disable live sync before updating.
+Updates_Portable	Modo portátil: descarga el ZIP y conserva tu carpeta Data al actualizar.	Portable mode: download the ZIP and keep your Data folder when updating.
+Updates_Uninstalled	Esta copia no está instalada. Puedes descargar el ZIP portátil.	This copy is not installed. You can download the portable ZIP.
+Updates_Dismiss	Ocultar el aviso de esta versión	Dismiss this version's notification
+Updates_NoticeAvailable	Nueva actualización disponible	New update available
+Updates_NoticeAvailableBody	Versión {0} disponible. Pulsa para abrir Actualizaciones.	Version {0} is available. Click to open Updates.
+Updates_NoticeReady	Actualización lista para instalar	Update ready to install
+Updates_NoticeReadyBody	Versión {0} descargada y verificada. Pulsa para abrir Actualizaciones.	Version {0} is downloaded and verified. Click to open Updates.
+Updates_ErrorNetwork	No se pudo conectar. Puedes volver a intentarlo.	Could not connect. You can try again.
+Updates_ErrorInvalidRelease	La publicación no contiene una actualización compatible.	This release does not contain a compatible update.
+Updates_ErrorUntrustedUrl	La descarga no procede de un origen permitido.	The download is not from an allowed source.
+Updates_ErrorMissingTrust	Falta configurar la clave de publicación. La instalación permanece bloqueada.	The publishing key is not configured. Installation remains blocked.
+Updates_ErrorInvalidSignature	No se pudo verificar la firma de la actualización.	The update signature could not be verified.
+Updates_ErrorInvalidChecksum	La descarga no coincide con el archivo verificado. No se instalará.	The download does not match the verified file. It will not be installed.
+Updates_ErrorTooLarge	La descarga supera el tamaño permitido.	The download exceeds the allowed size.
+Updates_ErrorBusy	MegaCopier tiene trabajos o diálogos pendientes.	MegaCopier has pending jobs or dialogs.
+Updates_ErrorInstaller	No se pudo iniciar la instalación. La descarga se conserva.	Installation could not start. The download is kept.
+Updates_ErrorRestrictedNetwork	Conéctate a una red permitida o revisa los permisos de descarga.	Connect to an allowed network or review download permissions.
+
+Crash_Help	Ayúdanos con el desarrollo de MegaCopier enviando informes de errores.	Help us develop MegaCopier by sending error reports.
+Crash_Installer	Enviar informes de errores	Send error reports
+Updates_ViewFullChangelog	Ver registro de cambios completo	View full changelog
+Updates_CurrentHighlights	Principales novedades de la versión actual	Highlights of the current version
+Updates_AvailableHighlights	Principales cambios de la nueva versión disponible	Highlights of the new available version
+Updates_NoInternet	Sin acceso a Internet	No Internet access
+Updates_NoInternetDescription	Comprueba tu conexión a Internet y vuelve a intentarlo.	Check your Internet connection and try again.
+Updates_NoInternetDownload	No hay acceso a Internet para descargar la actualización. Comprueba tu conexión y vuelve a intentarlo.	There is no Internet access to download the update. Check your connection and try again.
+Updates_NoticeCompleted	MegaCopier se ha actualizado	MegaCopier has been updated
+Updates_NoticeCompletedBody	Ya tienes MegaCopier {0}. Abre Actualizaciones para ver las novedades.	You now have MegaCopier {0}. Open Updates to see what’s new.
+Installer_StartMenu	Crear un acceso directo en el menú Inicio	Create a Start menu shortcut
+Installer_Taskbar	Preparar acceso para anclar a la barra de tareas (clic derecho en Windows)	Prepare a shortcut to pin to the taskbar (right-click in Windows)
+Settings_CustomSounds.Text	Personalizar los sonidos	Customize sounds
+Settings_FastPaths.PlaceholderText	C:, D:\Datos	C:, D:\Data

@@ -22,6 +22,7 @@ VersionInfoVersion={#AppVersion}
 DefaultDirName={localappdata}\Programs\MegaCopier
 DefaultGroupName=MegaCopier
 DisableProgramGroupPage=yes
+UsePreviousTasks=no
 DisableDirPage=auto
 PrivilegesRequired=lowest
 OutputDir=..\artifacts\installer
@@ -35,11 +36,15 @@ ArchitecturesAllowed=x64compatible
 ArchitecturesInstallIn64BitMode=x64compatible
 MinVersion=10.0.22000
 WizardStyle=modern
+WizardImageFile=Assets\Wizard.bmp
+WizardSmallImageFile=Assets\WizardSmall.bmp
+InfoBeforeFile=Assets\Privacy.en.rtf
+DisableWelcomePage=no
 CloseApplications=no
 ShowLanguageDialog=auto
 
 [Languages]
-Name: "es"; MessagesFile: "compiler:Languages\Spanish.isl"
+Name: "es"; MessagesFile: "compiler:Languages\Spanish.isl"; InfoBeforeFile: "Assets\Privacy.es.rtf"
 Name: "en"; MessagesFile: "compiler:Default.isl"
 Name: "fr"; MessagesFile: "compiler:Languages\French.isl"
 Name: "de"; MessagesFile: "compiler:Languages\German.isl"
@@ -55,6 +60,7 @@ Name: "ko"; MessagesFile: "compiler:Languages\Korean.isl"
 ; Inno Setup 6 no trae el chino simplificado: ese instalador sale en inglés (la app sí va en chino).
 
 [CustomMessages]
+#include "DiagnosticsMessages.iss"
 es.ShellMenu=Añadir «Pegar con MegaCopier» y «Copiar / Mover aquí» al Explorador
 en.ShellMenu=Add "Paste with MegaCopier" and "Copy / Move here" to File Explorer
 fr.ShellMenu=Ajouter « Coller avec MegaCopier » et « Copier / Déplacer ici » à l'Explorateur
@@ -109,9 +115,13 @@ ja.DeleteData=MegaCopier の設定、テーマ、履歴、保留中のコピー�
 ko.DeleteData=MegaCopier 설정, 테마, 기록, 대기 중인 복사도 삭제할까요?%n%n다시 설치할 예정이면 "아니요"를 선택해 보관하세요.
 
 [Tasks]
+Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
+Name: "startmenuicon"; Description: "{cm:Installer_StartMenu}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
+Name: "taskbaricon"; Description: "{cm:Installer_Taskbar}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 Name: "shellmenu"; Description: "{cm:ShellMenu}"; GroupDescription: "{cm:Integration}"
 Name: "startup"; Description: "{cm:Startup}"; GroupDescription: "{cm:Integration}"
-Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
+Name: "autoupdates"; Description: "{cm:Updates_AutoCheck}"; GroupDescription: "{cm:Integration}"
+Name: "crashreports"; Description: "{cm:Crash_Installer}"; GroupDescription: "{cm:Integration}"
 
 [InstallDelete]
 ; Extensiones de versiones anteriores (las que el Explorador tenga cargadas se quedan hasta la próxima vez).
@@ -119,18 +129,25 @@ Type: files; Name: "{app}\MegaCopierShell-*.dll"
 Type: files; Name: "{app}\MegaCopierShell*.dll.old-*"
 
 [Files]
+; Primero para extraerlo sin descomprimir la app completa al abrir el asistente.
+Source: "..\artifacts\cli\mcopy.exe"; DestName: "MegaCopier-SetupHelper.exe"; Flags: dontcopy
 Source: "..\artifacts\app\*"; DestDir: "{app}"; Excludes: "*.pdb,MegaCopierShell*.dll,MegaCopierShell*.dll.old-*"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; La DLL lleva la versión en el nombre; si ya existe (reinstalar la misma versión) y está cargada, se conserva.
 Source: "..\artifacts\app\MegaCopierShell-{#AppVersion}.dll"; DestDir: "{app}"; Flags: ignoreversion onlyifdoesntexist
 Source: "..\artifacts\cli\mcopy.exe"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
-Name: "{autoprograms}\MegaCopier"; Filename: "{app}\MegaCopier.exe"
+Name: "{autoprograms}\MegaCopier"; Filename: "{app}\MegaCopier.exe"; Tasks: startmenuicon
 Name: "{autodesktop}\MegaCopier"; Filename: "{app}\MegaCopier.exe"; Tasks: desktopicon
+; Windows exige una acción del usuario para anclar. Preparar el acceso nunca fuerza un anclaje.
+Name: "{app}\MegaCopier"; Filename: "{app}\MegaCopier.exe"; Tasks: taskbaricon
 
 [Run]
 Filename: "{app}\MegaCopier.exe"; Parameters: "--install{code:InstallArgs}"; Flags: runhidden waituntilterminated
-Filename: "{app}\MegaCopier.exe"; Description: "{cm:LaunchProgram,MegaCopier}"; Flags: nowait postinstall skipifsilent
+Filename: "{app}\MegaCopier.exe"; Description: "{cm:LaunchProgram,MegaCopier}"; Flags: nowait postinstall skipifsilent; Check: not IsUpdate
+Filename: "{app}\MegaCopier.exe"; Parameters: "--updates"; Flags: nowait; Check: UpdateForeground
+Filename: "{app}\MegaCopier.exe"; Parameters: "--background"; Flags: nowait runhidden; Check: UpdateBackground
+Filename: "{win}\explorer.exe"; Parameters: "/select,""{app}\MegaCopier.lnk"""; Flags: nowait skipifsilent; Tasks: taskbaricon; Check: not IsUpdate
 
 [UninstallRun]
 Filename: "{app}\MegaCopier.exe"; Parameters: "--uninstall"; Flags: runhidden waituntilterminated; RunOnceId: "MegaCopierUninstall"
@@ -139,6 +156,33 @@ Filename: "{app}\MegaCopier.exe"; Parameters: "--uninstall"; Flags: runhidden wa
 Type: files; Name: "{app}\MegaCopierShell*.dll.old-*"
 
 [Code]
+var
+  ReportsInitialized: Boolean;
+  ReportHelp: TNewStaticText;
+
+function HasUpdateOption(Option: String): Boolean;
+var I: Integer;
+begin
+  Result := False;
+  for I := 1 to ParamCount do
+    if CompareText(ParamStr(I), Option) = 0 then Result := True;
+end;
+
+function IsUpdate: Boolean;
+begin
+  Result := HasUpdateOption('/UPDATE');
+end;
+
+function UpdateForeground: Boolean;
+begin
+  Result := IsUpdate and HasUpdateOption('/UPDATEFOREGROUND');
+end;
+
+function UpdateBackground: Boolean;
+begin
+  Result := IsUpdate and HasUpdateOption('/UPDATEBACKGROUND');
+end;
+
 function InstallArgs(Param: String): String;
 begin
   Result := '';
@@ -146,6 +190,58 @@ begin
     Result := Result + ' --shellmenu';
   if WizardIsTaskSelected('startup') then
     Result := Result + ' --startup';
+  if not IsUpdate then
+  begin
+    if WizardIsTaskSelected('autoupdates') then
+      Result := Result + ' --autoupdates=on'
+    else
+      Result := Result + ' --autoupdates=off';
+    if WizardIsTaskSelected('crashreports') then
+      Result := Result + ' --crashreports=on'
+    else
+      Result := Result + ' --crashreports=off';
+  end;
+end;
+
+type
+  TTaskBounds = record
+    Left, Top, Right, Bottom: Integer;
+  end;
+
+function ReadTaskBounds(Window: LongWord; Message: LongWord; Index: LongInt; var Bounds: TTaskBounds): LongInt;
+  external 'SendMessageW@user32.dll stdcall';
+
+procedure CurPageChanged(CurPageID: Integer);
+var
+  Bounds: TTaskBounds;
+  ListHeight: Integer;
+begin
+  if CurPageID <> wpSelectTasks then Exit;
+  if ReportHelp = nil then
+  begin
+    ReportHelp := TNewStaticText.Create(WizardForm);
+    ReportHelp.Parent := WizardForm.TasksList.Parent;
+    ReportHelp.AutoSize := False;
+    ReportHelp.WordWrap := True;
+    ReportHelp.Caption := CustomMessage('Crash_Help');
+    ReportHelp.Left := WizardForm.TasksList.Left + ScaleX(20);
+    ReportHelp.Width := WizardForm.TasksList.Width - ScaleX(20);
+    // Medir la última fila real, también con otra fuente o escala de Windows.
+    ListHeight := WizardForm.TasksList.MinItemHeight * WizardForm.TasksList.Items.Count + ScaleY(8);
+    if ReadTaskBounds(WizardForm.TasksList.Handle, $0198, WizardForm.TasksList.Items.Count - 1, Bounds) <> -1 then
+      ListHeight := Bounds.Bottom + ScaleY(2);
+    WizardForm.TasksList.Height := ListHeight;
+    ReportHelp.Height := ScaleY(32);
+    ReportHelp.AdjustHeight;
+    ReportHelp.Top := WizardForm.TasksList.Top + ListHeight + ScaleY(4);
+    ReportHelp.Anchors := [akLeft, akTop, akRight];
+  end;
+  // El asistente interactivo la ofrece marcada; no vuelve a marcarla al pulsar Atrás.
+  if not ReportsInitialized then
+  begin
+    ReportsInitialized := True;
+    if not WizardSilent then WizardSelectTasks('autoupdates,crashreports');
+  end;
 end;
 
 // Al actualizar: cerrar la versión que está en la bandeja (sus copias quedan reanudables).
@@ -153,11 +249,19 @@ function PrepareToInstall(var NeedsRestart: Boolean): String;
 var
   ResultCode: Integer;
   Existing: String;
+  Arguments: String;
 begin
   Result := '';
   Existing := ExpandConstant('{app}\MegaCopier.exe');
   if FileExists(Existing) then
-    Exec(Existing, '--exit', '', SW_HIDE, ewWaitUntilTerminated, ResultCode);
+  begin
+    Arguments := '--exit';
+    if IsUpdate then Arguments := '--exit-for-update';
+    if not Exec(Existing, Arguments, '', SW_HIDE, ewWaitUntilTerminated, ResultCode) then
+      Result := FmtMessage(SetupMessage(msgErrorExecutingProgram), [Existing]);
+    if (Result = '') and (ResultCode <> 0) then
+      Result := FmtMessage(SetupMessage(msgErrorCloseApplications), []);
+  end;
 end;
 
 // Al desinstalar: los datos del usuario (%LOCALAPPDATA%\MegaCopier) se conservan salvo que pida borrarlos.

@@ -475,8 +475,8 @@
   <data name="Settings_Sounds.Text" xml:space="preserve"><value>Звуки</value></data>
   <data name="Settings_SoundsTitle.Text" xml:space="preserve"><value>Звуковые оповещения</value></data>
   <data name="Settings_SoundsDescription.Text" xml:space="preserve"><value>Выберите звук для каждого момента: звук Windows, любой файл на компьютере или без звука.</value></data>
-  <data name="Settings_Volume.Header" xml:space="preserve"><value>Громкость</value></data>
-  <data name="Settings_SoundsQuiet.Content" xml:space="preserve"><value>Не звучать во время полноэкранных игр и презентаций и в режиме «Не беспокоить»</value></data>
+  <data name="Settings_Volume.Text" xml:space="preserve"><value>Громкость</value></data>
+  <data name="Settings_SoundsQuiet.Text" xml:space="preserve"><value>Не звучать во время полноэкранных игр и презентаций и в режиме «Не беспокоить»</value></data>
   <data name="Sound_Done" xml:space="preserve"><value>Копирование прошло успешно</value></data>
   <data name="Sound_Errors" xml:space="preserve"><value>Копирование завершилось с ошибками</value></data>
   <data name="Sound_AllDone" xml:space="preserve"><value>Все копирования завершены</value></data>
@@ -707,7 +707,7 @@
   <data name="Job_FilesSentOne" xml:space="preserve"><value>Отправлено файлов: {0}</value></data>
   <data name="Job_FilesSentMany" xml:space="preserve"><value>Отправлено файлов: {0}</value></data>
   <data name="Rules_Describe.Header" xml:space="preserve"><value>Скажите своими словами (на английском или испанском)</value></data>
-  <data name="Rules_Describe.PlaceholderText" xml:space="preserve"><value>photos larger than 2 MB from last month except .tmp</value></data>
+  <data name="Rules_Describe.PlaceholderText" xml:space="preserve"><value>*.jpg &gt; 2 MB</value></data>
   <data name="Rules_DescribeApply.Text" xml:space="preserve"><value>Применить</value></data>
   <data name="Rules_DescribeUnderstood" xml:space="preserve"><value>Понятно: {0}.</value></data>
   <data name="Rules_DescribeNothing" xml:space="preserve"><value>Не понял, что фильтровать.</value></data>
@@ -1508,4 +1508,95 @@
   <data name="Info_CloseButton_Text" xml:space="preserve"><value>Выберите, что происходит с копированиями при закрытии окна крестиком.\n• Отменить копирования: как нажать «Остановить» в каждом. Они исчезают из списка, и продолжить их не предлагается.\n• Остановить, чтобы продолжить позже: скопированное сохраняется; если снова скопировать то же самое или открыть MegaCopier, копирование продолжится с того же места.\n• Скрыть окно: копирования продолжаются в фоне; окно открывается значком в области уведомлений.\n• Выйти из MegaCopier: программа закрывается полностью, и Windows копирует как обычно, пока вы её снова не откроете.</value></data>
   <data name="Info_MinimizeButton_Title" xml:space="preserve"><value>При сворачивании окна</value></data>
   <data name="Info_MinimizeButton_Text" xml:space="preserve"><value>Куда уходит окно при сворачивании. Копирование продолжается в обоих случаях.\n• На панель задач: как любое другое окно.\nСворачивание в область уведомлений освобождает панель задач: окно возвращается щелчком по значку MegaCopier рядом с часами.</value></data>
+  <data name="Section_Updates" xml:space="preserve"><value>Обновления</value></data>
+  <data name="Updates_Tab" xml:space="preserve"><value>Обновление</value></data>
+  <data name="Updates_History" xml:space="preserve"><value>Журнал обновлений</value></data>
+  <data name="Updates_ViewChangelog" xml:space="preserve"><value>Просмотреть список изменений</value></data>
+  <data name="Crash_Title" xml:space="preserve"><value>Отчёты об ошибках</value></data>
+  <data name="Crash_Description" xml:space="preserve"><value>Содержит версии, язык, тему, действия и отфильтрованные трассировки. Имена, пути и содержимое файлов не отправляются.</value></data>
+  <data name="Crash_Transport" xml:space="preserve"><value>Отправка только с разрешения. Cloudflare получает IP для защиты от злоупотреблений; в отчёт он не включается. Данные поступают в закрытый репозиторий GitHub.</value></data>
+  <data name="Crash_LocalOnly" xml:space="preserve"><value>Отправка не настроена. Журналы остаются на устройстве.</value></data>
+  <data name="Crash_Queued" xml:space="preserve"><value>Разрешённый отчёт сохранён. При сбое отправки повторная попытка будет при запуске.</value></data>
+  <data name="Crash_Duplicate" xml:space="preserve"><value>Этот сбой уже ожидает отправки или был отправлен.</value></data>
+  <data name="Crash_Sent" xml:space="preserve"><value>Отчёт отправлен. Спасибо за помощь.</value></data>
+  <data name="Crash_Revoked" xml:space="preserve"><value>Автоотправка отключена, ожидающие отчёты удалены. Отправленные отчёты здесь отозвать нельзя.</value></data>
+  <data name="Crash_Preview" xml:space="preserve"><value>Посмотреть отправляемые данные</value></data>
+  <data name="Crash_Always" xml:space="preserve"><value>Всегда отправлять без запроса</value></data>
+  <data name="Crash_Unexpected" xml:space="preserve"><value>MegaCopier неожиданно закрылся</value></data>
+  <data name="Crash_Send" xml:space="preserve"><value>Отправить отчёт</value></data>
+  <data name="Crash_NoSend" xml:space="preserve"><value>Не отправлять</value></data>
+  <data name="Crash_Close" xml:space="preserve"><value>Закрыть</value></data>
+  <data name="Crash_Automatic" xml:space="preserve"><value>Отправлять отчёты для улучшения MegaCopier</value></data>
+  <data name="Crash_OpenLogs" xml:space="preserve"><value>Открыть папку журналов</value></data>
+  <data name="Crash_GitHub" xml:space="preserve"><value>Сообщить о проблеме на GitHub</value></data>
+  <data name="Crash_LastReport" xml:space="preserve"><value>Посмотреть последний локальный отчёт</value></data>
+  <data name="Updates_Search" xml:space="preserve"><value>Проверить обновления</value></data>
+  <data name="Updates_Unknown" xml:space="preserve"><value>Проверить обновления MegaCopier</value></data>
+  <data name="Updates_SearchDescription" xml:space="preserve"><value>Поиск новой версии без прерывания копирования.</value></data>
+  <data name="Updates_Searching" xml:space="preserve"><value>Проверка обновлений…</value></data>
+  <data name="Updates_Current" xml:space="preserve"><value>MegaCopier обновлён</value></data>
+  <data name="Updates_CurrentAction" xml:space="preserve"><value>У вас последняя версия</value></data>
+  <data name="Updates_Available" xml:space="preserve"><value>Доступна новая версия</value></data>
+  <data name="Updates_Download" xml:space="preserve"><value>Скачать обновление</value></data>
+  <data name="Updates_DownloadZip" xml:space="preserve"><value>Скачать переносимый ZIP</value></data>
+  <data name="Updates_Downloading" xml:space="preserve"><value>Скачивание обновления…</value></data>
+  <data name="Updates_Cancel" xml:space="preserve"><value>Отменить скачивание</value></data>
+  <data name="Updates_Verifying" xml:space="preserve"><value>Проверка загрузки…</value></data>
+  <data name="Updates_Ready" xml:space="preserve"><value>Обновление готово к установке</value></data>
+  <data name="Updates_Install" xml:space="preserve"><value>Обновить сейчас</value></data>
+  <data name="Updates_Installing" xml:space="preserve"><value>Установка обновления…</value></data>
+  <data name="Updates_OpenZip" xml:space="preserve"><value>Показать скачанный ZIP</value></data>
+  <data name="Updates_Versions" xml:space="preserve"><value>Установлена: {0} · Доступна: {1}</value></data>
+  <data name="Updates_InstalledVersion" xml:space="preserve"><value>Установленная версия: {0}</value></data>
+  <data name="Updates_InstalledMarker" xml:space="preserve"><value>Установленная версия</value></data>
+  <data name="Updates_Bytes" xml:space="preserve"><value>{0} из {1}</value></data>
+  <data name="Updates_WhatsNew" xml:space="preserve"><value>Новое в этой версии</value></data>
+  <data name="Updates_NotesUnavailable" xml:space="preserve"><value>Примечания к выпуску недоступны на этом языке.</value></data>
+  <data name="Updates_AutoCheck" xml:space="preserve"><value>Автоматически проверять обновления</value></data>
+  <data name="Updates_AutoCheckDescription" xml:space="preserve"><value>Проверяет каждые два дня и возобновляет отложенную проверку при подключении к Интернету.</value></data>
+  <data name="Updates_AutoDownload" xml:space="preserve"><value>Скачивать автоматически</value></data>
+  <data name="Updates_AutoDownloadDescription" xml:space="preserve"><value>Автоматически скачивает обновление и подготавливает его к установке.</value></data>
+  <data name="Updates_AutoInstall" xml:space="preserve"><value>Устанавливать, когда MegaCopier не используется</value></data>
+  <data name="Updates_AutoInstallDescription" xml:space="preserve"><value>Только в трее, без ожидающих заданий и диалогов.</value></data>
+  <data name="Updates_Networks" xml:space="preserve"><value>Разрешать скачивание через</value></data>
+  <data name="Updates_Wifi" xml:space="preserve"><value>Wi-Fi и Ethernet</value></data>
+  <data name="Updates_Mobile" xml:space="preserve"><value>Мобильные данные и лимитные сети</value></data>
+  <data name="Updates_NetworkDescription" xml:space="preserve"><value>По умолчанию только безлимитные подключения.</value></data>
+  <data name="Updates_WaitNetwork" xml:space="preserve"><value>Загрузка ожидает разрешённую сеть</value></data>
+  <data name="Updates_RestrictedTitle" xml:space="preserve"><value>Скачивание через это подключение запрещено</value></data>
+  <data name="Updates_RestrictedBody" xml:space="preserve"><value>Загрузка может расходовать мобильный трафик. Разрешить один раз без изменения настроек?</value></data>
+  <data name="Updates_AllowOnce" xml:space="preserve"><value>Разрешить эту загрузку</value></data>
+  <data name="Updates_InstallDescription" xml:space="preserve"><value>MegaCopier закроется и снова откроется по завершении.</value></data>
+  <data name="Updates_Busy" xml:space="preserve"><value>Завершите или удалите ожидающие задания и отключите синхронизацию в реальном времени.</value></data>
+  <data name="Updates_Portable" xml:space="preserve"><value>Переносимый режим: скачайте ZIP и сохраните папку Data при обновлении.</value></data>
+  <data name="Updates_Uninstalled" xml:space="preserve"><value>Эта копия не установлена. Можно скачать переносимый ZIP.</value></data>
+  <data name="Updates_Dismiss" xml:space="preserve"><value>Скрыть уведомление об этой версии</value></data>
+  <data name="Updates_NoticeAvailable" xml:space="preserve"><value>Доступно новое обновление</value></data>
+  <data name="Updates_NoticeAvailableBody" xml:space="preserve"><value>Доступна версия {0}. Нажмите, чтобы открыть обновления.</value></data>
+  <data name="Updates_NoticeReady" xml:space="preserve"><value>Обновление готово к установке</value></data>
+  <data name="Updates_NoticeReadyBody" xml:space="preserve"><value>Версия {0} скачана и проверена. Нажмите, чтобы открыть обновления.</value></data>
+  <data name="Updates_ErrorNetwork" xml:space="preserve"><value>Не удалось подключиться. Можно повторить попытку.</value></data>
+  <data name="Updates_ErrorInvalidRelease" xml:space="preserve"><value>В этом выпуске нет совместимого обновления.</value></data>
+  <data name="Updates_ErrorUntrustedUrl" xml:space="preserve"><value>Загрузка получена не из разрешённого источника.</value></data>
+  <data name="Updates_ErrorMissingTrust" xml:space="preserve"><value>Ключ публикации не настроен. Установка остаётся заблокированной.</value></data>
+  <data name="Updates_ErrorInvalidSignature" xml:space="preserve"><value>Не удалось проверить подпись обновления.</value></data>
+  <data name="Updates_ErrorInvalidChecksum" xml:space="preserve"><value>Загрузка не совпадает с проверенным файлом и не будет установлена.</value></data>
+  <data name="Updates_ErrorTooLarge" xml:space="preserve"><value>Размер загрузки превышает допустимый.</value></data>
+  <data name="Updates_ErrorBusy" xml:space="preserve"><value>У MegaCopier есть ожидающие задания или диалоги.</value></data>
+  <data name="Updates_ErrorInstaller" xml:space="preserve"><value>Не удалось запустить установку. Загрузка сохранена.</value></data>
+  <data name="Updates_ErrorRestrictedNetwork" xml:space="preserve"><value>Подключитесь к разрешённой сети или проверьте разрешения загрузки.</value></data>
+  <data name="Crash_Help" xml:space="preserve"><value>Помогите в разработке MegaCopier, отправляя отчёты об ошибках.</value></data>
+  <data name="Crash_Installer" xml:space="preserve"><value>Отправлять отчёты об ошибках</value></data>
+  <data name="Updates_ViewFullChangelog" xml:space="preserve"><value>Полный список изменений</value></data>
+  <data name="Updates_CurrentHighlights" xml:space="preserve"><value>Главные нововведения текущей версии</value></data>
+  <data name="Updates_AvailableHighlights" xml:space="preserve"><value>Главные изменения новой доступной версии</value></data>
+  <data name="Updates_NoInternet" xml:space="preserve"><value>Нет доступа к Интернету</value></data>
+  <data name="Updates_NoInternetDescription" xml:space="preserve"><value>Проверьте подключение к Интернету и повторите попытку.</value></data>
+  <data name="Updates_NoInternetDownload" xml:space="preserve"><value>Нет доступа к Интернету для загрузки обновления. Проверьте подключение и повторите попытку.</value></data>
+  <data name="Updates_NoticeCompleted" xml:space="preserve"><value>MegaCopier обновлён</value></data>
+  <data name="Updates_NoticeCompletedBody" xml:space="preserve"><value>Установлен MegaCopier {0}. Откройте обновления, чтобы узнать о новых возможностях.</value></data>
+  <data name="Installer_StartMenu" xml:space="preserve"><value>Создать ярлык в меню «Пуск»</value></data>
+  <data name="Installer_Taskbar" xml:space="preserve"><value>Подготовить ярлык для панели задач (щелчок правой кнопкой в Windows)</value></data>
+  <data name="Settings_CustomSounds.Text" xml:space="preserve"><value>Настроить звуки</value></data>
+  <data name="Settings_FastPaths.PlaceholderText" xml:space="preserve"><value>C:, D:\Данные</value></data>
 </root>

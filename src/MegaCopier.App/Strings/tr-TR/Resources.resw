@@ -475,8 +475,8 @@
   <data name="Settings_Sounds.Text" xml:space="preserve"><value>Sesler</value></data>
   <data name="Settings_SoundsTitle.Text" xml:space="preserve"><value>Sesli uyarılar</value></data>
   <data name="Settings_SoundsDescription.Text" xml:space="preserve"><value>Her an için bir ses seçin: Windows sesi, bilgisayarınızdaki herhangi bir dosya veya hiçbiri.</value></data>
-  <data name="Settings_Volume.Header" xml:space="preserve"><value>Ses düzeyi</value></data>
-  <data name="Settings_SoundsQuiet.Content" xml:space="preserve"><value>Tam ekran oyun veya sunumlarda ve Rahatsız etmeyin modunda sessiz kal</value></data>
+  <data name="Settings_Volume.Text" xml:space="preserve"><value>Ses düzeyi</value></data>
+  <data name="Settings_SoundsQuiet.Text" xml:space="preserve"><value>Tam ekran oyun veya sunumlarda ve Rahatsız etmeyin modunda sessiz kal</value></data>
   <data name="Sound_Done" xml:space="preserve"><value>Bir kopyalama başarıyla bitti</value></data>
   <data name="Sound_Errors" xml:space="preserve"><value>Bir kopyalama hatalarla bitti</value></data>
   <data name="Sound_AllDone" xml:space="preserve"><value>Tüm kopyalamalar bitti</value></data>
@@ -707,7 +707,7 @@
   <data name="Job_FilesSentOne" xml:space="preserve"><value>{0} dosya gönderildi</value></data>
   <data name="Job_FilesSentMany" xml:space="preserve"><value>{0} dosya gönderildi</value></data>
   <data name="Rules_Describe.Header" xml:space="preserve"><value>Kendi sözlerinizle söyleyin (İngilizce veya İspanyolca)</value></data>
-  <data name="Rules_Describe.PlaceholderText" xml:space="preserve"><value>photos larger than 2 MB from last month except .tmp</value></data>
+  <data name="Rules_Describe.PlaceholderText" xml:space="preserve"><value>*.jpg &gt; 2 MB</value></data>
   <data name="Rules_DescribeApply.Text" xml:space="preserve"><value>Uygula</value></data>
   <data name="Rules_DescribeUnderstood" xml:space="preserve"><value>Anlaşıldı: {0}.</value></data>
   <data name="Rules_DescribeNothing" xml:space="preserve"><value>Filtrelenecek bir şey anlaşılmadı.</value></data>
@@ -1508,4 +1508,95 @@
   <data name="Info_CloseButton_Text" xml:space="preserve"><value>Pencereyi X ile kapatınca kopyalamalara ne olacağını seçin.\n• Kopyalamaları iptal et: her birinde “Durdur”a basmak gibi. Listeden kaybolurlar ve sürdürme önerilmez.\n• Daha sonra sürdürmek için durdur: kopyalanan kısım korunur; aynı şeyi yeniden kopyaladığınızda veya MegaCopier&apos;ı açtığınızda kaldığı yerden devam eder.\n• Pencereyi gizle: kopyalamalar arka planda sürer; pencereyi bildirim alanındaki simgeden açarsınız.\n• MegaCopier&apos;dan çık: tamamen kapanır ve siz yeniden açana kadar Windows her zamanki gibi kopyalar.</value></data>
   <data name="Info_MinimizeButton_Title" xml:space="preserve"><value>Pencere simge durumuna küçültülünce</value></data>
   <data name="Info_MinimizeButton_Text" xml:space="preserve"><value>Simge durumuna küçültünce pencerenin nereye gideceği. Kopyalamalar her iki durumda da sürer.\n• Görev çubuğuna: diğer pencereler gibi.\nBildirim alanına küçültmek görev çubuğunu boş bırakır: pencere, saatin yanındaki MegaCopier simgesine tıklayınca geri gelir.</value></data>
+  <data name="Section_Updates" xml:space="preserve"><value>Güncellemeler</value></data>
+  <data name="Updates_Tab" xml:space="preserve"><value>Güncelleme</value></data>
+  <data name="Updates_History" xml:space="preserve"><value>Güncelleştirme geçmişi</value></data>
+  <data name="Updates_ViewChangelog" xml:space="preserve"><value>Değişiklik günlüğünü görüntüle</value></data>
+  <data name="Crash_Title" xml:space="preserve"><value>Hata raporları</value></data>
+  <data name="Crash_Description" xml:space="preserve"><value>Sürümleri, dili, temayı, etkinliği ve filtrelenmiş izleri içerir. Adlar, yollar veya dosya içerikleri gönderilmez.</value></data>
+  <data name="Crash_Transport" xml:space="preserve"><value>Yalnızca izninizle gönderilir. Cloudflare kötüye kullanımı sınırlamak için IP’yi alır; IP rapora eklenmez. Hedef özel bir GitHub deposudur.</value></data>
+  <data name="Crash_LocalOnly" xml:space="preserve"><value>Gönderim yapılandırılmadı. Günlükler bu cihazda kalır.</value></data>
+  <data name="Crash_Queued" xml:space="preserve"><value>İzin verilen rapor kaydedildi. Gönderilemezse başlangıçta yeniden denenecek.</value></data>
+  <data name="Crash_Duplicate" xml:space="preserve"><value>Bu hata zaten bekliyor veya daha önce gönderildi.</value></data>
+  <data name="Crash_Sent" xml:space="preserve"><value>Rapor gönderildi. Yardımınız için teşekkürler.</value></data>
+  <data name="Crash_Revoked" xml:space="preserve"><value>Otomatik gönderim kapatıldı ve bekleyenler silindi. Gönderilmiş raporlar buradan geri alınamaz.</value></data>
+  <data name="Crash_Preview" xml:space="preserve"><value>Gönderilen verileri gör</value></data>
+  <data name="Crash_Always" xml:space="preserve"><value>Her zaman sormadan gönder</value></data>
+  <data name="Crash_Unexpected" xml:space="preserve"><value>MegaCopier beklenmedik şekilde kapandı</value></data>
+  <data name="Crash_Send" xml:space="preserve"><value>Rapor gönder</value></data>
+  <data name="Crash_NoSend" xml:space="preserve"><value>Gönderme</value></data>
+  <data name="Crash_Close" xml:space="preserve"><value>Kapat</value></data>
+  <data name="Crash_Automatic" xml:space="preserve"><value>MegaCopier’ı geliştirmek için hata raporları gönder</value></data>
+  <data name="Crash_OpenLogs" xml:space="preserve"><value>Günlük klasörünü aç</value></data>
+  <data name="Crash_GitHub" xml:space="preserve"><value>GitHub’da sorun bildir</value></data>
+  <data name="Crash_LastReport" xml:space="preserve"><value>Son yerel raporu gör</value></data>
+  <data name="Updates_Search" xml:space="preserve"><value>Güncellemeleri ara</value></data>
+  <data name="Updates_Unknown" xml:space="preserve"><value>MegaCopier güncellemelerini ara</value></data>
+  <data name="Updates_SearchDescription" xml:space="preserve"><value>Kopyaları kesintiye uğratmadan yeni sürüm ara.</value></data>
+  <data name="Updates_Searching" xml:space="preserve"><value>Güncellemeler aranıyor…</value></data>
+  <data name="Updates_Current" xml:space="preserve"><value>MegaCopier güncel</value></data>
+  <data name="Updates_CurrentAction" xml:space="preserve"><value>Güncelsiniz</value></data>
+  <data name="Updates_Available" xml:space="preserve"><value>Yeni sürüm mevcut</value></data>
+  <data name="Updates_Download" xml:space="preserve"><value>Güncellemeyi indir</value></data>
+  <data name="Updates_DownloadZip" xml:space="preserve"><value>Taşınabilir ZIP indir</value></data>
+  <data name="Updates_Downloading" xml:space="preserve"><value>Güncelleme indiriliyor…</value></data>
+  <data name="Updates_Cancel" xml:space="preserve"><value>İndirmeyi iptal et</value></data>
+  <data name="Updates_Verifying" xml:space="preserve"><value>İndirme doğrulanıyor…</value></data>
+  <data name="Updates_Ready" xml:space="preserve"><value>Güncelleme kurulmaya hazır</value></data>
+  <data name="Updates_Install" xml:space="preserve"><value>Şimdi güncelle</value></data>
+  <data name="Updates_Installing" xml:space="preserve"><value>Güncelleme kuruluyor…</value></data>
+  <data name="Updates_OpenZip" xml:space="preserve"><value>İndirilen ZIP dosyasını göster</value></data>
+  <data name="Updates_Versions" xml:space="preserve"><value>Kurulu: {0} · Mevcut: {1}</value></data>
+  <data name="Updates_InstalledVersion" xml:space="preserve"><value>Kurulu sürüm: {0}</value></data>
+  <data name="Updates_InstalledMarker" xml:space="preserve"><value>Kurulu sürüm</value></data>
+  <data name="Updates_Bytes" xml:space="preserve"><value>{0} / {1}</value></data>
+  <data name="Updates_WhatsNew" xml:space="preserve"><value>Bu sürümdeki yenilikler</value></data>
+  <data name="Updates_NotesUnavailable" xml:space="preserve"><value>Bu dilde sürüm notları bulunmuyor.</value></data>
+  <data name="Updates_AutoCheck" xml:space="preserve"><value>Güncellemeleri otomatik ara</value></data>
+  <data name="Updates_AutoCheckDescription" xml:space="preserve"><value>İki günde bir denetler ve Internet geldiğinde bekleyen denetimleri tamamlar.</value></data>
+  <data name="Updates_AutoDownload" xml:space="preserve"><value>Otomatik indir</value></data>
+  <data name="Updates_AutoDownloadDescription" xml:space="preserve"><value>Güncellemeyi otomatik indirir ve kurulmaya hazır bırakır.</value></data>
+  <data name="Updates_AutoInstall" xml:space="preserve"><value>MegaCopier kullanılmadığında kur</value></data>
+  <data name="Updates_AutoInstallDescription" xml:space="preserve"><value>Yalnızca sistem tepsisindeyken, bekleyen iş veya iletişim kutusu yokken kur.</value></data>
+  <data name="Updates_Networks" xml:space="preserve"><value>Şu bağlantılarda indirmeye izin ver</value></data>
+  <data name="Updates_Wifi" xml:space="preserve"><value>Wi-Fi ve Ethernet</value></data>
+  <data name="Updates_Mobile" xml:space="preserve"><value>Mobil veri ve tarifeli ağlar</value></data>
+  <data name="Updates_NetworkDescription" xml:space="preserve"><value>Varsayılan olarak yalnızca tarifesiz bağlantılar.</value></data>
+  <data name="Updates_WaitNetwork" xml:space="preserve"><value>İndirme izin verilen bir ağı bekliyor</value></data>
+  <data name="Updates_RestrictedTitle" xml:space="preserve"><value>Bu bağlantıda indirmeye izin verilmiyor</value></data>
+  <data name="Updates_RestrictedBody" xml:space="preserve"><value>Bu indirme mobil veri kullanabilir. Ayarları değiştirmeden bir kez izin verilsin mi?</value></data>
+  <data name="Updates_AllowOnce" xml:space="preserve"><value>Bu indirmeye izin ver</value></data>
+  <data name="Updates_InstallDescription" xml:space="preserve"><value>MegaCopier kapanacak ve işlem bitince yeniden açılacak.</value></data>
+  <data name="Updates_Busy" xml:space="preserve"><value>Bekleyen işleri tamamlayın veya kaldırın ve canlı eşitlemeyi kapatın.</value></data>
+  <data name="Updates_Portable" xml:space="preserve"><value>Taşınabilir mod: ZIP dosyasını indirin ve güncellerken Data klasörünü koruyun.</value></data>
+  <data name="Updates_Uninstalled" xml:space="preserve"><value>Bu kopya kurulu değil. Taşınabilir ZIP dosyasını indirebilirsiniz.</value></data>
+  <data name="Updates_Dismiss" xml:space="preserve"><value>Bu sürümün bildirimini gizle</value></data>
+  <data name="Updates_NoticeAvailable" xml:space="preserve"><value>Yeni güncelleme mevcut</value></data>
+  <data name="Updates_NoticeAvailableBody" xml:space="preserve"><value>{0} sürümü mevcut. Güncellemeler’i açmak için tıklayın.</value></data>
+  <data name="Updates_NoticeReady" xml:space="preserve"><value>Güncelleme kurulmaya hazır</value></data>
+  <data name="Updates_NoticeReadyBody" xml:space="preserve"><value>{0} sürümü indirildi ve doğrulandı. Güncellemeler’i açmak için tıklayın.</value></data>
+  <data name="Updates_ErrorNetwork" xml:space="preserve"><value>Bağlanılamadı. Yeniden deneyebilirsiniz.</value></data>
+  <data name="Updates_ErrorInvalidRelease" xml:space="preserve"><value>Bu yayında uyumlu bir güncelleme yok.</value></data>
+  <data name="Updates_ErrorUntrustedUrl" xml:space="preserve"><value>İndirme izin verilen bir kaynaktan gelmiyor.</value></data>
+  <data name="Updates_ErrorMissingTrust" xml:space="preserve"><value>Yayın anahtarı yapılandırılmamış. Kurulum engelli kalır.</value></data>
+  <data name="Updates_ErrorInvalidSignature" xml:space="preserve"><value>Güncellemenin imzası doğrulanamadı.</value></data>
+  <data name="Updates_ErrorInvalidChecksum" xml:space="preserve"><value>İndirme doğrulanan dosyayla eşleşmiyor. Kurulmayacak.</value></data>
+  <data name="Updates_ErrorTooLarge" xml:space="preserve"><value>İndirme izin verilen boyutu aşıyor.</value></data>
+  <data name="Updates_ErrorBusy" xml:space="preserve"><value>MegaCopier’de bekleyen işler veya iletişim kutuları var.</value></data>
+  <data name="Updates_ErrorInstaller" xml:space="preserve"><value>Kurulum başlatılamadı. İndirme korunuyor.</value></data>
+  <data name="Updates_ErrorRestrictedNetwork" xml:space="preserve"><value>İzin verilen bir ağa bağlanın veya indirme izinlerini gözden geçirin.</value></data>
+  <data name="Crash_Help" xml:space="preserve"><value>Hata raporları göndererek MegaCopier’in geliştirilmesine yardımcı olun.</value></data>
+  <data name="Crash_Installer" xml:space="preserve"><value>Hata raporları gönder</value></data>
+  <data name="Updates_ViewFullChangelog" xml:space="preserve"><value>Tüm değişiklik günlüğünü görüntüle</value></data>
+  <data name="Updates_CurrentHighlights" xml:space="preserve"><value>Mevcut sürümün önemli yenilikleri</value></data>
+  <data name="Updates_AvailableHighlights" xml:space="preserve"><value>Yeni kullanılabilir sürümün önemli değişiklikleri</value></data>
+  <data name="Updates_NoInternet" xml:space="preserve"><value>İnternet erişimi yok</value></data>
+  <data name="Updates_NoInternetDescription" xml:space="preserve"><value>İnternet bağlantınızı denetleyip yeniden deneyin.</value></data>
+  <data name="Updates_NoInternetDownload" xml:space="preserve"><value>Güncellemeyi indirmek için İnternet erişimi yok. Bağlantınızı denetleyip yeniden deneyin.</value></data>
+  <data name="Updates_NoticeCompleted" xml:space="preserve"><value>MegaCopier güncellendi</value></data>
+  <data name="Updates_NoticeCompletedBody" xml:space="preserve"><value>Artık MegaCopier {0} yüklü. Yenilikleri görmek için Güncellemeleri açın.</value></data>
+  <data name="Installer_StartMenu" xml:space="preserve"><value>Başlat menüsünde kısayol oluştur</value></data>
+  <data name="Installer_Taskbar" xml:space="preserve"><value>Görev çubuğuna sabitlemek için kısayol hazırla (Windows’ta sağ tıklayın)</value></data>
+  <data name="Settings_CustomSounds.Text" xml:space="preserve"><value>Sesleri özelleştir</value></data>
+  <data name="Settings_FastPaths.PlaceholderText" xml:space="preserve"><value>C:, D:\Veriler</value></data>
 </root>

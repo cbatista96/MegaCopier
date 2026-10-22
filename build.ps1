@@ -22,6 +22,9 @@ if (Test-Path $installer) { $env:PATH = "$installer;$env:PATH" }
 dotnet run tools/Strings/gen.cs -- tools/Strings src/MegaCopier.App/Strings src/MegaCopier.Engine/Texts.g.cs
 if ($LASTEXITCODE -ne 0) { throw 'La generación de textos falló.' }
 
+dotnet run tools/Installer/privacy.cs -- $PSScriptRoot
+if ($LASTEXITCODE -ne 0) { throw 'La generación de la información de privacidad falló.' }
+
 if (-not $SkipTests) {
     dotnet test tests/MegaCopier.Engine.Tests -nologo
     if ($LASTEXITCODE -ne 0) { throw 'Las pruebas fallaron.' }

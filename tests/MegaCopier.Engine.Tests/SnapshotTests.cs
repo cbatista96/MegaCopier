@@ -115,11 +115,17 @@ public sealed class SnapshotTests : IDisposable
     [Fact]
     public void ChunkBoundariesDependOnContent()
     {
-        byte[] data = RandomNumberGenerator.GetBytes(12_000_000);
+        byte[] data = new byte[12_000_000];
+        new Random(0x4D43).NextBytes(data);
         var first = ContentChunker.Split(new MemoryStream(data)).Select(c => c.Count).ToList();
         Assert.Equal(data.Length, first.Sum());
         Assert.All(first.SkipLast(1), size => Assert.InRange(size, ContentChunker.MinSize, ContentChunker.MaxSize));
         var shifted = ContentChunker.Split(new MemoryStream([.. new byte[100], .. data])).Select(c => c.Count).ToList();
-        Assert.Equal(first.Skip(2), shifted.Skip(2)); // tras el primer corte, todo coincide
+        // El tamaño mínimo puede desplazar varios cortes; no hay garantía de resincronizar en el segundo.
+        int originalEnd = 0, shiftedEnd = 0;
+        var originalBoundaries = first.Select(size => originalEnd += size).ToList();
+        var shiftedBoundaries = shifted.Select(size => (shiftedEnd += size) - 100).ToList();
+        int common = originalBoundaries.First(end => end < data.Length / 2 && shiftedBoundaries.Contains(end));
+        Assert.Equal(first.Skip(originalBoundaries.IndexOf(common) + 1), shifted.Skip(shiftedBoundaries.IndexOf(common) + 1));
     }
 }

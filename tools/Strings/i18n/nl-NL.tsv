@@ -1,4 +1,4 @@
-clave	texto
+﻿clave	texto
 JobsSection.Text	Kopieën
 SettingsSection.Text	Instellingen
 FinishButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Wat te doen als alle kopieën klaar zijn
@@ -469,8 +469,8 @@ Drop_JobOrder	Op plaats {0} van de wachtrij zetten
 Settings_Sounds.Text	Geluiden
 Settings_SoundsTitle.Text	Geluidsmeldingen
 Settings_SoundsDescription.Text	Kies een geluid voor elk moment: een van Windows, een willekeurig bestand op je computer of geen.
-Settings_Volume.Header	Volume
-Settings_SoundsQuiet.Content	Stil blijven bij games of presentaties op volledig scherm en bij Niet storen
+Settings_Volume.Text	Volume
+Settings_SoundsQuiet.Text	Stil blijven bij games of presentaties op volledig scherm en bij Niet storen
 Sound_Done	Een kopie is goed afgerond
 Sound_Errors	Een kopie eindigde met fouten
 Sound_AllDone	Alle kopieën zijn klaar
@@ -701,7 +701,7 @@ Job_StateSending	Verzenden
 Job_FilesSentOne	{0} bestand verzonden
 Job_FilesSentMany	{0} bestanden verzonden
 Rules_Describe.Header	Zeg het in je eigen woorden (in het Engels of Spaans)
-Rules_Describe.PlaceholderText	photos larger than 2 MB from last month except .tmp
+Rules_Describe.PlaceholderText	*.jpg > 2 MB
 Rules_DescribeApply.Text	Toepassen
 Rules_DescribeUnderstood	Begrepen: {0}.
 Rules_DescribeNothing	Niets om te filteren begrepen.
@@ -1502,3 +1502,95 @@ Info_CloseButton_Title	Als je op de X van het venster klikt
 Info_CloseButton_Text	Kies wat er met de kopieën gebeurt als je het venster sluit met het kruisje.\n• De kopieën annuleren: zoals op ‘Stoppen’ klikken bij elke kopie. Ze verdwijnen uit de lijst en worden niet aangeboden om verder te gaan.\n• Stoppen om later verder te gaan: wat al gekopieerd is, blijft bewaard; als je hetzelfde opnieuw kopieert of MegaCopier opent, gaat het verder waar het was.\n• Venster verbergen: de kopieën gaan op de achtergrond door; open het venster via het pictogram in het systeemvak.\n• MegaCopier afsluiten: hij sluit volledig en Windows kopieert zoals altijd tot je hem weer opent.
 Info_MinimizeButton_Title	Als je het venster minimaliseert
 Info_MinimizeButton_Text	Waar het venster heen gaat als je het minimaliseert. De kopieën gaan in beide gevallen door.\n• Naar de taakbalk: zoals elk ander venster.\nMinimaliseren naar het systeemvak houdt de taakbalk vrij: het venster komt terug met een klik op het MegaCopier-pictogram naast de klok.
+Section_Updates	Updates
+Updates_Tab	Update
+Updates_History	Updategeschiedenis
+Updates_ViewChangelog	Wijzigingslogboek bekijken
+Crash_Title	Foutrapporten
+Crash_Description	Bevat versies, taal, thema, activiteit en gefilterde traces. Geen namen, paden of bestandsinhoud worden verzonden.
+Crash_Transport	Alleen met uw toestemming. Cloudflare ontvangt het IP om misbruik te beperken; het staat niet in het rapport. De bestemming is een privé-GitHub-repository.
+Crash_LocalOnly	Verzenden niet ingesteld. Logboeken blijven op dit apparaat.
+Crash_Queued	Goedgekeurd rapport opgeslagen. Bij mislukte bezorging wordt bij het starten opnieuw geprobeerd.
+Crash_Duplicate	Deze fout wacht al of is eerder verzonden.
+Crash_Sent	Rapport verzonden. Bedankt voor uw hulp.
+Crash_Revoked	Automatisch verzenden uitgeschakeld en wachtende rapporten verwijderd. Verzonden rapporten kunnen hier niet worden ingetrokken.
+Crash_Preview	Bekijken wat wordt verzonden
+Crash_Always	Altijd zonder vragen verzenden
+Crash_Unexpected	MegaCopier is onverwacht afgesloten
+Crash_Send	Rapport verzenden
+Crash_NoSend	Niet verzenden
+Crash_Close	Sluiten
+Crash_Automatic	Foutrapporten verzenden om MegaCopier te verbeteren
+Crash_OpenLogs	Logboekmap openen
+Crash_GitHub	Probleem melden op GitHub
+Crash_LastReport	Laatste lokale rapport bekijken
+Updates_Search	Naar updates zoeken
+Updates_Unknown	Naar MegaCopier-updates zoeken
+Updates_SearchDescription	Zoek een nieuwe versie zonder kopieën te onderbreken.
+Updates_Searching	Updates zoeken…
+Updates_Current	MegaCopier is up-to-date
+Updates_CurrentAction	Je bent up-to-date
+Updates_Available	Nieuwe versie beschikbaar
+Updates_Download	Update downloaden
+Updates_DownloadZip	Draagbare ZIP downloaden
+Updates_Downloading	Update downloaden…
+Updates_Cancel	Download annuleren
+Updates_Verifying	Download controleren…
+Updates_Ready	Update klaar om te installeren
+Updates_Install	Nu bijwerken
+Updates_Installing	Update installeren…
+Updates_OpenZip	Gedownloade ZIP tonen
+Updates_Versions	Geïnstalleerd: {0} · Beschikbaar: {1}
+Updates_InstalledVersion	Geïnstalleerde versie: {0}
+Updates_InstalledMarker	Geïnstalleerde versie
+Updates_Bytes	{0} van {1}
+Updates_WhatsNew	Nieuw in deze versie
+Updates_NotesUnavailable	Versieopmerkingen zijn niet beschikbaar in deze taal.
+Updates_AutoCheck	Automatisch naar updates zoeken
+Updates_AutoCheckDescription	Controleert elke twee dagen en haalt uitgestelde controles in zodra er internet is.
+Updates_AutoDownload	Automatisch downloaden
+Updates_AutoDownloadDescription	Download de update automatisch en zet deze klaar voor installatie.
+Updates_AutoInstall	Installeren als MegaCopier niet wordt gebruikt
+Updates_AutoInstallDescription	Alleen vanuit het systeemvak installeren, zonder openstaande taken of dialoogvensters.
+Updates_Networks	Downloads toestaan via
+Updates_Wifi	Wifi en ethernet
+Updates_Mobile	Mobiele data en netwerken met datalimiet
+Updates_NetworkDescription	Standaard alleen verbindingen zonder datalimiet.
+Updates_WaitNetwork	Download wacht op een toegestaan netwerk
+Updates_RestrictedTitle	Downloads zijn niet toegestaan via deze verbinding
+Updates_RestrictedBody	Deze download kan mobiele data gebruiken. Eenmalig toestaan zonder instellingen te wijzigen?
+Updates_AllowOnce	Deze download toestaan
+Updates_InstallDescription	MegaCopier sluit en opent opnieuw na afloop.
+Updates_Busy	Voltooi of verwijder openstaande taken en schakel live synchronisatie uit.
+Updates_Portable	Draagbare modus: download de ZIP en behoud de map Data bij bijwerken.
+Updates_Uninstalled	Deze kopie is niet geïnstalleerd. Je kunt de draagbare ZIP downloaden.
+Updates_Dismiss	Melding voor deze versie verbergen
+Updates_NoticeAvailable	Nieuwe update beschikbaar
+Updates_NoticeAvailableBody	Versie {0} is beschikbaar. Klik om Updates te openen.
+Updates_NoticeReady	Update klaar om te installeren
+Updates_NoticeReadyBody	Versie {0} is gedownload en gecontroleerd. Klik om Updates te openen.
+Updates_ErrorNetwork	Verbinding mislukt. Je kunt het opnieuw proberen.
+Updates_ErrorInvalidRelease	Deze release bevat geen compatibele update.
+Updates_ErrorUntrustedUrl	De download komt niet van een toegestane bron.
+Updates_ErrorMissingTrust	De publicatiesleutel is niet ingesteld. Installatie blijft geblokkeerd.
+Updates_ErrorInvalidSignature	De handtekening van de update kon niet worden gecontroleerd.
+Updates_ErrorInvalidChecksum	De download komt niet overeen met het gecontroleerde bestand en wordt niet geïnstalleerd.
+Updates_ErrorTooLarge	De download overschrijdt de toegestane grootte.
+Updates_ErrorBusy	MegaCopier heeft openstaande taken of dialoogvensters.
+Updates_ErrorInstaller	Installatie kon niet starten. De download blijft bewaard.
+Updates_ErrorRestrictedNetwork	Maak verbinding met een toegestaan netwerk of controleer downloadrechten.
+
+Crash_Help	Help ons MegaCopier te ontwikkelen door foutrapporten te verzenden.
+Crash_Installer	Foutrapporten verzenden
+Updates_ViewFullChangelog	Volledig wijzigingslog bekijken
+Updates_CurrentHighlights	Belangrijkste vernieuwingen van de huidige versie
+Updates_AvailableHighlights	Belangrijkste wijzigingen van de nieuwe beschikbare versie
+Updates_NoInternet	Geen internettoegang
+Updates_NoInternetDescription	Controleer je internetverbinding en probeer het opnieuw.
+Updates_NoInternetDownload	Geen internettoegang om de update te downloaden. Controleer je verbinding en probeer het opnieuw.
+Updates_NoticeCompleted	MegaCopier is bijgewerkt
+Updates_NoticeCompletedBody	Je hebt nu MegaCopier {0}. Open Updates om te zien wat er nieuw is.
+Installer_StartMenu	Een snelkoppeling in het startmenu maken
+Installer_Taskbar	Snelkoppeling voorbereiden voor de taakbalk (rechtsklik in Windows)
+Settings_CustomSounds.Text	Geluiden aanpassen
+Settings_FastPaths.PlaceholderText	C:, D:\Gegevens

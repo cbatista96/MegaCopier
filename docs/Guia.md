@@ -46,7 +46,75 @@ necesites.
 Se instala **solo para tu usuario** en `%LOCALAPPDATA%\Programs\MegaCopier`, sin permisos de administrador y sin instalar
 nada más (lleva dentro todo lo que necesita). Tus ajustes, temas e historial se guardan en `%LOCALAPPDATA%\MegaCopier`.
 
-**Actualizar:** descarga el instalador de la versión nueva y ejecútalo encima. Se conservan los ajustes y el historial.
+**Actualizar:** abre *Ajustes > Actualizaciones*. También puedes descargar el instalador de la versión nueva y ejecutarlo encima. Se conservan los ajustes y el historial.
+
+### Actualizaciones
+
+![Actualizaciones dentro de Ajustes](capturas/actualizaciones.png)
+
+El botón principal conserva su tamaño y cambia según el estado: **Buscar actualizaciones**, **Estás al día**, **Descargar actualización** o **Actualizar ahora**. Mientras busca muestra una barra animada; durante la descarga muestra el progreso real y los bytes recibidos. Puedes cancelarla. No se instala nada al pulsar una notificación de Windows: solo abre esta sección.
+
+La búsqueda automática viene activada y espera unos 30 segundos al arrancar. Solo consulta versiones cuando han pasado **48 horas** desde la última comprobación correcta. Si pasa ese plazo sin Internet, la búsqueda pendiente se recupera al reconectar. Entrar en Actualizaciones nunca inicia una búsqueda: presenta el último resultado guardado. Puedes desactivar la búsqueda automática y buscar con el botón en cualquier momento. Un indicador «1» aparece en Ajustes y en Actualizaciones mientras haya una versión pendiente; puedes descartarlo para esa versión.
+
+**Descargar automáticamente** viene desactivado. Con búsqueda y descarga automáticas activadas, una versión detectada por una búsqueda automática se descarga en cuanto hay una red permitida y queda preparada para instalar. Una versión descubierta al pulsar **Buscar actualizaciones** ofrece **Descargar actualización**, aunque esté activada la descarga automática. No se espera dos días desde su publicación: el plazo de 48 horas corresponde a las comprobaciones. Cancelar una descarga impide nuevos intentos automáticos para esa versión hasta que decidas descargarla de nuevo.
+
+Por defecto se permiten **Wi-Fi y Ethernet sin uso medido**. Las **redes móviles y de uso medido** requieren activar su propia casilla. Una Wi-Fi marcada como de uso medido sigue la segunda opción. Si solicitas una descarga manual en una red no permitida, puedes autorizarla solo esta vez. La aplicación detecta la conexión sin mostrar su tipo en la página. Las imágenes remotas de las novedades respetan estos permisos. Si cambia a una red no permitida, pausa la descarga y espera a una red autorizada.
+
+**Instalar cuando MegaCopier no esté en uso** viene desactivado. Si lo activas, instala una descarga ya verificada solo cuando la ventana esté oculta en la bandeja y no haya copias activas, en cola, en pausa o pendientes de reanudar, diálogos, el menú de bandeja abierto ni un arrastre. Debe mantenerse inactivo al menos 30 segundos; la comprobación se realiza cada minuto. Desactiva también las sincronizaciones en tiempo real antes de actualizar. La instalación manual espera las mismas condiciones de trabajo, pero permite la ventana visible. Se conservan las tareas elegidas al instalar y la app se abre de nuevo: en Actualizaciones si actualizaste a mano, en la bandeja si fue automático.
+
+Después de instalar y arrancar la versión prevista, Windows avisa **MegaCopier se ha actualizado**. Pulsar el aviso abre Actualizaciones para ver las novedades de la versión instalada. El indicador de actualización completada se quita al entrar en esa sección. No se considera una actualización completada una reinstalación de la misma versión, una instalación fallida ni un simple primer arranque.
+
+El instalador ofrece primero los accesos directos al escritorio, al menú Inicio y un acceso preparado para anclar a la barra de tareas, todos desmarcados. Windows reserva el anclaje a la decisión del usuario: al elegir preparar ese acceso, el instalador lo muestra en el Explorador; pulsa con el botón derecho y elige **Anclar a la barra de tareas** (en algunas versiones, dentro de **Mostrar más opciones**). Debajo aparece Integración, con búsqueda automática marcada e informes de errores al final. Descargar e instalar automáticamente requieren activarlos en Ajustes. Las actualizaciones silenciosas conservan las preferencias existentes.
+
+El icono de las dos flechas gira durante la búsqueda y la descarga, salvo si Windows tiene las animaciones desactivadas. Lleva un check verde al estar al día, un aviso amarillo si hay una actualización y una X roja solo si desactivas **Buscar actualizaciones automáticamente**. Desactivar solo la descarga automática no muestra la X. Cada conjunto de iconos conserva su estilo. El botón de acción mantiene su tamaño a la derecha y la misma barra pasa de búsqueda indeterminada a progreso de descarga.
+
+En **Novedades** se muestra el resumen editorial de la versión disponible; sin actualización, el de la versión instalada. **Ver registro de cambios completo** abre las notas completas en una pantalla propia, siempre bajo **Actualizaciones › Historial de actualizaciones › MegaCopier (versión)**. Al avanzar, el contenido se desliza desde la derecha; Volver y los tramos anteriores de la ruta lo hacen en sentido contrario, respetando la reducción de movimiento. **Historial de actualizaciones** abre una lista con la versión instalada primero y después las anteriores. Cada versión ofrece **Ver historial de cambios**: abre su registro completo con títulos, listas, enlaces e imágenes alineadas a la izquierda, en esta misma ventana, incluso sin Internet para el historial y las capturas incluidas. La cabecera muestra la ruta **Actualizaciones › Historial de actualizaciones › MegaCopier (versión)**. Pulsa en un tramo anterior para regresar directamente, o usa Volver para subir un nivel. El registro está en español si la interfaz está en español, y en inglés para todos los demás idiomas. Los textos de los controles siguen disponibles en los 14 idiomas.
+
+![Historial con la versión instalada primero](capturas/historial-versiones.png)
+
+En modo **portátil** se descarga y verifica el ZIP, y el botón permite localizarlo en el Explorador. Cierra MegaCopier y sustituye los archivos de la aplicación conservando `Data` y `portable.txt`. Una copia de desarrollo no registrada como instalación también recibe el ZIP para evitar instalar accidentalmente sobre otra copia.
+
+Cada descarga debe coincidir con el manifiesto firmado del editor y con SHA-256 antes de ejecutarse. Si falta la configuración de confianza o una verificación falla, se informa en esta sección y el paquete no se ejecuta. La firma del manifiesto no sustituye la firma de Windows del instalador. La comprobación de versiones consulta GitHub, que recibe los datos normales de una conexión HTTP, incluida la IP; no se envían registros ni nombres de archivos.
+
+### Informes de errores
+
+![Opción de informes en el instalador](capturas/instalador-informes.png)
+
+![Opciones y explicación de informes en Ajustes](capturas/ajustes-informes.png)
+
+![Vista previa exacta de un informe antes de enviarlo](capturas/informe-errores.png)
+
+En *Ajustes > Avanzado > Informes de errores* puedes abrir la carpeta de registros, revisar el último informe filtrado
+y abrir una incidencia pública de GitHub. Este último botón solo prepara la versión y Windows: no publica nada por sí
+solo ni añade trazas o rutas. Revisa lo que escribas en GitHub porque esa incidencia será pública.
+
+El registro `crash.log` ya existente permanece local y puede contener detalles personales. **No se adjunta sin filtrar.**
+El informe conserva versiones, idioma, tema, modo instalado o portátil, actividad conocida y nombres de funciones y
+códigos de error. Descarta mensajes libres de excepciones, parámetros, rutas, nombres de usuario/equipo y contenido de
+archivos. De las últimas 50 líneas del registro solo conserva los datos que cumplen ese filtro. Esto reduce el detalle
+disponible para diagnosticar fallos, pero evita enviar texto arbitrario del usuario.
+
+Si queda una marca de sesión al arrancar, hubo un cierre inesperado: puede ser una caída, un cierre forzado o un apagón.
+MegaCopier busca, cuando Windows lo permite y existe, el evento nativo 1000 de **su misma ruta, proceso y sesión** para
+añadir módulo, código y desplazamiento. No inventa un fallo nativo si no encuentra ese evento. Los cierres normales,
+incluidos los del instalador, eliminan la marca.
+
+Una instalación nueva ofrece **Enviar informes de errores** marcado, junto a las tareas del instalador y con una
+explicación debajo: «Ayúdanos con el desarrollo de MegaCopier enviando informes de errores». Puedes desmarcarlo antes de instalar. El asistente interactivo vuelve a ofrecerla marcada al reinstalar; puedes desmarcarla antes de continuar. Las actualizaciones silenciosas conservan la elección guardada. En modo portátil o sin una elección en el
+instalador, el envío comienza desactivado. Con envío automático activo, los informes se envían en segundo plano sin
+mostrar este diálogo. Mientras no se configure el servicio privado, los controles de envío no aparecen.
+Con el servicio configurado y el envío automático desactivado, al volver de un cierre inesperado aparece una pregunta cuando no hay copias activas ni
+otros diálogos: **Enviar**, **No enviar**, **Ver qué se envía** y **Enviar siempre sin preguntar**. La vista previa es el
+JSON exacto que se enviaría. Puedes autorizar un informe sin activar los futuros. La opción de Ajustes solo autoriza
+los futuros fallos y se puede desactivar; se cancela el envío en curso y se borran los pendientes locales, aunque no
+se puede retirar lo que el servidor ya haya recibido.
+
+Si no hay conexión, solo los informes autorizados quedan pendientes para el siguiente arranque. Hay un máximo de cinco
+intentos diarios y veinte pendientes; los de más de catorce días se descartan al procesar la cola. El mismo fallo de la
+misma versión no vuelve a enviarse durante noventa días. Cloudflare recibe la IP para limitar abusos; no se incluye en
+el informe. El receptor comprueba que el destino de GitHub sea privado y agrupa fallos repetidos. Los datos ya recibidos
+se conservan en ese repositorio hasta que el propietario los elimine conforme a su política de conservación.
+La [guía del receptor](../tools/informes-worker/README.md) explica su configuración y los límites del plan gratuito.
 
 **Desinstalar:** *Configuración > Aplicaciones > Aplicaciones instaladas > MegaCopier > Desinstalar*. No deja nada en el
 registro. Al final pregunta si borrar también tus ajustes, temas e historial; por defecto se conservan por si lo vuelves a
@@ -554,7 +622,7 @@ En una ventana estrecha la lista de secciones se queda solo con los iconos.
 |---|---|
 | **General** | Usar MegaCopier en lugar del copiador de Windows · Copiar y mover al pegar (Ctrl+V) · Arrastrar con el botón izquierdo (y si preguntar antes) · Opciones en el menú contextual · Iniciar con Windows · **Idioma** · Unidades de tamaño · Mostrar el icono en la bandeja · **Progreso de cada copia en la bandeja**. |
 | **Interfaz** | Ventana compacta, completa o automática · Qué hacer al terminar · **Qué hacen la X y Minimizar (cada una por separado)** · Siempre visible · Avisar al terminar · Iniciar las copias con la ventana minimizada · Recordar la posición y el tamaño de la ventana · **Fondo de la ventana** (el del tema, que con los temas Fluent es Mica y pasa a Mica Alt al usar otra ventana; Mica, Mica Alt, Acrílico o Translúcida) · Ajustar a pantallas pequeñas · **Temas** y su editor · **Conjuntos de iconos** (ver [Temas e iconos](#18-temas-e-iconos)). |
-| **Sonidos** | Sonido para cada momento (copia terminada, todas terminadas, error, pregunta), volumen y no sonar con juegos, presentaciones o «No molestar». Por defecto suenan los **sonidos propios de MegaCopier** (campanillas originales, no los avisos de Windows); en cada momento puedes elegir, de arriba abajo, **un archivo tuyo**, ninguno, el propio de ese momento, uno de la **colección de MegaCopier** (19 sonidos originales: avisos de menos de un segundo, notificaciones de 1,5 a 3 s y melodías de hasta 4 s) o uno de Windows, y probarlo con ▶. |
+| **Sonidos** | Cuatro tarjetas: avisos con sonido, volumen en una línea con su porcentaje, personalización de sonidos y silencio durante juegos, presentaciones o «No molestar», con interruptor activado por defecto. Sonido para cada momento (copia terminada, todas terminadas, error, pregunta), volumen y no sonar con juegos, presentaciones o «No molestar». Por defecto suenan los **sonidos propios de MegaCopier** (campanillas originales, no los avisos de Windows); en cada momento puedes elegir, de arriba abajo, **un archivo tuyo**, ninguno, el propio de ese momento, uno de la **colección de MegaCopier** (19 sonidos originales: avisos de menos de un segundo, notificaciones de 1,5 a 3 s y melodías de hasta 4 s) o uno de Windows, y probarlo con ▶. |
 | **Copia** | Verificar después de copiar · Si el archivo ya existe · Algoritmo de suma · Qué se copia (fechas, atributos, ADS, permisos, propietario, auditoría) · Archivo de sumas e informe · Comprobar el espacio libre antes · Caché del sistema · Comprimir por la red (SMB) · Reanudar solas al arrancar · Rendimiento · Filtros y reglas. |
 | **Comportamiento** | **Copia nueva al mismo disco que otra en marcha** (preguntar, añadirla, copia aparte después o a la vez) · **Copia nueva a otro disco** (empezar a la vez o esperar su turno) · **Cada copia en su propia ventana** (una ventana por copia, que empieza ya) · **Al mover, conservar también** atributos, permisos, propietario y auditoría · **Al detener una copia, borrar lo que quedó a medias** (y no hacerlo si paró por un error) · **Al terminar, expulsar la unidad de destino** si es extraíble (y forzarlo). |
 | **Errores** | **Si un archivo sigue fallando**: omitirlo y seguir, detener la copia, reintentarlo al final o **preguntar qué hacer** · Reintentos y espera entre ellos · **Informe de errores** automático (en la carpeta de destino o en una fija, con el nombre que quieras) · Guardar el registro de cada copia. |
@@ -832,3 +900,11 @@ En el mismo disco manda el SSD: tras agotar su caché SLC baja a unos 500 MB/s c
 
 ¿Algo no funciona? Mira las [preguntas frecuentes](Preguntas-frecuentes.md) o
 [abre una incidencia](https://github.com/cbatista96/MegaCopier/issues/new/choose).
+
+En Actualizaciones, el botón ofrece **Buscar actualizaciones** al entrar. Solo muestra **Estás al día** después de una búsqueda manual sin versiones nuevas y vuelve a ofrecer la búsqueda al salir y regresar. Si hay una versión pendiente, ofrece descargarla o instalarla según su estado. Las principales novedades de la versión actual o los cambios de la disponible aparecen antes del historial. Las opciones de red se colocan en horizontal con separación.
+
+Los botones laterales Atrás/Adelante del ratón y **Alt+Izquierda/Derecha** navegan por las pantallas visitadas, incluidas las secciones de Ajustes y el historial de versiones. Una ruta nueva descarta la rama de avance; los diálogos abiertos no se cierran ni se saltan con estos botones.
+
+El botón Ajustes de la barra superior actúa también como regreso: al pulsarlo desde cualquier sección de Ajustes, vuelve a la copia o a la pantalla de inicio y recupera el tamaño anterior de la ventana, incluida la vista pequeña. La ayuda «Volver» solo aparece sobre su botón, no por pasar el ratón por la ventana.
+
+Entrar en Actualizaciones conserva el último resultado correcto, aunque no haya Internet: «MegaCopier está al día» o la versión disponible con sus novedades guardadas. Solo una búsqueda o descarga manual sin conexión muestra el aviso de red y la X roja; al salir de la sección y regresar, vuelve el último resultado guardado. El botón ofrece buscar, descargar o instalar según corresponda. Una reconexión permite completar descargas pendientes y una comprobación automática vencida, respetando los permisos y opciones. El aviso de ZIP portátil solo aparece si existe una versión nueva. Los resúmenes explican cada mejora con una o dos frases cuando hace falta; pueden incluir más de diez puntos en versiones grandes y agrupan los arreglos menores según la guía de publicación.

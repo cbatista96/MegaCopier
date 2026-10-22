@@ -21,6 +21,8 @@ internal sealed class SlidingIndicator
     private readonly CompositeTransform _move = new();
     private Storyboard? _story;
     private Point? _at;
+    private bool _selectionPending;
+    private object? _selected;
 
     public SlidingIndicator(ListViewBase list, Canvas layer)
     {
@@ -30,19 +32,32 @@ internal sealed class SlidingIndicator
         _bar.RenderTransform = _move;
         _bar.RenderTransformOrigin = new Point(0.5, 0.5);
         layer.Children.Add(_bar);
-        list.SelectionChanged += (_, _) => Update(animate: true);
-        list.LayoutUpdated += (_, _) => Update(animate: false); // desplazamiento, cambio de tamaño, filas nuevas
+        list.SelectionChanged += (_, _) =>
+        {
+            _selectionPending = true;
+            // Una fila visitada por primera vez puede no estar medida durante SelectionChanged.
+            list.DispatcherQueue.TryEnqueue(() => Update());
+        };
+        list.LayoutUpdated += (_, _) => Update(); // desplazamiento, cambio de tamaño, filas nuevas
     }
 
-    private void Update(bool animate)
+    private void Update()
     {
-        if (_list.SelectedItem is not { } selected || _list.ContainerFromItem(selected) is not FrameworkElement container
-            || container.ActualHeight == 0 || _layer.XamlRoot is null)
+        if (_list.SelectedItem is not { } selected)
         {
+            Stop();
             _bar.Visibility = Visibility.Collapsed;
             _at = null;
+            _selected = null;
+            _selectionPending = false;
             return;
         }
+        // LayoutUpdated puede preceder a nuestro SelectionChanged si otro controlador
+        // fuerza una disposición. Detectar también aquí el cambio evita consumirlo sin animar.
+        if (!ReferenceEquals(_selected, selected)) _selectionPending = true;
+        // Conservar el origen y la petición de animación hasta que la nueva fila esté colocada.
+        if (_list.ContainerFromItem(selected) is not FrameworkElement container
+            || container.ActualHeight == 0 || _layer.XamlRoot is null) return;
 
         Point corner;
         try
@@ -55,12 +70,19 @@ internal sealed class SlidingIndicator
         }
 
         var target = new Point(Math.Round(corner.X + 4), Math.Round(corner.Y + ((container.ActualHeight - _bar.Height) / 2)));
+        _selected = selected;
         if (_at == target && _bar.Visibility == Visibility.Visible)
         {
+            _selectionPending = false;
             return;
         }
 
-        var previous = _at;
+        // Si se pulsa otra opción durante el recorrido, continuar desde la posición visible,
+        // no desde el destino de la animación anterior.
+        Point? previous = _at is { } position ? new Point(position.X + _move.TranslateX, position.Y + _move.TranslateY) : null;
+        bool animate = _selectionPending;
+        _selectionPending = false;
+        Stop();
         _at = target;
         Canvas.SetLeft(_bar, target.X);
         Canvas.SetTop(_bar, target.Y);
@@ -85,13 +107,18 @@ internal sealed class SlidingIndicator
         story.Children.Add(stretch);
         story.Completed += (_, _) =>
         {
-            story.Stop();
-            _move.TranslateX = _move.TranslateY = 0;
-            _move.ScaleY = 1;
+            if (_story == story) Stop();
         };
-        _story?.Stop();
         _story = story;
         story.Begin();
+    }
+
+    private void Stop()
+    {
+        _story?.Stop();
+        _story = null;
+        _move.TranslateX = _move.TranslateY = 0;
+        _move.ScaleY = 1;
     }
 
     private void Add(Storyboard story, string property, double to, EasingFunctionBase ease)
