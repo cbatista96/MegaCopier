@@ -31,6 +31,8 @@ internal static partial class Cli
 
     public static int Run(string[] args)
     {
+        // Consulta interna sin modificar ajustes ni integraciones; el instalador extrae este ejecutable nativo.
+        if (args is ["--installer-report-choice"]) return MegaCopier.Engine.Diagnostics.CrashInstallerChoice.Read(DataFolder.Combine("settings.json"));
         if (args.Length == 0 || args[0] is "-h" or "--help" or "help")
         {
             PrintUsage();

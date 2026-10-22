@@ -27,6 +27,10 @@ internal sealed record StartupArgs(bool Background, IpcRequest? Request, bool Re
 
         switch (args[0])
         {
+            case "--updates":
+                return new StartupArgs(false, new IpcRequest { Command = "show-updates" });
+            case var notification when notification.StartsWith("----AppNotificationActivated:", StringComparison.Ordinal):
+                return new StartupArgs(false, new IpcRequest { Command = "show-updates" });
             case "--background":
                 return new StartupArgs(true, null);
             case "--restart":
@@ -78,7 +82,7 @@ public static class Program
     public static int Main(string[] args)
     {
         // Tareas del instalador: no abren ninguna ventana.
-        if (args.Length > 0 && args[0] is "--install" or "--uninstall" or "--exit")
+        if (args.Length > 0 && args[0] is "--install" or "--uninstall" or "--exit" or "--exit-for-update")
         {
             return Setup(args);
         }
@@ -201,6 +205,26 @@ public static class Program
     {
         if (args[0] == "--install")
         {
+            if (args.Contains("--autoupdates=on") || args.Contains("--autoupdates=off"))
+            {
+                var settings = AppSettings.Load();
+                if (!settings.LoadFailed)
+                {
+                    settings.CheckUpdatesAutomatically = args.Contains("--autoupdates=on");
+                    settings.Save();
+                }
+            }
+            // Las actualizaciones silenciosas no pasan elección y conservan la preferencia de la app.
+            if (args.Contains("--crashreports=on") || args.Contains("--crashreports=off"))
+            {
+                var settings = AppSettings.Load();
+                if (!settings.LoadFailed)
+                {
+                    settings.SendCrashReportsAutomatically = args.Contains("--crashreports=on");
+                    settings.Save();
+                    if (!settings.SendCrashReportsAutomatically) MegaCopier.Engine.Diagnostics.CrashQueue.ClearPending(Engine.DataFolder.Combine("reports-pending"));
+                }
+            }
             if (args.Contains("--shellmenu") && App.ShellExtensionPath is { } dll)
             {
                 ShellExtensionRegistration.Register(dll);
@@ -218,20 +242,22 @@ public static class Program
         // Pedir a la instancia residente que se cierre (las copias en curso quedan reanudables).
         if (IpcClient.IsAppRunning())
         {
-            IpcClient.TrySendAsync(new IpcRequest { Command = "exit" }, connectTimeoutMs: 3000).GetAwaiter().GetResult();
+            IpcClient.TrySendAsync(new IpcRequest { Command = args[0] == "--exit-for-update" ? "exit-update" : "exit" }, connectTimeoutMs: 3000).GetAwaiter().GetResult();
             for (int i = 0; i < 100 && IpcClient.IsAppRunning(); i++)
             {
                 Thread.Sleep(100);
             }
         }
 
-        if (args[0] == "--exit")
+        if (args[0] is "--exit" or "--exit-for-update")
         {
-            return 0; // actualización: solo había que cerrar la app
+            return IpcClient.IsAppRunning() ? 3 : 0; // no autorizar sustituir archivos si el residente no salió
         }
 
         ShellExtensionRegistration.Unregister();
         ShellMenuPackage.Unregister();
+        try { Microsoft.Windows.AppNotifications.AppNotificationManager.Default.UnregisterAll(); }
+        catch (Exception ex) when (ex is System.Runtime.InteropServices.COMException or InvalidOperationException) { }
         if (AppSettings.Load().DefenderExcluded)
         {
             DefenderExclusion.SetAsync(add: false).GetAwaiter().GetResult(); // la exclusión no debe sobrevivir a la app

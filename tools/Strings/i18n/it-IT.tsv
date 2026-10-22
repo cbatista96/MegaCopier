@@ -1,4 +1,4 @@
-clave	texto
+﻿clave	texto
 JobsSection.Text	Copie
 SettingsSection.Text	Impostazioni
 FinishButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Cosa fare quando tutte le copie sono finite
@@ -469,8 +469,8 @@ Drop_JobOrder	Metti al posto {0} della coda
 Settings_Sounds.Text	Suoni
 Settings_SoundsTitle.Text	Avvisi sonori
 Settings_SoundsDescription.Text	Scegli un suono per ogni momento: uno di Windows, un file qualsiasi del PC o nessuno.
-Settings_Volume.Header	Volume
-Settings_SoundsQuiet.Content	Non suonare durante giochi o presentazioni a schermo intero e con «Non disturbare»
+Settings_Volume.Text	Volume
+Settings_SoundsQuiet.Text	Non suonare durante giochi o presentazioni a schermo intero e con «Non disturbare»
 Sound_Done	Una copia è finita bene
 Sound_Errors	Una copia è finita con errori
 Sound_AllDone	Tutte le copie sono finite
@@ -701,7 +701,7 @@ Job_StateSending	Invio in corso
 Job_FilesSentOne	{0} file inviato
 Job_FilesSentMany	{0} file inviati
 Rules_Describe.Header	Dillo con parole tue (in inglese o spagnolo)
-Rules_Describe.PlaceholderText	photos larger than 2 MB from last month except .tmp
+Rules_Describe.PlaceholderText	*.jpg > 2 MB
 Rules_DescribeApply.Text	Applica
 Rules_DescribeUnderstood	Capito: {0}.
 Rules_DescribeNothing	Non ho capito niente da filtrare.
@@ -1502,3 +1502,95 @@ Info_CloseButton_Title	Quando premi la X della finestra
 Info_CloseButton_Text	Scegli cosa succede alle copie quando chiudi la finestra con la X.\n• Annulla le copie: come premere «Interrompi» su ciascuna. Spariscono dall'elenco e non viene proposto di continuarle.\n• Fermarle per continuare dopo: ciò che è stato copiato resta; quando ricopi la stessa cosa, o apri MegaCopier, riprende da dove era.\n• Nascondi la finestra: le copie continuano in background; riaprila dall'icona nell'area di notifica.\n• Esci da MegaCopier: si chiude del tutto e Windows copia come sempre finché non lo riapri.
 Info_MinimizeButton_Title	Quando riduci a icona la finestra
 Info_MinimizeButton_Text	Dove va la finestra quando la riduci a icona. Le copie continuano in entrambi i casi.\n• Sulla barra delle applicazioni: come qualsiasi altra finestra.\nRidurre nell'area di notifica lascia libera la barra delle applicazioni: la finestra torna con un clic sull'icona di MegaCopier accanto all'orologio.
+Section_Updates	Aggiornamenti
+Updates_Tab	Aggiornamento
+Updates_History	Cronologia aggiornamenti
+Updates_ViewChangelog	Visualizza registro modifiche
+Crash_Title	Segnalazioni errori
+Crash_Description	Include versioni, lingua, tema, attività e tracce filtrate. Non invia nomi, percorsi o contenuti dei file.
+Crash_Transport	Invio solo con il tuo consenso. Cloudflare riceve l’IP per limitare gli abusi; non è incluso nel rapporto. La destinazione è un repository GitHub privato.
+Crash_LocalOnly	Invio non configurato. I registri restano sul dispositivo.
+Crash_Queued	Rapporto autorizzato salvato. Se l’invio non riesce, sarà ritentato all’avvio.
+Crash_Duplicate	Questo errore è già in attesa o è già stato inviato.
+Crash_Sent	Rapporto inviato. Grazie per il tuo aiuto.
+Crash_Revoked	Invio automatico disattivato e rapporti in attesa eliminati. I rapporti inviati non si possono ritirare qui.
+Crash_Preview	Vedi cosa viene inviato
+Crash_Always	Invia sempre senza chiedere
+Crash_Unexpected	MegaCopier si è chiuso in modo imprevisto
+Crash_Send	Invia rapporto
+Crash_NoSend	Non inviare
+Crash_Close	Chiudi
+Crash_Automatic	Invia segnalazioni errori per migliorare MegaCopier
+Crash_OpenLogs	Apri cartella registri
+Crash_GitHub	Segnala un problema su GitHub
+Crash_LastReport	Vedi ultimo rapporto locale
+Updates_Search	Cerca aggiornamenti
+Updates_Unknown	Cerca aggiornamenti di MegaCopier
+Updates_SearchDescription	Cerca una nuova versione senza interrompere le copie.
+Updates_Searching	Ricerca aggiornamenti…
+Updates_Current	MegaCopier è aggiornato
+Updates_CurrentAction	Sei aggiornato
+Updates_Available	Nuova versione disponibile
+Updates_Download	Scarica aggiornamento
+Updates_DownloadZip	Scarica ZIP portatile
+Updates_Downloading	Download aggiornamento…
+Updates_Cancel	Annulla download
+Updates_Verifying	Verifica download…
+Updates_Ready	Aggiornamento pronto da installare
+Updates_Install	Aggiorna ora
+Updates_Installing	Installazione aggiornamento…
+Updates_OpenZip	Mostra ZIP scaricato
+Updates_Versions	Installata: {0} · Disponibile: {1}
+Updates_InstalledVersion	Versione installata: {0}
+Updates_InstalledMarker	Versione installata
+Updates_Bytes	{0} di {1}
+Updates_WhatsNew	Novità di questa versione
+Updates_NotesUnavailable	Le note di rilascio non sono disponibili in questa lingua.
+Updates_AutoCheck	Cerca aggiornamenti automaticamente
+Updates_AutoCheckDescription	Controlla ogni due giorni e recupera i controlli in sospeso quando torna Internet.
+Updates_AutoDownload	Scarica automaticamente
+Updates_AutoDownloadDescription	Scarica automaticamente l’aggiornamento e lo prepara per l’installazione.
+Updates_AutoInstall	Installa quando MegaCopier non è in uso
+Updates_AutoInstallDescription	Installa solo nell’area di notifica, senza lavori o finestre in attesa.
+Updates_Networks	Consenti download tramite
+Updates_Wifi	Wi-Fi ed Ethernet
+Updates_Mobile	Dati mobili e reti a consumo
+Updates_NetworkDescription	Per impostazione predefinita, solo connessioni non a consumo.
+Updates_WaitNetwork	Download in attesa di una rete consentita
+Updates_RestrictedTitle	I download non sono consentiti su questa connessione
+Updates_RestrictedBody	Il download può usare dati mobili. Consentirlo una volta senza cambiare impostazioni?
+Updates_AllowOnce	Consenti questo download
+Updates_InstallDescription	MegaCopier si chiuderà e si riaprirà al termine.
+Updates_Busy	Termina o rimuovi i lavori in sospeso e disattiva la sincronizzazione in tempo reale.
+Updates_Portable	Modalità portatile: scarica lo ZIP e conserva la cartella Data durante l’aggiornamento.
+Updates_Uninstalled	Questa copia non è installata. Puoi scaricare lo ZIP portatile.
+Updates_Dismiss	Nascondi l’avviso per questa versione
+Updates_NoticeAvailable	Nuovo aggiornamento disponibile
+Updates_NoticeAvailableBody	La versione {0} è disponibile. Premi per aprire Aggiornamenti.
+Updates_NoticeReady	Aggiornamento pronto da installare
+Updates_NoticeReadyBody	La versione {0} è scaricata e verificata. Premi per aprire Aggiornamenti.
+Updates_ErrorNetwork	Connessione non riuscita. Puoi riprovare.
+Updates_ErrorInvalidRelease	Questa release non contiene un aggiornamento compatibile.
+Updates_ErrorUntrustedUrl	Il download non proviene da una fonte consentita.
+Updates_ErrorMissingTrust	La chiave di pubblicazione non è configurata. L’installazione resta bloccata.
+Updates_ErrorInvalidSignature	Impossibile verificare la firma dell’aggiornamento.
+Updates_ErrorInvalidChecksum	Il download non corrisponde al file verificato. Non verrà installato.
+Updates_ErrorTooLarge	Il download supera la dimensione consentita.
+Updates_ErrorBusy	MegaCopier ha lavori o finestre in sospeso.
+Updates_ErrorInstaller	Impossibile avviare l’installazione. Il download viene conservato.
+Updates_ErrorRestrictedNetwork	Connettiti a una rete consentita o controlla i permessi di download.
+
+Crash_Help	Aiutaci a sviluppare MegaCopier inviando rapporti di errore.
+Crash_Installer	Invia rapporti di errore
+Updates_ViewFullChangelog	Visualizza il registro completo
+Updates_CurrentHighlights	Novità principali della versione attuale
+Updates_AvailableHighlights	Cambiamenti principali della nuova versione disponibile
+Updates_NoInternet	Nessun accesso a Internet
+Updates_NoInternetDescription	Controlla la connessione Internet e riprova.
+Updates_NoInternetDownload	Nessun accesso a Internet per scaricare l’aggiornamento. Controlla la connessione e riprova.
+Updates_NoticeCompleted	MegaCopier è stato aggiornato
+Updates_NoticeCompletedBody	Ora hai MegaCopier {0}. Apri Aggiornamenti per vedere le novità.
+Installer_StartMenu	Crea un collegamento nel menu Start
+Installer_Taskbar	Prepara un collegamento da aggiungere alla barra delle applicazioni (clic destro in Windows)
+Settings_CustomSounds.Text	Personalizza i suoni
+Settings_FastPaths.PlaceholderText	C:, D:\Dati

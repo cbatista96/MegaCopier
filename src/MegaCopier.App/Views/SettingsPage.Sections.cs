@@ -29,6 +29,7 @@ public sealed partial class SettingsPage
         ("Sec_Network", "Section_Network", ""),
         ("Sec_Automation", "Section_Automation", ""),
         ("Sec_Advanced", "Section_Advanced", ""),
+        ("Sec_Updates", "Section_Updates", ""),
     ];
 
     /// <summary>Iconos de muestra de cada conjunto en la galería.</summary>
@@ -47,10 +48,22 @@ public sealed partial class SettingsPage
     {
         foreach (var (panel, title, glyph) in Sections)
         {
-            var row = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 14, Padding = new Thickness(2, 6, 2, 6) };
+            var row = new Grid { ColumnSpacing = 14, Padding = new Thickness(2, 6, 2, 6) };
+            row.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+            row.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+            row.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
             row.Children.Add(new McIcon { Glyph = glyph, FontSize = 18, Accent = true, VerticalAlignment = VerticalAlignment.Center });
-            row.Children.Add(new TextBlock { Text = L.Get(title), VerticalAlignment = VerticalAlignment.Center, Style = (Style)Application.Current.Resources["McBody"] });
-            var item = new ListViewItem { Content = row, Tag = panel };
+            var label = new TextBlock { Text = L.Get(title), VerticalAlignment = VerticalAlignment.Center, Style = (Style)Application.Current.Resources["McBody"] };
+            Grid.SetColumn(label, 1); row.Children.Add(label);
+            if (panel == "Sec_Updates")
+            {
+                _updatesBadge = new InfoBadge { Value = 1, Visibility = Visibility.Collapsed, VerticalAlignment = VerticalAlignment.Center };
+                AutomationProperties.SetName(_updatesBadge, L.Get("Updates_NoticeAvailable"));
+                Grid.SetColumn(_updatesBadge, 2);
+                _updatesBadge.HorizontalAlignment = HorizontalAlignment.Right;
+                row.Children.Add(_updatesBadge);
+            }
+            var item = new ListViewItem { Content = row, Tag = panel, HorizontalContentAlignment = HorizontalAlignment.Stretch };
             AutomationProperties.SetName(item, L.Get(title));
             SectionList.Items.Add(item);
         }
@@ -69,9 +82,10 @@ public sealed partial class SettingsPage
         SearchBox.Visibility = compact ? Visibility.Collapsed : Visibility.Visible;
         foreach (var item in SectionList.Items.OfType<ListViewItem>())
         {
-            if (item.Content is StackPanel { Children: [_, TextBlock text] })
+            if (item.Content is Grid { Children: [_, TextBlock text, ..] } row)
             {
                 text.Visibility = compact ? Visibility.Collapsed : Visibility.Visible;
+                row.ColumnSpacing = compact ? 2 : 14;
             }
         }
     }
@@ -91,7 +105,7 @@ public sealed partial class SettingsPage
         }
 
         ShowSection(SectionList.SelectedIndex);
-        if (SectionList.SelectedItem is ListViewItem { Content: StackPanel { Children: [McIcon icon, ..] } })
+        if (SectionList.SelectedItem is ListViewItem { Content: Grid { Children: [McIcon icon, ..] } })
         {
             Motion.Icon(icon);
         }
@@ -99,7 +113,10 @@ public sealed partial class SettingsPage
 
     private void ShowSection(int index)
     {
+        int previous = _visibleSection;
+        _manualCurrentResult = false; _manualNetworkError = false; _manualDownloadError = false; _updateVisit++;
         _lastSection = index;
+        _visibleSection = index;
         var (panel, title, glyph) = Sections[index];
         foreach (var (name, _, _) in Sections)
         {
@@ -111,10 +128,20 @@ public sealed partial class SettingsPage
 
         SearchEmpty.Visibility = Visibility.Collapsed;
         SectionTitle.Text = L.Get(title);
+        SectionTitle.Visibility = Visibility.Visible;
+        SectionTitle.TextLineBounds = panel == "Sec_Updates" ? TextLineBounds.Tight : TextLineBounds.Full;
+        UpdatesBreadcrumb.Visibility = Visibility.Collapsed;
+        SectionHeader.ClearValue(HeightProperty);
+        SectionHeader.Margin = new Thickness(24, 6, 24, 10);
         SectionIcon.Glyph = glyph;
         SectionIcon.Visibility = Visibility.Visible;
+        if (panel == "Sec_Updates" && _updateLanding is not null)
+        { _app.Updates?.OpenedUpdates(); SetUpdateView(0); }
         SectionScroll.ChangeView(null, 0, null, disableAnimation: true);
-        SlideIn(SectionsHost);
+        if (!_restoringSettings && IsLoaded && previous != index)
+            Motion.SlideX(SectionsHost, index > previous ? 60 : -60, 0, 280, null, decelerate: true);
+        if (panel == "Sec_Updates" && _updateLanding is not null) RefreshUpdates();
+        NavigationChanged?.Invoke();
     }
 
     // ---------------------------------------------------------------------------------------------------------
@@ -160,6 +187,11 @@ public sealed partial class SettingsPage
         }
 
         SectionTitle.Text = L.F("Settings_SearchResults", text);
+        SectionHeader.ClearValue(HeightProperty);
+        SectionHeader.Margin = new Thickness(24, 6, 24, 10);
+        SectionTitle.Visibility = Visibility.Visible;
+        SectionTitle.TextLineBounds = TextLineBounds.Full;
+        UpdatesBreadcrumb.Visibility = Visibility.Collapsed;
         SectionIcon.Glyph = "";
         SearchEmpty.Text = L.F("Settings_SearchNone", text);
         SearchEmpty.Visibility = found == 0 ? Visibility.Visible : Visibility.Collapsed;
@@ -227,7 +259,6 @@ public sealed partial class SettingsPage
     }
 
     /// <summary>La sección nueva entra deslizándose y apareciendo.</summary>
-    private static void SlideIn(UIElement element) => Motion.FadeIn(element, 24);
 
     // ---------------------------------------------------------------------------------------------------------
     // Conjuntos de iconos

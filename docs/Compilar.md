@@ -74,7 +74,7 @@ explicado en [Versiones.md](Versiones.md).
 
 ## Firmar (opcional)
 
-Sin firma, Windows muestra el aviso de SmartScreen. Con un certificado de firma de código:
+Sin firma Authenticode, Windows no identifica a un editor verificado. Firmar ayuda a acumular reputación, pero no garantiza eliminar todos los avisos de SmartScreen. SignPath Foundation admite solicitudes gratuitas para proyectos abiertos; revisa el estado y los pasos en [Firmas.md](Firmas.md). Con un certificado de firma de código:
 
 - Instalador y ejecutables: `signtool sign /fd SHA256 /tr http://timestamp.acs.microsoft.com /td SHA256 /f cert.pfx ...`
   (o Azure Trusted Signing).

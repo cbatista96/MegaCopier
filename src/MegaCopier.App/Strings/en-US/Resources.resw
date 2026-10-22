@@ -475,8 +475,8 @@
   <data name="Settings_Sounds.Text" xml:space="preserve"><value>Sounds</value></data>
   <data name="Settings_SoundsTitle.Text" xml:space="preserve"><value>Sound alerts</value></data>
   <data name="Settings_SoundsDescription.Text" xml:space="preserve"><value>Choose a sound for each moment: a Windows one, any file on your PC, or none.</value></data>
-  <data name="Settings_Volume.Header" xml:space="preserve"><value>Volume</value></data>
-  <data name="Settings_SoundsQuiet.Content" xml:space="preserve"><value>Stay quiet during full-screen games or presentations and in Do Not Disturb</value></data>
+  <data name="Settings_Volume.Text" xml:space="preserve"><value>Volume</value></data>
+  <data name="Settings_SoundsQuiet.Text" xml:space="preserve"><value>Stay quiet during full-screen games or presentations and in Do Not Disturb</value></data>
   <data name="Sound_Done" xml:space="preserve"><value>A transfer finished successfully</value></data>
   <data name="Sound_Errors" xml:space="preserve"><value>A transfer finished with errors</value></data>
   <data name="Sound_AllDone" xml:space="preserve"><value>All transfers finished</value></data>
@@ -1508,4 +1508,95 @@
   <data name="Info_CloseButton_Text" xml:space="preserve"><value>Choose what happens to your copies when you close the window with the X.\n• Cancel the copies: like pressing “Stop” on each one. They disappear from the list and aren&apos;t offered to continue.\n• Stop them to continue later: what was copied is kept; when you copy the same thing again, or open MegaCopier, it picks up where it was.\n• Hide the window: the copies keep going in the background; open it from the tray icon.\n• Exit MegaCopier: it closes completely and Windows copies as usual until you open it again.</value></data>
   <data name="Info_MinimizeButton_Title" xml:space="preserve"><value>When you minimize the window</value></data>
   <data name="Info_MinimizeButton_Text" xml:space="preserve"><value>Where the window goes when you minimize it. Your copies keep going either way.\n• To the taskbar: like any other window.\nMinimizing to the tray keeps the taskbar free: the window comes back with a click on the MegaCopier icon next to the clock.</value></data>
+  <data name="Section_Updates" xml:space="preserve"><value>Updates</value></data>
+  <data name="Updates_Tab" xml:space="preserve"><value>Update</value></data>
+  <data name="Updates_History" xml:space="preserve"><value>Update history</value></data>
+  <data name="Updates_ViewChangelog" xml:space="preserve"><value>View changelog</value></data>
+  <data name="Crash_Title" xml:space="preserve"><value>Error reports</value></data>
+  <data name="Crash_Description" xml:space="preserve"><value>Includes versions, language, theme, activity and filtered traces. No names, paths or file contents are sent.</value></data>
+  <data name="Crash_Transport" xml:space="preserve"><value>Sent only with your permission. Cloudflare receives the IP to limit abuse; it is not included in the report. The destination is a private GitHub repository.</value></data>
+  <data name="Crash_LocalOnly" xml:space="preserve"><value>Sending is not configured. Logs stay on this device.</value></data>
+  <data name="Crash_Queued" xml:space="preserve"><value>Authorized report saved. If delivery failed, it will retry when MegaCopier starts.</value></data>
+  <data name="Crash_Duplicate" xml:space="preserve"><value>This fault is already pending or was sent previously.</value></data>
+  <data name="Crash_Sent" xml:space="preserve"><value>Report sent. Thank you for helping improve MegaCopier.</value></data>
+  <data name="Crash_Revoked" xml:space="preserve"><value>Automatic sending disabled and pending reports deleted. Reports already sent cannot be withdrawn here.</value></data>
+  <data name="Crash_Preview" xml:space="preserve"><value>See what is sent</value></data>
+  <data name="Crash_Always" xml:space="preserve"><value>Always send without asking</value></data>
+  <data name="Crash_Unexpected" xml:space="preserve"><value>MegaCopier closed unexpectedly</value></data>
+  <data name="Crash_Send" xml:space="preserve"><value>Send report</value></data>
+  <data name="Crash_NoSend" xml:space="preserve"><value>Do not send</value></data>
+  <data name="Crash_Close" xml:space="preserve"><value>Close</value></data>
+  <data name="Crash_Automatic" xml:space="preserve"><value>Send error reports to help improve MegaCopier</value></data>
+  <data name="Crash_OpenLogs" xml:space="preserve"><value>Open log folder</value></data>
+  <data name="Crash_GitHub" xml:space="preserve"><value>Report an issue on GitHub</value></data>
+  <data name="Crash_LastReport" xml:space="preserve"><value>View latest local report</value></data>
+  <data name="Updates_Search" xml:space="preserve"><value>Check for updates</value></data>
+  <data name="Updates_Unknown" xml:space="preserve"><value>Check for MegaCopier updates</value></data>
+  <data name="Updates_SearchDescription" xml:space="preserve"><value>Check for a new version without interrupting transfers.</value></data>
+  <data name="Updates_Searching" xml:space="preserve"><value>Checking for updates…</value></data>
+  <data name="Updates_Current" xml:space="preserve"><value>MegaCopier is up to date</value></data>
+  <data name="Updates_CurrentAction" xml:space="preserve"><value>You&apos;re up to date</value></data>
+  <data name="Updates_Available" xml:space="preserve"><value>New version available</value></data>
+  <data name="Updates_Download" xml:space="preserve"><value>Download update</value></data>
+  <data name="Updates_DownloadZip" xml:space="preserve"><value>Download portable ZIP</value></data>
+  <data name="Updates_Downloading" xml:space="preserve"><value>Downloading update…</value></data>
+  <data name="Updates_Cancel" xml:space="preserve"><value>Cancel download</value></data>
+  <data name="Updates_Verifying" xml:space="preserve"><value>Verifying download…</value></data>
+  <data name="Updates_Ready" xml:space="preserve"><value>Update ready to install</value></data>
+  <data name="Updates_Install" xml:space="preserve"><value>Update now</value></data>
+  <data name="Updates_Installing" xml:space="preserve"><value>Installing update…</value></data>
+  <data name="Updates_OpenZip" xml:space="preserve"><value>Show downloaded ZIP</value></data>
+  <data name="Updates_Versions" xml:space="preserve"><value>Installed: {0} · Available: {1}</value></data>
+  <data name="Updates_InstalledVersion" xml:space="preserve"><value>Installed version: {0}</value></data>
+  <data name="Updates_InstalledMarker" xml:space="preserve"><value>Installed version</value></data>
+  <data name="Updates_Bytes" xml:space="preserve"><value>{0} of {1}</value></data>
+  <data name="Updates_WhatsNew" xml:space="preserve"><value>What&apos;s new in this version</value></data>
+  <data name="Updates_NotesUnavailable" xml:space="preserve"><value>Release notes in this language are unavailable.</value></data>
+  <data name="Updates_AutoCheck" xml:space="preserve"><value>Check for updates automatically</value></data>
+  <data name="Updates_AutoCheckDescription" xml:space="preserve"><value>Checks every two days and catches up when Internet access returns.</value></data>
+  <data name="Updates_AutoDownload" xml:space="preserve"><value>Download automatically</value></data>
+  <data name="Updates_AutoDownloadDescription" xml:space="preserve"><value>Download the update automatically and leave it ready to install.</value></data>
+  <data name="Updates_AutoInstall" xml:space="preserve"><value>Install when MegaCopier is not in use</value></data>
+  <data name="Updates_AutoInstallDescription" xml:space="preserve"><value>Install only in the tray, with no pending jobs or dialogs.</value></data>
+  <data name="Updates_Networks" xml:space="preserve"><value>Allow downloads over</value></data>
+  <data name="Updates_Wifi" xml:space="preserve"><value>Wi-Fi and Ethernet</value></data>
+  <data name="Updates_Mobile" xml:space="preserve"><value>Mobile data and metered networks</value></data>
+  <data name="Updates_NetworkDescription" xml:space="preserve"><value>Only unmetered connections are allowed by default.</value></data>
+  <data name="Updates_WaitNetwork" xml:space="preserve"><value>Download waiting for an allowed network</value></data>
+  <data name="Updates_RestrictedTitle" xml:space="preserve"><value>Downloads are not allowed on this connection</value></data>
+  <data name="Updates_RestrictedBody" xml:space="preserve"><value>This download may use mobile data. Allow it once without changing your settings?</value></data>
+  <data name="Updates_AllowOnce" xml:space="preserve"><value>Allow this download</value></data>
+  <data name="Updates_InstallDescription" xml:space="preserve"><value>MegaCopier will close and reopen when finished.</value></data>
+  <data name="Updates_Busy" xml:space="preserve"><value>Finish or remove pending jobs and disable live sync before updating.</value></data>
+  <data name="Updates_Portable" xml:space="preserve"><value>Portable mode: download the ZIP and keep your Data folder when updating.</value></data>
+  <data name="Updates_Uninstalled" xml:space="preserve"><value>This copy is not installed. You can download the portable ZIP.</value></data>
+  <data name="Updates_Dismiss" xml:space="preserve"><value>Dismiss this version&apos;s notification</value></data>
+  <data name="Updates_NoticeAvailable" xml:space="preserve"><value>New update available</value></data>
+  <data name="Updates_NoticeAvailableBody" xml:space="preserve"><value>Version {0} is available. Click to open Updates.</value></data>
+  <data name="Updates_NoticeReady" xml:space="preserve"><value>Update ready to install</value></data>
+  <data name="Updates_NoticeReadyBody" xml:space="preserve"><value>Version {0} is downloaded and verified. Click to open Updates.</value></data>
+  <data name="Updates_ErrorNetwork" xml:space="preserve"><value>Could not connect. You can try again.</value></data>
+  <data name="Updates_ErrorInvalidRelease" xml:space="preserve"><value>This release does not contain a compatible update.</value></data>
+  <data name="Updates_ErrorUntrustedUrl" xml:space="preserve"><value>The download is not from an allowed source.</value></data>
+  <data name="Updates_ErrorMissingTrust" xml:space="preserve"><value>The publishing key is not configured. Installation remains blocked.</value></data>
+  <data name="Updates_ErrorInvalidSignature" xml:space="preserve"><value>The update signature could not be verified.</value></data>
+  <data name="Updates_ErrorInvalidChecksum" xml:space="preserve"><value>The download does not match the verified file. It will not be installed.</value></data>
+  <data name="Updates_ErrorTooLarge" xml:space="preserve"><value>The download exceeds the allowed size.</value></data>
+  <data name="Updates_ErrorBusy" xml:space="preserve"><value>MegaCopier has pending jobs or dialogs.</value></data>
+  <data name="Updates_ErrorInstaller" xml:space="preserve"><value>Installation could not start. The download is kept.</value></data>
+  <data name="Updates_ErrorRestrictedNetwork" xml:space="preserve"><value>Connect to an allowed network or review download permissions.</value></data>
+  <data name="Crash_Help" xml:space="preserve"><value>Help us develop MegaCopier by sending error reports.</value></data>
+  <data name="Crash_Installer" xml:space="preserve"><value>Send error reports</value></data>
+  <data name="Updates_ViewFullChangelog" xml:space="preserve"><value>View full changelog</value></data>
+  <data name="Updates_CurrentHighlights" xml:space="preserve"><value>Highlights of the current version</value></data>
+  <data name="Updates_AvailableHighlights" xml:space="preserve"><value>Highlights of the new available version</value></data>
+  <data name="Updates_NoInternet" xml:space="preserve"><value>No Internet access</value></data>
+  <data name="Updates_NoInternetDescription" xml:space="preserve"><value>Check your Internet connection and try again.</value></data>
+  <data name="Updates_NoInternetDownload" xml:space="preserve"><value>There is no Internet access to download the update. Check your connection and try again.</value></data>
+  <data name="Updates_NoticeCompleted" xml:space="preserve"><value>MegaCopier has been updated</value></data>
+  <data name="Updates_NoticeCompletedBody" xml:space="preserve"><value>You now have MegaCopier {0}. Open Updates to see what’s new.</value></data>
+  <data name="Installer_StartMenu" xml:space="preserve"><value>Create a Start menu shortcut</value></data>
+  <data name="Installer_Taskbar" xml:space="preserve"><value>Prepare a shortcut to pin to the taskbar (right-click in Windows)</value></data>
+  <data name="Settings_CustomSounds.Text" xml:space="preserve"><value>Customize sounds</value></data>
+  <data name="Settings_FastPaths.PlaceholderText" xml:space="preserve"><value>C:, D:\Data</value></data>
 </root>

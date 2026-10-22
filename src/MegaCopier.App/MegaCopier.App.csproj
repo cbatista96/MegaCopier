@@ -32,21 +32,42 @@
     <PackageReference Include="Microsoft.WindowsAppSDK.WinUI" Version="2.3.9" />
     <PackageReference Include="Microsoft.WindowsAppSDK.Foundation" Version="2.3.12" />
     <PackageReference Include="Microsoft.WindowsAppSDK.InteractiveExperiences" Version="2.1.9" />
+    <!-- Recurso de versión que Foundation 2.3.12 aún exige para registrar avisos en una app autónoma (#6774). -->
+    <PackageReference Include="Microsoft.WindowsAppSDK.Runtime" Version="2.5.1" GeneratePathProperty="true" ExcludeAssets="all" PrivateAssets="all" />
   </ItemGroup>
 
   <PropertyGroup>
     <ApplicationIcon>Assets\MegaCopier.ico</ApplicationIcon>
+    <UpdateRuntimeResource>$(BaseIntermediateOutputPath)update-runtime\$(RuntimeIdentifier)\Microsoft.WindowsAppRuntime.Insights.Resource.dll</UpdateRuntimeResource>
   </PropertyGroup>
+
+  <!-- Solo 34 KB de recursos oficiales; no instala el runtime ni cambia WinUI o los materiales existentes. -->
+  <Target Name="ExtractUpdateRuntimeResource" BeforeTargets="PrepareForBuild"
+          Inputs="$(PkgMicrosoft_WindowsAppSDK_Runtime)\tools\MSIX\win10-x64\Microsoft.WindowsAppRuntime.2.msix"
+          Outputs="$(UpdateRuntimeResource)">
+    <Unzip SourceFiles="$(PkgMicrosoft_WindowsAppSDK_Runtime)\tools\MSIX\win10-x64\Microsoft.WindowsAppRuntime.2.msix"
+           DestinationFolder="$(BaseIntermediateOutputPath)update-runtime\$(RuntimeIdentifier)"
+           Include="Microsoft.WindowsAppRuntime.Insights.Resource.dll" SkipUnchangedFiles="true" />
+    <Error Condition="!Exists('$(UpdateRuntimeResource)')" Text="Falta el recurso oficial para registrar las notificaciones de actualización." />
+  </Target>
 
   <ItemGroup>
     <Content Include="Assets\*.ico" CopyToOutputDirectory="PreserveNewest" />
     <Content Include="Assets\Textures\*.jpg" CopyToOutputDirectory="PreserveNewest" />
     <Content Include="Assets\Sounds\*.wav" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="$(UpdateRuntimeResource)" Link="Microsoft.WindowsAppRuntime.Insights.Resource.dll" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\MegaCopier.Engine\MegaCopier.Engine.csproj" />
     <ProjectReference Include="..\MegaCopier.Shell\MegaCopier.Shell.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\CHANGELOG.md" LogicalName="MegaCopier.Changelog.es.md" />
+    <EmbeddedResource Include="..\..\CHANGELOG.en.md" LogicalName="MegaCopier.Changelog.en.md" Condition="Exists('..\..\CHANGELOG.en.md')" />
+    <EmbeddedResource Include="..\..\docs\capturas\**\*.png" LogicalName="MegaCopier.ChangelogImages.%(RecursiveDir)%(Filename)%(Extension)" />
+    <EmbeddedResource Include="..\..\tools\Updates\public-key.pem" LogicalName="MegaCopier.UpdatePublicKey.pem" Condition="Exists('..\..\tools\Updates\public-key.pem')" />
   </ItemGroup>
 
 </Project>

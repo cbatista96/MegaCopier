@@ -1,4 +1,4 @@
-clave	texto
+﻿clave	texto
 JobsSection.Text	Kopyalamalar
 SettingsSection.Text	Ayarlar
 FinishButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Tüm kopyalamalar bitince ne yapılsın
@@ -469,8 +469,8 @@ Drop_JobOrder	Sıranın {0}. yerine koy
 Settings_Sounds.Text	Sesler
 Settings_SoundsTitle.Text	Sesli uyarılar
 Settings_SoundsDescription.Text	Her an için bir ses seçin: Windows sesi, bilgisayarınızdaki herhangi bir dosya veya hiçbiri.
-Settings_Volume.Header	Ses düzeyi
-Settings_SoundsQuiet.Content	Tam ekran oyun veya sunumlarda ve Rahatsız etmeyin modunda sessiz kal
+Settings_Volume.Text	Ses düzeyi
+Settings_SoundsQuiet.Text	Tam ekran oyun veya sunumlarda ve Rahatsız etmeyin modunda sessiz kal
 Sound_Done	Bir kopyalama başarıyla bitti
 Sound_Errors	Bir kopyalama hatalarla bitti
 Sound_AllDone	Tüm kopyalamalar bitti
@@ -701,7 +701,7 @@ Job_StateSending	Gönderiliyor
 Job_FilesSentOne	{0} dosya gönderildi
 Job_FilesSentMany	{0} dosya gönderildi
 Rules_Describe.Header	Kendi sözlerinizle söyleyin (İngilizce veya İspanyolca)
-Rules_Describe.PlaceholderText	photos larger than 2 MB from last month except .tmp
+Rules_Describe.PlaceholderText	*.jpg > 2 MB
 Rules_DescribeApply.Text	Uygula
 Rules_DescribeUnderstood	Anlaşıldı: {0}.
 Rules_DescribeNothing	Filtrelenecek bir şey anlaşılmadı.
@@ -1502,3 +1502,95 @@ Info_CloseButton_Title	Pencerenin X düğmesine basınca
 Info_CloseButton_Text	Pencereyi X ile kapatınca kopyalamalara ne olacağını seçin.\n• Kopyalamaları iptal et: her birinde “Durdur”a basmak gibi. Listeden kaybolurlar ve sürdürme önerilmez.\n• Daha sonra sürdürmek için durdur: kopyalanan kısım korunur; aynı şeyi yeniden kopyaladığınızda veya MegaCopier'ı açtığınızda kaldığı yerden devam eder.\n• Pencereyi gizle: kopyalamalar arka planda sürer; pencereyi bildirim alanındaki simgeden açarsınız.\n• MegaCopier'dan çık: tamamen kapanır ve siz yeniden açana kadar Windows her zamanki gibi kopyalar.
 Info_MinimizeButton_Title	Pencere simge durumuna küçültülünce
 Info_MinimizeButton_Text	Simge durumuna küçültünce pencerenin nereye gideceği. Kopyalamalar her iki durumda da sürer.\n• Görev çubuğuna: diğer pencereler gibi.\nBildirim alanına küçültmek görev çubuğunu boş bırakır: pencere, saatin yanındaki MegaCopier simgesine tıklayınca geri gelir.
+Section_Updates	Güncellemeler
+Updates_Tab	Güncelleme
+Updates_History	Güncelleştirme geçmişi
+Updates_ViewChangelog	Değişiklik günlüğünü görüntüle
+Crash_Title	Hata raporları
+Crash_Description	Sürümleri, dili, temayı, etkinliği ve filtrelenmiş izleri içerir. Adlar, yollar veya dosya içerikleri gönderilmez.
+Crash_Transport	Yalnızca izninizle gönderilir. Cloudflare kötüye kullanımı sınırlamak için IP’yi alır; IP rapora eklenmez. Hedef özel bir GitHub deposudur.
+Crash_LocalOnly	Gönderim yapılandırılmadı. Günlükler bu cihazda kalır.
+Crash_Queued	İzin verilen rapor kaydedildi. Gönderilemezse başlangıçta yeniden denenecek.
+Crash_Duplicate	Bu hata zaten bekliyor veya daha önce gönderildi.
+Crash_Sent	Rapor gönderildi. Yardımınız için teşekkürler.
+Crash_Revoked	Otomatik gönderim kapatıldı ve bekleyenler silindi. Gönderilmiş raporlar buradan geri alınamaz.
+Crash_Preview	Gönderilen verileri gör
+Crash_Always	Her zaman sormadan gönder
+Crash_Unexpected	MegaCopier beklenmedik şekilde kapandı
+Crash_Send	Rapor gönder
+Crash_NoSend	Gönderme
+Crash_Close	Kapat
+Crash_Automatic	MegaCopier’ı geliştirmek için hata raporları gönder
+Crash_OpenLogs	Günlük klasörünü aç
+Crash_GitHub	GitHub’da sorun bildir
+Crash_LastReport	Son yerel raporu gör
+Updates_Search	Güncellemeleri ara
+Updates_Unknown	MegaCopier güncellemelerini ara
+Updates_SearchDescription	Kopyaları kesintiye uğratmadan yeni sürüm ara.
+Updates_Searching	Güncellemeler aranıyor…
+Updates_Current	MegaCopier güncel
+Updates_CurrentAction	Güncelsiniz
+Updates_Available	Yeni sürüm mevcut
+Updates_Download	Güncellemeyi indir
+Updates_DownloadZip	Taşınabilir ZIP indir
+Updates_Downloading	Güncelleme indiriliyor…
+Updates_Cancel	İndirmeyi iptal et
+Updates_Verifying	İndirme doğrulanıyor…
+Updates_Ready	Güncelleme kurulmaya hazır
+Updates_Install	Şimdi güncelle
+Updates_Installing	Güncelleme kuruluyor…
+Updates_OpenZip	İndirilen ZIP dosyasını göster
+Updates_Versions	Kurulu: {0} · Mevcut: {1}
+Updates_InstalledVersion	Kurulu sürüm: {0}
+Updates_InstalledMarker	Kurulu sürüm
+Updates_Bytes	{0} / {1}
+Updates_WhatsNew	Bu sürümdeki yenilikler
+Updates_NotesUnavailable	Bu dilde sürüm notları bulunmuyor.
+Updates_AutoCheck	Güncellemeleri otomatik ara
+Updates_AutoCheckDescription	İki günde bir denetler ve Internet geldiğinde bekleyen denetimleri tamamlar.
+Updates_AutoDownload	Otomatik indir
+Updates_AutoDownloadDescription	Güncellemeyi otomatik indirir ve kurulmaya hazır bırakır.
+Updates_AutoInstall	MegaCopier kullanılmadığında kur
+Updates_AutoInstallDescription	Yalnızca sistem tepsisindeyken, bekleyen iş veya iletişim kutusu yokken kur.
+Updates_Networks	Şu bağlantılarda indirmeye izin ver
+Updates_Wifi	Wi-Fi ve Ethernet
+Updates_Mobile	Mobil veri ve tarifeli ağlar
+Updates_NetworkDescription	Varsayılan olarak yalnızca tarifesiz bağlantılar.
+Updates_WaitNetwork	İndirme izin verilen bir ağı bekliyor
+Updates_RestrictedTitle	Bu bağlantıda indirmeye izin verilmiyor
+Updates_RestrictedBody	Bu indirme mobil veri kullanabilir. Ayarları değiştirmeden bir kez izin verilsin mi?
+Updates_AllowOnce	Bu indirmeye izin ver
+Updates_InstallDescription	MegaCopier kapanacak ve işlem bitince yeniden açılacak.
+Updates_Busy	Bekleyen işleri tamamlayın veya kaldırın ve canlı eşitlemeyi kapatın.
+Updates_Portable	Taşınabilir mod: ZIP dosyasını indirin ve güncellerken Data klasörünü koruyun.
+Updates_Uninstalled	Bu kopya kurulu değil. Taşınabilir ZIP dosyasını indirebilirsiniz.
+Updates_Dismiss	Bu sürümün bildirimini gizle
+Updates_NoticeAvailable	Yeni güncelleme mevcut
+Updates_NoticeAvailableBody	{0} sürümü mevcut. Güncellemeler’i açmak için tıklayın.
+Updates_NoticeReady	Güncelleme kurulmaya hazır
+Updates_NoticeReadyBody	{0} sürümü indirildi ve doğrulandı. Güncellemeler’i açmak için tıklayın.
+Updates_ErrorNetwork	Bağlanılamadı. Yeniden deneyebilirsiniz.
+Updates_ErrorInvalidRelease	Bu yayında uyumlu bir güncelleme yok.
+Updates_ErrorUntrustedUrl	İndirme izin verilen bir kaynaktan gelmiyor.
+Updates_ErrorMissingTrust	Yayın anahtarı yapılandırılmamış. Kurulum engelli kalır.
+Updates_ErrorInvalidSignature	Güncellemenin imzası doğrulanamadı.
+Updates_ErrorInvalidChecksum	İndirme doğrulanan dosyayla eşleşmiyor. Kurulmayacak.
+Updates_ErrorTooLarge	İndirme izin verilen boyutu aşıyor.
+Updates_ErrorBusy	MegaCopier’de bekleyen işler veya iletişim kutuları var.
+Updates_ErrorInstaller	Kurulum başlatılamadı. İndirme korunuyor.
+Updates_ErrorRestrictedNetwork	İzin verilen bir ağa bağlanın veya indirme izinlerini gözden geçirin.
+
+Crash_Help	Hata raporları göndererek MegaCopier’in geliştirilmesine yardımcı olun.
+Crash_Installer	Hata raporları gönder
+Updates_ViewFullChangelog	Tüm değişiklik günlüğünü görüntüle
+Updates_CurrentHighlights	Mevcut sürümün önemli yenilikleri
+Updates_AvailableHighlights	Yeni kullanılabilir sürümün önemli değişiklikleri
+Updates_NoInternet	İnternet erişimi yok
+Updates_NoInternetDescription	İnternet bağlantınızı denetleyip yeniden deneyin.
+Updates_NoInternetDownload	Güncellemeyi indirmek için İnternet erişimi yok. Bağlantınızı denetleyip yeniden deneyin.
+Updates_NoticeCompleted	MegaCopier güncellendi
+Updates_NoticeCompletedBody	Artık MegaCopier {0} yüklü. Yenilikleri görmek için Güncellemeleri açın.
+Installer_StartMenu	Başlat menüsünde kısayol oluştur
+Installer_Taskbar	Görev çubuğuna sabitlemek için kısayol hazırla (Windows’ta sağ tıklayın)
+Settings_CustomSounds.Text	Sesleri özelleştir
+Settings_FastPaths.PlaceholderText	C:, D:\Veriler

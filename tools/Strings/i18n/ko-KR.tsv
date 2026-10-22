@@ -1,4 +1,4 @@
-clave	texto
+﻿clave	texto
 JobsSection.Text	복사
 SettingsSection.Text	설정
 FinishButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	모든 복사가 끝나면 할 일
@@ -469,8 +469,8 @@ Drop_JobOrder	대기열 {0}번째에 넣기
 Settings_Sounds.Text	소리
 Settings_SoundsTitle.Text	소리 알림
 Settings_SoundsDescription.Text	상황별로 소리를 선택하세요: Windows 소리, PC의 아무 파일 또는 소리 없음.
-Settings_Volume.Header	볼륨
-Settings_SoundsQuiet.Content	전체 화면 게임이나 프레젠테이션 중, "방해 금지" 중에는 소리 내지 않기
+Settings_Volume.Text	볼륨
+Settings_SoundsQuiet.Text	전체 화면 게임이나 프레젠테이션 중, "방해 금지" 중에는 소리 내지 않기
 Sound_Done	복사가 문제없이 완료됨
 Sound_Errors	복사가 오류와 함께 완료됨
 Sound_AllDone	모든 복사 완료
@@ -701,7 +701,7 @@ Job_StateSending	보내는 중
 Job_FilesSentOne	파일 {0}개 보냄
 Job_FilesSentMany	파일 {0}개 보냄
 Rules_Describe.Header	직접 설명하기(영어 또는 스페인어)
-Rules_Describe.PlaceholderText	photos larger than 2 MB from last month except .tmp
+Rules_Describe.PlaceholderText	*.jpg > 2 MB
 Rules_DescribeApply.Text	적용
 Rules_DescribeUnderstood	이해함: {0}.
 Rules_DescribeNothing	필터할 내용을 이해하지 못했습니다.
@@ -1502,3 +1502,95 @@ Info_CloseButton_Title	창의 X를 누르면
 Info_CloseButton_Text	X로 창을 닫을 때 복사를 어떻게 할지 선택합니다.\n• 복사 취소: 각 복사에서 [중지]를 누르는 것과 같습니다. 목록에서 사라지고 계속하기를 제안하지 않습니다.\n• 중지하고 나중에 계속: 복사된 부분은 유지됩니다. 같은 항목을 다시 복사하거나 MegaCopier를 열면 이어서 진행합니다.\n• 창 숨기기: 복사는 백그라운드에서 계속됩니다. 알림 영역 아이콘으로 창을 엽니다.\n• MegaCopier 종료: 완전히 닫히며, 다시 열 때까지 Windows가 평소처럼 복사합니다.
 Info_MinimizeButton_Title	창을 최소화하면
 Info_MinimizeButton_Text	창을 최소화할 때 창이 가는 곳입니다. 어느 쪽이든 복사는 계속됩니다.\n• 작업 표시줄로: 다른 창과 같습니다.\n알림 영역으로 최소화하면 작업 표시줄이 깔끔해집니다. 시계 옆의 MegaCopier 아이콘을 클릭하면 창이 돌아옵니다.
+Section_Updates	업데이트
+Updates_Tab	업데이트
+Updates_History	업데이트 기록
+Updates_ViewChangelog	변경 기록 보기
+Crash_Title	오류 보고서
+Crash_Description	버전, 언어, 테마, 활동 및 필터링된 추적을 포함합니다. 이름, 경로 또는 파일 내용은 보내지 않습니다.
+Crash_Transport	동의한 경우에만 전송합니다. Cloudflare는 악용 방지를 위해 IP를 받지만 보고서에는 포함하지 않습니다. 대상은 비공개 GitHub 저장소입니다.
+Crash_LocalOnly	전송이 설정되지 않았습니다. 로그는 이 기기에 남습니다.
+Crash_Queued	허용된 보고서를 저장했습니다. 전송 실패 시 시작할 때 다시 시도합니다.
+Crash_Duplicate	이 오류는 이미 대기 중이거나 전송되었습니다.
+Crash_Sent	보고서를 전송했습니다. 도움을 주셔서 감사합니다.
+Crash_Revoked	자동 전송을 끄고 대기 중인 보고서를 삭제했습니다. 이미 전송된 보고서는 여기서 회수할 수 없습니다.
+Crash_Preview	전송 내용 보기
+Crash_Always	항상 묻지 않고 전송
+Crash_Unexpected	MegaCopier가 예기치 않게 종료되었습니다
+Crash_Send	보고서 전송
+Crash_NoSend	전송 안 함
+Crash_Close	닫기
+Crash_Automatic	MegaCopier 개선을 위해 오류 보고서 전송
+Crash_OpenLogs	로그 폴더 열기
+Crash_GitHub	GitHub에 문제 보고
+Crash_LastReport	최근 로컬 보고서 보기
+Updates_Search	업데이트 확인
+Updates_Unknown	MegaCopier 업데이트 확인
+Updates_SearchDescription	복사를 중단하지 않고 새 버전을 확인합니다.
+Updates_Searching	업데이트 확인 중…
+Updates_Current	MegaCopier가 최신 상태입니다
+Updates_CurrentAction	최신 상태입니다
+Updates_Available	새 버전 사용 가능
+Updates_Download	업데이트 다운로드
+Updates_DownloadZip	휴대용 ZIP 다운로드
+Updates_Downloading	업데이트 다운로드 중…
+Updates_Cancel	다운로드 취소
+Updates_Verifying	다운로드 검증 중…
+Updates_Ready	업데이트 설치 준비 완료
+Updates_Install	지금 업데이트
+Updates_Installing	업데이트 설치 중…
+Updates_OpenZip	다운로드한 ZIP 표시
+Updates_Versions	설치됨: {0} · 사용 가능: {1}
+Updates_InstalledVersion	설치된 버전: {0}
+Updates_InstalledMarker	설치된 버전
+Updates_Bytes	{0} / {1}
+Updates_WhatsNew	이 버전의 새로운 기능
+Updates_NotesUnavailable	이 언어로 된 릴리스 정보가 없습니다.
+Updates_AutoCheck	업데이트 자동 확인
+Updates_AutoCheckDescription	이틀마다 확인하며, 미완료된 확인은 인터넷 연결이 복구되면 진행합니다.
+Updates_AutoDownload	자동 다운로드
+Updates_AutoDownloadDescription	업데이트를 자동으로 다운로드하고 설치할 준비를 합니다.
+Updates_AutoInstall	MegaCopier를 사용하지 않을 때 설치
+Updates_AutoInstallDescription	트레이에 있고 대기 작업이나 대화 상자가 없을 때만 설치합니다.
+Updates_Networks	다운로드 허용 연결
+Updates_Wifi	Wi-Fi 및 이더넷
+Updates_Mobile	모바일 데이터 및 데이터 통신 연결
+Updates_NetworkDescription	기본적으로 데이터 통신이 아닌 연결만 허용합니다.
+Updates_WaitNetwork	허용된 네트워크를 기다리는 중
+Updates_RestrictedTitle	이 연결에서는 다운로드가 허용되지 않습니다
+Updates_RestrictedBody	모바일 데이터를 사용할 수 있습니다. 설정 변경 없이 한 번만 허용할까요?
+Updates_AllowOnce	이번 다운로드 허용
+Updates_InstallDescription	MegaCopier가 종료되고 완료 후 다시 열립니다.
+Updates_Busy	대기 작업을 완료하거나 제거하고 실시간 동기화를 끄세요.
+Updates_Portable	휴대용 모드: ZIP을 다운로드하고 업데이트할 때 Data 폴더를 유지하세요.
+Updates_Uninstalled	이 복사본은 설치되지 않았습니다. 휴대용 ZIP을 다운로드할 수 있습니다.
+Updates_Dismiss	이 버전의 알림 숨기기
+Updates_NoticeAvailable	새 업데이트 사용 가능
+Updates_NoticeAvailableBody	버전 {0}을 사용할 수 있습니다. 클릭하여 업데이트를 여세요.
+Updates_NoticeReady	업데이트 설치 준비 완료
+Updates_NoticeReadyBody	버전 {0}을 다운로드하고 검증했습니다. 클릭하여 업데이트를 여세요.
+Updates_ErrorNetwork	연결할 수 없습니다. 다시 시도할 수 있습니다.
+Updates_ErrorInvalidRelease	이 릴리스에는 호환되는 업데이트가 없습니다.
+Updates_ErrorUntrustedUrl	허용된 출처의 다운로드가 아닙니다.
+Updates_ErrorMissingTrust	게시 키가 설정되지 않아 설치가 차단됩니다.
+Updates_ErrorInvalidSignature	업데이트 서명을 검증할 수 없습니다.
+Updates_ErrorInvalidChecksum	검증된 파일과 일치하지 않아 설치하지 않습니다.
+Updates_ErrorTooLarge	다운로드가 허용된 크기를 초과합니다.
+Updates_ErrorBusy	대기 작업 또는 대화 상자가 있습니다.
+Updates_ErrorInstaller	설치를 시작할 수 없습니다. 다운로드는 유지됩니다.
+Updates_ErrorRestrictedNetwork	허용된 네트워크에 연결하거나 다운로드 권한을 확인하세요.
+
+Crash_Help	오류 보고서를 보내 MegaCopier 개발에 도움을 주세요.
+Crash_Installer	오류 보고서 보내기
+Updates_ViewFullChangelog	전체 변경 기록 보기
+Updates_CurrentHighlights	현재 버전의 주요 새 기능
+Updates_AvailableHighlights	사용 가능한 새 버전의 주요 변경 사항
+Updates_NoInternet	인터넷에 연결되어 있지 않음
+Updates_NoInternetDescription	인터넷 연결을 확인한 후 다시 시도하세요.
+Updates_NoInternetDownload	업데이트를 다운로드할 인터넷 연결이 없습니다. 연결을 확인한 후 다시 시도하세요.
+Updates_NoticeCompleted	MegaCopier가 업데이트되었습니다
+Updates_NoticeCompletedBody	MegaCopier {0}이 설치되었습니다. 업데이트에서 새로운 기능을 확인하세요.
+Installer_StartMenu	시작 메뉴 바로 가기 만들기
+Installer_Taskbar	작업 표시줄에 고정할 바로 가기 준비(Windows에서 마우스 오른쪽 클릭)
+Settings_CustomSounds.Text	소리 사용자 지정
+Settings_FastPaths.PlaceholderText	C:, D:\데이터

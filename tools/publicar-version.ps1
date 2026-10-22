@@ -54,6 +54,16 @@ $changelog = [IO.File]::ReadAllText($changelogPath).Replace("`r`n", "`n")
 $section = [regex]::Match($changelog, '(?ms)^## \[Sin publicar\][^\n]*\n(.*?)(?=^## \[)')
 if (-not $section.Success) { Fallar "No encuentro la sección '## [Sin publicar]' en CHANGELOG.md." }
 if (-not $section.Groups[1].Value.Trim()) { Fallar "No hay nada en '## [Sin publicar]' de CHANGELOG.md: anota antes las novedades de esta versión." }
+$englishPath = Join-Path $root 'CHANGELOG.en.md'
+$english = [IO.File]::ReadAllText($englishPath).Replace("`r`n", "`n")
+$englishSection = [regex]::Match($english, '(?ms)^## \[Unreleased\][^\n]*\n(.*?)(?=^## \[)')
+if (-not $englishSection.Success -or -not $englishSection.Groups[1].Value.Trim()) { Fallar 'Faltan las novedades de esta versión en inglés (CHANGELOG.en.md, Unreleased).' }
+foreach ($releaseSection in @($section.Groups[1].Value, $englishSection.Groups[1].Value)) {
+    $summary = [regex]::Match($releaseSection, '(?ims)^### (?:Resumen|Highlights)\s*\r?\n(.*?)(?=^### |\z)')
+    $points = [regex]::Matches($summary.Groups[1].Value, '(?m)^- ').Count
+    if (-not $summary.Success -or $points -lt 1) { Fallar 'Añade un resumen editorial en ambos registros (### Resumen / ### Highlights). Sigue los criterios de selección y agrupación de docs/Versiones.md.' }
+}
+if (-not (Test-Path (Join-Path $root 'tools/Updates/public-key.pem'))) { Fallar 'Configura antes la firma de actualizaciones: tools/Updates/README.md.' }
 
 # 3. Directory.Build.props
 $props = $props.Replace("<Version>$previous</Version>", "<Version>$Version</Version>")
@@ -65,6 +75,9 @@ $changelog = $changelog.Replace('## [Sin publicar]', "## [Sin publicar]`n`n## [$
 $repo = 'https://github.com/cbatista96/MegaCopier'
 $changelog = [regex]::Replace($changelog, '(?m)^\[Sin publicar\]: .*$', "[Sin publicar]: $repo/compare/$tag...HEAD`n[$Version]: $repo/compare/v$previous...$tag")
 [IO.File]::WriteAllText($changelogPath, $changelog, $utf8)
+$english = $english.Replace('## [Unreleased]', "## [Unreleased]`n`n## [$Version] - $date")
+$english = [regex]::Replace($english, '(?m)^\[Unreleased\]: .*$', "[Unreleased]: $repo/compare/$tag...HEAD`n[$Version]: $repo/compare/v$previous...$tag")
+[IO.File]::WriteAllText($englishPath, $english, $utf8)
 
 Write-Host ""
 Write-Host "Novedades de la versión $Version" -ForegroundColor Cyan
@@ -72,7 +85,7 @@ Write-Host $section.Groups[1].Value.Trim()
 Write-Host ""
 
 # 5. Guardar, etiquetar y subir
-Ejecutar add Directory.Build.props CHANGELOG.md
+Ejecutar add Directory.Build.props CHANGELOG.md CHANGELOG.en.md
 Ejecutar commit --quiet -m "Versión $Version"
 Ejecutar tag -a $tag -m "MegaCopier $Version"
 if ($SinSubir) {

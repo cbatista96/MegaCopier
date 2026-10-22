@@ -16,6 +16,7 @@ internal sealed partial class TrayMenuWindow : Window
 {
     private readonly Grid _root = new();
     private MenuFlyout? _menu;
+    internal bool IsOpen => _menu is not null;
 
     /// <summary>La AppWindow, guardada: pedírsela a WinUI al cerrar cada menú creaba otro envoltorio cada vez.</summary>
     private readonly AppWindow _appWindow;

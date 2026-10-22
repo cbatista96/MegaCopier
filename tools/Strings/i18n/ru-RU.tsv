@@ -1,4 +1,4 @@
-clave	texto
+﻿clave	texto
 JobsSection.Text	Копирования
 SettingsSection.Text	Настройки
 FinishButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Что сделать, когда все копирования закончатся
@@ -469,8 +469,8 @@ Drop_JobOrder	Поставить на место {0} в очереди
 Settings_Sounds.Text	Звуки
 Settings_SoundsTitle.Text	Звуковые оповещения
 Settings_SoundsDescription.Text	Выберите звук для каждого момента: звук Windows, любой файл на компьютере или без звука.
-Settings_Volume.Header	Громкость
-Settings_SoundsQuiet.Content	Не звучать во время полноэкранных игр и презентаций и в режиме «Не беспокоить»
+Settings_Volume.Text	Громкость
+Settings_SoundsQuiet.Text	Не звучать во время полноэкранных игр и презентаций и в режиме «Не беспокоить»
 Sound_Done	Копирование прошло успешно
 Sound_Errors	Копирование завершилось с ошибками
 Sound_AllDone	Все копирования завершены
@@ -701,7 +701,7 @@ Job_StateSending	Отправка
 Job_FilesSentOne	Отправлено файлов: {0}
 Job_FilesSentMany	Отправлено файлов: {0}
 Rules_Describe.Header	Скажите своими словами (на английском или испанском)
-Rules_Describe.PlaceholderText	photos larger than 2 MB from last month except .tmp
+Rules_Describe.PlaceholderText	*.jpg > 2 MB
 Rules_DescribeApply.Text	Применить
 Rules_DescribeUnderstood	Понятно: {0}.
 Rules_DescribeNothing	Не понял, что фильтровать.
@@ -1502,3 +1502,95 @@ Info_CloseButton_Title	При нажатии крестика окна
 Info_CloseButton_Text	Выберите, что происходит с копированиями при закрытии окна крестиком.\n• Отменить копирования: как нажать «Остановить» в каждом. Они исчезают из списка, и продолжить их не предлагается.\n• Остановить, чтобы продолжить позже: скопированное сохраняется; если снова скопировать то же самое или открыть MegaCopier, копирование продолжится с того же места.\n• Скрыть окно: копирования продолжаются в фоне; окно открывается значком в области уведомлений.\n• Выйти из MegaCopier: программа закрывается полностью, и Windows копирует как обычно, пока вы её снова не откроете.
 Info_MinimizeButton_Title	При сворачивании окна
 Info_MinimizeButton_Text	Куда уходит окно при сворачивании. Копирование продолжается в обоих случаях.\n• На панель задач: как любое другое окно.\nСворачивание в область уведомлений освобождает панель задач: окно возвращается щелчком по значку MegaCopier рядом с часами.
+Section_Updates	Обновления
+Updates_Tab	Обновление
+Updates_History	Журнал обновлений
+Updates_ViewChangelog	Просмотреть список изменений
+Crash_Title	Отчёты об ошибках
+Crash_Description	Содержит версии, язык, тему, действия и отфильтрованные трассировки. Имена, пути и содержимое файлов не отправляются.
+Crash_Transport	Отправка только с разрешения. Cloudflare получает IP для защиты от злоупотреблений; в отчёт он не включается. Данные поступают в закрытый репозиторий GitHub.
+Crash_LocalOnly	Отправка не настроена. Журналы остаются на устройстве.
+Crash_Queued	Разрешённый отчёт сохранён. При сбое отправки повторная попытка будет при запуске.
+Crash_Duplicate	Этот сбой уже ожидает отправки или был отправлен.
+Crash_Sent	Отчёт отправлен. Спасибо за помощь.
+Crash_Revoked	Автоотправка отключена, ожидающие отчёты удалены. Отправленные отчёты здесь отозвать нельзя.
+Crash_Preview	Посмотреть отправляемые данные
+Crash_Always	Всегда отправлять без запроса
+Crash_Unexpected	MegaCopier неожиданно закрылся
+Crash_Send	Отправить отчёт
+Crash_NoSend	Не отправлять
+Crash_Close	Закрыть
+Crash_Automatic	Отправлять отчёты для улучшения MegaCopier
+Crash_OpenLogs	Открыть папку журналов
+Crash_GitHub	Сообщить о проблеме на GitHub
+Crash_LastReport	Посмотреть последний локальный отчёт
+Updates_Search	Проверить обновления
+Updates_Unknown	Проверить обновления MegaCopier
+Updates_SearchDescription	Поиск новой версии без прерывания копирования.
+Updates_Searching	Проверка обновлений…
+Updates_Current	MegaCopier обновлён
+Updates_CurrentAction	У вас последняя версия
+Updates_Available	Доступна новая версия
+Updates_Download	Скачать обновление
+Updates_DownloadZip	Скачать переносимый ZIP
+Updates_Downloading	Скачивание обновления…
+Updates_Cancel	Отменить скачивание
+Updates_Verifying	Проверка загрузки…
+Updates_Ready	Обновление готово к установке
+Updates_Install	Обновить сейчас
+Updates_Installing	Установка обновления…
+Updates_OpenZip	Показать скачанный ZIP
+Updates_Versions	Установлена: {0} · Доступна: {1}
+Updates_InstalledVersion	Установленная версия: {0}
+Updates_InstalledMarker	Установленная версия
+Updates_Bytes	{0} из {1}
+Updates_WhatsNew	Новое в этой версии
+Updates_NotesUnavailable	Примечания к выпуску недоступны на этом языке.
+Updates_AutoCheck	Автоматически проверять обновления
+Updates_AutoCheckDescription	Проверяет каждые два дня и возобновляет отложенную проверку при подключении к Интернету.
+Updates_AutoDownload	Скачивать автоматически
+Updates_AutoDownloadDescription	Автоматически скачивает обновление и подготавливает его к установке.
+Updates_AutoInstall	Устанавливать, когда MegaCopier не используется
+Updates_AutoInstallDescription	Только в трее, без ожидающих заданий и диалогов.
+Updates_Networks	Разрешать скачивание через
+Updates_Wifi	Wi-Fi и Ethernet
+Updates_Mobile	Мобильные данные и лимитные сети
+Updates_NetworkDescription	По умолчанию только безлимитные подключения.
+Updates_WaitNetwork	Загрузка ожидает разрешённую сеть
+Updates_RestrictedTitle	Скачивание через это подключение запрещено
+Updates_RestrictedBody	Загрузка может расходовать мобильный трафик. Разрешить один раз без изменения настроек?
+Updates_AllowOnce	Разрешить эту загрузку
+Updates_InstallDescription	MegaCopier закроется и снова откроется по завершении.
+Updates_Busy	Завершите или удалите ожидающие задания и отключите синхронизацию в реальном времени.
+Updates_Portable	Переносимый режим: скачайте ZIP и сохраните папку Data при обновлении.
+Updates_Uninstalled	Эта копия не установлена. Можно скачать переносимый ZIP.
+Updates_Dismiss	Скрыть уведомление об этой версии
+Updates_NoticeAvailable	Доступно новое обновление
+Updates_NoticeAvailableBody	Доступна версия {0}. Нажмите, чтобы открыть обновления.
+Updates_NoticeReady	Обновление готово к установке
+Updates_NoticeReadyBody	Версия {0} скачана и проверена. Нажмите, чтобы открыть обновления.
+Updates_ErrorNetwork	Не удалось подключиться. Можно повторить попытку.
+Updates_ErrorInvalidRelease	В этом выпуске нет совместимого обновления.
+Updates_ErrorUntrustedUrl	Загрузка получена не из разрешённого источника.
+Updates_ErrorMissingTrust	Ключ публикации не настроен. Установка остаётся заблокированной.
+Updates_ErrorInvalidSignature	Не удалось проверить подпись обновления.
+Updates_ErrorInvalidChecksum	Загрузка не совпадает с проверенным файлом и не будет установлена.
+Updates_ErrorTooLarge	Размер загрузки превышает допустимый.
+Updates_ErrorBusy	У MegaCopier есть ожидающие задания или диалоги.
+Updates_ErrorInstaller	Не удалось запустить установку. Загрузка сохранена.
+Updates_ErrorRestrictedNetwork	Подключитесь к разрешённой сети или проверьте разрешения загрузки.
+
+Crash_Help	Помогите в разработке MegaCopier, отправляя отчёты об ошибках.
+Crash_Installer	Отправлять отчёты об ошибках
+Updates_ViewFullChangelog	Полный список изменений
+Updates_CurrentHighlights	Главные нововведения текущей версии
+Updates_AvailableHighlights	Главные изменения новой доступной версии
+Updates_NoInternet	Нет доступа к Интернету
+Updates_NoInternetDescription	Проверьте подключение к Интернету и повторите попытку.
+Updates_NoInternetDownload	Нет доступа к Интернету для загрузки обновления. Проверьте подключение и повторите попытку.
+Updates_NoticeCompleted	MegaCopier обновлён
+Updates_NoticeCompletedBody	Установлен MegaCopier {0}. Откройте обновления, чтобы узнать о новых возможностях.
+Installer_StartMenu	Создать ярлык в меню «Пуск»
+Installer_Taskbar	Подготовить ярлык для панели задач (щелчок правой кнопкой в Windows)
+Settings_CustomSounds.Text	Настроить звуки
+Settings_FastPaths.PlaceholderText	C:, D:\Данные

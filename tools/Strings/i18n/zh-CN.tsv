@@ -1,4 +1,4 @@
-clave	texto
+﻿clave	texto
 JobsSection.Text	复制任务
 SettingsSection.Text	设置
 FinishButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	所有复制完成后要做什么
@@ -469,8 +469,8 @@ Drop_JobOrder	放到队列第 {0} 位
 Settings_Sounds.Text	声音
 Settings_SoundsTitle.Text	声音提醒
 Settings_SoundsDescription.Text	为每个时刻选择声音：Windows 声音、电脑上的任意文件或无声音。
-Settings_Volume.Header	音量
-Settings_SoundsQuiet.Content	全屏游戏或演示以及“请勿打扰”时保持安静
+Settings_Volume.Text	音量
+Settings_SoundsQuiet.Text	全屏游戏或演示以及“请勿打扰”时保持安静
 Sound_Done	复制顺利完成
 Sound_Errors	复制完成但有错误
 Sound_AllDone	全部复制完成
@@ -701,7 +701,7 @@ Job_StateSending	正在发送
 Job_FilesSentOne	已发送 {0} 个文件
 Job_FilesSentMany	已发送 {0} 个文件
 Rules_Describe.Header	用自己的话描述（英语或西班牙语）
-Rules_Describe.PlaceholderText	photos larger than 2 MB from last month except .tmp
+Rules_Describe.PlaceholderText	*.jpg > 2 MB
 Rules_DescribeApply.Text	应用
 Rules_DescribeUnderstood	已理解：{0}。
 Rules_DescribeNothing	没有理解到要筛选的内容。
@@ -1502,3 +1502,95 @@ Info_CloseButton_Title	点击窗口的 X 时
 Info_CloseButton_Text	选择用 X 关闭窗口时复制如何处理。\n• 取消复制：如同在每个复制上点击“停止”。它们会从列表中消失，也不会提示继续。\n• 停止，稍后继续：已复制的内容会保留；再次复制相同内容或打开 MegaCopier 时，会从中断处继续。\n• 隐藏窗口：复制在后台继续；可通过通知区域图标打开窗口。\n• 退出 MegaCopier：完全关闭，在你再次打开之前由 Windows 照常复制。
 Info_MinimizeButton_Title	最小化窗口时
 Info_MinimizeButton_Text	最小化窗口时窗口去向。两种情况下复制都会继续。\n• 到任务栏：和其他窗口一样。\n最小化到通知区域可让任务栏保持整洁：单击时钟旁的 MegaCopier 图标即可恢复窗口。
+Section_Updates	更新
+Updates_Tab	更新
+Updates_History	更新历史记录
+Updates_ViewChangelog	查看更改日志
+Crash_Title	错误报告
+Crash_Description	包含版本、语言、主题、活动和经过筛选的跟踪信息。不发送名称、路径或文件内容。
+Crash_Transport	仅在您同意后发送。Cloudflare 会接收 IP 以限制滥用，但报告不包含 IP。目标是私有 GitHub 仓库。
+Crash_LocalOnly	尚未配置发送。日志保留在此设备上。
+Crash_Queued	已保存获准发送的报告。发送失败时将在启动时重试。
+Crash_Duplicate	此故障已在等待发送或已发送。
+Crash_Sent	报告已发送。感谢您帮助改进 MegaCopier。
+Crash_Revoked	已关闭自动发送并删除待发报告。此处无法撤回已发送的报告。
+Crash_Preview	查看发送内容
+Crash_Always	始终发送，不再询问
+Crash_Unexpected	MegaCopier 意外关闭
+Crash_Send	发送报告
+Crash_NoSend	不发送
+Crash_Close	关闭
+Crash_Automatic	发送错误报告以帮助改进 MegaCopier
+Crash_OpenLogs	打开日志文件夹
+Crash_GitHub	在 GitHub 上报告问题
+Crash_LastReport	查看最近的本地报告
+Updates_Search	检查更新
+Updates_Unknown	检查 MegaCopier 更新
+Updates_SearchDescription	检查新版本，不会中断复制。
+Updates_Searching	正在检查更新…
+Updates_Current	MegaCopier 已是最新版本
+Updates_CurrentAction	已是最新版本
+Updates_Available	有新版本可用
+Updates_Download	下载更新
+Updates_DownloadZip	下载便携版 ZIP
+Updates_Downloading	正在下载更新…
+Updates_Cancel	取消下载
+Updates_Verifying	正在验证下载…
+Updates_Ready	更新已准备好安装
+Updates_Install	立即更新
+Updates_Installing	正在安装更新…
+Updates_OpenZip	显示已下载的 ZIP
+Updates_Versions	已安装：{0} · 可用：{1}
+Updates_InstalledVersion	已安装版本：{0}
+Updates_InstalledMarker	已安装版本
+Updates_Bytes	{0} / {1}
+Updates_WhatsNew	此版本的新功能
+Updates_NotesUnavailable	没有此语言的发行说明。
+Updates_AutoCheck	自动检查更新
+Updates_AutoCheckDescription	每两天检查一次，并在恢复网络连接后完成待处理的检查。
+Updates_AutoDownload	自动下载
+Updates_AutoDownloadDescription	自动下载更新并使其准备好安装。
+Updates_AutoInstall	在未使用 MegaCopier 时安装
+Updates_AutoInstallDescription	仅在托盘中且没有待处理任务或对话框时安装。
+Updates_Networks	允许通过以下网络下载
+Updates_Wifi	Wi-Fi 和以太网
+Updates_Mobile	移动数据和按流量计费网络
+Updates_NetworkDescription	默认仅允许不按流量计费的连接。
+Updates_WaitNetwork	正在等待允许的网络
+Updates_RestrictedTitle	此连接不允许下载
+Updates_RestrictedBody	此下载可能使用移动数据。是否在不更改设置的情况下允许一次？
+Updates_AllowOnce	允许此次下载
+Updates_InstallDescription	MegaCopier 将关闭，并在完成后重新打开。
+Updates_Busy	请完成或移除待处理任务并停用实时同步。
+Updates_Portable	便携模式：下载 ZIP，更新时保留 Data 文件夹。
+Updates_Uninstalled	此副本尚未安装。你可以下载便携版 ZIP。
+Updates_Dismiss	隐藏此版本的通知
+Updates_NoticeAvailable	有新更新可用
+Updates_NoticeAvailableBody	版本 {0} 可用。点击打开更新。
+Updates_NoticeReady	更新已准备好安装
+Updates_NoticeReadyBody	版本 {0} 已下载并验证。点击打开更新。
+Updates_ErrorNetwork	无法连接。你可以重试。
+Updates_ErrorInvalidRelease	此发行版本不包含兼容的更新。
+Updates_ErrorUntrustedUrl	下载来源不在允许列表中。
+Updates_ErrorMissingTrust	尚未配置发布密钥，安装仍被阻止。
+Updates_ErrorInvalidSignature	无法验证更新签名。
+Updates_ErrorInvalidChecksum	下载与已验证文件不匹配，将不会安装。
+Updates_ErrorTooLarge	下载超过允许的大小。
+Updates_ErrorBusy	MegaCopier 有待处理任务或对话框。
+Updates_ErrorInstaller	无法启动安装，已保留下载。
+Updates_ErrorRestrictedNetwork	请连接到允许的网络或检查下载权限。
+
+Crash_Help	发送错误报告，帮助我们开发 MegaCopier。
+Crash_Installer	发送错误报告
+Updates_ViewFullChangelog	查看完整更新日志
+Updates_CurrentHighlights	当前版本的主要新功能
+Updates_AvailableHighlights	可用新版本的主要更改
+Updates_NoInternet	无法访问互联网
+Updates_NoInternetDescription	请检查网络连接，然后重试。
+Updates_NoInternetDownload	无法连接互联网以下载更新。请检查网络连接，然后重试。
+Updates_NoticeCompleted	MegaCopier 已更新
+Updates_NoticeCompletedBody	你现在使用的是 MegaCopier {0}。打开更新页面查看新功能。
+Installer_StartMenu	创建开始菜单快捷方式
+Installer_Taskbar	准备可固定到任务栏的快捷方式（在 Windows 中右键单击）
+Settings_CustomSounds.Text	自定义声音
+Settings_FastPaths.PlaceholderText	C:, D:\数据

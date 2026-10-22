@@ -2,7 +2,7 @@
 
 ## Current status
 
-MegaCopier is preparing an application to SignPath Foundation. Sponsorship and certificate access have **not** been approved. Current public executables and installers are not represented as Authenticode-signed.
+MegaCopier submitted its application to SignPath Foundation on October 21, 2026, and the form confirmed receipt. Sponsorship and certificate access have **not** been approved. Current public executables and installers are not represented as Authenticode-signed.
 
 If the application is approved, the attribution will be: **Free code signing provided by [SignPath.io](https://about.signpath.io/), certificate by [SignPath Foundation](https://signpath.org/).** This sentence describes the intended provider; it is not a claim that sponsorship has already been granted.
 

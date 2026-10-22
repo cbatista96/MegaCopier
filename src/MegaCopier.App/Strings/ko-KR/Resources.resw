@@ -475,8 +475,8 @@
   <data name="Settings_Sounds.Text" xml:space="preserve"><value>소리</value></data>
   <data name="Settings_SoundsTitle.Text" xml:space="preserve"><value>소리 알림</value></data>
   <data name="Settings_SoundsDescription.Text" xml:space="preserve"><value>상황별로 소리를 선택하세요: Windows 소리, PC의 아무 파일 또는 소리 없음.</value></data>
-  <data name="Settings_Volume.Header" xml:space="preserve"><value>볼륨</value></data>
-  <data name="Settings_SoundsQuiet.Content" xml:space="preserve"><value>전체 화면 게임이나 프레젠테이션 중, &quot;방해 금지&quot; 중에는 소리 내지 않기</value></data>
+  <data name="Settings_Volume.Text" xml:space="preserve"><value>볼륨</value></data>
+  <data name="Settings_SoundsQuiet.Text" xml:space="preserve"><value>전체 화면 게임이나 프레젠테이션 중, &quot;방해 금지&quot; 중에는 소리 내지 않기</value></data>
   <data name="Sound_Done" xml:space="preserve"><value>복사가 문제없이 완료됨</value></data>
   <data name="Sound_Errors" xml:space="preserve"><value>복사가 오류와 함께 완료됨</value></data>
   <data name="Sound_AllDone" xml:space="preserve"><value>모든 복사 완료</value></data>
@@ -707,7 +707,7 @@
   <data name="Job_FilesSentOne" xml:space="preserve"><value>파일 {0}개 보냄</value></data>
   <data name="Job_FilesSentMany" xml:space="preserve"><value>파일 {0}개 보냄</value></data>
   <data name="Rules_Describe.Header" xml:space="preserve"><value>직접 설명하기(영어 또는 스페인어)</value></data>
-  <data name="Rules_Describe.PlaceholderText" xml:space="preserve"><value>photos larger than 2 MB from last month except .tmp</value></data>
+  <data name="Rules_Describe.PlaceholderText" xml:space="preserve"><value>*.jpg &gt; 2 MB</value></data>
   <data name="Rules_DescribeApply.Text" xml:space="preserve"><value>적용</value></data>
   <data name="Rules_DescribeUnderstood" xml:space="preserve"><value>이해함: {0}.</value></data>
   <data name="Rules_DescribeNothing" xml:space="preserve"><value>필터할 내용을 이해하지 못했습니다.</value></data>
@@ -1508,4 +1508,95 @@
   <data name="Info_CloseButton_Text" xml:space="preserve"><value>X로 창을 닫을 때 복사를 어떻게 할지 선택합니다.\n• 복사 취소: 각 복사에서 [중지]를 누르는 것과 같습니다. 목록에서 사라지고 계속하기를 제안하지 않습니다.\n• 중지하고 나중에 계속: 복사된 부분은 유지됩니다. 같은 항목을 다시 복사하거나 MegaCopier를 열면 이어서 진행합니다.\n• 창 숨기기: 복사는 백그라운드에서 계속됩니다. 알림 영역 아이콘으로 창을 엽니다.\n• MegaCopier 종료: 완전히 닫히며, 다시 열 때까지 Windows가 평소처럼 복사합니다.</value></data>
   <data name="Info_MinimizeButton_Title" xml:space="preserve"><value>창을 최소화하면</value></data>
   <data name="Info_MinimizeButton_Text" xml:space="preserve"><value>창을 최소화할 때 창이 가는 곳입니다. 어느 쪽이든 복사는 계속됩니다.\n• 작업 표시줄로: 다른 창과 같습니다.\n알림 영역으로 최소화하면 작업 표시줄이 깔끔해집니다. 시계 옆의 MegaCopier 아이콘을 클릭하면 창이 돌아옵니다.</value></data>
+  <data name="Section_Updates" xml:space="preserve"><value>업데이트</value></data>
+  <data name="Updates_Tab" xml:space="preserve"><value>업데이트</value></data>
+  <data name="Updates_History" xml:space="preserve"><value>업데이트 기록</value></data>
+  <data name="Updates_ViewChangelog" xml:space="preserve"><value>변경 기록 보기</value></data>
+  <data name="Crash_Title" xml:space="preserve"><value>오류 보고서</value></data>
+  <data name="Crash_Description" xml:space="preserve"><value>버전, 언어, 테마, 활동 및 필터링된 추적을 포함합니다. 이름, 경로 또는 파일 내용은 보내지 않습니다.</value></data>
+  <data name="Crash_Transport" xml:space="preserve"><value>동의한 경우에만 전송합니다. Cloudflare는 악용 방지를 위해 IP를 받지만 보고서에는 포함하지 않습니다. 대상은 비공개 GitHub 저장소입니다.</value></data>
+  <data name="Crash_LocalOnly" xml:space="preserve"><value>전송이 설정되지 않았습니다. 로그는 이 기기에 남습니다.</value></data>
+  <data name="Crash_Queued" xml:space="preserve"><value>허용된 보고서를 저장했습니다. 전송 실패 시 시작할 때 다시 시도합니다.</value></data>
+  <data name="Crash_Duplicate" xml:space="preserve"><value>이 오류는 이미 대기 중이거나 전송되었습니다.</value></data>
+  <data name="Crash_Sent" xml:space="preserve"><value>보고서를 전송했습니다. 도움을 주셔서 감사합니다.</value></data>
+  <data name="Crash_Revoked" xml:space="preserve"><value>자동 전송을 끄고 대기 중인 보고서를 삭제했습니다. 이미 전송된 보고서는 여기서 회수할 수 없습니다.</value></data>
+  <data name="Crash_Preview" xml:space="preserve"><value>전송 내용 보기</value></data>
+  <data name="Crash_Always" xml:space="preserve"><value>항상 묻지 않고 전송</value></data>
+  <data name="Crash_Unexpected" xml:space="preserve"><value>MegaCopier가 예기치 않게 종료되었습니다</value></data>
+  <data name="Crash_Send" xml:space="preserve"><value>보고서 전송</value></data>
+  <data name="Crash_NoSend" xml:space="preserve"><value>전송 안 함</value></data>
+  <data name="Crash_Close" xml:space="preserve"><value>닫기</value></data>
+  <data name="Crash_Automatic" xml:space="preserve"><value>MegaCopier 개선을 위해 오류 보고서 전송</value></data>
+  <data name="Crash_OpenLogs" xml:space="preserve"><value>로그 폴더 열기</value></data>
+  <data name="Crash_GitHub" xml:space="preserve"><value>GitHub에 문제 보고</value></data>
+  <data name="Crash_LastReport" xml:space="preserve"><value>최근 로컬 보고서 보기</value></data>
+  <data name="Updates_Search" xml:space="preserve"><value>업데이트 확인</value></data>
+  <data name="Updates_Unknown" xml:space="preserve"><value>MegaCopier 업데이트 확인</value></data>
+  <data name="Updates_SearchDescription" xml:space="preserve"><value>복사를 중단하지 않고 새 버전을 확인합니다.</value></data>
+  <data name="Updates_Searching" xml:space="preserve"><value>업데이트 확인 중…</value></data>
+  <data name="Updates_Current" xml:space="preserve"><value>MegaCopier가 최신 상태입니다</value></data>
+  <data name="Updates_CurrentAction" xml:space="preserve"><value>최신 상태입니다</value></data>
+  <data name="Updates_Available" xml:space="preserve"><value>새 버전 사용 가능</value></data>
+  <data name="Updates_Download" xml:space="preserve"><value>업데이트 다운로드</value></data>
+  <data name="Updates_DownloadZip" xml:space="preserve"><value>휴대용 ZIP 다운로드</value></data>
+  <data name="Updates_Downloading" xml:space="preserve"><value>업데이트 다운로드 중…</value></data>
+  <data name="Updates_Cancel" xml:space="preserve"><value>다운로드 취소</value></data>
+  <data name="Updates_Verifying" xml:space="preserve"><value>다운로드 검증 중…</value></data>
+  <data name="Updates_Ready" xml:space="preserve"><value>업데이트 설치 준비 완료</value></data>
+  <data name="Updates_Install" xml:space="preserve"><value>지금 업데이트</value></data>
+  <data name="Updates_Installing" xml:space="preserve"><value>업데이트 설치 중…</value></data>
+  <data name="Updates_OpenZip" xml:space="preserve"><value>다운로드한 ZIP 표시</value></data>
+  <data name="Updates_Versions" xml:space="preserve"><value>설치됨: {0} · 사용 가능: {1}</value></data>
+  <data name="Updates_InstalledVersion" xml:space="preserve"><value>설치된 버전: {0}</value></data>
+  <data name="Updates_InstalledMarker" xml:space="preserve"><value>설치된 버전</value></data>
+  <data name="Updates_Bytes" xml:space="preserve"><value>{0} / {1}</value></data>
+  <data name="Updates_WhatsNew" xml:space="preserve"><value>이 버전의 새로운 기능</value></data>
+  <data name="Updates_NotesUnavailable" xml:space="preserve"><value>이 언어로 된 릴리스 정보가 없습니다.</value></data>
+  <data name="Updates_AutoCheck" xml:space="preserve"><value>업데이트 자동 확인</value></data>
+  <data name="Updates_AutoCheckDescription" xml:space="preserve"><value>이틀마다 확인하며, 미완료된 확인은 인터넷 연결이 복구되면 진행합니다.</value></data>
+  <data name="Updates_AutoDownload" xml:space="preserve"><value>자동 다운로드</value></data>
+  <data name="Updates_AutoDownloadDescription" xml:space="preserve"><value>업데이트를 자동으로 다운로드하고 설치할 준비를 합니다.</value></data>
+  <data name="Updates_AutoInstall" xml:space="preserve"><value>MegaCopier를 사용하지 않을 때 설치</value></data>
+  <data name="Updates_AutoInstallDescription" xml:space="preserve"><value>트레이에 있고 대기 작업이나 대화 상자가 없을 때만 설치합니다.</value></data>
+  <data name="Updates_Networks" xml:space="preserve"><value>다운로드 허용 연결</value></data>
+  <data name="Updates_Wifi" xml:space="preserve"><value>Wi-Fi 및 이더넷</value></data>
+  <data name="Updates_Mobile" xml:space="preserve"><value>모바일 데이터 및 데이터 통신 연결</value></data>
+  <data name="Updates_NetworkDescription" xml:space="preserve"><value>기본적으로 데이터 통신이 아닌 연결만 허용합니다.</value></data>
+  <data name="Updates_WaitNetwork" xml:space="preserve"><value>허용된 네트워크를 기다리는 중</value></data>
+  <data name="Updates_RestrictedTitle" xml:space="preserve"><value>이 연결에서는 다운로드가 허용되지 않습니다</value></data>
+  <data name="Updates_RestrictedBody" xml:space="preserve"><value>모바일 데이터를 사용할 수 있습니다. 설정 변경 없이 한 번만 허용할까요?</value></data>
+  <data name="Updates_AllowOnce" xml:space="preserve"><value>이번 다운로드 허용</value></data>
+  <data name="Updates_InstallDescription" xml:space="preserve"><value>MegaCopier가 종료되고 완료 후 다시 열립니다.</value></data>
+  <data name="Updates_Busy" xml:space="preserve"><value>대기 작업을 완료하거나 제거하고 실시간 동기화를 끄세요.</value></data>
+  <data name="Updates_Portable" xml:space="preserve"><value>휴대용 모드: ZIP을 다운로드하고 업데이트할 때 Data 폴더를 유지하세요.</value></data>
+  <data name="Updates_Uninstalled" xml:space="preserve"><value>이 복사본은 설치되지 않았습니다. 휴대용 ZIP을 다운로드할 수 있습니다.</value></data>
+  <data name="Updates_Dismiss" xml:space="preserve"><value>이 버전의 알림 숨기기</value></data>
+  <data name="Updates_NoticeAvailable" xml:space="preserve"><value>새 업데이트 사용 가능</value></data>
+  <data name="Updates_NoticeAvailableBody" xml:space="preserve"><value>버전 {0}을 사용할 수 있습니다. 클릭하여 업데이트를 여세요.</value></data>
+  <data name="Updates_NoticeReady" xml:space="preserve"><value>업데이트 설치 준비 완료</value></data>
+  <data name="Updates_NoticeReadyBody" xml:space="preserve"><value>버전 {0}을 다운로드하고 검증했습니다. 클릭하여 업데이트를 여세요.</value></data>
+  <data name="Updates_ErrorNetwork" xml:space="preserve"><value>연결할 수 없습니다. 다시 시도할 수 있습니다.</value></data>
+  <data name="Updates_ErrorInvalidRelease" xml:space="preserve"><value>이 릴리스에는 호환되는 업데이트가 없습니다.</value></data>
+  <data name="Updates_ErrorUntrustedUrl" xml:space="preserve"><value>허용된 출처의 다운로드가 아닙니다.</value></data>
+  <data name="Updates_ErrorMissingTrust" xml:space="preserve"><value>게시 키가 설정되지 않아 설치가 차단됩니다.</value></data>
+  <data name="Updates_ErrorInvalidSignature" xml:space="preserve"><value>업데이트 서명을 검증할 수 없습니다.</value></data>
+  <data name="Updates_ErrorInvalidChecksum" xml:space="preserve"><value>검증된 파일과 일치하지 않아 설치하지 않습니다.</value></data>
+  <data name="Updates_ErrorTooLarge" xml:space="preserve"><value>다운로드가 허용된 크기를 초과합니다.</value></data>
+  <data name="Updates_ErrorBusy" xml:space="preserve"><value>대기 작업 또는 대화 상자가 있습니다.</value></data>
+  <data name="Updates_ErrorInstaller" xml:space="preserve"><value>설치를 시작할 수 없습니다. 다운로드는 유지됩니다.</value></data>
+  <data name="Updates_ErrorRestrictedNetwork" xml:space="preserve"><value>허용된 네트워크에 연결하거나 다운로드 권한을 확인하세요.</value></data>
+  <data name="Crash_Help" xml:space="preserve"><value>오류 보고서를 보내 MegaCopier 개발에 도움을 주세요.</value></data>
+  <data name="Crash_Installer" xml:space="preserve"><value>오류 보고서 보내기</value></data>
+  <data name="Updates_ViewFullChangelog" xml:space="preserve"><value>전체 변경 기록 보기</value></data>
+  <data name="Updates_CurrentHighlights" xml:space="preserve"><value>현재 버전의 주요 새 기능</value></data>
+  <data name="Updates_AvailableHighlights" xml:space="preserve"><value>사용 가능한 새 버전의 주요 변경 사항</value></data>
+  <data name="Updates_NoInternet" xml:space="preserve"><value>인터넷에 연결되어 있지 않음</value></data>
+  <data name="Updates_NoInternetDescription" xml:space="preserve"><value>인터넷 연결을 확인한 후 다시 시도하세요.</value></data>
+  <data name="Updates_NoInternetDownload" xml:space="preserve"><value>업데이트를 다운로드할 인터넷 연결이 없습니다. 연결을 확인한 후 다시 시도하세요.</value></data>
+  <data name="Updates_NoticeCompleted" xml:space="preserve"><value>MegaCopier가 업데이트되었습니다</value></data>
+  <data name="Updates_NoticeCompletedBody" xml:space="preserve"><value>MegaCopier {0}이 설치되었습니다. 업데이트에서 새로운 기능을 확인하세요.</value></data>
+  <data name="Installer_StartMenu" xml:space="preserve"><value>시작 메뉴 바로 가기 만들기</value></data>
+  <data name="Installer_Taskbar" xml:space="preserve"><value>작업 표시줄에 고정할 바로 가기 준비(Windows에서 마우스 오른쪽 클릭)</value></data>
+  <data name="Settings_CustomSounds.Text" xml:space="preserve"><value>소리 사용자 지정</value></data>
+  <data name="Settings_FastPaths.PlaceholderText" xml:space="preserve"><value>C:, D:\데이터</value></data>
 </root>
