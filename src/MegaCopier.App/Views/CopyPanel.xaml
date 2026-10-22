@@ -110,7 +110,12 @@
                 <Button x:Name="ExpandButton" Style="{StaticResource McButton}" Click="Expand_Click">
                     <StackPanel Orientation="Horizontal" Spacing="8">
                         <c:McIcon VerticalAlignment="Center" x:Name="ExpandGlyph" Glyph="&#xE70D;" FontSize="12" />
-                        <TextBlock x:Name="ExpandText" />
+                        <Grid>
+                            <!-- Medir los dos textos evita mover los botones al cambiar de vista, en cualquier idioma. -->
+                            <TextBlock x:Name="MoreMeasure" Opacity="0" IsHitTestVisible="False" AutomationProperties.AccessibilityView="Raw" />
+                            <TextBlock x:Name="LessMeasure" Opacity="0" IsHitTestVisible="False" AutomationProperties.AccessibilityView="Raw" />
+                            <TextBlock x:Name="ExpandText" HorizontalAlignment="Center" />
+                        </Grid>
                     </StackPanel>
                 </Button>
                 <!-- Pausa y Continuar son el mismo botón: mide lo que el más largo de los dos textos y el icono de

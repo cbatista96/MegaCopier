@@ -22,6 +22,8 @@ public sealed partial class CopyPanel : UserControl
     public CopyPanel()
     {
         InitializeComponent();
+        MoreMeasure.Text = L.Get("Panel_More");
+        LessMeasure.Text = L.Get("Panel_Less");
         SetExpanded(false);
         ShowPlayPause(animate: false);
         SizeChanged += (_, e) => Adapt(e.NewSize.Width);

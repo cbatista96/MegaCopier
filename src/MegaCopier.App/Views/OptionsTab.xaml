@@ -27,7 +27,7 @@
                         <TextBlock x:Uid="Speed_Title" Style="{StaticResource McStrong}" />
                         <TextBlock x:Uid="Speed_Description" Style="{StaticResource McSecondary}" TextWrapping="Wrap" />
                     </StackPanel>
-                    <ToggleSwitch x:Name="SpeedSwitch" x:Uid="Speed_Switch" Grid.Column="2" MinWidth="0" Toggled="Speed_Changed" />
+                    <ToggleSwitch x:Name="SpeedSwitch" x:Uid="Speed_Switch" Grid.Column="2" MinWidth="0" OnContent="" OffContent="" Toggled="Speed_Changed" />
                     <Slider x:Name="SpeedSlider" x:Uid="Speed_Slider" Grid.Row="1" Grid.Column="1" Minimum="0" StepFrequency="1" TickFrequency="1"
                             TickPlacement="None" IsThumbToolTipEnabled="False" ValueChanged="SpeedSlider_ValueChanged" />
                     <TextBlock x:Name="SpeedValue" Grid.Row="1" Grid.Column="2" MinWidth="88" TextAlignment="Right" VerticalAlignment="Center" Style="{StaticResource McStrong}" />

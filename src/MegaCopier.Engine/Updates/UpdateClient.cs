@@ -110,7 +110,7 @@ public sealed class UpdateClient : IDisposable
     public async Task<string> NotesAsync(UpdateRelease release, bool spanish, CancellationToken cancellation)
     {
         string name = spanish ? "release-notes.es.md" : "release-notes.en.md";
-        if (!release.Assets.Any(a => a.Name == name)) return spanish ? release.Notes : "";
+        if (!release.Assets.Any(a => a.Name == name)) return ReleaseNotes.LocalizedBody(release.Notes, spanish);
         using var timeout = CancellationTokenSource.CreateLinkedTokenSource(cancellation);
         timeout.CancelAfter(TimeSpan.FromSeconds(20));
         using var reply = await GetAsync(new Uri(release.Asset(name).Url), false, timeout.Token).ConfigureAwait(false);

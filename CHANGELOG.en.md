@@ -15,7 +15,7 @@ and versions follow [SemVer](https://semver.org/).
 - Optional error reports help improve MegaCopier without attaching files, names or paths. Choose during installation or in Settings whether to send in the background or review each report first.
 - The installer lists optional shortcuts before integration choices, introduces MegaCopier artwork and displays the privacy policy before installing. Automatic checking and error reporting can both be deselected.
 - Settings uses smooth navigation transitions and the toolbar button returns to transfers. Mouse side buttons also navigate back and forward; Sounds separates alerts, volume, customization and quiet mode for games or presentations.
-- Fixes cover startup crashes during network detection, stray Back tooltips, and clipped or misaligned headings and badges. Updates verify the signed manifest and package checksum before installation.
+- Fixes cover startup crashes during network detection, stray Back tooltips, More/Less resizing, recovered transfers hidden at startup, and clipped or misaligned headings and badges. Updates verify the signed manifest and package checksum before installation.
 
 ### Added
 
@@ -40,6 +40,8 @@ and versions follow [SemVer](https://semver.org/).
 
 ### Changed
 
+- The GitHub project page defaults to English with a Spanish link. The gallery is recaptured in English using demonstration data; published release pages show both languages without replacing packages. Documentation distinguishes local logs, optional automatic crash reports and private vulnerability reporting.
+
 - **Four sound cards:** alerts with a bell; an inline volume icon, label, slider and percentage; per-event customization; and a quiet-mode toggle for games, presentations or Do Not Disturb, on by default for new settings. Existing preferences are preserved.
 
 <img src="docs/capturas/sonidos-tarjetas.png" width="820" alt="Separate alert, volume, customization and quiet-mode cards; screenshot in Spanish">
@@ -48,6 +50,10 @@ and versions follow [SemVer](https://semver.org/).
 - **Reviewed translations:** all 14 languages share the same keys and formatting parameters. The fast-device path example comes from translated resources; filters in languages other than Spanish and English use a supported extension-and-size example instead of an untranslated English sentence.
 
 ### Fixed
+
+- English release notes are embedded in the main executable so highlights and history remain available offline. Older releases with bilingual GitHub notes select only the app’s language instead of mixing both documents.
+- More/Less keeps the same size in both states, measured using both labels in the selected language. The speed toggle no longer displays state labels in the Windows language when the app uses a different language.
+- Recovered transfers are added to the main window at startup before resuming; pending work no longer remains in the queue but hidden from the interface.
 
 - **Startup:** querying the updater’s network connection outside the UI thread avoids a WinUI crash when launching the EXE.
 - **Offline behavior:** preserve the last known result and cached notes. A network warning appears after a manual check or download and clears when leaving the section. Reconnecting allows a retry; connection changes do not trigger version checks before the 48-hour interval expires.

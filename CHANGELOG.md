@@ -15,7 +15,7 @@ y las versiones, [SemVer](https://semver.org/lang/es/).
 - Los informes de errores opcionales ayudan a mejorar MegaCopier sin adjuntar archivos, nombres ni rutas. Puedes elegir durante la instalación y en Ajustes si enviarlos en segundo plano o revisar cada informe antes de enviarlo.
 - El instalador organiza primero los accesos directos opcionales y después la integración. Presenta una imagen lateral de MegaCopier y la política de privacidad antes de instalar; la búsqueda automática y los informes se pueden desmarcar.
 - Ajustes navega con transiciones fluidas y permite volver a las copias con el botón superior. Los botones laterales del ratón también sirven para retroceder y avanzar, y Sonidos separa avisos, volumen, personalización y silencio durante juegos o presentaciones.
-- Se corrigen el cierre al arrancar tras consultar la red, la ayuda «Atrás» que aparecía fuera de su botón y los recortes o desalineaciones de cabeceras e indicadores. Las actualizaciones verifican el manifiesto firmado y la suma del paquete antes de instalarlo.
+- Se corrigen el cierre al arrancar tras consultar la red, la ayuda «Atrás» fuera de su botón, los cambios de tamaño de «Más/Menos» y la visualización de copias recuperadas al abrir, además de recortes o desalineaciones de cabeceras e indicadores. Las actualizaciones verifican el manifiesto firmado y la suma del paquete antes de instalarlo.
 
 ### Añadido
 
@@ -40,6 +40,8 @@ y las versiones, [SemVer](https://semver.org/lang/es/).
 
 ### Cambiado
 
+- La portada de GitHub se presenta en inglés con enlace al español. La galería se vuelve a capturar en inglés con datos de demostración; las páginas de versiones publicadas muestran ambos idiomas sin sustituir los paquetes. La documentación distingue registros locales, informes automáticos opcionales y comunicación privada de vulnerabilidades.
+
 - **Sonidos en cuatro tarjetas:** avisos con campana; volumen con icono, nombre, barra y porcentaje en una línea; personalización por evento; y silencio durante juegos, presentaciones o «No molestar», con interruptor activado por defecto en ajustes nuevos. Respeta las preferencias existentes.
 
 <img src="docs/capturas/sonidos-tarjetas.png" width="820" alt="Avisos, volumen, personalización y silencio en tarjetas separadas">
@@ -48,6 +50,10 @@ y las versiones, [SemVer](https://semver.org/lang/es/).
 - **Traducciones revisadas:** los 14 idiomas comparten las mismas claves y parámetros. El ejemplo de ruta de dispositivos rápidos procede de los recursos traducidos; los filtros en idiomas distintos del español y el inglés usan un ejemplo de extensión y tamaño que el analizador admite, sin una frase inglesa sin traducir.
 
 ### Arreglado
+
+- El registro en inglés se incluye en el ejecutable principal para poder consultar las novedades e historial sin conexión. Las versiones antiguas con notas bilingües en GitHub seleccionan solo el idioma de la aplicación, sin mezclar ambos textos.
+- «Más/Menos» conserva el mismo tamaño en ambos estados, medido con los dos textos del idioma elegido. El interruptor de velocidad deja de mostrar etiquetas en el idioma de Windows cuando la app usa otro idioma.
+- Las copias recuperadas al arrancar vuelven a aparecer en la ventana principal antes de reanudarlas; ya no quedan guardadas en la cola pero ocultas en la interfaz.
 
 - **Arranque:** consultar la conexión del actualizador fuera del hilo de la interfaz evita el cierre de WinUI al ejecutar el EXE.
 - **Sin Internet:** se conservan el último resultado conocido y las novedades. El aviso de red aparece al buscar o descargar manualmente y se oculta al salir de la sección. Volver a conectarse permite reintentar; no se consulta una versión en cada cambio de conexión si todavía no vence el plazo de 48 horas.
