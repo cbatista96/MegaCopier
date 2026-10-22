@@ -296,7 +296,7 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
     public string TotalPercentText => $"{TotalFraction * 100:0.0} %";
 
     public string TotalBytesText => Progress is { } p
-        ? L.F("Job_Progress", Format.Bytes(p.CompletedBytes), Format.Bytes(p.TotalBytes))
+        ? L.F("Job_Progress", Format.Bytes(p.CompletedBytes, twoDecimals: true, unitFrom: p.TotalBytes), Format.Bytes(p.TotalBytes, twoDecimals: true))
         : "";
 
     public string FilesCountText => Progress is { } p ? $"{Math.Min(p.FilesCompleted + (IsRunning ? 1 : 0), p.TotalFiles)} / {p.TotalFiles}" : "";
@@ -324,12 +324,12 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
     public string CurrentTargetPath => Format.Display(IsActive && _current is { } item ? item.Destination : Job.Record.Destination);
 
     public string FileBytesText => Progress is { CurrentFileLength: > 0 } p && IsActive
-        ? L.F("Job_Progress", Format.Bytes(p.CurrentFileBytes), Format.Bytes(p.CurrentFileLength))
+        ? L.F("Job_Progress", Format.Bytes(p.CurrentFileBytes, twoDecimals: true, unitFrom: p.CurrentFileLength), Format.Bytes(p.CurrentFileLength, twoDecimals: true))
         : "";
 
     public string SpeedText => Progress is { BytesPerSecond: > 0 } p && IsRunning ? Format.Speed(p.BytesPerSecond) : "";
 
-    public string RemainingText => Progress is { Remaining: { } remaining } && IsRunning ? L.F("Job_Remaining", Format.Duration(remaining)) : "";
+    public string RemainingText => Progress is { Remaining: { } remaining } && IsRunning ? Format.Duration(remaining) : "";
 
     public string SpeedAndRemaining => string.Join(" · ", new[] { SpeedText, RemainingText }.Where(s => s.Length > 0));
 

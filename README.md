@@ -114,7 +114,7 @@ These are separate features:
 
 ## Screenshots
 
-Fresh captures of the current application, in English, using local demonstration files. Each example preserves its illustrated theme, icon pack and progress bar style. File names and transfer figures are illustrative; these screenshots are not performance claims. Historical release notes retain images from their own versions.
+Fresh captures of the current application, in English, using local demonstration files. Each example preserves its illustrated theme, icon pack and progress bar style. File names and transfer figures are illustrative; these screenshots are not performance claims. Spanish captures are available in the Spanish overview. Illustrations in historical notes show the current development interface.
 
 <table>
 <tr>

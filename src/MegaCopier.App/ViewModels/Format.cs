@@ -35,23 +35,28 @@ internal static class Format
             : root + parts[0] + Path.DirectorySeparatorChar + "…" + Path.DirectorySeparatorChar + string.Join(Path.DirectorySeparatorChar, parts[^keep..]);
     }
 
-    public static string Bytes(double bytes)
+    public static string Bytes(double bytes, bool twoDecimals = false, double? unitFrom = null)
     {
         var units = SizeUnits switch { Services.SizeUnits.Iec => Iec, Services.SizeUnits.Decimal => DecimalUnits, _ => Classic };
         double step = SizeUnits == Services.SizeUnits.Decimal ? 1000 : 1024;
+        // En un progreso, la unidad la decide el total, aunque aún se haya copiado muy poco.
+        double reference = unitFrom ?? bytes;
         int unit = 0;
-        while (bytes >= step && unit < units.Length - 1)
+        while (reference >= step && unit < units.Length - 1)
         {
             bytes /= step;
+            reference /= step;
             unit++;
         }
+
+        if (twoDecimals) return string.Format(Culture, "{0:0.00} {1}", bytes, units[unit]);
 
         return unit == 0
             ? string.Format(Culture, "{0:0} {1}", bytes, units[unit])
             : string.Format(Culture, bytes >= 100 ? "{0:0} {1}" : "{0:0.0#} {1}", bytes, units[unit]);
     }
 
-    public static string Speed(double bytesPerSecond) => Bytes(bytesPerSecond) + "/s";
+    public static string Speed(double bytesPerSecond) => Bytes(bytesPerSecond, twoDecimals: true) + "/s";
 
     public static string Duration(TimeSpan span)
     {

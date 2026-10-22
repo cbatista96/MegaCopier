@@ -1,4 +1,4 @@
-using MegaCopier.App.Controls;
+﻿using MegaCopier.App.Controls;
 using MegaCopier.App.Services;
 using MegaCopier.Engine.Updates;
 using Microsoft.UI.Xaml;
@@ -40,8 +40,6 @@ public sealed partial class SettingsPage
         SearchBox.SizeChanged += (_, _) => AlignUpdateHeader();
         var content = new StackPanel { Spacing = 8 };
         _updateLanding = content;
-        // SectionsHost alinea las secciones a la izquierda: el historial conserva el ancho de la página, aunque sus títulos sean cortos.
-        SectionScroll.SizeChanged += (_, e) => Sec_Updates.Width = Math.Min(980, Math.Max(0, e.NewSize.Width - 48));
         var status = new StackPanel { Spacing = 12 };
         var header = new Grid { ColumnSpacing = 20, RowSpacing = 12 };
         header.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });

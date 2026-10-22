@@ -38,6 +38,7 @@ public sealed partial class McIcon : UserControl
         HorizontalAlignment = HorizontalAlignment.Center,
         VerticalAlignment = VerticalAlignment.Center,
         TextAlignment = TextAlignment.Center,
+        TextLineBounds = TextLineBounds.Tight,
         IsTextScaleFactorEnabled = false,
     };
 

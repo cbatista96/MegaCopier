@@ -1,4 +1,4 @@
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using MegaCopier.App.Services;
 using MegaCopier.Engine;
 using Microsoft.UI.Xaml;
@@ -31,20 +31,25 @@ public sealed partial class SettingsPage
         Action("Crash_GitHub", async (_, _) => await Windows.System.Launcher.LaunchUriAsync(CrashReporter.IssueLink()));
         _crashPreview = Action("Crash_LastReport", async (_, _) => { if (_app.CrashReports is { } reports) await reports.ShowAsync(false); });
         _crashSend = Action("Crash_Send", async (_, _) => { if (_app.CrashReports is { } reports) await reports.ShowAsync(true); });
-        _crashAutomatic = new ToggleSwitch { Header = L.Get("Crash_Automatic"), OnContent = "", OffContent = "" };
+        _crashAutomatic = new ToggleSwitch { OnContent = "", OffContent = "", MinWidth = 0, VerticalAlignment = VerticalAlignment.Center };
+        Microsoft.UI.Xaml.Automation.AutomationProperties.SetName(_crashAutomatic, L.Get("Crash_Automatic"));
         _crashAutomatic.Toggled += async (_, _) =>
         {
             if (_crashLoading || _app.CrashReports is not { } reports) return;
             try { await reports.SetAutomaticAsync(_crashAutomatic.IsOn); }
             catch (Exception ex) { App.LogCrash(ex, "Informe: preferencias"); }
         };
-        content.Children.Add(_crashAutomatic); content.Children.Add(UpdateText("Crash_Help", "McSecondary"));
+        content.Children.Add(UpdateText("Crash_Automatic")); content.Children.Add(UpdateText("Crash_Help", "McSecondary"));
         content.Children.Add(UpdateText("Crash_Description", "McSecondary"));
         content.Children.Add(new ScrollViewer { Content = buttons, HorizontalScrollMode = ScrollMode.Enabled,
             HorizontalScrollBarVisibility = ScrollBarVisibility.Auto, VerticalScrollMode = ScrollMode.Disabled,
             VerticalScrollBarVisibility = ScrollBarVisibility.Disabled, Padding = new Thickness(0, 0, 0, 4) });
         _crashStatus = UpdateText("Crash_LocalOnly", "McSecondary"); content.Children.Add(_crashStatus);
-        Sec_Advanced.Children.Add(UpdateCard(content));
+        var row = new Grid { ColumnSpacing = 16 };
+        row.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+        row.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+        row.Children.Add(content); Grid.SetColumn(_crashAutomatic, 1); row.Children.Add(_crashAutomatic);
+        Sec_Advanced.Children.Add(UpdateCard(row));
         Loaded += (_, _) => { if (_app.CrashReports is { } reports) { reports.Changed -= RefreshCrashSettings; reports.Changed += RefreshCrashSettings; } RefreshCrashSettings(); };
         Unloaded += (_, _) => { if (_app.CrashReports is { } reports) reports.Changed -= RefreshCrashSettings; };
     }

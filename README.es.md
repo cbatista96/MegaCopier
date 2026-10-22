@@ -33,7 +33,7 @@ La firma de actualizaciones usa una clave ECDSA propia. La firma Authenticode co
 [Preguntas frecuentes](docs/Preguntas-frecuentes.md) ·
 [English](README.md)
 
-<img src="docs/capturas/en/completa-oscuro.png" width="820" alt="MegaCopier copiando dos carpetas: vista completa con la lista de archivos">
+<img src="docs/capturas/completa-oscuro.png" width="820" alt="MegaCopier copiando dos carpetas: vista completa con la lista de archivos">
 
 </div>
 
@@ -126,41 +126,41 @@ Todo explicado paso a paso en la **[guía de uso](docs/Guia.md)**.
 
 ---
 
-Las siguientes capturas se han vuelto a tomar con la interfaz en inglés y datos locales de demostración. Los temas, iconos y barras corresponden a cada ejemplo; no son mediciones de rendimiento.
+Las siguientes capturas se toman con la interfaz en español y datos locales de demostración. Los temas, iconos y barras corresponden a cada ejemplo; no son mediciones de rendimiento.
 
 ## Capturas
 
 <table>
 <tr>
-<td width="50%"><img src="docs/capturas/en/compacta.png" alt="Ventana compacta"><br><b>Ventana compacta</b>: lo justo mientras copia.</td>
-<td width="50%"><img src="docs/capturas/en/interrumpida.png" alt="Copia interrumpida"><br><b>Tras un apagón</b>: la copia espera a que pulses <i>Continuar</i>.</td>
+<td width="50%"><img src="docs/capturas/compacta.png" alt="Ventana compacta"><br><b>Ventana compacta</b>: lo justo mientras copia.</td>
+<td width="50%"><img src="docs/capturas/interrumpida.png" alt="Copia interrumpida"><br><b>Tras un apagón</b>: la copia espera a que pulses <i>Continuar</i>.</td>
 </tr>
 <tr>
-<td><img src="docs/capturas/en/reanudada.png" alt="Copia reanudada"><br><b>Reanudada</b>: continúa aprovechando los datos ya copiados.</td>
-<td><img src="docs/capturas/en/conflicto.png" alt="El archivo ya existe"><br><b>Si el archivo ya existe</b>: compara los dos y eliges.</td>
+<td><img src="docs/capturas/reanudada.png" alt="Copia reanudada"><br><b>Reanudada</b>: continúa aprovechando los datos ya copiados.</td>
+<td><img src="docs/capturas/conflicto.png" alt="El archivo ya existe"><br><b>Si el archivo ya existe</b>: compara los dos y eliges.</td>
 </tr>
 <tr>
-<td><img src="docs/capturas/en/completa-claro.png" alt="Vista completa en modo claro"><br><b>Vista completa</b> en modo claro: copias a la izquierda, archivos a la derecha.</td>
-<td><img src="docs/capturas/en/comparar.png" alt="Comparar y sincronizar"><br><b>Comparar y sincronizar</b> dos carpetas antes de tocar nada.</td>
+<td><img src="docs/capturas/completa-claro.png" alt="Vista completa en modo claro"><br><b>Vista completa</b> en modo claro: copias a la izquierda, archivos a la derecha.</td>
+<td><img src="docs/capturas/comparar.png" alt="Comparar y sincronizar"><br><b>Comparar y sincronizar</b> dos carpetas antes de tocar nada.</td>
 </tr>
 <tr>
-<td><img src="docs/capturas/en/ampliada-estado.png" alt="Gráfica de velocidad"><br><b>Ventana ampliada</b>: gráfica de velocidad y resumen.</td>
-<td><img src="docs/capturas/en/ampliada-opciones.png" alt="Opciones de la copia"><br><b>Opciones de cada copia</b>, también con la copia en marcha.</td>
+<td><img src="docs/capturas/ampliada-estado.png" alt="Gráfica de velocidad"><br><b>Ventana ampliada</b>: gráfica de velocidad y resumen.</td>
+<td><img src="docs/capturas/ampliada-opciones.png" alt="Opciones de la copia"><br><b>Opciones de cada copia</b>, también con la copia en marcha.</td>
 </tr>
 <tr>
-<td><img src="docs/capturas/en/historial.png" alt="Historial"><br><b>Historial</b> con repetir, deshacer y «copiar de vuelta».</td>
-<td><img src="docs/capturas/en/linea-tiempo.png" alt="Línea de tiempo"><br><b>Línea de tiempo</b>: cuándo terminará cada copia de la cola.</td>
+<td><img src="docs/capturas/historial.png" alt="Historial"><br><b>Historial</b> con repetir, deshacer y «copiar de vuelta».</td>
+<td><img src="docs/capturas/linea-tiempo.png" alt="Línea de tiempo"><br><b>Línea de tiempo</b>: cuándo terminará cada copia de la cola.</td>
 </tr>
 <tr>
-<td><img src="docs/capturas/en/terminadas.png" alt="Copias terminadas"><br><b>Al terminar</b>: resumen, «Abrir carpeta» y lo omitido.</td>
-<td><img src="docs/capturas/en/ajustes.png" alt="Ajustes"><br><b>Ajustes</b> como la Configuración de Windows 11: secciones, buscador e iconos.</td>
+<td><img src="docs/capturas/terminadas.png" alt="Copias terminadas"><br><b>Al terminar</b>: resumen, «Abrir carpeta» y lo omitido.</td>
+<td><img src="docs/capturas/ajustes.png" alt="Ajustes"><br><b>Ajustes</b> como la Configuración de Windows 11: secciones, buscador e iconos.</td>
 </tr>
 <tr>
-<td><img src="docs/capturas/en/ajustes-comportamiento.png" alt="Ajustes de comportamiento"><br><b>Comportamiento</b>: sumar copias, borrar lo que quedó a medias, expulsar el USB.</td>
-<td><img src="docs/capturas/en/ajustes-errores.png" alt="Ajustes de errores"><br><b>Errores</b>: preguntar qué hacer, reintentos e informe de errores.</td>
+<td><img src="docs/capturas/ajustes-comportamiento.png" alt="Ajustes de comportamiento"><br><b>Comportamiento</b>: sumar copias, borrar lo que quedó a medias, expulsar el USB.</td>
+<td><img src="docs/capturas/ajustes-errores.png" alt="Ajustes de errores"><br><b>Errores</b>: preguntar qué hacer, reintentos e informe de errores.</td>
 </tr>
 <tr>
-<td colspan="2"><img src="docs/capturas/en/ajustes-madera.png" alt="Ajustes con el tema Madera y los iconos Mosaico"><br>Tema <b>Madera</b> con los iconos <b>Mosaico</b>: cualquier tema con cualquier conjunto de iconos.</td>
+<td colspan="2"><img src="docs/capturas/ajustes-madera.png" alt="Ajustes con el tema Madera y los iconos Mosaico"><br>Tema <b>Madera</b> con los iconos <b>Mosaico</b>: cualquier tema con cualquier conjunto de iconos.</td>
 
 </tr>
 </table>
@@ -173,49 +173,49 @@ Además, un editor para crear los tuyos.
 
 <table>
 <tr>
-<td width="33%"><img src="docs/capturas/en/temas/combustion.png" alt="Combustión"><br>Combustión</td>
-<td width="33%"><img src="docs/capturas/en/temas/codigo-verde.png" alt="Código verde"><br>Código verde</td>
-<td width="33%"><img src="docs/capturas/en/temas/aurora.png" alt="Aurora"><br>Aurora</td>
+<td width="33%"><img src="docs/capturas/temas/combustion.png" alt="Combustión"><br>Combustión</td>
+<td width="33%"><img src="docs/capturas/temas/codigo-verde.png" alt="Código verde"><br>Código verde</td>
+<td width="33%"><img src="docs/capturas/temas/aurora.png" alt="Aurora"><br>Aurora</td>
 </tr>
 <tr>
-<td><img src="docs/capturas/en/temas/galaxia.png" alt="Galaxia"><br>Galaxia</td>
-<td><img src="docs/capturas/en/temas/neon.png" alt="Neón"><br>Neón</td>
-<td><img src="docs/capturas/en/temas/caja-negra.png" alt="Caja negra"><br>Caja negra</td>
+<td><img src="docs/capturas/temas/galaxia.png" alt="Galaxia"><br>Galaxia</td>
+<td><img src="docs/capturas/temas/neon.png" alt="Neón"><br>Neón</td>
+<td><img src="docs/capturas/temas/caja-negra.png" alt="Caja negra"><br>Caja negra</td>
 </tr>
 <tr>
-<td><img src="docs/capturas/en/temas/madera.png" alt="Madera"><br>Madera</td>
-<td><img src="docs/capturas/en/temas/cuaderno.png" alt="Cuaderno"><br>Cuaderno</td>
-<td><img src="docs/capturas/en/temas/cristal.png" alt="Cristal"><br>Cristal</td>
+<td><img src="docs/capturas/temas/madera.png" alt="Madera"><br>Madera</td>
+<td><img src="docs/capturas/temas/cuaderno.png" alt="Cuaderno"><br>Cuaderno</td>
+<td><img src="docs/capturas/temas/cristal.png" alt="Cristal"><br>Cristal</td>
 </tr>
 <tr>
-<td><img src="docs/capturas/en/temas/burbuja-azul.png" alt="Burbuja azul"><br>Burbuja azul</td>
-<td><img src="docs/capturas/en/temas/berenjena.png" alt="Berenjena"><br>Berenjena</td>
-<td><img src="docs/capturas/en/temas/humo.png" alt="Humo"><br>Humo</td>
+<td><img src="docs/capturas/temas/burbuja-azul.png" alt="Burbuja azul"><br>Burbuja azul</td>
+<td><img src="docs/capturas/temas/berenjena.png" alt="Berenjena"><br>Berenjena</td>
+<td><img src="docs/capturas/temas/humo.png" alt="Humo"><br>Humo</td>
 </tr>
 <tr>
-<td><img src="docs/capturas/en/temas/cobalto.png" alt="Cobalto"><br>Cobalto</td>
-<td><img src="docs/capturas/en/temas/metro-oscuro.png" alt="Metro oscuro"><br>Metro oscuro</td>
-<td><img src="docs/capturas/en/temas/aero.png" alt="Aero"><br>Aero</td>
+<td><img src="docs/capturas/temas/cobalto.png" alt="Cobalto"><br>Cobalto</td>
+<td><img src="docs/capturas/temas/metro-oscuro.png" alt="Metro oscuro"><br>Metro oscuro</td>
+<td><img src="docs/capturas/temas/aero.png" alt="Aero"><br>Aero</td>
 </tr>
 <tr>
-<td><img src="docs/capturas/en/temas/luna.png" alt="Luna"><br>Luna</td>
-<td><img src="docs/capturas/en/temas/aire.png" alt="Aire"><br>Aire</td>
-<td><img src="docs/capturas/en/temas/menta.png" alt="Menta"><br>Menta</td>
+<td><img src="docs/capturas/temas/luna.png" alt="Luna"><br>Luna</td>
+<td><img src="docs/capturas/temas/aire.png" alt="Aire"><br>Aire</td>
+<td><img src="docs/capturas/temas/menta.png" alt="Menta"><br>Menta</td>
 </tr>
 <tr>
-<td><img src="docs/capturas/en/temas/fluent-dark.png" alt="Fluent oscuro"><br>Fluent oscuro</td>
-<td><img src="docs/capturas/en/temas/fluent-light.png" alt="Fluent claro"><br>Fluent claro</td>
-<td><img src="docs/capturas/en/temas/midnight.png" alt="Medianoche"><br>Medianoche</td>
+<td><img src="docs/capturas/temas/fluent-dark.png" alt="Fluent oscuro"><br>Fluent oscuro</td>
+<td><img src="docs/capturas/temas/fluent-light.png" alt="Fluent claro"><br>Fluent claro</td>
+<td><img src="docs/capturas/temas/midnight.png" alt="Medianoche"><br>Medianoche</td>
 </tr>
 <tr>
-<td><img src="docs/capturas/en/temas/ocean.png" alt="Océano"><br>Océano</td>
-<td><img src="docs/capturas/en/temas/forest.png" alt="Bosque"><br>Bosque</td>
-<td><img src="docs/capturas/en/temas/sunset.png" alt="Atardecer"><br>Atardecer</td>
+<td><img src="docs/capturas/temas/ocean.png" alt="Océano"><br>Océano</td>
+<td><img src="docs/capturas/temas/forest.png" alt="Bosque"><br>Bosque</td>
+<td><img src="docs/capturas/temas/sunset.png" alt="Atardecer"><br>Atardecer</td>
 </tr>
 <tr>
-<td><img src="docs/capturas/en/temas/azul-clasico.png" alt="Azul clásico"><br>Azul clásico</td>
-<td><img src="docs/capturas/en/temas/gris-clasico.png" alt="Gris clásico"><br>Gris clásico</td>
-<td><img src="docs/capturas/en/temas/contrast.png" alt="Alto contraste"><br>Alto contraste</td>
+<td><img src="docs/capturas/temas/azul-clasico.png" alt="Azul clásico"><br>Azul clásico</td>
+<td><img src="docs/capturas/temas/gris-clasico.png" alt="Gris clásico"><br>Gris clásico</td>
+<td><img src="docs/capturas/temas/contrast.png" alt="Alto contraste"><br>Alto contraste</td>
 </tr>
 </table>
 
@@ -230,14 +230,14 @@ Retro cálido, Solar oscuro y claro, Átomo y Menta oscura.
 
 <table>
 <tr>
-<td><img src="docs/capturas/en/temas/material-oscuro.png" alt="Material oscuro"><br>Material oscuro</td>
-<td><img src="docs/capturas/en/temas/silicio-claro.png" alt="Silicio claro"><br>Silicio claro</td>
-<td><img src="docs/capturas/en/temas/capuchino.png" alt="Capuchino"><br>Capuchino</td>
+<td><img src="docs/capturas/temas/material-oscuro.png" alt="Material oscuro"><br>Material oscuro</td>
+<td><img src="docs/capturas/temas/silicio-claro.png" alt="Silicio claro"><br>Silicio claro</td>
+<td><img src="docs/capturas/temas/capuchino.png" alt="Capuchino"><br>Capuchino</td>
 </tr>
 <tr>
-<td><img src="docs/capturas/en/temas/arcade.png" alt="Arcade"><br>Arcade</td>
-<td><img src="docs/capturas/en/temas/vampiro.png" alt="Vampiro"><br>Vampiro</td>
-<td><img src="docs/capturas/en/temas/tiza.png" alt="Tiza"><br>Tiza</td>
+<td><img src="docs/capturas/temas/arcade.png" alt="Arcade"><br>Arcade</td>
+<td><img src="docs/capturas/temas/vampiro.png" alt="Vampiro"><br>Vampiro</td>
+<td><img src="docs/capturas/temas/tiza.png" alt="Tiza"><br>Tiza</td>
 </tr>
 </table>
 
@@ -247,19 +247,19 @@ Siete estilos de iconos, todos con los iconos modernos de Windows 11, que se com
 
 <table>
 <tr>
-<td width="50%"><img src="docs/capturas/en/iconos/fluent.png" alt="Fluent"><br><b>Fluent</b>: como Windows.</td>
-<td width="50%"><img src="docs/capturas/en/iconos/color.png" alt="Color"><br><b>Color</b>: cada icono con su color.</td>
+<td width="50%"><img src="docs/capturas/iconos/fluent.png" alt="Fluent"><br><b>Fluent</b>: como Windows.</td>
+<td width="50%"><img src="docs/capturas/iconos/color.png" alt="Color"><br><b>Color</b>: cada icono con su color.</td>
 </tr>
 <tr>
-<td><img src="docs/capturas/en/iconos/mosaico.png" alt="Mosaico"><br><b>Mosaico</b>: sobre un cuadrado de color, como la Configuración de Windows 11.</td>
-<td><img src="docs/capturas/en/iconos/suave.png" alt="Suave"><br><b>Suave</b>: con un fondo suave de su color.</td>
+<td><img src="docs/capturas/iconos/mosaico.png" alt="Mosaico"><br><b>Mosaico</b>: sobre un cuadrado de color, como la Configuración de Windows 11.</td>
+<td><img src="docs/capturas/iconos/suave.png" alt="Suave"><br><b>Suave</b>: con un fondo suave de su color.</td>
 </tr>
 <tr>
-<td><img src="docs/capturas/en/iconos/degradado.png" alt="Degradado"><br><b>Degradado</b>: con los colores de las barras del tema.</td>
-<td><img src="docs/capturas/en/iconos/neon.png" alt="Neón"><br><b>Neón</b>: con un halo de luz.</td>
+<td><img src="docs/capturas/iconos/degradado.png" alt="Degradado"><br><b>Degradado</b>: con los colores de las barras del tema.</td>
+<td><img src="docs/capturas/iconos/neon.png" alt="Neón"><br><b>Neón</b>: con un halo de luz.</td>
 </tr>
 <tr>
-<td colspan="2"><img src="docs/capturas/en/iconos/windows10.png" alt="Windows 10"><br><b>Windows 10</b>: los iconos clásicos.</td>
+<td colspan="2"><img src="docs/capturas/iconos/windows10.png" alt="Windows 10"><br><b>Windows 10</b>: los iconos clásicos.</td>
 </tr>
 </table>
 
@@ -272,7 +272,7 @@ Segmentos. Además: colores propios, semáforo o arcoíris, grosor, redondeo, ve
 dentro de la barra, avance elástico o a saltos y efectos según el estado (rayas en pausa, sacudida con error y destello al
 terminar).
 
-<img src="docs/capturas/en/barras.png" width="820" alt="Galería de estilos de barras de progreso en los ajustes">
+<img src="docs/capturas/barras.png" width="820" alt="Galería de estilos de barras de progreso en los ajustes">
 
 ---
 
