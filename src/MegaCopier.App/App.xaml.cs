@@ -1056,6 +1056,10 @@ public partial class App : Application
                 return new IpcResponse { Ok = true };
             case "debug-report-status" when TestMode:
                 return new IpcResponse { Ok = true, Status = $"configured={CrashReporter.ConfiguredEndpoint is not null}; report={CrashReports?.Last?.Id}; status={CrashReports?.StatusKey}; automatic={Settings.SendCrashReportsAutomatically}" };
+            case "debug-report-layout" when TestMode:
+                return new IpcResponse { Ok = true, Status = Window.DebugCrashLayout() };
+            case "debug-report-choice" when TestMode && request.Destination is { } reportChoice:
+                return new IpcResponse { Ok = Window.DebugCrashChoice(reportChoice) };
             case "debug-report-crash" when TestMode && CanUpdate:
                 Dispatcher.TryEnqueue(() => throw new InvalidOperationException(@"Prueba sintética: C:\Users\Prueba\privado.pdf"));
                 return new IpcResponse { Ok = true };
