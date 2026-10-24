@@ -67,16 +67,25 @@ public sealed class SnapshotTests : IDisposable
     public void InsertingAtTheStartOfABigFileStoresOnlyAFewNewPieces()
     {
         Directory.CreateDirectory(Source);
-        byte[] original = RandomNumberGenerator.GetBytes(30_000_000);
+        // Un caso reproducible: los cortes dependen del contenido y con datos aleatorios
+        // nuevos cada ejecución no existe una cota fija de espacio adicional.
+        var random = new Random(0x4D43);
+        byte[] original = new byte[30_000_000];
+        random.NextBytes(original);
         File.WriteAllBytes(Path.Combine(Source, "grande.bin"), original);
         Backup();
         long before = FolderSize(Repo);
 
-        File.WriteAllBytes(Path.Combine(Source, "grande.bin"), [.. RandomNumberGenerator.GetBytes(1000), .. original]);
+        byte[] prefix = new byte[1000];
+        random.NextBytes(prefix);
+        byte[] modified = [.. prefix, .. original];
+        File.WriteAllBytes(Path.Combine(Source, "grande.bin"), modified);
         Thread.Sleep(1100);
         Backup();
 
         Assert.True(FolderSize(Repo) - before < 6_000_000, $"{FolderSize(Repo) - before} bytes nuevos"); // los cortes por contenido se recolocan
+        Restore("latest", _temp.Combine("restaurado"));
+        Assert.Equal(modified, File.ReadAllBytes(_temp.Combine("restaurado", "datos", "grande.bin")));
     }
 
     [Fact]
