@@ -9,6 +9,8 @@ Las ilustraciones muestran la interfaz de desarrollo actual. Las notas en españ
 
 ## [Sin publicar]
 
+## [1.8.0] - 2026-10-23
+
 ### Resumen
 
 - Puedes buscar, descargar e instalar actualizaciones desde Ajustes sin interrumpir tus copias. El mismo botón acompaña cada paso, con progreso, avisos de Windows y un indicador que se adapta al conjunto de iconos elegido.
@@ -831,7 +833,8 @@ Primera versión pública.
 - Aviso SMART, avisos por correo y webhook, control desde el móvil y servidor MCP para asistentes de IA.
 - Consola `mcopy`, modo portátil, 14 idiomas, 11 temas y accesibilidad con lectores de pantalla.
 
-[Sin publicar]: https://github.com/cbatista96/MegaCopier/compare/v1.7.1...HEAD
+[Sin publicar]: https://github.com/cbatista96/MegaCopier/compare/v1.8.0...HEAD
+[1.8.0]: https://github.com/cbatista96/MegaCopier/compare/v1.7.1...v1.8.0
 [1.7.1]: https://github.com/cbatista96/MegaCopier/compare/v1.7.0...v1.7.1
 [1.7.0]: https://github.com/cbatista96/MegaCopier/compare/v1.6.0...v1.7.0
 [1.6.0]: https://github.com/cbatista96/MegaCopier/compare/v1.5.0...v1.6.0

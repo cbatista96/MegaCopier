@@ -9,6 +9,8 @@ Illustrations show the current development interface. Spanish notes use Spanish 
 
 ## [Unreleased]
 
+## [1.8.0] - 2026-10-23
+
 ### Highlights
 
 - Check, download and install updates from Settings without interrupting transfers. One fixed-size button follows each step, with progress, Windows notifications and status badges styled for the selected icon pack.
@@ -639,7 +641,8 @@ First public release.
 - SMART alerts, email and webhook notifications, mobile control, and an MCP server for AI assistants.
 - `mcopy` command line, portable mode, 14 languages, 11 themes, and screen-reader accessibility.
 
-[Unreleased]: https://github.com/cbatista96/MegaCopier/compare/v1.7.1...HEAD
+[Unreleased]: https://github.com/cbatista96/MegaCopier/compare/v1.8.0...HEAD
+[1.8.0]: https://github.com/cbatista96/MegaCopier/compare/v1.7.1...v1.8.0
 [1.7.1]: https://github.com/cbatista96/MegaCopier/compare/v1.7.0...v1.7.1
 [1.7.0]: https://github.com/cbatista96/MegaCopier/compare/v1.6.0...v1.7.0
 [1.6.0]: https://github.com/cbatista96/MegaCopier/compare/v1.5.0...v1.6.0
