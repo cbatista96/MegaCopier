@@ -110,6 +110,7 @@ public sealed class CopyJobRecord
     public int VersionsMonthly { get; set; }
 
     public FolderConflictPolicy FolderConflict { get; set; }
+    public bool DuplicateInPlace { get; set; }
 
     public double TimeToleranceSeconds { get; set; } = 2;
 
@@ -209,6 +210,7 @@ public sealed class CopyJobRecord
         VersionsWeekly = options.VersionsWeekly,
         VersionsMonthly = options.VersionsMonthly,
         FolderConflict = options.FolderConflict,
+        DuplicateInPlace = options.DuplicateInPlace,
         TimeToleranceSeconds = options.TimeTolerance.TotalSeconds,
         VerifySource = options.VerifySource,
         SaveHashStream = options.SaveHashStream,
@@ -277,6 +279,7 @@ public sealed class CopyJobRecord
             VersionsWeekly = VersionsWeekly,
             VersionsMonthly = VersionsMonthly,
             FolderConflict = FolderConflict,
+            DuplicateInPlace = DuplicateInPlace,
             TimeTolerance = TimeSpan.FromSeconds(Math.Clamp(TimeToleranceSeconds, 0, 3600)),
             VerifySource = VerifySource,
             SaveHashStream = SaveHashStream,

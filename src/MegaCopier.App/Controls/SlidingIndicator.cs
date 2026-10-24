@@ -1,4 +1,4 @@
-using MegaCopier.App.Theming;
+﻿using MegaCopier.App.Theming;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
@@ -24,8 +24,9 @@ internal sealed class SlidingIndicator
     private bool _selectionPending;
     private object? _selected;
 
-    public SlidingIndicator(ListViewBase list, Canvas layer)
+    public SlidingIndicator(ListViewBase list, Canvas layer, double height = 16)
     {
+        _bar.Height = height;
         _list = list;
         _layer = layer;
         _bar.Fill = ThemeManager.AccentBrush;

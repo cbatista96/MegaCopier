@@ -1,4 +1,4 @@
-﻿using MegaCopier.App.Controls;
+using MegaCopier.App.Controls;
 using MegaCopier.App.Services;
 using MegaCopier.Engine.Updates;
 using Microsoft.UI.Xaml;
@@ -38,7 +38,7 @@ public sealed partial class SettingsPage
     {
         UpdatesBreadcrumb.LayoutUpdated += (_, _) => AlignBreadcrumbChevrons();
         SearchBox.SizeChanged += (_, _) => AlignUpdateHeader();
-        var content = new StackPanel { Spacing = 8 };
+        var content = new StackPanel { Spacing = 0 };
         _updateLanding = content;
         var status = new StackPanel { Spacing = 12 };
         var header = new Grid { ColumnSpacing = 20, RowSpacing = 12 };
@@ -80,7 +80,7 @@ public sealed partial class SettingsPage
         content.Children.Add(_updateMessage);
         _releaseNotes = new ReleaseNotesView();
         var historyButton = new Button { HorizontalAlignment = HorizontalAlignment.Stretch, HorizontalContentAlignment = HorizontalAlignment.Stretch,
-            Padding = new Thickness(16), Style = (Style)Application.Current.Resources["McButton"] };
+            Padding = new Thickness(16), Margin = new Thickness(0, 0, 0, 4), Style = (Style)Application.Current.Resources["McButton"] };
         var historyRow = new Grid { ColumnSpacing = 12 };
         historyRow.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
         historyRow.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
@@ -130,7 +130,7 @@ public sealed partial class SettingsPage
         var dismiss = new HyperlinkButton { Content = L.Get("Updates_Dismiss"), HorizontalAlignment = HorizontalAlignment.Left };
         dismiss.Click += (_, _) => _app.Updates?.Dismiss();
         content.Children.Add(dismiss);
-        _updateHistory = new StackPanel { Spacing = 14 };
+        _updateHistory = new StackPanel { Spacing = 4 };
         _updateVersionPage = new StackPanel { Spacing = 14 };
         _historyNotes = new ReleaseNotesView(); _updateVersionPage.Children.Add(UpdateCard(_historyNotes));
         Sec_Updates.Children.Add(content); Sec_Updates.Children.Add(_updateHistory); Sec_Updates.Children.Add(_updateVersionPage);
@@ -245,43 +245,67 @@ public sealed partial class SettingsPage
         if (_historyLanguage == language) return;
         _historyLanguage = language;
         _updateHistory.Children.Clear();
-        foreach (var version in ReleaseNotes.History(updates.HistoryText, updates.Current))
+        var versions = ReleaseNotes.History(updates.HistoryText, updates.Current);
+        int shown = 0;
+        var moreLabel = new TextBlock { VerticalAlignment = VerticalAlignment.Center };
+        var more = new Button
         {
-            var stack = new StackPanel { Spacing = 8, VerticalAlignment = VerticalAlignment.Center };
-            var title = UpdateText("Updates_History");
-            title.FontSize = 16;
-            title.FontWeight = Microsoft.UI.Text.FontWeights.SemiBold;
-            title.Text = "MegaCopier " + version.Version;
-            stack.Children.Add(title);
-            if (version.Version == updates.Current.ToString()) stack.Children.Add(UpdateText("Updates_InstalledMarker", "McSecondary"));
-            if (version.Date.Length > 0) stack.Children.Add(new TextBlock { Text = version.Date, Style = (Style)Application.Current.Resources["McSecondary"] });
-            var row = new Grid { ColumnSpacing = 16, RowSpacing = 8 };
-            row.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
-            row.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
-            row.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-            row.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-            row.Children.Add(stack);
-            var action = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 12, HorizontalAlignment = HorizontalAlignment.Right, VerticalAlignment = VerticalAlignment.Center };
-            var label = UpdateText("Updates_ViewChangelog"); label.MaxWidth = 230; label.VerticalAlignment = VerticalAlignment.Center; label.TextLineBounds = TextLineBounds.Tight;
-            label.Foreground = Theming.ThemeManager.AccentBrush; action.Children.Add(label);
-            var arrow = new McIcon { Glyph = "\uE76C", FontSize = 14, VerticalAlignment = VerticalAlignment.Center };
-            action.Children.Add(arrow); Grid.SetColumn(action, 1); row.Children.Add(action);
-            row.SizeChanged += (_, e) =>
+            HorizontalAlignment = HorizontalAlignment.Center,
+            Margin = new Thickness(0, 4, 0, 8),
+            Style = (Style)Application.Current.Resources["McButton"],
+            Content = new StackPanel
             {
-                bool compact = e.NewSize.Width < 500;
-                Grid.SetRow(action, compact ? 1 : 0); Grid.SetColumn(action, compact ? 0 : 1); Grid.SetColumnSpan(action, compact ? 2 : 1);
-            };
-            var button = new Button { Content = row, Padding = new Thickness(16), HorizontalAlignment = HorizontalAlignment.Stretch,
-                HorizontalContentAlignment = HorizontalAlignment.Stretch, Style = (Style)Application.Current.Resources["McButton"] };
-            AutomationProperties.SetName(button, "MegaCopier " + version.Version + " · " + L.Get("Updates_ViewChangelog"));
-            button.Click += (_, _) =>
+                Orientation = Orientation.Horizontal, Spacing = 8,
+                Children = { moreLabel, new McIcon { Glyph = "\uE70D", FontSize = 12, VerticalAlignment = VerticalAlignment.Center } },
+            },
+        };
+        void LoadNext()
+        {
+            foreach (var version in versions.Skip(shown).Take(10))
             {
-                _historyVersion = "MegaCopier " + version.Version;
-                ShowHistoryNotes(version.Notes, "v" + version.Version);
-                SetUpdateView(2);
-            };
-            _updateHistory.Children.Add(button);
+                var stack = new StackPanel { Spacing = 8, VerticalAlignment = VerticalAlignment.Center };
+                var title = UpdateText("Updates_History");
+                title.FontSize = 16;
+                title.FontWeight = Microsoft.UI.Text.FontWeights.SemiBold;
+                title.Text = "MegaCopier " + version.Version;
+                stack.Children.Add(title);
+                if (version.Version == updates.Current.ToString()) stack.Children.Add(UpdateText("Updates_InstalledMarker", "McSecondary"));
+                if (version.Date.Length > 0) stack.Children.Add(new TextBlock { Text = version.Date, Style = (Style)Application.Current.Resources["McSecondary"] });
+                var row = new Grid { ColumnSpacing = 16 };
+                row.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+                row.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+                row.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+                row.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+                row.Children.Add(stack);
+                var action = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 12, HorizontalAlignment = HorizontalAlignment.Right, VerticalAlignment = VerticalAlignment.Center };
+                var label = UpdateText("Updates_ViewChangelog"); label.MaxWidth = 230; label.VerticalAlignment = VerticalAlignment.Center; label.TextLineBounds = TextLineBounds.Tight;
+                label.Foreground = Theming.ThemeManager.AccentBrush; action.Children.Add(label);
+                var arrow = new McIcon { Glyph = "\uE76C", FontSize = 14, VerticalAlignment = VerticalAlignment.Center };
+                action.Children.Add(arrow); Grid.SetColumn(action, 1); row.Children.Add(action);
+                row.SizeChanged += (_, e) =>
+                {
+                    bool compact = e.NewSize.Width < 500;
+                    row.RowSpacing = compact ? 8 : 0;
+                    Grid.SetRow(action, compact ? 1 : 0); Grid.SetColumn(action, compact ? 0 : 1); Grid.SetColumnSpan(action, compact ? 2 : 1);
+                };
+                var button = new Button { Content = row, Padding = new Thickness(16), HorizontalAlignment = HorizontalAlignment.Stretch,
+                    HorizontalContentAlignment = HorizontalAlignment.Stretch, VerticalContentAlignment = VerticalAlignment.Center,
+                    Style = (Style)Application.Current.Resources["McButton"] };
+                AutomationProperties.SetName(button, "MegaCopier " + version.Version + " · " + L.Get("Updates_ViewChangelog"));
+                button.Click += (_, _) =>
+                {
+                    _historyVersion = "MegaCopier " + version.Version;
+                    ShowHistoryNotes(version.Notes, "v" + version.Version);
+                    SetUpdateView(2);
+                };
+                _updateHistory.Children.Insert(shown++, button);
+            }
+            moreLabel.Text = L.F("Gallery_More", Math.Min(10, versions.Count - shown));
+            more.Visibility = shown < versions.Count ? Visibility.Visible : Visibility.Collapsed;
         }
+        more.Click += (_, _) => LoadNext();
+        _updateHistory.Children.Add(more);
+        LoadNext();
     }
 
     private void ShowHistoryNotes(string markdown, string tag)
@@ -292,10 +316,7 @@ public sealed partial class SettingsPage
     private void AlignUpdateHeader()
     {
         if (Sec_Updates.Visibility != Visibility.Visible || UpdatesBreadcrumb.Visibility != Visibility.Visible) return;
-        // El buscador y la cabecera parten de la misma fila: centrar ambos en su altura original,
-        // sin desplazar hacia abajo el título para dar cabida a la ruta de navegación.
-        double searchHeight = SearchBox.ActualHeight > 0 ? SearchBox.ActualHeight : 32;
-        SectionHeader.Margin = new Thickness(24, NavPane.Padding.Top + (searchHeight - 44) / 2, 24, 10);
+        SectionHeader.Margin = new Thickness(SectionHeader.Margin.Left, 6, SectionHeader.Margin.Right, 10);
     }
 
     private void AlignBreadcrumbChevrons()
@@ -318,9 +339,11 @@ public sealed partial class SettingsPage
         if (Sec_Updates.Visibility == Visibility.Visible)
         {
             SectionTitle.Text = L.Get("Section_Updates");
-            SectionTitle.Visibility = Visibility.Collapsed;
-            SectionHeader.Height = 44;
-            UpdatesBreadcrumb.Visibility = Visibility.Visible;
+            SectionTitle.Visibility = view == 0 ? Visibility.Visible : Visibility.Collapsed;
+            SectionTitle.TextLineBounds = TextLineBounds.Full;
+            if (view == 0) SectionHeader.ClearValue(HeightProperty);
+            else SectionHeader.Height = 44;
+            UpdatesBreadcrumb.Visibility = view == 0 ? Visibility.Collapsed : Visibility.Visible;
             AlignUpdateHeader();
             UpdatesBreadcrumb.ItemsSource = view == 0 ? new string[] { L.Get("Section_Updates") } : view == 1
                 ? new string[] { L.Get("Section_Updates"), L.Get("Updates_History") }

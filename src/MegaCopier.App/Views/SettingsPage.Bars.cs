@@ -62,16 +62,17 @@ public sealed partial class SettingsPage
             return;
         }
 
-        var header = new Grid { ColumnSpacing = 6 };
+        var header = new Grid { ColumnSpacing = 14, Margin = new Thickness(0, 0, 0, 6) };
+        header.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
         header.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
-        header.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
-        var title = new TextBlock { Text = L.Get("Bars_Title"), Style = Res<Style>("McSection") };
-        header.Children.Add(title);
-        var info = new InfoTip { Topic = "Bars", Margin = new Thickness(0, 14, 0, 0) };
+        var heading = new StackPanel();
+        heading.Children.Add(new TextBlock { Text = L.Get("Bars_Title"), Style = Res<Style>("McStrong") });
+        heading.Children.Add(new TextBlock { Text = L.Get("Bars_Description"), Style = Res<Style>("McSecondary"), TextWrapping = TextWrapping.Wrap });
+        header.Children.Add(heading);
+        var info = new InfoTip { Topic = "Bars", VerticalAlignment = VerticalAlignment.Center };
         Grid.SetColumn(info, 1);
         header.Children.Add(info);
         BarsHost.Children.Add(header);
-        BarsHost.Children.Add(new TextBlock { Text = L.Get("Bars_Description"), Style = Res<Style>("McSecondary"), TextWrapping = TextWrapping.Wrap, Margin = new Thickness(2, -2, 0, 4) });
 
         // Qué barra se edita.
         var roles = new SelectorBar();
@@ -89,7 +90,12 @@ public sealed partial class SettingsPage
             }
         };
         AutomationProperties.SetName(roles, L.Get("Bars_Which"));
-        BarsHost.Children.Add(roles);
+        var roleHost = new Grid();
+        roleHost.Children.Add(roles);
+        var indicatorLayer = new Canvas { IsHitTestVisible = false };
+        roleHost.Children.Add(indicatorLayer);
+        _ = new TabSlidingIndicator(roles, indicatorLayer);
+        BarsHost.Children.Add(roleHost);
 
         // Vista previa grande con los estados.
         _barPreview = new FlowBar { IsActive = true, Value = PreviewValue, Margin = new Thickness(0, 6, 0, 0) };
@@ -324,7 +330,7 @@ public sealed partial class SettingsPage
         texts.Children.Add(new TextBlock { Text = L.Get($"Bars_{topic}Description"), Style = Res<Style>("McSecondary"), TextWrapping = TextWrapping.Wrap });
         Grid.SetColumn(texts, 1);
         grid.Children.Add(texts);
-        var info = new InfoTip { Topic = "Bar" + topic };
+        var info = new InfoTip { Topic = "Bar" + topic, VerticalAlignment = VerticalAlignment.Center };
         Grid.SetColumn(info, 2);
         grid.Children.Add(info);
         AutomationProperties.SetName(control, label.Text);
@@ -333,7 +339,10 @@ public sealed partial class SettingsPage
             // Los deslizadores, debajo y a todo el ancho.
             Grid.SetRow(control, 1);
             Grid.SetColumn(control, 1);
-            Grid.SetColumnSpan(control, 3);
+            Grid.SetColumnSpan(control, 2);
+            Grid.SetColumn(info, 3);
+            Grid.SetRowSpan(info, 2);
+            Grid.SetRowSpan((FrameworkElement)grid.Children[0], 2);
         }
         else
         {

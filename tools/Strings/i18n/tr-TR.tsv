@@ -1,4 +1,4 @@
-﻿clave	texto
+clave	texto
 JobsSection.Text	Kopyalamalar
 SettingsSection.Text	Ayarlar
 FinishButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Tüm kopyalamalar bitince ne yapılsın
@@ -215,7 +215,7 @@ Panel_File.Text	Dosya
 Panel_OpenFolder.Text	Klasörü aç
 Panel_Pause.Text	Duraklat
 Panel_Skip.Text	Atla
-Panel_Stop.Text	Durdur
+Panel_Stop.Text	İptal
 Panel_More	Daha fazla
 Panel_Less	Daha az
 Priority_Low.Content	Düşük
@@ -1457,7 +1457,7 @@ MinimizeButton_Tray.Content	Bildirim alanına
 Settings_TrayProgressTitle.Text	Her kopyalamanın ilerlemesi bildirim alanında
 Settings_TrayProgressDescription.Text	Süren her kopyalama için yüzdesi ve yükselen bir çubuğu olan bir simge. Bitince kendiliğinden kaybolur. Tıklayınca kopyalama açılır.
 Tray_JobPause	Duraklat
-Tray_JobStop	Durdur
+Tray_JobStop	İptal
 Jobs_Archive	Geçmişe arşivle
 Jobs_ArchiveKey	Del
 Jobs_Delete	Sil (geçmişten de)
@@ -1594,3 +1594,7 @@ Installer_StartMenu	Başlat menüsünde kısayol oluştur
 Installer_Taskbar	Görev çubuğuna sabitlemek için kısayol hazırla (Windows’ta sağ tıklayın)
 Settings_CustomSounds.Text	Sesleri özelleştir
 Settings_FastPaths.PlaceholderText	C:, D:\Veriler
+
+Rules_Synchronization.Text	Eşitleme
+Rules_SecurityTitle.Text	Güvenlik
+Job_StateNeedsAdministrator	Yönetici izni gerekiyor

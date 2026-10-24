@@ -1,4 +1,4 @@
-﻿clave	texto
+clave	texto
 JobsSection.Text	복사
 SettingsSection.Text	설정
 FinishButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	모든 복사가 끝나면 할 일
@@ -215,7 +215,7 @@ Panel_File.Text	파일
 Panel_OpenFolder.Text	폴더 열기
 Panel_Pause.Text	일시 중지
 Panel_Skip.Text	건너뛰기
-Panel_Stop.Text	중지
+Panel_Stop.Text	취소
 Panel_More	자세히
 Panel_Less	간단히
 Priority_Low.Content	낮음
@@ -1457,7 +1457,7 @@ MinimizeButton_Tray.Content	알림 영역으로
 Settings_TrayProgressTitle.Text	알림 영역에 각 복사의 진행률 표시
 Settings_TrayProgressDescription.Text	진행 중인 복사마다 비율과 올라가는 막대가 있는 아이콘을 하나씩 표시합니다. 끝나면 저절로 사라집니다. 클릭하면 해당 복사를 엽니다.
 Tray_JobPause	일시 중지
-Tray_JobStop	중지
+Tray_JobStop	취소
 Jobs_Archive	기록에 보관
 Jobs_ArchiveKey	Del
 Jobs_Delete	삭제(기록에서도)
@@ -1594,3 +1594,7 @@ Installer_StartMenu	시작 메뉴 바로 가기 만들기
 Installer_Taskbar	작업 표시줄에 고정할 바로 가기 준비(Windows에서 마우스 오른쪽 클릭)
 Settings_CustomSounds.Text	소리 사용자 지정
 Settings_FastPaths.PlaceholderText	C:, D:\데이터
+
+Rules_Synchronization.Text	동기화
+Rules_SecurityTitle.Text	보안
+Job_StateNeedsAdministrator	관리자 권한이 필요합니다

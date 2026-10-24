@@ -6,7 +6,7 @@
     xmlns:c="using:MegaCopier.App.Controls"
     xmlns:local="using:MegaCopier.App.Views">
 
-    <ScrollViewer>
+    <ScrollViewer Background="Transparent">
         <StackPanel Spacing="8">
             <InfoBar x:Name="RunningInfo" x:Uid="Options_RunningInfo" Severity="Informational" IsClosable="False" IsOpen="False" />
 
@@ -34,7 +34,7 @@
                 </Grid>
             </Border>
 
-            <Grid x:Name="OptionsGrid" ColumnSpacing="24" RowSpacing="16">
+            <Grid x:Name="OptionsGrid" ColumnSpacing="8" RowSpacing="8">
                 <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -43,7 +43,7 @@
                 </Grid.ColumnDefinitions>
 
                 <!-- Qué se copia -->
-                <StackPanel x:Name="WhatColumn" Spacing="2">
+                <Border x:Name="WhatCard" Style="{StaticResource McCard}"><StackPanel x:Name="WhatColumn" Spacing="2">
                     <StackPanel Orientation="Horizontal" Spacing="2" Margin="0,0,0,6"><TextBlock x:Uid="Options_Transfer" Style="{StaticResource McStrong}" VerticalAlignment="Center" /><c:InfoTip Topic="WhatCopy" Margin="0,-6,0,-6" /></StackPanel>
                     <StackPanel Orientation="Horizontal" Spacing="6">
                         <c:McIcon VerticalAlignment="Center" Glyph="&#xE8B7;" FontSize="14" Foreground="{StaticResource McWarningBrush}" />
@@ -60,10 +60,10 @@
                     <CheckBox x:Name="AclBox" x:Uid="Options_Acl" Click="Changed" />
                     <CheckBox x:Name="OwnerBox" x:Uid="Options_Owner" Click="Changed" />
                     <CheckBox x:Name="AuditBox" x:Uid="Options_Audit" Click="Changed" />
-                </StackPanel>
+                </StackPanel></Border>
 
                 <!-- Cómo se copia -->
-                <StackPanel x:Name="HowColumn" Grid.Column="1" Spacing="8">
+                <Border x:Name="HowCard" Style="{StaticResource McCard}"><StackPanel x:Name="HowColumn" Spacing="8">
                     <StackPanel Orientation="Horizontal" Spacing="2"><TextBlock x:Uid="Options_TransferOptions" Style="{StaticResource McStrong}" VerticalAlignment="Center" /><c:InfoTip Topic="Transfer" Margin="0,-6,0,-6" /></StackPanel>
                     <ComboBox x:Name="ModeBox" x:Uid="Options_Mode" HorizontalAlignment="Stretch" SelectionChanged="Changed">
                         <ComboBoxItem x:Uid="Mode_Copy" />
@@ -101,17 +101,17 @@
                     <CheckBox x:Name="VerifyBox" x:Uid="Options_Verify" Click="Changed" />
                     <CheckBox x:Name="VerifySkippedBox" x:Uid="Options_VerifySkipped" Click="Changed" />
                     <CheckBox x:Name="CacheBox" x:Uid="Options_SystemCache" Click="Changed" />
-                </StackPanel>
+                </StackPanel></Border>
 
                 <!-- Al terminar -->
-                <StackPanel x:Name="FinishColumn" Grid.Column="2" Spacing="8">
+                <Border x:Name="FinishCard" Style="{StaticResource McCard}"><StackPanel x:Name="FinishColumn" Spacing="8">
                     <StackPanel Orientation="Horizontal" Spacing="2"><TextBlock x:Uid="Options_OnFinish" Style="{StaticResource McStrong}" VerticalAlignment="Center" /><c:InfoTip Topic="OnFinish" Margin="0,-6,0,-6" /></StackPanel>
                     <CheckBox x:Name="ChecksumBox" x:Uid="Options_SaveChecksum" Click="Changed" />
                     <CheckBox x:Name="ReportBox" x:Uid="Options_ExportReport" Click="Changed" />
                     <StackPanel Orientation="Horizontal" Spacing="2"><TextBlock x:Uid="Options_Scripts" Style="{StaticResource McSecondary}" VerticalAlignment="Center" /><c:InfoTip Topic="Scripts" Margin="0,-6,0,-6" /></StackPanel>
                     <TextBox x:Name="ScriptsBox" AcceptsReturn="True" TextWrapping="NoWrap" MinHeight="96" FontFamily="Consolas" LostFocus="Changed" />
                     <TextBlock x:Uid="Options_ScriptsHelp" Style="{StaticResource McSecondary}" TextWrapping="Wrap" />
-                </StackPanel>
+                </StackPanel></Border>
             </Grid>
 
             <local:RulesEditor x:Name="Rules" Margin="0,8,0,0" />
@@ -123,15 +123,15 @@
                         <c:McIcon VerticalAlignment="Center" Glyph="&#xE823;" FontSize="14" Accent="True" />
                         <TextBlock x:Uid="Schedule_Title" Style="{StaticResource McStrong}" />
                     </StackPanel>
-                    <StackPanel x:Name="ScheduleRow" Orientation="Horizontal" Spacing="8">
+                    <Grid x:Name="ScheduleRow" ColumnSpacing="8" RowSpacing="8"><Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions><Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                         <CalendarDatePicker x:Name="ScheduleDate" MinWidth="160" />
                         <TimePicker x:Name="ScheduleTime" ClockIdentifier="24HourClock" />
-                        <Button Style="{StaticResource McAccentButton}" Click="Schedule_Click"><TextBlock x:Uid="Schedule_Set" /></Button>
-                        <Button Style="{StaticResource McButton}" Click="StartNow_Click"><TextBlock x:Uid="Schedule_Now" /></Button>
-                    </StackPanel>
+                        <Button x:Name="ScheduleSetButton" Style="{StaticResource McAccentButton}" Click="Schedule_Click"><TextBlock x:Uid="Schedule_Set" /></Button>
+                        <Button x:Name="StartNowButton" Style="{StaticResource McButton}" Click="StartNow_Click"><TextBlock x:Uid="Schedule_Now" /></Button>
+                    </Grid>
                     <TextBlock x:Name="ScheduleInfo" Style="{StaticResource McSecondary}" />
                     <TextBlock x:Uid="Task_Header" Style="{StaticResource McSecondary}" TextWrapping="Wrap" Margin="0,6,0,0" />
-                    <StackPanel x:Name="TaskRow" Orientation="Horizontal" Spacing="8">
+                    <Grid x:Name="TaskRow" ColumnSpacing="8" RowSpacing="8"><Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                         <TextBox x:Name="TaskNameBox" x:Uid="Task_Name" MinWidth="200" />
                         <ComboBox x:Name="TaskFrequencyBox" MinWidth="150" SelectedIndex="1">
                             <ComboBoxItem x:Uid="Task_Once" />
@@ -139,8 +139,8 @@
                             <ComboBoxItem x:Uid="Task_Weekly" />
                             <ComboBoxItem x:Uid="Task_Monthly" />
                         </ComboBox>
-                        <Button Style="{StaticResource McButton}" Click="SaveTask_Click"><TextBlock x:Uid="Task_Save" /></Button>
-                    </StackPanel>
+                        <Button x:Name="SaveTaskButton" Style="{StaticResource McButton}" Click="SaveTask_Click"><TextBlock x:Uid="Task_Save" /></Button>
+                    </Grid>
                     <TextBlock x:Name="TaskInfo" Style="{StaticResource McSecondary}" TextWrapping="Wrap" />
                 </StackPanel>
             </Border>

@@ -227,12 +227,39 @@ public sealed partial class CopyEngine
             request = request with { Sources = pending };
         }
 
-        var plan = request.Sources.Count > 0 ? CopyPlanner.Build(request.Sources, request.Destination, _options.Filter, _options.Links) : new CopyPlan([], [], [], []);
+        if (_options.DuplicateInPlace)
+        {
+            if (_options.Move) throw new ArgumentException("An in-place duplicate cannot move its source.");
+            var names = new Dictionary<string, string>(request.RenamedFolders, StringComparer.OrdinalIgnoreCase);
+            var reserved = new HashSet<string>(names.Values, StringComparer.OrdinalIgnoreCase);
+            string parent = Path.TrimEndingDirectorySeparator(Path.GetFullPath(request.Destination));
+            foreach (string raw in request.Sources)
+            {
+                string source = Path.TrimEndingDirectorySeparator(Path.GetFullPath(raw));
+                if (names.ContainsKey(source) || !string.Equals(Path.GetDirectoryName(source), parent, StringComparison.OrdinalIgnoreCase)) continue;
+                bool folder = Directory.Exists(source);
+                string extension = folder ? "" : Path.GetExtension(source);
+                string stem = folder ? Path.GetFileName(source) : Path.GetFileNameWithoutExtension(source);
+                for (int n = 2; ; n++)
+                {
+                    string name = $"{stem} ({n}){extension}";
+                    string target = Path.Combine(parent, name);
+                    if (reserved.Contains(name) || Path.Exists(target)) continue;
+                    names[source] = name;
+                    reserved.Add(name);
+                    break;
+                }
+            }
+            request = request with { RenamedFolders = names };
+            FolderDecided?.Invoke(_options.Conflict, names);
+        }
+        var plan = request.Sources.Count > 0 ? CopyPlanner.Build(request.Sources, request.Destination, _options.Filter, _options.Links,
+            _options.DuplicateInPlace ? request.RenamedFolders : null, _options.BackupMode) : new CopyPlan([], [], [], []);
 
         // Lo sumado a esta copia hacia otras carpetas del disco va detrás de lo suyo.
         foreach (var group in extra.GroupBy(e => e.Value, StringComparer.OrdinalIgnoreCase))
         {
-            var more = CopyPlanner.Build([.. group.Select(e => e.Key)], group.Key, _options.Filter, _options.Links);
+            var more = CopyPlanner.Build([.. group.Select(e => e.Key)], group.Key, _options.Filter, _options.Links, backupMode: _options.BackupMode);
             plan = new CopyPlan([.. plan.Files, .. more.Files], [.. plan.Directories, .. more.Directories], [.. plan.Links, .. more.Links], [.. plan.Warnings, .. more.Warnings]);
         }
         foreach (string warning in plan.Warnings)
@@ -241,16 +268,16 @@ public sealed partial class CopyEngine
         }
 
         var excluded = new HashSet<string>(request.Excluded, StringComparer.OrdinalIgnoreCase);
-        if (_options.FolderConflict == FolderConflictPolicy.Skip && !request.Resumed)
+        if (_options.FolderConflict == FolderConflictPolicy.Skip && !request.Resumed && !_options.DuplicateInPlace)
         {
             plan = SkipExistingFolders(request, plan);
         }
 
-        if (request.RenamedFolders.Count > 0)
+        if (!_options.DuplicateInPlace && request.RenamedFolders.Count > 0)
         {
             plan = RenameFolders(plan, request.RenamedFolders);
         }
-        else if (_options.FolderConflict == FolderConflictPolicy.Ask && !request.Resumed && FolderResolver is not null && !_options.Unattended && !_options.DryRun)
+        else if (!_options.DuplicateInPlace && _options.FolderConflict == FolderConflictPolicy.Ask && !request.Resumed && FolderResolver is not null && !_options.Unattended && !_options.DryRun)
         {
             plan = AskExistingFolders(request, plan, cancellationToken);
         }
@@ -432,7 +459,7 @@ public sealed partial class CopyEngine
         CopyPlan plan;
         try
         {
-            plan = CopyPlanner.Build(request.Sources, request.Destination);
+            plan = CopyPlanner.Build(request.Sources, request.Destination, targetNames: request.RenamedFolders);
             foreach (var group in request.ExtraTargets.GroupBy(e => e.Value, StringComparer.OrdinalIgnoreCase))
             {
                 plan = plan with { Files = [.. plan.Files, .. CopyPlanner.Build([.. group.Select(e => e.Key)], group.Key).Files] };

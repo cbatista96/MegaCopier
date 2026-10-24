@@ -1,7 +1,10 @@
 namespace MegaCopier.Shell;
 
 /// <summary>Un arrastre con el botón izquierdo entre ventanas del Explorador que MegaCopier se queda.</summary>
-public sealed record DragRequest(IReadOnlyList<string> Sources, string Destination, bool Move);
+public sealed record DragRequest(IReadOnlyList<string> Sources, string Destination, bool Move)
+{
+    public bool DuplicateInPlace { get; init; }
+}
 
 /// <summary>Qué hay bajo el puntero al soltar.</summary>
 public enum DropSpot
@@ -105,13 +108,13 @@ public static class DragDecision
                 return "no se sabe qué hay bajo el puntero";
         }
 
-        // Soltar en la carpeta de la que vienen no hace nada (en una búsqueda o en Inicio el origen no es una carpeta:
-        // se mira la de cada elemento).
+        // En la carpeta de origen solo Ctrl hace una copia con nombre nuevo; sin Ctrl no se traslada nada.
+        // En una búsqueda o en Inicio se comprueba la carpeta de cada elemento.
         destination = Path.TrimEndingDirectorySeparator(destination);
         bool sameFolder = sourceFolder is not null
             ? string.Equals(destination, Path.TrimEndingDirectorySeparator(sourceFolder), StringComparison.OrdinalIgnoreCase)
             : sources.All(s => string.Equals(destination, Path.TrimEndingDirectorySeparator(Path.GetDirectoryName(Path.TrimEndingDirectorySeparator(s)) ?? ""), StringComparison.OrdinalIgnoreCase));
-        if (sameFolder)
+        if (sameFolder && !ctrl)
         {
             return "se suelta en la misma carpeta";
         }
@@ -133,7 +136,7 @@ public static class DragDecision
 
         // Como el Explorador: en la misma unidad se mueve; entre unidades se copia. Ctrl copia y Mayúsculas mueve.
         bool move = shift || (!ctrl && SameVolume(sources[0], destination));
-        request = new DragRequest(sources, destination, move);
+        request = new DragRequest(sources, destination, move) { DuplicateInPlace = sameFolder && ctrl };
         return null;
     }
 

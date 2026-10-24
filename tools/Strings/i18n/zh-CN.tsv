@@ -1,4 +1,4 @@
-﻿clave	texto
+clave	texto
 JobsSection.Text	复制任务
 SettingsSection.Text	设置
 FinishButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	所有复制完成后要做什么
@@ -215,7 +215,7 @@ Panel_File.Text	文件
 Panel_OpenFolder.Text	打开文件夹
 Panel_Pause.Text	暂停
 Panel_Skip.Text	跳过
-Panel_Stop.Text	停止
+Panel_Stop.Text	取消
 Panel_More	更多
 Panel_Less	更少
 Priority_Low.Content	低
@@ -1457,7 +1457,7 @@ MinimizeButton_Tray.Content	到通知区域
 Settings_TrayProgressTitle.Text	在通知区域显示每个复制的进度
 Settings_TrayProgressDescription.Text	每个进行中的复制一个图标，显示百分比和上升的进度条。完成后自动消失。单击可打开该复制。
 Tray_JobPause	暂停
-Tray_JobStop	停止
+Tray_JobStop	取消
 Jobs_Archive	归档到历史记录
 Jobs_ArchiveKey	Del
 Jobs_Delete	删除（同时从历史记录中删除）
@@ -1594,3 +1594,7 @@ Installer_StartMenu	创建开始菜单快捷方式
 Installer_Taskbar	准备可固定到任务栏的快捷方式（在 Windows 中右键单击）
 Settings_CustomSounds.Text	自定义声音
 Settings_FastPaths.PlaceholderText	C:, D:\数据
+
+Rules_Synchronization.Text	同步
+Rules_SecurityTitle.Text	安全
+Job_StateNeedsAdministrator	需要管理员权限

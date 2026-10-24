@@ -1,4 +1,4 @@
-﻿clave	texto
+clave	texto
 JobsSection.Text	Kopiowania
 SettingsSection.Text	Ustawienia
 FinishButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Co zrobić, gdy wszystkie kopiowania się skończą
@@ -215,7 +215,7 @@ Panel_File.Text	Plik
 Panel_OpenFolder.Text	Otwórz folder
 Panel_Pause.Text	Wstrzymaj
 Panel_Skip.Text	Pomiń
-Panel_Stop.Text	Zatrzymaj
+Panel_Stop.Text	Anuluj
 Panel_More	Więcej
 Panel_Less	Mniej
 Priority_Low.Content	Niski
@@ -1457,7 +1457,7 @@ MinimizeButton_Tray.Content	Do zasobnika
 Settings_TrayProgressTitle.Text	Postęp każdego kopiowania w zasobniku
 Settings_TrayProgressDescription.Text	Jedna ikona na każde trwające kopiowanie, z procentem i rosnącym paskiem. Po zakończeniu znika sama. Kliknięcie otwiera kopiowanie.
 Tray_JobPause	Wstrzymaj
-Tray_JobStop	Zatrzymaj
+Tray_JobStop	Anuluj
 Jobs_Archive	Archiwizuj w historii
 Jobs_ArchiveKey	Del
 Jobs_Delete	Usuń (także z historii)
@@ -1594,3 +1594,7 @@ Installer_StartMenu	Utwórz skrót w menu Start
 Installer_Taskbar	Przygotuj skrót do przypięcia do paska zadań (prawy przycisk w Windows)
 Settings_CustomSounds.Text	Dostosuj dźwięki
 Settings_FastPaths.PlaceholderText	C:, D:\Dane
+
+Rules_Synchronization.Text	Synchronizacja
+Rules_SecurityTitle.Text	Bezpieczeństwo
+Job_StateNeedsAdministrator	Wymagane uprawnienia administratora

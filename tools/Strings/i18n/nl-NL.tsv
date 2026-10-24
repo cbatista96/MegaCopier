@@ -1,4 +1,4 @@
-﻿clave	texto
+clave	texto
 JobsSection.Text	Kopieën
 SettingsSection.Text	Instellingen
 FinishButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Wat te doen als alle kopieën klaar zijn
@@ -215,7 +215,7 @@ Panel_File.Text	Bestand
 Panel_OpenFolder.Text	Map openen
 Panel_Pause.Text	Pauzeren
 Panel_Skip.Text	Overslaan
-Panel_Stop.Text	Stoppen
+Panel_Stop.Text	Annuleren
 Panel_More	Meer
 Panel_Less	Minder
 Priority_Low.Content	Laag
@@ -1457,7 +1457,7 @@ MinimizeButton_Tray.Content	Naar het systeemvak
 Settings_TrayProgressTitle.Text	Voortgang van elke kopie in het systeemvak
 Settings_TrayProgressDescription.Text	Eén pictogram per lopende kopie, met het percentage en een balk die stijgt. Als hij klaar is, verdwijnt het vanzelf. Klik erop om de kopie te openen.
 Tray_JobPause	Pauzeren
-Tray_JobStop	Stoppen
+Tray_JobStop	Annuleren
 Jobs_Archive	Archiveren in geschiedenis
 Jobs_ArchiveKey	Del
 Jobs_Delete	Verwijderen (ook uit geschiedenis)
@@ -1594,3 +1594,7 @@ Installer_StartMenu	Een snelkoppeling in het startmenu maken
 Installer_Taskbar	Snelkoppeling voorbereiden voor de taakbalk (rechtsklik in Windows)
 Settings_CustomSounds.Text	Geluiden aanpassen
 Settings_FastPaths.PlaceholderText	C:, D:\Gegevens
+
+Rules_Synchronization.Text	Synchronisatie
+Rules_SecurityTitle.Text	Beveiliging
+Job_StateNeedsAdministrator	Beheerdersmachtiging vereist

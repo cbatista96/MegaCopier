@@ -74,6 +74,18 @@ public sealed partial class DragDecisionTests
     }
 
     [Fact]
+    public void CtrlInTheSameFolderCreatesAnInPlaceDuplicate()
+    {
+        var request = Request(target: @"C:\Users\Ana\Fotos\", ctrl: true);
+        Assert.True(request.DuplicateInPlace);
+        Assert.False(request.Move);
+        Assert.False(Request(ctrl: true).DuplicateInPlace);
+        Assert.NotNull(Decide(target: @"C:\Users\Ana\Fotos", shift: true));
+        Assert.Null(DragDecision.Decide(Photos, null, @"C:\Users\Ana\Fotos", DropSpot.Background, null, [], true, false, false, out request));
+        Assert.True(request!.DuplicateInPlace);
+    }
+
+    [Fact]
     public void FromSearchResultsOrHomeTheFolderOfEachItemCounts()
     {
         // En una búsqueda o en Inicio el origen no es una carpeta: vale, salvo si se suelta donde ya están.

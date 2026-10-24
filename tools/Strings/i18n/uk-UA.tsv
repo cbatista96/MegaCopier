@@ -1,4 +1,4 @@
-﻿clave	texto
+clave	texto
 JobsSection.Text	Копіювання
 SettingsSection.Text	Налаштування
 FinishButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Що зробити, коли всі копіювання завершаться
@@ -215,7 +215,7 @@ Panel_File.Text	Файл
 Panel_OpenFolder.Text	Відкрити папку
 Panel_Pause.Text	Пауза
 Panel_Skip.Text	Пропустити
-Panel_Stop.Text	Зупинити
+Panel_Stop.Text	Скасувати
 Panel_More	Більше
 Panel_Less	Менше
 Priority_Low.Content	Низький
@@ -1457,7 +1457,7 @@ MinimizeButton_Tray.Content	В область сповіщень
 Settings_TrayProgressTitle.Text	Прогрес кожного копіювання в області сповіщень
 Settings_TrayProgressDescription.Text	По значку на кожне поточне копіювання, з відсотком і смугою, що росте. Після завершення зникає сам. Клацання відкриває копіювання.
 Tray_JobPause	Призупинити
-Tray_JobStop	Зупинити
+Tray_JobStop	Скасувати
 Jobs_Archive	Перенести в журнал
 Jobs_ArchiveKey	Del
 Jobs_Delete	Видалити (і з журналу)
@@ -1594,3 +1594,7 @@ Installer_StartMenu	Створити ярлик у меню «Пуск»
 Installer_Taskbar	Підготувати ярлик для панелі завдань (клацання правою кнопкою у Windows)
 Settings_CustomSounds.Text	Налаштувати звуки
 Settings_FastPaths.PlaceholderText	C:, D:\Дані
+
+Rules_Synchronization.Text	Синхронізація
+Rules_SecurityTitle.Text	Безпека
+Job_StateNeedsAdministrator	Потрібні права адміністратора

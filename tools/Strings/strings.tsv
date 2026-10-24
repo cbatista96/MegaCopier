@@ -1,4 +1,4 @@
-﻿clave	es-ES	en-US
+clave	es-ES	en-US
 JobsSection.Text	Copias	Transfers
 SettingsSection.Text	Ajustes	Settings
 FinishButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Qué hacer cuando terminen todas las copias	What to do when all transfers finish
@@ -215,7 +215,7 @@ Panel_File.Text	Archivo	File
 Panel_OpenFolder.Text	Abrir carpeta	Open folder
 Panel_Pause.Text	Pausar	Pause
 Panel_Skip.Text	Saltar	Skip
-Panel_Stop.Text	Detener	Stop
+Panel_Stop.Text	Cancelar	Cancel
 Panel_More	Más	More
 Panel_Less	Menos	Less
 Priority_Low.Content	Baja	Low
@@ -1457,7 +1457,7 @@ MinimizeButton_Tray.Content	A la bandeja de iconos	To the tray
 Settings_TrayProgressTitle.Text	Progreso de cada copia en la bandeja	Each copy's progress in the tray
 Settings_TrayProgressDescription.Text	Un icono por cada copia en marcha, con su porcentaje y una barra que sube. Al terminar, se quita solo. Un clic la abre.	One icon for each running copy, with its percentage and a bar that rises. When it finishes, it goes away on its own. Click it to open the copy.
 Tray_JobPause	Pausar	Pause
-Tray_JobStop	Detener	Stop
+Tray_JobStop	Cancelar	Cancel
 Jobs_Archive	Archivar en el historial	Archive to history
 Jobs_ArchiveKey	Supr	Del
 Jobs_Delete	Eliminar (también del historial)	Delete (from history too)
@@ -1594,3 +1594,8 @@ Installer_StartMenu	Crear un acceso directo en el menú Inicio	Create a Start me
 Installer_Taskbar	Preparar acceso para anclar a la barra de tareas (clic derecho en Windows)	Prepare a shortcut to pin to the taskbar (right-click in Windows)
 Settings_CustomSounds.Text	Personalizar los sonidos	Customize sounds
 Settings_FastPaths.PlaceholderText	C:, D:\Datos	C:, D:\Data
+
+Rules_Synchronization.Text	Sincronización	Synchronization
+Rules_SecurityTitle.Text	Seguridad	Security
+
+Job_StateNeedsAdministrator	Necesita permisos de administrador	Administrator permission required

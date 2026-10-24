@@ -221,7 +221,7 @@
   <data name="Panel_OpenFolder.Text" xml:space="preserve"><value>Klasörü aç</value></data>
   <data name="Panel_Pause.Text" xml:space="preserve"><value>Duraklat</value></data>
   <data name="Panel_Skip.Text" xml:space="preserve"><value>Atla</value></data>
-  <data name="Panel_Stop.Text" xml:space="preserve"><value>Durdur</value></data>
+  <data name="Panel_Stop.Text" xml:space="preserve"><value>İptal</value></data>
   <data name="Panel_More" xml:space="preserve"><value>Daha fazla</value></data>
   <data name="Panel_Less" xml:space="preserve"><value>Daha az</value></data>
   <data name="Priority_Low.Content" xml:space="preserve"><value>Düşük</value></data>
@@ -1463,7 +1463,7 @@
   <data name="Settings_TrayProgressTitle.Text" xml:space="preserve"><value>Her kopyalamanın ilerlemesi bildirim alanında</value></data>
   <data name="Settings_TrayProgressDescription.Text" xml:space="preserve"><value>Süren her kopyalama için yüzdesi ve yükselen bir çubuğu olan bir simge. Bitince kendiliğinden kaybolur. Tıklayınca kopyalama açılır.</value></data>
   <data name="Tray_JobPause" xml:space="preserve"><value>Duraklat</value></data>
-  <data name="Tray_JobStop" xml:space="preserve"><value>Durdur</value></data>
+  <data name="Tray_JobStop" xml:space="preserve"><value>İptal</value></data>
   <data name="Jobs_Archive" xml:space="preserve"><value>Geçmişe arşivle</value></data>
   <data name="Jobs_ArchiveKey" xml:space="preserve"><value>Del</value></data>
   <data name="Jobs_Delete" xml:space="preserve"><value>Sil (geçmişten de)</value></data>
@@ -1599,4 +1599,7 @@
   <data name="Installer_Taskbar" xml:space="preserve"><value>Görev çubuğuna sabitlemek için kısayol hazırla (Windows’ta sağ tıklayın)</value></data>
   <data name="Settings_CustomSounds.Text" xml:space="preserve"><value>Sesleri özelleştir</value></data>
   <data name="Settings_FastPaths.PlaceholderText" xml:space="preserve"><value>C:, D:\Veriler</value></data>
+  <data name="Rules_Synchronization.Text" xml:space="preserve"><value>Eşitleme</value></data>
+  <data name="Rules_SecurityTitle.Text" xml:space="preserve"><value>Güvenlik</value></data>
+  <data name="Job_StateNeedsAdministrator" xml:space="preserve"><value>Yönetici izni gerekiyor</value></data>
 </root>

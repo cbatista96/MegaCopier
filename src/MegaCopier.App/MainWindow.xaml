@@ -18,7 +18,7 @@
         <!-- Textura del tema (madera, brasas...), debajo de todo -->
         <Image x:Name="TextureImage" Grid.RowSpan="3" Stretch="UniformToFill" IsHitTestVisible="False" Visibility="Collapsed" />
 
-        <!-- Barra de título propia: icono, nombre y progreso global -->
+        <!-- Barra de tÃ­tulo propia: icono, nombre y progreso global -->
         <Grid x:Name="AppTitleBar" Height="40" Padding="14,0,140,0" ColumnSpacing="10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -38,8 +38,8 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <StackPanel x:Name="ToolButtons" Orientation="Horizontal" Spacing="2">
-                <!-- La lista de copias. Con la lista cerrada, un aviso con cuántas copias siguen activas (como el de una
-                     notificación), en la esquina del botón: no depende del tamaño del icono de cada conjunto -->
+                <!-- La lista de copias. Con la lista cerrada, un aviso con cuÃ¡ntas copias siguen activas (como el de una
+                     notificaciÃ³n), en la esquina del botÃ³n: no depende del tamaÃ±o del icono de cada conjunto -->
                 <Grid>
                     <Button x:Name="SidebarButton" x:Uid="Tool_Sidebar" Style="{StaticResource McToolButton}" Click="Sidebar_Click">
                         <c:McIcon VerticalAlignment="Center" Glyph="&#xE700;" FontSize="15" />
@@ -50,7 +50,7 @@
                         <TextBlock x:Name="SidebarBadgeText" FontSize="10" FontWeight="SemiBold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" TextLineBounds="Tight" IsTextScaleFactorEnabled="False" />
                     </Border>
                 </Grid>
-                <DropDownButton x:Name="NewTransferButton" x:Uid="Tool_NewCopy" Background="Transparent" BorderThickness="0">
+                <DropDownButton x:Name="NewTransferButton" MinHeight="34" VerticalContentAlignment="Center" x:Uid="Tool_NewCopy" Background="Transparent" BorderThickness="0">
                     <StackPanel Orientation="Horizontal" Spacing="8">
                         <c:McIcon VerticalAlignment="Center" Glyph="&#xE8C8;" FontSize="15" Accent="True" />
                         <TextBlock x:Uid="Tool_NewCopyText" Style="{StaticResource McBody}" TextLineBounds="Tight" VerticalAlignment="Center" />
@@ -63,7 +63,7 @@
                             <MenuFlyoutSubItem x:Name="CopyToMenu" x:Uid="Tool_CopyTo"><MenuFlyoutSubItem.Icon><FontIcon Glyph="&#xE734;" /></MenuFlyoutSubItem.Icon></MenuFlyoutSubItem>
                             <MenuFlyoutItem x:Uid="Tool_LoadList" Click="LoadList_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8E5;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
                             <MenuFlyoutSeparator />
-                            <!-- Otros sitios: equipos, móviles, servidores -->
+                            <!-- Otros sitios: equipos, mÃ³viles, servidores -->
                             <MenuFlyoutItem x:Uid="Tool_Send" Click="SendFiles_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE724;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
                             <MenuFlyoutSubItem x:Uid="Tool_Devices"><MenuFlyoutSubItem.Icon><FontIcon Glyph="&#xE8EA;" /></MenuFlyoutSubItem.Icon>
                                 <MenuFlyoutItem x:Uid="Tool_MtpImport" Click="MtpImport_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE896;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
@@ -71,7 +71,7 @@
                             </MenuFlyoutSubItem>
                             <MenuFlyoutItem x:Uid="Tool_Compare" Click="Compare_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8FD;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
                             <MenuFlyoutSeparator />
-                            <!-- Comprobar que todo está bien -->
+                            <!-- Comprobar que todo estÃ¡ bien -->
                             <MenuFlyoutSubItem x:Uid="Tool_Checksums"><MenuFlyoutSubItem.Icon><FontIcon Glyph="&#xE9D5;" /></MenuFlyoutSubItem.Icon>
                                 <MenuFlyoutItem x:Uid="Tool_Test" Click="TestFiles_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE9D5;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
                                 <MenuFlyoutItem x:Uid="Tool_Hash" Click="HashFiles_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8EF;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
@@ -120,7 +120,7 @@
                     <c:McIcon VerticalAlignment="Center" Glyph="&#xE946;" FontSize="15" />
                 </Button>
             </StackPanel>
-            <DropDownButton x:Name="FinishButton" x:Uid="FinishButton" Grid.Column="2" Background="Transparent" BorderThickness="0">
+            <DropDownButton x:Name="FinishButton" MinHeight="34" VerticalContentAlignment="Center" x:Uid="FinishButton" Grid.Column="2" Background="Transparent" BorderThickness="0">
                 <StackPanel Orientation="Horizontal" Spacing="8">
                     <c:McIcon VerticalAlignment="Center" x:Name="FinishIcon" Glyph="&#xE823;" FontSize="14" Accent="True" />
                     <TextBlock x:Name="FinishText" Style="{StaticResource McBody}" TextLineBounds="Tight" VerticalAlignment="Center" />
@@ -170,7 +170,7 @@
                         </Style>
                     </ListView.ItemContainerStyle>
                     <ListView.ItemTemplate>
-                        <!-- Compacta: arriba qué hace (o cuándo terminó); debajo, de dónde a dónde, con archivos y tamaño -->
+                        <!-- Compacta: arriba quÃ© hace (o cuÃ¡ndo terminÃ³); debajo, de dÃ³nde a dÃ³nde, con archivos y tamaÃ±o -->
                         <DataTemplate x:DataType="vm:JobViewModel">
                             <Grid RowSpacing="3" ColumnSpacing="8" AutomationProperties.Name="{x:Bind Title, Mode=OneWay}">
                                 <Grid.ColumnDefinitions>
@@ -218,7 +218,7 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Border x:Name="PanelCard" Margin="10,0,10,0" CornerRadius="10" Background="{StaticResource McSurfaceBrush}" BorderBrush="{StaticResource McBorderBrush}" BorderThickness="1">
-                    <!-- Al pasar de una copia a otra en la ventana pequeña, la foto de la anterior sale por un lado y la nueva
+                    <!-- Al pasar de una copia a otra en la ventana pequeÃ±a, la foto de la anterior sale por un lado y la nueva
                          entra por el otro -->
                     <Grid x:Name="PanelHost" SizeChanged="PanelHost_SizeChanged">
                         <views:CopyPanel x:Name="Panel" />
@@ -226,7 +226,7 @@
                     </Grid>
                 </Border>
 
-                <!-- Preguntas en la ventana pequeña: ocupan el sitio del panel, sin diálogos que no caben -->
+                <!-- Preguntas en la ventana pequeÃ±a: ocupan el sitio del panel, sin diÃ¡logos que no caben -->
                 <Border x:Name="QuestionCard" Margin="10,0,10,0" CornerRadius="10" Padding="16,12,16,12" Visibility="Collapsed"
                         Background="{StaticResource McSurfaceBrush}" BorderBrush="{StaticResource McAccentBrush}" BorderThickness="1">
                     <Grid RowSpacing="10">
@@ -263,6 +263,7 @@
                     <SelectorBarItem x:Name="StatusItem" x:Uid="Tab_Status"><SelectorBarItem.Icon><FontIcon Glyph="&#xE9D2;" /></SelectorBarItem.Icon></SelectorBarItem>
                     <SelectorBarItem x:Name="LogItem" x:Uid="Tab_Log"><SelectorBarItem.Icon><FontIcon Glyph="&#xE7C3;" /></SelectorBarItem.Icon></SelectorBarItem>
                 </SelectorBar>
+                <Canvas x:Name="TabIndicatorLayer" Grid.Row="2" IsHitTestVisible="False" />
 
                 <ContentControl x:Name="TabHost" Grid.Row="3" Margin="10,4,10,10" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Visibility="Collapsed">
                     <ContentControl.ContentTransitions>
@@ -302,14 +303,14 @@
             </StackPanel>
             </ScrollViewer>
 
-            <!-- Páginas superpuestas -->
+            <!-- PÃ¡ginas superpuestas -->
             <views:HistoryPage x:Name="HistoryView" Grid.ColumnSpan="2" Visibility="Collapsed" Background="Transparent" />
             <views:SettingsPage x:Name="SettingsView" Grid.ColumnSpan="2" Visibility="Collapsed" Background="Transparent" />
             <views:TimelinePage x:Name="TimelineView" Grid.ColumnSpan="2" Visibility="Collapsed" Background="Transparent" />
             <views:ComparePage x:Name="CompareView" Grid.ColumnSpan="2" Visibility="Collapsed" Background="Transparent" />
         </Grid>
 
-        <!-- Foto de la ventana antes de cambiar de tema: se desvanece sobre el tema nuevo (transición suave) -->
+        <!-- Foto de la ventana antes de cambiar de tema: se desvanece sobre el tema nuevo (transiciÃ³n suave) -->
         <Image x:Name="ThemeFade" Grid.RowSpan="3" Stretch="Fill" IsHitTestVisible="False" Visibility="Collapsed" Canvas.ZIndex="100" />
 
         <!-- Conflicto: el archivo ya existe -->
@@ -319,8 +320,8 @@
             Grid.RowSpan="3"
             Style="{StaticResource McContentDialogStyle}"
             DefaultButton="Primary">
-            <!-- Ancho y alto fijos: no crece ni encoge con la ruta o con que el archivo tenga miniatura. 496 = el máximo que
-                 cabe (ContentDialogMaxWidth 548 menos márgenes y borde). -->
+            <!-- Ancho y alto fijos: no crece ni encoge con la ruta o con que el archivo tenga miniatura. 496 = el mÃ¡ximo que
+                 cabe (ContentDialogMaxWidth 548 menos mÃ¡rgenes y borde). -->
             <StackPanel Spacing="12" Width="496">
                 <TextBlock x:Name="ConflictMessage" TextWrapping="Wrap" MaxLines="3" TextTrimming="CharacterEllipsis" MinHeight="60" />
                 <Grid ColumnSpacing="12">
@@ -371,7 +372,7 @@
             Style="{StaticResource McContentDialogStyle}"
             DefaultButton="Primary">
             <ContentDialog.Resources>
-                <!-- Con cifrado y "más tarde" desplegados no cabe en los 756 px de siempre: usa el alto de la ventana. -->
+                <!-- Con cifrado y "mÃ¡s tarde" desplegados no cabe en los 756 px de siempre: usa el alto de la ventana. -->
                 <x:Double x:Key="ContentDialogMaxHeight">1400</x:Double>
             </ContentDialog.Resources>
             <StackPanel Spacing="10" MinWidth="440" MaxWidth="520">
@@ -439,7 +440,7 @@
                 <TextBox x:Name="SendCodeBox" x:Uid="Send_Code" FontFamily="Consolas" CharacterCasing="Upper" />
             </StackPanel>
         </ContentDialog>
-        <!-- Móviles y cámaras (MTP): elegir qué copiar del dispositivo, o a qué carpeta suya copiar -->
+        <!-- MÃ³viles y cÃ¡maras (MTP): elegir quÃ© copiar del dispositivo, o a quÃ© carpeta suya copiar -->
         <ContentDialog
             x:Name="MtpDialog"
             x:Uid="MtpDialog"
@@ -465,7 +466,7 @@
             </StackPanel>
         </ContentDialog>
 
-        <!-- Contraseña (descifrar, o volver a darla tras reiniciar) -->
+        <!-- ContraseÃ±a (descifrar, o volver a darla tras reiniciar) -->
         <ContentDialog x:Name="PasswordDialog" x:Uid="PasswordDialog" Grid.RowSpan="3" Style="{StaticResource McContentDialogStyle}" DefaultButton="Primary">
             <StackPanel Spacing="8" MaxWidth="420">
                 <TextBlock x:Name="PasswordMessage" TextWrapping="Wrap" />
@@ -473,7 +474,7 @@
             </StackPanel>
         </ContentDialog>
 
-        <!-- Cuenta atrás antes de apagar, suspender... -->
+        <!-- Cuenta atrÃ¡s antes de apagar, suspender... -->
         <ContentDialog
             x:Name="FinishDialog"
             x:Uid="FinishDialog"

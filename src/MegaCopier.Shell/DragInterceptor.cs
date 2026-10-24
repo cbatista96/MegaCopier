@@ -47,11 +47,15 @@ public sealed unsafe partial class DragInterceptor : IDisposable
 
     private readonly Func<DragRequest, bool> _handler;
     private readonly HookThread _hooks;
+    private readonly HookThread _controlHooks;
+    private readonly DragControlState _controls = new();
+    private readonly Lock _cancelLock = new();
     private nint _downView;
     private bool _downTree;
     private int _downX, _downY;
     private uint _downThread;
     private bool _prefetchQueued;
+    private DragOriginProbe? _originProbe;
 
     /// <summary>Lo arrastrado, que se empieza a leer (en un hilo propio) en cuanto empieza el arrastre.</summary>
     private volatile Prefetch? _prefetch;
@@ -61,6 +65,8 @@ public sealed unsafe partial class DragInterceptor : IDisposable
     {
         _handler = handler;
         _hooks = new HookThread(WhMouseLl, &HookProc, "MegaCopier.MouseHook");
+        _controlHooks = new HookThread(13 /* WH_KEYBOARD_LL */, &ControlHookProc, "MegaCopier.DragControlHook");
+        _controlHooks.Reinstalled += _ => _controls.Reset(Pressed(0xA2), Pressed(0xA3));
         _hooks.Reinstalled += result => Traced?.Invoke($"Windows había quitado el gancho del ratón: {result}");
     }
 
@@ -76,13 +82,17 @@ public sealed unsafe partial class DragInterceptor : IDisposable
     public void Enable()
     {
         _active = this;
-        _hooks.Start();
+        _controls.Reset(Pressed(0xA2), Pressed(0xA3));
+        _controlHooks.Start();
+        try { _hooks.Start(); }
+        catch { _controlHooks.Stop(); throw; }
         ShellNamespace.WarmUpInBackground(); // por si se suelta en el panel de navegación
     }
 
     public void Disable()
     {
         _hooks.Stop();
+        lock (_cancelLock) _controlHooks.Stop();
         _downView = 0;
     }
 
@@ -140,6 +150,7 @@ public sealed unsafe partial class DragInterceptor : IDisposable
             _downThread = _downView == 0 ? 0 : Native.GetWindowThreadProcessId(_downView, out _);
             _prefetchQueued = false;
             _prefetch = null;
+            _originProbe = _downView != 0 && !_downTree ? DragOriginProbe.Start(x, y) : null;
             return false;
         }
 
@@ -168,10 +179,14 @@ public sealed unsafe partial class DragInterceptor : IDisposable
         // ¿Arrastre OLE en curso desde ese hilo del Explorador? (una selección con recuadro captura otra ventana)
         string captureClass = Native.ClassName(Native.CaptureWindow(thread));
         bool awaitDrag = captureClass != "CLIPBRDWNDCLASS";
-        if (Pressed(VkMenu) || (awaitDrag &&
-            (captureClass is not ("" or "DirectUIHWND" or "SysListView32" or "SysTreeView32") ||
-             (Math.Abs(x - _downX) < GetSystemMetrics(68 /* SM_CXDRAG */) &&
-              Math.Abs(y - _downY) < GetSystemMetrics(69 /* SM_CYDRAG */)))))
+        bool movedFar = Math.Abs(x - _downX) >= GetSystemMetrics(68 /* SM_CXDRAG */)
+            || Math.Abs(y - _downY) >= GetSystemMetrics(69 /* SM_CYDRAG */);
+        DropSpot origin = sourceTree ? DropSpot.Item : _originProbe?.Spot ?? DropSpot.Unknown;
+        _originProbe = null;
+        // Un recuadro empieza en el fondo: su "soltar" pasa inmediatamente, sin temporizador,
+        // consultas COM ni pulsaciones sintéticas. La espera solo sirve para un arrastre rápido
+        // que empezó sobre un elemento y cuyo bucle OLE aún no ha arrancado.
+        if (Pressed(VkMenu) || (awaitDrag && !DragOriginProbe.CanAwaitOle(captureClass, origin, movedFar)))
         {
             return false;
         }
@@ -448,45 +463,79 @@ public sealed unsafe partial class DragInterceptor : IDisposable
     }
 
     /// <summary>Esc para el arrastre del Explorador; true cuando ya ha soltado el ratón (el arrastre terminó).</summary>
-    private static bool CancelDrag(uint thread)
+    private bool CancelDrag(uint thread)
+    {
+        lock (_cancelLock)
+        {
+            if (Pressed(VkEscape) || !_controlHooks.IsInstalled) return false;
+            _controls.Suspended = true;
+            bool escapeDown = false;
+            try
+            {
+                // Ctrl+Esc abre Inicio. Soltar Ctrl lógicamente antes de enviar Esc;
+                // el gancho conserva su estado físico sin generar ese atajo global.
+                if (!SendKey(0xA2, up: true) || !SendKey(0xA3, up: true)) return false;
+                escapeDown = SendKey(VkEscape, up: false);
+                return escapeDown && WaitForDragCancellation(thread);
+            }
+            finally
+            {
+                if (escapeDown) SendKey(VkEscape, up: true);
+                _controls.Suspended = false;
+                // El gancho descarta estas restauraciones si el usuario ya soltó Ctrl.
+                SendKey(0xA2, up: false);
+                SendKey(0xA3, up: false);
+            }
+        }
+    }
+
+    private static bool WaitForDragCancellation(uint thread)
     {
         // Solo cuenta como cancelado si el Explorador ha soltado el ratón y sigue sin él un momento: un cambio de
         // captura pasajero no basta (si se le devolviera el botón con el arrastre vivo, copiarían los dos).
         // DoDragDrop consulta Esc al atender el siguiente cambio de entrada. No se debe soltar en el mismo
         // lote: entre ventanas (o con otro trabajo activo) el bucle OLE puede atenderlo después del KEYUP.
         // Se mantiene pulsada hasta confirmar la cancelación y se despierta también el hilo de origen.
-        if (Pressed(VkEscape) || !SendKey(VkEscape, up: false))
+        int released = 0;
+        for (int i = 0; i < 60; i++)
         {
-            return false;
-        }
-
-        try
-        {
-            int released = 0;
-            for (int i = 0; i < 60; i++)
+            released = Native.ClassName(Native.CaptureWindow(thread)) != "CLIPBRDWNDCLASS" ? released + 1 : 0;
+            if (released >= 3)
             {
-                released = Native.ClassName(Native.CaptureWindow(thread)) != "CLIPBRDWNDCLASS" ? released + 1 : 0;
-                if (released >= 3)
-                {
-                    return true;
-                }
-
-                Nudge(thread);
-                Thread.Sleep(15);
+                return true;
             }
 
-            return false;
+            Nudge(thread);
+            Thread.Sleep(15);
         }
-        finally
+
+        return false;
+    }
+
+    [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
+    private static nint ControlHookProc(int code, nint wParam, nint lParam)
+    {
+        var self = _active;
+        self?._controlHooks.Touch();
+        if (code >= 0 && self is not null)
         {
-            SendKey(VkEscape, up: true);
+            var data = (ControlHookData*)lParam;
+            if (self._controls.Block((int)data->Key, (data->Flags & 0x80) != 0, data->ExtraInfo == Marker)) return 1;
         }
+        return CallNextHookEx(0, code, wParam, lParam);
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    private struct ControlHookData
+    {
+        public uint Key, ScanCode, Flags, Time;
+        public nuint ExtraInfo;
     }
 
     private static bool SendKey(int key, bool up)
     {
         var input = new Input { type = 1 /* INPUT_KEYBOARD */ };
-        input.u.ki = new KeybdInput { wVk = (ushort)key, dwFlags = up ? 0x2u : 0u, dwExtraInfo = Marker };
+        input.u.ki = new KeybdInput { wVk = (ushort)key, dwFlags = (up ? 0x2u : 0u) | (key == 0xA3 ? 0x1u : 0u), dwExtraInfo = Marker };
         return SendInput(1, &input, sizeof(Input)) == 1;
     }
 

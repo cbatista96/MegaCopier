@@ -290,23 +290,49 @@ public sealed class CopyJob
     public CopyJobResult? Result { get; private set; }
 
     public string? Error { get; private set; }
+    public FileErrorKind ErrorKind { get; private set; }
 
     /// <summary>Discos físicos que usa (claves de <see cref="Native.VolumeInfo"/>): en el mismo disco, de uno en uno.</summary>
     public IReadOnlySet<string> Devices { get; }
 
-    public bool IsActive => State is CopyJobState.Queued or CopyJobState.Running or CopyJobState.Paused;
+    public bool IsActive => AdministratorRetryInProgress || State is CopyJobState.Queued or CopyJobState.Running or CopyJobState.Paused;
+
+    public bool AdministratorRetryInProgress { get; private set; }
+
+    public bool CanRetryWithAdministrator => !Cancelled && !AdministratorRetryInProgress
+        && Record.Operation == JobOperation.Copy && !Remote.RemotePath.IsRemote(Record.Destination)
+        && ((State == CopyJobState.Failed && ErrorKind == FileErrorKind.AccessDenied)
+            || (State == CopyJobState.CompletedWithErrors && Result is { } result && result.Failures.Any(f => f.Kind is FileErrorKind.AccessDenied or FileErrorKind.InUse)));
+
+    public bool BeginAdministratorRetry()
+    {
+        lock (_lock)
+        {
+            if (!CanRetryWithAdministrator) return false;
+            AdministratorRetryInProgress = true;
+        }
+        Changed?.Invoke(this);
+        return true;
+    }
+
+    public void EndAdministratorRetry()
+    {
+        lock (_lock) AdministratorRetryInProgress = false;
+        Changed?.Invoke(this);
+    }
 
     /// <summary>Cambió el estado o el progreso. Se dispara desde hilos de trabajo.</summary>
     public event Action<CopyJob>? Changed;
 
-    internal void SetState(CopyJobState state, string? error = null)
+    internal void SetState(CopyJobState state, string? error = null, FileErrorKind errorKind = FileErrorKind.Other)
     {
         lock (_lock)
         {
             State = state;
-            if (error is not null || state is CopyJobState.Queued or CopyJobState.Running)
+            if (error is not null || state is CopyJobState.Queued or CopyJobState.Running or CopyJobState.Completed)
             {
                 Error = error;
+                ErrorKind = errorKind;
             }
         }
 
@@ -320,6 +346,23 @@ public sealed class CopyJob
     }
 
     internal void SetResult(CopyJobResult result) => Result = result;
+
+    internal void SetAdministratorResult(AdministratorCopyReport report)
+    {
+        var files = new TransferList();
+        foreach (var entry in report.Files)
+        {
+            var item = files.Add(entry.Source, entry.Destination, entry.Length, entry.LastWriteUtc);
+            item.SourceHash = entry.SourceHash;
+            item.DestinationHash = entry.DestinationHash;
+            files.Update(item, entry.State, entry.Message, entry.ErrorKind);
+        }
+        Files = files;
+        Result = report.ToResult();
+        long total = report.Files.Sum(f => f.Length);
+        Progress = new CopyProgress(CopyPhase.Completed, "", 0, 0, total, total, files.Count, files.Count, 0, report.Elapsed);
+        FinishedAt = DateTime.Now;
+    }
 
     internal void Attach(CopyEngine engine, CancellationTokenSource cancellation)
     {
@@ -645,6 +688,36 @@ public sealed class CopyQueue
         return job;
     }
 
+    /// <summary>Adopta el resultado del proceso elevado sin volver a enumerar el origen protegido.</summary>
+    public bool ApplyAdministratorReport(CopyJob job, AdministratorCopyReport report)
+    {
+        if (!Jobs.Contains(job) || job.Cancelled || report.JobId != job.Id || report.Files is null || report.Failures is null
+            || report.FilesCopied < 0 || report.FilesSkipped < 0 || report.BytesTransferred < 0) return false;
+        static bool Under(string path, string root)
+        {
+            path = Path.GetFullPath(path);
+            root = Path.TrimEndingDirectorySeparator(Path.GetFullPath(root));
+            return string.Equals(path, root, StringComparison.OrdinalIgnoreCase)
+                || path.StartsWith(Path.EndsInDirectorySeparator(root) ? root : root + Path.DirectorySeparatorChar, StringComparison.OrdinalIgnoreCase);
+        }
+        var sources = job.Record.Sources.Concat(job.Record.ExtraTargets.Keys).ToArray();
+        var destinations = job.Record.ExtraTargets.Values.Append(job.Record.Destination).ToArray();
+        if (report.Files.Any(f => f.Length < 0 || f.State is not (FileState.Copied or FileState.Verified or FileState.Skipped or FileState.Failed or FileState.Deleted)
+            || !sources.Any(root => Under(f.Source, root)) || !destinations.Any(root => Under(f.Destination, root)))) return false;
+        if (report.Files.Any(f => f.State == FileState.Failed) && report.Failures.Count == 0) return false;
+        job.SetAdministratorResult(report);
+        job.EndAdministratorRetry();
+        if (report.Failures.Count == 0)
+        {
+            _store.Delete(job.Id);
+            job.SetState(CopyJobState.Completed);
+        }
+        else job.SetState(CopyJobState.CompletedWithErrors, Texts.F("E_JobErrors", report.Failures.Count));
+        JobFinished?.Invoke(job);
+        Schedule();
+        return true;
+    }
+
     /// <summary>Tras una simulación: la misma copia, con las mismas opciones, pero de verdad.</summary>
     public CopyJob RunForReal(CopyJob simulation)
     {
@@ -899,7 +972,7 @@ public sealed class CopyQueue
             if (_maintenance) return;
             var busy = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             int active = 0;
-            foreach (var running in _jobs.Where(j => j.State is CopyJobState.Running or CopyJobState.Paused))
+            foreach (var running in _jobs.Where(j => j.AdministratorRetryInProgress || j.State is CopyJobState.Running or CopyJobState.Paused))
             {
                 busy.UnionWith(running.Devices);
                 active++;
@@ -1019,12 +1092,13 @@ public sealed class CopyQueue
                     else if (task.Exception?.InnerException is { } error)
                     {
                         // Un error de plan no se arregla reintentando; el resto queda reanudable.
-                        if (error is CopyPlanException)
+                        var kind = FileErrors.Classify(error);
+                        if (error is CopyPlanException && kind != FileErrorKind.AccessDenied)
                         {
                             _store.Delete(job.Id);
                         }
 
-                        job.SetState(CopyJobState.Failed, error.Message);
+                        job.SetState(CopyJobState.Failed, error.Message, kind);
                     }
                     else
                     {

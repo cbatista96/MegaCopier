@@ -56,8 +56,10 @@ public static class LockedFiles
     }
 
     /// <summary>Hace el trabajo (en el proceso con permisos): una instantánea por volumen, copia y la borra.</summary>
-    public static void Copy(LockedFilesRequest request, ISnapshotProvider snapshots, CopyOptions options)
+    public static void Copy(LockedFilesRequest request, ISnapshotProvider snapshots, CopyOptions options, Action<LockedFile, CopyEngine, CopyJobResult>? copiedFile = null)
     {
+        request.Errors.Clear();
+        request.Done = false;
         foreach (var group in request.Files.GroupBy(f => Path.GetPathRoot(Path.GetFullPath(f.Source))!, StringComparer.OrdinalIgnoreCase))
         {
             string? id = null;
@@ -84,6 +86,7 @@ public static class LockedFiles
                             {
                                 File.Move(copied, file.Destination, overwrite: true);
                             }
+                            copiedFile?.Invoke(file, copy, result);
                         }
                     }
                     catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or CopyPlanException)
@@ -121,6 +124,7 @@ public static class LockedFiles
     private static CopyOptions Clone(CopyOptions options) => new()
     {
         Conflict = ConflictPolicy.Overwrite,
+        BackupMode = options.BackupMode,
         Verify = options.Verify,
         HashAlgorithm = options.HashAlgorithm,
         PreserveTimestamps = options.PreserveTimestamps,

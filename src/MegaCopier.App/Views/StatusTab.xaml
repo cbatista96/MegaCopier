@@ -6,7 +6,7 @@
     xmlns:c="using:MegaCopier.App.Controls">
 
     <!-- Con poca altura se desplaza en lugar de cortar la tabla. -->
-    <ScrollViewer x:Name="Scroller">
+    <ScrollViewer Background="Transparent" x:Name="Scroller">
     <StackPanel Spacing="12">
         <c:SpeedGraph x:Name="Graph" Height="200" />
 

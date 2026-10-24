@@ -27,6 +27,8 @@ public sealed class IpcRequest
     /// <summary>Mover en lugar de copiar (pegar tras Ctrl+X).</summary>
     public bool? Move { get; set; }
 
+    public bool DuplicateInPlace { get; set; }
+
     /// <summary>Copiar (por defecto), comprobar sumas o borrar.</summary>
     public JobOperation? Operation { get; set; }
 

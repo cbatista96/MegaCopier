@@ -221,7 +221,7 @@
   <data name="Panel_OpenFolder.Text" xml:space="preserve"><value>폴더 열기</value></data>
   <data name="Panel_Pause.Text" xml:space="preserve"><value>일시 중지</value></data>
   <data name="Panel_Skip.Text" xml:space="preserve"><value>건너뛰기</value></data>
-  <data name="Panel_Stop.Text" xml:space="preserve"><value>중지</value></data>
+  <data name="Panel_Stop.Text" xml:space="preserve"><value>취소</value></data>
   <data name="Panel_More" xml:space="preserve"><value>자세히</value></data>
   <data name="Panel_Less" xml:space="preserve"><value>간단히</value></data>
   <data name="Priority_Low.Content" xml:space="preserve"><value>낮음</value></data>
@@ -1463,7 +1463,7 @@
   <data name="Settings_TrayProgressTitle.Text" xml:space="preserve"><value>알림 영역에 각 복사의 진행률 표시</value></data>
   <data name="Settings_TrayProgressDescription.Text" xml:space="preserve"><value>진행 중인 복사마다 비율과 올라가는 막대가 있는 아이콘을 하나씩 표시합니다. 끝나면 저절로 사라집니다. 클릭하면 해당 복사를 엽니다.</value></data>
   <data name="Tray_JobPause" xml:space="preserve"><value>일시 중지</value></data>
-  <data name="Tray_JobStop" xml:space="preserve"><value>중지</value></data>
+  <data name="Tray_JobStop" xml:space="preserve"><value>취소</value></data>
   <data name="Jobs_Archive" xml:space="preserve"><value>기록에 보관</value></data>
   <data name="Jobs_ArchiveKey" xml:space="preserve"><value>Del</value></data>
   <data name="Jobs_Delete" xml:space="preserve"><value>삭제(기록에서도)</value></data>
@@ -1599,4 +1599,7 @@
   <data name="Installer_Taskbar" xml:space="preserve"><value>작업 표시줄에 고정할 바로 가기 준비(Windows에서 마우스 오른쪽 클릭)</value></data>
   <data name="Settings_CustomSounds.Text" xml:space="preserve"><value>소리 사용자 지정</value></data>
   <data name="Settings_FastPaths.PlaceholderText" xml:space="preserve"><value>C:, D:\데이터</value></data>
+  <data name="Rules_Synchronization.Text" xml:space="preserve"><value>동기화</value></data>
+  <data name="Rules_SecurityTitle.Text" xml:space="preserve"><value>보안</value></data>
+  <data name="Job_StateNeedsAdministrator" xml:space="preserve"><value>관리자 권한이 필요합니다</value></data>
 </root>

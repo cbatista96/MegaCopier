@@ -1,4 +1,4 @@
-using MegaCopier.App.Services;
+﻿using MegaCopier.App.Services;
 using MegaCopier.App.ViewModels;
 using MegaCopier.Engine;
 using MegaCopier.Engine.Jobs;
@@ -88,12 +88,21 @@ public sealed partial class OptionsTab : UserControl
     private void Adapt(double width)
     {
         int columns = width >= 980 ? 3 : width >= 640 ? 2 : 1;
-        Place(WhatColumn, 0, 0, columns == 1 ? 3 : 1);
-        Place(HowColumn, columns == 1 ? 1 : 0, columns == 1 ? 0 : 1, columns == 1 ? 3 : 1);
-        Place(FinishColumn, columns == 3 ? 0 : columns == 2 ? 1 : 2, columns == 3 ? 2 : 0, columns == 3 ? 1 : 3);
-        ScheduleRow.Orientation = width < 760 ? Orientation.Vertical : Orientation.Horizontal;
-        TaskRow.Orientation = ScheduleRow.Orientation;
+        OptionsGrid.ColumnDefinitions.Clear();
+        for (int i = 0; i < columns; i++) OptionsGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+        var cards = new FrameworkElement[] { WhatCard, HowCard, FinishCard };
+        for (int i = 0; i < cards.Length; i++) Place(cards[i], i / columns, i % columns, columns == 2 && i == 2 ? 2 : 1);
+        bool narrow = width < 700;
+        Place(ScheduleDate, 0, 0, 1);
+        Place(ScheduleTime, 0, 1, 1);
+        Place(ScheduleSetButton, narrow ? 1 : 0, narrow ? 0 : 2, 1);
+        Place(StartNowButton, narrow ? 1 : 0, narrow ? 1 : 3, 1);
         ScheduleRow.HorizontalAlignment = HorizontalAlignment.Left;
+        bool narrowTask = width < 620;
+        Place(TaskNameBox, 0, 0, narrowTask ? 3 : 1);
+        Place(TaskFrequencyBox, narrowTask ? 1 : 0, narrowTask ? 0 : 1, 1);
+        Place(SaveTaskButton, narrowTask ? 1 : 0, narrowTask ? 1 : 2, 1);
+
     }
 
     private static void Place(FrameworkElement element, int row, int column, int span)
