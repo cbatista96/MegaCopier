@@ -23,7 +23,7 @@ copias de seguridad y copia a servidores, nubes y móviles.
 
 ### Code signing policy
 
-La firma de actualizaciones usa una clave ECDSA propia. La firma Authenticode con SignPath Foundation se solicitó el 21 de octubre de 2026 y está pendiente de aprobación; no se anuncia todavía como concedida. Consulta la [política de firma](docs/Code-signing-policy.md) y la [política de privacidad](docs/Privacidad.md) ([English](docs/Privacy.md)).
+La firma de actualizaciones usa una clave ECDSA propia. SignPath Foundation no aprobó la solicitud en esta ocasión por falta de visibilidad pública. El EXE y el instalador siguen sin Authenticode; el manifiesto del actualizador sí tiene firma ECDSA. Consulta la [política de firma](docs/Code-signing-policy.md) y la [política de privacidad](docs/Privacidad.md) ([English](docs/Privacy.md)).
 
 [Características](#todas-las-características) ·
 [Capturas](#capturas) ·
@@ -39,7 +39,15 @@ La firma de actualizaciones usa una clave ECDSA propia. La firma Authenticode co
 
 ---
 
-> **Estado del código:** `main` incluye cambios todavía sin publicar como versión descargable. Consulta el [resumen y registro de desarrollo](CHANGELOG.md#sin-publicar) ([English](CHANGELOG.en.md#unreleased)). La descarga sigue correspondiendo a la última versión publicada.
+
+## Novedades de 1.8.0
+
+- Actualizaciones, registro completo bilingüe e historial dentro de Ajustes, con descarga e instalación automáticas opcionales.
+- Carpetas protegidas y archivos en uso comparten una recuperación con administrador; corregida la copia a USB exFAT. Se comprobaron copias y sobrescrituras en NTFS, exFAT y FAT32.
+- Ctrl+arrastrar duplica carpetas dentro de su ubicación sin abrir Inicio ni demorar la selección en el Explorador.
+- Tarjetas adaptables, espaciado uniforme, rutas más claras e indicadores fluidos. El instalador permite elegir español o inglés.
+
+[Registro completo con capturas en español](CHANGELOG.md#180---2026-10-23) · [English notes and screenshots](CHANGELOG.en.md#180---2026-10-23)
 
 ## Por qué MegaCopier
 
@@ -78,7 +86,7 @@ Todo está en la página de la **[última versión](https://github.com/cbatista9
 > suma con la de `SHA256SUMS.txt`:
 >
 > ```powershell
-> Get-FileHash .\MegaCopier-Setup-1.0.0.exe -Algorithm SHA256
+> Get-FileHash .\MegaCopier-Setup-1.8.0.exe -Algorithm SHA256
 > ```
 
 **Versión portátil:** descomprime el ZIP y ejecuta `MegaCopier.exe`. Guarda los ajustes en la carpeta `Data` de al lado y
@@ -100,7 +108,7 @@ ajustes e historial.
 
 ## Actualizaciones e informes
 
-La versión en desarrollo busca actualizaciones cada 48 horas cuando está habilitado. Descargar e instalar son opciones independientes desactivadas por defecto; las descargas respetan Wi-Fi, cable y redes de uso medido. Las novedades usan español para la interfaz española e inglés para las demás, incluidas versiones anteriores.
+MegaCopier busca actualizaciones cada 48 horas cuando está habilitado. Descargar e instalar son opciones independientes desactivadas por defecto; las descargas respetan Wi-Fi, cable y redes de uso medido. Las novedades usan español para la interfaz española e inglés para las demás, incluidas versiones anteriores.
 
 Los informes automáticos opcionales de cierres no son el registro local de una copia ni un detector de todas las vulnerabilidades. El instalador permite elegir y Ajustes > Avanzado permite cambiarlo. Consulta [Privacidad](docs/Privacidad.md) y [Seguridad](SECURITY.es.md).
 

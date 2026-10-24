@@ -81,6 +81,12 @@ Las ilustraciones muestran la interfaz de desarrollo actual. Las notas en españ
 - **Historial consistente:** las tarjetas de versiones usan la misma separación que las demás y mantienen «Ver historial de cambios» y su flecha centrados verticalmente a la derecha.
 
 
+
+<img src="docs/capturas/ajustes.png" width="820" alt="Ajustes con idioma como segunda tarjeta y márgenes uniformes">
+
+<img src="docs/capturas/interfaz-iconos.png" width="820" alt="Tarjetas de Interfaz con controles alineados">
+
+
 ### Arreglado
 
 - Las cabeceras de Ajustes siguen el mismo borde que sus tarjetas al ampliar la ventana. Los iconos y rótulos del copiador comparten el centro visual en las herramientas, los estados y las unidades de origen y destino.

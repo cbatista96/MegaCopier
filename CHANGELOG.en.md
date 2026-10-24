@@ -81,6 +81,12 @@ Illustrations show the current development interface. Spanish notes use Spanish 
 - **Consistent history:** version cards use the same spacing as other cards, with “View changelog” and its arrow vertically centered on the right.
 
 
+
+<img src="docs/capturas/en/ajustes.png" width="820" alt="Settings with language as the second card and consistent margins">
+
+<img src="docs/capturas/en/interfaz-iconos.png" width="820" alt="Interface cards with aligned controls">
+
+
 ### Fixed
 
 - Settings headings follow the same edge as their cards when the window grows. Copier icons and labels share a visual center across the toolbar, status chips and source and destination drives.
