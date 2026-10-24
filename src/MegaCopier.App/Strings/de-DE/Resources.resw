@@ -221,7 +221,7 @@
   <data name="Panel_OpenFolder.Text" xml:space="preserve"><value>Ordner öffnen</value></data>
   <data name="Panel_Pause.Text" xml:space="preserve"><value>Anhalten</value></data>
   <data name="Panel_Skip.Text" xml:space="preserve"><value>Überspringen</value></data>
-  <data name="Panel_Stop.Text" xml:space="preserve"><value>Stoppen</value></data>
+  <data name="Panel_Stop.Text" xml:space="preserve"><value>Abbrechen</value></data>
   <data name="Panel_More" xml:space="preserve"><value>Mehr</value></data>
   <data name="Panel_Less" xml:space="preserve"><value>Weniger</value></data>
   <data name="Priority_Low.Content" xml:space="preserve"><value>Niedrig</value></data>
@@ -1463,7 +1463,7 @@
   <data name="Settings_TrayProgressTitle.Text" xml:space="preserve"><value>Fortschritt jeder Kopie im Infobereich</value></data>
   <data name="Settings_TrayProgressDescription.Text" xml:space="preserve"><value>Ein Symbol pro laufender Kopie, mit Prozentangabe und einem Balken, der steigt. Am Ende verschwindet es von selbst. Ein Klick öffnet die Kopie.</value></data>
   <data name="Tray_JobPause" xml:space="preserve"><value>Anhalten</value></data>
-  <data name="Tray_JobStop" xml:space="preserve"><value>Stoppen</value></data>
+  <data name="Tray_JobStop" xml:space="preserve"><value>Abbrechen</value></data>
   <data name="Jobs_Archive" xml:space="preserve"><value>Im Verlauf archivieren</value></data>
   <data name="Jobs_ArchiveKey" xml:space="preserve"><value>Entf</value></data>
   <data name="Jobs_Delete" xml:space="preserve"><value>Löschen (auch aus dem Verlauf)</value></data>
@@ -1599,4 +1599,7 @@
   <data name="Installer_Taskbar" xml:space="preserve"><value>Verknüpfung zum Anheften an die Taskleiste vorbereiten (Rechtsklick in Windows)</value></data>
   <data name="Settings_CustomSounds.Text" xml:space="preserve"><value>Sounds anpassen</value></data>
   <data name="Settings_FastPaths.PlaceholderText" xml:space="preserve"><value>C:, D:\Daten</value></data>
+  <data name="Rules_Synchronization.Text" xml:space="preserve"><value>Synchronisierung</value></data>
+  <data name="Rules_SecurityTitle.Text" xml:space="preserve"><value>Sicherheit</value></data>
+  <data name="Job_StateNeedsAdministrator" xml:space="preserve"><value>Administratorberechtigung erforderlich</value></data>
 </root>

@@ -18,6 +18,11 @@ Illustrations show the current development interface. Spanish notes use Spanish 
 - The installer lists optional shortcuts before integration choices, introduces MegaCopier artwork and displays the privacy policy before installing. Automatic checking and error reporting can both be deselected.
 - Settings uses smooth navigation transitions and the toolbar button returns to transfers. Mouse side buttons also navigate back and forward; Sounds separates alerts, volume, customization and quiet mode for games or presentations.
 - Fixes cover startup crashes during network detection, stray Back tooltips, More/Less resizing, recovered transfers hidden at startup, and clipped or misaligned headings and badges. Updates verify the signed manifest and package checksum before installation.
+- When copying protected folders, MegaCopier requests administrator authorization when needed and handles files in use in the same authorized process. It no longer chains two separate retries; while authorization is needed, the status reads “Administrator permission required”.
+- Ctrl+dragging a folder within its own location creates a separately named copy through MegaCopier. Accidental Start menu activation and delayed mouse release when selecting files in Explorer have been fixed.
+- Copying to exFAT USB drives no longer fails with “The parameter is incorrect”. Copies and overwrites with content verification have been checked on NTFS, exFAT and FAT32; ReFS testing remains pending.
+- Expanded options use cards that adapt to the available width. Settings keeps consistent margins, headings and spacing, supports the mouse wheel over empty margins, and uses longer navigation indicators with smooth movement.
+
 
 ### Added
 
@@ -40,6 +45,10 @@ Illustrations show the current development interface. Spanish notes use Spanish 
 
 <img src="docs/capturas/en/instalador-informes.png" width="598" alt="Installer shortcut and integration options">
 
+- **Ctrl+drag duplication:** Explorer integration when dropping a folder onto empty space in the same location. A free name is chosen, empty folders and the chosen name survive resume, and duplication is kept distinct from moving and other jobs.
+- **History in batches:** the ten latest versions are shown first; “Show more” loads ten additional versions until the full history is visible.
+
+
 ### Changed
 
 - **Easier language selection:** Language is the second card in General. The installer starts with a choice of English or Spanish.
@@ -59,6 +68,16 @@ Illustrations show the current development interface. Spanish notes use Spanish 
 
 - **Bilingual documentation:** visible links to the project overview and complete changelog in English and Spanish. Future release pages show both languages, starting with highlights; separate note assets retain the full document for the app. Editorial guidance allows properly developed summaries of the necessary length and groups minor fixes without inventing counts.
 - **Reviewed translations:** all 14 languages share the same keys and formatting parameters. The fast-device path example comes from translated resources; filters in languages other than Spanish and English use a supported extension-and-size example instead of an untranslated English sentence.
+
+- **Responsive options:** “What to copy”, “Transfer” and “When finished” each have their own card. At medium widths the last card fills the row; wider windows fit all three. Filters, Rules, Synchronization and Security are four separate cards, arranged in one or more columns as space allows.
+- **Schedule start:** date, time, actions and recurring task controls rearrange with the window width, avoiding unnecessary stacking and controls outside the card.
+- **Consistent settings:** every page uses the same width and margins as General. Icons and headings appear aligned on the first frame, including Updates. Card, row, column and heading spacing follows Automation.
+- **Interface cards:** Themes, Icons and Progress bars are grouped in cards. Headings and descriptions share a left edge; information buttons are right aligned and vertically centered, including thickness, rounding, speed and glow controls.
+- **Visible navigation:** longer blue indicators in Files, Destination, Options, Status and Log and in the three configurable progress bar tabs, with smooth movement. The selected copy marker in the job list is also taller.
+- **Copy controls:** the original button size is restored while preserving alignment; the panel and context menu now use “Cancel”. Source and destination show one full path in secondary text without repeating the drive letter or label, retaining their icons.
+- **Language and installation:** the language card is the second option in General, below Windows copier integration. The installer offers Spanish or English when it starts.
+- **Consistent history:** version cards use the same spacing as other cards, with “View changelog” and its arrow vertically centered on the right.
+
 
 ### Fixed
 
@@ -85,10 +104,24 @@ Illustrations show the current development interface. Spanish notes use Spanish 
 
 <img src="docs/capturas/en/compacta.png" width="620" alt="Aligned transfer controls, file information and drive labels">
 
+- **Protected folder permissions:** an access denial during initial enumeration preserves the job for authorization. The elevated process can enumerate those folders and returns the real copy and verification result without reopening the source without permission. A completed copy no longer retains an earlier access-denied error.
+- **Files in use and administrator access:** both share a single authorization and recovery process. Locked files are read from a snapshot where possible and the result is applied directly, avoiding another retry that fails on permissions again. Denied authorization or a genuine failure is never reported as a successful copy.
+- **exFAT USB drives:** when a filesystem does not support the advanced rename operation, a compatible fallback is used. Replacing read-only files is also tested, without hiding genuine permission, disk space or sharing errors.
+- **Ctrl+drag:** internal drag cancellation no longer generates Ctrl+Esc and opens Start; physical Control key state is preserved.
+- **Explorer selection:** releasing the mouse after drawing a selection rectangle on the background is immediate again. MegaCopier no longer holds that click while waiting for a nonexistent drag.
+- **Compact completion summary:** line spacing keeps file count, duration and speed from overlapping when one copy finishes while another continues.
+- **Mouse wheel over margins:** scrollable pages respond over empty space while keeping cards centered and avoiding the alignment jump when switching sections.
+
+<img src="docs/capturas/en/ampliada-opciones.png" width="820" alt="Copy options arranged in responsive cards">
+
+<img src="docs/capturas/en/barras.png" width="820" alt="Progress bar card with longer indicators and aligned information controls">
+
+
 ### Security
 
 - **Verified updates:** ECDSA P-256 manifest and SHA-256 for installer and ZIP; packages never execute without a trusted key and valid signature. The production public key is embedded in the app; the private key stays outside the repository and in a GitHub Actions secret.
-- **Windows signing pending:** application submitted to SignPath Foundation on October 21, 2026, with receipt confirmed. Approval and Authenticode certificate access remain pending; this setup does not sign current executables or guarantee removal of SmartScreen warnings.
+- **Windows code signing:** SignPath Foundation did not approve the application at this time because the project needs broader public visibility. Executables and the installer remain without Authenticode; the updater manifest is signed with ECDSA. SmartScreen warnings are not guaranteed to disappear.
+
 
 ## [1.7.1] - 2026-10-20
 

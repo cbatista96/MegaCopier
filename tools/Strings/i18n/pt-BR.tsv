@@ -1,4 +1,4 @@
-﻿clave	texto
+clave	texto
 JobsSection.Text	Cópias
 SettingsSection.Text	Configurações
 FinishButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	O que fazer quando todas as cópias terminarem
@@ -215,7 +215,7 @@ Panel_File.Text	Arquivo
 Panel_OpenFolder.Text	Abrir pasta
 Panel_Pause.Text	Pausar
 Panel_Skip.Text	Pular
-Panel_Stop.Text	Parar
+Panel_Stop.Text	Cancelar
 Panel_More	Mais
 Panel_Less	Menos
 Priority_Low.Content	Baixa
@@ -1457,7 +1457,7 @@ MinimizeButton_Tray.Content	Para a bandeja
 Settings_TrayProgressTitle.Text	Progresso de cada cópia na bandeja
 Settings_TrayProgressDescription.Text	Um ícone para cada cópia em andamento, com a porcentagem e uma barra que sobe. Ao terminar, some sozinho. Um clique abre a cópia.
 Tray_JobPause	Pausar
-Tray_JobStop	Parar
+Tray_JobStop	Cancelar
 Jobs_Archive	Arquivar no histórico
 Jobs_ArchiveKey	Del
 Jobs_Delete	Excluir (também do histórico)
@@ -1594,3 +1594,7 @@ Installer_StartMenu	Criar um atalho no menu Iniciar
 Installer_Taskbar	Preparar atalho para fixar na barra de tarefas (clique direito no Windows)
 Settings_CustomSounds.Text	Personalizar os sons
 Settings_FastPaths.PlaceholderText	C:, D:\Dados
+
+Rules_Synchronization.Text	Sincronização
+Rules_SecurityTitle.Text	Segurança
+Job_StateNeedsAdministrator	Precisa de permissão de administrador

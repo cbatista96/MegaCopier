@@ -1,4 +1,4 @@
-﻿clave	texto
+clave	texto
 JobsSection.Text	Copie
 SettingsSection.Text	Impostazioni
 FinishButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Cosa fare quando tutte le copie sono finite
@@ -215,7 +215,7 @@ Panel_File.Text	File
 Panel_OpenFolder.Text	Apri cartella
 Panel_Pause.Text	Pausa
 Panel_Skip.Text	Salta
-Panel_Stop.Text	Interrompi
+Panel_Stop.Text	Annulla
 Panel_More	Altro
 Panel_Less	Meno
 Priority_Low.Content	Bassa
@@ -1457,7 +1457,7 @@ MinimizeButton_Tray.Content	Nell'area di notifica
 Settings_TrayProgressTitle.Text	Avanzamento di ogni copia nell'area di notifica
 Settings_TrayProgressDescription.Text	Un'icona per ogni copia in corso, con la percentuale e una barra che sale. Alla fine sparisce da sola. Un clic apre la copia.
 Tray_JobPause	Pausa
-Tray_JobStop	Interrompi
+Tray_JobStop	Annulla
 Jobs_Archive	Archivia nella cronologia
 Jobs_ArchiveKey	Canc
 Jobs_Delete	Elimina (anche dalla cronologia)
@@ -1594,3 +1594,7 @@ Installer_StartMenu	Crea un collegamento nel menu Start
 Installer_Taskbar	Prepara un collegamento da aggiungere alla barra delle applicazioni (clic destro in Windows)
 Settings_CustomSounds.Text	Personalizza i suoni
 Settings_FastPaths.PlaceholderText	C:, D:\Dati
+
+Rules_Synchronization.Text	Sincronizzazione
+Rules_SecurityTitle.Text	Sicurezza
+Job_StateNeedsAdministrator	Sono necessari i permessi di amministratore

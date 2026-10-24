@@ -1,4 +1,4 @@
-﻿clave	texto
+clave	texto
 JobsSection.Text	コピー
 SettingsSection.Text	設定
 FinishButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	すべてのコピーが終わったら
@@ -215,7 +215,7 @@ Panel_File.Text	ファイル
 Panel_OpenFolder.Text	フォルダーを開く
 Panel_Pause.Text	一時停止
 Panel_Skip.Text	スキップ
-Panel_Stop.Text	停止
+Panel_Stop.Text	キャンセル
 Panel_More	詳細
 Panel_Less	簡易
 Priority_Low.Content	低
@@ -1457,7 +1457,7 @@ MinimizeButton_Tray.Content	通知領域へ
 Settings_TrayProgressTitle.Text	各コピーの進行状況を通知領域に表示
 Settings_TrayProgressDescription.Text	実行中のコピーごとに、割合と上昇するバーを示すアイコンを 1 つ表示します。終わると自動的に消えます。クリックするとそのコピーを開きます。
 Tray_JobPause	一時停止
-Tray_JobStop	停止
+Tray_JobStop	キャンセル
 Jobs_Archive	履歴にアーカイブ
 Jobs_ArchiveKey	Del
 Jobs_Delete	削除 (履歴からも)
@@ -1594,3 +1594,7 @@ Installer_StartMenu	スタートメニューにショートカットを作成
 Installer_Taskbar	タスクバー用ショートカットを準備（Windowsで右クリック）
 Settings_CustomSounds.Text	サウンドをカスタマイズ
 Settings_FastPaths.PlaceholderText	C:, D:\データ
+
+Rules_Synchronization.Text	同期
+Rules_SecurityTitle.Text	セキュリティ
+Job_StateNeedsAdministrator	管理者権限が必要です

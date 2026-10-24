@@ -132,14 +132,15 @@ public sealed partial class SettingsPage
         SectionTitle.TextLineBounds = panel == "Sec_Updates" ? TextLineBounds.Tight : TextLineBounds.Full;
         UpdatesBreadcrumb.Visibility = Visibility.Collapsed;
         SectionHeader.ClearValue(HeightProperty);
-        SectionHeader.Margin = new Thickness(24, 6, 24, 10);
+        SectionHeader.Margin = new Thickness(SectionHeader.Margin.Left, 6, SectionHeader.Margin.Right, 10);
         SectionIcon.Glyph = glyph;
         SectionIcon.Visibility = Visibility.Visible;
         if (panel == "Sec_Updates" && _updateLanding is not null)
         { _app.Updates?.OpenedUpdates(); SetUpdateView(0); }
         SectionScroll.ChangeView(null, 0, null, disableAnimation: true);
-        if (!_restoringSettings && IsLoaded && previous != index)
-            Motion.SlideX(SectionsHost, index > previous ? 60 : -60, 0, 280, null, decelerate: true);
+        Motion.ResetSlide(SectionsHost);
+        SectionsHost.UpdateLayout();
+        SectionsHost_LayoutUpdated(this, EventArgs.Empty);
         if (panel == "Sec_Updates" && _updateLanding is not null) RefreshUpdates();
         NavigationChanged?.Invoke();
     }
@@ -188,7 +189,7 @@ public sealed partial class SettingsPage
 
         SectionTitle.Text = L.F("Settings_SearchResults", text);
         SectionHeader.ClearValue(HeightProperty);
-        SectionHeader.Margin = new Thickness(24, 6, 24, 10);
+        SectionHeader.Margin = new Thickness(SectionHeader.Margin.Left, 6, SectionHeader.Margin.Right, 10);
         SectionTitle.Visibility = Visibility.Visible;
         SectionTitle.TextLineBounds = TextLineBounds.Full;
         UpdatesBreadcrumb.Visibility = Visibility.Collapsed;

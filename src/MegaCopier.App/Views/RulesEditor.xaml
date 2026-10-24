@@ -5,18 +5,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:c="using:MegaCopier.App.Controls">
 
-    <!-- Dos tarjetas: filtros y reglas arriba; sincronización y seguridad en la suya, para que no parezcan lo mismo -->
-    <StackPanel Spacing="10">
-    <Border Style="{StaticResource McCard}">
-    <Grid x:Name="RulesGrid" ColumnSpacing="24" RowSpacing="16">
-        <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-
-        <!-- Filtros -->
-        <StackPanel x:Name="FiltersColumn" Spacing="8">
+    <Grid x:Name="CardsGrid" ColumnSpacing="4" RowSpacing="4">
+        <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+        <Grid.ColumnDefinitions><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+<Border x:Name="FiltersColumnCard" Style="{StaticResource McCard}"><StackPanel x:Name="FiltersColumn" Spacing="8">
             <StackPanel Orientation="Horizontal" Spacing="8">
                 <c:McIcon VerticalAlignment="Center" Glyph="&#xE71C;" FontSize="14" Accent="True" />
                 <TextBlock x:Uid="Rules_Filters" Style="{StaticResource McStrong}" VerticalAlignment="Center" />
@@ -50,10 +42,8 @@
             <CheckBox x:Name="SkipSystemBox" x:Uid="Rules_SkipSystem" Click="Changed" />
             <CheckBox x:Name="SkipJunkBox" x:Uid="Rules_SkipJunk" Click="Changed" />
             <TextBox x:Name="ImageTextBox" x:Uid="Rules_ImageText" LostFocus="Changed" />
-        </StackPanel>
-
-        <!-- Reglas -->
-        <StackPanel x:Name="RulesColumn" Grid.Column="1" Spacing="8">
+        </StackPanel></Border>
+<Border x:Name="RulesColumnCard" Style="{StaticResource McCard}"><StackPanel x:Name="RulesColumn" Spacing="8">
             <StackPanel Orientation="Horizontal" Spacing="8">
                 <c:McIcon VerticalAlignment="Center" Glyph="&#xE71B;" FontSize="14" Accent="True" />
                 <TextBlock x:Uid="Rules_Rules" Style="{StaticResource McStrong}" VerticalAlignment="Center" />
@@ -82,25 +72,8 @@
                     <ComboBoxItem x:Uid="Rules_OnErrorAsk" />
                 </ComboBox>
             </StackPanel>
-        </StackPanel>
-
-    </Grid>
-    </Border>
-
-    <!-- Sincronización y seguridad -->
-    <Border Style="{StaticResource McCard}">
-    <Grid x:Name="SafetyGrid" ColumnSpacing="24" RowSpacing="8">
-        <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        <StackPanel x:Name="SafetyHeader" Grid.ColumnSpan="2" Orientation="Horizontal" Spacing="8">
-            <c:McIcon VerticalAlignment="Center" Glyph="&#xE8F7;" FontSize="14" Accent="True" />
-            <TextBlock x:Uid="Rules_Safety" Style="{StaticResource McStrong}" VerticalAlignment="Center" />
-            <c:InfoTip Topic="Safety" Margin="-6,-6,0,-6" />
-        </StackPanel>
-        <StackPanel x:Name="SafetyLeft" Grid.Row="1" Spacing="8">
+        </StackPanel></Border>
+<Border x:Name="SafetyLeftCard" Style="{StaticResource McCard}"><StackPanel x:Name="SafetyLeft" Spacing="8"><StackPanel Orientation="Horizontal" Spacing="8"><c:McIcon Glyph="&#xE8F7;" FontSize="14" Accent="True" VerticalAlignment="Center" /><TextBlock x:Uid="Rules_Synchronization" Style="{StaticResource McStrong}" VerticalAlignment="Center" /><c:InfoTip Topic="Safety" Margin="-6,-6,0,-6" /></StackPanel>
             <ComboBox x:Name="FolderConflictBox" x:Uid="Rules_FolderConflict" HorizontalAlignment="Stretch" SelectionChanged="Selection_Changed">
                 <ComboBoxItem x:Uid="Rules_FolderMerge" />
                 <ComboBoxItem x:Uid="Rules_FolderSkip" />
@@ -115,8 +88,8 @@
                 <ComboBoxItem x:Uid="Rules_VersionsLast" />
             </ComboBox>
             <NumberBox x:Name="ToleranceBox" x:Uid="Rules_Tolerance" Minimum="0" Maximum="3600" SpinButtonPlacementMode="Compact" ValueChanged="Number_Changed" />
-        </StackPanel>
-        <StackPanel x:Name="SafetyRight" Grid.Row="1" Grid.Column="1" Spacing="2">
+        </StackPanel></Border>
+<Border x:Name="SafetyRightCard" Style="{StaticResource McCard}"><StackPanel x:Name="SafetyRight" Spacing="2"><StackPanel Orientation="Horizontal" Spacing="8"><c:McIcon Glyph="&#xE72E;" FontSize="14" Accent="True" VerticalAlignment="Center" /><TextBlock x:Uid="Rules_SecurityTitle" Style="{StaticResource McStrong}" VerticalAlignment="Center" /><c:InfoTip Topic="Safety" Margin="-6,-6,0,-6" /></StackPanel>
             <CheckBox x:Name="VerifySourceBox" x:Uid="Rules_VerifySource" Click="Changed" />
             <CheckBox x:Name="HashStreamBox" x:Uid="Rules_HashStream" Click="Changed" />
             <CheckBox x:Name="HardLinksBox" x:Uid="Rules_HardLinks" Click="Changed" />
@@ -142,8 +115,6 @@
             <CheckBox x:Name="RescueBox" x:Uid="Rules_Rescue" Click="Changed" />
             <CheckBox x:Name="DeltaBox" x:Uid="Rules_Delta" Click="Changed" />
             <CheckBox x:Name="DuplicatesBox" x:Uid="Rules_Duplicates" Click="Changed" />
-        </StackPanel>
+        </StackPanel></Border>
     </Grid>
-    </Border>
-    </StackPanel>
 </UserControl>

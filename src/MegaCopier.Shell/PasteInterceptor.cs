@@ -5,7 +5,10 @@ using System.Runtime.InteropServices;
 namespace MegaCopier.Shell;
 
 /// <summary>Un Ctrl+V del Explorador que MegaCopier se queda.</summary>
-public sealed record PasteRequest(IReadOnlyList<string> Sources, string Destination, ClipboardOperation Operation);
+public sealed record PasteRequest(IReadOnlyList<string> Sources, string Destination, ClipboardOperation Operation)
+{
+    public bool DuplicateInPlace { get; init; }
+}
 
 /// <summary>
 /// Sustituye el Ctrl+V del Explorador por MegaCopier sin inyectar nada en el Explorador.

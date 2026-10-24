@@ -221,7 +221,7 @@
   <data name="Panel_OpenFolder.Text" xml:space="preserve"><value>Abrir carpeta</value></data>
   <data name="Panel_Pause.Text" xml:space="preserve"><value>Pausar</value></data>
   <data name="Panel_Skip.Text" xml:space="preserve"><value>Saltar</value></data>
-  <data name="Panel_Stop.Text" xml:space="preserve"><value>Detener</value></data>
+  <data name="Panel_Stop.Text" xml:space="preserve"><value>Cancelar</value></data>
   <data name="Panel_More" xml:space="preserve"><value>Más</value></data>
   <data name="Panel_Less" xml:space="preserve"><value>Menos</value></data>
   <data name="Priority_Low.Content" xml:space="preserve"><value>Baja</value></data>
@@ -1463,7 +1463,7 @@
   <data name="Settings_TrayProgressTitle.Text" xml:space="preserve"><value>Progreso de cada copia en la bandeja</value></data>
   <data name="Settings_TrayProgressDescription.Text" xml:space="preserve"><value>Un icono por cada copia en marcha, con su porcentaje y una barra que sube. Al terminar, se quita solo. Un clic la abre.</value></data>
   <data name="Tray_JobPause" xml:space="preserve"><value>Pausar</value></data>
-  <data name="Tray_JobStop" xml:space="preserve"><value>Detener</value></data>
+  <data name="Tray_JobStop" xml:space="preserve"><value>Cancelar</value></data>
   <data name="Jobs_Archive" xml:space="preserve"><value>Archivar en el historial</value></data>
   <data name="Jobs_ArchiveKey" xml:space="preserve"><value>Supr</value></data>
   <data name="Jobs_Delete" xml:space="preserve"><value>Eliminar (también del historial)</value></data>
@@ -1599,4 +1599,7 @@
   <data name="Installer_Taskbar" xml:space="preserve"><value>Preparar acceso para anclar a la barra de tareas (clic derecho en Windows)</value></data>
   <data name="Settings_CustomSounds.Text" xml:space="preserve"><value>Personalizar los sonidos</value></data>
   <data name="Settings_FastPaths.PlaceholderText" xml:space="preserve"><value>C:, D:\Datos</value></data>
+  <data name="Rules_Synchronization.Text" xml:space="preserve"><value>Sincronización</value></data>
+  <data name="Rules_SecurityTitle.Text" xml:space="preserve"><value>Seguridad</value></data>
+  <data name="Job_StateNeedsAdministrator" xml:space="preserve"><value>Necesita permisos de administrador</value></data>
 </root>

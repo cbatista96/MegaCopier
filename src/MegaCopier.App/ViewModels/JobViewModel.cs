@@ -75,7 +75,7 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
         }
     }
 
-    private CopyJobState State => Job.State;
+    private CopyJobState State => Job.AdministratorRetryInProgress ? CopyJobState.Running : Job.State;
 
     private CopyProgress? Progress => Job.Progress;
 
@@ -138,7 +138,7 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
     public bool IsActive => Job.IsActive;
 
     /// <summary>Color del icono de estado: verde terminado, ámbar con avisos, rojo fallido, acento en curso.</summary>
-    public Microsoft.UI.Xaml.Media.Brush StateBrush => State switch
+    public Microsoft.UI.Xaml.Media.Brush StateBrush => Job.CanRetryWithAdministrator ? Theming.ThemeManager.WarningBrush : State switch
     {
         CopyJobState.Completed => Theming.ThemeManager.SuccessBrush,
         CopyJobState.CompletedWithErrors or CopyJobState.Interrupted => Theming.ThemeManager.WarningBrush,
@@ -229,7 +229,8 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
     /// <summary>Se puede quitar de la lista (terminada, con errores o fallida): «Archivar en el historial».</summary>
     public bool CanArchive => State is CopyJobState.Completed or CopyJobState.CompletedWithErrors or CopyJobState.Failed;
 
-    public string StateText => State switch
+    public string StateText => Job.AdministratorRetryInProgress ? L.Get("Backup_Title")
+        : Job.CanRetryWithAdministrator ? L.Get("Job_StateNeedsAdministrator") : State switch
     {
         CopyJobState.Queued when IsAsking => L.Get("Job_StateAsking"),
         CopyJobState.Queued when IsScheduled => L.F("Job_StateScheduled", Job.Record.StartAtUtc!.Value.ToLocalTime().ToString("g")),
@@ -259,6 +260,8 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
     {
         get
         {
+            if (Job.CanRetryWithAdministrator) return L.Get("Job_StateNeedsAdministrator");
+
             if (State == CopyJobState.CompletedWithErrors && Job.Result is { } partial)
             {
                 return partial.Failures.Count == 1 ? L.Get("Job_FailedOne") : L.F("Job_FailedFiles", partial.Failures.Count);
@@ -366,25 +369,25 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
 
     public DriveDescription DestinationDrive => DriveInfoText.Describe(Job.Record.Destination);
 
-    public string SourceDriveText => SourceDrive.Text;
+    public string SourceDriveText => SourceDrive.Letter;
 
     public string SourceDriveGlyph => SourceDrive.Glyph;
 
-    public string DestinationDriveText => DestinationDrive.Text;
+    public string DestinationDriveText => DestinationDrive.Letter;
 
     public string DestinationDriveGlyph => DestinationDrive.Glyph;
 
     // ---------------------------------------------------------------------------------------------------------
     // Acciones
 
-    public bool CanPause => State == CopyJobState.Running;
+    public bool CanPause => !Job.AdministratorRetryInProgress && State == CopyJobState.Running;
 
     public bool CanResume => State is CopyJobState.Paused or CopyJobState.Interrupted or CopyJobState.CompletedWithErrors
         || (State == CopyJobState.Queued && !IsScheduled);
 
-    public bool CanSkip => State is CopyJobState.Running or CopyJobState.Paused;
+    public bool CanSkip => !Job.AdministratorRetryInProgress && State is CopyJobState.Running or CopyJobState.Paused;
 
-    public bool CanStop => State is CopyJobState.Running or CopyJobState.Paused or CopyJobState.Queued;
+    public bool CanStop => !Job.AdministratorRetryInProgress && State is CopyJobState.Running or CopyJobState.Paused or CopyJobState.Queued;
 
     public bool CanDiscard => State is CopyJobState.Interrupted or CopyJobState.Failed or CopyJobState.CompletedWithErrors;
 
@@ -439,13 +442,12 @@ public sealed partial class JobViewModel : INotifyPropertyChanged
     public void RunForReal() => _queue.RunForReal(Job);
 
     /// <summary>Terminó con archivos que otro programa tenía en uso: se pueden copiar desde una instantánea.</summary>
-    public bool CanCopyLocked => State == CopyJobState.CompletedWithErrors && Job.Result is { } r && r.Failures.Any(f => f.Kind == FileErrorKind.InUse);
+    public bool CanCopyLocked => false; // Se recuperan en el mismo proceso de administrador.
 
     public void CopyLocked() => _ = ((App)Microsoft.UI.Xaml.Application.Current).CopyLockedFilesAsync(Job);
 
     /// <summary>Terminó con archivos sin permiso de lectura o escritura: se pueden copiar en modo copia de seguridad.</summary>
-    public bool CanCopyAdmin => State == CopyJobState.CompletedWithErrors && Job.Record.Operation == JobOperation.Copy
-        && !Engine.Remote.RemotePath.IsRemote(Job.Record.Destination) && Job.Result is { } r && r.Failures.Any(f => f.Kind == FileErrorKind.AccessDenied);
+    public bool CanCopyAdmin => Job.CanRetryWithAdministrator;
 
     public void CopyAdmin() => _ = ((App)Microsoft.UI.Xaml.Application.Current).CopyWithAdminAsync(Job);
 

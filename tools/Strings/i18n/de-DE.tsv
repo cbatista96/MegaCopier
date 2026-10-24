@@ -1,4 +1,4 @@
-﻿clave	texto
+clave	texto
 JobsSection.Text	Kopien
 SettingsSection.Text	Einstellungen
 FinishButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Was nach allen Kopien geschehen soll
@@ -215,7 +215,7 @@ Panel_File.Text	Datei
 Panel_OpenFolder.Text	Ordner öffnen
 Panel_Pause.Text	Anhalten
 Panel_Skip.Text	Überspringen
-Panel_Stop.Text	Stoppen
+Panel_Stop.Text	Abbrechen
 Panel_More	Mehr
 Panel_Less	Weniger
 Priority_Low.Content	Niedrig
@@ -1457,7 +1457,7 @@ MinimizeButton_Tray.Content	In den Infobereich
 Settings_TrayProgressTitle.Text	Fortschritt jeder Kopie im Infobereich
 Settings_TrayProgressDescription.Text	Ein Symbol pro laufender Kopie, mit Prozentangabe und einem Balken, der steigt. Am Ende verschwindet es von selbst. Ein Klick öffnet die Kopie.
 Tray_JobPause	Anhalten
-Tray_JobStop	Stoppen
+Tray_JobStop	Abbrechen
 Jobs_Archive	Im Verlauf archivieren
 Jobs_ArchiveKey	Entf
 Jobs_Delete	Löschen (auch aus dem Verlauf)
@@ -1594,3 +1594,7 @@ Installer_StartMenu	Verknüpfung im Startmenü erstellen
 Installer_Taskbar	Verknüpfung zum Anheften an die Taskleiste vorbereiten (Rechtsklick in Windows)
 Settings_CustomSounds.Text	Sounds anpassen
 Settings_FastPaths.PlaceholderText	C:, D:\Daten
+
+Rules_Synchronization.Text	Synchronisierung
+Rules_SecurityTitle.Text	Sicherheit
+Job_StateNeedsAdministrator	Administratorberechtigung erforderlich

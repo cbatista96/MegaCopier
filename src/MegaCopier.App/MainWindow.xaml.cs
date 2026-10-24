@@ -1,4 +1,4 @@
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using MegaCopier.App.Services;
@@ -107,7 +107,8 @@ public sealed partial class MainWindow : Window
         IsCopyWindow = copyWindow;
         _dispatcher = DispatcherQueue.GetForCurrentThread();
         InitializeComponent();
-        _jobIndicator = new Controls.SlidingIndicator(JobList, JobIndicatorLayer);
+        _jobIndicator = new Controls.SlidingIndicator(JobList, JobIndicatorLayer, height: 32);
+        _ = new Controls.TabSlidingIndicator(Tabs, TabIndicatorLayer);
         _resizeTimer = _dispatcher.CreateTimer();
         _resizeTimer.Interval = TimeSpan.FromMilliseconds(12);
         _resizeTimer.Tick += (_, _) => ResizeStep();
@@ -1438,18 +1439,8 @@ public sealed partial class MainWindow : Window
     // ---------------------------------------------------------------------------------------------------------
     // Pestañas
 
-    private SelectorBarItem? _shownTab;
-
     private void Tabs_SelectionChanged(SelectorBar sender, SelectorBarSelectionChangedEventArgs args)
     {
-        // La línea de la pestaña elegida se desliza desde la anterior.
-        if (_shownTab is { } previous && sender.SelectedItem is { } next && previous != next
-            && Pill(previous) is { } from && Pill(next) is { } to)
-        {
-            Motion.SlideIndicator(from, to, vertical: false);
-        }
-
-        _shownTab = sender.SelectedItem;
         TabHost.Content = sender.SelectedItem switch
         {
             var i when i == TargetItem => _targetTab,
@@ -1460,10 +1451,6 @@ public sealed partial class MainWindow : Window
         };
         RefreshTabs();
     }
-
-    /// <summary>La línea de debajo de una pestaña (parte de su plantilla).</summary>
-    private static FrameworkElement? Pill(SelectorBarItem item) =>
-        Responsive.Descendants<Microsoft.UI.Xaml.Shapes.Rectangle>(item).FirstOrDefault(r => r.Name == "PART_SelectionVisual");
 
     private void RefreshTabs()
     {

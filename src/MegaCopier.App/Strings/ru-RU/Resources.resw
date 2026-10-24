@@ -221,7 +221,7 @@
   <data name="Panel_OpenFolder.Text" xml:space="preserve"><value>Открыть папку</value></data>
   <data name="Panel_Pause.Text" xml:space="preserve"><value>Пауза</value></data>
   <data name="Panel_Skip.Text" xml:space="preserve"><value>Пропустить</value></data>
-  <data name="Panel_Stop.Text" xml:space="preserve"><value>Остановить</value></data>
+  <data name="Panel_Stop.Text" xml:space="preserve"><value>Отмена</value></data>
   <data name="Panel_More" xml:space="preserve"><value>Больше</value></data>
   <data name="Panel_Less" xml:space="preserve"><value>Меньше</value></data>
   <data name="Priority_Low.Content" xml:space="preserve"><value>Низкий</value></data>
@@ -1463,7 +1463,7 @@
   <data name="Settings_TrayProgressTitle.Text" xml:space="preserve"><value>Прогресс каждого копирования в области уведомлений</value></data>
   <data name="Settings_TrayProgressDescription.Text" xml:space="preserve"><value>По значку на каждое идущее копирование, с процентом и растущей полосой. По завершении он исчезает сам. Щелчок открывает копирование.</value></data>
   <data name="Tray_JobPause" xml:space="preserve"><value>Приостановить</value></data>
-  <data name="Tray_JobStop" xml:space="preserve"><value>Остановить</value></data>
+  <data name="Tray_JobStop" xml:space="preserve"><value>Отмена</value></data>
   <data name="Jobs_Archive" xml:space="preserve"><value>Перенести в журнал</value></data>
   <data name="Jobs_ArchiveKey" xml:space="preserve"><value>Del</value></data>
   <data name="Jobs_Delete" xml:space="preserve"><value>Удалить (и из журнала)</value></data>
@@ -1599,4 +1599,7 @@
   <data name="Installer_Taskbar" xml:space="preserve"><value>Подготовить ярлык для панели задач (щелчок правой кнопкой в Windows)</value></data>
   <data name="Settings_CustomSounds.Text" xml:space="preserve"><value>Настроить звуки</value></data>
   <data name="Settings_FastPaths.PlaceholderText" xml:space="preserve"><value>C:, D:\Данные</value></data>
+  <data name="Rules_Synchronization.Text" xml:space="preserve"><value>Синхронизация</value></data>
+  <data name="Rules_SecurityTitle.Text" xml:space="preserve"><value>Безопасность</value></data>
+  <data name="Job_StateNeedsAdministrator" xml:space="preserve"><value>Требуются права администратора</value></data>
 </root>

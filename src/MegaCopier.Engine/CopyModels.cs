@@ -250,6 +250,7 @@ public static class FileErrors
 {
     public static FileErrorKind Classify(Exception exception) => exception switch
     {
+        CopyPlanException { InnerException: { } inner } => Classify(inner),
         UnauthorizedAccessException => FileErrorKind.AccessDenied,
         PathTooLongException => FileErrorKind.PathTooLong,
         FileNotFoundException or DirectoryNotFoundException => FileErrorKind.NotFound,

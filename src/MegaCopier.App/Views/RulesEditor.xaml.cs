@@ -1,4 +1,4 @@
-using MegaCopier.App.Services;
+﻿using MegaCopier.App.Services;
 using MegaCopier.Engine;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -156,16 +156,15 @@ public sealed partial class RulesEditor : UserControl
         InitializeComponent();
         SizeChanged += (_, e) =>
         {
-            // Dos columnas si caben; si no, los filtros encima de las reglas.
-            bool one = e.NewSize.Width < 600;
-            Grid.SetColumnSpan(FiltersColumn, one ? 2 : 1);
-            Grid.SetRow(RulesColumn, one ? 1 : 0);
-            Grid.SetColumn(RulesColumn, one ? 0 : 1);
-            Grid.SetColumnSpan(RulesColumn, one ? 2 : 1);
-            Grid.SetColumnSpan(SafetyLeft, one ? 2 : 1);
-            Grid.SetRow(SafetyRight, one ? 2 : 1);
-            Grid.SetColumn(SafetyRight, one ? 0 : 1);
-            Grid.SetColumnSpan(SafetyRight, one ? 2 : 1);
+            int columns = Math.Clamp((int)((e.NewSize.Width + 8) / 388), 1, 4);
+            CardsGrid.ColumnDefinitions.Clear();
+            for (int i = 0; i < columns; i++) CardsGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+            var cards = new FrameworkElement[] { FiltersColumnCard, RulesColumnCard, SafetyLeftCard, SafetyRightCard };
+            for (int i = 0; i < cards.Length; i++)
+            {
+                Grid.SetRow(cards[i], i / columns);
+                Grid.SetColumn(cards[i], i % columns);
+            }
         };
     }
 

@@ -35,7 +35,9 @@ internal static class CopyPlanner
         IReadOnlyList<string> sources,
         string destinationDirectory,
         FileFilter? filter = null,
-        LinkHandling links = LinkHandling.CopyLink)
+        LinkHandling links = LinkHandling.CopyLink,
+        IReadOnlyDictionary<string, string>? targetNames = null,
+        bool backupMode = false)
     {
         filter = filter is { IsEmpty: false } ? filter : null;
         if (sources.Count == 0)
@@ -44,7 +46,7 @@ internal static class CopyPlanner
         }
 
         string destinationRoot = Path.TrimEndingDirectorySeparator(Path.GetFullPath(destinationDirectory));
-        var walk = new Walk(filter, links);
+        var walk = new Walk(filter, links, backupMode);
 
         try
         {
@@ -57,6 +59,12 @@ internal static class CopyPlanner
                     throw new CopyPlanException(Texts.F("E_WholeDrive", raw));
                 }
 
+                if (targetNames is not null && targetNames.TryGetValue(source, out string? renamed))
+                {
+                    if (string.IsNullOrWhiteSpace(renamed) || renamed != Path.GetFileName(renamed) || renamed is "." or "..")
+                        throw new ArgumentException("Invalid duplicate name", nameof(targetNames));
+                    name = renamed;
+                }
                 string target = Path.Combine(destinationRoot, name);
                 FileSystemInfo info = Directory.Exists(source) ? new DirectoryInfo(source) : new FileInfo(source);
                 if (!info.Exists && info.LinkTarget is null)
@@ -89,7 +97,7 @@ internal static class CopyPlanner
         string.Equals(path, folder, StringComparison.OrdinalIgnoreCase)
         || path.StartsWith(folder + Path.DirectorySeparatorChar, StringComparison.OrdinalIgnoreCase);
 
-    private sealed class Walk(FileFilter? filter, LinkHandling links)
+    private sealed class Walk(FileFilter? filter, LinkHandling links, bool backupMode)
     {
         /// <summary>
         /// Carpetas reales del camino actual: un enlace que apunta a una de ellas (su padre o un abuelo) haría un bucle
@@ -167,13 +175,23 @@ internal static class CopyPlanner
             }
 
             Directories.Add(new PlannedDirectory(info.FullName, target, depth));
-            foreach (var child in ((DirectoryInfo)info).EnumerateFileSystemInfos("*", OneLevel))
+            foreach (var child in Children((DirectoryInfo)info))
             {
                 string childRelative = relative.Length == 0 ? child.Name : Path.Combine(relative, child.Name);
                 Entry(child, Path.Combine(target, child.Name), childRelative, depth + 1);
             }
 
             _ancestors.Remove(real);
+        }
+
+        private IEnumerable<FileSystemInfo> Children(DirectoryInfo directory)
+        {
+            if (!backupMode) return directory.EnumerateFileSystemInfos("*", OneLevel);
+            try { return directory.EnumerateFileSystemInfos("*", OneLevel).ToArray(); }
+            catch (UnauthorizedAccessException) when (backupMode)
+            {
+                return Native.BackupPrivileges.EnumerateDirectory(directory.FullName);
+            }
         }
 
         private static string RealPath(DirectoryInfo directory)

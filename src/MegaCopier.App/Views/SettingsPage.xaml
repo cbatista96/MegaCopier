@@ -48,7 +48,7 @@
                 <Canvas x:Name="SectionIndicatorLayer" Grid.Row="1" IsHitTestVisible="False" />
             </Grid>
 
-            <Grid Grid.Column="1" MaxWidth="1028" HorizontalAlignment="Stretch">
+            <Grid Grid.Column="1" HorizontalAlignment="Stretch">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
@@ -71,8 +71,8 @@
                         </BreadcrumbBar.ItemTemplate>
                     </BreadcrumbBar>
                 </Grid>
-                <ScrollViewer x:Name="SectionScroll" HorizontalContentAlignment="Stretch" Grid.Row="1" Padding="24,0,24,20" HorizontalScrollMode="Disabled" HorizontalScrollBarVisibility="Disabled">
-            <StackPanel x:Name="SectionsHost" MaxWidth="980" HorizontalAlignment="Stretch">
+                <ScrollViewer Background="Transparent" x:Name="SectionScroll" HorizontalContentAlignment="Stretch" Grid.Row="1" Padding="24,0,24,20" HorizontalScrollMode="Disabled" HorizontalScrollBarVisibility="Disabled">
+            <StackPanel x:Name="SectionsHost" LayoutUpdated="SectionsHost_LayoutUpdated" MaxWidth="980" HorizontalAlignment="Stretch">
                 <InfoBar x:Name="RestartInfo" x:Uid="RestartInfo" Severity="Informational" IsClosable="False" IsOpen="False" Margin="0,8,0,0">
                     <InfoBar.ActionButton>
                         <Button x:Uid="RestartButton" Click="Restart_Click" />
@@ -262,7 +262,8 @@
                         <ToggleSwitch x:Name="AdaptToggle" AutomationProperties.LabeledBy="{x:Bind AdaptTitleLabel}" Grid.Column="2" OnContent="" OffContent="" MinWidth="0" Toggled="Changed" />
                     </Grid>
                 </Border>
-                <TextBlock x:Name="ThemesLabel" x:Uid="Settings_Themes" Style="{StaticResource McSection}" />
+                <Border Style="{StaticResource McSettingCard}" Margin="0,0,0,4"><StackPanel Spacing="6">
+                <TextBlock x:Name="ThemesLabel" x:Uid="Settings_Themes" Style="{StaticResource McStrong}" />
                 <GridView x:Name="ThemeGallery" AutomationProperties.LabeledBy="{x:Bind ThemesLabel}" SelectionMode="Single" SelectionChanged="ThemeGallery_SelectionChanged" Padding="4,4,4,0">
                     <GridView.ItemContainerTransitions>
                         <TransitionCollection>
@@ -329,10 +330,13 @@
                         </StackPanel>
                     </StackPanel>
                 </Expander>
-                <TextBlock x:Name="IconsLabel" x:Uid="Settings_Icons" Style="{StaticResource McSection}" />
-                <TextBlock x:Uid="Settings_IconsDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" Margin="2,-2,0,6" />
+                </StackPanel></Border>
+                <Border Style="{StaticResource McSettingCard}" Margin="0,0,0,4"><StackPanel Spacing="6">
+                <TextBlock x:Name="IconsLabel" x:Uid="Settings_Icons" Style="{StaticResource McStrong}" />
+                <TextBlock x:Uid="Settings_IconsDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" Margin="0,0,0,6" />
                 <GridView x:Name="IconGallery" AutomationProperties.LabeledBy="{x:Bind IconsLabel}" SelectionMode="Single" SelectionChanged="IconGallery_SelectionChanged" Padding="4,4,4,0" />
-                <StackPanel x:Name="BarsHost" Spacing="8" Margin="0,8,0,0" />
+                </StackPanel></Border>
+                <Border Style="{StaticResource McSettingCard}" Margin="0,0,0,4"><StackPanel x:Name="BarsHost" Spacing="0" /></Border>
                 </StackPanel>                <StackPanel x:Name="Sec_Sounds" Visibility="Collapsed">
                 <Border Style="{StaticResource McSettingCard}">
                     <Grid Style="{StaticResource Row}">

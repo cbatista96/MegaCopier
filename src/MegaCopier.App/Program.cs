@@ -176,9 +176,16 @@ public static class Program
         options.DryRun = false;
         try
         {
-            var result = new Engine.CopyEngine(options).Run(new Engine.CopyJobRequest(record.Sources, record.Destination) { Excluded = record.Excluded, Resumed = true });
-            File.WriteAllText(resultPath, $"{result.Failures.Count}\n{result.Failures.FirstOrDefault()?.Message}");
-            return result.Failures.Count == 0 ? 0 : 1;
+            var engine = new Engine.CopyEngine(options);
+            var result = engine.Run(new Engine.CopyJobRequest(record.Sources, record.Destination)
+            { Excluded = record.Excluded, Resumed = true, RenamedFolders = record.RenamedFolders, ExtraTargets = record.ExtraTargets });
+            var report = Engine.Jobs.AdministratorCopyReport.Create(jobId, engine, result);
+            Engine.ISnapshotProvider snapshots = App.TestMode && Environment.GetEnvironmentVariable("MEGACOPIER_TEST_SNAPSHOT") is { Length: > 0 } fake
+                ? new FolderSnapshot(fake) : new Engine.WmiSnapshotProvider();
+            report.RecoverLockedFiles(snapshots, options);
+            report.Save(Engine.DataFolder.Combine($"backup-{jobId}.json"));
+            File.WriteAllText(resultPath, $"{report.Failures.Count}\n{report.Failures.FirstOrDefault()?.Message}");
+            return report.Failures.Count == 0 ? 0 : 1;
         }
         catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or Engine.CopyPlanException)
         {

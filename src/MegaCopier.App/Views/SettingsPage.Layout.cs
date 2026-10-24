@@ -14,6 +14,23 @@ namespace MegaCopier.App.Views;
 /// </summary>
 public sealed partial class SettingsPage
 {
+    // El encabezado sigue el borde real del contenido centrado, pero el ScrollViewer
+    // conserva todo el ancho para recibir la rueda también desde los márgenes vacíos.
+    private void SectionsHost_LayoutUpdated(object? sender, object e)
+    {
+        if (SectionHeader.Parent is not FrameworkElement parent || SectionsHost.ActualWidth <= 0 || SectionsHost.XamlRoot is null) return;
+        double width = Math.Min(980, Math.Max(0, SectionScroll.ActualWidth - SectionScroll.Padding.Left - SectionScroll.Padding.Right));
+        if (Math.Abs(SectionsHost.Width - width) > .5 || double.IsNaN(SectionsHost.Width))
+        {
+            SectionsHost.Width = width;
+            SectionsHost.UpdateLayout();
+        }
+        double left = SectionsHost.TransformToVisual(parent).TransformPoint(default).X;
+        double right = Math.Max(0, parent.ActualWidth - left - SectionsHost.ActualWidth);
+        var margin = SectionHeader.Margin;
+        if (Math.Abs(margin.Left - left) > .5 || Math.Abs(margin.Right - right) > .5)
+            SectionHeader.Margin = new Thickness(left, margin.Top, right, margin.Bottom);
+    }
     /// <summary>Sangría con la que el XAML alinea lo de debajo con el texto (icono de 18 + separación de 12).</summary>
     private const double TextIndent = 24;
 

@@ -31,6 +31,6 @@ public sealed partial class SettingsPage
             }
         }
         finally { _restoringSettings = false; }
-        Motion.SlideX(SectionsHost, forward ? 60 : -60, 0, 280, null, decelerate: true);
+        Motion.ResetSlide(SectionsHost);
     }
 }

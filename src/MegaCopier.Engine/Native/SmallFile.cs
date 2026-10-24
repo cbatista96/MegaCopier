@@ -18,6 +18,7 @@ internal static unsafe partial class SmallFile
     private const uint FileFlagSequentialScan = 0x08000000;
     private const int FileBasicInfo = 0;
     private const int FileRenameInfoEx = 22;
+    private const int FileRenameInfo = 3;
     private const uint RenameReplaceIfExists = 0x1;
     private const uint RenamePosixSemantics = 0x2;
     private const uint RenameIgnoreReadOnly = 0x40;
@@ -64,9 +65,27 @@ internal static unsafe partial class SmallFile
         full.AsSpan().CopyTo(new Span<char>(buffer + 20, full.Length));
         if (!SetFileInformationByHandle(file, FileRenameInfoEx, buffer, (uint)size))
         {
-            throw Win32Error(Marshal.GetLastPInvokeError(), newPath);
+            int error = Marshal.GetLastPInvokeError();
+            // FAT/exFAT y algunos servidores no admiten FileRenameInfoEx ni sus flags POSIX.
+            // El renombrado clásico conserva la misma operación atómica con el archivo abierto.
+            if (!UnsupportedRename(error)) throw Win32Error(error, newPath);
+            *(uint*)buffer = RenameReplaceIfExists;
+            FileAttributes? previous = null;
+            if (File.Exists(newPath) && (File.GetAttributes(newPath) & FileAttributes.ReadOnly) != 0)
+            {
+                previous = File.GetAttributes(newPath);
+                File.SetAttributes(newPath, previous.Value & ~FileAttributes.ReadOnly);
+            }
+            if (!SetFileInformationByHandle(file, FileRenameInfo, buffer, (uint)size))
+            {
+                error = Marshal.GetLastPInvokeError();
+                if (previous is { } attributes && File.Exists(newPath)) File.SetAttributes(newPath, attributes);
+                throw Win32Error(error, newPath);
+            }
         }
     }
+
+    internal static bool UnsupportedRename(int error) => error is 1 or 50 or 87 or 120;
 
     private static IOException Win32Error(int error, string? path) =>
         new($"{Marshal.GetPInvokeErrorMessage(error)}{(path is null ? "" : $" ({path})")}", unchecked((int)0x80070000 | error));

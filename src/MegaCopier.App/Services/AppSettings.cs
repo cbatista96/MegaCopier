@@ -627,6 +627,7 @@ public sealed class AppSettings
             Verify = request.Verify ?? VerifyAfterCopy,
             Conflict = request.Conflict ?? Conflict,
             Move = request.Move ?? false,
+            DuplicateInPlace = request.DuplicateInPlace,
             MaxBytesPerSecond = SpeedLimitMBps * (long)CopyOptions.MiB,
             CheckFreeSpace = CheckFreeSpace,
             UseUnbufferedIo = !UseSystemCache,

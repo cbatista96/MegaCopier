@@ -361,6 +361,9 @@ public sealed class CopyOptions
 
     public FolderConflictPolicy FolderConflict { get; set; }
 
+    /// <summary>Ctrl+arrastrar a la carpeta de origen: duplicar con nombres nuevos.</summary>
+    public bool DuplicateInPlace { get; set; }
+
     /// <summary>Diferencia de fecha que se considera igual (FAT/exFAT guardan la hora cada 2 s; algunos NAS redondean).</summary>
     public TimeSpan TimeTolerance { get; set; } = TimeSpan.FromSeconds(2);
 

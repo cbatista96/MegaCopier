@@ -18,6 +18,11 @@ Las ilustraciones muestran la interfaz de desarrollo actual. Las notas en españ
 - El instalador organiza primero los accesos directos opcionales y después la integración. Presenta una imagen lateral de MegaCopier y la política de privacidad antes de instalar; la búsqueda automática y los informes se pueden desmarcar.
 - Ajustes navega con transiciones fluidas y permite volver a las copias con el botón superior. Los botones laterales del ratón también sirven para retroceder y avanzar, y Sonidos separa avisos, volumen, personalización y silencio durante juegos o presentaciones.
 - Se corrigen el cierre al arrancar tras consultar la red, la ayuda «Atrás» fuera de su botón, los cambios de tamaño de «Más/Menos» y la visualización de copias recuperadas al abrir, además de recortes o desalineaciones de cabeceras e indicadores. Las actualizaciones verifican el manifiesto firmado y la suma del paquete antes de instalarlo.
+- Al copiar carpetas protegidas, MegaCopier solicita autorización de administrador cuando hace falta y resuelve los archivos en uso dentro del mismo proceso autorizado. Ya no encadena dos reintentos; mientras falten permisos muestra «Necesita permisos de administrador».
+- Ctrl+arrastrar una carpeta dentro de su propia ubicación crea una copia con nombre distinto mediante MegaCopier. Se corrigen la apertura accidental del menú Inicio y la demora al soltar una selección de archivos en el Explorador.
+- Se corrige la copia a memorias exFAT que fallaba con «El parámetro no es correcto». Se han comprobado copias y sobrescrituras con verificación de contenido en NTFS, exFAT y FAT32; ReFS queda pendiente de prueba.
+- Las opciones ampliadas se organizan en tarjetas que aprovechan el ancho disponible. Ajustes conserva márgenes, títulos y separaciones uniformes, admite la rueda en los espacios vacíos y muestra indicadores de navegación más largos con movimiento fluido.
+
 
 ### Añadido
 
@@ -40,6 +45,10 @@ Las ilustraciones muestran la interfaz de desarrollo actual. Las notas en españ
 
 <img src="docs/capturas/instalador-informes.png" width="598" alt="Opciones de accesos directos e integración del instalador">
 
+- **Duplicar con Ctrl y arrastre:** integración con el Explorador al soltar una carpeta sobre un espacio vacío de la misma ubicación. Se elige un nombre libre, se conservan carpetas vacías y el nombre elegido al reanudar, sin confundir duplicación con mover ni mezclarla con otros trabajos.
+- **Historial por bloques:** muestra las diez versiones más recientes y permite cargar diez más con «Mostrar más» hasta completar el historial.
+
+
 ### Cambiado
 
 - **Idioma más accesible:** la tarjeta Idioma es la segunda opción de General. Al iniciar el instalador se puede elegir español o inglés.
@@ -59,6 +68,16 @@ Las ilustraciones muestran la interfaz de desarrollo actual. Las notas en españ
 
 - **Documentación en dos idiomas:** enlaces visibles a la presentación y al historial completo en inglés y español. Las publicaciones futuras muestran ambos idiomas y empiezan por las principales novedades; los assets de notas separados conservan el documento completo para la aplicación. La guía editorial permite resúmenes desarrollados de la longitud necesaria y agrupa arreglos menores sin inventar cifras.
 - **Traducciones revisadas:** los 14 idiomas comparten las mismas claves y parámetros. El ejemplo de ruta de dispositivos rápidos procede de los recursos traducidos; los filtros en idiomas distintos del español y el inglés usan un ejemplo de extensión y tamaño que el analizador admite, sin una frase inglesa sin traducir.
+
+- **Opciones adaptables:** «Qué se copia», «Transferencia» y «Al terminar» tienen tarjetas propias. En anchura intermedia, la última ocupa toda la fila; en una ventana más ancha caben las tres. Filtros, Reglas, Sincronización y Seguridad quedan en cuatro tarjetas independientes, con una o varias columnas según el espacio.
+- **Programar el inicio:** fecha, hora, acciones y datos de tareas repetidas se reorganizan al cambiar el ancho, sin dejar controles apilados innecesariamente ni fuera de la tarjeta.
+- **Ajustes uniformes:** todas las páginas usan el mismo ancho y márgenes que General; los iconos y títulos aparecen alineados desde el primer fotograma, incluida Actualizaciones. El espaciado entre tarjetas, filas, columnas y títulos sigue el de Automatización.
+- **Interfaz en tarjetas:** Temas, Iconos y Barras de progreso quedan agrupados en tarjetas. Los títulos y descripciones parten del mismo margen; los botones de información quedan a la derecha y centrados verticalmente, también en grosor, redondeo, velocidad y brillo.
+- **Navegación visible:** indicadores azules más largos en Archivos, Destino, Opciones, Estado y Registro y en las tres barras de progreso configurables, con desplazamiento fluido. La marca de la copia seleccionada en la lista también es más alta.
+- **Controles de copia:** se recupera el tamaño de los botones conservando su centrado y se usa «Cancelar» en el panel y en el menú contextual. Origen y destino muestran una sola ruta completa en texto secundario, sin repetir letra ni nombre del disco y conservando los iconos.
+- **Idioma e instalación:** la tarjeta de idioma es la segunda en General, debajo de la integración con el copiador de Windows. El instalador ofrece elegir español o inglés al iniciarse.
+- **Historial consistente:** las tarjetas de versiones usan la misma separación que las demás y mantienen «Ver historial de cambios» y su flecha centrados verticalmente a la derecha.
+
 
 ### Arreglado
 
@@ -85,10 +104,23 @@ Las ilustraciones muestran la interfaz de desarrollo actual. Las notas en españ
 
 <img src="docs/capturas/compacta.png" width="620" alt="Controles, información del archivo y unidades alineados">
 
+- **Permisos de carpetas protegidas:** un acceso denegado durante la lectura inicial conserva el trabajo para autorizarlo. El proceso elevado puede enumerar esas carpetas, devuelve el resultado real y sus verificaciones y evita volver a leer el origen sin permisos. Una copia completada no conserva un error anterior de acceso denegado.
+- **Archivos en uso y administrador:** ambos casos comparten una sola autorización y recuperación. Los archivos bloqueados se leen desde una instantánea cuando es posible; el resultado se incorpora directamente al trabajo, sin otro reintento que vuelva a fallar por permisos. Una autorización rechazada o un fallo real no se marca como copia correcta.
+- **Memorias USB exFAT:** si el sistema de archivos no admite la operación avanzada de renombrado, se utiliza la alternativa compatible. También se prueba la sustitución de archivos de solo lectura, sin ocultar errores reales de permisos, espacio o bloqueo.
+- **Ctrl y arrastre:** se evita que la cancelación interna del arrastre genere Ctrl+Esc y abra Inicio; se conserva el estado físico de las teclas Control.
+- **Selección en el Explorador:** soltar el botón tras dibujar un recuadro sobre el fondo vuelve a ser inmediato. MegaCopier ya no retiene ese clic mientras espera un arrastre que no existe.
+- **Resumen en ventana compacta:** se añade interlineado para que la cantidad copiada, duración y velocidad no queden superpuestas cuando termina una copia y sigue otra.
+- **Rueda en los márgenes:** las páginas desplazables responden también sobre espacios vacíos, manteniendo las tarjetas centradas y sin el salto de alineación al cambiar de sección.
+
+<img src="docs/capturas/ampliada-opciones.png" width="820" alt="Opciones de copia organizadas en tarjetas adaptables">
+
+<img src="docs/capturas/barras.png" width="820" alt="Tarjeta de barras de progreso con indicadores más largos e información alineada">
+
+
 ### Seguridad
 
 - **Actualizaciones verificadas:** manifiesto ECDSA P-256 y SHA-256 del instalador y del ZIP; sin clave o firma válida no se ejecuta el paquete. Clave pública de producción incluida en la app y privada custodiada fuera del repositorio y como secreto de GitHub Actions.
-- **Firma de Windows pendiente:** solicitud enviada a SignPath Foundation el 21 de octubre de 2026, con recepción confirmada. La aprobación y el certificado Authenticode siguen pendientes; esta configuración no convierte los ejecutables actuales en firmados ni garantiza eliminar los avisos de SmartScreen.
+- **Firma de Windows:** SignPath Foundation no aprobó la solicitud en esta ocasión por falta de visibilidad pública del proyecto. Los ejecutables y el instalador siguen sin Authenticode; el manifiesto del actualizador sí se firma con ECDSA. No se promete eliminar los avisos de SmartScreen.
 
 ## [1.7.1] - 2026-10-20
 

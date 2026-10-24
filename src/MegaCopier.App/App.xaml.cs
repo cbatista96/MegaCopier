@@ -285,12 +285,20 @@ public partial class App : Application
     /// </summary>
     internal async Task CopyWithAdminAsync(CopyJob job)
     {
+        if (_exiting || !job.BeginAdministratorRetry()) return;
+        _adminRetried.Add(job.Id);
         // Modo copia de seguridad: un proceso con permisos de administrador (aviso de Windows) repite la copia
         // saltándose los permisos de los archivos; después se reintenta aquí y lo copiado se omite como idéntico.
         string resultPath = DataFolder.Combine($"backup-{job.Id}.txt");
-        int exit;
+        string reportPath = DataFolder.Combine($"backup-{job.Id}.json");
+        Engine.Jobs.AdministratorCopyReport? report = null;
+        int exit = -1;
+        string[] lines = ["-1", ""];
+        bool retry = false;
         try
         {
+            File.Delete(resultPath); // No aceptar un informe que quedó de otro intento.
+            File.Delete(reportPath);
             var info = new ProcessStartInfo(Environment.ProcessPath!, $"--backup {job.Id}") { UseShellExecute = !TestMode };
             if (!TestMode)
             {
@@ -300,71 +308,43 @@ public partial class App : Application
             using var process = Process.Start(info)!;
             await process.WaitForExitAsync();
             exit = process.ExitCode;
+            lines = File.Exists(resultPath) ? File.ReadAllLines(resultPath) : ["-1", ""];
+            report = Engine.Jobs.AdministratorCopyReport.Load(reportPath);
+            File.Delete(resultPath);
+            File.Delete(reportPath);
+            // Solo un informe real del proceso elevado permite reintentar y reconocer sus copias.
+            // No basta con que ya exista un archivo de destino de un intento anterior.
+            retry = int.TryParse(lines.ElementAtOrDefault(0), out int failed) && failed >= 0;
         }
         catch (System.ComponentModel.Win32Exception)
         {
             Notify(L.Get("Backup_Title"), L.Get("Locked_Cancelled"));
-            return;
         }
-
-        string[] lines = File.Exists(resultPath) ? File.ReadAllLines(resultPath) : ["-1", ""];
-        File.Delete(resultPath);
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or System.Text.Json.JsonException)
+        {
+            Notify(L.Get("Backup_Title"), L.F("Backup_Partial", ex.Message));
+        }
+        finally
+        {
+            job.EndAdministratorRetry();
+        }
         if (TestMode)
         {
             TestLog("backup.log", $"salida={exit} {string.Join(" | ", lines)}");
         }
 
-        Queue.Resume(job);
-        Notify(L.Get("Backup_Title"), exit == 0 ? L.Get("Backup_Done") : L.F("Backup_Partial", lines.ElementAtOrDefault(1) ?? ""));
+        if (!Queue.Jobs.Contains(job) || job.Cancelled) return;
+        if (retry && report is not null && Queue.ApplyAdministratorReport(job, report))
+        {
+            Notify(L.Get("Backup_Title"), exit == 0 ? L.Get("Backup_Done") : L.F("Backup_Partial", lines.ElementAtOrDefault(1) ?? ""));
+        }
+        else
+        {
+            OnJobFinished(job); // permiso cancelado o fallo real: conservar el error, sin marcarlo como copiado.
+        }
     }
 
-    internal async Task CopyLockedFilesAsync(CopyJob job)
-    {
-        var locked = job.Files?.Snapshot().Where(i => i.State == FileState.Failed && i.ErrorKind == FileErrorKind.InUse)
-            .Select(i => new LockedFile(i.Source, i.Destination)).ToList() ?? [];
-        if (locked.Count == 0)
-        {
-            return;
-        }
-
-        string requestPath = DataFolder.Combine($"vss-{job.Id}.json");
-        LockedFiles.Save(new LockedFilesRequest { Files = locked }, requestPath);
-        int exit;
-        try
-        {
-            var info = new ProcessStartInfo(Environment.ProcessPath!, $"--vss \"{requestPath}\"") { UseShellExecute = !TestMode };
-            if (!TestMode)
-            {
-                info.Verb = "runas"; // aviso de control de cuentas de Windows
-            }
-
-            using var process = Process.Start(info)!;
-            await process.WaitForExitAsync();
-            exit = process.ExitCode;
-        }
-        catch (System.ComponentModel.Win32Exception)
-        {
-            Notify(L.Get("Locked_Title"), L.Get("Locked_Cancelled")); // no se dio permiso
-            return;
-        }
-
-        var result = LockedFiles.Load(requestPath);
-        File.Delete(requestPath);
-        int copied = locked.Count - (result?.Errors.Count ?? locked.Count);
-        if (TestMode)
-        {
-            TestLog("vss.log", $"salida={exit} copiados={copied} errores={result?.Errors.Count} {string.Join(" | ", result?.Errors.Values.ToList() ?? [])}");
-        }
-
-        if (copied > 0)
-        {
-            Queue.Resume(job); // reintentar: los copiados ya están y se omiten como idénticos
-        }
-
-        Notify(L.Get("Locked_Title"), result is { Errors.Count: 0 }
-            ? L.F("Locked_Done", copied)
-            : L.F("Locked_Partial", copied, result?.Errors.Values.FirstOrDefault() ?? ""));
-    }
+    internal Task CopyLockedFilesAsync(CopyJob job) => CopyWithAdminAsync(job);
 
     internal CopyJob? RunList(string path, string? destination = null)
     {
@@ -437,7 +417,8 @@ public partial class App : Application
 
             // La misma copia ya estaba detenida (por cerrar MegaCopier, un apagón...): se continúa esa en lugar de
             // tener dos iguales en la lista.
-            if (request.StartAtUtc is null && Queue.FindInterrupted(request.Sources, destination, operation, options.Move) is { } same)
+            if (!options.DuplicateInPlace && request.StartAtUtc is null
+                && Queue.FindInterrupted(request.Sources, destination, operation, options.Move) is { Record.DuplicateInPlace: false } same)
             {
                 Queue.Resume(same);
                 firstJob ??= same;
@@ -684,6 +665,7 @@ public partial class App : Application
     /// <summary>Solo se puede sumar a una copia que hace lo mismo: copiar (o mover) con el mismo modo.</summary>
     private static bool CanMerge(CopyJob job, CopyOptions options) =>
         job.Record.Operation == JobOperation.Copy && job.Record.Mode == options.Mode && job.Record.Move == options.Move
+        && !options.DuplicateInPlace && !job.Record.DuplicateInPlace
         && !options.Zip && !options.Encrypt && !job.Record.Zip && !job.Record.Encrypt;
 
     /// <summary>
@@ -950,7 +932,8 @@ public partial class App : Application
             }
         }
 
-        return OnExplorerPaste(new PasteRequest(drag.Sources, drag.Destination, drag.Move ? ClipboardOperation.Move : ClipboardOperation.Copy));
+        return OnExplorerPaste(new PasteRequest(drag.Sources, drag.Destination, drag.Move ? ClipboardOperation.Move : ClipboardOperation.Copy)
+        { DuplicateInPlace = drag.DuplicateInPlace });
     }
 
     /// <summary>Reinicia la app (para aplicar el idioma). Las copias en curso quedan reanudables.</summary>
@@ -974,6 +957,7 @@ public partial class App : Application
                     Sources = [.. paste.Sources],
                     Destination = paste.Destination,
                     Move = paste.Operation == ClipboardOperation.Move,
+                    DuplicateInPlace = paste.DuplicateInPlace,
                 });
                 completion.SetResult(true);
             }
@@ -1349,6 +1333,14 @@ public partial class App : Application
 
     private void OnJobFinished(CopyJob job)
     {
+        if (job.AdministratorRetryInProgress) return;
+        // No anunciar un final con errores ni ejecutar acciones de finalización antes de que
+        // Windows haya resuelto el reintento con permisos. La decisión no depende de la vista.
+        if (!_exiting && Settings.AutoAdminCopy && job.CanRetryWithAdministrator && _adminRetried.Add(job.Id))
+        {
+            _ = CopyWithAdminAsync(job);
+            return;
+        }
         bool stoppedByUser = job.State == CopyJobState.Interrupted && StoppedByUser.Contains(job.Id) && !_exiting;
         ApplyEndOfJobOptions(job);
 
@@ -1383,15 +1375,6 @@ public partial class App : Application
                 : last && Settings.Sounds.AllDone.Length > 0 ? SoundEvent.AllDone
                 : SoundEvent.Done;
             Sounds.Play(Settings.Sounds, sound);
-        }
-
-        // Archivos que Windows no deja leer sin permiso de administrador: se piden los permisos (una vez por copia) y
-        // se copian, como hace el Explorador. La ventana no se cierra: la copia vuelve a ponerse en marcha.
-        if (job.State == CopyJobState.CompletedWithErrors && Settings.AutoAdminCopy && _adminRetried.Add(job.Id)
-            && owner.Jobs.FirstOrDefault(j => j.Job == job) is { CanCopyAdmin: true })
-        {
-            _ = CopyWithAdminAsync(job);
-            return;
         }
 
         if (!owner.HasActiveJobs && finished)

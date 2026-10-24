@@ -908,3 +908,12 @@ Los botones laterales Atrás/Adelante del ratón y **Alt+Izquierda/Derecha** nav
 El botón Ajustes de la barra superior actúa también como regreso: al pulsarlo desde cualquier sección de Ajustes, vuelve a la copia o a la pantalla de inicio y recupera el tamaño anterior de la ventana, incluida la vista pequeña. La ayuda «Volver» solo aparece sobre su botón, no por pasar el ratón por la ventana.
 
 Entrar en Actualizaciones conserva el último resultado correcto, aunque no haya Internet: «MegaCopier está al día» o la versión disponible con sus novedades guardadas. Solo una búsqueda o descarga manual sin conexión muestra el aviso de red y la X roja; al salir de la sección y regresar, vuelve el último resultado guardado. El botón ofrece buscar, descargar o instalar según corresponda. Una reconexión permite completar descargas pendientes y una comprobación automática vencida, respetando los permisos y opciones. El aviso de ZIP portátil solo aparece si existe una versión nueva. Los resúmenes explican cada mejora con una o dos frases cuando hace falta; pueden incluir más de diez puntos en versiones grandes y agrupan los arreglos menores según la guía de publicación.
+
+
+## Compatibilidad y permisos de copia
+
+Se han probado copias y sobrescrituras con verificación de contenido en NTFS, exFAT y FAT32. FAT32 conserva su límite de tamaño por archivo; ReFS no se ha probado en el equipo de desarrollo. La copia a exFAT utiliza una alternativa compatible cuando el sistema de archivos no admite el renombrado avanzado.
+
+Si una copia necesita autorización, muestra «Necesita permisos de administrador». Con la recuperación automática activada, Windows solicita autorización cuando hace falta; el proceso autorizado también intenta recuperar los archivos en uso desde una instantánea, sin encadenar otro intento sin permisos. Los bloqueos que no se puedan recuperar se conservan como fallos reales.
+
+El historial de actualizaciones muestra diez versiones por bloque. «Mostrar más» carga las diez siguientes.

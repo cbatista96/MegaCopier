@@ -221,7 +221,7 @@
   <data name="Panel_OpenFolder.Text" xml:space="preserve"><value>フォルダーを開く</value></data>
   <data name="Panel_Pause.Text" xml:space="preserve"><value>一時停止</value></data>
   <data name="Panel_Skip.Text" xml:space="preserve"><value>スキップ</value></data>
-  <data name="Panel_Stop.Text" xml:space="preserve"><value>停止</value></data>
+  <data name="Panel_Stop.Text" xml:space="preserve"><value>キャンセル</value></data>
   <data name="Panel_More" xml:space="preserve"><value>詳細</value></data>
   <data name="Panel_Less" xml:space="preserve"><value>簡易</value></data>
   <data name="Priority_Low.Content" xml:space="preserve"><value>低</value></data>
@@ -1463,7 +1463,7 @@
   <data name="Settings_TrayProgressTitle.Text" xml:space="preserve"><value>各コピーの進行状況を通知領域に表示</value></data>
   <data name="Settings_TrayProgressDescription.Text" xml:space="preserve"><value>実行中のコピーごとに、割合と上昇するバーを示すアイコンを 1 つ表示します。終わると自動的に消えます。クリックするとそのコピーを開きます。</value></data>
   <data name="Tray_JobPause" xml:space="preserve"><value>一時停止</value></data>
-  <data name="Tray_JobStop" xml:space="preserve"><value>停止</value></data>
+  <data name="Tray_JobStop" xml:space="preserve"><value>キャンセル</value></data>
   <data name="Jobs_Archive" xml:space="preserve"><value>履歴にアーカイブ</value></data>
   <data name="Jobs_ArchiveKey" xml:space="preserve"><value>Del</value></data>
   <data name="Jobs_Delete" xml:space="preserve"><value>削除 (履歴からも)</value></data>
@@ -1599,4 +1599,7 @@
   <data name="Installer_Taskbar" xml:space="preserve"><value>タスクバー用ショートカットを準備（Windowsで右クリック）</value></data>
   <data name="Settings_CustomSounds.Text" xml:space="preserve"><value>サウンドをカスタマイズ</value></data>
   <data name="Settings_FastPaths.PlaceholderText" xml:space="preserve"><value>C:, D:\データ</value></data>
+  <data name="Rules_Synchronization.Text" xml:space="preserve"><value>同期</value></data>
+  <data name="Rules_SecurityTitle.Text" xml:space="preserve"><value>セキュリティ</value></data>
+  <data name="Job_StateNeedsAdministrator" xml:space="preserve"><value>管理者権限が必要です</value></data>
 </root>

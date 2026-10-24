@@ -221,7 +221,7 @@
   <data name="Panel_OpenFolder.Text" xml:space="preserve"><value>Map openen</value></data>
   <data name="Panel_Pause.Text" xml:space="preserve"><value>Pauzeren</value></data>
   <data name="Panel_Skip.Text" xml:space="preserve"><value>Overslaan</value></data>
-  <data name="Panel_Stop.Text" xml:space="preserve"><value>Stoppen</value></data>
+  <data name="Panel_Stop.Text" xml:space="preserve"><value>Annuleren</value></data>
   <data name="Panel_More" xml:space="preserve"><value>Meer</value></data>
   <data name="Panel_Less" xml:space="preserve"><value>Minder</value></data>
   <data name="Priority_Low.Content" xml:space="preserve"><value>Laag</value></data>
@@ -1463,7 +1463,7 @@
   <data name="Settings_TrayProgressTitle.Text" xml:space="preserve"><value>Voortgang van elke kopie in het systeemvak</value></data>
   <data name="Settings_TrayProgressDescription.Text" xml:space="preserve"><value>Eén pictogram per lopende kopie, met het percentage en een balk die stijgt. Als hij klaar is, verdwijnt het vanzelf. Klik erop om de kopie te openen.</value></data>
   <data name="Tray_JobPause" xml:space="preserve"><value>Pauzeren</value></data>
-  <data name="Tray_JobStop" xml:space="preserve"><value>Stoppen</value></data>
+  <data name="Tray_JobStop" xml:space="preserve"><value>Annuleren</value></data>
   <data name="Jobs_Archive" xml:space="preserve"><value>Archiveren in geschiedenis</value></data>
   <data name="Jobs_ArchiveKey" xml:space="preserve"><value>Del</value></data>
   <data name="Jobs_Delete" xml:space="preserve"><value>Verwijderen (ook uit geschiedenis)</value></data>
@@ -1599,4 +1599,7 @@
   <data name="Installer_Taskbar" xml:space="preserve"><value>Snelkoppeling voorbereiden voor de taakbalk (rechtsklik in Windows)</value></data>
   <data name="Settings_CustomSounds.Text" xml:space="preserve"><value>Geluiden aanpassen</value></data>
   <data name="Settings_FastPaths.PlaceholderText" xml:space="preserve"><value>C:, D:\Gegevens</value></data>
+  <data name="Rules_Synchronization.Text" xml:space="preserve"><value>Synchronisatie</value></data>
+  <data name="Rules_SecurityTitle.Text" xml:space="preserve"><value>Beveiliging</value></data>
+  <data name="Job_StateNeedsAdministrator" xml:space="preserve"><value>Beheerdersmachtiging vereist</value></data>
 </root>
