@@ -21,7 +21,7 @@ Replace File Explorer's copy and paste. If a transfer is interrupted by a power 
 
 ### Code signing policy
 
-Updates use the project's own ECDSA key. The application to **SignPath Foundation** was submitted on October 21, 2026; approval and Authenticode certificate access remain pending. Sponsorship is not claimed as granted. See the [code-signing policy](docs/Code-signing-policy.md) and [privacy policy](docs/Privacy.md).
+Updates use the project's own ECDSA key. **SignPath Foundation** did not approve the application at this time because broader public visibility is required. The EXE and installer remain without Authenticode; the update manifest is signed with the project’s ECDSA key. See the [code-signing policy](docs/Code-signing-policy.md) and [privacy policy](docs/Privacy.md).
 
 [Features](#all-features) · [Screenshots](#screenshots) · [User guide — Spanish](docs/Guia.md) · [Changelog](CHANGELOG.en.md) · [Español](README.es.md)
 
@@ -29,7 +29,15 @@ Updates use the project's own ECDSA key. The application to **SignPath Foundatio
 
 </div>
 
-> **Development status:** `main` includes [unreleased changes](CHANGELOG.en.md#unreleased). The download above is still the latest published version, **1.7.1**, and does not contain all development features described below. Updating this repository does not publish a new installer or release.
+
+## New in 1.8.0
+
+- Updates, full bilingual release notes and version history inside Settings, plus optional automatic downloads and installation.
+- Protected folders and files in use share one administrator recovery process; exFAT USB copying is fixed. NTFS, exFAT and FAT32 copy and overwrite checks passed.
+- Ctrl+drag duplicates folders within their current location without opening Start or delaying selection in Explorer.
+- Responsive option cards, consistent settings spacing, clearer paths and smooth navigation indicators. The installer offers English or Spanish.
+
+[Full changelog with English screenshots](CHANGELOG.en.md#180---2026-10-23) · [Spanish notes and screenshots](CHANGELOG.md#180---2026-10-23)
 
 ## Why MegaCopier
 
@@ -56,13 +64,13 @@ Everything is on the [latest release page](https://github.com/cbatista96/MegaCop
 | `SHA256SUMS.txt` | SHA-256 checksums for the downloaded files. |
 
 1. Run the installer on 64-bit Windows 11. It installs for your user in `%LOCALAPPDATA%\Programs\MegaCopier`, without administrator rights.
-2. Choose optional shortcuts, Explorer integration and Windows startup. In the development installer, desktop and Start menu shortcuts are off by default; the taskbar choice prepares a shortcut for you to pin through Windows.
-3. In the development installer, automatic update checking and error reporting are selected by default and can be deselected. Automatic downloading and installation are off. Silent updates preserve your preferences.
+2. Choose optional shortcuts, Explorer integration and Windows startup. In the installer, desktop and Start menu shortcuts are off by default; the taskbar choice prepares a shortcut for you to pin through Windows.
+3. In the installer, automatic update checking and error reporting are selected by default and can be deselected. Automatic downloading and installation are off. Silent updates preserve your preferences.
 
 Current public executables and installers are **not Authenticode-signed**. Windows may display SmartScreen warnings. Check the SHA-256 checksum against `SHA256SUMS.txt` and review the [signing status](docs/Code-signing-policy.md). A certificate does not guarantee that every SmartScreen warning will disappear immediately.
 
 ```powershell
-Get-FileHash .\MegaCopier-Setup-1.7.1.exe -Algorithm SHA256
+Get-FileHash .\MegaCopier-Setup-1.8.0.exe -Algorithm SHA256
 ```
 
 **Portable:** extract the ZIP and run `MegaCopier.exe`. Its `Data` folder holds settings and pending work. Portable mode does not install Explorer integration.
@@ -91,7 +99,7 @@ mcopy backup D:\Documents F:\Backups
 
 ## Updates and release notes
 
-In the development version, **Settings > Updates** provides one fixed-size action to check, download and install, with progress and cancellation. Highlights describe the available version, or the installed version when no newer version is known. Complete notes and images open inside the application.
+**Settings > Updates** provides one fixed-size action to check, download and install, with progress and cancellation. Highlights describe the available version, or the installed version when no newer version is known. Complete notes and images open inside the application.
 
 - Automatic checking runs every **48 hours** when enabled and catches up after reconnection if overdue. Connection changes do not cause continuous version checks.
 - Automatic downloading is optional and applies to versions discovered by automatic checks. A manual check offers Download.
@@ -107,14 +115,14 @@ In the development version, **Settings > Updates** provides one fixed-size actio
 These are separate features:
 
 - **Local transfer logs and reports** record transfer results and may contain paths. They are not uploaded automatically as crash reports.
-- **Optional crash reports** contain versions, language, theme, coarse activity and filtered traces. They exclude files, file names, paths and free-form exception messages. The development installer offers reporting selected by default; portable copies start with it off. Change this in **Settings > Advanced**.
+- **Optional crash reports** contain versions, language, theme, coarse activity and filtered traces. They exclude files, file names, paths and free-form exception messages. The installer offers reporting selected by default; portable copies start with it off. Change this in **Settings > Advanced**.
 - When automatic reporting is on, authorized reports are sent in the background. When off, an unexpected-exit dialog offers a preview, one-time sending or permission for future reports. Disabling reporting removes queued local reports, not reports already received.
 - Cloudflare processes the connection IP for abuse limiting; it is excluded from the report stored in the private GitHub repository. See the [privacy policy](docs/Privacy.md) for providers, retention and deletion limits.
 - **Security vulnerabilities are not automatically detected by crash reporting.** Use the private route in [SECURITY.md](SECURITY.md) for a suspected vulnerability; do not post secrets or sensitive exploitation details in public issues.
 
 ## Screenshots
 
-Fresh captures of the current application, in English, using local demonstration files. Each example preserves its illustrated theme, icon pack and progress bar style. File names and transfer figures are illustrative; these screenshots are not performance claims. Spanish captures are available in the Spanish overview. Illustrations in historical notes show the current development interface.
+Fresh captures of the current application, in English, using local demonstration files. Each example preserves its illustrated theme, icon pack and progress bar style. File names and transfer figures are illustrative; these screenshots are not performance claims. Spanish captures are available in the Spanish overview. Illustrations in historical notes show the current application interface.
 
 <table>
 <tr>
@@ -242,7 +250,7 @@ Fresh captures of the current application, in English, using local demonstration
 
 ### Recent additions
 
-Integrated updates, optional private reports and reorganized sound controls in the development version.
+Integrated updates, optional private reports and reorganized sound controls in version 1.8.0.
 
 <table><tr><td><img src="docs/capturas/en/actualizaciones.png" alt="Update center"></td><td><img src="docs/capturas/en/sonidos.png" alt="Sound controls"></td></tr></table>
 
