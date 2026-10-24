@@ -14,6 +14,7 @@ https://github.com/cbatista96/MegaCopier.
 - Pruebas: `dotnet test tests/MegaCopier.Engine.Tests`; todo: `.\build.ps1`. Las pruebas de red usan solo `127.0.0.1`.
 - Las capturas de `docs/capturas` van sin bordes negros (recortadas al marco visible) y sin rutas personales.
 - Antes de subir a `main`, la compilación y las pruebas tienen que pasar. GitHub las repite en cada subida (`ci.yml`).
+- Los commits y las PR no llevan la línea `Co-Authored-By` ni ninguna otra mención a Claude o a Claude Code.
 
 ## Publicar una versión
 
