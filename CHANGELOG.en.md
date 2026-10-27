@@ -9,6 +9,8 @@ Illustrations show the current development interface. Spanish notes use Spanish 
 
 ## [Unreleased]
 
+## [1.9.0] - 2026-10-27
+
 ### Highlights
 
 - Copy, cut, paste and drag operations from the Desktop and File Explorer use MegaCopier in more situations, including modern and classic Windows 11 menus, keyboard shortcuts and the top Paste button. Existing-file prompts stay centered, retain acrylic and no longer leave empty windows after cancellation.
@@ -736,7 +738,8 @@ First public release.
 - SMART alerts, email and webhook notifications, mobile control, and an MCP server for AI assistants.
 - `mcopy` command line, portable mode, 14 languages, 11 themes, and screen-reader accessibility.
 
-[Unreleased]: https://github.com/cbatista96/MegaCopier/compare/v1.8.0...HEAD
+[Unreleased]: https://github.com/cbatista96/MegaCopier/compare/v1.9.0...HEAD
+[1.9.0]: https://github.com/cbatista96/MegaCopier/compare/v1.8.0...v1.9.0
 [1.8.0]: https://github.com/cbatista96/MegaCopier/compare/v1.7.1...v1.8.0
 [1.7.1]: https://github.com/cbatista96/MegaCopier/compare/v1.7.0...v1.7.1
 [1.7.0]: https://github.com/cbatista96/MegaCopier/compare/v1.6.0...v1.7.0

@@ -9,6 +9,8 @@ Las ilustraciones muestran la interfaz de desarrollo actual. Las notas en españ
 
 ## [Sin publicar]
 
+## [1.9.0] - 2026-10-27
+
 ### Resumen
 
 - Copiar, cortar, pegar y arrastrar desde el Escritorio y el Explorador usan MegaCopier en más situaciones, incluidos los menús moderno y clásico de Windows 11, el teclado y el botón superior de pegar. Las preguntas de archivos existentes se centran, conservan el acrílico y dejan de mantener ventanas vacías al cancelar.
@@ -928,7 +930,8 @@ Primera versión pública.
 - Aviso SMART, avisos por correo y webhook, control desde el móvil y servidor MCP para asistentes de IA.
 - Consola `mcopy`, modo portátil, 14 idiomas, 11 temas y accesibilidad con lectores de pantalla.
 
-[Sin publicar]: https://github.com/cbatista96/MegaCopier/compare/v1.8.0...HEAD
+[Sin publicar]: https://github.com/cbatista96/MegaCopier/compare/v1.9.0...HEAD
+[1.9.0]: https://github.com/cbatista96/MegaCopier/compare/v1.8.0...v1.9.0
 [1.8.0]: https://github.com/cbatista96/MegaCopier/compare/v1.7.1...v1.8.0
 [1.7.1]: https://github.com/cbatista96/MegaCopier/compare/v1.7.0...v1.7.1
 [1.7.0]: https://github.com/cbatista96/MegaCopier/compare/v1.6.0...v1.7.0
