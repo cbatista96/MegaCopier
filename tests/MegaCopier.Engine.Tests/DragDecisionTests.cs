@@ -168,6 +168,49 @@ public sealed partial class DragDecisionTests
         Assert.Null(missingAncestor);
     }
 
+    [Fact]
+    public void ResuelveRaizAncladaConAnotacionesDeAccesibilidad()
+    {
+        string system = Path.GetPathRoot(Environment.SystemDirectory)!;
+        string? resolved = null;
+        RunSta(() => resolved = ShellNamespace.Resolve(["Escritorio (OneDrive)", $"Inicio del acceso rápido: {VisibleName(system)} (anclado)"]));
+        Assert.Equal(system, resolved, ignoreCase: true);
+    }
+
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public void ResuelveDescendientesDeUnaRaizAnclada(bool presentationRoot)
+    {
+        string system = Path.GetPathRoot(Environment.SystemDirectory)!;
+        string relative = Path.GetRelativePath(system, Environment.SystemDirectory);
+        string? resolved = null;
+        RunSta(() =>
+        {
+            var names = new List<string>();
+            if (presentationRoot) names.Add("Escritorio (OneDrive)");
+            names.Add($"Inicio del acceso rápido: {VisibleName(system)} (anclado)");
+            string current = system;
+            foreach (string part in relative.Split(Path.DirectorySeparatorChar))
+            {
+                current = Path.Combine(current, part);
+                names.Add(VisibleName(current));
+            }
+            resolved = ShellNamespace.Resolve(names);
+        });
+        Assert.Equal(Environment.SystemDirectory, resolved, ignoreCase: true);
+    }
+
+    [Theory]
+    [InlineData("Inicio del acceso rápido: Escritorio (anclado)", "Escritorio", true)]
+    [InlineData("Downloads (pinned)", "Downloads", true)]
+    [InlineData("Fin del acceso rápido: Vídeos (anclado)", "Vídeos", true)]
+    [InlineData("Mis Descargas (anclado)", "Descargas", false)]
+    [InlineData("Descargas antiguas (anclado)", "Descargas", false)]
+    [InlineData("Inicio: Descargas", "Descargas", false)]
+    public void LasAnotacionesConservanElNombreCompleto(string displayed, string canonical, bool expected) =>
+        Assert.Equal(expected, ShellNamespace.MatchesAnnotatedName(displayed, canonical));
+
     private static unsafe string VisibleName(string path)
     {
         var info = new byte[1024];
@@ -237,6 +280,17 @@ public sealed class OtherFileManagersTests
     [InlineData("", null)]
     public void TotalCommanderPanelPaths(string text, string? expected) =>
         Assert.Equal(expected, MegaCopier.Shell.OtherFileManagers.TotalCommanderPath(text));
+
+    [Theory]
+    [InlineData(@"C:\Fotos - Explorer++", @"C:\Fotos")]
+    [InlineData(@"xplorer² - D:\Trabajo\Informes\", @"D:\Trabajo\Informes")]
+    [InlineData(@"XYplorer 26.00.0100 - C:\Users\Ana", @"C:\Users\Ana")]
+    [InlineData(@"MultiCommander [E:\Juegos]", @"E:\Juegos")]
+    [InlineData(@"\\nas\fotos - Explorer++", @"\\nas\fotos")]
+    [InlineData(@"D:\ - xplorer²", @"D:\")]
+    [InlineData("Explorer++", null)]
+    public void PathsFromWindowTitles(string title, string? expected) =>
+        Assert.Equal(expected, MegaCopier.Shell.OtherFileManagers.PathInTitle(title));
 
     [Fact]
     public void DirectoryOpusPaths()

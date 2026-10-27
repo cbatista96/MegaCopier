@@ -259,13 +259,43 @@ public sealed partial class OptionsTab : UserControl
         Save();
         string name = TaskNameBox.Text.Trim().Length > 0
             ? TaskNameBox.Text
-            : $"{Path.GetFileName(Path.TrimEndingDirectorySeparator(record.Sources[0]))} → {Path.GetFileName(Path.TrimEndingDirectorySeparator(record.Destination))}";
+            : $"{Engine.SourceNames.TargetName(record.Sources[0])} → {Engine.SourceNames.TargetName(record.Destination)}";
         var frequency = (TaskFrequency)Math.Max(0, TaskFrequencyBox.SelectedIndex);
         var start = date.Date + ScheduleTime.Time;
-        string? error = ScheduledTasks.Create(record, name, frequency, start);
+        string? error = ScheduledTasks.Create(record, name, frequency, start, _pairs, withoutSession: TaskNoSessionBox.IsChecked == true);
         TaskInfo.Text = error is null
             ? L.F("Task_Saved" + frequency, ScheduledTasks.CleanName(name), start.ToString("t"), start.ToString("d"))
             : L.F("Task_Failed", error);
+    }
+
+    /// <summary>
+    /// Más parejas de carpetas para la tarea que se va a guardar (como FreeFileSync): cada una con su destino, todas en la
+    /// misma copia. La copia de ahora no cambia; solo la tarea.
+    /// </summary>
+    private readonly Dictionary<string, string> _pairs = new(StringComparer.OrdinalIgnoreCase);
+
+    private async void AddPair_Click(object sender, RoutedEventArgs e)
+    {
+        if (await Pickers.PickFolderAsync(L.Get("Task_PairSource")) is not { } source
+            || await Pickers.PickFolderAsync(L.Get("Task_PairDestination")) is not { } destination)
+        {
+            return;
+        }
+
+        _pairs[source] = destination;
+        ShowPairs();
+    }
+
+    private void ClearPairs_Click(object sender, RoutedEventArgs e)
+    {
+        _pairs.Clear();
+        ShowPairs();
+    }
+
+    private void ShowPairs()
+    {
+        PairsInfo.Text = string.Join(Environment.NewLine, _pairs.Select(p => $"{p.Key}  →  {p.Value}"));
+        PairsInfo.Visibility = ClearPairsButton.Visibility = _pairs.Count > 0 ? Visibility.Visible : Visibility.Collapsed;
     }
 
     private void StartNow_Click(object sender, RoutedEventArgs e)

@@ -401,6 +401,9 @@ public sealed class CopyOptions
     /// <summary>Nombre de "conservar ambos": {name}, {n}, {ext} y {date} (aaaa-mm-dd).</summary>
     public string KeepBothPattern { get; set; } = DefaultKeepBothPattern;
 
+    /// <summary>Opciones menos habituales (bit Archivo, cambio de hora, aplanar, máscara de nombres…).</summary>
+    public CopyExtras Extras { get; set; } = new();
+
     public const string DefaultKeepBothPattern = "{name} ({n}){ext}";
 
     public TimeSpan ProgressInterval { get; set; } = TimeSpan.FromMilliseconds(100);

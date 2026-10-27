@@ -159,13 +159,14 @@ public sealed partial class CopyPanel : UserControl
     private void ShowPlayPause(bool animate)
     {
         bool pause = Job?.CanPause == true;
+        if (_showingPause == pause)
+        {
+            return; // se llama con cada avance: cambiar la descripción cada vez la cerraba antes de verse
+        }
+
         string label = pause ? PauseLabel.Text : PlayLabel.Text;
         ToolTipService.SetToolTip(PlayPauseButton, label);
         Microsoft.UI.Xaml.Automation.AutomationProperties.SetName(PlayPauseButton, label);
-        if (_showingPause == pause)
-        {
-            return;
-        }
 
         bool first = _showingPause is null;
         _showingPause = pause;

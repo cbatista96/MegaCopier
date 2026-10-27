@@ -298,6 +298,9 @@ public sealed class AppSettings
 
     public bool DeltaCopy { get; set; }
 
+    /// <summary>Opciones menos habituales de las copias nuevas (ver <see cref="Engine.CopyExtras"/>).</summary>
+    public Engine.CopyExtras Extras { get; set; } = new();
+
     public bool SkipDuplicates { get; set; }
 
     /// <summary>Carpetas de destino favoritas (menú "Copiar a" y diálogo de destinos).</summary>
@@ -328,6 +331,7 @@ public sealed class AppSettings
             AllOrNothing = AllOrNothing,
             RescueMode = RescueMode,
             DeltaCopy = DeltaCopy,
+            Extras = Extras.Clone(),
             SkipDuplicates = SkipDuplicates,
         };
         set
@@ -359,6 +363,7 @@ public sealed class AppSettings
             AllOrNothing = value.AllOrNothing;
             RescueMode = value.RescueMode;
             DeltaCopy = value.DeltaCopy;
+            Extras = value.Extras.Clone();
             SkipDuplicates = value.SkipDuplicates;
         }
     }
@@ -371,6 +376,18 @@ public sealed class AppSettings
     public AppBackdrop Backdrop { get; set; } = AppBackdrop.Mica;
 
     public bool AlwaysOnTop { get; set; }
+
+    /// <summary>
+    /// Orden de los accesos de la barra de herramientas (ver <see cref="ToolbarItems"/>). Vacío = el de serie; los que
+    /// falten (de versiones nuevas) se añaden en su sitio de serie.
+    /// </summary>
+    public List<string> ToolbarOrder { get; set; } = [];
+
+    /// <summary>Accesos de la barra que el usuario ocultó; null = los ocultos de serie.</summary>
+    public List<string>? ToolbarHidden { get; set; }
+
+    /// <summary>«Al terminar» a la derecha de la barra.</summary>
+    public bool ToolbarShowFinish { get; set; } = true;
 
     /// <summary>"" = el de Windows; si no, un código de Texts.Languages ("fr-FR"...). Se aplica al reiniciar la app.</summary>
     public string Language { get; set; } = "";
@@ -409,6 +426,18 @@ public sealed class AppSettings
     public bool SaveLogs { get; set; } = true;
 
     public int LogRetentionDays { get; set; } = 30;
+
+    /// <summary>Registro único: una línea por archivo de todas las copias, en un solo archivo (Services/TransferLog).</summary>
+    public bool TransferLogEnabled { get; set; }
+
+    public string TransferLogPath { get; set; } = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "MegaCopier.log");
+
+    public string TransferLogFormat { get; set; } = TransferLog.DefaultTransferFormat;
+
+    public string ErrorLogFormat { get; set; } = TransferLog.DefaultErrorFormat;
+
+    /// <summary>Servidor Syslog de la red ("servidor" o "servidor:puerto"); vacío = no se envía.</summary>
+    public string SyslogServer { get; set; } = "";
 
     /// <summary>Dirección a la que avisar (POST con JSON) al terminar cada copia: Discord, Slack, Teams, ntfy, Home Assistant...</summary>
     public string WebhookUrl { get; set; } = "";
@@ -472,6 +501,15 @@ public sealed class AppSettings
     /// <summary>Aceptar los envíos de LocalSend sin preguntar (solo en redes de confianza).</summary>
     public bool LocalSendAutoAccept { get; set; }
 
+    /// <summary>LocalSend: qué hacer con un archivo que ya está en la carpeta de recibidos.</summary>
+    public Engine.Network.LocalSendConflict LocalSendConflict { get; set; }
+
+    /// <summary>LocalSend: solo estos tipos ("*.jpg; *.mp4"); vacío = todos.</summary>
+    public string LocalSendInclude { get; set; } = "";
+
+    /// <summary>LocalSend: nunca estos ("*.apk").</summary>
+    public string LocalSendExclude { get; set; } = "";
+
     /// <summary>Identificador estable de este PC para LocalSend (se crea la primera vez).</summary>
     public string LocalSendFingerprint { get; set; } = "";
 
@@ -501,7 +539,7 @@ public sealed class AppSettings
     /// </summary>
     public bool AutoAdminCopy { get; set; } = true;
 
-    public DragConfirm DragConfirm { get; set; } = DragConfirm.Moves;
+    public DragConfirm DragConfirm { get; set; } = DragConfirm.Never;
 
     /// <summary>
     /// Interruptor general (doble clic en el icono de la bandeja). Desactivado, MegaCopier no intercepta nada
@@ -542,6 +580,9 @@ public sealed class AppSettings
     /// <summary>Expulsarla aunque algún programa la esté usando.</summary>
     public bool EjectForce { get; set; }
 
+    /// <summary>Expulsar también la unidad de origen si es extraíble (la tarjeta de la cámara), solo si todo fue bien.</summary>
+    public bool EjectSource { get; set; }
+
     // --- Errores ---
 
     /// <summary>Guardar un informe con los archivos que fallaron al terminar una copia con errores.</summary>
@@ -558,6 +599,9 @@ public sealed class AppSettings
 
     /// <summary>Mostrar el icono de MegaCopier en la bandeja del sistema.</summary>
     public bool ShowTrayIcon { get; set; } = true;
+
+    /// <summary>Mostrar las ventanas en la barra de tareas. Sin botón, minimizar siempre las oculta en la bandeja.</summary>
+    public bool ShowTaskbarButton { get; set; } = true;
 
     /// <summary>Un icono más en la bandeja por cada copia en marcha, con su porcentaje y una barra que sube.</summary>
     public bool TrayProgressIcons { get; set; } = true;
@@ -588,7 +632,7 @@ public sealed class AppSettings
     /// <summary>Recordar dónde estaba la ventana y abrirla en el mismo sitio.</summary>
     public bool RememberPosition { get; set; }
 
-    /// <summary>Recordar el tamaño de la ventana completa.</summary>
+    /// <summary>Recordar por separado el ancho compacto y los tamaños de detalles y de varias copias.</summary>
     public bool RememberSize { get; set; }
 
     /// <summary>Posición y tamaño guardados (en píxeles de pantalla).</summary>
@@ -599,6 +643,10 @@ public sealed class AppSettings
     public int WindowWidth { get; set; }
 
     public int WindowHeight { get; set; }
+
+    public int CompactWindowWidth { get; set; }
+    public int MultiWindowWidth { get; set; }
+    public int MultiWindowHeight { get; set; }
 
     /// <summary>Ventana translúcida (ajustes de versiones anteriores): ahora es «Translúcida» (<see cref="WindowBackdrop.AcrylicThin"/>).</summary>
     public bool Translucent { get; set; }
@@ -672,6 +720,7 @@ public sealed class AppSettings
             AllOrNothing = AllOrNothing,
             RescueMode = RescueMode,
             DeltaCopy = DeltaCopy,
+            Extras = Extras.Clone(),
             SkipDuplicates = SkipDuplicates,
         };
 

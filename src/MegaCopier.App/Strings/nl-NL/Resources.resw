@@ -5,6 +5,8 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Settings_TaskbarTitle.Text" xml:space="preserve"><value>Weergeven op de taakbalk</value></data>
+  <data name="Settings_TaskbarDescription.Text" xml:space="preserve"><value>Als dit uitstaat, wordt het venster bij minimaliseren altijd verborgen in het systeemvak naast de klok.</value></data>
   <data name="JobsSection.Text" xml:space="preserve"><value>Kopieën</value></data>
   <data name="SettingsSection.Text" xml:space="preserve"><value>Instellingen</value></data>
   <data name="FinishButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Wat te doen als alle kopieën klaar zijn</value></data>
@@ -323,8 +325,6 @@
   <data name="Tool_LoadListText.Text" xml:space="preserve"><value>Lijst laden</value></data>
   <data name="Tool_NewCopy.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Nieuwe kopie</value></data>
   <data name="Tool_NewCopyText.Text" xml:space="preserve"><value>Nieuw</value></data>
-  <data name="Tool_PauseAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Alle pauzeren</value></data>
-  <data name="Tool_ResumeAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Alle hervatten</value></data>
   <data name="Tool_Settings.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Instellingen</value></data>
   <data name="Tool_Sidebar.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Kopieënlijst tonen of verbergen</value></data>
   <data name="Drop_Caption" xml:space="preserve"><value>Kopiëren met MegaCopier</value></data>
@@ -1602,4 +1602,110 @@
   <data name="Rules_Synchronization.Text" xml:space="preserve"><value>Synchronisatie</value></data>
   <data name="Rules_SecurityTitle.Text" xml:space="preserve"><value>Beveiliging</value></data>
   <data name="Job_StateNeedsAdministrator" xml:space="preserve"><value>Beheerdersmachtiging vereist</value></data>
+  <data name="Toolbar_PauseAll" xml:space="preserve"><value>Alle pauzeren</value></data>
+  <data name="Toolbar_ResumeAll" xml:space="preserve"><value>Alle hervatten</value></data>
+  <data name="Toolbar_Sidebar" xml:space="preserve"><value>Kopieënlijst tonen of verbergen</value></data>
+  <data name="Toolbar_New" xml:space="preserve"><value>Nieuwe kopie</value></data>
+  <data name="Toolbar_ClearDone" xml:space="preserve"><value>Voltooide kopieën verwijderen</value></data>
+  <data name="Toolbar_Timeline" xml:space="preserve"><value>Tijdlijn van de wachtrij</value></data>
+  <data name="Toolbar_History" xml:space="preserve"><value>Geschiedenis</value></data>
+  <data name="Toolbar_Settings" xml:space="preserve"><value>Instellingen</value></data>
+  <data name="Toolbar_About" xml:space="preserve"><value>Over</value></data>
+  <data name="Toolbar_AlwaysOnTop" xml:space="preserve"><value>Altijd op voorgrond</value></data>
+  <data name="Toolbar_Shelf" xml:space="preserve"><value>Neerzetplank</value></data>
+  <data name="Toolbar_Compare" xml:space="preserve"><value>Vergelijken en synchroniseren</value></data>
+  <data name="Toolbar_PlayPause" xml:space="preserve"><value>Alles pauzeren of hervatten</value></data>
+  <data name="Toolbar_Separator" xml:space="preserve"><value>Scheidingslijn</value></data>
+  <data name="Toolbar_More" xml:space="preserve"><value>Meer acties</value></data>
+  <data name="Destinations_Favorite" xml:space="preserve"><value>Toevoegen aan favorieten</value></data>
+  <data name="Destinations_Unfavorite" xml:space="preserve"><value>Verwijderen uit favorieten</value></data>
+  <data name="Settings_ToolbarTitle.Text" xml:space="preserve"><value>Werkbalk</value></data>
+  <data name="Settings_ToolbarDescription.Text" xml:space="preserve"><value>Kies welke snelkoppelingen zichtbaar zijn en in welke volgorde. In het kleine venster passen er evenveel als standaard; de rest gaat naar het menu ‘…’ aan het eind.</value></data>
+  <data name="Settings_ToolbarReset.Text" xml:space="preserve"><value>Herstellen</value></data>
+  <data name="Settings_ToolbarFinish.Content" xml:space="preserve"><value>‘Na afloop’ rechts tonen</value></data>
+  <data name="Settings_ToolbarUp" xml:space="preserve"><value>‘{0}’ omhoog</value></data>
+  <data name="Settings_ToolbarDown" xml:space="preserve"><value>‘{0}’ omlaag</value></data>
+  <data name="Rules_SkipCloud.Content" xml:space="preserve"><value>Bestanden die alleen in de cloud staan overslaan (niet downloaden)</value></data>
+  <data name="Destinations_PathBox.PlaceholderText" xml:space="preserve"><value>Typ of plak een pad, zoals D:\Kopieën</value></data>
+  <data name="Destinations_PathInvalid" xml:space="preserve"><value>Dat pad is ongeldig: typ een volledige map op een bestaand station of netwerkshare (bijvoorbeeld D:\Kopieën).</value></data>
+  <data name="Tool_CompareSum.Text" xml:space="preserve"><value>Vergelijken met een controlesom…</value></data>
+  <data name="SumCheck_Title" xml:space="preserve"><value>Vergelijken met een controlesom</value></data>
+  <data name="SumCheck_File" xml:space="preserve"><value>Bestand: {0}</value></data>
+  <data name="SumCheck_Header" xml:space="preserve"><value>Gepubliceerde controlesom (MD5, SHA-1, SHA-256, SHA-512, SHA3, BLAKE3, xxHash of CRC32)</value></data>
+  <data name="SumCheck_Placeholder" xml:space="preserve"><value>Plak hier de controlesom van de downloadpagina</value></data>
+  <data name="SumCheck_Check" xml:space="preserve"><value>Controleren</value></data>
+  <data name="SumCheck_Close" xml:space="preserve"><value>Sluiten</value></data>
+  <data name="SumCheck_NotASum" xml:space="preserve"><value>Dat lijkt geen controlesom: het moet een hexadecimaal getal van 8, 16, 32, 40, 64 of 128 cijfers zijn.</value></data>
+  <data name="SumCheck_Reading" xml:space="preserve"><value>Bestand lezen…</value></data>
+  <data name="SumCheck_Match" xml:space="preserve"><value>✓ Komt overeen ({0}): het bestand is in orde.</value></data>
+  <data name="SumCheck_NoMatch" xml:space="preserve"><value>✗ Komt niet overeen. Met {0} geeft het bestand {1}: het is beschadigd, onvolledig of een ander bestand.</value></data>
+  <data name="Status_SourceDrive.Text" xml:space="preserve"><value>Bron</value></data>
+  <data name="Status_TargetDrive.Text" xml:space="preserve"><value>Doel</value></data>
+  <data name="Status_DriveFree" xml:space="preserve"><value>{0} vrij van {1}</value></data>
+  <data name="LocalSend_Conflict.Header" xml:space="preserve"><value>Als het bestand al in de map staat</value></data>
+  <data name="LocalSend_ConflictRename.Content" xml:space="preserve"><value>Beide behouden (‘foto (2).jpg’)</value></data>
+  <data name="LocalSend_ConflictSkip.Content" xml:space="preserve"><value>Niet ontvangen</value></data>
+  <data name="LocalSend_ConflictOverwrite.Content" xml:space="preserve"><value>Bestaande vervangen</value></data>
+  <data name="LocalSend_Include.Header" xml:space="preserve"><value>Alleen deze typen ontvangen (leeg = alle)</value></data>
+  <data name="LocalSend_Include.PlaceholderText" xml:space="preserve"><value>*.jpg; *.heic; *.mp4</value></data>
+  <data name="LocalSend_Exclude.Header" xml:space="preserve"><value>Nooit ontvangen</value></data>
+  <data name="LocalSend_Exclude.PlaceholderText" xml:space="preserve"><value>*.apk; *.exe</value></data>
+  <data name="Task_OnDevice.Content" xml:space="preserve"><value>Bij aansluiten van het station</value></data>
+  <data name="Task_SavedOnDevice" xml:space="preserve"><value>Taak ‘{0}’ opgeslagen: deze start vanzelf telkens wanneer je het station aansluit (met MegaCopier open of in het systeemvak).</value></data>
+  <data name="Task_NoDevice" xml:space="preserve"><value>Deze kopie heeft geen station met een letter om op te wachten (ze gaat bijvoorbeeld naar een netwerkmap).</value></data>
+  <data name="Settings_TaskOnDevice" xml:space="preserve"><value>Start vanzelf bij aansluiten van {0}</value></data>
+  <data name="Connection_AzureAccount" xml:space="preserve"><value>Opslagaccount (https://account.blob.core.windows.net)</value></data>
+  <data name="Connection_GcsEndpoint" xml:space="preserve"><value>Eindpunt (leeg = storage.googleapis.com)</value></data>
+  <data name="Connection_Sas" xml:space="preserve"><value>SAS-token van de container (sv=…&amp;sig=…)</value></data>
+  <data name="Connection_Container" xml:space="preserve"><value>Container (en map): container/map</value></data>
+  <data name="Connection_Site" xml:space="preserve"><value>SharePoint-site</value></data>
+  <data name="Connection_SitePlaceholder" xml:space="preserve"><value>https://bedrijf.sharepoint.com/sites/Team</value></data>
+  <data name="Rules_MoreTitle.Text" xml:space="preserve"><value>Meer opties</value></data>
+  <data name="Rules_RenameMask.Header" xml:space="preserve"><value>Hernoemen tijdens kopiëren (masker: *.bak, kopie van *.*)</value></data>
+  <data name="Rules_Flatten.Content" xml:space="preserve"><value>Plat maken: alles in de doelmap, zonder submappen</value></data>
+  <data name="Rules_KeepPaths.Content" xml:space="preserve"><value>Bestanden uit meerdere mappen: hun mappen vanaf de gemeenschappelijke nabouwen</value></data>
+  <data name="Rules_OnlyArchive.Content" xml:space="preserve"><value>Alleen als gewijzigd gemarkeerd (kenmerk ‘Archief’)</value></data>
+  <data name="Rules_ResetArchive.Content" xml:space="preserve"><value>Die markering na het kopiëren van de bron verwijderen (incrementele back-ups)</value></data>
+  <data name="Rules_CompensateDst.Content" xml:space="preserve"><value>Bestanden die precies een uur verschillen als gelijk zien (zomertijd)</value></data>
+  <data name="Rules_KeepCompression.Content" xml:space="preserve"><value>NTFS-compressie behouden</value></data>
+  <data name="Rules_SkipCompressed.Content" xml:space="preserve"><value>Door Windows gecomprimeerde of versleutelde bestanden overslaan</value></data>
+  <data name="Rules_SkipTemporary.Content" xml:space="preserve"><value>Als tijdelijk gemarkeerde bestanden overslaan</value></data>
+  <data name="Rules_Depth.Header" xml:space="preserve"><value>Submapniveaus (leeg = alle; 0 = alleen de map)</value></data>
+  <data name="Rules_AccessedAfter.Header" xml:space="preserve"><value>Gebruikt sinds</value></data>
+  <data name="Rules_AccessedBefore.Header" xml:space="preserve"><value>Gebruikt tot</value></data>
+  <data name="Rules_FolderTimes.Header" xml:space="preserve"><value>Datums van mappen</value></data>
+  <data name="Rules_FolderAttributes.Header" xml:space="preserve"><value>Kenmerken van mappen</value></data>
+  <data name="Rules_FolderLikeFiles.Content" xml:space="preserve"><value>Zoals bestanden</value></data>
+  <data name="Rules_FolderYes.Content" xml:space="preserve"><value>Kopiëren</value></data>
+  <data name="Rules_FolderNo.Content" xml:space="preserve"><value>Niet kopiëren</value></data>
+  <data name="Rules_FolderLikeFiles2.Content" xml:space="preserve"><value>Zoals bestanden</value></data>
+  <data name="Rules_FolderYes2.Content" xml:space="preserve"><value>Kopiëren</value></data>
+  <data name="Rules_FolderNo2.Content" xml:space="preserve"><value>Niet kopiëren</value></data>
+  <data name="Rules_BeforeCommand.Header" xml:space="preserve"><value>Uitvoeren vóór het starten (bij een fout wordt niets gekopieerd)</value></data>
+  <data name="Settings_EjectSource.Content" xml:space="preserve"><value>Ook de bron uitwerpen (de camerakaart) als alles goed ging</value></data>
+  <data name="Scripts_AddExample.Text" xml:space="preserve"><value>Voorbeeld toevoegen</value></data>
+  <data name="Scripts_ExampleNtfy.Text" xml:space="preserve"><value>Telefoon waarschuwen met ntfy</value></data>
+  <data name="Scripts_ExampleIfttt.Text" xml:space="preserve"><value>Een IFTTT-applet starten</value></data>
+  <data name="Scripts_ExampleOpen.Text" xml:space="preserve"><value>Doel openen als alles goed ging</value></data>
+  <data name="Scripts_ExampleLog.Text" xml:space="preserve"><value>Elke kopie in een tekstbestand noteren</value></data>
+  <data name="Scripts_NtfyTopic" xml:space="preserve"><value>mijn-geheime-onderwerp</value></data>
+  <data name="Scripts_IftttKey" xml:space="preserve"><value>JOUW-SLEUTEL</value></data>
+  <data name="Scripts_LogName" xml:space="preserve"><value>MegaCopier-kopieen</value></data>
+  <data name="Settings_TransferLogTitle.Text" xml:space="preserve"><value>Eén logboek voor alle kopieën</value></data>
+  <data name="Settings_TransferLogDescription.Text" xml:space="preserve"><value>Eén regel per gekopieerd of mislukt bestand, in één bestand en in de gekozen opmaak. Kan ook naar een Syslog-server worden gestuurd.</value></data>
+  <data name="Settings_TransferLogPath.Header" xml:space="preserve"><value>Logbestand</value></data>
+  <data name="Settings_TransferLogBrowse.Text" xml:space="preserve"><value>Kiezen…</value></data>
+  <data name="Settings_TransferLogType" xml:space="preserve"><value>Logboek</value></data>
+  <data name="Settings_TransferLogFormat.Header" xml:space="preserve"><value>Opmaak van elk gekopieerd bestand</value></data>
+  <data name="Settings_ErrorLogFormat.Header" xml:space="preserve"><value>Opmaak van elke fout</value></data>
+  <data name="Settings_TransferLogVariables.Text" xml:space="preserve"><value>Variabelen: %time%, %source%, %destination%, %size%, %mtime%, %hash%, %path%, %error%, %computer%, %user%</value></data>
+  <data name="Settings_Syslog.Header" xml:space="preserve"><value>Ook naar een Syslog-server sturen (server of server:poort; leeg = nee)</value></data>
+  <data name="Task_AddPair.Text" xml:space="preserve"><value>Nog een mappenpaar aan de taak toevoegen…</value></data>
+  <data name="Task_ClearPairs.Text" xml:space="preserve"><value>Paren verwijderen</value></data>
+  <data name="Task_PairSource" xml:space="preserve"><value>Map om te kopiëren</value></data>
+  <data name="Task_PairDestination" xml:space="preserve"><value>Waarheen kopiëren</value></data>
+  <data name="Task_NoSession.Content" xml:space="preserve"><value>Ook uitvoeren als niemand is aangemeld (zonder venster)</value></data>
+  <data name="Task_NoCli" xml:space="preserve"><value>Zonder sessie is mcopy.exe naast MegaCopier nodig (het installatieprogramma bevat het).</value></data>
+  <data name="Settings_ToolbarCustomize.Text" xml:space="preserve"><value>Aanpassen</value></data>
+  <data name="Status_Folders.Text" xml:space="preserve"><value>Mappen</value></data>
 </root>

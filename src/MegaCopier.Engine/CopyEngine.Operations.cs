@@ -106,6 +106,12 @@ public sealed partial class CopyEngine
                     expected[item.Id] = new ChecksumEntry(file.Source, "", _options.HashAlgorithm == FileHashAlgorithm.None ? FileHashAlgorithm.Sha256 : _options.HashAlgorithm);
                     edited.Add(item.Id);
                 }
+                else if (HashMatch.CrcInName(file.Source) is { } crc)
+                {
+                    // Descargas que llevan su CRC32 en el nombre («video [A1B2C3D4].mkv»).
+                    var item = Files.Add(file.Source, file.Source, file.Length, file.LastWriteUtc);
+                    expected[item.Id] = new ChecksumEntry(file.Source, crc, FileHashAlgorithm.Crc32);
+                }
             }
 
             if (expected.Count == 0)
@@ -217,7 +223,7 @@ public sealed partial class CopyEngine
 
         // El destino no se usa: solo hace falta uno que no esté dentro de los orígenes para planificar.
         string dummy = Path.Combine(Path.GetTempPath(), "MegaCopier-delete-" + Guid.NewGuid().ToString("N"));
-        var plan = CopyPlanner.Build(request.Sources, dummy, _options.Filter, LinkHandling.CopyLink);
+        var plan = CopyPlanner.Build(request.Sources, dummy, _options.Filter, LinkHandling.CopyLink, allowDriveRoot: false); // nunca una unidad entera
         var excluded = new HashSet<string>(request.Excluded, StringComparer.OrdinalIgnoreCase);
         foreach (var file in plan.Files.Where(f => !excluded.Contains(f.Source)))
         {

@@ -79,7 +79,7 @@ E_DeleteStart	{0} Dateien löschen ({1}).
 E_WipeStart	{0} Dateien sicher löschen ({1}).
 E_DoneDelete	Fertig in {0}: {1} gelöscht, {2} mit Fehlern.
 E_NoSources	Es wurde keine Quelle angegeben.
-E_WholeDrive	Ein ganzes Laufwerk zu kopieren wird noch nicht unterstützt: {0}
+E_WholeDrive	Ein ganzes Laufwerk kann nur kopiert, nicht verschoben oder gelöscht werden: {0}
 E_SourceMissing	Die Quelle existiert nicht: {0}
 E_IntoItself	Ein Ordner kann nicht in sich selbst kopiert werden: {0}
 E_SourceUnreadable	Die Quelle konnte nicht gelesen werden: {0}
@@ -125,7 +125,6 @@ E_DamagedTwice	Kam zweimal beschädigt auf dem anderen PC an
 E_Fat32	Passt nicht auf FAT32 (höchstens 4 GB pro Datei); formatieren Sie das Laufwerk als exFAT oder NTFS.
 E_FatLimits	Das Ziel ist {0}: Es speichert weder alternative Datenströme noch Berechtigungen, und Zeitangaben sind auf 2 s genau.
 E_CaseCollisions	{0} Namen wiederholen sich im Ziel (sie unterscheiden sich nur in Groß-/Kleinschreibung): Sie werden als Konflikte behandelt.
-E_BadName	Problematischer Name unter Windows (reserviert oder endet auf Punkt oder Leerzeichen): Manche Programme können ihn nicht öffnen.
 E_LongPaths	{0} Dateien werden Pfade mit mehr als 260 Zeichen haben: Explorer und andere Programme öffnen sie eventuell nicht.
 E_WrongCode	Der Code ist nicht der, den der andere PC anzeigt.
 E_PeerUnknownCode	Der andere PC kennt den Code nicht: Die Verbindung ist nicht sicher.
@@ -269,3 +268,15 @@ E_FolderSkipExisting	Der Ordner war schon vorhanden: Die {0} vorhandenen Dateien
 E_FolderOverwrite	Der Ordner war schon vorhanden: Die {0} vorhandenen Dateien werden überschrieben.
 E_FolderRenamed	Der Ordner „{0}“ war schon vorhanden: Er wird als „{1}“ kopiert.
 E_SpaceForced	Es wird trotzdem kopiert: Ist der Datenträger voll, wartet die Kopie auf freien Platz.
+E_DriveFolder	Laufwerk {0}
+E_NameFixed	Das Ziel akzeptiert den Namen „{0}“ nicht: kopiert als „{1}“
+E_CloudOnly	{0} Dateien sind nur in der Cloud: Sie werden zum Kopieren heruntergeladen (unter Regeln lassen sie sich überspringen).
+E_F_NoCloud	ohne reine Cloud-Dateien
+C_UsageFilters	Filter (copy, move, test, hash):\n  --include <Masken>     Nur diese ("*.jpg;*.png"; wiederholbar)\n  --exclude <Masken>     Nie diese ("*.tmp;node_modules")\n  --min-size <n>         Mindestgröße (500, 200k, 10m, 2g)\n  --max-size <n>         Höchstgröße\n  --after <jjjj-mm-tt>   Geändert ab diesem Tag\n  --before <jjjj-mm-tt>  Geändert bis zu diesem Tag\n  --skip-hidden · --skip-system · --skip-cloud (nur in der Cloud)\n  --filter "<Text>"      In normaler Sprache: "photos over 2 MB"\n  @liste.txt             Quellen aus einer Datei (ein Pfad pro Zeile)
+C_BadSize	{0} braucht eine Größe, z. B. 500, 200k, 10m oder 2g.
+C_BadDate	{0} braucht ein Datum jjjj-mm-tt (z. B. 2026-01-31).
+E_BeforeRunning	Vor dem Start: {0}
+E_BeforeFailed	Der Befehl vor dem Start ist fehlgeschlagen ({1}), daher startet die Kopie nicht: {0}
+C_UsageExtras	Weitere Optionen:\n  --max-depth <n>        Unterordnerebenen (0 = nur der Ordner)\n  --archive              Nur als geändert Markiertes, danach Markierung entfernen\n  --dst                  Genau eine Stunde Unterschied gilt als gleich (Zeitumstellung)\n  --keep-compression     NTFS-Komprimierung beibehalten\n  --flatten              Alles in den Zielordner, ohne Unterordner\n  --keep-paths           Ordner ab dem gemeinsamen Ordner der Quellen nachbilden\n  --rename <Maske>       Beim Kopieren umbenennen: "*.bak", "Kopie von *.*"\n  --run-before "<Befehl>"    Läuft vor dem Start; bei Fehler wird nichts kopiert\n  Eine .mcignore-Datei in einem Ordner nennt, was nie daraus kopiert wird.
+C_RunUsage	Verwendung: mcopy run <liste.mclist>  (führt eine gespeicherte Kopie oder Aufgabe ohne Fenster aus)
+C_BadList	Die Liste konnte nicht gelesen werden: {0}

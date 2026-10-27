@@ -64,6 +64,8 @@ public sealed class CopyRules
 
     public bool SkipDuplicates { get; set; }
 
+    public Engine.CopyExtras Extras { get; set; } = new();
+
     public static CopyRules From(Engine.Jobs.CopyJobRecord r) => new()
     {
         Filter = r.Filter,
@@ -94,6 +96,7 @@ public sealed class CopyRules
         RescueMode = r.RescueMode,
         DeltaCopy = r.DeltaCopy,
         SkipDuplicates = r.SkipDuplicates,
+        Extras = (r.Extras ?? new()).Clone(),
     };
 
     public void ApplyTo(Engine.Jobs.CopyJobRecord r)
@@ -126,6 +129,7 @@ public sealed class CopyRules
         r.RescueMode = RescueMode;
         r.DeltaCopy = DeltaCopy;
         r.SkipDuplicates = SkipDuplicates;
+        r.Extras = Extras.Clone();
     }
 }
 
@@ -159,7 +163,7 @@ public sealed partial class RulesEditor : UserControl
             int columns = Math.Clamp((int)((e.NewSize.Width + 8) / 388), 1, 4);
             CardsGrid.ColumnDefinitions.Clear();
             for (int i = 0; i < columns; i++) CardsGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
-            var cards = new FrameworkElement[] { FiltersColumnCard, RulesColumnCard, SafetyLeftCard, SafetyRightCard };
+            var cards = new FrameworkElement[] { FiltersColumnCard, RulesColumnCard, SafetyLeftCard, SafetyRightCard, MoreCard };
             for (int i = 0; i < cards.Length; i++)
             {
                 Grid.SetRow(cards[i], i / columns);
@@ -183,6 +187,7 @@ public sealed partial class RulesEditor : UserControl
         BeforeBox.Date = f.ModifiedBeforeUtc is { } before ? new DateTimeOffset(before.ToLocalTime()) : null;
         SkipHiddenBox.IsChecked = f.SkipHidden;
         SkipSystemBox.IsChecked = f.SkipSystem;
+        SkipCloudBox.IsChecked = f.SkipCloudOnly;
         LinksBox.SelectedIndex = (int)rules.Links;
         PatternBox.Text = rules.KeepBothPattern;
         RetriesBox.Value = rules.RetryCount;
@@ -210,6 +215,22 @@ public sealed partial class RulesEditor : UserControl
         RescueBox.IsChecked = rules.RescueMode;
         DeltaBox.IsChecked = rules.DeltaCopy;
         DuplicatesBox.IsChecked = rules.SkipDuplicates;
+        var x = rules.Extras ?? new CopyExtras();
+        RenameMaskBox.Text = x.RenameMask;
+        FlattenBox.IsChecked = x.Flatten;
+        KeepPathsBox.IsChecked = x.KeepRelativePaths;
+        ResetArchiveBox.IsChecked = x.ResetArchive;
+        CompensateDstBox.IsChecked = x.CompensateDst;
+        KeepCompressionBox.IsChecked = x.KeepNtfsCompression;
+        BeforeCommandBox.Text = x.BeforeCommand;
+        FolderTimesBox.SelectedIndex = x.FolderTimestamps is { } times ? (times ? 1 : 2) : 0;
+        FolderAttributesBox.SelectedIndex = x.FolderAttributes is { } attributes ? (attributes ? 1 : 2) : 0;
+        OnlyArchiveBox.IsChecked = f.RequireAttributes.HasFlag(FileAttributes.Archive);
+        SkipCompressedBox.IsChecked = (f.SkipAttributes & (FileAttributes.Compressed | FileAttributes.Encrypted)) != 0;
+        SkipTemporaryBox.IsChecked = f.SkipAttributes.HasFlag(FileAttributes.Temporary);
+        DepthBox.Value = f.MaxDepth is { } depth ? depth : double.NaN;
+        AccessedAfterBox.Date = f.AccessedAfterUtc is { } accessedAfter ? new DateTimeOffset(accessedAfter.ToLocalTime()) : null;
+        AccessedBeforeBox.Date = f.AccessedBeforeUtc is { } accessedBefore ? new DateTimeOffset(accessedBefore.ToLocalTime()) : null;
         UpdatePreview();
         _loading = false;
     }
@@ -228,8 +249,15 @@ public sealed partial class RulesEditor : UserControl
             ModifiedBeforeUtc = BeforeBox.Date?.Date.AddDays(1).AddTicks(-1).ToUniversalTime(),
             SkipHidden = SkipHiddenBox.IsChecked == true,
             SkipSystem = SkipSystemBox.IsChecked == true,
+            SkipCloudOnly = SkipCloudBox.IsChecked == true,
             SkipJunk = SkipJunkBox.IsChecked == true,
             ImageText = ImageTextBox.Text.Trim(),
+            RequireAttributes = OnlyArchiveBox.IsChecked == true ? FileAttributes.Archive : 0,
+            SkipAttributes = (SkipCompressedBox.IsChecked == true ? FileAttributes.Compressed | FileAttributes.Encrypted : 0)
+                | (SkipTemporaryBox.IsChecked == true ? FileAttributes.Temporary : 0),
+            MaxDepth = double.IsNaN(DepthBox.Value) ? null : (int)DepthBox.Value,
+            AccessedAfterUtc = AccessedAfterBox.Date?.Date.ToUniversalTime(),
+            AccessedBeforeUtc = AccessedBeforeBox.Date?.Date.AddDays(1).AddTicks(-1).ToUniversalTime(),
         },
         Links = (LinkHandling)Math.Max(0, LinksBox.SelectedIndex),
         KeepBothPattern = string.IsNullOrWhiteSpace(PatternBox.Text) ? CopyOptions.DefaultKeepBothPattern : PatternBox.Text.Trim(),
@@ -258,6 +286,18 @@ public sealed partial class RulesEditor : UserControl
         RescueMode = RescueBox.IsChecked == true,
         DeltaCopy = DeltaBox.IsChecked == true,
         SkipDuplicates = DuplicatesBox.IsChecked == true,
+        Extras = new CopyExtras
+        {
+            RenameMask = RenameMaskBox.Text.Trim(),
+            Flatten = FlattenBox.IsChecked == true,
+            KeepRelativePaths = KeepPathsBox.IsChecked == true,
+            ResetArchive = ResetArchiveBox.IsChecked == true,
+            CompensateDst = CompensateDstBox.IsChecked == true,
+            KeepNtfsCompression = KeepCompressionBox.IsChecked == true,
+            BeforeCommand = BeforeCommandBox.Text.Trim(),
+            FolderTimestamps = FolderTimesBox.SelectedIndex switch { 1 => true, 2 => false, _ => null },
+            FolderAttributes = FolderAttributesBox.SelectedIndex switch { 1 => true, 2 => false, _ => null },
+        },
     };
 
     private static List<string> Masks(string text) =>
@@ -297,6 +337,12 @@ public sealed partial class RulesEditor : UserControl
         var f = result.Filter;
         f.SkipHidden |= current.Filter.SkipHidden;
         f.SkipSystem |= current.Filter.SkipSystem;
+        f.SkipCloudOnly |= current.Filter.SkipCloudOnly;
+        f.RequireAttributes |= current.Filter.RequireAttributes;
+        f.SkipAttributes |= current.Filter.SkipAttributes;
+        f.MaxDepth ??= current.Filter.MaxDepth;
+        f.AccessedAfterUtc ??= current.Filter.AccessedAfterUtc;
+        f.AccessedBeforeUtc ??= current.Filter.AccessedBeforeUtc;
         f.SkipJunk |= current.Filter.SkipJunk;
         current.Filter = f;
         Load(current);

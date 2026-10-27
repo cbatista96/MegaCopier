@@ -134,6 +134,8 @@ public sealed class CopyJobRecord
 
     public bool DeltaCopy { get; set; }
 
+    public CopyExtras Extras { get; set; } = new();
+
     public bool SkipDuplicates { get; set; }
 
     public bool Encrypt { get; set; }
@@ -159,6 +161,15 @@ public sealed class CopyJobRecord
 
     /// <summary>Hora programada de inicio (la cola no lo empieza antes).</summary>
     public DateTime? StartAtUtc { get; set; }
+
+    /// <summary>
+    /// Los discos de las rutas, por su número de serie y su nombre (solo en las tareas guardadas): si un USB vuelve con
+    /// otra letra, las rutas se corrigen solas (ver <see cref="Volumes.Remap"/>).
+    /// </summary>
+    public List<VolumeRef> Volumes { get; set; } = [];
+
+    /// <summary>Tarea que empieza sola al conectar el disco con este número de serie (en hexadecimal); vacío = no.</summary>
+    public string StartOnVolume { get; set; } = "";
 
     public static CopyJobRecord New(IEnumerable<string> sources, string destination, CopyOptions options) => new()
     {
@@ -222,6 +233,7 @@ public sealed class CopyJobRecord
         AllOrNothing = options.AllOrNothing,
         RescueMode = options.RescueMode,
         DeltaCopy = options.DeltaCopy,
+        Extras = options.Extras.Clone(),
         SkipDuplicates = options.SkipDuplicates,
         Encrypt = options.Encrypt,
         OrganizePattern = options.OrganizePattern,
@@ -291,6 +303,7 @@ public sealed class CopyJobRecord
             AllOrNothing = AllOrNothing,
             RescueMode = RescueMode,
             DeltaCopy = DeltaCopy,
+            Extras = (Extras ?? new()).Clone(),
             SkipDuplicates = SkipDuplicates,
             Encrypt = Encrypt,
             OrganizePattern = string.IsNullOrWhiteSpace(OrganizePattern) ? CopyOptions.DefaultOrganizePattern : OrganizePattern,

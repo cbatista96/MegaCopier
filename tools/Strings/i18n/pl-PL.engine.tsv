@@ -79,7 +79,7 @@ E_DeleteStart	Usuń pliki: {0} ({1}).
 E_WipeStart	Bezpiecznie usuń pliki: {0} ({1}).
 E_DoneDelete	Zakończono w {0}: usunięto {1}, z błędami {2}.
 E_NoSources	Nie podano żadnego źródła.
-E_WholeDrive	Kopiowanie całego dysku nie jest jeszcze obsługiwane: {0}
+E_WholeDrive	Cały dysk można tylko skopiować, nie przenieść ani usunąć: {0}
 E_SourceMissing	Źródło nie istnieje: {0}
 E_IntoItself	Nie można skopiować folderu do niego samego: {0}
 E_SourceUnreadable	Nie udało się odczytać źródła: {0}
@@ -125,7 +125,6 @@ E_DamagedTwice	Dwukrotnie dotarł uszkodzony na drugi komputer
 E_Fat32	Nie mieści się w FAT32 (maksymalnie 4 GB na plik); sformatuj dysk jako exFAT lub NTFS.
 E_FatLimits	Cel to {0}: nie przechowuje alternatywnych strumieni ani uprawnień, a daty mają dokładność 2 s.
 E_CaseCollisions	Nazwy powtarzające się w celu ({0}) różnią się tylko wielkością liter: zostaną potraktowane jako konflikty.
-E_BadName	Problematyczna nazwa w Windows (zastrzeżona lub kończąca się kropką albo spacją): niektóre programy nie będą mogły jej otworzyć.
 E_LongPaths	Pliki ({0}) będą miały ścieżki dłuższe niż 260 znaków: Eksplorator i inne programy mogą ich nie otworzyć.
 E_WrongCode	Kod nie jest tym, który pokazuje drugi komputer.
 E_PeerUnknownCode	Drugi komputer nie zna kodu: połączenie nie jest bezpieczne.
@@ -269,3 +268,15 @@ E_FolderSkipExisting	Folder już istniał: {0} istniejących plików jest pomija
 E_FolderOverwrite	Folder już istniał: {0} istniejących plików zostanie nadpisanych.
 E_FolderRenamed	Folder „{0}” już istniał: zostanie skopiowany jako „{1}”.
 E_SpaceForced	Kopiowanie mimo to: gdy dysk się zapełni, kopiowanie poczeka na wolne miejsce.
+E_DriveFolder	Dysk {0}
+E_NameFixed	Miejsce docelowe nie akceptuje nazwy „{0}”: skopiowano jako „{1}”
+E_CloudOnly	{0} plików jest tylko w chmurze: zostaną pobrane, aby je skopiować (w Regułach można je pominąć).
+E_F_NoCloud	bez plików tylko w chmurze
+C_UsageFilters	Filtry (copy, move, test, hash):\n  --include <maski>      Tylko te ("*.jpg;*.png"; można powtarzać)\n  --exclude <maski>      Nigdy te ("*.tmp;node_modules")\n  --min-size <n>         Minimalny rozmiar (500, 200k, 10m, 2g)\n  --max-size <n>         Maksymalny rozmiar\n  --after <rrrr-mm-dd>   Zmienione od tego dnia\n  --before <rrrr-mm-dd>  Zmienione do tego dnia\n  --skip-hidden · --skip-system · --skip-cloud (tylko w chmurze)\n  --filter "<tekst>"     Zwykłym językiem: "photos over 2 MB"\n  @lista.txt             Źródła z pliku (jedna ścieżka w wierszu)
+C_BadSize	{0} wymaga rozmiaru, np. 500, 200k, 10m lub 2g.
+C_BadDate	{0} wymaga daty rrrr-mm-dd (np. 2026-01-31).
+E_BeforeRunning	Przed rozpoczęciem: {0}
+E_BeforeFailed	Polecenie przed rozpoczęciem nie powiodło się ({1}), więc kopiowanie się nie zaczyna: {0}
+C_UsageExtras	Więcej opcji:\n  --max-depth <n>        Poziomy podfolderów (0 = tylko folder)\n  --archive              Tylko oznaczone jako zmienione, potem usuń oznaczenie\n  --dst                  Różnica dokładnie godziny liczy się jako równość (zmiana czasu)\n  --keep-compression     Zachowaj kompresję NTFS\n  --flatten              Wszystko do folderu docelowego, bez podfolderów\n  --keep-paths           Odtwórz foldery od wspólnego folderu źródeł\n  --rename <maska>       Zmieniaj nazwy podczas kopiowania: "*.bak", "kopia *.*"\n  --run-before "<polecenie>" Uruchamiane przed startem; jeśli się nie uda, nic nie jest kopiowane\n  Plik .mcignore w folderze mówi, czego z niego nigdy nie kopiować.
+C_RunUsage	Użycie: mcopy run <lista.mclist>  (wykonuje zapisaną kopię lub zadanie bez okna)
+C_BadList	Nie można odczytać listy: {0}

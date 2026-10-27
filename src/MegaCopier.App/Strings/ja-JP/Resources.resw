@@ -5,6 +5,8 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Settings_TaskbarTitle.Text" xml:space="preserve"><value>タスクバーに表示</value></data>
+  <data name="Settings_TaskbarDescription.Text" xml:space="preserve"><value>オフにすると、最小化したウィンドウは常に時計の横のシステムトレイに格納されます。</value></data>
   <data name="JobsSection.Text" xml:space="preserve"><value>コピー</value></data>
   <data name="SettingsSection.Text" xml:space="preserve"><value>設定</value></data>
   <data name="FinishButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>すべてのコピーが終わったら</value></data>
@@ -323,8 +325,6 @@
   <data name="Tool_LoadListText.Text" xml:space="preserve"><value>リストを読み込む</value></data>
   <data name="Tool_NewCopy.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>新しいコピー</value></data>
   <data name="Tool_NewCopyText.Text" xml:space="preserve"><value>新規</value></data>
-  <data name="Tool_PauseAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>すべて一時停止</value></data>
-  <data name="Tool_ResumeAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>すべて再開</value></data>
   <data name="Tool_Settings.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>設定</value></data>
   <data name="Tool_Sidebar.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>コピー一覧の表示/非表示</value></data>
   <data name="Drop_Caption" xml:space="preserve"><value>MegaCopier でコピー</value></data>
@@ -1602,4 +1602,110 @@
   <data name="Rules_Synchronization.Text" xml:space="preserve"><value>同期</value></data>
   <data name="Rules_SecurityTitle.Text" xml:space="preserve"><value>セキュリティ</value></data>
   <data name="Job_StateNeedsAdministrator" xml:space="preserve"><value>管理者権限が必要です</value></data>
+  <data name="Toolbar_PauseAll" xml:space="preserve"><value>すべて一時停止</value></data>
+  <data name="Toolbar_ResumeAll" xml:space="preserve"><value>すべて再開</value></data>
+  <data name="Toolbar_Sidebar" xml:space="preserve"><value>コピー一覧の表示/非表示</value></data>
+  <data name="Toolbar_New" xml:space="preserve"><value>新しいコピー</value></data>
+  <data name="Toolbar_ClearDone" xml:space="preserve"><value>完了したコピーを削除</value></data>
+  <data name="Toolbar_Timeline" xml:space="preserve"><value>キューのタイムライン</value></data>
+  <data name="Toolbar_History" xml:space="preserve"><value>履歴</value></data>
+  <data name="Toolbar_Settings" xml:space="preserve"><value>設定</value></data>
+  <data name="Toolbar_About" xml:space="preserve"><value>バージョン情報</value></data>
+  <data name="Toolbar_AlwaysOnTop" xml:space="preserve"><value>常に手前に表示</value></data>
+  <data name="Toolbar_Shelf" xml:space="preserve"><value>ドロップシェルフ</value></data>
+  <data name="Toolbar_Compare" xml:space="preserve"><value>比較して同期</value></data>
+  <data name="Toolbar_PlayPause" xml:space="preserve"><value>すべて一時停止または再開</value></data>
+  <data name="Toolbar_Separator" xml:space="preserve"><value>区切り線</value></data>
+  <data name="Toolbar_More" xml:space="preserve"><value>その他の操作</value></data>
+  <data name="Destinations_Favorite" xml:space="preserve"><value>お気に入りに追加</value></data>
+  <data name="Destinations_Unfavorite" xml:space="preserve"><value>お気に入りから削除</value></data>
+  <data name="Settings_ToolbarTitle.Text" xml:space="preserve"><value>ツールバー</value></data>
+  <data name="Settings_ToolbarDescription.Text" xml:space="preserve"><value>表示するボタンと順序を選びます。小さいウィンドウには既定と同じ数だけ入り、残りは末尾の「…」メニューに移ります。</value></data>
+  <data name="Settings_ToolbarReset.Text" xml:space="preserve"><value>リセット</value></data>
+  <data name="Settings_ToolbarFinish.Content" xml:space="preserve"><value>右側に「完了時」を表示</value></data>
+  <data name="Settings_ToolbarUp" xml:space="preserve"><value>「{0}」を上へ</value></data>
+  <data name="Settings_ToolbarDown" xml:space="preserve"><value>「{0}」を下へ</value></data>
+  <data name="Rules_SkipCloud.Content" xml:space="preserve"><value>クラウドのみのファイルをスキップ (ダウンロードしない)</value></data>
+  <data name="Destinations_PathBox.PlaceholderText" xml:space="preserve"><value>パスを入力または貼り付け (例: D:\コピー)</value></data>
+  <data name="Destinations_PathInvalid" xml:space="preserve"><value>このパスは使えません。既存のドライブまたはネットワーク共有上のフォルダーを完全なパスで入力してください (例: D:\コピー)。</value></data>
+  <data name="Tool_CompareSum.Text" xml:space="preserve"><value>チェックサムと比較…</value></data>
+  <data name="SumCheck_Title" xml:space="preserve"><value>チェックサムと比較</value></data>
+  <data name="SumCheck_File" xml:space="preserve"><value>ファイル: {0}</value></data>
+  <data name="SumCheck_Header" xml:space="preserve"><value>公開されているチェックサム (MD5、SHA-1、SHA-256、SHA-512、SHA3、BLAKE3、xxHash、CRC32)</value></data>
+  <data name="SumCheck_Placeholder" xml:space="preserve"><value>ダウンロード ページのチェックサムをここに貼り付けます</value></data>
+  <data name="SumCheck_Check" xml:space="preserve"><value>確認</value></data>
+  <data name="SumCheck_Close" xml:space="preserve"><value>閉じる</value></data>
+  <data name="SumCheck_NotASum" xml:space="preserve"><value>チェックサムではないようです。8、16、32、40、64、128 桁の 16 進数である必要があります。</value></data>
+  <data name="SumCheck_Reading" xml:space="preserve"><value>ファイルを読み取っています…</value></data>
+  <data name="SumCheck_Match" xml:space="preserve"><value>✓ 一致 ({0}): ファイルは正常です。</value></data>
+  <data name="SumCheck_NoMatch" xml:space="preserve"><value>✗ 一致しません。{0} ではファイルは {1} です。破損、不完全、または別のファイルです。</value></data>
+  <data name="Status_SourceDrive.Text" xml:space="preserve"><value>コピー元</value></data>
+  <data name="Status_TargetDrive.Text" xml:space="preserve"><value>コピー先</value></data>
+  <data name="Status_DriveFree" xml:space="preserve"><value>空き {0} / {1}</value></data>
+  <data name="LocalSend_Conflict.Header" xml:space="preserve"><value>ファイルがフォルダーに既にある場合</value></data>
+  <data name="LocalSend_ConflictRename.Content" xml:space="preserve"><value>両方を残す (「写真 (2).jpg」)</value></data>
+  <data name="LocalSend_ConflictSkip.Content" xml:space="preserve"><value>受信しない</value></data>
+  <data name="LocalSend_ConflictOverwrite.Content" xml:space="preserve"><value>既存のファイルを置き換える</value></data>
+  <data name="LocalSend_Include.Header" xml:space="preserve"><value>これらの種類のみ受信 (空欄 = すべて)</value></data>
+  <data name="LocalSend_Include.PlaceholderText" xml:space="preserve"><value>*.jpg; *.heic; *.mp4</value></data>
+  <data name="LocalSend_Exclude.Header" xml:space="preserve"><value>受信しない種類</value></data>
+  <data name="LocalSend_Exclude.PlaceholderText" xml:space="preserve"><value>*.apk; *.exe</value></data>
+  <data name="Task_OnDevice.Content" xml:space="preserve"><value>ドライブ接続時</value></data>
+  <data name="Task_SavedOnDevice" xml:space="preserve"><value>タスク「{0}」を保存しました: ドライブを接続するたびに自動で開始します (MegaCopier が開いているか通知領域にあるとき)。</value></data>
+  <data name="Task_NoDevice" xml:space="preserve"><value>このコピーには待機できるドライブ文字のディスクがありません (たとえば、ネットワーク フォルダーへのコピーです)。</value></data>
+  <data name="Settings_TaskOnDevice" xml:space="preserve"><value>{0} を接続すると自動で開始</value></data>
+  <data name="Connection_AzureAccount" xml:space="preserve"><value>ストレージ アカウント (https://account.blob.core.windows.net)</value></data>
+  <data name="Connection_GcsEndpoint" xml:space="preserve"><value>エンドポイント (空欄 = storage.googleapis.com)</value></data>
+  <data name="Connection_Sas" xml:space="preserve"><value>コンテナーの SAS トークン (sv=…&amp;sig=…)</value></data>
+  <data name="Connection_Container" xml:space="preserve"><value>コンテナー (とフォルダー): container/folder</value></data>
+  <data name="Connection_Site" xml:space="preserve"><value>SharePoint サイト</value></data>
+  <data name="Connection_SitePlaceholder" xml:space="preserve"><value>https://company.sharepoint.com/sites/Team</value></data>
+  <data name="Rules_MoreTitle.Text" xml:space="preserve"><value>その他のオプション</value></data>
+  <data name="Rules_RenameMask.Header" xml:space="preserve"><value>コピー時に名前を変更 (マスク: *.bak、コピー *.*)</value></data>
+  <data name="Rules_Flatten.Content" xml:space="preserve"><value>フラット化: すべてをコピー先フォルダーに、サブフォルダーなし</value></data>
+  <data name="Rules_KeepPaths.Content" xml:space="preserve"><value>複数フォルダーのファイル: 共通フォルダーからフォルダー構成を再現</value></data>
+  <data name="Rules_OnlyArchive.Content" xml:space="preserve"><value>変更済みとしてマークされたもののみ (「アーカイブ」属性)</value></data>
+  <data name="Rules_ResetArchive.Content" xml:space="preserve"><value>コピー後に元のファイルからその印を外す (増分バックアップ)</value></data>
+  <data name="Rules_CompensateDst.Content" xml:space="preserve"><value>ちょうど 1 時間違うファイルを同じとみなす (夏時間)</value></data>
+  <data name="Rules_KeepCompression.Content" xml:space="preserve"><value>NTFS 圧縮を維持</value></data>
+  <data name="Rules_SkipCompressed.Content" xml:space="preserve"><value>Windows で圧縮または暗号化されたファイルをスキップ</value></data>
+  <data name="Rules_SkipTemporary.Content" xml:space="preserve"><value>一時ファイルとしてマークされたものをスキップ</value></data>
+  <data name="Rules_Depth.Header" xml:space="preserve"><value>サブフォルダーの階層 (空欄 = すべて、0 = フォルダーのみ)</value></data>
+  <data name="Rules_AccessedAfter.Header" xml:space="preserve"><value>最終使用日 (以降)</value></data>
+  <data name="Rules_AccessedBefore.Header" xml:space="preserve"><value>最終使用日 (以前)</value></data>
+  <data name="Rules_FolderTimes.Header" xml:space="preserve"><value>フォルダーの日時</value></data>
+  <data name="Rules_FolderAttributes.Header" xml:space="preserve"><value>フォルダーの属性</value></data>
+  <data name="Rules_FolderLikeFiles.Content" xml:space="preserve"><value>ファイルと同じ</value></data>
+  <data name="Rules_FolderYes.Content" xml:space="preserve"><value>コピーする</value></data>
+  <data name="Rules_FolderNo.Content" xml:space="preserve"><value>コピーしない</value></data>
+  <data name="Rules_FolderLikeFiles2.Content" xml:space="preserve"><value>ファイルと同じ</value></data>
+  <data name="Rules_FolderYes2.Content" xml:space="preserve"><value>コピーする</value></data>
+  <data name="Rules_FolderNo2.Content" xml:space="preserve"><value>コピーしない</value></data>
+  <data name="Rules_BeforeCommand.Header" xml:space="preserve"><value>開始前に実行 (失敗するとコピーしません)</value></data>
+  <data name="Settings_EjectSource.Content" xml:space="preserve"><value>すべて成功したらコピー元 (カメラのカード) も取り出す</value></data>
+  <data name="Scripts_AddExample.Text" xml:space="preserve"><value>例を追加</value></data>
+  <data name="Scripts_ExampleNtfy.Text" xml:space="preserve"><value>ntfy でスマートフォンに通知</value></data>
+  <data name="Scripts_ExampleIfttt.Text" xml:space="preserve"><value>IFTTT アプレットを実行</value></data>
+  <data name="Scripts_ExampleOpen.Text" xml:space="preserve"><value>すべて成功したらコピー先を開く</value></data>
+  <data name="Scripts_ExampleLog.Text" xml:space="preserve"><value>各コピーをテキスト ファイルに記録</value></data>
+  <data name="Scripts_NtfyTopic" xml:space="preserve"><value>my-secret-topic</value></data>
+  <data name="Scripts_IftttKey" xml:space="preserve"><value>YOUR-KEY</value></data>
+  <data name="Scripts_LogName" xml:space="preserve"><value>MegaCopier-transfers</value></data>
+  <data name="Settings_TransferLogTitle.Text" xml:space="preserve"><value>すべてのコピーの単一ログ</value></data>
+  <data name="Settings_TransferLogDescription.Text" xml:space="preserve"><value>コピーまたは失敗したファイルごとに 1 行、1 つのファイルに選んだ形式で記録します。Syslog サーバーにも送信できます。</value></data>
+  <data name="Settings_TransferLogPath.Header" xml:space="preserve"><value>ログ ファイル</value></data>
+  <data name="Settings_TransferLogBrowse.Text" xml:space="preserve"><value>選択…</value></data>
+  <data name="Settings_TransferLogType" xml:space="preserve"><value>ログ</value></data>
+  <data name="Settings_TransferLogFormat.Header" xml:space="preserve"><value>コピーした各ファイルの形式</value></data>
+  <data name="Settings_ErrorLogFormat.Header" xml:space="preserve"><value>各エラーの形式</value></data>
+  <data name="Settings_TransferLogVariables.Text" xml:space="preserve"><value>変数: %time%、%source%、%destination%、%size%、%mtime%、%hash%、%path%、%error%、%computer%、%user%</value></data>
+  <data name="Settings_Syslog.Header" xml:space="preserve"><value>Syslog サーバーにも送信 (サーバーまたはサーバー:ポート、空欄 = 送信しない)</value></data>
+  <data name="Task_AddPair.Text" xml:space="preserve"><value>タスクに別のフォルダーの組を追加…</value></data>
+  <data name="Task_ClearPairs.Text" xml:space="preserve"><value>組を削除</value></data>
+  <data name="Task_PairSource" xml:space="preserve"><value>コピーするフォルダー</value></data>
+  <data name="Task_PairDestination" xml:space="preserve"><value>コピー先</value></data>
+  <data name="Task_NoSession.Content" xml:space="preserve"><value>誰もサインインしていなくても実行 (ウィンドウなし)</value></data>
+  <data name="Task_NoCli" xml:space="preserve"><value>セッションなしで実行するには MegaCopier と同じ場所に mcopy.exe が必要です (インストーラーに含まれています)。</value></data>
+  <data name="Settings_ToolbarCustomize.Text" xml:space="preserve"><value>カスタマイズ</value></data>
+  <data name="Status_Folders.Text" xml:space="preserve"><value>フォルダー</value></data>
 </root>

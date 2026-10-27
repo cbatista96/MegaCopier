@@ -40,6 +40,11 @@ public partial class App : Application
 
     internal LiveSyncService? LiveSyncs { get; private set; }
 
+    /// <summary>Tareas que empiezan al conectar su disco.</summary>
+    internal DeviceTasks? DeviceTasks { get; private set; }
+
+    private TransferLog? _transferLog;
+
     internal DiskWatcher? Disks { get; private set; }
     private MainWindow? _window;
     private Views.ShelfWindow? _shelf;
@@ -162,6 +167,7 @@ public partial class App : Application
         _window = new MainWindow(this);
         _window.ApplyTheme(theme);
         ApplySettings();
+        FollowSystemColors();
         // Las preguntas de una copia salen en su ventana.
         Queue.ConflictResolver = (job, conflict, cancellation) => WindowFor(job).AskConflict(job, conflict, cancellation);
         Queue.ErrorResolver = (job, error, cancellation) => WindowFor(job).AskError(job, error, cancellation);
@@ -183,13 +189,7 @@ public partial class App : Application
             Settings.Save();
         }
 
-        _tray.ExtraActivated += id =>
-        {
-            if (_trayProgress.JobFor(id) is { } job)
-            {
-                WindowFor(job).ShowJob(job);
-            }
-        };
+        _tray.ExtraActivated += ActivateTrayJob;
         _tray.ExtraMenu = id => _trayProgress.JobFor(id) is { } job
             ?
             [
@@ -220,6 +220,9 @@ public partial class App : Application
         Remote.Apply();
         LiveSyncs = new LiveSyncService(this);
         LiveSyncs.Apply();
+        DeviceTasks = new DeviceTasks(this);
+        DeviceTasks.Start();
+        _transferLog = new TransferLog(this);
 
         _taskbar = new TaskbarProgress(Window.Handle);
         _statusTimer = Dispatcher.CreateTimer();
@@ -366,6 +369,7 @@ public partial class App : Application
             record.Excluded = [.. list.Excluded];
             record.FileOrder = [.. list.FileOrder];
             record.RenamedFolders = new(list.RenamedFolders, StringComparer.OrdinalIgnoreCase);
+            record.ExtraTargets = new(list.ExtraTargets, StringComparer.OrdinalIgnoreCase); // más parejas de carpetas
         });
         job.Record.ExportReport = list.ExportReport;
         job.Record.Scripts = [.. list.Scripts];
@@ -510,11 +514,26 @@ public partial class App : Application
             }
         }
 
+        // El destino (Expulsar al terminar) y, si se pidió, también el origen: la tarjeta de la cámara tras pasar las fotos.
+        var roots = new List<string>();
         if (Settings.EjectWhenDone && job.State is CopyJobState.Completed or CopyJobState.CompletedWithErrors)
         {
-            string root = Path.GetPathRoot(job.Record.Destination) ?? "";
-            bool inUse = Queue.Jobs.Any(j => j != job && j.IsActive && string.Equals(Path.GetPathRoot(j.Record.Destination), root, StringComparison.OrdinalIgnoreCase));
-            if (root.Length > 0 && !inUse && DriveEject.IsRemovable(root))
+            roots.Add(Path.GetPathRoot(job.Record.Destination) ?? "");
+        }
+
+        if (Settings.EjectSource && job.State is CopyJobState.Completed)
+        {
+            roots.AddRange(job.Record.Sources.Select(s => Path.GetPathRoot(s) ?? ""));
+        }
+
+        static bool Uses(CopyJob other, string root) =>
+            string.Equals(Path.GetPathRoot(other.Record.Destination), root, StringComparison.OrdinalIgnoreCase)
+            || other.Record.Sources.Any(s => string.Equals(Path.GetPathRoot(s), root, StringComparison.OrdinalIgnoreCase));
+
+        foreach (string root in roots.Where(r => r.Length > 0).Distinct(StringComparer.OrdinalIgnoreCase))
+        {
+            bool inUse = Queue.Jobs.Any(j => j != job && j.IsActive && Uses(j, root));
+            if (!inUse && DriveEject.IsRemovable(root))
             {
                 if (TestMode)
                 {
@@ -751,7 +770,8 @@ public partial class App : Application
     {
         Queue.MaxActiveJobs = Math.Max(0, Settings.MaxActiveJobs);
         Queue.FastDevices = Settings.FastDevices.Split([',', ';'], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
-        _tray?.SetVisible(Settings.ShowTrayIcon);
+        _tray?.SetVisible(Settings.ShowTrayIcon || !Settings.ShowTaskbarButton);
+        foreach (var window in AllWindows.Where(w => !w.IsClosed)) window.ApplyTaskbarVisibility();
         Format.SizeUnits = Settings.Units;
         // Primero el modo de segundo plano (al entrar o salir, Windows deja la clase en Normal) y después la clase.
         SystemActions.SetBackgroundMode(Settings.Priority == ProcessPriority.Low);
@@ -774,8 +794,43 @@ public partial class App : Application
         foreach (var window in AllWindows)
         {
             window.ApplyAlwaysOnTop(Settings.AlwaysOnTop);
+            window.UpdateOnTopButton();
             window.RefreshUiScale();
         }
+    }
+
+    private Windows.UI.ViewManagement.UISettings? _systemColors;
+    private bool _systemColorsPending;
+
+    /// <summary>
+    /// Con el tema «Por defecto» la app cambia a la vez que Windows entre claro y oscuro, como las demás apps; los temas
+    /// Fluent también siguen el color de acento si se cambia con la app abierta.
+    /// </summary>
+    private void FollowSystemColors()
+    {
+        _systemColors = new Windows.UI.ViewManagement.UISettings(); // en un campo: si se libera, deja de avisar
+        _systemColors.ColorValuesChanged += (_, _) => Dispatcher.TryEnqueue(() =>
+        {
+            // Windows avisa varias veces seguidas al cambiar de modo; basta con aplicar una vez.
+            if (_systemColorsPending)
+            {
+                return;
+            }
+
+            _systemColorsPending = true;
+            var timer = Dispatcher.CreateTimer();
+            timer.Interval = TimeSpan.FromMilliseconds(150);
+            timer.IsRepeating = false;
+            timer.Tick += (_, _) =>
+            {
+                _systemColorsPending = false;
+                if (Settings.ThemeId.StartsWith("fluent", StringComparison.Ordinal))
+                {
+                    ApplyTheme();
+                }
+            };
+            timer.Start();
+        });
     }
 
     /// <summary>Aplica el tema elegido en las preferencias.</summary>
@@ -1000,6 +1055,16 @@ public partial class App : Application
         switch (request.Command)
         {
             case "copy":
+                // Las extensiones del shell y los accesos que arrancan la app usan las mismas reglas que los ganchos.
+                if ((request.Operation is null or JobOperation.Copy) && (request.Mode ?? CopyMode.Copy) == CopyMode.Copy
+                    && request.Encrypt != true && request.Zip != true
+                    && PasteDecision.Decide(new ClipboardFileList(request.Sources, request.Move == true ? ClipboardOperation.Move : ClipboardOperation.Copy),
+                        request.Destination, out var pastePlan) is null)
+                {
+                    if (pastePlan is null) return new IpcResponse { Ok = true };
+                    request.Sources = [.. pastePlan.Sources];
+                    request.DuplicateInPlace |= pastePlan.DuplicateInPlace;
+                }
                 var job = Submit(request);
                 if (Settings.ShowWindowOnNewCopy)
                 {
@@ -1064,6 +1129,11 @@ public partial class App : Application
                 _ = Window.RunListAsync(request.Sources[0]);
                 return new IpcResponse { Ok = true };
 
+            case "debug-destinations" when TestMode && request.Sources.Count > 0:
+                // Solo pruebas: el diálogo «¿Adónde?» con estos orígenes, sin el selector de archivos.
+                _ = Window.PickDestinationAndCopy(request.Sources, move: false);
+                return new IpcResponse { Ok = true };
+
             case "debug-shelf" when TestMode:
                 // Solo pruebas: "copiar a…" (Destination = "copy") o "mover a…" ("move") de la bandeja.
                 _ = _shelf?.SendAsync(request.Destination == "move");
@@ -1089,6 +1159,21 @@ public partial class App : Application
 
             case "debug-states" when TestMode:
                 return new IpcResponse { Ok = true, Status = Window.DebugStates() };
+
+            case "debug-window-state" when TestMode:
+                return new IpcResponse { Ok = true, Status = $"{Window.DebugWindowState()};trayProgress={_trayProgress?.Count ?? 0}" };
+
+            case "debug-close-window" when TestMode:
+                Window.CloseButtonPressed();
+                return new IpcResponse { Ok = true };
+
+            case "debug-tray-icons" when TestMode:
+                return new IpcResponse { Ok = true, Status = string.Join("\n", (_tray?.ExtraIds ?? []).ToList().Select(id =>
+                    $"{_tray!.DebugLocation(id)};job={_trayProgress?.JobFor(id)?.Id}")) };
+
+            case "debug-tray-activate" when TestMode && uint.TryParse(request.Destination, out uint trayId):
+                ActivateTrayJob(trayId);
+                return new IpcResponse { Ok = true };
 
             case "debug-menu" when TestMode && request.Destination is { } menuButton:
                 // Solo pruebas: abre el menú de un botón (por su nombre accesible), sin ratón.
@@ -1249,7 +1334,7 @@ public partial class App : Application
         SystemActions.KeepAwake(running.Any(j => j.State == CopyJobState.Running));
         SlowDownWhileUserIsActive(running);
         Guard?.Tick(Queue.HasActiveJobs);
-        _trayProgress?.Update(Queue.Jobs, Settings.TrayProgressIcons && Settings.ShowTrayIcon && Settings.Enabled, TrayText);
+        RefreshTrayProgress();
         if (running.Count == 0)
         {
             _tray?.SetTooltip(Settings.Enabled ? "MegaCopier" : L.Get("Tray_TooltipDisabled"));
@@ -1270,7 +1355,17 @@ public partial class App : Application
         _tray?.SetTooltip($"MegaCopier · {copies} · {percent} · {Format.Speed(speed)}");
     }
 
-    /// <summary>Texto del icono de progreso de una copia en la bandeja: qué hace, con qué y cómo va.</summary>
+    private void ActivateTrayJob(uint id)
+    {
+        if (_trayProgress?.JobFor(id) is { Cancelled: false } job)
+            WindowFor(job).ShowJob(job);
+    }
+
+    /// <summary>Actualizar los iconos según la visibilidad de cada copia.</summary>
+    internal void RefreshTrayProgress() => _trayProgress?.Update(Queue.Jobs,
+        Settings.TrayProgressIcons && (Settings.ShowTrayIcon || !Settings.ShowTaskbarButton) && Settings.Enabled,
+        TrayText, job => !WindowFor(job).ShowsProgress(job));
+
     private string TrayText(CopyJob job)
     {
         var model = WindowFor(job).Jobs.FirstOrDefault(j => j.Job == job);
@@ -1347,6 +1442,7 @@ public partial class App : Application
         // «Detener»: la copia se cancela y ya no está en la lista. Si no queda ninguna en marcha, la ventana se cierra
         // sola, como al terminar bien.
         var owner = WindowFor(job); // su ventana: con varias, cada una se cierra cuando acaban las suyas
+        bool wasVisibleToUser = owner.IsVisibleToUser; // antes de que OnAllFinished pueda destruir su ventana
         if (stoppedByUser || job.Cancelled)
         {
             if (!owner.HasActiveJobs)
@@ -1395,7 +1491,7 @@ public partial class App : Application
             _ = RunFinishActionAsync(action);
         }
 
-        if (!Settings.NotifyOnFinish || owner.IsVisibleToUser || job.State == CopyJobState.Interrupted)
+        if (!Settings.NotifyOnFinish || wasVisibleToUser || job.State == CopyJobState.Interrupted)
         {
             return;
         }
@@ -1498,6 +1594,7 @@ public partial class App : Application
         }
 
         _exiting = true;
+        foreach (var window in AllWindows.Where(w => !w.IsClosed)) window.SavePlacement();
         CrashReports?.Dispose();
         Updates?.Dispose();
 

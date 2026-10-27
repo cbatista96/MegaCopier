@@ -15,6 +15,9 @@ internal sealed record CloudProvider(string AuthUrl, string TokenUrl, string Sco
     {
         ConnectionKind.OneDrive => new("https://login.microsoftonline.com/common/oauth2/v2.0/authorize", "https://login.microsoftonline.com/common/oauth2/v2.0/token",
             "Files.ReadWrite offline_access", "https://graph.microsoft.com/v1.0/", ""),
+        // SharePoint: el mismo inicio de sesión de Microsoft, con permiso también sobre los sitios de la empresa.
+        ConnectionKind.SharePoint => new("https://login.microsoftonline.com/common/oauth2/v2.0/authorize", "https://login.microsoftonline.com/common/oauth2/v2.0/token",
+            "Files.ReadWrite.All Sites.ReadWrite.All offline_access", "https://graph.microsoft.com/v1.0/", ""),
         ConnectionKind.GoogleDrive => new("https://accounts.google.com/o/oauth2/v2/auth", "https://oauth2.googleapis.com/token",
             "https://www.googleapis.com/auth/drive", "https://www.googleapis.com/", "&access_type=offline&prompt=consent"),
         ConnectionKind.Dropbox => new("https://www.dropbox.com/oauth2/authorize", "https://api.dropboxapi.com/oauth2/token",
@@ -32,7 +35,7 @@ public static class CloudAuth
 {
     private static readonly HttpClient Http = new() { Timeout = TimeSpan.FromSeconds(60) };
 
-    public static bool IsCloud(ConnectionKind kind) => kind is ConnectionKind.OneDrive or ConnectionKind.GoogleDrive or ConnectionKind.Dropbox;
+    public static bool IsCloud(ConnectionKind kind) => kind is ConnectionKind.OneDrive or ConnectionKind.SharePoint or ConnectionKind.GoogleDrive or ConnectionKind.Dropbox;
 
     /// <summary>Abre el inicio de sesión y espera la vuelta (como mucho 5 minutos). Devuelve el token de renovación.</summary>
     public static async Task<string> SignInAsync(Connection connection, Action<string> openBrowser, CancellationToken cancellationToken = default)

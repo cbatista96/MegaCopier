@@ -317,8 +317,6 @@ Tool_LoadList.Text	加载复制列表…
 Tool_LoadListText.Text	加载列表
 Tool_NewCopy.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	新建复制
 Tool_NewCopyText.Text	新建
-Tool_PauseAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	全部暂停
-Tool_ResumeAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	全部继续
 Tool_Settings.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	设置
 Tool_Sidebar.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	显示或隐藏复制列表
 Drop_Caption	用 MegaCopier 复制
@@ -1598,3 +1596,112 @@ Settings_FastPaths.PlaceholderText	C:, D:\数据
 Rules_Synchronization.Text	同步
 Rules_SecurityTitle.Text	安全
 Job_StateNeedsAdministrator	需要管理员权限
+
+Settings_TaskbarTitle.Text	在任务栏中显示
+Settings_TaskbarDescription.Text	关闭后，最小化时窗口始终隐藏到时钟旁的系统托盘中。
+Toolbar_PauseAll	全部暂停
+Toolbar_ResumeAll	全部继续
+Toolbar_Sidebar	显示或隐藏复制列表
+Toolbar_New	新建复制
+Toolbar_ClearDone	移除已完成的复制
+Toolbar_Timeline	队列时间线
+Toolbar_History	历史记录
+Toolbar_Settings	设置
+Toolbar_About	关于
+Toolbar_AlwaysOnTop	总在最前
+Toolbar_Shelf	拖放架
+Toolbar_Compare	比较并同步
+Toolbar_PlayPause	全部暂停或继续
+Toolbar_Separator	分隔线
+Toolbar_More	更多操作
+Destinations_Favorite	添加到收藏夹
+Destinations_Unfavorite	从收藏夹中移除
+Settings_ToolbarTitle.Text	工具栏
+Settings_ToolbarDescription.Text	选择显示哪些按钮及其顺序。小窗口中放得下与默认相同的数量，其余的放入末尾的“…”菜单。
+Settings_ToolbarReset.Text	重置
+Settings_ToolbarFinish.Content	在右侧显示“完成后”
+Settings_ToolbarUp	上移“{0}”
+Settings_ToolbarDown	下移“{0}”
+Rules_SkipCloud.Content	跳过仅在云端的文件（不下载）
+Destinations_PathBox.PlaceholderText	输入或粘贴路径，例如 D:\备份
+Destinations_PathInvalid	该路径无效：请输入现有驱动器或网络共享上的完整文件夹路径（例如 D:\备份）。
+Tool_CompareSum.Text	与校验和比较…
+SumCheck_Title	与校验和比较
+SumCheck_File	文件：{0}
+SumCheck_Header	已发布的校验和（MD5、SHA-1、SHA-256、SHA-512、SHA3、BLAKE3、xxHash 或 CRC32）
+SumCheck_Placeholder	在此粘贴下载页面上的校验和
+SumCheck_Check	检查
+SumCheck_Close	关闭
+SumCheck_NotASum	这看起来不像校验和：必须是 8、16、32、40、64 或 128 位的十六进制数。
+SumCheck_Reading	正在读取文件…
+SumCheck_Match	✓ 匹配（{0}）：文件完好。
+SumCheck_NoMatch	✗ 不匹配。按 {0} 计算该文件为 {1}：文件已损坏、不完整或不是同一个文件。
+Status_SourceDrive.Text	源
+Status_TargetDrive.Text	目标
+Status_DriveFree	共 {1}，可用 {0}
+LocalSend_Conflict.Header	如果文件已在文件夹中
+LocalSend_ConflictRename.Content	保留两者（“照片 (2).jpg”）
+LocalSend_ConflictSkip.Content	不接收
+LocalSend_ConflictOverwrite.Content	替换现有文件
+LocalSend_Include.Header	仅接收这些类型（留空 = 全部）
+LocalSend_Include.PlaceholderText	*.jpg; *.heic; *.mp4
+LocalSend_Exclude.Header	从不接收
+LocalSend_Exclude.PlaceholderText	*.apk; *.exe
+Task_OnDevice.Content	连接驱动器时
+Task_SavedOnDevice	任务“{0}”已保存：每次连接该驱动器时都会自动开始（MegaCopier 需处于打开状态或在托盘中）。
+Task_NoDevice	此复制没有可等待的带盘符驱动器（例如目标是网络文件夹）。
+Settings_TaskOnDevice	连接 {0} 时自动开始
+Connection_AzureAccount	存储帐户（https://account.blob.core.windows.net）
+Connection_GcsEndpoint	终结点（留空 = storage.googleapis.com）
+Connection_Sas	容器 SAS 令牌（sv=…&sig=…）
+Connection_Container	容器（和文件夹）：container/folder
+Connection_Site	SharePoint 网站
+Connection_SitePlaceholder	https://company.sharepoint.com/sites/Team
+Rules_MoreTitle.Text	更多选项
+Rules_RenameMask.Header	复制时重命名（掩码：*.bak、副本 *.*）
+Rules_Flatten.Content	平铺：全部放入目标文件夹，不含子文件夹
+Rules_KeepPaths.Content	来自多个文件夹的文件：从共同文件夹起重建其文件夹
+Rules_OnlyArchive.Content	仅标记为已更改的文件（“存档”属性）
+Rules_ResetArchive.Content	复制后清除源上的该标记（增量备份）
+Rules_CompensateDst.Content	将恰好相差一小时的文件视为相同（夏令时）
+Rules_KeepCompression.Content	保留 NTFS 压缩
+Rules_SkipCompressed.Content	跳过 Windows 压缩或加密的文件
+Rules_SkipTemporary.Content	跳过标记为临时的文件
+Rules_Depth.Header	子文件夹层级（留空 = 全部；0 = 仅此文件夹）
+Rules_AccessedAfter.Header	使用时间不早于
+Rules_AccessedBefore.Header	使用时间不晚于
+Rules_FolderTimes.Header	文件夹时间戳
+Rules_FolderAttributes.Header	文件夹属性
+Rules_FolderLikeFiles.Content	与文件相同
+Rules_FolderYes.Content	复制
+Rules_FolderNo.Content	不复制
+Rules_FolderLikeFiles2.Content	与文件相同
+Rules_FolderYes2.Content	复制
+Rules_FolderNo2.Content	不复制
+Rules_BeforeCommand.Header	开始前运行（失败则不复制）
+Settings_EjectSource.Content	如果一切顺利，也弹出源驱动器（相机存储卡）
+Scripts_AddExample.Text	添加示例
+Scripts_ExampleNtfy.Text	通过 ntfy 通知手机
+Scripts_ExampleIfttt.Text	触发 IFTTT 小程序
+Scripts_ExampleOpen.Text	一切顺利时打开目标
+Scripts_ExampleLog.Text	将每次复制记录到文本文件
+Scripts_NtfyTopic	my-secret-topic
+Scripts_IftttKey	YOUR-KEY
+Scripts_LogName	MegaCopier-transfers
+Settings_TransferLogTitle.Text	所有复制的统一日志
+Settings_TransferLogDescription.Text	每个已复制或失败的文件一行，写入同一文件并采用所选格式。也可发送到 Syslog 服务器。
+Settings_TransferLogPath.Header	日志文件
+Settings_TransferLogBrowse.Text	选择…
+Settings_TransferLogType	日志
+Settings_TransferLogFormat.Header	每个已复制文件的格式
+Settings_ErrorLogFormat.Header	每个错误的格式
+Settings_TransferLogVariables.Text	变量：%time%、%source%、%destination%、%size%、%mtime%、%hash%、%path%、%error%、%computer%、%user%
+Settings_Syslog.Header	同时发送到 Syslog 服务器（服务器或服务器:端口；留空 = 不发送）
+Task_AddPair.Text	向任务添加另一对文件夹…
+Task_ClearPairs.Text	移除这些文件夹对
+Task_PairSource	要复制的文件夹
+Task_PairDestination	复制到何处
+Task_NoSession.Content	即使无人登录也运行（不显示窗口）
+Task_NoCli	不登录运行需要 MegaCopier 旁边有 mcopy.exe（安装程序已包含）。
+Settings_ToolbarCustomize.Text	自定义
+Status_Folders.Text	文件夹

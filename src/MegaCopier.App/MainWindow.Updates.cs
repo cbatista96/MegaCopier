@@ -24,6 +24,7 @@ public sealed partial class MainWindow
         UpdateBadge.Visibility = _app.Updates?.Badge == true ? Visibility.Visible : Visibility.Collapsed;
         Microsoft.UI.Xaml.Automation.AutomationProperties.SetName(UpdateBadge,
             L.Get(_app.Updates?.CompletedUpdateUnread == true ? "Updates_NoticeCompleted" : "Updates_NoticeAvailable"));
+        UpdateOverflowBadge();
     }
 
     /// <summary>Solo pruebas: comprueba los límites del botón real con cada pack, sin guardar cambios de preferencias.</summary>

@@ -14,6 +14,10 @@ Todo lo que hace MegaCopier, por temas. Para usarlo, la [guía](Guia.md); para c
 - **Comprueba que cabe** antes de copiar (y al añadir a una copia en marcha): si no, cancelar o forzar la copia, que
   llena el disco y espera a que haya sitio.
 - Carpetas **«todo o nada»**: o se copia entera o no queda nada a medias.
+- **Unidades enteras** (`E:\` completa): a una carpeta con el nombre del disco, sin la Papelera ni lo que Windows guarda
+  en la raíz.
+- **Nombres que el destino no admite** (acabados en espacio, con caracteres prohibidos, reservados o demasiado largos
+  para el disco): se arreglan solos y queda anotado en el registro.
 - **Modo rescate** para discos dañados: salva lo legible y deja en ceros lo ilegible.
 - **Archivos en uso** (Outlook, bases de datos) copiados desde una instantánea de Windows (VSS).
 - **Modo copia de seguridad**: salta los permisos, con permiso de administrador.
@@ -51,6 +55,11 @@ Todo lo que hace MegaCopier, por temas. Para usarlo, la [guía](Guia.md); para c
 
 - Modos: copiar, mover, **espejo**, solo actualizar, solo carpetas y **organizar fotos por fecha** de la cámara.
 - **Simulación** («qué pasaría») y después «hacerlo de verdad».
+- **Más opciones**: renombrar con máscara (`*.bak`), aplanar, conservar la ruta común, solo lo marcado como modificado (bit
+  «Archivo») y quitar la marca, compensar el cambio de horario, conservar la compresión NTFS, niveles de subcarpetas, último
+  uso, fechas y atributos de las carpetas aparte y una orden antes de empezar.
+- **`.mcignore`**: un archivo en la carpeta con lo que no se copia nunca de ella (`*.tmp`, `node_modules/`).
+- Archivos **solo en la nube** (OneDrive «solo en línea»): aviso o se omiten.
 - **Filtros** por nombre, tamaño, fecha y atributos, también **en lenguaje normal** («fotos de más de 2 MB del último mes
   sin los .tmp»), y **fotos y capturas por el texto que contienen** («con el texto "factura"», con el OCR de Windows,
   sin internet).
@@ -96,24 +105,29 @@ Todo lo que hace MegaCopier, por temas. Para usarlo, la [guía](Guia.md); para c
 - Otro PC con MegaCopier por la red local, cifrado y con código.
 - **Servidores**: FTP, FTPS, SFTP, WebDAV (Nextcloud, ownCloud, NAS…) y S3 y compatibles (AWS, Backblaze B2, Cloudflare R2,
   Wasabi, MinIO).
-- **Nubes**: OneDrive, Google Drive y Dropbox, con inicio de sesión en el navegador ([cómo conectarlas](Nube.md)).
+- **Nubes**: OneDrive, SharePoint, Google Drive y Dropbox, con inicio de sesión en el navegador, y Azure Blob y Google Cloud
+  Storage ([cómo conectarlas](Nube.md)).
   Las contraseñas y los tokens se guardan en el Administrador de credenciales de Windows.
 
 ## Uso diario
 
 - Sustituye **Ctrl+V**, el **menú contextual** (también el corto de Windows 11) y el **arrastre** con botón izquierdo y
   derecho del Explorador. Un doble clic en la bandeja lo activa o desactiva.
-- **Varios destinos a la vez**, favoritos, recientes y las carpetas abiertas en el Explorador, Total Commander y Directory Opus.
+- **Varios destinos a la vez**, favoritos (con su estrella en «¿Adónde?»), recientes, una ruta escrita o pegada y las carpetas
+  abiertas en el Explorador, Total Commander, Directory Opus, Multi Commander, xplorer2, Explorer++ y XYplorer.
 - **Cola por disco**: en el mismo disco, de una en una; en discos distintos, a la vez. Reordenar arrastrando.
 - **Línea de tiempo** de la cola y **bandeja de arrastre** para ir juntando archivos.
-- **Tareas programadas** (una vez, diarias, semanales o mensuales) que se hacen al encender el PC si estaba apagado.
+- **Tareas programadas** (una vez, diarias, semanales, mensuales o **al conectar su USB**) que se hacen al encender el PC si
+  estaba apagado, también **sin sesión iniciada** (con `mcopy run`), con **varias parejas de carpetas** y que reconocen
+  los discos por su número de serie aunque cambie la letra.
 - **Historial** con deshacer y «copiar de vuelta».
 - **Aviso SMART** de discos que empiezan a fallar.
 - Avisos al terminar por **correo** y **webhook**; al terminar, apagar, suspender, hibernar o ejecutar un programa.
 - **Control desde el móvil**: página web en la red local, con código, para ver, pausar, seguir o detener copias.
 - **Asistentes de IA**: servidor MCP (`mcopy mcp`) para que Claude, Copilot y otros pidan copias y copias de seguridad
   ([cómo configurarlo](Integraciones.md)).
-- Informes HTML y CSV, listas de copia guardadas y registros.
+- Informes HTML y CSV, listas de copia guardadas, registros y un **registro único** con formato propio, también a **Syslog**.
+- **Barra de herramientas** a tu gusto, con menú «…» para lo que no cabe; en la ventana pequeña, siempre los mismos huecos y «Al terminar» con su texto.
 - **Consola** `mcopy` con todas las funciones y **modo portátil** (ZIP, sin instalar).
 - **14 idiomas**: español, inglés, francés, alemán, italiano, portugués de Brasil, ruso, ucraniano, polaco, neerlandés,
   turco, chino, japonés y coreano.

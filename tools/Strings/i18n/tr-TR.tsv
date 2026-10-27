@@ -317,8 +317,6 @@ Tool_LoadList.Text	Kopyalama listesi yükle…
 Tool_LoadListText.Text	Liste yükle
 Tool_NewCopy.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Yeni kopyalama
 Tool_NewCopyText.Text	Yeni
-Tool_PauseAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Tümünü duraklat
-Tool_ResumeAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Tümünü sürdür
 Tool_Settings.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Ayarlar
 Tool_Sidebar.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Kopyalama listesini göster veya gizle
 Drop_Caption	MegaCopier ile kopyala
@@ -1598,3 +1596,112 @@ Settings_FastPaths.PlaceholderText	C:, D:\Veriler
 Rules_Synchronization.Text	Eşitleme
 Rules_SecurityTitle.Text	Güvenlik
 Job_StateNeedsAdministrator	Yönetici izni gerekiyor
+
+Settings_TaskbarTitle.Text	Görev çubuğunda göster
+Settings_TaskbarDescription.Text	Kapalıyken küçültme, pencereyi her zaman saatin yanındaki sistem tepsisine gizler.
+Toolbar_PauseAll	Tümünü duraklat
+Toolbar_ResumeAll	Tümünü sürdür
+Toolbar_Sidebar	Kopyalama listesini göster veya gizle
+Toolbar_New	Yeni kopyalama
+Toolbar_ClearDone	Biten kopyalamaları kaldır
+Toolbar_Timeline	Sıranın zaman çizelgesi
+Toolbar_History	Geçmiş
+Toolbar_Settings	Ayarlar
+Toolbar_About	Hakkında
+Toolbar_AlwaysOnTop	Her zaman üstte
+Toolbar_Shelf	Bırakma rafı
+Toolbar_Compare	Karşılaştır ve eşitle
+Toolbar_PlayPause	Tümünü duraklat veya sürdür
+Toolbar_Separator	Ayırıcı
+Toolbar_More	Diğer eylemler
+Destinations_Favorite	Sık kullanılanlara ekle
+Destinations_Unfavorite	Sık kullanılanlardan kaldır
+Settings_ToolbarTitle.Text	Araç çubuğu
+Settings_ToolbarDescription.Text	Hangi kısayolların hangi sırayla görüneceğini seçin. Küçük pencereye varsayılan kadarı sığar; geri kalanlar sondaki “…” menüsüne geçer.
+Settings_ToolbarReset.Text	Sıfırla
+Settings_ToolbarFinish.Content	“Bitince” öğesini sağda göster
+Settings_ToolbarUp	“{0}” öğesini yukarı taşı
+Settings_ToolbarDown	“{0}” öğesini aşağı taşı
+Rules_SkipCloud.Content	Yalnızca bulutta olanları atla (indirme)
+Destinations_PathBox.PlaceholderText	Bir yol yazın veya yapıştırın, örneğin D:\Kopyalar
+Destinations_PathInvalid	Bu yol geçerli değil: var olan bir sürücüde veya ağ paylaşımında tam bir klasör yolu yazın (örneğin D:\Kopyalar).
+Tool_CompareSum.Text	Bir sağlama toplamıyla karşılaştır…
+SumCheck_Title	Sağlama toplamıyla karşılaştır
+SumCheck_File	Dosya: {0}
+SumCheck_Header	Yayımlanan sağlama toplamı (MD5, SHA-1, SHA-256, SHA-512, SHA3, BLAKE3, xxHash veya CRC32)
+SumCheck_Placeholder	İndirme sayfasındaki sağlama toplamını buraya yapıştırın
+SumCheck_Check	Denetle
+SumCheck_Close	Kapat
+SumCheck_NotASum	Bu bir sağlama toplamına benzemiyor: 8, 16, 32, 40, 64 veya 128 basamaklı onaltılık bir sayı olmalı.
+SumCheck_Reading	Dosya okunuyor…
+SumCheck_Match	✓ Eşleşiyor ({0}): dosya sağlam.
+SumCheck_NoMatch	✗ Eşleşmiyor. {0} ile dosya {1} veriyor: hasarlı, eksik veya farklı bir dosya.
+Status_SourceDrive.Text	Kaynak
+Status_TargetDrive.Text	Hedef
+Status_DriveFree	{1} içinde {0} boş
+LocalSend_Conflict.Header	Dosya klasörde zaten varsa
+LocalSend_ConflictRename.Content	İkisini de koru (“fotoğraf (2).jpg”)
+LocalSend_ConflictSkip.Content	Alma
+LocalSend_ConflictOverwrite.Content	Var olanı değiştir
+LocalSend_Include.Header	Yalnızca bu türleri al (boş = tümü)
+LocalSend_Include.PlaceholderText	*.jpg; *.heic; *.mp4
+LocalSend_Exclude.Header	Asla alma
+LocalSend_Exclude.PlaceholderText	*.apk; *.exe
+Task_OnDevice.Content	Sürücü bağlandığında
+Task_SavedOnDevice	“{0}” görevi kaydedildi: sürücüyü her bağladığınızda kendiliğinden başlar (MegaCopier açıkken veya tepside).
+Task_NoDevice	Bu kopyanın beklenecek harfli bir sürücüsü yok (örneğin bir ağ klasörüne gidiyor).
+Settings_TaskOnDevice	{0} bağlandığında kendiliğinden başlar
+Connection_AzureAccount	Depolama hesabı (https://hesap.blob.core.windows.net)
+Connection_GcsEndpoint	Uç nokta (boş = storage.googleapis.com)
+Connection_Sas	Kapsayıcı SAS belirteci (sv=…&sig=…)
+Connection_Container	Kapsayıcı (ve klasör): kapsayici/klasor
+Connection_Site	SharePoint sitesi
+Connection_SitePlaceholder	https://sirket.sharepoint.com/sites/Ekip
+Rules_MoreTitle.Text	Diğer seçenekler
+Rules_RenameMask.Header	Kopyalarken yeniden adlandır (maske: *.bak, kopya *.*)
+Rules_Flatten.Content	Düzleştir: her şey hedef klasöre, alt klasörler olmadan
+Rules_KeepPaths.Content	Birkaç klasördeki dosyalar: klasörlerini ortak olandan yeniden oluştur
+Rules_OnlyArchive.Content	Yalnızca değişti olarak işaretlenenler (“Arşiv” özniteliği)
+Rules_ResetArchive.Content	Kopyaladıktan sonra kaynaktaki bu işareti kaldır (artımlı yedekler)
+Rules_CompensateDst.Content	Tam bir saat farklı olanları aynı say (yaz saati)
+Rules_KeepCompression.Content	NTFS sıkıştırmasını koru
+Rules_SkipCompressed.Content	Windows tarafından sıkıştırılan veya şifrelenenleri atla
+Rules_SkipTemporary.Content	Geçici olarak işaretlenenleri atla
+Rules_Depth.Header	Alt klasör düzeyleri (boş = tümü; 0 = yalnızca klasör)
+Rules_AccessedAfter.Header	Şu tarihten beri kullanılan
+Rules_AccessedBefore.Header	Şu tarihe kadar kullanılan
+Rules_FolderTimes.Header	Klasör tarihleri
+Rules_FolderAttributes.Header	Klasör öznitelikleri
+Rules_FolderLikeFiles.Content	Dosyalar gibi
+Rules_FolderYes.Content	Kopyala
+Rules_FolderNo.Content	Kopyalama
+Rules_FolderLikeFiles2.Content	Dosyalar gibi
+Rules_FolderYes2.Content	Kopyala
+Rules_FolderNo2.Content	Kopyalama
+Rules_BeforeCommand.Header	Başlamadan önce çalıştır (başarısız olursa kopyalanmaz)
+Settings_EjectSource.Content	Her şey yolunda gittiyse kaynağı da (kamera kartını) çıkar
+Scripts_AddExample.Text	Örnek ekle
+Scripts_ExampleNtfy.Text	ntfy ile telefona bildir
+Scripts_ExampleIfttt.Text	Bir IFTTT uygulamacığını tetikle
+Scripts_ExampleOpen.Text	Her şey yolunda gittiyse hedefi aç
+Scripts_ExampleLog.Text	Her kopyayı bir metin dosyasına yaz
+Scripts_NtfyTopic	gizli-konum
+Scripts_IftttKey	ANAHTARINIZ
+Scripts_LogName	MegaCopier-kopyalar
+Settings_TransferLogTitle.Text	Tüm kopyalar için tek günlük
+Settings_TransferLogDescription.Text	Kopyalanan veya başarısız olan her dosya için bir satır, tek dosyada ve seçtiğiniz biçimde. Bir Syslog sunucusuna da gönderilebilir.
+Settings_TransferLogPath.Header	Günlük dosyası
+Settings_TransferLogBrowse.Text	Seç…
+Settings_TransferLogType	Günlük
+Settings_TransferLogFormat.Header	Kopyalanan her dosyanın biçimi
+Settings_ErrorLogFormat.Header	Her hatanın biçimi
+Settings_TransferLogVariables.Text	Değişkenler: %time%, %source%, %destination%, %size%, %mtime%, %hash%, %path%, %error%, %computer%, %user%
+Settings_Syslog.Header	Bir Syslog sunucusuna da gönder (sunucu veya sunucu:bağlantı noktası; boş = hayır)
+Task_AddPair.Text	Göreve başka bir klasör çifti ekle…
+Task_ClearPairs.Text	Çiftleri kaldır
+Task_PairSource	Kopyalanacak klasör
+Task_PairDestination	Nereye kopyalanacak
+Task_NoSession.Content	Kimse oturum açmamış olsa da çalıştır (pencere olmadan)
+Task_NoCli	Oturum olmadan çalıştırmak için MegaCopier'ın yanında mcopy.exe gerekir (yükleyici içerir).
+Settings_ToolbarCustomize.Text	Özelleştir
+Status_Folders.Text	Klasörler

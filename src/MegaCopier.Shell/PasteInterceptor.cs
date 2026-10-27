@@ -8,6 +8,7 @@ namespace MegaCopier.Shell;
 public sealed record PasteRequest(IReadOnlyList<string> Sources, string Destination, ClipboardOperation Operation)
 {
     public bool DuplicateInPlace { get; init; }
+    internal IReadOnlyList<string>? ClipboardSources { get; init; }
 }
 
 /// <summary>
@@ -16,8 +17,8 @@ public sealed record PasteRequest(IReadOnlyList<string> Sources, string Destinat
 /// Un gancho de teclado de bajo nivel mira cada Ctrl+V. Solo lo retiene si en ese momento el foco está en la lista
 /// de archivos de una ventana del Explorador (o del Escritorio) y el portapapeles contiene archivos: comprobaciones
 /// instantáneas, porque Windows desactiva los ganchos lentos. El resto (leer el portapapeles, averiguar la carpeta
-/// por COM) se hace en un hilo aparte. Si al final no es un caso para MegaCopier (cortar/mover, carpeta virtual,
-/// pegar en la misma carpeta...), se le devuelve el pegado al Explorador tal cual.
+/// por COM) se hace en un hilo aparte. Las copias en el mismo sitio se duplican y los movimientos sobre sí mismos
+/// no hacen nada. Solo los destinos que no son carpetas del disco se devuelven al Explorador.
 /// </summary>
 public sealed unsafe partial class PasteInterceptor : IDisposable
 {
@@ -36,7 +37,7 @@ public sealed unsafe partial class PasteInterceptor : IDisposable
     private readonly Thread _worker;
     private readonly HookThread _hooks;
     private readonly ExplorerPasteMenu _menu;
-    private bool _swallowKeyUp;
+    private uint _swallowedPasteKey;
 
     /// <param name="handler">
     /// Recibe la petición en el hilo de trabajo. Devuelve true si MegaCopier la acepta; false para que pegue el Explorador.
@@ -84,9 +85,9 @@ public sealed unsafe partial class PasteInterceptor : IDisposable
     /// ¿Hay que quedarse con este Ctrl+V? Devuelve la ventana con el foco (la vista del Explorador) o 0.
     /// Solo comprobaciones baratas: se ejecuta dentro del gancho.
     /// </summary>
-    internal static nint ShouldIntercept()
+    internal static nint ShouldIntercept(bool shiftInsert = false)
     {
-        if (Pressed(VkShift) || Pressed(VkMenu) || Pressed(VkLWin) || Pressed(VkRWin))
+        if ((!shiftInsert && Pressed(VkShift)) || Pressed(VkMenu) || Pressed(VkLWin) || Pressed(VkRWin))
         {
             return 0;
         }
@@ -98,8 +99,13 @@ public sealed unsafe partial class PasteInterceptor : IDisposable
             return 0;
         }
 
-        nint focus = Native.FocusedWindow(foreground);
+        nint focus = Native.DesktopFileFocus(foreground, Native.FocusedWindow(foreground));
         string focusClass = Native.ClassName(focus);
+
+        // Una vista vacía recién activada puede dejar el foco en CabinetWClass, no en DirectUIHWND.
+        // La pestaña visible se resuelve en el STA de trabajo, nunca consultando UIA dentro del gancho.
+        if (topClass == "CabinetWClass" && (focus == 0 || focus == foreground))
+            return ClipboardFiles.HasFiles() ? foreground : 0;
 
         // Solo la lista de archivos: nunca la barra de direcciones, la búsqueda o el cuadro de renombrar.
         if (focusClass is not ("DirectUIHWND" or "SysListView32" or "SHELLDLL_DefView"))
@@ -127,24 +133,36 @@ public sealed unsafe partial class PasteInterceptor : IDisposable
             try
             {
                 var data = (KbdLlHookStruct*)lParam;
-                if (data->vkCode == VkV)
+                if (data->dwExtraInfo is 0x4D435059 or 0x4D435050) return CallNextHookEx(0, code, wParam, lParam);
+                uint message = (uint)wParam;
+                if (IsKeyDownMessage(message))
                 {
-                    uint message = (uint)wParam;
-                    if (message is WmKeyDown && Pressed(VkControl))
+                    bool ctrl = Pressed(VkControl), shift = Pressed(VkShift);
+                    if (data->vkCode == 0x5D /* Apps */ || (data->vkCode == 0x79 /* F10 */ && shift && !ctrl))
+                        self._menu.BeginKeyboardContext();
+
+                    if (IsPasteShortcut(data->vkCode, ctrl, shift, Pressed(VkMenu), Pressed(VkLWin) || Pressed(VkRWin)))
                     {
-                        nint focus = ShouldIntercept();
+                        if (self._swallowedPasteKey == data->vkCode) return 1;
+                        if (self._menu.TryHandleKey((ushort)data->vkCode, pasteShortcut: true))
+                        {
+                            self._swallowedPasteKey = data->vkCode;
+                            return 1;
+                        }
+                        nint focus = ShouldIntercept(shiftInsert: data->vkCode == 0x2D);
                         if (focus != 0)
                         {
-                            self._swallowKeyUp = true;
+                            self._swallowedPasteKey = data->vkCode;
                             self._work.TryAdd(focus);
                             return 1; // el Explorador no ve este Ctrl+V
                         }
                     }
-                    else if (message is WmKeyUp && self._swallowKeyUp)
-                    {
-                        self._swallowKeyUp = false;
-                        return 1;
-                    }
+                    else if (data->vkCode is 0x0D or 0x20 && self._menu.TryHandleKey((ushort)data->vkCode, pasteShortcut: false)) return 1;
+                }
+                else if (message == WmKeyUp && self._swallowedPasteKey == data->vkCode)
+                {
+                    self._swallowedPasteKey = 0;
+                    return 1;
                 }
             }
             catch
@@ -155,6 +173,12 @@ public sealed unsafe partial class PasteInterceptor : IDisposable
 
         return CallNextHookEx(0, code, wParam, lParam);
     }
+
+    internal static bool IsPasteShortcut(uint key, bool ctrl, bool shift, bool alt, bool windows) =>
+        !alt && !windows && ((key == VkV && ctrl && !shift) || (key == 0x2D && shift && !ctrl));
+
+    // F10 abre el menú con WM_SYSKEYDOWN, incluso sin Alt; no basta WM_KEYDOWN.
+    internal static bool IsKeyDownMessage(uint message) => message is WmKeyDown or WmSysKeyDown;
 
     private void WorkLoop()
     {
@@ -170,16 +194,22 @@ public sealed unsafe partial class PasteInterceptor : IDisposable
             {
                 reason = ex.Message; // una consulta COM fallida no debe matar el hilo de todos los pegados siguientes
             }
+            if (reason is null && request is null)
+            {
+                Traced?.Invoke("Pegado atendido: los archivos cortados ya están en su destino");
+                continue;
+            }
             if (reason is null && request is not null)
             {
                 try
                 {
                     if (_handler(request))
                     {
+                        Traced?.Invoke($"Ctrl+V: {request.Sources.Count} elemento(s) a {request.Destination} ({request.Operation})");
                         // Como el Explorador: tras pegar algo cortado, el portapapeles se vacía (ya no está en su sitio).
                         if (request.Operation == ClipboardOperation.Move)
                         {
-                            ClipboardFiles.ClearIfSame(request.Sources);
+                            ClipboardFiles.ClearIfSame(request.ClipboardSources ?? request.Sources);
                         }
 
                         continue;
@@ -204,7 +234,7 @@ public sealed unsafe partial class PasteInterceptor : IDisposable
         {
             if (request.Operation == ClipboardOperation.Move)
             {
-                ClipboardFiles.ClearIfSame(request.Sources);
+                ClipboardFiles.ClearIfSame(request.ClipboardSources ?? request.Sources);
             }
 
             Traced?.Invoke($"Pegar del menú: {request.Sources.Count} elemento(s) a {request.Destination}");
@@ -217,38 +247,15 @@ public sealed unsafe partial class PasteInterceptor : IDisposable
 
     private static string? Decide(nint focus, out PasteRequest? request)
     {
-        request = null;
-        var clipboard = ClipboardFiles.TryRead();
-        if (clipboard is null)
-        {
-            return "el portapapeles no contiene archivos";
-        }
-
-        string? folder = ExplorerLocator.GetFolderPath(focus);
-        if (folder is null)
-        {
-            return "la carpeta de destino no es una carpeta del disco";
-        }
-
-        string normalized = Path.TrimEndingDirectorySeparator(folder);
-        if (clipboard.Paths.All(p => string.Equals(Path.GetDirectoryName(Path.TrimEndingDirectorySeparator(p)), normalized, StringComparison.OrdinalIgnoreCase)))
-        {
-            return "pegar en la misma carpeta (copia \"- copia\" o mover sobre sí mismo): lo hace el Explorador";
-        }
-
-        if (clipboard.Paths.Any(p => !File.Exists(p) && !Directory.Exists(p)))
-        {
-            return "algún elemento del portapapeles ya no existe";
-        }
-
-        request = new PasteRequest(clipboard.Paths, folder, clipboard.Operation);
-        return null;
+        nint view = Native.ClassName(focus) == "CabinetWClass" ? UiaHitTest.ActiveFileView(focus) : focus;
+        return PasteDecision.Decide(ClipboardFiles.TryRead(), view == 0 ? null : ExplorerLocator.GetFolderPath(view), out request);
     }
 
     /// <summary>Devuelve el pegado al Explorador: la misma orden que su menú "Pegar".</summary>
     private static void PasteInExplorer(nint focus)
     {
         nint view = Native.FindAncestorOfClass(focus, "SHELLDLL_DefView");
+        if (view == 0 && Native.ClassName(focus) == "CabinetWClass") view = UiaHitTest.ActiveFileView(focus);
         if (view != 0)
         {
             Native.PostMessageW(view, WmCommand, ShellViewPaste, 0);

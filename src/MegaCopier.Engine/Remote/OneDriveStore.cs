@@ -17,11 +17,36 @@ internal sealed class OneDriveStore : IRemoteStore
     private readonly HttpClient _plain = new() { Timeout = Timeout.InfiniteTimeSpan };
     private readonly string _base;
 
+    /// <summary>"me/drive" (OneDrive) o "sites/{id}/drive" (la biblioteca de documentos de un sitio de SharePoint).</summary>
+    private readonly string _drive = "me/drive";
+
     public OneDriveStore(Connection connection, string refreshToken)
     {
         _http = new CloudHttp(connection, refreshToken);
         _base = (connection.Host.Length > 0 ? connection.Host : CloudProvider.For(ConnectionKind.OneDrive).ApiBase).TrimEnd('/') + "/";
+        if (connection.Kind == ConnectionKind.SharePoint)
+        {
+            _drive = $"sites/{SiteId(connection.Site)}/drive";
+        }
+
         RootId = connection.Root.Trim('/', '\\').Length == 0 ? "root" : ResolvePath(connection.Root);
+    }
+
+    /// <summary>
+    /// El id del sitio a partir de su dirección («https://empresa.sharepoint.com/sites/Equipo»): Graph lo da con
+    /// «sites/{servidor}:/{ruta}».
+    /// </summary>
+    private string SiteId(string site)
+    {
+        if (!Uri.TryCreate(site.Trim(), UriKind.Absolute, out var uri))
+        {
+            throw new IOException("SharePoint: falta la dirección del sitio (https://empresa.sharepoint.com/sites/Equipo).");
+        }
+
+        string path = uri.AbsolutePath.Trim('/');
+        string address = path.Length == 0 ? $"{_base}sites/{uri.Host}" : $"{_base}sites/{uri.Host}:/{path}";
+        using var json = _http.SendJson(() => new HttpRequestMessage(HttpMethod.Get, address));
+        return json.RootElement.GetProperty("id").GetString()!;
     }
 
     public string RootId { get; }
@@ -29,14 +54,14 @@ internal sealed class OneDriveStore : IRemoteStore
     private string ResolvePath(string path)
     {
         string escaped = string.Join('/', path.Replace('\\', '/').Split('/', StringSplitOptions.RemoveEmptyEntries).Select(Uri.EscapeDataString));
-        using var json = _http.SendJson(() => new HttpRequestMessage(HttpMethod.Get, $"{_base}me/drive/root:/{escaped}"));
+        using var json = _http.SendJson(() => new HttpRequestMessage(HttpMethod.Get, $"{_base}{_drive}/root:/{escaped}"));
         return json.RootElement.GetProperty("id").GetString()!;
     }
 
     public IReadOnlyList<RemoteItem> Children(string parentId)
     {
         var items = new List<RemoteItem>();
-        string? url = $"{_base}me/drive/items/{parentId}/children?$select=id,name,size,folder,file,lastModifiedDateTime&$top=999";
+        string? url = $"{_base}{_drive}/items/{parentId}/children?$select=id,name,size,folder,file,lastModifiedDateTime&$top=999";
         while (url is not null)
         {
             string current = url;
@@ -62,13 +87,13 @@ internal sealed class OneDriveStore : IRemoteStore
 
     public Stream OpenRead(string objectId)
     {
-        var response = _http.Send(() => new HttpRequestMessage(HttpMethod.Get, $"{_base}me/drive/items/{objectId}/content"), HttpCompletionOption.ResponseHeadersRead);
+        var response = _http.Send(() => new HttpRequestMessage(HttpMethod.Get, $"{_base}{_drive}/items/{objectId}/content"), HttpCompletionOption.ResponseHeadersRead);
         return new OwnedStream(response.Content.ReadAsStream(), response);
     }
 
     public string Upload(string parentId, string name, Stream data, long length, CancellationToken cancellationToken)
     {
-        string target = $"{_base}me/drive/items/{parentId}:/{Uri.EscapeDataString(name)}:";
+        string target = $"{_base}{_drive}/items/{parentId}:/{Uri.EscapeDataString(name)}:";
         if (length <= SimpleUploadLimit)
         {
             byte[] bytes = new byte[length];
@@ -116,7 +141,7 @@ internal sealed class OneDriveStore : IRemoteStore
     {
         try
         {
-            using var json = _http.SendJson(() => new HttpRequestMessage(HttpMethod.Post, $"{_base}me/drive/items/{parentId}/children")
+            using var json = _http.SendJson(() => new HttpRequestMessage(HttpMethod.Post, $"{_base}{_drive}/items/{parentId}/children")
             {
                 Content = CloudHttp.Json($$"""{"name":{{JsonString(name)}},"folder":{},"@microsoft.graph.conflictBehavior":"fail"}"""),
             });
@@ -130,7 +155,7 @@ internal sealed class OneDriveStore : IRemoteStore
 
     public void Delete(string objectId, bool recursive)
     {
-        using var response = _http.Send(() => new HttpRequestMessage(HttpMethod.Delete, $"{_base}me/drive/items/{objectId}")); // va a la papelera de OneDrive
+        using var response = _http.Send(() => new HttpRequestMessage(HttpMethod.Delete, $"{_base}{_drive}/items/{objectId}")); // va a la papelera de OneDrive
     }
 
     internal static string JsonString(string value) => "\"" + JsonEncodedText.Encode(value).ToString() + "\"";

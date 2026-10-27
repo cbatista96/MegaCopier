@@ -549,7 +549,7 @@ public sealed partial class CopyEngine
     {
         reason = null;
         bool datesKnown = !sizeOnly && existingUtc is not null && sourceUtc is not null && sourceUtc.Value > DateTime.MinValue;
-        bool identical = existingLength == sourceLength && (!datesKnown || (existingUtc!.Value - sourceUtc!.Value).Duration() <= _options.TimeTolerance);
+        bool identical = existingLength == sourceLength && (!datesKnown || SameTime(existingUtc!.Value, sourceUtc!.Value));
         if (identical && !_options.ForceRecopy)
         {
             reason = Texts.Get("E_SkipIdentical");

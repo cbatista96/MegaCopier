@@ -138,9 +138,19 @@
                             <ComboBoxItem x:Uid="Task_Daily" />
                             <ComboBoxItem x:Uid="Task_Weekly" />
                             <ComboBoxItem x:Uid="Task_Monthly" />
+                            <ComboBoxItem x:Uid="Task_OnDevice" />
                         </ComboBox>
                         <Button x:Name="SaveTaskButton" Style="{StaticResource McButton}" Click="SaveTask_Click"><TextBlock x:Uid="Task_Save" /></Button>
                     </Grid>
+                    <CheckBox x:Name="TaskNoSessionBox" x:Uid="Task_NoSession" />
+                    <!-- Más parejas de carpetas en la misma tarea (Documentos → D:\Copias\Documentos, Fotos → ...) -->
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <Button Style="{StaticResource McButton}" Click="AddPair_Click">
+                            <StackPanel Orientation="Horizontal" Spacing="8"><c:McIcon VerticalAlignment="Center" Glyph="&#xE710;" FontSize="12" /><TextBlock x:Uid="Task_AddPair" /></StackPanel>
+                        </Button>
+                        <Button x:Name="ClearPairsButton" Style="{StaticResource McButton}" Click="ClearPairs_Click" Visibility="Collapsed"><TextBlock x:Uid="Task_ClearPairs" /></Button>
+                    </StackPanel>
+                    <TextBlock x:Name="PairsInfo" Style="{StaticResource McSecondary}" TextWrapping="Wrap" Visibility="Collapsed" IsTextSelectionEnabled="True" />
                     <TextBlock x:Name="TaskInfo" Style="{StaticResource McSecondary}" TextWrapping="Wrap" />
                 </StackPanel>
             </Border>

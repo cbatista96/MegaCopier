@@ -284,33 +284,88 @@ public sealed partial class McIcon : UserControl
                 break;
         }
 
+        _morph = IconPacks.FontFor(Glyph, pack) == IconPacks.Mdl2Font ? Mdl2Morph : FluentMorph;
+        var ink = InkScale(Glyph, IconPacks.FontFor(Glyph, pack));
+        _glyph.RenderTransformOrigin = new Windows.Foundation.Point(0.5, 0.5);
+        _glyph.RenderTransform = ink.Scale == 1 ? null : new CompositeTransform { ScaleX = ink.Scale, ScaleY = ink.Scale, TranslateY = -ink.Up * size };
         UpdateShape();
     }
 
     // ---------------------------------------------------------------------------------------------------------
     // Pausa ⇄ reproducir: la figura se transforma (las dos barras se juntan en el triángulo y al revés)
 
-    /// <summary>Las dos piezas de cada figura, en proporción a la caja del icono (arriba izquierda, arriba derecha, abajo derecha, abajo izquierda).</summary>
-    private static readonly double[][] PausePieces =
-    [
-        [0.20, 0.14, 0.40, 0.14, 0.40, 0.86, 0.20, 0.86],
-        [0.60, 0.14, 0.80, 0.14, 0.80, 0.86, 0.60, 0.86],
-    ];
+    /// <summary>
+    /// Pausa y reproducir de una fuente de iconos, medidos sobre su letra por el centro de la línea, en proporción a la
+    /// caja del icono. Cada figura son dos piezas de cuatro esquinas (arriba izquierda, arriba derecha, abajo derecha,
+    /// abajo izquierda); el triángulo sale exacto de las dos, para que al juntarse no quede ninguna línea por medio. Los
+    /// radios son lo que se recorta de cada lado para redondear cada esquina.
+    /// </summary>
+    private sealed record MorphShape(double[][] Pause, double[][] Play, double[][] PauseRadius, double[][] PlayRadius, bool Rounded, double Scale);
 
-    private static readonly double[][] PlayPieces =
-    [
-        [0.25, 0.10, 0.59, 0.30, 0.59, 0.70, 0.25, 0.90],
-        [0.585, 0.29, 0.92, 0.50, 0.92, 0.50, 0.585, 0.71],
-    ];
+    /// <summary>Windows 11 (Segoe Fluent Icons): barras y triángulo con las esquinas redondeadas y la punta muy suave.</summary>
+    private static readonly MorphShape FluentMorph = new(
+        Pause:
+        [
+            [0.0975, 0.0975, 0.3425, 0.0975, 0.3425, 0.9025, 0.0975, 0.9025],
+            [0.6575, 0.0975, 0.9025, 0.0975, 0.9025, 0.9025, 0.6575, 0.9025],
+        ],
+        Play:
+        [
+            [0.155, 0.05, 0.53, 0.2565, 0.53, 0.7435, 0.155, 0.95],
+            [0.53, 0.2565, 0.973, 0.5, 0.973, 0.5, 0.53, 0.7435],
+        ],
+        PauseRadius: [[0.07, 0.07, 0.07, 0.07], [0.07, 0.07, 0.07, 0.07]],
+        PlayRadius: [[0.1, 0, 0, 0.1], [0, 0.17, 0.17, 0]],
+        Rounded: true,
+        Scale: 1);
+
+    /// <summary>
+    /// Windows 10 (Segoe MDL2 Assets): la pausa son dos líneas sueltas y el triángulo tiene las esquinas vivas. Algo más
+    /// grande que la letra, para que se vea del tamaño de los demás iconos de la barra.
+    /// </summary>
+    private static readonly MorphShape Mdl2Morph = new(
+        Pause:
+        [
+            [0.345, 0.125, 0.345, 0.125, 0.345, 0.875, 0.345, 0.875],
+            [0.655, 0.125, 0.655, 0.125, 0.655, 0.875, 0.655, 0.875],
+        ],
+        Play:
+        [
+            [0.28, 0.121, 0.53, 0.296, 0.53, 0.704, 0.28, 0.879],
+            [0.53, 0.296, 0.821, 0.5, 0.821, 0.5, 0.53, 0.704],
+        ],
+        PauseRadius: [[0, 0, 0, 0], [0, 0, 0, 0]],
+        PlayRadius: [[0, 0, 0, 0], [0, 0, 0, 0]],
+        Rounded: false,
+        Scale: 1.1);
+
+    /// <summary>
+    /// Segoe MDL2 Assets dibuja algunos iconos redondos más pequeños que el resto: se agrandan para que en una fila todos
+    /// se vean del mismo tamaño (el de la papelera) y a la misma altura. Medido sobre la tinta de cada letra: cuánto
+    /// se agranda y cuánto sube (en proporción al tamaño).
+    /// </summary>
+    private static (double Scale, double Up) InkScale(string glyph, string font) =>
+        font != IconPacks.Mdl2Font || glyph.Length == 0 ? (1, 0) : glyph[0] switch
+        {
+            (char)0xE121 => (1.15, 0.075), // reloj (línea de tiempo): su dibujo va más abajo que el de los demás
+            (char)0xE946 => (1.07, 0), // información
+            _ => (1, 0),
+        };
 
     private Microsoft.UI.Xaml.Shapes.Path? _shape;
+
+    /// <summary>Los lados por donde se juntan las dos piezas: se desvanecen al formar el triángulo.</summary>
+    private Microsoft.UI.Xaml.Shapes.Path? _seam;
+
+    /// <summary>La figura sigue la fuente del conjunto: la de Windows 11 o la de Windows 10.</summary>
+    private MorphShape _morph = FluentMorph;
     private double _shapeAt, _shapeFrom, _shapeTo;
     private long _shapeStart;
 
     /// <summary>
     /// Dibuja el icono de pausa o el de reproducir con una figura (en vez de la letra de la fuente) para poder
-    /// transformar una en otra: las barras de la pausa se deslizan y se inclinan hasta formar el triángulo. Conserva el
-    /// color y el fondo del conjunto de iconos.
+    /// transformar una en otra: las barras de la pausa se deslizan y se inclinan hasta formar el triángulo. Es la misma
+    /// forma de la letra del conjunto elegido, solo contorno, con su color y su fondo.
     /// </summary>
     public void MorphTo(bool play, bool animate)
     {
@@ -322,9 +377,20 @@ public sealed partial class McIcon : UserControl
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
                 StrokeLineJoin = PenLineJoin.Round,
+                StrokeStartLineCap = PenLineCap.Round,
+                StrokeEndLineCap = PenLineCap.Round,
+                IsHitTestVisible = false,
+            };
+            _seam = new Microsoft.UI.Xaml.Shapes.Path
+            {
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                StrokeStartLineCap = PenLineCap.Round,
+                StrokeEndLineCap = PenLineCap.Round,
                 IsHitTestVisible = false,
             };
             _root.Children.Add(_shape);
+            _root.Children.Add(_seam);
             animate = false;
             UpdateShape();
         }
@@ -355,50 +421,139 @@ public sealed partial class McIcon : UserControl
         }
     }
 
-    /// <summary>La figura toma el color y el tamaño de la letra del icono, que se queda oculta debajo.</summary>
+    /// <summary>La figura toma el color y el grosor de línea de la letra del icono, que se queda oculta debajo.</summary>
     private void UpdateShape()
     {
-        if (_shape is null)
+        if (_shape is null || _seam is null)
         {
             return;
         }
 
         _glyph.Opacity = 0;
-        _shape.Fill = _glyph.Foreground;
-        _shape.Stroke = _glyph.Foreground;
-        _shape.StrokeThickness = Math.Max(0.6, _glyph.FontSize / 18); // redondea las esquinas y tapa la junta
+        var cap = _morph.Rounded ? PenLineCap.Round : PenLineCap.Flat;
+        foreach (var path in new[] { _shape, _seam })
+        {
+            path.Fill = null;
+            path.Stroke = _glyph.Foreground;
+            path.StrokeThickness = Math.Max(1, _glyph.FontSize * 0.065); // el grosor de línea de los iconos de Windows
+            path.StrokeLineJoin = _morph.Rounded ? PenLineJoin.Round : PenLineJoin.Miter;
+            path.StrokeStartLineCap = cap;
+            path.StrokeEndLineCap = cap;
+        }
+
         DrawShape();
     }
 
     private void DrawShape()
     {
-        if (_shape is null)
+        if (_shape is null || _seam is null)
         {
             return;
         }
 
+        // Un poco más de sitio que el icono para lo que sobresale al agrandarla, sin cambiar lo que ocupa en la fila.
         double box = _glyph.FontSize;
-        _shape.Width = box;
-        _shape.Height = box;
+        double room = box * 1.4;
+        foreach (var path in new[] { _shape, _seam })
+        {
+            path.Width = room;
+            path.Height = room;
+            path.Margin = new Thickness(-(room - box) / 2);
+        }
+
+        double scale = box * _morph.Scale;
         var geometry = new PathGeometry();
+        var seams = new PathGeometry();
         for (int piece = 0; piece < 2; piece++)
         {
-            var from = PausePieces[piece];
-            var to = PlayPieces[piece];
-            Windows.Foundation.Point At(int i) => new(
-                (from[i * 2] + ((to[i * 2] - from[i * 2]) * _shapeAt)) * box,
-                (from[(i * 2) + 1] + ((to[(i * 2) + 1] - from[(i * 2) + 1]) * _shapeAt)) * box);
-
-            var figure = new PathFigure { StartPoint = At(0), IsClosed = true, IsFilled = true };
-            for (int i = 1; i < 4; i++)
+            var corners = new Windows.Foundation.Point[4];
+            var radii = new double[4];
+            for (int i = 0; i < 4; i++)
             {
-                figure.Segments.Add(new LineSegment { Point = At(i) });
+                double Mix(double[] from, double[] to, int at) => from[at] + ((to[at] - from[at]) * _shapeAt);
+                corners[i] = new(
+                    (room / 2) + ((Mix(_morph.Pause[piece], _morph.Play[piece], i * 2) - 0.5) * scale),
+                    (room / 2) + ((Mix(_morph.Pause[piece], _morph.Play[piece], (i * 2) + 1) - 0.5) * scale));
+                radii[i] = Mix(_morph.PauseRadius[piece], _morph.PlayRadius[piece], i) * scale;
             }
 
-            geometry.Figures.Add(figure);
+            // El lado por el que se junta con la otra pieza (el derecho de la primera, el izquierdo de la segunda) va
+            // aparte, con sus dos esquinas: «first» es la esquina en la que empieza el contorno de fuera.
+            int first = piece == 0 ? 2 : 0;
+            int a = first, b = (first + 1) % 4, c = (first + 2) % 4, d = (first + 3) % 4;
+            var outer = new Figure(Toward(corners[a], corners[b], radii[a], corners[d]));
+            if (Distance(corners[b], corners[c]) < radii[b] + radii[c])
+            {
+                // La punta del triángulo: las dos esquinas se juntan en una sola, redondeada.
+                var tip = new Windows.Foundation.Point((corners[b].X + corners[c].X) / 2, (corners[b].Y + corners[c].Y) / 2);
+                outer.Corner(corners[a], tip, corners[d], Math.Max(radii[b], radii[c]));
+            }
+            else
+            {
+                outer.Corner(corners[a], corners[b], corners[c], radii[b]);
+                outer.Corner(corners[b], corners[c], corners[d], radii[c]);
+            }
+
+            var join = Toward(corners[d], corners[c], radii[d], corners[a]);
+            outer.LineTo(join);
+            geometry.Figures.Add(outer.Done);
+
+            var seam = new Figure(join);
+            seam.Corner(corners[c], corners[d], corners[a], radii[d]);
+            seam.Corner(corners[d], corners[a], corners[b], radii[a]);
+            seams.Figures.Add(seam.Done);
         }
 
         _shape.Data = geometry;
+        _seam.Data = seams;
+        _seam.Opacity = 1 - _shapeAt;
+    }
+
+    private static double Distance(Windows.Foundation.Point p, Windows.Foundation.Point q) => Math.Sqrt(((p.X - q.X) * (p.X - q.X)) + ((p.Y - q.Y) * (p.Y - q.Y)));
+
+    /// <summary>
+    /// Donde empieza el redondeo de la esquina <paramref name="corner"/> hacia <paramref name="next"/>: a
+    /// <paramref name="radius"/> de ella, sin pasar de la mitad de ninguno de sus dos lados.
+    /// </summary>
+    private static Windows.Foundation.Point Toward(Windows.Foundation.Point corner, Windows.Foundation.Point next, double radius, Windows.Foundation.Point previous)
+    {
+        double length = Distance(corner, next);
+        double cut = Math.Min(radius, Math.Min(length, Distance(corner, previous)) / 2);
+        return length < 1e-6 ? corner : new(corner.X + ((next.X - corner.X) * cut / length), corner.Y + ((next.Y - corner.Y) * cut / length));
+    }
+
+    /// <summary>Un contorno abierto hecho de lados rectos y esquinas redondeadas (curva con la esquina como control).</summary>
+    private sealed class Figure(Windows.Foundation.Point start)
+    {
+        public PathFigure Done { get; } = new() { StartPoint = start, IsClosed = false, IsFilled = false };
+
+        public Windows.Foundation.Point End { get; private set; } = start;
+
+        public void LineTo(Windows.Foundation.Point point)
+        {
+            if (Distance(End, point) > 1e-6)
+            {
+                Done.Segments.Add(new LineSegment { Point = point });
+                End = point;
+            }
+        }
+
+        /// <summary>Lado hasta la esquina y su redondeo; sin radio, la esquina viva.</summary>
+        public void Corner(Windows.Foundation.Point previous, Windows.Foundation.Point corner, Windows.Foundation.Point next, double radius)
+        {
+            var into = Toward(corner, previous, radius, next);
+            var outOf = Toward(corner, next, radius, previous);
+            LineTo(into);
+            if (Distance(into, outOf) > 1e-6)
+            {
+                Done.Segments.Add(new QuadraticBezierSegment { Point1 = corner, Point2 = outOf });
+                End = outOf;
+            }
+            else
+            {
+                LineTo(corner);
+            }
+        }
     }
 
     /// <summary>Halo de luz del color del icono, con la forma exacta del icono (sombra de composición).</summary>

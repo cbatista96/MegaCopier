@@ -317,8 +317,6 @@ Tool_LoadList.Text	복사 목록 불러오기…
 Tool_LoadListText.Text	목록 불러오기
 Tool_NewCopy.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	새 복사
 Tool_NewCopyText.Text	새로 만들기
-Tool_PauseAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	모두 일시 중지
-Tool_ResumeAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	모두 재개
 Tool_Settings.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	설정
 Tool_Sidebar.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	복사 목록 표시/숨기기
 Drop_Caption	MegaCopier로 복사
@@ -1598,3 +1596,112 @@ Settings_FastPaths.PlaceholderText	C:, D:\데이터
 Rules_Synchronization.Text	동기화
 Rules_SecurityTitle.Text	보안
 Job_StateNeedsAdministrator	관리자 권한이 필요합니다
+
+Settings_TaskbarTitle.Text	작업 표시줄에 표시
+Settings_TaskbarDescription.Text	끄면 최소화할 때 창이 항상 시계 옆 시스템 트레이에 숨겨집니다.
+Toolbar_PauseAll	모두 일시 중지
+Toolbar_ResumeAll	모두 재개
+Toolbar_Sidebar	복사 목록 표시/숨기기
+Toolbar_New	새 복사
+Toolbar_ClearDone	완료된 복사 제거
+Toolbar_Timeline	대기열 타임라인
+Toolbar_History	기록
+Toolbar_Settings	설정
+Toolbar_About	정보
+Toolbar_AlwaysOnTop	항상 위에 표시
+Toolbar_Shelf	드롭 선반
+Toolbar_Compare	비교 및 동기화
+Toolbar_PlayPause	모두 일시 중지 또는 다시 시작
+Toolbar_Separator	구분선
+Toolbar_More	추가 작업
+Destinations_Favorite	즐겨찾기에 추가
+Destinations_Unfavorite	즐겨찾기에서 제거
+Settings_ToolbarTitle.Text	도구 모음
+Settings_ToolbarDescription.Text	표시할 단추와 순서를 선택합니다. 작은 창에는 기본값만큼 들어가고 나머지는 끝의 “…” 메뉴로 이동합니다.
+Settings_ToolbarReset.Text	초기화
+Settings_ToolbarFinish.Content	오른쪽에 "완료 후" 표시
+Settings_ToolbarUp	"{0}" 위로 이동
+Settings_ToolbarDown	"{0}" 아래로 이동
+Rules_SkipCloud.Content	클라우드 전용 파일 건너뛰기(다운로드하지 않음)
+Destinations_PathBox.PlaceholderText	경로를 입력하거나 붙여넣으세요(예: D:\복사본)
+Destinations_PathInvalid	이 경로는 사용할 수 없습니다. 기존 드라이브나 네트워크 공유의 전체 폴더 경로를 입력하세요(예: D:\복사본).
+Tool_CompareSum.Text	체크섬과 비교…
+SumCheck_Title	체크섬과 비교
+SumCheck_File	파일: {0}
+SumCheck_Header	게시된 체크섬(MD5, SHA-1, SHA-256, SHA-512, SHA3, BLAKE3, xxHash 또는 CRC32)
+SumCheck_Placeholder	다운로드 페이지의 체크섬을 여기에 붙여넣으세요
+SumCheck_Check	확인
+SumCheck_Close	닫기
+SumCheck_NotASum	체크섬처럼 보이지 않습니다. 8, 16, 32, 40, 64 또는 128자리 16진수여야 합니다.
+SumCheck_Reading	파일을 읽는 중…
+SumCheck_Match	✓ 일치({0}): 파일이 정상입니다.
+SumCheck_NoMatch	✗ 일치하지 않습니다. {0}(으)로 계산한 파일 값은 {1}입니다. 손상되었거나 불완전하거나 다른 파일입니다.
+Status_SourceDrive.Text	원본
+Status_TargetDrive.Text	대상
+Status_DriveFree	{1} 중 {0} 사용 가능
+LocalSend_Conflict.Header	파일이 이미 폴더에 있으면
+LocalSend_ConflictRename.Content	둘 다 유지("사진 (2).jpg")
+LocalSend_ConflictSkip.Content	받지 않음
+LocalSend_ConflictOverwrite.Content	기존 파일 바꾸기
+LocalSend_Include.Header	이 형식만 받기(비워 두면 모두)
+LocalSend_Include.PlaceholderText	*.jpg; *.heic; *.mp4
+LocalSend_Exclude.Header	받지 않을 형식
+LocalSend_Exclude.PlaceholderText	*.apk; *.exe
+Task_OnDevice.Content	드라이브를 연결할 때
+Task_SavedOnDevice	"{0}" 작업을 저장했습니다. 드라이브를 연결할 때마다 자동으로 시작됩니다(MegaCopier가 열려 있거나 트레이에 있을 때).
+Task_NoDevice	이 복사에는 기다릴 드라이브 문자가 있는 디스크가 없습니다(예: 네트워크 폴더로 복사).
+Settings_TaskOnDevice	{0}을(를) 연결하면 자동으로 시작
+Connection_AzureAccount	스토리지 계정(https://account.blob.core.windows.net)
+Connection_GcsEndpoint	엔드포인트(비워 두면 storage.googleapis.com)
+Connection_Sas	컨테이너 SAS 토큰(sv=…&sig=…)
+Connection_Container	컨테이너(및 폴더): container/folder
+Connection_Site	SharePoint 사이트
+Connection_SitePlaceholder	https://company.sharepoint.com/sites/Team
+Rules_MoreTitle.Text	추가 옵션
+Rules_RenameMask.Header	복사할 때 이름 바꾸기(마스크: *.bak, 복사본 *.*)
+Rules_Flatten.Content	평면화: 하위 폴더 없이 모두 대상 폴더로
+Rules_KeepPaths.Content	여러 폴더의 파일: 공통 폴더부터 폴더 구조 재현
+Rules_OnlyArchive.Content	변경됨으로 표시된 것만(“보관” 특성)
+Rules_ResetArchive.Content	복사 후 원본에서 그 표시 지우기(증분 백업)
+Rules_CompensateDst.Content	정확히 1시간 차이 나는 파일을 같은 것으로 간주(일광 절약 시간)
+Rules_KeepCompression.Content	NTFS 압축 유지
+Rules_SkipCompressed.Content	Windows에서 압축되거나 암호화된 파일 건너뛰기
+Rules_SkipTemporary.Content	임시로 표시된 파일 건너뛰기
+Rules_Depth.Header	하위 폴더 수준(비우면 모두, 0 = 폴더만)
+Rules_AccessedAfter.Header	사용 시작일
+Rules_AccessedBefore.Header	사용 종료일
+Rules_FolderTimes.Header	폴더 날짜
+Rules_FolderAttributes.Header	폴더 특성
+Rules_FolderLikeFiles.Content	파일과 같게
+Rules_FolderYes.Content	복사
+Rules_FolderNo.Content	복사 안 함
+Rules_FolderLikeFiles2.Content	파일과 같게
+Rules_FolderYes2.Content	복사
+Rules_FolderNo2.Content	복사 안 함
+Rules_BeforeCommand.Header	시작 전에 실행(실패하면 복사하지 않음)
+Settings_EjectSource.Content	모두 성공하면 원본(카메라 카드)도 꺼내기
+Scripts_AddExample.Text	예제 추가
+Scripts_ExampleNtfy.Text	ntfy로 휴대폰에 알림
+Scripts_ExampleIfttt.Text	IFTTT 애플릿 실행
+Scripts_ExampleOpen.Text	모두 성공하면 대상 열기
+Scripts_ExampleLog.Text	각 복사를 텍스트 파일에 기록
+Scripts_NtfyTopic	my-secret-topic
+Scripts_IftttKey	YOUR-KEY
+Scripts_LogName	MegaCopier-transfers
+Settings_TransferLogTitle.Text	모든 복사의 단일 로그
+Settings_TransferLogDescription.Text	복사되었거나 실패한 파일마다 한 줄씩 하나의 파일에 원하는 형식으로 기록합니다. Syslog 서버로 보낼 수도 있습니다.
+Settings_TransferLogPath.Header	로그 파일
+Settings_TransferLogBrowse.Text	선택…
+Settings_TransferLogType	로그
+Settings_TransferLogFormat.Header	복사된 각 파일의 형식
+Settings_ErrorLogFormat.Header	각 오류의 형식
+Settings_TransferLogVariables.Text	변수: %time%, %source%, %destination%, %size%, %mtime%, %hash%, %path%, %error%, %computer%, %user%
+Settings_Syslog.Header	Syslog 서버에도 보내기(서버 또는 서버:포트, 비우면 보내지 않음)
+Task_AddPair.Text	작업에 다른 폴더 쌍 추가…
+Task_ClearPairs.Text	쌍 제거
+Task_PairSource	복사할 폴더
+Task_PairDestination	복사할 위치
+Task_NoSession.Content	로그인한 사람이 없어도 실행(창 없이)
+Task_NoCli	세션 없이 실행하려면 MegaCopier 옆에 mcopy.exe가 있어야 합니다(설치 프로그램에 포함).
+Settings_ToolbarCustomize.Text	사용자 지정
+Status_Folders.Text	폴더

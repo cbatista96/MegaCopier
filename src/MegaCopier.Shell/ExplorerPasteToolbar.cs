@@ -13,7 +13,7 @@ namespace MegaCopier.Shell;
 internal sealed unsafe partial class ExplorerPasteToolbar(Action<PasteRequest> handler, Action<string> trace) : IDisposable
 {
     private sealed record Cached(ToolbarPasteTarget Target, Native.WindowRect Window, long Read);
-    private sealed record Click(ToolbarPasteTarget Target, nint View);
+    private sealed record Click(ToolbarPasteTarget Target, int X, int Y);
     private volatile Cached[] _buttons = [];
     private readonly ConcurrentQueue<Click> _clicks = new();
     private readonly AutoResetEvent _wake = new(false);
@@ -76,10 +76,7 @@ internal sealed unsafe partial class ExplorerPasteToolbar(Action<PasteRequest> h
                 continue;
             }
 
-            // El foco aún pertenece a la pestaña desde la que se hizo clic: retuvimos el botón antes de que
-            // Windows lo entregue a la barra. Si el foco estaba en direcciones, se resuelve la vista por UIA.
-            nint view = Native.FindAncestorOfClass(Native.FocusedWindow(root), "SHELLDLL_DefView");
-            _pressed = new Click(cached.Target, view);
+            _pressed = new Click(cached.Target, x, y);
             return true;
         }
         _wake.Set();
@@ -97,21 +94,29 @@ internal sealed unsafe partial class ExplorerPasteToolbar(Action<PasteRequest> h
                     Handle(click);
                 }
 
-                if (_enabled && ClipboardFiles.HasFiles())
+                if (_enabled)
                 {
                     var found = new List<Cached>();
                     var roots = new List<nint>();
                     var handle = GCHandle.Alloc(roots);
                     try { EnumWindows(&Collect, GCHandle.ToIntPtr(handle)); }
                     finally { handle.Free(); }
-                    foreach (nint root in roots)
+                    // Se localiza también el botón deshabilitado, antes de Ctrl+C, para capturar el primer clic.
+                    // La ventana activa se consulta primero y se publica su resultado sin esperar a las demás.
+                    nint foreground = Native.GetForegroundWindow();
+                    foreach (nint root in roots.OrderByDescending(r => r == foreground))
                     {
                         if (!_enabled || _disposed) break;
-                        if (Native.GetWindowRect(root, out var before) && UiaHitTest.ToolbarPaste(root) is { } target
-                            && Native.GetWindowRect(root, out var after) && before.SameAs(after))
+                        try
                         {
-                            found.Add(new Cached(target, after, Stopwatch.GetTimestamp()));
+                            if (Native.GetWindowRect(root, out var before) && UiaHitTest.ToolbarPaste(root, includeDisabled: true) is { } target
+                                && Native.GetWindowRect(root, out var after) && before.SameAs(after))
+                            {
+                                found.Add(new Cached(target, after, Stopwatch.GetTimestamp()));
+                                _buttons = [.. found, .. _buttons.Where(b => !found.Any(f => f.Target.Root == b.Target.Root) && roots.Contains(b.Target.Root))];
+                            }
                         }
+                        catch (Exception ex) { trace($"Pegar de la barra: no se pudo consultar una ventana ({ex.GetType().Name})"); }
                     }
                     _buttons = _enabled ? [.. found] : [];
                 }
@@ -119,7 +124,7 @@ internal sealed unsafe partial class ExplorerPasteToolbar(Action<PasteRequest> h
                 {
                     _buttons = [];
                 }
-                _wake.WaitOne(150);
+                _wake.WaitOne(ClipboardFiles.HasFiles() ? 100 : 750);
             }
         }
         catch (Exception ex)
@@ -139,21 +144,23 @@ internal sealed unsafe partial class ExplorerPasteToolbar(Action<PasteRequest> h
         try
         {
             var clipboard = ClipboardFiles.TryRead();
-            // Se retuvo todo el clic, incluida la activación nativa de una ventana que estuviera detrás.
-            // Antes de localizar el interior de la vista se reproduce esa activación, sin mover el puntero.
-            if (click.View == 0 && Native.GetForegroundWindow() != click.Target.Root)
+            // No se reutiliza el foco de otra pestaña, ni el del panel lateral o de la barra de direcciones.
+            if (Native.GetForegroundWindow() != click.Target.Root)
             {
                 Native.SetForegroundWindow(click.Target.Root);
             }
-            nint view = click.View != 0 ? click.View : UiaHitTest.ActiveFileView(click.Target.Root);
-            string? destination = view == 0 ? null : ExplorerLocator.GetFolderPath(view);
-            if (_enabled && clipboard is not null && destination is not null && Directory.Exists(destination)
-                && clipboard.Paths.All(p => File.Exists(p) || Directory.Exists(p))
-                && !clipboard.Paths.Any(p => string.Equals(Path.GetDirectoryName(Path.TrimEndingDirectorySeparator(p)),
-                    Path.TrimEndingDirectorySeparator(destination), StringComparison.OrdinalIgnoreCase)))
+            var current = UiaHitTest.ToolbarPaste(click.Target.Root, includeDisabled: true);
+            if (current is null || !current.Contains(click.X, click.Y))
             {
-                handler(new PasteRequest(clipboard.Paths, destination, clipboard.Operation));
-                trace($"Pegar de la barra superior: {clipboard.Paths.Count} elemento(s) a {destination}");
+                trace("Pegar de la barra: el botón cambió de posición durante el clic");
+                return;
+            }
+            nint view = UiaHitTest.ActiveFileView(click.Target.Root);
+            string? destination = view == 0 ? null : ExplorerLocator.GetFolderPath(view);
+            if (_enabled && PasteDecision.Decide(clipboard, destination, out var request) is null)
+            {
+                if (request is not null) handler(request);
+                trace($"Pegar de la barra superior: {request?.Sources.Count ?? 0} elemento(s) a {destination}");
                 return;
             }
         }

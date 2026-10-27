@@ -26,6 +26,7 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <TextBlock x:Uid="Status_Category" Style="{StaticResource McStrong}" />
@@ -56,6 +57,28 @@
                 <TextBlock x:Uid="Status_Total" Grid.Row="7" Style="{StaticResource McStrong}" />
                 <TextBlock x:Name="TotalFiles" Grid.Row="7" Grid.Column="1" Style="{StaticResource McStrong}" TextAlignment="Right" FontFamily="Consolas" />
                 <TextBlock x:Name="TotalBytes" Grid.Row="7" Grid.Column="2" Style="{StaticResource McStrong}" TextAlignment="Right" FontFamily="Consolas" />
+                <!-- Carpetas que se crean en el destino (aparte de los archivos, como en TeraCopy) -->
+                <StackPanel Grid.Row="8" Orientation="Horizontal" Spacing="8" Margin="0,2,0,0"><c:McIcon VerticalAlignment="Center" Glyph="&#xE8B7;" FontSize="13" Foreground="{StaticResource McTextSecondaryBrush}" /><TextBlock x:Uid="Status_Folders" Style="{StaticResource McBody}" /></StackPanel>
+                <TextBlock x:Name="FolderCount" Grid.Row="8" Grid.Column="1" Style="{StaticResource McBody}" TextAlignment="Right" FontFamily="Consolas" Margin="0,2,0,0" />
+            </Grid>
+        </Border>
+        <!-- Las dos unidades: tipo, sistema de archivos y espacio libre (como la pestaña Estado de TeraCopy) -->
+        <Border x:Name="DrivesCard" Style="{StaticResource McCard}" Padding="16,10">
+            <Grid RowSpacing="8" ColumnSpacing="12">
+                <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+                <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
+                <c:McIcon x:Name="SourceDriveGlyph" VerticalAlignment="Center" FontSize="16" Accent="True" />
+                <TextBlock x:Uid="Status_SourceDrive" Grid.Column="1" Style="{StaticResource McStrong}" VerticalAlignment="Center" />
+                <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                    <TextBlock x:Name="SourceDriveName" Style="{StaticResource McBody}" TextTrimming="CharacterEllipsis" />
+                    <TextBlock x:Name="SourceDriveInfo" Style="{StaticResource McSecondary}" TextWrapping="Wrap" />
+                </StackPanel>
+                <c:McIcon x:Name="TargetDriveGlyph" Grid.Row="1" VerticalAlignment="Center" FontSize="16" Accent="True" />
+                <TextBlock x:Uid="Status_TargetDrive" Grid.Row="1" Grid.Column="1" Style="{StaticResource McStrong}" VerticalAlignment="Center" />
+                <StackPanel Grid.Row="1" Grid.Column="2" VerticalAlignment="Center">
+                    <TextBlock x:Name="TargetDriveName" Style="{StaticResource McBody}" TextTrimming="CharacterEllipsis" />
+                    <TextBlock x:Name="TargetDriveInfo" Style="{StaticResource McSecondary}" TextWrapping="Wrap" />
+                </StackPanel>
             </Grid>
         </Border>
     </StackPanel>

@@ -79,7 +79,7 @@ E_DeleteStart	파일 {0}개({1})를 삭제합니다.
 E_WipeStart	파일 {0}개({1})를 안전하게 삭제합니다.
 E_DoneDelete	{0} 만에 완료: 삭제 {1}, 오류 {2}.
 E_NoSources	원본이 지정되지 않았습니다.
-E_WholeDrive	드라이브 전체 복사는 아직 지원하지 않습니다: {0}
+E_WholeDrive	드라이브 전체는 복사만 할 수 있으며 이동하거나 삭제할 수 없습니다: {0}
 E_SourceMissing	원본이 없습니다: {0}
 E_IntoItself	폴더를 자기 자신 안으로 복사할 수 없습니다: {0}
 E_SourceUnreadable	원본을 읽을 수 없습니다: {0}
@@ -125,7 +125,6 @@ E_DamagedTwice	두 번 모두 상대 PC에 손상된 상태로 도착함
 E_Fat32	FAT32에 들어가지 않습니다(파일당 최대 4GB). 디스크를 exFAT 또는 NTFS로 포맷하세요.
 E_FatLimits	대상이 {0}입니다: 대체 데이터 스트림과 권한은 저장되지 않고 날짜는 2초 단위입니다.
 E_CaseCollisions	대상에서 이름 {0}개가 겹칩니다(대소문자만 다름): 충돌로 처리합니다.
-E_BadName	Windows에서 문제가 되는 이름(예약된 이름이거나 마침표나 공백으로 끝남): 일부 프로그램에서 열 수 없습니다.
 E_LongPaths	파일 {0}개의 경로가 260자를 넘습니다: 파일 탐색기 등에서 열 수 없을 수 있습니다.
 E_WrongCode	코드가 상대 PC에 표시된 것과 일치하지 않습니다.
 E_PeerUnknownCode	상대 PC가 이 코드를 모릅니다: 연결이 안전하지 않습니다.
@@ -269,3 +268,15 @@ E_FolderSkipExisting	폴더가 이미 있었습니다: 이미 있는 파일 {0}�
 E_FolderOverwrite	폴더가 이미 있었습니다: 이미 있는 파일 {0}개를 덮어씁니다.
 E_FolderRenamed	"{0}" 폴더가 이미 있었습니다: "{1}"(으)로 복사합니다.
 E_SpaceForced	그래도 복사합니다. 디스크가 가득 차면 공간이 생길 때까지 기다립니다.
+E_DriveFolder	드라이브 {0}
+E_NameFixed	대상에서 "{0}" 이름을 허용하지 않습니다: "{1}"(으)로 복사했습니다
+E_CloudOnly	{0}개 파일이 클라우드에만 있습니다: 복사하려면 다운로드됩니다(규칙에서 건너뛸 수 있음).
+E_F_NoCloud	클라우드 전용 파일 제외
+C_UsageFilters	필터 (copy, move, test, hash):\n  --include <마스크>     이것만 ("*.jpg;*.png", 반복 가능)\n  --exclude <마스크>     이것은 제외 ("*.tmp;node_modules")\n  --min-size <n>         최소 크기 (500, 200k, 10m, 2g)\n  --max-size <n>         최대 크기\n  --after <yyyy-mm-dd>   그날 이후 수정됨\n  --before <yyyy-mm-dd>  그날 이전 수정됨\n  --skip-hidden · --skip-system · --skip-cloud (클라우드 전용 파일)\n  --filter "<텍스트>"    일상 언어로: "photos over 2 MB"\n  @list.txt              파일에서 원본 읽기 (한 줄에 경로 하나)
+C_BadSize	{0}에는 크기가 필요합니다(예: 500, 200k, 10m, 2g).
+C_BadDate	{0}에는 yyyy-mm-dd 형식의 날짜가 필요합니다(예: 2026-01-31).
+E_BeforeRunning	시작 전: {0}
+E_BeforeFailed	시작 전 명령이 실패하여({1}) 복사를 시작하지 않습니다: {0}
+C_UsageExtras	추가 옵션:\n  --max-depth <n>        하위 폴더 수준(0 = 폴더만)\n  --archive              변경됨으로 표시된 것만 복사한 후 표시 지우기(증분)\n  --dst                  정확히 1시간 차이는 같은 것으로 간주(일광 절약 시간)\n  --keep-compression     NTFS 압축 유지\n  --flatten              하위 폴더 없이 모두 대상 폴더로\n  --keep-paths           원본들의 공통 폴더부터 폴더 구조 재현\n  --rename <마스크>      복사할 때 이름 바꾸기: "*.bak", "복사본 *.*"\n  --run-before "<명령>"      시작 전에 실행, 실패하면 복사하지 않음\n  폴더의 .mcignore 파일에 그 폴더에서 절대 복사하지 않을 항목을 적습니다.
+C_RunUsage	사용법: mcopy run <목록.mclist>  (저장된 복사나 작업을 창 없이 실행)
+C_BadList	목록을 읽을 수 없습니다: {0}

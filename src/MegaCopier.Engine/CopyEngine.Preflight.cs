@@ -10,13 +10,6 @@ public sealed partial class CopyEngine
     /// <summary>Lo máximo que admite un archivo en FAT32 (4 GB menos un byte).</summary>
     private const long Fat32MaxFile = uint.MaxValue;
 
-    private static readonly HashSet<string> ReservedNames = new(StringComparer.OrdinalIgnoreCase)
-    {
-        "CON", "PRN", "AUX", "NUL",
-        "COM1", "COM2", "COM3", "COM4", "COM5", "COM6", "COM7", "COM8", "COM9",
-        "LPT1", "LPT2", "LPT3", "LPT4", "LPT5", "LPT6", "LPT7", "LPT8", "LPT9",
-    };
-
     /// <summary>
     /// Comprobación previa, antes de copiar nada: lo que no puede salir bien se marca ya como error (con el motivo) en
     /// lugar de fallar a mitad, y lo que puede dar problemas se avisa en el registro.
@@ -57,11 +50,8 @@ public sealed partial class CopyEngine
             Log(LogLevel.Warning, Texts.F("E_CaseCollisions", collisions));
         }
 
-        // Nombres que Windows no maneja bien (CON, NUL...) o que acaban en punto o espacio.
-        foreach (var item in pending.Where(i => HasProblematicName(Path.GetFileName(i.Destination))).Take(20))
-        {
-            Log(LogLevel.Warning, Texts.Get("E_BadName"), item.Source);
-        }
+        // Los nombres que Windows o el destino no admiten (CON, acabados en espacio, demasiado largos) ya llegan
+        // arreglados del plan (DestinationNames), con su aviso.
 
         // Rutas largas: MegaCopier las copia, pero sin la opción de rutas largas de Windows otros programas no las abren.
         int longPaths = pending.Count(i => i.Destination.Length >= 260);
@@ -69,17 +59,6 @@ public sealed partial class CopyEngine
         {
             Log(LogLevel.Warning, Texts.F("E_LongPaths", longPaths));
         }
-    }
-
-    private static bool HasProblematicName(string name)
-    {
-        if (name.Length == 0)
-        {
-            return false;
-        }
-
-        string stem = name.Split('.')[0].TrimEnd();
-        return ReservedNames.Contains(stem) || name.EndsWith('.') || name.EndsWith(' ');
     }
 
     /// <summary>Sistema de archivos del destino ("NTFS", "exFAT", "FAT32", "ReFS"...), o null si no se sabe.</summary>

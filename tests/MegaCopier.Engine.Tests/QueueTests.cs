@@ -28,6 +28,39 @@ public sealed class QueueTests : IDisposable
 
     private CopyQueue NewQueue() => new(_store, _ => Options());
 
+    [Fact]
+    public async Task Cancelar_carpeta_existente_avisa_del_final_sin_copiar_ni_dejar_trabajo()
+    {
+        string source = _temp.Combine("src");
+        string destination = _temp.Combine("dst");
+        Directory.CreateDirectory(source);
+        Directory.CreateDirectory(Path.Combine(destination, "src"));
+        File.WriteAllText(Path.Combine(source, "archivo.txt"), "contenido nuevo");
+        string existing = Path.Combine(destination, "src", "archivo.txt");
+        File.WriteAllText(existing, "contenido original");
+        var queue = new CopyQueue(_store, _ =>
+        {
+            var configured = Options();
+            configured.FolderConflict = FolderConflictPolicy.Ask;
+            return configured;
+        });
+        queue.FolderResolver = (_, _, _) => FolderDecision.Cancel;
+        var finished = new TaskCompletionSource<CopyJob>(TaskCreationOptions.RunContinuationsAsynchronously);
+        queue.JobFinished += job => finished.TrySetResult(job);
+        var options = Options();
+        options.FolderConflict = FolderConflictPolicy.Ask;
+
+        var submitted = queue.Submit([source], destination, options);
+        var ended = await finished.Task.WaitAsync(TimeSpan.FromSeconds(10));
+
+        Assert.Same(submitted, ended);
+        Assert.True(ended.Cancelled);
+        Assert.Equal(CopyJobState.Interrupted, ended.State);
+        Assert.Empty(queue.Jobs);
+        Assert.Empty(_store.List());
+        Assert.Equal("contenido original", File.ReadAllText(existing));
+    }
+
     /// <summary>Se suscribe al trabajo en cuanto entra en la cola, antes de que empiece a copiar.</summary>
     private static void OnEveryChange(CopyQueue queue, Action<CopyJob> handler) =>
         queue.JobAdded += job => job.Changed += handler;

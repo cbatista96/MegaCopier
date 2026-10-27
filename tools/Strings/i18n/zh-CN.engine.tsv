@@ -79,7 +79,7 @@ E_DeleteStart	删除 {0} 个文件 ({1})。
 E_WipeStart	安全删除 {0} 个文件 ({1})。
 E_DoneDelete	用时 {0} 完成：删除 {1} 个，出错 {2} 个。
 E_NoSources	未指定源。
-E_WholeDrive	暂不支持复制整个驱动器：{0}
+E_WholeDrive	整个驱动器只能复制，不能移动或删除：{0}
 E_SourceMissing	源不存在：{0}
 E_IntoItself	不能把文件夹复制到它自身中：{0}
 E_SourceUnreadable	无法读取源：{0}
@@ -125,7 +125,6 @@ E_DamagedTwice	两次到达另一台电脑时都已损坏
 E_Fat32	FAT32 放不下（每个文件最大 4 GB）；请将磁盘格式化为 exFAT 或 NTFS。
 E_FatLimits	目标是 {0}：不保存备用数据流和权限，日期精度为 2 秒。
 E_CaseCollisions	目标中有 {0} 个名称重复（仅大小写不同）：将按冲突处理。
-E_BadName	在 Windows 中有问题的名称（保留名称或以句点、空格结尾）：有些程序将无法打开它。
 E_LongPaths	{0} 个文件的路径将超过 260 个字符：文件资源管理器和其他程序可能无法打开它们。
 E_WrongCode	代码与另一台电脑显示的不一致。
 E_PeerUnknownCode	另一台电脑不知道此代码：连接不安全。
@@ -269,3 +268,15 @@ E_FolderSkipExisting	文件夹已存在：跳过已有的 {0} 个文件，复制
 E_FolderOverwrite	文件夹已存在：覆盖已有的 {0} 个文件。
 E_FolderRenamed	文件夹“{0}”已存在：将复制为“{1}”。
 E_SpaceForced	仍然复制：磁盘写满后，复制会等待可用空间。
+E_DriveFolder	驱动器 {0}
+E_NameFixed	目标不接受名称“{0}”：已复制为“{1}”
+E_CloudOnly	{0} 个文件仅在云端：复制前会先下载（可在“规则”中跳过）。
+E_F_NoCloud	不含仅在云端的文件
+C_UsageFilters	筛选（copy、move、test、hash）：\n  --include <掩码>       仅这些（"*.jpg;*.png"；可重复）\n  --exclude <掩码>       从不这些（"*.tmp;node_modules"）\n  --min-size <n>         最小大小（500、200k、10m、2g）\n  --max-size <n>         最大大小\n  --after <yyyy-mm-dd>   该日及之后修改的\n  --before <yyyy-mm-dd>  该日及之前修改的\n  --skip-hidden · --skip-system · --skip-cloud（仅在云端的文件）\n  --filter "<文本>"      自然语言："photos over 2 MB"\n  @list.txt              从文件读取源（每行一个路径）
+C_BadSize	{0} 需要一个大小，例如 500、200k、10m 或 2g。
+C_BadDate	{0} 需要 yyyy-mm-dd 格式的日期（例如 2026-01-31）。
+E_BeforeRunning	开始前：{0}
+E_BeforeFailed	开始前的命令失败（{1}），因此不会开始复制：{0}
+C_UsageExtras	更多选项：\n  --max-depth <n>        子文件夹层级（0 = 仅此文件夹）\n  --archive              仅复制标记为已更改的文件，然后清除标记（增量）\n  --dst                  恰好相差一小时视为相同（夏令时）\n  --keep-compression     保留 NTFS 压缩\n  --flatten              全部放入目标文件夹，不含子文件夹\n  --keep-paths           从源的共同文件夹起重建文件夹\n  --rename <掩码>        复制时重命名："*.bak"、"副本 *.*"\n  --run-before "<命令>"      开始前运行；失败则不复制\n  文件夹中的 .mcignore 文件列出其中永不复制的内容。
+C_RunUsage	用法：mcopy run <列表.mclist>（无窗口运行已保存的复制或任务）
+C_BadList	无法读取列表：{0}

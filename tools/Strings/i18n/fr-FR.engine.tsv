@@ -79,7 +79,7 @@ E_DeleteStart	Supprimer {0} fichiers ({1}).
 E_WipeStart	Supprimer de façon sécurisée {0} fichiers ({1}).
 E_DoneDelete	Terminé en {0} : {1} supprimés, {2} en erreur.
 E_NoSources	Aucune source n'a été indiquée.
-E_WholeDrive	Copier un lecteur entier n'est pas encore pris en charge : {0}
+E_WholeDrive	Un lecteur entier peut seulement être copié, pas déplacé ni supprimé : {0}
 E_SourceMissing	La source n'existe pas : {0}
 E_IntoItself	Un dossier ne peut pas être copié dans lui-même : {0}
 E_SourceUnreadable	Impossible de lire la source : {0}
@@ -125,7 +125,6 @@ E_DamagedTwice	Arrivé endommagé deux fois sur l'autre ordinateur
 E_Fat32	Ne tient pas en FAT32 (4 Go maximum par fichier) ; formatez le disque en exFAT ou NTFS.
 E_FatLimits	La destination est en {0} : elle ne garde ni flux alternatifs ni autorisations, et les dates ont une précision de 2 s.
 E_CaseCollisions	{0} noms se répètent dans la destination (ils ne diffèrent que par la casse) : ils seront traités comme des conflits.
-E_BadName	Nom problématique sous Windows (réservé, ou finissant par un point ou une espace) : certains programmes ne pourront pas l'ouvrir.
 E_LongPaths	{0} fichiers auront des chemins de plus de 260 caractères : l'Explorateur et d'autres programmes pourraient ne pas les ouvrir.
 E_WrongCode	Le code n'est pas celui affiché sur l'autre ordinateur.
 E_PeerUnknownCode	L'autre ordinateur ne connaît pas le code : la connexion n'est pas sûre.
@@ -269,3 +268,15 @@ E_FolderSkipExisting	Le dossier existait déjà : les {0} fichiers déjà prése
 E_FolderOverwrite	Le dossier existait déjà : les {0} fichiers déjà présents sont remplacés.
 E_FolderRenamed	Le dossier « {0} » existait déjà : il est copié sous le nom « {1} ».
 E_SpaceForced	Copie quand même : quand le disque sera plein, la copie attendra de l’espace.
+E_DriveFolder	Lecteur {0}
+E_NameFixed	La destination n'accepte pas le nom « {0} » : copié sous « {1} »
+E_CloudOnly	{0} fichiers sont uniquement dans le cloud : ils seront téléchargés pour être copiés (les Règles permettent de les ignorer).
+E_F_NoCloud	sans les fichiers uniquement dans le cloud
+C_UsageFilters	Filtres (copy, move, test, hash) :\n  --include <masques>    Uniquement ceux-ci ("*.jpg;*.png" ; répétable)\n  --exclude <masques>    Jamais ceux-ci ("*.tmp;node_modules")\n  --min-size <n>         Taille minimale (500, 200k, 10m, 2g)\n  --max-size <n>         Taille maximale\n  --after <aaaa-mm-jj>   Modifiés depuis ce jour\n  --before <aaaa-mm-jj>  Modifiés jusqu’à ce jour\n  --skip-hidden · --skip-system · --skip-cloud (uniquement dans le cloud)\n  --filter "<texte>"     En langage courant : "photos over 2 MB"\n  @liste.txt             Sources depuis un fichier (un chemin par ligne)
+C_BadSize	{0} attend une taille, comme 500, 200k, 10m ou 2g.
+C_BadDate	{0} attend une date aaaa-mm-jj (par exemple 2026-01-31).
+E_BeforeRunning	Avant de commencer : {0}
+E_BeforeFailed	La commande d’avant le démarrage a échoué ({1}) ; la copie ne démarre donc pas : {0}
+C_UsageExtras	Plus d’options :\n  --max-depth <n>        Niveaux de sous-dossiers (0 = le dossier seul)\n  --archive              Uniquement ce qui est marqué comme modifié, puis retire la marque\n  --dst                  Une heure exacte d’écart compte comme identique (changement d’heure)\n  --keep-compression     Conserve la compression NTFS\n  --flatten              Tout dans le dossier de destination, sans sous-dossiers\n  --keep-paths           Recrée les dossiers depuis le dossier commun des sources\n  --rename <masque>      Renomme pendant la copie : "*.bak", "copie de *.*"\n  --run-before "<commande>"  S’exécute avant de commencer ; en cas d’échec, rien n’est copié\n  Un fichier .mcignore dans un dossier indique ce qui n’en est jamais copié.
+C_RunUsage	Utilisation : mcopy run <liste.mclist>  (exécute une copie ou une tâche enregistrée, sans fenêtre)
+C_BadList	Impossible de lire la liste : {0}

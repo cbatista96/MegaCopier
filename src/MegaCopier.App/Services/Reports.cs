@@ -45,7 +45,14 @@ internal static class Reports
     {
         try
         {
-            return CopyJobRecord.FromJson(File.ReadAllText(path));
+            // Si un disco de la lista volvió con otra letra, sus rutas se pasan a la nueva (se reconoce por su número de serie).
+            var record = CopyJobRecord.FromJson(File.ReadAllText(path));
+            if (record is { Volumes.Count: > 0 })
+            {
+                Engine.Jobs.Volumes.Remap(record);
+            }
+
+            return record;
         }
         catch (Exception ex) when (ex is IOException or System.Text.Json.JsonException or UnauthorizedAccessException)
         {

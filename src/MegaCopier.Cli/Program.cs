@@ -56,6 +56,7 @@ internal static partial class Cli
                 "verify-manifest" => VerifyManifest(args[1..]),
                 "delete" => Delete(args[1..]),
                 "resume" => Resume(args.Length > 1 ? args[1] : null),
+                "run" => RunList(args[1..]),
                 "jobs" => Jobs(),
                 "status" => Status(),
                 _ => Usage(Texts.F("C_UnknownCommand", args[0])),
@@ -128,6 +129,62 @@ internal static partial class Cli
                 case "--skip-junk":
                     options.Filter.SkipJunk = true;
                     break;
+                case "--include":
+                    options.Filter.Include.AddRange(Masks(Next(args, ref i)));
+                    break;
+                case "--exclude":
+                    options.Filter.Exclude.AddRange(Masks(Next(args, ref i)));
+                    break;
+                case "--min-size":
+                    options.Filter.MinSize = ParseSize(args, ref i);
+                    break;
+                case "--max-size":
+                    options.Filter.MaxSize = ParseSize(args, ref i);
+                    break;
+                case "--after":
+                    options.Filter.ModifiedAfterUtc = ParseDate(args, ref i).ToUniversalTime();
+                    break;
+                case "--before":
+                    options.Filter.ModifiedBeforeUtc = ParseDate(args, ref i).AddDays(1).AddTicks(-1).ToUniversalTime(); // todo ese día
+                    break;
+                case "--skip-hidden":
+                    options.Filter.SkipHidden = true;
+                    break;
+                case "--skip-system":
+                    options.Filter.SkipSystem = true;
+                    break;
+                case "--skip-cloud":
+                    options.Filter.SkipCloudOnly = true;
+                    break;
+                case "--max-depth":
+                    options.Filter.MaxDepth = int.TryParse(Next(args, ref i), out int depth) && depth >= 0 ? depth : throw new UsageException(Texts.F("C_NeedPositive", "--max-depth"));
+                    break;
+                case "--archive":
+                    // Copia incremental clásica: solo lo marcado como modificado, y la marca se quita al copiarlo.
+                    options.Filter.RequireAttributes |= FileAttributes.Archive;
+                    options.Extras.ResetArchive = true;
+                    break;
+                case "--dst":
+                    options.Extras.CompensateDst = true;
+                    break;
+                case "--keep-compression":
+                    options.Extras.KeepNtfsCompression = true;
+                    break;
+                case "--flatten":
+                    options.Extras.Flatten = true;
+                    break;
+                case "--keep-paths":
+                    options.Extras.KeepRelativePaths = true;
+                    break;
+                case "--rename":
+                    options.Extras.RenameMask = Next(args, ref i);
+                    break;
+                case "--run-before":
+                    options.Extras.BeforeCommand = Next(args, ref i);
+                    break;
+                case "--filter":
+                    MergeFilter(options.Filter, FilterParser.Parse(Next(args, ref i), DateTime.Now).Filter);
+                    break;
                 case "--smb-compress":
                     options.SmbCompression = true;
                     break;
@@ -187,6 +244,10 @@ internal static partial class Cli
                     break;
                 case var flag when flag.StartsWith("--", StringComparison.Ordinal):
                     throw new UsageException(Texts.F("C_UnknownOption", flag));
+                case var list when list.Length > 1 && list[0] == '@' && File.Exists(list[1..]):
+                    // @lista.txt: una ruta por línea (las vacías y las que empiezan por # no cuentan).
+                    paths.AddRange(ReadList(list[1..]));
+                    break;
                 default:
                     paths.Add(args[i]);
                     break;
@@ -542,6 +603,49 @@ internal static partial class Cli
             .FirstOrDefault(c => !string.Equals(c, Environment.ProcessPath, StringComparison.OrdinalIgnoreCase)); // nunca a sí misma
     }
 
+    /// <summary>
+    /// mcopy run &lt;lista.mclist&gt;: hace una copia o tarea guardada sin ventana. Es lo que lanza el Programador de tareas
+    /// en las tareas «aunque no haya sesión iniciada», cuando la app no puede abrirse.
+    /// </summary>
+    private static int RunList(string[] args)
+    {
+        if (args.Length != 1)
+        {
+            throw new UsageException(Texts.Get("C_RunUsage"));
+        }
+
+        CopyJobRecord? list;
+        try
+        {
+            list = CopyJobRecord.FromJson(File.ReadAllText(args[0]));
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or System.Text.Json.JsonException)
+        {
+            throw new UsageException(Texts.F("C_BadList", args[0]));
+        }
+
+        if (list is not { Sources.Count: > 0 })
+        {
+            throw new UsageException(Texts.F("C_BadList", args[0]));
+        }
+
+        Volumes.Remap(list); // un USB con otra letra: las rutas se corrigen solas
+        var options = list.ToOptions();
+        if (options.Encrypt || options.Operation == JobOperation.Decrypt)
+        {
+            options.EncryptionPassword = ReadPassword(confirm: false);
+        }
+
+        var job = CopyJobRecord.New(list.Sources, list.Destination, options);
+        job.Excluded = [.. list.Excluded];
+        job.FileOrder = [.. list.FileOrder];
+        job.RenamedFolders = new(list.RenamedFolders, StringComparer.OrdinalIgnoreCase);
+        job.ExtraTargets = new(list.ExtraTargets, StringComparer.OrdinalIgnoreCase);
+        var store = new JobStore();
+        store.Save(job);
+        return Execute(job, options, store, crashAfter: null);
+    }
+
     private static int Resume(string? id)
     {
         var store = new JobStore();
@@ -647,7 +751,13 @@ internal static partial class Cli
 
         try
         {
-            var result = engine.Run(new CopyJobRequest(job.Sources, job.Destination), cancellation.Token);
+            var result = engine.Run(new CopyJobRequest(job.Sources, job.Destination)
+            {
+                Excluded = job.Excluded,
+                Order = job.FileOrder,
+                RenamedFolders = job.RenamedFolders,
+                ExtraTargets = job.ExtraTargets, // las demás parejas de carpetas de una tarea
+            }, cancellation.Token);
             renderer.Clear();
             if (options.DryRun)
             {
@@ -768,6 +878,70 @@ internal static partial class Cli
         return args[++i];
     }
 
+    /// <summary>"*.jpg;*.png" o "*.jpg,*.png" (y la opción se puede repetir).</summary>
+    internal static List<string> Masks(string text) =>
+        [.. text.Split([';', ','], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)];
+
+    /// <summary>Tamaño con unidad opcional: 500, 200k, 10m, 2g (en bytes, KiB, MiB, GiB).</summary>
+    internal static long ParseSize(string[] args, ref int i)
+    {
+        string flag = args[i];
+        string text = Next(args, ref i).Trim().ToLowerInvariant().TrimEnd('b');
+        long factor = text.Length > 0 ? text[^1] switch { 'k' => 1L << 10, 'm' => 1L << 20, 'g' => 1L << 30, 't' => 1L << 40, _ => 1 } : 1;
+        string number = factor == 1 ? text : text[..^1];
+        return double.TryParse(number, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out double value) && value >= 0
+            ? (long)(value * factor)
+            : throw new UsageException(Texts.F("C_BadSize", flag));
+    }
+
+    /// <summary>Fecha aaaa-mm-dd (o «hoy», «today»).</summary>
+    internal static DateTime ParseDate(string[] args, ref int i)
+    {
+        string flag = args[i];
+        string text = Next(args, ref i).Trim();
+        if (text is "hoy" or "today")
+        {
+            return DateTime.Today;
+        }
+
+        return DateTime.TryParseExact(text, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AssumeLocal, out var date)
+            ? date
+            : throw new UsageException(Texts.F("C_BadDate", flag));
+    }
+
+    /// <summary>Lo entendido en «--filter "fotos de más de 2 MB del último mes"» se suma a lo demás.</summary>
+    internal static void MergeFilter(FileFilter target, FileFilter parsed)
+    {
+        target.Include.AddRange(parsed.Include);
+        target.Exclude.AddRange(parsed.Exclude);
+        target.MinSize = parsed.MinSize ?? target.MinSize;
+        target.MaxSize = parsed.MaxSize ?? target.MaxSize;
+        target.ModifiedAfterUtc = parsed.ModifiedAfterUtc ?? target.ModifiedAfterUtc;
+        target.ModifiedBeforeUtc = parsed.ModifiedBeforeUtc ?? target.ModifiedBeforeUtc;
+        target.SkipHidden |= parsed.SkipHidden;
+        target.SkipSystem |= parsed.SkipSystem;
+        target.SkipCloudOnly |= parsed.SkipCloudOnly;
+        target.SkipJunk |= parsed.SkipJunk;
+        if (parsed.ImageText.Length > 0)
+        {
+            target.ImageText = parsed.ImageText;
+        }
+    }
+
+    /// <summary>Las rutas de un archivo de lista (UTF-8, una por línea); las relativas, respecto a la carpeta de la lista.</summary>
+    internal static IEnumerable<string> ReadList(string listPath)
+    {
+        string folder = Path.GetDirectoryName(Path.GetFullPath(listPath))!;
+        foreach (string raw in File.ReadLines(listPath))
+        {
+            string line = raw.Trim().Trim('"');
+            if (line.Length > 0 && line[0] != '#')
+            {
+                yield return Path.IsPathRooted(line) ? line : Path.GetFullPath(line, folder);
+            }
+        }
+    }
+
     private static int NextInt(string[] args, ref int i)
     {
         string flag = args[i];
@@ -824,6 +998,8 @@ internal static partial class Cli
     private static void PrintUsage()
     {
         Console.WriteLine(Texts.Get("C_Usage"));
+        Console.WriteLine(Texts.Get("C_UsageFilters"));
+        Console.WriteLine(Texts.Get("C_UsageExtras"));
     }
 
     private sealed class UsageException(string message) : Exception(message);

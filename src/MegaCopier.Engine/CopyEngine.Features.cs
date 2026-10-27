@@ -42,7 +42,7 @@ public sealed partial class CopyEngine
             {
                 ConflictPolicy.Overwrite => PlannedAction.Replace,
                 ConflictPolicy.Skip => PlannedAction.SkipExists,
-                ConflictPolicy.OverwriteIfNewer => file.LastWriteUtc > existing.LastWriteTimeUtc + _options.TimeTolerance ? PlannedAction.ReplaceNewer : PlannedAction.SkipOlder,
+                ConflictPolicy.OverwriteIfNewer => IsNewer(file.LastWriteUtc, existing.LastWriteTimeUtc) ? PlannedAction.ReplaceNewer : PlannedAction.SkipOlder,
                 ConflictPolicy.OverwriteIfDifferentSize => file.Length != existing.Length ? PlannedAction.ReplaceSize : PlannedAction.SkipSameSize,
                 ConflictPolicy.KeepBoth => PlannedAction.KeepBoth,
                 ConflictPolicy.RenameExisting => PlannedAction.RenameExisting,
@@ -401,7 +401,7 @@ public sealed partial class CopyEngine
             }
 
             var source = new FileInfo(p.Source);
-            return source.Length != target.Length || (source.LastWriteTimeUtc - target.LastWriteTimeUtc).Duration() > _options.TimeTolerance;
+            return source.Length != target.Length || !SameTime(source.LastWriteTimeUtc, target.LastWriteTimeUtc);
         });
         var suspicious = RansomwareShield.Check(replacing, cancellationToken);
         if (suspicious.Count > 0)

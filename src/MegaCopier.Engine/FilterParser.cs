@@ -100,6 +100,12 @@ public static partial class FilterParser
             understood.Add(Texts.Get("E_F_NoSystem"));
         }
 
+        if (Remove(ref work, @"(sin|excepto|without|no|ni|nor) (los |las )?(archivos )?((que )?(solo )?(estan )?en (la )?nube|cloud[- ]only|online[- ]only)( files)?"))
+        {
+            filter.SkipCloudOnly = true;
+            understood.Add(Texts.Get("E_F_NoCloud"));
+        }
+
         if (Remove(ref work, @"(sin|excepto|without|no|ni|nor) (la )?(basura|junk)"))
         {
             filter.SkipJunk = true;

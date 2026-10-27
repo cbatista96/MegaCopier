@@ -1,4 +1,6 @@
 clave	es-ES	en-US
+Settings_TaskbarTitle.Text	Mostrar en la barra de tareas	Show in the taskbar
+Settings_TaskbarDescription.Text	Si lo desactivas, la ventana se minimiza siempre a la bandeja del sistema, junto al reloj.	When off, minimizing always hides the window in the system tray, next to the clock.
 JobsSection.Text	Copias	Transfers
 SettingsSection.Text	Ajustes	Settings
 FinishButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Qué hacer cuando terminen todas las copias	What to do when all transfers finish
@@ -317,8 +319,6 @@ Tool_LoadList.Text	Cargar una lista de copia…	Load a transfer list…
 Tool_LoadListText.Text	Cargar lista	Load list
 Tool_NewCopy.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Nueva copia	New transfer
 Tool_NewCopyText.Text	Nueva	New
-Tool_PauseAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Pausar todas	Pause all
-Tool_ResumeAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Reanudar todas	Resume all
 Tool_Settings.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Ajustes	Settings
 Tool_Sidebar.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Mostrar u ocultar la lista de copias	Show or hide the transfer list
 Drop_Caption	Copiar con MegaCopier	Copy with MegaCopier
@@ -1455,7 +1455,7 @@ Settings_MinimizeButtonDescription.Text	A la barra de tareas, como cualquier ven
 MinimizeButton_Taskbar.Content	A la barra de tareas	To the taskbar
 MinimizeButton_Tray.Content	A la bandeja de iconos	To the tray
 Settings_TrayProgressTitle.Text	Progreso de cada copia en la bandeja	Each copy's progress in the tray
-Settings_TrayProgressDescription.Text	Un icono por cada copia en marcha, con su porcentaje y una barra que sube. Al terminar, se quita solo. Un clic la abre.	One icon for each running copy, with its percentage and a bar that rises. When it finishes, it goes away on its own. Click it to open the copy.
+Settings_TrayProgressDescription.Text	Un icono por cada copia cuyo progreso no está a la vista. Aparece al minimizar u ocultar su ventana; un clic vuelve a abrirla.	One icon for each copy whose progress is not visible. It appears when its window is minimized or hidden; click it to reopen the copy.
 Tray_JobPause	Pausar	Pause
 Tray_JobStop	Cancelar	Cancel
 Jobs_Archive	Archivar en el historial	Archive to history
@@ -1599,3 +1599,109 @@ Rules_Synchronization.Text	Sincronización	Synchronization
 Rules_SecurityTitle.Text	Seguridad	Security
 
 Job_StateNeedsAdministrator	Necesita permisos de administrador	Administrator permission required
+Toolbar_PauseAll	Pausar todas	Pause all
+Toolbar_ResumeAll	Reanudar todas	Resume all
+Toolbar_Sidebar	Mostrar u ocultar la lista de copias	Show or hide the transfer list
+Toolbar_New	Nueva copia	New transfer
+Toolbar_ClearDone	Quitar las copias terminadas	Remove finished transfers
+Toolbar_Timeline	Línea de tiempo de la cola	Queue timeline
+Toolbar_History	Historial	History
+Toolbar_Settings	Ajustes	Settings
+Toolbar_About	Acerca de	About
+Toolbar_AlwaysOnTop	Siempre visible	Always on top
+Toolbar_Shelf	Bandeja de arrastre	Drop shelf
+Toolbar_Compare	Comparar y sincronizar	Compare and sync
+Toolbar_PlayPause	Pausar o reanudar todas	Pause or resume all
+Toolbar_Separator	Separador	Separator
+Toolbar_More	Más accesos	More actions
+Destinations_Favorite	Añadir a favoritos	Add to favorites
+Destinations_Unfavorite	Quitar de favoritos	Remove from favorites
+Settings_ToolbarTitle.Text	Barra de herramientas	Toolbar
+Settings_ToolbarDescription.Text	Elige qué accesos se ven y en qué orden. En la ventana pequeña caben los mismos que de serie; los demás pasan al menú «…» del final.	Choose which shortcuts are shown and in what order. The small window fits as many as it has by default; the rest go to the “…” menu at the end.
+Settings_ToolbarReset.Text	Restablecer	Reset
+Settings_ToolbarFinish.Content	Mostrar «Al terminar» a la derecha	Show “When finished” on the right
+Settings_ToolbarUp	Subir «{0}»	Move “{0}” up
+Settings_ToolbarDown	Bajar «{0}»	Move “{0}” down
+Rules_SkipCloud.Content	Omitir los que solo están en la nube (no los descarga)	Skip cloud-only files (do not download them)
+Destinations_PathBox.PlaceholderText	Escribe o pega una ruta, como D:\Copias	Type or paste a path, such as D:\Backups
+Destinations_PathInvalid	Esa ruta no vale: escribe una carpeta completa en una unidad o carpeta de red que exista (por ejemplo, D:\Copias).	That path is not valid: type a full folder path on an existing drive or network share (for example, D:\Backups).
+Tool_CompareSum.Text	Comparar con una suma…	Compare with a checksum…
+SumCheck_Title	Comparar con una suma	Compare with a checksum
+SumCheck_File	Archivo: {0}	File: {0}
+SumCheck_Header	Suma publicada (MD5, SHA-1, SHA-256, SHA-512, SHA3, BLAKE3, xxHash o CRC32)	Published checksum (MD5, SHA-1, SHA-256, SHA-512, SHA3, BLAKE3, xxHash or CRC32)
+SumCheck_Placeholder	Pega aquí la suma de la página de descarga	Paste the checksum from the download page here
+SumCheck_Check	Comprobar	Check
+SumCheck_Close	Cerrar	Close
+SumCheck_NotASum	Eso no parece una suma: debe ser un número hexadecimal de 8, 16, 32, 40, 64 o 128 cifras.	That does not look like a checksum: it must be a hexadecimal number with 8, 16, 32, 40, 64 or 128 digits.
+SumCheck_Reading	Leyendo el archivo…	Reading the file…
+SumCheck_Match	✓ Coincide ({0}): el archivo está bien.	✓ It matches ({0}): the file is fine.
+SumCheck_NoMatch	✗ No coincide. Con {0} el archivo da {1}: está dañado, incompleto o no es el mismo.	✗ It does not match. With {0} the file gives {1}: it is damaged, incomplete or not the same file.
+Status_SourceDrive.Text	Origen	Source
+Status_TargetDrive.Text	Destino	Destination
+Status_DriveFree	{0} libres de {1}	{0} free of {1}
+LocalSend_Conflict.Header	Si el archivo ya está en la carpeta	If the file is already in the folder
+LocalSend_ConflictRename.Content	Conservar los dos («foto (2).jpg»)	Keep both (“photo (2).jpg”)
+LocalSend_ConflictSkip.Content	No recibirlo	Do not receive it
+LocalSend_ConflictOverwrite.Content	Sustituir el que había	Replace the existing one
+LocalSend_Include.Header	Recibir solo estos tipos (vacío = todos)	Receive only these types (empty = all)
+LocalSend_Include.PlaceholderText	*.jpg; *.heic; *.mp4	*.jpg; *.heic; *.mp4
+LocalSend_Exclude.Header	No recibir nunca	Never receive
+LocalSend_Exclude.PlaceholderText	*.apk; *.exe	*.apk; *.exe
+Task_OnDevice.Content	Al conectar el disco	When the drive is connected
+Task_SavedOnDevice	Tarea «{0}» guardada: empezará sola cada vez que conectes el disco (con MegaCopier abierto o en la bandeja).	Task "{0}" saved: it will start by itself every time you connect the drive (with MegaCopier open or in the tray).
+Task_NoDevice	Esta copia no tiene ningún disco con letra al que esperar (por ejemplo, va a una carpeta de red).	This transfer has no drive letter to wait for (for example, it goes to a network folder).
+Settings_TaskOnDevice	Empieza sola al conectar {0}	Starts by itself when {0} is connected
+Connection_AzureAccount	Cuenta de almacenamiento (https://cuenta.blob.core.windows.net)	Storage account (https://account.blob.core.windows.net)
+Connection_GcsEndpoint	Punto de acceso (vacío = storage.googleapis.com)	Endpoint (empty = storage.googleapis.com)
+Connection_Sas	Token SAS del contenedor (sv=…&sig=…)	Container SAS token (sv=…&sig=…)
+Connection_Container	Contenedor (y carpeta): contenedor/carpeta	Container (and folder): container/folder
+Connection_Site	Sitio de SharePoint	SharePoint site
+Connection_SitePlaceholder	https://empresa.sharepoint.com/sites/Equipo	https://company.sharepoint.com/sites/Team
+Rules_MoreTitle.Text	Más opciones	More options
+Rules_RenameMask.Header	Renombrar al copiar (máscara: *.bak, copia de *.*)	Rename while copying (mask: *.bak, copy of *.*)
+Rules_Flatten.Content	Aplanar: todo a la carpeta de destino, sin subcarpetas	Flatten: everything into the destination folder, without subfolders
+Rules_KeepPaths.Content	Archivos de varias carpetas: recrear sus carpetas desde la común	Files from several folders: recreate their folders from the common one
+Rules_OnlyArchive.Content	Solo los marcados como modificados (atributo «Archivo»)	Only files marked as changed (“Archive” attribute)
+Rules_ResetArchive.Content	Quitar esa marca al origen tras copiarlo (copias incrementales)	Clear that mark on the source after copying (incremental backups)
+Rules_CompensateDst.Content	Dar por iguales los que difieren una hora justa (cambio de horario)	Treat files that differ by exactly one hour as equal (daylight saving)
+Rules_KeepCompression.Content	Conservar la compresión de NTFS	Keep NTFS compression
+Rules_SkipCompressed.Content	Omitir los comprimidos o cifrados por Windows	Skip files compressed or encrypted by Windows
+Rules_SkipTemporary.Content	Omitir los marcados como temporales	Skip files marked as temporary
+Rules_Depth.Header	Niveles de subcarpetas (vacío = todos; 0 = solo la carpeta)	Subfolder levels (empty = all; 0 = only the folder)
+Rules_AccessedAfter.Header	Usados desde	Used since
+Rules_AccessedBefore.Header	Usados hasta	Used until
+Rules_FolderTimes.Header	Fechas de las carpetas	Folder timestamps
+Rules_FolderAttributes.Header	Atributos de las carpetas	Folder attributes
+Rules_FolderLikeFiles.Content	Como los archivos	Like files
+Rules_FolderYes.Content	Copiarlas	Copy them
+Rules_FolderNo.Content	No copiarlas	Do not copy them
+Rules_FolderLikeFiles2.Content	Como los archivos	Like files
+Rules_FolderYes2.Content	Copiarlos	Copy them
+Rules_FolderNo2.Content	No copiarlos	Do not copy them
+Rules_BeforeCommand.Header	Ejecutar antes de empezar (si falla, no se copia)	Run before starting (if it fails, nothing is copied)
+Settings_EjectSource.Content	Expulsar también la de origen (la tarjeta de la cámara), si todo fue bien	Also eject the source drive (the camera card) if everything went well
+Scripts_AddExample.Text	Añadir un ejemplo	Add an example
+Scripts_ExampleNtfy.Text	Avisar al móvil con ntfy	Notify the phone with ntfy
+Scripts_ExampleIfttt.Text	Lanzar un applet de IFTTT	Trigger an IFTTT applet
+Scripts_ExampleOpen.Text	Abrir el destino si todo fue bien	Open the destination if everything went well
+Scripts_ExampleLog.Text	Anotar cada copia en un archivo de texto	Log each transfer in a text file
+Scripts_NtfyTopic	mi-tema-secreto	my-secret-topic
+Scripts_IftttKey	TU-CLAVE	YOUR-KEY
+Scripts_LogName	MegaCopier-copias	MegaCopier-transfers
+Settings_TransferLogTitle.Text	Registro único de todas las copias	Single log for all transfers
+Settings_TransferLogDescription.Text	Una línea por archivo copiado o fallido, en un solo archivo y con el formato que elijas. También se puede enviar a un servidor Syslog.	One line per copied or failed file, in a single file and in the format you choose. It can also be sent to a Syslog server.
+Settings_TransferLogPath.Header	Archivo del registro	Log file
+Settings_TransferLogBrowse.Text	Elegir…	Choose…
+Settings_TransferLogType	Registro	Log
+Settings_TransferLogFormat.Header	Formato de cada archivo copiado	Format of each copied file
+Settings_ErrorLogFormat.Header	Formato de cada error	Format of each error
+Settings_TransferLogVariables.Text	Variables: %time%, %source%, %destination%, %size%, %mtime%, %hash%, %path%, %error%, %computer%, %user%	Variables: %time%, %source%, %destination%, %size%, %mtime%, %hash%, %path%, %error%, %computer%, %user%
+Settings_Syslog.Header	Enviar también a un servidor Syslog (servidor o servidor:puerto; vacío = no)	Also send to a Syslog server (server or server:port; empty = no)
+Task_AddPair.Text	Añadir otra pareja de carpetas a la tarea…	Add another folder pair to the task…
+Task_ClearPairs.Text	Quitar las parejas	Remove the pairs
+Task_PairSource	Carpeta que se copia	Folder to copy
+Task_PairDestination	Adónde se copia	Where to copy it
+Task_NoSession.Content	Hacerla también aunque no haya nadie con la sesión iniciada (sin ventana)	Run it even when nobody is signed in (without a window)
+Task_NoCli	Para hacerla sin sesión hace falta mcopy.exe junto a MegaCopier (lo trae el instalador).	Running without a session needs mcopy.exe next to MegaCopier (the installer includes it).
+Settings_ToolbarCustomize.Text	Personalizar	Customize
+Status_Folders.Text	Carpetas	Folders

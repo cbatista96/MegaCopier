@@ -223,7 +223,8 @@ public sealed class TechnologyTests : IDisposable
         Assert.True(File.Exists(_temp.Combine("dst/src/foto.jpg")));
         Assert.False(File.Exists(_temp.Combine("dst/src/pelicula.mkv")));
         Assert.Contains(log, l => l.Level == LogLevel.Warning && l.Message.Contains("FAT32", StringComparison.Ordinal));
-        Assert.Contains(log, l => l.Level == LogLevel.Warning && l.Message.Contains("Nombre problemático", StringComparison.Ordinal));
+        Assert.Contains(log, l => l.Level == LogLevel.Warning && l.Message.Contains("CON_.txt", StringComparison.Ordinal)); // el nombre reservado, arreglado
+        Assert.True(File.Exists(_temp.Combine("dst/src/CON_.txt")));
     }
 
     [Fact]

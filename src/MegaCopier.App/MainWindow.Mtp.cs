@@ -59,7 +59,7 @@ public sealed partial class MainWindow
         MtpDialog.Title = L.Get("Mtp_ExportTitle");
         MtpDialog.PrimaryButtonText = L.Get("Mtp_ExportButton");
         MtpSummary.Text = sources.Count == 1
-            ? L.F("Mtp_ExportSummaryOne", Path.GetFileName(Path.TrimEndingDirectorySeparator(sources[0])))
+            ? L.F("Mtp_ExportSummaryOne", Engine.SourceNames.TargetName(sources[0]))
             : L.F("Mtp_ExportSummaryMany", sources.Count);
         MtpMoveBox.Content = L.Get("Mtp_MoveExport");
         if (await ShowMtpDialogAsync() is [string folder])

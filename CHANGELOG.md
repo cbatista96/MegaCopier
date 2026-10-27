@@ -9,6 +9,95 @@ Las ilustraciones muestran la interfaz de desarrollo actual. Las notas en españ
 
 ## [Sin publicar]
 
+### Resumen
+
+- Copiar, cortar, pegar y arrastrar desde el Escritorio y el Explorador usan MegaCopier en más situaciones, incluidos los menús moderno y clásico de Windows 11, el teclado y el botón superior de pegar. Las preguntas de archivos existentes se centran, conservan el acrílico y dejan de mantener ventanas vacías al cancelar.
+- Personaliza los accesos y el orden de la barra de herramientas desde Ajustes › Interfaz. La ventana pequeña conserva su tamaño y reúne lo que no cabe en «…»; pausar y reanudar todas las copias comparten un único botón.
+- Copia una unidad entera a una carpeta con su nombre, sin los archivos internos de Windows. Los nombres incompatibles con el destino se adaptan automáticamente, se evitan colisiones y cada cambio queda en el registro.
+- Escribe o pega la ruta en «¿Adónde?», recibe sugerencias y guarda favoritos con una estrella. La pestaña Estado añade información de los discos, espacio libre y número de carpetas.
+- Comprueba una descarga pegando su suma: MegaCopier reconoce el algoritmo y te dice si el archivo coincide. También puede verificar el CRC32 incluido en el nombre de un archivo.
+- Las tareas pueden arrancar al conectar un disco, reconocer un USB aunque cambie de letra, incluir varias parejas de carpetas o ejecutarse sin una sesión iniciada mediante mcopy.
+- Se añaden Azure Blob Storage, Google Cloud Storage y bibliotecas de SharePoint. Al copiar archivos «solo en línea», MegaCopier avisa de la descarga necesaria y permite omitirlos.
+- Nuevas reglas permiten renombrar, aplanar carpetas, conservar rutas y compresión, limitar la profundidad y usar archivos .mcignore. Se amplían los filtros de mcopy, las opciones de recepción de LocalSend y el registro conjunto de transferencias.
+- Cada icono de progreso recupera su copia, también con ventanas independientes. Se corrigen los cierres al terminar, el tamaño inicial de las nuevas copias y las transiciones de la interfaz; los iconos individuales aparecen cuando su progreso no está visible en la ventana.
+
+### Añadido
+
+- Opción «Mostrar en la barra de tareas»: al desactivarla, minimizar siempre lleva la ventana a la bandeja del sistema.
+- **Barra de herramientas a tu gusto** (Ajustes › Interfaz): muestra, oculta y ordena sus accesos, y decide si se ve «Al terminar». Nuevos accesos, ocultos de serie: «Siempre visible» (con la chincheta clavada cuando está activo), «Bandeja de arrastre» y «Comparar y sincronizar». La lista de accesos va plegada y se despliega deslizándose con «Personalizar». La ventana pequeña tiene siempre los mismos huecos que de serie y «Al terminar» con su texto: si muestras más accesos, el último hueco es el menú «…» con el resto. En la ventana grande se ve todo lo que quepa. El menú «…» también avisa de una actualización si Ajustes está dentro.
+- **Favoritos desde «¿Adónde?»**: una estrella en cada carpeta la guarda en favoritos o la quita, sin pasar por Ajustes.
+- **Copiar una unidad entera** (`E:\` completa): su contenido va a una carpeta con el nombre del disco («Juegos SSD 500GB (E)»), sin lo que Windows guarda en la raíz (Papelera, «System Volume Information», archivos de paginación). La carpeta nueva no hereda los atributos de oculta y de sistema de la raíz. Mover o borrar una unidad entera sigue sin permitirse.
+- **Nombres que el destino no admite**: se arreglan solos en lugar de fallar. Se quitan los espacios y puntos del final, se cambian los caracteres prohibidos por «_», se evitan los nombres reservados (CON, NUL, COM1…) y se recortan los nombres demasiado largos para el disco conservando la extensión (en carpetas de red, a 255 bytes, como piden los NAS con Linux). Si así coincidieran con otro, se numeran. Cada cambio queda en el registro, y los nombres válidos no se tocan.
+
+- **Archivos que solo están en la nube** (OneDrive, Dropbox o Google Drive «solo en línea»): antes de copiar se avisa de cuántos se van a descargar, y en Reglas se pueden omitir («Omitir los que solo están en la nube»; también «sin los que solo están en la nube» en lenguaje normal).
+- **Escribir o pegar la ruta de destino** en «¿Adónde?», con sugerencias de subcarpetas mientras escribes; Intro la añade y la marca.
+- **Comparar con una suma** (Nueva › Comprobar): elige un archivo y pega la suma que publica la web de descarga (MD5, SHA-1, SHA-256, SHA-512, SHA3, BLAKE3, xxHash o CRC32). MegaCopier deduce el algoritmo, lee el archivo una sola vez y dice si coincide; la toma del portapapeles si ya está copiada.
+- **CRC32 en el nombre**: al comprobar una carpeta sin archivos de sumas, los archivos que llevan su CRC32 en el nombre («capítulo [A1B2C3D4].mkv») se comprueban con él.
+- **Unidades y carpetas en la pestaña Estado**: origen y destino con su tipo, sistema de archivos y espacio libre, y cuántas carpetas se crean, aparte de los archivos.
+- **LocalSend, qué recibir**: elige qué hacer si el archivo ya está (conservar los dos, no recibirlo o sustituirlo) y qué tipos recibir o no recibir nunca. Lo que no se quiere ni se pide al móvil.
+- **`mcopy` con filtros y listas**: `--include`, `--exclude`, `--min-size`, `--max-size`, `--after`, `--before`, `--skip-hidden`, `--skip-system`, `--skip-cloud`, `--filter "texto en lenguaje normal"` y orígenes desde un archivo con `@lista.txt`.
+- **Tareas «al conectar el disco»**: una tarea guardada puede empezar sola cada vez que conectas su USB (el de destino o, si es él el extraíble, el de origen), con MegaCopier abierto o en la bandeja.
+- **Discos reconocidos por su número de serie**: las tareas y las listas guardadas siguen funcionando aunque Windows le dé otra letra al USB; las rutas se corrigen solas.
+- **Más nubes**: **Azure Blob Storage** (con un token SAS del contenedor), **Google Cloud Storage** (con claves HMAC) y las bibliotecas de documentos de **SharePoint** (Microsoft 365). Cómo conectarlas, en la guía de nubes.
+
+- **Más opciones** en Reglas (Ajustes › Copia y Opciones de cada copia): renombrar al copiar con una máscara (`*.bak`, `copia de *.*`), aplanar todo en la carpeta de destino, recrear las carpetas desde la que tienen en común los archivos sueltos, copiar solo lo marcado como modificado (atributo «Archivo») y quitar esa marca al terminar, dar por iguales los archivos que difieren una hora justa tras el cambio de horario, conservar la compresión de NTFS, omitir lo comprimido, cifrado o temporal, limitar los niveles de subcarpetas, filtrar por la fecha de último uso, decidir aparte las fechas y atributos de las carpetas y ejecutar una orden antes de empezar (si falla, no se copia).
+- **Archivo `.mcignore`**: déjalo en una carpeta con una máscara por línea (`*.tmp`, `node_modules/`, `/build`) y eso no se copiará nunca de ella ni de sus subcarpetas.
+- **Expulsar también la unidad de origen** al terminar bien (la tarjeta de la cámara tras pasar las fotos).
+- **Ejemplos de órdenes al terminar**: avisar al móvil con ntfy, lanzar un applet de IFTTT, abrir el destino o anotar cada copia en un archivo de texto, listos para añadir.
+- **Registro único de todas las copias** con el formato que elijas (`%time%`, `%source%`, `%destination%`, `%size%`, `%hash%`, `%error%`…) y envío opcional a un servidor **Syslog** de la red.
+- **Más gestores de archivos como destino**: las carpetas abiertas en Multi Commander, xplorer2, Explorer++ y XYplorer aparecen junto a las del Explorador, Total Commander y Directory Opus.
+- **Varias parejas de carpetas en una tarea**: una sola tarea puede copiar Documentos a un sitio y Fotos a otro.
+- **Tareas sin sesión iniciada**: una tarea programada puede hacerse aunque nadie haya iniciado sesión; la hace `mcopy` sin ventana. Nueva orden `mcopy run <lista.mclist>`.
+- `mcopy`: `--max-depth`, `--archive`, `--dst`, `--keep-compression`, `--flatten`, `--keep-paths`, `--rename` y `--run-before`.
+
+### Capturas
+
+Personalización de la barra de herramientas, entrada de rutas y favoritos, y nuevas reglas de copia:
+
+<img src="docs/capturas/v1.9-barra.png" width="1000" alt="Personalizar los accesos y el orden de la barra de herramientas">
+
+<img src="docs/capturas/v1.9-destino.png" width="625" alt="Elegir destinos, guardar favoritos y escribir una ruta">
+
+<img src="docs/capturas/v1.9-reglas.png" width="1000" alt="Reglas para renombrar, conservar rutas y compresión al copiar">
+
+### Cambiado
+
+- **«¿Adónde?» con más sitio**: desde la ventana pequeña, la ventana crece mientras el diálogo está abierto (como con el aviso de «ya existe») y la lista de carpetas se ve más larga; al cerrarlo vuelve a su tamaño.
+- **Pausar y reanudar todas en un solo botón**: muestra la pausa mientras se copia y reproducir cuando lo que hay está en pausa; la figura se transforma de una en otra, con cualquier conjunto de iconos. Es la misma forma que el icono del conjunto elegido, solo contorno: redondeada con los iconos de Windows 11 y de esquinas vivas (la pausa, dos líneas) con los de Windows 10.
+- **El fondo de la ventana no se apaga al usar otra**: cada material pasa a su pareja al perder el foco y vuelve al recuperarlo. Mica ⇄ Mica Alt (en los dos sentidos, según el elegido) y Acrílico ⇄ Translúcida.
+- El título de la ventana en la barra de tareas y en Alt+Tab muestra también la velocidad («56 % · 11 MB/s»), no solo el porcentaje.
+
+### Arreglado
+
+- «Nueva › Copiar a › Gestionar favoritos» lleva directamente a las carpetas favoritas de Ajustes (Red y dispositivos). Antes abría Ajustes por la primera sección, o lo cerraba si ya estaba abierto.
+- Los iconos de los menús (como el de «Nueva») cambian al elegir otro conjunto de iconos, aunque se cambie varias veces sin cerrar el copiador. Antes se quedaban con los del primer conjunto con el que se abrió el menú.
+- En Ajustes, los interruptores y desplegables podían quedarse debajo del texto de cada opción con la ventana ya ancha (después de haberla tenido estrecha). Ahora vuelven siempre a su sitio, a la derecha.
+- Con los iconos de Windows 10, el reloj de la línea de tiempo y el de información se veían más pequeños que el resto de la barra: ahora todos tienen el mismo tamaño.
+- **Con el tema «Por defecto», MegaCopier cambia entre claro y oscuro a la vez que Windows**, como las demás apps, sin tener que cerrarlo. Los temas Fluent también toman al momento un color de acento nuevo.
+- Un archivo cuyo nombre acaba en espacio o punto se lee bien: antes Windows quitaba ese final al abrirlo y se podía copiar otro archivo con el nombre parecido.
+- «Al terminar» marca con su punto la opción elegida («No hacer nada» de serie) desde la primera vez que se abre.
+- «¿Adónde?» cabe en ventanas bajas: la lista de carpetas se encoge para que se vea entera y el resto del diálogo se puede desplazar hasta el final.
+
+- Al pulsar un icono de progreso se recupera su copia y su ventana correspondiente, también en la vista compacta. Los iconos se recuperan al reiniciarse el Explorador.
+- Los iconos de progreso solicitan mostrarse directamente junto al reloj. En equipos donde Windows mantiene su caché de ocultos puede hacer falta cerrar sesión y volver a entrar una vez; comprobado con varias copias.
+- Cancelar la pregunta de carpeta existente comunica el final a la ventana y la oculta cuando ya no queda trabajo, evitando dejar «No hay copias» abierto.
+- Las ventanas independientes detienen sus temporizadores antes de cerrarse al terminar una copia, evitando consultar una ventana ya destruida y cerrar la aplicación.
+
+- El aviso de archivos existentes recupera el acrílico del tema y empieza a encoger la ventana en cuanto se cierra, sin espera adicional. La entrada del menú lateral de Ajustes solo se reproduce al abrirlo, no al retroceder entre secciones.
+- Tras terminar una tanda de copias, el modo automático vuelve a iniciar en la vista pequeña. «Recordar tamaño» conserva por separado el ancho compacto y los tamaños de detalles y de varias copias; las ampliaciones automáticas no sustituyen esos tamaños.
+- Los iconos individuales de progreso de la bandeja se ocultan mientras el progreso de esa copia está visible en su ventana y reaparecen al minimizarla u ocultarla.
+
+- El aviso «El archivo ya existe» espera a que la ventana termine de crecer para centrarse y mantener sus botones accesibles. Cerrar con la X durante un conflicto cancela la copia y deja MegaCopier en la bandeja, sin el cierre inesperado de WinUI.
+
+- «Pegar» del menú moderno del Escritorio ya reconoce su ventana independiente de Windows 11. Teclado, menús moderno y clásico, panel lateral y barra superior comparten las reglas de copiar, cortar y duplicar en el mismo sitio. Se respeta la carpeta donde se abrió el menú aunque haya una selección anterior; el botón superior se prepara antes de copiar y usa la pestaña visible. Se cubren las carpetas vacías recién activadas y los nodos desplegados del panel lateral. También se admiten Mayús+Insertar y menús abiertos con la tecla de menú o Mayús+F10, con activación por teclado.
+
+- Los arrastres y el pegado en el Escritorio reconocen la vista real aunque una capa transparente de otra aplicación interfiera con la accesibilidad. También se reconoce Escritorio y otras carpetas ancladas cuando el panel lateral añade anotaciones a sus nombres. El menú clásico reconoce «Pegar» aunque no publique su atajo; Ctrl+V también funciona cuando el fondo del Escritorio conserva el foco. Las instalaciones nuevas inician los arrastres sin confirmación previa; el ajuste de preguntar sigue disponible.
+
+- El menú lateral de Ajustes entra deslizándose al expandir la ventana, y la lista de copias también aparece con una transición al añadir una segunda copia. Los cambios de tamaño no interrumpen esas entradas.
+- Durante «Más/Menos» y la apertura de Ajustes, las barras, cifras y controles se adaptan al tamaño visible en cada fotograma, en lugar de adoptar el ancho final antes de tiempo. Se conserva el deslizamiento y la protección contra cuadros negros; la lista no reinicia una segunda animación de entrada al terminar de crecer.
+- «Más/Menos», Ajustes y las demás vistas recuperan el cambio gradual del tamaño real de la ventana. Los límites de tamaño se aplican al terminar, evitando la apertura o el cierre de golpe; la superficie gráfica interna conserva su tamaño durante el movimiento para no mostrar franjas negras ni deformar el texto.
+- El contenido de «Más» se desliza con posiciones alineadas a píxeles y sale hacia abajo al plegarse, sin dejar cabeceras sobre la ventana pequeña. Las pulsaciones rápidas pueden invertir la transición; desde maximizado se evita superponer el zoom de Windows.
+
 ## [1.8.0] - 2026-10-23
 
 ### Resumen

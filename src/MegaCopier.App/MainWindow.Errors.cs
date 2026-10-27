@@ -63,7 +63,7 @@ public sealed partial class MainWindow
                         stopped = true;
                         dialog.Hide();
                     };
-                    using var registration = cancellation.Register(() => _dispatcher.TryEnqueue(dialog.Hide));
+                    using var registration = cancellation.Register(() => _dispatcher.TryEnqueue(() => dialog.Hide()));
                     var result = await dialog.ShowAsync();
                     answer.TrySetResult(
                         stopped ? ErrorDecision.Stop
@@ -238,7 +238,7 @@ public sealed partial class MainWindow
                             },
                         },
                     };
-                    using var registration = cancellation.Register(() => _dispatcher.TryEnqueue(dialog.Hide));
+                    using var registration = cancellation.Register(() => _dispatcher.TryEnqueue(() => dialog.Hide()));
                     await dialog.ShowAsync();
                     answer.TrySetResult(decision);
                 }
@@ -332,7 +332,7 @@ public sealed partial class MainWindow
                 XamlRoot = Root.XamlRoot,
                 RequestedTheme = Root.RequestedTheme,
             };
-            using var registration = cancellation.Register(() => _dispatcher.TryEnqueue(dialog.Hide));
+            using var registration = cancellation.Register(() => _dispatcher.TryEnqueue(() => dialog.Hide()));
             return await dialog.ShowAsync() == ContentDialogResult.Primary;
         }
         finally
@@ -358,7 +358,7 @@ public sealed partial class MainWindow
             ShowAndActivate();
             Sounds.Play(_app.Settings.Sounds, SoundEvent.Attention);
             string what = sources.Count == 1
-                ? $"«{Path.GetFileName(Path.TrimEndingDirectorySeparator(sources[0]))}»"
+                ? $"«{Engine.SourceNames.TargetName(sources[0])}»"
                 : L.F("SameDrive_Items", sources.Count);
             string title = L.F("SameDrive_Title", DriveInfoText.Describe(destination).Text);
             string addText = L.Get("SameDrive_AddText");

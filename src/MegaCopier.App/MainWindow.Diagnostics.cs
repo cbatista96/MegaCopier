@@ -32,7 +32,6 @@ public sealed partial class MainWindow
             // La vista compacta tiene alto fijo: reservar espacio mientras se lee el informe.
             if (grow)
             {
-                _shrinkTicket++;
                 double scale = Scaled(1000) / 1000.0;
                 var area = DisplayArea.GetFromWindowId(AppWindow.Id, DisplayAreaFallback.Nearest).WorkArea;
                 _roomForDialog = (Math.Min(640, area.Width / scale - 24), Math.Min(720, area.Height / scale - 24));
@@ -83,7 +82,6 @@ public sealed partial class MainWindow
             if (grow)
             {
                 // Este informe no encadena preguntas de copia: restaurar al cerrar, sin la espera de conflictos.
-                _shrinkTicket++;
                 _roomForDialog = null;
                 double scale = Scaled(1000) / 1000.0;
                 AnimateResizeTo(before.Width / scale, before.Height / scale);

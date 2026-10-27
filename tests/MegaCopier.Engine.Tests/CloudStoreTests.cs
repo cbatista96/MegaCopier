@@ -25,11 +25,12 @@ public sealed class CloudStoreTests : IDisposable
         _temp.Dispose();
     }
 
-    public static TheoryData<string> Clouds => ["onedrive", "google", "dropbox"];
+    public static TheoryData<string> Clouds => ["onedrive", "sharepoint", "google", "dropbox"];
 
     private static FakeCloud Create(string name) => name switch
     {
         "onedrive" => new FakeOneDrive(),
+        "sharepoint" => new FakeOneDrive(sharePoint: true),
         "google" => new FakeGoogleDrive(),
         _ => new FakeDropbox(),
     };

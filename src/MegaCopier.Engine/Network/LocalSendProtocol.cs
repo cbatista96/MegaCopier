@@ -111,6 +111,19 @@ public sealed class LocalSendPrepareResponse
 /// <summary>Lo que se pregunta al usuario antes de aceptar un envío.</summary>
 public sealed record LocalSendOffer(string Sender, string? DeviceModel, int Files, long Bytes);
 
+/// <summary>Qué se hace al recibir un archivo con el nombre de uno que ya está en la carpeta.</summary>
+public enum LocalSendConflict
+{
+    /// <summary>Conservar los dos: el nuevo se guarda como «foto (2).jpg».</summary>
+    Rename,
+
+    /// <summary>No pedir ese archivo al móvil.</summary>
+    Skip,
+
+    /// <summary>Sustituir el que había.</summary>
+    Overwrite,
+}
+
 [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase, DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull)]
 [JsonSerializable(typeof(LocalSendInfo))]
 [JsonSerializable(typeof(LocalSendPrepareRequest))]

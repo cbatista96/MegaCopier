@@ -317,8 +317,6 @@ Tool_LoadList.Text	Carica un elenco di copia…
 Tool_LoadListText.Text	Carica elenco
 Tool_NewCopy.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Nuova copia
 Tool_NewCopyText.Text	Nuova
-Tool_PauseAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Metti tutte in pausa
-Tool_ResumeAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Riprendi tutte
 Tool_Settings.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Impostazioni
 Tool_Sidebar.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Mostra o nascondi l'elenco delle copie
 Drop_Caption	Copia con MegaCopier
@@ -1598,3 +1596,112 @@ Settings_FastPaths.PlaceholderText	C:, D:\Dati
 Rules_Synchronization.Text	Sincronizzazione
 Rules_SecurityTitle.Text	Sicurezza
 Job_StateNeedsAdministrator	Sono necessari i permessi di amministratore
+
+Settings_TaskbarTitle.Text	Mostra nella barra delle applicazioni
+Settings_TaskbarDescription.Text	Se disattivato, ridurre a icona nasconde sempre la finestra nell’area di notifica, accanto all’orologio.
+Toolbar_PauseAll	Metti tutte in pausa
+Toolbar_ResumeAll	Riprendi tutte
+Toolbar_Sidebar	Mostra o nascondi l'elenco delle copie
+Toolbar_New	Nuova copia
+Toolbar_ClearDone	Rimuovi le copie terminate
+Toolbar_Timeline	Sequenza temporale della coda
+Toolbar_History	Cronologia
+Toolbar_Settings	Impostazioni
+Toolbar_About	Informazioni
+Toolbar_AlwaysOnTop	Sempre in primo piano
+Toolbar_Shelf	Ripiano di trascinamento
+Toolbar_Compare	Confronta e sincronizza
+Toolbar_PlayPause	Sospendi o riprendi tutto
+Toolbar_Separator	Separatore
+Toolbar_More	Altre azioni
+Destinations_Favorite	Aggiungi ai preferiti
+Destinations_Unfavorite	Rimuovi dai preferiti
+Settings_ToolbarTitle.Text	Barra degli strumenti
+Settings_ToolbarDescription.Text	Scegli quali scorciatoie mostrare e in che ordine. Nella finestra piccola ne stanno tante quante quelle predefinite; le altre passano al menu «…» alla fine.
+Settings_ToolbarReset.Text	Ripristina
+Settings_ToolbarFinish.Content	Mostra «Al termine» a destra
+Settings_ToolbarUp	Sposta su «{0}»
+Settings_ToolbarDown	Sposta giù «{0}»
+Rules_SkipCloud.Content	Ignora i file solo nel cloud (non li scarica)
+Destinations_PathBox.PlaceholderText	Digita o incolla un percorso, come D:\Copie
+Destinations_PathInvalid	Percorso non valido: digita una cartella completa su un'unità o una condivisione di rete esistente (ad esempio D:\Copie).
+Tool_CompareSum.Text	Confronta con un checksum…
+SumCheck_Title	Confronta con un checksum
+SumCheck_File	File: {0}
+SumCheck_Header	Checksum pubblicato (MD5, SHA-1, SHA-256, SHA-512, SHA3, BLAKE3, xxHash o CRC32)
+SumCheck_Placeholder	Incolla qui il checksum della pagina di download
+SumCheck_Check	Verifica
+SumCheck_Close	Chiudi
+SumCheck_NotASum	Non sembra un checksum: deve essere un numero esadecimale di 8, 16, 32, 40, 64 o 128 cifre.
+SumCheck_Reading	Lettura del file…
+SumCheck_Match	✓ Corrisponde ({0}): il file è integro.
+SumCheck_NoMatch	✗ Non corrisponde. Con {0} il file dà {1}: è danneggiato, incompleto o diverso.
+Status_SourceDrive.Text	Origine
+Status_TargetDrive.Text	Destinazione
+Status_DriveFree	{0} liberi su {1}
+LocalSend_Conflict.Header	Se il file è già nella cartella
+LocalSend_ConflictRename.Content	Conserva entrambi («foto (2).jpg»)
+LocalSend_ConflictSkip.Content	Non riceverlo
+LocalSend_ConflictOverwrite.Content	Sostituisci quello esistente
+LocalSend_Include.Header	Ricevi solo questi tipi (vuoto = tutti)
+LocalSend_Include.PlaceholderText	*.jpg; *.heic; *.mp4
+LocalSend_Exclude.Header	Non ricevere mai
+LocalSend_Exclude.PlaceholderText	*.apk; *.exe
+Task_OnDevice.Content	Quando si collega l'unità
+Task_SavedOnDevice	Attività «{0}» salvata: partirà da sola ogni volta che colleghi l'unità (con MegaCopier aperto o nell'area di notifica).
+Task_NoDevice	Questa copia non ha un'unità con lettera da attendere (ad esempio va in una cartella di rete).
+Settings_TaskOnDevice	Parte da sola quando si collega {0}
+Connection_AzureAccount	Account di archiviazione (https://account.blob.core.windows.net)
+Connection_GcsEndpoint	Endpoint (vuoto = storage.googleapis.com)
+Connection_Sas	Token SAS del contenitore (sv=…&sig=…)
+Connection_Container	Contenitore (e cartella): contenitore/cartella
+Connection_Site	Sito SharePoint
+Connection_SitePlaceholder	https://azienda.sharepoint.com/sites/Team
+Rules_MoreTitle.Text	Altre opzioni
+Rules_RenameMask.Header	Rinomina durante la copia (maschera: *.bak, copia di *.*)
+Rules_Flatten.Content	Appiattisci: tutto nella cartella di destinazione, senza sottocartelle
+Rules_KeepPaths.Content	File da più cartelle: ricrea le loro cartelle da quella comune
+Rules_OnlyArchive.Content	Solo quelli segnati come modificati (attributo «Archivio»)
+Rules_ResetArchive.Content	Togli quel segno all'origine dopo averla copiata (copie incrementali)
+Rules_CompensateDst.Content	Considera uguali quelli che differiscono di un'ora esatta (ora legale)
+Rules_KeepCompression.Content	Mantieni la compressione NTFS
+Rules_SkipCompressed.Content	Ignora i file compressi o crittografati da Windows
+Rules_SkipTemporary.Content	Ignora i file segnati come temporanei
+Rules_Depth.Header	Livelli di sottocartelle (vuoto = tutti; 0 = solo la cartella)
+Rules_AccessedAfter.Header	Usati da
+Rules_AccessedBefore.Header	Usati fino al
+Rules_FolderTimes.Header	Date delle cartelle
+Rules_FolderAttributes.Header	Attributi delle cartelle
+Rules_FolderLikeFiles.Content	Come i file
+Rules_FolderYes.Content	Copiarle
+Rules_FolderNo.Content	Non copiarle
+Rules_FolderLikeFiles2.Content	Come i file
+Rules_FolderYes2.Content	Copiarli
+Rules_FolderNo2.Content	Non copiarli
+Rules_BeforeCommand.Header	Esegui prima di iniziare (se fallisce, non si copia)
+Settings_EjectSource.Content	Espelli anche l'origine (la scheda della fotocamera) se è andato tutto bene
+Scripts_AddExample.Text	Aggiungi un esempio
+Scripts_ExampleNtfy.Text	Avvisa il telefono con ntfy
+Scripts_ExampleIfttt.Text	Avvia un applet IFTTT
+Scripts_ExampleOpen.Text	Apri la destinazione se è andato tutto bene
+Scripts_ExampleLog.Text	Annota ogni copia in un file di testo
+Scripts_NtfyTopic	mio-argomento-segreto
+Scripts_IftttKey	TUA-CHIAVE
+Scripts_LogName	MegaCopier-copie
+Settings_TransferLogTitle.Text	Registro unico di tutte le copie
+Settings_TransferLogDescription.Text	Una riga per file copiato o non riuscito, in un unico file e nel formato scelto. Si può anche inviare a un server Syslog.
+Settings_TransferLogPath.Header	File del registro
+Settings_TransferLogBrowse.Text	Scegli…
+Settings_TransferLogType	Registro
+Settings_TransferLogFormat.Header	Formato di ogni file copiato
+Settings_ErrorLogFormat.Header	Formato di ogni errore
+Settings_TransferLogVariables.Text	Variabili: %time%, %source%, %destination%, %size%, %mtime%, %hash%, %path%, %error%, %computer%, %user%
+Settings_Syslog.Header	Invia anche a un server Syslog (server o server:porta; vuoto = no)
+Task_AddPair.Text	Aggiungi un'altra coppia di cartelle all'attività…
+Task_ClearPairs.Text	Rimuovi le coppie
+Task_PairSource	Cartella da copiare
+Task_PairDestination	Dove copiarla
+Task_NoSession.Content	Eseguila anche se nessuno ha effettuato l'accesso (senza finestra)
+Task_NoCli	Per eseguirla senza sessione serve mcopy.exe accanto a MegaCopier (lo include il programma di installazione).
+Settings_ToolbarCustomize.Text	Personalizza
+Status_Folders.Text	Cartelle

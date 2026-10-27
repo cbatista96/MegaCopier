@@ -79,7 +79,7 @@ E_DeleteStart	Apagar {0} arquivos ({1}).
 E_WipeStart	Apagar com segurança {0} arquivos ({1}).
 E_DoneDelete	Concluído em {0}: {1} apagados, {2} com erros.
 E_NoSources	Nenhuma origem foi indicada.
-E_WholeDrive	Copiar uma unidade inteira ainda não é suportado: {0}
+E_WholeDrive	Uma unidade inteira só pode ser copiada, não movida nem excluída: {0}
 E_SourceMissing	A origem não existe: {0}
 E_IntoItself	Não é possível copiar uma pasta para dentro dela mesma: {0}
 E_SourceUnreadable	Não foi possível ler a origem: {0}
@@ -125,7 +125,6 @@ E_DamagedTwice	Chegou danificado duas vezes ao outro computador
 E_Fat32	Não cabe em FAT32 (máximo de 4 GB por arquivo); formate o disco como exFAT ou NTFS.
 E_FatLimits	O destino é {0}: não guarda fluxos alternativos nem permissões, e as datas têm precisão de 2 s.
 E_CaseCollisions	{0} nomes se repetem no destino (só diferem em maiúsculas e minúsculas): serão tratados como conflitos.
-E_BadName	Nome problemático no Windows (reservado ou terminado em ponto ou espaço): alguns programas não conseguirão abri-lo.
 E_LongPaths	{0} arquivos terão caminhos com mais de 260 caracteres: o Explorador e outros programas podem não abri-los.
 E_WrongCode	O código não é o que o outro computador mostra.
 E_PeerUnknownCode	O outro computador não conhece o código: a conexão não é segura.
@@ -269,3 +268,15 @@ E_FolderSkipExisting	A pasta já existia: os {0} arquivos que já estão lá sã
 E_FolderOverwrite	A pasta já existia: os {0} arquivos que já estão lá são substituídos.
 E_FolderRenamed	A pasta "{0}" já existia: é copiada como "{1}".
 E_SpaceForced	Copiando mesmo assim: quando o disco encher, a cópia vai esperar por espaço.
+E_DriveFolder	Unidade {0}
+E_NameFixed	O destino não aceita o nome “{0}”: copiado como “{1}”
+E_CloudOnly	{0} arquivos estão só na nuvem: serão baixados para copiá-los (nas Regras é possível ignorá-los).
+E_F_NoCloud	sem os que estão só na nuvem
+C_UsageFilters	Filtros (copy, move, test, hash):\n  --include <máscaras>   Só estes ("*.jpg;*.png"; pode repetir)\n  --exclude <máscaras>   Nunca estes ("*.tmp;node_modules")\n  --min-size <n>         Tamanho mínimo (500, 200k, 10m, 2g)\n  --max-size <n>         Tamanho máximo\n  --after <aaaa-mm-dd>   Modificados desde esse dia\n  --before <aaaa-mm-dd>  Modificados até esse dia\n  --skip-hidden · --skip-system · --skip-cloud (só na nuvem)\n  --filter "<texto>"     Em linguagem comum: "photos over 2 MB"\n  @lista.txt             Origens de um arquivo (um caminho por linha)
+C_BadSize	{0} precisa de um tamanho, como 500, 200k, 10m ou 2g.
+C_BadDate	{0} precisa de uma data aaaa-mm-dd (por exemplo, 2026-01-31).
+E_BeforeRunning	Antes de começar: {0}
+E_BeforeFailed	O comando de antes de começar falhou ({1}), então a cópia não começa: {0}
+C_UsageExtras	Mais opções:\n  --max-depth <n>        Níveis de subpastas (0 = só a pasta)\n  --archive              Só o que está marcado como modificado, e remove a marca\n  --dst                  Uma hora exata de diferença conta como igual (horário de verão)\n  --keep-compression     Mantém a compactação NTFS\n  --flatten              Tudo na pasta de destino, sem subpastas\n  --keep-paths           Recria as pastas a partir da pasta comum das origens\n  --rename <máscara>     Renomeia ao copiar: "*.bak", "cópia de *.*"\n  --run-before "<comando>"   Executa antes de começar; se falhar, nada é copiado\n  Um arquivo .mcignore numa pasta diz o que nunca é copiado dela.
+C_RunUsage	Uso: mcopy run <lista.mclist>  (executa uma cópia ou tarefa salva, sem janela)
+C_BadList	Não foi possível ler a lista: {0}

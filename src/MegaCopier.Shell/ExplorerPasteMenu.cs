@@ -7,16 +7,16 @@ namespace MegaCopier.Shell;
 /// <summary>
 /// Intercepta Pegar en el menú contextual de una vista del Explorador. El gancho solo retiene el botón al soltar
 /// sobre un emergente del mismo Explorador; UI Automation y COM se consultan en un STA aparte con plazo de devolución.
-/// No modifica menús, no inyecta DLL y no decide por el texto traducido de la orden.
+/// No modifica menús ni inyecta DLL. Conserva la vista y el punto donde se abrió el menú, también con el teclado.
 /// </summary>
 internal sealed unsafe partial class ExplorerPasteMenu : IDisposable
 {
-    private const nuint Marker = 0x4D435059;
+    private const nuint Marker = 0x4D435050; // distinto de la restauración de Ctrl del gancho de arrastre
     private static ExplorerPasteMenu? _active;
     private readonly HookThread _hooks;
     private readonly Action<PasteRequest> _handler;
     private readonly Action<string> _trace;
-    private Context? _context;
+    private volatile Context? _context;
     private nint _pressedPopup;
     private int _working;
     private readonly ExplorerPasteToolbar _toolbar;
@@ -50,6 +50,44 @@ internal sealed unsafe partial class ExplorerPasteMenu : IDisposable
         _toolbar.Dispose();
     }
 
+    internal void BeginKeyboardContext()
+    {
+        nint root = Native.GetForegroundWindow();
+        nint focus = Native.DesktopFileFocus(root, Native.FocusedWindow(root));
+        _context = CreateContext(focus, null, null);
+        _pressedPopup = 0;
+    }
+
+    internal bool TryHandleKey(ushort key, bool pasteShortcut)
+    {
+        var context = _context;
+        if (context is null || !ClipboardFiles.HasFiles() || Stopwatch.GetElapsedTime(context.Started) > TimeSpan.FromSeconds(60)) return false;
+        if (!OwnsKeyboardForeground(context.Root)) return false;
+        nint foreground = Native.GetForegroundWindow();
+        nint focus = Native.FocusedWindow(foreground);
+        uint thread = Native.GetWindowThreadProcessId(foreground, out _);
+        if (Native.MenuOwner(thread) == 0 && Native.ClassName(focus) is not
+                ("InputSiteWindowClass" or "Microsoft.UI.Content.PopupWindowSiteBridge" or "Microsoft.UI.Content.DesktopChildSiteBridge")
+            && !IsDesktopMenuHost(Native.ClassName(context.Root), Native.ClassName(foreground))) return false;
+        if (Interlocked.CompareExchange(ref _working, 1, 0) != 0) return true;
+        var held = new HeldInput(key, ctrl: pasteShortcut && key == 0x56, shift: pasteShortcut && key == 0x2D);
+        Start(context, 0, null, null, held, pasteShortcut);
+        return true;
+    }
+
+    private static Context? CreateContext(nint window, int? x, int? y)
+    {
+        nint view = Native.FindAncestorOfClass(window, "SHELLDLL_DefView");
+        bool tree = view == 0 && Native.ClassName(window) == "SysTreeView32"
+            && Native.FindAncestorOfClass(window, "NamespaceTreeControl") != 0;
+        if (tree) view = window;
+        if (view == 0 && x is null && Native.ClassName(window) == "CabinetWClass") view = window;
+        if (view == 0 || !ExplorerLocator.IsExplorerOrDesktop(view)) return null;
+        nint root = Native.GetAncestor(view, 2);
+        if (!Native.GetWindowRect(root, out var bounds)) return null;
+        return new Context(view, root, Stopwatch.GetTimestamp(), x, y, tree, bounds);
+    }
+
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
     private static nint HookProc(int code, nint wParam, nint lParam)
     {
@@ -60,7 +98,7 @@ internal sealed unsafe partial class ExplorerPasteMenu : IDisposable
             try
             {
                 var mouse = (MouseHook*)lParam;
-                if (mouse->Extra != Marker && self.OnMouse((uint)wParam, mouse->X, mouse->Y))
+                if (mouse->Extra != Marker && mouse->Extra != 0x4D435059 && self.OnMouse((uint)wParam, mouse->X, mouse->Y))
                 {
                     return 1;
                 }
@@ -91,9 +129,7 @@ internal sealed unsafe partial class ExplorerPasteMenu : IDisposable
         if (message == 0x0204 /* WM_RBUTTONDOWN */)
         {
             _pressedPopup = 0;
-            nint view = Native.FindAncestorOfClass(window, "SHELLDLL_DefView");
-            _context = view != 0 && ExplorerLocator.IsExplorerOrDesktop(view)
-                ? new Context(view, Native.GetAncestor(view, 2), Stopwatch.GetTimestamp()) : null;
+            _context = CreateContext(window, x, y);
             return false;
         }
 
@@ -132,8 +168,13 @@ internal sealed unsafe partial class ExplorerPasteMenu : IDisposable
         }
 
         Interlocked.Exchange(ref _working, 1);
-        var click = new HeldClick();
-        var thread = new Thread(() => HandleClick(context, popup, x, y, click))
+        Start(context, popup, x, y, new HeldInput(), pasteShortcut: false);
+        return true;
+    }
+
+    private void Start(Context context, nint popup, int? x, int? y, HeldInput click, bool pasteShortcut)
+    {
+        var thread = new Thread(() => HandleClick(context, popup, x, y, click, pasteShortcut))
         { IsBackground = true, Name = "MegaCopier.PasteMenu" };
         thread.SetApartmentState(ApartmentState.STA);
         click.Start();
@@ -148,34 +189,34 @@ internal sealed unsafe partial class ExplorerPasteMenu : IDisposable
             throw;
         }
 
-        return true;
     }
 
-    private void HandleClick(Context context, nint popup, int x, int y, HeldClick click)
+    private void HandleClick(Context context, nint popup, int? x, int? y, HeldInput click, bool pasteShortcut)
     {
         try
         {
-            if (!_hooks.IsInstalled || !UiaHitTest.IsPasteMenuAt(x, y, context.Root))
+            bool keyboard = x is null && y is null;
+            if (!_hooks.IsInstalled || (keyboard && !UiaHitTest.IsContextMenuFocused())
+                || (!pasteShortcut && !(x is { } px && y is { } py
+                    ? UiaHitTest.IsPasteMenuAt(px, py, context.Root) : UiaHitTest.IsPasteMenuFocused(context.Root))))
             {
                 return;
             }
 
-            var clipboard = ClipboardFiles.TryRead();
-            var snapshot = ExplorerLocator.Snapshot(context.View, selection: true, items: false);
-            string? destination = Destination(snapshot);
-            if (clipboard is null || destination is null || !Directory.Exists(destination)
-                || clipboard.Paths.Any(p => !File.Exists(p) && !Directory.Exists(p))
-                || clipboard.Paths.Any(p => string.Equals(Path.GetDirectoryName(Path.TrimEndingDirectorySeparator(p)),
-                    Path.TrimEndingDirectorySeparator(destination), StringComparison.OrdinalIgnoreCase)))
+            string? destination = Destination(context);
+            string? reason = PasteDecision.Decide(ClipboardFiles.TryRead(), destination, out var request);
+            if (reason is not null)
             {
-                return; // el menú original resuelve ubicaciones virtuales, accesos directos y copias sobre sí mismas
+                _trace($"Pegar del menú devuelto al Explorador: {reason}");
+                return;
             }
 
             // Si cambió la aplicación activa o venció el plazo, no se cierra ningún menú ni se copia tarde.
-            nint foreground = Native.GetForegroundWindow();
-            if (!_hooks.IsInstalled || (foreground != context.Root && Native.GetAncestor(foreground, 3) != context.Root)
-                || !IsWindowVisible(popup) || !click.Claim())
+            if (!_hooks.IsInstalled || !ReferenceEquals(_context, context)
+                || !(keyboard ? OwnsKeyboardForeground(context.Root) : OwnsForeground(context.Root, popup))
+                || (!keyboard && !IsWindowVisible(popup)) || !click.Claim())
             {
+                _trace("Pegar del menú devuelto al Explorador: cambió el menú, el foco o venció el plazo");
                 return;
             }
 
@@ -185,8 +226,10 @@ internal sealed unsafe partial class ExplorerPasteMenu : IDisposable
                 return;
             }
 
-            click.Release();
-            _handler(new PasteRequest(clipboard.Paths, destination, clipboard.Operation));
+            click.Accept();
+            _context = null;
+            if (request is not null) _handler(request);
+            else _trace("Pegar del menú atendido: los archivos cortados ya están en su destino");
         }
         catch (Exception ex)
         {
@@ -200,12 +243,61 @@ internal sealed unsafe partial class ExplorerPasteMenu : IDisposable
         }
     }
 
-    private static string? Destination(ViewSnapshot? snapshot) => snapshot?.Selection switch
+    private static string? Destination(Context context)
     {
-        { Count: 0 } => snapshot.Folder,
-        { Count: 1 } selected when Directory.Exists(selected[0]) => selected[0],
-        _ => null,
-    };
+        if (!Native.GetWindowRect(context.Root, out var bounds) || !bounds.SameAs(context.Bounds)) return null;
+        if (context.Tree)
+        {
+            var names = context.X is { } tx && context.Y is { } ty
+                ? UiaHitTest.TreePathInWindow(context.View, tx, ty) : UiaHitTest.SelectedTreePath(context.View);
+            return names is null ? null : ShellNamespace.Resolve(names);
+        }
+        if (context.X is { } x && context.Y is { } y)
+        {
+            DropSpot spot = UiaHitTest.InFileView(context.View, x, y, out var name);
+            return PasteDecision.ContextDestination(ExplorerLocator.Snapshot(context.View, selection: false, items: spot == DropSpot.Item), spot, name);
+        }
+        nint fileView = Native.ClassName(context.View) == "CabinetWClass" ? UiaHitTest.ActiveFileView(context.View) : context.View;
+        var snapshot = fileView == 0 ? null : ExplorerLocator.Snapshot(fileView, selection: true, items: false);
+        return snapshot?.Selection switch
+        {
+            { Count: 0 } => snapshot.Folder,
+            { Count: 1 } selected when Directory.Exists(selected[0]) => selected[0],
+            _ => null,
+        };
+    }
+
+    /// <summary>El Escritorio moderno usa un host XAML independiente de Progman/WorkerW, dentro del mismo Explorador.</summary>
+    internal static bool IsDesktopMenuHost(string sourceClass, string hostClass) =>
+        sourceClass is "Progman" or "WorkerW" && hostClass.StartsWith("XamlExplorerHostIslandWindow", StringComparison.Ordinal);
+
+    internal static bool OwnsForeground(nint source, nint popup)
+    {
+        nint foreground = Native.GetForegroundWindow();
+        Native.GetWindowThreadProcessId(source, out uint sourcePid);
+        Native.GetWindowThreadProcessId(foreground, out uint foregroundPid);
+        Native.GetWindowThreadProcessId(popup, out uint popupPid);
+        if (sourcePid == 0 || foregroundPid != sourcePid || popupPid != sourcePid) return false;
+        nint host = Native.GetAncestor(popup, 3);
+        if (Native.ClassName(popup) == "#32768")
+        {
+            nint owner = Native.MenuOwner(Native.GetWindowThreadProcessId(popup, out _));
+            if (owner != 0) host = Native.GetAncestor(owner, 2);
+        }
+        if (host == source) return foreground == source || Native.GetAncestor(foreground, 3) == source;
+        return IsDesktopMenuHost(Native.ClassName(source), Native.ClassName(host))
+            && (foreground == host || Native.GetAncestor(foreground, 3) == host);
+    }
+
+    private static bool OwnsKeyboardForeground(nint source)
+    {
+        nint foreground = Native.GetForegroundWindow();
+        Native.GetWindowThreadProcessId(source, out uint sourcePid);
+        Native.GetWindowThreadProcessId(foreground, out uint foregroundPid);
+        return sourcePid != 0 && sourcePid == foregroundPid
+            && (foreground == source || Native.GetAncestor(foreground, 3) == source
+                || IsDesktopMenuHost(Native.ClassName(source), Native.ClassName(foreground)));
+    }
 
     private static nint PopupWindow(nint window)
     {
@@ -223,6 +315,30 @@ internal sealed unsafe partial class ExplorerPasteMenu : IDisposable
 
     private static bool CloseMenu(nint popup, nint owner)
     {
+        if (popup == 0)
+        {
+            // Con teclado, Windows 11 puede dibujar el menú dentro de la pestaña. No hay un HWND que ocultar.
+            // Se comprueba el foco UIA, sin confundir con los puentes vacíos que Windows mantiene visibles.
+            uint thread = Native.GetWindowThreadProcessId(Native.GetForegroundWindow(), out _);
+            nint menuOwner = Native.MenuOwner(thread);
+            if (menuOwner != 0)
+            {
+                nuint result = 0;
+                SendMessageTimeoutW(menuOwner, 0x001F, 0, 0, 0x0003, 250, &result);
+            }
+            else
+            {
+                for (int i = 0; i < 50 && (Native.GetAsyncKeyState(0x11) & 0x8000) != 0; i++) Thread.Sleep(10);
+                if ((Native.GetAsyncKeyState(0x11) & 0x8000) != 0 || !Key(up: false)) return false;
+                Key(up: true);
+            }
+            for (int i = 0; i < 30; i++)
+            {
+                if (!UiaHitTest.IsContextMenuFocused()) return true;
+                Thread.Sleep(10);
+            }
+            return false;
+        }
         // El menú clásico mantiene la captura mientras el botón está retenido y no siempre atiende Esc.
         // WM_CANCELMODE pide al propietario terminar su menú (comportamiento documentado de DefWindowProc).
         if (Native.ClassName(popup) == "#32768")
@@ -247,7 +363,9 @@ internal sealed unsafe partial class ExplorerPasteMenu : IDisposable
             return false;
         }
 
-        if ((Native.GetAsyncKeyState(0x1B) & 0x8000) != 0 || !Key(up: false))
+        // Con Ctrl+V en un menú moderno se espera a soltar Ctrl: enviar Ctrl+Esc abriría Inicio.
+        for (int i = 0; i < 50 && (Native.GetAsyncKeyState(0x11) & 0x8000) != 0; i++) Thread.Sleep(10);
+        if ((Native.GetAsyncKeyState(0x11) & 0x8000) != 0 || (Native.GetAsyncKeyState(0x1B) & 0x8000) != 0 || !Key(up: false))
         {
             return false;
         }
@@ -272,9 +390,11 @@ internal sealed unsafe partial class ExplorerPasteMenu : IDisposable
         }
     }
 
-    private sealed class HeldClick : IDisposable
+    private sealed class HeldInput(ushort key = 0, bool ctrl = false, bool shift = false) : IDisposable
     {
         private int _claimed, _released;
+        private bool _accepted;
+        private readonly nint _foreground = key == 0 ? 0 : Native.GetForegroundWindow();
         private Timer? _timer;
 
         public void Start() => _timer = new Timer(_ =>
@@ -292,12 +412,34 @@ internal sealed unsafe partial class ExplorerPasteMenu : IDisposable
             return won;
         }
 
-        public void Release()
+        public void Accept()
+        {
+            _accepted = true;
+            Release();
+        }
+
+        private void Release()
         {
             if (Interlocked.Exchange(ref _released, 1) == 0)
             {
-                var input = new Input { Type = 0, Mouse = new MouseInput { Flags = 0x0004, Extra = Marker } };
-                SendInput(1, &input, sizeof(Input));
+                if (key == 0)
+                {
+                    var input = new Input { Type = 0, Mouse = new MouseInput { Flags = 0x0004, Extra = Marker } };
+                    SendInput(1, &input, sizeof(Input));
+                }
+                else if (!_accepted && Native.GetForegroundWindow() == _foreground)
+                {
+                    bool addCtrl = ctrl && (Native.GetAsyncKeyState(0x11) & 0x8000) == 0;
+                    bool addShift = shift && (Native.GetAsyncKeyState(0x10) & 0x8000) == 0;
+                    if (addCtrl) Key(up: false, 0x11);
+                    if (addShift) Key(up: false, 0x10);
+                    try { Key(up: false, key); Key(up: true, key); }
+                    finally
+                    {
+                        if (addShift) Key(up: true, 0x10);
+                        if (addCtrl) Key(up: true, 0x11);
+                    }
+                }
             }
         }
 
@@ -309,13 +451,13 @@ internal sealed unsafe partial class ExplorerPasteMenu : IDisposable
         }
     }
 
-    private static bool Key(bool up)
+    private static bool Key(bool up, ushort key = 0x1B)
     {
-        var input = new Input { Type = 1, Key = new KeyboardInput { VirtualKey = 0x1B, Flags = up ? 2u : 0u, Extra = Marker } };
+        var input = new Input { Type = 1, Key = new KeyboardInput { VirtualKey = key, Flags = up ? 2u : 0u, Extra = Marker } };
         return SendInput(1, &input, sizeof(Input)) == 1;
     }
 
-    private sealed record Context(nint View, nint Root, long Started);
+    private sealed record Context(nint View, nint Root, long Started, int? X, int? Y, bool Tree, Native.WindowRect Bounds);
 
     [StructLayout(LayoutKind.Sequential)]
     private struct MouseHook

@@ -108,7 +108,7 @@ internal sealed class LiveSyncService(App app) : IDisposable
 
     /// <summary>Dónde queda la copia de esta carpeta.</summary>
     public static string Target(LiveSyncPair pair) =>
-        Path.Combine(pair.Destination, Path.GetFileName(Path.TrimEndingDirectorySeparator(pair.Source)));
+        Path.Combine(pair.Destination, Engine.SourceNames.TargetName(pair.Source));
 
     private void OnSynced(LiveSyncPair pair, LiveSyncResult result)
     {

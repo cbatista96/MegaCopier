@@ -29,11 +29,12 @@ internal sealed partial class TrayProgressIcons(TrayIcon tray)
 
     /// <summary>El número del icono de progreso de una copia (null si no tiene).</summary>
     public uint? IdFor(CopyJob job) => _ids.TryGetValue(job, out uint id) ? id : null;
+    internal int Count => _ids.Count;
 
     /// <param name="jobs">Todas las copias de la cola.</param>
     /// <param name="enabled">Si está activado y el icono de la bandeja se muestra.</param>
     /// <param name="describe">Texto del icono (al pasar el ratón) de cada copia.</param>
-    public void Update(IReadOnlyList<CopyJob> jobs, bool enabled, Func<CopyJob, string> describe)
+    public void Update(IReadOnlyList<CopyJob> jobs, bool enabled, Func<CopyJob, string> describe, Func<CopyJob, bool> needsIcon)
     {
         long now = Stopwatch.GetTimestamp();
         foreach (var job in _ids.Keys.ToList())
@@ -41,7 +42,7 @@ internal sealed partial class TrayProgressIcons(TrayIcon tray)
             bool running = job.State is CopyJobState.Running or CopyJobState.Paused;
             bool justDone = job.State is CopyJobState.Completed or CopyJobState.CompletedWithErrors
                 && (!_doneAt.TryGetValue(job, out long at) || Stopwatch.GetElapsedTime(at) < DoneVisible);
-            if (!enabled || (!running && !justDone) || !jobs.Contains(job) && !justDone)
+            if (!enabled || !needsIcon(job) || (!running && !justDone) || !jobs.Contains(job) && !justDone)
             {
                 Remove(job);
             }
@@ -56,7 +57,7 @@ internal sealed partial class TrayProgressIcons(TrayIcon tray)
             return;
         }
 
-        foreach (var job in jobs.Where(j => j.State is CopyJobState.Running or CopyJobState.Paused))
+        foreach (var job in jobs.Where(j => j.State is CopyJobState.Running or CopyJobState.Paused && needsIcon(j)))
         {
             if (!_ids.ContainsKey(job) && FreeId() is { } id)
             {

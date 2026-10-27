@@ -75,7 +75,11 @@ internal sealed unsafe partial class TrayIcon : IDisposable
             _classRegistered = true;
         }
 
-        _hwnd = CreateWindowExW(0, ClassName, "", 0, 0, 0, 0, 0, -3 /* HWND_MESSAGE */, 0, instance, 0);
+        // TaskbarCreated se difunde solo a ventanas de nivel superior. Una
+        // HWND_MESSAGE perdía todos los iconos al reiniciarse el Explorador.
+        // Esta ventana nunca se muestra y no añade un botón a la barra de tareas.
+        _hwnd = CreateWindowExW(0x80 /* WS_EX_TOOLWINDOW */, ClassName, "", 0x80000000 /* WS_POPUP */,
+            0, 0, 0, 0, 0, 0, instance, 0);
         _self = GCHandle.Alloc(this);
         SetWindowLongPtrW(_hwnd, -21 /* GWLP_USERDATA */, GCHandle.ToIntPtr(_self));
 
@@ -331,7 +335,7 @@ internal sealed unsafe partial class TrayIcon : IDisposable
             Shell_NotifyIconW(NimAdd, &data);
             data.uVersion = NotifyIconVersion4;
             Shell_NotifyIconW(NimSetVersion, &data);
-            TrayPromotion.Promote(id, always: true, () => PostMessageW(_hwnd, WmReAdd, (nint)id, 0)); // el progreso de cada copia, siempre a la vista
+            TrayPromotion.Promote(id, always: true); // actualizar el icono vivo, sin destruir su observador en el Explorador
         }
     }
 
@@ -348,6 +352,41 @@ internal sealed unsafe partial class TrayIcon : IDisposable
     }
 
     public IReadOnlyCollection<uint> ExtraIds => _extras.Keys;
+
+    /// <summary>Solo diagnóstico: ubicación real que publica el Explorador para el icono.</summary>
+    internal string DebugLocation(uint id)
+    {
+        var identifier = new NotifyIconIdentifier { Size = (uint)sizeof(NotifyIconIdentifier), Window = _hwnd, Id = id };
+        int result = Shell_NotifyIconGetRect(&identifier, out var icon);
+        GetWindowRect(FindWindowW("Shell_TrayWnd", null), out var bar);
+        // Para un icono oculto Windows puede devolver el rectángulo de la flecha:
+        // estar dentro de la barra no demuestra que el icono sea visible.
+        bool inBar = result >= 0 && icon.Right > icon.Left && icon.Bottom > icon.Top
+            && icon.Left >= bar.Left && icon.Right <= bar.Right && icon.Top >= bar.Top && icon.Bottom <= bar.Bottom;
+        return $"id={id};inBar={inBar};hr={result:X8};rect={icon.Left},{icon.Top},{icon.Right},{icon.Bottom};bar={bar.Left},{bar.Top},{bar.Right},{bar.Bottom}";
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    private struct NotifyIconIdentifier
+    {
+        public uint Size;
+        public nint Window;
+        public uint Id;
+        public Guid Guid;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    private struct IconRect { public int Left, Top, Right, Bottom; }
+
+    [LibraryImport("shell32.dll")]
+    private static partial int Shell_NotifyIconGetRect(NotifyIconIdentifier* identifier, out IconRect rect);
+
+    [LibraryImport("user32.dll", StringMarshalling = StringMarshalling.Utf16)]
+    private static partial nint FindWindowW(string className, string? title);
+
+    [LibraryImport("user32.dll")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static partial bool GetWindowRect(nint hwnd, out IconRect rect);
 
     private void ShowExtraMenu(uint id)
     {

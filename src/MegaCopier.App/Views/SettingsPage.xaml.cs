@@ -93,16 +93,33 @@ public sealed partial class SettingsPage : UserControl
         BuildUpdatesSection();
         BuildCrashSection();
         PolishCards();
-        SizeChanged += (_, e) =>
+        SizeChanged += (_, _) =>
         {
-            // Filas de ajuste "icono · texto · control": si no cabe, el control baja bajo el texto.
-            bool stacked = e.NewSize.Width < 720;
+            // Filas de ajuste "icono · texto · control": si no cabe, el control baja bajo el texto. Cada fila lo decide
+            // con su propio ancho, al cambiar este: con el de la página, un aviso de tamaño viejo (por ejemplo, de cuando
+            // la ventana era pequeña) dejaba los controles debajo con la ventana ya ancha.
             foreach (var row in Responsive.Descendants<Grid>(this).Where(g => g.ColumnDefinitions.Count >= 3 && (g.Parent is Border || g.Tag is "SettingRow")).ToList())
             {
-                Responsive.StackSettingRow(row, stacked);
+                if (_stackWatched.Add(row))
+                {
+                    row.SizeChanged += (_, e) => Responsive.StackSettingRow(row, e.NewSize.Width < StackBelowWidth);
+                }
+
+                if (row.ActualWidth > 0)
+                {
+                    Responsive.StackSettingRow(row, row.ActualWidth < StackBelowWidth);
+                }
             }
         };
     }
+
+    /// <summary>
+    /// Ancho de fila por debajo del cual el control baja bajo el texto: el que tenía la fila cuando la página medía 720
+    /// (la página menos la lista de secciones en iconos, los márgenes y el relleno de la tarjeta).
+    /// </summary>
+    private const double StackBelowWidth = 575;
+
+    private readonly HashSet<Grid> _stackWatched = [];
 
     public event Action? CloseRequested;
 
@@ -157,6 +174,11 @@ public sealed partial class SettingsPage : UserControl
         UnitsBox.SelectedIndex = (int)s.Units;
         SlowBox.SelectedItem = SlowBox.Items.OfType<ComboBoxItem>().FirstOrDefault(i => (string)i.Tag == s.SlowWhenActiveMBps.ToString()) ?? SlowBox.Items[0];
         LogsToggle.IsOn = s.SaveLogs;
+        TransferLogToggle.IsOn = s.TransferLogEnabled;
+        TransferLogPathBox.Text = s.TransferLogPath;
+        TransferLogFormatBox.Text = s.TransferLogFormat;
+        ErrorLogFormatBox.Text = s.ErrorLogFormat;
+        SyslogBox.Text = s.SyslogServer;
         WebhookBox.Text = s.WebhookUrl;
         EmailToggle.IsOn = s.EmailEnabled;
         EmailServerBox.Text = s.EmailServer;
@@ -171,6 +193,7 @@ public sealed partial class SettingsPage : UserControl
         ScriptsBox.Text = string.Join(Environment.NewLine, s.Scripts);
         Rules.Load(s.Rules);
         LoadFavorites();
+        LoadToolbarItems();
         LoadTasks();
         LoadGuard();
         LoadLiveSync();
@@ -187,6 +210,9 @@ public sealed partial class SettingsPage : UserControl
         GuardIntervalBox.SelectedItem = GuardIntervalBox.Items.OfType<ComboBoxItem>().FirstOrDefault(i => (string)i.Tag == s.GuardIntervalDays.ToString()) ?? GuardIntervalBox.Items[1];
 
         TrayToggle.IsOn = s.ShowTrayIcon;
+        TaskbarToggle.IsOn = s.ShowTaskbarButton;
+        MinimizeButtonBox.IsEnabled = s.ShowTaskbarButton;
+        TrayToggle.IsEnabled = s.ShowTaskbarButton;
         TrayProgressToggle.IsOn = s.TrayProgressIcons;
         StartMinimizedToggle.IsOn = s.StartMinimized;
         RememberPositionBox.IsChecked = s.RememberPosition;
@@ -205,6 +231,7 @@ public sealed partial class SettingsPage : UserControl
         KeepOnErrorBox.IsEnabled = s.DeleteIncomplete;
         EjectToggle.IsOn = s.EjectWhenDone;
         EjectForceBox.IsChecked = s.EjectForce;
+        EjectSourceBox.IsChecked = s.EjectSource;
         EjectForceBox.IsEnabled = s.EjectWhenDone;
         ErrorPolicyBox.SelectedIndex = (int)s.OnError;
         RetryCountBox.Value = s.RetryCount;
@@ -227,6 +254,39 @@ public sealed partial class SettingsPage : UserControl
     // Ajustes simples: cualquier cambio vuelca todos los controles en las preferencias y guarda.
 
     private void Changed(object sender, RoutedEventArgs e) => Store();
+
+    private async void TransferLogBrowse_Click(object sender, RoutedEventArgs e)
+    {
+        if (await Pickers.SaveAsync(Path.GetFileNameWithoutExtension(TransferLogPathBox.Text) is { Length: > 0 } name ? name : "MegaCopier", ".log", L.Get("Settings_TransferLogType")) is { } path)
+        {
+            TransferLogPathBox.Text = path;
+            Store();
+        }
+    }
+
+    /// <summary>
+    /// Ejemplos listos de «Al terminar, ejecutar» (como los scripts que trae TeraCopy): se añaden como una línea más, para
+    /// cambiar solo el tema o la clave. «ok:» = solo si fue bien. Las variables MEGACOPIER_* las pone MegaCopier.
+    /// </summary>
+    private void ScriptExample_Click(object sender, RoutedEventArgs e)
+    {
+        string line = (sender as FrameworkElement)?.Tag switch
+        {
+            "ntfy" => $"powershell -NoProfile -Command \"Invoke-RestMethod -Method Post -Uri https://ntfy.sh/{L.Get("Scripts_NtfyTopic")} -Body ('MegaCopier: ' + $env:MEGACOPIER_STATE + ' - ' + $env:MEGACOPIER_DESTINATION)\"",
+            "ifttt" => $"curl -s -X POST https://maker.ifttt.com/trigger/megacopier/with/key/{L.Get("Scripts_IftttKey")} -d \"value1=%MEGACOPIER_STATE%&value2=%MEGACOPIER_DESTINATION%&value3=%MEGACOPIER_FILES%\"",
+            "open" => "ok: explorer \"%MEGACOPIER_DESTINATION%\"",
+            "log" => $"echo %DATE% %TIME% %MEGACOPIER_STATE% %MEGACOPIER_FILES% %MEGACOPIER_DESTINATION%>> \"%USERPROFILE%\\{L.Get("Scripts_LogName")}.log\"",
+            _ => "",
+        };
+        if (line.Length == 0)
+        {
+            return;
+        }
+
+        string current = ScriptsBox.Text.TrimEnd();
+        ScriptsBox.Text = current.Length == 0 ? line : current + "\r" + line;
+        Store();
+    }
 
     private void Selection_Changed(object sender, SelectionChangedEventArgs e) => Store();
 
@@ -327,6 +387,11 @@ public sealed partial class SettingsPage : UserControl
         }
 
         s.SaveLogs = LogsToggle.IsOn;
+        s.TransferLogEnabled = TransferLogToggle.IsOn;
+        s.TransferLogPath = TransferLogPathBox.Text.Trim();
+        s.TransferLogFormat = TransferLogFormatBox.Text.Trim().Length > 0 ? TransferLogFormatBox.Text.Trim() : TransferLog.DefaultTransferFormat;
+        s.ErrorLogFormat = ErrorLogFormatBox.Text.Trim().Length > 0 ? ErrorLogFormatBox.Text.Trim() : TransferLog.DefaultErrorFormat;
+        s.SyslogServer = SyslogBox.Text.Trim();
         s.AutoTune = AutoTuneToggle.IsOn;
         s.WebhookUrl = WebhookBox.Text.Trim();
         s.EmailEnabled = EmailToggle.IsOn;
@@ -364,7 +429,16 @@ public sealed partial class SettingsPage : UserControl
             s.RetryDelaySeconds = Math.Clamp(RetryDelayBox.Value, 0, 3600);
         }
 
-        s.ShowTrayIcon = TrayToggle.IsOn;
+        s.ShowTaskbarButton = TaskbarToggle.IsOn;
+        MinimizeButtonBox.IsEnabled = s.ShowTaskbarButton;
+        s.ShowTrayIcon = TrayToggle.IsOn || !s.ShowTaskbarButton;
+        TrayToggle.IsEnabled = s.ShowTaskbarButton;
+        if (!s.ShowTaskbarButton && !TrayToggle.IsOn)
+        {
+            _loading = true;
+            try { TrayToggle.IsOn = true; }
+            finally { _loading = false; }
+        }
         s.TrayProgressIcons = TrayProgressToggle.IsOn;
         s.StartMinimized = StartMinimizedToggle.IsOn;
         s.RememberPosition = RememberPositionBox.IsChecked == true;
@@ -384,6 +458,7 @@ public sealed partial class SettingsPage : UserControl
         KeepOnErrorBox.IsEnabled = s.DeleteIncomplete;
         s.EjectWhenDone = EjectToggle.IsOn;
         s.EjectForce = EjectForceBox.IsChecked == true;
+        s.EjectSource = EjectSourceBox.IsChecked == true;
         EjectForceBox.IsEnabled = s.EjectWhenDone;
         s.SaveErrorReport = ErrorReportToggle.IsOn;
         ErrorReportPanel.Visibility = s.SaveErrorReport ? Visibility.Visible : Visibility.Collapsed;
@@ -619,7 +694,17 @@ public sealed partial class SettingsPage : UserControl
             row.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
             row.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
             row.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
-            row.Children.Add(new FontIcon { Glyph = "", FontSize = 14, VerticalAlignment = VerticalAlignment.Center, Foreground = ThemeManager.AccentBrush });
+            // Las que empiezan al conectar un disco llevan el icono del USB y lo dicen al pasar el ratón.
+            var device = Reports.LoadList(ScheduledTasks.PathOf(name)) is { StartOnVolume.Length: > 0 } onDevice ? onDevice : null;
+            var icon = new FontIcon { Glyph = device is null ? "" : "", FontSize = 14, VerticalAlignment = VerticalAlignment.Center, Foreground = ThemeManager.AccentBrush };
+            if (device is not null)
+            {
+                string label = device.Volumes.FirstOrDefault(v => v.Serial == device.StartOnVolume) is { } volume
+                    ? (volume.Label.Length > 0 ? $"{volume.Label} ({volume.Root.TrimEnd('\\')})" : volume.Root) : device.StartOnVolume;
+                ToolTipService.SetToolTip(icon, L.F("Settings_TaskOnDevice", label));
+            }
+
+            row.Children.Add(icon);
             var text = new TextBlock { Text = name, VerticalAlignment = VerticalAlignment.Center, TextTrimming = TextTrimming.CharacterEllipsis };
             ToolTipService.SetToolTip(text, ScheduledTasks.PathOf(name));
             Grid.SetColumn(text, 1);
@@ -738,6 +823,9 @@ public sealed partial class SettingsPage : UserControl
         RemoteToggle.IsOn = _app.Settings.RemoteControlEnabled;
         ShowRemote();
         LocalSendAutoAcceptBox.IsChecked = _app.Settings.LocalSendAutoAccept;
+        LocalSendConflictBox.SelectedIndex = (int)_app.Settings.LocalSendConflict;
+        LocalSendIncludeBox.Text = _app.Settings.LocalSendInclude;
+        LocalSendExcludeBox.Text = _app.Settings.LocalSendExclude;
         _loading = loading;
         LocalSendDescription.Text = L.F("Settings_LocalSendDescription", Environment.MachineName, peers?.Folder ?? "");
         LocalSendPanel.Visibility = _app.Settings.LocalSendEnabled ? Visibility.Visible : Visibility.Collapsed;
@@ -795,6 +883,20 @@ public sealed partial class SettingsPage : UserControl
     {
         _app.Settings.LocalSendAutoAccept = LocalSendAutoAcceptBox.IsChecked == true;
         _app.Settings.Save();
+    }
+
+    private void LocalSendRules_Changed(object sender, RoutedEventArgs e)
+    {
+        if (_loading || LocalSendConflictBox is null || LocalSendIncludeBox is null || LocalSendExcludeBox is null)
+        {
+            return;
+        }
+
+        _app.Settings.LocalSendConflict = (Engine.Network.LocalSendConflict)Math.Max(0, LocalSendConflictBox.SelectedIndex);
+        _app.Settings.LocalSendInclude = LocalSendIncludeBox.Text.Trim();
+        _app.Settings.LocalSendExclude = LocalSendExcludeBox.Text.Trim();
+        _app.Settings.Save();
+        _app.Peers?.ApplyLocalSendRules();
     }
 
     private void Receive_Toggled(object sender, RoutedEventArgs e)

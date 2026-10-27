@@ -5,9 +5,10 @@ using System.Xml;
 namespace MegaCopier.Shell;
 
 /// <summary>
-/// Carpetas abiertas en Total Commander y Directory Opus, para ofrecerlas como destino igual que las del Explorador.
-/// Sin inyectar nada: Total Commander responde a WM_USER+50 con la ventana de la ruta de cada panel (documentado en
-/// su ayuda), y Directory Opus tiene "dopusrt.exe /info archivo,paths", que escribe las rutas de todas sus ventanas.
+/// Carpetas abiertas en Total Commander, Directory Opus, Multi Commander, xplorer2, Explorer++ y XYplorer, para
+/// ofrecerlas como destino igual que las del Explorador. Sin inyectar nada: Total Commander responde a WM_USER+50 con la
+/// ventana de la ruta de cada panel (documentado en su ayuda), Directory Opus tiene "dopusrt.exe /info archivo,paths", y
+/// los demás muestran la carpeta actual en el título de su ventana.
 /// </summary>
 public static partial class OtherFileManagers
 {
@@ -21,6 +22,7 @@ public static partial class OtherFileManagers
         {
             folders.AddRange(TotalCommander());
             folders.AddRange(DirectoryOpus());
+            folders.AddRange(TitledManagers());
         }
         catch (Exception ex) when (ex is IOException or System.ComponentModel.Win32Exception or XmlException or InvalidOperationException)
         {
@@ -134,6 +136,57 @@ public static partial class OtherFileManagers
         }
 
         return paths;
+    }
+
+    /// <summary>Procesos de los gestores que llevan la carpeta actual en el título de la ventana.</summary>
+    private static readonly string[] TitledProcesses =
+        ["Explorer++", "ExplorerPlusPlus", "xplorer2", "xplorer2_64", "xplorer2_UC", "xplorer2_lite", "MultiCommander", "XYplorer"];
+
+    private static IEnumerable<string> TitledManagers()
+    {
+        foreach (string name in TitledProcesses)
+        {
+            foreach (var process in Process.GetProcessesByName(name))
+            {
+                using (process)
+                {
+                    string title;
+                    try
+                    {
+                        title = process.MainWindowTitle;
+                    }
+                    catch (InvalidOperationException)
+                    {
+                        continue;
+                    }
+
+                    if (PathInTitle(title) is { } path)
+                    {
+                        yield return path;
+                    }
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// La ruta que muestra un título como «C:\Fotos - Explorer++», «xplorer² - D:\Trabajo» o «XYplorer 26.0 - C:\Users»:
+    /// el trozo (separado por « - », « — », « | » o corchetes) que empieza por una unidad o por \\servidor.
+    /// </summary>
+    public static string? PathInTitle(string title)
+    {
+        foreach (string raw in title.Split([" - ", " — ", " – ", " | ", "[", "]"], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
+        {
+            string part = raw.Trim().TrimEnd('*', ' ');
+            bool drive = part.Length >= 3 && char.IsAsciiLetter(part[0]) && part[1] == ':' && part[2] == '\\';
+            bool unc = part.StartsWith(@"\\", StringComparison.Ordinal) && part.Length > 2;
+            if (drive || unc)
+            {
+                return part.Length > 3 ? part.TrimEnd('\\') : part;
+            }
+        }
+
+        return null;
     }
 
     private static string? DopusRt()

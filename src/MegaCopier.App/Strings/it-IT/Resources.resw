@@ -5,6 +5,8 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Settings_TaskbarTitle.Text" xml:space="preserve"><value>Mostra nella barra delle applicazioni</value></data>
+  <data name="Settings_TaskbarDescription.Text" xml:space="preserve"><value>Se disattivato, ridurre a icona nasconde sempre la finestra nell’area di notifica, accanto all’orologio.</value></data>
   <data name="JobsSection.Text" xml:space="preserve"><value>Copie</value></data>
   <data name="SettingsSection.Text" xml:space="preserve"><value>Impostazioni</value></data>
   <data name="FinishButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Cosa fare quando tutte le copie sono finite</value></data>
@@ -323,8 +325,6 @@
   <data name="Tool_LoadListText.Text" xml:space="preserve"><value>Carica elenco</value></data>
   <data name="Tool_NewCopy.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Nuova copia</value></data>
   <data name="Tool_NewCopyText.Text" xml:space="preserve"><value>Nuova</value></data>
-  <data name="Tool_PauseAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Metti tutte in pausa</value></data>
-  <data name="Tool_ResumeAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Riprendi tutte</value></data>
   <data name="Tool_Settings.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Impostazioni</value></data>
   <data name="Tool_Sidebar.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve"><value>Mostra o nascondi l&apos;elenco delle copie</value></data>
   <data name="Drop_Caption" xml:space="preserve"><value>Copia con MegaCopier</value></data>
@@ -1602,4 +1602,110 @@
   <data name="Rules_Synchronization.Text" xml:space="preserve"><value>Sincronizzazione</value></data>
   <data name="Rules_SecurityTitle.Text" xml:space="preserve"><value>Sicurezza</value></data>
   <data name="Job_StateNeedsAdministrator" xml:space="preserve"><value>Sono necessari i permessi di amministratore</value></data>
+  <data name="Toolbar_PauseAll" xml:space="preserve"><value>Metti tutte in pausa</value></data>
+  <data name="Toolbar_ResumeAll" xml:space="preserve"><value>Riprendi tutte</value></data>
+  <data name="Toolbar_Sidebar" xml:space="preserve"><value>Mostra o nascondi l&apos;elenco delle copie</value></data>
+  <data name="Toolbar_New" xml:space="preserve"><value>Nuova copia</value></data>
+  <data name="Toolbar_ClearDone" xml:space="preserve"><value>Rimuovi le copie terminate</value></data>
+  <data name="Toolbar_Timeline" xml:space="preserve"><value>Sequenza temporale della coda</value></data>
+  <data name="Toolbar_History" xml:space="preserve"><value>Cronologia</value></data>
+  <data name="Toolbar_Settings" xml:space="preserve"><value>Impostazioni</value></data>
+  <data name="Toolbar_About" xml:space="preserve"><value>Informazioni</value></data>
+  <data name="Toolbar_AlwaysOnTop" xml:space="preserve"><value>Sempre in primo piano</value></data>
+  <data name="Toolbar_Shelf" xml:space="preserve"><value>Ripiano di trascinamento</value></data>
+  <data name="Toolbar_Compare" xml:space="preserve"><value>Confronta e sincronizza</value></data>
+  <data name="Toolbar_PlayPause" xml:space="preserve"><value>Sospendi o riprendi tutto</value></data>
+  <data name="Toolbar_Separator" xml:space="preserve"><value>Separatore</value></data>
+  <data name="Toolbar_More" xml:space="preserve"><value>Altre azioni</value></data>
+  <data name="Destinations_Favorite" xml:space="preserve"><value>Aggiungi ai preferiti</value></data>
+  <data name="Destinations_Unfavorite" xml:space="preserve"><value>Rimuovi dai preferiti</value></data>
+  <data name="Settings_ToolbarTitle.Text" xml:space="preserve"><value>Barra degli strumenti</value></data>
+  <data name="Settings_ToolbarDescription.Text" xml:space="preserve"><value>Scegli quali scorciatoie mostrare e in che ordine. Nella finestra piccola ne stanno tante quante quelle predefinite; le altre passano al menu «…» alla fine.</value></data>
+  <data name="Settings_ToolbarReset.Text" xml:space="preserve"><value>Ripristina</value></data>
+  <data name="Settings_ToolbarFinish.Content" xml:space="preserve"><value>Mostra «Al termine» a destra</value></data>
+  <data name="Settings_ToolbarUp" xml:space="preserve"><value>Sposta su «{0}»</value></data>
+  <data name="Settings_ToolbarDown" xml:space="preserve"><value>Sposta giù «{0}»</value></data>
+  <data name="Rules_SkipCloud.Content" xml:space="preserve"><value>Ignora i file solo nel cloud (non li scarica)</value></data>
+  <data name="Destinations_PathBox.PlaceholderText" xml:space="preserve"><value>Digita o incolla un percorso, come D:\Copie</value></data>
+  <data name="Destinations_PathInvalid" xml:space="preserve"><value>Percorso non valido: digita una cartella completa su un&apos;unità o una condivisione di rete esistente (ad esempio D:\Copie).</value></data>
+  <data name="Tool_CompareSum.Text" xml:space="preserve"><value>Confronta con un checksum…</value></data>
+  <data name="SumCheck_Title" xml:space="preserve"><value>Confronta con un checksum</value></data>
+  <data name="SumCheck_File" xml:space="preserve"><value>File: {0}</value></data>
+  <data name="SumCheck_Header" xml:space="preserve"><value>Checksum pubblicato (MD5, SHA-1, SHA-256, SHA-512, SHA3, BLAKE3, xxHash o CRC32)</value></data>
+  <data name="SumCheck_Placeholder" xml:space="preserve"><value>Incolla qui il checksum della pagina di download</value></data>
+  <data name="SumCheck_Check" xml:space="preserve"><value>Verifica</value></data>
+  <data name="SumCheck_Close" xml:space="preserve"><value>Chiudi</value></data>
+  <data name="SumCheck_NotASum" xml:space="preserve"><value>Non sembra un checksum: deve essere un numero esadecimale di 8, 16, 32, 40, 64 o 128 cifre.</value></data>
+  <data name="SumCheck_Reading" xml:space="preserve"><value>Lettura del file…</value></data>
+  <data name="SumCheck_Match" xml:space="preserve"><value>✓ Corrisponde ({0}): il file è integro.</value></data>
+  <data name="SumCheck_NoMatch" xml:space="preserve"><value>✗ Non corrisponde. Con {0} il file dà {1}: è danneggiato, incompleto o diverso.</value></data>
+  <data name="Status_SourceDrive.Text" xml:space="preserve"><value>Origine</value></data>
+  <data name="Status_TargetDrive.Text" xml:space="preserve"><value>Destinazione</value></data>
+  <data name="Status_DriveFree" xml:space="preserve"><value>{0} liberi su {1}</value></data>
+  <data name="LocalSend_Conflict.Header" xml:space="preserve"><value>Se il file è già nella cartella</value></data>
+  <data name="LocalSend_ConflictRename.Content" xml:space="preserve"><value>Conserva entrambi («foto (2).jpg»)</value></data>
+  <data name="LocalSend_ConflictSkip.Content" xml:space="preserve"><value>Non riceverlo</value></data>
+  <data name="LocalSend_ConflictOverwrite.Content" xml:space="preserve"><value>Sostituisci quello esistente</value></data>
+  <data name="LocalSend_Include.Header" xml:space="preserve"><value>Ricevi solo questi tipi (vuoto = tutti)</value></data>
+  <data name="LocalSend_Include.PlaceholderText" xml:space="preserve"><value>*.jpg; *.heic; *.mp4</value></data>
+  <data name="LocalSend_Exclude.Header" xml:space="preserve"><value>Non ricevere mai</value></data>
+  <data name="LocalSend_Exclude.PlaceholderText" xml:space="preserve"><value>*.apk; *.exe</value></data>
+  <data name="Task_OnDevice.Content" xml:space="preserve"><value>Quando si collega l&apos;unità</value></data>
+  <data name="Task_SavedOnDevice" xml:space="preserve"><value>Attività «{0}» salvata: partirà da sola ogni volta che colleghi l&apos;unità (con MegaCopier aperto o nell&apos;area di notifica).</value></data>
+  <data name="Task_NoDevice" xml:space="preserve"><value>Questa copia non ha un&apos;unità con lettera da attendere (ad esempio va in una cartella di rete).</value></data>
+  <data name="Settings_TaskOnDevice" xml:space="preserve"><value>Parte da sola quando si collega {0}</value></data>
+  <data name="Connection_AzureAccount" xml:space="preserve"><value>Account di archiviazione (https://account.blob.core.windows.net)</value></data>
+  <data name="Connection_GcsEndpoint" xml:space="preserve"><value>Endpoint (vuoto = storage.googleapis.com)</value></data>
+  <data name="Connection_Sas" xml:space="preserve"><value>Token SAS del contenitore (sv=…&amp;sig=…)</value></data>
+  <data name="Connection_Container" xml:space="preserve"><value>Contenitore (e cartella): contenitore/cartella</value></data>
+  <data name="Connection_Site" xml:space="preserve"><value>Sito SharePoint</value></data>
+  <data name="Connection_SitePlaceholder" xml:space="preserve"><value>https://azienda.sharepoint.com/sites/Team</value></data>
+  <data name="Rules_MoreTitle.Text" xml:space="preserve"><value>Altre opzioni</value></data>
+  <data name="Rules_RenameMask.Header" xml:space="preserve"><value>Rinomina durante la copia (maschera: *.bak, copia di *.*)</value></data>
+  <data name="Rules_Flatten.Content" xml:space="preserve"><value>Appiattisci: tutto nella cartella di destinazione, senza sottocartelle</value></data>
+  <data name="Rules_KeepPaths.Content" xml:space="preserve"><value>File da più cartelle: ricrea le loro cartelle da quella comune</value></data>
+  <data name="Rules_OnlyArchive.Content" xml:space="preserve"><value>Solo quelli segnati come modificati (attributo «Archivio»)</value></data>
+  <data name="Rules_ResetArchive.Content" xml:space="preserve"><value>Togli quel segno all&apos;origine dopo averla copiata (copie incrementali)</value></data>
+  <data name="Rules_CompensateDst.Content" xml:space="preserve"><value>Considera uguali quelli che differiscono di un&apos;ora esatta (ora legale)</value></data>
+  <data name="Rules_KeepCompression.Content" xml:space="preserve"><value>Mantieni la compressione NTFS</value></data>
+  <data name="Rules_SkipCompressed.Content" xml:space="preserve"><value>Ignora i file compressi o crittografati da Windows</value></data>
+  <data name="Rules_SkipTemporary.Content" xml:space="preserve"><value>Ignora i file segnati come temporanei</value></data>
+  <data name="Rules_Depth.Header" xml:space="preserve"><value>Livelli di sottocartelle (vuoto = tutti; 0 = solo la cartella)</value></data>
+  <data name="Rules_AccessedAfter.Header" xml:space="preserve"><value>Usati da</value></data>
+  <data name="Rules_AccessedBefore.Header" xml:space="preserve"><value>Usati fino al</value></data>
+  <data name="Rules_FolderTimes.Header" xml:space="preserve"><value>Date delle cartelle</value></data>
+  <data name="Rules_FolderAttributes.Header" xml:space="preserve"><value>Attributi delle cartelle</value></data>
+  <data name="Rules_FolderLikeFiles.Content" xml:space="preserve"><value>Come i file</value></data>
+  <data name="Rules_FolderYes.Content" xml:space="preserve"><value>Copiarle</value></data>
+  <data name="Rules_FolderNo.Content" xml:space="preserve"><value>Non copiarle</value></data>
+  <data name="Rules_FolderLikeFiles2.Content" xml:space="preserve"><value>Come i file</value></data>
+  <data name="Rules_FolderYes2.Content" xml:space="preserve"><value>Copiarli</value></data>
+  <data name="Rules_FolderNo2.Content" xml:space="preserve"><value>Non copiarli</value></data>
+  <data name="Rules_BeforeCommand.Header" xml:space="preserve"><value>Esegui prima di iniziare (se fallisce, non si copia)</value></data>
+  <data name="Settings_EjectSource.Content" xml:space="preserve"><value>Espelli anche l&apos;origine (la scheda della fotocamera) se è andato tutto bene</value></data>
+  <data name="Scripts_AddExample.Text" xml:space="preserve"><value>Aggiungi un esempio</value></data>
+  <data name="Scripts_ExampleNtfy.Text" xml:space="preserve"><value>Avvisa il telefono con ntfy</value></data>
+  <data name="Scripts_ExampleIfttt.Text" xml:space="preserve"><value>Avvia un applet IFTTT</value></data>
+  <data name="Scripts_ExampleOpen.Text" xml:space="preserve"><value>Apri la destinazione se è andato tutto bene</value></data>
+  <data name="Scripts_ExampleLog.Text" xml:space="preserve"><value>Annota ogni copia in un file di testo</value></data>
+  <data name="Scripts_NtfyTopic" xml:space="preserve"><value>mio-argomento-segreto</value></data>
+  <data name="Scripts_IftttKey" xml:space="preserve"><value>TUA-CHIAVE</value></data>
+  <data name="Scripts_LogName" xml:space="preserve"><value>MegaCopier-copie</value></data>
+  <data name="Settings_TransferLogTitle.Text" xml:space="preserve"><value>Registro unico di tutte le copie</value></data>
+  <data name="Settings_TransferLogDescription.Text" xml:space="preserve"><value>Una riga per file copiato o non riuscito, in un unico file e nel formato scelto. Si può anche inviare a un server Syslog.</value></data>
+  <data name="Settings_TransferLogPath.Header" xml:space="preserve"><value>File del registro</value></data>
+  <data name="Settings_TransferLogBrowse.Text" xml:space="preserve"><value>Scegli…</value></data>
+  <data name="Settings_TransferLogType" xml:space="preserve"><value>Registro</value></data>
+  <data name="Settings_TransferLogFormat.Header" xml:space="preserve"><value>Formato di ogni file copiato</value></data>
+  <data name="Settings_ErrorLogFormat.Header" xml:space="preserve"><value>Formato di ogni errore</value></data>
+  <data name="Settings_TransferLogVariables.Text" xml:space="preserve"><value>Variabili: %time%, %source%, %destination%, %size%, %mtime%, %hash%, %path%, %error%, %computer%, %user%</value></data>
+  <data name="Settings_Syslog.Header" xml:space="preserve"><value>Invia anche a un server Syslog (server o server:porta; vuoto = no)</value></data>
+  <data name="Task_AddPair.Text" xml:space="preserve"><value>Aggiungi un&apos;altra coppia di cartelle all&apos;attività…</value></data>
+  <data name="Task_ClearPairs.Text" xml:space="preserve"><value>Rimuovi le coppie</value></data>
+  <data name="Task_PairSource" xml:space="preserve"><value>Cartella da copiare</value></data>
+  <data name="Task_PairDestination" xml:space="preserve"><value>Dove copiarla</value></data>
+  <data name="Task_NoSession.Content" xml:space="preserve"><value>Eseguila anche se nessuno ha effettuato l&apos;accesso (senza finestra)</value></data>
+  <data name="Task_NoCli" xml:space="preserve"><value>Per eseguirla senza sessione serve mcopy.exe accanto a MegaCopier (lo include il programma di installazione).</value></data>
+  <data name="Settings_ToolbarCustomize.Text" xml:space="preserve"><value>Personalizza</value></data>
+  <data name="Status_Folders.Text" xml:space="preserve"><value>Cartelle</value></data>
 </root>

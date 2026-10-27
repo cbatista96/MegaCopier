@@ -36,6 +36,19 @@ internal static unsafe partial class Native
         return GetGUIThreadInfo(thread, &info) ? info.hwndFocus : 0;
     }
 
+    /// <summary>
+    /// En el fondo del Escritorio el foco puede quedar en Progman o WorkerW, en vez de su lista.
+    /// Se resuelve únicamente esa vista; un Edit de renombrar o cualquier otro control conserva el foco.
+    /// </summary>
+    internal static nint DesktopFileFocus(nint foreground, nint focus)
+    {
+        if (ClassName(foreground) is not ("Progman" or "WorkerW")
+            || (focus != 0 && ClassName(focus) is not ("Progman" or "WorkerW"))) return focus;
+
+        nint view = FindWindowExW(foreground, 0, "SHELLDLL_DefView", null);
+        return view == 0 ? focus : FindWindowExW(view, 0, "SysListView32", null);
+    }
+
     /// <summary>La ventana que tiene capturado el ratón en ese hilo (durante un arrastre OLE, una CLIPBRDWNDCLASS).</summary>
     public static nint CaptureWindow(uint thread)
     {
@@ -96,6 +109,10 @@ internal static unsafe partial class Native
 
     [LibraryImport("user32.dll")]
     private static partial int GetClassNameW(nint hwnd, char* buffer, int max);
+
+    [LibraryImport("user32.dll", StringMarshalling = StringMarshalling.Utf16)]
+    private static partial nint FindWindowExW(nint parent, nint after, string className, string? title);
+
 
     [LibraryImport("user32.dll")]
     public static partial nint GetParent(nint hwnd);

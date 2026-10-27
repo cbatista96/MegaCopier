@@ -80,13 +80,15 @@ public static unsafe partial class ShellNamespace
         // Escritorio del espacio de nombres. Solo se puede omitir esa primera raíz de presentación; todos los
         // descendientes deben coincidir. No se busca un nombre conocido más abajo en una ruta desconocida.
         var roots = TopLevel();
-        Node? current = Pick(roots, names[0]);
-        int start = 0;
-        if (current is null && names.Count > 1 &&
+        bool presentationRoot = names.Count > 1 && names[0].EndsWith(" (OneDrive)", StringComparison.OrdinalIgnoreCase)
+            && !roots.Any(n => string.Equals(n.Name, names[0], StringComparison.CurrentCultureIgnoreCase));
+        int start = presentationRoot ? 1 : 0;
+        Node? current = Pick(roots, names[start], annotations: true);
+        if (current is null && start == 0 && names.Count > 1 &&
             !roots.Any(n => string.Equals(n.Name, names[0], StringComparison.CurrentCultureIgnoreCase)))
         {
             start = 1;
-            current = Pick(roots, names[start]);
+            current = Pick(roots, names[start], annotations: true);
         }
 
         if (current is null)
@@ -143,9 +145,13 @@ public static unsafe partial class ShellNamespace
         return nodes;
     }
     /// <summary>El elemento con ese nombre; si hay varios, solo vale si todos son la misma carpeta.</summary>
-    private static Node? Pick(IEnumerable<Node> nodes, string name)
+    private static Node? Pick(IEnumerable<Node> nodes, string name, bool annotations = false)
     {
         var matches = nodes.Where(n => string.Equals(n.Name, name, StringComparison.CurrentCultureIgnoreCase)).ToList();
+        if (matches.Count == 0 && annotations)
+        {
+            matches = nodes.Where(n => MatchesAnnotatedName(name, n.Name)).ToList();
+        }
         if (matches.Count == 0)
         {
             return null;
@@ -155,6 +161,21 @@ public static unsafe partial class ShellNamespace
         return matches.All(m => m.Parsing == first.Parsing || (m.Path is not null && string.Equals(m.Path, first.Path, StringComparison.OrdinalIgnoreCase)))
             ? first
             : null;
+    }
+
+    /// <summary>
+    /// Algunas versiones del Explorador añaden «(anclado)» y «Inicio/Fin del acceso rápido:» al nombre UIA.
+    /// Solo se admiten estas anotaciones en la raíz del panel y si no hay coincidencia exacta.
+    /// El sufijo traducido no se usa para decidir la ruta; esta debe existir en el espacio de nombres.
+    /// </summary>
+    internal static bool MatchesAnnotatedName(string displayed, string canonical)
+    {
+        int suffix = displayed.LastIndexOf(" (", StringComparison.Ordinal);
+        if (suffix <= 0 || !displayed.EndsWith(')')) return false;
+        string name = displayed[..suffix];
+        if (string.Equals(name, canonical, StringComparison.CurrentCultureIgnoreCase)) return true;
+        int prefix = name.IndexOf(": ", StringComparison.Ordinal);
+        return prefix > 0 && string.Equals(name[(prefix + 2)..], canonical, StringComparison.CurrentCultureIgnoreCase);
     }
 
     private static Node? Child(Node parent, string name)

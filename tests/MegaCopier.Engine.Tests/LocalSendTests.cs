@@ -126,6 +126,36 @@ public sealed class LocalSendTests : IDisposable
     }
 
     [Fact]
+    public async Task OnlyAsksForWantedFilesAndCanSkipOrReplaceExistingOnes()
+    {
+        Start();
+        Directory.CreateDirectory(Folder);
+        File.WriteAllText(Path.Combine(Folder, "ya.jpg"), "viejo");
+        _receiver!.Filter = new FileFilter { Exclude = ["*.apk"] };
+        _receiver.Conflict = LocalSendConflict.Skip;
+
+        // Ni el .apk ni el que ya está se piden: el móvil solo recibe permiso para la foto nueva.
+        var (status, session, tokens) = await PrepareAsync(Prepare(("f1", "nueva.jpg", [1], false), ("f2", "juego.apk", [2], false), ("f3", "ya.jpg", [3], false)));
+        Assert.Equal(HttpStatusCode.OK, status);
+        Assert.Equal(["f1"], tokens!.Keys);
+        Assert.Equal(1, _offer!.Files);
+        Assert.Equal(HttpStatusCode.OK, (await UploadAsync(session!, "f1", tokens["f1"], [1])).StatusCode);
+        Assert.Equal("viejo", File.ReadAllText(Path.Combine(Folder, "ya.jpg")));
+
+        // Si no queda nada que recibir, se responde 204 y no se pregunta.
+        _offer = null;
+        Assert.Equal(HttpStatusCode.NoContent, (await PrepareAsync(Prepare(("f4", "otro.apk", [4], false)))).Status);
+        Assert.Null(_offer);
+
+        // Sustituir: el que había se cambia por el nuevo, sin «ya (2).jpg».
+        _receiver.Conflict = LocalSendConflict.Overwrite;
+        (_, session, tokens) = await PrepareAsync(Prepare(("f5", "ya.jpg", "nuevo"u8.ToArray(), false)));
+        Assert.Equal(HttpStatusCode.OK, (await UploadAsync(session!, "f5", tokens!["f5"], "nuevo"u8.ToArray())).StatusCode);
+        Assert.Equal("nuevo", File.ReadAllText(Path.Combine(Folder, "ya.jpg")));
+        Assert.False(File.Exists(Path.Combine(Folder, "ya (2).jpg")));
+    }
+
+    [Fact]
     public async Task NamesCannotEscapeTheFolderAndNothingIsOverwritten()
     {
         Start();

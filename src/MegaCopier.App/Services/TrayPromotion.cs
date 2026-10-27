@@ -27,7 +27,9 @@ internal static partial class TrayPromotion
             return; // las pruebas no tocan la configuración de la bandeja
         }
 
-        foreach (int delay in new[] { 150, 1500 })
+        // El Explorador instala su observador después de crear el icono. No basta
+        // con escribir una vez, ni con quitar y añadir el icono mientras lo procesa.
+        foreach (int delay in new[] { 150, 750, 2000, 5000 })
         {
             _ = Task.Delay(delay).ContinueWith(_ => TryPromote(uid, always, changed), TaskScheduler.Default);
         }
@@ -54,10 +56,18 @@ internal static partial class TrayPromotion
                 }
 
                 object? current = entry.GetValue("IsPromoted");
-                if ((always || current is null) && current is not 1)
+                if (always || current is null)
                 {
                     entry.SetValue("IsPromoted", 1, RegistryValueKind.DWord);
-                    changed?.Invoke();
+                    if (always)
+                    {
+                        // Despertar también el observador si el valor ya era 1 pero
+                        // el Explorador conservaba el icono en su caché de ocultos.
+                        const string refresh = "_MegaCopierRefresh";
+                        entry.SetValue(refresh, 0, RegistryValueKind.DWord);
+                        entry.DeleteValue(refresh, throwOnMissingValue: false);
+                    }
+                    else if (current is not 1) changed?.Invoke();
                 }
             }
         }

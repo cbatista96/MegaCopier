@@ -332,7 +332,7 @@
                                     </Grid.RowDefinitions>
                                     <!-- MegaCopier: un único fondo (ContentDialogBackground, acrílico de la app) detrás de todo el diálogo. -->
                                     <Border x:Name="McTint" Grid.RowSpan="2" Background="{TemplateBinding Background}" CornerRadius="{ThemeResource OverlayCornerRadius}" IsHitTestVisible="False" />
-                                    <ScrollViewer x:Name="ContentScrollViewer" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled" ZoomMode="Disabled" IsTabStop="False">
+                                    <ScrollViewer x:Name="ContentScrollViewer" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" ZoomMode="Disabled" IsTabStop="False">
                                         <Grid Background="{ThemeResource ContentDialogTopOverlay}" Padding="{ThemeResource ContentDialogPadding}" BorderThickness="{ThemeResource ContentDialogSeparatorThickness}" BorderBrush="{ThemeResource ContentDialogSeparatorBorderBrush}">
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="Auto" />

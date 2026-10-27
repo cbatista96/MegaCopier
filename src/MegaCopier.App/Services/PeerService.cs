@@ -126,6 +126,7 @@ internal sealed class PeerService(App app) : IDisposable
             _localSend = new LocalSendReceiver(Folder, Environment.MachineName, Settings.LocalSendFingerprint, AskAsync,
                 port: test ? 0 : LocalSendProtocol.DefaultPort, loopbackOnly: test);
             _localSend.Event += e => app.Dispatcher.TryEnqueue(() => OnEvent(e));
+            ApplyLocalSendRules();
             _localSend.Start();
             if (test)
             {
@@ -141,6 +142,21 @@ internal sealed class PeerService(App app) : IDisposable
     }
 
     /// <summary>¿Se acepta este envío? Sin "aceptar sin preguntar", con el cuadro Sí/No de Windows.</summary>
+    /// <summary>Qué hacer con los repetidos y qué tipos recibir (Ajustes › Red y dispositivos › LocalSend).</summary>
+    public void ApplyLocalSendRules()
+    {
+        if (_localSend is null)
+        {
+            return;
+        }
+
+        static List<string> Masks(string text) =>
+            [.. text.Split([';', ','], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)];
+
+        _localSend.Conflict = Settings.LocalSendConflict;
+        _localSend.Filter = new Engine.FileFilter { Include = Masks(Settings.LocalSendInclude), Exclude = Masks(Settings.LocalSendExclude) };
+    }
+
     private Task<bool> AskAsync(LocalSendOffer offer)
     {
         if (Settings.LocalSendAutoAccept)

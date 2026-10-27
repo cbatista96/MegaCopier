@@ -69,7 +69,7 @@ internal static partial class HistoryActions
         foreach (var group in entry.Sources.GroupBy(s => Path.GetDirectoryName(Path.TrimEndingDirectorySeparator(s)) ?? "", StringComparer.OrdinalIgnoreCase))
         {
             var back = group
-                .Select(s => Path.Combine(entry.Destination, Path.GetFileName(Path.TrimEndingDirectorySeparator(s))))
+                .Select(s => Path.Combine(entry.Destination, Engine.SourceNames.TargetName(s)))
                 .Where(p => File.Exists(p) || Directory.Exists(p))
                 .ToList();
             if (back.Count == 0 || group.Key.Length == 0)

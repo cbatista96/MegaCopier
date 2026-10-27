@@ -15,8 +15,8 @@ public sealed partial class SettingsPage
     private static readonly (ConnectionKind Kind, string Name)[] Kinds =
     [
         (ConnectionKind.WebDav, "WebDAV"), (ConnectionKind.Sftp, "SFTP"), (ConnectionKind.Ftps, "FTPS (TLS)"),
-        (ConnectionKind.Ftp, "FTP"), (ConnectionKind.S3, "S3"),
-        (ConnectionKind.OneDrive, "OneDrive"), (ConnectionKind.GoogleDrive, "Google Drive"), (ConnectionKind.Dropbox, "Dropbox"),
+        (ConnectionKind.Ftp, "FTP"), (ConnectionKind.S3, "S3"), (ConnectionKind.GoogleCloudStorage, "Google Cloud Storage"), (ConnectionKind.AzureBlob, "Azure Blob"),
+        (ConnectionKind.OneDrive, "OneDrive"), (ConnectionKind.SharePoint, "SharePoint"), (ConnectionKind.GoogleDrive, "Google Drive"), (ConnectionKind.Dropbox, "Dropbox"),
     ];
 
     private void LoadConnections()
@@ -90,6 +90,7 @@ public sealed partial class SettingsPage
         var test = new Button { Content = L.Get("Connection_Test") };
         var clientId = new TextBox { Header = L.Get("Connection_ClientId"), Text = connection.ClientId };
         var clientSecret = new TextBox { Header = L.Get("Connection_ClientSecret"), Text = connection.ClientSecret };
+        var site = new TextBox { Header = L.Get("Connection_Site"), PlaceholderText = L.Get("Connection_SitePlaceholder"), Text = connection.Site };
         var cloudHelp = new TextBlock { Text = L.Get("Connection_CloudHelp"), TextWrapping = TextWrapping.Wrap, FontSize = 12, Foreground = ThemeManager.TextSecondaryBrush };
         var signIn = new Button { Content = L.Get("Connection_SignIn") };
         string cloudToken = existing is not null && CloudAuth.IsCloud(existing.Kind) ? Connections.GetSecret(existing.Id) : "";
@@ -98,20 +99,41 @@ public sealed partial class SettingsPage
         void Adapt()
         {
             var selected = Kinds[Math.Max(0, kind.SelectedIndex)].Kind;
-            host.Header = L.Get(selected switch { ConnectionKind.WebDav => "Connection_Url", ConnectionKind.S3 => "Connection_Endpoint", _ => "Connection_Host" });
-            user.Header = L.Get(selected == ConnectionKind.S3 ? "Connection_AccessKey" : "Connection_User");
-            secret.Header = L.Get(selected switch { ConnectionKind.S3 => "Connection_SecretKey", ConnectionKind.Sftp => "Connection_PasswordOrKey", _ => "Connection_Password" });
-            root.Header = L.Get(selected == ConnectionKind.S3 ? "Connection_Bucket" : "Connection_Root");
-            region.Visibility = selected == ConnectionKind.S3 ? Visibility.Visible : Visibility.Collapsed;
-            port.Visibility = selected is ConnectionKind.WebDav or ConnectionKind.S3 ? Visibility.Collapsed : Visibility.Visible;
+            bool s3 = selected is ConnectionKind.S3 or ConnectionKind.GoogleCloudStorage; // Google Cloud Storage habla S3
+            bool azure = selected == ConnectionKind.AzureBlob;
+            host.Header = L.Get(selected switch
+            {
+                ConnectionKind.WebDav => "Connection_Url",
+                ConnectionKind.AzureBlob => "Connection_AzureAccount",
+                ConnectionKind.GoogleCloudStorage => "Connection_GcsEndpoint",
+                ConnectionKind.S3 => "Connection_Endpoint",
+                _ => "Connection_Host",
+            });
+            user.Header = L.Get(s3 ? "Connection_AccessKey" : "Connection_User");
+            secret.Header = L.Get(selected switch
+            {
+                ConnectionKind.S3 or ConnectionKind.GoogleCloudStorage => "Connection_SecretKey",
+                ConnectionKind.AzureBlob => "Connection_Sas",
+                ConnectionKind.Sftp => "Connection_PasswordOrKey",
+                _ => "Connection_Password",
+            });
+            root.Header = L.Get(s3 ? "Connection_Bucket" : azure ? "Connection_Container" : "Connection_Root");
+            region.Visibility = s3 ? Visibility.Visible : Visibility.Collapsed;
+            port.Visibility = selected is ConnectionKind.WebDav || s3 || azure ? Visibility.Collapsed : Visibility.Visible;
             acceptAny.Visibility = selected is ConnectionKind.Ftp or ConnectionKind.Sftp ? Visibility.Collapsed : Visibility.Visible;
-
             // Nubes: en lugar de servidor y contraseña, el identificador de la app y el inicio de sesión en el navegador.
             bool cloud = CloudAuth.IsCloud(selected);
             foreach (var control in new FrameworkElement[] { host, user, secret })
             {
                 control.Visibility = cloud ? Visibility.Collapsed : Visibility.Visible;
             }
+
+            if (azure)
+            {
+                user.Visibility = Visibility.Collapsed; // Azure: el permiso SAS ya lo dice todo
+            }
+
+            site.Visibility = selected == ConnectionKind.SharePoint ? Visibility.Visible : Visibility.Collapsed;
 
             if (cloud)
             {
@@ -137,6 +159,7 @@ public sealed partial class SettingsPage
             HostKey = connection.HostKey,
             ClientId = clientId.Text.Trim(),
             ClientSecret = clientSecret.Text.Trim(),
+            Site = site.Text.Trim(),
             AuthUrl = connection.AuthUrl,
             TokenUrl = connection.TokenUrl,
         };
@@ -185,7 +208,7 @@ public sealed partial class SettingsPage
         Adapt();
 
         var panel = new StackPanel { Spacing = 10, MinWidth = 380, MaxWidth = 480 };
-        foreach (var control in new UIElement[] { kind, name, host, port, user, secret, clientId, clientSecret, cloudHelp, signIn, root, region, acceptAny, test, result })
+        foreach (var control in new UIElement[] { kind, name, host, port, user, secret, site, clientId, clientSecret, cloudHelp, signIn, root, region, acceptAny, test, result })
         {
             panel.Children.Add(control);
         }

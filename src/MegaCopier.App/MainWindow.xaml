@@ -8,7 +8,7 @@
     xmlns:views="using:MegaCopier.App.Views"
     Title="MegaCopier">
 
-    <Grid x:Name="Root" Background="{StaticResource McBackgroundBrush}" AllowDrop="True" DragOver="Root_DragOver" Drop="Root_Drop">
+    <Grid x:Name="Root" Background="{StaticResource McBackgroundBrush}" UseLayoutRounding="True" AllowDrop="True" DragOver="Root_DragOver" Drop="Root_Drop">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -40,7 +40,7 @@
             <StackPanel x:Name="ToolButtons" Orientation="Horizontal" Spacing="2">
                 <!-- La lista de copias. Con la lista cerrada, un aviso con cuÃ¡ntas copias siguen activas (como el de una
                      notificaciÃ³n), en la esquina del botÃ³n: no depende del tamaÃ±o del icono de cada conjunto -->
-                <Grid>
+                <Grid x:Name="SidebarItem">
                     <Button x:Name="SidebarButton" x:Uid="Tool_Sidebar" Style="{StaticResource McToolButton}" Click="Sidebar_Click">
                         <c:McIcon VerticalAlignment="Center" Glyph="&#xE700;" FontSize="15" />
                     </Button>
@@ -75,6 +75,7 @@
                             <MenuFlyoutSubItem x:Uid="Tool_Checksums"><MenuFlyoutSubItem.Icon><FontIcon Glyph="&#xE9D5;" /></MenuFlyoutSubItem.Icon>
                                 <MenuFlyoutItem x:Uid="Tool_Test" Click="TestFiles_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE9D5;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
                                 <MenuFlyoutItem x:Uid="Tool_Hash" Click="HashFiles_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE8EF;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
+                                <MenuFlyoutItem x:Uid="Tool_CompareSum" Click="CompareSum_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE73E;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
                                 <MenuFlyoutSeparator />
                                 <MenuFlyoutItem x:Uid="Tool_Repair" Click="Repair_Click"><MenuFlyoutItem.Icon><FontIcon Glyph="&#xE90F;" /></MenuFlyoutItem.Icon></MenuFlyoutItem>
                             </MenuFlyoutSubItem>
@@ -93,31 +94,49 @@
                         </MenuFlyout>
                     </DropDownButton.Flyout>
                 </DropDownButton>
-                <AppBarSeparator Padding="2,0" />
-                <Button x:Uid="Tool_PauseAll" Style="{StaticResource McToolButton}" Click="PauseAll_Click">
-                    <c:McIcon VerticalAlignment="Center" Glyph="&#xE769;" FontSize="15" />
+                <AppBarSeparator x:Name="ToolSeparator1" Padding="2,0" />
+                <!-- Pausar y reanudar todas en un solo botón: la figura se transforma de una en otra -->
+                <Button x:Name="PlayPauseAllButton" Style="{StaticResource McToolButton}" Click="PlayPauseAll_Click">
+                    <c:McIcon x:Name="PlayPauseAllIcon" VerticalAlignment="Center" Glyph="&#xE769;" FontSize="15" />
                 </Button>
-                <Button x:Uid="Tool_ResumeAll" Style="{StaticResource McToolButton}" Click="ResumeAll_Click">
-                    <c:McIcon VerticalAlignment="Center" Glyph="&#xE768;" FontSize="15" />
-                </Button>
-                <Button x:Uid="Tool_ClearDone" Style="{StaticResource McToolButton}" Click="ClearDone_Click">
+                <Button x:Name="ClearDoneButton" x:Uid="Tool_ClearDone" Style="{StaticResource McToolButton}" Click="ClearDone_Click">
                     <c:McIcon VerticalAlignment="Center" Glyph="&#xE74D;" FontSize="15" />
                 </Button>
-                <AppBarSeparator Padding="2,0" />
-                <Button x:Uid="Tool_Timeline" Style="{StaticResource McToolButton}" Click="Timeline_Click">
+                <AppBarSeparator x:Name="ToolSeparator2" Padding="2,0" />
+                <Button x:Name="TimelineButton" x:Uid="Tool_Timeline" Style="{StaticResource McToolButton}" Click="Timeline_Click">
                     <c:McIcon VerticalAlignment="Center" Glyph="&#xE121;" FontSize="15" />
                 </Button>
-                <Button x:Uid="Tool_History" Style="{StaticResource McToolButton}" Click="History_Click">
+                <Button x:Name="HistoryButton" x:Uid="Tool_History" Style="{StaticResource McToolButton}" Click="History_Click">
                     <c:McIcon VerticalAlignment="Center" Glyph="&#xE81C;" FontSize="15" />
                 </Button>
-                <Button x:Uid="Tool_Settings" Style="{StaticResource McToolButton}" Click="Settings_Click">
+                <Button x:Name="SettingsButton" x:Uid="Tool_Settings" Style="{StaticResource McToolButton}" Click="Settings_Click">
                     <Grid Width="34" Height="30">
                         <c:McIcon VerticalAlignment="Center" Glyph="&#xE713;" FontSize="15" />
                         <InfoBadge x:Name="UpdateBadge" Value="1" Width="16" Height="16" Visibility="Collapsed" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,1,2,0" IsHitTestVisible="False" />
                     </Grid>
                 </Button>
-                <Button x:Uid="Tool_About" Style="{StaticResource McToolButton}" Click="About_Click">
+                <Button x:Name="AboutButton" x:Uid="Tool_About" Style="{StaticResource McToolButton}" Click="About_Click">
                     <c:McIcon VerticalAlignment="Center" Glyph="&#xE946;" FontSize="15" />
+                </Button>
+                <!-- Accesos que se muestran desde Ajustes › Interfaz (ocultos de serie) -->
+                <Button x:Name="OnTopButton" Style="{StaticResource McToolButton}" Click="OnTop_Click">
+                    <c:McIcon x:Name="OnTopIcon" VerticalAlignment="Center" Glyph="&#xE718;" FontSize="15" />
+                </Button>
+                <Button x:Name="ShelfButton" Style="{StaticResource McToolButton}" Click="Shelf_Click">
+                    <c:McIcon VerticalAlignment="Center" Glyph="&#xE7B8;" FontSize="15" />
+                </Button>
+                <Button x:Name="CompareButton" Style="{StaticResource McToolButton}" Click="Compare_Click">
+                    <c:McIcon VerticalAlignment="Center" Glyph="&#xE8FD;" FontSize="15" />
+                </Button>
+                <!-- Lo que no cabe en la ventana -->
+                <Button x:Name="OverflowButton" Style="{StaticResource McToolButton}">
+                    <Grid Width="34" Height="30">
+                        <c:McIcon VerticalAlignment="Center" Glyph="&#xE712;" FontSize="15" />
+                        <InfoBadge x:Name="OverflowBadge" Value="1" Width="16" Height="16" Visibility="Collapsed" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,1,2,0" IsHitTestVisible="False" />
+                    </Grid>
+                    <Button.Flyout>
+                        <MenuFlyout x:Name="OverflowMenu" Placement="BottomEdgeAlignedRight" Opening="OverflowMenu_Opening" />
+                    </Button.Flyout>
                 </Button>
             </StackPanel>
             <DropDownButton x:Name="FinishButton" MinHeight="34" VerticalContentAlignment="Center" x:Uid="FinishButton" Grid.Column="2" Background="Transparent" BorderThickness="0">
@@ -126,7 +145,7 @@
                     <TextBlock x:Name="FinishText" Style="{StaticResource McBody}" TextLineBounds="Tight" VerticalAlignment="Center" />
                 </StackPanel>
                 <DropDownButton.Flyout>
-                    <MenuFlyout Placement="BottomEdgeAlignedRight">
+                    <MenuFlyout Placement="BottomEdgeAlignedRight" Opening="FinishMenu_Opening" Opened="FinishMenu_Opening">
                         <RadioMenuFlyoutItem x:Name="FinishNothing" x:Uid="FinishNothing" GroupName="Finish" IsChecked="True" Click="Finish_Click"><RadioMenuFlyoutItem.Icon><FontIcon Glyph="&#xE733;" /></RadioMenuFlyoutItem.Icon></RadioMenuFlyoutItem>
                         <RadioMenuFlyoutItem x:Name="FinishSleep" x:Uid="FinishSleep" GroupName="Finish" Click="Finish_Click"><RadioMenuFlyoutItem.Icon><FontIcon Glyph="&#xE708;" /></RadioMenuFlyoutItem.Icon></RadioMenuFlyoutItem>
                         <RadioMenuFlyoutItem x:Name="FinishHibernate" x:Uid="FinishHibernate" GroupName="Finish" Click="Finish_Click"><RadioMenuFlyoutItem.Icon><FontIcon Glyph="&#xF1DB;" /></RadioMenuFlyoutItem.Icon></RadioMenuFlyoutItem>
@@ -214,7 +233,6 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Border x:Name="PanelCard" Margin="10,0,10,0" CornerRadius="10" Background="{StaticResource McSurfaceBrush}" BorderBrush="{StaticResource McBorderBrush}" BorderThickness="1">
@@ -256,22 +274,30 @@
                     <Button x:Uid="Pager_Next" Grid.Column="2" Style="{StaticResource McToolButton}" Click="PagerNext_Click"><c:McIcon VerticalAlignment="Center" Glyph="&#xE76C;" FontSize="12" /></Button>
                 </Grid>
 
-                <SelectorBar x:Name="Tabs" Grid.Row="2" Margin="6,6,6,0" SelectionChanged="Tabs_SelectionChanged" Visibility="Collapsed">
+                <!-- El contenido se adapta al área visible mientras se desliza durante Más/Menos. -->
+                <Grid x:Name="ExpandedDetails" Grid.Row="2" Visibility="Collapsed" UseLayoutRounding="True">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.RenderTransform><CompositeTransform x:Name="DetailsRevealTransform" /></Grid.RenderTransform>
+                <SelectorBar x:Name="Tabs" Margin="6,6,6,0" SelectionChanged="Tabs_SelectionChanged">
                     <SelectorBarItem x:Name="FilesItem" x:Uid="Tab_Files"><SelectorBarItem.Icon><FontIcon Glyph="&#xE8FD;" /></SelectorBarItem.Icon></SelectorBarItem>
                     <SelectorBarItem x:Name="TargetItem" x:Uid="Tab_Target"><SelectorBarItem.Icon><FontIcon Glyph="&#xEDA2;" /></SelectorBarItem.Icon></SelectorBarItem>
                     <SelectorBarItem x:Name="OptionsItem" x:Uid="Tab_Options"><SelectorBarItem.Icon><FontIcon Glyph="&#xE9E9;" /></SelectorBarItem.Icon></SelectorBarItem>
                     <SelectorBarItem x:Name="StatusItem" x:Uid="Tab_Status"><SelectorBarItem.Icon><FontIcon Glyph="&#xE9D2;" /></SelectorBarItem.Icon></SelectorBarItem>
                     <SelectorBarItem x:Name="LogItem" x:Uid="Tab_Log"><SelectorBarItem.Icon><FontIcon Glyph="&#xE7C3;" /></SelectorBarItem.Icon></SelectorBarItem>
                 </SelectorBar>
-                <Canvas x:Name="TabIndicatorLayer" Grid.Row="2" IsHitTestVisible="False" />
+                <Canvas x:Name="TabIndicatorLayer" IsHitTestVisible="False" />
 
-                <ContentControl x:Name="TabHost" Grid.Row="3" Margin="10,4,10,10" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Visibility="Collapsed">
+                <ContentControl x:Name="TabHost" Grid.Row="1" Margin="10,4,10,10" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
                     <ContentControl.ContentTransitions>
                         <TransitionCollection>
                             <ContentThemeTransition HorizontalOffset="24" VerticalOffset="0" />
                         </TransitionCollection>
                     </ContentControl.ContentTransitions>
                 </ContentControl>
+                </Grid>
             </Grid>
 
             <!-- Sin copias -->
@@ -320,9 +346,8 @@
             Grid.RowSpan="3"
             Style="{StaticResource McContentDialogStyle}"
             DefaultButton="Primary">
-            <!-- Ancho y alto fijos: no crece ni encoge con la ruta o con que el archivo tenga miniatura. 496 = el mÃ¡ximo que
-                 cabe (ContentDialogMaxWidth 548 menos mÃ¡rgenes y borde). -->
-            <StackPanel Spacing="12" Width="496">
+            <!-- Las miniaturas conservan su alto; el ancho se adapta al espacio disponible. -->
+            <StackPanel Spacing="12" MaxWidth="496" HorizontalAlignment="Stretch">
                 <TextBlock x:Name="ConflictMessage" TextWrapping="Wrap" MaxLines="3" TextTrimming="CharacterEllipsis" MinHeight="60" />
                 <Grid ColumnSpacing="12">
                     <Grid.ColumnDefinitions>
@@ -379,9 +404,15 @@
                 <TextBlock x:Name="DestinationsSummary" TextWrapping="Wrap" />
                 <ListView x:Name="DestinationsList" SelectionMode="Multiple" MaxHeight="240" BorderThickness="1" BorderBrush="{StaticResource McBorderBrush}" CornerRadius="6" />
                 <TextBlock x:Name="DestinationsNone" x:Uid="Destinations_NoneChosen" TextWrapping="Wrap" Visibility="Collapsed" />
-                <Button Click="AddDestination_Click">
-                    <StackPanel Orientation="Horizontal" Spacing="8"><c:McIcon VerticalAlignment="Center" Glyph="&#xE710;" FontSize="12" /><TextBlock x:Uid="Destinations_Add" /></StackPanel>
-                </Button>
+                <!-- Escribir o pegar una ruta (con sugerencias de subcarpetas), o elegirla con el selector -->
+                <Grid ColumnSpacing="8">
+                    <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                    <AutoSuggestBox x:Name="DestinationsPathBox" x:Uid="Destinations_PathBox" QueryIcon="Add" TextChanged="DestinationsPath_TextChanged" SuggestionChosen="DestinationsPath_SuggestionChosen" QuerySubmitted="DestinationsPath_QuerySubmitted" />
+                    <Button Grid.Column="1" Click="AddDestination_Click">
+                        <StackPanel Orientation="Horizontal" Spacing="8"><c:McIcon VerticalAlignment="Center" Glyph="&#xE710;" FontSize="12" /><TextBlock x:Uid="Destinations_Add" /></StackPanel>
+                    </Button>
+                </Grid>
+                <TextBlock x:Name="DestinationsPathError" Style="{StaticResource McSecondary}" TextWrapping="Wrap" Visibility="Collapsed" />
                 <ComboBox x:Name="DestinationsMode" x:Uid="Options_Mode" HorizontalAlignment="Stretch" SelectionChanged="DestinationsMode_Changed">
                     <ComboBoxItem x:Uid="Mode_Copy" />
                     <ComboBoxItem x:Uid="Mode_Mirror" />

@@ -131,6 +131,57 @@ internal static partial class Win32
     [return: MarshalAs(UnmanagedType.Bool)]
     private static unsafe partial bool GetVolumePathName([MarshalAs(UnmanagedType.LPWStr)] string fileName, char* volumePath, uint length);
 
+    [LibraryImport("kernel32.dll", EntryPoint = "GetVolumeInformationW", SetLastError = true, StringMarshalling = StringMarshalling.Utf16)]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static unsafe partial bool GetVolumeInformation(string rootPath, char* name, uint nameLength, uint* serial, uint* maxComponentLength, uint* flags, char* fileSystem, uint fileSystemLength);
+
+    /// <summary>
+    /// Lo más largo que puede ser un nombre (de archivo o carpeta) en el volumen que contiene la ruta: 255 en NTFS, exFAT
+    /// y FAT32; algunos NAS anuncian menos. Null si no se puede saber.
+    /// </summary>
+    [LibraryImport("kernel32.dll", SetLastError = true)]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static unsafe partial bool DeviceIoControl(SafeFileHandle device, uint code, void* input, uint inputSize, void* output, uint outputSize, uint* returned, nint overlapped);
+
+    /// <summary>Comprime un archivo con la compresión de NTFS (como «Comprimir contenido» en sus propiedades).</summary>
+    public static unsafe void Compress(string path)
+    {
+        const uint FsctlSetCompression = 0x9C040;
+        using var handle = File.OpenHandle(LongPath(path), FileMode.Open, FileAccess.ReadWrite, FileShare.Read);
+        ushort format = 1; // COMPRESSION_FORMAT_DEFAULT
+        uint returned;
+        if (!DeviceIoControl(handle, FsctlSetCompression, &format, sizeof(ushort), null, 0, &returned, 0))
+        {
+            throw new IOException($"FSCTL_SET_COMPRESSION: {Marshal.GetLastPInvokeError()}");
+        }
+    }
+
+    /// <summary>Número de serie del volumen de esa raíz ("F:\"), o null si no hay disco.</summary>
+    public static unsafe uint? VolumeSerial(string root)
+    {
+        uint serial, length, flags;
+        return GetVolumeInformation(root, null, 0, &serial, &length, &flags, null, 0) ? serial : null;
+    }
+
+    /// <summary>Nombre del volumen de esa raíz ("Copias"), o null si no hay disco.</summary>
+    public static unsafe string? VolumeLabel(string root)
+    {
+        char* name = stackalloc char[261];
+        uint serial, length, flags;
+        return GetVolumeInformation(root, name, 261, &serial, &length, &flags, null, 0) ? new string(name) : null;
+    }
+
+    public static unsafe int? MaxNameLength(string path)
+    {
+        if (VolumeRoot(path) is not { } root)
+        {
+            return null;
+        }
+
+        uint serial, length, flags;
+        return GetVolumeInformation(root, null, 0, &serial, &length, &flags, null, 0) && length > 0 ? (int)length : null;
+    }
+
     /// <summary>Raíz del volumen (unidad, punto de montaje o recurso de red) que contiene la ruta, o null.</summary>
     public static unsafe string? VolumeRoot(string path)
     {

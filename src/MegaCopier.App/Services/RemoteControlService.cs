@@ -79,7 +79,7 @@ internal sealed class RemoteControlService(App app) : IDisposable
         [.. app.Queue.Jobs.Where(j => j.State is not (CopyJobState.Completed or CopyJobState.CompletedWithErrors) || j.FinishedAt > DateTime.Now.AddMinutes(-30))
             .Select(job =>
             {
-                string first = Path.GetFileName(Path.TrimEndingDirectorySeparator(job.Record.Sources.FirstOrDefault() ?? ""));
+                string first = Engine.SourceNames.TargetName(job.Record.Sources.FirstOrDefault() ?? "");
                 string title = job.Record.Sources.Count > 1 ? L.F("Remote_TitleMany", first, job.Record.Sources.Count - 1) : first;
                 title += " → " + ViewModels.Format.ItemName(job.Record.Destination);
                 var progress = job.Progress;

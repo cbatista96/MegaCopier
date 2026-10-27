@@ -77,7 +77,7 @@ public sealed partial class SettingsPage
     /// <summary>En ventanas estrechas la lista de secciones se queda en iconos (como Windows).</summary>
     private void ApplyNavWidth(double width)
     {
-        bool compact = width < 760;
+        bool compact = !_navigationEntering && width < 760;
         NavColumn.Width = new GridLength(compact ? 64 : 260);
         SearchBox.Visibility = compact ? Visibility.Collapsed : Visibility.Visible;
         foreach (var item in SectionList.Items.OfType<ListViewItem>())
@@ -373,5 +373,20 @@ public sealed partial class SettingsPage
         _app.Settings.Frozen = true;
         new AppSettings().Save();
         _app.Restart();
+    }
+
+    /// <summary>Abre «Red y dispositivos», donde están las carpetas favoritas (desde «Copiar a › Gestionar favoritos»).</summary>
+    internal void OpenFavorites()
+    {
+        if (_searching)
+        {
+            _searching = false;
+            ShowAllCards();
+        }
+
+        SearchBox.Text = "";
+        int index = Array.FindIndex(Sections, s => s.Panel == "Sec_Network");
+        SectionList.SelectedIndex = index;
+        ShowSection(index);
     }
 }

@@ -30,6 +30,15 @@ public enum ConnectionKind
 
     /// <summary>Dropbox, con inicio de sesión de Dropbox.</summary>
     Dropbox,
+
+    /// <summary>Azure Blob Storage, con un permiso SAS del contenedor.</summary>
+    AzureBlob,
+
+    /// <summary>Google Cloud Storage, por su API compatible con S3 (claves HMAC).</summary>
+    GoogleCloudStorage,
+
+    /// <summary>La biblioteca de documentos de un sitio de SharePoint (Microsoft 365), con inicio de sesión de Microsoft.</summary>
+    SharePoint,
 }
 
 /// <summary>Un servidor guardado. La contraseña (o la clave secreta de S3) no está aquí: va al Administrador de credenciales.</summary>
@@ -68,6 +77,9 @@ public sealed class Connection
 
     /// <summary>Google: el "secreto" de la app de escritorio (Google lo pide aunque en una app instalada no es secreto).</summary>
     public string ClientSecret { get; set; } = "";
+
+    /// <summary>SharePoint: la dirección del sitio ("https://empresa.sharepoint.com/sites/Equipo").</summary>
+    public string Site { get; set; } = "";
 
     /// <summary>Solo pruebas: otras direcciones de inicio de sesión (vacío = las del servicio).</summary>
     public string AuthUrl { get; set; } = "";
@@ -126,7 +138,26 @@ public static unsafe partial class Connections
         ConnectionKind.OneDrive => new OneDriveStore(connection, secret),
         ConnectionKind.GoogleDrive => new GoogleDriveStore(connection, secret),
         ConnectionKind.Dropbox => new DropboxStore(connection, secret),
+        ConnectionKind.SharePoint => new OneDriveStore(connection, secret),
+        ConnectionKind.AzureBlob => new AzureBlobStore(connection, secret),
+        ConnectionKind.GoogleCloudStorage => new S3Store(GoogleCloud(connection), secret),
         _ => throw new NotSupportedException(connection.Kind.ToString()),
+    };
+
+    /// <summary>
+    /// Google Cloud Storage habla S3 en storage.googleapis.com con claves HMAC (Cloud Storage › Ajustes › Interoperabilidad):
+    /// solo cambian el servidor y la región de serie.
+    /// </summary>
+    internal static Connection GoogleCloud(Connection connection) => new()
+    {
+        Id = connection.Id,
+        Name = connection.Name,
+        Kind = ConnectionKind.S3,
+        Host = connection.Host.Trim().Length > 0 ? connection.Host : "https://storage.googleapis.com",
+        User = connection.User,
+        Root = connection.Root,
+        Region = connection.Region.Trim().Length > 0 ? connection.Region : "auto",
+        AcceptAnyCertificate = connection.AcceptAnyCertificate,
     };
 
     // --- Contraseñas en el Administrador de credenciales de Windows (genéricas, del usuario) ---

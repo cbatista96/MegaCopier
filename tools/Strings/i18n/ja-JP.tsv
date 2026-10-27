@@ -317,8 +317,6 @@ Tool_LoadList.Text	コピーリストを読み込む…
 Tool_LoadListText.Text	リストを読み込む
 Tool_NewCopy.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	新しいコピー
 Tool_NewCopyText.Text	新規
-Tool_PauseAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	すべて一時停止
-Tool_ResumeAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	すべて再開
 Tool_Settings.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	設定
 Tool_Sidebar.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	コピー一覧の表示/非表示
 Drop_Caption	MegaCopier でコピー
@@ -1598,3 +1596,112 @@ Settings_FastPaths.PlaceholderText	C:, D:\データ
 Rules_Synchronization.Text	同期
 Rules_SecurityTitle.Text	セキュリティ
 Job_StateNeedsAdministrator	管理者権限が必要です
+
+Settings_TaskbarTitle.Text	タスクバーに表示
+Settings_TaskbarDescription.Text	オフにすると、最小化したウィンドウは常に時計の横のシステムトレイに格納されます。
+Toolbar_PauseAll	すべて一時停止
+Toolbar_ResumeAll	すべて再開
+Toolbar_Sidebar	コピー一覧の表示/非表示
+Toolbar_New	新しいコピー
+Toolbar_ClearDone	完了したコピーを削除
+Toolbar_Timeline	キューのタイムライン
+Toolbar_History	履歴
+Toolbar_Settings	設定
+Toolbar_About	バージョン情報
+Toolbar_AlwaysOnTop	常に手前に表示
+Toolbar_Shelf	ドロップシェルフ
+Toolbar_Compare	比較して同期
+Toolbar_PlayPause	すべて一時停止または再開
+Toolbar_Separator	区切り線
+Toolbar_More	その他の操作
+Destinations_Favorite	お気に入りに追加
+Destinations_Unfavorite	お気に入りから削除
+Settings_ToolbarTitle.Text	ツールバー
+Settings_ToolbarDescription.Text	表示するボタンと順序を選びます。小さいウィンドウには既定と同じ数だけ入り、残りは末尾の「…」メニューに移ります。
+Settings_ToolbarReset.Text	リセット
+Settings_ToolbarFinish.Content	右側に「完了時」を表示
+Settings_ToolbarUp	「{0}」を上へ
+Settings_ToolbarDown	「{0}」を下へ
+Rules_SkipCloud.Content	クラウドのみのファイルをスキップ (ダウンロードしない)
+Destinations_PathBox.PlaceholderText	パスを入力または貼り付け (例: D:\コピー)
+Destinations_PathInvalid	このパスは使えません。既存のドライブまたはネットワーク共有上のフォルダーを完全なパスで入力してください (例: D:\コピー)。
+Tool_CompareSum.Text	チェックサムと比較…
+SumCheck_Title	チェックサムと比較
+SumCheck_File	ファイル: {0}
+SumCheck_Header	公開されているチェックサム (MD5、SHA-1、SHA-256、SHA-512、SHA3、BLAKE3、xxHash、CRC32)
+SumCheck_Placeholder	ダウンロード ページのチェックサムをここに貼り付けます
+SumCheck_Check	確認
+SumCheck_Close	閉じる
+SumCheck_NotASum	チェックサムではないようです。8、16、32、40、64、128 桁の 16 進数である必要があります。
+SumCheck_Reading	ファイルを読み取っています…
+SumCheck_Match	✓ 一致 ({0}): ファイルは正常です。
+SumCheck_NoMatch	✗ 一致しません。{0} ではファイルは {1} です。破損、不完全、または別のファイルです。
+Status_SourceDrive.Text	コピー元
+Status_TargetDrive.Text	コピー先
+Status_DriveFree	空き {0} / {1}
+LocalSend_Conflict.Header	ファイルがフォルダーに既にある場合
+LocalSend_ConflictRename.Content	両方を残す (「写真 (2).jpg」)
+LocalSend_ConflictSkip.Content	受信しない
+LocalSend_ConflictOverwrite.Content	既存のファイルを置き換える
+LocalSend_Include.Header	これらの種類のみ受信 (空欄 = すべて)
+LocalSend_Include.PlaceholderText	*.jpg; *.heic; *.mp4
+LocalSend_Exclude.Header	受信しない種類
+LocalSend_Exclude.PlaceholderText	*.apk; *.exe
+Task_OnDevice.Content	ドライブ接続時
+Task_SavedOnDevice	タスク「{0}」を保存しました: ドライブを接続するたびに自動で開始します (MegaCopier が開いているか通知領域にあるとき)。
+Task_NoDevice	このコピーには待機できるドライブ文字のディスクがありません (たとえば、ネットワーク フォルダーへのコピーです)。
+Settings_TaskOnDevice	{0} を接続すると自動で開始
+Connection_AzureAccount	ストレージ アカウント (https://account.blob.core.windows.net)
+Connection_GcsEndpoint	エンドポイント (空欄 = storage.googleapis.com)
+Connection_Sas	コンテナーの SAS トークン (sv=…&sig=…)
+Connection_Container	コンテナー (とフォルダー): container/folder
+Connection_Site	SharePoint サイト
+Connection_SitePlaceholder	https://company.sharepoint.com/sites/Team
+Rules_MoreTitle.Text	その他のオプション
+Rules_RenameMask.Header	コピー時に名前を変更 (マスク: *.bak、コピー *.*)
+Rules_Flatten.Content	フラット化: すべてをコピー先フォルダーに、サブフォルダーなし
+Rules_KeepPaths.Content	複数フォルダーのファイル: 共通フォルダーからフォルダー構成を再現
+Rules_OnlyArchive.Content	変更済みとしてマークされたもののみ (「アーカイブ」属性)
+Rules_ResetArchive.Content	コピー後に元のファイルからその印を外す (増分バックアップ)
+Rules_CompensateDst.Content	ちょうど 1 時間違うファイルを同じとみなす (夏時間)
+Rules_KeepCompression.Content	NTFS 圧縮を維持
+Rules_SkipCompressed.Content	Windows で圧縮または暗号化されたファイルをスキップ
+Rules_SkipTemporary.Content	一時ファイルとしてマークされたものをスキップ
+Rules_Depth.Header	サブフォルダーの階層 (空欄 = すべて、0 = フォルダーのみ)
+Rules_AccessedAfter.Header	最終使用日 (以降)
+Rules_AccessedBefore.Header	最終使用日 (以前)
+Rules_FolderTimes.Header	フォルダーの日時
+Rules_FolderAttributes.Header	フォルダーの属性
+Rules_FolderLikeFiles.Content	ファイルと同じ
+Rules_FolderYes.Content	コピーする
+Rules_FolderNo.Content	コピーしない
+Rules_FolderLikeFiles2.Content	ファイルと同じ
+Rules_FolderYes2.Content	コピーする
+Rules_FolderNo2.Content	コピーしない
+Rules_BeforeCommand.Header	開始前に実行 (失敗するとコピーしません)
+Settings_EjectSource.Content	すべて成功したらコピー元 (カメラのカード) も取り出す
+Scripts_AddExample.Text	例を追加
+Scripts_ExampleNtfy.Text	ntfy でスマートフォンに通知
+Scripts_ExampleIfttt.Text	IFTTT アプレットを実行
+Scripts_ExampleOpen.Text	すべて成功したらコピー先を開く
+Scripts_ExampleLog.Text	各コピーをテキスト ファイルに記録
+Scripts_NtfyTopic	my-secret-topic
+Scripts_IftttKey	YOUR-KEY
+Scripts_LogName	MegaCopier-transfers
+Settings_TransferLogTitle.Text	すべてのコピーの単一ログ
+Settings_TransferLogDescription.Text	コピーまたは失敗したファイルごとに 1 行、1 つのファイルに選んだ形式で記録します。Syslog サーバーにも送信できます。
+Settings_TransferLogPath.Header	ログ ファイル
+Settings_TransferLogBrowse.Text	選択…
+Settings_TransferLogType	ログ
+Settings_TransferLogFormat.Header	コピーした各ファイルの形式
+Settings_ErrorLogFormat.Header	各エラーの形式
+Settings_TransferLogVariables.Text	変数: %time%、%source%、%destination%、%size%、%mtime%、%hash%、%path%、%error%、%computer%、%user%
+Settings_Syslog.Header	Syslog サーバーにも送信 (サーバーまたはサーバー:ポート、空欄 = 送信しない)
+Task_AddPair.Text	タスクに別のフォルダーの組を追加…
+Task_ClearPairs.Text	組を削除
+Task_PairSource	コピーするフォルダー
+Task_PairDestination	コピー先
+Task_NoSession.Content	誰もサインインしていなくても実行 (ウィンドウなし)
+Task_NoCli	セッションなしで実行するには MegaCopier と同じ場所に mcopy.exe が必要です (インストーラーに含まれています)。
+Settings_ToolbarCustomize.Text	カスタマイズ
+Status_Folders.Text	フォルダー

@@ -79,7 +79,7 @@ E_DeleteStart	{0} bestanden verwijderen ({1}).
 E_WipeStart	{0} bestanden veilig verwijderen ({1}).
 E_DoneDelete	Klaar in {0}: {1} verwijderd, {2} met fouten.
 E_NoSources	Er is geen bron opgegeven.
-E_WholeDrive	Een volledig station kopiëren wordt nog niet ondersteund: {0}
+E_WholeDrive	Een volledig station kan alleen worden gekopieerd, niet verplaatst of verwijderd: {0}
 E_SourceMissing	De bron bestaat niet: {0}
 E_IntoItself	Een map kan niet in zichzelf worden gekopieerd: {0}
 E_SourceUnreadable	Kon de bron niet lezen: {0}
@@ -125,7 +125,6 @@ E_DamagedTwice	Kwam twee keer beschadigd aan op de andere computer
 E_Fat32	Past niet op FAT32 (maximaal 4 GB per bestand); formatteer de schijf als exFAT of NTFS.
 E_FatLimits	Het doel is {0}: het bewaart geen alternatieve gegevensstromen of machtigingen, en datums zijn tot op 2 s nauwkeurig.
 E_CaseCollisions	{0} namen komen dubbel voor in het doel (alleen verschil in hoofdletters): ze worden als conflicten behandeld.
-E_BadName	Problematische naam in Windows (gereserveerd of eindigend op een punt of spatie): sommige programma's kunnen hem niet openen.
 E_LongPaths	{0} bestanden krijgen paden langer dan 260 tekens: Verkenner en andere programma's openen ze mogelijk niet.
 E_WrongCode	De code is niet die van de andere computer.
 E_PeerUnknownCode	De andere computer kent de code niet: de verbinding is niet veilig.
@@ -269,3 +268,15 @@ E_FolderSkipExisting	De map bestond al: de {0} bestanden die er al zijn worden o
 E_FolderOverwrite	De map bestond al: de {0} bestanden die er al zijn worden overschreven.
 E_FolderRenamed	De map "{0}" bestond al: hij wordt gekopieerd als "{1}".
 E_SpaceForced	Er wordt toch gekopieerd: als de schijf vol is, wacht het kopiëren op ruimte.
+E_DriveFolder	Station {0}
+E_NameFixed	Het doel accepteert de naam ‘{0}’ niet: gekopieerd als ‘{1}’
+E_CloudOnly	{0} bestanden staan alleen in de cloud: ze worden gedownload om ze te kopiëren (in Regels kun je ze overslaan).
+E_F_NoCloud	zonder bestanden die alleen in de cloud staan
+C_UsageFilters	Filters (copy, move, test, hash):\n  --include <maskers>    Alleen deze ("*.jpg;*.png"; herhaalbaar)\n  --exclude <maskers>    Nooit deze ("*.tmp;node_modules")\n  --min-size <n>         Minimale grootte (500, 200k, 10m, 2g)\n  --max-size <n>         Maximale grootte\n  --after <jjjj-mm-dd>   Gewijzigd vanaf die dag\n  --before <jjjj-mm-dd>  Gewijzigd tot en met die dag\n  --skip-hidden · --skip-system · --skip-cloud (alleen in de cloud)\n  --filter "<tekst>"     In gewone taal: "photos over 2 MB"\n  @lijst.txt             Bronnen uit een bestand (één pad per regel)
+C_BadSize	{0} heeft een grootte nodig, zoals 500, 200k, 10m of 2g.
+C_BadDate	{0} heeft een datum jjjj-mm-dd nodig (bijvoorbeeld 2026-01-31).
+E_BeforeRunning	Voor het starten: {0}
+E_BeforeFailed	De opdracht vóór het starten is mislukt ({1}), dus de kopie start niet: {0}
+C_UsageExtras	Meer opties:\n  --max-depth <n>        Submapniveaus (0 = alleen de map)\n  --archive              Alleen wat als gewijzigd is gemarkeerd, daarna markering wissen\n  --dst                  Precies een uur verschil telt als gelijk (zomertijd)\n  --keep-compression     NTFS-compressie behouden\n  --flatten              Alles in de doelmap, zonder submappen\n  --keep-paths           Mappen nabouwen vanaf de gemeenschappelijke map van de bronnen\n  --rename <masker>      Hernoemen tijdens kopiëren: "*.bak", "kopie van *.*"\n  --run-before "<opdracht>"  Wordt vóór het starten uitgevoerd; bij een fout wordt niets gekopieerd\n  Een .mcignore-bestand in een map zegt wat er nooit uit gekopieerd wordt.
+C_RunUsage	Gebruik: mcopy run <lijst.mclist>  (voert een opgeslagen kopie of taak uit zonder venster)
+C_BadList	De lijst kan niet worden gelezen: {0}

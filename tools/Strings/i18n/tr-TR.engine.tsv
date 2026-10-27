@@ -79,7 +79,7 @@ E_DeleteStart	{0} dosya sil ({1}).
 E_WipeStart	{0} dosya güvenli sil ({1}).
 E_DoneDelete	{0} içinde bitti: {1} silindi, {2} hatalı.
 E_NoSources	Hiç kaynak belirtilmedi.
-E_WholeDrive	Bütün bir sürücüyü kopyalamak henüz desteklenmiyor: {0}
+E_WholeDrive	Bütün bir sürücü yalnızca kopyalanabilir, taşınamaz veya silinemez: {0}
 E_SourceMissing	Kaynak yok: {0}
 E_IntoItself	Bir klasör kendi içine kopyalanamaz: {0}
 E_SourceUnreadable	Kaynak okunamadı: {0}
@@ -125,7 +125,6 @@ E_DamagedTwice	Diğer bilgisayara iki kez hasarlı ulaştı
 E_Fat32	FAT32'ye sığmaz (dosya başına en fazla 4 GB); diski exFAT veya NTFS olarak biçimlendirin.
 E_FatLimits	Hedef {0}: alternatif akışları ve izinleri saklamaz, tarihler 2 sn hassasiyetlidir.
 E_CaseCollisions	Hedefte {0} ad yineleniyor (yalnızca büyük/küçük harf farkı): çakışma olarak ele alınacaklar.
-E_BadName	Windows'ta sorunlu ad (ayrılmış veya nokta ya da boşlukla biten): bazı programlar onu açamayacak.
 E_LongPaths	{0} dosyanın yolu 260 karakterden uzun olacak: Dosya Gezgini ve diğer programlar bunları açamayabilir.
 E_WrongCode	Kod, diğer bilgisayarın gösterdiği değil.
 E_PeerUnknownCode	Diğer bilgisayar kodu bilmiyor: bağlantı güvenli değil.
@@ -269,3 +268,15 @@ E_FolderSkipExisting	Klasör zaten vardı: mevcut {0} dosya atlanır, kalanı ko
 E_FolderOverwrite	Klasör zaten vardı: mevcut {0} dosyanın üzerine yazılır.
 E_FolderRenamed	"{0}" klasörü zaten vardı: "{1}" olarak kopyalanır.
 E_SpaceForced	Yine de kopyalanıyor: disk dolduğunda kopyalama yer açılmasını bekleyecek.
+E_DriveFolder	Sürücü {0}
+E_NameFixed	Hedef “{0}” adını kabul etmiyor: “{1}” olarak kopyalandı
+E_CloudOnly	{0} dosya yalnızca bulutta: kopyalamak için indirilecek (Kurallar'dan atlanabilir).
+E_F_NoCloud	yalnızca buluttakiler hariç
+C_UsageFilters	Filtreler (copy, move, test, hash):\n  --include <maskeler>   Yalnızca bunlar ("*.jpg;*.png"; tekrarlanabilir)\n  --exclude <maskeler>   Asla bunlar ("*.tmp;node_modules")\n  --min-size <n>         En küçük boyut (500, 200k, 10m, 2g)\n  --max-size <n>         En büyük boyut\n  --after <yyyy-aa-gg>   O günden itibaren değişenler\n  --before <yyyy-aa-gg>  O güne kadar değişenler\n  --skip-hidden · --skip-system · --skip-cloud (yalnızca bulutta)\n  --filter "<metin>"     Doğal dille: "photos over 2 MB"\n  @liste.txt             Bir dosyadan kaynaklar (satır başına bir yol)
+C_BadSize	{0} bir boyut gerektirir: 500, 200k, 10m veya 2g gibi.
+C_BadDate	{0} yyyy-aa-gg biçiminde bir tarih gerektirir (örneğin 2026-01-31).
+E_BeforeRunning	Başlamadan önce: {0}
+E_BeforeFailed	Başlamadan önceki komut başarısız oldu ({1}), bu nedenle kopyalama başlamıyor: {0}
+C_UsageExtras	Diğer seçenekler:\n  --max-depth <n>        Alt klasör düzeyleri (0 = yalnızca klasör)\n  --archive              Yalnızca değişti olarak işaretlenenler, sonra işareti kaldır\n  --dst                  Tam bir saat fark aynı sayılır (yaz saati)\n  --keep-compression     NTFS sıkıştırmasını koru\n  --flatten              Her şey hedef klasöre, alt klasörler olmadan\n  --keep-paths           Klasörleri kaynakların ortak klasöründen yeniden oluştur\n  --rename <maske>       Kopyalarken yeniden adlandır: "*.bak", "kopya *.*"\n  --run-before "<komut>"     Başlamadan önce çalışır; başarısız olursa kopyalanmaz\n  Bir klasördeki .mcignore dosyası oradan asla kopyalanmayacakları söyler.
+C_RunUsage	Kullanım: mcopy run <liste.mclist>  (kayıtlı bir kopyayı veya görevi pencere olmadan çalıştırır)
+C_BadList	Liste okunamadı: {0}

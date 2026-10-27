@@ -317,8 +317,6 @@ Tool_LoadList.Text	Завантажити список копіювання…
 Tool_LoadListText.Text	Завантажити список
 Tool_NewCopy.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Нове копіювання
 Tool_NewCopyText.Text	Нове
-Tool_PauseAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Призупинити всі
-Tool_ResumeAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Відновити всі
 Tool_Settings.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Налаштування
 Tool_Sidebar.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Показати або приховати список копіювань
 Drop_Caption	Копіювати через MegaCopier
@@ -1598,3 +1596,112 @@ Settings_FastPaths.PlaceholderText	C:, D:\Дані
 Rules_Synchronization.Text	Синхронізація
 Rules_SecurityTitle.Text	Безпека
 Job_StateNeedsAdministrator	Потрібні права адміністратора
+
+Settings_TaskbarTitle.Text	Показувати на панелі завдань
+Settings_TaskbarDescription.Text	Якщо вимкнено, під час згортання вікно завжди ховається в системному треї поруч із годинником.
+Toolbar_PauseAll	Призупинити всі
+Toolbar_ResumeAll	Відновити всі
+Toolbar_Sidebar	Показати або приховати список копіювань
+Toolbar_New	Нове копіювання
+Toolbar_ClearDone	Прибрати завершені копіювання
+Toolbar_Timeline	Часова шкала черги
+Toolbar_History	Журнал
+Toolbar_Settings	Налаштування
+Toolbar_About	Про програму
+Toolbar_AlwaysOnTop	Поверх інших вікон
+Toolbar_Shelf	Полиця для перетягування
+Toolbar_Compare	Порівняння й синхронізація
+Toolbar_PlayPause	Призупинити або відновити всі
+Toolbar_Separator	Роздільник
+Toolbar_More	Інші дії
+Destinations_Favorite	Додати до вибраного
+Destinations_Unfavorite	Вилучити з вибраного
+Settings_ToolbarTitle.Text	Панель інструментів
+Settings_ToolbarDescription.Text	Виберіть, які кнопки показувати й у якому порядку. У маленькому вікні вміщується стільки ж, скільки за замовчуванням; решта потрапляє в меню «…» наприкінці.
+Settings_ToolbarReset.Text	Скинути
+Settings_ToolbarFinish.Content	Показувати «Після завершення» праворуч
+Settings_ToolbarUp	Перемістити «{0}» вгору
+Settings_ToolbarDown	Перемістити «{0}» вниз
+Rules_SkipCloud.Content	Пропускати файли, які є лише в хмарі (не завантажувати)
+Destinations_PathBox.PlaceholderText	Введіть або вставте шлях, наприклад D:\Копії
+Destinations_PathInvalid	Цей шлях не підходить: введіть повний шлях до теки на наявному диску або мережевому ресурсі (наприклад, D:\Копії).
+Tool_CompareSum.Text	Порівняти з контрольною сумою…
+SumCheck_Title	Порівняння з контрольною сумою
+SumCheck_File	Файл: {0}
+SumCheck_Header	Опублікована сума (MD5, SHA-1, SHA-256, SHA-512, SHA3, BLAKE3, xxHash або CRC32)
+SumCheck_Placeholder	Вставте сюди суму зі сторінки завантаження
+SumCheck_Check	Перевірити
+SumCheck_Close	Закрити
+SumCheck_NotASum	Це не схоже на контрольну суму: потрібне шістнадцяткове число з 8, 16, 32, 40, 64 або 128 цифр.
+SumCheck_Reading	Читання файлу…
+SumCheck_Match	✓ Збігається ({0}): файл у порядку.
+SumCheck_NoMatch	✗ Не збігається. За {0} файл дає {1}: він пошкоджений, неповний або це інший файл.
+Status_SourceDrive.Text	Джерело
+Status_TargetDrive.Text	Призначення
+Status_DriveFree	вільно {0} з {1}
+LocalSend_Conflict.Header	Якщо файл уже є в теці
+LocalSend_ConflictRename.Content	Зберегти обидва («фото (2).jpg»)
+LocalSend_ConflictSkip.Content	Не отримувати
+LocalSend_ConflictOverwrite.Content	Замінити наявний
+LocalSend_Include.Header	Отримувати лише ці типи (порожньо = усі)
+LocalSend_Include.PlaceholderText	*.jpg; *.heic; *.mp4
+LocalSend_Exclude.Header	Ніколи не отримувати
+LocalSend_Exclude.PlaceholderText	*.apk; *.exe
+Task_OnDevice.Content	Під час підключення диска
+Task_SavedOnDevice	Завдання «{0}» збережено: воно запускатиметься саме щоразу, коли ви підключите диск (якщо MegaCopier відкритий або в треї).
+Task_NoDevice	Ця копія не має диска з літерою, на який можна чекати (наприклад, вона йде в мережеву теку).
+Settings_TaskOnDevice	Запускається саме під час підключення {0}
+Connection_AzureAccount	Обліковий запис сховища (https://account.blob.core.windows.net)
+Connection_GcsEndpoint	Кінцева точка (порожньо = storage.googleapis.com)
+Connection_Sas	Токен SAS контейнера (sv=…&sig=…)
+Connection_Container	Контейнер (і тека): контейнер/тека
+Connection_Site	Сайт SharePoint
+Connection_SitePlaceholder	https://company.sharepoint.com/sites/Team
+Rules_MoreTitle.Text	Додаткові параметри
+Rules_RenameMask.Header	Перейменовувати під час копіювання (маска: *.bak, копія *.*)
+Rules_Flatten.Content	Сплющити: усе в теку призначення, без підтек
+Rules_KeepPaths.Content	Файли з різних тек: відтворити їхні теки від спільної
+Rules_OnlyArchive.Content	Лише позначені як змінені (атрибут «Архівний»)
+Rules_ResetArchive.Content	Знімати цю позначку з джерела після копіювання (інкрементні копії)
+Rules_CompensateDst.Content	Вважати однаковими файли з різницею рівно в годину (перехід на літній час)
+Rules_KeepCompression.Content	Зберігати стиснення NTFS
+Rules_SkipCompressed.Content	Пропускати стиснені або зашифровані Windows
+Rules_SkipTemporary.Content	Пропускати позначені як тимчасові
+Rules_Depth.Header	Рівні підтек (порожньо = усі; 0 = лише тека)
+Rules_AccessedAfter.Header	Використані з
+Rules_AccessedBefore.Header	Використані до
+Rules_FolderTimes.Header	Дати тек
+Rules_FolderAttributes.Header	Атрибути тек
+Rules_FolderLikeFiles.Content	Як у файлів
+Rules_FolderYes.Content	Копіювати
+Rules_FolderNo.Content	Не копіювати
+Rules_FolderLikeFiles2.Content	Як у файлів
+Rules_FolderYes2.Content	Копіювати
+Rules_FolderNo2.Content	Не копіювати
+Rules_BeforeCommand.Header	Виконати перед початком (у разі помилки нічого не копіюється)
+Settings_EjectSource.Content	Виймати й джерело (карту камери), якщо все пройшло успішно
+Scripts_AddExample.Text	Додати приклад
+Scripts_ExampleNtfy.Text	Сповістити телефон через ntfy
+Scripts_ExampleIfttt.Text	Запустити аплет IFTTT
+Scripts_ExampleOpen.Text	Відкрити теку призначення, якщо все пройшло успішно
+Scripts_ExampleLog.Text	Записувати кожну копію в текстовий файл
+Scripts_NtfyTopic	moya-sekretna-tema
+Scripts_IftttKey	VASH-KLYUCH
+Scripts_LogName	MegaCopier-kopii
+Settings_TransferLogTitle.Text	Єдиний журнал усіх копій
+Settings_TransferLogDescription.Text	Рядок на кожен скопійований або невдалий файл, в одному файлі й у вибраному форматі. Можна також надсилати на сервер Syslog.
+Settings_TransferLogPath.Header	Файл журналу
+Settings_TransferLogBrowse.Text	Вибрати…
+Settings_TransferLogType	Журнал
+Settings_TransferLogFormat.Header	Формат для кожного скопійованого файлу
+Settings_ErrorLogFormat.Header	Формат для кожної помилки
+Settings_TransferLogVariables.Text	Змінні: %time%, %source%, %destination%, %size%, %mtime%, %hash%, %path%, %error%, %computer%, %user%
+Settings_Syslog.Header	Надсилати також на сервер Syslog (сервер або сервер:порт; порожньо = ні)
+Task_AddPair.Text	Додати до завдання ще одну пару тек…
+Task_ClearPairs.Text	Прибрати пари
+Task_PairSource	Тека для копіювання
+Task_PairDestination	Куди копіювати
+Task_NoSession.Content	Виконувати, навіть якщо ніхто не ввійшов у систему (без вікна)
+Task_NoCli	Для запуску без сеансу потрібен mcopy.exe поруч із MegaCopier (входить до інсталятора).
+Settings_ToolbarCustomize.Text	Налаштувати
+Status_Folders.Text	Папки

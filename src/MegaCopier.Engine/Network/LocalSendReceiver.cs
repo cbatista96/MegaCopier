@@ -29,6 +29,14 @@ public sealed class LocalSendReceiver : IDisposable
     private Session? _session;
     private UdpClient? _udp;
 
+    /// <summary>Qué hacer con un archivo que ya está en la carpeta (de serie, conservar los dos).</summary>
+    public LocalSendConflict Conflict { get; set; } = LocalSendConflict.Rename;
+
+    /// <summary>
+    /// Solo se piden al móvil los archivos que pasan este filtro (nombre, extensión, tamaño): lo demás ni se descarga.
+    /// </summary>
+    public FileFilter? Filter { get; set; }
+
     /// <param name="folder">Dónde se guardan los archivos recibidos.</param>
     /// <param name="alias">El nombre con el que aparece este equipo en LocalSend.</param>
     /// <param name="fingerprint">Identificador estable de este equipo (en "http" basta con que sea único).</param>
@@ -287,11 +295,31 @@ public sealed class LocalSendReceiver : IDisposable
         }
 
         string sender = prepare.Info.Alias.Length > 0 ? prepare.Info.Alias : remote.ToString();
-        long bytes = prepare.Files.Values.Sum(f => f.Size);
+
+        // Antes de aceptar: fuera lo que el filtro no quiere y, con «omitir», lo que ya está en la carpeta. El móvil solo
+        // envía los archivos para los que recibe permiso.
+        var filter = Filter is { IsEmpty: false } f ? f : null;
+        var conflict = Conflict;
+        var wanted = prepare.Files
+            .Where(kv =>
+            {
+                string relative = LocalSendProtocol.SafeRelativePath(kv.Value.FileName)!;
+                return (filter is null || filter.AcceptsFile(relative, kv.Value.Size, kv.Value.Metadata?.Modified?.UtcDateTime))
+                    && !(conflict == LocalSendConflict.Skip && File.Exists(Path.Combine(_folder, relative)));
+            })
+            .ToDictionary(kv => kv.Key, kv => kv.Value);
+        long bytes = wanted.Values.Sum(f => f.Size);
+        if (wanted.Count == 0)
+        {
+            // Nada que recibir: el protocolo responde 204 y el móvil da el envío por terminado.
+            Event?.Invoke(new PeerEvent(PeerEventKind.Rejected, sender, prepare.Files.Count, prepare.Files.Values.Sum(f => f.Size), "LocalSend"));
+            return (204, null);
+        }
+
         bool accepted;
         try
         {
-            accepted = await _accept(new LocalSendOffer(sender, prepare.Info.DeviceModel, prepare.Files.Count, bytes)).ConfigureAwait(false);
+            accepted = await _accept(new LocalSendOffer(sender, prepare.Info.DeviceModel, wanted.Count, bytes)).ConfigureAwait(false);
         }
         catch (Exception)
         {
@@ -300,11 +328,11 @@ public sealed class LocalSendReceiver : IDisposable
 
         if (!accepted)
         {
-            Event?.Invoke(new PeerEvent(PeerEventKind.Rejected, sender, prepare.Files.Count, bytes, "LocalSend"));
+            Event?.Invoke(new PeerEvent(PeerEventKind.Rejected, sender, wanted.Count, bytes, "LocalSend"));
             return (403, null);
         }
 
-        var session = new Session(_folder, sender, remote, prepare.Files);
+        var session = new Session(_folder, sender, remote, wanted, conflict);
         lock (_gate)
         {
             if (_session is { } other && !other.IsIdle(SessionIdle))
@@ -316,7 +344,7 @@ public sealed class LocalSendReceiver : IDisposable
         }
 
         Directory.CreateDirectory(_folder);
-        Event?.Invoke(new PeerEvent(PeerEventKind.Started, sender, prepare.Files.Count, bytes, "LocalSend"));
+        Event?.Invoke(new PeerEvent(PeerEventKind.Started, sender, wanted.Count, bytes, "LocalSend"));
         var response = new LocalSendPrepareResponse { SessionId = session.Id, Files = session.Tokens() };
         return (200, JsonSerializer.SerializeToUtf8Bytes(response, LocalSendJsonContext.Default.LocalSendPrepareResponse));
     }
@@ -371,7 +399,7 @@ public sealed class LocalSendReceiver : IDisposable
             }
 
             string target = session.FreeTarget(file);
-            File.Move(partial, target);
+            File.Move(partial, target, overwrite: session.Replaces); // solo se pisa algo si se eligió sustituir
             if (file.Meta.Metadata?.Modified is { } modified)
             {
                 File.SetLastWriteTimeUtc(target, modified.UtcDateTime);
@@ -434,9 +462,15 @@ public sealed class LocalSendReceiver : IDisposable
         private readonly HashSet<string> _reserved = new(StringComparer.OrdinalIgnoreCase);
         private long _lastActivity = Environment.TickCount64;
 
-        public Session(string folder, string senderName, IPAddress sender, Dictionary<string, LocalSendFile> files)
+        private readonly LocalSendConflict _conflict;
+
+        /// <summary>Se eligió sustituir lo que ya hay en la carpeta.</summary>
+        public bool Replaces => _conflict == LocalSendConflict.Overwrite;
+
+        public Session(string folder, string senderName, IPAddress sender, Dictionary<string, LocalSendFile> files, LocalSendConflict conflict = LocalSendConflict.Rename)
         {
             SenderName = senderName;
+            _conflict = conflict;
             Sender = sender;
             foreach (var (id, meta) in files)
             {
@@ -476,7 +510,10 @@ public sealed class LocalSendReceiver : IDisposable
             }
         }
 
-        /// <summary>El nombre definitivo: si ya existe un archivo con ese nombre, "foto (2).jpg" (no se pisa nada).</summary>
+        /// <summary>
+        /// El nombre definitivo: si ya existe un archivo con ese nombre, "foto (2).jpg" (no se pisa nada), salvo que se
+        /// haya elegido sustituirlo. Dos archivos del mismo envío con el mismo nombre nunca se pisan entre sí.
+        /// </summary>
         public string FreeTarget(Expected file)
         {
             lock (_gate)
@@ -485,7 +522,8 @@ public sealed class LocalSendReceiver : IDisposable
                 string name = Path.GetFileNameWithoutExtension(file.Target);
                 string extension = Path.GetExtension(file.Target);
                 string candidate = file.Target;
-                for (int n = 2; File.Exists(candidate) || Directory.Exists(candidate) || _reserved.Contains(candidate); n++)
+                bool replace = _conflict == LocalSendConflict.Overwrite;
+                for (int n = 2; (!replace && File.Exists(candidate)) || Directory.Exists(candidate) || _reserved.Contains(candidate); n++)
                 {
                     candidate = Path.Combine(directory, $"{name} ({n}){extension}");
                 }

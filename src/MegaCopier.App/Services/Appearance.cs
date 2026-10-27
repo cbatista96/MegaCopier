@@ -56,7 +56,7 @@ internal static class Appearance
     /// foco pasa a Mica Alt en lugar de apagarse.
     /// </summary>
     public static SystemBackdrop? CreateBackdrop(AppBackdrop backdrop, bool dark, bool altWhenInactive = false, bool active = true) =>
-        backdrop == AppBackdrop.Solid ? null : new MaterialBackdrop(backdrop, dark, altWhenInactive && backdrop == AppBackdrop.Mica, active);
+        backdrop == AppBackdrop.Solid ? null : new MaterialBackdrop(backdrop, dark, altWhenInactive, active);
 
     /// <summary>"#AARRGGBB" o "#RRGGBB" → "#RRGGBB" (el acento de los controles no lleva transparencia).</summary>
     public static string ToRgbHex(string color)
@@ -94,7 +94,8 @@ internal static class Appearance
 /// Material de Windows 11 detrás de una ventana o de un menú: Mica, Mica Alt, acrílico normal o delgado. Lleva el modo
 /// claro u oscuro del tema de MegaCopier y no el de Windows (los de WinUI siguen al sistema: «Fluent claro» con Windows
 /// en oscuro quedaba con una Mica oscura). Al perder el foco, Windows apaga el material y deja un color liso; con
-/// <c>altWhenInactive</c> no se apaga: pasa de Mica a Mica Alt y vuelve a Mica al recuperarlo.
+/// <c>altWhenInactive</c> no se apaga: pasa a su pareja (Mica ⇄ Mica Alt, acrílico ⇄ acrílico delgado) y vuelve al
+/// elegido al recuperarlo.
 /// </summary>
 internal sealed partial class MaterialBackdrop(AppBackdrop kind, bool dark, bool altWhenInactive = false, bool active = true) : SystemBackdrop
 {
@@ -120,11 +121,17 @@ internal sealed partial class MaterialBackdrop(AppBackdrop kind, bool dark, bool
         _active = value;
         if (altWhenInactive)
         {
+            var shown = Shown;
             foreach (var controller in _controllers.Values)
             {
-                if (controller is MicaController mica)
+                switch (controller)
                 {
-                    mica.Kind = value ? MicaKind.Base : MicaKind.BaseAlt;
+                    case MicaController mica:
+                        mica.Kind = shown == AppBackdrop.MicaAlt ? MicaKind.BaseAlt : MicaKind.Base;
+                        break;
+                    case DesktopAcrylicController acrylic:
+                        acrylic.Kind = shown == AppBackdrop.AcrylicThin ? DesktopAcrylicKind.Thin : DesktopAcrylicKind.Base;
+                        break;
                 }
             }
         }
@@ -134,15 +141,28 @@ internal sealed partial class MaterialBackdrop(AppBackdrop kind, bool dark, bool
         }
     }
 
+    /// <summary>La pareja de cada material sin el foco: Mica ⇄ Mica Alt y acrílico ⇄ acrílico delgado (translúcida).</summary>
+    internal static AppBackdrop Partner(AppBackdrop backdrop) => backdrop switch
+    {
+        AppBackdrop.Mica => AppBackdrop.MicaAlt,
+        AppBackdrop.MicaAlt => AppBackdrop.Mica,
+        AppBackdrop.Acrylic => AppBackdrop.AcrylicThin,
+        AppBackdrop.AcrylicThin => AppBackdrop.Acrylic,
+        _ => backdrop,
+    };
+
+    /// <summary>El material que se ve ahora: el elegido con el foco y, sin él, su pareja.</summary>
+    private AppBackdrop Shown => altWhenInactive && !_active ? Partner(kind) : kind;
+
     protected override void OnTargetConnected(Microsoft.UI.Composition.ICompositionSupportsSystemBackdrop connectedTarget, XamlRoot xamlRoot)
     {
         base.OnTargetConnected(connectedTarget, xamlRoot);
-        ISystemBackdropControllerWithTargets controller = kind switch
+        ISystemBackdropControllerWithTargets controller = Shown switch
         {
             AppBackdrop.Acrylic => new DesktopAcrylicController { Kind = DesktopAcrylicKind.Base },
             AppBackdrop.AcrylicThin => new DesktopAcrylicController { Kind = DesktopAcrylicKind.Thin },
             AppBackdrop.MicaAlt => new MicaController { Kind = MicaKind.BaseAlt },
-            _ => new MicaController { Kind = altWhenInactive && !_active ? MicaKind.BaseAlt : MicaKind.Base },
+            _ => new MicaController { Kind = MicaKind.Base },
         };
         controller.AddSystemBackdropTarget(connectedTarget);
         controller.SetSystemBackdropConfiguration(_configuration);

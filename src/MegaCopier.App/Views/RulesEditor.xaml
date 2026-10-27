@@ -6,7 +6,7 @@
     xmlns:c="using:MegaCopier.App.Controls">
 
     <Grid x:Name="CardsGrid" ColumnSpacing="4" RowSpacing="4">
-        <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+        <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
         <Grid.ColumnDefinitions><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
 <Border x:Name="FiltersColumnCard" Style="{StaticResource McCard}"><StackPanel x:Name="FiltersColumn" Spacing="8">
             <StackPanel Orientation="Horizontal" Spacing="8">
@@ -40,6 +40,7 @@
             </Grid>
             <CheckBox x:Name="SkipHiddenBox" x:Uid="Rules_SkipHidden" Click="Changed" />
             <CheckBox x:Name="SkipSystemBox" x:Uid="Rules_SkipSystem" Click="Changed" />
+            <CheckBox x:Name="SkipCloudBox" x:Uid="Rules_SkipCloud" Click="Changed" />
             <CheckBox x:Name="SkipJunkBox" x:Uid="Rules_SkipJunk" Click="Changed" />
             <TextBox x:Name="ImageTextBox" x:Uid="Rules_ImageText" LostFocus="Changed" />
         </StackPanel></Border>
@@ -115,6 +116,34 @@
             <CheckBox x:Name="RescueBox" x:Uid="Rules_Rescue" Click="Changed" />
             <CheckBox x:Name="DeltaBox" x:Uid="Rules_Delta" Click="Changed" />
             <CheckBox x:Name="DuplicatesBox" x:Uid="Rules_Duplicates" Click="Changed" />
+        </StackPanel></Border>
+<!-- Opciones menos habituales (las de Robocopy, Total Commander o Directory Opus) -->
+<Border x:Name="MoreCard" Style="{StaticResource McCard}"><StackPanel Spacing="8"><StackPanel Orientation="Horizontal" Spacing="8"><c:McIcon Glyph="&#xE712;" FontSize="14" Accent="True" VerticalAlignment="Center" /><TextBlock x:Uid="Rules_MoreTitle" Style="{StaticResource McStrong}" VerticalAlignment="Center" /></StackPanel>
+            <TextBox x:Name="RenameMaskBox" x:Uid="Rules_RenameMask" LostFocus="Changed" />
+            <CheckBox x:Name="FlattenBox" x:Uid="Rules_Flatten" Click="Changed" />
+            <CheckBox x:Name="KeepPathsBox" x:Uid="Rules_KeepPaths" Click="Changed" />
+            <CheckBox x:Name="OnlyArchiveBox" x:Uid="Rules_OnlyArchive" Click="Changed" />
+            <CheckBox x:Name="ResetArchiveBox" x:Uid="Rules_ResetArchive" Click="Changed" />
+            <CheckBox x:Name="CompensateDstBox" x:Uid="Rules_CompensateDst" Click="Changed" />
+            <CheckBox x:Name="KeepCompressionBox" x:Uid="Rules_KeepCompression" Click="Changed" />
+            <CheckBox x:Name="SkipCompressedBox" x:Uid="Rules_SkipCompressed" Click="Changed" />
+            <CheckBox x:Name="SkipTemporaryBox" x:Uid="Rules_SkipTemporary" Click="Changed" />
+            <NumberBox x:Name="DepthBox" x:Uid="Rules_Depth" Minimum="0" SpinButtonPlacementMode="Compact" ValueChanged="Number_Changed" />
+            <Grid ColumnSpacing="8">
+                <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+                <CalendarDatePicker x:Name="AccessedAfterBox" x:Uid="Rules_AccessedAfter" HorizontalAlignment="Stretch" DateChanged="Date_Changed" />
+                <CalendarDatePicker x:Name="AccessedBeforeBox" x:Uid="Rules_AccessedBefore" Grid.Column="1" HorizontalAlignment="Stretch" DateChanged="Date_Changed" />
+            </Grid>
+            <Grid ColumnSpacing="8">
+                <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+                <ComboBox x:Name="FolderTimesBox" x:Uid="Rules_FolderTimes" HorizontalAlignment="Stretch" SelectionChanged="Selection_Changed">
+                    <ComboBoxItem x:Uid="Rules_FolderLikeFiles" /><ComboBoxItem x:Uid="Rules_FolderYes" /><ComboBoxItem x:Uid="Rules_FolderNo" />
+                </ComboBox>
+                <ComboBox x:Name="FolderAttributesBox" x:Uid="Rules_FolderAttributes" Grid.Column="1" HorizontalAlignment="Stretch" SelectionChanged="Selection_Changed">
+                    <ComboBoxItem x:Uid="Rules_FolderLikeFiles2" /><ComboBoxItem x:Uid="Rules_FolderYes2" /><ComboBoxItem x:Uid="Rules_FolderNo2" />
+                </ComboBox>
+            </Grid>
+            <TextBox x:Name="BeforeCommandBox" x:Uid="Rules_BeforeCommand" LostFocus="Changed" />
         </StackPanel></Border>
     </Grid>
 </UserControl>

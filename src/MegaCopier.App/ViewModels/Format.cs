@@ -23,7 +23,7 @@ internal static class Format
 
     /// <summary>El nombre del último elemento de la ruta (archivo o carpeta), también en un móvil.</summary>
     public static string ItemName(string path) =>
-        Engine.Remote.RemotePath.IsRemote(path) ? Engine.Remote.RemotePath.Name(path) : Path.GetFileName(Path.TrimEndingDirectorySeparator(path));
+        Engine.Remote.RemotePath.IsRemote(path) ? Engine.Remote.RemotePath.Name(path) : Engine.SourceNames.TargetName(path);
 
     public static string ShortPath(string path, int keep = 2)
     {

@@ -47,7 +47,12 @@ public static unsafe partial class UiaHitTest
         return (void*)_automation;
     }
 
-    public static DropSpot At(int x, int y, out string? itemName)
+    public static DropSpot At(int x, int y, out string? itemName) => AtCore(0, x, y, out itemName);
+
+    /// <summary>El punto donde se abrió un menú, dentro de su vista original, aunque el menú ahora lo tape.</summary>
+    internal static DropSpot InFileView(nint view, int x, int y, out string? itemName) => AtCore(view, x, y, out itemName);
+
+    private static DropSpot AtCore(nint view, int x, int y, out string? itemName)
     {
         itemName = null;
         void* automation = Automation();
@@ -61,7 +66,7 @@ public static unsafe partial class UiaHitTest
         try
         {
             // IUIAutomation::ElementFromPoint (índice 7) e IUIAutomation::get_ControlViewWalker (índice 14)
-            if (((delegate* unmanaged[Stdcall]<void*, Point, void**, int>)(*(void***)automation)[7])(automation, new Point(x, y), &element) < 0 || element == null
+            if (!(view == 0 ? ElementAt(automation, x, y, &element) : ElementInWindowAt(automation, view, x, y, &element))
                 || ((delegate* unmanaged[Stdcall]<void*, void**, int>)(*(void***)automation)[14])(automation, &walker) < 0 || walker == null)
             {
                 return DropSpot.Unknown;
@@ -104,7 +109,13 @@ public static unsafe partial class UiaHitTest
     /// Si en ese punto hay un elemento de un árbol (el panel de navegación del Explorador), su nombre visible y los de
     /// sus padres, desde el primer nivel. Null si no lo hay.
     /// </summary>
-    public static List<string>? TreePathAt(int x, int y)
+    public static List<string>? TreePathAt(int x, int y) => TreePathCore(0, x, y, focused: false);
+
+    internal static List<string>? TreePathInWindow(nint tree, int x, int y) => TreePathCore(tree, x, y, focused: false);
+
+    internal static List<string>? SelectedTreePath(nint tree) => TreePathCore(tree, 0, 0, focused: true);
+
+    private static List<string>? TreePathCore(nint tree, int x, int y, bool focused)
     {
         void* automation = Automation();
         void* walker = null;
@@ -116,7 +127,10 @@ public static unsafe partial class UiaHitTest
 
         try
         {
-            if (((delegate* unmanaged[Stdcall]<void*, Point, void**, int>)(*(void***)automation)[7])(automation, new Point(x, y), &element) < 0 || element == null
+            bool found = focused
+                ? SelectedElement(automation, tree, &element)
+                : tree == 0 ? ElementAt(automation, x, y, &element) : TreeElementAt(automation, tree, x, y, &element);
+            if (!found
                 || ((delegate* unmanaged[Stdcall]<void*, void**, int>)(*(void***)automation)[14])(automation, &walker) < 0 || walker == null)
             {
                 return null;
@@ -162,8 +176,57 @@ public static unsafe partial class UiaHitTest
         }
     }
 
+    private static bool SelectedElement(void* automation, nint window, void** selected)
+    {
+        void* element = null;
+        void* pattern = null;
+        void* array = null;
+        try
+        {
+            int count = 0;
+            return ((delegate* unmanaged[Stdcall]<void*, nint, void**, int>)(*(void***)automation)[6])(automation, window, &element) >= 0
+                && element != null
+                && ((delegate* unmanaged[Stdcall]<void*, int, void**, int>)(*(void***)element)[16])(element, 10001 /* Selection */, &pattern) >= 0
+                && pattern != null
+                && ((delegate* unmanaged[Stdcall]<void*, void**, int>)(*(void***)pattern)[3])(pattern, &array) >= 0 && array != null
+                && ((delegate* unmanaged[Stdcall]<void*, int*, int>)(*(void***)array)[3])(array, &count) >= 0 && count == 1
+                && ((delegate* unmanaged[Stdcall]<void*, int, void**, int>)(*(void***)array)[4])(array, 0, selected) >= 0 && *selected != null;
+        }
+        finally { ExplorerLocator.Release(array); ExplorerLocator.Release(pattern); ExplorerLocator.Release(element); }
+    }
+
     /// <summary>Reconoce exclusivamente la orden Pegar habilitada de un menú del Explorador.</summary>
-    public static bool IsPasteMenuAt(int x, int y, nint explorer)
+    public static bool IsPasteMenuAt(int x, int y, nint explorer) => IsPasteMenu(x, y, explorer, focused: false);
+
+    internal static bool IsPasteMenuFocused(nint explorer) => IsPasteMenu(0, 0, explorer, focused: true);
+
+    /// <summary>El foco debe estar realmente en un menú: sus HWND pueden seguir visibles después de cerrarlo.</summary>
+    internal static bool IsContextMenuFocused()
+    {
+        void* automation = Automation();
+        void* element = null;
+        void* walker = null;
+        try
+        {
+            if (automation == null
+                || ((delegate* unmanaged[Stdcall]<void*, void**, int>)(*(void***)automation)[8])(automation, &element) < 0 || element == null
+                || ((delegate* unmanaged[Stdcall]<void*, void**, int>)(*(void***)automation)[14])(automation, &walker) < 0 || walker == null) return false;
+            for (int depth = 0; depth < 8 && element != null; depth++)
+            {
+                int type = 0;
+                ((delegate* unmanaged[Stdcall]<void*, int*, int>)(*(void***)element)[21])(element, &type);
+                if (type is 50009 or 50011) return true; // Menu o MenuItem, no un cuadro de texto ni una sugerencia.
+                void* parent = null;
+                ((delegate* unmanaged[Stdcall]<void*, void*, void**, int>)(*(void***)walker)[3])(walker, element, &parent);
+                ExplorerLocator.Release(element);
+                element = parent;
+            }
+            return false;
+        }
+        finally { ExplorerLocator.Release(element); ExplorerLocator.Release(walker); }
+    }
+
+    private static bool IsPasteMenu(int x, int y, nint explorer, bool focused)
     {
         void* automation = Automation();
         void* walker = null;
@@ -175,8 +238,10 @@ public static unsafe partial class UiaHitTest
 
         try
         {
-            if (((delegate* unmanaged[Stdcall]<void*, Point, void**, int>)(*(void***)automation)[7])(automation, new Point(x, y), &element) < 0
-                || element == null
+            bool found = focused
+                ? ((delegate* unmanaged[Stdcall]<void*, void**, int>)(*(void***)automation)[8])(automation, &element) >= 0 && element != null
+                : ElementAt(automation, x, y, &element);
+            if (!found
                 || ((delegate* unmanaged[Stdcall]<void*, void**, int>)(*(void***)automation)[14])(automation, &walker) < 0 || walker == null)
             {
                 return false;
@@ -201,10 +266,10 @@ public static unsafe partial class UiaHitTest
                     }
 
                     // «Mostrar más opciones» lleva a un menú clásico sin AutomationId ni acelerador en algunas
-                    // versiones de Windows. Antes de dejar pasar ese clic, se aprende la etiqueta localizada de
-                    // la orden canónica «paste» del menú moderno. Nunca se adivina por una traducción fija.
+                    // versiones de Windows. Se aprende la etiqueta de la orden canónica «paste» del menú moderno;
+                    // el Escritorio también admite sus etiquetas localizadas cuando no ofrece ese menú moderno.
                     RememberPasteLabel(automation, explorer);
-                    return enabled != 0 && _pasteLabel is { } label && string.Equals(name, label, StringComparison.Ordinal);
+                    return enabled != 0 && IsUnidentifiedPasteLabel(id, accelerator, name);
                 }
 
                 void* parent = null;
@@ -226,6 +291,144 @@ public static unsafe partial class UiaHitTest
     public static bool IsPasteCommand(string? automationId, string? accelerator) =>
         string.Equals(automationId, "paste", StringComparison.OrdinalIgnoreCase) ||
         string.Equals(accelerator?.Replace(" ", ""), "Ctrl+V", StringComparison.OrdinalIgnoreCase);
+
+    /// <summary>El menú clásico del Escritorio puede no publicar ni identificador ni atajo.</summary>
+    internal static bool IsUnidentifiedPasteLabel(string? id, string? accelerator, string? name) =>
+        (string.IsNullOrEmpty(id) || uint.TryParse(id, out _)) && string.IsNullOrEmpty(accelerator)
+        && IsToolbarPasteCommand(null, null, name?.Replace("&", ""));
+
+    /// <summary>
+    /// Las capas transparentes de NVIDIA y otras aplicaciones pueden tapar el Escritorio solo para UIA.
+    /// Si UIA señala otro proceso, se consulta el árbol de la ventana que Windows realmente recibiría.
+    /// Nunca se atraviesa una ventana normal situada encima del destino.
+    /// </summary>
+    private static bool ElementAt(void* automation, int x, int y, void** element)
+    {
+        nint window = Native.WindowFromPoint(new Native.Point(x, y));
+        if (window == 0) return false;
+        Native.GetWindowThreadProcessId(window, out uint nativeProcess);
+        int process = 0;
+        if (((delegate* unmanaged[Stdcall]<void*, Point, void**, int>)(*(void***)automation)[7])(
+                automation, new Point(x, y), element) >= 0 && *element != null
+            && ((delegate* unmanaged[Stdcall]<void*, int*, int>)(*(void***)*element)[20])(*element, &process) >= 0
+            && process == nativeProcess)
+        {
+            return true;
+        }
+
+        ExplorerLocator.Release(*element);
+        *element = null;
+        if (Native.ClassName(window) == "SysTreeView32") return TreeElementAt(automation, window, x, y, element);
+        return ElementInWindowAt(automation, window, x, y, element);
+    }
+
+    private static bool TreeElementAt(void* automation, nint window, int x, int y, void** element)
+    {
+        // Un nodo del árbol solo mide su propia fila, no las filas de sus hijos desplegados.
+        // No se puede podar la búsqueda porque el punto quede fuera del rectángulo de su padre.
+        void* root = null;
+        void* condition = null;
+        void* array = null;
+        void* found = null;
+        try
+        {
+            var value = new PropertyValue { Type = 3 /* VT_I4 */, Integer = TreeItem };
+            int count = 0;
+            if (((delegate* unmanaged[Stdcall]<void*, nint, void**, int>)(*(void***)automation)[6])(automation, window, &root) < 0 || root == null
+                || ((delegate* unmanaged[Stdcall]<void*, int, PropertyValue, void**, int>)(*(void***)automation)[23])(automation, 30003, value, &condition) < 0 || condition == null
+                || ((delegate* unmanaged[Stdcall]<void*, int, void*, void**, int>)(*(void***)root)[6])(root, 4, condition, &array) < 0 || array == null
+                || ((delegate* unmanaged[Stdcall]<void*, int*, int>)(*(void***)array)[3])(array, &count) < 0 || count > 10000) return false;
+            for (int i = 0; i < count; i++)
+            {
+                void* candidate = null;
+                try
+                {
+                    if (((delegate* unmanaged[Stdcall]<void*, int, void**, int>)(*(void***)array)[4])(array, i, &candidate) < 0 || candidate == null) return false;
+                    var bounds = default(UiaRect);
+                    if (((delegate* unmanaged[Stdcall]<void*, UiaRect*, int>)(*(void***)candidate)[43])(candidate, &bounds) < 0) return false;
+                    if (!bounds.Contains(x, y)) continue;
+                    if (found != null) return false;
+                    found = candidate;
+                    candidate = null;
+                }
+                finally { ExplorerLocator.Release(candidate); }
+            }
+            *element = found;
+            found = null;
+            return *element != null;
+        }
+        finally
+        {
+            ExplorerLocator.Release(found);
+            ExplorerLocator.Release(array);
+            ExplorerLocator.Release(condition);
+            ExplorerLocator.Release(root);
+        }
+    }
+
+    private static bool ElementInWindowAt(void* automation, nint window, int x, int y, void** element)
+    {
+        void* walker = null;
+        try
+        {
+            if (((delegate* unmanaged[Stdcall]<void*, nint, void**, int>)(*(void***)automation)[6])(automation, window, element) < 0
+                || *element == null
+                || ((delegate* unmanaged[Stdcall]<void*, void**, int>)(*(void***)automation)[14])(automation, &walker) < 0
+                || walker == null)
+            {
+                return false;
+            }
+
+            for (int depth = 0; depth < 16; depth++)
+            {
+                void* child = null;
+                // FirstChild 4, NextSibling 6. Solo se recorre la rama que contiene el punto.
+                if (((delegate* unmanaged[Stdcall]<void*, void*, void**, int>)(*(void***)walker)[4])(walker, *element, &child) < 0)
+                {
+                    ExplorerLocator.Release(child);
+                    return false;
+                }
+                bool found = false;
+                for (int count = 0; child != null && count < 10000; count++)
+                {
+                    var bounds = default(UiaRect);
+                    if (((delegate* unmanaged[Stdcall]<void*, UiaRect*, int>)(*(void***)child)[43])(child, &bounds) < 0)
+                    {
+                        ExplorerLocator.Release(child);
+                        return false;
+                    }
+                    if (bounds.Contains(x, y))
+                    {
+                        ExplorerLocator.Release(*element);
+                        *element = child;
+                        child = null;
+                        found = true;
+                        break;
+                    }
+
+                    void* next = null;
+                    int result = ((delegate* unmanaged[Stdcall]<void*, void*, void**, int>)(*(void***)walker)[6])(walker, child, &next);
+                    ExplorerLocator.Release(child);
+                    child = next;
+                    if (result < 0)
+                    {
+                        ExplorerLocator.Release(child);
+                        return false;
+                    }
+                }
+                bool truncated = child != null;
+                ExplorerLocator.Release(child);
+                if (truncated) return false;
+                if (!found) break;
+            }
+
+            // Si no se pudo localizar un hijo, la propia ventana debe contener el punto.
+            var rectangle = default(UiaRect);
+            return ((delegate* unmanaged[Stdcall]<void*, UiaRect*, int>)(*(void***)*element)[43])(*element, &rectangle) >= 0
+                && rectangle.Contains(x, y);
+        }
+        finally { ExplorerLocator.Release(walker); }
+    }
 
     private static void RememberPasteLabel(void* automation, nint explorer)
     {
@@ -265,7 +468,7 @@ public static unsafe partial class UiaHitTest
     }
 
     /// <summary>Botón Pegar de la barra del Explorador, identificado por accesibilidad, no por su posición.</summary>
-    internal static ToolbarPasteTarget? ToolbarPaste(nint explorer, bool invoke = false)
+    internal static ToolbarPasteTarget? ToolbarPaste(nint explorer, bool invoke = false, bool includeDisabled = false)
     {
         void* automation = Automation();
         void* root = null;
@@ -306,14 +509,14 @@ public static unsafe partial class UiaHitTest
 
                     int type = 0, enabled = 0, offscreen = 1;
                     ((delegate* unmanaged[Stdcall]<void*, int*, int>)(*(void***)element)[21])(element, &type);
-                    if (type != 50000 /* Button */ || !IsToolbarPasteCommand(StringProperty(element, 29), StringProperty(element, 24), Name(element)))
+                    if (type is not (50000 or 50031) /* Button o SplitButton */ || !IsToolbarPasteCommand(StringProperty(element, 29), StringProperty(element, 24), Name(element)))
                     {
                         continue;
                     }
 
                     ((delegate* unmanaged[Stdcall]<void*, int*, int>)(*(void***)element)[28])(element, &enabled);
                     ((delegate* unmanaged[Stdcall]<void*, int*, int>)(*(void***)element)[38])(element, &offscreen);
-                    if (enabled == 0 || offscreen != 0)
+                    if ((!includeDisabled && enabled == 0) || offscreen != 0)
                     {
                         return null;
                     }
@@ -412,6 +615,7 @@ public static unsafe partial class UiaHitTest
     private struct UiaRect
     {
         public int Left, Top, Right, Bottom;
+        public readonly bool Contains(int x, int y) => x >= Left && x < Right && y >= Top && y < Bottom;
     }
 
     [StructLayout(LayoutKind.Explicit, Size = 24)]
@@ -419,6 +623,7 @@ public static unsafe partial class UiaHitTest
     {
         [FieldOffset(0)] public ushort Type;
         [FieldOffset(8)] public nint String;
+        [FieldOffset(8)] public int Integer;
     }
 
     private static string? Name(void* element) => StringProperty(element, 23);

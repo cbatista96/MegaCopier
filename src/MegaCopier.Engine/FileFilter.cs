@@ -25,17 +25,56 @@ public sealed class FileFilter
 
     public bool SkipSystem { get; set; }
 
+    /// <summary>
+    /// Omitir los archivos que solo están en la nube (OneDrive, Dropbox, Google Drive en «solo en línea»): copiarlos los
+    /// descargaría antes, quizá gigas que no se querían bajar.
+    /// </summary>
+    public bool SkipCloudOnly { get; set; }
+
     /// <summary>Omitir archivos "basura" que crean Windows, macOS y Office (<see cref="JunkMasks"/>).</summary>
     public bool SkipJunk { get; set; }
 
     /// <summary>Miniaturas, configuración de carpetas, metadatos de macOS y archivos de bloqueo de Office.</summary>
     public static readonly string[] JunkMasks = ["Thumbs.db", "ehthumbs.db", "desktop.ini", ".DS_Store", "._*", "~$*", "$RECYCLE.BIN", "System Volume Information"];
 
+    /// <summary>Solo los archivos con alguno de estos atributos (por ejemplo, «Archivo»: lo modificado desde la última copia).</summary>
+    public FileAttributes RequireAttributes { get; set; }
+
+    /// <summary>Ningún archivo con alguno de estos atributos (comprimido, cifrado, temporal, sin conexión…).</summary>
+    public FileAttributes SkipAttributes { get; set; }
+
+    /// <summary>Usados (abiertos) por última vez desde / hasta esta fecha. Windows puede no anotar cada apertura.</summary>
+    public DateTime? AccessedAfterUtc { get; set; }
+
+    public DateTime? AccessedBeforeUtc { get; set; }
+
+    /// <summary>Cuántos niveles de subcarpetas se recorren: 0 = solo lo que hay directamente en el origen; null = todos.</summary>
+    public int? MaxDepth { get; set; }
+
     public bool IsEmpty => Include.Count == 0 && Exclude.Count == 0 && MinSize is null && MaxSize is null
-        && ModifiedAfterUtc is null && ModifiedBeforeUtc is null && !SkipHidden && !SkipSystem && !SkipJunk && ImageText.Length == 0;
+        && ModifiedAfterUtc is null && ModifiedBeforeUtc is null && !SkipHidden && !SkipSystem && !SkipCloudOnly && !SkipJunk && ImageText.Length == 0
+        && RequireAttributes == 0 && SkipAttributes == 0 && AccessedAfterUtc is null && AccessedBeforeUtc is null && MaxDepth is null;
 
     public bool AcceptsFile(string relativePath, FileInfo file) =>
-        AcceptsFile(relativePath, file.Length, file.LastWriteTimeUtc) && !HasSkippedAttributes(file.Attributes) && HasImageText(file);
+        AcceptsFile(relativePath, file.Length, file.LastWriteTimeUtc) && !HasSkippedAttributes(file.Attributes)
+        && !(SkipCloudOnly && IsCloudOnly(file.Attributes)) && AcceptsAttributes(file.Attributes) && AcceptsAccess(file.LastAccessTimeUtc)
+        && HasImageText(file);
+
+    private bool AcceptsAttributes(FileAttributes attributes) =>
+        (RequireAttributes == 0 || (attributes & RequireAttributes) != 0) && (attributes & SkipAttributes) == 0;
+
+    private bool AcceptsAccess(DateTime accessed) =>
+        !((AccessedAfterUtc is { } after && accessed < after) || (AccessedBeforeUtc is { } before && accessed > before));
+
+    /// <summary>Niveles de carpeta de una ruta relativa al origen («a\b\c.txt» está en el nivel 2).</summary>
+    private static int Depth(string relativePath) => relativePath.Count(c => c == Path.DirectorySeparatorChar);
+
+    /// <summary>
+    /// El archivo no está en el disco: es un marcador de la nube que se descarga al leerlo (FILE_ATTRIBUTE_OFFLINE,
+    /// RECALL_ON_OPEN o RECALL_ON_DATA_ACCESS, los de OneDrive y los demás proveedores de Windows).
+    /// </summary>
+    public static bool IsCloudOnly(FileAttributes attributes) =>
+        ((int)attributes & (0x1000 | 0x40000 | 0x400000)) != 0;
 
     /// <summary>Solo fotos y capturas que contengan este texto (leído con el OCR de Windows, sin internet).</summary>
     public string ImageText { get; set; } = "";
@@ -106,7 +145,7 @@ public sealed class FileFilter
     public bool AcceptsFile(string relativePath, long length, DateTime? lastWriteUtc)
     {
         string name = Path.GetFileName(relativePath);
-        if (Exclude.Any(mask => Matches(mask, name, relativePath)) || IsJunk(name))
+        if (Exclude.Any(mask => Matches(mask, name, relativePath)) || IsJunk(name) || (MaxDepth is { } maxDepth && Depth(relativePath) > maxDepth))
         {
             return false;
         }
@@ -128,7 +167,9 @@ public sealed class FileFilter
     public bool AcceptsDirectory(string relativePath, FileAttributes attributes)
     {
         string name = Path.GetFileName(relativePath);
-        return !Exclude.Any(mask => Matches(mask, name, relativePath)) && !IsJunk(name) && !HasSkippedAttributes(attributes);
+        // Una carpeta del nivel «a\b» es la profundidad 2: con MaxDepth 1 ya no se entra.
+        return !Exclude.Any(mask => Matches(mask, name, relativePath)) && !IsJunk(name) && !HasSkippedAttributes(attributes)
+            && !(MaxDepth is { } maxDepth && Depth(relativePath) + 1 > maxDepth);
     }
 
     private bool IsJunk(string name) => SkipJunk && JunkMasks.Any(mask => FileSystemName.MatchesSimpleExpression(mask, name));

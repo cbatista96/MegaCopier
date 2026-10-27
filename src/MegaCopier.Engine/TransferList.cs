@@ -110,6 +110,9 @@ public sealed class TransferList
     private readonly List<TransferItem> _items = [];
     private int _nextId;
 
+    /// <summary>Carpetas que crea el trabajo en el destino (null hasta que el motor recorre los orígenes).</summary>
+    public int? FolderCount { get; set; }
+
     /// <summary>Cambios de la lista (desde hilos de copia o de la interfaz).</summary>
     public event Action<TransferListChange>? Changed;
 

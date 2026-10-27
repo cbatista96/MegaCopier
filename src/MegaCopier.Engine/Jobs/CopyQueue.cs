@@ -1072,14 +1072,11 @@ public sealed class CopyQueue
                     {
                         // Cancelada al ver que la carpeta ya existía o que no cabía (no se copió nada), o detenida por
                         // el usuario: desaparece de la lista y no se ofrece continuarla.
-                        bool userStop = job.Cancelled;
+                        job.Cancelled = true;
                         _store.Delete(job.Id);
                         job.SetState(CopyJobState.Interrupted);
                         Remove(job);
-                        if (userStop)
-                        {
-                            JobFinished?.Invoke(job);
-                        }
+                        JobFinished?.Invoke(job);
 
                         Schedule();
                         return;

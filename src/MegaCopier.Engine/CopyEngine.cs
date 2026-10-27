@@ -144,7 +144,7 @@ public sealed partial class CopyEngine
     /// </summary>
     public int AddSources(IReadOnlyList<string> sources, int? beforeId = null, string? destination = null)
     {
-        var plan = CopyPlanner.Build(sources, destination ?? _destinationRoot, _options.Filter, _options.Links);
+        var plan = ApplyExtras(CopyPlanner.Build(sources, destination ?? _destinationRoot, _options.Filter, _options.Links, allowDriveRoot: !_options.Move), destination ?? _destinationRoot, sources);
         foreach (var directory in plan.Directories)
         {
             Directory.CreateDirectory(directory.Destination);
@@ -208,6 +208,7 @@ public sealed partial class CopyEngine
                 return RunZip(request, stopwatch, cancellationToken);
         }
 
+        RunBeforeCommand(cancellationToken);
         _destinationRoot = Path.TrimEndingDirectorySeparator(Path.GetFullPath(request.Destination));
         _resumed = request.Resumed;
         _conflictForAll = null;
@@ -254,12 +255,13 @@ public sealed partial class CopyEngine
             FolderDecided?.Invoke(_options.Conflict, names);
         }
         var plan = request.Sources.Count > 0 ? CopyPlanner.Build(request.Sources, request.Destination, _options.Filter, _options.Links,
-            _options.DuplicateInPlace ? request.RenamedFolders : null, _options.BackupMode) : new CopyPlan([], [], [], []);
+            _options.DuplicateInPlace ? request.RenamedFolders : null, _options.BackupMode, allowDriveRoot: !_options.Move) : new CopyPlan([], [], [], []);
+        plan = ApplyExtras(plan, request.Destination, request.Sources);
 
         // Lo sumado a esta copia hacia otras carpetas del disco va detrás de lo suyo.
         foreach (var group in extra.GroupBy(e => e.Value, StringComparer.OrdinalIgnoreCase))
         {
-            var more = CopyPlanner.Build([.. group.Select(e => e.Key)], group.Key, _options.Filter, _options.Links, backupMode: _options.BackupMode);
+            var more = ApplyExtras(CopyPlanner.Build([.. group.Select(e => e.Key)], group.Key, _options.Filter, _options.Links, backupMode: _options.BackupMode, allowDriveRoot: !_options.Move), group.Key, [.. group.Select(e => e.Key)]);
             plan = new CopyPlan([.. plan.Files, .. more.Files], [.. plan.Directories, .. more.Directories], [.. plan.Links, .. more.Links], [.. plan.Warnings, .. more.Warnings]);
         }
         foreach (string warning in plan.Warnings)
@@ -317,6 +319,7 @@ public sealed partial class CopyEngine
 
         Log(LogLevel.Info, $"{(_options.Move ? "Mover" : "Copiar")} {plan.Files.Count} archivos ({FormatBytes(plan.TotalBytes)}) a {request.Destination}");
 
+        Files.FolderCount = plan.Directories.Count;
         var renamedItems = new List<TransferItem>();
         // El orden que el usuario eligió arrastrando (se guarda en el trabajo) se respeta al reanudar.
         var files = plan.Files.Where(f => !excluded.Contains(f.Source) && _options.Mode != CopyMode.FoldersOnly);
@@ -426,6 +429,7 @@ public sealed partial class CopyEngine
         }
 
         PublishStaged(staged, result);
+        FinishExtras();
 
         // Al mover, las carpetas de origen que quedaron vacías desaparecen (si algo se omitió, se conservan).
         if (_options.Move)
@@ -775,6 +779,11 @@ public sealed partial class CopyEngine
         foreach (string raw in request.Sources)
         {
             string source = Path.TrimEndingDirectorySeparator(Path.GetFullPath(raw));
+            if (CopyPlanner.IsDriveRoot(source))
+            {
+                continue; // una unidad entera no se mueve (el plan lo rechaza con su aviso)
+            }
+
             string target = Path.Combine(destination, Path.GetFileName(source));
             bool isDirectory = Directory.Exists(source);
 
@@ -910,7 +919,7 @@ public sealed partial class CopyEngine
 
     private static bool TargetExists(string source, string destination)
     {
-        string target = Path.Combine(destination, Path.GetFileName(Path.TrimEndingDirectorySeparator(Path.GetFullPath(source))));
+        string target = Path.Combine(destination, SourceNames.TargetName(Path.GetFullPath(source)));
         return File.Exists(target) || Directory.Exists(target);
     }
 
@@ -1095,7 +1104,7 @@ public sealed partial class CopyEngine
         {
             ConflictPolicy.Overwrite => new Resolution(file.Destination, Existed: true),
             ConflictPolicy.Skip => new Resolution(null, PlannedAction.SkipExists),
-            ConflictPolicy.OverwriteIfNewer => file.LastWriteUtc > existing.LastWriteTimeUtc + _options.TimeTolerance ? new Resolution(file.Destination, Existed: true) : new Resolution(null, PlannedAction.SkipOlder),
+            ConflictPolicy.OverwriteIfNewer => IsNewer(file.LastWriteUtc, existing.LastWriteTimeUtc) ? new Resolution(file.Destination, Existed: true) : new Resolution(null, PlannedAction.SkipOlder),
             ConflictPolicy.OverwriteIfDifferentSize => file.Length != existing.Length ? new Resolution(file.Destination, Existed: true) : new Resolution(null, PlannedAction.SkipSameSize),
             ConflictPolicy.KeepBoth => UniqueTarget(file),
             ConflictPolicy.RenameExisting => RenameExisting(file),
@@ -1213,7 +1222,7 @@ public sealed partial class CopyEngine
     /// <summary>Mismo tamaño y fecha (con la tolerancia de FAT/exFAT/NAS, que guardan la hora con menos precisión).</summary>
     private bool IsIdentical(FileInfo existing, PlannedFile file) =>
         existing.Length == (_options.Encrypt && _options.Operation == JobOperation.Copy ? EncryptedFile.EncryptedLength(file.Length) : file.Length)
-        && (existing.LastWriteTimeUtc - file.LastWriteUtc).Duration() <= _options.TimeTolerance;
+        && SameTime(existing.LastWriteTimeUtc, file.LastWriteUtc);
 
     private void EnsureFreeSpace(CopyPlan plan, string destination, HashSet<string> renamed, CancellationToken cancellationToken)
     {
@@ -1264,7 +1273,7 @@ public sealed partial class CopyEngine
         }
 
         long pending = Files.Snapshot().Where(i => i.State == FileState.Pending).Sum(i => i.Length);
-        var plan = CopyPlanner.Build(sources, destination ?? _destinationRoot, _options.Filter, _options.Links);
+        var plan = ApplyExtras(CopyPlanner.Build(sources, destination ?? _destinationRoot, _options.Filter, _options.Links, allowDriveRoot: !_options.Move), destination ?? _destinationRoot, sources);
         long needed = pending + BytesNeeded(plan, destination ?? _destinationRoot, []);
         return needed > free ? new SpaceShortage(_destinationRoot, needed, free) : null;
     }
@@ -1312,6 +1321,13 @@ public sealed partial class CopyEngine
 
     private void CopyDirectoryMetadata(PlannedDirectory directory)
     {
+        if (CopyPlanner.IsDriveRoot(directory.Source))
+        {
+            // La raíz de una unidad es oculta y de sistema, con permisos y fechas propios del disco: su carpeta en el
+            // destino se queda como una carpeta normal (Robocopy la deja oculta).
+            return;
+        }
+
         try
         {
             if (_options.CopySecurity != SecurityParts.None)
@@ -1319,7 +1335,8 @@ public sealed partial class CopyEngine
                 FileMetadata.CopySecurity(directory.Source, directory.Destination, _options.CopySecurity);
             }
 
-            if (_options.PreserveAttributes)
+            // Las carpetas pueden llevar sus propias preferencias (Opciones › Más): si no, como los archivos.
+            if (_options.Extras.FolderAttributes ?? _options.PreserveAttributes)
             {
                 var attributes = File.GetAttributes(directory.Source) & (FileAttributes.Hidden | FileAttributes.System | FileAttributes.ReadOnly);
                 if (attributes != 0)
@@ -1328,7 +1345,7 @@ public sealed partial class CopyEngine
                 }
             }
 
-            if (_options.PreserveTimestamps)
+            if (_options.Extras.FolderTimestamps ?? _options.PreserveTimestamps)
             {
                 Directory.SetCreationTimeUtc(directory.Destination, Directory.GetCreationTimeUtc(directory.Source));
                 Directory.SetLastWriteTimeUtc(directory.Destination, Directory.GetLastWriteTimeUtc(directory.Source));

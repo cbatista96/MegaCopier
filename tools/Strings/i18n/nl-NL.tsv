@@ -317,8 +317,6 @@ Tool_LoadList.Text	Een kopieerlijst laden…
 Tool_LoadListText.Text	Lijst laden
 Tool_NewCopy.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Nieuwe kopie
 Tool_NewCopyText.Text	Nieuw
-Tool_PauseAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Alle pauzeren
-Tool_ResumeAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Alle hervatten
 Tool_Settings.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Instellingen
 Tool_Sidebar.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Kopieënlijst tonen of verbergen
 Drop_Caption	Kopiëren met MegaCopier
@@ -1598,3 +1596,112 @@ Settings_FastPaths.PlaceholderText	C:, D:\Gegevens
 Rules_Synchronization.Text	Synchronisatie
 Rules_SecurityTitle.Text	Beveiliging
 Job_StateNeedsAdministrator	Beheerdersmachtiging vereist
+
+Settings_TaskbarTitle.Text	Weergeven op de taakbalk
+Settings_TaskbarDescription.Text	Als dit uitstaat, wordt het venster bij minimaliseren altijd verborgen in het systeemvak naast de klok.
+Toolbar_PauseAll	Alle pauzeren
+Toolbar_ResumeAll	Alle hervatten
+Toolbar_Sidebar	Kopieënlijst tonen of verbergen
+Toolbar_New	Nieuwe kopie
+Toolbar_ClearDone	Voltooide kopieën verwijderen
+Toolbar_Timeline	Tijdlijn van de wachtrij
+Toolbar_History	Geschiedenis
+Toolbar_Settings	Instellingen
+Toolbar_About	Over
+Toolbar_AlwaysOnTop	Altijd op voorgrond
+Toolbar_Shelf	Neerzetplank
+Toolbar_Compare	Vergelijken en synchroniseren
+Toolbar_PlayPause	Alles pauzeren of hervatten
+Toolbar_Separator	Scheidingslijn
+Toolbar_More	Meer acties
+Destinations_Favorite	Toevoegen aan favorieten
+Destinations_Unfavorite	Verwijderen uit favorieten
+Settings_ToolbarTitle.Text	Werkbalk
+Settings_ToolbarDescription.Text	Kies welke snelkoppelingen zichtbaar zijn en in welke volgorde. In het kleine venster passen er evenveel als standaard; de rest gaat naar het menu ‘…’ aan het eind.
+Settings_ToolbarReset.Text	Herstellen
+Settings_ToolbarFinish.Content	‘Na afloop’ rechts tonen
+Settings_ToolbarUp	‘{0}’ omhoog
+Settings_ToolbarDown	‘{0}’ omlaag
+Rules_SkipCloud.Content	Bestanden die alleen in de cloud staan overslaan (niet downloaden)
+Destinations_PathBox.PlaceholderText	Typ of plak een pad, zoals D:\Kopieën
+Destinations_PathInvalid	Dat pad is ongeldig: typ een volledige map op een bestaand station of netwerkshare (bijvoorbeeld D:\Kopieën).
+Tool_CompareSum.Text	Vergelijken met een controlesom…
+SumCheck_Title	Vergelijken met een controlesom
+SumCheck_File	Bestand: {0}
+SumCheck_Header	Gepubliceerde controlesom (MD5, SHA-1, SHA-256, SHA-512, SHA3, BLAKE3, xxHash of CRC32)
+SumCheck_Placeholder	Plak hier de controlesom van de downloadpagina
+SumCheck_Check	Controleren
+SumCheck_Close	Sluiten
+SumCheck_NotASum	Dat lijkt geen controlesom: het moet een hexadecimaal getal van 8, 16, 32, 40, 64 of 128 cijfers zijn.
+SumCheck_Reading	Bestand lezen…
+SumCheck_Match	✓ Komt overeen ({0}): het bestand is in orde.
+SumCheck_NoMatch	✗ Komt niet overeen. Met {0} geeft het bestand {1}: het is beschadigd, onvolledig of een ander bestand.
+Status_SourceDrive.Text	Bron
+Status_TargetDrive.Text	Doel
+Status_DriveFree	{0} vrij van {1}
+LocalSend_Conflict.Header	Als het bestand al in de map staat
+LocalSend_ConflictRename.Content	Beide behouden (‘foto (2).jpg’)
+LocalSend_ConflictSkip.Content	Niet ontvangen
+LocalSend_ConflictOverwrite.Content	Bestaande vervangen
+LocalSend_Include.Header	Alleen deze typen ontvangen (leeg = alle)
+LocalSend_Include.PlaceholderText	*.jpg; *.heic; *.mp4
+LocalSend_Exclude.Header	Nooit ontvangen
+LocalSend_Exclude.PlaceholderText	*.apk; *.exe
+Task_OnDevice.Content	Bij aansluiten van het station
+Task_SavedOnDevice	Taak ‘{0}’ opgeslagen: deze start vanzelf telkens wanneer je het station aansluit (met MegaCopier open of in het systeemvak).
+Task_NoDevice	Deze kopie heeft geen station met een letter om op te wachten (ze gaat bijvoorbeeld naar een netwerkmap).
+Settings_TaskOnDevice	Start vanzelf bij aansluiten van {0}
+Connection_AzureAccount	Opslagaccount (https://account.blob.core.windows.net)
+Connection_GcsEndpoint	Eindpunt (leeg = storage.googleapis.com)
+Connection_Sas	SAS-token van de container (sv=…&sig=…)
+Connection_Container	Container (en map): container/map
+Connection_Site	SharePoint-site
+Connection_SitePlaceholder	https://bedrijf.sharepoint.com/sites/Team
+Rules_MoreTitle.Text	Meer opties
+Rules_RenameMask.Header	Hernoemen tijdens kopiëren (masker: *.bak, kopie van *.*)
+Rules_Flatten.Content	Plat maken: alles in de doelmap, zonder submappen
+Rules_KeepPaths.Content	Bestanden uit meerdere mappen: hun mappen vanaf de gemeenschappelijke nabouwen
+Rules_OnlyArchive.Content	Alleen als gewijzigd gemarkeerd (kenmerk ‘Archief’)
+Rules_ResetArchive.Content	Die markering na het kopiëren van de bron verwijderen (incrementele back-ups)
+Rules_CompensateDst.Content	Bestanden die precies een uur verschillen als gelijk zien (zomertijd)
+Rules_KeepCompression.Content	NTFS-compressie behouden
+Rules_SkipCompressed.Content	Door Windows gecomprimeerde of versleutelde bestanden overslaan
+Rules_SkipTemporary.Content	Als tijdelijk gemarkeerde bestanden overslaan
+Rules_Depth.Header	Submapniveaus (leeg = alle; 0 = alleen de map)
+Rules_AccessedAfter.Header	Gebruikt sinds
+Rules_AccessedBefore.Header	Gebruikt tot
+Rules_FolderTimes.Header	Datums van mappen
+Rules_FolderAttributes.Header	Kenmerken van mappen
+Rules_FolderLikeFiles.Content	Zoals bestanden
+Rules_FolderYes.Content	Kopiëren
+Rules_FolderNo.Content	Niet kopiëren
+Rules_FolderLikeFiles2.Content	Zoals bestanden
+Rules_FolderYes2.Content	Kopiëren
+Rules_FolderNo2.Content	Niet kopiëren
+Rules_BeforeCommand.Header	Uitvoeren vóór het starten (bij een fout wordt niets gekopieerd)
+Settings_EjectSource.Content	Ook de bron uitwerpen (de camerakaart) als alles goed ging
+Scripts_AddExample.Text	Voorbeeld toevoegen
+Scripts_ExampleNtfy.Text	Telefoon waarschuwen met ntfy
+Scripts_ExampleIfttt.Text	Een IFTTT-applet starten
+Scripts_ExampleOpen.Text	Doel openen als alles goed ging
+Scripts_ExampleLog.Text	Elke kopie in een tekstbestand noteren
+Scripts_NtfyTopic	mijn-geheime-onderwerp
+Scripts_IftttKey	JOUW-SLEUTEL
+Scripts_LogName	MegaCopier-kopieen
+Settings_TransferLogTitle.Text	Eén logboek voor alle kopieën
+Settings_TransferLogDescription.Text	Eén regel per gekopieerd of mislukt bestand, in één bestand en in de gekozen opmaak. Kan ook naar een Syslog-server worden gestuurd.
+Settings_TransferLogPath.Header	Logbestand
+Settings_TransferLogBrowse.Text	Kiezen…
+Settings_TransferLogType	Logboek
+Settings_TransferLogFormat.Header	Opmaak van elk gekopieerd bestand
+Settings_ErrorLogFormat.Header	Opmaak van elke fout
+Settings_TransferLogVariables.Text	Variabelen: %time%, %source%, %destination%, %size%, %mtime%, %hash%, %path%, %error%, %computer%, %user%
+Settings_Syslog.Header	Ook naar een Syslog-server sturen (server of server:poort; leeg = nee)
+Task_AddPair.Text	Nog een mappenpaar aan de taak toevoegen…
+Task_ClearPairs.Text	Paren verwijderen
+Task_PairSource	Map om te kopiëren
+Task_PairDestination	Waarheen kopiëren
+Task_NoSession.Content	Ook uitvoeren als niemand is aangemeld (zonder venster)
+Task_NoCli	Zonder sessie is mcopy.exe naast MegaCopier nodig (het installatieprogramma bevat het).
+Settings_ToolbarCustomize.Text	Aanpassen
+Status_Folders.Text	Mappen

@@ -132,7 +132,7 @@ Una vez instalado, **no tienes que cambiar nada de lo que haces**:
 - **Ctrl+X → Ctrl+V**: mueve MegaCopier. En el mismo disco es un renombrado instantáneo (2 GB en 16 ms); entre discos se
   copia y el original solo se borra cuando su copia está completa y comprobada.
 - **Clic derecho > Pegar** (la orden de Windows) también usa MegaCopier al abrir el menú sobre el fondo o una carpeta
-  de la vista del Explorador. Usa el ajuste de interceptar el pegado, igual que Ctrl+V. Si no puede reconocer la orden,
+  de la vista del Explorador o del Escritorio, incluido su menú clásico. Usa el ajuste de interceptar el pegado, igual que Ctrl+V. Si no puede reconocer la orden,
   el destino o confirmar el cierre del menú, conserva el pegado del Explorador. El menú clásico reconoce el atajo o
   la etiqueta localizada aprendida del menú moderno, al pasar por «Mostrar más opciones».
 - **Clic derecho > Pegar con MegaCopier** en una carpeta o en el fondo de una ventana. En Windows 11 aparece en el menú
@@ -140,12 +140,15 @@ Una vez instalado, **no tienes que cambiar nada de lo que haces**:
 - **Arrastrar con el botón derecho** y soltar: «Copiar aquí con MegaCopier» o «Mover aquí con MegaCopier».
 - **Arrastrar con el botón izquierdo** entre ventanas del Explorador, el Escritorio y las carpetas y unidades del panel
   de la izquierda (*Este equipo*, *Disco local (C:)*, *Descargas*…), con las mismas reglas de Windows (activado de
-  serie; en *Ajustes > General* puedes desactivarlo o hacer que pregunte antes, siempre o solo al mover). Soltar sobre
+  serie y sin confirmación previa en instalaciones nuevas; en *Ajustes > General* puedes desactivarlo o hacer que pregunte antes, siempre o solo al mover). Soltar sobre
   un archivo o un ZIP sigue haciéndolo el Explorador.
 
 La interceptación de Ctrl+V solo actúa cuando el foco está en la lista de archivos: nunca al escribir en la barra de
-direcciones, en la búsqueda o al renombrar. Pegar en la misma carpeta y en carpetas especiales (*Este equipo*, dentro de un ZIP…) sigue
-haciéndolo el Explorador.
+direcciones, en la búsqueda o al renombrar. **Mayús+Insertar** también pega archivos con MegaCopier. Al copiar y pegar
+en el mismo sitio, crea duplicados con nombres nuevos; al cortar y pegar en el mismo sitio no mueve nada. «Pegar» en
+la barra superior usa la pestaña visible, también en carpetas vacías recién activadas; los menús se pueden abrir con la tecla de menú o **Mayús+F10**.
+Los menús sobre carpetas y unidades del panel lateral usan esa carpeta como destino. Las ubicaciones virtuales sin
+carpeta de destino (*Este equipo* como fondo, el interior de un ZIP…) conservan el comportamiento del Explorador.
 
 Al copiar un archivo individual de nuevo al mismo destino, con la regla **Preguntar**, se muestra el aviso aunque
 parezca idéntico: **Reemplazar**, **Conservar ambos** u **Omitir**. No aparece «Uno a uno» ni «Hacer lo mismo con los demás»
@@ -160,11 +163,12 @@ y copia el Explorador de Windows como siempre. Otro doble clic lo vuelve a activ
 El menú del icono de la bandeja (clic derecho) tiene además: **Abrir MegaCopier**, **Pausar todo**, **Reanudar todo**,
 **Bandeja de arrastre**, **Iniciar con Windows** y **Salir**.
 
-Mientras copia, junto a él aparece **un icono por cada copia** con su porcentaje y una barra que sube (ámbar en pausa,
+Al minimizar u ocultar la ventana de copia, junto a él aparece **un icono por cada copia cuyo progreso no está visible** con su porcentaje y una barra que sube (ámbar en pausa,
 rojo con errores); al terminar se llena, muestra una marca y se quita solo. Un clic abre esa copia y el clic derecho la
-pausa, la reanuda o la detiene. Si Windows los esconde en la flecha **˄** junto al reloj, arrástralos a la barra (o
-actívalos en *Configuración de Windows > Personalización > Barra de tareas > Otros iconos de la bandeja del sistema*).
-Se apagan en *Ajustes > General > Progreso de cada copia en la bandeja*.
+pausa, la reanuda o la detiene. Un clic recupera la copia elegida, también en la vista compacta y cuando cada copia tiene su propia ventana. MegaCopier solicita que sus iconos se muestren junto al reloj; Windows puede conservarlos en el área de ocultos. Si ocurre tras activar la función, cierra sesión y vuelve a entrar una vez para que Windows aplique la preferencia. También puedes arrastrar cada icono desde la flecha hacia el reloj o activarlo en la configuración de la barra de tareas de Windows.
+Se apagan en *Ajustes > General > Progreso de cada copia en la bandeja*. Al volver a mostrar el progreso en su ventana, su icono individual desaparece.
+
+En *Ajustes > General > Mostrar en la barra de tareas* puedes ocultar los botones de las ventanas en la barra de aplicaciones. Al desactivarlo, minimizar siempre oculta la ventana en la bandeja del sistema y el icono principal permanece disponible.
 
 ---
 
@@ -186,8 +190,10 @@ Los botones, siempre con su nombre:
   medias se borra o se guarda según *Ajustes > Comportamiento*: si se guarda, al volver a copiar lo mismo se sigue desde
   donde quedó.
 
-Arriba está la **barra de herramientas** (*Nueva*, pausar y reanudar todas, historial, ajustes…), también en esta vista.
-Al abrir **Ajustes** la ventana se agranda hasta el ancho de sus tarjetas y, al volver, recupera el tamaño que tenía.
+Arriba está la **barra de herramientas** (*Nueva*, un solo botón para pausar o reanudar todas, historial, ajustes…), también en esta vista. Sus accesos se eligen y ordenan en *Ajustes > Interfaz > Barra de herramientas*; lo que no cabe pasa al menú **…** del final.
+Al abrir **Ajustes** la ventana se agranda hasta el ancho de sus tarjetas y, al volver, recupera el tamaño que tenía. La entrada del menú lateral se reproduce solo al abrir Ajustes.
+
+En modo automático, una nueva tanda empieza en la vista compacta aunque la anterior se ampliara al copiar varias cosas. **Más** abre los detalles y varias copias muestran la lista. **Recordar tamaño** conserva por separado el ancho compacto y las dimensiones de detalles y de la lista de copias; no guarda como elección del usuario las ampliaciones automáticas.
 
 La **X** de la ventana cancela las copias, como *Detener* en cada una (MegaCopier sigue en la bandeja). En *Ajustes >
 Interfaz* puedes hacer que las detenga para continuarlas después, que solo oculte la ventana o que salga de MegaCopier,
@@ -403,7 +409,7 @@ esos; sin nada marcado, elige la carpeta que estás viendo. «Abrir» sigue entr
 Al elegir el destino (por ejemplo, con *Copiar archivos…*) se abre la ventana de destinos, donde puedes:
 
 - **Añadir varios destinos**: la misma copia va a la vez a dos discos o a un disco y un NAS. Se lee el origen una sola vez.
-- Usar **favoritos** (se gestionan en *Ajustes > Red y dispositivos > Carpetas favoritas*), **recientes** o las **carpetas abiertas** en el
+- Usar **favoritos** (la estrella de cada carpeta la añade o la quita; también en *Ajustes > Red y dispositivos > Carpetas favoritas*), **recientes** o las **carpetas abiertas** en el
   Explorador, Total Commander y Directory Opus.
 - **Mover** en vez de copiar, **simular** (dice qué haría sin cambiar nada) y elegir el **modo**:
   - **Copiar** (normal).
@@ -621,7 +627,7 @@ En una ventana estrecha la lista de secciones se queda solo con los iconos.
 | Sección | Qué se ajusta |
 |---|---|
 | **General** | Usar MegaCopier en lugar del copiador de Windows · Copiar y mover al pegar (Ctrl+V) · Arrastrar con el botón izquierdo (y si preguntar antes) · Opciones en el menú contextual · Iniciar con Windows · **Idioma** · Unidades de tamaño · Mostrar el icono en la bandeja · **Progreso de cada copia en la bandeja**. |
-| **Interfaz** | Ventana compacta, completa o automática · Qué hacer al terminar · **Qué hacen la X y Minimizar (cada una por separado)** · Siempre visible · Avisar al terminar · Iniciar las copias con la ventana minimizada · Recordar la posición y el tamaño de la ventana · **Fondo de la ventana** (el del tema, que con los temas Fluent es Mica y pasa a Mica Alt al usar otra ventana; Mica, Mica Alt, Acrílico o Translúcida) · Ajustar a pantallas pequeñas · **Temas** y su editor · **Conjuntos de iconos** (ver [Temas e iconos](#18-temas-e-iconos)). |
+| **Interfaz** | Ventana compacta, completa o automática · Qué hacer al terminar · **Qué hacen la X y Minimizar (cada una por separado)** · Siempre visible · **Barra de herramientas** (qué accesos se ven y en qué orden) · Avisar al terminar · Iniciar las copias con la ventana minimizada · Recordar la posición y el tamaño de la ventana · **Fondo de la ventana** (el del tema, Mica, Mica Alt, Acrílico o Translúcida; al usar otra ventana cada uno pasa a su pareja: Mica ⇄ Mica Alt y Acrílico ⇄ Translúcida) · Ajustar a pantallas pequeñas · **Temas** y su editor · **Conjuntos de iconos** (ver [Temas e iconos](#18-temas-e-iconos)). |
 | **Sonidos** | Cuatro tarjetas: avisos con sonido, volumen en una línea con su porcentaje, personalización de sonidos y silencio durante juegos, presentaciones o «No molestar», con interruptor activado por defecto. Sonido para cada momento (copia terminada, todas terminadas, error, pregunta), volumen y no sonar con juegos, presentaciones o «No molestar». Por defecto suenan los **sonidos propios de MegaCopier** (campanillas originales, no los avisos de Windows); en cada momento puedes elegir, de arriba abajo, **un archivo tuyo**, ninguno, el propio de ese momento, uno de la **colección de MegaCopier** (19 sonidos originales: avisos de menos de un segundo, notificaciones de 1,5 a 3 s y melodías de hasta 4 s) o uno de Windows, y probarlo con ▶. |
 | **Copia** | Verificar después de copiar · Si el archivo ya existe · Algoritmo de suma · Qué se copia (fechas, atributos, ADS, permisos, propietario, auditoría) · Archivo de sumas e informe · Comprobar el espacio libre antes · Caché del sistema · Comprimir por la red (SMB) · Reanudar solas al arrancar · Rendimiento · Filtros y reglas. |
 | **Comportamiento** | **Copia nueva al mismo disco que otra en marcha** (preguntar, añadirla, copia aparte después o a la vez) · **Copia nueva a otro disco** (empezar a la vez o esperar su turno) · **Cada copia en su propia ventana** (una ventana por copia, que empieza ya) · **Al mover, conservar también** atributos, permisos, propietario y auditoría · **Al detener una copia, borrar lo que quedó a medias** (y no hacerlo si paró por un error) · **Al terminar, expulsar la unidad de destino** si es extraíble (y forzarlo). |

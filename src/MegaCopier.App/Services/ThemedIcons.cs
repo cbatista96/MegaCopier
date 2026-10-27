@@ -1,4 +1,4 @@
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.WindowsRuntime;
 using MegaCopier.App.Theming;
 using Microsoft.UI.Xaml;
@@ -19,17 +19,30 @@ namespace MegaCopier.App.Services;
 /// </summary>
 internal static class ThemedIcons
 {
-    /// <summary>El glifo original de cada elemento (el FontIcon que tenía en el XAML).</summary>
-    private static readonly ConditionalWeakTable<DependencyObject, string> Glyphs = [];
+    /// <summary>
+    /// El glifo original de cada elemento (el FontIcon que tenía en el XAML), guardado en el propio elemento: en una
+    /// tabla por objeto de .NET se perdía cuando .NET liberaba ese objeto (el elemento sigue en el menú y vuelve con otro
+    /// objeto), y el menú se quedaba con los iconos del conjunto de antes.
+    /// </summary>
+    private static readonly DependencyProperty OriginalGlyphProperty =
+        DependencyProperty.RegisterAttached("OriginalGlyph", typeof(string), typeof(ThemedIcons), new PropertyMetadata(null));
 
     /// <summary>Los menús enganchados y la escala de pantalla con la que se abrieron la última vez.</summary>
     private static readonly ConditionalWeakTable<MenuFlyout, StrongBox<double>> Hooked = [];
 
     private static readonly List<WeakReference<MenuFlyout>> Menus = [];
 
+    /// <summary>Los menús de cada parte de una ventana, vivos mientras viva ella.</summary>
+    private static readonly ConditionalWeakTable<DependencyObject, List<MenuFlyout>> Kept = [];
+
     private static readonly Dictionary<(string Glyph, string Pack, bool Dark, int Size, uint Text), WriteableBitmap> Cache = [];
 
     private static readonly List<WeakReference<SelectorBar>> Bars = [];
+
+    /// <summary>La fuente que lleva un FontIcon al que no se le pone ninguna (la de los iconos de Windows 11).</summary>
+    private static string DefaultFont => _defaultFont ??= new FontIcon().FontFamily?.Source ?? "";
+
+    private static string? _defaultFont;
 
     static ThemedIcons()
     {
@@ -43,16 +56,27 @@ internal static class ThemedIcons
     /// </summary>
     public static void Attach(DependencyObject root)
     {
+        // Los menús de la ventana se guardan con ella (con la parte de la ventana que se busca, que la ventana guarda):
+        // si .NET liberara su objeto, el menú seguiría en la ventana pero sin que nadie le cambiara los iconos.
+        var kept = Kept.GetOrCreateValue(root);
         foreach (var element in Descendants(root))
         {
             if (element is Button { Flyout: MenuFlyout menu })
             {
                 Hook(menu);
+                if (!kept.Contains(menu))
+                {
+                    kept.Add(menu);
+                }
             }
 
             if (element is UIElement { ContextFlyout: MenuFlyout context })
             {
                 Hook(context);
+                if (!kept.Contains(context))
+                {
+                    kept.Add(context);
+                }
             }
 
             if (element is SelectorBar bar)
@@ -143,10 +167,13 @@ internal static class ThemedIcons
         }
     }
 
-    /// <summary>El icono que toca: el de la fuente con el conjunto de Windows; si no, dibujado con el conjunto.</summary>
+    /// <summary>
+    /// El icono que toca: el de la fuente con el conjunto de Windows; si no, dibujado con el conjunto (si ya era una
+    /// imagen, la misma con el dibujo nuevo).
+    /// </summary>
     private static IconElement? IconFor(DependencyObject owner, IconElement? current, double scale, double size)
     {
-        if (!Glyphs.TryGetValue(owner, out string? glyph))
+        if (owner.GetValue(OriginalGlyphProperty) is not string glyph)
         {
             if (current is not FontIcon { Glyph: { Length: > 0 } original })
             {
@@ -154,19 +181,27 @@ internal static class ThemedIcons
             }
 
             glyph = original;
-            Glyphs.Add(owner, glyph);
+            owner.SetValue(OriginalGlyphProperty, glyph);
         }
 
         var pack = IconPacks.Current;
-        if (pack.Style == IconStyle.Mono && pack.FontFamily == IconPacks.FluentFont)
-        {
-            return current is FontIcon ? current : new FontIcon { Glyph = glyph };
-        }
-
         if (pack.Style == IconStyle.Mono)
         {
-            // Windows 10: la misma letra, de su fuente (o de la de Windows 11 si esa no la tiene).
-            return new FontIcon { Glyph = glyph, FontFamily = new FontFamily(IconPacks.FontFor(glyph, pack)) };
+            // Windows 11: la letra de la fuente de siempre. Windows 10: la misma letra, de su fuente (o de la de Windows 11
+            // si esa no la tiene). Si el icono ya es ese, se deja: uno nuevo en un menú ya abierto alguna vez no se pinta.
+            string font = pack.FontFamily == IconPacks.FluentFont ? "" : IconPacks.FontFor(glyph, pack);
+            if (current is FontIcon kept && kept.FontFamily?.Source == (font.Length > 0 ? font : DefaultFont))
+            {
+                return kept;
+            }
+
+            var icon = new FontIcon { Glyph = glyph };
+            if (font.Length > 0)
+            {
+                icon.FontFamily = new FontFamily(font);
+            }
+
+            return icon;
         }
 
         int pixels = Math.Max(12, (int)Math.Round(size * scale));
@@ -183,6 +218,12 @@ internal static class ThemedIcons
 
             bitmap.Invalidate();
             Cache[key] = bitmap;
+        }
+
+        if (current is ImageIcon same)
+        {
+            same.Source = bitmap;
+            return same;
         }
 
         return new ImageIcon { Source = bitmap, Width = size, Height = size };

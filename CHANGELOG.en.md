@@ -9,6 +9,95 @@ Illustrations show the current development interface. Spanish notes use Spanish 
 
 ## [Unreleased]
 
+### Highlights
+
+- Copy, cut, paste and drag operations from the Desktop and File Explorer use MegaCopier in more situations, including modern and classic Windows 11 menus, keyboard shortcuts and the top Paste button. Existing-file prompts stay centered, retain acrylic and no longer leave empty windows after cancellation.
+- Customize toolbar shortcuts and their order in Settings › Interface. The compact window keeps its size and places overflow actions in “…”; one button now pauses or resumes all copies.
+- Copy an entire drive into a folder bearing its name, excluding Windows internal files. Names incompatible with the destination are adapted automatically, collisions are avoided and each change is logged.
+- Type or paste a destination in “Where to?”, get folder suggestions and save favourites with a star. The Status tab adds drive information, free space and folder counts.
+- Verify a download by pasting its checksum: MegaCopier detects the algorithm and reports whether the file matches. It can also verify a CRC32 embedded in a file name.
+- Tasks can start when a drive is connected, recognize a USB drive after its letter changes, include multiple folder pairs or run without a signed-in session through mcopy.
+- Azure Blob Storage, Google Cloud Storage and SharePoint document libraries are now supported. When copying online-only files, MegaCopier warns about the required download and lets you skip them.
+- New rules support renaming, flattening folders, preserving paths and compression, limiting depth and using .mcignore files. mcopy filters, LocalSend receiving choices and combined transfer logging have also been extended.
+- Each progress icon restores its corresponding copy, including independent windows. Fixes cover crashes when transfers finish, the starting size of new copies and interface transitions; individual icons appear when their progress is not visible in a window.
+
+### Added
+
+- Show in the taskbar option: turning it off always minimizes windows to the system tray.
+- **Customizable toolbar** (Settings › Interface): show, hide and reorder its actions, and choose whether “When finished” appears. New actions, hidden by default: “Always on top” (with a pinned icon while on), “Drop shelf” and “Compare and sync”. The list of actions is collapsed and slides open with “Customize”. The small window always keeps the same number of slots as by default and “When finished” keeps its text: if you show more actions, the last slot becomes the “…” menu with the rest. The large window shows everything that fits. The “…” menu also shows the update notice when Settings is inside it.
+- **Favorites from “Where to?”**: a star on each folder adds it to or removes it from favorites without opening Settings.
+- **Copy a whole drive** (all of `E:\`): its contents go into a folder named after the drive (“Games SSD 500GB (E)”), without what Windows keeps at the root (Recycle Bin, “System Volume Information”, paging files). The new folder does not inherit the root's hidden and system attributes. Moving or deleting a whole drive is still not allowed.
+- **Names the destination does not accept** are fixed instead of failing: trailing spaces and dots are removed, forbidden characters become “_”, reserved names (CON, NUL, COM1…) are avoided and names too long for the drive are shortened while keeping the extension (to 255 bytes on network shares, as Linux NAS devices require). If that makes them match another name, they are numbered. Every change is logged, and valid names are never touched.
+
+- **Files that are only in the cloud** (OneDrive, Dropbox or Google Drive “online-only”): before copying you are told how many will be downloaded, and Rules can skip them (“Skip cloud-only files”; also “without cloud-only files” in plain language).
+- **Type or paste the destination path** in “Where to?”, with subfolder suggestions as you type; Enter adds and selects it.
+- **Compare with a checksum** (New › Check): pick a file and paste the checksum published on the download page (MD5, SHA-1, SHA-256, SHA-512, SHA3, BLAKE3, xxHash or CRC32). MegaCopier works out the algorithm, reads the file once and tells you whether it matches; it takes the checksum from the clipboard if it is already copied.
+- **CRC32 in the name**: when checking a folder without checksum files, files that carry their CRC32 in the name (“episode [A1B2C3D4].mkv”) are checked against it.
+- **Drives and folders on the Status tab**: source and destination with their type, file system and free space, and how many folders are created, apart from the files.
+- **LocalSend, what to receive**: choose what to do when the file already exists (keep both, do not receive it or replace it) and which types to receive or never receive. Unwanted files are not even requested from the phone.
+- **`mcopy` filters and lists**: `--include`, `--exclude`, `--min-size`, `--max-size`, `--after`, `--before`, `--skip-hidden`, `--skip-system`, `--skip-cloud`, `--filter "plain-language text"` and sources from a file with `@list.txt`.
+- **“When the drive is connected” tasks**: a saved task can start by itself every time you connect its USB drive (the destination or, if that is the removable one, the source), with MegaCopier open or in the tray.
+- **Drives recognized by serial number**: saved tasks and lists keep working when Windows gives the USB drive another letter; the paths are corrected automatically.
+- **More clouds**: **Azure Blob Storage** (with a container SAS token), **Google Cloud Storage** (with HMAC keys) and **SharePoint** document libraries (Microsoft 365). How to connect them is in the cloud guide.
+
+- **More options** in Rules (Settings › Copy and each transfer's Options): rename while copying with a mask (`*.bak`, `copy of *.*`), flatten everything into the destination folder, recreate folders from the one loose files have in common, copy only what is marked as changed (“Archive” attribute) and clear that mark afterwards, treat files that differ by exactly one hour after a daylight-saving change as equal, keep NTFS compression, skip compressed, encrypted or temporary files, limit subfolder levels, filter by last-used date, set folder timestamps and attributes separately and run a command before starting (if it fails, nothing is copied).
+- **`.mcignore` file**: put it in a folder with one mask per line (`*.tmp`, `node_modules/`, `/build`) and that is never copied from the folder or its subfolders.
+- **Also eject the source drive** after a successful transfer (the camera card after moving the photos).
+- **Ready-made finish commands**: notify the phone with ntfy, trigger an IFTTT applet, open the destination or log each transfer to a text file.
+- **Single log for all transfers** in the format you choose (`%time%`, `%source%`, `%destination%`, `%size%`, `%hash%`, `%error%`…) and optional forwarding to a network **Syslog** server.
+- **More file managers as destinations**: folders open in Multi Commander, xplorer2, Explorer++ and XYplorer appear next to those from Explorer, Total Commander and Directory Opus.
+- **Several folder pairs in one task**: a single task can copy Documents to one place and Photos to another.
+- **Tasks without a signed-in user**: a scheduled task can run even when nobody is signed in; `mcopy` runs it without a window. New command `mcopy run <list.mclist>`.
+- `mcopy`: `--max-depth`, `--archive`, `--dst`, `--keep-compression`, `--flatten`, `--keep-paths`, `--rename` and `--run-before`.
+
+### Screenshots
+
+Toolbar customization, destination paths and favourites, and new copy rules:
+
+<img src="docs/capturas/en/v1.9-barra.png" width="1000" alt="Customize toolbar shortcuts and their order">
+
+<img src="docs/capturas/en/v1.9-destino.png" width="625" alt="Choose destinations, save favourites and type a path">
+
+<img src="docs/capturas/en/v1.9-reglas.png" width="1000" alt="Rules for renaming, preserving paths and compression when copying">
+
+### Changed
+
+- **More room for “Where to?”**: from the small window, the window grows while the dialog is open (as with the “already exists” prompt) and the folder list shows longer; it returns to its size when closed.
+- **Pause all and resume all share one button**: it shows pause while copying and play when everything is paused; the shape morphs from one into the other with every icon pack. It has the same shape as the chosen pack’s icon, outline only: rounded with the Windows 11 icons and sharp-cornered (pause as two lines) with the Windows 10 ones.
+- **The window background no longer turns flat when another window is active**: each material switches to its partner when focus is lost and back when it returns. Mica ⇄ Mica Alt (both ways, depending on the choice) and Acrylic ⇄ Translucent.
+- The window title in the taskbar and Alt+Tab also shows the speed (“56 % · 11 MB/s”), not only the percentage.
+
+### Fixed
+
+- “New › Copy to › Manage favorites” goes straight to the favorite folders in Settings (Network and devices). It used to open Settings at the first section, or close it if it was already open.
+- Menu icons (such as those in “New”) change when you pick another icon pack, even after several changes without closing the copier. They used to keep the icons of the first pack the menu was opened with.
+- In Settings, switches and drop-downs could stay below each option’s text with the window already wide (after it had been narrow). They now always go back to their place on the right.
+- With the Windows 10 icons, the timeline clock and the information icon looked smaller than the rest of the toolbar: now they are all the same size.
+- **With the “Default” theme, MegaCopier switches between light and dark at the same time as Windows**, like other apps, without restarting it. Fluent themes also pick up a new accent colour right away.
+- A file whose name ends in a space or dot is read correctly: Windows used to drop that ending when opening it, so a similarly named file could be copied instead.
+- “When finished” shows the dot on the selected option (“Do nothing” by default) from the first time it opens.
+- “Where to?” fits in short windows: the folder list shrinks so it is fully visible, and the rest of the dialog scrolls to the end.
+
+- Clicking a tray progress icon restores its corresponding copy and window, including in compact view. Icons recover when Explorer restarts.
+- Progress icons request placement directly beside the clock. On systems where Windows retains its overflow cache, signing out and back in once may be necessary; checked with multiple copies.
+- Cancelling the existing-folder question notifies the window that the job ended and hides it when no work remains, instead of leaving an empty transfers window open.
+- Independent windows stop their timers before closing when a copy finishes, avoiding access to a destroyed window and an application crash.
+
+- The existing-file dialog uses the current acrylic material and starts shrinking the window immediately on dismissal. The Settings sidebar enters only when Settings opens, without repeating the entrance when navigating back between sections.
+- After a batch finishes, automatic mode starts the next copy in the compact view. Remember size stores separate compact, details and multiple-copy dimensions; automatic expansion does not overwrite them.
+- Individual tray progress icons are hidden while that copy's progress is visible in its window and return when the window is minimized or hidden.
+
+- The existing-file dialog waits for the window to finish growing so it stays centered with its buttons accessible. Closing with X during a conflict cancels the transfer and keeps MegaCopier in the tray without the unexpected WinUI crash.
+
+- Paste in the modern Desktop menu now recognizes its separate Windows 11 host window. Keyboard shortcuts, modern and classic menus, the navigation pane and the top toolbar share copy, cut and in-place duplication rules. A menu keeps its original destination despite an earlier selection; the toolbar button is prepared before copying and uses the visible tab. Newly activated empty folders and expanded navigation nodes are covered. Shift+Insert and menus opened with the Menu key or Shift+F10, including keyboard activation, are also supported.
+
+- Desktop drag and drop and paste recognize the actual file view when another application's transparent overlay interferes with accessibility. Desktop and other pinned folders are also recognized when the navigation pane annotates their names. The classic menu recognizes Paste even without its shortcut; Ctrl+V also works when the desktop background retains focus. New installations start dragged transfers without confirmation; the confirmation setting remains available.
+
+- The Settings sidebar slides in as the window expands, and the copy list also enters with a transition when a second copy is added. Size changes do not interrupt these entrances.
+- During More/Less and opening Settings, bars, figures and controls adapt to the visible size on every frame, instead of adopting the final width too early. Sliding transitions and protection against black blocks are preserved; the list does not restart a second entrance animation after growing.
+- More/Less, Settings and the other views again resize the actual window gradually. Size constraints are applied when the transition ends, preventing abrupt opening or closing; the internal graphics surface keeps its size during movement to avoid black strips and distorted text.
+- Expanded content slides with pixel-aligned positions and exits downward when collapsing, without leaving headers over the compact window. Rapid clicks can reverse the transition; collapsing from maximized avoids overlapping Windows zoom animations.
+
 ## [1.8.0] - 2026-10-23
 
 ### Highlights

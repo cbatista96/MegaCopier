@@ -79,7 +79,7 @@ E_DeleteStart	{0} 個のファイル ({1}) を削除します。
 E_WipeStart	{0} 個のファイル ({1}) を完全に削除します。
 E_DoneDelete	{0} で完了: 削除 {1}、エラー {2}。
 E_NoSources	コピー元が指定されていません。
-E_WholeDrive	ドライブ全体のコピーはまだサポートしていません: {0}
+E_WholeDrive	ドライブ全体はコピーのみ可能で、移動や削除はできません: {0}
 E_SourceMissing	コピー元が存在しません: {0}
 E_IntoItself	フォルダーをそれ自身の中にコピーすることはできません: {0}
 E_SourceUnreadable	コピー元を読み取れません: {0}
@@ -125,7 +125,6 @@ E_DamagedTwice	2 回とも相手の PC に破損した状態で届きました
 E_Fat32	FAT32 には入りません（1 ファイル最大 4 GB）。ディスクを exFAT または NTFS でフォーマットしてください。
 E_FatLimits	コピー先は {0} です: 代替データストリームとアクセス許可は保存されず、日付は 2 秒単位です。
 E_CaseCollisions	コピー先で {0} 個の名前が重複します（大文字小文字の違いのみ）: 競合として扱います。
-E_BadName	Windows で問題のある名前（予約名、または末尾がピリオドや空白）: 開けないプログラムがあります。
 E_LongPaths	{0} 個のファイルのパスが 260 文字を超えます: エクスプローラーなどで開けない場合があります。
 E_WrongCode	コードが相手の PC に表示されているものと一致しません。
 E_PeerUnknownCode	相手の PC はこのコードを知りません: 接続は安全ではありません。
@@ -269,3 +268,15 @@ E_FolderSkipExisting	フォルダーはすでにありました: 既存の {0} �
 E_FolderOverwrite	フォルダーはすでにありました: 既存の {0} 個のファイルを上書きします。
 E_FolderRenamed	フォルダー「{0}」はすでにありました: 「{1}」としてコピーします。
 E_SpaceForced	それでもコピーします。ディスクがいっぱいになると、空きができるまで待機します。
+E_DriveFolder	ドライブ {0}
+E_NameFixed	コピー先は名前「{0}」を受け付けません: 「{1}」としてコピーしました
+E_CloudOnly	{0} 個のファイルはクラウドにしかありません: コピーのためにダウンロードされます ([ルール] でスキップできます)。
+E_F_NoCloud	クラウドのみのファイルを除く
+C_UsageFilters	フィルター (copy、move、test、hash):\n  --include <マスク>     これらのみ ("*.jpg;*.png"、繰り返し可)\n  --exclude <マスク>     これらは除外 ("*.tmp;node_modules")\n  --min-size <n>         最小サイズ (500、200k、10m、2g)\n  --max-size <n>         最大サイズ\n  --after <yyyy-mm-dd>   その日以降に更新\n  --before <yyyy-mm-dd>  その日以前に更新\n  --skip-hidden · --skip-system · --skip-cloud (クラウドのみのファイル)\n  --filter "<テキスト>"  自然な言葉で: "photos over 2 MB"\n  @list.txt              ファイルからコピー元を読む (1 行に 1 パス)
+C_BadSize	{0} にはサイズが必要です (例: 500、200k、10m、2g)。
+C_BadDate	{0} には yyyy-mm-dd 形式の日付が必要です (例: 2026-01-31)。
+E_BeforeRunning	開始前: {0}
+E_BeforeFailed	開始前のコマンドが失敗したため ({1})、コピーは開始しません: {0}
+C_UsageExtras	その他のオプション:\n  --max-depth <n>        サブフォルダーの階層 (0 = フォルダーのみ)\n  --archive              変更済みのもののみ、その後マークを外す (増分)\n  --dst                  ちょうど 1 時間の差は同じとみなす (夏時間)\n  --keep-compression     NTFS 圧縮を維持\n  --flatten              すべてをコピー先フォルダーに、サブフォルダーなし\n  --keep-paths           コピー元の共通フォルダーからフォルダー構成を再現\n  --rename <マスク>      コピー時に名前を変更: "*.bak"、"コピー *.*"\n  --run-before "<コマンド>"  開始前に実行。失敗するとコピーしません\n  フォルダー内の .mcignore ファイルに、そこから決してコピーしないものを書きます。
+C_RunUsage	使い方: mcopy run <リスト.mclist>  (保存したコピーまたはタスクをウィンドウなしで実行)
+C_BadList	リストを読み取れませんでした: {0}

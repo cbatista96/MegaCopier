@@ -75,12 +75,6 @@ public sealed partial class MainWindow : Window
     private bool _sidebarOverlayOpen;
     private bool _hadSidebar;
 
-    /// <summary>Tamaño de la vista completa antes de crecer para la lista de copias (null si no tuvo que crecer).</summary>
-    private (double Width, double Height)? _beforeSidebar;
-
-    /// <summary>Tamaño (en píxeles) al que creció para la lista: si sigue igual al quitarla, el usuario no la tocó.</summary>
-    private (double Width, double Height) _sidebarGrownTo;
-
     /// <summary>El usuario eligió compacta o completa en esta sesión: el modo automático ya no cambia por su cuenta.</summary>
     private bool _userChoseMode;
 
@@ -89,9 +83,6 @@ public sealed partial class MainWindow : Window
 
     /// <summary>Hasta cuándo los cambios de tamaño son de la animación (no del usuario).</summary>
     private long _programmaticUntil;
-
-    /// <summary>Lo que queda por hacer al terminar la animación (ocultar lo que se desvanecía al volver a «Menos»).</summary>
-    private Action? _afterResize;
 
     private (double Width, double Height) _resizeFrom;
     private (double Width, double Height) _resizeTo;
@@ -110,8 +101,8 @@ public sealed partial class MainWindow : Window
         _jobIndicator = new Controls.SlidingIndicator(JobList, JobIndicatorLayer, height: 32);
         _ = new Controls.TabSlidingIndicator(Tabs, TabIndicatorLayer);
         _resizeTimer = _dispatcher.CreateTimer();
-        _resizeTimer.Interval = TimeSpan.FromMilliseconds(12);
-        _resizeTimer.Tick += (_, _) => ResizeStep();
+        _resizeTimer.Interval = TimeSpan.FromMilliseconds(80);
+        _resizeTimer.Tick += (_, _) => ResizeWithoutRendering();
 
         Handle = WindowNative.GetWindowHandle(this);
         ExtendsContentIntoTitleBar = true;
@@ -120,6 +111,9 @@ public sealed partial class MainWindow : Window
         AppWindow.SetIcon(Path.Combine(AppContext.BaseDirectory, "Assets", "MegaCopier.ico"));
         AppWindow.TitleBar.PreferredHeightOption = TitleBarHeightOption.Standard;
         _expanded = app.Settings.WindowMode == WindowMode.Expanded;
+        _compactWidth = app.Settings.RememberSize && app.Settings.CompactWindowWidth > 0
+            ? Math.Max(CompactMinWidth, app.Settings.CompactWindowWidth) : CompactWidth;
+        AppWindow.IsShownInSwitchers = app.Settings.ShowTaskbarButton;
         var (width, height) = TargetSize(_expanded);
         AppWindow.Resize(new Windows.Graphics.SizeInt32(Scaled(width), Scaled(height)));
         CenterOnScreen();
@@ -130,10 +124,12 @@ public sealed partial class MainWindow : Window
         {
             // Solo cuenta lo que hace el usuario: los cambios de la animación (y los avisos que llegan justo después)
             // no, o al volver de «Más» la pequeña se quedaría con un ancho intermedio.
-            if (args.DidSizeChange && !_expanded && !_resizeTimer.IsRunning && Jobs.Count > 0
-                && Stopwatch.GetTimestamp() > _programmaticUntil && AppWindow.Size.Width != _resizeTo.Width)
+            if (args.DidSizeChange && !_resizeTimer.IsRunning && !_applyingLayout && !PageOpen && _roomForDialog is null
+                && AppWindow.Presenter is OverlappedPresenter { State: OverlappedPresenterState.Restored }
+                && Jobs.Count > 0 && Stopwatch.GetTimestamp() > _programmaticUntil
+                && (AppWindow.Size.Width != _resizeTo.Width || AppWindow.Size.Height != _resizeTo.Height))
             {
-                _compactWidth = Math.Max(CompactMinWidth, AppWindow.Size.Width / (Scaled(1000) / 1000.0));
+                RememberUserSize();
             }
         };
 
@@ -149,9 +145,9 @@ public sealed partial class MainWindow : Window
             args.Cancel = true;
             CloseButtonPressed();
         };
-        Closed += (_, _) => IsClosed = true;
+        Closed += (_, _) => { IsClosed = true; _refreshTimer?.Stop(); };
 
-        // El material sigue a la ventana: el de serie pasa a Mica Alt sin el foco; los demás, como Windows.
+        // El material sigue a la ventana: sin el foco pasa a su pareja (ver ApplyTheme).
         Activated += (_, args) =>
         {
             _app.Updates?.NoteInteraction();
@@ -172,10 +168,11 @@ public sealed partial class MainWindow : Window
         AppWindow.Changed += (_, args) =>
         {
             if (args.DidPresenterChange && !_minimizingOnPurpose && AppWindow.Presenter is OverlappedPresenter { State: OverlappedPresenterState.Minimized }
-                && _app.Settings.MinimizeButton == MinimizeButtonAction.Tray && _app.Settings.ShowTrayIcon)
+                && (!_app.Settings.ShowTaskbarButton || _app.Settings.MinimizeButton == MinimizeButtonAction.Tray && _app.Settings.ShowTrayIcon))
             {
                 Hide();
             }
+            if (args.DidVisibilityChange || args.DidPresenterChange) _app.RefreshTrayProgress();
         };
 
         // Cada ventana muestra sus copias (con «Cada copia en su propia ventana» hay varias; si no, todas van aquí).
@@ -235,6 +232,7 @@ public sealed partial class MainWindow : Window
         Select(Jobs.FirstOrDefault());
         ApplyLayout(animate: false);
         UpdateFinishButton();
+        ApplyToolbar();
     }
 
     public ObservableCollection<JobViewModel> Jobs { get; } = [];
@@ -258,7 +256,19 @@ public sealed partial class MainWindow : Window
 
     internal nint Handle { get; }
 
-    internal bool IsVisibleToUser => AppWindow.IsVisible && GetForegroundWindow() == Handle;
+    internal bool IsVisibleToUser => !IsClosed && !_closingForGood && AppWindow.IsVisible && GetForegroundWindow() == Handle;
+
+    /// <summary>Esta copia ya tiene su progreso a la vista; no necesita otro icono en la bandeja.</summary>
+    internal bool ShowsProgress(CopyJob job) => AppWindow.IsVisible && !PageOpen
+        && AppWindow.Presenter is not OverlappedPresenter { State: OverlappedPresenterState.Minimized }
+        && (_expanded && SidebarWanted || _selected?.Job == job);
+
+    internal void ApplyTaskbarVisibility()
+    {
+        AppWindow.IsShownInSwitchers = _app.Settings.ShowTaskbarButton;
+        if (!_app.Settings.ShowTaskbarButton && AppWindow.Presenter is OverlappedPresenter { State: OverlappedPresenterState.Minimized })
+            Hide();
+    }
 
     internal bool IsExpanded => _expanded;
 
@@ -268,6 +278,7 @@ public sealed partial class MainWindow : Window
     /// </summary>
     private void OnUi(Action action, string what) => _dispatcher.TryEnqueue(() =>
     {
+        if (IsClosed || _closingForGood) return;
         try
         {
             action();
@@ -312,17 +323,12 @@ public sealed partial class MainWindow : Window
     internal void ShowAndActivate()
     {
         // Modo de prueba: mostrar sin quitar el foco a lo que el usuario esté haciendo.
-        if (App.TestMode)
-        {
-            AppWindow.Show(activateWindow: false);
-            return;
-        }
-
-        AppWindow.Show(activateWindow: true);
+        AppWindow.Show(activateWindow: !App.TestMode);
         if (AppWindow.Presenter is OverlappedPresenter { State: OverlappedPresenterState.Minimized } minimized)
         {
             minimized.Restore(); // se ocultó en la bandeja estando minimizada
         }
+        if (App.TestMode) return;
 
         Activate();
         if (SetForegroundWindow(Handle))
@@ -346,6 +352,11 @@ public sealed partial class MainWindow : Window
     /// <summary>«Iniciar las copias con la ventana minimizada»: en la barra de tareas, sin taparle nada al usuario.</summary>
     internal void ShowMinimized()
     {
+        if (!_app.Settings.ShowTaskbarButton)
+        {
+            Hide();
+            return;
+        }
         if (AppWindow.IsVisible)
         {
             return;
@@ -378,6 +389,8 @@ public sealed partial class MainWindow : Window
         }
 
         AppWindow.Hide();
+        if (!HasActiveJobs && !PageOpen)
+            ResetForNextBatch();
     }
 
     /// <summary>Ventana más para una copia (ver el constructor).</summary>
@@ -400,6 +413,8 @@ public sealed partial class MainWindow : Window
         }
 
         _closingForGood = true;
+        _refreshTimer.Stop();
+        StopResizeAnimation();
         _app.ForgetWindow(this);
         Close();
     }
@@ -420,42 +435,70 @@ public sealed partial class MainWindow : Window
         AppWindow.Move(new Windows.Graphics.PointInt32(x, y));
     }
 
+    private bool _closeButtonPending;
+    private TaskCompletionSource? _conflictDialogClosed;
+    private bool _conflictDialogShowing, _resizeAfterConflict;
+
     /// <summary>
     /// La X de la ventana, según «Al pulsar la X»: cancelar las copias (como «Detener» en cada una), detenerlas para
     /// continuarlas después, solo ocultar la ventana (las copias siguen) o salir de MegaCopier. Las copias ya
     /// terminadas pasan al historial al cerrar la ventana.
     /// </summary>
-    internal void CloseButtonPressed()
+    internal async void CloseButtonPressed()
     {
-        var action = _app.Settings.CloseButton;
-        if (action == CloseButtonAction.Exit)
+        if (App.TestMode) App.TestLog("window-close.log", $"cerrar: pendiente={_closeButtonPending};copias={string.Join(",", Jobs.Select(j => $"{j.Job.Id}:{j.Job.State}"))}");
+        if (_closeButtonPending) return;
+        _closeButtonPending = true;
+        try
         {
-            SavePlacement();
-            _app.ExitApp();
-            return;
-        }
+            var action = _app.Settings.CloseButton;
+            if (action == CloseButtonAction.Exit)
+            {
+                SavePlacement();
+                _app.ExitApp();
+                return;
+            }
+            if (action == CloseButtonAction.HideToTray)
+            {
+                Hide(); // las copias y sus preguntas siguen pendientes
+                return;
+            }
 
-        foreach (var job in Jobs.ToList())
-        {
-            if (job.Job.IsActive && action == CloseButtonAction.CancelCopies)
+            foreach (var job in Jobs.ToList())
             {
-                job.Stop();
+                if (job.Job.IsActive && action == CloseButtonAction.CancelCopies)
+                {
+                    job.Stop();
+                }
+                else if (job.Job.IsActive && action == CloseButtonAction.StopCopies)
+                {
+                    _app.Queue.Stop(job.Job);
+                }
+                else if (job.IsDone && action != CloseButtonAction.HideToTray)
+                {
+                    job.Clear();
+                }
             }
-            else if (job.Job.IsActive && action == CloseButtonAction.StopCopies)
-            {
-                _app.Queue.Stop(job.Job);
-            }
-            else if (job.IsDone && action != CloseButtonAction.HideToTray)
-            {
-                job.Clear();
-            }
-        }
 
-        Hide();
+            // WinUI debe terminar de cerrar el diálogo y devolver el foco antes de ocultar
+            // su ventana. Ocultarla a la vez que Hide() del diálogo provocaba un fallo nativo.
+            if (_conflictDialogClosed is { } closingDialog)
+            {
+                // La comprobación previa puede preguntar mientras el trabajo aún
+                // está en cola: cancelarlo no siempre cancela el token del motor.
+                ConflictDialog.Hide();
+                if (App.TestMode) App.TestLog("window-close.log", "aviso ocultándose");
+                await closingDialog.Task;
+                if (App.TestMode) App.TestLog("window-close.log", "aviso cerrado");
+            }
+            _roomForDialog = null;
+            Hide();
+        }
+        finally { _closeButtonPending = false; }
     }
 
     /// <summary>«Recordar la posición / el tamaño de la ventana».</summary>
-    private void SavePlacement()
+    internal void SavePlacement()
     {
         var s = _app.Settings;
         if (!s.RememberPosition && !s.RememberSize)
@@ -463,20 +506,40 @@ public sealed partial class MainWindow : Window
             return;
         }
 
-        if (s.RememberPosition)
+        if (s.RememberPosition && AppWindow.Presenter is not OverlappedPresenter { State: OverlappedPresenterState.Minimized })
         {
             s.WindowX = AppWindow.Position.X;
             s.WindowY = AppWindow.Position.Y;
         }
 
-        if (s.RememberSize && _expanded)
-        {
-            double scale = Scaled(1000) / 1000.0;
-            s.WindowWidth = (int)(AppWindow.Size.Width / scale);
-            s.WindowHeight = (int)(AppWindow.Size.Height / scale);
-        }
-
         s.Save();
+    }
+
+    /// <summary>Solo guarda tamaños elegidos con el ratón, nunca los de diálogos, páginas o ampliaciones automáticas.</summary>
+    private void RememberUserSize()
+    {
+        double scale = Scaled(1000) / 1000.0;
+        int width = (int)Math.Round(AppWindow.Size.Width / scale);
+        int height = (int)Math.Round(AppWindow.Size.Height / scale);
+        var s = _app.Settings;
+        if (!_expanded) _compactWidth = Math.Max(CompactMinWidth, width);
+        if (!s.RememberSize) return;
+        if (!_expanded) s.CompactWindowWidth = (int)_compactWidth;
+        else if (SidebarWanted) { s.MultiWindowWidth = width; s.MultiWindowHeight = height; }
+        else { s.WindowWidth = width; s.WindowHeight = height; }
+    }
+
+    /// <summary>Una ampliación por varias copias no cambia la vista inicial de la siguiente tanda.</summary>
+    private void ResetForNextBatch()
+    {
+        if (_closingForGood || IsClosed || _conflictDialogClosed is not null) return;
+        _userChoseMode = false;
+        _expanded = _app.Settings.WindowMode == WindowMode.Expanded;
+        _compactWidth = _app.Settings.RememberSize && _app.Settings.CompactWindowWidth > 0
+            ? Math.Max(CompactMinWidth, _app.Settings.CompactWindowWidth) : CompactWidth;
+        _beforePage = null;
+        _roomForDialog = null;
+        ApplyLayout(animate: false);
     }
 
     private void RestorePosition()
@@ -564,8 +627,10 @@ public sealed partial class MainWindow : Window
         Root.RequestedTheme = requested;
         PaintNativeBackground(theme);
         AppWindow.TitleBar.PreferredTheme = theme.Dark ? TitleBarTheme.Dark : TitleBarTheme.Light;
-        // El de serie (el del tema, Mica) no se apaga al perder el foco: pasa a Mica Alt.
-        SystemBackdrop = Appearance.CreateBackdrop(theme.Backdrop, theme.Dark, altWhenInactive: _app.Settings.EffectiveBackdrop == WindowBackdrop.Theme, active: _windowActive);
+        // El material no se apaga al perder el foco: pasa a su pareja (el de serie, Mica, a Mica Alt; Mica Alt a Mica;
+        // acrílico a translúcida y al revés). Los temas con otro material de serie siguen como Windows.
+        bool alternate = _app.Settings.EffectiveBackdrop != WindowBackdrop.Theme || theme.Backdrop == AppBackdrop.Mica;
+        SystemBackdrop = Appearance.CreateBackdrop(theme.Backdrop, theme.Dark, altWhenInactive: alternate, active: _windowActive);
         TrayIcon.SetMenuTheme(theme.Dark);
         ApplyTexture(TextureImage, theme);
     }
@@ -680,6 +745,14 @@ public sealed partial class MainWindow : Window
     /// <summary>Ya no queda nada en marcha: según la preferencia, la ventana se cierra o se queda.</summary>
     internal void OnAllFinished()
     {
+        // El aviso puede esperar en el Dispatcher mientras llega otra copia.
+        // Consultar la cola actual, no el estado que había al publicar el aviso.
+        if (_app.Queue.Jobs.Any(j => j.IsActive && _app.WindowFor(j) == this)) return;
+        if (_conflictDialogClosed is { } pendingDialog)
+        {
+            _ = FinishAfterDialogAsync(pendingDialog.Task);
+            return;
+        }
         var mode = _app.Settings.FinishWindow;
         // Solo cuentan las copias que siguen en la cola (una recién quitada aún puede estar en la lista un instante).
         var queued = _app.Queue.Jobs;
@@ -702,6 +775,14 @@ public sealed partial class MainWindow : Window
         _userChoseMode = false;
     }
 
+    private async Task FinishAfterDialogAsync(Task closed)
+    {
+        // Cancelar despierta al motor antes de que termine la animación del Popup.
+        // Mantener visible su ventana hasta entonces, también si termina otra copia.
+        await closed;
+        if (!IsClosed && !_closingForGood) OnAllFinished();
+    }
+
     // ---------------------------------------------------------------------------------------------------------
     // Trabajos
 
@@ -711,6 +792,10 @@ public sealed partial class MainWindow : Window
         {
             return;
         }
+
+        // También empieza una tanda nueva si la ventana se cerró desde Ajustes
+        // o se ocultó justo antes de terminar la última copia.
+        if (!AppWindow.IsVisible && !HasActiveJobs) ResetForNextBatch();
 
         // En el orden de la cola: arrastrando las tarjetas se cambia qué copia va antes.
         var item = new JobViewModel(job, _app.Queue, _dispatcher, () => _app.Settings.HideFinishedFiles);
@@ -747,6 +832,7 @@ public sealed partial class MainWindow : Window
     internal void ShowJob(CopyJob job)
     {
         ShowJobs();
+        if (!Jobs.Any(j => j.Job == job)) AddJob(job, select: false);
         Select(Jobs.FirstOrDefault(j => j.Job == job) ?? _selected);
         ShowAndActivate();
     }
@@ -957,7 +1043,7 @@ public sealed partial class MainWindow : Window
     /// </summary>
     private void ApplyConstraints()
     {
-        if (AppWindow.Presenter is not OverlappedPresenter presenter || _resizeTimer.IsRunning)
+        if (AppWindow.Presenter is not OverlappedPresenter presenter || _resizeTimer.IsRunning || _applyingLayout || _conflictDialogShowing)
         {
             return;
         }
@@ -982,18 +1068,14 @@ public sealed partial class MainWindow : Window
     /// <summary>Tamaño que pide un diálogo abierto en la ventana pequeña (null si no hay ninguno).</summary>
     private (double Width, double Height)? _roomForDialog;
 
-    private int _shrinkTicket;
-
-    /// <summary>
-    /// Devuelve la ventana pequeña a su tamaño un momento después de cerrar el diálogo de «ya existe», si no ha llegado
-    /// otro: con «Uno a uno» el siguiente se abría mientras la ventana encogía y quedaba descolocado, fuera de la vista.
-    /// </summary>
-    private async Task ShrinkAfterDialogAsync(int ticket)
+    /// <summary>Al desaparecer el aviso, empieza enseguida la transición de vuelta a la ventana pequeña.</summary>
+    private void ShrinkAfterDialog()
     {
-        await Task.Delay(1500);
-        if (ticket == _shrinkTicket && _roomForDialog is not null)
+        bool resize = _roomForDialog is not null || _resizeAfterConflict;
+        _roomForDialog = null;
+        _resizeAfterConflict = false;
+        if (resize && !IsClosed && !_closeButtonPending && AppWindow.IsVisible)
         {
-            _roomForDialog = null;
             AnimateResize();
         }
     }
@@ -1024,53 +1106,39 @@ public sealed partial class MainWindow : Window
         ApplyLayout(animate: animate && AppWindow.IsVisible);
     }
 
+    private bool _applyingLayout;
+
     private void ApplyLayout(bool animate)
     {
+        _applyingLayout = true;
+        try { ApplyLayoutCore(animate); }
+        finally
+        {
+            _applyingLayout = false;
+            if (!_resizeTimer.IsRunning) ApplyConstraints();
+        }
+    }
+
+    private void ApplyLayoutCore(bool animate)
+    {
+        animate &= !BarAppearance.ReduceMotion && AppWindow.IsVisible;
+        SuspendTabEntrance();
         _programmaticUntil = Stopwatch.GetTimestamp() + Stopwatch.Frequency / 3;
         if (!_expanded && AppWindow.Presenter is OverlappedPresenter { State: OverlappedPresenterState.Maximized } maximized)
         {
-            maximized.Restore(); // la pequeña no se maximiza: primero vuelve a su tamaño normal
+            PrepareAnimatedRestore();
+            maximized.Restore();
         }
 
         Panel.SetExpanded(_expanded);
-        _afterResize?.Invoke();
-        _afterResize = null;
-        if (animate)
-        {
-            // La animación empieza ya: los límites de tamaño de la vista nueva (más abajo) agrandarían la ventana de golpe.
-            AnimateResize();
-        }
-
-        UIElement[] extras = [Tabs, TabHost]; // la barra de herramientas se ve siempre, también en la pequeña
-        if (animate && !_expanded)
-        {
-            // «Menos»: la barra de herramientas y las pestañas se desvanecen subiendo mientras la ventana encoge, y
-            // se ocultan al terminar (el mismo efecto que al abrirlas, al revés).
-            foreach (var element in extras)
-            {
-                Motion.FadeOut(element);
-            }
-
-            _afterResize = () =>
-            {
-                foreach (var element in extras)
-                {
-                    element.Visibility = Visibility.Collapsed;
-                    Motion.ResetFade(element);
-                }
-            };
-        }
-        else
-        {
-            foreach (var element in extras)
-            {
-                element.Visibility = _expanded ? Visibility.Visible : Visibility.Collapsed;
-                if (animate && _expanded)
-                {
-                    Motion.FadeIn(element); // «Más»: aparecen bajando mientras la ventana crece
-                }
-            }
-        }
+        bool wasVisible = ExpandedDetails.Visibility == Visibility.Visible;
+        // Cancelar un cierre en curso no ejecuta su final pendiente sobre la nueva apertura.
+        _detailsTransition = animate;
+        _detailsFrom = wasVisible ? DetailsRevealTransform.TranslateY : 28;
+        _detailsTo = _expanded ? 0 : 28; // salir hacia abajo, sin pasar las pestañas por encima de la tarjeta
+        if (animate) DetailsRevealTransform.TranslateY = _detailsFrom;
+        ExpandedDetails.Visibility = _expanded || animate && wasVisible ? Visibility.Visible : Visibility.Collapsed;
+        if (!animate) DetailsRevealTransform.TranslateY = 0;
 
         ApplySidebar();
         UpdatePager();
@@ -1078,12 +1146,12 @@ public sealed partial class MainWindow : Window
         RefreshTabs();
 
         var (width, height) = TargetSize(_expanded);
-        if (!animate)
+        if (animate) AnimateResizeTo(width, height);
+        else
         {
-            _resizeTimer.Stop();
+            StopResizeAnimation();
             RelaxConstraints();
             _resizeTo = (Scaled(width), Scaled(height));
-            _programmaticUntil = Stopwatch.GetTimestamp() + Stopwatch.Frequency / 3;
             AppWindow.Resize(new Windows.Graphics.SizeInt32(Scaled(width), Scaled(height)));
             ApplyConstraints();
         }
@@ -1096,76 +1164,6 @@ public sealed partial class MainWindow : Window
         AnimateResizeTo(width, height);
     }
 
-    private void AnimateResizeTo(double width, double height)
-    {
-        if (AppWindow.Presenter is OverlappedPresenter { State: OverlappedPresenterState.Maximized })
-        {
-            ApplyConstraints(); // maximizada no se anima: los límites cambian y ya está
-            return;
-        }
-
-        RelaxConstraints();
-        _resizeFrom = (AppWindow.Size.Width, AppWindow.Size.Height);
-        _resizeTo = (Scaled(width), Scaled(height));
-        _resizeStart = 0; // el reloj empieza tras el primer fotograma: preparar la vista nueva puede tardar
-        _awaitingFrame = true;
-        if (!_watchingFrames)
-        {
-            Microsoft.UI.Xaml.Media.CompositionTarget.Rendering += OnResizeFrame;
-            _watchingFrames = true;
-        }
-
-        _resizeTimer.Start();
-    }
-
-    /// <summary>
-    /// Al crecer, la parte nueva de la ventana sale en negro hasta que WinUI la dibuja: cada paso de la animación espera a
-    /// que esté dibujado el anterior, así esa franja es de unos pocos píxeles y no un recuadro negro.
-    /// </summary>
-    private bool _awaitingFrame;
-    private bool _watchingFrames;
-
-    private void OnResizeFrame(object? sender, object e)
-    {
-        _awaitingFrame = false;
-        if (!_resizeTimer.IsRunning)
-        {
-            Microsoft.UI.Xaml.Media.CompositionTarget.Rendering -= OnResizeFrame;
-            _watchingFrames = false;
-        }
-    }
-
-    private void ResizeStep()
-    {
-        if (_awaitingFrame)
-        {
-            return;
-        }
-
-        if (_resizeStart == 0)
-        {
-            _resizeStart = Stopwatch.GetTimestamp();
-        }
-
-        double t = Math.Min(1, Stopwatch.GetElapsedTime(_resizeStart).TotalMilliseconds / 220);
-        double eased = 1 - Math.Pow(1 - t, 3);
-        int w = (int)(_resizeFrom.Width + ((_resizeTo.Width - _resizeFrom.Width) * eased));
-        int h = (int)(_resizeFrom.Height + ((_resizeTo.Height - _resizeFrom.Height) * eased));
-        var area = DisplayArea.GetFromWindowId(AppWindow.Id, DisplayAreaFallback.Nearest).WorkArea;
-        int x = Math.Clamp(AppWindow.Position.X, area.X, Math.Max(area.X, area.X + area.Width - w));
-        int y = Math.Clamp(AppWindow.Position.Y, area.Y, Math.Max(area.Y, area.Y + area.Height - h));
-        AppWindow.MoveAndResize(new Windows.Graphics.RectInt32(x, y, w, h));
-        _awaitingFrame = true;
-        _programmaticUntil = Stopwatch.GetTimestamp() + Stopwatch.Frequency / 3;
-        if (t >= 1)
-        {
-            _resizeTimer.Stop();
-            ApplyConstraints();
-            _afterResize?.Invoke();
-            _afterResize = null;
-        }
-    }
-
     /// <summary>
     /// Tamaño de cada vista. La pequeña conserva el ancho que le dio el usuario (solo se ensancha); la completa, el
     /// tamaño recordado, y con varias copias a la vez deja sitio a la lista de copias de la izquierda.
@@ -1175,9 +1173,12 @@ public sealed partial class MainWindow : Window
         if (expanded)
         {
             var s = _app.Settings;
+            if (SidebarWanted)
+                return (s.RememberSize && s.MultiWindowWidth > 0 ? Math.Max(MultiWidth, s.MultiWindowWidth) : MultiWidth,
+                    s.RememberSize && s.MultiWindowHeight > 0 ? Math.Max(MultiHeight, s.MultiWindowHeight) : MultiHeight);
             double width = s.RememberSize && s.WindowWidth > 0 ? Math.Max(ExpandedMinWidth, s.WindowWidth) : ExpandedWidth;
             double height = s.RememberSize && s.WindowHeight > 0 ? Math.Max(ExpandedMinHeight, s.WindowHeight) : ExpandedHeight;
-            return SidebarWanted ? (Math.Max(width, MultiWidth), Math.Max(height, MultiHeight)) : (width, height);
+            return (width, height);
         }
 
         return Jobs.Count == 0 ? (Math.Max(CompactWidth, _compactWidth), EmptyHeight) : (_compactWidth, CompactHeight + (Jobs.Count > 1 ? PagerHeight : 0));
@@ -1186,31 +1187,13 @@ public sealed partial class MainWindow : Window
     /// <summary>La vista de varias copias: la lista de copias a la izquierda solo tiene sentido con más de una.</summary>
     private bool SidebarWanted => Jobs.Count > 1;
 
-    /// <summary>
-    /// La barra de herramientas también va en la ventana pequeña: si no cabe entera, «Al terminar» se queda en su
-    /// icono (lo elegido sigue en su descripción emergente).
-    /// </summary>
-    /// <summary>
-    /// La barra de herramientas también va en la ventana pequeña: si no cabe entera, «Al terminar» se queda en su
-    /// icono (lo elegido sigue en su descripción emergente).
-    /// </summary>
-    /// <summary>
-    /// «Al terminar» conserva su texto mientras quepa junto a los botones; solo con la ventana muy estrecha se queda
-    /// en el icono (se mide de verdad, no con un ancho fijo).
-    /// </summary>
+    /// <summary>Al cambiar el ancho se reparte otra vez la barra (MainWindow.Toolbar.cs).</summary>
     private void Toolbar_SizeChanged(object sender, SizeChangedEventArgs e) => FitFinishText(e.NewSize.Width);
 
-    private void FitFinishText(double width)
-    {
-        var unlimited = new Windows.Foundation.Size(double.PositiveInfinity, double.PositiveInfinity);
-        ToolButtons.Measure(unlimited);
-        FinishIcon.Measure(unlimited);
-        var text = new TextBlock { Text = FinishText.Text, Style = FinishText.Style }; // aunque ahora esté oculto
-        text.Measure(unlimited);
-        double needed = Toolbar.Padding.Left + Toolbar.Padding.Right + ToolButtons.DesiredSize.Width + (Toolbar.ColumnSpacing * 2)
-            + FinishIcon.DesiredSize.Width + 8 + text.DesiredSize.Width + 44; // el hueco, los márgenes del botón y su flecha
-        FinishText.Visibility = width >= needed ? Visibility.Visible : Visibility.Collapsed;
-    }
+    /// <summary>El reparto del ancho entre los accesos, el menú «…» y «Al terminar» está en MainWindow.Toolbar.cs.</summary>
+    private void FitFinishText(double width) => FitToolbar(width);
+
+    private double _finishTextRequiredWidth;
     private void Sidebar_Click(object sender, RoutedEventArgs e)
     {
         if (_narrow)
@@ -1266,10 +1249,23 @@ public sealed partial class MainWindow : Window
     {
         bool page = PageOpen;
         bool show = _expanded && !page && SidebarWanted && (_narrow ? _sidebarOverlayOpen : _sidebarWide);
-        bool wasShown = Sidebar.Visibility == Visibility.Visible;
-        animate &= show != wasShown && AppWindow.IsVisible && !Theming.BarAppearance.ReduceMotion;
+        bool wasShown = Sidebar.Visibility == Visibility.Visible && _sidebarDone is null;
+        var sidebarButton = SidebarWanted && _expanded ? Visibility.Visible : Visibility.Collapsed; // en la pequeña, el paginador
+        bool toolbarChanged = SidebarButton.Visibility != sidebarButton;
+        SidebarButton.Visibility = sidebarButton;
+        if (toolbarChanged || _toolbarExpanded != _expanded)
+        {
+            _toolbarExpanded = _expanded;
+            FitToolbar(Toolbar.ActualWidth); // la ventana pequeña tiene su propio reparto de la barra
+        }
+        // Los cambios de tamaño pueden pedir otra vez la misma disposición: no cortar la entrada en marcha.
+        if (show && wasShown && Grid.GetColumnSpan(Sidebar) == (_narrow ? 2 : 1))
+        {
+            UpdateSidebarBadge();
+            return;
+        }
+        animate = (animate || show && !wasShown) && show != wasShown && AppWindow.IsVisible && !Theming.BarAppearance.ReduceMotion;
         StopSidebarAnimation();
-        SidebarButton.Visibility = SidebarWanted && _expanded ? Visibility.Visible : Visibility.Collapsed; // en la pequeña, el paginador
         if (!show)
         {
             if (animate)
@@ -1402,32 +1398,11 @@ public sealed partial class MainWindow : Window
             _hadSidebar = sidebar;
             if (_expanded && AppWindow.IsVisible && sidebar && (AppWindow.Size.Width < Scaled(MultiWidth) || AppWindow.Size.Height < Scaled(MultiHeight)))
             {
-                double scale = Scaled(1000) / 1000.0;
-                _beforeSidebar = (AppWindow.Size.Width / scale, AppWindow.Size.Height / scale);
                 AnimateResize();
-                _sidebarGrownTo = _resizeTo;
-            }
-            else if (!sidebar && _beforeSidebar is { } before)
-            {
-                // Vuelve al tamaño de antes (el de serie o el que le diste), salvo que la cambiaras mientras tanto.
-                _beforeSidebar = null;
-                bool untouched = Math.Abs(AppWindow.Size.Width - _sidebarGrownTo.Width) <= 2
-                    && Math.Abs(AppWindow.Size.Height - _sidebarGrownTo.Height) <= 2;
-                if (_expanded && AppWindow.IsVisible && untouched)
-                {
-                    AnimateResizeTo(before.Width, before.Height);
-                }
             }
             else if (!sidebar && _expanded && AppWindow.IsVisible)
             {
-                // Abrió ya con varias copias (no creció en esta sesión): si sigue con el tamaño justo de la lista de
-                // copias, pasa al de la vista de una copia.
-                var single = TargetSize(true);
-                if (Math.Abs(AppWindow.Size.Width - Scaled(Math.Max(single.Width, MultiWidth))) <= 2
-                    && Math.Abs(AppWindow.Size.Height - Scaled(Math.Max(single.Height, MultiHeight))) <= 2)
-                {
-                    AnimateResize();
-                }
+                AnimateResize(); // la vista de detalles recupera su propio tamaño
             }
         }
 
@@ -1441,6 +1416,7 @@ public sealed partial class MainWindow : Window
 
     private void Tabs_SelectionChanged(SelectorBar sender, SelectorBarSelectionChangedEventArgs args)
     {
+        TabHost.ContentTransitions ??= _tabContentTransitions;
         TabHost.Content = sender.SelectedItem switch
         {
             var i when i == TargetItem => _targetTab,
@@ -1479,7 +1455,7 @@ public sealed partial class MainWindow : Window
     /// <summary>Cada segundo: barra de título, cabecera de la lista y la pestaña visible.</summary>
     private void RefreshTick()
     {
-        if (!AppWindow.IsVisible)
+        if (IsClosed || _closingForGood || !AppWindow.IsVisible)
         {
             return;
         }
@@ -1506,6 +1482,7 @@ public sealed partial class MainWindow : Window
             TextAudit.Run(Root, $"{where} {AppWindow.Size.Width}px");
         }
 
+        UpdatePlayPauseAll(animate: true);
         var running = Jobs.Where(j => j.IsRunning || j.IsPaused).ToList();
         if (running.Count == 0)
         {
@@ -1520,7 +1497,7 @@ public sealed partial class MainWindow : Window
             string percent = total > 0 ? $"{100.0 * done / total:0} %" : "…";
             string status = speed > 0 ? $"{percent} · {Format.Speed(speed)}" : percent;
             TitleStatus.Text = running.Count > 1 ? $"{status} · {L.F("Tray_ManyJobs", running.Count)}" : status;
-            Title = $"{percent} — MegaCopier";
+            Title = $"{status} — MegaCopier"; // también la velocidad en la barra de tareas y Alt+Tab
         }
 
         JobsHeader.Text = L.F("Jobs_Header", Jobs.Count, Jobs.Count(j => j.IsActive));
@@ -1659,9 +1636,54 @@ public sealed partial class MainWindow : Window
         }
     }
 
-    private void PauseAll_Click(object sender, RoutedEventArgs e) => _app.Queue.PauseAll();
+    /// <summary>Lo que hace ahora el botón de toda la cola: pausar (hay copias en marcha) o reanudar (solo hay pausadas).</summary>
+    private bool? _toolbarShowsPause;
 
-    private void ResumeAll_Click(object sender, RoutedEventArgs e) => _app.Queue.ResumeAll();
+    private void PlayPauseAll_Click(object sender, RoutedEventArgs e)
+    {
+        if (_toolbarShowsPause != false)
+        {
+            _app.Queue.PauseAll();
+        }
+        else
+        {
+            _app.Queue.ResumeAll();
+        }
+
+        UpdatePlayPauseAll(animate: true);
+    }
+
+    /// <summary>
+    /// Un solo botón para pausar y reanudar todas: con alguna copia en marcha muestra la pausa; si las que hay están
+    /// pausadas, reanudar. Al cambiar, la figura se transforma (las barras forman el triángulo y al revés), con cualquier
+    /// conjunto de iconos.
+    /// </summary>
+    private void UpdatePlayPauseAll(bool animate)
+    {
+        bool pause = Jobs.Any(j => j.IsRunning) || !Jobs.Any(j => j.IsPaused);
+        string label = L.Get(pause ? "Toolbar_PauseAll" : "Toolbar_ResumeAll");
+        // Se llama con cada avance de la copia: poner otra descripción cada vez la cerraba antes de que llegara a verse.
+        // Una sola, a la que solo se le cambia el texto cuando cambia.
+        if (ToolTipService.GetToolTip(PlayPauseAllButton) is not ToolTip tip)
+        {
+            tip = new ToolTip();
+            ToolTipService.SetToolTip(PlayPauseAllButton, tip);
+        }
+
+        if (tip.Content as string != label)
+        {
+            tip.Content = label;
+            Microsoft.UI.Xaml.Automation.AutomationProperties.SetName(PlayPauseAllButton, label);
+        }
+        if (_toolbarShowsPause == pause)
+        {
+            return;
+        }
+
+        bool first = _toolbarShowsPause is null;
+        _toolbarShowsPause = pause;
+        PlayPauseAllIcon.MorphTo(play: !pause, animate && !first && PlayPauseAllButton.ActualWidth > 0);
+    }
 
     private void ClearDone_Click(object sender, RoutedEventArgs e)
     {
@@ -1729,13 +1751,20 @@ public sealed partial class MainWindow : Window
 
     private void OpenSettings()
     {
+        if (SettingsView.Visibility == Visibility.Visible) return;
         RememberBeforePage();
         HistoryView.Visibility = Visibility.Collapsed;
         TimelineView.Visibility = Visibility.Collapsed;
         CompareView.Visibility = Visibility.Collapsed;
         SettingsView.Load();
+        _settingsNavigationEntering = AppWindow.IsVisible && SettingsView.PrepareNavigationEntrance();
         SettingsView.Visibility = Visibility.Visible;
         EnsureRoomForPage(SettingsWidth);
+        if (_settingsNavigationEntering && !_resizeTimer.IsRunning)
+        {
+            _settingsNavigationEntering = false;
+            SettingsView.AnimateNavigationEntrance();
+        }
         UpdateLayoutState();
         RememberNavigation();
     }
@@ -1957,6 +1986,8 @@ public sealed partial class MainWindow : Window
 
         return string.Join("\n", lines);
     }
+
+    internal string DebugWindowState() => $"expanded={_expanded};multi={SidebarWanted};selected={_selected?.Job.Id};size={AppWindow.Size.Width}x{AppWindow.Size.Height};visible={AppWindow.IsVisible};presenter={(AppWindow.Presenter as OverlappedPresenter)?.State};taskbar={AppWindow.IsShownInSwitchers};resize={_resizeTimer.IsRunning};dialogRoom={_roomForDialog is not null};acrylic={ConflictDialog.Background is AcrylicBrush};nav={SettingsView.NavigationOffset:0.00};navEntries={SettingsView.NavigationEntranceCount};settings={SettingsView.Visibility}";
 
     internal string DebugDrag(string target, double y, int[] rows, List<string> paths, bool drop)
     {
@@ -2216,7 +2247,7 @@ public sealed partial class MainWindow : Window
         }
 
         DestinationsSummary.Text = sources.Count == 1
-            ? L.F("Destinations_SummaryOne", Path.GetFileName(Path.TrimEndingDirectorySeparator(sources[0])))
+            ? L.F("Destinations_SummaryOne", Engine.SourceNames.TargetName(sources[0]))
             : L.F("Destinations_SummaryMany", sources.Count);
         DestinationsMove.IsChecked = move;
         DestinationsMode.SelectedIndex = 0;
@@ -2231,6 +2262,9 @@ public sealed partial class MainWindow : Window
         DestinationsPasswordInfo.Text = L.Get("Destinations_PasswordHint");
         DestinationsPasswordInfo.ClearValue(TextBlock.ForegroundProperty);
         DestinationsNone.Visibility = Visibility.Collapsed;
+        DestinationsPathBox.Text = "";
+        DestinationsPathBox.ItemsSource = null;
+        DestinationsPathError.Visibility = Visibility.Collapsed;
         DestinationsSchedule.IsChecked = false;
         DestinationsWhen.Visibility = Visibility.Collapsed;
         var later = DateTime.Now.AddHours(1);
@@ -2251,7 +2285,35 @@ public sealed partial class MainWindow : Window
 
         DestinationsDialog.XamlRoot = Root.XamlRoot;
         DestinationsDialog.RequestedTheme = Root.RequestedTheme;
-        if (await DestinationsDialog.ShowAsync() != ContentDialogResult.Primary)
+
+        // En la ventana pequeña no cabe: crece como para el aviso de «ya existe» y vuelve a su tamaño al cerrarlo.
+        if (!_expanded && _roomForDialog is null && AppWindow.IsVisible)
+        {
+            _roomForDialog = (CompactWidth + 40, 640);
+            AnimateResizeTo(CompactWidth + 40, 640);
+            // El diálogo calcula su sitio al abrirse: la ventana tiene que tener ya el tamaño nuevo.
+            while (_resizeTimer.IsRunning)
+            {
+                await Task.Delay(16);
+            }
+
+            Root.UpdateLayout();
+        }
+
+        FitDestinationsList();
+        Root.SizeChanged += FitDestinationsListOnResize;
+        ContentDialogResult result;
+        try
+        {
+            result = await DestinationsDialog.ShowAsync();
+        }
+        finally
+        {
+            Root.SizeChanged -= FitDestinationsListOnResize;
+            ShrinkAfterDialog();
+        }
+
+        if (result != ContentDialogResult.Primary)
         {
             return false;
         }
@@ -2295,16 +2357,67 @@ public sealed partial class MainWindow : Window
         return sources.Any(s => candidate.StartsWith(Path.TrimEndingDirectorySeparator(s) + Path.DirectorySeparatorChar, StringComparison.OrdinalIgnoreCase));
     }
 
-    private static ListViewItem DestinationItem(string folder, bool favorite, bool explorer = false)
+    /// <summary>
+    /// La lista de destinos cabe entera en la ventana: con poco alto se encoge (sin bajar de unas tres filas) para que
+    /// se vea su final y, debajo, el resto de opciones del diálogo, que se desplaza como un todo.
+    /// </summary>
+    private void FitDestinationsList()
+    {
+        double height = Root.XamlRoot?.Size.Height ?? Root.ActualHeight;
+        // Título, resumen, botones y márgenes del diálogo ocupan unos 280 px.
+        DestinationsList.MaxHeight = height > 0 ? Math.Clamp(height - 280, 120, 360) : 240;
+    }
+
+    private void FitDestinationsListOnResize(object sender, SizeChangedEventArgs e) => FitDestinationsList();
+
+    private ListViewItem DestinationItem(string folder, bool favorite, bool explorer = false)
     {
         // Rutas enteras (en varias líneas si hace falta): para elegir destino hay que verlas completas.
         var row = new Grid { ColumnSpacing = 8 };
         row.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
         row.ColumnDefinitions.Add(new ColumnDefinition());
-        row.Children.Add(new FontIcon { Glyph = explorer ? "" : favorite ? "" : "", FontSize = 14, VerticalAlignment = VerticalAlignment.Center });
+        row.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+        var icon = new FontIcon { Glyph = explorer ? "" : favorite ? "" : "", FontSize = 14, VerticalAlignment = VerticalAlignment.Center };
+        row.Children.Add(icon);
         var text = new TextBlock { Text = folder, VerticalAlignment = VerticalAlignment.Center, TextWrapping = TextWrapping.Wrap };
         Grid.SetColumn(text, 1);
         row.Children.Add(text);
+
+        // Estrella para guardar la carpeta en favoritos (o quitarla) sin salir del diálogo.
+        var star = new Button
+        {
+            Style = (Style)Application.Current.Resources["McToolButton"],
+            VerticalAlignment = VerticalAlignment.Center,
+            Content = new FontIcon { FontSize = 14 },
+        };
+        Grid.SetColumn(star, 2);
+        row.Children.Add(star);
+        void ShowStar()
+        {
+            bool isFavorite = _app.Settings.FavoriteFolders.Contains(folder, StringComparer.OrdinalIgnoreCase);
+            ((FontIcon)star.Content).Glyph = isFavorite ? "" : "";
+            string label = L.Get(isFavorite ? "Destinations_Unfavorite" : "Destinations_Favorite");
+            ToolTipService.SetToolTip(star, label);
+            Microsoft.UI.Xaml.Automation.AutomationProperties.SetName(star, label);
+            if (!explorer)
+            {
+                icon.Glyph = isFavorite ? "" : "";
+            }
+        }
+
+        star.Click += (_, _) =>
+        {
+            var favorites = _app.Settings.FavoriteFolders;
+            if (favorites.RemoveAll(f => string.Equals(f, folder, StringComparison.OrdinalIgnoreCase)) == 0)
+            {
+                favorites.Add(folder);
+            }
+
+            _app.Settings.Save();
+            ShowStar();
+        };
+        ShowStar();
+
         var item = new ListViewItem { Content = row, Tag = folder, HorizontalContentAlignment = HorizontalAlignment.Stretch };
         Microsoft.UI.Xaml.Automation.AutomationProperties.SetName(item, folder);
         return item;
@@ -2312,11 +2425,15 @@ public sealed partial class MainWindow : Window
 
     private async void AddDestination_Click(object sender, RoutedEventArgs e)
     {
-        if (await Pickers.PickFolderAsync() is not { } folder)
+        if (await Pickers.PickFolderAsync() is { } folder)
         {
-            return;
+            AddDestinationFolder(folder);
         }
+    }
 
+    /// <summary>La carpeta queda en la lista y marcada (si ya estaba, solo se marca).</summary>
+    private void AddDestinationFolder(string folder)
+    {
         var existing = DestinationsList.Items.OfType<ListViewItem>().FirstOrDefault(i => string.Equals((string)i.Tag, folder, StringComparison.OrdinalIgnoreCase));
         if (existing is null)
         {
@@ -2325,6 +2442,97 @@ public sealed partial class MainWindow : Window
         }
 
         DestinationsList.SelectedItems.Add(existing);
+        DestinationsList.ScrollIntoView(existing);
+    }
+
+    /// <summary>
+    /// Escribir o pegar una ruta: mientras se escribe, sugiere las subcarpetas que empiezan así (como la barra de
+    /// direcciones del Explorador). Elegir una sugerencia sigue bajando; Intro o el «+» la añade como destino.
+    /// </summary>
+    private void DestinationsPath_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+    {
+        DestinationsPathError.Visibility = Visibility.Collapsed;
+        if (args.Reason != AutoSuggestionBoxTextChangeReason.UserInput)
+        {
+            return;
+        }
+
+        sender.ItemsSource = SubfolderSuggestions(sender.Text);
+    }
+
+    /// <summary>Una subcarpeta sugerida: se ve su nombre y se usa su ruta completa.</summary>
+    internal sealed record FolderSuggestion(string Path)
+    {
+        public override string ToString() => System.IO.Path.GetFileName(Path);
+    }
+
+    internal static List<FolderSuggestion> SubfolderSuggestions(string typed)
+    {
+        string text = Environment.ExpandEnvironmentVariables(typed.Trim().Trim('"'));
+        try
+        {
+            if (text.Length < 2 || !Path.IsPathFullyQualified(text.Length == 2 && text[1] == ':' ? text + Path.DirectorySeparatorChar : text))
+            {
+                return [];
+            }
+
+            bool inside = Path.EndsInDirectorySeparator(text) || (text.Length == 2 && text[1] == ':');
+            string parent = inside ? (text.Length == 2 ? text + Path.DirectorySeparatorChar : text) : Path.GetDirectoryName(text) ?? "";
+            string prefix = inside ? "" : Path.GetFileName(text);
+            if (parent.Length == 0 || !Directory.Exists(parent))
+            {
+                return [];
+            }
+
+            return [.. new DirectoryInfo(parent).EnumerateDirectories(prefix + "*", new EnumerationOptions { IgnoreInaccessible = true, AttributesToSkip = FileAttributes.System })
+                .Select(d => new FolderSuggestion(d.FullName)).OrderBy(s => s.ToString(), StringComparer.CurrentCultureIgnoreCase).Take(10)];
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or ArgumentException or System.Security.SecurityException)
+        {
+            return [];
+        }
+    }
+
+    private void DestinationsPath_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
+    {
+        if (args.SelectedItem is FolderSuggestion { Path: var folder })
+        {
+            sender.Text = folder + Path.DirectorySeparatorChar; // para seguir bajando
+        }
+    }
+
+    private void DestinationsPath_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+    {
+        string text = Environment.ExpandEnvironmentVariables(((args.ChosenSuggestion as FolderSuggestion)?.Path ?? args.QueryText).Trim().Trim('"'));
+        string? folder = null;
+        try
+        {
+            if (text.Length == 2 && text[1] == ':')
+            {
+                text += Path.DirectorySeparatorChar;
+            }
+
+            // Una ruta completa en una unidad o un recurso de red que existen; la carpeta en sí se crea al copiar.
+            if (Path.IsPathFullyQualified(text) && Path.GetPathRoot(text) is { Length: > 0 } root && Directory.Exists(root))
+            {
+                folder = Path.GetFullPath(text);
+                folder = Path.GetPathRoot(folder) == folder ? folder : Path.TrimEndingDirectorySeparator(folder);
+            }
+        }
+        catch (Exception ex) when (ex is ArgumentException or NotSupportedException or PathTooLongException or IOException)
+        {
+        }
+
+        if (folder is null || File.Exists(folder))
+        {
+            DestinationsPathError.Text = L.Get("Destinations_PathInvalid");
+            DestinationsPathError.Visibility = Visibility.Visible;
+            return;
+        }
+
+        AddDestinationFolder(folder);
+        sender.Text = "";
+        sender.ItemsSource = null;
     }
 
     /// <summary>Sincronizar borra en el destino: se avisa y, por prudencia, se propone simular primero.</summary>
@@ -2409,7 +2617,7 @@ public sealed partial class MainWindow : Window
 
         CopyToMenu.Items.Add(new MenuFlyoutSeparator());
         var manage = new MenuFlyoutItem { Text = L.Get("Tool_CopyToManage"), Icon = new FontIcon { Glyph = "" } };
-        manage.Click += Settings_Click;
+        manage.Click += (_, _) => { OpenSettings(); SettingsView.OpenFavorites(); };
         CopyToMenu.Items.Add(manage);
     }
 
@@ -2592,7 +2800,7 @@ public sealed partial class MainWindow : Window
     internal async Task SendToPeerAsync(IReadOnlyList<string> sources)
     {
         SendSummary.Text = sources.Count == 1
-            ? L.F("Send_SummaryOne", Path.GetFileName(Path.TrimEndingDirectorySeparator(sources[0])))
+            ? L.F("Send_SummaryOne", Engine.SourceNames.TargetName(sources[0]))
             : L.F("Send_SummaryMany", sources.Count);
         SendPeers.Items.Clear();
         SendHostBox.Text = _app.Settings.LastPeer;
@@ -2731,14 +2939,34 @@ public sealed partial class MainWindow : Window
         }
     }
 
+    /// <summary>
+    /// Marca la opción elegida. Un RadioMenuFlyoutItem marcado antes de abrirse el menú por primera vez no dibuja su
+    /// punto (WinUI solo lo pinta al cambiar): se desmarcan todos y se vuelve a marcar el elegido cada vez que se abre
+    /// (al empezar a abrirse y otra vez ya abierto, cuando sus elementos tienen plantilla).
+    /// </summary>
+    private void SyncFinishChecks()
+    {
+        (RadioMenuFlyoutItem Item, FinishAction Action)[] items =
+        [
+            (FinishNothing, FinishAction.None), (FinishSleep, FinishAction.Sleep), (FinishHibernate, FinishAction.Hibernate),
+            (FinishShutdown, FinishAction.Shutdown), (FinishSignOut, FinishAction.SignOut), (FinishExit, FinishAction.ExitApp),
+        ];
+        foreach (var (item, _) in items)
+        {
+            item.IsChecked = false;
+        }
+
+        foreach (var (item, action) in items)
+        {
+            item.IsChecked = action == _app.FinishAction;
+        }
+    }
+
+    private void FinishMenu_Opening(object sender, object e) => SyncFinishChecks();
+
     internal void UpdateFinishButton()
     {
-        FinishNothing.IsChecked = _app.FinishAction == FinishAction.None;
-        FinishSleep.IsChecked = _app.FinishAction == FinishAction.Sleep;
-        FinishHibernate.IsChecked = _app.FinishAction == FinishAction.Hibernate;
-        FinishShutdown.IsChecked = _app.FinishAction == FinishAction.Shutdown;
-        FinishSignOut.IsChecked = _app.FinishAction == FinishAction.SignOut;
-        FinishExit.IsChecked = _app.FinishAction == FinishAction.ExitApp;
+        SyncFinishChecks();
         (FinishIcon.Glyph, FinishText.Text) = _app.FinishAction switch
         {
             FinishAction.Sleep => ("", L.Get("Finish_LabelSleep")),
@@ -2788,61 +3016,86 @@ public sealed partial class MainWindow : Window
     internal ConflictAnswer AskConflict(CopyJob job, ConflictInfo conflict, CancellationToken cancellation)
     {
         _dialogGate.Wait(cancellation);
-        try
+        var answer = new TaskCompletionSource<ConflictAnswer>(TaskCreationOptions.RunContinuationsAsynchronously);
+        if (!_dispatcher.TryEnqueue(async () =>
         {
-            var answer = new TaskCompletionSource<ConflictAnswer>(TaskCreationOptions.RunContinuationsAsynchronously);
-            _dispatcher.TryEnqueue(async () =>
+            var closed = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
+            _conflictDialogClosed = closed;
+            try
             {
-                try
+                cancellation.ThrowIfCancellationRequested();
+                if (_closeButtonPending || job.Cancelled) throw new OperationCanceledException();
+                ShowJobs();
+                Select(Jobs.FirstOrDefault(j => j.Job == job) ?? _selected);
+                ShowAndActivate();
+                await WaitForRootAsync();
+                FillConflictDialog(conflict, job.Record.Move);
+                bool singleFile = job.Record.Sources.Count == 1 && File.Exists(job.Record.Sources[0])
+                    && job.Record.ExtraTargets.Count == 0;
+                ConflictApplyAll.Visibility = singleFile ? Visibility.Collapsed : Visibility.Visible;
+                ConflictRenameExisting.Visibility = singleFile ? Visibility.Collapsed : Visibility.Visible;
+                PlayAttentionOnce(job);
+                _renameExisting = false;
+                ConflictDialog.XamlRoot = Root.XamlRoot;
+                ConflictDialog.RequestedTheme = Root.RequestedTheme;
+                // El diálogo del XAML se creó antes de aplicar la paleta; usar el mismo
+                // acrílico actual que los diálogos que se crean al copiar.
+                if (Application.Current.Resources.ContainsKey("ContentDialogBackground"))
+                    ConflictDialog.Background = (Brush)Application.Current.Resources["ContentDialogBackground"];
+                bool grow = !_expanded;
+                if (grow && _roomForDialog is null)
                 {
-                    ShowJobs();
-                    Select(Jobs.FirstOrDefault(j => j.Job == job) ?? _selected);
-                    ShowAndActivate();
-                    await WaitForRootAsync();
-                    FillConflictDialog(conflict, job.Record.Move);
-                    bool singleFile = job.Record.Sources.Count == 1 && File.Exists(job.Record.Sources[0])
-                        && job.Record.ExtraTargets.Count == 0;
-                    ConflictApplyAll.Visibility = singleFile ? Visibility.Collapsed : Visibility.Visible;
-                    ConflictRenameExisting.Visibility = singleFile ? Visibility.Collapsed : Visibility.Visible;
-                    PlayAttentionOnce(job);
-                    _renameExisting = false;
-                    ConflictDialog.XamlRoot = Root.XamlRoot;
-                    ConflictDialog.RequestedTheme = Root.RequestedTheme;
-                    bool grow = !_expanded;
-                    _shrinkTicket++; // si la ventana iba a encoger tras el diálogo anterior, ya no
-                    if (grow && _roomForDialog is null)
-                    {
-                        _roomForDialog = (CompactWidth + 40, 640); // con sitio para las miniaturas, también para los límites
-                        AnimateResizeTo(CompactWidth + 40, 640);
-                    }
-
-                    using var registration = cancellation.Register(() => _dispatcher.TryEnqueue(ConflictDialog.Hide));
-                    var result = await ConflictDialog.ShowAsync();
-                    if (grow)
-                    {
-                        _ = ShrinkAfterDialogAsync(++_shrinkTicket);
-                    }
-
-                    var decision = _renameExisting ? ConflictDecision.RenameExisting : result switch
-                    {
-                        ContentDialogResult.Primary => ConflictDecision.Replace,
-                        ContentDialogResult.Secondary => ConflictDecision.KeepBoth,
-                        _ => ConflictDecision.Skip,
-                    };
-                    answer.TrySetResult(new ConflictAnswer(decision, ConflictApplyAll.IsChecked == true));
+                    _roomForDialog = (CompactWidth + 40, 640); // con sitio para las miniaturas, también para los límites
+                    AnimateResizeTo(CompactWidth + 40, 640);
                 }
-                catch (Exception ex)
+
+                // El Popup calcula su posición al abrirse: el cliente y la
+                // superficie gráfica deben tener ya su tamaño definitivo.
+                while (_resizeTimer.IsRunning)
+                    await Task.Delay(16, cancellation);
+                cancellation.ThrowIfCancellationRequested();
+                if (_closeButtonPending || job.Cancelled) throw new OperationCanceledException();
+                Root.UpdateLayout();
+                // El delegado debe tener destino administrado: pasar Hide como grupo
+                // de métodos WinRT falla al convertirlo a DispatcherQueueHandler en AOT.
+                using var registration = cancellation.Register(() => _dispatcher.TryEnqueue(() => ConflictDialog.Hide()));
+                _conflictDialogShowing = true;
+                var result = await ConflictDialog.ShowAsync();
+                cancellation.ThrowIfCancellationRequested();
+                if (_closeButtonPending || job.Cancelled) throw new OperationCanceledException();
+                var decision = _renameExisting ? ConflictDecision.RenameExisting : result switch
                 {
-                    answer.TrySetException(ex);
-                }
-            });
-
-            return answer.Task.WaitAsync(cancellation).GetAwaiter().GetResult();
-        }
-        finally
+                    ContentDialogResult.Primary => ConflictDecision.Replace,
+                    ContentDialogResult.Secondary => ConflictDecision.KeepBoth,
+                    _ => ConflictDecision.Skip,
+                };
+                answer.TrySetResult(new ConflictAnswer(decision, ConflictApplyAll.IsChecked == true));
+            }
+            catch (OperationCanceledException) when (cancellation.IsCancellationRequested || _closeButtonPending || job.Cancelled)
+            {
+                answer.TrySetCanceled(cancellation);
+            }
+            catch (Exception ex)
+            {
+                answer.TrySetException(ex);
+            }
+            finally
+            {
+                _conflictDialogShowing = false;
+                ShrinkAfterDialog();
+                _conflictDialogClosed = null;
+                closed.TrySetResult();
+                // El motor puede cancelar antes, pero la siguiente pregunta
+                // debe esperar también al cierre visual de la anterior.
+                _dialogGate.Release();
+            }
+        }))
         {
             _dialogGate.Release();
+            throw new InvalidOperationException("No se pudo mostrar el conflicto en la ventana.");
         }
+
+        return answer.Task.WaitAsync(cancellation).GetAwaiter().GetResult();
     }
 
     private void FillConflictDialog(ConflictInfo conflict, bool move)
@@ -2963,8 +3216,12 @@ public sealed partial class MainWindow : Window
             return;
         }
 
-        Root.Width = host.ActualWidth / UiScale;
-        Root.Height = host.ActualHeight / UiScale;
+        var client = ResizeClientSize();
+        double pixelsPerDip = (Root.XamlRoot?.RasterizationScale ?? 1) * UiScale;
+        // El HWND hijo puede ser mayor para estabilizar su búfer; no representa el área visible.
+        // Medir siempre contra el cliente del padre mantiene barras, cifras y páginas dentro del marco.
+        Root.Width = Math.Max(1, client.Width / pixelsPerDip);
+        Root.Height = Math.Max(1, client.Height / pixelsPerDip);
     }
 
 

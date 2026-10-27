@@ -95,6 +95,7 @@ internal abstract class FakeCloud : IDisposable
         ClientId = "app-de-prueba",
         AuthUrl = Url + "authorize",
         TokenUrl = Url + "token",
+        Site = Kind == ConnectionKind.SharePoint ? "https://empresa.sharepoint.com/sites/Equipo" : "",
     };
 
     protected virtual bool OpenPath(string path) => false;
@@ -150,13 +151,17 @@ internal abstract class FakeCloud : IDisposable
 }
 
 /// <summary>OneDrive de prueba (Microsoft Graph).</summary>
-internal sealed class FakeOneDrive : FakeCloud
+/// <param name="sharePoint">La biblioteca de un sitio de SharePoint: rutas «sites/{id}/drive» en lugar de «me/drive».</param>
+internal sealed class FakeOneDrive(bool sharePoint = false) : FakeCloud
 {
     private readonly Dictionary<string, (string Parent, string Name, MemoryStream Data)> _sessions = [];
 
     public override string RootId => "raiz";
 
-    public override ConnectionKind Kind => ConnectionKind.OneDrive;
+    public override ConnectionKind Kind => sharePoint ? ConnectionKind.SharePoint : ConnectionKind.OneDrive;
+
+    /// <summary>La dirección del sitio que pidió el cliente («empresa.sharepoint.com:/sites/Equipo»).</summary>
+    public string? SiteRequested { get; private set; }
 
     protected override bool OpenPath(string path) => path.StartsWith("/download/", StringComparison.Ordinal) || path.StartsWith("/session/", StringComparison.Ordinal);
 
@@ -176,6 +181,23 @@ internal sealed class FakeOneDrive : FakeCloud
             string range = request.Headers["Content-Range"]; // bytes a-b/total
             long total = long.Parse(range[(range.IndexOf('/') + 1)..], CultureInfo.InvariantCulture);
             return data.Length < total ? Json(new JsonObject(), 202) : Json(new JsonObject { ["id"] = Add(parent, name, false, data.ToArray()).Id }, 201);
+        }
+
+        if (sharePoint)
+        {
+            // sites/{servidor}:/{ruta} da el id del sitio; después todo va por sites/{id}/drive.
+            if (path.StartsWith("/sites/", StringComparison.Ordinal) && !path.Contains("/drive", StringComparison.Ordinal))
+            {
+                SiteRequested = path["/sites/".Length..];
+                return Json(new JsonObject { ["id"] = "sitio-1" });
+            }
+
+            if (!path.StartsWith("/sites/sitio-1/drive", StringComparison.Ordinal))
+            {
+                return new FakeResponse(404);
+            }
+
+            path = "/me/drive" + path["/sites/sitio-1/drive".Length..];
         }
 
         string items = "/me/drive/items/";
@@ -217,7 +239,7 @@ internal sealed class FakeOneDrive : FakeCloud
             var page = new JsonObject { ["value"] = value };
             if (skip + PageSize < all.Count)
             {
-                page["@odata.nextLink"] = $"{Url}me/drive/items/{itemId}/children?skip={skip + PageSize}";
+                page["@odata.nextLink"] = $"{Url}{(sharePoint ? "sites/sitio-1/drive" : "me/drive")}/items/{itemId}/children?skip={skip + PageSize}";
             }
 
             return Json(page);

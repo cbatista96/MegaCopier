@@ -317,8 +317,6 @@ Tool_LoadList.Text	Загрузить список копирования…
 Tool_LoadListText.Text	Загрузить список
 Tool_NewCopy.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Новое копирование
 Tool_NewCopyText.Text	Новое
-Tool_PauseAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Приостановить все
-Tool_ResumeAll.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Возобновить все
 Tool_Settings.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Настройки
 Tool_Sidebar.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip	Показать или скрыть список копирований
 Drop_Caption	Копировать через MegaCopier
@@ -1598,3 +1596,112 @@ Settings_FastPaths.PlaceholderText	C:, D:\Данные
 Rules_Synchronization.Text	Синхронизация
 Rules_SecurityTitle.Text	Безопасность
 Job_StateNeedsAdministrator	Требуются права администратора
+
+Settings_TaskbarTitle.Text	Показывать на панели задач
+Settings_TaskbarDescription.Text	Если отключено, при сворачивании окно всегда скрывается в системном трее рядом с часами.
+Toolbar_PauseAll	Приостановить все
+Toolbar_ResumeAll	Возобновить все
+Toolbar_Sidebar	Показать или скрыть список копирований
+Toolbar_New	Новое копирование
+Toolbar_ClearDone	Убрать завершённые копирования
+Toolbar_Timeline	Временная шкала очереди
+Toolbar_History	Журнал
+Toolbar_Settings	Настройки
+Toolbar_About	О программе
+Toolbar_AlwaysOnTop	Поверх других окон
+Toolbar_Shelf	Полка для перетаскивания
+Toolbar_Compare	Сравнение и синхронизация
+Toolbar_PlayPause	Приостановить или возобновить все
+Toolbar_Separator	Разделитель
+Toolbar_More	Другие действия
+Destinations_Favorite	Добавить в избранное
+Destinations_Unfavorite	Удалить из избранного
+Settings_ToolbarTitle.Text	Панель инструментов
+Settings_ToolbarDescription.Text	Выберите, какие кнопки показывать и в каком порядке. В маленьком окне помещается столько же, сколько по умолчанию; остальные попадают в меню «…» в конце.
+Settings_ToolbarReset.Text	Сбросить
+Settings_ToolbarFinish.Content	Показывать «По завершении» справа
+Settings_ToolbarUp	Переместить «{0}» вверх
+Settings_ToolbarDown	Переместить «{0}» вниз
+Rules_SkipCloud.Content	Пропускать файлы, которые есть только в облаке (не скачивать)
+Destinations_PathBox.PlaceholderText	Введите или вставьте путь, например D:\Копии
+Destinations_PathInvalid	Этот путь не подходит: введите полный путь к папке на существующем диске или сетевом ресурсе (например, D:\Копии).
+Tool_CompareSum.Text	Сравнить с контрольной суммой…
+SumCheck_Title	Сравнение с контрольной суммой
+SumCheck_File	Файл: {0}
+SumCheck_Header	Опубликованная сумма (MD5, SHA-1, SHA-256, SHA-512, SHA3, BLAKE3, xxHash или CRC32)
+SumCheck_Placeholder	Вставьте сюда сумму со страницы загрузки
+SumCheck_Check	Проверить
+SumCheck_Close	Закрыть
+SumCheck_NotASum	Это не похоже на контрольную сумму: нужно шестнадцатеричное число из 8, 16, 32, 40, 64 или 128 цифр.
+SumCheck_Reading	Чтение файла…
+SumCheck_Match	✓ Совпадает ({0}): файл в порядке.
+SumCheck_NoMatch	✗ Не совпадает. По {0} файл даёт {1}: он повреждён, неполон или это другой файл.
+Status_SourceDrive.Text	Источник
+Status_TargetDrive.Text	Назначение
+Status_DriveFree	свободно {0} из {1}
+LocalSend_Conflict.Header	Если файл уже есть в папке
+LocalSend_ConflictRename.Content	Сохранить оба («фото (2).jpg»)
+LocalSend_ConflictSkip.Content	Не принимать
+LocalSend_ConflictOverwrite.Content	Заменить существующий
+LocalSend_Include.Header	Принимать только эти типы (пусто = все)
+LocalSend_Include.PlaceholderText	*.jpg; *.heic; *.mp4
+LocalSend_Exclude.Header	Никогда не принимать
+LocalSend_Exclude.PlaceholderText	*.apk; *.exe
+Task_OnDevice.Content	При подключении диска
+Task_SavedOnDevice	Задача «{0}» сохранена: она будет запускаться сама при каждом подключении диска (если MegaCopier открыт или в трее).
+Task_NoDevice	У этой копии нет диска с буквой, которого можно ждать (например, она идёт в сетевую папку).
+Settings_TaskOnDevice	Запускается сама при подключении {0}
+Connection_AzureAccount	Учётная запись хранения (https://account.blob.core.windows.net)
+Connection_GcsEndpoint	Конечная точка (пусто = storage.googleapis.com)
+Connection_Sas	Токен SAS контейнера (sv=…&sig=…)
+Connection_Container	Контейнер (и папка): контейнер/папка
+Connection_Site	Сайт SharePoint
+Connection_SitePlaceholder	https://company.sharepoint.com/sites/Team
+Rules_MoreTitle.Text	Дополнительные параметры
+Rules_RenameMask.Header	Переименовывать при копировании (маска: *.bak, копия *.*)
+Rules_Flatten.Content	Сплющить: всё в папку назначения, без подпапок
+Rules_KeepPaths.Content	Файлы из разных папок: воссоздать их папки от общей
+Rules_OnlyArchive.Content	Только помеченные как изменённые (атрибут «Архивный»)
+Rules_ResetArchive.Content	Снимать эту метку с источника после копирования (инкрементные копии)
+Rules_CompensateDst.Content	Считать одинаковыми файлы с разницей ровно в час (переход на летнее время)
+Rules_KeepCompression.Content	Сохранять сжатие NTFS
+Rules_SkipCompressed.Content	Пропускать сжатые или зашифрованные Windows
+Rules_SkipTemporary.Content	Пропускать помеченные как временные
+Rules_Depth.Header	Уровни подпапок (пусто = все; 0 = только папка)
+Rules_AccessedAfter.Header	Использованные с
+Rules_AccessedBefore.Header	Использованные до
+Rules_FolderTimes.Header	Даты папок
+Rules_FolderAttributes.Header	Атрибуты папок
+Rules_FolderLikeFiles.Content	Как у файлов
+Rules_FolderYes.Content	Копировать
+Rules_FolderNo.Content	Не копировать
+Rules_FolderLikeFiles2.Content	Как у файлов
+Rules_FolderYes2.Content	Копировать
+Rules_FolderNo2.Content	Не копировать
+Rules_BeforeCommand.Header	Выполнить перед началом (при ошибке ничего не копируется)
+Settings_EjectSource.Content	Извлекать и источник (карту камеры), если всё прошло успешно
+Scripts_AddExample.Text	Добавить пример
+Scripts_ExampleNtfy.Text	Уведомить телефон через ntfy
+Scripts_ExampleIfttt.Text	Запустить апплет IFTTT
+Scripts_ExampleOpen.Text	Открыть папку назначения, если всё прошло успешно
+Scripts_ExampleLog.Text	Записывать каждую копию в текстовый файл
+Scripts_NtfyTopic	moya-sekretnaya-tema
+Scripts_IftttKey	VASH-KLYUCH
+Scripts_LogName	MegaCopier-kopii
+Settings_TransferLogTitle.Text	Единый журнал всех копий
+Settings_TransferLogDescription.Text	Строка на каждый скопированный или неудачный файл, в одном файле и в выбранном формате. Можно также отправлять на сервер Syslog.
+Settings_TransferLogPath.Header	Файл журнала
+Settings_TransferLogBrowse.Text	Выбрать…
+Settings_TransferLogType	Журнал
+Settings_TransferLogFormat.Header	Формат для каждого скопированного файла
+Settings_ErrorLogFormat.Header	Формат для каждой ошибки
+Settings_TransferLogVariables.Text	Переменные: %time%, %source%, %destination%, %size%, %mtime%, %hash%, %path%, %error%, %computer%, %user%
+Settings_Syslog.Header	Отправлять также на сервер Syslog (сервер или сервер:порт; пусто = нет)
+Task_AddPair.Text	Добавить в задачу ещё одну пару папок…
+Task_ClearPairs.Text	Убрать пары
+Task_PairSource	Папка для копирования
+Task_PairDestination	Куда копировать
+Task_NoSession.Content	Выполнять, даже если никто не вошёл в систему (без окна)
+Task_NoCli	Для запуска без сеанса нужен mcopy.exe рядом с MegaCopier (входит в установщик).
+Settings_ToolbarCustomize.Text	Настроить
+Status_Folders.Text	Папки

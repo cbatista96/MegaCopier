@@ -36,6 +36,7 @@
 
             <!-- Secciones, como en la Configuración de Windows 11 -->
             <Grid x:Name="NavPane" Padding="12,4,6,12" RowSpacing="8">
+                <Grid.RenderTransform><CompositeTransform x:Name="NavRevealTransform" /></Grid.RenderTransform>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
@@ -146,6 +147,12 @@
                             <c:McIcon VerticalAlignment="Center" Glyph="&#xE8A7;" FontSize="18" Accent="True" />
                             <StackPanel Grid.Column="1"><TextBlock x:Name="TrayTitleLabel" x:Uid="Settings_TrayTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="Settings_TrayDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
                             <ToggleSwitch x:Name="TrayToggle" AutomationProperties.LabeledBy="{x:Bind TrayTitleLabel}" Grid.Column="2" OnContent="" OffContent="" MinWidth="0" Toggled="Changed" />
+                        </Grid>
+                        <Grid Style="{StaticResource Row}" Tag="SettingRow">
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                            <c:McIcon VerticalAlignment="Center" Glyph="&#xE737;" FontSize="18" Accent="True" />
+                            <StackPanel Grid.Column="1"><TextBlock x:Name="TaskbarTitleLabel" x:Uid="Settings_TaskbarTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="Settings_TaskbarDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                            <ToggleSwitch x:Name="TaskbarToggle" AutomationProperties.LabeledBy="{x:Bind TaskbarTitleLabel}" Grid.Column="2" OnContent="" OffContent="" MinWidth="0" Toggled="Changed" />
                         </Grid>
                         <Grid Style="{StaticResource Row}" Tag="SettingRow">
                             <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
@@ -261,6 +268,35 @@
                         <StackPanel Grid.Column="1"><TextBlock x:Name="AdaptTitleLabel" x:Uid="Settings_AdaptTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="Settings_AdaptDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
                         <ToggleSwitch x:Name="AdaptToggle" AutomationProperties.LabeledBy="{x:Bind AdaptTitleLabel}" Grid.Column="2" OnContent="" OffContent="" MinWidth="0" Toggled="Changed" />
                     </Grid>
+                </Border>
+                <!-- Accesos de la barra de herramientas: cuáles se ven y en qué orden (la lista, plegada hasta pedirla) -->
+                <Border Style="{StaticResource McSettingCard}">
+                    <StackPanel Spacing="8">
+                        <Grid Style="{StaticResource Row}" Tag="SettingRow">
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                            <c:McIcon VerticalAlignment="Center" Glyph="&#xE8A9;" FontSize="18" Accent="True" />
+                            <StackPanel Grid.Column="1"><TextBlock x:Name="ToolbarTitleLabel" x:Uid="Settings_ToolbarTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="Settings_ToolbarDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                            <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                                <Button x:Name="ToolbarResetButton" Style="{StaticResource McButton}" Click="ToolbarReset_Click" AutomationProperties.LabeledBy="{x:Bind ToolbarResetLabel}" Opacity="0" IsHitTestVisible="False" IsTabStop="False" AutomationProperties.AccessibilityView="Raw">
+                                    <StackPanel Orientation="Horizontal" Spacing="8"><c:McIcon VerticalAlignment="Center" Glyph="&#xE777;" FontSize="12" /><TextBlock x:Name="ToolbarResetLabel" x:Uid="Settings_ToolbarReset" /></StackPanel>
+                                </Button>
+                                <Button x:Name="ToolbarExpandButton" Style="{StaticResource McButton}" Click="ToolbarExpand_Click" AutomationProperties.LabeledBy="{x:Bind ToolbarExpandLabel}">
+                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                        <TextBlock x:Name="ToolbarExpandLabel" x:Uid="Settings_ToolbarCustomize" VerticalAlignment="Center" />
+                                        <FontIcon x:Name="ToolbarExpandIcon" Glyph="&#xE70D;" FontSize="12" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5"><FontIcon.RenderTransform><RotateTransform x:Name="ToolbarExpandRotation" /></FontIcon.RenderTransform></FontIcon>
+                                    </StackPanel>
+                                </Button>
+                            </StackPanel>
+                        </Grid>
+                        <!-- Con relleno y no con margen: la lista es larga y se queda debajo de la cabecera (ver PolishCards) -->
+                        <Grid x:Name="ToolbarItemsHost" Margin="0,-8,0,0" Visibility="Collapsed">
+                            <StackPanel x:Name="ToolbarItemsPanel" Padding="30,8,0,0" Spacing="2" VerticalAlignment="Top">
+                                <StackPanel.RenderTransform><TranslateTransform x:Name="ToolbarItemsShift" /></StackPanel.RenderTransform>
+                                <StackPanel x:Name="ToolbarItemsList" Spacing="2" />
+                                <CheckBox x:Name="ToolbarFinishBox" x:Uid="Settings_ToolbarFinish" Click="ToolbarFinish_Click" />
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
                 </Border>
                 <Border Style="{StaticResource McSettingCard}" Margin="0,0,0,4"><StackPanel Spacing="6">
                 <TextBlock x:Name="ThemesLabel" x:Uid="Settings_Themes" Style="{StaticResource McStrong}" />
@@ -501,6 +537,7 @@
                             <StackPanel Grid.Column="1"><Grid ColumnSpacing="4"><Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions><TextBlock x:Name="EjectTitleLabel" x:Uid="Settings_EjectTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" VerticalAlignment="Center" /><c:InfoTip Grid.Column="1" Topic="Eject" Margin="0,-4,0,-4" /></Grid><TextBlock x:Uid="Settings_EjectDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
                             <ToggleSwitch x:Name="EjectToggle" AutomationProperties.LabeledBy="{x:Bind EjectTitleLabel}" Grid.Column="2" OnContent="" OffContent="" MinWidth="0" Toggled="Changed" />
                         </Grid>
+                        <CheckBox x:Name="EjectSourceBox" x:Uid="Settings_EjectSource" Click="Changed" Margin="30,0,0,0" />
                         <CheckBox x:Name="EjectForceBox" x:Uid="Settings_EjectForce" Click="Changed" Margin="30,0,0,0" />
                     </StackPanel>
                 </Border>
@@ -567,6 +604,29 @@
                         <Button Grid.Column="2" Style="{StaticResource McButton}" Click="OpenLogs_Click"><TextBlock x:Uid="Settings_LogsOpen" /></Button>
                         <ToggleSwitch x:Name="LogsToggle" AutomationProperties.LabeledBy="{x:Bind LogsTitleLabel}" Grid.Column="3" OnContent="" OffContent="" MinWidth="0" Toggled="Changed" />
                     </Grid>
+                </Border>
+                <!-- Registro único de todas las copias (formato propio) y envío a Syslog -->
+                <Border Style="{StaticResource McSettingCard}">
+                    <StackPanel Spacing="8">
+                        <Grid Style="{StaticResource Row}" Tag="SettingRow">
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                            <c:McIcon VerticalAlignment="Center" Glyph="&#xE7C3;" FontSize="18" Accent="True" />
+                            <StackPanel Grid.Column="1"><TextBlock x:Name="TransferLogTitleLabel" x:Uid="Settings_TransferLogTitle" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="Settings_TransferLogDescription" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
+                            <ToggleSwitch x:Name="TransferLogToggle" AutomationProperties.LabeledBy="{x:Bind TransferLogTitleLabel}" Grid.Column="2" OnContent="" OffContent="" MinWidth="0" Toggled="Changed" />
+                        </Grid>
+                        <!-- Relleno y no margen: campos anchos que se quedan debajo de la cabecera (ver PolishCards) -->
+                        <StackPanel Padding="30,0,0,0" Spacing="8">
+                            <Grid ColumnSpacing="8">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                                <TextBox x:Name="TransferLogPathBox" x:Uid="Settings_TransferLogPath" LostFocus="Changed" />
+                                <Button Grid.Column="1" VerticalAlignment="Bottom" Style="{StaticResource McButton}" Click="TransferLogBrowse_Click"><TextBlock x:Uid="Settings_TransferLogBrowse" /></Button>
+                            </Grid>
+                            <TextBox x:Name="TransferLogFormatBox" x:Uid="Settings_TransferLogFormat" FontFamily="Consolas" LostFocus="Changed" />
+                            <TextBox x:Name="ErrorLogFormatBox" x:Uid="Settings_ErrorLogFormat" FontFamily="Consolas" LostFocus="Changed" />
+                            <TextBlock x:Uid="Settings_TransferLogVariables" Style="{StaticResource McSecondary}" TextWrapping="Wrap" />
+                            <TextBox x:Name="SyslogBox" x:Uid="Settings_Syslog" LostFocus="Changed" />
+                        </StackPanel>
+                    </StackPanel>
                 </Border>
                 </StackPanel>                <StackPanel x:Name="Sec_Performance" Visibility="Collapsed">
                 <Border Style="{StaticResource McSettingCard}">
@@ -715,6 +775,12 @@
                         </Grid>
                         <StackPanel x:Name="LocalSendPanel" Spacing="6" Margin="30,0,0,0">
                             <CheckBox x:Name="LocalSendAutoAcceptBox" x:Uid="LocalSend_AutoAccept" Click="LocalSendAutoAccept_Click" />
+                            <!-- Repetidos y tipos: lo que no se quiere ni se pide al móvil -->
+                            <ComboBox x:Name="LocalSendConflictBox" x:Uid="LocalSend_Conflict" MinWidth="220" SelectionChanged="LocalSendRules_Changed">
+                                <ComboBoxItem x:Uid="LocalSend_ConflictRename" /><ComboBoxItem x:Uid="LocalSend_ConflictSkip" /><ComboBoxItem x:Uid="LocalSend_ConflictOverwrite" />
+                            </ComboBox>
+                            <TextBox x:Name="LocalSendIncludeBox" x:Uid="LocalSend_Include" LostFocus="LocalSendRules_Changed" />
+                            <TextBox x:Name="LocalSendExcludeBox" x:Uid="LocalSend_Exclude" LostFocus="LocalSendRules_Changed" />
                             <Grid ColumnSpacing="8">
                                 <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
                                 <TextBlock x:Name="LocalSendInfo" Style="{StaticResource McSecondary}" VerticalAlignment="Center" TextWrapping="Wrap" />
@@ -804,10 +870,22 @@
                 <Border Style="{StaticResource McSettingCard}">
                     <Grid Style="{StaticResource Row}" RowSpacing="8">
                         <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
+                        <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
                         <c:McIcon VerticalAlignment="Center" Glyph="&#xE756;" FontSize="18" Accent="True" />
                         <StackPanel Grid.Column="1"><TextBlock x:Name="OptionsScriptsLabel" x:Uid="Options_Scripts" Style="{StaticResource McBody}" TextWrapping="Wrap" /><TextBlock x:Uid="Options_ScriptsHelp" Style="{StaticResource McSecondary}" TextWrapping="Wrap" /></StackPanel>
                         <TextBox x:Name="ScriptsBox" AutomationProperties.LabeledBy="{x:Bind OptionsScriptsLabel}" Grid.Row="1" Grid.Column="1" AcceptsReturn="True" MinHeight="80" FontFamily="Consolas" LostFocus="Changed" />
+                        <!-- Ejemplos listos para usar (avisar al móvil, IFTTT, abrir el destino) -->
+                        <DropDownButton Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left">
+                            <StackPanel Orientation="Horizontal" Spacing="8"><c:McIcon VerticalAlignment="Center" Glyph="&#xE710;" FontSize="12" /><TextBlock x:Uid="Scripts_AddExample" /></StackPanel>
+                            <DropDownButton.Flyout>
+                                <MenuFlyout Placement="BottomEdgeAlignedLeft">
+                                    <MenuFlyoutItem x:Uid="Scripts_ExampleNtfy" Tag="ntfy" Click="ScriptExample_Click" />
+                                    <MenuFlyoutItem x:Uid="Scripts_ExampleIfttt" Tag="ifttt" Click="ScriptExample_Click" />
+                                    <MenuFlyoutItem x:Uid="Scripts_ExampleOpen" Tag="open" Click="ScriptExample_Click" />
+                                    <MenuFlyoutItem x:Uid="Scripts_ExampleLog" Tag="log" Click="ScriptExample_Click" />
+                                </MenuFlyout>
+                            </DropDownButton.Flyout>
+                        </DropDownButton>
                     </Grid>
                 </Border>
                 <Border Style="{StaticResource McSettingCard}">
